@@ -170,6 +170,7 @@ func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *aws.Request, 
 
 // Creates a clone of a specified stack. For more information, see Clone a Stack
 // (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-cloning.html).
+// By default, all parameters are set to the values used by the parent stack.
 //
 // Required Permissions: To use this action, an IAM user must have an attached
 // policy that explicitly grants permissions. For more information on user permissions,
@@ -675,6 +676,35 @@ func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *a
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (*DeregisterVolumeOutput, error) {
 	req, out := c.DeregisterVolumeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeAgentVersions = "DescribeAgentVersions"
+
+// DescribeAgentVersionsRequest generates a request for the DescribeAgentVersions operation.
+func (c *OpsWorks) DescribeAgentVersionsRequest(input *DescribeAgentVersionsInput) (req *aws.Request, output *DescribeAgentVersionsOutput) {
+	op := &aws.Operation{
+		Name:       opDescribeAgentVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAgentVersionsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeAgentVersionsOutput{}
+	req.Data = output
+	return
+}
+
+// Describes the available AWS OpsWorks agent versions. You must specify a stack
+// ID or a configuration manager. DescribeAgentVersions returns a list of available
+// agent versions for the specified stack or configuration manager.
+func (c *OpsWorks) DescribeAgentVersions(input *DescribeAgentVersionsInput) (*DescribeAgentVersionsOutput, error) {
+	req, out := c.DescribeAgentVersionsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1427,8 +1457,8 @@ func (c *OpsWorks) GrantAccessRequest(input *GrantAccessInput) (req *aws.Request
 	return
 }
 
-// This API can be used only with Windows stacks. Grants RDP access to a Windows
-// instance for a specified time period.
+// This action can be used only with Windows stacks. Grants RDP access to a
+// Windows instance for a specified time period.
 func (c *OpsWorks) GrantAccess(input *GrantAccessInput) (*GrantAccessOutput, error) {
 	req, out := c.GrantAccessRequest(input)
 	err := req.Send()
@@ -1530,10 +1560,12 @@ func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *a
 // registration operation has two primary steps, installing the AWS OpsWorks
 // agent on the instance and registering the instance with the stack. RegisterInstance
 // handles only the second step. You should instead use the AWS CLI register
-// command, which performs the entire registration operation. Required Permissions:
-// To use this action, an IAM user must have a Manage permissions level for
-// the stack or an attached policy that explicitly grants permissions. For more
-// information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+// command, which performs the entire registration operation. For more information,
+// see  Registering an Instance with an AWS OpsWorks Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/registered-instances-register.html).
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RegisterInstance(input *RegisterInstanceInput) (*RegisterInstanceOutput, error) {
 	req, out := c.RegisterInstanceRequest(input)
 	err := req.Send()
@@ -2201,6 +2233,21 @@ func (c *OpsWorks) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, 
 	return out, err
 }
 
+// Describes an agent version.
+type AgentVersion struct {
+	// The configuration manager.
+	ConfigurationManager *StackConfigurationManager `type:"structure"`
+
+	// The agent version.
+	Version *string `type:"string"`
+
+	metadataAgentVersion `json:"-" xml:"-"`
+}
+
+type metadataAgentVersion struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // A description of the app.
 type App struct {
 	// The app ID.
@@ -2442,6 +2489,21 @@ type metadataChefConfiguration struct {
 }
 
 type CloneStackInput struct {
+	// The default AWS OpsWorks agent version. You have the following options:
+	//
+	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
+	// installs new agent versions on the stack's instances as soon as they are
+	// available. Fixed version - Set this parameter to your preferred agent version.
+	// To update the agent version, you must edit the stack configuration and specify
+	// a new version. AWS OpsWorks then automatically installs that version on the
+	// stack's instances.  The default setting is LATEST. To specify an agent version,
+	// you must use the complete version number, not the abbreviated number shown
+	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	//
+	// You can also specify an agent version when you create or update an instance,
+	// which overrides the stack's default setting.
+	AgentVersion *string `type:"string"`
+
 	// A list of stack attributes and values as key/value pairs to be added to the
 	// cloned stack.
 	Attributes map[string]*string `type:"map"`
@@ -2457,9 +2519,9 @@ type CloneStackInput struct {
 	// Whether to clone the source stack's permissions.
 	ClonePermissions *bool `type:"boolean"`
 
-	// The configuration manager. When you clone a stack we recommend that you use
-	// the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10.
-	// The default value is currently 11.4.
+	// The configuration manager. When you clone a Linux stack we recommend that
+	// you use the configuration manager to specify the Chef version: 0.9, 11.4,
+	// or 11.10. The default value is currently 11.10.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -2469,7 +2531,7 @@ type CloneStackInput struct {
 
 	// A string that contains user-defined, custom JSON. It is used to override
 	// the corresponding default stack configuration JSON values. The string should
-	// be in the following format and must escape characters such as '"'.:
+	// be in the following format and must escape characters such as '"':
 	//
 	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
@@ -2490,11 +2552,16 @@ type CloneStackInput struct {
 
 	// The stack's operating system, which must be set to one of the following.
 	//
-	//  Standard Linux operating systems: an Amazon Linux version such as Amazon
-	// Linux 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom Linux AMIs:
-	// Custom. You specify the custom AMI you want to use when you create instances.
-	// Microsoft Windows Server 2012 R2.   The default option is the current Amazon
-	// Linux version.
+	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
+	// Server 2012 R2 Base. A custom AMI: Custom. You specify the custom AMI you
+	// want to use when you create instances. For more information on how to use
+	// custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//  The default option is the parent stack's operating system. For more information
+	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	//
+	// You can specify a different Linux operating system for the cloned stack,
+	// but you cannot change from Linux to Windows or Windows to Linux.
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is used by default for all instances
@@ -2747,7 +2814,7 @@ type CreateDeploymentInput struct {
 
 	// A string that contains user-defined, custom JSON. It is used to override
 	// the corresponding default stack configuration JSON values. The string should
-	// be in the following format and must escape characters such as '"'.:
+	// be in the following format and must escape characters such as '"':
 	//
 	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
@@ -2783,11 +2850,22 @@ type metadataCreateDeploymentOutput struct {
 
 type CreateInstanceInput struct {
 	// A custom AMI ID to be used to create the instance. The AMI should be based
-	// on one of the standard AWS OpsWorks AMIs: Amazon Linux, Ubuntu 12.04 LTS,
-	// or Ubuntu 14.04 LTS. For more information, see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html).
+	// on one of the supported operating systems. For more information, see Using
+	// Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//
 	// If you specify a custom AMI, you must set Os to Custom.
 	AMIID *string `locationName:"AmiId" type:"string"`
+
+	// The default AWS OpsWorks agent version. You have the following options:
+	//
+	//   INHERIT - Use the stack's default agent version setting.  version_number
+	// - Use the specified agent version. This value overrides the stack's default
+	// setting. To update the agent version, edit the instance configuration and
+	// specify a new version. AWS OpsWorks then automatically installs that version
+	// on the instance.  The default setting is INHERIT. To specify an agent version,
+	// you must use the complete version number, not the abbreviated number shown
+	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	AgentVersion *string `type:"string"`
 
 	// The instance architecture. The default option is x86_64. Instance types do
 	// not necessarily support both architectures. For a list of the architectures
@@ -2816,36 +2894,36 @@ type CreateInstanceInput struct {
 	// Whether to install operating system and package updates when the instance
 	// boots. The default value is true. To control when updates are installed,
 	// set this value to false. You must then update your instances manually by
-	// using CreateDeployment to run the update_dependencies stack command or manually
-	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	// using CreateDeployment to run the update_dependencies stack command or by
+	// manually running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
 	//
 	//  We strongly recommend using the default value of true to ensure that your
 	// instances have the latest security updates.
 	InstallUpdatesOnBoot *bool `type:"boolean"`
 
-	// The instance type. AWS OpsWorks supports all instance types except Cluster
-	// Compute, Cluster GPU, and High Memory Cluster. For more information, see
+	// The instance type, such as t2.micro. For a list of supported instance types,
+	// open the stack in the console, choose Instances, and choose + Instance. The
+	// Size list contains the currently supported types. For more information, see
 	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 	// The parameter values that you use to specify the various types are in the
 	// API Name column of the Available Instance Types table.
 	InstanceType *string `type:"string" required:"true"`
 
-	// An array that contains the instance layer IDs.
+	// An array that contains the instance's layer IDs.
 	LayerIDs []*string `locationName:"LayerIds" type:"list" required:"true"`
 
 	// The instance's operating system, which must be set to one of the following.
 	//
-	// For Windows stacks: Microsoft Windows Server 2012 R2.
+	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
+	// Server 2012 R2 Base. A custom AMI: Custom.  For more information on the supported
+	// operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
-	// For Linux stacks:
-	//
-	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
-	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom   The
-	// default option is the current Amazon Linux version. If you set this parameter
-	// to Custom, you must use the CreateInstance action's AmiId parameter to specify
-	// the custom AMI that you want to use. For more information on the standard
-	// operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
-	// more information on how to use custom AMIs with OpsWorks, see Using Custom
+	// The default option is the current Amazon Linux version. If you set this
+	// parameter to Custom, you must use the CreateInstance action's AmiId parameter
+	// to specify the custom AMI that you want to use. For more information on the
+	// supported operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
+	// more information on how to use custom AMIs with AWS OpsWorks, see Using Custom
 	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	Os *string `type:"string"`
 
@@ -2853,7 +2931,7 @@ type CreateInstanceInput struct {
 	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	RootDeviceType *string `type:"string"`
 
-	// The instance's Amazon EC2 key pair name.
+	// The instance's Amazon EC2 key-pair name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
 	// The stack ID.
@@ -2976,7 +3054,22 @@ type metadataCreateLayerOutput struct {
 }
 
 type CreateStackInput struct {
-	// One or more user-defined key/value pairs to be added to the stack attributes.
+	// The default AWS OpsWorks agent version. You have the following options:
+	//
+	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
+	// installs new agent versions on the stack's instances as soon as they are
+	// available. Fixed version - Set this parameter to your preferred agent version.
+	// To update the agent version, you must edit the stack configuration and specify
+	// a new version. AWS OpsWorks then automatically installs that version on the
+	// stack's instances.  The default setting is LATEST. To specify an agent version,
+	// you must use the complete version number, not the abbreviated number shown
+	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	//
+	// You can also specify an agent version when you create or update an instance,
+	// which overrides the stack's default setting.
+	AgentVersion *string `type:"string"`
+
+	// One or more user-defined key-value pairs to be added to the stack attributes.
 	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
@@ -2985,7 +3078,7 @@ type CreateStackInput struct {
 	ChefConfiguration *ChefConfiguration `type:"structure"`
 
 	// The configuration manager. When you clone a stack we recommend that you use
-	// the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10.
+	// the configuration manager to specify the Chef version: 0.9, 11.4, or 11.10.
 	// The default value is currently 11.4.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
@@ -2995,9 +3088,9 @@ type CreateStackInput struct {
 	CustomCookbooksSource *Source `type:"structure"`
 
 	// A string that contains user-defined, custom JSON. It can be used to override
-	// the corresponding default stack configuration attribute values, or to pass
-	// data to recipes. The string should be in the following format and must escape
-	// characters such as '"'.:
+	// the corresponding default stack configuration attribute values or to pass
+	// data to recipes. The string should be in the following escape characters
+	// such as '"':
 	//
 	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
@@ -3011,21 +3104,25 @@ type CreateStackInput struct {
 	// same zone. For more information, see the VpcId parameter description.
 	DefaultAvailabilityZone *string `type:"string"`
 
-	// The ARN of an IAM profile that is the default profile for all of the stack's
-	// EC2 instances. For more information about IAM ARNs, see Using Identifiers
-	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	// The Amazon Resource Name (ARN) of an IAM profile that is the default profile
+	// for all of the stack's EC2 instances. For more information about IAM ARNs,
+	// see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string" required:"true"`
 
-	// The stack's operating system, which must be set to one of the following.
+	// The stack's default operating system, which is installed on every instance
+	// unless you specify a different operating system when you create the instance.
+	// You can specify one of the following.
 	//
-	//  Standard Linux operating systems: an Amazon Linux version such as Amazon
-	// Linux 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom Linux AMIs:
-	// Custom. You specify the custom AMI you want to use when you create instances.
-	// Microsoft Windows Server 2012 R2.   The default option is the current Amazon
-	// Linux version.
+	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
+	// Server 2012 R2 Base. A custom AMI: Custom. You specify the custom AMI you
+	// want to use when you create instances. For more information, see  Using Custom
+	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//  The default option is the current Amazon Linux version. For more information
+	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
 
-	// The default root device type. This value is used by default for all instances
+	// The default root device type. This value is the default for all instances
 	// in the stack, but you can override it when you create an instance. The default
 	// option is instance-store. For more information, see Storage for the Root
 	// Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
@@ -3048,10 +3145,10 @@ type CreateStackInput struct {
 	// VpcId parameter description.
 	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
 
-	// The stack's host name theme, with spaces are replaced by underscores. The
-	// theme is used to generate host names for the stack's instances. By default,
-	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
-	// integers to the layer's short name. The other themes are:
+	// The stack's host name theme, with spaces replaced by underscores. The theme
+	// is used to generate host names for the stack's instances. By default, HostnameTheme
+	// is set to Layer_Dependent, which creates host names by appending integers
+	// to the layer's short name. The other themes are:
 	//
 	//   Baked_Goods   Clouds   Europe_Cities   Fruits   Greek_Deities   Legendary_creatures_from_Japan
 	//   Planets_and_Moons   Roman_Deities   Scottish_Islands   US_Cities   Wild_Cats
@@ -3062,11 +3159,11 @@ type CreateStackInput struct {
 	// The stack name.
 	Name *string `type:"string" required:"true"`
 
-	// The stack AWS region, such as "us-east-1". For more information about Amazon
+	// The stack's AWS region, such as "us-east-1". For more information about Amazon
 	// regions, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	Region *string `type:"string" required:"true"`
 
-	// The stack AWS Identity and Access Management (IAM) role, which allows AWS
+	// The stack's AWS Identity and Access Management (IAM) role, which allows AWS
 	// OpsWorks to work with AWS resources on your behalf. You must set this parameter
 	// to the Amazon Resource Name (ARN) for an existing IAM role. For more information
 	// about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
@@ -3085,7 +3182,7 @@ type CreateStackInput struct {
 	//
 	//  True - AWS OpsWorks automatically associates the appropriate built-in security
 	// group with each layer (default setting). You can associate additional security
-	// groups with a layer after you create it but you cannot delete the built-in
+	// groups with a layer after you create it, but you cannot delete the built-in
 	// security group.  False - AWS OpsWorks does not associate built-in security
 	// groups with layers. You must create appropriate EC2 security groups and associate
 	// a security group with each layer that you create. However, you can still
@@ -3094,12 +3191,12 @@ type CreateStackInput struct {
 	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
-	// The ID of the VPC that the stack is to be launched into. It must be in the
-	// specified region. All instances are launched into this VPC, and you cannot
+	// The ID of the VPC that the stack is to be launched into. The VPC must be
+	// in the stack's region. All instances are launched into this VPC. You cannot
 	// change the ID later.
 	//
-	//  If your account supports EC2 Classic, the default value is no VPC. If your
-	// account does not support EC2 Classic, the default value is the default VPC
+	//  If your account supports EC2-Classic, the default value is no VPC. If your
+	// account does not support EC2-Classic, the default value is the default VPC
 	// for the specified region.  If the VPC ID corresponds to a default VPC and
 	// you have specified either the DefaultAvailabilityZone or the DefaultSubnetId
 	// parameter only, AWS OpsWorks infers the value of the other parameter. If
@@ -3112,7 +3209,7 @@ type CreateStackInput struct {
 	//  It must belong to a VPC in your account that is in the specified region.
 	// You must specify a value for DefaultSubnetId.  For more information on how
 	// to use AWS OpsWorks with a VPC, see Running a Stack in a VPC (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html).
-	// For more information on default VPC and EC2 Classic, see Supported Platforms
+	// For more information on default VPC and EC2-Classic, see Supported Platforms
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html).
 	VPCID *string `locationName:"VpcId" type:"string"`
 
@@ -3313,7 +3410,7 @@ type Deployment struct {
 	// A string that contains user-defined custom JSON. It can be used to override
 	// the corresponding default stack configuration attribute values for stack
 	// or to pass data to recipes. The string should be in the following format
-	// and must escape characters such as '"'.:
+	// and must escape characters such as '"':
 	//
 	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
@@ -3476,6 +3573,34 @@ type DeregisterVolumeOutput struct {
 }
 
 type metadataDeregisterVolumeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DescribeAgentVersionsInput struct {
+	// The configuration manager.
+	ConfigurationManager *StackConfigurationManager `type:"structure"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	metadataDescribeAgentVersionsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeAgentVersionsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains the response to a DescribeAgentVersions request.
+type DescribeAgentVersionsOutput struct {
+	// The agent versions for the specified stack or configuration manager. Note
+	// that this value is the complete version number, not the abbreviated number
+	// used by the console.
+	AgentVersions []*AgentVersion `type:"list"`
+
+	metadataDescribeAgentVersionsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeAgentVersionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -4237,12 +4362,15 @@ type metadataGrantAccessOutput struct {
 
 // Describes an instance.
 type Instance struct {
-	// A custom AMI ID to be used to create the instance. The AMI should be based
-	// on one of the standard AWS OpsWorks APIs: Amazon Linux, Ubuntu 12.04 LTS,
-	// or Ubuntu 14.04 LTS. For more information, see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html)
+	// A custom AMI ID to be used to create the instance. For more information,
+	// see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html)
 	AMIID *string `locationName:"AmiId" type:"string"`
 
-	// The instance architecture, "i386" or "x86_64".
+	// The agent version. This parameter is set to INHERIT if the instance inherits
+	// the default stack setting or to a a version number for a fixed agent version.
+	AgentVersion *string `type:"string"`
+
+	// The instance architecture: "i386" or "x86_64".
 	Architecture *string `type:"string"`
 
 	// For load-based or time-based instances, the type.
@@ -4271,13 +4399,13 @@ type Instance struct {
 	// The instance host name.
 	Hostname *string `type:"string"`
 
-	// For registered instances, the infrastructure class: ec2 or on-premises
+	// For registered instances, the infrastructure class: ec2 or on-premises.
 	InfrastructureClass *string `type:"string"`
 
 	// Whether to install operating system and package updates when the instance
 	// boots. The default value is true. If this value is set to false, you must
 	// then update your instances manually by using CreateDeployment to run the
-	// update_dependencies stack command or manually running yum (Amazon Linux)
+	// update_dependencies stack command or by manually running yum (Amazon Linux)
 	// or apt-get (Ubuntu) on the instances.
 	//
 	//  We strongly recommend using the default value of true, to ensure that your
@@ -4291,11 +4419,7 @@ type Instance struct {
 	// see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	InstanceProfileARN *string `locationName:"InstanceProfileArn" type:"string"`
 
-	// The instance type. AWS OpsWorks supports all instance types except Cluster
-	// Compute, Cluster GPU, and High Memory Cluster. For more information, see
-	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
-	// The parameter values that specify the various types are in the API Name column
-	// of the Available Instance Types table.
+	// The instance type, such as t2.micro.
 	InstanceType *string `type:"string"`
 
 	// The ID of the last service error. For more information, call DescribeServiceErrors.
@@ -4307,10 +4431,13 @@ type Instance struct {
 	// The instance's operating system.
 	Os *string `type:"string"`
 
-	// The instance private DNS name.
+	// The instance's platform.
+	Platform *string `type:"string"`
+
+	// The The instance's private DNS name.
 	PrivateDNS *string `locationName:"PrivateDns" type:"string"`
 
-	// The instance private IP address.
+	// The instance's private IP address.
 	PrivateIP *string `locationName:"PrivateIp" type:"string"`
 
 	// The instance public DNS name.
@@ -4335,13 +4462,13 @@ type Instance struct {
 	// The root device volume ID.
 	RootDeviceVolumeID *string `locationName:"RootDeviceVolumeId" type:"string"`
 
-	// The SSH key's DSA fingerprint.
+	// The SSH key's Deep Security Agent (DSA) fingerprint.
 	SSHHostDSAKeyFingerprint *string `locationName:"SshHostDsaKeyFingerprint" type:"string"`
 
 	// The SSH key's RSA fingerprint.
 	SSHHostRSAKeyFingerprint *string `locationName:"SshHostRsaKeyFingerprint" type:"string"`
 
-	// The instance's Amazon EC2 key pair name.
+	// The instance's Amazon EC2 key-pair name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
 
 	// An array containing the instance security group IDs.
@@ -4357,10 +4484,10 @@ type Instance struct {
 	// stopping   terminated   terminating
 	Status *string `type:"string"`
 
-	// The instance's subnet ID, if the stack is running in a VPC.
+	// The instance's subnet ID; applicable only if the stack is running in a VPC.
 	SubnetID *string `locationName:"SubnetId" type:"string"`
 
-	// The instance's virtualization type, paravirtual or hvm.
+	// The instance's virtualization type: paravirtual or hvm.
 	VirtualizationType *string `type:"string"`
 
 	metadataInstance `json:"-" xml:"-"`
@@ -4482,7 +4609,7 @@ type Layer struct {
 	// An array containing the layer's custom security group IDs.
 	CustomSecurityGroupIDs []*string `locationName:"CustomSecurityGroupIds" type:"list"`
 
-	// AWS OpsWorks supports five lifecycle events, setup, configuration, deploy,
+	// AWS OpsWorks supports five lifecycle events: setup, configuration, deploy,
 	// undeploy, and shutdown. For each layer, AWS OpsWorks runs a set of standard
 	// recipes for each event. In addition, you can provide custom recipes for any
 	// or all layers and events. AWS OpsWorks runs custom event recipes after the
@@ -4714,7 +4841,7 @@ type metadataRebootInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// AWS OpsWorks supports five lifecycle events, setup, configuration, deploy,
+// AWS OpsWorks supports five lifecycle events: setup, configuration, deploy,
 // undeploy, and shutdown. For each layer, AWS OpsWorks runs a set of standard
 // recipes for each event. In addition, you can provide custom recipes for any
 // or all layers and events. AWS OpsWorks runs custom event recipes after the
@@ -5001,7 +5128,7 @@ type SetPermissionInput struct {
 	// You cannot set your own permissions level.
 	//
 	//   deny   show   deploy   manage   iam_only   For more information on the
-	// permissions associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html)
+	// permissions associated with these levels, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 	Level *string `type:"string"`
 
 	// The stack ID.
@@ -5112,6 +5239,10 @@ type Stack struct {
 	// The stack's ARN.
 	ARN *string `locationName:"Arn" type:"string"`
 
+	// The agent version. This parameter is set to LATEST for auto-update. or a
+	// version number for a fixed agent version.
+	AgentVersion *string `type:"string"`
+
 	// The stack's attributes.
 	Attributes map[string]*string `type:"map"`
 
@@ -5122,7 +5253,7 @@ type Stack struct {
 	// The configuration manager.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
-	// Date when the stack was created.
+	// The date when the stack was created.
 	CreatedAt *string `type:"string"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -5130,10 +5261,11 @@ type Stack struct {
 	// or Custom Recipes and Cookbooks (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 	CustomCookbooksSource *Source `type:"structure"`
 
-	// A string that contains user-defined, custom JSON. It can be used to override
-	// the corresponding default stack configuration JSON values or to pass data
-	// to recipes. The string should be in the following format and must escape
-	// characters such as '"'.:
+	// A JSON object that contains user-defined attributes to be added to the stack
+	// configuration and deployment attributes. You can use custom JSON to override
+	// the corresponding default stack configuration attribute values or to pass
+	// data to recipes. The string should be in the following format and must escape
+	// characters such as '"':
 	//
 	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
@@ -5162,7 +5294,7 @@ type Stack struct {
 	// this value when you create or update an instance.
 	DefaultSSHKeyName *string `locationName:"DefaultSshKeyName" type:"string"`
 
-	// The default subnet ID, if the stack is running in a VPC.
+	// The default subnet ID; applicable only if the stack is running in a VPC.
 	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
 
 	// The stack host name theme, with spaces replaced by underscores.
@@ -5188,7 +5320,7 @@ type Stack struct {
 	// groups with the stack's layers.
 	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
-	// The VPC ID, if the stack is running in a VPC.
+	// The VPC ID; applicable only if the stack is running in a VPC.
 	VPCID *string `locationName:"VpcId" type:"string"`
 
 	metadataStack `json:"-" xml:"-"`
@@ -5481,12 +5613,24 @@ type metadataUpdateElasticIPOutput struct {
 }
 
 type UpdateInstanceInput struct {
-	// A custom AMI ID to be used to create the instance. The AMI should be based
-	// on one of the standard AWS OpsWorks AMIs: Amazon Linux, Ubuntu 12.04 LTS,
-	// or Ubuntu 14.04 LTS. For more information, see Instances (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html)
+	// A custom AMI ID to be used to create the instance. The AMI must be based
+	// on one of the supported operating systems. For more information, see Instances
+	// (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html)
 	//
 	// If you specify a custom AMI, you must set Os to Custom.
 	AMIID *string `locationName:"AmiId" type:"string"`
+
+	// The default AWS OpsWorks agent version. You have the following options:
+	//
+	//   INHERIT - Use the stack's default agent version setting.  version_number
+	// - Use the specified agent version. This value overrides the stack's default
+	// setting. To update the agent version, you must edit the instance configuration
+	// and specify a new version. AWS OpsWorks then automatically installs that
+	// version on the instance.  The default setting is INHERIT. To specify an agent
+	// version, you must use the complete version number, not the abbreviated number
+	// shown on the console. For a list of available agent version numbers, call
+	// DescribeAgentVersions.
+	AgentVersion *string `type:"string"`
 
 	// The instance architecture. Instance types do not necessarily support both
 	// architectures. For a list of the architectures that are supported by the
@@ -5497,7 +5641,7 @@ type UpdateInstanceInput struct {
 	// only time-based instances.
 	AutoScalingType *string `type:"string"`
 
-	// Whether this is an Amazon EBS-optimized instance.
+	// This property cannot be updated.
 	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
 
 	// The instance host name.
@@ -5506,8 +5650,8 @@ type UpdateInstanceInput struct {
 	// Whether to install operating system and package updates when the instance
 	// boots. The default value is true. To control when updates are installed,
 	// set this value to false. You must then update your instances manually by
-	// using CreateDeployment to run the update_dependencies stack command or manually
-	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	// using CreateDeployment to run the update_dependencies stack command or by
+	// manually running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
 	//
 	//  We strongly recommend using the default value of true, to ensure that your
 	// instances have the latest security updates.
@@ -5516,8 +5660,9 @@ type UpdateInstanceInput struct {
 	// The instance ID.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
 
-	// The instance type. AWS OpsWorks supports all instance types except Cluster
-	// Compute, Cluster GPU, and High Memory Cluster. For more information, see
+	// The instance type, such as t2.micro. For a list of supported instance types,
+	// open the stack in the console, choose Instances, and choose + Instance. The
+	// Size list contains the currently supported types. For more information, see
 	// Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
 	// The parameter values that you use to specify the various types are in the
 	// API Name column of the Available Instance Types table.
@@ -5528,18 +5673,20 @@ type UpdateInstanceInput struct {
 
 	// The instance's operating system, which must be set to one of the following.
 	//
-	// For Windows stacks: Microsoft Windows Server 2012 R2.
+	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
+	// Server 2012 R2 Base. A custom AMI: Custom.  For more information on the supported
+	// operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
-	// For Linux stacks:
-	//
-	//  Standard operating systems: an Amazon Linux version such as Amazon Linux
-	// 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom AMIs: Custom   The
-	// default option is the current Amazon Linux version. If you set this parameter
-	// to Custom, you must use the CreateInstance action's AmiId parameter to specify
-	// the custom AMI that you want to use. For more information on the standard
-	// operating systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html)For
-	// more information on how to use custom AMIs with OpsWorks, see Using Custom
+	// The default option is the current Amazon Linux version. If you set this
+	// parameter to Custom, you must use the AmiId parameter to specify the custom
+	// AMI that you want to use. For more information on the supported operating
+	// systems, see Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// For more information on how to use custom AMIs with OpsWorks, see Using Custom
 	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//
+	// You can specify a different Linux operating system for the updated stack,
+	// but you cannot change from Linux to Windows or Windows to Linux.
 	Os *string `type:"string"`
 
 	// The instance's Amazon EC2 key name.
@@ -5683,7 +5830,22 @@ type metadataUpdateRDSDBInstanceOutput struct {
 }
 
 type UpdateStackInput struct {
-	// One or more user-defined key/value pairs to be added to the stack attributes.
+	// The default AWS OpsWorks agent version. You have the following options:
+	//
+	//  Auto-update - Set this parameter to LATEST. AWS OpsWorks automatically
+	// installs new agent versions on the stack's instances as soon as they are
+	// available. Fixed version - Set this parameter to your preferred agent version.
+	// To update the agent version, you must edit the stack configuration and specify
+	// a new version. AWS OpsWorks then automatically installs that version on the
+	// stack's instances.  The default setting is LATEST. To specify an agent version,
+	// you must use the complete version number, not the abbreviated number shown
+	// on the console. For a list of available agent version numbers, call DescribeAgentVersions.
+	//
+	// You can also specify an agent version when you create or update an instance,
+	// which overrides the stack's default setting.
+	AgentVersion *string `type:"string"`
+
+	// One or more user-defined key-value pairs to be added to the stack attributes.
 	Attributes map[string]*string `type:"map"`
 
 	// A ChefConfiguration object that specifies whether to enable Berkshelf and
@@ -5691,9 +5853,9 @@ type UpdateStackInput struct {
 	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	ChefConfiguration *ChefConfiguration `type:"structure"`
 
-	// The configuration manager. When you clone a stack we recommend that you use
-	// the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10.
-	// The default value is currently 11.4.
+	// The configuration manager. When you clone a stack, we recommend that you
+	// use the configuration manager to specify the Chef version: 0.9, 11.4, or
+	// 11.10. The default value is currently 11.4.
 	ConfigurationManager *StackConfigurationManager `type:"structure"`
 
 	// Contains the information required to retrieve an app or cookbook from a repository.
@@ -5703,8 +5865,8 @@ type UpdateStackInput struct {
 
 	// A string that contains user-defined, custom JSON. It can be used to override
 	// the corresponding default stack configuration JSON values or to pass data
-	// to recipes. The string should be in the following format and must escape
-	// characters such as '"'.:
+	// to recipes. The string should be in the following format and escape characters
+	// such as '"':
 	//
 	//  "{\"key1\": \"value1\", \"key2\": \"value2\",...}"
 	//
@@ -5712,7 +5874,7 @@ type UpdateStackInput struct {
 	// Configuration Attributes (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html).
 	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
-	// The stack's default Availability Zone, which must be in the specified region.
+	// The stack's default Availability Zone, which must be in the stack's region.
 	// For more information, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html).
 	// If you also specify a value for DefaultSubnetId, the subnet must be in the
 	// same zone. For more information, see CreateStack.
@@ -5723,13 +5885,15 @@ type UpdateStackInput struct {
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string"`
 
-	// The stack's operating system, which must be set to one of the following.
+	// The stack's operating system, which must be set to one of the following:
 	//
-	//  Standard Linux operating systems: an Amazon Linux version such as Amazon
-	// Linux 2014.09, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. Custom Linux AMIs:
-	// Custom. You specify the custom AMI you want to use when you create instances.
-	// Microsoft Windows Server 2012 R2.   The default option is the current Amazon
-	// Linux version.
+	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
+	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
+	// Server 2012 R2 Base. A custom AMI: Custom. You specify the custom AMI you
+	// want to use when you create instances. For more information on how to use
+	// custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	//  The default option is the stack's current operating system. For more information
+	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
 
 	// The default root device type. This value is used by default for all instances
@@ -5737,8 +5901,8 @@ type UpdateStackInput struct {
 	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
 	DefaultRootDeviceType *string `type:"string"`
 
-	// A default Amazon EC2 key pair name. The default value is none. If you specify
-	// a key pair name, AWS OpsWorks installs the public key on the instance and
+	// A default Amazon EC2 key-pair name. The default value is none. If you specify
+	// a key-pair name, AWS OpsWorks installs the public key on the instance and
 	// you can use the private key with an SSH client to log in to the instance.
 	// For more information, see  Using SSH to Communicate with an Instance (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html)
 	// and  Managing SSH Access (http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html).
@@ -5754,8 +5918,8 @@ type UpdateStackInput struct {
 	// VpcId parameter description.
 	DefaultSubnetID *string `locationName:"DefaultSubnetId" type:"string"`
 
-	// The stack's new host name theme, with spaces are replaced by underscores.
-	// The theme is used to generate host names for the stack's instances. By default,
+	// The stack's new host name theme, with spaces replaced by underscores. The
+	// theme is used to generate host names for the stack's instances. By default,
 	// HostnameTheme is set to Layer_Dependent, which creates host names by appending
 	// integers to the layer's short name. The other themes are:
 	//
@@ -5768,13 +5932,12 @@ type UpdateStackInput struct {
 	// The stack's new name.
 	Name *string `type:"string"`
 
-	// The stack AWS Identity and Access Management (IAM) role, which allows AWS
-	// OpsWorks to work with AWS resources on your behalf. You must set this parameter
-	// to the Amazon Resource Name (ARN) for an existing IAM role. For more information
-	// about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	// The stack IAM role, which allows AWS OpsWorks to work with AWS resources
+	// on your behalf. You must set this parameter to the ARN for an existing IAM
+	// role. For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	//
-	//  You must set this parameter to a valid service role ARN or the action will
-	// fail; there is no default value. You can specify the stack's current service
+	//  There is no default value. You must set this parameter to a valid service
+	// role ARN or the action will fail. You can specify the stack's current service
 	// role ARN, if you prefer, but you must do so explicitly.
 	ServiceRoleARN *string `locationName:"ServiceRoleArn" type:"string"`
 
@@ -5789,18 +5952,18 @@ type UpdateStackInput struct {
 	//
 	// AWS OpsWorks provides a standard set of built-in security groups, one for
 	// each layer, which are associated with layers by default. UseOpsworksSecurityGroups
-	// allows you to instead provide your own custom security groups. UseOpsworksSecurityGroups
-	// has the following settings:
+	// allows you to provide your own custom security groups instead of using the
+	// built-in groups. UseOpsworksSecurityGroups has the following settings:
 	//
 	//  True - AWS OpsWorks automatically associates the appropriate built-in security
 	// group with each layer (default setting). You can associate additional security
-	// groups with a layer after you create it but you cannot delete the built-in
+	// groups with a layer after you create it, but you cannot delete the built-in
 	// security group.  False - AWS OpsWorks does not associate built-in security
 	// groups with layers. You must create appropriate EC2 security groups and associate
 	// a security group with each layer that you create. However, you can still
-	// manually associate a built-in security group with a layer on creation; custom
-	// security groups are required only for those layers that need custom settings.
-	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	// manually associate a built-in security group with a layer on. Custom security
+	// groups are required only for those layers that need custom settings.   For
+	// more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
 	metadataUpdateStackInput `json:"-" xml:"-"`

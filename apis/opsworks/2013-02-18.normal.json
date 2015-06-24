@@ -118,7 +118,7 @@
           "documentation":"<p>Indicates that a resource was not found.</p>"
         }
       ],
-      "documentation":"<p>Creates a clone of a specified stack. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-cloning.html\">Clone a Stack</a>.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
+      "documentation":"<p>Creates a clone of a specified stack. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-cloning.html\">Clone a Stack</a>. By default, all parameters are set to the values used by the parent stack.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
     },
     "CreateApp":{
       "name":"CreateApp",
@@ -448,6 +448,31 @@
         }
       ],
       "documentation":"<p>Deregisters an Amazon EBS volume. The volume can then be registered by another stack. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/resources.html\">Resource Management</a>.</p> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack, or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
+    },
+    "DescribeAgentVersions":{
+      "name":"DescribeAgentVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAgentVersionsRequest"},
+      "output":{
+        "shape":"DescribeAgentVersionsResult",
+        "documentation":"<p>Contains the response to a <code>DescribeAgentVersions</code> request.</p>"
+      },
+      "errors":[
+        {
+          "shape":"ValidationException",
+          "exception":true,
+          "documentation":"<p>Indicates that a request was invalid.</p>"
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true,
+          "documentation":"<p>Indicates that a resource was not found.</p>"
+        }
+      ],
+      "documentation":"<p>Describes the available AWS OpsWorks agent versions. You must specify a stack ID or a configuration manager. <code>DescribeAgentVersions</code> returns a list of available agent versions for the specified stack or configuration manager.</p>"
     },
     "DescribeApps":{
       "name":"DescribeApps",
@@ -996,7 +1021,7 @@
           "documentation":"<p>Indicates that a resource was not found.</p>"
         }
       ],
-      "documentation":"<note>This API can be used only with Windows stacks.</note> <p>Grants RDP access to a Windows instance for a specified time period.</p>"
+      "documentation":"<note>This action can be used only with Windows stacks.</note> <p>Grants RDP access to a Windows instance for a specified time period.</p>"
     },
     "RebootInstance":{
       "name":"RebootInstance",
@@ -1067,7 +1092,7 @@
           "documentation":"<p>Indicates that a resource was not found.</p>"
         }
       ],
-      "documentation":"<p>Registers instances with a specified stack that were created outside of AWS OpsWorks.</p> <note>We do not recommend using this action to register instances. The complete registration operation has two primary steps, installing the AWS OpsWorks agent on the instance and registering the instance with the stack. <code>RegisterInstance</code> handles only the second step. You should instead use the AWS CLI <code>register</code> command, which performs the entire registration operation.</note> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
+      "documentation":"<p>Registers instances with a specified stack that were created outside of AWS OpsWorks.</p> <note>We do not recommend using this action to register instances. The complete registration operation has two primary steps, installing the AWS OpsWorks agent on the instance and registering the instance with the stack. <code>RegisterInstance</code> handles only the second step. You should instead use the AWS CLI <code>register</code> command, which performs the entire registration operation. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/registered-instances-register.html\"> Registering an Instance with an AWS OpsWorks Stack</a>.</note> <p><b>Required Permissions</b>: To use this action, an IAM user must have a Manage permissions level for the stack or an attached policy that explicitly grants permissions. For more information on user permissions, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
     },
     "RegisterRdsDbInstance":{
       "name":"RegisterRdsDbInstance",
@@ -1490,6 +1515,24 @@
     }
   },
   "shapes":{
+    "AgentVersion":{
+      "type":"structure",
+      "members":{
+        "Version":{
+          "shape":"String",
+          "documentation":"<p>The agent version.</p>"
+        },
+        "ConfigurationManager":{
+          "shape":"StackConfigurationManager",
+          "documentation":"<p>The configuration manager.</p>"
+        }
+      },
+      "documentation":"<p>Describes an agent version.</p>"
+    },
+    "AgentVersions":{
+      "type":"list",
+      "member":{"shape":"AgentVersion"}
+    },
     "App":{
       "type":"structure",
       "members":{
@@ -1771,7 +1814,7 @@
         },
         "DefaultOs":{
           "shape":"String",
-          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard Linux operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom Linux AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> <li>Microsoft Windows Server 2012 R2.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
+          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>A supported Linux operating system: An Amazon Linux version, such as <code>Amazon Linux 2015.03</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li> <code>Microsoft Windows Server 2012 R2 Base</code>.</li> <li>A custom AMI: <code>Custom</code>. You specify the custom AMI you want to use when you create instances. For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</li> </ul> <p>The default option is the parent stack's operating system. For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">AWS OpsWorks Operating Systems</a>.</p> <note>You can specify a different Linux operating system for the cloned stack, but you cannot change from Linux to Windows or Windows to Linux.</note>"
         },
         "HostnameTheme":{
           "shape":"String",
@@ -1787,11 +1830,11 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a></p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"':</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a></p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
-          "documentation":"<p>The configuration manager. When you clone a stack we recommend that you use the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10. The default value is currently 11.4.</p>"
+          "documentation":"<p>The configuration manager. When you clone a Linux stack we recommend that you use the configuration manager to specify the Chef version: 0.9, 11.4, or 11.10. The default value is currently 11.10.</p>"
         },
         "ChefConfiguration":{
           "shape":"ChefConfiguration",
@@ -1821,6 +1864,10 @@
         "DefaultRootDeviceType":{
           "shape":"RootDeviceType",
           "documentation":"<p>The default root device type. This value is used by default for all instances in the cloned stack, but you can override it when you create an instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
+        },
+        "AgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The default AWS OpsWorks agent version. You have the following options:</p> <ul> <li>Auto-update - Set this parameter to <code>LATEST</code>. AWS OpsWorks automatically installs new agent versions on the stack's instances as soon as they are available.</li> <li>Fixed version - Set this parameter to your preferred agent version. To update the agent version, you must edit the stack configuration and specify a new version. AWS OpsWorks then automatically installs that version on the stack's instances.</li> </ul> <p>The default setting is <code>LATEST</code>. To specify an agent version, you must use the complete version number, not the abbreviated number shown on the console. For a list of available agent version numbers, call <a>DescribeAgentVersions</a>.</p> <note>You can also specify an agent version when you create or update an instance, which overrides the stack's default setting.</note>"
         }
       }
     },
@@ -1981,7 +2028,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It is used to override the corresponding default stack configuration JSON values. The string should be in the following format and must escape characters such as '\"':</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         }
       }
     },
@@ -2009,11 +2056,11 @@
         },
         "LayerIds":{
           "shape":"Strings",
-          "documentation":"<p>An array that contains the instance layer IDs.</p>"
+          "documentation":"<p>An array that contains the instance's layer IDs.</p>"
         },
         "InstanceType":{
           "shape":"String",
-          "documentation":"<p>The instance type. AWS OpsWorks supports all instance types except Cluster Compute, Cluster GPU, and High Memory Cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Families and Types</a>. The parameter values that you use to specify the various types are in the API Name column of the Available Instance Types table.</p>"
+          "documentation":"<p>The instance type, such as <code>t2.micro</code>. For a list of supported instance types, open the stack in the console, choose <b>Instances</b>, and choose <b>+ Instance</b>. The <b>Size</b> list contains the currently supported types. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Families and Types</a>. The parameter values that you use to specify the various types are in the <b>API Name</b> column of the <b>Available Instance Types</b> table.</p>"
         },
         "AutoScalingType":{
           "shape":"AutoScalingType",
@@ -2025,15 +2072,15 @@
         },
         "Os":{
           "shape":"String",
-          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <p>For Windows stacks: Microsoft Windows Server 2012 R2.</p> <p>For Linux stacks:</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code> </li> </ul> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the standard operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
+          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <ul> <li>A supported Linux operating system: An Amazon Linux version, such as <code>Amazon Linux 2015.03</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li> <code>Microsoft Windows Server 2012 R2 Base</code>.</li> <li>A custom AMI: <code>Custom</code>.</li> </ul> <p>For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">AWS OpsWorks Operating Systems</a>.</p> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with AWS OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
         },
         "AmiId":{
           "shape":"String",
-          "documentation":"<p>A custom AMI ID to be used to create the instance. The AMI should be based on one of the standard AWS OpsWorks AMIs: Amazon Linux, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html\">Instances</a>.</p> <note>If you specify a custom AMI, you must set <code>Os</code> to <code>Custom</code>.</note>"
+          "documentation":"<p>A custom AMI ID to be used to create the instance. The AMI should be based on one of the supported operating systems. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p> <note>If you specify a custom AMI, you must set <code>Os</code> to <code>Custom</code>.</note>"
         },
         "SshKeyName":{
           "shape":"String",
-          "documentation":"<p>The instance's Amazon EC2 key pair name.</p>"
+          "documentation":"<p>The instance's Amazon EC2 key-pair name.</p>"
         },
         "AvailabilityZone":{
           "shape":"String",
@@ -2061,11 +2108,15 @@
         },
         "InstallUpdatesOnBoot":{
           "shape":"Boolean",
-          "documentation":"<p>Whether to install operating system and package updates when the instance boots. The default value is <code>true</code>. To control when updates are installed, set this value to <code>false</code>. You must then update your instances manually by using <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command or manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. </p> <note> <p>We strongly recommend using the default value of <code>true</code> to ensure that your instances have the latest security updates.</p> </note>"
+          "documentation":"<p>Whether to install operating system and package updates when the instance boots. The default value is <code>true</code>. To control when updates are installed, set this value to <code>false</code>. You must then update your instances manually by using <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command or by manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. </p> <note> <p>We strongly recommend using the default value of <code>true</code> to ensure that your instances have the latest security updates.</p> </note>"
         },
         "EbsOptimized":{
           "shape":"Boolean",
           "documentation":"<p>Whether to create an Amazon EBS-optimized instance.</p>"
+        },
+        "AgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The default AWS OpsWorks agent version. You have the following options:</p> <ul> <li> <code>INHERIT</code> - Use the stack's default agent version setting.</li> <li> <i>version_number</i> - Use the specified agent version. This value overrides the stack's default setting. To update the agent version, edit the instance configuration and specify a new version. AWS OpsWorks then automatically installs that version on the instance.</li> </ul> <p>The default setting is <code>INHERIT</code>. To specify an agent version, you must use the complete version number, not the abbreviated number shown on the console. For a list of available agent version numbers, call <a>DescribeAgentVersions</a>.</p>"
         }
       }
     },
@@ -2179,31 +2230,31 @@
         },
         "Region":{
           "shape":"String",
-          "documentation":"<p>The stack AWS region, such as \"us-east-1\". For more information about Amazon regions, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a>.</p>"
+          "documentation":"<p>The stack's AWS region, such as \"us-east-1\". For more information about Amazon regions, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a>.</p>"
         },
         "VpcId":{
           "shape":"String",
-          "documentation":"<p>The ID of the VPC that the stack is to be launched into. It must be in the specified region. All instances are launched into this VPC, and you cannot change the ID later.</p> <ul> <li>If your account supports EC2 Classic, the default value is no VPC.</li> <li>If your account does not support EC2 Classic, the default value is the default VPC for the specified region.</li> </ul> <p>If the VPC ID corresponds to a default VPC and you have specified either the <code>DefaultAvailabilityZone</code> or the <code>DefaultSubnetId</code> parameter only, AWS OpsWorks infers the value of the other parameter. If you specify neither parameter, AWS OpsWorks sets these parameters to the first valid Availability Zone for the specified region and the corresponding default VPC subnet ID, respectively.</p> <p>If you specify a nondefault VPC ID, note the following:</p> <ul> <li>It must belong to a VPC in your account that is in the specified region.</li> <li>You must specify a value for <code>DefaultSubnetId</code>.</li> </ul> <p>For more information on how to use AWS OpsWorks with a VPC, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html\">Running a Stack in a VPC</a>. For more information on default VPC and EC2 Classic, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html\">Supported Platforms</a>. </p>"
+          "documentation":"<p>The ID of the VPC that the stack is to be launched into. The VPC must be in the stack's region. All instances are launched into this VPC. You cannot change the ID later.</p> <ul> <li>If your account supports EC2-Classic, the default value is <code>no VPC</code>.</li> <li>If your account does not support EC2-Classic, the default value is the default VPC for the specified region.</li> </ul> <p>If the VPC ID corresponds to a default VPC and you have specified either the <code>DefaultAvailabilityZone</code> or the <code>DefaultSubnetId</code> parameter only, AWS OpsWorks infers the value of the other parameter. If you specify neither parameter, AWS OpsWorks sets these parameters to the first valid Availability Zone for the specified region and the corresponding default VPC subnet ID, respectively.</p> <p>If you specify a nondefault VPC ID, note the following:</p> <ul> <li>It must belong to a VPC in your account that is in the specified region.</li> <li>You must specify a value for <code>DefaultSubnetId</code>.</li> </ul> <p>For more information on how to use AWS OpsWorks with a VPC, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-vpc.html\">Running a Stack in a VPC</a>. For more information on default VPC and EC2-Classic, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html\">Supported Platforms</a>. </p>"
         },
         "Attributes":{
           "shape":"StackAttributes",
-          "documentation":"<p>One or more user-defined key/value pairs to be added to the stack attributes.</p>"
+          "documentation":"<p>One or more user-defined key-value pairs to be added to the stack attributes.</p>"
         },
         "ServiceRoleArn":{
           "shape":"String",
-          "documentation":"<p>The stack AWS Identity and Access Management (IAM) role, which allows AWS OpsWorks to work with AWS resources on your behalf. You must set this parameter to the Amazon Resource Name (ARN) for an existing IAM role. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p>"
+          "documentation":"<p>The stack's AWS Identity and Access Management (IAM) role, which allows AWS OpsWorks to work with AWS resources on your behalf. You must set this parameter to the Amazon Resource Name (ARN) for an existing IAM role. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p>"
         },
         "DefaultInstanceProfileArn":{
           "shape":"String",
-          "documentation":"<p>The ARN of an IAM profile that is the default profile for all of the stack's EC2 instances. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p>"
+          "documentation":"<p>The Amazon Resource Name (ARN) of an IAM profile that is the default profile for all of the stack's EC2 instances. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p>"
         },
         "DefaultOs":{
           "shape":"String",
-          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard Linux operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom Linux AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> <li>Microsoft Windows Server 2012 R2.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
+          "documentation":"<p>The stack's default operating system, which is installed on every instance unless you specify a different operating system when you create the instance. You can specify one of the following.</p> <ul> <li>A supported Linux operating system: An Amazon Linux version, such as <code>Amazon Linux 2015.03</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li> <code>Microsoft Windows Server 2012 R2 Base</code>.</li> <li>A custom AMI: <code>Custom</code>. You specify the custom AMI you want to use when you create instances. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\"> Using Custom AMIs</a>.</li> </ul> <p>The default option is the current Amazon Linux version. For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">AWS OpsWorks Operating Systems</a>.</p>"
         },
         "HostnameTheme":{
           "shape":"String",
-          "documentation":"<p>The stack's host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
+          "documentation":"<p>The stack's host name theme, with spaces replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
         },
         "DefaultAvailabilityZone":{
           "shape":"String",
@@ -2215,11 +2266,11 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration attribute values, or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration attribute values or to pass data to recipes. The string should be in the following escape characters such as '\"':</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
-          "documentation":"<p>The configuration manager. When you clone a stack we recommend that you use the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10. The default value is currently 11.4.</p>"
+          "documentation":"<p>The configuration manager. When you clone a stack we recommend that you use the configuration manager to specify the Chef version: 0.9, 11.4, or 11.10. The default value is currently 11.4.</p>"
         },
         "ChefConfiguration":{
           "shape":"ChefConfiguration",
@@ -2231,7 +2282,7 @@
         },
         "UseOpsworksSecurityGroups":{
           "shape":"Boolean",
-          "documentation":"<p>Whether to associate the AWS OpsWorks built-in security groups with the stack's layers.</p> <p>AWS OpsWorks provides a standard set of built-in security groups, one for each layer, which are associated with layers by default. With <code>UseOpsworksSecurityGroups</code> you can instead provide your own custom security groups. <code>UseOpsworksSecurityGroups</code> has the following settings: </p> <ul> <li>True - AWS OpsWorks automatically associates the appropriate built-in security group with each layer (default setting). You can associate additional security groups with a layer after you create it but you cannot delete the built-in security group. </li> <li>False - AWS OpsWorks does not associate built-in security groups with layers. You must create appropriate EC2 security groups and associate a security group with each layer that you create. However, you can still manually associate a built-in security group with a layer on creation; custom security groups are required only for those layers that need custom settings. </li> </ul> <p>For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html\">Create a New Stack</a>.</p>"
+          "documentation":"<p>Whether to associate the AWS OpsWorks built-in security groups with the stack's layers.</p> <p>AWS OpsWorks provides a standard set of built-in security groups, one for each layer, which are associated with layers by default. With <code>UseOpsworksSecurityGroups</code> you can instead provide your own custom security groups. <code>UseOpsworksSecurityGroups</code> has the following settings: </p> <ul> <li>True - AWS OpsWorks automatically associates the appropriate built-in security group with each layer (default setting). You can associate additional security groups with a layer after you create it, but you cannot delete the built-in security group. </li> <li>False - AWS OpsWorks does not associate built-in security groups with layers. You must create appropriate EC2 security groups and associate a security group with each layer that you create. However, you can still manually associate a built-in security group with a layer on creation; custom security groups are required only for those layers that need custom settings. </li> </ul> <p>For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html\">Create a New Stack</a>.</p>"
         },
         "CustomCookbooksSource":{"shape":"Source"},
         "DefaultSshKeyName":{
@@ -2240,7 +2291,11 @@
         },
         "DefaultRootDeviceType":{
           "shape":"RootDeviceType",
-          "documentation":"<p>The default root device type. This value is used by default for all instances in the stack, but you can override it when you create an instance. The default option is <code>instance-store</code>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
+          "documentation":"<p>The default root device type. This value is the default for all instances in the stack, but you can override it when you create an instance. The default option is <code>instance-store</code>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
+        },
+        "AgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The default AWS OpsWorks agent version. You have the following options:</p> <ul> <li>Auto-update - Set this parameter to <code>LATEST</code>. AWS OpsWorks automatically installs new agent versions on the stack's instances as soon as they are available.</li> <li>Fixed version - Set this parameter to your preferred agent version. To update the agent version, you must edit the stack configuration and specify a new version. AWS OpsWorks then automatically installs that version on the stack's instances.</li> </ul> <p>The default setting is <code>LATEST</code>. To specify an agent version, you must use the complete version number, not the abbreviated number shown on the console. For a list of available agent version numbers, call <a>DescribeAgentVersions</a>.</p> <note>You can also specify an agent version when you create or update an instance, which overrides the stack's default setting.</note>"
         }
       }
     },
@@ -2414,7 +2469,7 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined custom JSON. It can be used to override the corresponding default stack configuration attribute values for stack or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
+          "documentation":"<p>A string that contains user-defined custom JSON. It can be used to override the corresponding default stack configuration attribute values for stack or to pass data to recipes. The string should be in the following format and must escape characters such as '\"':</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "InstanceIds":{
           "shape":"Strings",
@@ -2450,6 +2505,8 @@
         "update_dependencies",
         "update_custom_cookbooks",
         "execute_recipes",
+        "configure",
+        "setup",
         "deploy",
         "rollback",
         "start",
@@ -2501,6 +2558,29 @@
           "documentation":"<p>The AWS OpsWorks volume ID, which is the GUID that AWS OpsWorks assigned to the instance when you registered the volume with the stack, not the Amazon EC2 volume ID.</p>"
         }
       }
+    },
+    "DescribeAgentVersionsRequest":{
+      "type":"structure",
+      "members":{
+        "StackId":{
+          "shape":"String",
+          "documentation":"<p>The stack ID.</p>"
+        },
+        "ConfigurationManager":{
+          "shape":"StackConfigurationManager",
+          "documentation":"<p>The configuration manager.</p>"
+        }
+      }
+    },
+    "DescribeAgentVersionsResult":{
+      "type":"structure",
+      "members":{
+        "AgentVersions":{
+          "shape":"AgentVersions",
+          "documentation":"<p>The agent versions for the specified stack or configuration manager. Note that this value is the complete version number, not the abbreviated number used by the console.</p>"
+        }
+      },
+      "documentation":"<p>Contains the response to a <code>DescribeAgentVersions</code> request.</p>"
     },
     "DescribeAppsRequest":{
       "type":"structure",
@@ -3154,129 +3234,105 @@
     "Instance":{
       "type":"structure",
       "members":{
-        "InstanceId":{
+        "AgentVersion":{
           "shape":"String",
-          "documentation":"<p>The instance ID.</p>"
-        },
-        "Ec2InstanceId":{
-          "shape":"String",
-          "documentation":"<p>The ID of the associated Amazon EC2 instance.</p>"
-        },
-        "VirtualizationType":{
-          "shape":"VirtualizationType",
-          "documentation":"<p>The instance's virtualization type, <code>paravirtual</code> or <code>hvm</code>.</p>"
-        },
-        "Hostname":{
-          "shape":"String",
-          "documentation":"<p>The instance host name.</p>"
-        },
-        "StackId":{
-          "shape":"String",
-          "documentation":"<p>The stack ID.</p>"
-        },
-        "LayerIds":{
-          "shape":"Strings",
-          "documentation":"<p>An array containing the instance layer IDs.</p>"
-        },
-        "SecurityGroupIds":{
-          "shape":"Strings",
-          "documentation":"<p>An array containing the instance security group IDs.</p>"
-        },
-        "InstanceType":{
-          "shape":"String",
-          "documentation":"<p>The instance type. AWS OpsWorks supports all instance types except Cluster Compute, Cluster GPU, and High Memory Cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Families and Types</a>. The parameter values that specify the various types are in the API Name column of the Available Instance Types table.</p>"
-        },
-        "InstanceProfileArn":{
-          "shape":"String",
-          "documentation":"<p>The ARN of the instance's IAM profile. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p>"
-        },
-        "Status":{
-          "shape":"String",
-          "documentation":"<p>The instance status:</p> <ul> <li> <code>booting</code> </li> <li> <code>connection_lost</code> </li> <li> <code>online</code> </li> <li> <code>pending</code> </li> <li> <code>rebooting</code> </li> <li> <code>requested</code> </li> <li> <code>running_setup</code> </li> <li> <code>setup_failed</code> </li> <li> <code>shutting_down</code> </li> <li> <code>start_failed</code> </li> <li> <code>stopped</code> </li> <li> <code>stopping</code> </li> <li> <code>terminated</code> </li> <li> <code>terminating</code> </li> </ul>"
-        },
-        "Os":{
-          "shape":"String",
-          "documentation":"<p>The instance's operating system.</p>"
+          "documentation":"<p>The agent version. This parameter is set to <code>INHERIT</code> if the instance inherits the default stack setting or to a a version number for a fixed agent version.</p>"
         },
         "AmiId":{
           "shape":"String",
-          "documentation":"<p>A custom AMI ID to be used to create the instance. The AMI should be based on one of the standard AWS OpsWorks APIs: Amazon Linux, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html\">Instances</a></p>"
+          "documentation":"<p>A custom AMI ID to be used to create the instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Instances</a></p>"
         },
-        "AvailabilityZone":{
-          "shape":"String",
-          "documentation":"<p>The instance Availability Zone. For more information, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a>.</p>"
-        },
-        "SubnetId":{
-          "shape":"String",
-          "documentation":"<p>The instance's subnet ID, if the stack is running in a VPC.</p>"
-        },
-        "PublicDns":{
-          "shape":"String",
-          "documentation":"<p>The instance public DNS name.</p>"
-        },
-        "PrivateDns":{
-          "shape":"String",
-          "documentation":"<p>The instance private DNS name.</p>"
-        },
-        "PublicIp":{
-          "shape":"String",
-          "documentation":"<p>The instance public IP address.</p>"
-        },
-        "PrivateIp":{
-          "shape":"String",
-          "documentation":"<p>The instance private IP address.</p>"
-        },
-        "ElasticIp":{
-          "shape":"String",
-          "documentation":"<p>The instance <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP address </a>.</p>"
+        "Architecture":{
+          "shape":"Architecture",
+          "documentation":"<p>The instance architecture: \"i386\" or \"x86_64\".</p>"
         },
         "AutoScalingType":{
           "shape":"AutoScalingType",
           "documentation":"<p>For load-based or time-based instances, the type.</p>"
         },
-        "SshKeyName":{
+        "AvailabilityZone":{
           "shape":"String",
-          "documentation":"<p>The instance's Amazon EC2 key pair name.</p>"
-        },
-        "SshHostRsaKeyFingerprint":{
-          "shape":"String",
-          "documentation":"<p>The SSH key's RSA fingerprint.</p>"
-        },
-        "SshHostDsaKeyFingerprint":{
-          "shape":"String",
-          "documentation":"<p>The SSH key's DSA fingerprint.</p>"
-        },
-        "CreatedAt":{
-          "shape":"DateTime",
-          "documentation":"<p>The time that the instance was created.</p>"
-        },
-        "LastServiceErrorId":{
-          "shape":"String",
-          "documentation":"<p>The ID of the last service error. For more information, call <a>DescribeServiceErrors</a>.</p>"
-        },
-        "Architecture":{
-          "shape":"Architecture",
-          "documentation":"<p>The instance architecture, \"i386\" or \"x86_64\".</p>"
-        },
-        "RootDeviceType":{
-          "shape":"RootDeviceType",
-          "documentation":"<p>The instance's root device type. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
-        },
-        "RootDeviceVolumeId":{
-          "shape":"String",
-          "documentation":"<p>The root device volume ID.</p>"
+          "documentation":"<p>The instance Availability Zone. For more information, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a>.</p>"
         },
         "BlockDeviceMappings":{
           "shape":"BlockDeviceMappings",
           "documentation":"<p>An array of <code>BlockDeviceMapping</code> objects that specify the instance's block device mappings.</p>"
         },
-        "InstallUpdatesOnBoot":{
-          "shape":"Boolean",
-          "documentation":"<p>Whether to install operating system and package updates when the instance boots. The default value is <code>true</code>. If this value is set to <code>false</code>, you must then update your instances manually by using <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command or manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. </p> <note> <p>We strongly recommend using the default value of <code>true</code>, to ensure that your instances have the latest security updates.</p> </note>"
+        "CreatedAt":{
+          "shape":"DateTime",
+          "documentation":"<p>The time that the instance was created.</p>"
         },
         "EbsOptimized":{
           "shape":"Boolean",
           "documentation":"<p>Whether this is an Amazon EBS-optimized instance.</p>"
+        },
+        "Ec2InstanceId":{
+          "shape":"String",
+          "documentation":"<p>The ID of the associated Amazon EC2 instance.</p>"
+        },
+        "ElasticIp":{
+          "shape":"String",
+          "documentation":"<p>The instance <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP address </a>.</p>"
+        },
+        "Hostname":{
+          "shape":"String",
+          "documentation":"<p>The instance host name.</p>"
+        },
+        "InfrastructureClass":{
+          "shape":"String",
+          "documentation":"<p>For registered instances, the infrastructure class: <code>ec2</code> or <code>on-premises</code>.</p>"
+        },
+        "InstallUpdatesOnBoot":{
+          "shape":"Boolean",
+          "documentation":"<p>Whether to install operating system and package updates when the instance boots. The default value is <code>true</code>. If this value is set to <code>false</code>, you must then update your instances manually by using <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command or by manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. </p> <note> <p>We strongly recommend using the default value of <code>true</code>, to ensure that your instances have the latest security updates.</p> </note>"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "documentation":"<p>The instance ID.</p>"
+        },
+        "InstanceProfileArn":{
+          "shape":"String",
+          "documentation":"<p>The ARN of the instance's IAM profile. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p>"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "documentation":"<p>The instance type, such as <code>t2.micro</code>.</p>"
+        },
+        "LastServiceErrorId":{
+          "shape":"String",
+          "documentation":"<p>The ID of the last service error. For more information, call <a>DescribeServiceErrors</a>.</p>"
+        },
+        "LayerIds":{
+          "shape":"Strings",
+          "documentation":"<p>An array containing the instance layer IDs.</p>"
+        },
+        "Os":{
+          "shape":"String",
+          "documentation":"<p>The instance's operating system.</p>"
+        },
+        "Platform":{
+          "shape":"String",
+          "documentation":"<p>The instance's platform.</p>"
+        },
+        "PrivateDns":{
+          "shape":"String",
+          "documentation":"<p>The The instance's private DNS name.</p>"
+        },
+        "PrivateIp":{
+          "shape":"String",
+          "documentation":"<p>The instance's private IP address.</p>"
+        },
+        "PublicDns":{
+          "shape":"String",
+          "documentation":"<p>The instance public DNS name.</p>"
+        },
+        "PublicIp":{
+          "shape":"String",
+          "documentation":"<p>The instance public IP address.</p>"
+        },
+        "RegisteredBy":{
+          "shape":"String",
+          "documentation":"<p>For registered instances, who performed the registration.</p>"
         },
         "ReportedAgentVersion":{
           "shape":"String",
@@ -3286,13 +3342,45 @@
           "shape":"ReportedOs",
           "documentation":"<p>For registered instances, the reported operating system.</p>"
         },
-        "InfrastructureClass":{
-          "shape":"String",
-          "documentation":"<p>For registered instances, the infrastructure class: <code>ec2</code> or <code>on-premises</code></p>"
+        "RootDeviceType":{
+          "shape":"RootDeviceType",
+          "documentation":"<p>The instance's root device type. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
         },
-        "RegisteredBy":{
+        "RootDeviceVolumeId":{
           "shape":"String",
-          "documentation":"<p>For registered instances, who performed the registration.</p>"
+          "documentation":"<p>The root device volume ID.</p>"
+        },
+        "SecurityGroupIds":{
+          "shape":"Strings",
+          "documentation":"<p>An array containing the instance security group IDs.</p>"
+        },
+        "SshHostDsaKeyFingerprint":{
+          "shape":"String",
+          "documentation":"<p>The SSH key's Deep Security Agent (DSA) fingerprint.</p>"
+        },
+        "SshHostRsaKeyFingerprint":{
+          "shape":"String",
+          "documentation":"<p>The SSH key's RSA fingerprint.</p>"
+        },
+        "SshKeyName":{
+          "shape":"String",
+          "documentation":"<p>The instance's Amazon EC2 key-pair name.</p>"
+        },
+        "StackId":{
+          "shape":"String",
+          "documentation":"<p>The stack ID.</p>"
+        },
+        "Status":{
+          "shape":"String",
+          "documentation":"<p>The instance status:</p> <ul> <li> <code>booting</code> </li> <li> <code>connection_lost</code> </li> <li> <code>online</code> </li> <li> <code>pending</code> </li> <li> <code>rebooting</code> </li> <li> <code>requested</code> </li> <li> <code>running_setup</code> </li> <li> <code>setup_failed</code> </li> <li> <code>shutting_down</code> </li> <li> <code>start_failed</code> </li> <li> <code>stopped</code> </li> <li> <code>stopping</code> </li> <li> <code>terminated</code> </li> <li> <code>terminating</code> </li> </ul>"
+        },
+        "SubnetId":{
+          "shape":"String",
+          "documentation":"<p>The instance's subnet ID; applicable only if the stack is running in a VPC.</p>"
+        },
+        "VirtualizationType":{
+          "shape":"VirtualizationType",
+          "documentation":"<p>The instance's virtualization type: <code>paravirtual</code> or <code>hvm</code>.</p>"
         }
       },
       "documentation":"<p>Describes an instance.</p>"
@@ -3756,7 +3844,7 @@
           "documentation":"<p>An array of custom recipe names to be run following a <code>shutdown</code> event.</p>"
         }
       },
-      "documentation":"<p>AWS OpsWorks supports five life<?oxy_delete author=\"witsoej\" timestamp=\"20130319T132659-0700\" content=\"-\">cycle events, <b>setup</b>, <b>configuration</b>, <b>deploy</b>, <b>undeploy</b>, and <b>shutdown</b>. For each layer, AWS OpsWorks runs a set of standard recipes for each event. In addition, you can provide custom recipes for any or all layers and events. AWS OpsWorks runs custom event recipes after the standard recipes. <code>LayerCustomRecipes</code> specifies the custom recipes for a particular layer to be run in response to each of the five events. </p> <p>To specify a recipe, use the cookbook's directory name in the repository followed by two colons and the recipe name, which is the recipe's file name without the .rb extension. For example: phpapp2::dbsetup specifies the dbsetup.rb recipe in the repository's phpapp2 folder. </p>"
+      "documentation":"<p>AWS OpsWorks supports five lifecycle events: <b>setup</b>, <b>configuration</b>, <b>deploy</b>, <b>undeploy</b>, and <b>shutdown</b>. For each layer, AWS OpsWorks runs a set of standard recipes for each event. In addition, you can provide custom recipes for any or all layers and events. AWS OpsWorks runs custom event recipes after the standard recipes. <code>LayerCustomRecipes</code> specifies the custom recipes for a particular layer to be run in response to each of the five events. </p> <p>To specify a recipe, use the cookbook's directory name in the repository followed by two colons and the recipe name, which is the recipe's file name without the .rb extension. For example: phpapp2::dbsetup specifies the dbsetup.rb recipe in the repository's phpapp2 folder. </p>"
     },
     "RegisterElasticIpRequest":{
       "type":"structure",
@@ -4019,7 +4107,7 @@
         },
         "Level":{
           "shape":"String",
-          "documentation":"<p>The user's permission level, which must be set to one of the following strings. You cannot set your own permissions level.</p> <ul> <li> <code>deny</code> </li> <li> <code>show</code> </li> <li> <code>deploy</code> </li> <li> <code>manage</code> </li> <li> <code>iam_only</code> </li> </ul> <p>For more information on the permissions associated with these levels, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a></p>"
+          "documentation":"<p>The user's permission level, which must be set to one of the following strings. You cannot set your own permissions level.</p> <ul> <li> <code>deny</code> </li> <li> <code>show</code> </li> <li> <code>deploy</code> </li> <li> <code>manage</code> </li> <li> <code>iam_only</code> </li> </ul> <p>For more information on the permissions associated with these levels, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html\">Managing User Permissions</a>.</p>"
         }
       }
     },
@@ -4133,7 +4221,7 @@
         },
         "VpcId":{
           "shape":"String",
-          "documentation":"<p>The VPC ID, if the stack is running in a VPC.</p>"
+          "documentation":"<p>The VPC ID; applicable only if the stack is running in a VPC.</p>"
         },
         "Attributes":{
           "shape":"StackAttributes",
@@ -4161,11 +4249,11 @@
         },
         "DefaultSubnetId":{
           "shape":"String",
-          "documentation":"<p>The default subnet ID, if the stack is running in a VPC.</p>"
+          "documentation":"<p>The default subnet ID; applicable only if the stack is running in a VPC.</p>"
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration JSON values or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
+          "documentation":"<p>A JSON object that contains user-defined attributes to be added to the stack configuration and deployment attributes. You can use custom JSON to override the corresponding default stack configuration attribute values or to pass data to recipes. The string should be in the following format and must escape characters such as '\"':</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
@@ -4190,11 +4278,15 @@
         },
         "CreatedAt":{
           "shape":"DateTime",
-          "documentation":"<p>Date when the stack was created.</p>"
+          "documentation":"<p>The date when the stack was created.</p>"
         },
         "DefaultRootDeviceType":{
           "shape":"RootDeviceType",
           "documentation":"<p>The default root device type. This value is used by default for all instances in the stack, but you can override it when you create an instance. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device\">Storage for the Root Device</a>.</p>"
+        },
+        "AgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The agent version. This parameter is set to <code>LATEST</code> for auto-update. or a version number for a fixed agent version.</p>"
         }
       },
       "documentation":"<p>Describes a stack.</p>"
@@ -4440,7 +4532,7 @@
         },
         "InstanceType":{
           "shape":"String",
-          "documentation":"<p>The instance type. AWS OpsWorks supports all instance types except Cluster Compute, Cluster GPU, and High Memory Cluster. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Families and Types</a>. The parameter values that you use to specify the various types are in the API Name column of the Available Instance Types table.</p>"
+          "documentation":"<p>The instance type, such as <code>t2.micro</code>. For a list of supported instance types, open the stack in the console, choose <b>Instances</b>, and choose <b>+ Instance</b>. The <b>Size</b> list contains the currently supported types. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Families and Types</a>. The parameter values that you use to specify the various types are in the <b>API Name</b> column of the <b>Available Instance Types</b> table.</p>"
         },
         "AutoScalingType":{
           "shape":"AutoScalingType",
@@ -4452,11 +4544,11 @@
         },
         "Os":{
           "shape":"String",
-          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <p>For Windows stacks: Microsoft Windows Server 2012 R2.</p> <p>For Linux stacks:</p> <ul> <li>Standard operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom AMIs: <code>Custom</code> </li> </ul> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the <a>CreateInstance</a> action's AmiId parameter to specify the custom AMI that you want to use. For more information on the standard operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p>"
+          "documentation":"<p>The instance's operating system, which must be set to one of the following.</p> <ul> <li>A supported Linux operating system: An Amazon Linux version, such as <code>Amazon Linux 2015.03</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li> <code>Microsoft Windows Server 2012 R2 Base</code>.</li> <li>A custom AMI: <code>Custom</code>.</li> </ul> <p>For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">AWS OpsWorks Operating Systems</a>.</p> <p>The default option is the current Amazon Linux version. If you set this parameter to <code>Custom</code>, you must use the AmiId parameter to specify the custom AMI that you want to use. For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">Operating Systems</a>. For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</p> <note>You can specify a different Linux operating system for the updated stack, but you cannot change from Linux to Windows or Windows to Linux.</note>"
         },
         "AmiId":{
           "shape":"String",
-          "documentation":"<p>A custom AMI ID to be used to create the instance. The AMI should be based on one of the standard AWS OpsWorks AMIs: Amazon Linux, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances.html\">Instances</a></p> <note>If you specify a custom AMI, you must set <code>Os</code> to <code>Custom</code>.</note>"
+          "documentation":"<p>A custom AMI ID to be used to create the instance. The AMI must be based on one of the supported operating systems. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Instances</a></p> <note>If you specify a custom AMI, you must set <code>Os</code> to <code>Custom</code>.</note>"
         },
         "SshKeyName":{
           "shape":"String",
@@ -4468,11 +4560,15 @@
         },
         "InstallUpdatesOnBoot":{
           "shape":"Boolean",
-          "documentation":"<p>Whether to install operating system and package updates when the instance boots. The default value is <code>true</code>. To control when updates are installed, set this value to <code>false</code>. You must then update your instances manually by using <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command or manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. </p> <note> <p>We strongly recommend using the default value of <code>true</code>, to ensure that your instances have the latest security updates.</p> </note>"
+          "documentation":"<p>Whether to install operating system and package updates when the instance boots. The default value is <code>true</code>. To control when updates are installed, set this value to <code>false</code>. You must then update your instances manually by using <a>CreateDeployment</a> to run the <code>update_dependencies</code> stack command or by manually running <code>yum</code> (Amazon Linux) or <code>apt-get</code> (Ubuntu) on the instances. </p> <note> <p>We strongly recommend using the default value of <code>true</code>, to ensure that your instances have the latest security updates.</p> </note>"
         },
         "EbsOptimized":{
           "shape":"Boolean",
-          "documentation":"<p>Whether this is an Amazon EBS-optimized instance.</p>"
+          "documentation":"<p>This property cannot be updated.</p>"
+        },
+        "AgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The default AWS OpsWorks agent version. You have the following options:</p> <ul> <li> <code>INHERIT</code> - Use the stack's default agent version setting.</li> <li> <i>version_number</i> - Use the specified agent version. This value overrides the stack's default setting. To update the agent version, you must edit the instance configuration and specify a new version. AWS OpsWorks then automatically installs that version on the instance.</li> </ul> <p>The default setting is <code>INHERIT</code>. To specify an agent version, you must use the complete version number, not the abbreviated number shown on the console. For a list of available agent version numbers, call <a>DescribeAgentVersions</a>.</p>"
         }
       }
     },
@@ -4583,11 +4679,11 @@
         },
         "Attributes":{
           "shape":"StackAttributes",
-          "documentation":"<p>One or more user-defined key/value pairs to be added to the stack attributes.</p>"
+          "documentation":"<p>One or more user-defined key-value pairs to be added to the stack attributes.</p>"
         },
         "ServiceRoleArn":{
           "shape":"String",
-          "documentation":"<p>The stack AWS Identity and Access Management (IAM) role, which allows AWS OpsWorks to work with AWS resources on your behalf. You must set this parameter to the Amazon Resource Name (ARN) for an existing IAM role. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p> <note> <p>You must set this parameter to a valid service role ARN or the action will fail; there is no default value. You can specify the stack's current service role ARN, if you prefer, but you must do so explicitly.</p> </note>"
+          "documentation":"<p>The stack IAM role, which allows AWS OpsWorks to work with AWS resources on your behalf. You must set this parameter to the ARN for an existing IAM role. For more information about IAM ARNs, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html\">Using Identifiers</a>.</p> <note> <p>There is no default value. You must set this parameter to a valid service role ARN or the action will fail. You can specify the stack's current service role ARN, if you prefer, but you must do so explicitly.</p> </note>"
         },
         "DefaultInstanceProfileArn":{
           "shape":"String",
@@ -4595,15 +4691,15 @@
         },
         "DefaultOs":{
           "shape":"String",
-          "documentation":"<p>The stack's operating system, which must be set to one of the following.</p> <ul> <li>Standard Linux operating systems: an Amazon Linux version such as <code>Amazon Linux 2014.09</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li>Custom Linux AMIs: <code>Custom</code>. You specify the custom AMI you want to use when you create instances.</li> <li>Microsoft Windows Server 2012 R2.</li> </ul> <p> The default option is the current Amazon Linux version.</p>"
+          "documentation":"<p>The stack's operating system, which must be set to one of the following:</p> <ul> <li>A supported Linux operating system: An Amazon Linux version, such as <code>Amazon Linux 2015.03</code>, <code>Ubuntu 12.04 LTS</code>, or <code>Ubuntu 14.04 LTS</code>.</li> <li> <code>Microsoft Windows Server 2012 R2 Base</code>.</li> <li>A custom AMI: <code>Custom</code>. You specify the custom AMI you want to use when you create instances. For more information on how to use custom AMIs with OpsWorks, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html\">Using Custom AMIs</a>.</li> </ul> <p>The default option is the stack's current operating system. For more information on the supported operating systems, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html\">AWS OpsWorks Operating Systems</a>.</p>"
         },
         "HostnameTheme":{
           "shape":"String",
-          "documentation":"<p>The stack's new host name theme, with spaces are replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
+          "documentation":"<p>The stack's new host name theme, with spaces replaced by underscores. The theme is used to generate host names for the stack's instances. By default, <code>HostnameTheme</code> is set to <code>Layer_Dependent</code>, which creates host names by appending integers to the layer's short name. The other themes are:</p> <ul> <li> <code>Baked_Goods</code> </li> <li> <code>Clouds</code> </li> <li> <code>Europe_Cities</code> </li> <li> <code>Fruits</code> </li> <li> <code>Greek_Deities</code> </li> <li> <code>Legendary_creatures_from_Japan</code> </li> <li> <code>Planets_and_Moons</code> </li> <li> <code>Roman_Deities</code> </li> <li> <code>Scottish_Islands</code> </li> <li> <code>US_Cities</code> </li> <li> <code>Wild_Cats</code> </li> </ul> <p>To obtain a generated host name, call <code>GetHostNameSuggestion</code>, which returns a host name based on the current theme.</p>"
         },
         "DefaultAvailabilityZone":{
           "shape":"String",
-          "documentation":"<p>The stack's default Availability Zone, which must be in the specified region. For more information, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a>. If you also specify a value for <code>DefaultSubnetId</code>, the subnet must be in the same zone. For more information, see <a>CreateStack</a>. </p>"
+          "documentation":"<p>The stack's default Availability Zone, which must be in the stack's region. For more information, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html\">Regions and Endpoints</a>. If you also specify a value for <code>DefaultSubnetId</code>, the subnet must be in the same zone. For more information, see <a>CreateStack</a>. </p>"
         },
         "DefaultSubnetId":{
           "shape":"String",
@@ -4611,11 +4707,11 @@
         },
         "CustomJson":{
           "shape":"String",
-          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration JSON values or to pass data to recipes. The string should be in the following format and must escape characters such as '\"'.:</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
+          "documentation":"<p>A string that contains user-defined, custom JSON. It can be used to override the corresponding default stack configuration JSON values or to pass data to recipes. The string should be in the following format and escape characters such as '\"':</p> <p> <code>\"{\\\"key1\\\": \\\"value1\\\", \\\"key2\\\": \\\"value2\\\",...}\"</code> </p> <p>For more information on custom JSON, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-json.html\">Use Custom JSON to Modify the Stack Configuration Attributes</a>.</p>"
         },
         "ConfigurationManager":{
           "shape":"StackConfigurationManager",
-          "documentation":"<p>The configuration manager. When you clone a stack we recommend that you use the configuration manager to specify the Chef version, 0.9, 11.4, or 11.10. The default value is currently 11.4.</p>"
+          "documentation":"<p>The configuration manager. When you clone a stack, we recommend that you use the configuration manager to specify the Chef version: 0.9, 11.4, or 11.10. The default value is currently 11.4.</p>"
         },
         "ChefConfiguration":{
           "shape":"ChefConfiguration",
@@ -4628,7 +4724,7 @@
         "CustomCookbooksSource":{"shape":"Source"},
         "DefaultSshKeyName":{
           "shape":"String",
-          "documentation":"<p>A default Amazon EC2 key pair name. The default value is none. If you specify a key pair name, AWS OpsWorks installs the public key on the instance and you can use the private key with an SSH client to log in to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html\"> Using SSH to Communicate with an Instance</a> and <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html\"> Managing SSH Access</a>. You can override this setting by specifying a different key pair, or no key pair, when you <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html\"> create an instance</a>. </p>"
+          "documentation":"<p>A default Amazon EC2 key-pair name. The default value is <code>none</code>. If you specify a key-pair name, AWS OpsWorks installs the public key on the instance and you can use the private key with an SSH client to log in to the instance. For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html\"> Using SSH to Communicate with an Instance</a> and <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/security-ssh-access.html\"> Managing SSH Access</a>. You can override this setting by specifying a different key pair, or no key pair, when you <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-add.html\"> create an instance</a>. </p>"
         },
         "DefaultRootDeviceType":{
           "shape":"RootDeviceType",
@@ -4636,7 +4732,11 @@
         },
         "UseOpsworksSecurityGroups":{
           "shape":"Boolean",
-          "documentation":"<p>Whether to associate the AWS OpsWorks built-in security groups with the stack's layers.</p> <p>AWS OpsWorks provides a standard set of built-in security groups, one for each layer, which are associated with layers by default. <code>UseOpsworksSecurityGroups</code> allows you to instead provide your own custom security groups. <code>UseOpsworksSecurityGroups</code> has the following settings: </p> <ul> <li>True - AWS OpsWorks automatically associates the appropriate built-in security group with each layer (default setting). You can associate additional security groups with a layer after you create it but you cannot delete the built-in security group. </li> <li>False - AWS OpsWorks does not associate built-in security groups with layers. You must create appropriate EC2 security groups and associate a security group with each layer that you create. However, you can still manually associate a built-in security group with a layer on creation; custom security groups are required only for those layers that need custom settings. </li> </ul> <p>For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html\">Create a New Stack</a>.</p>"
+          "documentation":"<p>Whether to associate the AWS OpsWorks built-in security groups with the stack's layers.</p> <p>AWS OpsWorks provides a standard set of built-in security groups, one for each layer, which are associated with layers by default. <code>UseOpsworksSecurityGroups</code> allows you to provide your own custom security groups instead of using the built-in groups. <code>UseOpsworksSecurityGroups</code> has the following settings: </p> <ul> <li>True - AWS OpsWorks automatically associates the appropriate built-in security group with each layer (default setting). You can associate additional security groups with a layer after you create it, but you cannot delete the built-in security group. </li> <li>False - AWS OpsWorks does not associate built-in security groups with layers. You must create appropriate EC2 security groups and associate a security group with each layer that you create. However, you can still manually associate a built-in security group with a layer on. Custom security groups are required only for those layers that need custom settings. </li> </ul> <p>For more information, see <a href=\"http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html\">Create a New Stack</a>.</p>"
+        },
+        "AgentVersion":{
+          "shape":"String",
+          "documentation":"<p>The default AWS OpsWorks agent version. You have the following options:</p> <ul> <li>Auto-update - Set this parameter to <code>LATEST</code>. AWS OpsWorks automatically installs new agent versions on the stack's instances as soon as they are available.</li> <li>Fixed version - Set this parameter to your preferred agent version. To update the agent version, you must edit the stack configuration and specify a new version. AWS OpsWorks then automatically installs that version on the stack's instances.</li> </ul> <p>The default setting is <code>LATEST</code>. To specify an agent version, you must use the complete version number, not the abbreviated number shown on the console. For a list of available agent version numbers, call <a>DescribeAgentVersions</a>.</p> <note>You can also specify an agent version when you create or update an instance, which overrides the stack's default setting.</note>"
         }
       }
     },
@@ -4713,7 +4813,8 @@
     "ValidForInMinutes":{
       "type":"integer",
       "min":60,
-      "max":1440
+      "max":1440,
+      "box":true
     },
     "ValidationException":{
       "type":"structure",

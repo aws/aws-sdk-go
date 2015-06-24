@@ -137,6 +137,7 @@ func ExampleOpsWorks_CloneStack() {
 	params := &opsworks.CloneStackInput{
 		ServiceRoleARN: aws.String("String"), // Required
 		SourceStackID:  aws.String("String"), // Required
+		AgentVersion:   aws.String("String"),
 		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
@@ -321,6 +322,7 @@ func ExampleOpsWorks_CreateInstance() {
 		},
 		StackID:          aws.String("String"), // Required
 		AMIID:            aws.String("String"),
+		AgentVersion:     aws.String("String"),
 		Architecture:     aws.String("Architecture"),
 		AutoScalingType:  aws.String("AutoScalingType"),
 		AvailabilityZone: aws.String("String"),
@@ -464,6 +466,7 @@ func ExampleOpsWorks_CreateStack() {
 		Name:           aws.String("String"), // Required
 		Region:         aws.String("String"), // Required
 		ServiceRoleARN: aws.String("String"), // Required
+		AgentVersion:   aws.String("String"),
 		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
@@ -771,6 +774,37 @@ func ExampleOpsWorks_DeregisterVolume() {
 		VolumeID: aws.String("String"), // Required
 	}
 	resp, err := svc.DeregisterVolume(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleOpsWorks_DescribeAgentVersions() {
+	svc := opsworks.New(nil)
+
+	params := &opsworks.DescribeAgentVersionsInput{
+		ConfigurationManager: &opsworks.StackConfigurationManager{
+			Name:    aws.String("String"),
+			Version: aws.String("String"),
+		},
+		StackID: aws.String("String"),
+	}
+	resp, err := svc.DescribeAgentVersions(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -2030,6 +2064,7 @@ func ExampleOpsWorks_UpdateInstance() {
 	params := &opsworks.UpdateInstanceInput{
 		InstanceID:           aws.String("String"), // Required
 		AMIID:                aws.String("String"),
+		AgentVersion:         aws.String("String"),
 		Architecture:         aws.String("Architecture"),
 		AutoScalingType:      aws.String("AutoScalingType"),
 		EBSOptimized:         aws.Boolean(true),
@@ -2210,7 +2245,8 @@ func ExampleOpsWorks_UpdateStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateStackInput{
-		StackID: aws.String("String"), // Required
+		StackID:      aws.String("String"), // Required
+		AgentVersion: aws.String("String"),
 		Attributes: map[string]*string{
 			"Key": aws.String("String"), // Required
 			// More values...
