@@ -791,6 +791,12 @@
           "exception":true,
           "fault":true,
           "documentation":"Thrown when the service encounters an error during processing the request."
+        },
+        {
+          "shape":"ConcurrentModificationException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Thrown if there are parallel requests to modify a resource.</p>"
         }
       ],
       "documentation":"<p>Sets the roles for an identity pool. These roles are used when making calls to <code>GetCredentialsForIdentity</code> action.</p> <p>You must use AWS Developer credentials to call this API.</p>"
@@ -951,6 +957,12 @@
           "exception":true,
           "fault":true,
           "documentation":"Thrown when the service encounters an error during processing the request."
+        },
+        {
+          "shape":"ConcurrentModificationException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Thrown if there are parallel requests to modify a resource.</p>"
         }
       ],
       "documentation":"<p>Updates a user pool.</p> <p>You must use AWS Developer credentials to call this API.</p>"
@@ -968,6 +980,18 @@
       "min":1,
       "max":15,
       "pattern":"\\d+"
+    },
+    "ConcurrentModificationException":{
+      "type":"structure",
+      "members":{
+        "message":{
+          "shape":"String",
+          "documentation":"<p>The message returned by a ConcurrentModificationException.</p>"
+        }
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true,
+      "documentation":"<p>Thrown if there are parallel requests to modify a resource.</p>"
     },
     "CreateIdentityPoolInput":{
       "type":"structure",
