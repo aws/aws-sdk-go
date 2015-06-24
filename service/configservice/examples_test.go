@@ -228,7 +228,14 @@ func ExampleConfigService_PutConfigurationRecorder() {
 
 	params := &configservice.PutConfigurationRecorderInput{
 		ConfigurationRecorder: &configservice.ConfigurationRecorder{ // Required
-			Name:    aws.String("RecorderName"),
+			Name: aws.String("RecorderName"),
+			RecordingGroup: &configservice.RecordingGroup{
+				AllSupported: aws.Boolean(true),
+				ResourceTypes: []*string{
+					aws.String("ResourceType"), // Required
+					// More values...
+				},
+			},
 			RoleARN: aws.String("String"),
 		},
 	}

@@ -10,7 +10,7 @@
     "targetPrefix":"StarlingDoveService",
     "protocol":"json"
   },
-  "documentation":"<fullname>AWS Config</fullname> <p>AWS Config provides a way to keep track of the configurations of all the AWS resources associated with your AWS account. You can use AWS Config to get the current and historical configurations of each AWS resource and also to get information about the relationship between the resources. An AWS resource can be an Amazon Compute Cloud (Amazon EC2) instance, an Elastic Block Store (EBS) volume, an Elastic network Interface (ENI), or a security group. For a complete list of resources currently supported by AWS Config, see <a href=\"http://docs.aws.amazon.com/config/latest/developerguide/config-concepts.html\">Supported AWS Resources</a>.</p> <p>You can access and manage AWS Config through the AWS Management Console, the AWS Command Line Interface (AWS CLI), the AWS Config API, or the AWS SDKs for AWS Config</p> <p>This reference guide contains documentation for the AWS Config API and the AWS CLI commands that you can use to manage AWS Config.</p> <p>The AWS Config API uses the Signature Version 4 protocol for signing requests. For more information about how to sign a request with this protocol, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4 Signing Process</a>.</p> <p>For detailed information about AWS Config features and their associated actions or commands, as well as how to work with AWS Management Console, see <a href=\"http://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html\">What Is AWS Config?</a> in the <i>AWS Config Developer Guide</i>.</p>",
+  "documentation":"<fullname>AWS Config</fullname> <p>AWS Config provides a way to keep track of the configurations of all the AWS resources associated with your AWS account. You can use AWS Config to get the current and historical configurations of each AWS resource and also to get information about the relationship between the resources. An AWS resource can be an Amazon Compute Cloud (Amazon EC2) instance, an Elastic Block Store (EBS) volume, an Elastic network Interface (ENI), or a security group. For a complete list of resources currently supported by AWS Config, see <a href=\"http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources\">Supported AWS Resources</a>.</p> <p>You can access and manage AWS Config through the AWS Management Console, the AWS Command Line Interface (AWS CLI), the AWS Config API, or the AWS SDKs for AWS Config</p> <p>This reference guide contains documentation for the AWS Config API and the AWS CLI commands that you can use to manage AWS Config.</p> <p>The AWS Config API uses the Signature Version 4 protocol for signing requests. For more information about how to sign a request with this protocol, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4 Signing Process</a>.</p> <p>For detailed information about AWS Config features and their associated actions or commands, as well as how to work with AWS Management Console, see <a href=\"http://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html\">What Is AWS Config?</a> in the <i>AWS Config Developer Guide</i>.</p>",
   "operations":{
     "DeleteDeliveryChannel":{
       "name":"DeleteDeliveryChannel",
@@ -234,9 +234,14 @@
           "shape":"InvalidRoleException",
           "exception":true,
           "documentation":"<p>You have provided a null or empty role ARN.</p>"
+        },
+        {
+          "shape":"InvalidRecordingGroupException",
+          "exception":true,
+          "documentation":"<p>AWS Config throws an exception if the recording group does not contain a valid list of resource types. Invalid values could also be incorrectly formatted.</p>"
         }
       ],
-      "documentation":"<p>Creates a new configuration recorder to record the resource configurations. </p> <p>You can use this action to change the role (<code>roleARN</code>) of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p> <note> <p>Currently, you can specify only one configuration recorder per account. </p> </note>"
+      "documentation":"<p>Creates a new configuration recorder to record the selected resource configurations. </p> <p>You can use this action to change the role <code>roleARN</code> and/or the <code>recordingGroup</code> of an existing recorder. To change the role, call the action on the existing configuration recorder and specify a role.</p> <note> <p>Currently, you can specify only one configuration recorder per account.</p> <p>If <code>ConfigurationRecorder</code> does not have the <b>recordingGroup</b> parameter specified, the default is to record all supported resource types.</p> </note>"
     },
     "PutDeliveryChannel":{
       "name":"PutDeliveryChannel",
@@ -309,7 +314,7 @@
           "documentation":"<p>There is no delivery channel available to record configurations.</p>"
         }
       ],
-      "documentation":"<p>Starts recording configurations of all the resources associated with the account.</p> <p>You must have created at least one delivery channel to successfully start the configuration recorder.</p>"
+      "documentation":"<p>Starts recording configurations of the AWS resources you have selected to record in your AWS account.</p> <p>You must have created at least one delivery channel to successfully start the configuration recorder.</p>"
     },
     "StopConfigurationRecorder":{
       "name":"StopConfigurationRecorder",
@@ -328,12 +333,13 @@
           "documentation":"<p>You have specified a configuration recorder that does not exist.</p>"
         }
       ],
-      "documentation":"<p>Stops recording configurations of all the resources associated with the account.</p>"
+      "documentation":"<p>Stops recording configurations of the AWS resources you have selected to record in your AWS account.</p>"
     }
   },
   "shapes":{
     "ARN":{"type":"string"},
     "AccountId":{"type":"string"},
+    "AllSupported":{"type":"boolean"},
     "AvailabilityZone":{"type":"string"},
     "Boolean":{"type":"boolean"},
     "ChannelName":{
@@ -379,7 +385,7 @@
       "members":{
         "lastStatus":{
           "shape":"DeliveryStatus",
-          "documentation":"<p>Status of the last attempted delivery.</p>"
+          "documentation":"<p>Status of the last attempted delivery.</p> <p><b>Note</b> Providing an SNS topic on a <a href=\"http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html\">DeliveryChannel</a> for AWS Config is optional. If the SNS delivery is turned off, the last status will be <b>Not_Applicable</b>.</p>"
         },
         "lastErrorCode":{
           "shape":"String",
@@ -488,6 +494,10 @@
         "roleARN":{
           "shape":"String",
           "documentation":"<p>Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources associated with the account.</p>"
+        },
+        "recordingGroup":{
+          "shape":"RecordingGroup",
+          "documentation":"<p>The recording group specifies either to record configurations for all supported resources or to provide a list of resource types to record. The list of resource types must be a subset of supported resource types.</p>"
         }
       },
       "documentation":"<p>An object that represents the recording of configuration changes of an AWS resource.</p>"
@@ -808,6 +818,13 @@
       "exception":true,
       "documentation":"<p>The specified nextToken for pagination is not valid.</p>"
     },
+    "InvalidRecordingGroupException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true,
+      "documentation":"<p>AWS Config throws an exception if the recording group does not contain a valid list of resource types. Invalid values could also be incorrectly formatted.</p>"
+    },
     "InvalidRoleException":{
       "type":"structure",
       "members":{
@@ -942,6 +959,20 @@
         "Failure"
       ]
     },
+    "RecordingGroup":{
+      "type":"structure",
+      "members":{
+        "allSupported":{
+          "shape":"AllSupported",
+          "documentation":"<p>Records all supported resource types in the recording group. For a list of supported resource types, see <a href=\"http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources\">Supported resource types</a>. If you specify <b>allSupported</b>, you cannot enumerate a list of <b>resourceTypes</b>. </p>"
+        },
+        "resourceTypes":{
+          "shape":"ResourceTypeList",
+          "documentation":"<p>A comma-separated list of strings representing valid AWS resource types (e.g., <code>AWS::EC2::Instance</code> or <code>AWS::CloudTrail::Trail</code>). <b>resourceTypes</b> is only valid if you have chosen not to select <b>allSupported</b>. For a list of valid <b>resourceTypes</b> values, see the <b>resourceType Value</b> column in the following topic: <a href=\"http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources\">Supported AWS Resource Types</a>.</p>"
+        }
+      },
+      "documentation":"<p>The group of AWS resource types that AWS Config records when starting the configuration recorder.</p> <p><b>recordingGroup</b> can have one and only one parameter. Choose either <b>allSupported</b> or <b>resourceTypes</b>.</p>"
+    },
     "RelatedEvent":{"type":"string"},
     "RelatedEventList":{
       "type":"list",
@@ -956,7 +987,7 @@
         },
         "resourceId":{
           "shape":"ResourceId",
-          "documentation":"<p>The resource ID of the related resource (for example, <code>sg-xxxxxx</code>.</p>"
+          "documentation":"<p>The resource ID of the related resource (for example, <code>sg-xxxxxx</code>).</p>"
         },
         "relationshipName":{
           "shape":"RelationshipName",
@@ -997,6 +1028,10 @@
         "AWS::EC2::VPNConnection",
         "AWS::EC2::VPNGateway"
       ]
+    },
+    "ResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"ResourceType"}
     },
     "StartConfigurationRecorderRequest":{
       "type":"structure",

@@ -266,13 +266,16 @@ func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationR
 	return
 }
 
-// Creates a new configuration recorder to record the resource configurations.
+// Creates a new configuration recorder to record the selected resource configurations.
 //
-// You can use this action to change the role (roleARN) of an existing recorder.
-// To change the role, call the action on the existing configuration recorder
-// and specify a role.
+// You can use this action to change the role roleARN and/or the recordingGroup
+// of an existing recorder. To change the role, call the action on the existing
+// configuration recorder and specify a role.
 //
 //  Currently, you can specify only one configuration recorder per account.
+//
+// If ConfigurationRecorder does not have the recordingGroup parameter specified,
+// the default is to record all supported resource types.
 func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorderInput) (*PutConfigurationRecorderOutput, error) {
 	req, out := c.PutConfigurationRecorderRequest(input)
 	err := req.Send()
@@ -336,8 +339,8 @@ func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurat
 	return
 }
 
-// Starts recording configurations of all the resources associated with the
-// account.
+// Starts recording configurations of the AWS resources you have selected to
+// record in your AWS account.
 //
 // You must have created at least one delivery channel to successfully start
 // the configuration recorder.
@@ -367,7 +370,8 @@ func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfiguratio
 	return
 }
 
-// Stops recording configurations of all the resources associated with the account.
+// Stops recording configurations of the AWS resources you have selected to
+// record in your AWS account.
 func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecorderInput) (*StopConfigurationRecorderOutput, error) {
 	req, out := c.StopConfigurationRecorderRequest(input)
 	err := req.Send()
@@ -409,6 +413,10 @@ type ConfigStreamDeliveryInfo struct {
 	LastErrorMessage *string `locationName:"lastErrorMessage" type:"string"`
 
 	// Status of the last attempted delivery.
+	//
+	// Note Providing an SNS topic on a DeliveryChannel (http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
+	// for AWS Config is optional. If the SNS delivery is turned off, the last status
+	// will be Not_Applicable.
 	LastStatus *string `locationName:"lastStatus" type:"string"`
 
 	// The time from the last status change.
@@ -496,6 +504,11 @@ type ConfigurationRecorder struct {
 	// name "default" when creating the configuration recorder. You cannot change
 	// the assigned name.
 	Name *string `locationName:"name" type:"string"`
+
+	// The recording group specifies either to record configurations for all supported
+	// resources or to provide a list of resource types to record. The list of resource
+	// types must be a subset of supported resource types.
+	RecordingGroup *RecordingGroup `locationName:"recordingGroup" type:"structure"`
 
 	// Amazon Resource Name (ARN) of the IAM role used to describe the AWS resources
 	// associated with the account.
@@ -828,12 +841,37 @@ type metadataPutDeliveryChannelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The group of AWS resource types that AWS Config records when starting the
+// configuration recorder.
+//
+// recordingGroup can have one and only one parameter. Choose either allSupported
+// or resourceTypes.
+type RecordingGroup struct {
+	// Records all supported resource types in the recording group. For a list of
+	// supported resource types, see Supported resource types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+	// If you specify allSupported, you cannot enumerate a list of resourceTypes.
+	AllSupported *bool `locationName:"allSupported" type:"boolean"`
+
+	// A comma-separated list of strings representing valid AWS resource types (e.g.,
+	// AWS::EC2::Instance or AWS::CloudTrail::Trail). resourceTypes is only valid
+	// if you have chosen not to select allSupported. For a list of valid resourceTypes
+	// values, see the resourceType Value column in the following topic: Supported
+	// AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
+
+	metadataRecordingGroup `json:"-" xml:"-"`
+}
+
+type metadataRecordingGroup struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // The relationship of the related resource to the main resource.
 type Relationship struct {
 	// The name of the related resource.
 	RelationshipName *string `locationName:"relationshipName" type:"string"`
 
-	// The resource ID of the related resource (for example, sg-xxxxxx.
+	// The resource ID of the related resource (for example, sg-xxxxxx).
 	ResourceID *string `locationName:"resourceId" type:"string"`
 
 	// The resource type of the related resource.
