@@ -45,6 +45,38 @@ func ExampleGlacier_AbortMultipartUpload() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleGlacier_AddTagsToVault() {
+	svc := glacier.New(nil)
+
+	params := &glacier.AddTagsToVaultInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+		Tags: map[string]*string{
+			"Key": aws.String("TagValue"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.AddTagsToVault(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleGlacier_CompleteMultipartUpload() {
 	svc := glacier.New(nil)
 
@@ -552,6 +584,34 @@ func ExampleGlacier_ListParts() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleGlacier_ListTagsForVault() {
+	svc := glacier.New(nil)
+
+	params := &glacier.ListTagsForVaultInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+	}
+	resp, err := svc.ListTagsForVault(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleGlacier_ListVaults() {
 	svc := glacier.New(nil)
 
@@ -561,6 +621,38 @@ func ExampleGlacier_ListVaults() {
 		Marker:    aws.String("string"),
 	}
 	resp, err := svc.ListVaults(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleGlacier_RemoveTagsFromVault() {
+	svc := glacier.New(nil)
+
+	params := &glacier.RemoveTagsFromVaultInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+		TagKeys: []*string{
+			aws.String("string"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.RemoveTagsFromVault(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

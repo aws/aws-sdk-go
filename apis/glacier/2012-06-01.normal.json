@@ -49,6 +49,51 @@
       ],
       "documentation":"<p>This operation aborts a multipart upload identified by the upload ID.</p> <p>After the Abort Multipart Upload request succeeds, you cannot upload any more parts to the multipart upload or complete the multipart upload. Aborting a completed upload fails. However, aborting an already-aborted upload will succeed, for a short time. For more information about uploading a part and completing a multipart upload, see <a>UploadMultipartPart</a> and <a>CompleteMultipartUpload</a>.</p> <p>This operation is idempotent.</p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, go to <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html\">Working with Archives in Amazon Glacier</a> and <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-abort-upload.html\">Abort Multipart Upload</a> in the <i>Amazon Glacier Developer Guide</i>. </p>"
     },
+    "AddTagsToVault":{
+      "name":"AddTagsToVault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/{accountId}/vaults/{vaultName}/tags?operation=add",
+        "responseCode":204
+      },
+      "input":{
+        "shape":"AddTagsToVaultInput",
+        "documentation":"<p>The input value for <code>AddTagsToVault</code>.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if a parameter of the request is incorrectly specified. </p>"
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if a required header or parameter is missing from the request.</p>"
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"<p>Returned if the specified resource, such as a vault, upload ID, or job ID, does not exist.</p>"
+        },
+        {
+          "shape":"LimitExceededException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if the request results in a vault or account limit being exceeded.</p>"
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "documentation":"<p>Returned if the service cannot complete the request.</p>"
+        }
+      ],
+      "documentation":"<p>This operation adds the specified tags to a vault. Each tag is composed of a key and a value. Each vault can have up to 10 tags. If your request would cause the tag limit for the vault to be exceeded, the operation throws the <code>LimitExceededException</code> error. If a tag already exists on the vault under a specified key, the existing key value will be overwritten. For more information about tags, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html\">Tagging Amazon Glacier Resources</a>. </p>"
+    },
     "CompleteMultipartUpload":{
       "name":"CompleteMultipartUpload",
       "http":{
@@ -250,7 +295,7 @@
           "documentation":"<p>Returned if the service cannot complete the request.</p>"
         }
       ],
-      "documentation":"<p>This operation deletes the access policy associated with the specified vault. The operation is eventually consistent—that is, it might take some time for Amazon Glacier to completely remove the access policy, and you might still see the effect of the policy for a short time after you send the delete request.</p> <p>This operation is idempotent. You can invoke delete multiple times, even if there is no policy associated with the vault. For more information about vault access policies, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html\">Amazon Glacier Access Control with Vault Access Policies</a>. </p>"
+      "documentation":"<p>This operation deletes the access policy associated with the specified vault. The operation is eventually consistent; that is, it might take some time for Amazon Glacier to completely remove the access policy, and you might still see the effect of the policy for a short time after you send the delete request.</p> <p>This operation is idempotent. You can invoke delete multiple times, even if there is no policy associated with the vault. For more information about vault access policies, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html\">Amazon Glacier Access Control with Vault Access Policies</a>. </p>"
     },
     "DeleteVaultNotifications":{
       "name":"DeleteVaultNotifications",
@@ -289,7 +334,7 @@
           "documentation":"<p>Returned if the service cannot complete the request.</p>"
         }
       ],
-      "documentation":"<p>This operation deletes the notification configuration set for a vault. The operation is eventually consistent;that is, it might take some time for Amazon Glacier to completely disable the notifications and you might still receive some notifications for a short time after you send the delete request. </p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"http://docs.aws.amazon.com/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, go to <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html\">Configuring Vault Notifications in Amazon Glacier</a> and <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html\">Delete Vault Notification Configuration </a> in the Amazon Glacier Developer Guide. </p>"
+      "documentation":"<p>This operation deletes the notification configuration set for a vault. The operation is eventually consistent; that is, it might take some time for Amazon Glacier to completely disable the notifications and you might still receive some notifications for a short time after you send the delete request. </p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"http://docs.aws.amazon.com/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p> For conceptual information and underlying REST API, go to <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/configuring-notifications.html\">Configuring Vault Notifications in Amazon Glacier</a> and <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vault-notifications-delete.html\">Delete Vault Notification Configuration </a> in the Amazon Glacier Developer Guide. </p>"
     },
     "DescribeJob":{
       "name":"DescribeJob",
@@ -493,7 +538,7 @@
           "documentation":"<p>Returned if the service cannot complete the request.</p>"
         }
       ],
-      "documentation":"<p>This operation retrieves the <code>access-policy</code> subresource set on the vault—for more information on setting this subresource, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-SetVaultAccessPolicy.html\">Set Vault Access Policy (PUT access-policy)</a>. If there is no access policy set on the vault, the operation returns a <code>404 Not found</code> error. For more information about vault access policies, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html\">Amazon Glacier Access Control with Vault Access Policies</a>.</p>"
+      "documentation":"<p>This operation retrieves the <code>access-policy</code> subresource set on the vault; for more information on setting this subresource, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-SetVaultAccessPolicy.html\">Set Vault Access Policy (PUT access-policy)</a>. If there is no access policy set on the vault, the operation returns a <code>404 Not found</code> error. For more information about vault access policies, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-access-policy.html\">Amazon Glacier Access Control with Vault Access Policies</a>.</p>"
     },
     "GetVaultNotifications":{
       "name":"GetVaultNotifications",
@@ -599,7 +644,7 @@
       },
       "output":{
         "shape":"InitiateMultipartUploadOutput",
-        "documentation":"<p>Contains the Amazon Glacier response to your request.</p>"
+        "documentation":"<p>The Amazon Glacier response to your request.</p>"
       },
       "errors":[
         {
@@ -755,6 +800,48 @@
       ],
       "documentation":"<p>This operation lists the parts of an archive that have been uploaded in a specific multipart upload. You can make this request at any time during an in-progress multipart upload before you complete the upload (see <a>CompleteMultipartUpload</a>. List Parts returns an error for completed uploads. The list returned in the List Parts response is sorted by part range. </p> <p>The List Parts operation supports pagination. By default, this operation returns up to 1,000 uploaded parts in the response. You should always check the response for a <code class=\"code\">marker</code> at which to continue the list; if there are no more items the <code class=\"code\">marker</code> is <code class=\"code\">null</code>. To return a list of parts that begins at a specific part, set the <code>marker</code> request parameter to the value you obtained from a previous List Parts request. You can also limit the number of parts returned in the response by specifying the <code>limit</code> parameter in the request. </p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p>For conceptual information and the underlying REST API, go to <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html\">Working with Archives in Amazon Glacier</a> and <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-multipart-list-parts.html\">List Parts</a> in the <i>Amazon Glacier Developer Guide</i>.</p>"
     },
+    "ListTagsForVault":{
+      "name":"ListTagsForVault",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{accountId}/vaults/{vaultName}/tags"
+      },
+      "input":{
+        "shape":"ListTagsForVaultInput",
+        "documentation":"<p>The input value for <code>ListTagsForVaultInput</code>.</p>"
+      },
+      "output":{
+        "shape":"ListTagsForVaultOutput",
+        "documentation":"<p>Contains the Amazon Glacier response to your request.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if a parameter of the request is incorrectly specified. </p>"
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if a required header or parameter is missing from the request.</p>"
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"<p>Returned if the specified resource, such as a vault, upload ID, or job ID, does not exist.</p>"
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "documentation":"<p>Returned if the service cannot complete the request.</p>"
+        }
+      ],
+      "documentation":"<p>This operation lists all the tags attached to a vault. The operation returns an empty map if there are no tags. For more information about tags, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html\">Tagging Amazon Glacier Resources</a>.</p>"
+    },
     "ListVaults":{
       "name":"ListVaults",
       "http":{
@@ -796,6 +883,45 @@
         }
       ],
       "documentation":"<p>This operation lists all vaults owned by the calling user's account. The list returned in the response is ASCII-sorted by vault name. </p> <p>By default, this operation returns up to 1,000 items. If there are more vaults to list, the response <code class=\"code\">marker</code> field contains the vault Amazon Resource Name (ARN) at which to continue the list with a new List Vaults request; otherwise, the <code class=\"code\">marker</code> field is <code class=\"code\">null</code>. To return a list of vaults that begins at a specific vault, set the <code class=\"code\">marker</code> request parameter to the vault ARN you obtained from a previous List Vaults request. You can also limit the number of vaults returned in the response by specifying the <code class=\"code\">limit</code> parameter in the request. </p> <p>An AWS account has full permission to perform all operations (actions). However, AWS Identity and Access Management (IAM) users don't have any permissions by default. You must grant them explicit permission to perform specific actions. For more information, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/using-iam-with-amazon-glacier.html\">Access Control Using AWS Identity and Access Management (IAM)</a>.</p> <p>For conceptual information and underlying REST API, go to <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/retrieving-vault-info.html\">Retrieving Vault Metadata in Amazon Glacier</a> and <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/api-vaults-get.html\">List Vaults </a> in the <i>Amazon Glacier Developer Guide</i>. </p>"
+    },
+    "RemoveTagsFromVault":{
+      "name":"RemoveTagsFromVault",
+      "http":{
+        "method":"POST",
+        "requestUri":"/{accountId}/vaults/{vaultName}/tags?operation=remove",
+        "responseCode":204
+      },
+      "input":{
+        "shape":"RemoveTagsFromVaultInput",
+        "documentation":"<p>The input value for <code>RemoveTagsFromVaultInput</code>.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if a parameter of the request is incorrectly specified. </p>"
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true,
+          "documentation":"<p>Returned if a required header or parameter is missing from the request.</p>"
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true,
+          "documentation":"<p>Returned if the specified resource, such as a vault, upload ID, or job ID, does not exist.</p>"
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true,
+          "documentation":"<p>Returned if the service cannot complete the request.</p>"
+        }
+      ],
+      "documentation":"<p>This operation removes one or more tags from the set of tags attached to a vault. For more information about tags, see <a href=\"http://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html\">Tagging Amazon Glacier Resources</a>. This operation is idempotent. The operation will be successful, even if there are no tags attached to the vault. </p>"
     },
     "SetDataRetrievalPolicy":{
       "name":"SetDataRetrievalPolicy",
@@ -1042,6 +1168,32 @@
       "enum":[
         "ArchiveRetrieval",
         "InventoryRetrieval"
+      ]
+    },
+    "AddTagsToVaultInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId",
+          "documentation":"<p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single apos<code>-</code>apos (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens (apos-apos) in the ID.</p>"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName",
+          "documentation":"<p>The name of the vault.</p>"
+        },
+        "Tags":{
+          "shape":"TagMap",
+          "documentation":"<p>The tags to add to the vault. Each tag is composed of a key and a value. The value can be an empty string.</p>"
+        }
+      },
+      "documentation":"<p>The input value for <code>AddTagsToVault</code>.</p>",
+      "required":[
+        "accountId",
+        "vaultName"
       ]
     },
     "ArchiveCreationOutput":{
@@ -1656,7 +1808,7 @@
           "shape":"string",
           "location":"header",
           "locationName":"x-amz-archive-description",
-          "documentation":"<p>The archive description that you are uploading in parts.</p> <p>The part size must be a megabyte (1024 KB) multiplied by a power of 2—for example, 1048576 (1 MB), 2097152 (2 MB), 4194304 (4 MB), 8388608 (8 MB), and so on. The minimum allowable part size is 1 MB, and the maximum is 4 GB (4096 MB).</p>"
+          "documentation":"<p>The archive description that you are uploading in parts.</p> <p>The part size must be a megabyte (1024 KB) multiplied by a power of 2, for example 1048576 (1 MB), 2097152 (2 MB), 4194304 (4 MB), 8388608 (8 MB), and so on. The minimum allowable part size is 1 MB, and the maximum is 4 GB (4096 MB).</p>"
         },
         "partSize":{
           "shape":"string",
@@ -1687,7 +1839,7 @@
           "documentation":"<p>The ID of the multipart upload. This value is also included as part of the location. </p>"
         }
       },
-      "documentation":"<p>Contains the Amazon Glacier response to your request.</p>"
+      "documentation":"<p>The Amazon Glacier response to your request.</p>"
     },
     "InvalidParameterValueException":{
       "type":"structure",
@@ -1992,6 +2144,38 @@
       },
       "documentation":"<p>Contains the Amazon Glacier response to your request.</p>"
     },
+    "ListTagsForVaultInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId",
+          "documentation":"<p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single apos<code>-</code>apos (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens (apos-apos) in the ID.</p>"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName",
+          "documentation":"<p>The name of the vault.</p>"
+        }
+      },
+      "documentation":"<p>The input value for <code>ListTagsForVaultInput</code>.</p>",
+      "required":[
+        "accountId",
+        "vaultName"
+      ]
+    },
+    "ListTagsForVaultOutput":{
+      "type":"structure",
+      "members":{
+        "Tags":{
+          "shape":"TagMap",
+          "documentation":"<p>The tags attached to the vault. Each tag is composed of a key and a value.</p>"
+        }
+      },
+      "documentation":"<p>Contains the Amazon Glacier response to your request.</p>"
+    },
     "ListVaultsInput":{
       "type":"structure",
       "members":{
@@ -2090,6 +2274,32 @@
       "error":{"httpStatusCode":400},
       "exception":true,
       "documentation":"<p>Returned if a retrieval job would exceed the current data policy's retrieval rate limit. For more information about data retrieval policies,</p>"
+    },
+    "RemoveTagsFromVaultInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId",
+          "documentation":"<p>The <code>AccountId</code> value is the AWS account ID of the account that owns the vault. You can either specify an AWS account ID or optionally a single apos<code>-</code>apos (hyphen), in which case Amazon Glacier uses the AWS account ID associated with the credentials used to sign the request. If you use an account ID, do not include any hyphens (apos-apos) in the ID.</p>"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName",
+          "documentation":"<p>The name of the vault.</p>"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "documentation":"<p>A list of tag keys. Each corresponding tag is removed from the vault.</p>"
+        }
+      },
+      "documentation":"<p>The input value for <code>RemoveTagsFromVaultInput</code>.</p>",
+      "required":[
+        "accountId",
+        "vaultName"
+      ]
     },
     "RequestTimeoutException":{
       "type":"structure",
@@ -2226,6 +2436,17 @@
       "type":"blob",
       "streaming":true
     },
+    "TagKey":{"type":"string"},
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"string"}
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"}
+    },
+    "TagValue":{"type":"string"},
     "UploadArchiveInput":{
       "type":"structure",
       "members":{

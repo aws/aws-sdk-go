@@ -11,6 +11,8 @@ import (
 type GlacierAPI interface {
 	AbortMultipartUpload(*glacier.AbortMultipartUploadInput) (*glacier.AbortMultipartUploadOutput, error)
 
+	AddTagsToVault(*glacier.AddTagsToVaultInput) (*glacier.AddTagsToVaultOutput, error)
+
 	CompleteMultipartUpload(*glacier.CompleteMultipartUploadInput) (*glacier.ArchiveCreationOutput, error)
 
 	CreateVault(*glacier.CreateVaultInput) (*glacier.CreateVaultOutput, error)
@@ -45,7 +47,11 @@ type GlacierAPI interface {
 
 	ListParts(*glacier.ListPartsInput) (*glacier.ListPartsOutput, error)
 
+	ListTagsForVault(*glacier.ListTagsForVaultInput) (*glacier.ListTagsForVaultOutput, error)
+
 	ListVaults(*glacier.ListVaultsInput) (*glacier.ListVaultsOutput, error)
+
+	RemoveTagsFromVault(*glacier.RemoveTagsFromVaultInput) (*glacier.RemoveTagsFromVaultOutput, error)
 
 	SetDataRetrievalPolicy(*glacier.SetDataRetrievalPolicyInput) (*glacier.SetDataRetrievalPolicyOutput, error)
 

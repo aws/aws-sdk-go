@@ -55,6 +55,38 @@ func (c *Glacier) AbortMultipartUpload(input *AbortMultipartUploadInput) (*Abort
 	return out, err
 }
 
+const opAddTagsToVault = "AddTagsToVault"
+
+// AddTagsToVaultRequest generates a request for the AddTagsToVault operation.
+func (c *Glacier) AddTagsToVaultRequest(input *AddTagsToVaultInput) (req *aws.Request, output *AddTagsToVaultOutput) {
+	op := &aws.Operation{
+		Name:       opAddTagsToVault,
+		HTTPMethod: "POST",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/tags?operation=add",
+	}
+
+	if input == nil {
+		input = &AddTagsToVaultInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AddTagsToVaultOutput{}
+	req.Data = output
+	return
+}
+
+// This operation adds the specified tags to a vault. Each tag is composed of
+// a key and a value. Each vault can have up to 10 tags. If your request would
+// cause the tag limit for the vault to be exceeded, the operation throws the
+// LimitExceededException error. If a tag already exists on the vault under
+// a specified key, the existing key value will be overwritten. For more information
+// about tags, see Tagging Amazon Glacier Resources (http://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html).
+func (c *Glacier) AddTagsToVault(input *AddTagsToVaultInput) (*AddTagsToVaultOutput, error) {
+	req, out := c.AddTagsToVaultRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCompleteMultipartUpload = "CompleteMultipartUpload"
 
 // CompleteMultipartUploadRequest generates a request for the CompleteMultipartUpload operation.
@@ -292,9 +324,10 @@ func (c *Glacier) DeleteVaultAccessPolicyRequest(input *DeleteVaultAccessPolicyI
 }
 
 // This operation deletes the access policy associated with the specified vault.
-// The operation is eventually consistent—that is, it might take some time for
-// Amazon Glacier to completely remove the access policy, and you might still
-// see the effect of the policy for a short time after you send the delete request.
+// The operation is eventually consistent; that is, it might take some time
+// for Amazon Glacier to completely remove the access policy, and you might
+// still see the effect of the policy for a short time after you send the delete
+// request.
 //
 // This operation is idempotent. You can invoke delete multiple times, even
 // if there is no policy associated with the vault. For more information about
@@ -327,9 +360,9 @@ func (c *Glacier) DeleteVaultNotificationsRequest(input *DeleteVaultNotification
 }
 
 // This operation deletes the notification configuration set for a vault. The
-// operation is eventually consistent;that is, it might take some time for Amazon
-// Glacier to completely disable the notifications and you might still receive
-// some notifications for a short time after you send the delete request.
+// operation is eventually consistent; that is, it might take some time for
+// Amazon Glacier to completely disable the notifications and you might still
+// receive some notifications for a short time after you send the delete request.
 //
 // An AWS account has full permission to perform all operations (actions).
 // However, AWS Identity and Access Management (IAM) users don't have any permissions
@@ -560,8 +593,8 @@ func (c *Glacier) GetVaultAccessPolicyRequest(input *GetVaultAccessPolicyInput) 
 	return
 }
 
-// This operation retrieves the access-policy subresource set on the vault—for
-// more information on setting this subresource, see Set Vault Access Policy
+// This operation retrieves the access-policy subresource set on the vault;
+// for more information on setting this subresource, see Set Vault Access Policy
 // (PUT access-policy) (http://docs.aws.amazon.com/amazonglacier/latest/dev/api-SetVaultAccessPolicy.html).
 // If there is no access policy set on the vault, the operation returns a 404
 // Not found error. For more information about vault access policies, see Amazon
@@ -1031,6 +1064,35 @@ func (c *Glacier) ListPartsPages(input *ListPartsInput, fn func(p *ListPartsOutp
 	})
 }
 
+const opListTagsForVault = "ListTagsForVault"
+
+// ListTagsForVaultRequest generates a request for the ListTagsForVault operation.
+func (c *Glacier) ListTagsForVaultRequest(input *ListTagsForVaultInput) (req *aws.Request, output *ListTagsForVaultOutput) {
+	op := &aws.Operation{
+		Name:       opListTagsForVault,
+		HTTPMethod: "GET",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/tags",
+	}
+
+	if input == nil {
+		input = &ListTagsForVaultInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTagsForVaultOutput{}
+	req.Data = output
+	return
+}
+
+// This operation lists all the tags attached to a vault. The operation returns
+// an empty map if there are no tags. For more information about tags, see Tagging
+// Amazon Glacier Resources (http://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html).
+func (c *Glacier) ListTagsForVault(input *ListTagsForVaultInput) (*ListTagsForVaultOutput, error) {
+	req, out := c.ListTagsForVaultRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListVaults = "ListVaults"
 
 // ListVaultsRequest generates a request for the ListVaults operation.
@@ -1090,6 +1152,37 @@ func (c *Glacier) ListVaultsPages(input *ListVaultsInput, fn func(p *ListVaultsO
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListVaultsOutput), lastPage)
 	})
+}
+
+const opRemoveTagsFromVault = "RemoveTagsFromVault"
+
+// RemoveTagsFromVaultRequest generates a request for the RemoveTagsFromVault operation.
+func (c *Glacier) RemoveTagsFromVaultRequest(input *RemoveTagsFromVaultInput) (req *aws.Request, output *RemoveTagsFromVaultOutput) {
+	op := &aws.Operation{
+		Name:       opRemoveTagsFromVault,
+		HTTPMethod: "POST",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/tags?operation=remove",
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromVaultInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RemoveTagsFromVaultOutput{}
+	req.Data = output
+	return
+}
+
+// This operation removes one or more tags from the set of tags attached to
+// a vault. For more information about tags, see Tagging Amazon Glacier Resources
+// (http://docs.aws.amazon.com/amazonglacier/latest/dev/tagging.html). This
+// operation is idempotent. The operation will be successful, even if there
+// are no tags attached to the vault.
+func (c *Glacier) RemoveTagsFromVault(input *RemoveTagsFromVaultInput) (*RemoveTagsFromVaultOutput, error) {
+	req, out := c.RemoveTagsFromVaultRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opSetDataRetrievalPolicy = "SetDataRetrievalPolicy"
@@ -1376,6 +1469,37 @@ type AbortMultipartUploadOutput struct {
 }
 
 type metadataAbortMultipartUploadOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The input value for AddTagsToVault.
+type AddTagsToVaultInput struct {
+	// The AccountId value is the AWS account ID of the account that owns the vault.
+	// You can either specify an AWS account ID or optionally a single apos-apos
+	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
+	// with the credentials used to sign the request. If you use an account ID,
+	// do not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The tags to add to the vault. Each tag is composed of a key and a value.
+	// The value can be an empty string.
+	Tags map[string]*string `type:"map"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataAddTagsToVaultInput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsToVaultInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type AddTagsToVaultOutput struct {
+	metadataAddTagsToVaultOutput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsToVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -1903,10 +2027,10 @@ type InitiateMultipartUploadInput struct {
 
 	// The archive description that you are uploading in parts.
 	//
-	// The part size must be a megabyte (1024 KB) multiplied by a power of 2—for
-	// example, 1048576 (1 MB), 2097152 (2 MB), 4194304 (4 MB), 8388608 (8 MB),
-	// and so on. The minimum allowable part size is 1 MB, and the maximum is 4
-	// GB (4096 MB).
+	// The part size must be a megabyte (1024 KB) multiplied by a power of 2, for
+	// example 1048576 (1 MB), 2097152 (2 MB), 4194304 (4 MB), 8388608 (8 MB), and
+	// so on. The minimum allowable part size is 1 MB, and the maximum is 4 GB (4096
+	// MB).
 	ArchiveDescription *string `location:"header" locationName:"x-amz-archive-description" type:"string"`
 
 	// The size of each part except the last, in bytes. The last part can be smaller
@@ -1923,7 +2047,7 @@ type metadataInitiateMultipartUploadInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Contains the Amazon Glacier response to your request.
+// The Amazon Glacier response to your request.
 type InitiateMultipartUploadOutput struct {
 	// The relative URI path of the multipart upload ID Amazon Glacier created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
@@ -2309,6 +2433,37 @@ type metadataListPartsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The input value for ListTagsForVaultInput.
+type ListTagsForVaultInput struct {
+	// The AccountId value is the AWS account ID of the account that owns the vault.
+	// You can either specify an AWS account ID or optionally a single apos-apos
+	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
+	// with the credentials used to sign the request. If you use an account ID,
+	// do not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataListTagsForVaultInput `json:"-" xml:"-"`
+}
+
+type metadataListTagsForVaultInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Contains the Amazon Glacier response to your request.
+type ListTagsForVaultOutput struct {
+	// The tags attached to the vault. Each tag is composed of a key and a value.
+	Tags map[string]*string `type:"map"`
+
+	metadataListTagsForVaultOutput `json:"-" xml:"-"`
+}
+
+type metadataListTagsForVaultOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Provides options to retrieve the vault list owned by the calling user's account.
 // The list provides metadata information for each vault.
 type ListVaultsInput struct {
@@ -2364,6 +2519,36 @@ type PartListElement struct {
 }
 
 type metadataPartListElement struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The input value for RemoveTagsFromVaultInput.
+type RemoveTagsFromVaultInput struct {
+	// The AccountId value is the AWS account ID of the account that owns the vault.
+	// You can either specify an AWS account ID or optionally a single apos-apos
+	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
+	// with the credentials used to sign the request. If you use an account ID,
+	// do not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// A list of tag keys. Each corresponding tag is removed from the vault.
+	TagKeys []*string `type:"list"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataRemoveTagsFromVaultInput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsFromVaultInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type RemoveTagsFromVaultOutput struct {
+	metadataRemoveTagsFromVaultOutput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsFromVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
