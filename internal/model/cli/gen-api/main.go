@@ -24,12 +24,21 @@ type generateInfo struct {
 	PackageDir string
 }
 
+var excludeServices = map[string]struct{}{
+	"simpledb":     struct{}{},
+	"importexport": struct{}{},
+}
+
 // newGenerateInfo initializes the service API's folder structure for a specific service.
 // If the SERVICES environment variable is set, and this service is not apart of the list
 // this service will be skipped.
 func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 	g := &generateInfo{API: &api.API{}}
 	g.API.Attach(modelFile)
+
+	if _, ok := excludeServices[g.API.PackageName()]; ok {
+		return nil
+	}
 
 	paginatorsFile := strings.Replace(modelFile, ".normal.json", ".paginators.json", -1)
 	if _, err := os.Stat(paginatorsFile); err == nil {
@@ -38,10 +47,17 @@ func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 
 	if svc := os.Getenv("SERVICES"); svc != "" {
 		svcs := strings.Split(svc, ",")
+
+		included := false
 		for _, s := range svcs {
-			if s != g.API.PackageName() { // skip this non-included service
-				return nil
+			if s == g.API.PackageName() {
+				included = true
+				break
 			}
+		}
+		if !included {
+			// skip this non-included service
+			return nil
 		}
 	}
 
@@ -78,6 +94,13 @@ func main() {
 		}
 	}
 
+	for svcName := range excludeServices {
+		if strings.Contains(os.Getenv("SERVICES"), svcName) {
+			fmt.Printf("Service %s is not supported\n", svcName)
+			os.Exit(1)
+		}
+	}
+
 	sort.Strings(files)
 
 	// Remove old API versions from list
@@ -111,10 +134,9 @@ func main() {
 			}()
 
 			if g := newGenerateInfo(file, svcPath); g != nil {
-				switch g.API.PackageName() {
-				case "simpledb", "importexport":
-					// These services are not yet supported, do nothing.
-				default:
+				if _, ok := excludeServices[g.API.PackageName()]; !ok {
+					// Skip services not yet supported.
+
 					fmt.Printf("Generating %s (%s)...\n",
 						g.API.PackageName(), g.API.Metadata.APIVersion)
 
