@@ -181,8 +181,8 @@ func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParame
 // created by using ModifyCluster.
 //
 //  Parameters in the parameter group define specific behavior that applies
-// to the databases you create on the cluster. For more information about managing
-// parameter groups, go to Amazon Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+// to the databases you create on the cluster. For more information about parameters
+// and parameter groups, go to Amazon Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGroupInput) (*CreateClusterParameterGroupOutput, error) {
 	req, out := c.CreateClusterParameterGroupRequest(input)
@@ -402,6 +402,39 @@ func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationIn
 // the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationInput) (*CreateHSMConfigurationOutput, error) {
 	req, out := c.CreateHSMConfigurationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateSnapshotCopyGrant = "CreateSnapshotCopyGrant"
+
+// CreateSnapshotCopyGrantRequest generates a request for the CreateSnapshotCopyGrant operation.
+func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrantInput) (req *aws.Request, output *CreateSnapshotCopyGrantOutput) {
+	op := &aws.Operation{
+		Name:       opCreateSnapshotCopyGrant,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateSnapshotCopyGrantInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateSnapshotCopyGrantOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a snapshot copy grant that permits Amazon Redshift to use a customer
+// master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied
+// snapshots in a destination region.
+//
+//  For more information about managing snapshot copy grants, go to Amazon
+// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// in the Amazon Redshift Cluster Management Guide.
+func (c *Redshift) CreateSnapshotCopyGrant(input *CreateSnapshotCopyGrantInput) (*CreateSnapshotCopyGrantOutput, error) {
+	req, out := c.CreateSnapshotCopyGrantRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -684,6 +717,33 @@ func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationInput) (*
 	return out, err
 }
 
+const opDeleteSnapshotCopyGrant = "DeleteSnapshotCopyGrant"
+
+// DeleteSnapshotCopyGrantRequest generates a request for the DeleteSnapshotCopyGrant operation.
+func (c *Redshift) DeleteSnapshotCopyGrantRequest(input *DeleteSnapshotCopyGrantInput) (req *aws.Request, output *DeleteSnapshotCopyGrantOutput) {
+	op := &aws.Operation{
+		Name:       opDeleteSnapshotCopyGrant,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSnapshotCopyGrantInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteSnapshotCopyGrantOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the specified snapshot copy grant.
+func (c *Redshift) DeleteSnapshotCopyGrant(input *DeleteSnapshotCopyGrantInput) (*DeleteSnapshotCopyGrantOutput, error) {
+	req, out := c.DeleteSnapshotCopyGrantRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
@@ -744,8 +804,8 @@ func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterP
 // family name. You can optionally specify a name to retrieve the description
 // of a specific parameter group.
 //
-//  For more information about managing parameter groups, go to Amazon Redshift
-// Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+//  For more information about parameters and parameter groups, go to Amazon
+// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
 // If you specify both tag keys and tag values in the same request, Amazon
@@ -805,8 +865,8 @@ func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParame
 // For example, to retrieve parameters that were modified by a user action such
 // as from ModifyClusterParameterGroup, you can specify source equal to user.
 //
-//  For more information about managing parameter groups, go to Amazon Redshift
-// Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+//  For more information about parameters and parameter groups, go to Amazon
+// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInput) (*DescribeClusterParametersOutput, error) {
 	req, out := c.DescribeClusterParametersRequest(input)
@@ -1109,8 +1169,8 @@ func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaul
 
 // Returns a list of parameter settings for the specified parameter group family.
 //
-//  For more information about managing parameter groups, go to Amazon Redshift
-// Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+//  For more information about parameters and parameter groups, go to Amazon
+// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultClusterParametersInput) (*DescribeDefaultClusterParametersOutput, error) {
 	req, out := c.DescribeDefaultClusterParametersRequest(input)
@@ -1452,8 +1512,8 @@ func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedN
 // to purchase. You then use the unique offering ID in you call to PurchaseReservedNodeOffering
 // to reserve one or more nodes for your Amazon Redshift cluster.
 //
-//  For more information about managing parameter groups, go to Purchasing
-// Reserved Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
+//  For more information about reserved node offerings, go to Purchasing Reserved
+// Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOfferingsInput) (*DescribeReservedNodeOfferingsOutput, error) {
 	req, out := c.DescribeReservedNodeOfferingsRequest(input)
@@ -1537,6 +1597,38 @@ func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.R
 // a different number or type of nodes for the cluster.
 func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOutput, error) {
 	req, out := c.DescribeResizeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeSnapshotCopyGrants = "DescribeSnapshotCopyGrants"
+
+// DescribeSnapshotCopyGrantsRequest generates a request for the DescribeSnapshotCopyGrants operation.
+func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopyGrantsInput) (req *aws.Request, output *DescribeSnapshotCopyGrantsOutput) {
+	op := &aws.Operation{
+		Name:       opDescribeSnapshotCopyGrants,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeSnapshotCopyGrantsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeSnapshotCopyGrantsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of snapshot copy grants owned by the AWS account in the destination
+// region.
+//
+//  For more information about managing snapshot copy grants, go to Amazon
+// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// in the Amazon Redshift Cluster Management Guide.
+func (c *Redshift) DescribeSnapshotCopyGrants(input *DescribeSnapshotCopyGrantsInput) (*DescribeSnapshotCopyGrantsOutput, error) {
+	req, out := c.DescribeSnapshotCopyGrantsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1636,6 +1728,10 @@ func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (
 
 // Disables the automatic copying of snapshots from one region to another region
 // for a specified cluster.
+//
+// If your cluster and its snapshots are encrypted using a customer master
+// key (CMK) from AWS KMS, use DeleteSnapshotCopyGrant to delete the grant that
+// grants Amazon Redshift permission to the CMK in the destination region.
 func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*DisableSnapshotCopyOutput, error) {
 	req, out := c.DisableSnapshotCopyRequest(input)
 	err := req.Send()
@@ -1757,8 +1853,8 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 
 // Modifies the parameters of a parameter group.
 //
-//  For more information about managing parameter groups, go to Amazon Redshift
-// Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+//  For more information about parameters and parameter groups, go to Amazon
+// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGroupInput) (*ClusterParameterGroupNameMessage, error) {
 	req, out := c.ModifyClusterParameterGroupRequest(input)
@@ -1871,13 +1967,13 @@ func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNo
 }
 
 // Allows you to purchase reserved nodes. Amazon Redshift offers a predefined
-// set of reserved node offerings. You can purchase one of the offerings. You
-// can call the DescribeReservedNodeOfferings API to obtain the available reserved
-// node offerings. You can call this API by providing a specific reserved node
-// offering and the number of nodes you want to reserve.
+// set of reserved node offerings. You can purchase one or more of the offerings.
+// You can call the DescribeReservedNodeOfferings API to obtain the available
+// reserved node offerings. You can call this API by providing a specific reserved
+// node offering and the number of nodes you want to reserve.
 //
-//  For more information about managing parameter groups, go to Purchasing
-// Reserved Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
+//  For more information about reserved node offerings, go to Purchasing Reserved
+// Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html)
 // in the Amazon Redshift Cluster Management Guide.
 func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOfferingInput) (*PurchaseReservedNodeOfferingOutput, error) {
 	req, out := c.PurchaseReservedNodeOfferingRequest(input)
@@ -1968,12 +2064,14 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 	return
 }
 
-// Creates a new cluster from a snapshot. Amazon Redshift creates the resulting
-// cluster with the same configuration as the original cluster from which the
-// snapshot was created, except that the new cluster is created with the default
-// cluster security and parameter group. After Amazon Redshift creates the cluster
-// you can use the ModifyCluster API to associate a different security group
-// and different parameter group with the restored cluster.
+// Creates a new cluster from a snapshot. By default, Amazon Redshift creates
+// the resulting cluster with the same configuration as the original cluster
+// from which the snapshot was created, except that the new cluster is created
+// with the default cluster security and parameter groups. After Amazon Redshift
+// creates the cluster, you can use the ModifyCluster API to associate a different
+// security group and different parameter group with the restored cluster. If
+// you are using a DS node type, you can also choose to change to another DS
+// node type of the same size during restore.
 //
 //  If you restore a cluster into a VPC, you must provide a cluster subnet
 // group where you want the cluster restored.
@@ -2191,6 +2289,7 @@ type Cluster struct {
 	ClusterNodes []*ClusterNode `type:"list"`
 
 	// The list of cluster parameter groups that are associated with this cluster.
+	// Each parameter group in the list is returned with its status.
 	ClusterParameterGroups []*ClusterParameterGroupStatus `locationNameList:"ClusterParameterGroup" type:"list"`
 
 	// The public key for the cluster.
@@ -2353,6 +2452,13 @@ type metadataClusterParameterGroupNameMessage struct {
 
 // Describes the status of a parameter group.
 type ClusterParameterGroupStatus struct {
+	// The list of parameter statuses.
+	//
+	//  For more information about parameters and parameter groups, go to Amazon
+	// Redshift Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+	// in the Amazon Redshift Cluster Management Guide.
+	ClusterParameterStatusList []*ClusterParameterStatus `type:"list"`
+
 	// The status of parameter updates.
 	ParameterApplyStatus *string `type:"string"`
 
@@ -2363,6 +2469,37 @@ type ClusterParameterGroupStatus struct {
 }
 
 type metadataClusterParameterGroupStatus struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// Describes the status of a parameter group.
+type ClusterParameterStatus struct {
+	// The error that prevented the parameter from being applied to the database.
+	ParameterApplyErrorDescription *string `type:"string"`
+
+	// The status of the parameter that indicates whether the parameter is in sync
+	// with the database, waiting for a cluster reboot, or encountered an error
+	// when being applied.
+	//
+	// The following are possible statuses and descriptions.  in-sync: The parameter
+	// value is in sync with the database.  pending-reboot: The parameter value
+	// will be applied after the cluster reboots.  applying: The parameter value
+	// is being applied to the database.  invalid-parameter: Cannot apply the parameter
+	// value because it has an invalid value or syntax.  apply-deferred: The parameter
+	// contains static property changes. The changes are deferred until the cluster
+	// reboots.  apply-error: Cannot connect to the cluster. The parameter change
+	// will be applied after the cluster reboots.  unknown-error: Cannot apply the
+	// parameter change right now. The change will be applied after the cluster
+	// reboots.
+	ParameterApplyStatus *string `type:"string"`
+
+	// The name of the parameter.
+	ParameterName *string `type:"string"`
+
+	metadataClusterParameterStatus `json:"-" xml:"-"`
+}
+
+type metadataClusterParameterStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2417,6 +2554,9 @@ type ClusterSnapshotCopyStatus struct {
 	// The number of days that automated snapshots are retained in the destination
 	// region after they are copied from a source region.
 	RetentionPeriod *int64 `type:"long"`
+
+	// The name of the snapshot copy grant.
+	SnapshotCopyGrantName *string `type:"string"`
 
 	metadataClusterSnapshotCopyStatus `json:"-" xml:"-"`
 }
@@ -2673,7 +2813,8 @@ type CreateClusterInput struct {
 	// types, go to  Working with Clusters (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes)
 	// in the Amazon Redshift Cluster Management Guide.
 	//
-	//  Valid Values: dw1.xlarge | dw1.8xlarge | dw2.large | dw2.8xlarge.
+	//  Valid Values: ds1.xlarge | ds1.8xlarge | ds2.xlarge | ds2.8xlarge | dc1.large
+	// | dc1.8xlarge.
 	NodeType *string `type:"string" required:"true"`
 
 	// The number of compute nodes in the cluster. This parameter is required when
@@ -3048,6 +3189,50 @@ type metadataCreateHSMConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of the CreateSnapshotCopyGrant action.
+type CreateSnapshotCopyGrantInput struct {
+	// The unique identifier of the customer master key (CMK) to which to grant
+	// Amazon Redshift permission. If no key is specified, the default key is used.
+	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// The name of the snapshot copy grant. This name must be unique in the region
+	// for the AWS account.
+	//
+	//  Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens. Alphabetic
+	// characters must be lowercase. First character must be a letter. Cannot end
+	// with a hyphen or contain two consecutive hyphens. Must be unique for all
+	// clusters within an AWS account.
+	SnapshotCopyGrantName *string `type:"string" required:"true"`
+
+	// A list of tag instances.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataCreateSnapshotCopyGrantInput `json:"-" xml:"-"`
+}
+
+type metadataCreateSnapshotCopyGrantInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type CreateSnapshotCopyGrantOutput struct {
+	// The snapshot copy grant that grants Amazon Redshift permission to encrypt
+	// copied snapshots with the specified customer master key (CMK) from AWS KMS
+	// in the destination region.
+	//
+	//  For more information about managing snapshot copy grants, go to Amazon
+	// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+	// in the Amazon Redshift Cluster Management Guide.
+	SnapshotCopyGrant *SnapshotCopyGrant `type:"structure"`
+
+	metadataCreateSnapshotCopyGrantOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateSnapshotCopyGrantOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Contains the output from the CreateTags action.
 type CreateTagsInput struct {
 	// The Amazon Resource Name (ARN) to which you want to add the tag or tags.
@@ -3055,11 +3240,10 @@ type CreateTagsInput struct {
 	ResourceName *string `type:"string" required:"true"`
 
 	// One or more name/value pairs to add as tags to the specified resource. Each
-	// tag name is passed in with the parameter tag-key and the corresponding value
-	// is passed in with the parameter tag-value. The tag-key and tag-value parameters
-	// are separated by a colon (:). Separate multiple tags with a space. For example,
-	// --tags "tag-key"="owner":"tag-value"="admin" "tag-key"="environment":"tag-value"="test"
-	// "tag-key"="version":"tag-value"="1.0".
+	// tag name is passed in with the parameter Key and the corresponding value
+	// is passed in with the parameter Value. The Key and Value parameters are separated
+	// by a comma (,). Separate multiple tags with a space. For example, --tags
+	// "Key"="owner","Value"="admin" "Key"="environment","Value"="test" "Key"="version","Value"="1.0".
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
 
 	metadataCreateTagsInput `json:"-" xml:"-"`
@@ -3294,6 +3478,26 @@ type DeleteHSMConfigurationOutput struct {
 }
 
 type metadataDeleteHSMConfigurationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The result of the DeleteSnapshotCopyGrant action.
+type DeleteSnapshotCopyGrantInput struct {
+	// The name of the snapshot copy grant to delete.
+	SnapshotCopyGrantName *string `type:"string" required:"true"`
+
+	metadataDeleteSnapshotCopyGrantInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteSnapshotCopyGrantInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type DeleteSnapshotCopyGrantOutput struct {
+	metadataDeleteSnapshotCopyGrantOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteSnapshotCopyGrantOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -4207,7 +4411,6 @@ type metadataDescribeOrderableClusterOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// to be provided.
 type DescribeReservedNodeOfferingsInput struct {
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeReservedNodeOfferings request
@@ -4386,6 +4589,78 @@ type metadataDescribeResizeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// The result of the DescribeSnapshotCopyGrants action.
+type DescribeSnapshotCopyGrantsInput struct {
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeSnapshotCopyGrant request
+	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
+	// field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	//
+	//  Constraints: You can specify either the SnapshotCopyGrantName parameter
+	// or the Marker parameter, but not both.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	//
+	// Default: 100
+	//
+	// Constraints: minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	// The name of the snapshot copy grant.
+	SnapshotCopyGrantName *string `type:"string"`
+
+	// A tag key or keys for which you want to return all matching resources that
+	// are associated with the specified key or keys. For example, suppose that
+	// you have resources tagged with keys called owner and environment. If you
+	// specify both of these tag keys in the request, Amazon Redshift returns a
+	// response with all resources that have either or both of these tag keys associated
+	// with them.
+	TagKeys []*string `locationNameList:"TagKey" type:"list"`
+
+	// A tag value or values for which you want to return all matching resources
+	// that are associated with the specified value or values. For example, suppose
+	// that you have resources tagged with values called admin and test. If you
+	// specify both of these tag values in the request, Amazon Redshift returns
+	// a response with all resources that have either or both of these tag values
+	// associated with them.
+	TagValues []*string `locationNameList:"TagValue" type:"list"`
+
+	metadataDescribeSnapshotCopyGrantsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeSnapshotCopyGrantsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The result of the snapshot copy grant.
+type DescribeSnapshotCopyGrantsOutput struct {
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeSnapshotCopyGrant request
+	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
+	// field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	//
+	//  Constraints: You can specify either the SnapshotCopyGrantName parameter
+	// or the Marker parameter, but not both.
+	Marker *string `type:"string"`
+
+	// The list of snapshot copy grants.
+	SnapshotCopyGrants []*SnapshotCopyGrant `locationNameList:"SnapshotCopyGrant" type:"list"`
+
+	metadataDescribeSnapshotCopyGrantsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeSnapshotCopyGrantsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 // Contains the output from the DescribeTags action.
 type DescribeTagsInput struct {
 	// A value that indicates the starting point for the next set of response records
@@ -4407,7 +4682,8 @@ type DescribeTagsInput struct {
 
 	// The type of resource with which you want to view tags. Valid resource types
 	// are:  Cluster CIDR/IP EC2 security group Snapshot Cluster security group
-	// Subnet group HSM connection HSM certificate Parameter group
+	// Subnet group HSM connection HSM certificate Parameter group Snapshot copy
+	// grant
 	//
 	//  For more information about Amazon Redshift resource types and constructing
 	// ARNs, go to Constructing an Amazon Redshift Amazon Resource Name (ARN) (http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html)
@@ -4584,6 +4860,10 @@ type EnableSnapshotCopyInput struct {
 	//  Constraints: Must be at least 1 and no more than 35.
 	RetentionPeriod *int64 `type:"integer"`
 
+	// The name of the snapshot copy grant to use when snapshots of an AWS KMS-encrypted
+	// cluster are copied to the destination region.
+	SnapshotCopyGrantName *string `type:"string"`
+
 	metadataEnableSnapshotCopyInput `json:"-" xml:"-"`
 }
 
@@ -4623,6 +4903,8 @@ type Event struct {
 	Date *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// A list of the event categories.
+	//
+	// Values: Configuration, Management, Monitoring, Security
 	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
 
 	// The identifier of the event.
@@ -4923,8 +5205,8 @@ type ModifyClusterInput struct {
 	// currently in use, a new cluster parameter group in the cluster parameter
 	// group family for the new version must be specified. The new cluster parameter
 	// group can be the default for that cluster parameter group family. For more
-	// information about managing parameter groups, go to Amazon Redshift Parameter
-	// Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
+	// information about parameters and parameter groups, go to Amazon Redshift
+	// Parameter Groups (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
 	// in the Amazon Redshift Cluster Management Guide.
 	//
 	// Example: 1.0
@@ -4976,7 +5258,8 @@ type ModifyClusterInput struct {
 	// permissions for the cluster are restored. You can use DescribeResize to track
 	// the progress of the resize request.
 	//
-	// Valid Values:  dw1.xlarge | dw1.8xlarge | dw2.large | dw2.8xlarge.
+	// Valid Values:  ds1.xlarge | ds1.8xlarge |  ds2.xlarge | ds2.8xlarge | dc1.large
+	// | dc1.8xlarge.
 	NodeType *string `type:"string"`
 
 	// The new number of nodes of the cluster. If you specify a new number of nodes,
@@ -5208,6 +5491,9 @@ type Parameter struct {
 	// The valid range of values for the parameter.
 	AllowedValues *string `type:"string"`
 
+	// Specifies how to apply the parameter. Supported value: static.
+	ApplyType *string `type:"string"`
+
 	// The data type of the parameter.
 	DataType *string `type:"string"`
 
@@ -5285,7 +5571,8 @@ type metadataPurchaseReservedNodeOfferingInput struct {
 }
 
 type PurchaseReservedNodeOfferingOutput struct {
-	// Describes a reserved node.
+	// Describes a reserved node. You can call the DescribeReservedNodeOfferings
+	// API to obtain the available reserved node offerings.
 	ReservedNode *ReservedNode `type:"structure"`
 
 	metadataPurchaseReservedNodeOfferingOutput `json:"-" xml:"-"`
@@ -5333,7 +5620,8 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// Describes a reserved node.
+// Describes a reserved node. You can call the DescribeReservedNodeOfferings
+// API to obtain the available reserved node offerings.
 type ReservedNode struct {
 	// The currency code for the reserved cluster.
 	CurrencyCode *string `type:"string"`
@@ -5341,7 +5629,7 @@ type ReservedNode struct {
 	// The duration of the node reservation in seconds.
 	Duration *int64 `type:"integer"`
 
-	// The fixed cost Amazon Redshift charged you for this reserved node.
+	// The fixed cost Amazon Redshift charges you for this reserved node.
 	FixedPrice *float64 `type:"double"`
 
 	// The number of reserved compute nodes.
@@ -5377,7 +5665,7 @@ type ReservedNode struct {
 	// failed for the purchase attempt.
 	State *string `type:"string"`
 
-	// The hourly rate Amazon Redshift charge you for this reserved node.
+	// The hourly rate Amazon Redshift charges you for this reserved node.
 	UsagePrice *float64 `type:"double"`
 
 	metadataReservedNode `json:"-" xml:"-"`
@@ -5522,6 +5810,19 @@ type RestoreFromClusterSnapshotInput struct {
 	// want to use to encrypt data in the cluster that you restore from a shared
 	// snapshot.
 	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// The node type that the restored cluster will be provisioned with.
+	//
+	//  Default: The node type of the cluster from which the snapshot was taken.
+	// You can modify this if you are using any DS node type. In that case, you
+	// can choose to restore into another DS node type of the same size. For example,
+	// you can restore ds1.8xlarge into ds2.8xlarge, or ds2.xlarge into ds1.xlarge.
+	// If you have a DC instance type, you must restore into that same instance
+	// type and size. In other words, you can only restore a dc1.large instance
+	// type into another dc1.large instance type. For more information about node
+	// types, see  About Clusters and Nodes (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes)
+	// in the Amazon Redshift Cluster Management Guide
+	NodeType *string `type:"string"`
 
 	// The AWS customer account used to create or copy the snapshot. Required if
 	// you are restoring a snapshot you do not own, optional if you own the snapshot.
@@ -5786,6 +6087,9 @@ type Snapshot struct {
 	// The port that the cluster is listening on.
 	Port *int64 `type:"integer"`
 
+	// The list of node types that this cluster snapshot is able to restore into.
+	RestorableNodeTypes []*string `locationNameList:"NodeType" type:"list"`
+
 	// The time (UTC) when Amazon Redshift began the snapshot. A snapshot contains
 	// a copy of the cluster data as of this exact time.
 	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -5821,6 +6125,31 @@ type Snapshot struct {
 }
 
 type metadataSnapshot struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// The snapshot copy grant that grants Amazon Redshift permission to encrypt
+// copied snapshots with the specified customer master key (CMK) from AWS KMS
+// in the destination region.
+//
+//  For more information about managing snapshot copy grants, go to Amazon
+// Redshift Database Encryption (http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
+// in the Amazon Redshift Cluster Management Guide.
+type SnapshotCopyGrant struct {
+	// The unique identifier of the customer master key (CMK) in AWS KMS to which
+	// Amazon Redshift is granted permission.
+	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+
+	// The name of the snapshot copy grant.
+	SnapshotCopyGrantName *string `type:"string"`
+
+	// A list of tag instances.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataSnapshotCopyGrant `json:"-" xml:"-"`
+}
+
+type metadataSnapshotCopyGrant struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 

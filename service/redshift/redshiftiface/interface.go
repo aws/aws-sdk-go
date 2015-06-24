@@ -31,6 +31,8 @@ type RedshiftAPI interface {
 
 	CreateHSMConfiguration(*redshift.CreateHSMConfigurationInput) (*redshift.CreateHSMConfigurationOutput, error)
 
+	CreateSnapshotCopyGrant(*redshift.CreateSnapshotCopyGrantInput) (*redshift.CreateSnapshotCopyGrantOutput, error)
+
 	CreateTags(*redshift.CreateTagsInput) (*redshift.CreateTagsOutput, error)
 
 	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, error)
@@ -48,6 +50,8 @@ type RedshiftAPI interface {
 	DeleteHSMClientCertificate(*redshift.DeleteHSMClientCertificateInput) (*redshift.DeleteHSMClientCertificateOutput, error)
 
 	DeleteHSMConfiguration(*redshift.DeleteHSMConfigurationInput) (*redshift.DeleteHSMConfigurationOutput, error)
+
+	DeleteSnapshotCopyGrant(*redshift.DeleteSnapshotCopyGrantInput) (*redshift.DeleteSnapshotCopyGrantOutput, error)
 
 	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 
@@ -86,6 +90,8 @@ type RedshiftAPI interface {
 	DescribeReservedNodes(*redshift.DescribeReservedNodesInput) (*redshift.DescribeReservedNodesOutput, error)
 
 	DescribeResize(*redshift.DescribeResizeInput) (*redshift.DescribeResizeOutput, error)
+
+	DescribeSnapshotCopyGrants(*redshift.DescribeSnapshotCopyGrantsInput) (*redshift.DescribeSnapshotCopyGrantsOutput, error)
 
 	DescribeTags(*redshift.DescribeTagsInput) (*redshift.DescribeTagsOutput, error)
 

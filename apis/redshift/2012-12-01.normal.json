@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2012-12-01",
     "endpointPrefix":"redshift",
@@ -365,6 +366,16 @@
           },
           "exception":true,
           "documentation":"<p> The tag is invalid. </p>"
+        },
+        {
+          "shape":"LimitExceededFault",
+          "error":{
+            "code":"LimitExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The encryption key has exceeded its grant limit in AWS KMS. </p>"
         }
       ],
       "documentation":"<p> Creates a new cluster. To create the cluster in virtual private cloud (VPC), you must provide cluster subnet group name. If you don't provide a cluster subnet group name or the cluster security group parameter, Amazon Redshift creates a non-VPC cluster, it associates the default cluster security group with the cluster. For more information about managing clusters, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i> . </p>"
@@ -427,7 +438,7 @@
           "documentation":"<p> The tag is invalid. </p>"
         }
       ],
-      "documentation":"<p> Creates an Amazon Redshift parameter group. </p> <p>Creating parameter groups is independent of creating clusters. You can associate a cluster with a parameter group when you create the cluster. You can also associate an existing cluster with a parameter group after the cluster is created by using <a>ModifyCluster</a>. </p> <p> Parameters in the parameter group define specific behavior that applies to the databases you create on the cluster. For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Creates an Amazon Redshift parameter group. </p> <p>Creating parameter groups is independent of creating clusters. You can associate a cluster with a parameter group when you create the cluster. You can also associate an existing cluster with a parameter group after the cluster is created by using <a>ModifyCluster</a>. </p> <p> Parameters in the parameter group define specific behavior that applies to the databases you create on the cluster. For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "CreateClusterSecurityGroup":{
       "name":"CreateClusterSecurityGroup",
@@ -908,6 +919,76 @@
       ],
       "documentation":"<p>Creates an HSM configuration that contains the information required by an Amazon Redshift cluster to store and use database encryption keys in a Hardware Security Module (HSM). After creating the HSM configuration, you can specify it as a parameter when creating a cluster. The cluster will then store its encryption keys in the HSM.</p> <p>In addition to creating an HSM configuration, you must also create an HSM client certificate. For more information, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html\">Hardware Security Modules</a> in the Amazon Redshift Cluster Management Guide.</p>"
     },
+    "CreateSnapshotCopyGrant":{
+      "name":"CreateSnapshotCopyGrant",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"CreateSnapshotCopyGrantMessage",
+        "documentation":"<p>The result of the <code>CreateSnapshotCopyGrant</code> action.</p>"
+      },
+      "output":{
+        "shape":"CreateSnapshotCopyGrantResult",
+        "wrapper":true,
+        "documentation":"<p>The snapshot copy grant that grants Amazon Redshift permission to encrypt copied snapshots with the specified customer master key (CMK) from AWS KMS in the destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>",
+        "resultWrapper":"CreateSnapshotCopyGrantResult"
+      },
+      "errors":[
+        {
+          "shape":"SnapshotCopyGrantAlreadyExistsFault",
+          "error":{
+            "code":"SnapshotCopyGrantAlreadyExistsFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The snapshot copy grant can't be created because a grant with the same name already exists.</p>"
+        },
+        {
+          "shape":"SnapshotCopyGrantQuotaExceededFault",
+          "error":{
+            "code":"SnapshotCopyGrantQuotaExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The AWS account has exceeded the maximum number of snapshot copy grants in this region.</p>"
+        },
+        {
+          "shape":"LimitExceededFault",
+          "error":{
+            "code":"LimitExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The encryption key has exceeded its grant limit in AWS KMS. </p>"
+        },
+        {
+          "shape":"TagLimitExceededFault",
+          "error":{
+            "code":"TagLimitExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The request exceeds the limit of 10 tags for the resource. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
+        }
+      ],
+      "documentation":"<p>Creates a snapshot copy grant that permits Amazon Redshift to use a customer master key (CMK) from AWS Key Management Service (AWS KMS) to encrypt copied snapshots in a destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+    },
     "CreateTags":{
       "name":"CreateTags",
       "http":{
@@ -1263,6 +1344,40 @@
       ],
       "documentation":"<p>Deletes the specified Amazon Redshift HSM configuration.</p>"
     },
+    "DeleteSnapshotCopyGrant":{
+      "name":"DeleteSnapshotCopyGrant",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DeleteSnapshotCopyGrantMessage",
+        "documentation":"<p>The result of the <code>DeleteSnapshotCopyGrant</code> action.</p>"
+      },
+      "errors":[
+        {
+          "shape":"InvalidSnapshotCopyGrantStateFault",
+          "error":{
+            "code":"InvalidSnapshotCopyGrantStateFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The snapshot copy grant can't be deleted because it is used by one or more clusters.</p>"
+        },
+        {
+          "shape":"SnapshotCopyGrantNotFoundFault",
+          "error":{
+            "code":"SnapshotCopyGrantNotFoundFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified snapshot copy grant can't be found. Make sure that the name is typed correctly and that the grant exists in the destination region.</p>"
+        }
+      ],
+      "documentation":"<p>Deletes the specified snapshot copy grant.</p>"
+    },
     "DeleteTags":{
       "name":"DeleteTags",
       "http":{
@@ -1283,6 +1398,16 @@
           },
           "exception":true,
           "documentation":"<p> The resource could not be found. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p> Deletes a tag or tags from a resource. You must provide the ARN of the resource from which you want to delete the tag or tags.</p>"
@@ -1312,9 +1437,19 @@
           },
           "exception":true,
           "documentation":"<p> The parameter group name does not refer to an existing parameter group. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
-      "documentation":"<p> Returns a list of Amazon Redshift parameter groups, including parameter groups you created and the default parameter group. For each parameter group, the response includes the parameter group name, description, and parameter group family name. You can optionally specify a name to retrieve the description of a specific parameter group. </p> <p> For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all parameter groups that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all parameter groups that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, parameter groups are returned regardless of whether they have tag keys or values associated with them.</p>"
+      "documentation":"<p> Returns a list of Amazon Redshift parameter groups, including parameter groups you created and the default parameter group. For each parameter group, the response includes the parameter group name, description, and parameter group family name. You can optionally specify a name to retrieve the description of a specific parameter group. </p> <p> For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all parameter groups that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all parameter groups that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, parameter groups are returned regardless of whether they have tag keys or values associated with them.</p>"
     },
     "DescribeClusterParameters":{
       "name":"DescribeClusterParameters",
@@ -1340,7 +1475,7 @@
           "documentation":"<p> The parameter group name does not refer to an existing parameter group. </p>"
         }
       ],
-      "documentation":"<p> Returns a detailed list of parameters contained within the specified Amazon Redshift parameter group. For each parameter the response includes information such as parameter name, description, data type, value, whether the parameter value is modifiable, and so on. </p> <p>You can specify <i>source</i> filter to retrieve parameters of only specific type. For example, to retrieve parameters that were modified by a user action such as from <a>ModifyClusterParameterGroup</a>, you can specify <i>source</i> equal to <i>user</i>.</p> <p> For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Returns a detailed list of parameters contained within the specified Amazon Redshift parameter group. For each parameter the response includes information such as parameter name, description, data type, value, whether the parameter value is modifiable, and so on. </p> <p>You can specify <i>source</i> filter to retrieve parameters of only specific type. For example, to retrieve parameters that were modified by a user action such as from <a>ModifyClusterParameterGroup</a>, you can specify <i>source</i> equal to <i>user</i>.</p> <p> For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "DescribeClusterSecurityGroups":{
       "name":"DescribeClusterSecurityGroups",
@@ -1367,6 +1502,16 @@
           },
           "exception":true,
           "documentation":"<p> The cluster security group name does not refer to an existing cluster security group. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p> Returns information about Amazon Redshift security groups. If the name of a security group is specified, the response will contain only information about only that security group. </p> <p> For information about managing security groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-security-groups.html\">Amazon Redshift Cluster Security Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all security groups that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all security groups that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, security groups are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1396,6 +1541,16 @@
           },
           "exception":true,
           "documentation":"<p> The snapshot identifier does not refer to an existing cluster snapshot. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p> Returns one or more snapshot objects, which contain metadata about your cluster snapshots. By default, this operation returns information about all snapshots of all clusters that are owned by you AWS customer account. No information is returned for snapshots owned by inactive AWS customer accounts. </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all snapshots that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all snapshots that have any combination of those values are returned. Only snapshots that you own are returned in the response; shared snapshots are not returned with the tag key and tag value request parameters.</p> <p>If both tag keys and values are omitted from the request, snapshots are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1425,6 +1580,16 @@
           },
           "exception":true,
           "documentation":"<p> The cluster subnet group name does not refer to an existing cluster subnet group. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p> Returns one or more cluster subnet group objects, which contain metadata about your cluster subnet groups. By default, this operation returns information about all cluster subnet groups that are defined in you AWS account. </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all subnet groups that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all subnet groups that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, subnet groups are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1468,6 +1633,16 @@
           },
           "exception":true,
           "documentation":"<p> The <i>ClusterIdentifier</i> parameter does not refer to an existing cluster. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p> Returns properties of provisioned clusters including general cluster properties, cluster database properties, maintenance and backup properties, and security and access properties. This operation supports pagination. For more information about managing clusters, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i> . </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all clusters that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all clusters that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, clusters are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1488,7 +1663,7 @@
         "documentation":"<p>Describes the default cluster parameters for a parameter group family. </p>",
         "resultWrapper":"DescribeDefaultClusterParametersResult"
       },
-      "documentation":"<p> Returns a list of parameter settings for the specified parameter group family. </p> <p> For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Returns a list of parameter settings for the specified parameter group family. </p> <p> For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "DescribeEventCategories":{
       "name":"DescribeEventCategories",
@@ -1578,6 +1753,16 @@
           },
           "exception":true,
           "documentation":"<p>There is no Amazon Redshift HSM client certificate with the specified identifier.</p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p>Returns information about the specified HSM client certificate. If no certificate ID is specified, returns information about all the HSM certificates owned by your AWS customer account.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM client certificates that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all HSM client certificates that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, HSM client certificates are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1607,6 +1792,16 @@
           },
           "exception":true,
           "documentation":"<p>There is no Amazon Redshift HSM configuration with the specified identifier.</p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p>Returns information about the specified Amazon Redshift HSM configuration. If no configuration ID is specified, returns information about all the HSM configurations owned by your AWS customer account.</p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all HSM connections that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all HSM connections that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, HSM connections are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1665,7 +1860,7 @@
       },
       "input":{
         "shape":"DescribeReservedNodeOfferingsMessage",
-        "documentation":"<p>to be provided.</p>"
+        "documentation":"<p></p>"
       },
       "output":{
         "shape":"ReservedNodeOfferingsMessage",
@@ -1682,9 +1877,19 @@
           },
           "exception":true,
           "documentation":"<p> Specified offering does not exist. </p>"
+        },
+        {
+          "shape":"UnsupportedOperationFault",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The requested operation isn't supported. </p>"
         }
       ],
-      "documentation":"<p> Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to <a>PurchaseReservedNodeOffering</a> to reserve one or more nodes for your Amazon Redshift cluster. </p> <p> For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to <a>PurchaseReservedNodeOffering</a> to reserve one or more nodes for your Amazon Redshift cluster. </p> <p> For more information about reserved node offerings, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "DescribeReservedNodes":{
       "name":"DescribeReservedNodes",
@@ -1754,6 +1959,45 @@
       ],
       "documentation":"<p> Returns information about the last resize operation for the specified cluster. If no resize operation has ever been initiated for the specified cluster, a <code>HTTP 404</code> error is returned. If a resize operation was initiated and completed, the status of the resize remains as <code>SUCCEEDED</code> until the next resize. </p> <p> A resize operation can be requested using <a>ModifyCluster</a> and specifying a different number or type of nodes for the cluster. </p>"
     },
+    "DescribeSnapshotCopyGrants":{
+      "name":"DescribeSnapshotCopyGrants",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{
+        "shape":"DescribeSnapshotCopyGrantsMessage",
+        "documentation":"<p>The result of the <code>DescribeSnapshotCopyGrants</code> action.</p>"
+      },
+      "output":{
+        "shape":"SnapshotCopyGrantMessage",
+        "documentation":"<p>The result of the snapshot copy grant.</p>",
+        "resultWrapper":"DescribeSnapshotCopyGrantsResult"
+      },
+      "errors":[
+        {
+          "shape":"SnapshotCopyGrantNotFoundFault",
+          "error":{
+            "code":"SnapshotCopyGrantNotFoundFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified snapshot copy grant can't be found. Make sure that the name is typed correctly and that the grant exists in the destination region.</p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
+        }
+      ],
+      "documentation":"<p>Returns a list of snapshot copy grants owned by the AWS account in the destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+    },
     "DescribeTags":{
       "name":"DescribeTags",
       "http":{
@@ -1779,6 +2023,16 @@
           },
           "exception":true,
           "documentation":"<p> The resource could not be found. </p>"
+        },
+        {
+          "shape":"InvalidTagFault",
+          "error":{
+            "code":"InvalidTagFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The tag is invalid. </p>"
         }
       ],
       "documentation":"<p> Returns a list of tags. You can return tags from a specific resource by specifying an ARN, or you can return all tags for a given type of resource, such as clusters, snapshots, and so on.</p> <p> The following are limitations for <code>DescribeTags</code>: <ul> <li>You cannot specify an ARN and a resource-type value together in the same request.</li> <li>You cannot use the <code>MaxRecords</code> and <code>Marker</code> parameters together with the ARN parameter.</li> <li>The <code>MaxRecords</code> parameter can be a range from 10 to 50 results to return in a request.</li> </ul> </p> <p>If you specify both tag keys and tag values in the same request, Amazon Redshift returns all resources that match any combination of the specified keys and values. For example, if you have <code>owner</code> and <code>environment</code> for tag keys, and <code>admin</code> and <code>test</code> for tag values, all resources that have any combination of those values are returned.</p> <p>If both tag keys and values are omitted from the request, resources are returned regardless of whether they have tag keys or values associated with them.</p>"
@@ -1870,7 +2124,7 @@
           "documentation":"<p> Your account is not authorized to perform the requested operation. </p>"
         }
       ],
-      "documentation":"<p>Disables the automatic copying of snapshots from one region to another region for a specified cluster.</p>"
+      "documentation":"<p>Disables the automatic copying of snapshots from one region to another region for a specified cluster.</p> <p>If your cluster and its snapshots are encrypted using a customer master key (CMK) from AWS KMS, use <a>DeleteSnapshotCopyGrant</a> to delete the grant that grants Amazon Redshift permission to the CMK in the destination region. </p>"
     },
     "EnableLogging":{
       "name":"EnableLogging",
@@ -2027,6 +2281,26 @@
           },
           "exception":true,
           "documentation":"<p> Your account is not authorized to perform the requested operation. </p>"
+        },
+        {
+          "shape":"SnapshotCopyGrantNotFoundFault",
+          "error":{
+            "code":"SnapshotCopyGrantNotFoundFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The specified snapshot copy grant can't be found. Make sure that the name is typed correctly and that the grant exists in the destination region.</p>"
+        },
+        {
+          "shape":"LimitExceededFault",
+          "error":{
+            "code":"LimitExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The encryption key has exceeded its grant limit in AWS KMS. </p>"
         }
       ],
       "documentation":"<p>Enables the automatic copy of snapshots from one region to another region for a specified cluster.</p>"
@@ -2167,6 +2441,16 @@
           },
           "exception":true,
           "documentation":"<p> The account already has a cluster with the given identifier. </p>"
+        },
+        {
+          "shape":"LimitExceededFault",
+          "error":{
+            "code":"LimitExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The encryption key has exceeded its grant limit in AWS KMS. </p>"
         }
       ],
       "documentation":"<p> Modifies the settings for a cluster. For example, you can add another security or parameter group, update the preferred maintenance window, or change the master user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i> . </p> <p>You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change.</p>"
@@ -2208,7 +2492,7 @@
           "documentation":"<p> The cluster parameter group action can not be completed because another task is in progress that involves the parameter group. Wait a few moments and try the operation again. </p>"
         }
       ],
-      "documentation":"<p> Modifies the parameters of a parameter group. </p> <p> For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Modifies the parameters of a parameter group. </p> <p> For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "ModifyClusterSubnetGroup":{
       "name":"ModifyClusterSubnetGroup",
@@ -2462,7 +2746,7 @@
       "output":{
         "shape":"PurchaseReservedNodeOfferingResult",
         "wrapper":true,
-        "documentation":"<p> Describes a reserved node. </p>",
+        "documentation":"<p> Describes a reserved node. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. </p>",
         "resultWrapper":"PurchaseReservedNodeOfferingResult"
       },
       "errors":[
@@ -2495,9 +2779,19 @@
           },
           "exception":true,
           "documentation":"<p> Request would exceed the user's compute node quota. For information about increasing your quota, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/amazon-redshift-limits.html\">Limits in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+        },
+        {
+          "shape":"UnsupportedOperationFault",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p> The requested operation isn't supported. </p>"
         }
       ],
-      "documentation":"<p> Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Allows you to purchase reserved nodes. Amazon Redshift offers a predefined set of reserved node offerings. You can purchase one or more of the offerings. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. You can call this API by providing a specific reserved node offering and the number of nodes you want to reserve. </p> <p> For more information about reserved node offerings, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "RebootCluster":{
       "name":"RebootCluster",
@@ -2784,9 +3078,19 @@
           },
           "exception":true,
           "documentation":"<p> The cluster security group name does not refer to an existing cluster security group. </p>"
+        },
+        {
+          "shape":"LimitExceededFault",
+          "error":{
+            "code":"LimitExceededFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true,
+          "documentation":"<p>The encryption key has exceeded its grant limit in AWS KMS. </p>"
         }
       ],
-      "documentation":"<p> Creates a new cluster from a snapshot. Amazon Redshift creates the resulting cluster with the same configuration as the original cluster from which the snapshot was created, except that the new cluster is created with the default cluster security and parameter group. After Amazon Redshift creates the cluster you can use the <a>ModifyCluster</a> API to associate a different security group and different parameter group with the restored cluster. </p> <p> If you restore a cluster into a VPC, you must provide a cluster subnet group where you want the cluster restored. </p> <p> For more information about working with snapshots, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html\">Amazon Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+      "documentation":"<p> Creates a new cluster from a snapshot. By default, Amazon Redshift creates the resulting cluster with the same configuration as the original cluster from which the snapshot was created, except that the new cluster is created with the default cluster security and parameter groups. After Amazon Redshift creates the cluster, you can use the <a>ModifyCluster</a> API to associate a different security group and different parameter group with the restored cluster. If you are using a DS node type, you can also choose to change to another DS node type of the same size during restore.</p> <p> If you restore a cluster into a VPC, you must provide a cluster subnet group where you want the cluster restored. </p> <p> For more information about working with snapshots, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html\">Amazon Redshift Snapshots</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
     },
     "RevokeClusterSecurityGroupIngress":{
       "name":"RevokeClusterSecurityGroupIngress",
@@ -3121,7 +3425,7 @@
         },
         "ClusterParameterGroups":{
           "shape":"ClusterParameterGroupStatusList",
-          "documentation":"<p> The list of cluster parameter groups that are associated with this cluster. </p>"
+          "documentation":"<p>The list of cluster parameter groups that are associated with this cluster. Each parameter group in the list is returned with its status.</p>"
         },
         "ClusterSubnetGroupName":{
           "shape":"String",
@@ -3353,6 +3657,10 @@
         "ParameterApplyStatus":{
           "shape":"String",
           "documentation":"<p> The status of parameter updates. </p>"
+        },
+        "ClusterParameterStatusList":{
+          "shape":"ClusterParameterStatusList",
+          "documentation":"<p>The list of parameter statuses.</p> <p> For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
         }
       },
       "documentation":"<p> Describes the status of a parameter group. </p>"
@@ -3377,6 +3685,28 @@
         }
       },
       "documentation":"<p> Contains the output from the <a>DescribeClusterParameterGroups</a> action. </p>"
+    },
+    "ClusterParameterStatus":{
+      "type":"structure",
+      "members":{
+        "ParameterName":{
+          "shape":"String",
+          "documentation":"<p>The name of the parameter.</p>"
+        },
+        "ParameterApplyStatus":{
+          "shape":"String",
+          "documentation":"<p>The status of the parameter that indicates whether the parameter is in sync with the database, waiting for a cluster reboot, or encountered an error when being applied.</p> <p>The following are possible statuses and descriptions.<ul> <li> <code>in-sync</code>: The parameter value is in sync with the database.</li> <li> <code>pending-reboot</code>: The parameter value will be applied after the cluster reboots.</li> <li> <code>applying</code>: The parameter value is being applied to the database.</li> <li> <code>invalid-parameter</code>: Cannot apply the parameter value because it has an invalid value or syntax.</li> <li> <code>apply-deferred</code>: The parameter contains static property changes. The changes are deferred until the cluster reboots.</li> <li> <code>apply-error</code>: Cannot connect to the cluster. The parameter change will be applied after the cluster reboots.</li> <li> <code>unknown-error</code>: Cannot apply the parameter change right now. The change will be applied after the cluster reboots.</li> </ul> </p>"
+        },
+        "ParameterApplyErrorDescription":{
+          "shape":"String",
+          "documentation":"<p>The error that prevented the parameter from being applied to the database.</p>"
+        }
+      },
+      "documentation":"<p>Describes the status of a parameter group.</p>"
+    },
+    "ClusterParameterStatusList":{
+      "type":"list",
+      "member":{"shape":"ClusterParameterStatus"}
     },
     "ClusterQuotaExceededFault":{
       "type":"structure",
@@ -3524,6 +3854,10 @@
         "RetentionPeriod":{
           "shape":"Long",
           "documentation":"<p>The number of days that automated snapshots are retained in the destination region after they are copied from a source region.</p>"
+        },
+        "SnapshotCopyGrantName":{
+          "shape":"String",
+          "documentation":"<p>The name of the snapshot copy grant.</p>"
         }
       },
       "documentation":"<p> Returns the destination region and retention period that are configured for cross-region snapshot copy. </p>"
@@ -3762,7 +4096,7 @@
         },
         "NodeType":{
           "shape":"String",
-          "documentation":"<p> The node type to be provisioned for the cluster. For information about node types, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes\"> Working with Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p> Valid Values: <code>dw1.xlarge</code> | <code>dw1.8xlarge</code> | <code>dw2.large</code> | <code>dw2.8xlarge</code>. </p>"
+          "documentation":"<p> The node type to be provisioned for the cluster. For information about node types, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#how-many-nodes\"> Working with Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p> Valid Values: <code>ds1.xlarge</code> | <code>ds1.8xlarge</code> | <code>ds2.xlarge</code> | <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code>. </p>"
         },
         "MasterUsername":{
           "shape":"String",
@@ -4044,6 +4378,25 @@
       },
       "documentation":"<p></p>"
     },
+    "CreateSnapshotCopyGrantMessage":{
+      "type":"structure",
+      "required":["SnapshotCopyGrantName"],
+      "members":{
+        "SnapshotCopyGrantName":{
+          "shape":"String",
+          "documentation":"<p>The name of the snapshot copy grant. This name must be unique in the region for the AWS account.</p> <p> <p>Constraints:</p> <ul> <li>Must contain from 1 to 63 alphanumeric characters or hyphens.</li> <li>Alphabetic characters must be lowercase.</li> <li>First character must be a letter.</li> <li>Cannot end with a hyphen or contain two consecutive hyphens.</li> <li>Must be unique for all clusters within an AWS account.</li> </ul> </p>"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "documentation":"<p>The unique identifier of the customer master key (CMK) to which to grant Amazon Redshift permission. If no key is specified, the default key is used.</p>"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "documentation":"<p>A list of tag instances.</p>"
+        }
+      },
+      "documentation":"<p>The result of the <code>CreateSnapshotCopyGrant</code> action.</p>"
+    },
     "CreateTagsMessage":{
       "type":"structure",
       "required":[
@@ -4057,7 +4410,7 @@
         },
         "Tags":{
           "shape":"TagList",
-          "documentation":"<p> One or more name/value pairs to add as tags to the specified resource. Each tag name is passed in with the parameter <code>tag-key</code> and the corresponding value is passed in with the parameter <code>tag-value</code>. The <code>tag-key</code> and <code>tag-value</code> parameters are separated by a colon (:). Separate multiple tags with a space. For example, <code>--tags \"tag-key\"=\"owner\":\"tag-value\"=\"admin\" \"tag-key\"=\"environment\":\"tag-value\"=\"test\" \"tag-key\"=\"version\":\"tag-value\"=\"1.0\"</code>. </p>"
+          "documentation":"<p> One or more name/value pairs to add as tags to the specified resource. Each tag name is passed in with the parameter <code>Key</code> and the corresponding value is passed in with the parameter <code>Value</code>. The <code>Key</code> and <code>Value</code> parameters are separated by a comma (,). Separate multiple tags with a space. For example, <code>--tags \"Key\"=\"owner\",\"Value\"=\"admin\" \"Key\"=\"environment\",\"Value\"=\"test\" \"Key\"=\"version\",\"Value\"=\"1.0\"</code>. </p>"
         }
       },
       "documentation":"<p> Contains the output from the <code>CreateTags</code> action. </p>"
@@ -4179,6 +4532,17 @@
         }
       },
       "documentation":"<p></p>"
+    },
+    "DeleteSnapshotCopyGrantMessage":{
+      "type":"structure",
+      "required":["SnapshotCopyGrantName"],
+      "members":{
+        "SnapshotCopyGrantName":{
+          "shape":"String",
+          "documentation":"<p>The name of the snapshot copy grant to delete.</p>"
+        }
+      },
+      "documentation":"<p>The result of the <code>DeleteSnapshotCopyGrant</code> action.</p>"
     },
     "DeleteTagsMessage":{
       "type":"structure",
@@ -4573,7 +4937,7 @@
           "documentation":"<p> An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeReservedNodeOfferings</a> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>"
         }
       },
-      "documentation":"<p>to be provided.</p>"
+      "documentation":"<p></p>"
     },
     "DescribeReservedNodesMessage":{
       "type":"structure",
@@ -4604,6 +4968,32 @@
       },
       "documentation":"<p> </p>"
     },
+    "DescribeSnapshotCopyGrantsMessage":{
+      "type":"structure",
+      "members":{
+        "SnapshotCopyGrantName":{
+          "shape":"String",
+          "documentation":"<p>The name of the snapshot copy grant.</p>"
+        },
+        "MaxRecords":{
+          "shape":"IntegerOptional",
+          "documentation":"<p> The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code></p> <p>Constraints: minimum 20, maximum 100.</p>"
+        },
+        "Marker":{
+          "shape":"String",
+          "documentation":"<p> An optional parameter that specifies the starting point to return a set of response records. When the results of a <code>DescribeSnapshotCopyGrant</code> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p> <p> Constraints: You can specify either the <b>SnapshotCopyGrantName</b> parameter or the <b>Marker</b> parameter, but not both. </p>"
+        },
+        "TagKeys":{
+          "shape":"TagKeyList",
+          "documentation":"<p>A tag key or keys for which you want to return all matching resources that are associated with the specified key or keys. For example, suppose that you have resources tagged with keys called <code>owner</code> and <code>environment</code>. If you specify both of these tag keys in the request, Amazon Redshift returns a response with all resources that have either or both of these tag keys associated with them.</p>"
+        },
+        "TagValues":{
+          "shape":"TagValueList",
+          "documentation":"<p>A tag value or values for which you want to return all matching resources that are associated with the specified value or values. For example, suppose that you have resources tagged with values called <code>admin</code> and <code>test</code>. If you specify both of these tag values in the request, Amazon Redshift returns a response with all resources that have either or both of these tag values associated with them.</p>"
+        }
+      },
+      "documentation":"<p>The result of the <code>DescribeSnapshotCopyGrants</code> action.</p>"
+    },
     "DescribeTagsMessage":{
       "type":"structure",
       "members":{
@@ -4613,7 +5003,7 @@
         },
         "ResourceType":{
           "shape":"String",
-          "documentation":"<p> The type of resource with which you want to view tags. Valid resource types are: <ul> <li>Cluster</li> <li>CIDR/IP</li> <li>EC2 security group</li> <li>Snapshot</li> <li>Cluster security group</li> <li>Subnet group</li> <li>HSM connection</li> <li>HSM certificate</li> <li>Parameter group</li> </ul> </p> <p> For more information about Amazon Redshift resource types and constructing ARNs, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html\">Constructing an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster Management Guide. </p>"
+          "documentation":"<p> The type of resource with which you want to view tags. Valid resource types are: <ul> <li>Cluster</li> <li>CIDR/IP</li> <li>EC2 security group</li> <li>Snapshot</li> <li>Cluster security group</li> <li>Subnet group</li> <li>HSM connection</li> <li>HSM certificate</li> <li>Parameter group</li> <li>Snapshot copy grant</li> </ul> </p> <p> For more information about Amazon Redshift resource types and constructing ARNs, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/constructing-redshift-arn.html\">Constructing an Amazon Redshift Amazon Resource Name (ARN)</a> in the Amazon Redshift Cluster Management Guide. </p>"
         },
         "MaxRecords":{
           "shape":"IntegerOptional",
@@ -4741,6 +5131,10 @@
         "RetentionPeriod":{
           "shape":"IntegerOptional",
           "documentation":"<p> The number of days to retain automated snapshots in the destination region after they are copied from the source region. </p> <p> Default: 7. </p> <p> Constraints: Must be at least 1 and no more than 35. </p>"
+        },
+        "SnapshotCopyGrantName":{
+          "shape":"String",
+          "documentation":"<p>The name of the snapshot copy grant to use when snapshots of an AWS KMS-encrypted cluster are copied to the destination region.</p>"
         }
       },
       "documentation":"<p> </p>"
@@ -4776,7 +5170,7 @@
         },
         "EventCategories":{
           "shape":"EventCategoriesList",
-          "documentation":"<p> A list of the event categories. </p>"
+          "documentation":"<p> A list of the event categories. </p> <p>Values: Configuration, Management, Monitoring, Security</p>"
         },
         "Severity":{
           "shape":"String",
@@ -5361,6 +5755,18 @@
       "exception":true,
       "documentation":"<p> The string specified for the logging S3 key prefix does not comply with the documented constraints. </p>"
     },
+    "InvalidSnapshotCopyGrantStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidSnapshotCopyGrantStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The snapshot copy grant can't be deleted because it is used by one or more clusters.</p>"
+    },
     "InvalidSubnet":{
       "type":"structure",
       "members":{
@@ -5409,6 +5815,18 @@
       "exception":true,
       "documentation":"<p> The cluster subnet group does not cover all Availability Zones. </p>"
     },
+    "LimitExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"LimitExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The encryption key has exceeded its grant limit in AWS KMS. </p>"
+    },
     "LoggingStatus":{
       "type":"structure",
       "members":{
@@ -5455,7 +5873,7 @@
         },
         "NodeType":{
           "shape":"String",
-          "documentation":"<p> The new node type of the cluster. If you specify a new node type, you must also specify the number of nodes parameter. </p> <p> When you submit your request to resize a cluster, Amazon Redshift sets access permissions for the cluster to read-only. After Amazon Redshift provisions a new cluster according to your resize requirements, there will be a temporary outage while the old cluster is deleted and your connection is switched to the new cluster. When the new connection is complete, the original access permissions for the cluster are restored. You can use <a>DescribeResize</a> to track the progress of the resize request. </p> <p>Valid Values: <code> dw1.xlarge</code> | <code>dw1.8xlarge</code> | <code>dw2.large</code> | <code>dw2.8xlarge</code>.</p>"
+          "documentation":"<p> The new node type of the cluster. If you specify a new node type, you must also specify the number of nodes parameter. </p> <p> When you submit your request to resize a cluster, Amazon Redshift sets access permissions for the cluster to read-only. After Amazon Redshift provisions a new cluster according to your resize requirements, there will be a temporary outage while the old cluster is deleted and your connection is switched to the new cluster. When the new connection is complete, the original access permissions for the cluster are restored. You can use <a>DescribeResize</a> to track the progress of the resize request. </p> <p>Valid Values: <code> ds1.xlarge</code> | <code>ds1.8xlarge</code> | <code> ds2.xlarge</code> | <code>ds2.8xlarge</code> | <code>dc1.large</code> | <code>dc1.8xlarge</code>.</p>"
         },
         "NumberOfNodes":{
           "shape":"IntegerOptional",
@@ -5487,7 +5905,7 @@
         },
         "ClusterVersion":{
           "shape":"String",
-          "documentation":"<p> The new version number of the Amazon Redshift engine to upgrade to. </p> <p> For major version upgrades, if a non-default cluster parameter group is currently in use, a new cluster parameter group in the cluster parameter group family for the new version must be specified. The new cluster parameter group can be the default for that cluster parameter group family. For more information about managing parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>Example: <code>1.0</code></p>"
+          "documentation":"<p> The new version number of the Amazon Redshift engine to upgrade to. </p> <p> For major version upgrades, if a non-default cluster parameter group is currently in use, a new cluster parameter group in the cluster parameter group family for the new version must be specified. The new cluster parameter group can be the default for that cluster parameter group family. For more information about parameters and parameter groups, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html\">Amazon Redshift Parameter Groups</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p> <p>Example: <code>1.0</code></p>"
         },
         "AllowVersionUpgrade":{
           "shape":"BooleanOptional",
@@ -5696,6 +6114,10 @@
           "shape":"String",
           "documentation":"<p> The valid range of values for the parameter. </p>"
         },
+        "ApplyType":{
+          "shape":"ParameterApplyType",
+          "documentation":"<p>Specifies how to apply the parameter. Supported value: <code>static</code>.</p>"
+        },
         "IsModifiable":{
           "shape":"Boolean",
           "documentation":"<p> If <code>true</code>, the parameter can be modified. Some parameters have security or operational implications that prevent them from being changed. </p>"
@@ -5706,6 +6128,13 @@
         }
       },
       "documentation":"<p> Describes a parameter in a cluster parameter group. </p>"
+    },
+    "ParameterApplyType":{
+      "type":"string",
+      "enum":[
+        "static",
+        "dynamic"
+      ]
     },
     "ParameterGroupList":{
       "type":"list",
@@ -5828,11 +6257,11 @@
         },
         "FixedPrice":{
           "shape":"Double",
-          "documentation":"<p> The fixed cost Amazon Redshift charged you for this reserved node. </p>"
+          "documentation":"<p> The fixed cost Amazon Redshift charges you for this reserved node. </p>"
         },
         "UsagePrice":{
           "shape":"Double",
-          "documentation":"<p> The hourly rate Amazon Redshift charge you for this reserved node. </p>"
+          "documentation":"<p> The hourly rate Amazon Redshift charges you for this reserved node. </p>"
         },
         "CurrencyCode":{
           "shape":"String",
@@ -5856,7 +6285,7 @@
         }
       },
       "wrapper":true,
-      "documentation":"<p> Describes a reserved node. </p>"
+      "documentation":"<p> Describes a reserved node. You can call the <a>DescribeReservedNodeOfferings</a> API to obtain the available reserved node offerings. </p>"
     },
     "ReservedNodeAlreadyExistsFault":{
       "type":"structure",
@@ -6084,6 +6513,13 @@
       "exception":true,
       "documentation":"<p> The resource could not be found. </p>"
     },
+    "RestorableNodeTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"NodeType"
+      }
+    },
     "RestoreFromClusterSnapshotMessage":{
       "type":"structure",
       "required":[
@@ -6162,6 +6598,10 @@
         "KmsKeyId":{
           "shape":"String",
           "documentation":"<p>The AWS Key Management Service (KMS) key ID of the encryption key that you want to use to encrypt data in the cluster that you restore from a shared snapshot.</p>"
+        },
+        "NodeType":{
+          "shape":"String",
+          "documentation":"<p> The node type that the restored cluster will be provisioned with.</p> <p> Default: The node type of the cluster from which the snapshot was taken. You can modify this if you are using any DS node type. In that case, you can choose to restore into another DS node type of the same size. For example, you can restore ds1.8xlarge into ds2.8xlarge, or ds2.xlarge into ds1.xlarge. If you have a DC instance type, you must restore into that same instance type and size. In other words, you can only restore a dc1.large instance type into another dc1.large instance type. For more information about node types, see <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html#rs-about-clusters-and-nodes\"> About Clusters and Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i></p>"
         }
       },
       "documentation":"<p></p>"
@@ -6398,6 +6838,10 @@
         "Tags":{
           "shape":"TagList",
           "documentation":"<p>The list of tags for the cluster snapshot.</p>"
+        },
+        "RestorableNodeTypes":{
+          "shape":"RestorableNodeTypeList",
+          "documentation":"<p>The list of node types that this cluster snapshot is able to restore into.</p>"
         }
       },
       "wrapper":true,
@@ -6438,6 +6882,82 @@
       },
       "exception":true,
       "documentation":"<p> Cross-region snapshot copy was temporarily disabled. Try your request again. </p>"
+    },
+    "SnapshotCopyGrant":{
+      "type":"structure",
+      "members":{
+        "SnapshotCopyGrantName":{
+          "shape":"String",
+          "documentation":"<p>The name of the snapshot copy grant.</p>"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "documentation":"<p>The unique identifier of the customer master key (CMK) in AWS KMS to which Amazon Redshift is granted permission.</p>"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "documentation":"<p>A list of tag instances.</p>"
+        }
+      },
+      "wrapper":true,
+      "documentation":"<p>The snapshot copy grant that grants Amazon Redshift permission to encrypt copied snapshots with the specified customer master key (CMK) from AWS KMS in the destination region.</p> <p> For more information about managing snapshot copy grants, go to <a href=\"http://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html\">Amazon Redshift Database Encryption</a> in the <i>Amazon Redshift Cluster Management Guide</i>. </p>"
+    },
+    "SnapshotCopyGrantAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotCopyGrantAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The snapshot copy grant can't be created because a grant with the same name already exists.</p>"
+    },
+    "SnapshotCopyGrantList":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotCopyGrant",
+        "locationName":"SnapshotCopyGrant"
+      }
+    },
+    "SnapshotCopyGrantMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"String",
+          "documentation":"<p> An optional parameter that specifies the starting point to return a set of response records. When the results of a <code>DescribeSnapshotCopyGrant</code> request exceed the value specified in <code>MaxRecords</code>, AWS returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p> <p> Constraints: You can specify either the <b>SnapshotCopyGrantName</b> parameter or the <b>Marker</b> parameter, but not both. </p>"
+        },
+        "SnapshotCopyGrants":{
+          "shape":"SnapshotCopyGrantList",
+          "documentation":"<p>The list of snapshot copy grants.</p>"
+        }
+      },
+      "documentation":"<p>The result of the snapshot copy grant.</p>"
+    },
+    "SnapshotCopyGrantNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotCopyGrantNotFoundFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The specified snapshot copy grant can't be found. Make sure that the name is typed correctly and that the grant exists in the destination region.</p>"
+    },
+    "SnapshotCopyGrantQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotCopyGrantQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p>The AWS account has exceeded the maximum number of snapshot copy grants in this region.</p>"
     },
     "SnapshotList":{
       "type":"list",
@@ -6701,6 +7221,18 @@
       "exception":true,
       "documentation":"<p> The specified region is incorrect or does not exist. </p>"
     },
+    "UnsupportedOperationFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"UnsupportedOperation",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true,
+      "documentation":"<p> The requested operation isn't supported. </p>"
+    },
     "UnsupportedOptionFault":{
       "type":"structure",
       "members":{
@@ -6799,6 +7331,12 @@
       "type":"structure",
       "members":{
         "HsmConfiguration":{"shape":"HsmConfiguration"}
+      }
+    },
+    "CreateSnapshotCopyGrantResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotCopyGrant":{"shape":"SnapshotCopyGrant"}
       }
     },
     "DeleteClusterResult":{

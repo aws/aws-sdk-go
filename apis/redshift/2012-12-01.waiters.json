@@ -42,10 +42,29 @@
           "argument": "Clusters[].ClusterStatus"
         },
         {
-          "expected": "rebooting",
-          "matcher": "pathAny",
+          "expected": "pathAny",
+          "matcher": "pathList",
           "state": "failure",
           "argument": "Clusters[].ClusterStatus"
+        }
+      ]
+    },
+    "ClusterRestored": {
+      "operation": "DescribeClusters",
+      "maxAttempts": 30,
+      "delay": 60,
+      "acceptors": [
+        {
+          "state": "success",
+          "matcher": "pathAll",
+          "argument": "Clusters[].RestoreStatus.Status",
+          "expected": "completed"
+        },
+        {
+          "state": "failure",
+          "matcher": "pathAny",
+          "argument": "Clusters[].ClusterStatus",
+          "expected": "deleting"
         }
       ]
     },

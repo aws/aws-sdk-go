@@ -430,6 +430,41 @@ func ExampleRedshift_CreateHSMConfiguration() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleRedshift_CreateSnapshotCopyGrant() {
+	svc := redshift.New(nil)
+
+	params := &redshift.CreateSnapshotCopyGrantInput{
+		SnapshotCopyGrantName: aws.String("String"), // Required
+		KMSKeyID:              aws.String("String"),
+		Tags: []*redshift.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.CreateSnapshotCopyGrant(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleRedshift_CreateTags() {
 	svc := redshift.New(nil)
 
@@ -663,6 +698,33 @@ func ExampleRedshift_DeleteHSMConfiguration() {
 		HSMConfigurationIdentifier: aws.String("String"), // Required
 	}
 	resp, err := svc.DeleteHSMConfiguration(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleRedshift_DeleteSnapshotCopyGrant() {
+	svc := redshift.New(nil)
+
+	params := &redshift.DeleteSnapshotCopyGrantInput{
+		SnapshotCopyGrantName: aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteSnapshotCopyGrant(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1298,6 +1360,43 @@ func ExampleRedshift_DescribeResize() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleRedshift_DescribeSnapshotCopyGrants() {
+	svc := redshift.New(nil)
+
+	params := &redshift.DescribeSnapshotCopyGrantsInput{
+		Marker:                aws.String("String"),
+		MaxRecords:            aws.Long(1),
+		SnapshotCopyGrantName: aws.String("String"),
+		TagKeys: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		TagValues: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.DescribeSnapshotCopyGrants(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS Error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleRedshift_DescribeTags() {
 	svc := redshift.New(nil)
 
@@ -1423,9 +1522,10 @@ func ExampleRedshift_EnableSnapshotCopy() {
 	svc := redshift.New(nil)
 
 	params := &redshift.EnableSnapshotCopyInput{
-		ClusterIdentifier: aws.String("String"), // Required
-		DestinationRegion: aws.String("String"), // Required
-		RetentionPeriod:   aws.Long(1),
+		ClusterIdentifier:     aws.String("String"), // Required
+		DestinationRegion:     aws.String("String"), // Required
+		RetentionPeriod:       aws.Long(1),
+		SnapshotCopyGrantName: aws.String("String"),
 	}
 	resp, err := svc.EnableSnapshotCopy(params)
 
@@ -1503,6 +1603,7 @@ func ExampleRedshift_ModifyClusterParameterGroup() {
 		Parameters: []*redshift.Parameter{ // Required
 			{ // Required
 				AllowedValues:        aws.String("String"),
+				ApplyType:            aws.String("ParameterApplyType"),
 				DataType:             aws.String("String"),
 				Description:          aws.String("String"),
 				IsModifiable:         aws.Boolean(true),
@@ -1697,6 +1798,7 @@ func ExampleRedshift_ResetClusterParameterGroup() {
 		Parameters: []*redshift.Parameter{
 			{ // Required
 				AllowedValues:        aws.String("String"),
+				ApplyType:            aws.String("ParameterApplyType"),
 				DataType:             aws.String("String"),
 				Description:          aws.String("String"),
 				IsModifiable:         aws.Boolean(true),
@@ -1749,6 +1851,7 @@ func ExampleRedshift_RestoreFromClusterSnapshot() {
 		HSMClientCertificateIdentifier: aws.String("String"),
 		HSMConfigurationIdentifier:     aws.String("String"),
 		KMSKeyID:                       aws.String("String"),
+		NodeType:                       aws.String("String"),
 		OwnerAccount:                   aws.String("String"),
 		Port:                           aws.Long(1),
 		PreferredMaintenanceWindow: aws.String("String"),
