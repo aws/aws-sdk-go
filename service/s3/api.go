@@ -1764,7 +1764,8 @@ type CompletedPart struct {
 	// Entity tag returned when the part was uploaded.
 	ETag *string `type:"string"`
 
-	// Part number that identifies the part.
+	// Part number that identifies the part. This is a positive integer between
+	// 1 and 10,000.
 	PartNumber *int64 `type:"integer"`
 
 	metadataCompletedPart `json:"-" xml:"-"`
@@ -1881,8 +1882,7 @@ type CopyObjectInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
@@ -2087,8 +2087,7 @@ type CreateMultipartUploadInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
@@ -2805,8 +2804,7 @@ type GetObjectInput struct {
 	// Sets the Expires header of the response.
 	ResponseExpires *time.Time `location:"querystring" locationName:"response-expires" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
@@ -2853,6 +2851,9 @@ type GetObjectOutput struct {
 
 	// Size of the body in bytes.
 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
+
+	// The portion of the object returned in the response.
+	ContentRange *string `location:"header" locationName:"Content-Range" type:"string"`
 
 	// A standard MIME type describing the format of the object data.
 	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
@@ -3046,8 +3047,7 @@ type HeadObjectInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
@@ -3808,7 +3808,8 @@ type Part struct {
 	// Date and time at which the part was uploaded.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Part number identifying the part.
+	// Part number identifying the part. This is a positive integer between 1 and
+	// 10,000.
 	PartNumber *int64 `type:"integer"`
 
 	// Size of the uploaded part data.
@@ -4196,8 +4197,7 @@ type PutObjectInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
@@ -4616,7 +4616,8 @@ type UploadPartCopyInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
-	// Part number of part being copied.
+	// Part number of part being copied. This is a positive integer between 1 and
+	// 10,000.
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -4625,8 +4626,7 @@ type UploadPartCopyInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
@@ -4699,7 +4699,8 @@ type UploadPartInput struct {
 
 	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
 
-	// Part number of part being uploaded.
+	// Part number of part being uploaded. This is a positive integer between 1
+	// and 10,000.
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
@@ -4708,8 +4709,7 @@ type UploadPartInput struct {
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
 	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
 
-	// Specifies the algorithm to use to when encrypting the object (e.g., AES256,
-	// aws:kms).
+	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
 
 	// Specifies the customer-provided encryption key for Amazon S3 to use in encrypting
