@@ -904,6 +904,7 @@
     "ContentLanguage":{"type":"string"},
     "ContentLength":{"type":"integer"},
     "ContentMD5":{"type":"string"},
+    "ContentRange":{"type":"string"},
     "ContentType":{"type":"string"},
     "CopyObjectOutput":{
       "type":"structure",
@@ -1362,7 +1363,8 @@
     },
     "CreationDate":{"type":"timestamp"},
     "Date":{
-      "type":"timestamp"
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
     },
     "Days":{"type":"integer"},
     "Delete":{
@@ -1623,6 +1625,7 @@
       "type":"string",
       "enum":[
         "s3:ReducedRedundancyLostObject",
+        "s3:ObjectCreated:*",
         "s3:ObjectCreated:Put",
         "s3:ObjectCreated:Post",
         "s3:ObjectCreated:Copy",
@@ -1982,6 +1985,11 @@
           "shape":"ContentLanguage",
           "location":"header",
           "locationName":"Content-Language"
+        },
+        "ContentRange":{
+          "shape":"ContentRange",
+          "location":"header",
+          "locationName":"Content-Range"
         },
         "ContentType":{
           "shape":"ContentType",

@@ -401,6 +401,12 @@
         "UploadPartRequest$ContentMD5": null
       }
     },
+    "ContentRange": {
+      "base": null,
+      "refs": {
+        "GetObjectOutput$ContentRange": "The portion of the object returned in the response."
+      }
+    },
     "ContentType": {
       "base": null,
       "refs": {
@@ -1574,10 +1580,10 @@
     "PartNumber": {
       "base": null,
       "refs": {
-        "CompletedPart$PartNumber": "Part number that identifies the part.",
-        "Part$PartNumber": "Part number identifying the part.",
-        "UploadPartCopyRequest$PartNumber": "Part number of part being copied.",
-        "UploadPartRequest$PartNumber": "Part number of part being uploaded."
+        "CompletedPart$PartNumber": "Part number that identifies the part. This is a positive integer between 1 and 10,000.",
+        "Part$PartNumber": "Part number identifying the part. This is a positive integer between 1 and 10,000.",
+        "UploadPartCopyRequest$PartNumber": "Part number of part being copied. This is a positive integer between 1 and 10,000.",
+        "UploadPartRequest$PartNumber": "Part number of part being uploaded. This is a positive integer between 1 and 10,000."
       }
     },
     "PartNumberMarker": {
@@ -1952,19 +1958,19 @@
       "base": null,
       "refs": {
         "CopyObjectOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "CopyObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms).",
+        "CopyObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256).",
         "CreateMultipartUploadOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "CreateMultipartUploadRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms).",
+        "CreateMultipartUploadRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256).",
         "GetObjectOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "GetObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms).",
+        "GetObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256).",
         "HeadObjectOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "HeadObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms).",
+        "HeadObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256).",
         "PutObjectOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "PutObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms).",
+        "PutObjectRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256).",
         "UploadPartCopyOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "UploadPartCopyRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms).",
+        "UploadPartCopyRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256).",
         "UploadPartOutput$SSECustomerAlgorithm": "If server-side encryption with a customer-provided encryption key was requested, the response will include this header confirming the encryption algorithm used.",
-        "UploadPartRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256, aws:kms)."
+        "UploadPartRequest$SSECustomerAlgorithm": "Specifies the algorithm to use to when encrypting the object (e.g., AES256)."
       }
     },
     "SSECustomerKey": {
