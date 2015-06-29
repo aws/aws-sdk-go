@@ -31,7 +31,7 @@ For example, EC2 support might be installed with:
 
     $ go get github.com/aws/aws-sdk-go/service/ec2
 
-You can also install the entire SDK by installing the root package, including all of the SDK's dependancies:
+You can also install the entire SDK by installing the root package, including all of the SDK's dependencies:
 
     $ go get -u github.com/aws/aws-sdk-go/...
 
