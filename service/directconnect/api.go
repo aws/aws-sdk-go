@@ -5,6 +5,7 @@ package directconnect
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
@@ -651,6 +652,16 @@ type metadataAllocateConnectionOnInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AllocateConnectionOnInterconnectInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AllocateConnectionOnInterconnectInput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the AllocatePrivateVirtualInterface operation.
 type AllocatePrivateVirtualInterfaceInput struct {
 	// The connection ID on which the private virtual interface is provisioned.
@@ -673,6 +684,16 @@ type AllocatePrivateVirtualInterfaceInput struct {
 
 type metadataAllocatePrivateVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AllocatePrivateVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AllocatePrivateVirtualInterfaceInput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the AllocatePublicVirtualInterface operation.
@@ -699,6 +720,16 @@ type metadataAllocatePublicVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AllocatePublicVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AllocatePublicVirtualInterfaceInput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the ConfirmConnection operation.
 type ConfirmConnectionInput struct {
 	// ID of the connection.
@@ -713,6 +744,16 @@ type ConfirmConnectionInput struct {
 
 type metadataConfirmConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmConnectionInput) GoString() string {
+	return s.String()
 }
 
 // The response received when ConfirmConnection is called.
@@ -734,6 +775,16 @@ type ConfirmConnectionOutput struct {
 
 type metadataConfirmConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmConnectionOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the ConfirmPrivateVirtualInterface operation.
@@ -759,6 +810,16 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 
 type metadataConfirmPrivateVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmPrivateVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmPrivateVirtualInterfaceInput) GoString() string {
+	return s.String()
 }
 
 // The response received when ConfirmPrivateVirtualInterface is called.
@@ -788,6 +849,16 @@ type metadataConfirmPrivateVirtualInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfirmPrivateVirtualInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmPrivateVirtualInterfaceOutput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the ConfirmPublicVirtualInterface operation.
 type ConfirmPublicVirtualInterfaceInput struct {
 	// ID of the virtual interface.
@@ -802,6 +873,16 @@ type ConfirmPublicVirtualInterfaceInput struct {
 
 type metadataConfirmPublicVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmPublicVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmPublicVirtualInterfaceInput) GoString() string {
+	return s.String()
 }
 
 // The response received when ConfirmPublicVirtualInterface is called.
@@ -829,6 +910,16 @@ type ConfirmPublicVirtualInterfaceOutput struct {
 
 type metadataConfirmPublicVirtualInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmPublicVirtualInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmPublicVirtualInterfaceOutput) GoString() string {
+	return s.String()
 }
 
 // A connection represents the physical network connection between the AWS Direct
@@ -897,6 +988,16 @@ type metadataConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Connection) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Connection) GoString() string {
+	return s.String()
+}
+
 // A structure containing a list of connections.
 type Connections struct {
 	// A list of connections.
@@ -907,6 +1008,16 @@ type Connections struct {
 
 type metadataConnections struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Connections) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Connections) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the CreateConnection operation.
@@ -937,6 +1048,16 @@ type CreateConnectionInput struct {
 
 type metadataCreateConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateConnectionInput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the CreateInterconnect operation.
@@ -971,6 +1092,16 @@ type metadataCreateInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateInterconnectInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInterconnectInput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the CreatePrivateVirtualInterface operation.
 type CreatePrivateVirtualInterfaceInput struct {
 	// ID of the connection.
@@ -990,6 +1121,16 @@ type CreatePrivateVirtualInterfaceInput struct {
 
 type metadataCreatePrivateVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePrivateVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePrivateVirtualInterfaceInput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the CreatePublicVirtualInterface operation.
@@ -1013,6 +1154,16 @@ type metadataCreatePublicVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePublicVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePublicVirtualInterfaceInput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DeleteConnection operation.
 type DeleteConnectionInput struct {
 	// ID of the connection.
@@ -1029,6 +1180,16 @@ type metadataDeleteConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConnectionInput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DeleteInterconnect operation.
 type DeleteInterconnectInput struct {
 	// The ID of the interconnect.
@@ -1041,6 +1202,16 @@ type DeleteInterconnectInput struct {
 
 type metadataDeleteInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteInterconnectInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInterconnectInput) GoString() string {
+	return s.String()
 }
 
 // The response received when DeleteInterconnect is called.
@@ -1060,6 +1231,16 @@ type metadataDeleteInterconnectOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteInterconnectOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInterconnectOutput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DeleteVirtualInterface operation.
 type DeleteVirtualInterfaceInput struct {
 	// ID of the virtual interface.
@@ -1074,6 +1255,16 @@ type DeleteVirtualInterfaceInput struct {
 
 type metadataDeleteVirtualInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVirtualInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVirtualInterfaceInput) GoString() string {
+	return s.String()
 }
 
 // The response received when DeleteVirtualInterface is called.
@@ -1103,6 +1294,16 @@ type metadataDeleteVirtualInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVirtualInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVirtualInterfaceOutput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DescribeConnections operation.
 type DescribeConnectionsInput struct {
 	// ID of the connection.
@@ -1117,6 +1318,16 @@ type DescribeConnectionsInput struct {
 
 type metadataDescribeConnectionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConnectionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConnectionsInput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeConnectionsOnInterconnect operation.
@@ -1135,6 +1346,16 @@ type metadataDescribeConnectionsOnInterconnectInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeConnectionsOnInterconnectInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConnectionsOnInterconnectInput) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DescribeInterconnects operation.
 type DescribeInterconnectsInput struct {
 	// The ID of the interconnect.
@@ -1149,6 +1370,16 @@ type metadataDescribeInterconnectsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeInterconnectsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInterconnectsInput) GoString() string {
+	return s.String()
+}
+
 // A structure containing a list of interconnects.
 type DescribeInterconnectsOutput struct {
 	// A list of interconnects.
@@ -1161,12 +1392,32 @@ type metadataDescribeInterconnectsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeInterconnectsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInterconnectsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeLocationsInput struct {
 	metadataDescribeLocationsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLocationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLocationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLocationsInput) GoString() string {
+	return s.String()
 }
 
 type DescribeLocationsOutput struct {
@@ -1179,12 +1430,32 @@ type metadataDescribeLocationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLocationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLocationsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeVirtualGatewaysInput struct {
 	metadataDescribeVirtualGatewaysInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeVirtualGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVirtualGatewaysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVirtualGatewaysInput) GoString() string {
+	return s.String()
 }
 
 // A structure containing a list of virtual private gateways.
@@ -1197,6 +1468,16 @@ type DescribeVirtualGatewaysOutput struct {
 
 type metadataDescribeVirtualGatewaysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVirtualGatewaysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVirtualGatewaysOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeVirtualInterfaces operation.
@@ -1222,6 +1503,16 @@ type metadataDescribeVirtualInterfacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVirtualInterfacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVirtualInterfacesInput) GoString() string {
+	return s.String()
+}
+
 // A structure containing a list of virtual interfaces.
 type DescribeVirtualInterfacesOutput struct {
 	// A list of virtual interfaces.
@@ -1232,6 +1523,16 @@ type DescribeVirtualInterfacesOutput struct {
 
 type metadataDescribeVirtualInterfacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVirtualInterfacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVirtualInterfacesOutput) GoString() string {
+	return s.String()
 }
 
 // An interconnect is a connection that can host other connections.
@@ -1293,6 +1594,16 @@ type metadataInterconnect struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Interconnect) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Interconnect) GoString() string {
+	return s.String()
+}
+
 // An AWS Direct Connect location where connections and interconnects can be
 // requested.
 type Location struct {
@@ -1308,6 +1619,16 @@ type Location struct {
 
 type metadataLocation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Location) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Location) GoString() string {
+	return s.String()
 }
 
 // A structure containing information about a new private virtual interface.
@@ -1355,6 +1676,16 @@ type metadataNewPrivateVirtualInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NewPrivateVirtualInterface) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NewPrivateVirtualInterface) GoString() string {
+	return s.String()
+}
+
 // A structure containing information about a private virtual interface that
 // will be provisioned on a connection.
 type NewPrivateVirtualInterfaceAllocation struct {
@@ -1393,6 +1724,16 @@ type NewPrivateVirtualInterfaceAllocation struct {
 
 type metadataNewPrivateVirtualInterfaceAllocation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NewPrivateVirtualInterfaceAllocation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NewPrivateVirtualInterfaceAllocation) GoString() string {
+	return s.String()
 }
 
 // A structure containing information about a new public virtual interface.
@@ -1436,6 +1777,16 @@ type NewPublicVirtualInterface struct {
 
 type metadataNewPublicVirtualInterface struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NewPublicVirtualInterface) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NewPublicVirtualInterface) GoString() string {
+	return s.String()
 }
 
 // A structure containing information about a public virtual interface that
@@ -1482,6 +1833,16 @@ type metadataNewPublicVirtualInterfaceAllocation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NewPublicVirtualInterfaceAllocation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NewPublicVirtualInterfaceAllocation) GoString() string {
+	return s.String()
+}
+
 // A route filter prefix that the customer can advertise through Border Gateway
 // Protocol (BGP) over a public virtual interface.
 type RouteFilterPrefix struct {
@@ -1496,6 +1857,16 @@ type RouteFilterPrefix struct {
 
 type metadataRouteFilterPrefix struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RouteFilterPrefix) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RouteFilterPrefix) GoString() string {
+	return s.String()
 }
 
 // You can create one or more AWS Direct Connect private virtual interfaces
@@ -1522,6 +1893,16 @@ type VirtualGateway struct {
 
 type metadataVirtualGateway struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VirtualGateway) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VirtualGateway) GoString() string {
+	return s.String()
 }
 
 // A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
@@ -1622,4 +2003,14 @@ type VirtualInterface struct {
 
 type metadataVirtualInterface struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VirtualInterface) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VirtualInterface) GoString() string {
+	return s.String()
 }

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddTags = "AddTags"
@@ -988,6 +989,16 @@ type metadataAccessLog struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccessLog) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccessLog) GoString() string {
+	return s.String()
+}
+
 type AddTagsInput struct {
 	// The name of the load balancer. You can specify one load balancer only.
 	LoadBalancerNames []*string `type:"list" required:"true"`
@@ -1002,12 +1013,32 @@ type metadataAddTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsInput) GoString() string {
+	return s.String()
+}
+
 type AddTagsOutput struct {
 	metadataAddTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsOutput) GoString() string {
+	return s.String()
 }
 
 // This data type is reserved.
@@ -1023,6 +1054,16 @@ type AdditionalAttribute struct {
 
 type metadataAdditionalAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AdditionalAttribute) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AdditionalAttribute) GoString() string {
+	return s.String()
 }
 
 // Information about a policy for application-controlled session stickiness.
@@ -1041,6 +1082,16 @@ type metadataAppCookieStickinessPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AppCookieStickinessPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AppCookieStickinessPolicy) GoString() string {
+	return s.String()
+}
+
 type ApplySecurityGroupsToLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
@@ -1056,6 +1107,16 @@ type metadataApplySecurityGroupsToLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ApplySecurityGroupsToLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ApplySecurityGroupsToLoadBalancerInput) GoString() string {
+	return s.String()
+}
+
 type ApplySecurityGroupsToLoadBalancerOutput struct {
 	// The IDs of the security groups associated with the load balancer.
 	SecurityGroups []*string `type:"list"`
@@ -1065,6 +1126,16 @@ type ApplySecurityGroupsToLoadBalancerOutput struct {
 
 type metadataApplySecurityGroupsToLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ApplySecurityGroupsToLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ApplySecurityGroupsToLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 type AttachLoadBalancerToSubnetsInput struct {
@@ -1082,6 +1153,16 @@ type metadataAttachLoadBalancerToSubnetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachLoadBalancerToSubnetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachLoadBalancerToSubnetsInput) GoString() string {
+	return s.String()
+}
+
 type AttachLoadBalancerToSubnetsOutput struct {
 	// The IDs of the subnets attached to the load balancer.
 	Subnets []*string `type:"list"`
@@ -1091,6 +1172,16 @@ type AttachLoadBalancerToSubnetsOutput struct {
 
 type metadataAttachLoadBalancerToSubnetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachLoadBalancerToSubnetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachLoadBalancerToSubnetsOutput) GoString() string {
+	return s.String()
 }
 
 // Information about the configuration of a back-end server.
@@ -1108,6 +1199,16 @@ type metadataBackendServerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BackendServerDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BackendServerDescription) GoString() string {
+	return s.String()
+}
+
 type ConfigureHealthCheckInput struct {
 	// The configuration information for the new health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
@@ -1122,6 +1223,16 @@ type metadataConfigureHealthCheckInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfigureHealthCheckInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigureHealthCheckInput) GoString() string {
+	return s.String()
+}
+
 type ConfigureHealthCheckOutput struct {
 	// The updated health check.
 	HealthCheck *HealthCheck `type:"structure"`
@@ -1131,6 +1242,16 @@ type ConfigureHealthCheckOutput struct {
 
 type metadataConfigureHealthCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigureHealthCheckOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigureHealthCheckOutput) GoString() string {
+	return s.String()
 }
 
 // Information about the ConnectionDraining attribute.
@@ -1149,6 +1270,16 @@ type metadataConnectionDraining struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConnectionDraining) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConnectionDraining) GoString() string {
+	return s.String()
+}
+
 // Information about the ConnectionSettings attribute.
 type ConnectionSettings struct {
 	// The time, in seconds, that the connection is allowed to be idle (no data
@@ -1160,6 +1291,16 @@ type ConnectionSettings struct {
 
 type metadataConnectionSettings struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConnectionSettings) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConnectionSettings) GoString() string {
+	return s.String()
 }
 
 type CreateAppCookieStickinessPolicyInput struct {
@@ -1180,12 +1321,32 @@ type metadataCreateAppCookieStickinessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAppCookieStickinessPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppCookieStickinessPolicyInput) GoString() string {
+	return s.String()
+}
+
 type CreateAppCookieStickinessPolicyOutput struct {
 	metadataCreateAppCookieStickinessPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAppCookieStickinessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAppCookieStickinessPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppCookieStickinessPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLBCookieStickinessPolicyInput struct {
@@ -1208,12 +1369,32 @@ type metadataCreateLBCookieStickinessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLBCookieStickinessPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLBCookieStickinessPolicyInput) GoString() string {
+	return s.String()
+}
+
 type CreateLBCookieStickinessPolicyOutput struct {
 	metadataCreateLBCookieStickinessPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLBCookieStickinessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLBCookieStickinessPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLBCookieStickinessPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLoadBalancerInput struct {
@@ -1271,6 +1452,16 @@ type metadataCreateLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoadBalancerInput) GoString() string {
+	return s.String()
+}
+
 type CreateLoadBalancerListenersInput struct {
 	// The listeners.
 	Listeners []*Listener `type:"list" required:"true"`
@@ -1285,12 +1476,32 @@ type metadataCreateLoadBalancerListenersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLoadBalancerListenersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoadBalancerListenersInput) GoString() string {
+	return s.String()
+}
+
 type CreateLoadBalancerListenersOutput struct {
 	metadataCreateLoadBalancerListenersOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerListenersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLoadBalancerListenersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoadBalancerListenersOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLoadBalancerOutput struct {
@@ -1302,6 +1513,16 @@ type CreateLoadBalancerOutput struct {
 
 type metadataCreateLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLoadBalancerPolicyInput struct {
@@ -1325,12 +1546,32 @@ type metadataCreateLoadBalancerPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLoadBalancerPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoadBalancerPolicyInput) GoString() string {
+	return s.String()
+}
+
 type CreateLoadBalancerPolicyOutput struct {
 	metadataCreateLoadBalancerPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLoadBalancerPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLoadBalancerPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoadBalancerPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Information about the CrossZoneLoadBalancing attribute.
@@ -1345,6 +1586,16 @@ type metadataCrossZoneLoadBalancing struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CrossZoneLoadBalancing) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CrossZoneLoadBalancing) GoString() string {
+	return s.String()
+}
+
 type DeleteLoadBalancerInput struct {
 	// The name of the load balancer.
 	LoadBalancerName *string `type:"string" required:"true"`
@@ -1354,6 +1605,16 @@ type DeleteLoadBalancerInput struct {
 
 type metadataDeleteLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoadBalancerInput) GoString() string {
+	return s.String()
 }
 
 type DeleteLoadBalancerListenersInput struct {
@@ -1370,6 +1631,16 @@ type metadataDeleteLoadBalancerListenersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLoadBalancerListenersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoadBalancerListenersInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLoadBalancerListenersOutput struct {
 	metadataDeleteLoadBalancerListenersOutput `json:"-" xml:"-"`
 }
@@ -1378,12 +1649,32 @@ type metadataDeleteLoadBalancerListenersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLoadBalancerListenersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoadBalancerListenersOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteLoadBalancerOutput struct {
 	metadataDeleteLoadBalancerOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 // =
@@ -1401,12 +1692,32 @@ type metadataDeleteLoadBalancerPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLoadBalancerPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoadBalancerPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLoadBalancerPolicyOutput struct {
 	metadataDeleteLoadBalancerPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoadBalancerPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLoadBalancerPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoadBalancerPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeregisterInstancesFromLoadBalancerInput struct {
@@ -1423,6 +1734,16 @@ type metadataDeregisterInstancesFromLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeregisterInstancesFromLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterInstancesFromLoadBalancerInput) GoString() string {
+	return s.String()
+}
+
 type DeregisterInstancesFromLoadBalancerOutput struct {
 	// The remaining instances registered with the load balancer.
 	Instances []*Instance `type:"list"`
@@ -1432,6 +1753,16 @@ type DeregisterInstancesFromLoadBalancerOutput struct {
 
 type metadataDeregisterInstancesFromLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterInstancesFromLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterInstancesFromLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeInstanceHealthInput struct {
@@ -1448,6 +1779,16 @@ type metadataDescribeInstanceHealthInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeInstanceHealthInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceHealthInput) GoString() string {
+	return s.String()
+}
+
 type DescribeInstanceHealthOutput struct {
 	// Information about the health of the instances.
 	InstanceStates []*InstanceState `type:"list"`
@@ -1457,6 +1798,16 @@ type DescribeInstanceHealthOutput struct {
 
 type metadataDescribeInstanceHealthOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceHealthOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceHealthOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLoadBalancerAttributesInput struct {
@@ -1470,6 +1821,16 @@ type metadataDescribeLoadBalancerAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancerAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancerAttributesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLoadBalancerAttributesOutput struct {
 	// Information about the load balancer attributes.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
@@ -1479,6 +1840,16 @@ type DescribeLoadBalancerAttributesOutput struct {
 
 type metadataDescribeLoadBalancerAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLoadBalancerAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancerAttributesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLoadBalancerPoliciesInput struct {
@@ -1495,6 +1866,16 @@ type metadataDescribeLoadBalancerPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancerPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancerPoliciesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLoadBalancerPoliciesOutput struct {
 	// Information about the policies.
 	PolicyDescriptions []*PolicyDescription `type:"list"`
@@ -1504,6 +1885,16 @@ type DescribeLoadBalancerPoliciesOutput struct {
 
 type metadataDescribeLoadBalancerPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLoadBalancerPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancerPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLoadBalancerPolicyTypesInput struct {
@@ -1518,6 +1909,16 @@ type metadataDescribeLoadBalancerPolicyTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancerPolicyTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancerPolicyTypesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLoadBalancerPolicyTypesOutput struct {
 	// Information about the policy types.
 	PolicyTypeDescriptions []*PolicyTypeDescription `type:"list"`
@@ -1527,6 +1928,16 @@ type DescribeLoadBalancerPolicyTypesOutput struct {
 
 type metadataDescribeLoadBalancerPolicyTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLoadBalancerPolicyTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancerPolicyTypesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLoadBalancersInput struct {
@@ -1548,6 +1959,16 @@ type metadataDescribeLoadBalancersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLoadBalancersOutput struct {
 	// Information about the load balancers.
 	LoadBalancerDescriptions []*LoadBalancerDescription `type:"list"`
@@ -1563,6 +1984,16 @@ type metadataDescribeLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancersOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsInput struct {
 	// The names of the load balancers.
 	LoadBalancerNames []*string `type:"list" required:"true"`
@@ -1574,6 +2005,16 @@ type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsOutput struct {
 	// Information about the tags.
 	TagDescriptions []*TagDescription `type:"list"`
@@ -1583,6 +2024,16 @@ type DescribeTagsOutput struct {
 
 type metadataDescribeTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsOutput) GoString() string {
+	return s.String()
 }
 
 type DetachLoadBalancerFromSubnetsInput struct {
@@ -1599,6 +2050,16 @@ type metadataDetachLoadBalancerFromSubnetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachLoadBalancerFromSubnetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachLoadBalancerFromSubnetsInput) GoString() string {
+	return s.String()
+}
+
 type DetachLoadBalancerFromSubnetsOutput struct {
 	// The IDs of the remaining subnets for the load balancer.
 	Subnets []*string `type:"list"`
@@ -1608,6 +2069,16 @@ type DetachLoadBalancerFromSubnetsOutput struct {
 
 type metadataDetachLoadBalancerFromSubnetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachLoadBalancerFromSubnetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachLoadBalancerFromSubnetsOutput) GoString() string {
+	return s.String()
 }
 
 type DisableAvailabilityZonesForLoadBalancerInput struct {
@@ -1624,6 +2095,16 @@ type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableAvailabilityZonesForLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableAvailabilityZonesForLoadBalancerInput) GoString() string {
+	return s.String()
+}
+
 type DisableAvailabilityZonesForLoadBalancerOutput struct {
 	// The remaining Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
@@ -1633,6 +2114,16 @@ type DisableAvailabilityZonesForLoadBalancerOutput struct {
 
 type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableAvailabilityZonesForLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableAvailabilityZonesForLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 type EnableAvailabilityZonesForLoadBalancerInput struct {
@@ -1649,6 +2140,16 @@ type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableAvailabilityZonesForLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableAvailabilityZonesForLoadBalancerInput) GoString() string {
+	return s.String()
+}
+
 type EnableAvailabilityZonesForLoadBalancerOutput struct {
 	// The updated list of Availability Zones for the load balancer.
 	AvailabilityZones []*string `type:"list"`
@@ -1658,6 +2159,16 @@ type EnableAvailabilityZonesForLoadBalancerOutput struct {
 
 type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableAvailabilityZonesForLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableAvailabilityZonesForLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 // Information about a health check.
@@ -1707,6 +2218,16 @@ type metadataHealthCheck struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HealthCheck) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HealthCheck) GoString() string {
+	return s.String()
+}
+
 // The ID of a back-end instance.
 type Instance struct {
 	// The ID of the instance.
@@ -1717,6 +2238,16 @@ type Instance struct {
 
 type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Instance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Instance) GoString() string {
+	return s.String()
 }
 
 // Information about the state of a back-end instance.
@@ -1773,6 +2304,16 @@ type metadataInstanceState struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceState) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceState) GoString() string {
+	return s.String()
+}
+
 // Information about a policy for duration-based session stickiness.
 type LBCookieStickinessPolicy struct {
 	// The time period, in seconds, after which the cookie should be considered
@@ -1789,6 +2330,16 @@ type LBCookieStickinessPolicy struct {
 
 type metadataLBCookieStickinessPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LBCookieStickinessPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LBCookieStickinessPolicy) GoString() string {
+	return s.String()
 }
 
 // Information about a listener.
@@ -1831,6 +2382,16 @@ type metadataListener struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Listener) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Listener) GoString() string {
+	return s.String()
+}
+
 // The policies enabled for a listener.
 type ListenerDescription struct {
 	// Information about a listener.
@@ -1848,6 +2409,16 @@ type ListenerDescription struct {
 
 type metadataListenerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListenerDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListenerDescription) GoString() string {
+	return s.String()
 }
 
 // The attributes for a load balancer.
@@ -1891,6 +2462,16 @@ type LoadBalancerAttributes struct {
 
 type metadataLoadBalancerAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LoadBalancerAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LoadBalancerAttributes) GoString() string {
+	return s.String()
 }
 
 // Information about a load balancer.
@@ -1964,6 +2545,16 @@ type metadataLoadBalancerDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LoadBalancerDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LoadBalancerDescription) GoString() string {
+	return s.String()
+}
+
 type ModifyLoadBalancerAttributesInput struct {
 	// The attributes of the load balancer.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure" required:"true"`
@@ -1978,6 +2569,16 @@ type metadataModifyLoadBalancerAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyLoadBalancerAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyLoadBalancerAttributesInput) GoString() string {
+	return s.String()
+}
+
 type ModifyLoadBalancerAttributesOutput struct {
 	// The attributes for a load balancer.
 	LoadBalancerAttributes *LoadBalancerAttributes `type:"structure"`
@@ -1990,6 +2591,16 @@ type ModifyLoadBalancerAttributesOutput struct {
 
 type metadataModifyLoadBalancerAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyLoadBalancerAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyLoadBalancerAttributesOutput) GoString() string {
+	return s.String()
 }
 
 // The policies for a load balancer.
@@ -2010,6 +2621,16 @@ type metadataPolicies struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Policies) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Policies) GoString() string {
+	return s.String()
+}
+
 // Information about a policy attribute.
 type PolicyAttribute struct {
 	// The name of the attribute.
@@ -2025,6 +2646,16 @@ type metadataPolicyAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PolicyAttribute) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyAttribute) GoString() string {
+	return s.String()
+}
+
 // Information about a policy attribute.
 type PolicyAttributeDescription struct {
 	// The name of the attribute.
@@ -2038,6 +2669,16 @@ type PolicyAttributeDescription struct {
 
 type metadataPolicyAttributeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PolicyAttributeDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyAttributeDescription) GoString() string {
+	return s.String()
 }
 
 // Information about a policy attribute type.
@@ -2070,6 +2711,16 @@ type metadataPolicyAttributeTypeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PolicyAttributeTypeDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyAttributeTypeDescription) GoString() string {
+	return s.String()
+}
+
 // Information about a policy.
 type PolicyDescription struct {
 	// The policy attributes.
@@ -2086,6 +2737,16 @@ type PolicyDescription struct {
 
 type metadataPolicyDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PolicyDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyDescription) GoString() string {
+	return s.String()
 }
 
 // Information about a policy type.
@@ -2107,6 +2768,16 @@ type metadataPolicyTypeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PolicyTypeDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyTypeDescription) GoString() string {
+	return s.String()
+}
+
 type RegisterInstancesWithLoadBalancerInput struct {
 	// The IDs of the instances.
 	Instances []*Instance `type:"list" required:"true"`
@@ -2121,6 +2792,16 @@ type metadataRegisterInstancesWithLoadBalancerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterInstancesWithLoadBalancerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterInstancesWithLoadBalancerInput) GoString() string {
+	return s.String()
+}
+
 type RegisterInstancesWithLoadBalancerOutput struct {
 	// The updated list of instances for the load balancer.
 	Instances []*Instance `type:"list"`
@@ -2130,6 +2811,16 @@ type RegisterInstancesWithLoadBalancerOutput struct {
 
 type metadataRegisterInstancesWithLoadBalancerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterInstancesWithLoadBalancerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterInstancesWithLoadBalancerOutput) GoString() string {
+	return s.String()
 }
 
 type RemoveTagsInput struct {
@@ -2147,12 +2838,32 @@ type metadataRemoveTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsInput) GoString() string {
+	return s.String()
+}
+
 type RemoveTagsOutput struct {
 	metadataRemoveTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsOutput) GoString() string {
+	return s.String()
 }
 
 type SetLoadBalancerListenerSSLCertificateInput struct {
@@ -2172,12 +2883,32 @@ type metadataSetLoadBalancerListenerSSLCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetLoadBalancerListenerSSLCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetLoadBalancerListenerSSLCertificateInput) GoString() string {
+	return s.String()
+}
+
 type SetLoadBalancerListenerSSLCertificateOutput struct {
 	metadataSetLoadBalancerListenerSSLCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetLoadBalancerListenerSSLCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetLoadBalancerListenerSSLCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type SetLoadBalancerPoliciesForBackendServerInput struct {
@@ -2198,12 +2929,32 @@ type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetLoadBalancerPoliciesForBackendServerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetLoadBalancerPoliciesForBackendServerInput) GoString() string {
+	return s.String()
+}
+
 type SetLoadBalancerPoliciesForBackendServerOutput struct {
 	metadataSetLoadBalancerPoliciesForBackendServerOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetLoadBalancerPoliciesForBackendServerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetLoadBalancerPoliciesForBackendServerOutput) GoString() string {
+	return s.String()
 }
 
 type SetLoadBalancerPoliciesOfListenerInput struct {
@@ -2224,12 +2975,32 @@ type metadataSetLoadBalancerPoliciesOfListenerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetLoadBalancerPoliciesOfListenerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetLoadBalancerPoliciesOfListenerInput) GoString() string {
+	return s.String()
+}
+
 type SetLoadBalancerPoliciesOfListenerOutput struct {
 	metadataSetLoadBalancerPoliciesOfListenerOutput `json:"-" xml:"-"`
 }
 
 type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetLoadBalancerPoliciesOfListenerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetLoadBalancerPoliciesOfListenerOutput) GoString() string {
+	return s.String()
 }
 
 // Information about a source security group.
@@ -2247,6 +3018,16 @@ type metadataSourceSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SourceSecurityGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SourceSecurityGroup) GoString() string {
+	return s.String()
+}
+
 // Information about a tag.
 type Tag struct {
 	// The key of the tag.
@@ -2260,6 +3041,16 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
 
 // The tags associated with a load balancer.
@@ -2277,6 +3068,16 @@ type metadataTagDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TagDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TagDescription) GoString() string {
+	return s.String()
+}
+
 // The key of a tag.
 type TagKeyOnly struct {
 	// The name of the key.
@@ -2287,4 +3088,14 @@ type TagKeyOnly struct {
 
 type metadataTagKeyOnly struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagKeyOnly) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TagKeyOnly) GoString() string {
+	return s.String()
 }

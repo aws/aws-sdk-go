@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAssumeRole = "AssumeRole"
@@ -525,6 +526,16 @@ type metadataAssumeRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssumeRoleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumeRoleInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful AssumeRole request, including temporary
 // AWS credentials that can be used to make AWS requests.
 type AssumeRoleOutput struct {
@@ -549,6 +560,16 @@ type AssumeRoleOutput struct {
 
 type metadataAssumeRoleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssumeRoleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumeRoleOutput) GoString() string {
+	return s.String()
 }
 
 type AssumeRoleWithSAMLInput struct {
@@ -597,6 +618,16 @@ type AssumeRoleWithSAMLInput struct {
 
 type metadataAssumeRoleWithSAMLInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssumeRoleWithSAMLInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumeRoleWithSAMLInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful AssumeRoleWithSAML request, including
@@ -652,6 +683,16 @@ type metadataAssumeRoleWithSAMLOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssumeRoleWithSAMLOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumeRoleWithSAMLOutput) GoString() string {
+	return s.String()
+}
+
 type AssumeRoleWithWebIdentityInput struct {
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
@@ -703,6 +744,16 @@ type metadataAssumeRoleWithWebIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssumeRoleWithWebIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumeRoleWithWebIdentityInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful AssumeRoleWithWebIdentity request,
 // including temporary AWS credentials that can be used to make AWS requests.
 type AssumeRoleWithWebIdentityOutput struct {
@@ -748,6 +799,16 @@ type metadataAssumeRoleWithWebIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssumeRoleWithWebIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumeRoleWithWebIdentityOutput) GoString() string {
+	return s.String()
+}
+
 // The identifiers for the temporary security credentials that the operation
 // returns.
 type AssumedRoleUser struct {
@@ -767,6 +828,16 @@ type AssumedRoleUser struct {
 
 type metadataAssumedRoleUser struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssumedRoleUser) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssumedRoleUser) GoString() string {
+	return s.String()
 }
 
 // AWS credentials for API authentication.
@@ -790,6 +861,16 @@ type metadataCredentials struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Credentials) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
 type DecodeAuthorizationMessageInput struct {
 	// The encoded message that was returned with the response.
 	EncodedMessage *string `type:"string" required:"true"`
@@ -799,6 +880,16 @@ type DecodeAuthorizationMessageInput struct {
 
 type metadataDecodeAuthorizationMessageInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DecodeAuthorizationMessageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DecodeAuthorizationMessageInput) GoString() string {
+	return s.String()
 }
 
 // A document that contains additional information about the authorization status
@@ -814,6 +905,16 @@ type DecodeAuthorizationMessageOutput struct {
 
 type metadataDecodeAuthorizationMessageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DecodeAuthorizationMessageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DecodeAuthorizationMessageOutput) GoString() string {
+	return s.String()
 }
 
 // Identifiers for the federated user that is associated with the credentials.
@@ -833,6 +934,16 @@ type FederatedUser struct {
 
 type metadataFederatedUser struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FederatedUser) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FederatedUser) GoString() string {
+	return s.String()
 }
 
 type GetFederationTokenInput struct {
@@ -878,6 +989,16 @@ type metadataGetFederationTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetFederationTokenInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetFederationTokenInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful GetFederationToken request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type GetFederationTokenOutput struct {
@@ -900,6 +1021,16 @@ type GetFederationTokenOutput struct {
 
 type metadataGetFederationTokenOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFederationTokenOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetFederationTokenOutput) GoString() string {
+	return s.String()
 }
 
 type GetSessionTokenInput struct {
@@ -934,6 +1065,16 @@ type metadataGetSessionTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetSessionTokenInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSessionTokenInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful GetSessionToken request, including
 // temporary AWS credentials that can be used to make AWS requests.
 type GetSessionTokenOutput struct {
@@ -945,4 +1086,14 @@ type GetSessionTokenOutput struct {
 
 type metadataGetSessionTokenOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSessionTokenOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSessionTokenOutput) GoString() string {
+	return s.String()
 }

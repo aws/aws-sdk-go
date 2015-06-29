@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddPermission = "AddPermission"
@@ -650,6 +651,16 @@ type metadataAddPermissionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddPermissionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddPermissionInput) GoString() string {
+	return s.String()
+}
+
 type AddPermissionOutput struct {
 	// The permission statement you specified in the request. The response returns
 	// the same as a string using "\" as an escape character in the JSON.
@@ -660,6 +671,16 @@ type AddPermissionOutput struct {
 
 type metadataAddPermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddPermissionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddPermissionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateEventSourceMappingInput struct {
@@ -699,6 +720,16 @@ type CreateEventSourceMappingInput struct {
 
 type metadataCreateEventSourceMappingInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateEventSourceMappingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateEventSourceMappingInput) GoString() string {
+	return s.String()
 }
 
 type CreateFunctionInput struct {
@@ -755,6 +786,16 @@ type metadataCreateFunctionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateFunctionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateFunctionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteEventSourceMappingInput struct {
 	// The event source mapping ID.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
@@ -764,6 +805,16 @@ type DeleteEventSourceMappingInput struct {
 
 type metadataDeleteEventSourceMappingInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEventSourceMappingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventSourceMappingInput) GoString() string {
+	return s.String()
 }
 
 type DeleteFunctionInput struct {
@@ -784,12 +835,32 @@ type metadataDeleteFunctionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteFunctionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFunctionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteFunctionOutput struct {
 	metadataDeleteFunctionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteFunctionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFunctionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFunctionOutput) GoString() string {
+	return s.String()
 }
 
 // Describes mapping between an Amazon Kinesis stream and a Lambda function.
@@ -830,6 +901,16 @@ type metadataEventSourceMappingConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EventSourceMappingConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EventSourceMappingConfiguration) GoString() string {
+	return s.String()
+}
+
 // The code for the Lambda function.
 type FunctionCode struct {
 	// Amazon S3 bucket name where the .zip file containing your deployment package
@@ -855,6 +936,16 @@ type metadataFunctionCode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FunctionCode) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FunctionCode) GoString() string {
+	return s.String()
+}
+
 // The object for the Lambda function location.
 type FunctionCodeLocation struct {
 	// The presigned URL you can use to download the function's .zip file that you
@@ -869,6 +960,16 @@ type FunctionCodeLocation struct {
 
 type metadataFunctionCodeLocation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FunctionCodeLocation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FunctionCodeLocation) GoString() string {
+	return s.String()
 }
 
 // A complex type that describes function metadata.
@@ -914,6 +1015,16 @@ type metadataFunctionConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FunctionConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FunctionConfiguration) GoString() string {
+	return s.String()
+}
+
 type GetEventSourceMappingInput struct {
 	// The AWS Lambda assigned ID of the event source mapping.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
@@ -923,6 +1034,16 @@ type GetEventSourceMappingInput struct {
 
 type metadataGetEventSourceMappingInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetEventSourceMappingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetEventSourceMappingInput) GoString() string {
+	return s.String()
 }
 
 type GetFunctionConfigurationInput struct {
@@ -944,6 +1065,16 @@ type metadataGetFunctionConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetFunctionConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionConfigurationInput) GoString() string {
+	return s.String()
+}
+
 type GetFunctionInput struct {
 	// The Lambda function name.
 	//
@@ -962,6 +1093,16 @@ type metadataGetFunctionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetFunctionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionInput) GoString() string {
+	return s.String()
+}
+
 // This response contains the object for the Lambda function location (see API_FunctionCodeLocation
 type GetFunctionOutput struct {
 	// The object for the Lambda function location.
@@ -975,6 +1116,16 @@ type GetFunctionOutput struct {
 
 type metadataGetFunctionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFunctionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionOutput) GoString() string {
+	return s.String()
 }
 
 type GetPolicyInput struct {
@@ -995,6 +1146,16 @@ type metadataGetPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyInput) GoString() string {
+	return s.String()
+}
+
 type GetPolicyOutput struct {
 	// The access policy associated with the specified function. The response returns
 	// the same as a string using "\" as an escape character in the JSON.
@@ -1005,6 +1166,16 @@ type GetPolicyOutput struct {
 
 type metadataGetPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type InvokeAsyncInput struct {
@@ -1021,6 +1192,16 @@ type metadataInvokeAsyncInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"InvokeArgs"`
 }
 
+// String returns the string representation
+func (s InvokeAsyncInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvokeAsyncInput) GoString() string {
+	return s.String()
+}
+
 // Upon success, it returns empty response. Otherwise, throws an exception.
 type InvokeAsyncOutput struct {
 	// It will be 202 upon success.
@@ -1031,6 +1212,16 @@ type InvokeAsyncOutput struct {
 
 type metadataInvokeAsyncOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InvokeAsyncOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvokeAsyncOutput) GoString() string {
+	return s.String()
 }
 
 type InvokeInput struct {
@@ -1078,6 +1269,16 @@ type metadataInvokeInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Payload"`
 }
 
+// String returns the string representation
+func (s InvokeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvokeInput) GoString() string {
+	return s.String()
+}
+
 // Upon success, returns an empty response. Otherwise, throws an exception.
 type InvokeOutput struct {
 	// Indicates whether an error occurred while executing the Lambda function.
@@ -1114,6 +1315,16 @@ type metadataInvokeOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Payload"`
 }
 
+// String returns the string representation
+func (s InvokeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvokeOutput) GoString() string {
+	return s.String()
+}
+
 type ListEventSourceMappingsInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream.
 	EventSourceARN *string `location:"querystring" locationName:"EventSourceArn" type:"string"`
@@ -1144,6 +1355,16 @@ type metadataListEventSourceMappingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListEventSourceMappingsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListEventSourceMappingsInput) GoString() string {
+	return s.String()
+}
+
 // Contains a list of event sources (see API_EventSourceMappingConfiguration)
 type ListEventSourceMappingsOutput struct {
 	// An array of EventSourceMappingConfiguration objects.
@@ -1157,6 +1378,16 @@ type ListEventSourceMappingsOutput struct {
 
 type metadataListEventSourceMappingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListEventSourceMappingsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListEventSourceMappingsOutput) GoString() string {
+	return s.String()
 }
 
 type ListFunctionsInput struct {
@@ -1175,6 +1406,16 @@ type metadataListFunctionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListFunctionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListFunctionsInput) GoString() string {
+	return s.String()
+}
+
 // Contains a list of AWS Lambda function configurations (see FunctionConfiguration.
 type ListFunctionsOutput struct {
 	// A list of Lambda functions.
@@ -1188,6 +1429,16 @@ type ListFunctionsOutput struct {
 
 type metadataListFunctionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListFunctionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListFunctionsOutput) GoString() string {
+	return s.String()
 }
 
 type RemovePermissionInput struct {
@@ -1211,12 +1462,32 @@ type metadataRemovePermissionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemovePermissionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionInput) GoString() string {
+	return s.String()
+}
+
 type RemovePermissionOutput struct {
 	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemovePermissionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateEventSourceMappingInput struct {
@@ -1246,6 +1517,16 @@ type UpdateEventSourceMappingInput struct {
 
 type metadataUpdateEventSourceMappingInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateEventSourceMappingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateEventSourceMappingInput) GoString() string {
+	return s.String()
 }
 
 type UpdateFunctionCodeInput struct {
@@ -1278,6 +1559,16 @@ type UpdateFunctionCodeInput struct {
 
 type metadataUpdateFunctionCodeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFunctionCodeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFunctionCodeInput) GoString() string {
+	return s.String()
 }
 
 type UpdateFunctionConfigurationInput struct {
@@ -1321,4 +1612,14 @@ type UpdateFunctionConfigurationInput struct {
 
 type metadataUpdateFunctionConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFunctionConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFunctionConfigurationInput) GoString() string {
+	return s.String()
 }

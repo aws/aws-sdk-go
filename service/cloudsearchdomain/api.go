@@ -7,6 +7,7 @@ import (
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opSearch = "Search"
@@ -160,6 +161,16 @@ type metadataBucket struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Bucket) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Bucket) GoString() string {
+	return s.String()
+}
+
 // A container for the calculated facet values and counts.
 type BucketInfo struct {
 	// A list of the calculated facet values and counts.
@@ -170,6 +181,16 @@ type BucketInfo struct {
 
 type metadataBucketInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BucketInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BucketInfo) GoString() string {
+	return s.String()
 }
 
 // A warning returned by the document service when an issue is discovered while
@@ -183,6 +204,16 @@ type DocumentServiceWarning struct {
 
 type metadataDocumentServiceWarning struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DocumentServiceWarning) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DocumentServiceWarning) GoString() string {
+	return s.String()
 }
 
 // Information about a document that matches the search request.
@@ -206,6 +237,16 @@ type metadataHit struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Hit) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Hit) GoString() string {
+	return s.String()
+}
+
 // The collection of documents that match the search request.
 type Hits struct {
 	// A cursor that can be used to retrieve the next set of matching documents
@@ -226,6 +267,16 @@ type Hits struct {
 
 type metadataHits struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Hits) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Hits) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the Search request.
@@ -514,6 +565,16 @@ type metadataSearchInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SearchInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SearchInput) GoString() string {
+	return s.String()
+}
+
 // The result of a Search request. Contains the documents that match the specified
 // search criteria and any requested fields, highlights, and facet information.
 type SearchOutput struct {
@@ -533,6 +594,16 @@ type metadataSearchOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SearchOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SearchOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the resource id (rid) and the time it took to process the request
 // (timems).
 type SearchStatus struct {
@@ -547,6 +618,16 @@ type SearchStatus struct {
 
 type metadataSearchStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SearchStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SearchStatus) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the Suggest request.
@@ -567,6 +648,16 @@ type metadataSuggestInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SuggestInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuggestInput) GoString() string {
+	return s.String()
+}
+
 // Container for the suggestion information returned in a SuggestResponse.
 type SuggestModel struct {
 	// The number of documents that were found to match the query string.
@@ -585,6 +676,16 @@ type metadataSuggestModel struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SuggestModel) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuggestModel) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a Suggest request.
 type SuggestOutput struct {
 	// The status of a SuggestRequest. Contains the resource ID (rid) and how long
@@ -601,6 +702,16 @@ type metadataSuggestOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SuggestOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuggestOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the resource id (rid) and the time it took to process the request
 // (timems).
 type SuggestStatus struct {
@@ -615,6 +726,16 @@ type SuggestStatus struct {
 
 type metadataSuggestStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SuggestStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuggestStatus) GoString() string {
+	return s.String()
 }
 
 // An autocomplete suggestion that matches the query string specified in a SuggestRequest.
@@ -635,6 +756,16 @@ type metadataSuggestionMatch struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SuggestionMatch) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuggestionMatch) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the UploadDocuments request.
 type UploadDocumentsInput struct {
 	// The format of the batch you are uploading. Amazon CloudSearch supports two
@@ -651,6 +782,16 @@ type UploadDocumentsInput struct {
 
 type metadataUploadDocumentsInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Documents"`
+}
+
+// String returns the string representation
+func (s UploadDocumentsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadDocumentsInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to an UploadDocuments request.
@@ -672,4 +813,14 @@ type UploadDocumentsOutput struct {
 
 type metadataUploadDocumentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UploadDocumentsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadDocumentsOutput) GoString() string {
+	return s.String()
 }

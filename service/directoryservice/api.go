@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opConnectDirectory = "ConnectDirectory"
@@ -520,6 +521,16 @@ type metadataAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Attribute) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Attribute) GoString() string {
+	return s.String()
+}
+
 // Contains information about a computer account in a directory.
 type Computer struct {
 	// An array of Attribute objects that contain the LDAP attributes that belong
@@ -537,6 +548,16 @@ type Computer struct {
 
 type metadataComputer struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Computer) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Computer) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the ConnectDirectory operation.
@@ -567,6 +588,16 @@ type metadataConnectDirectoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConnectDirectoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConnectDirectoryInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the ConnectDirectory operation.
 type ConnectDirectoryOutput struct {
 	// The identifier of the new directory.
@@ -577,6 +608,16 @@ type ConnectDirectoryOutput struct {
 
 type metadataConnectDirectoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConnectDirectoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConnectDirectoryOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the CreateAlias operation.
@@ -597,6 +638,16 @@ type metadataCreateAliasInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAliasInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAliasInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the CreateAlias operation.
 type CreateAliasOutput struct {
 	// The alias for the directory.
@@ -610,6 +661,16 @@ type CreateAliasOutput struct {
 
 type metadataCreateAliasOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAliasOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAliasOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the CreateComputer operation.
@@ -639,6 +700,16 @@ type metadataCreateComputerInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateComputerInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateComputerInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results for the CreateComputer operation.
 type CreateComputerOutput struct {
 	// A Computer object the represents the computer account.
@@ -649,6 +720,16 @@ type CreateComputerOutput struct {
 
 type metadataCreateComputerOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateComputerOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateComputerOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the CreateDirectory operation.
@@ -681,6 +762,16 @@ type metadataCreateDirectoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDirectoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDirectoryInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the CreateDirectory operation.
 type CreateDirectoryOutput struct {
 	// The identifier of the directory that was created.
@@ -691,6 +782,16 @@ type CreateDirectoryOutput struct {
 
 type metadataCreateDirectoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDirectoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDirectoryOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the CreateSnapshot operation.
@@ -708,6 +809,16 @@ type metadataCreateSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the CreateSnapshot operation.
 type CreateSnapshotOutput struct {
 	// The identifier of the snapshot that was created.
@@ -718,6 +829,16 @@ type CreateSnapshotOutput struct {
 
 type metadataCreateSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DeleteDirectory operation.
@@ -732,6 +853,16 @@ type metadataDeleteDirectoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDirectoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDirectoryInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DeleteDirectory operation.
 type DeleteDirectoryOutput struct {
 	// The directory identifier.
@@ -742,6 +873,16 @@ type DeleteDirectoryOutput struct {
 
 type metadataDeleteDirectoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDirectoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDirectoryOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DeleteSnapshot operation.
@@ -756,6 +897,16 @@ type metadataDeleteSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DeleteSnapshot operation.
 type DeleteSnapshotOutput struct {
 	// The identifier of the directory snapshot that was deleted.
@@ -766,6 +917,16 @@ type DeleteSnapshotOutput struct {
 
 type metadataDeleteSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DescribeDirectories operation.
@@ -792,6 +953,16 @@ type metadataDescribeDirectoriesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDirectoriesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDirectoriesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DescribeDirectories operation.
 type DescribeDirectoriesOutput struct {
 	// The list of DirectoryDescription objects that were retrieved.
@@ -812,6 +983,16 @@ type DescribeDirectoriesOutput struct {
 
 type metadataDescribeDirectoriesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDirectoriesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDirectoriesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DescribeSnapshots operation.
@@ -838,6 +1019,16 @@ type metadataDescribeSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSnapshotsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DescribeSnapshots operation.
 type DescribeSnapshotsOutput struct {
 	// If not null, more results are available. Pass this value in the NextToken
@@ -857,6 +1048,16 @@ type DescribeSnapshotsOutput struct {
 
 type metadataDescribeSnapshotsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSnapshotsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotsOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information for the ConnectDirectory operation when an AD Connector
@@ -886,6 +1087,16 @@ type metadataDirectoryConnectSettings struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DirectoryConnectSettings) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryConnectSettings) GoString() string {
+	return s.String()
+}
+
 // Contains information about an AD Connector directory.
 type DirectoryConnectSettingsDescription struct {
 	// A list of the Availability Zones that the directory is in.
@@ -911,6 +1122,16 @@ type DirectoryConnectSettingsDescription struct {
 
 type metadataDirectoryConnectSettingsDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DirectoryConnectSettingsDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryConnectSettingsDescription) GoString() string {
+	return s.String()
 }
 
 // Contains information about an AWS Directory Service directory.
@@ -986,6 +1207,16 @@ type metadataDirectoryDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DirectoryDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryDescription) GoString() string {
+	return s.String()
+}
+
 // Contains directory limit information for a region.
 type DirectoryLimits struct {
 	// The current number of cloud directories in the region.
@@ -1013,6 +1244,16 @@ type metadataDirectoryLimits struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DirectoryLimits) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryLimits) GoString() string {
+	return s.String()
+}
+
 // Contains information for the CreateDirectory operation when a Simple AD directory
 // is being created.
 type DirectoryVPCSettings struct {
@@ -1029,6 +1270,16 @@ type DirectoryVPCSettings struct {
 
 type metadataDirectoryVPCSettings struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DirectoryVPCSettings) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryVPCSettings) GoString() string {
+	return s.String()
 }
 
 // Contains information about a Simple AD directory.
@@ -1052,6 +1303,16 @@ type metadataDirectoryVPCSettingsDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DirectoryVPCSettingsDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryVPCSettingsDescription) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the DisableRadius operation.
 type DisableRadiusInput struct {
 	// The identifier of the directory to disable MFA for.
@@ -1064,6 +1325,16 @@ type metadataDisableRadiusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableRadiusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableRadiusInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DisableRadius operation.
 type DisableRadiusOutput struct {
 	metadataDisableRadiusOutput `json:"-" xml:"-"`
@@ -1071,6 +1342,16 @@ type DisableRadiusOutput struct {
 
 type metadataDisableRadiusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableRadiusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableRadiusOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DisableSso operation.
@@ -1101,6 +1382,16 @@ type metadataDisableSSOInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableSSOInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableSSOInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DisableSso operation.
 type DisableSSOOutput struct {
 	metadataDisableSSOOutput `json:"-" xml:"-"`
@@ -1108,6 +1399,16 @@ type DisableSSOOutput struct {
 
 type metadataDisableSSOOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableSSOOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableSSOOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the EnableRadius operation.
@@ -1125,6 +1426,16 @@ type metadataEnableRadiusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableRadiusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableRadiusInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the EnableRadius operation.
 type EnableRadiusOutput struct {
 	metadataEnableRadiusOutput `json:"-" xml:"-"`
@@ -1132,6 +1443,16 @@ type EnableRadiusOutput struct {
 
 type metadataEnableRadiusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableRadiusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableRadiusOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the EnableSso operation.
@@ -1162,6 +1483,16 @@ type metadataEnableSSOInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableSSOInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableSSOInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the EnableSso operation.
 type EnableSSOOutput struct {
 	metadataEnableSSOOutput `json:"-" xml:"-"`
@@ -1171,6 +1502,16 @@ type metadataEnableSSOOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableSSOOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableSSOOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the GetDirectoryLimits operation.
 type GetDirectoryLimitsInput struct {
 	metadataGetDirectoryLimitsInput `json:"-" xml:"-"`
@@ -1178,6 +1519,16 @@ type GetDirectoryLimitsInput struct {
 
 type metadataGetDirectoryLimitsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDirectoryLimitsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDirectoryLimitsInput) GoString() string {
+	return s.String()
 }
 
 // Contains the results of the GetDirectoryLimits operation.
@@ -1193,6 +1544,16 @@ type metadataGetDirectoryLimitsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetDirectoryLimitsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDirectoryLimitsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the GetSnapshotLimits operation.
 type GetSnapshotLimitsInput struct {
 	// Contains the identifier of the directory to obtain the limits for.
@@ -1203,6 +1564,16 @@ type GetSnapshotLimitsInput struct {
 
 type metadataGetSnapshotLimitsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSnapshotLimitsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSnapshotLimitsInput) GoString() string {
+	return s.String()
 }
 
 // Contains the results of the GetSnapshotLimits operation.
@@ -1216,6 +1587,16 @@ type GetSnapshotLimitsOutput struct {
 
 type metadataGetSnapshotLimitsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSnapshotLimitsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSnapshotLimitsOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about a Remote Authentication Dial In User Service (RADIUS)
@@ -1257,6 +1638,16 @@ type metadataRadiusSettings struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RadiusSettings) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RadiusSettings) GoString() string {
+	return s.String()
+}
+
 // An object representing the inputs for the RestoreFromSnapshot operation.
 type RestoreFromSnapshotInput struct {
 	// The identifier of the snapshot to restore from.
@@ -1269,6 +1660,16 @@ type metadataRestoreFromSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RestoreFromSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreFromSnapshotInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the RestoreFromSnapshot operation.
 type RestoreFromSnapshotOutput struct {
 	metadataRestoreFromSnapshotOutput `json:"-" xml:"-"`
@@ -1276,6 +1677,16 @@ type RestoreFromSnapshotOutput struct {
 
 type metadataRestoreFromSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreFromSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreFromSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a directory snapshot.
@@ -1305,6 +1716,16 @@ type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Snapshot) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Snapshot) GoString() string {
+	return s.String()
+}
+
 // Contains manual snapshot limit information for a directory.
 type SnapshotLimits struct {
 	// The current number of manual snapshots of the directory.
@@ -1323,6 +1744,16 @@ type metadataSnapshotLimits struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SnapshotLimits) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SnapshotLimits) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the UpdateRadius operation.
 type UpdateRadiusInput struct {
 	// The identifier of the directory to update the RADIUS server information for.
@@ -1338,6 +1769,16 @@ type metadataUpdateRadiusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateRadiusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRadiusInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the UpdateRadius operation.
 type UpdateRadiusOutput struct {
 	metadataUpdateRadiusOutput `json:"-" xml:"-"`
@@ -1345,4 +1786,14 @@ type UpdateRadiusOutput struct {
 
 type metadataUpdateRadiusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRadiusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRadiusOutput) GoString() string {
+	return s.String()
 }

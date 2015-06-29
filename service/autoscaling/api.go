@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAttachInstances = "AttachInstances"
@@ -1655,6 +1656,16 @@ type metadataActivity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Activity) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Activity) GoString() string {
+	return s.String()
+}
+
 // Describes a policy adjustment type.
 //
 // For more information, see Dynamic Scaling (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html)
@@ -1669,6 +1680,16 @@ type AdjustmentType struct {
 
 type metadataAdjustmentType struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AdjustmentType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AdjustmentType) GoString() string {
+	return s.String()
 }
 
 // Describes an alarm.
@@ -1686,6 +1707,16 @@ type metadataAlarm struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Alarm) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Alarm) GoString() string {
+	return s.String()
+}
+
 type AttachInstancesInput struct {
 	// The name of the group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -1700,12 +1731,32 @@ type metadataAttachInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachInstancesInput) GoString() string {
+	return s.String()
+}
+
 type AttachInstancesOutput struct {
 	metadataAttachInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type AttachLoadBalancersInput struct {
@@ -1722,12 +1773,32 @@ type metadataAttachLoadBalancersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachLoadBalancersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachLoadBalancersInput) GoString() string {
+	return s.String()
+}
+
 type AttachLoadBalancersOutput struct {
 	metadataAttachLoadBalancersOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachLoadBalancersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachLoadBalancersOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a block device mapping.
@@ -1755,6 +1826,16 @@ type metadataBlockDeviceMapping struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BlockDeviceMapping) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BlockDeviceMapping) GoString() string {
+	return s.String()
+}
+
 type CompleteLifecycleActionInput struct {
 	// The name of the group for the lifecycle hook.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -1778,12 +1859,32 @@ type metadataCompleteLifecycleActionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CompleteLifecycleActionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteLifecycleActionInput) GoString() string {
+	return s.String()
+}
+
 type CompleteLifecycleActionOutput struct {
 	metadataCompleteLifecycleActionOutput `json:"-" xml:"-"`
 }
 
 type metadataCompleteLifecycleActionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CompleteLifecycleActionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteLifecycleActionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateAutoScalingGroupInput struct {
@@ -1897,12 +1998,32 @@ type metadataCreateAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAutoScalingGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAutoScalingGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateAutoScalingGroupOutput struct {
 	metadataCreateAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAutoScalingGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAutoScalingGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAutoScalingGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLaunchConfigurationInput struct {
@@ -2056,12 +2177,32 @@ type metadataCreateLaunchConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLaunchConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLaunchConfigurationInput) GoString() string {
+	return s.String()
+}
+
 type CreateLaunchConfigurationOutput struct {
 	metadataCreateLaunchConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLaunchConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLaunchConfigurationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLaunchConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type CreateOrUpdateTagsInput struct {
@@ -2075,12 +2216,32 @@ type metadataCreateOrUpdateTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateOrUpdateTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateOrUpdateTagsInput) GoString() string {
+	return s.String()
+}
+
 type CreateOrUpdateTagsOutput struct {
 	metadataCreateOrUpdateTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateOrUpdateTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateOrUpdateTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateOrUpdateTagsOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAutoScalingGroupInput struct {
@@ -2099,12 +2260,32 @@ type metadataDeleteAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAutoScalingGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAutoScalingGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteAutoScalingGroupOutput struct {
 	metadataDeleteAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAutoScalingGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAutoScalingGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAutoScalingGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLaunchConfigurationInput struct {
@@ -2118,12 +2299,32 @@ type metadataDeleteLaunchConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLaunchConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLaunchConfigurationInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLaunchConfigurationOutput struct {
 	metadataDeleteLaunchConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLaunchConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLaunchConfigurationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLaunchConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLifecycleHookInput struct {
@@ -2140,12 +2341,32 @@ type metadataDeleteLifecycleHookInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLifecycleHookInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLifecycleHookInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLifecycleHookOutput struct {
 	metadataDeleteLifecycleHookOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLifecycleHookOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLifecycleHookOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLifecycleHookOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteNotificationConfigurationInput struct {
@@ -2163,12 +2384,32 @@ type metadataDeleteNotificationConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteNotificationConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNotificationConfigurationInput) GoString() string {
+	return s.String()
+}
+
 type DeleteNotificationConfigurationOutput struct {
 	metadataDeleteNotificationConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNotificationConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteNotificationConfigurationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNotificationConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type DeletePolicyInput struct {
@@ -2185,12 +2426,32 @@ type metadataDeletePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeletePolicyOutput struct {
 	metadataDeletePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteScheduledActionInput struct {
@@ -2207,12 +2468,32 @@ type metadataDeleteScheduledActionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteScheduledActionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteScheduledActionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteScheduledActionOutput struct {
 	metadataDeleteScheduledActionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteScheduledActionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteScheduledActionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteScheduledActionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteTagsInput struct {
@@ -2229,6 +2510,16 @@ type metadataDeleteTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteTagsOutput struct {
 	metadataDeleteTagsOutput `json:"-" xml:"-"`
 }
@@ -2237,12 +2528,32 @@ type metadataDeleteTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAccountLimitsInput struct {
 	metadataDescribeAccountLimitsInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAccountLimitsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountLimitsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountLimitsInput) GoString() string {
+	return s.String()
 }
 
 type DescribeAccountLimitsOutput struct {
@@ -2261,12 +2572,32 @@ type metadataDescribeAccountLimitsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAccountLimitsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountLimitsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAdjustmentTypesInput struct {
 	metadataDescribeAdjustmentTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAdjustmentTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAdjustmentTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAdjustmentTypesInput) GoString() string {
+	return s.String()
 }
 
 type DescribeAdjustmentTypesOutput struct {
@@ -2278,6 +2609,16 @@ type DescribeAdjustmentTypesOutput struct {
 
 type metadataDescribeAdjustmentTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAdjustmentTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAdjustmentTypesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAutoScalingGroupsInput struct {
@@ -2298,6 +2639,16 @@ type metadataDescribeAutoScalingGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAutoScalingGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAutoScalingGroupsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeAutoScalingGroupsOutput struct {
 	// The groups.
 	AutoScalingGroups []*Group `type:"list" required:"true"`
@@ -2311,6 +2662,16 @@ type DescribeAutoScalingGroupsOutput struct {
 
 type metadataDescribeAutoScalingGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAutoScalingGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAutoScalingGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAutoScalingInstancesInput struct {
@@ -2333,6 +2694,16 @@ type metadataDescribeAutoScalingInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAutoScalingInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAutoScalingInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeAutoScalingInstancesOutput struct {
 	// The instances.
 	AutoScalingInstances []*InstanceDetails `type:"list"`
@@ -2348,12 +2719,32 @@ type metadataDescribeAutoScalingInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAutoScalingInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAutoScalingInstancesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAutoScalingNotificationTypesInput struct {
 	metadataDescribeAutoScalingNotificationTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAutoScalingNotificationTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAutoScalingNotificationTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAutoScalingNotificationTypesInput) GoString() string {
+	return s.String()
 }
 
 type DescribeAutoScalingNotificationTypesOutput struct {
@@ -2377,6 +2768,16 @@ type metadataDescribeAutoScalingNotificationTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAutoScalingNotificationTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAutoScalingNotificationTypesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeLaunchConfigurationsInput struct {
 	// The launch configuration names.
 	LaunchConfigurationNames []*string `type:"list"`
@@ -2395,6 +2796,16 @@ type metadataDescribeLaunchConfigurationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLaunchConfigurationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLaunchConfigurationsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLaunchConfigurationsOutput struct {
 	// The launch configurations.
 	LaunchConfigurations []*LaunchConfiguration `type:"list" required:"true"`
@@ -2410,12 +2821,32 @@ type metadataDescribeLaunchConfigurationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLaunchConfigurationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLaunchConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeLifecycleHookTypesInput struct {
 	metadataDescribeLifecycleHookTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeLifecycleHookTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLifecycleHookTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLifecycleHookTypesInput) GoString() string {
+	return s.String()
 }
 
 type DescribeLifecycleHookTypesOutput struct {
@@ -2433,6 +2864,16 @@ type metadataDescribeLifecycleHookTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLifecycleHookTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLifecycleHookTypesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeLifecycleHooksInput struct {
 	// The name of the group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -2447,6 +2888,16 @@ type metadataDescribeLifecycleHooksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLifecycleHooksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLifecycleHooksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLifecycleHooksOutput struct {
 	// The lifecycle hooks for the specified group.
 	LifecycleHooks []*LifecycleHook `type:"list"`
@@ -2456,6 +2907,16 @@ type DescribeLifecycleHooksOutput struct {
 
 type metadataDescribeLifecycleHooksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLifecycleHooksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLifecycleHooksOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLoadBalancersInput struct {
@@ -2476,6 +2937,16 @@ type metadataDescribeLoadBalancersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLoadBalancersOutput struct {
 	// The load balancers.
 	LoadBalancers []*LoadBalancerState `type:"list"`
@@ -2491,12 +2962,32 @@ type metadataDescribeLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLoadBalancersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLoadBalancersOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeMetricCollectionTypesInput struct {
 	metadataDescribeMetricCollectionTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeMetricCollectionTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMetricCollectionTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMetricCollectionTypesInput) GoString() string {
+	return s.String()
 }
 
 type DescribeMetricCollectionTypesOutput struct {
@@ -2511,6 +3002,16 @@ type DescribeMetricCollectionTypesOutput struct {
 
 type metadataDescribeMetricCollectionTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMetricCollectionTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMetricCollectionTypesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeNotificationConfigurationsInput struct {
@@ -2531,6 +3032,16 @@ type metadataDescribeNotificationConfigurationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeNotificationConfigurationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNotificationConfigurationsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeNotificationConfigurationsOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -2544,6 +3055,16 @@ type DescribeNotificationConfigurationsOutput struct {
 
 type metadataDescribeNotificationConfigurationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeNotificationConfigurationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNotificationConfigurationsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribePoliciesInput struct {
@@ -2570,6 +3091,16 @@ type metadataDescribePoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribePoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePoliciesInput) GoString() string {
+	return s.String()
+}
+
 type DescribePoliciesOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -2583,6 +3114,16 @@ type DescribePoliciesOutput struct {
 
 type metadataDescribePoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribePoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeScalingActivitiesInput struct {
@@ -2610,6 +3151,16 @@ type metadataDescribeScalingActivitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeScalingActivitiesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingActivitiesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeScalingActivitiesOutput struct {
 	// The scaling activities.
 	Activities []*Activity `type:"list" required:"true"`
@@ -2625,12 +3176,32 @@ type metadataDescribeScalingActivitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeScalingActivitiesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingActivitiesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeScalingProcessTypesInput struct {
 	metadataDescribeScalingProcessTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeScalingProcessTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeScalingProcessTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingProcessTypesInput) GoString() string {
+	return s.String()
 }
 
 type DescribeScalingProcessTypesOutput struct {
@@ -2642,6 +3213,16 @@ type DescribeScalingProcessTypesOutput struct {
 
 type metadataDescribeScalingProcessTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeScalingProcessTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingProcessTypesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeScheduledActionsInput struct {
@@ -2679,6 +3260,16 @@ type metadataDescribeScheduledActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeScheduledActionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScheduledActionsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeScheduledActionsOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -2692,6 +3283,16 @@ type DescribeScheduledActionsOutput struct {
 
 type metadataDescribeScheduledActionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeScheduledActionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScheduledActionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeTagsInput struct {
@@ -2712,6 +3313,16 @@ type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -2727,12 +3338,32 @@ type metadataDescribeTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTerminationPolicyTypesInput struct {
 	metadataDescribeTerminationPolicyTypesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeTerminationPolicyTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTerminationPolicyTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTerminationPolicyTypesInput) GoString() string {
+	return s.String()
 }
 
 type DescribeTerminationPolicyTypesOutput struct {
@@ -2745,6 +3376,16 @@ type DescribeTerminationPolicyTypesOutput struct {
 
 type metadataDescribeTerminationPolicyTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTerminationPolicyTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTerminationPolicyTypesOutput) GoString() string {
+	return s.String()
 }
 
 type DetachInstancesInput struct {
@@ -2765,6 +3406,16 @@ type metadataDetachInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DetachInstancesOutput struct {
 	// The activities related to detaching the instances from the Auto Scaling group.
 	Activities []*Activity `type:"list"`
@@ -2774,6 +3425,16 @@ type DetachInstancesOutput struct {
 
 type metadataDetachInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type DetachLoadBalancersInput struct {
@@ -2790,12 +3451,32 @@ type metadataDetachLoadBalancersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachLoadBalancersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachLoadBalancersInput) GoString() string {
+	return s.String()
+}
+
 type DetachLoadBalancersOutput struct {
 	metadataDetachLoadBalancersOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachLoadBalancersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachLoadBalancersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachLoadBalancersOutput) GoString() string {
+	return s.String()
 }
 
 type DisableMetricsCollectionInput struct {
@@ -2828,12 +3509,32 @@ type metadataDisableMetricsCollectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableMetricsCollectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableMetricsCollectionInput) GoString() string {
+	return s.String()
+}
+
 type DisableMetricsCollectionOutput struct {
 	metadataDisableMetricsCollectionOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableMetricsCollectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableMetricsCollectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableMetricsCollectionOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an Amazon EBS volume.
@@ -2880,6 +3581,16 @@ type metadataEBS struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EBS) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EBS) GoString() string {
+	return s.String()
+}
+
 type EnableMetricsCollectionInput struct {
 	// The name or ARN of the Auto Scaling group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -2917,12 +3628,32 @@ type metadataEnableMetricsCollectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableMetricsCollectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableMetricsCollectionInput) GoString() string {
+	return s.String()
+}
+
 type EnableMetricsCollectionOutput struct {
 	metadataEnableMetricsCollectionOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableMetricsCollectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableMetricsCollectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableMetricsCollectionOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an enabled metric.
@@ -2956,6 +3687,16 @@ type metadataEnabledMetric struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnabledMetric) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnabledMetric) GoString() string {
+	return s.String()
+}
+
 type EnterStandbyInput struct {
 	// The name of the Auto Scaling group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -2977,6 +3718,16 @@ type metadataEnterStandbyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnterStandbyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnterStandbyInput) GoString() string {
+	return s.String()
+}
+
 type EnterStandbyOutput struct {
 	// The activities related to moving instances into Standby mode.
 	Activities []*Activity `type:"list"`
@@ -2986,6 +3737,16 @@ type EnterStandbyOutput struct {
 
 type metadataEnterStandbyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnterStandbyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnterStandbyOutput) GoString() string {
+	return s.String()
 }
 
 type ExecutePolicyInput struct {
@@ -3013,12 +3774,32 @@ type metadataExecutePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExecutePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExecutePolicyInput) GoString() string {
+	return s.String()
+}
+
 type ExecutePolicyOutput struct {
 	metadataExecutePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataExecutePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExecutePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExecutePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type ExitStandbyInput struct {
@@ -3035,6 +3816,16 @@ type metadataExitStandbyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExitStandbyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExitStandbyInput) GoString() string {
+	return s.String()
+}
+
 type ExitStandbyOutput struct {
 	// The activities related to moving instances out of Standby mode.
 	Activities []*Activity `type:"list"`
@@ -3044,6 +3835,16 @@ type ExitStandbyOutput struct {
 
 type metadataExitStandbyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExitStandbyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExitStandbyOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a filter.
@@ -3060,6 +3861,16 @@ type Filter struct {
 
 type metadataFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Filter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Filter) GoString() string {
+	return s.String()
 }
 
 // Describes an Auto Scaling group.
@@ -3138,6 +3949,16 @@ type metadataGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Group) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Group) GoString() string {
+	return s.String()
+}
+
 // Describes an EC2 instance.
 type Instance struct {
 	// The Availability Zone in which the instance is running.
@@ -3161,6 +3982,16 @@ type Instance struct {
 
 type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Instance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Instance) GoString() string {
+	return s.String()
 }
 
 // Describes an EC2 instance associated with an Auto Scaling group.
@@ -3194,6 +4025,16 @@ type metadataInstanceDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceDetails) GoString() string {
+	return s.String()
+}
+
 // Describes whether instance monitoring is enabled.
 type InstanceMonitoring struct {
 	// If True, instance monitoring is enabled.
@@ -3204,6 +4045,16 @@ type InstanceMonitoring struct {
 
 type metadataInstanceMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceMonitoring) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceMonitoring) GoString() string {
+	return s.String()
 }
 
 // Describes a launch configuration.
@@ -3282,6 +4133,16 @@ type metadataLaunchConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LaunchConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LaunchConfiguration) GoString() string {
+	return s.String()
+}
+
 // Describes a lifecycle hook, which tells Auto Scaling that you want to perform
 // an action when an instance launches or terminates. When you have a lifecycle
 // hook in place, the Auto Scaling group will either:
@@ -3341,6 +4202,16 @@ type metadataLifecycleHook struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LifecycleHook) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleHook) GoString() string {
+	return s.String()
+}
+
 // Describes the state of a load balancer.
 type LoadBalancerState struct {
 	// The name of the load balancer.
@@ -3365,6 +4236,16 @@ type LoadBalancerState struct {
 
 type metadataLoadBalancerState struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LoadBalancerState) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LoadBalancerState) GoString() string {
+	return s.String()
 }
 
 // Describes a metric.
@@ -3395,6 +4276,16 @@ type metadataMetricCollectionType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MetricCollectionType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricCollectionType) GoString() string {
+	return s.String()
+}
+
 // Describes a granularity of a metric.
 type MetricGranularityType struct {
 	// The granularity. The only valid value is 1Minute.
@@ -3405,6 +4296,16 @@ type MetricGranularityType struct {
 
 type metadataMetricGranularityType struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MetricGranularityType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricGranularityType) GoString() string {
+	return s.String()
 }
 
 // Describes a notification.
@@ -3436,6 +4337,16 @@ type metadataNotificationConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NotificationConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NotificationConfiguration) GoString() string {
+	return s.String()
+}
+
 // Describes a process type.
 //
 // For more information, see Auto Scaling Processes (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html#process-types)
@@ -3465,6 +4376,16 @@ type ProcessType struct {
 
 type metadataProcessType struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ProcessType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ProcessType) GoString() string {
+	return s.String()
 }
 
 type PutLifecycleHookInput struct {
@@ -3534,12 +4455,32 @@ type metadataPutLifecycleHookInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutLifecycleHookInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutLifecycleHookInput) GoString() string {
+	return s.String()
+}
+
 type PutLifecycleHookOutput struct {
 	metadataPutLifecycleHookOutput `json:"-" xml:"-"`
 }
 
 type metadataPutLifecycleHookOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutLifecycleHookOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutLifecycleHookOutput) GoString() string {
+	return s.String()
 }
 
 type PutNotificationConfigurationInput struct {
@@ -3561,12 +4502,32 @@ type metadataPutNotificationConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutNotificationConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutNotificationConfigurationInput) GoString() string {
+	return s.String()
+}
+
 type PutNotificationConfigurationOutput struct {
 	metadataPutNotificationConfigurationOutput `json:"-" xml:"-"`
 }
 
 type metadataPutNotificationConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutNotificationConfigurationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutNotificationConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 type PutScalingPolicyInput struct {
@@ -3612,6 +4573,16 @@ type metadataPutScalingPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutScalingPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutScalingPolicyInput) GoString() string {
+	return s.String()
+}
+
 type PutScalingPolicyOutput struct {
 	// The Amazon Resource Name (ARN) of the policy.
 	PolicyARN *string `type:"string"`
@@ -3621,6 +4592,16 @@ type PutScalingPolicyOutput struct {
 
 type metadataPutScalingPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutScalingPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutScalingPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type PutScheduledUpdateGroupActionInput struct {
@@ -3673,12 +4654,32 @@ type metadataPutScheduledUpdateGroupActionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutScheduledUpdateGroupActionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutScheduledUpdateGroupActionInput) GoString() string {
+	return s.String()
+}
+
 type PutScheduledUpdateGroupActionOutput struct {
 	metadataPutScheduledUpdateGroupActionOutput `json:"-" xml:"-"`
 }
 
 type metadataPutScheduledUpdateGroupActionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutScheduledUpdateGroupActionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutScheduledUpdateGroupActionOutput) GoString() string {
+	return s.String()
 }
 
 type RecordLifecycleActionHeartbeatInput struct {
@@ -3700,6 +4701,16 @@ type metadataRecordLifecycleActionHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecordLifecycleActionHeartbeatInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordLifecycleActionHeartbeatInput) GoString() string {
+	return s.String()
+}
+
 type RecordLifecycleActionHeartbeatOutput struct {
 	metadataRecordLifecycleActionHeartbeatOutput `json:"-" xml:"-"`
 }
@@ -3708,12 +4719,32 @@ type metadataRecordLifecycleActionHeartbeatOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecordLifecycleActionHeartbeatOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordLifecycleActionHeartbeatOutput) GoString() string {
+	return s.String()
+}
+
 type ResumeProcessesOutput struct {
 	metadataResumeProcessesOutput `json:"-" xml:"-"`
 }
 
 type metadataResumeProcessesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResumeProcessesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResumeProcessesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a scaling policy.
@@ -3755,6 +4786,16 @@ type metadataScalingPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ScalingPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScalingPolicy) GoString() string {
+	return s.String()
+}
+
 type ScalingProcessQuery struct {
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -3783,6 +4824,16 @@ type ScalingProcessQuery struct {
 
 type metadataScalingProcessQuery struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScalingProcessQuery) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScalingProcessQuery) GoString() string {
+	return s.String()
 }
 
 // Describes a scheduled update to an Auto Scaling group.
@@ -3829,6 +4880,16 @@ type metadataScheduledUpdateGroupAction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ScheduledUpdateGroupAction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScheduledUpdateGroupAction) GoString() string {
+	return s.String()
+}
+
 type SetDesiredCapacityInput struct {
 	// The name of the Auto Scaling group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -3849,12 +4910,32 @@ type metadataSetDesiredCapacityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetDesiredCapacityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetDesiredCapacityInput) GoString() string {
+	return s.String()
+}
+
 type SetDesiredCapacityOutput struct {
 	metadataSetDesiredCapacityOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDesiredCapacityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetDesiredCapacityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetDesiredCapacityOutput) GoString() string {
+	return s.String()
 }
 
 type SetInstanceHealthInput struct {
@@ -3882,6 +4963,16 @@ type metadataSetInstanceHealthInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetInstanceHealthInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetInstanceHealthInput) GoString() string {
+	return s.String()
+}
+
 type SetInstanceHealthOutput struct {
 	metadataSetInstanceHealthOutput `json:"-" xml:"-"`
 }
@@ -3890,12 +4981,32 @@ type metadataSetInstanceHealthOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetInstanceHealthOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetInstanceHealthOutput) GoString() string {
+	return s.String()
+}
+
 type SuspendProcessesOutput struct {
 	metadataSuspendProcessesOutput `json:"-" xml:"-"`
 }
 
 type metadataSuspendProcessesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SuspendProcessesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuspendProcessesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an Auto Scaling process that has been suspended. For more information,
@@ -3912,6 +5023,16 @@ type SuspendedProcess struct {
 
 type metadataSuspendedProcess struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SuspendedProcess) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuspendedProcess) GoString() string {
+	return s.String()
 }
 
 // Describes a tag for an Auto Scaling group.
@@ -3939,6 +5060,16 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 // Describes a tag for an Auto Scaling group.
 type TagDescription struct {
 	// The tag key.
@@ -3964,6 +5095,16 @@ type metadataTagDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TagDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TagDescription) GoString() string {
+	return s.String()
+}
+
 type TerminateInstanceInAutoScalingGroupInput struct {
 	// The ID of the EC2 instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
@@ -3979,6 +5120,16 @@ type metadataTerminateInstanceInAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TerminateInstanceInAutoScalingGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateInstanceInAutoScalingGroupInput) GoString() string {
+	return s.String()
+}
+
 type TerminateInstanceInAutoScalingGroupOutput struct {
 	// A scaling activity.
 	Activity *Activity `type:"structure"`
@@ -3988,6 +5139,16 @@ type TerminateInstanceInAutoScalingGroupOutput struct {
 
 type metadataTerminateInstanceInAutoScalingGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TerminateInstanceInAutoScalingGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateInstanceInAutoScalingGroupOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAutoScalingGroupInput struct {
@@ -4058,10 +5219,30 @@ type metadataUpdateAutoScalingGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateAutoScalingGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAutoScalingGroupInput) GoString() string {
+	return s.String()
+}
+
 type UpdateAutoScalingGroupOutput struct {
 	metadataUpdateAutoScalingGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAutoScalingGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAutoScalingGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAutoScalingGroupOutput) GoString() string {
+	return s.String()
 }

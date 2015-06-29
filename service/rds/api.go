@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
@@ -2001,6 +2002,16 @@ type metadataAccountQuota struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccountQuota) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccountQuota) GoString() string {
+	return s.String()
+}
+
 type AddSourceIdentifierToSubscriptionInput struct {
 	// The identifier of the event source to be added. An identifier must begin
 	// with a letter and must contain only ASCII letters, digits, and hyphens; it
@@ -2026,6 +2037,16 @@ type metadataAddSourceIdentifierToSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddSourceIdentifierToSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddSourceIdentifierToSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 type AddSourceIdentifierToSubscriptionOutput struct {
 	// Contains the results of a successful invocation of the DescribeEventSubscriptions
 	// action.
@@ -2036,6 +2057,16 @@ type AddSourceIdentifierToSubscriptionOutput struct {
 
 type metadataAddSourceIdentifierToSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddSourceIdentifierToSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddSourceIdentifierToSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type AddTagsToResourceInput struct {
@@ -2054,12 +2085,32 @@ type metadataAddTagsToResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsToResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceInput) GoString() string {
+	return s.String()
+}
+
 type AddTagsToResourceOutput struct {
 	metadataAddTagsToResourceOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsToResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceOutput) GoString() string {
+	return s.String()
 }
 
 type ApplyPendingMaintenanceActionInput struct {
@@ -2086,6 +2137,16 @@ type metadataApplyPendingMaintenanceActionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ApplyPendingMaintenanceActionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ApplyPendingMaintenanceActionInput) GoString() string {
+	return s.String()
+}
+
 type ApplyPendingMaintenanceActionOutput struct {
 	// Describes the pending maintenance actions for a resource.
 	ResourcePendingMaintenanceActions *ResourcePendingMaintenanceActions `type:"structure"`
@@ -2095,6 +2156,16 @@ type ApplyPendingMaintenanceActionOutput struct {
 
 type metadataApplyPendingMaintenanceActionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ApplyPendingMaintenanceActionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ApplyPendingMaintenanceActionOutput) GoString() string {
+	return s.String()
 }
 
 type AuthorizeDBSecurityGroupIngressInput struct {
@@ -2128,6 +2199,16 @@ type metadataAuthorizeDBSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AuthorizeDBSecurityGroupIngressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeDBSecurityGroupIngressInput) GoString() string {
+	return s.String()
+}
+
 type AuthorizeDBSecurityGroupIngressOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -2143,6 +2224,16 @@ type metadataAuthorizeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AuthorizeDBSecurityGroupIngressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeDBSecurityGroupIngressOutput) GoString() string {
+	return s.String()
+}
+
 // Contains Availability Zone information.
 //
 //  This data type is used as an element in the following data type: OrderableDBInstanceOption
@@ -2155,6 +2246,16 @@ type AvailabilityZone struct {
 
 type metadataAvailabilityZone struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AvailabilityZone) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AvailabilityZone) GoString() string {
+	return s.String()
 }
 
 // A CA certificate for an AWS account.
@@ -2181,6 +2282,16 @@ type metadataCertificate struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Certificate) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Certificate) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element in the action DescribeDBEngineVersions.
 type CharacterSet struct {
 	// The description of the character set.
@@ -2194,6 +2305,16 @@ type CharacterSet struct {
 
 type metadataCharacterSet struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CharacterSet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CharacterSet) GoString() string {
+	return s.String()
 }
 
 type CopyDBParameterGroupInput struct {
@@ -2230,6 +2351,16 @@ type metadataCopyDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CopyDBParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 type CopyDBParameterGroupOutput struct {
 	// Contains the result of a successful invocation of the CreateDBParameterGroup
 	// action.
@@ -2243,6 +2374,16 @@ type CopyDBParameterGroupOutput struct {
 
 type metadataCopyDBParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyDBParameterGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBParameterGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CopyDBSnapshotInput struct {
@@ -2279,6 +2420,16 @@ type metadataCopyDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CopyDBSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type CopyDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -2291,6 +2442,16 @@ type CopyDBSnapshotOutput struct {
 
 type metadataCopyDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyDBSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 type CopyOptionGroupInput struct {
@@ -2326,6 +2487,16 @@ type metadataCopyOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CopyOptionGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyOptionGroupInput) GoString() string {
+	return s.String()
+}
+
 type CopyOptionGroupOutput struct {
 	OptionGroup *OptionGroup `type:"structure"`
 
@@ -2334,6 +2505,16 @@ type CopyOptionGroupOutput struct {
 
 type metadataCopyOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyOptionGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyOptionGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDBInstanceInput struct {
@@ -2791,6 +2972,16 @@ type metadataCreateDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDBInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBInstanceInput) GoString() string {
+	return s.String()
+}
+
 type CreateDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -2803,6 +2994,16 @@ type CreateDBInstanceOutput struct {
 
 type metadataCreateDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBInstanceOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDBInstanceReadReplicaInput struct {
@@ -2913,6 +3114,16 @@ type metadataCreateDBInstanceReadReplicaInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDBInstanceReadReplicaInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBInstanceReadReplicaInput) GoString() string {
+	return s.String()
+}
+
 type CreateDBInstanceReadReplicaOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -2925,6 +3136,16 @@ type CreateDBInstanceReadReplicaOutput struct {
 
 type metadataCreateDBInstanceReadReplicaOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBInstanceReadReplicaOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBInstanceReadReplicaOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDBParameterGroupInput struct {
@@ -2956,6 +3177,16 @@ type metadataCreateDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDBParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateDBParameterGroupOutput struct {
 	// Contains the result of a successful invocation of the CreateDBParameterGroup
 	// action.
@@ -2969,6 +3200,16 @@ type CreateDBParameterGroupOutput struct {
 
 type metadataCreateDBParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBParameterGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBParameterGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDBSecurityGroupInput struct {
@@ -2994,6 +3235,16 @@ type metadataCreateDBSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDBSecurityGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateDBSecurityGroupOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -3007,6 +3258,16 @@ type CreateDBSecurityGroupOutput struct {
 
 type metadataCreateDBSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBSecurityGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBSecurityGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDBSnapshotInput struct {
@@ -3037,6 +3298,16 @@ type metadataCreateDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDBSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type CreateDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -3049,6 +3320,16 @@ type CreateDBSnapshotOutput struct {
 
 type metadataCreateDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDBSubnetGroupInput struct {
@@ -3076,6 +3357,16 @@ type metadataCreateDBSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDBSubnetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBSubnetGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateDBSubnetGroupOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -3089,6 +3380,16 @@ type CreateDBSubnetGroupOutput struct {
 
 type metadataCreateDBSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBSubnetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBSubnetGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateEventSubscriptionInput struct {
@@ -3146,6 +3447,16 @@ type metadataCreateEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateEventSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateEventSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 type CreateEventSubscriptionOutput struct {
 	// Contains the results of a successful invocation of the DescribeEventSubscriptions
 	// action.
@@ -3156,6 +3467,16 @@ type CreateEventSubscriptionOutput struct {
 
 type metadataCreateEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateEventSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateEventSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateOptionGroupInput struct {
@@ -3189,6 +3510,16 @@ type metadataCreateOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateOptionGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateOptionGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateOptionGroupOutput struct {
 	OptionGroup *OptionGroup `type:"structure"`
 
@@ -3197,6 +3528,16 @@ type CreateOptionGroupOutput struct {
 
 type metadataCreateOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateOptionGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateOptionGroupOutput) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the action DescribeDBEngineVersions.
@@ -3229,6 +3570,16 @@ type DBEngineVersion struct {
 
 type metadataDBEngineVersion struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBEngineVersion) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBEngineVersion) GoString() string {
+	return s.String()
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -3399,6 +3750,16 @@ type metadataDBInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DBInstance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBInstance) GoString() string {
+	return s.String()
+}
+
 // Provides a list of status information for a DB instance.
 type DBInstanceStatusInfo struct {
 	// Details of the error if there is an error for the instance. If the instance
@@ -3421,6 +3782,16 @@ type DBInstanceStatusInfo struct {
 
 type metadataDBInstanceStatusInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBInstanceStatusInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBInstanceStatusInfo) GoString() string {
+	return s.String()
 }
 
 // Contains the result of a successful invocation of the CreateDBParameterGroup
@@ -3446,6 +3817,16 @@ type metadataDBParameterGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DBParameterGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBParameterGroup) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the ModifyDBParameterGroup
 // or ResetDBParameterGroup action.
 type DBParameterGroupNameMessage struct {
@@ -3457,6 +3838,16 @@ type DBParameterGroupNameMessage struct {
 
 type metadataDBParameterGroupNameMessage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBParameterGroupNameMessage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBParameterGroupNameMessage) GoString() string {
+	return s.String()
 }
 
 // The status of the DB parameter group.
@@ -3477,6 +3868,16 @@ type DBParameterGroupStatus struct {
 
 type metadataDBParameterGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBParameterGroupStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBParameterGroupStatus) GoString() string {
+	return s.String()
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -3510,6 +3911,16 @@ type metadataDBSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DBSecurityGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBSecurityGroup) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element in the following actions:
 //
 //   ModifyDBInstance   RebootDBInstance   RestoreDBInstanceFromDBSnapshot
@@ -3526,6 +3937,16 @@ type DBSecurityGroupMembership struct {
 
 type metadataDBSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBSecurityGroupMembership) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBSecurityGroupMembership) GoString() string {
+	return s.String()
 }
 
 // Contains the result of a successful invocation of the following actions:
@@ -3610,6 +4031,16 @@ type metadataDBSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DBSnapshot) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBSnapshot) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the following actions:
 //
 //   CreateDBSubnetGroup   ModifyDBSubnetGroup   DescribeDBSubnetGroups   DeleteDBSubnetGroup
@@ -3636,6 +4067,16 @@ type DBSubnetGroup struct {
 
 type metadataDBSubnetGroup struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBSubnetGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DBSubnetGroup) GoString() string {
+	return s.String()
 }
 
 type DeleteDBInstanceInput struct {
@@ -3676,6 +4117,16 @@ type metadataDeleteDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDBInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBInstanceInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -3688,6 +4139,16 @@ type DeleteDBInstanceOutput struct {
 
 type metadataDeleteDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBInstanceOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDBParameterGroupInput struct {
@@ -3706,12 +4167,32 @@ type metadataDeleteDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDBParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDBParameterGroupOutput struct {
 	metadataDeleteDBParameterGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDBParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBParameterGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBParameterGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDBSecurityGroupInput struct {
@@ -3731,12 +4212,32 @@ type metadataDeleteDBSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDBSecurityGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDBSecurityGroupOutput struct {
 	metadataDeleteDBSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDBSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBSecurityGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBSecurityGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDBSnapshotInput struct {
@@ -3753,6 +4254,16 @@ type metadataDeleteDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDBSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -3765,6 +4276,16 @@ type DeleteDBSnapshotOutput struct {
 
 type metadataDeleteDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDBSubnetGroupInput struct {
@@ -3783,12 +4304,32 @@ type metadataDeleteDBSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDBSubnetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBSubnetGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDBSubnetGroupOutput struct {
 	metadataDeleteDBSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDBSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBSubnetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBSubnetGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteEventSubscriptionInput struct {
@@ -3802,6 +4343,16 @@ type metadataDeleteEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteEventSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteEventSubscriptionOutput struct {
 	// Contains the results of a successful invocation of the DescribeEventSubscriptions
 	// action.
@@ -3812,6 +4363,16 @@ type DeleteEventSubscriptionOutput struct {
 
 type metadataDeleteEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEventSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteOptionGroupInput struct {
@@ -3827,6 +4388,16 @@ type metadataDeleteOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteOptionGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOptionGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteOptionGroupOutput struct {
 	metadataDeleteOptionGroupOutput `json:"-" xml:"-"`
 }
@@ -3835,12 +4406,32 @@ type metadataDeleteOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteOptionGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOptionGroupOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAccountAttributesInput struct {
 	metadataDescribeAccountAttributesInput `json:"-" xml:"-"`
 }
 
 type metadataDescribeAccountAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Data returned by the DescribeAccountAttributes action.
@@ -3854,6 +4445,16 @@ type DescribeAccountAttributesOutput struct {
 
 type metadataDescribeAccountAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountAttributesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeCertificatesInput struct {
@@ -3891,6 +4492,16 @@ type metadataDescribeCertificatesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCertificatesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCertificatesInput) GoString() string {
+	return s.String()
+}
+
 // Data returned by the DescribeCertificates action.
 type DescribeCertificatesOutput struct {
 	// The list of Certificate objects for the AWS account.
@@ -3906,6 +4517,16 @@ type DescribeCertificatesOutput struct {
 
 type metadataDescribeCertificatesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCertificatesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCertificatesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBEngineVersionsInput struct {
@@ -3958,6 +4579,16 @@ type metadataDescribeDBEngineVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBEngineVersionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBEngineVersionsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBEngineVersions
 // action.
 type DescribeDBEngineVersionsOutput struct {
@@ -3974,6 +4605,16 @@ type DescribeDBEngineVersionsOutput struct {
 
 type metadataDescribeDBEngineVersionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBEngineVersionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBEngineVersionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBInstancesInput struct {
@@ -4011,6 +4652,16 @@ type metadataDescribeDBInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBInstancesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBInstances
 // action.
 type DescribeDBInstancesOutput struct {
@@ -4029,6 +4680,16 @@ type metadataDescribeDBInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBInstancesOutput) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element to DescribeDBLogFiles.
 type DescribeDBLogFilesDetails struct {
 	// A POSIX timestamp when the last log entry was written.
@@ -4045,6 +4706,16 @@ type DescribeDBLogFilesDetails struct {
 
 type metadataDescribeDBLogFilesDetails struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBLogFilesDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBLogFilesDetails) GoString() string {
+	return s.String()
 }
 
 type DescribeDBLogFilesInput struct {
@@ -4088,6 +4759,16 @@ type metadataDescribeDBLogFilesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBLogFilesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBLogFilesInput) GoString() string {
+	return s.String()
+}
+
 // The response from a call to DescribeDBLogFiles.
 type DescribeDBLogFilesOutput struct {
 	// The DB log files returned.
@@ -4101,6 +4782,16 @@ type DescribeDBLogFilesOutput struct {
 
 type metadataDescribeDBLogFilesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBLogFilesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBLogFilesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBParameterGroupsInput struct {
@@ -4136,6 +4827,16 @@ type metadataDescribeDBParameterGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBParameterGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBParameterGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBParameterGroups
 // action.
 type DescribeDBParameterGroupsOutput struct {
@@ -4152,6 +4853,16 @@ type DescribeDBParameterGroupsOutput struct {
 
 type metadataDescribeDBParameterGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBParameterGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBParameterGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBParametersInput struct {
@@ -4194,6 +4905,16 @@ type metadataDescribeDBParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBParametersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBParametersInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBParameters
 // action.
 type DescribeDBParametersOutput struct {
@@ -4210,6 +4931,16 @@ type DescribeDBParametersOutput struct {
 
 type metadataDescribeDBParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBParametersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBParametersOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBSecurityGroupsInput struct {
@@ -4240,6 +4971,16 @@ type metadataDescribeDBSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBSecurityGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSecurityGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBSecurityGroups
 // action.
 type DescribeDBSecurityGroupsOutput struct {
@@ -4256,6 +4997,16 @@ type DescribeDBSecurityGroupsOutput struct {
 
 type metadataDescribeDBSecurityGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBSecurityGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSecurityGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBSnapshotsInput struct {
@@ -4309,6 +5060,16 @@ type metadataDescribeDBSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBSnapshotsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSnapshotsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBSnapshots
 // action.
 type DescribeDBSnapshotsOutput struct {
@@ -4325,6 +5086,16 @@ type DescribeDBSnapshotsOutput struct {
 
 type metadataDescribeDBSnapshotsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBSnapshotsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSnapshotsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDBSubnetGroupsInput struct {
@@ -4355,6 +5126,16 @@ type metadataDescribeDBSubnetGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDBSubnetGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSubnetGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeDBSubnetGroups
 // action.
 type DescribeDBSubnetGroupsOutput struct {
@@ -4371,6 +5152,16 @@ type DescribeDBSubnetGroupsOutput struct {
 
 type metadataDescribeDBSubnetGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBSubnetGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSubnetGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeEngineDefaultParametersInput struct {
@@ -4401,6 +5192,16 @@ type metadataDescribeEngineDefaultParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEngineDefaultParametersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEngineDefaultParametersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeEngineDefaultParametersOutput struct {
 	// Contains the result of a successful invocation of the DescribeEngineDefaultParameters
 	// action.
@@ -4411,6 +5212,16 @@ type DescribeEngineDefaultParametersOutput struct {
 
 type metadataDescribeEngineDefaultParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEngineDefaultParametersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEngineDefaultParametersOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeEventCategoriesInput struct {
@@ -4429,6 +5240,16 @@ type metadataDescribeEventCategoriesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEventCategoriesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventCategoriesInput) GoString() string {
+	return s.String()
+}
+
 // Data returned from the DescribeEventCategories action.
 type DescribeEventCategoriesOutput struct {
 	// A list of EventCategoriesMap data types.
@@ -4439,6 +5260,16 @@ type DescribeEventCategoriesOutput struct {
 
 type metadataDescribeEventCategoriesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEventCategoriesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventCategoriesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeEventSubscriptionsInput struct {
@@ -4469,6 +5300,16 @@ type metadataDescribeEventSubscriptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEventSubscriptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventSubscriptionsInput) GoString() string {
+	return s.String()
+}
+
 // Data returned by the DescribeEventSubscriptions action.
 type DescribeEventSubscriptionsOutput struct {
 	// A list of EventSubscriptions data types.
@@ -4484,6 +5325,16 @@ type DescribeEventSubscriptionsOutput struct {
 
 type metadataDescribeEventSubscriptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEventSubscriptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventSubscriptionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeEventsInput struct {
@@ -4551,6 +5402,16 @@ type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeEvents action.
 type DescribeEventsOutput struct {
 	// A list of Event instances.
@@ -4566,6 +5427,16 @@ type DescribeEventsOutput struct {
 
 type metadataDescribeEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeOptionGroupOptionsInput struct {
@@ -4601,6 +5472,16 @@ type metadataDescribeOptionGroupOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeOptionGroupOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOptionGroupOptionsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeOptionGroupOptionsOutput struct {
 	// An optional pagination token provided by a previous request. If this parameter
 	// is specified, the response includes only records beyond the marker, up to
@@ -4615,6 +5496,16 @@ type DescribeOptionGroupOptionsOutput struct {
 
 type metadataDescribeOptionGroupOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeOptionGroupOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOptionGroupOptionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeOptionGroupsInput struct {
@@ -4655,6 +5546,16 @@ type metadataDescribeOptionGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeOptionGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOptionGroupsInput) GoString() string {
+	return s.String()
+}
+
 // List of option groups.
 type DescribeOptionGroupsOutput struct {
 	// An optional pagination token provided by a previous request. If this parameter
@@ -4670,6 +5571,16 @@ type DescribeOptionGroupsOutput struct {
 
 type metadataDescribeOptionGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeOptionGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOptionGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeOrderableDBInstanceOptionsInput struct {
@@ -4716,6 +5627,16 @@ type metadataDescribeOrderableDBInstanceOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeOrderableDBInstanceOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOrderableDBInstanceOptionsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeOrderableDBInstanceOptions
 // action.
 type DescribeOrderableDBInstanceOptionsOutput struct {
@@ -4733,6 +5654,16 @@ type DescribeOrderableDBInstanceOptionsOutput struct {
 
 type metadataDescribeOrderableDBInstanceOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeOrderableDBInstanceOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOrderableDBInstanceOptionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribePendingMaintenanceActionsInput struct {
@@ -4770,6 +5701,16 @@ type metadataDescribePendingMaintenanceActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribePendingMaintenanceActionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePendingMaintenanceActionsInput) GoString() string {
+	return s.String()
+}
+
 // Data returned from the DescribePendingMaintenanceActions action.
 type DescribePendingMaintenanceActionsOutput struct {
 	// An optional pagination token provided by a previous DescribePendingMaintenanceActions
@@ -4785,6 +5726,16 @@ type DescribePendingMaintenanceActionsOutput struct {
 
 type metadataDescribePendingMaintenanceActionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribePendingMaintenanceActionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePendingMaintenanceActionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeReservedDBInstancesInput struct {
@@ -4844,6 +5795,16 @@ type metadataDescribeReservedDBInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedDBInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedDBInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeReservedDBInstancesOfferingsInput struct {
 	// The DB instance class filter value. Specify this parameter to show only the
 	// available offerings matching the specified DB instance class.
@@ -4899,6 +5860,16 @@ type metadataDescribeReservedDBInstancesOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedDBInstancesOfferingsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedDBInstancesOfferingsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeReservedDBInstancesOfferings
 // action.
 type DescribeReservedDBInstancesOfferingsOutput struct {
@@ -4917,6 +5888,16 @@ type metadataDescribeReservedDBInstancesOfferingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedDBInstancesOfferingsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedDBInstancesOfferingsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the result of a successful invocation of the DescribeReservedDBInstances
 // action.
 type DescribeReservedDBInstancesOutput struct {
@@ -4933,6 +5914,16 @@ type DescribeReservedDBInstancesOutput struct {
 
 type metadataDescribeReservedDBInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReservedDBInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedDBInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type DownloadDBLogFilePortionInput struct {
@@ -4980,6 +5971,16 @@ type metadataDownloadDBLogFilePortionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DownloadDBLogFilePortionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DownloadDBLogFilePortionInput) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element to DownloadDBLogFilePortion.
 type DownloadDBLogFilePortionOutput struct {
 	// Boolean value that if true, indicates there is more data to be downloaded.
@@ -4997,6 +5998,16 @@ type DownloadDBLogFilePortionOutput struct {
 
 type metadataDownloadDBLogFilePortionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DownloadDBLogFilePortionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DownloadDBLogFilePortionOutput) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the following actions:
@@ -5024,6 +6035,16 @@ type metadataEC2SecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EC2SecurityGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EC2SecurityGroup) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element in the following actions:
 //
 //   CreateDBInstance   DescribeDBInstances   DeleteDBInstance
@@ -5039,6 +6060,16 @@ type Endpoint struct {
 
 type metadataEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Endpoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Endpoint) GoString() string {
+	return s.String()
 }
 
 // Contains the result of a successful invocation of the DescribeEngineDefaultParameters
@@ -5061,6 +6092,16 @@ type EngineDefaults struct {
 
 type metadataEngineDefaults struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EngineDefaults) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EngineDefaults) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the DescribeEvents action.
@@ -5087,6 +6128,16 @@ type metadataEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Event) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Event) GoString() string {
+	return s.String()
+}
+
 // Contains the results of a successful invocation of the DescribeEventCategories
 // action.
 type EventCategoriesMap struct {
@@ -5101,6 +6152,16 @@ type EventCategoriesMap struct {
 
 type metadataEventCategoriesMap struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EventCategoriesMap) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EventCategoriesMap) GoString() string {
+	return s.String()
 }
 
 // Contains the results of a successful invocation of the DescribeEventSubscriptions
@@ -5150,6 +6211,16 @@ type metadataEventSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EventSubscription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EventSubscription) GoString() string {
+	return s.String()
+}
+
 type Filter struct {
 	// This parameter is not currently supported.
 	Name *string `type:"string" required:"true"`
@@ -5162,6 +6233,16 @@ type Filter struct {
 
 type metadataFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Filter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Filter) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the DescribeDBSecurityGroups
@@ -5181,6 +6262,16 @@ type metadataIPRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IPRange) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IPRange) GoString() string {
+	return s.String()
+}
+
 type ListTagsForResourceInput struct {
 	// This parameter is not currently supported.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
@@ -5197,6 +6288,16 @@ type metadataListTagsForResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
 type ListTagsForResourceOutput struct {
 	// List of tags returned by the ListTagsForResource operation.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
@@ -5206,6 +6307,16 @@ type ListTagsForResourceOutput struct {
 
 type metadataListTagsForResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyDBInstanceInput struct {
@@ -5529,6 +6640,16 @@ type metadataModifyDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyDBInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBInstanceInput) GoString() string {
+	return s.String()
+}
+
 type ModifyDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -5541,6 +6662,16 @@ type ModifyDBInstanceOutput struct {
 
 type metadataModifyDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBInstanceOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyDBParameterGroupInput struct {
@@ -5572,6 +6703,16 @@ type metadataModifyDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyDBParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 type ModifyDBSubnetGroupInput struct {
 	// The description for the DB subnet group.
 	DBSubnetGroupDescription *string `type:"string"`
@@ -5594,6 +6735,16 @@ type metadataModifyDBSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyDBSubnetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBSubnetGroupInput) GoString() string {
+	return s.String()
+}
+
 type ModifyDBSubnetGroupOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -5607,6 +6758,16 @@ type ModifyDBSubnetGroupOutput struct {
 
 type metadataModifyDBSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBSubnetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBSubnetGroupOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyEventSubscriptionInput struct {
@@ -5643,6 +6804,16 @@ type metadataModifyEventSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyEventSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyEventSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 type ModifyEventSubscriptionOutput struct {
 	// Contains the results of a successful invocation of the DescribeEventSubscriptions
 	// action.
@@ -5653,6 +6824,16 @@ type ModifyEventSubscriptionOutput struct {
 
 type metadataModifyEventSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyEventSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyEventSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyOptionGroupInput struct {
@@ -5681,6 +6862,16 @@ type metadataModifyOptionGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyOptionGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyOptionGroupInput) GoString() string {
+	return s.String()
+}
+
 type ModifyOptionGroupOutput struct {
 	OptionGroup *OptionGroup `type:"structure"`
 
@@ -5689,6 +6880,16 @@ type ModifyOptionGroupOutput struct {
 
 type metadataModifyOptionGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyOptionGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyOptionGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Option details.
@@ -5726,6 +6927,16 @@ type metadataOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Option) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Option) GoString() string {
+	return s.String()
+}
+
 // A list of all available options
 type OptionConfiguration struct {
 	// A list of DBSecurityGroupMemebrship name strings used for this option.
@@ -5748,6 +6959,16 @@ type OptionConfiguration struct {
 
 type metadataOptionConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OptionConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionConfiguration) GoString() string {
+	return s.String()
 }
 
 type OptionGroup struct {
@@ -5785,6 +7006,16 @@ type metadataOptionGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s OptionGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionGroup) GoString() string {
+	return s.String()
+}
+
 // Provides information on the option groups the DB instance is a member of.
 type OptionGroupMembership struct {
 	// The name of the option group that the instance belongs to.
@@ -5799,6 +7030,16 @@ type OptionGroupMembership struct {
 
 type metadataOptionGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OptionGroupMembership) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionGroupMembership) GoString() string {
+	return s.String()
 }
 
 // Available option.
@@ -5849,6 +7090,16 @@ type metadataOptionGroupOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s OptionGroupOption) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionGroupOption) GoString() string {
+	return s.String()
+}
+
 // Option group option settings are used to display settings available for each
 // option with their default values and other information. These values are
 // used with the DescribeOptionGroupOptions action.
@@ -5877,6 +7128,16 @@ type OptionGroupOptionSetting struct {
 
 type metadataOptionGroupOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OptionGroupOptionSetting) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionGroupOptionSetting) GoString() string {
+	return s.String()
 }
 
 // Option settings are the actual settings being applied or configured for that
@@ -5917,6 +7178,16 @@ type OptionSetting struct {
 
 type metadataOptionSetting struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OptionSetting) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionSetting) GoString() string {
+	return s.String()
 }
 
 // Contains a list of available options for a DB instance
@@ -5964,6 +7235,16 @@ type metadataOrderableDBInstanceOption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s OrderableDBInstanceOption) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OrderableDBInstanceOption) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a request parameter in the ModifyDBParameterGroup
 // and ResetDBParameterGroup actions.
 //
@@ -6009,6 +7290,16 @@ type metadataParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Parameter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Parameter) GoString() string {
+	return s.String()
+}
+
 // Provides information about a pending maintenance action for a resource.
 type PendingMaintenanceAction struct {
 	// The type of pending maintenance action that is available for the resource.
@@ -6044,6 +7335,16 @@ type PendingMaintenanceAction struct {
 
 type metadataPendingMaintenanceAction struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PendingMaintenanceAction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PendingMaintenanceAction) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the ModifyDBInstance action.
@@ -6093,6 +7394,16 @@ type metadataPendingModifiedValues struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PendingModifiedValues) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PendingModifiedValues) GoString() string {
+	return s.String()
+}
+
 type PromoteReadReplicaInput struct {
 	// The number of days to retain automated backups. Setting this parameter to
 	// a positive number enables backups. Setting this parameter to 0 disables automated
@@ -6134,6 +7445,16 @@ type metadataPromoteReadReplicaInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PromoteReadReplicaInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PromoteReadReplicaInput) GoString() string {
+	return s.String()
+}
+
 type PromoteReadReplicaOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -6146,6 +7467,16 @@ type PromoteReadReplicaOutput struct {
 
 type metadataPromoteReadReplicaOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PromoteReadReplicaOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PromoteReadReplicaOutput) GoString() string {
+	return s.String()
 }
 
 type PurchaseReservedDBInstancesOfferingInput struct {
@@ -6174,6 +7505,16 @@ type metadataPurchaseReservedDBInstancesOfferingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PurchaseReservedDBInstancesOfferingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseReservedDBInstancesOfferingInput) GoString() string {
+	return s.String()
+}
+
 type PurchaseReservedDBInstancesOfferingOutput struct {
 	// This data type is used as a response element in the DescribeReservedDBInstances
 	// and PurchaseReservedDBInstancesOffering actions.
@@ -6184,6 +7525,16 @@ type PurchaseReservedDBInstancesOfferingOutput struct {
 
 type metadataPurchaseReservedDBInstancesOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PurchaseReservedDBInstancesOfferingOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseReservedDBInstancesOfferingOutput) GoString() string {
+	return s.String()
 }
 
 type RebootDBInstanceInput struct {
@@ -6208,6 +7559,16 @@ type metadataRebootDBInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RebootDBInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootDBInstanceInput) GoString() string {
+	return s.String()
+}
+
 type RebootDBInstanceOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -6220,6 +7581,16 @@ type RebootDBInstanceOutput struct {
 
 type metadataRebootDBInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RebootDBInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootDBInstanceOutput) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the DescribeReservedDBInstances
@@ -6238,6 +7609,16 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecurringCharge) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecurringCharge) GoString() string {
+	return s.String()
+}
+
 type RemoveSourceIdentifierFromSubscriptionInput struct {
 	// The source identifier to be removed from the subscription, such as the DB
 	// instance identifier for a DB instance or the name of a security group.
@@ -6254,6 +7635,16 @@ type metadataRemoveSourceIdentifierFromSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 type RemoveSourceIdentifierFromSubscriptionOutput struct {
 	// Contains the results of a successful invocation of the DescribeEventSubscriptions
 	// action.
@@ -6264,6 +7655,16 @@ type RemoveSourceIdentifierFromSubscriptionOutput struct {
 
 type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type RemoveTagsFromResourceInput struct {
@@ -6282,12 +7683,32 @@ type metadataRemoveTagsFromResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveTagsFromResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceInput) GoString() string {
+	return s.String()
+}
+
 type RemoveTagsFromResourceOutput struct {
 	metadataRemoveTagsFromResourceOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsFromResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceOutput) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the DescribeReservedDBInstances
@@ -6342,6 +7763,16 @@ type metadataReservedDBInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedDBInstance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedDBInstance) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element in the DescribeReservedDBInstancesOfferings
 // action.
 type ReservedDBInstancesOffering struct {
@@ -6380,6 +7811,16 @@ type ReservedDBInstancesOffering struct {
 
 type metadataReservedDBInstancesOffering struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReservedDBInstancesOffering) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedDBInstancesOffering) GoString() string {
+	return s.String()
 }
 
 type ResetDBParameterGroupInput struct {
@@ -6422,6 +7863,16 @@ type metadataResetDBParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetDBParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetDBParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 // Describes the pending maintenance actions for a resource.
 type ResourcePendingMaintenanceActions struct {
 	// A list that provides details about the pending maintenance actions for the
@@ -6436,6 +7887,16 @@ type ResourcePendingMaintenanceActions struct {
 
 type metadataResourcePendingMaintenanceActions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourcePendingMaintenanceActions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResourcePendingMaintenanceActions) GoString() string {
+	return s.String()
 }
 
 type RestoreDBInstanceFromDBSnapshotInput struct {
@@ -6579,6 +8040,16 @@ type metadataRestoreDBInstanceFromDBSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RestoreDBInstanceFromDBSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBInstanceFromDBSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type RestoreDBInstanceFromDBSnapshotOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -6591,6 +8062,16 @@ type RestoreDBInstanceFromDBSnapshotOutput struct {
 
 type metadataRestoreDBInstanceFromDBSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreDBInstanceFromDBSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBInstanceFromDBSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 type RestoreDBInstanceToPointInTimeInput struct {
@@ -6749,6 +8230,16 @@ type metadataRestoreDBInstanceToPointInTimeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RestoreDBInstanceToPointInTimeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBInstanceToPointInTimeInput) GoString() string {
+	return s.String()
+}
+
 type RestoreDBInstanceToPointInTimeOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -6761,6 +8252,16 @@ type RestoreDBInstanceToPointInTimeOutput struct {
 
 type metadataRestoreDBInstanceToPointInTimeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreDBInstanceToPointInTimeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBInstanceToPointInTimeOutput) GoString() string {
+	return s.String()
 }
 
 type RevokeDBSecurityGroupIngressInput struct {
@@ -6796,6 +8297,16 @@ type metadataRevokeDBSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RevokeDBSecurityGroupIngressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeDBSecurityGroupIngressInput) GoString() string {
+	return s.String()
+}
+
 type RevokeDBSecurityGroupIngressOutput struct {
 	// Contains the result of a successful invocation of the following actions:
 	//
@@ -6809,6 +8320,16 @@ type RevokeDBSecurityGroupIngressOutput struct {
 
 type metadataRevokeDBSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeDBSecurityGroupIngressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeDBSecurityGroupIngressOutput) GoString() string {
+	return s.String()
 }
 
 // This data type is used as a response element in the DescribeDBSubnetGroups
@@ -6832,6 +8353,16 @@ type metadataSubnet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Subnet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Subnet) GoString() string {
+	return s.String()
+}
+
 // Metadata assigned to an Amazon RDS resource consisting of a key-value pair.
 type Tag struct {
 	// A key is the required name of the tag. The string value can be from 1 to
@@ -6853,6 +8384,16 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element for queries on VPC security
 // group membership.
 type VPCSecurityGroupMembership struct {
@@ -6867,4 +8408,14 @@ type VPCSecurityGroupMembership struct {
 
 type metadataVPCSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPCSecurityGroupMembership) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCSecurityGroupMembership) GoString() string {
+	return s.String()
 }

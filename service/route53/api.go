@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAssociateVPCWithHostedZone = "AssociateVPCWithHostedZone"
@@ -1124,6 +1125,16 @@ type metadataAliasTarget struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AliasTarget) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AliasTarget) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the request to associate a
 // VPC with an hosted zone.
 type AssociateVPCWithHostedZoneInput struct {
@@ -1146,6 +1157,16 @@ type metadataAssociateVPCWithHostedZoneInput struct {
 	SDKShapeTraits bool `locationName:"AssociateVPCWithHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s AssociateVPCWithHostedZoneInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateVPCWithHostedZoneInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the response information for the request.
 type AssociateVPCWithHostedZoneOutput struct {
 	// A complex type that contains the ID, the status, and the date and time of
@@ -1157,6 +1178,16 @@ type AssociateVPCWithHostedZoneOutput struct {
 
 type metadataAssociateVPCWithHostedZoneOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateVPCWithHostedZoneOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateVPCWithHostedZoneOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the information for each change in a change
@@ -1177,6 +1208,16 @@ type metadataChange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Change) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Change) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains an optional comment and the changes that you
 // want to make with a change batch request.
 type ChangeBatch struct {
@@ -1192,6 +1233,16 @@ type ChangeBatch struct {
 
 type metadataChangeBatch struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeBatch) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeBatch) GoString() string {
+	return s.String()
 }
 
 // A complex type that describes change information about changes made to your
@@ -1230,6 +1281,16 @@ type metadataChangeInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChangeInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeInfo) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains a change batch.
 type ChangeResourceRecordSetsInput struct {
 	// A complex type that contains an optional comment and the Changes element.
@@ -1246,6 +1307,16 @@ type metadataChangeResourceRecordSetsInput struct {
 	SDKShapeTraits bool `locationName:"ChangeResourceRecordSetsRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s ChangeResourceRecordSetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeResourceRecordSetsInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the response for the request.
 type ChangeResourceRecordSetsOutput struct {
 	// A complex type that contains information about changes made to your hosted
@@ -1260,6 +1331,16 @@ type ChangeResourceRecordSetsOutput struct {
 
 type metadataChangeResourceRecordSetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeResourceRecordSetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeResourceRecordSetsOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type containing information about a request to add, change, or
@@ -1289,6 +1370,16 @@ type metadataChangeTagsForResourceInput struct {
 	SDKShapeTraits bool `locationName:"ChangeTagsForResourceRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s ChangeTagsForResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
 // Empty response for the request.
 type ChangeTagsForResourceOutput struct {
 	metadataChangeTagsForResourceOutput `json:"-" xml:"-"`
@@ -1296,6 +1387,16 @@ type ChangeTagsForResourceOutput struct {
 
 type metadataChangeTagsForResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeTagsForResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeTagsForResourceOutput) GoString() string {
+	return s.String()
 }
 
 // >A complex type that contains information about the request to create a health
@@ -1321,6 +1422,16 @@ type metadataCreateHealthCheckInput struct {
 	SDKShapeTraits bool `locationName:"CreateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s CreateHealthCheckInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateHealthCheckInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the response information for the new health check.
 type CreateHealthCheckOutput struct {
 	// A complex type that contains identifying information about the health check.
@@ -1334,6 +1445,16 @@ type CreateHealthCheckOutput struct {
 
 type metadataCreateHealthCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateHealthCheckOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateHealthCheckOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the request to create a hosted
@@ -1378,6 +1499,16 @@ type metadataCreateHostedZoneInput struct {
 	SDKShapeTraits bool `locationName:"CreateHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s CreateHostedZoneInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateHostedZoneInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the response information for the new hosted zone.
 type CreateHostedZoneOutput struct {
 	// A complex type that contains information about the request to create a hosted
@@ -1403,6 +1534,16 @@ type metadataCreateHostedZoneOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateHostedZoneOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateHostedZoneOutput) GoString() string {
+	return s.String()
+}
+
 type CreateReusableDelegationSetInput struct {
 	// A unique string that identifies the request and that allows failed CreateReusableDelegationSet
 	// requests to be retried without the risk of executing the operation twice.
@@ -1425,6 +1566,16 @@ type metadataCreateReusableDelegationSetInput struct {
 	SDKShapeTraits bool `locationName:"CreateReusableDelegationSetRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s CreateReusableDelegationSetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateReusableDelegationSetInput) GoString() string {
+	return s.String()
+}
+
 type CreateReusableDelegationSetOutput struct {
 	// A complex type that contains name server information.
 	DelegationSet *DelegationSet `type:"structure" required:"true"`
@@ -1437,6 +1588,16 @@ type CreateReusableDelegationSetOutput struct {
 
 type metadataCreateReusableDelegationSetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateReusableDelegationSetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateReusableDelegationSetOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains name server information.
@@ -1457,6 +1618,16 @@ type metadataDelegationSet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DelegationSet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DelegationSet) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the request information for delete health check.
 type DeleteHealthCheckInput struct {
 	// The ID of the health check to delete.
@@ -1469,6 +1640,16 @@ type metadataDeleteHealthCheckInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteHealthCheckInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHealthCheckInput) GoString() string {
+	return s.String()
+}
+
 // Empty response for the request.
 type DeleteHealthCheckOutput struct {
 	metadataDeleteHealthCheckOutput `json:"-" xml:"-"`
@@ -1476,6 +1657,16 @@ type DeleteHealthCheckOutput struct {
 
 type metadataDeleteHealthCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteHealthCheckOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHealthCheckOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the hosted zone that you want
@@ -1491,6 +1682,16 @@ type metadataDeleteHostedZoneInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteHostedZoneInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHostedZoneInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the response information for the request.
 type DeleteHostedZoneOutput struct {
 	// A complex type that contains the ID, the status, and the date and time of
@@ -1502,6 +1703,16 @@ type DeleteHostedZoneOutput struct {
 
 type metadataDeleteHostedZoneOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteHostedZoneOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHostedZoneOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type containing the information for the delete request.
@@ -1516,6 +1727,16 @@ type metadataDeleteReusableDelegationSetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteReusableDelegationSetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteReusableDelegationSetInput) GoString() string {
+	return s.String()
+}
+
 // Empty response for the request.
 type DeleteReusableDelegationSetOutput struct {
 	metadataDeleteReusableDelegationSetOutput `json:"-" xml:"-"`
@@ -1523,6 +1744,16 @@ type DeleteReusableDelegationSetOutput struct {
 
 type metadataDeleteReusableDelegationSetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteReusableDelegationSetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteReusableDelegationSetOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the request to disassociate
@@ -1546,6 +1777,16 @@ type metadataDisassociateVPCFromHostedZoneInput struct {
 	SDKShapeTraits bool `locationName:"DisassociateVPCFromHostedZoneRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s DisassociateVPCFromHostedZoneInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateVPCFromHostedZoneInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing the response information for the request.
 type DisassociateVPCFromHostedZoneOutput struct {
 	// A complex type that contains the ID, the status, and the date and time of
@@ -1557,6 +1798,16 @@ type DisassociateVPCFromHostedZoneOutput struct {
 
 type metadataDisassociateVPCFromHostedZoneOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateVPCFromHostedZoneOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateVPCFromHostedZoneOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about a geo location.
@@ -1589,6 +1840,16 @@ type GeoLocation struct {
 
 type metadataGeoLocation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GeoLocation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GeoLocation) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about a GeoLocation.
@@ -1627,6 +1888,16 @@ type metadataGeoLocationDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GeoLocationDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GeoLocationDetails) GoString() string {
+	return s.String()
+}
+
 // The input for a GetChange request.
 type GetChangeInput struct {
 	// The ID of the change batch request. The value that you specify here is the
@@ -1639,6 +1910,16 @@ type GetChangeInput struct {
 
 type metadataGetChangeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetChangeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetChangeInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the ChangeInfo element.
@@ -1655,6 +1936,16 @@ type metadataGetChangeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetChangeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetChangeOutput) GoString() string {
+	return s.String()
+}
+
 // Empty request.
 type GetCheckerIPRangesInput struct {
 	metadataGetCheckerIPRangesInput `json:"-" xml:"-"`
@@ -1662,6 +1953,16 @@ type GetCheckerIPRangesInput struct {
 
 type metadataGetCheckerIPRangesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCheckerIPRangesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCheckerIPRangesInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the CheckerIpRanges element.
@@ -1675,6 +1976,16 @@ type GetCheckerIPRangesOutput struct {
 
 type metadataGetCheckerIPRangesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCheckerIPRangesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCheckerIPRangesOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the request to get a geo location.
@@ -1709,6 +2020,16 @@ type metadataGetGeoLocationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetGeoLocationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetGeoLocationInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing information about the specified geo location.
 type GetGeoLocationOutput struct {
 	// A complex type that contains the information about the specified geo location.
@@ -1721,6 +2042,16 @@ type metadataGetGeoLocationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetGeoLocationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetGeoLocationOutput) GoString() string {
+	return s.String()
+}
+
 // To retrieve a count of all your health checks, send a GET request to the
 // 2013-04-01/healthcheckcount resource.
 type GetHealthCheckCountInput struct {
@@ -1729,6 +2060,16 @@ type GetHealthCheckCountInput struct {
 
 type metadataGetHealthCheckCountInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetHealthCheckCountInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckCountInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the count of health checks associated with the
@@ -1744,6 +2085,16 @@ type metadataGetHealthCheckCountOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHealthCheckCountOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckCountOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the request to get a health
 // check.
 type GetHealthCheckInput struct {
@@ -1755,6 +2106,16 @@ type GetHealthCheckInput struct {
 
 type metadataGetHealthCheckInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetHealthCheckInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the request to get the most
@@ -1771,6 +2132,16 @@ type metadataGetHealthCheckLastFailureReasonInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHealthCheckLastFailureReasonInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckLastFailureReasonInput) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the most recent failure for
 // the specified health check.
 type GetHealthCheckLastFailureReasonOutput struct {
@@ -1785,6 +2156,16 @@ type metadataGetHealthCheckLastFailureReasonOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHealthCheckLastFailureReasonOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckLastFailureReasonOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing information about the specified health check.
 type GetHealthCheckOutput struct {
 	// A complex type that contains the information about the specified health check.
@@ -1795,6 +2176,16 @@ type GetHealthCheckOutput struct {
 
 type metadataGetHealthCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetHealthCheckOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the request to get health
@@ -1811,6 +2202,16 @@ type metadataGetHealthCheckStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHealthCheckStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckStatusInput) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the status of the specified
 // health check.
 type GetHealthCheckStatusOutput struct {
@@ -1825,6 +2226,16 @@ type metadataGetHealthCheckStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHealthCheckStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHealthCheckStatusOutput) GoString() string {
+	return s.String()
+}
+
 // To retrieve a count of all your hosted zones, send a GET request to the 2013-04-01/hostedzonecount
 // resource.
 type GetHostedZoneCountInput struct {
@@ -1833,6 +2244,16 @@ type GetHostedZoneCountInput struct {
 
 type metadataGetHostedZoneCountInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetHostedZoneCountInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHostedZoneCountInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the count of hosted zones associated with the
@@ -1848,6 +2269,16 @@ type metadataGetHostedZoneCountOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHostedZoneCountOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHostedZoneCountOutput) GoString() string {
+	return s.String()
+}
+
 // The input for a GetHostedZone request.
 type GetHostedZoneInput struct {
 	// The ID of the hosted zone for which you want to get a list of the name servers
@@ -1859,6 +2290,16 @@ type GetHostedZoneInput struct {
 
 type metadataGetHostedZoneInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetHostedZoneInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHostedZoneInput) GoString() string {
+	return s.String()
 }
 
 // A complex type containing information about the specified hosted zone.
@@ -1881,6 +2322,16 @@ type metadataGetHostedZoneOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetHostedZoneOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetHostedZoneOutput) GoString() string {
+	return s.String()
+}
+
 // The input for a GetReusableDelegationSet request.
 type GetReusableDelegationSetInput struct {
 	// The ID of the reusable delegation set for which you want to get a list of
@@ -1892,6 +2343,16 @@ type GetReusableDelegationSetInput struct {
 
 type metadataGetReusableDelegationSetInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetReusableDelegationSetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetReusableDelegationSetInput) GoString() string {
+	return s.String()
 }
 
 // A complex type containing information about the specified reusable delegation
@@ -1906,6 +2367,16 @@ type GetReusableDelegationSetOutput struct {
 
 type metadataGetReusableDelegationSetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetReusableDelegationSetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetReusableDelegationSetOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains identifying information about the health check.
@@ -1929,6 +2400,16 @@ type HealthCheck struct {
 
 type metadataHealthCheck struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s HealthCheck) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HealthCheck) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the health check configuration.
@@ -1980,6 +2461,16 @@ type metadataHealthCheckConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HealthCheckConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HealthCheckConfig) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains the IP address of a Route 53 health checker
 // and the reason for the health check status.
 type HealthCheckObservation struct {
@@ -1995,6 +2486,16 @@ type HealthCheckObservation struct {
 
 type metadataHealthCheckObservation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s HealthCheckObservation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HealthCheckObservation) GoString() string {
+	return s.String()
 }
 
 // A complex type that contain information about the specified hosted zone.
@@ -2028,6 +2529,16 @@ type metadataHostedZone struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HostedZone) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HostedZone) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains an optional comment about your hosted zone.
 // If you don't want to specify a comment, you can omit the HostedZoneConfig
 // and Comment elements from the XML document.
@@ -2046,6 +2557,16 @@ type HostedZoneConfig struct {
 
 type metadataHostedZoneConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s HostedZoneConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HostedZoneConfig) GoString() string {
+	return s.String()
 }
 
 // The input for a ListGeoLocations request.
@@ -2082,6 +2603,16 @@ type ListGeoLocationsInput struct {
 
 type metadataListGeoLocationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListGeoLocationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGeoLocationsInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the geo locations that are
@@ -2126,6 +2657,16 @@ type metadataListGeoLocationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListGeoLocationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGeoLocationsOutput) GoString() string {
+	return s.String()
+}
+
 // To retrieve a list of your health checks, send a GET request to the 2013-04-01/healthcheck
 // resource. The response to this request includes a HealthChecks element with
 // zero or more HealthCheck child elements. By default, the list of health checks
@@ -2149,6 +2690,16 @@ type ListHealthChecksInput struct {
 
 type metadataListHealthChecksInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListHealthChecksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListHealthChecksInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the response for the request.
@@ -2188,6 +2739,16 @@ type metadataListHealthChecksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListHealthChecksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListHealthChecksOutput) GoString() string {
+	return s.String()
+}
+
 // To retrieve a list of your hosted zones in lexicographic order, send a GET
 // request to the 2013-04-01/hostedzonesbyname resource. The response to this
 // request includes a HostedZones element with zero or more HostedZone child
@@ -2222,6 +2783,16 @@ type ListHostedZonesByNameInput struct {
 
 type metadataListHostedZonesByNameInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListHostedZonesByNameInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListHostedZonesByNameInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the response for the request.
@@ -2272,6 +2843,16 @@ type metadataListHostedZonesByNameOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListHostedZonesByNameOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListHostedZonesByNameOutput) GoString() string {
+	return s.String()
+}
+
 // To retrieve a list of your hosted zones, send a GET request to the 2013-04-01/hostedzone
 // resource. The response to this request includes a HostedZones element with
 // zero or more HostedZone child elements. By default, the list of hosted zones
@@ -2300,6 +2881,16 @@ type ListHostedZonesInput struct {
 
 type metadataListHostedZonesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListHostedZonesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListHostedZonesInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the response for the request.
@@ -2337,6 +2928,16 @@ type ListHostedZonesOutput struct {
 
 type metadataListHostedZonesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListHostedZonesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListHostedZonesOutput) GoString() string {
+	return s.String()
 }
 
 // The input for a ListResourceRecordSets request.
@@ -2377,6 +2978,16 @@ type ListResourceRecordSetsInput struct {
 
 type metadataListResourceRecordSetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListResourceRecordSetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListResourceRecordSetsInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the resource record sets that
@@ -2420,6 +3031,16 @@ type metadataListResourceRecordSetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListResourceRecordSetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListResourceRecordSetsOutput) GoString() string {
+	return s.String()
+}
+
 // To retrieve a list of your reusable delegation sets, send a GET request to
 // the 2013-04-01/delegationset resource. The response to this request includes
 // a DelegationSets element with zero or more DelegationSet child elements.
@@ -2445,6 +3066,16 @@ type ListReusableDelegationSetsInput struct {
 
 type metadataListReusableDelegationSetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListReusableDelegationSetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListReusableDelegationSetsInput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the response for the request.
@@ -2486,6 +3117,16 @@ type metadataListReusableDelegationSetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListReusableDelegationSetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListReusableDelegationSetsOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing information about a request for a list of the tags
 // that are associated with an individual resource.
 type ListTagsForResourceInput struct {
@@ -2506,6 +3147,16 @@ type metadataListTagsForResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing tags for the specified resource.
 type ListTagsForResourceOutput struct {
 	// A ResourceTagSet containing tags associated with the specified resource.
@@ -2516,6 +3167,16 @@ type ListTagsForResourceOutput struct {
 
 type metadataListTagsForResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type containing information about a request for a list of the tags
@@ -2539,6 +3200,16 @@ type metadataListTagsForResourcesInput struct {
 	SDKShapeTraits bool `locationName:"ListTagsForResourcesRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s ListTagsForResourcesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourcesInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing tags for the specified resources.
 type ListTagsForResourcesOutput struct {
 	// A list of ResourceTagSets containing tags associated with the specified resources.
@@ -2549,6 +3220,16 @@ type ListTagsForResourcesOutput struct {
 
 type metadataListTagsForResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourcesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourcesOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains the value of the Value element for the current
@@ -2562,6 +3243,16 @@ type ResourceRecord struct {
 
 type metadataResourceRecord struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceRecord) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResourceRecord) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the current resource record
@@ -2635,6 +3326,16 @@ type metadataResourceRecordSet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResourceRecordSet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResourceRecordSet) GoString() string {
+	return s.String()
+}
+
 // A complex type containing a resource and its associated tags.
 type ResourceTagSet struct {
 	// The ID for the specified resource.
@@ -2657,6 +3358,16 @@ type metadataResourceTagSet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResourceTagSet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResourceTagSet) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the health check status for
 // the current observation.
 type StatusReport struct {
@@ -2676,6 +3387,16 @@ type metadataStatusReport struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StatusReport) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StatusReport) GoString() string {
+	return s.String()
+}
+
 // A single tag containing a key and value.
 type Tag struct {
 	// The key for a Tag.
@@ -2689,6 +3410,16 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
 
 // >A complex type that contains information about the request to update a health
@@ -2753,6 +3484,16 @@ type metadataUpdateHealthCheckInput struct {
 	SDKShapeTraits bool `locationName:"UpdateHealthCheckRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s UpdateHealthCheckInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHealthCheckInput) GoString() string {
+	return s.String()
+}
+
 type UpdateHealthCheckOutput struct {
 	// A complex type that contains identifying information about the health check.
 	HealthCheck *HealthCheck `type:"structure" required:"true"`
@@ -2762,6 +3503,16 @@ type UpdateHealthCheckOutput struct {
 
 type metadataUpdateHealthCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateHealthCheckOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHealthCheckOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the request to update a hosted
@@ -2780,6 +3531,16 @@ type metadataUpdateHostedZoneCommentInput struct {
 	SDKShapeTraits bool `locationName:"UpdateHostedZoneCommentRequest" type:"structure" xmlURI:"https://route53.amazonaws.com/doc/2013-04-01/"`
 }
 
+// String returns the string representation
+func (s UpdateHostedZoneCommentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHostedZoneCommentInput) GoString() string {
+	return s.String()
+}
+
 // A complex type containing information about the specified hosted zone after
 // the update.
 type UpdateHostedZoneCommentOutput struct {
@@ -2793,6 +3554,16 @@ type metadataUpdateHostedZoneCommentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateHostedZoneCommentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHostedZoneCommentOutput) GoString() string {
+	return s.String()
+}
+
 type VPC struct {
 	// A VPC ID
 	VPCID *string `locationName:"VPCId" type:"string"`
@@ -2804,4 +3575,14 @@ type VPC struct {
 
 type metadataVPC struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPC) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPC) GoString() string {
+	return s.String()
 }

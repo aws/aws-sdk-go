@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddTagsToResource = "AddTagsToResource"
@@ -1314,6 +1315,16 @@ type metadataAddTagsToResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsToResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceInput) GoString() string {
+	return s.String()
+}
+
 // Represents the input of an AuthorizeCacheSecurityGroupIngress action.
 type AuthorizeCacheSecurityGroupIngressInput struct {
 	// The cache security group which will allow network ingress.
@@ -1335,6 +1346,16 @@ type metadataAuthorizeCacheSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AuthorizeCacheSecurityGroupIngressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeCacheSecurityGroupIngressInput) GoString() string {
+	return s.String()
+}
+
 type AuthorizeCacheSecurityGroupIngressOutput struct {
 	// Represents the output of one of the following actions:
 	//
@@ -1348,6 +1369,16 @@ type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AuthorizeCacheSecurityGroupIngressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeCacheSecurityGroupIngressOutput) GoString() string {
+	return s.String()
+}
+
 // Describes an Availability Zone in which the cache cluster is launched.
 type AvailabilityZone struct {
 	// The name of the Availability Zone.
@@ -1358,6 +1389,16 @@ type AvailabilityZone struct {
 
 type metadataAvailabilityZone struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AvailabilityZone) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AvailabilityZone) GoString() string {
+	return s.String()
 }
 
 // Contains all of the attributes of a specific cache cluster.
@@ -1481,6 +1522,16 @@ type metadataCacheCluster struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheCluster) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheCluster) GoString() string {
+	return s.String()
+}
+
 // Provides all of the details about a particular cache engine version.
 type CacheEngineVersion struct {
 	// The description of the cache engine.
@@ -1503,6 +1554,16 @@ type CacheEngineVersion struct {
 
 type metadataCacheEngineVersion struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CacheEngineVersion) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheEngineVersion) GoString() string {
+	return s.String()
 }
 
 // Represents an individual cache node within a cache cluster. Each cache node
@@ -1559,6 +1620,16 @@ type metadataCacheNode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheNode) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheNode) GoString() string {
+	return s.String()
+}
+
 // A parameter that has a different value for each cache node type it is applied
 // to. For example, in a Redis cache cluster, a cache.m1.large cache node type
 // would have a larger maxmemory value than a cache.m1.small type.
@@ -1596,6 +1667,16 @@ type metadataCacheNodeTypeSpecificParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheNodeTypeSpecificParameter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheNodeTypeSpecificParameter) GoString() string {
+	return s.String()
+}
+
 // A value that applies only to a certain cache node type.
 type CacheNodeTypeSpecificValue struct {
 	// The cache node type for which this value applies.
@@ -1609,6 +1690,16 @@ type CacheNodeTypeSpecificValue struct {
 
 type metadataCacheNodeTypeSpecificValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CacheNodeTypeSpecificValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheNodeTypeSpecificValue) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a CreateCacheParameterGroup action.
@@ -1630,6 +1721,16 @@ type metadataCacheParameterGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheParameterGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheParameterGroup) GoString() string {
+	return s.String()
+}
+
 // Represents the output of one of the following actions:
 //
 //   ModifyCacheParameterGroup   ResetCacheParameterGroup
@@ -1642,6 +1743,16 @@ type CacheParameterGroupNameMessage struct {
 
 type metadataCacheParameterGroupNameMessage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CacheParameterGroupNameMessage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheParameterGroupNameMessage) GoString() string {
+	return s.String()
 }
 
 // The status of the cache parameter group.
@@ -1661,6 +1772,16 @@ type CacheParameterGroupStatus struct {
 
 type metadataCacheParameterGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CacheParameterGroupStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheParameterGroupStatus) GoString() string {
+	return s.String()
 }
 
 // Represents the output of one of the following actions:
@@ -1687,6 +1808,16 @@ type metadataCacheSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheSecurityGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheSecurityGroup) GoString() string {
+	return s.String()
+}
+
 // Represents a cache cluster's status within a particular cache security group.
 type CacheSecurityGroupMembership struct {
 	// The name of the cache security group.
@@ -1702,6 +1833,16 @@ type CacheSecurityGroupMembership struct {
 
 type metadataCacheSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CacheSecurityGroupMembership) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheSecurityGroupMembership) GoString() string {
+	return s.String()
 }
 
 // Represents the output of one of the following actions:
@@ -1728,6 +1869,16 @@ type metadataCacheSubnetGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheSubnetGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheSubnetGroup) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a CopySnapshotMessage action.
 type CopySnapshotInput struct {
 	// The name of an existing snapshot from which to copy.
@@ -1743,6 +1894,16 @@ type metadataCopySnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CopySnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopySnapshotInput) GoString() string {
+	return s.String()
+}
+
 type CopySnapshotOutput struct {
 	// Represents a copy of an entire cache cluster as of the time when the snapshot
 	// was taken.
@@ -1753,6 +1914,16 @@ type CopySnapshotOutput struct {
 
 type metadataCopySnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopySnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopySnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateCacheCluster action.
@@ -1954,6 +2125,16 @@ type metadataCreateCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCacheClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheClusterInput) GoString() string {
+	return s.String()
+}
+
 type CreateCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
@@ -1963,6 +2144,16 @@ type CreateCacheClusterOutput struct {
 
 type metadataCreateCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCacheClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheClusterOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateCacheParameterGroup action.
@@ -1986,6 +2177,16 @@ type metadataCreateCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCacheParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateCacheParameterGroupOutput struct {
 	// Represents the output of a CreateCacheParameterGroup action.
 	CacheParameterGroup *CacheParameterGroup `type:"structure"`
@@ -1995,6 +2196,16 @@ type CreateCacheParameterGroupOutput struct {
 
 type metadataCreateCacheParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCacheParameterGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheParameterGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateCacheSecurityGroup action.
@@ -2018,6 +2229,16 @@ type metadataCreateCacheSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCacheSecurityGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateCacheSecurityGroupOutput struct {
 	// Represents the output of one of the following actions:
 	//
@@ -2029,6 +2250,16 @@ type CreateCacheSecurityGroupOutput struct {
 
 type metadataCreateCacheSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCacheSecurityGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheSecurityGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateCacheSubnetGroup action.
@@ -2053,6 +2284,16 @@ type metadataCreateCacheSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCacheSubnetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheSubnetGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateCacheSubnetGroupOutput struct {
 	// Represents the output of one of the following actions:
 	//
@@ -2064,6 +2305,16 @@ type CreateCacheSubnetGroupOutput struct {
 
 type metadataCreateCacheSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCacheSubnetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCacheSubnetGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateReplicationGroup action.
@@ -2244,6 +2495,16 @@ type metadataCreateReplicationGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateReplicationGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateReplicationGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
@@ -2253,6 +2514,16 @@ type CreateReplicationGroupOutput struct {
 
 type metadataCreateReplicationGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateReplicationGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateReplicationGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateSnapshot action.
@@ -2271,6 +2542,16 @@ type metadataCreateSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type CreateSnapshotOutput struct {
 	// Represents a copy of an entire cache cluster as of the time when the snapshot
 	// was taken.
@@ -2281,6 +2562,16 @@ type CreateSnapshotOutput struct {
 
 type metadataCreateSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteCacheCluster action.
@@ -2301,6 +2592,16 @@ type metadataDeleteCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteCacheClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheClusterInput) GoString() string {
+	return s.String()
+}
+
 type DeleteCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
@@ -2310,6 +2611,16 @@ type DeleteCacheClusterOutput struct {
 
 type metadataDeleteCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCacheClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheClusterOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteCacheParameterGroup action.
@@ -2327,12 +2638,32 @@ type metadataDeleteCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteCacheParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteCacheParameterGroupOutput struct {
 	metadataDeleteCacheParameterGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheParameterGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCacheParameterGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheParameterGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteCacheSecurityGroup action.
@@ -2349,12 +2680,32 @@ type metadataDeleteCacheSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteCacheSecurityGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteCacheSecurityGroupOutput struct {
 	metadataDeleteCacheSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCacheSecurityGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheSecurityGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteCacheSubnetGroup action.
@@ -2371,12 +2722,32 @@ type metadataDeleteCacheSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteCacheSubnetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheSubnetGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteCacheSubnetGroupOutput struct {
 	metadataDeleteCacheSubnetGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCacheSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCacheSubnetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCacheSubnetGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteReplicationGroup action.
@@ -2402,6 +2773,16 @@ type metadataDeleteReplicationGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteReplicationGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteReplicationGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
@@ -2411,6 +2792,16 @@ type DeleteReplicationGroupOutput struct {
 
 type metadataDeleteReplicationGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteReplicationGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteReplicationGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteSnapshot action.
@@ -2425,6 +2816,16 @@ type metadataDeleteSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSnapshotOutput struct {
 	// Represents a copy of an entire cache cluster as of the time when the snapshot
 	// was taken.
@@ -2435,6 +2836,16 @@ type DeleteSnapshotOutput struct {
 
 type metadataDeleteSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeCacheClusters action.
@@ -2469,6 +2880,16 @@ type metadataDescribeCacheClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheClustersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheClustersInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeCacheClusters action.
 type DescribeCacheClustersOutput struct {
 	// A list of cache clusters. Each item in the list contains detailed information
@@ -2483,6 +2904,16 @@ type DescribeCacheClustersOutput struct {
 
 type metadataDescribeCacheClustersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheClustersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheClustersOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeCacheEngineVersions action.
@@ -2528,6 +2959,16 @@ type metadataDescribeCacheEngineVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheEngineVersionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheEngineVersionsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeCacheEngineVersions action.
 type DescribeCacheEngineVersionsOutput struct {
 	// A list of cache engine version details. Each element in the list contains
@@ -2542,6 +2983,16 @@ type DescribeCacheEngineVersionsOutput struct {
 
 type metadataDescribeCacheEngineVersionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheEngineVersionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheEngineVersionsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeCacheParameterGroups action.
@@ -2570,6 +3021,16 @@ type metadataDescribeCacheParameterGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheParameterGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheParameterGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeCacheParameterGroups action.
 type DescribeCacheParameterGroupsOutput struct {
 	// A list of cache parameter groups. Each element in the list contains detailed
@@ -2584,6 +3045,16 @@ type DescribeCacheParameterGroupsOutput struct {
 
 type metadataDescribeCacheParameterGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheParameterGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheParameterGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeCacheParameters action.
@@ -2617,6 +3088,16 @@ type metadataDescribeCacheParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheParametersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheParametersInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeCacheParameters action.
 type DescribeCacheParametersOutput struct {
 	// A list of parameters specific to a particular cache node type. Each element
@@ -2634,6 +3115,16 @@ type DescribeCacheParametersOutput struct {
 
 type metadataDescribeCacheParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheParametersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheParametersOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeCacheSecurityGroups action.
@@ -2662,6 +3153,16 @@ type metadataDescribeCacheSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheSecurityGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheSecurityGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeCacheSecurityGroups action.
 type DescribeCacheSecurityGroupsOutput struct {
 	// A list of cache security groups. Each element in the list contains detailed
@@ -2676,6 +3177,16 @@ type DescribeCacheSecurityGroupsOutput struct {
 
 type metadataDescribeCacheSecurityGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheSecurityGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheSecurityGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeCacheSubnetGroups action.
@@ -2704,6 +3215,16 @@ type metadataDescribeCacheSubnetGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheSubnetGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheSubnetGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeCacheSubnetGroups action.
 type DescribeCacheSubnetGroupsOutput struct {
 	// A list of cache subnet groups. Each element in the list contains detailed
@@ -2718,6 +3239,16 @@ type DescribeCacheSubnetGroupsOutput struct {
 
 type metadataDescribeCacheSubnetGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheSubnetGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheSubnetGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeEngineDefaultParameters action.
@@ -2747,6 +3278,16 @@ type metadataDescribeEngineDefaultParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEngineDefaultParametersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEngineDefaultParametersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeEngineDefaultParametersOutput struct {
 	// Represents the output of a DescribeEngineDefaultParameters action.
 	EngineDefaults *EngineDefaults `type:"structure"`
@@ -2756,6 +3297,16 @@ type DescribeEngineDefaultParametersOutput struct {
 
 type metadataDescribeEngineDefaultParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEngineDefaultParametersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEngineDefaultParametersOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeEvents action.
@@ -2803,6 +3354,16 @@ type metadataDescribeEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeEvents action.
 type DescribeEventsOutput struct {
 	// A list of events. Each element in the list contains detailed information
@@ -2817,6 +3378,16 @@ type DescribeEventsOutput struct {
 
 type metadataDescribeEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeReplicationGroups action.
@@ -2849,6 +3420,16 @@ type metadataDescribeReplicationGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReplicationGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReplicationGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeReplicationGroups action.
 type DescribeReplicationGroupsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
@@ -2863,6 +3444,16 @@ type DescribeReplicationGroupsOutput struct {
 
 type metadataDescribeReplicationGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReplicationGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReplicationGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeReservedCacheNodes action.
@@ -2934,6 +3525,16 @@ type metadataDescribeReservedCacheNodesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedCacheNodesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedCacheNodesInput) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a DescribeReservedCacheNodesOfferings action.
 type DescribeReservedCacheNodesOfferingsInput struct {
 	// The cache node type filter value. Use this parameter to show only the available
@@ -3001,6 +3602,16 @@ type metadataDescribeReservedCacheNodesOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedCacheNodesOfferingsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedCacheNodesOfferingsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeReservedCacheNodesOfferings action.
 type DescribeReservedCacheNodesOfferingsOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
@@ -3017,6 +3628,16 @@ type metadataDescribeReservedCacheNodesOfferingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedCacheNodesOfferingsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedCacheNodesOfferingsOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeReservedCacheNodes action.
 type DescribeReservedCacheNodesOutput struct {
 	// Provides an identifier to allow retrieval of paginated results.
@@ -3031,6 +3652,16 @@ type DescribeReservedCacheNodesOutput struct {
 
 type metadataDescribeReservedCacheNodesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReservedCacheNodesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedCacheNodesOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DescribeSnapshotsMessage action.
@@ -3070,6 +3701,16 @@ type metadataDescribeSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSnapshotsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeSnapshots action.
 type DescribeSnapshotsOutput struct {
 	// An optional marker returned from a prior request. Use this marker for pagination
@@ -3086,6 +3727,16 @@ type DescribeSnapshotsOutput struct {
 
 type metadataDescribeSnapshotsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSnapshotsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotsOutput) GoString() string {
+	return s.String()
 }
 
 // Provides ownership and status information for an Amazon EC2 security group.
@@ -3106,6 +3757,16 @@ type metadataEC2SecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EC2SecurityGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EC2SecurityGroup) GoString() string {
+	return s.String()
+}
+
 // Represents the information required for client programs to connect to a cache
 // node.
 type Endpoint struct {
@@ -3120,6 +3781,16 @@ type Endpoint struct {
 
 type metadataEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Endpoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Endpoint) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a DescribeEngineDefaultParameters action.
@@ -3143,6 +3814,16 @@ type EngineDefaults struct {
 
 type metadataEngineDefaults struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EngineDefaults) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EngineDefaults) GoString() string {
+	return s.String()
 }
 
 // Represents a single occurrence of something interesting within the system.
@@ -3171,6 +3852,16 @@ type metadataEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Event) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Event) GoString() string {
+	return s.String()
+}
+
 // The input parameters for the ListTagsForResource action.
 type ListTagsForResourceInput struct {
 	// The name of the resource for which you want the list of tags, for example
@@ -3182,6 +3873,16 @@ type ListTagsForResourceInput struct {
 
 type metadataListTagsForResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a ModifyCacheCluster action.
@@ -3371,6 +4072,16 @@ type metadataModifyCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyCacheClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyCacheClusterInput) GoString() string {
+	return s.String()
+}
+
 type ModifyCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
@@ -3380,6 +4091,16 @@ type ModifyCacheClusterOutput struct {
 
 type metadataModifyCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyCacheClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyCacheClusterOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a ModifyCacheParameterGroup action.
@@ -3397,6 +4118,16 @@ type ModifyCacheParameterGroupInput struct {
 
 type metadataModifyCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyCacheParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyCacheParameterGroupInput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a ModifyCacheSubnetGroup action.
@@ -3422,6 +4153,16 @@ type metadataModifyCacheSubnetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyCacheSubnetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyCacheSubnetGroupInput) GoString() string {
+	return s.String()
+}
+
 type ModifyCacheSubnetGroupOutput struct {
 	// Represents the output of one of the following actions:
 	//
@@ -3433,6 +4174,16 @@ type ModifyCacheSubnetGroupOutput struct {
 
 type metadataModifyCacheSubnetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyCacheSubnetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyCacheSubnetGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a ModifyReplicationGroups action.
@@ -3551,6 +4302,16 @@ type metadataModifyReplicationGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyReplicationGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyReplicationGroupInput) GoString() string {
+	return s.String()
+}
+
 type ModifyReplicationGroupOutput struct {
 	// Contains all of the attributes of a specific replication group.
 	ReplicationGroup *ReplicationGroup `type:"structure"`
@@ -3560,6 +4321,16 @@ type ModifyReplicationGroupOutput struct {
 
 type metadataModifyReplicationGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyReplicationGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyReplicationGroupOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a collection of cache nodes in a replication group.
@@ -3583,6 +4354,16 @@ type NodeGroup struct {
 
 type metadataNodeGroup struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NodeGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NodeGroup) GoString() string {
+	return s.String()
 }
 
 // Represents a single node within a node group.
@@ -3611,6 +4392,16 @@ type metadataNodeGroupMember struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NodeGroupMember) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NodeGroupMember) GoString() string {
+	return s.String()
+}
+
 // Represents an individual cache node in a snapshot of a cache cluster.
 type NodeSnapshot struct {
 	// The date and time when the cache node was created in the source cache cluster.
@@ -3633,6 +4424,16 @@ type metadataNodeSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NodeSnapshot) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NodeSnapshot) GoString() string {
+	return s.String()
+}
+
 // Describes a notification topic and its status. Notification topics are used
 // for publishing ElastiCache events to subscribers using Amazon Simple Notification
 // Service (SNS).
@@ -3648,6 +4449,16 @@ type NotificationConfiguration struct {
 
 type metadataNotificationConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NotificationConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NotificationConfiguration) GoString() string {
+	return s.String()
 }
 
 // Describes an individual setting that controls some aspect of ElastiCache
@@ -3686,6 +4497,16 @@ type metadataParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Parameter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Parameter) GoString() string {
+	return s.String()
+}
+
 // Describes a name-value pair that is used to update the value of a parameter.
 type ParameterNameValue struct {
 	// The name of the parameter.
@@ -3699,6 +4520,16 @@ type ParameterNameValue struct {
 
 type metadataParameterNameValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ParameterNameValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ParameterNameValue) GoString() string {
+	return s.String()
 }
 
 // A group of settings that will be applied to the cache cluster in the future,
@@ -3722,6 +4553,16 @@ type PendingModifiedValues struct {
 
 type metadataPendingModifiedValues struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PendingModifiedValues) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PendingModifiedValues) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a PurchaseReservedCacheNodesOffering action.
@@ -3748,6 +4589,16 @@ type metadataPurchaseReservedCacheNodesOfferingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PurchaseReservedCacheNodesOfferingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseReservedCacheNodesOfferingInput) GoString() string {
+	return s.String()
+}
+
 type PurchaseReservedCacheNodesOfferingOutput struct {
 	// Represents the output of a PurchaseReservedCacheNodesOffering action.
 	ReservedCacheNode *ReservedCacheNode `type:"structure"`
@@ -3757,6 +4608,16 @@ type PurchaseReservedCacheNodesOfferingOutput struct {
 
 type metadataPurchaseReservedCacheNodesOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PurchaseReservedCacheNodesOfferingOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseReservedCacheNodesOfferingOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a RebootCacheCluster action.
@@ -3776,6 +4637,16 @@ type metadataRebootCacheClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RebootCacheClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootCacheClusterInput) GoString() string {
+	return s.String()
+}
+
 type RebootCacheClusterOutput struct {
 	// Contains all of the attributes of a specific cache cluster.
 	CacheCluster *CacheCluster `type:"structure"`
@@ -3785,6 +4656,16 @@ type RebootCacheClusterOutput struct {
 
 type metadataRebootCacheClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RebootCacheClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootCacheClusterOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the specific price and frequency of a recurring charges for a reserved
@@ -3803,6 +4684,16 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecurringCharge) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecurringCharge) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a RemoveTagsFromResource action.
 type RemoveTagsFromResourceInput struct {
 	// The name of the ElastiCache resource from which you want the listed tags
@@ -3819,6 +4710,16 @@ type RemoveTagsFromResourceInput struct {
 
 type metadataRemoveTagsFromResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceInput) GoString() string {
+	return s.String()
 }
 
 // Contains all of the attributes of a specific replication group.
@@ -3861,6 +4762,16 @@ type metadataReplicationGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReplicationGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplicationGroup) GoString() string {
+	return s.String()
+}
+
 // The settings to be applied to the replication group, either immediately or
 // during the next maintenance window.
 type ReplicationGroupPendingModifiedValues struct {
@@ -3880,6 +4791,16 @@ type ReplicationGroupPendingModifiedValues struct {
 
 type metadataReplicationGroupPendingModifiedValues struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReplicationGroupPendingModifiedValues) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplicationGroupPendingModifiedValues) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a PurchaseReservedCacheNodesOffering action.
@@ -3945,6 +4866,16 @@ type metadataReservedCacheNode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedCacheNode) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedCacheNode) GoString() string {
+	return s.String()
+}
+
 // Describes all of the attributes of a reserved cache node offering.
 type ReservedCacheNodesOffering struct {
 	// The cache node type for the reserved cache node.
@@ -3996,6 +4927,16 @@ type metadataReservedCacheNodesOffering struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedCacheNodesOffering) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedCacheNodesOffering) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a ResetCacheParameterGroup action.
 type ResetCacheParameterGroupInput struct {
 	// The name of the cache parameter group to reset.
@@ -4018,6 +4959,16 @@ type metadataResetCacheParameterGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetCacheParameterGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetCacheParameterGroupInput) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a RevokeCacheSecurityGroupIngress action.
 type RevokeCacheSecurityGroupIngressInput struct {
 	// The name of the cache security group to revoke ingress from.
@@ -4038,6 +4989,16 @@ type metadataRevokeCacheSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RevokeCacheSecurityGroupIngressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeCacheSecurityGroupIngressInput) GoString() string {
+	return s.String()
+}
+
 type RevokeCacheSecurityGroupIngressOutput struct {
 	// Represents the output of one of the following actions:
 	//
@@ -4049,6 +5010,16 @@ type RevokeCacheSecurityGroupIngressOutput struct {
 
 type metadataRevokeCacheSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeCacheSecurityGroupIngressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeCacheSecurityGroupIngressOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a single cache security group and its status.
@@ -4066,6 +5037,16 @@ type SecurityGroupMembership struct {
 
 type metadataSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SecurityGroupMembership) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroupMembership) GoString() string {
+	return s.String()
 }
 
 // Represents a copy of an entire cache cluster as of the time when the snapshot
@@ -4182,6 +5163,16 @@ type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Snapshot) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Snapshot) GoString() string {
+	return s.String()
+}
+
 // Represents the subnet associated with a cache cluster. This parameter refers
 // to subnets defined in Amazon Virtual Private Cloud (Amazon VPC) and used
 // with ElastiCache.
@@ -4197,6 +5188,16 @@ type Subnet struct {
 
 type metadataSubnet struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Subnet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Subnet) GoString() string {
+	return s.String()
 }
 
 // A cost allocation Tag that can be added to an ElastiCache cluster or replication
@@ -4216,6 +5217,16 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 // Represents the output from the AddTagsToResource, ListTagsOnResource, and
 // RemoveTagsFromResource actions.
 type TagListMessage struct {
@@ -4227,4 +5238,14 @@ type TagListMessage struct {
 
 type metadataTagListMessage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagListMessage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TagListMessage) GoString() string {
+	return s.String()
 }

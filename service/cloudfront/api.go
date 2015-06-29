@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIdentity2015_04_17"
@@ -653,6 +654,16 @@ type metadataActiveTrustedSigners struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActiveTrustedSigners) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActiveTrustedSigners) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about CNAMEs (alternate domain names),
 // if any, for this distribution.
 type Aliases struct {
@@ -668,6 +679,16 @@ type Aliases struct {
 
 type metadataAliases struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Aliases) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Aliases) GoString() string {
+	return s.String()
 }
 
 // A complex type that controls which HTTP methods CloudFront processes and
@@ -701,6 +722,16 @@ type AllowedMethods struct {
 
 type metadataAllowedMethods struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AllowedMethods) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AllowedMethods) GoString() string {
+	return s.String()
 }
 
 // A complex type that describes how CloudFront processes requests. You can
@@ -804,6 +835,16 @@ type metadataCacheBehavior struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CacheBehavior) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheBehavior) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains zero or more CacheBehavior elements.
 type CacheBehaviors struct {
 	// Optional: A complex type that contains cache behaviors for this distribution.
@@ -818,6 +859,16 @@ type CacheBehaviors struct {
 
 type metadataCacheBehaviors struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CacheBehaviors) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CacheBehaviors) GoString() string {
+	return s.String()
 }
 
 // A complex type that controls whether CloudFront caches the response to requests
@@ -843,6 +894,16 @@ type metadataCachedMethods struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CachedMethods) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CachedMethods) GoString() string {
+	return s.String()
+}
+
 // A complex type that specifies the whitelisted cookies, if any, that you want
 // CloudFront to forward to your origin that is associated with this cache behavior.
 type CookieNames struct {
@@ -858,6 +919,16 @@ type CookieNames struct {
 
 type metadataCookieNames struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CookieNames) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CookieNames) GoString() string {
+	return s.String()
 }
 
 // A complex type that specifies the cookie preferences associated with this
@@ -880,6 +951,16 @@ type metadataCookiePreference struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CookiePreference) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CookiePreference) GoString() string {
+	return s.String()
+}
+
 // The request to create a new origin access identity.
 type CreateCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's configuration information.
@@ -890,6 +971,16 @@ type CreateCloudFrontOriginAccessIdentityInput struct {
 
 type metadataCreateCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
+}
+
+// String returns the string representation
+func (s CreateCloudFrontOriginAccessIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCloudFrontOriginAccessIdentityInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -911,6 +1002,16 @@ type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
+// String returns the string representation
+func (s CreateCloudFrontOriginAccessIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCloudFrontOriginAccessIdentityOutput) GoString() string {
+	return s.String()
+}
+
 // The request to create a new distribution.
 type CreateDistributionInput struct {
 	// The distribution's configuration information.
@@ -921,6 +1022,16 @@ type CreateDistributionInput struct {
 
 type metadataCreateDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
+}
+
+// String returns the string representation
+func (s CreateDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDistributionInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -942,6 +1053,16 @@ type metadataCreateDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
 }
 
+// String returns the string representation
+func (s CreateDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDistributionOutput) GoString() string {
+	return s.String()
+}
+
 // The request to create an invalidation.
 type CreateInvalidationInput struct {
 	// The distribution's id.
@@ -955,6 +1076,16 @@ type CreateInvalidationInput struct {
 
 type metadataCreateInvalidationInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"InvalidationBatch"`
+}
+
+// String returns the string representation
+func (s CreateInvalidationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInvalidationInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -973,6 +1104,16 @@ type metadataCreateInvalidationOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Invalidation"`
 }
 
+// String returns the string representation
+func (s CreateInvalidationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInvalidationOutput) GoString() string {
+	return s.String()
+}
+
 // The request to create a new streaming distribution.
 type CreateStreamingDistributionInput struct {
 	// The streaming distribution's configuration information.
@@ -983,6 +1124,16 @@ type CreateStreamingDistributionInput struct {
 
 type metadataCreateStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
+}
+
+// String returns the string representation
+func (s CreateStreamingDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStreamingDistributionInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1002,6 +1153,16 @@ type CreateStreamingDistributionOutput struct {
 
 type metadataCreateStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
+}
+
+// String returns the string representation
+func (s CreateStreamingDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStreamingDistributionOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that describes how you'd prefer CloudFront to respond to requests
@@ -1045,6 +1206,16 @@ type metadataCustomErrorResponse struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CustomErrorResponse) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CustomErrorResponse) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains zero or more CustomErrorResponse elements.
 type CustomErrorResponses struct {
 	// Optional: A complex type that contains custom error responses for this distribution.
@@ -1059,6 +1230,16 @@ type CustomErrorResponses struct {
 
 type metadataCustomErrorResponses struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CustomErrorResponses) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CustomErrorResponses) GoString() string {
+	return s.String()
 }
 
 // A customer origin.
@@ -1077,6 +1258,16 @@ type CustomOriginConfig struct {
 
 type metadataCustomOriginConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CustomOriginConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CustomOriginConfig) GoString() string {
+	return s.String()
 }
 
 // A complex type that describes the default cache behavior if you do not specify
@@ -1160,6 +1351,16 @@ type metadataDefaultCacheBehavior struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DefaultCacheBehavior) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefaultCacheBehavior) GoString() string {
+	return s.String()
+}
+
 // The request to delete a origin access identity.
 type DeleteCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's id.
@@ -1176,12 +1377,32 @@ type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteCloudFrontOriginAccessIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCloudFrontOriginAccessIdentityInput) GoString() string {
+	return s.String()
+}
+
 type DeleteCloudFrontOriginAccessIdentityOutput struct {
 	metadataDeleteCloudFrontOriginAccessIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCloudFrontOriginAccessIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCloudFrontOriginAccessIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // The request to delete a distribution.
@@ -1200,12 +1421,32 @@ type metadataDeleteDistributionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDistributionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDistributionOutput struct {
 	metadataDeleteDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDistributionOutput) GoString() string {
+	return s.String()
 }
 
 // The request to delete a streaming distribution.
@@ -1224,12 +1465,32 @@ type metadataDeleteStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteStreamingDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStreamingDistributionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteStreamingDistributionOutput struct {
 	metadataDeleteStreamingDistributionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStreamingDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStreamingDistributionOutput) GoString() string {
+	return s.String()
 }
 
 // A distribution.
@@ -1269,6 +1530,16 @@ type Distribution struct {
 
 type metadataDistribution struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Distribution) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Distribution) GoString() string {
+	return s.String()
 }
 
 // A distribution Configuration.
@@ -1340,6 +1611,16 @@ type metadataDistributionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DistributionConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DistributionConfig) GoString() string {
+	return s.String()
+}
+
 // A distribution list.
 type DistributionList struct {
 	// A flag that indicates whether more distributions remain to be listed. If
@@ -1371,6 +1652,16 @@ type DistributionList struct {
 
 type metadataDistributionList struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DistributionList) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DistributionList) GoString() string {
+	return s.String()
 }
 
 // A summary of the information for an Amazon CloudFront distribution.
@@ -1430,6 +1721,16 @@ type metadataDistributionSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DistributionSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DistributionSummary) GoString() string {
+	return s.String()
+}
+
 // A complex type that specifies how CloudFront handles query strings, cookies
 // and headers.
 type ForwardedValues struct {
@@ -1450,6 +1751,16 @@ type ForwardedValues struct {
 
 type metadataForwardedValues struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ForwardedValues) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ForwardedValues) GoString() string {
+	return s.String()
 }
 
 // A complex type that controls the countries in which your content is distributed.
@@ -1490,6 +1801,16 @@ type metadataGeoRestriction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GeoRestriction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GeoRestriction) GoString() string {
+	return s.String()
+}
+
 // The request to get an origin access identity's configuration.
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
 	// The identity's id.
@@ -1500,6 +1821,16 @@ type GetCloudFrontOriginAccessIdentityConfigInput struct {
 
 type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCloudFrontOriginAccessIdentityConfigInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCloudFrontOriginAccessIdentityConfigInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1517,6 +1848,16 @@ type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
+// String returns the string representation
+func (s GetCloudFrontOriginAccessIdentityConfigOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCloudFrontOriginAccessIdentityConfigOutput) GoString() string {
+	return s.String()
+}
+
 // The request to get an origin access identity's information.
 type GetCloudFrontOriginAccessIdentityInput struct {
 	// The identity's id.
@@ -1527,6 +1868,16 @@ type GetCloudFrontOriginAccessIdentityInput struct {
 
 type metadataGetCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCloudFrontOriginAccessIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCloudFrontOriginAccessIdentityInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1545,6 +1896,16 @@ type metadataGetCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
 }
 
+// String returns the string representation
+func (s GetCloudFrontOriginAccessIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCloudFrontOriginAccessIdentityOutput) GoString() string {
+	return s.String()
+}
+
 // The request to get a distribution configuration.
 type GetDistributionConfigInput struct {
 	// The distribution's id.
@@ -1555,6 +1916,16 @@ type GetDistributionConfigInput struct {
 
 type metadataGetDistributionConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDistributionConfigInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDistributionConfigInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1572,6 +1943,16 @@ type metadataGetDistributionConfigOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
+// String returns the string representation
+func (s GetDistributionConfigOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDistributionConfigOutput) GoString() string {
+	return s.String()
+}
+
 // The request to get a distribution's information.
 type GetDistributionInput struct {
 	// The distribution's id.
@@ -1582,6 +1963,16 @@ type GetDistributionInput struct {
 
 type metadataGetDistributionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDistributionInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1599,6 +1990,16 @@ type metadataGetDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
 }
 
+// String returns the string representation
+func (s GetDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDistributionOutput) GoString() string {
+	return s.String()
+}
+
 // The request to get an invalidation's information.
 type GetInvalidationInput struct {
 	// The distribution's id.
@@ -1614,6 +2015,16 @@ type metadataGetInvalidationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetInvalidationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetInvalidationInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type GetInvalidationOutput struct {
 	// The invalidation's information.
@@ -1626,6 +2037,16 @@ type metadataGetInvalidationOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Invalidation"`
 }
 
+// String returns the string representation
+func (s GetInvalidationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetInvalidationOutput) GoString() string {
+	return s.String()
+}
+
 // To request to get a streaming distribution configuration.
 type GetStreamingDistributionConfigInput struct {
 	// The streaming distribution's id.
@@ -1636,6 +2057,16 @@ type GetStreamingDistributionConfigInput struct {
 
 type metadataGetStreamingDistributionConfigInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetStreamingDistributionConfigInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetStreamingDistributionConfigInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1653,6 +2084,16 @@ type metadataGetStreamingDistributionConfigOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
+// String returns the string representation
+func (s GetStreamingDistributionConfigOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetStreamingDistributionConfigOutput) GoString() string {
+	return s.String()
+}
+
 // The request to get a streaming distribution's information.
 type GetStreamingDistributionInput struct {
 	// The streaming distribution's id.
@@ -1663,6 +2104,16 @@ type GetStreamingDistributionInput struct {
 
 type metadataGetStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetStreamingDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetStreamingDistributionInput) GoString() string {
+	return s.String()
 }
 
 // The returned result of the corresponding request.
@@ -1679,6 +2130,16 @@ type GetStreamingDistributionOutput struct {
 
 type metadataGetStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
+}
+
+// String returns the string representation
+func (s GetStreamingDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetStreamingDistributionOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that specifies the headers that you want CloudFront to forward
@@ -1711,6 +2172,16 @@ type metadataHeaders struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Headers) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Headers) GoString() string {
+	return s.String()
+}
+
 // An invalidation.
 type Invalidation struct {
 	// The date and time the invalidation request was first made.
@@ -1731,6 +2202,16 @@ type Invalidation struct {
 
 type metadataInvalidation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Invalidation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Invalidation) GoString() string {
+	return s.String()
 }
 
 // An invalidation batch.
@@ -1759,6 +2240,16 @@ type InvalidationBatch struct {
 
 type metadataInvalidationBatch struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InvalidationBatch) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvalidationBatch) GoString() string {
+	return s.String()
 }
 
 // An invalidation list.
@@ -1794,6 +2285,16 @@ type metadataInvalidationList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InvalidationList) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvalidationList) GoString() string {
+	return s.String()
+}
+
 // Summary of an invalidation request.
 type InvalidationSummary struct {
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -1811,6 +2312,16 @@ type metadataInvalidationSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InvalidationSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InvalidationSummary) GoString() string {
+	return s.String()
+}
+
 // A complex type that lists the active CloudFront key pairs, if any, that are
 // associated with AwsAccountNumber.
 type KeyPairIDs struct {
@@ -1826,6 +2337,16 @@ type KeyPairIDs struct {
 
 type metadataKeyPairIDs struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s KeyPairIDs) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s KeyPairIDs) GoString() string {
+	return s.String()
 }
 
 // The request to list origin access identities.
@@ -1847,6 +2368,16 @@ type metadataListCloudFrontOriginAccessIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListCloudFrontOriginAccessIdentitiesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListCloudFrontOriginAccessIdentitiesInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type ListCloudFrontOriginAccessIdentitiesOutput struct {
 	// The CloudFrontOriginAccessIdentityList type.
@@ -1857,6 +2388,16 @@ type ListCloudFrontOriginAccessIdentitiesOutput struct {
 
 type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityList"`
+}
+
+// String returns the string representation
+func (s ListCloudFrontOriginAccessIdentitiesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListCloudFrontOriginAccessIdentitiesOutput) GoString() string {
+	return s.String()
 }
 
 // The request to list your distributions.
@@ -1878,6 +2419,16 @@ type metadataListDistributionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDistributionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDistributionsInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type ListDistributionsOutput struct {
 	// The DistributionList type.
@@ -1888,6 +2439,16 @@ type ListDistributionsOutput struct {
 
 type metadataListDistributionsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionList"`
+}
+
+// String returns the string representation
+func (s ListDistributionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDistributionsOutput) GoString() string {
+	return s.String()
 }
 
 // The request to list invalidations.
@@ -1914,6 +2475,16 @@ type metadataListInvalidationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListInvalidationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInvalidationsInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type ListInvalidationsOutput struct {
 	// Information about invalidation batches.
@@ -1924,6 +2495,16 @@ type ListInvalidationsOutput struct {
 
 type metadataListInvalidationsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"InvalidationList"`
+}
+
+// String returns the string representation
+func (s ListInvalidationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInvalidationsOutput) GoString() string {
+	return s.String()
 }
 
 // The request to list your streaming distributions.
@@ -1945,6 +2526,16 @@ type metadataListStreamingDistributionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListStreamingDistributionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStreamingDistributionsInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type ListStreamingDistributionsOutput struct {
 	// The StreamingDistributionList type.
@@ -1955,6 +2546,16 @@ type ListStreamingDistributionsOutput struct {
 
 type metadataListStreamingDistributionsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionList"`
+}
+
+// String returns the string representation
+func (s ListStreamingDistributionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStreamingDistributionsOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that controls whether access logs are written for the distribution.
@@ -1989,6 +2590,16 @@ type LoggingConfig struct {
 
 type metadataLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LoggingConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LoggingConfig) GoString() string {
+	return s.String()
 }
 
 // A complex type that describes the Amazon S3 bucket or the HTTP server (for
@@ -2028,6 +2639,16 @@ type metadataOrigin struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Origin) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Origin) GoString() string {
+	return s.String()
+}
+
 // CloudFront origin access identity.
 type OriginAccessIdentity struct {
 	// The current configuration information for the identity.
@@ -2046,6 +2667,16 @@ type OriginAccessIdentity struct {
 
 type metadataOriginAccessIdentity struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OriginAccessIdentity) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OriginAccessIdentity) GoString() string {
+	return s.String()
 }
 
 // Origin access identity configuration.
@@ -2071,6 +2702,16 @@ type OriginAccessIdentityConfig struct {
 
 type metadataOriginAccessIdentityConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OriginAccessIdentityConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OriginAccessIdentityConfig) GoString() string {
+	return s.String()
 }
 
 // The CloudFrontOriginAccessIdentityList type.
@@ -2107,6 +2748,16 @@ type metadataOriginAccessIdentityList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s OriginAccessIdentityList) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OriginAccessIdentityList) GoString() string {
+	return s.String()
+}
+
 // Summary of the information about a CloudFront origin access identity.
 type OriginAccessIdentitySummary struct {
 	// The comment for this origin access identity, as originally specified when
@@ -2128,6 +2779,16 @@ type metadataOriginAccessIdentitySummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s OriginAccessIdentitySummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OriginAccessIdentitySummary) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about origins for this distribution.
 type Origins struct {
 	// A complex type that contains origins for this distribution.
@@ -2141,6 +2802,16 @@ type Origins struct {
 
 type metadataOrigins struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Origins) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Origins) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the objects that you want
@@ -2157,6 +2828,16 @@ type Paths struct {
 
 type metadataPaths struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Paths) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Paths) GoString() string {
+	return s.String()
 }
 
 // A complex type that identifies ways in which you want to restrict distribution
@@ -2177,6 +2858,16 @@ type metadataRestrictions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Restrictions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Restrictions) GoString() string {
+	return s.String()
+}
+
 // A complex type that contains information about the Amazon S3 bucket from
 // which you want CloudFront to get your media files for distribution.
 type S3Origin struct {
@@ -2191,6 +2882,16 @@ type S3Origin struct {
 
 type metadataS3Origin struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s S3Origin) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s S3Origin) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about the Amazon S3 origin. If the
@@ -2216,6 +2917,16 @@ type metadataS3OriginConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s S3OriginConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s S3OriginConfig) GoString() string {
+	return s.String()
+}
+
 // A complex type that lists the AWS accounts that were included in the TrustedSigners
 // complex type, as well as their active CloudFront key pair IDs, if any.
 type Signer struct {
@@ -2234,6 +2945,16 @@ type Signer struct {
 
 type metadataSigner struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Signer) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Signer) GoString() string {
+	return s.String()
 }
 
 // A streaming distribution.
@@ -2271,6 +2992,16 @@ type StreamingDistribution struct {
 
 type metadataStreamingDistribution struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StreamingDistribution) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamingDistribution) GoString() string {
+	return s.String()
 }
 
 // The configuration for the streaming distribution.
@@ -2330,6 +3061,16 @@ type metadataStreamingDistributionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StreamingDistributionConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamingDistributionConfig) GoString() string {
+	return s.String()
+}
+
 // A streaming distribution list.
 type StreamingDistributionList struct {
 	// A flag that indicates whether more streaming distributions remain to be listed.
@@ -2362,6 +3103,16 @@ type StreamingDistributionList struct {
 
 type metadataStreamingDistributionList struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StreamingDistributionList) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamingDistributionList) GoString() string {
+	return s.String()
 }
 
 // A summary of the information for an Amazon CloudFront streaming distribution.
@@ -2416,6 +3167,16 @@ type metadataStreamingDistributionSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StreamingDistributionSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamingDistributionSummary) GoString() string {
+	return s.String()
+}
+
 // A complex type that controls whether access logs are written for this streaming
 // distribution.
 type StreamingLoggingConfig struct {
@@ -2441,6 +3202,16 @@ type StreamingLoggingConfig struct {
 
 type metadataStreamingLoggingConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StreamingLoggingConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamingLoggingConfig) GoString() string {
+	return s.String()
 }
 
 // A complex type that specifies the AWS accounts, if any, that you want to
@@ -2473,6 +3244,16 @@ type metadataTrustedSigners struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TrustedSigners) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedSigners) GoString() string {
+	return s.String()
+}
+
 // The request to update an origin access identity.
 type UpdateCloudFrontOriginAccessIdentityInput struct {
 	// The identity's configuration information.
@@ -2492,6 +3273,16 @@ type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentityConfig"`
 }
 
+// String returns the string representation
+func (s UpdateCloudFrontOriginAccessIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCloudFrontOriginAccessIdentityInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type UpdateCloudFrontOriginAccessIdentityOutput struct {
 	// The origin access identity's information.
@@ -2505,6 +3296,16 @@ type UpdateCloudFrontOriginAccessIdentityOutput struct {
 
 type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"CloudFrontOriginAccessIdentity"`
+}
+
+// String returns the string representation
+func (s UpdateCloudFrontOriginAccessIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCloudFrontOriginAccessIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // The request to update a distribution.
@@ -2526,6 +3327,16 @@ type metadataUpdateDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"DistributionConfig"`
 }
 
+// String returns the string representation
+func (s UpdateDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDistributionInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type UpdateDistributionOutput struct {
 	// The distribution's information.
@@ -2539,6 +3350,16 @@ type UpdateDistributionOutput struct {
 
 type metadataUpdateDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Distribution"`
+}
+
+// String returns the string representation
+func (s UpdateDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDistributionOutput) GoString() string {
+	return s.String()
 }
 
 // The request to update a streaming distribution.
@@ -2560,6 +3381,16 @@ type metadataUpdateStreamingDistributionInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistributionConfig"`
 }
 
+// String returns the string representation
+func (s UpdateStreamingDistributionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStreamingDistributionInput) GoString() string {
+	return s.String()
+}
+
 // The returned result of the corresponding request.
 type UpdateStreamingDistributionOutput struct {
 	// The current version of the configuration. For example: E2QWRUHAPOMQZL.
@@ -2573,6 +3404,16 @@ type UpdateStreamingDistributionOutput struct {
 
 type metadataUpdateStreamingDistributionOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"StreamingDistribution"`
+}
+
+// String returns the string representation
+func (s UpdateStreamingDistributionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStreamingDistributionOutput) GoString() string {
+	return s.String()
 }
 
 // A complex type that contains information about viewer certificates for this
@@ -2619,4 +3460,14 @@ type ViewerCertificate struct {
 
 type metadataViewerCertificate struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ViewerCertificate) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ViewerCertificate) GoString() string {
+	return s.String()
 }

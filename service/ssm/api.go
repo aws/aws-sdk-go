@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateAssociation = "CreateAssociation"
@@ -350,6 +351,16 @@ type metadataAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Association) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Association) GoString() string {
+	return s.String()
+}
+
 // Describes an association.
 type AssociationDescription struct {
 	// The date when the association was made.
@@ -371,6 +382,16 @@ type metadataAssociationDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssociationDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociationDescription) GoString() string {
+	return s.String()
+}
+
 // Describes a filter.
 type AssociationFilter struct {
 	// The name of the filter.
@@ -384,6 +405,16 @@ type AssociationFilter struct {
 
 type metadataAssociationFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociationFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociationFilter) GoString() string {
+	return s.String()
 }
 
 // Describes an association status.
@@ -407,6 +438,16 @@ type metadataAssociationStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssociationStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociationStatus) GoString() string {
+	return s.String()
+}
+
 type CreateAssociationBatchInput struct {
 	// One or more associations.
 	Entries []*CreateAssociationBatchRequestEntry `locationNameList:"entries" type:"list" required:"true"`
@@ -416,6 +457,16 @@ type CreateAssociationBatchInput struct {
 
 type metadataCreateAssociationBatchInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAssociationBatchInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAssociationBatchInput) GoString() string {
+	return s.String()
 }
 
 type CreateAssociationBatchOutput struct {
@@ -430,6 +481,16 @@ type CreateAssociationBatchOutput struct {
 
 type metadataCreateAssociationBatchOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAssociationBatchOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAssociationBatchOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the association of a configuration document and an instance.
@@ -447,6 +508,16 @@ type metadataCreateAssociationBatchRequestEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAssociationBatchRequestEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAssociationBatchRequestEntry) GoString() string {
+	return s.String()
+}
+
 type CreateAssociationInput struct {
 	// The ID of the instance.
 	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
@@ -461,6 +532,16 @@ type metadataCreateAssociationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAssociationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAssociationInput) GoString() string {
+	return s.String()
+}
+
 type CreateAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
@@ -470,6 +551,16 @@ type CreateAssociationOutput struct {
 
 type metadataCreateAssociationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAssociationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAssociationOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDocumentInput struct {
@@ -487,6 +578,16 @@ type metadataCreateDocumentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDocumentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDocumentInput) GoString() string {
+	return s.String()
+}
+
 type CreateDocumentOutput struct {
 	// Information about the configuration document.
 	DocumentDescription *DocumentDescription `type:"structure"`
@@ -496,6 +597,16 @@ type CreateDocumentOutput struct {
 
 type metadataCreateDocumentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDocumentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDocumentOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAssociationInput struct {
@@ -512,12 +623,32 @@ type metadataDeleteAssociationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAssociationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAssociationInput) GoString() string {
+	return s.String()
+}
+
 type DeleteAssociationOutput struct {
 	metadataDeleteAssociationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAssociationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAssociationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAssociationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDocumentInput struct {
@@ -531,12 +662,32 @@ type metadataDeleteDocumentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDocumentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDocumentInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDocumentOutput struct {
 	metadataDeleteDocumentOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDocumentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDocumentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDocumentOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAssociationInput struct {
@@ -553,6 +704,16 @@ type metadataDescribeAssociationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAssociationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAssociationInput) GoString() string {
+	return s.String()
+}
+
 type DescribeAssociationOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
@@ -562,6 +723,16 @@ type DescribeAssociationOutput struct {
 
 type metadataDescribeAssociationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAssociationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAssociationOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDocumentInput struct {
@@ -575,6 +746,16 @@ type metadataDescribeDocumentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDocumentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDocumentInput) GoString() string {
+	return s.String()
+}
+
 type DescribeDocumentOutput struct {
 	// Information about the configuration document.
 	Document *DocumentDescription `type:"structure"`
@@ -584,6 +765,16 @@ type DescribeDocumentOutput struct {
 
 type metadataDescribeDocumentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDocumentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDocumentOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a configuration document.
@@ -607,6 +798,16 @@ type metadataDocumentDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DocumentDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DocumentDescription) GoString() string {
+	return s.String()
+}
+
 // Describes a filter.
 type DocumentFilter struct {
 	// The name of the filter.
@@ -622,6 +823,16 @@ type metadataDocumentFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DocumentFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DocumentFilter) GoString() string {
+	return s.String()
+}
+
 // Describes the name of a configuration document.
 type DocumentIdentifier struct {
 	// The name of the configuration document.
@@ -632,6 +843,16 @@ type DocumentIdentifier struct {
 
 type metadataDocumentIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DocumentIdentifier) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DocumentIdentifier) GoString() string {
+	return s.String()
 }
 
 // Describes a failed association.
@@ -652,6 +873,16 @@ type metadataFailedCreateAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FailedCreateAssociation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FailedCreateAssociation) GoString() string {
+	return s.String()
+}
+
 type GetDocumentInput struct {
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
@@ -661,6 +892,16 @@ type GetDocumentInput struct {
 
 type metadataGetDocumentInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDocumentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDocumentInput) GoString() string {
+	return s.String()
 }
 
 type GetDocumentOutput struct {
@@ -675,6 +916,16 @@ type GetDocumentOutput struct {
 
 type metadataGetDocumentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDocumentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDocumentOutput) GoString() string {
+	return s.String()
 }
 
 type ListAssociationsInput struct {
@@ -697,6 +948,16 @@ type metadataListAssociationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListAssociationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAssociationsInput) GoString() string {
+	return s.String()
+}
+
 type ListAssociationsOutput struct {
 	// The associations.
 	Associations []*Association `locationNameList:"Association" type:"list"`
@@ -710,6 +971,16 @@ type ListAssociationsOutput struct {
 
 type metadataListAssociationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAssociationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAssociationsOutput) GoString() string {
+	return s.String()
 }
 
 type ListDocumentsInput struct {
@@ -732,6 +1003,16 @@ type metadataListDocumentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDocumentsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDocumentsInput) GoString() string {
+	return s.String()
+}
+
 type ListDocumentsOutput struct {
 	// The names of the configuration documents.
 	DocumentIdentifiers []*DocumentIdentifier `locationNameList:"DocumentIdentifier" type:"list"`
@@ -745,6 +1026,16 @@ type ListDocumentsOutput struct {
 
 type metadataListDocumentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDocumentsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDocumentsOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAssociationStatusInput struct {
@@ -764,6 +1055,16 @@ type metadataUpdateAssociationStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateAssociationStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAssociationStatusInput) GoString() string {
+	return s.String()
+}
+
 type UpdateAssociationStatusOutput struct {
 	// Information about the association.
 	AssociationDescription *AssociationDescription `type:"structure"`
@@ -773,4 +1074,14 @@ type UpdateAssociationStatusOutput struct {
 
 type metadataUpdateAssociationStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAssociationStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAssociationStatusOutput) GoString() string {
+	return s.String()
 }

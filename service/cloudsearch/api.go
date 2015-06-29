@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opBuildSuggesters = "BuildSuggesters"
@@ -765,6 +766,16 @@ type metadataAccessPoliciesStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccessPoliciesStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccessPoliciesStatus) GoString() string {
+	return s.String()
+}
+
 // Synonyms, stopwords, and stemming options for an analysis scheme. Includes
 // tokenization dictionary for Japanese.
 type AnalysisOptions struct {
@@ -811,6 +822,16 @@ type metadataAnalysisOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AnalysisOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AnalysisOptions) GoString() string {
+	return s.String()
+}
+
 // Configuration information for an analysis scheme. Each analysis scheme has
 // a unique name and specifies the language of the text to be processed. The
 // following options can be configured for an analysis scheme: Synonyms, Stopwords,
@@ -835,6 +856,16 @@ type metadataAnalysisScheme struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AnalysisScheme) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AnalysisScheme) GoString() string {
+	return s.String()
+}
+
 // The status and configuration of an AnalysisScheme.
 type AnalysisSchemeStatus struct {
 	// Configuration information for an analysis scheme. Each analysis scheme has
@@ -853,6 +884,16 @@ type metadataAnalysisSchemeStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AnalysisSchemeStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AnalysisSchemeStatus) GoString() string {
+	return s.String()
+}
+
 // The status and configuration of the domain's availability options.
 type AvailabilityOptionsStatus struct {
 	// The availability options configured for the domain.
@@ -866,6 +907,16 @@ type AvailabilityOptionsStatus struct {
 
 type metadataAvailabilityOptionsStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AvailabilityOptionsStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AvailabilityOptionsStatus) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the BuildSuggester operation. Specifies the
@@ -884,6 +935,16 @@ type metadataBuildSuggestersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BuildSuggestersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BuildSuggestersInput) GoString() string {
+	return s.String()
+}
+
 // The result of a BuildSuggester request. Contains a list of the fields used
 // for suggestions.
 type BuildSuggestersOutput struct {
@@ -895,6 +956,16 @@ type BuildSuggestersOutput struct {
 
 type metadataBuildSuggestersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BuildSuggestersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BuildSuggestersOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the CreateDomain operation. Specifies a name
@@ -912,6 +983,16 @@ type metadataCreateDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDomainInput) GoString() string {
+	return s.String()
+}
+
 // The result of a CreateDomainRequest. Contains the status of a newly created
 // domain.
 type CreateDomainOutput struct {
@@ -923,6 +1004,16 @@ type CreateDomainOutput struct {
 
 type metadataCreateDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDomainOutput) GoString() string {
+	return s.String()
 }
 
 // Options for a field that contains an array of dates. Present if IndexFieldType
@@ -948,6 +1039,16 @@ type DateArrayOptions struct {
 
 type metadataDateArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DateArrayOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DateArrayOptions) GoString() string {
+	return s.String()
 }
 
 // Options for a date field. Dates and times are specified in UTC (Coordinated
@@ -993,6 +1094,16 @@ type metadataDateOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DateOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DateOptions) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the DefineAnalysisScheme operation. Specifies
 // the name of the domain you want to update and the analysis scheme configuration.
 type DefineAnalysisSchemeInput struct {
@@ -1015,6 +1126,16 @@ type metadataDefineAnalysisSchemeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DefineAnalysisSchemeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineAnalysisSchemeInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DefineAnalysisScheme request. Contains the status of the
 // newly-configured analysis scheme.
 type DefineAnalysisSchemeOutput struct {
@@ -1026,6 +1147,16 @@ type DefineAnalysisSchemeOutput struct {
 
 type metadataDefineAnalysisSchemeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DefineAnalysisSchemeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineAnalysisSchemeOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DefineExpression operation. Specifies
@@ -1050,6 +1181,16 @@ type metadataDefineExpressionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DefineExpressionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineExpressionInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DefineExpression request. Contains the status of the newly-configured
 // expression.
 type DefineExpressionOutput struct {
@@ -1061,6 +1202,16 @@ type DefineExpressionOutput struct {
 
 type metadataDefineExpressionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DefineExpressionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineExpressionOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DefineIndexField operation. Specifies
@@ -1082,6 +1233,16 @@ type metadataDefineIndexFieldInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DefineIndexFieldInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineIndexFieldInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DefineIndexField request. Contains the status of the newly-configured
 // index field.
 type DefineIndexFieldOutput struct {
@@ -1093,6 +1254,16 @@ type DefineIndexFieldOutput struct {
 
 type metadataDefineIndexFieldOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DefineIndexFieldOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineIndexFieldOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DefineSuggester operation. Specifies
@@ -1116,6 +1287,16 @@ type metadataDefineSuggesterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DefineSuggesterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineSuggesterInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DefineSuggester request. Contains the status of the newly-configured
 // suggester.
 type DefineSuggesterOutput struct {
@@ -1127,6 +1308,16 @@ type DefineSuggesterOutput struct {
 
 type metadataDefineSuggesterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DefineSuggesterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefineSuggesterOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DeleteAnalysisScheme operation. Specifies
@@ -1149,6 +1340,16 @@ type metadataDeleteAnalysisSchemeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAnalysisSchemeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAnalysisSchemeInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DeleteAnalysisScheme request. Contains the status of the
 // deleted analysis scheme.
 type DeleteAnalysisSchemeOutput struct {
@@ -1160,6 +1361,16 @@ type DeleteAnalysisSchemeOutput struct {
 
 type metadataDeleteAnalysisSchemeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAnalysisSchemeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAnalysisSchemeOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DeleteDomain operation. Specifies the
@@ -1175,6 +1386,16 @@ type metadataDeleteDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDomainInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DeleteDomain request. Contains the status of a newly deleted
 // domain, or no status if the domain has already been completely deleted.
 type DeleteDomainOutput struct {
@@ -1186,6 +1407,16 @@ type DeleteDomainOutput struct {
 
 type metadataDeleteDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDomainOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DeleteExpression operation. Specifies
@@ -1208,6 +1439,16 @@ type metadataDeleteExpressionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteExpressionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteExpressionInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DeleteExpression request. Specifies the expression being
 // deleted.
 type DeleteExpressionOutput struct {
@@ -1219,6 +1460,16 @@ type DeleteExpressionOutput struct {
 
 type metadataDeleteExpressionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteExpressionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteExpressionOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DeleteIndexField operation. Specifies
@@ -1242,6 +1493,16 @@ type metadataDeleteIndexFieldInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteIndexFieldInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIndexFieldInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DeleteIndexField request.
 type DeleteIndexFieldOutput struct {
 	// The status of the index field being deleted.
@@ -1252,6 +1513,16 @@ type DeleteIndexFieldOutput struct {
 
 type metadataDeleteIndexFieldOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIndexFieldOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIndexFieldOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DeleteSuggester operation. Specifies
@@ -1274,6 +1545,16 @@ type metadataDeleteSuggesterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSuggesterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSuggesterInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DeleteSuggester request. Contains the status of the deleted
 // suggester.
 type DeleteSuggesterOutput struct {
@@ -1285,6 +1566,16 @@ type DeleteSuggesterOutput struct {
 
 type metadataDeleteSuggesterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSuggesterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSuggesterOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeAnalysisSchemes operation. Specifies
@@ -1310,6 +1601,16 @@ type metadataDescribeAnalysisSchemesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAnalysisSchemesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAnalysisSchemesInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeAnalysisSchemes request. Contains the analysis schemes
 // configured for the domain specified in the request.
 type DescribeAnalysisSchemesOutput struct {
@@ -1321,6 +1622,16 @@ type DescribeAnalysisSchemesOutput struct {
 
 type metadataDescribeAnalysisSchemesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAnalysisSchemesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAnalysisSchemesOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeAvailabilityOptions operation.
@@ -1342,6 +1653,16 @@ type metadataDescribeAvailabilityOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAvailabilityOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAvailabilityOptionsInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeAvailabilityOptions request. Indicates whether or
 // not the Multi-AZ option is enabled for the domain specified in the request.
 type DescribeAvailabilityOptionsOutput struct {
@@ -1354,6 +1675,16 @@ type DescribeAvailabilityOptionsOutput struct {
 
 type metadataDescribeAvailabilityOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAvailabilityOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAvailabilityOptionsOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeDomains operation. By default
@@ -1370,6 +1701,16 @@ type metadataDescribeDomainsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDomainsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDomainsInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeDomains request. Contains the status of the domains
 // specified in the request or all domains owned by the account.
 type DescribeDomainsOutput struct {
@@ -1381,6 +1722,16 @@ type DescribeDomainsOutput struct {
 
 type metadataDescribeDomainsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDomainsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDomainsOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeDomains operation. Specifies
@@ -1407,6 +1758,16 @@ type metadataDescribeExpressionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeExpressionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExpressionsInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeExpressions request. Contains the expressions configured
 // for the domain specified in the request.
 type DescribeExpressionsOutput struct {
@@ -1418,6 +1779,16 @@ type DescribeExpressionsOutput struct {
 
 type metadataDescribeExpressionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeExpressionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExpressionsOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeIndexFields operation. Specifies
@@ -1444,6 +1815,16 @@ type metadataDescribeIndexFieldsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeIndexFieldsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIndexFieldsInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeIndexFields request. Contains the index fields configured
 // for the domain specified in the request.
 type DescribeIndexFieldsOutput struct {
@@ -1455,6 +1836,16 @@ type DescribeIndexFieldsOutput struct {
 
 type metadataDescribeIndexFieldsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeIndexFieldsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIndexFieldsOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeScalingParameters operation.
@@ -1473,6 +1864,16 @@ type metadataDescribeScalingParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeScalingParametersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingParametersInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeScalingParameters request. Contains the scaling parameters
 // configured for the domain specified in the request.
 type DescribeScalingParametersOutput struct {
@@ -1484,6 +1885,16 @@ type DescribeScalingParametersOutput struct {
 
 type metadataDescribeScalingParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeScalingParametersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeScalingParametersOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeServiceAccessPolicies operation.
@@ -1505,6 +1916,16 @@ type metadataDescribeServiceAccessPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeServiceAccessPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeServiceAccessPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeServiceAccessPolicies request.
 type DescribeServiceAccessPoliciesOutput struct {
 	// The access rules configured for the domain specified in the request.
@@ -1515,6 +1936,16 @@ type DescribeServiceAccessPoliciesOutput struct {
 
 type metadataDescribeServiceAccessPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeServiceAccessPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeServiceAccessPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the DescribeSuggester operation. Specifies
@@ -1540,6 +1971,16 @@ type metadataDescribeSuggestersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSuggestersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSuggestersInput) GoString() string {
+	return s.String()
+}
+
 // The result of a DescribeSuggesters request.
 type DescribeSuggestersOutput struct {
 	// The suggesters configured for the domain specified in the request.
@@ -1550,6 +1991,16 @@ type DescribeSuggestersOutput struct {
 
 type metadataDescribeSuggestersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSuggestersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSuggestersOutput) GoString() string {
+	return s.String()
 }
 
 // Options for a search suggester.
@@ -1578,6 +2029,16 @@ type DocumentSuggesterOptions struct {
 
 type metadataDocumentSuggesterOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DocumentSuggesterOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DocumentSuggesterOptions) GoString() string {
+	return s.String()
 }
 
 // The current status of the search domain.
@@ -1639,6 +2100,16 @@ type metadataDomainStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DomainStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DomainStatus) GoString() string {
+	return s.String()
+}
+
 // Options for a field that contains an array of double-precision 64-bit floating
 // point values. Present if IndexFieldType specifies the field is of type double-array.
 // All options are enabled by default.
@@ -1663,6 +2134,16 @@ type DoubleArrayOptions struct {
 
 type metadataDoubleArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DoubleArrayOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DoubleArrayOptions) GoString() string {
+	return s.String()
 }
 
 // Options for a double-precision 64-bit floating point field. Present if IndexFieldType
@@ -1695,6 +2176,16 @@ type metadataDoubleOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DoubleOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DoubleOptions) GoString() string {
+	return s.String()
+}
+
 // A named expression that can be evaluated at search time. Can be used to sort
 // the search results, define other expressions, or return computed information
 // in the search results.
@@ -1716,6 +2207,16 @@ type metadataExpression struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Expression) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Expression) GoString() string {
+	return s.String()
+}
+
 // The value of an Expression and its current status.
 type ExpressionStatus struct {
 	// The expression that is evaluated for sorting while processing a search request.
@@ -1729,6 +2230,16 @@ type ExpressionStatus struct {
 
 type metadataExpressionStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExpressionStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExpressionStatus) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the IndexDocuments operation. Specifies the
@@ -1747,6 +2258,16 @@ type metadataIndexDocumentsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IndexDocumentsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IndexDocumentsInput) GoString() string {
+	return s.String()
+}
+
 // The result of an IndexDocuments request. Contains the status of the indexing
 // operation, including the fields being indexed.
 type IndexDocumentsOutput struct {
@@ -1758,6 +2279,16 @@ type IndexDocumentsOutput struct {
 
 type metadataIndexDocumentsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IndexDocumentsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IndexDocumentsOutput) GoString() string {
+	return s.String()
 }
 
 // Configuration information for a field in the index, including its name, type,
@@ -1844,6 +2375,16 @@ type metadataIndexField struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IndexField) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IndexField) GoString() string {
+	return s.String()
+}
+
 // The value of an IndexField and its current status.
 type IndexFieldStatus struct {
 	// Configuration information for a field in the index, including its name, type,
@@ -1858,6 +2399,16 @@ type IndexFieldStatus struct {
 
 type metadataIndexFieldStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IndexFieldStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IndexFieldStatus) GoString() string {
+	return s.String()
 }
 
 // Options for a field that contains an array of 64-bit signed integers. Present
@@ -1884,6 +2435,16 @@ type IntArrayOptions struct {
 
 type metadataIntArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IntArrayOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IntArrayOptions) GoString() string {
+	return s.String()
 }
 
 // Options for a 64-bit signed integer field. Present if IndexFieldType specifies
@@ -1914,6 +2475,16 @@ type IntOptions struct {
 
 type metadataIntOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IntOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IntOptions) GoString() string {
+	return s.String()
 }
 
 // Options for a latlon field. A latlon field contains a location stored as
@@ -1958,6 +2529,16 @@ type metadataLatLonOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LatLonOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LatLonOptions) GoString() string {
+	return s.String()
+}
+
 type Limits struct {
 	MaximumPartitionCount *int64 `type:"integer" required:"true"`
 
@@ -1970,12 +2551,32 @@ type metadataLimits struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Limits) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Limits) GoString() string {
+	return s.String()
+}
+
 type ListDomainNamesInput struct {
 	metadataListDomainNamesInput `json:"-" xml:"-"`
 }
 
 type metadataListDomainNamesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDomainNamesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDomainNamesInput) GoString() string {
+	return s.String()
 }
 
 // The result of a ListDomainNames request. Contains a list of the domains owned
@@ -1989,6 +2590,16 @@ type ListDomainNamesOutput struct {
 
 type metadataListDomainNamesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDomainNamesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDomainNamesOutput) GoString() string {
+	return s.String()
 }
 
 // Options for a field that contains an array of literal strings. Present if
@@ -2015,6 +2626,16 @@ type LiteralArrayOptions struct {
 
 type metadataLiteralArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LiteralArrayOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LiteralArrayOptions) GoString() string {
+	return s.String()
 }
 
 // Options for literal field. Present if IndexFieldType specifies the field
@@ -2058,6 +2679,16 @@ type metadataLiteralOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LiteralOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LiteralOptions) GoString() string {
+	return s.String()
+}
+
 // The status of domain configuration option.
 type OptionStatus struct {
 	// A timestamp for when this option was created.
@@ -2090,6 +2721,16 @@ type metadataOptionStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s OptionStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OptionStatus) GoString() string {
+	return s.String()
+}
+
 // The desired instance type and desired number of replicas of each index partition.
 type ScalingParameters struct {
 	// The instance type that you want to preconfigure for your domain. For example,
@@ -2110,6 +2751,16 @@ type metadataScalingParameters struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ScalingParameters) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScalingParameters) GoString() string {
+	return s.String()
+}
+
 // The status and configuration of a search domain's scaling parameters.
 type ScalingParametersStatus struct {
 	// The desired instance type and desired number of replicas of each index partition.
@@ -2125,6 +2776,16 @@ type metadataScalingParametersStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ScalingParametersStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScalingParametersStatus) GoString() string {
+	return s.String()
+}
+
 // The endpoint to which service requests can be submitted.
 type ServiceEndpoint struct {
 	// The endpoint to which service requests can be submitted. For example, search-imdb-movies-oopcnjfn6ugofer3zx5iadxxca.eu-west-1.cloudsearch.amazonaws.com
@@ -2136,6 +2797,16 @@ type ServiceEndpoint struct {
 
 type metadataServiceEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServiceEndpoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ServiceEndpoint) GoString() string {
+	return s.String()
 }
 
 // Configuration information for a search suggester. Each suggester has a unique
@@ -2156,6 +2827,16 @@ type metadataSuggester struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Suggester) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Suggester) GoString() string {
+	return s.String()
+}
+
 // The value of a Suggester and its current status.
 type SuggesterStatus struct {
 	// Configuration information for a search suggester. Each suggester has a unique
@@ -2171,6 +2852,16 @@ type SuggesterStatus struct {
 
 type metadataSuggesterStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SuggesterStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SuggesterStatus) GoString() string {
+	return s.String()
 }
 
 // Options for a field that contains an array of text strings. Present if IndexFieldType
@@ -2197,6 +2888,16 @@ type TextArrayOptions struct {
 
 type metadataTextArrayOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TextArrayOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TextArrayOptions) GoString() string {
+	return s.String()
 }
 
 // Options for text field. Present if IndexFieldType specifies the field is
@@ -2241,6 +2942,16 @@ type metadataTextOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TextOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TextOptions) GoString() string {
+	return s.String()
+}
+
 // Container for the parameters to the UpdateAvailabilityOptions operation.
 // Specifies the name of the domain you want to update and the Multi-AZ availability
 // option.
@@ -2264,6 +2975,16 @@ type metadataUpdateAvailabilityOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateAvailabilityOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAvailabilityOptionsInput) GoString() string {
+	return s.String()
+}
+
 // The result of a UpdateAvailabilityOptions request. Contains the status of
 // the domain's availability options.
 type UpdateAvailabilityOptionsOutput struct {
@@ -2276,6 +2997,16 @@ type UpdateAvailabilityOptionsOutput struct {
 
 type metadataUpdateAvailabilityOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAvailabilityOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAvailabilityOptionsOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the UpdateScalingParameters operation. Specifies
@@ -2298,6 +3029,16 @@ type metadataUpdateScalingParametersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateScalingParametersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateScalingParametersInput) GoString() string {
+	return s.String()
+}
+
 // The result of a UpdateScalingParameters request. Contains the status of the
 // newly-configured scaling parameters.
 type UpdateScalingParametersOutput struct {
@@ -2309,6 +3050,16 @@ type UpdateScalingParametersOutput struct {
 
 type metadataUpdateScalingParametersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateScalingParametersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateScalingParametersOutput) GoString() string {
+	return s.String()
 }
 
 // Container for the parameters to the UpdateServiceAccessPolicies operation.
@@ -2332,6 +3083,16 @@ type metadataUpdateServiceAccessPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateServiceAccessPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateServiceAccessPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // The result of an UpdateServiceAccessPolicies request. Contains the new access
 // policies.
 type UpdateServiceAccessPoliciesOutput struct {
@@ -2343,4 +3104,14 @@ type UpdateServiceAccessPoliciesOutput struct {
 
 type metadataUpdateServiceAccessPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateServiceAccessPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateServiceAccessPoliciesOutput) GoString() string {
+	return s.String()
 }

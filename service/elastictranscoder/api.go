@@ -5,6 +5,7 @@ package elastictranscoder
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCancelJob = "CancelJob"
@@ -650,6 +651,16 @@ type metadataArtwork struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Artwork) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Artwork) GoString() string {
+	return s.String()
+}
+
 // Options associated with your audio codec.
 type AudioCodecOptions struct {
 	// You can only choose an audio bit depth when you specify flac or pcm for the
@@ -705,6 +716,16 @@ type AudioCodecOptions struct {
 
 type metadataAudioCodecOptions struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AudioCodecOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AudioCodecOptions) GoString() string {
+	return s.String()
 }
 
 // Parameters required for transcoding audio.
@@ -828,6 +849,16 @@ type metadataAudioParameters struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AudioParameters) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AudioParameters) GoString() string {
+	return s.String()
+}
+
 // The CancelJobRequest structure.
 type CancelJobInput struct {
 	// The identifier of the job that you want to cancel.
@@ -843,6 +874,16 @@ type metadataCancelJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelJobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelJobInput) GoString() string {
+	return s.String()
+}
+
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
@@ -851,6 +892,16 @@ type CancelJobOutput struct {
 
 type metadataCancelJobOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelJobOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelJobOutput) GoString() string {
+	return s.String()
 }
 
 // The file format of the output captions. If you leave this value blank, Elastic
@@ -909,6 +960,16 @@ type metadataCaptionFormat struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CaptionFormat) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CaptionFormat) GoString() string {
+	return s.String()
+}
+
 // A source file for the input sidecar captions used during the transcoding
 // process.
 type CaptionSource struct {
@@ -950,6 +1011,16 @@ type metadataCaptionSource struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CaptionSource) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CaptionSource) GoString() string {
+	return s.String()
+}
+
 // The captions to be created, if any.
 type Captions struct {
 	// The array of file formats for the output captions. If you leave this value
@@ -987,6 +1058,16 @@ type metadataCaptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Captions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Captions) GoString() string {
+	return s.String()
+}
+
 // Settings for one clip in a composition. All jobs in a playlist must have
 // the same clip settings.
 type Clip struct {
@@ -998,6 +1079,16 @@ type Clip struct {
 
 type metadataClip struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Clip) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Clip) GoString() string {
+	return s.String()
 }
 
 // The CreateJobRequest structure.
@@ -1043,6 +1134,16 @@ type CreateJobInput struct {
 
 type metadataCreateJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateJobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateJobInput) GoString() string {
+	return s.String()
 }
 
 // The CreateJobOutput structure.
@@ -1192,6 +1293,16 @@ type metadataCreateJobOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateJobOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateJobOutput) GoString() string {
+	return s.String()
+}
+
 // Information about the master playlist.
 type CreateJobPlaylist struct {
 	// The format of the output playlist. Valid formats include HLSv3, HLSv4, and
@@ -1264,6 +1375,16 @@ type metadataCreateJobPlaylist struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateJobPlaylist) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateJobPlaylist) GoString() string {
+	return s.String()
+}
+
 // The CreateJobResponse structure.
 type CreateJobResponse struct {
 	// A section of the response body that provides information about the job that
@@ -1275,6 +1396,16 @@ type CreateJobResponse struct {
 
 type metadataCreateJobResponse struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateJobResponse) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateJobResponse) GoString() string {
+	return s.String()
 }
 
 // The CreatePipelineRequest structure.
@@ -1437,6 +1568,16 @@ type metadataCreatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePipelineInput) GoString() string {
+	return s.String()
+}
+
 // When you create a pipeline, Elastic Transcoder returns the values that you
 // specified in the request.
 type CreatePipelineOutput struct {
@@ -1457,6 +1598,16 @@ type CreatePipelineOutput struct {
 
 type metadataCreatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePipelineOutput) GoString() string {
+	return s.String()
 }
 
 // The CreatePresetRequest structure.
@@ -1489,6 +1640,16 @@ type metadataCreatePresetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePresetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePresetInput) GoString() string {
+	return s.String()
+}
+
 // The CreatePresetResponse structure.
 type CreatePresetOutput struct {
 	// A section of the response body that provides information about the preset
@@ -1508,6 +1669,16 @@ type metadataCreatePresetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePresetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePresetOutput) GoString() string {
+	return s.String()
+}
+
 // The DeletePipelineRequest structure.
 type DeletePipelineInput struct {
 	// The identifier of the pipeline that you want to delete.
@@ -1520,6 +1691,16 @@ type metadataDeletePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePipelineInput) GoString() string {
+	return s.String()
+}
+
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
 	metadataDeletePipelineOutput `json:"-" xml:"-"`
@@ -1527,6 +1708,16 @@ type DeletePipelineOutput struct {
 
 type metadataDeletePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePipelineOutput) GoString() string {
+	return s.String()
 }
 
 // The DeletePresetRequest structure.
@@ -1541,6 +1732,16 @@ type metadataDeletePresetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePresetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePresetInput) GoString() string {
+	return s.String()
+}
+
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
 	metadataDeletePresetOutput `json:"-" xml:"-"`
@@ -1548,6 +1749,16 @@ type DeletePresetOutput struct {
 
 type metadataDeletePresetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePresetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePresetOutput) GoString() string {
+	return s.String()
 }
 
 // The detected properties of the input file. Elastic Transcoder identifies
@@ -1573,6 +1784,16 @@ type DetectedProperties struct {
 
 type metadataDetectedProperties struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetectedProperties) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetectedProperties) GoString() string {
+	return s.String()
 }
 
 // The encryption settings, if any, that are used for decrypting your input
@@ -1647,6 +1868,16 @@ type metadataEncryption struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Encryption) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Encryption) GoString() string {
+	return s.String()
+}
+
 // The HLS content protection settings, if any, that you want Elastic Transcoder
 // to apply to your output files.
 type HLSContentProtection struct {
@@ -1700,6 +1931,16 @@ type HLSContentProtection struct {
 
 type metadataHLSContentProtection struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s HLSContentProtection) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HLSContentProtection) GoString() string {
+	return s.String()
 }
 
 // A section of the response body that provides information about the job that
@@ -1783,6 +2024,16 @@ type metadataJob struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Job) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Job) GoString() string {
+	return s.String()
+}
+
 // The .jpg or .png file associated with an audio file.
 type JobAlbumArt struct {
 	// The file to be used as album art. There can be multiple artworks associated
@@ -1806,6 +2057,16 @@ type JobAlbumArt struct {
 
 type metadataJobAlbumArt struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s JobAlbumArt) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobAlbumArt) GoString() string {
+	return s.String()
 }
 
 // Information about the file that you're transcoding.
@@ -1877,6 +2138,16 @@ type JobInput struct {
 
 type metadataJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s JobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobInput) GoString() string {
+	return s.String()
 }
 
 // Outputs recommended instead.If you specified one output for a job, information
@@ -2088,6 +2359,16 @@ type metadataJobOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobOutput) GoString() string {
+	return s.String()
+}
+
 // Watermarks can be in .png or .jpg format. If you want to display a watermark
 // that is not rectangular, use the .png format, which supports transparency.
 type JobWatermark struct {
@@ -2118,6 +2399,16 @@ type metadataJobWatermark struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobWatermark) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobWatermark) GoString() string {
+	return s.String()
+}
+
 // The ListJobsByPipelineRequest structure.
 type ListJobsByPipelineInput struct {
 	// To list jobs in chronological order by the date and time that they were submitted,
@@ -2138,6 +2429,16 @@ type metadataListJobsByPipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListJobsByPipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListJobsByPipelineInput) GoString() string {
+	return s.String()
+}
+
 // The ListJobsByPipelineResponse structure.
 type ListJobsByPipelineOutput struct {
 	// An array of Job objects that are in the specified pipeline.
@@ -2153,6 +2454,16 @@ type ListJobsByPipelineOutput struct {
 
 type metadataListJobsByPipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListJobsByPipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListJobsByPipelineOutput) GoString() string {
+	return s.String()
 }
 
 // The ListJobsByStatusRequest structure.
@@ -2177,6 +2488,16 @@ type metadataListJobsByStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListJobsByStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListJobsByStatusInput) GoString() string {
+	return s.String()
+}
+
 // The ListJobsByStatusResponse structure.
 type ListJobsByStatusOutput struct {
 	// An array of Job objects that have the specified status.
@@ -2192,6 +2513,16 @@ type ListJobsByStatusOutput struct {
 
 type metadataListJobsByStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListJobsByStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListJobsByStatusOutput) GoString() string {
+	return s.String()
 }
 
 // The ListPipelineRequest structure.
@@ -2212,6 +2543,16 @@ type metadataListPipelinesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPipelinesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPipelinesInput) GoString() string {
+	return s.String()
+}
+
 // A list of the pipelines associated with the current AWS account.
 type ListPipelinesOutput struct {
 	// A value that you use to access the second and subsequent pages of results,
@@ -2227,6 +2568,16 @@ type ListPipelinesOutput struct {
 
 type metadataListPipelinesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPipelinesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPipelinesOutput) GoString() string {
+	return s.String()
 }
 
 // The ListPresetsRequest structure.
@@ -2247,6 +2598,16 @@ type metadataListPresetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPresetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPresetsInput) GoString() string {
+	return s.String()
+}
+
 // The ListPresetsResponse structure.
 type ListPresetsOutput struct {
 	// A value that you use to access the second and subsequent pages of results,
@@ -2262,6 +2623,16 @@ type ListPresetsOutput struct {
 
 type metadataListPresetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPresetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPresetsOutput) GoString() string {
+	return s.String()
 }
 
 // The Amazon Simple Notification Service (Amazon SNS) topic or topics to notify
@@ -2291,6 +2662,16 @@ type Notifications struct {
 
 type metadataNotifications struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Notifications) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Notifications) GoString() string {
+	return s.String()
 }
 
 // The Permission structure.
@@ -2325,6 +2706,16 @@ type Permission struct {
 
 type metadataPermission struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Permission) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Permission) GoString() string {
+	return s.String()
 }
 
 // The pipeline (queue) that is used to manage jobs.
@@ -2447,6 +2838,16 @@ type metadataPipeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Pipeline) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Pipeline) GoString() string {
+	return s.String()
+}
+
 // The PipelineOutputConfig structure.
 type PipelineOutputConfig struct {
 	// The Amazon S3 bucket in which you want Elastic Transcoder to save the transcoded
@@ -2488,6 +2889,16 @@ type PipelineOutputConfig struct {
 
 type metadataPipelineOutputConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PipelineOutputConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PipelineOutputConfig) GoString() string {
+	return s.String()
 }
 
 // The PlayReady DRM settings, if any, that you want Elastic Transcoder to apply
@@ -2544,6 +2955,16 @@ type PlayReadyDRM struct {
 
 type metadataPlayReadyDRM struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PlayReadyDRM) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PlayReadyDRM) GoString() string {
+	return s.String()
 }
 
 // Use Only for Fragmented MP4 or MPEG-TS Outputs. If you specify a preset for
@@ -2628,6 +3049,16 @@ type metadataPlaylist struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Playlist) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Playlist) GoString() string {
+	return s.String()
+}
+
 // Presets are templates that contain most of the settings for transcoding media
 // files from one format to another. Elastic Transcoder includes some default
 // presets for common formats, for example, several iPod and iPhone versions.
@@ -2673,6 +3104,16 @@ type Preset struct {
 
 type metadataPreset struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Preset) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Preset) GoString() string {
+	return s.String()
 }
 
 // Settings for the size, location, and opacity of graphics that you want Elastic
@@ -2808,6 +3249,16 @@ type metadataPresetWatermark struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PresetWatermark) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PresetWatermark) GoString() string {
+	return s.String()
+}
+
 // The ReadJobRequest structure.
 type ReadJobInput struct {
 	// The identifier of the job for which you want to get detailed information.
@@ -2818,6 +3269,16 @@ type ReadJobInput struct {
 
 type metadataReadJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReadJobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReadJobInput) GoString() string {
+	return s.String()
 }
 
 // The ReadJobResponse structure.
@@ -2832,6 +3293,16 @@ type metadataReadJobOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReadJobOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReadJobOutput) GoString() string {
+	return s.String()
+}
+
 // The ReadPipelineRequest structure.
 type ReadPipelineInput struct {
 	// The identifier of the pipeline to read.
@@ -2842,6 +3313,16 @@ type ReadPipelineInput struct {
 
 type metadataReadPipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReadPipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReadPipelineInput) GoString() string {
+	return s.String()
 }
 
 // The ReadPipelineResponse structure.
@@ -2864,6 +3345,16 @@ type metadataReadPipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReadPipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReadPipelineOutput) GoString() string {
+	return s.String()
+}
+
 // The ReadPresetRequest structure.
 type ReadPresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
@@ -2876,6 +3367,16 @@ type metadataReadPresetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReadPresetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReadPresetInput) GoString() string {
+	return s.String()
+}
+
 // The ReadPresetResponse structure.
 type ReadPresetOutput struct {
 	// A section of the response body that provides information about the preset.
@@ -2886,6 +3387,16 @@ type ReadPresetOutput struct {
 
 type metadataReadPresetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReadPresetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReadPresetOutput) GoString() string {
+	return s.String()
 }
 
 // The TestRoleRequest structure.
@@ -2913,6 +3424,16 @@ type metadataTestRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TestRoleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TestRoleInput) GoString() string {
+	return s.String()
+}
+
 // The TestRoleResponse structure.
 type TestRoleOutput struct {
 	// If the Success element contains false, this value is an array of one or more
@@ -2928,6 +3449,16 @@ type TestRoleOutput struct {
 
 type metadataTestRoleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TestRoleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TestRoleOutput) GoString() string {
+	return s.String()
 }
 
 // Thumbnails for videos.
@@ -3012,6 +3543,16 @@ type metadataThumbnails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Thumbnails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Thumbnails) GoString() string {
+	return s.String()
+}
+
 // Settings that determine when a clip begins and how long it lasts.
 type TimeSpan struct {
 	// The duration of the clip. The format can be either HH:mm:ss.SSS (maximum
@@ -3036,6 +3577,16 @@ type metadataTimeSpan struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TimeSpan) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TimeSpan) GoString() string {
+	return s.String()
+}
+
 // Details about the timing of a job.
 type Timing struct {
 	// The time the job finished transcoding, in epoch milliseconds.
@@ -3052,6 +3603,16 @@ type Timing struct {
 
 type metadataTiming struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Timing) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Timing) GoString() string {
+	return s.String()
 }
 
 // The UpdatePipelineRequest structure.
@@ -3185,6 +3746,16 @@ type metadataUpdatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdatePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePipelineInput) GoString() string {
+	return s.String()
+}
+
 // The UpdatePipelineNotificationsRequest structure.
 type UpdatePipelineNotificationsInput struct {
 	// The identifier of the pipeline for which you want to change notification
@@ -3216,6 +3787,16 @@ type metadataUpdatePipelineNotificationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdatePipelineNotificationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePipelineNotificationsInput) GoString() string {
+	return s.String()
+}
+
 // The UpdatePipelineNotificationsResponse structure.
 type UpdatePipelineNotificationsOutput struct {
 	// A section of the response body that provides information about the pipeline.
@@ -3226,6 +3807,16 @@ type UpdatePipelineNotificationsOutput struct {
 
 type metadataUpdatePipelineNotificationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdatePipelineNotificationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePipelineNotificationsOutput) GoString() string {
+	return s.String()
 }
 
 // When you update a pipeline, Elastic Transcoder returns the values that you
@@ -3249,6 +3840,16 @@ type metadataUpdatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdatePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePipelineOutput) GoString() string {
+	return s.String()
+}
+
 // The UpdatePipelineStatusRequest structure.
 type UpdatePipelineStatusInput struct {
 	// The identifier of the pipeline to update.
@@ -3267,6 +3868,16 @@ type metadataUpdatePipelineStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdatePipelineStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePipelineStatusInput) GoString() string {
+	return s.String()
+}
+
 // When you update status for a pipeline, Elastic Transcoder returns the values
 // that you specified in the request.
 type UpdatePipelineStatusOutput struct {
@@ -3278,6 +3889,16 @@ type UpdatePipelineStatusOutput struct {
 
 type metadataUpdatePipelineStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdatePipelineStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePipelineStatusOutput) GoString() string {
+	return s.String()
 }
 
 // The VideoParameters structure.
@@ -3584,6 +4205,16 @@ type metadataVideoParameters struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VideoParameters) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VideoParameters) GoString() string {
+	return s.String()
+}
+
 // Elastic Transcoder returns a warning if the resources used by your pipeline
 // are not in the same region as the pipeline.
 //
@@ -3605,4 +4236,14 @@ type Warning struct {
 
 type metadataWarning struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Warning) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Warning) GoString() string {
+	return s.String()
 }

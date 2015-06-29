@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opActivatePipeline = "ActivatePipeline"
@@ -663,6 +664,16 @@ type metadataActivatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivatePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivatePipelineInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of ActivatePipeline.
 type ActivatePipelineOutput struct {
 	metadataActivatePipelineOutput `json:"-" xml:"-"`
@@ -670,6 +681,16 @@ type ActivatePipelineOutput struct {
 
 type metadataActivatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActivatePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivatePipelineOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for AddTags.
@@ -687,6 +708,16 @@ type metadataAddTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of AddTags.
 type AddTagsOutput struct {
 	metadataAddTagsOutput `json:"-" xml:"-"`
@@ -694,6 +725,16 @@ type AddTagsOutput struct {
 
 type metadataAddTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for CreatePipeline.
@@ -732,6 +773,16 @@ type metadataCreatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePipelineInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of CreatePipeline.
 type CreatePipelineOutput struct {
 	// The ID that AWS Data Pipeline assigns the newly created pipeline. For example,
@@ -743,6 +794,16 @@ type CreatePipelineOutput struct {
 
 type metadataCreatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePipelineOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DeactivatePipeline.
@@ -762,6 +823,16 @@ type metadataDeactivatePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeactivatePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeactivatePipelineInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DeactivatePipeline.
 type DeactivatePipelineOutput struct {
 	metadataDeactivatePipelineOutput `json:"-" xml:"-"`
@@ -769,6 +840,16 @@ type DeactivatePipelineOutput struct {
 
 type metadataDeactivatePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeactivatePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeactivatePipelineOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DeletePipeline.
@@ -783,12 +864,32 @@ type metadataDeletePipelineInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePipelineInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePipelineInput) GoString() string {
+	return s.String()
+}
+
 type DeletePipelineOutput struct {
 	metadataDeletePipelineOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePipelineOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePipelineOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePipelineOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DescribeObjects.
@@ -817,6 +918,16 @@ type metadataDescribeObjectsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeObjectsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeObjectsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeObjects.
 type DescribeObjectsOutput struct {
 	// Indicates whether there are more results to return.
@@ -837,6 +948,16 @@ type metadataDescribeObjectsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeObjectsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeObjectsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for DescribePipelines.
 type DescribePipelinesInput struct {
 	// The IDs of the pipelines to describe. You can pass as many as 25 identifiers
@@ -850,6 +971,16 @@ type metadataDescribePipelinesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribePipelinesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePipelinesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribePipelines.
 type DescribePipelinesOutput struct {
 	// An array of descriptions for the specified pipelines.
@@ -860,6 +991,16 @@ type DescribePipelinesOutput struct {
 
 type metadataDescribePipelinesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribePipelinesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePipelinesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for EvaluateExpression.
@@ -880,6 +1021,16 @@ type metadataEvaluateExpressionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EvaluateExpressionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EvaluateExpressionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of EvaluateExpression.
 type EvaluateExpressionOutput struct {
 	// The evaluated expression.
@@ -890,6 +1041,16 @@ type EvaluateExpressionOutput struct {
 
 type metadataEvaluateExpressionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EvaluateExpressionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EvaluateExpressionOutput) GoString() string {
+	return s.String()
 }
 
 // A key-value pair that describes a property of a pipeline object. The value
@@ -912,6 +1073,16 @@ type metadataField struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Field) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Field) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for GetPipelineDefinition.
 type GetPipelineDefinitionInput struct {
 	// The ID of the pipeline.
@@ -927,6 +1098,16 @@ type GetPipelineDefinitionInput struct {
 
 type metadataGetPipelineDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPipelineDefinitionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPipelineDefinitionInput) GoString() string {
+	return s.String()
 }
 
 // Contains the output of GetPipelineDefinition.
@@ -945,6 +1126,16 @@ type GetPipelineDefinitionOutput struct {
 
 type metadataGetPipelineDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPipelineDefinitionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPipelineDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 // Identity information for the EC2 instance that is hosting the task runner.
@@ -970,6 +1161,16 @@ type metadataInstanceIdentity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceIdentity) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceIdentity) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for ListPipelines.
 type ListPipelinesInput struct {
 	// The starting point for the results to be returned. For the first call, this
@@ -983,6 +1184,16 @@ type ListPipelinesInput struct {
 
 type metadataListPipelinesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPipelinesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPipelinesInput) GoString() string {
+	return s.String()
 }
 
 // Contains the output of ListPipelines.
@@ -1005,6 +1216,16 @@ type ListPipelinesOutput struct {
 
 type metadataListPipelinesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPipelinesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPipelinesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains a logical operation for comparing the value of a field with a specified
@@ -1040,6 +1261,16 @@ type metadataOperator struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Operator) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Operator) GoString() string {
+	return s.String()
+}
+
 // The attributes allowed or specified with a parameter object.
 type ParameterAttribute struct {
 	// The field identifier.
@@ -1053,6 +1284,16 @@ type ParameterAttribute struct {
 
 type metadataParameterAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ParameterAttribute) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ParameterAttribute) GoString() string {
+	return s.String()
 }
 
 // Contains information about a parameter object.
@@ -1070,6 +1311,16 @@ type metadataParameterObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ParameterObject) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ParameterObject) GoString() string {
+	return s.String()
+}
+
 // A value or list of parameter values.
 type ParameterValue struct {
 	// The ID of the parameter value.
@@ -1083,6 +1334,16 @@ type ParameterValue struct {
 
 type metadataParameterValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ParameterValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ParameterValue) GoString() string {
+	return s.String()
 }
 
 // Contains pipeline metadata.
@@ -1114,6 +1375,16 @@ type metadataPipelineDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PipelineDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PipelineDescription) GoString() string {
+	return s.String()
+}
+
 // Contains the name and identifier of a pipeline.
 type PipelineIDName struct {
 	// The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
@@ -1128,6 +1399,16 @@ type PipelineIDName struct {
 
 type metadataPipelineIDName struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PipelineIDName) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PipelineIDName) GoString() string {
+	return s.String()
 }
 
 // Contains information about a pipeline object. This can be a logical, physical,
@@ -1148,6 +1429,16 @@ type PipelineObject struct {
 
 type metadataPipelineObject struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PipelineObject) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PipelineObject) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for PollForTask.
@@ -1177,6 +1468,16 @@ type metadataPollForTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PollForTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PollForTaskInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of PollForTask.
 type PollForTaskOutput struct {
 	// The information needed to complete the task that is being assigned to the
@@ -1190,6 +1491,16 @@ type PollForTaskOutput struct {
 
 type metadataPollForTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PollForTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PollForTaskOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for PutPipelineDefinition.
@@ -1214,6 +1525,16 @@ type metadataPutPipelineDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutPipelineDefinitionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutPipelineDefinitionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of PutPipelineDefinition.
 type PutPipelineDefinitionOutput struct {
 	// Indicates whether there were validation errors, and the pipeline definition
@@ -1234,6 +1555,16 @@ type metadataPutPipelineDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutPipelineDefinitionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutPipelineDefinitionOutput) GoString() string {
+	return s.String()
+}
+
 // Defines the query to run against an object.
 type Query struct {
 	// List of selectors that define the query. An object must satisfy all of the
@@ -1245,6 +1576,16 @@ type Query struct {
 
 type metadataQuery struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Query) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Query) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for QueryObjects.
@@ -1279,6 +1620,16 @@ type metadataQueryObjectsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s QueryObjectsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s QueryObjectsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of QueryObjects.
 type QueryObjectsOutput struct {
 	// Indicates whether there are more results that can be obtained by a subsequent
@@ -1300,6 +1651,16 @@ type metadataQueryObjectsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s QueryObjectsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s QueryObjectsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for RemoveTags.
 type RemoveTagsInput struct {
 	// The ID of the pipeline.
@@ -1315,6 +1676,16 @@ type metadataRemoveTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of RemoveTags.
 type RemoveTagsOutput struct {
 	metadataRemoveTagsOutput `json:"-" xml:"-"`
@@ -1322,6 +1693,16 @@ type RemoveTagsOutput struct {
 
 type metadataRemoveTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for ReportTaskProgress.
@@ -1341,6 +1722,16 @@ type metadataReportTaskProgressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReportTaskProgressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReportTaskProgressInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of ReportTaskProgress.
 type ReportTaskProgressOutput struct {
 	// If true, the calling task runner should cancel processing of the task. The
@@ -1352,6 +1743,16 @@ type ReportTaskProgressOutput struct {
 
 type metadataReportTaskProgressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReportTaskProgressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReportTaskProgressOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for ReportTaskRunnerHeartbeat.
@@ -1380,6 +1781,16 @@ type metadataReportTaskRunnerHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReportTaskRunnerHeartbeatInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReportTaskRunnerHeartbeatInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of ReportTaskRunnerHeartbeat.
 type ReportTaskRunnerHeartbeatOutput struct {
 	// Indicates whether the calling task runner should terminate.
@@ -1390,6 +1801,16 @@ type ReportTaskRunnerHeartbeatOutput struct {
 
 type metadataReportTaskRunnerHeartbeatOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReportTaskRunnerHeartbeatOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReportTaskRunnerHeartbeatOutput) GoString() string {
+	return s.String()
 }
 
 // A comparision that is used to determine whether a query should return this
@@ -1412,6 +1833,16 @@ type metadataSelector struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Selector) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Selector) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for SetStatus.
 type SetStatusInput struct {
 	// The IDs of the objects. The corresponding objects can be either physical
@@ -1432,12 +1863,32 @@ type metadataSetStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetStatusInput) GoString() string {
+	return s.String()
+}
+
 type SetStatusOutput struct {
 	metadataSetStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataSetStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetStatusOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for SetTaskStatus.
@@ -1475,6 +1926,16 @@ type metadataSetTaskStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetTaskStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetTaskStatusInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of SetTaskStatus.
 type SetTaskStatusOutput struct {
 	metadataSetTaskStatusOutput `json:"-" xml:"-"`
@@ -1482,6 +1943,16 @@ type SetTaskStatusOutput struct {
 
 type metadataSetTaskStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetTaskStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetTaskStatusOutput) GoString() string {
+	return s.String()
 }
 
 // Tags are key/value pairs defined by a user and associated with a pipeline
@@ -1505,6 +1976,16 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
 
 // Contains information about a pipeline task that is assigned to a task runner.
@@ -1531,6 +2012,16 @@ type metadataTaskObject struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TaskObject) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TaskObject) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for ValidatePipelineDefinition.
 type ValidatePipelineDefinitionInput struct {
 	// The parameter objects used with the pipeline.
@@ -1552,6 +2043,16 @@ type metadataValidatePipelineDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ValidatePipelineDefinitionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ValidatePipelineDefinitionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of ValidatePipelineDefinition.
 type ValidatePipelineDefinitionOutput struct {
 	// Indicates whether there were validation errors.
@@ -1568,6 +2069,16 @@ type ValidatePipelineDefinitionOutput struct {
 
 type metadataValidatePipelineDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ValidatePipelineDefinitionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ValidatePipelineDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 // Defines a validation error. Validation errors prevent pipeline activation.
@@ -1587,6 +2098,16 @@ type metadataValidationError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ValidationError) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ValidationError) GoString() string {
+	return s.String()
+}
+
 // Defines a validation warning. Validation warnings do not prevent pipeline
 // activation. The set of validation warnings that can be returned are defined
 // by AWS Data Pipeline.
@@ -1602,4 +2123,14 @@ type ValidationWarning struct {
 
 type metadataValidationWarning struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ValidationWarning) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ValidationWarning) GoString() string {
+	return s.String()
 }

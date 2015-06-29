@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateCluster = "CreateCluster"
@@ -923,6 +924,16 @@ type metadataCluster struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Cluster) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Cluster) GoString() string {
+	return s.String()
+}
+
 type Container struct {
 	// The Amazon Resource Name (ARN) of the container.
 	ContainerARN *string `locationName:"containerArn" type:"string"`
@@ -950,6 +961,16 @@ type Container struct {
 
 type metadataContainer struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Container) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Container) GoString() string {
+	return s.String()
 }
 
 // Container definitions are used in task definitions to describe the different
@@ -1052,6 +1073,16 @@ type metadataContainerDefinition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ContainerDefinition) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ContainerDefinition) GoString() string {
+	return s.String()
+}
+
 // An Amazon EC2 instance that is running the Amazon ECS agent and has been
 // registered with a cluster.
 type ContainerInstance struct {
@@ -1103,6 +1134,16 @@ type metadataContainerInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ContainerInstance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ContainerInstance) GoString() string {
+	return s.String()
+}
+
 // The name of a container in a task definition and the command it should run
 // instead of its default.
 type ContainerOverride struct {
@@ -1125,6 +1166,16 @@ type metadataContainerOverride struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ContainerOverride) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ContainerOverride) GoString() string {
+	return s.String()
+}
+
 type CreateClusterInput struct {
 	// The name of your cluster. If you do not specify a name for your cluster,
 	// you will create a cluster named default. Up to 255 letters (uppercase and
@@ -1138,6 +1189,16 @@ type metadataCreateClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateClusterInput) GoString() string {
+	return s.String()
+}
+
 type CreateClusterOutput struct {
 	// The full description of your new cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
@@ -1147,6 +1208,16 @@ type CreateClusterOutput struct {
 
 type metadataCreateClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateClusterOutput) GoString() string {
+	return s.String()
 }
 
 type CreateServiceInput struct {
@@ -1190,6 +1261,16 @@ type metadataCreateServiceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateServiceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateServiceInput) GoString() string {
+	return s.String()
+}
+
 type CreateServiceOutput struct {
 	// The full description of your service following the create call.
 	Service *Service `locationName:"service" type:"structure"`
@@ -1199,6 +1280,16 @@ type CreateServiceOutput struct {
 
 type metadataCreateServiceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateServiceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateServiceOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteClusterInput struct {
@@ -1213,6 +1304,16 @@ type metadataDeleteClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteClusterInput) GoString() string {
+	return s.String()
+}
+
 type DeleteClusterOutput struct {
 	// The full description of the deleted cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
@@ -1222,6 +1323,16 @@ type DeleteClusterOutput struct {
 
 type metadataDeleteClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteClusterOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteServiceInput struct {
@@ -1238,6 +1349,16 @@ type metadataDeleteServiceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteServiceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteServiceInput) GoString() string {
+	return s.String()
+}
+
 type DeleteServiceOutput struct {
 	Service *Service `locationName:"service" type:"structure"`
 
@@ -1246,6 +1367,16 @@ type DeleteServiceOutput struct {
 
 type metadataDeleteServiceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteServiceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteServiceOutput) GoString() string {
+	return s.String()
 }
 
 type Deployment struct {
@@ -1284,6 +1415,16 @@ type metadataDeployment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Deployment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Deployment) GoString() string {
+	return s.String()
+}
+
 type DeregisterContainerInstanceInput struct {
 	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
 	// the container instance you want to deregister. If you do not specify a cluster,
@@ -1310,6 +1451,16 @@ type metadataDeregisterContainerInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeregisterContainerInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterContainerInstanceInput) GoString() string {
+	return s.String()
+}
+
 type DeregisterContainerInstanceOutput struct {
 	// An Amazon EC2 instance that is running the Amazon ECS agent and has been
 	// registered with a cluster.
@@ -1320,6 +1471,16 @@ type DeregisterContainerInstanceOutput struct {
 
 type metadataDeregisterContainerInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterContainerInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterContainerInstanceOutput) GoString() string {
+	return s.String()
 }
 
 type DeregisterTaskDefinitionInput struct {
@@ -1334,6 +1495,16 @@ type metadataDeregisterTaskDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeregisterTaskDefinitionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterTaskDefinitionInput) GoString() string {
+	return s.String()
+}
+
 type DeregisterTaskDefinitionOutput struct {
 	// The full description of the deregistered task.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
@@ -1343,6 +1514,16 @@ type DeregisterTaskDefinitionOutput struct {
 
 type metadataDeregisterTaskDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterTaskDefinitionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterTaskDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeClustersInput struct {
@@ -1357,6 +1538,16 @@ type metadataDescribeClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeClustersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClustersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeClustersOutput struct {
 	// The list of clusters.
 	Clusters []*Cluster `locationName:"clusters" type:"list"`
@@ -1368,6 +1559,16 @@ type DescribeClustersOutput struct {
 
 type metadataDescribeClustersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeClustersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClustersOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeContainerInstancesInput struct {
@@ -1387,6 +1588,16 @@ type metadataDescribeContainerInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeContainerInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeContainerInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeContainerInstancesOutput struct {
 	// The list of container instances.
 	ContainerInstances []*ContainerInstance `locationName:"containerInstances" type:"list"`
@@ -1398,6 +1609,16 @@ type DescribeContainerInstancesOutput struct {
 
 type metadataDescribeContainerInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeContainerInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeContainerInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeServicesInput struct {
@@ -1414,6 +1635,16 @@ type metadataDescribeServicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeServicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeServicesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeServicesOutput struct {
 	// Any failures associated with the call.
 	Failures []*Failure `locationName:"failures" type:"list"`
@@ -1426,6 +1657,16 @@ type DescribeServicesOutput struct {
 
 type metadataDescribeServicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeServicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeServicesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeTaskDefinitionInput struct {
@@ -1441,6 +1682,16 @@ type metadataDescribeTaskDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTaskDefinitionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTaskDefinitionInput) GoString() string {
+	return s.String()
+}
+
 type DescribeTaskDefinitionOutput struct {
 	// The full task definition description.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
@@ -1450,6 +1701,16 @@ type DescribeTaskDefinitionOutput struct {
 
 type metadataDescribeTaskDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTaskDefinitionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTaskDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeTasksInput struct {
@@ -1468,6 +1729,16 @@ type metadataDescribeTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTasksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeTasksOutput struct {
 	Failures []*Failure `locationName:"failures" type:"list"`
 
@@ -1479,6 +1750,16 @@ type DescribeTasksOutput struct {
 
 type metadataDescribeTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTasksOutput) GoString() string {
+	return s.String()
 }
 
 type DiscoverPollEndpointInput struct {
@@ -1499,6 +1780,16 @@ type metadataDiscoverPollEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DiscoverPollEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DiscoverPollEndpointInput) GoString() string {
+	return s.String()
+}
+
 type DiscoverPollEndpointOutput struct {
 	// The endpoint for the Amazon ECS agent to poll.
 	Endpoint *string `locationName:"endpoint" type:"string"`
@@ -1511,6 +1802,16 @@ type DiscoverPollEndpointOutput struct {
 
 type metadataDiscoverPollEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DiscoverPollEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DiscoverPollEndpointOutput) GoString() string {
+	return s.String()
 }
 
 type Failure struct {
@@ -1527,6 +1828,16 @@ type metadataFailure struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Failure) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Failure) GoString() string {
+	return s.String()
+}
+
 type HostVolumeProperties struct {
 	// The path on the host container instance that is presented to the container.
 	// If this parameter is empty, then the Docker daemon has assigned a host path
@@ -1538,6 +1849,16 @@ type HostVolumeProperties struct {
 
 type metadataHostVolumeProperties struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s HostVolumeProperties) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HostVolumeProperties) GoString() string {
+	return s.String()
 }
 
 // A key and value pair object.
@@ -1555,6 +1876,16 @@ type KeyValuePair struct {
 
 type metadataKeyValuePair struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s KeyValuePair) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s KeyValuePair) GoString() string {
+	return s.String()
 }
 
 type ListClustersInput struct {
@@ -1580,6 +1911,16 @@ type metadataListClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListClustersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListClustersInput) GoString() string {
+	return s.String()
+}
+
 type ListClustersOutput struct {
 	// The list of full Amazon Resource Name (ARN) entries for each cluster associated
 	// with your account.
@@ -1596,6 +1937,16 @@ type ListClustersOutput struct {
 
 type metadataListClustersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListClustersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListClustersOutput) GoString() string {
+	return s.String()
 }
 
 type ListContainerInstancesInput struct {
@@ -1628,6 +1979,16 @@ type metadataListContainerInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListContainerInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListContainerInstancesInput) GoString() string {
+	return s.String()
+}
+
 type ListContainerInstancesOutput struct {
 	// The list of container instance full Amazon Resource Name (ARN) entries for
 	// each container instance associated with the specified cluster.
@@ -1644,6 +2005,16 @@ type ListContainerInstancesOutput struct {
 
 type metadataListContainerInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListContainerInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListContainerInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type ListServicesInput struct {
@@ -1674,6 +2045,16 @@ type metadataListServicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListServicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListServicesInput) GoString() string {
+	return s.String()
+}
+
 type ListServicesOutput struct {
 	// The nextToken value to include in a future ListServices request. When the
 	// results of a ListServices request exceed maxResults, this value can be used
@@ -1690,6 +2071,16 @@ type ListServicesOutput struct {
 
 type metadataListServicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListServicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListServicesOutput) GoString() string {
+	return s.String()
 }
 
 type ListTaskDefinitionFamiliesInput struct {
@@ -1722,6 +2113,16 @@ type metadataListTaskDefinitionFamiliesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTaskDefinitionFamiliesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTaskDefinitionFamiliesInput) GoString() string {
+	return s.String()
+}
+
 type ListTaskDefinitionFamiliesOutput struct {
 	// The list of task definition family names that match the ListTaskDefinitionFamilies
 	// request.
@@ -1738,6 +2139,16 @@ type ListTaskDefinitionFamiliesOutput struct {
 
 type metadataListTaskDefinitionFamiliesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTaskDefinitionFamiliesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTaskDefinitionFamiliesOutput) GoString() string {
+	return s.String()
 }
 
 type ListTaskDefinitionsInput struct {
@@ -1785,6 +2196,16 @@ type metadataListTaskDefinitionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTaskDefinitionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTaskDefinitionsInput) GoString() string {
+	return s.String()
+}
+
 type ListTaskDefinitionsOutput struct {
 	// The nextToken value to include in a future ListTaskDefinitions request. When
 	// the results of a ListTaskDefinitions request exceed maxResults, this value
@@ -1801,6 +2222,16 @@ type ListTaskDefinitionsOutput struct {
 
 type metadataListTaskDefinitionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTaskDefinitionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTaskDefinitionsOutput) GoString() string {
+	return s.String()
 }
 
 type ListTasksInput struct {
@@ -1857,6 +2288,16 @@ type metadataListTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTasksInput) GoString() string {
+	return s.String()
+}
+
 type ListTasksOutput struct {
 	// The nextToken value to include in a future ListTasks request. When the results
 	// of a ListTasks request exceed maxResults, this value can be used to retrieve
@@ -1872,6 +2313,16 @@ type ListTasksOutput struct {
 
 type metadataListTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTasksOutput) GoString() string {
+	return s.String()
 }
 
 type LoadBalancer struct {
@@ -1894,6 +2345,16 @@ type metadataLoadBalancer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LoadBalancer) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LoadBalancer) GoString() string {
+	return s.String()
+}
+
 type MountPoint struct {
 	// The path on the container to mount the host volume at.
 	ContainerPath *string `locationName:"containerPath" type:"string"`
@@ -1911,6 +2372,16 @@ type MountPoint struct {
 
 type metadataMountPoint struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MountPoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MountPoint) GoString() string {
+	return s.String()
 }
 
 type NetworkBinding struct {
@@ -1931,6 +2402,16 @@ type NetworkBinding struct {
 
 type metadataNetworkBinding struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkBinding) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkBinding) GoString() string {
+	return s.String()
 }
 
 // Port mappings allow containers to access ports on the host container instance
@@ -1977,6 +2458,16 @@ type metadataPortMapping struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PortMapping) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PortMapping) GoString() string {
+	return s.String()
+}
+
 type RegisterContainerInstanceInput struct {
 	// The short name or full Amazon Resource Name (ARN) of the cluster that you
 	// want to register your container instance with. If you do not specify a cluster,
@@ -2007,6 +2498,16 @@ type metadataRegisterContainerInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterContainerInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterContainerInstanceInput) GoString() string {
+	return s.String()
+}
+
 type RegisterContainerInstanceOutput struct {
 	// An Amazon EC2 instance that is running the Amazon ECS agent and has been
 	// registered with a cluster.
@@ -2017,6 +2518,16 @@ type RegisterContainerInstanceOutput struct {
 
 type metadataRegisterContainerInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterContainerInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterContainerInstanceOutput) GoString() string {
+	return s.String()
 }
 
 type RegisterTaskDefinitionInput struct {
@@ -2041,6 +2552,16 @@ type metadataRegisterTaskDefinitionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterTaskDefinitionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterTaskDefinitionInput) GoString() string {
+	return s.String()
+}
+
 type RegisterTaskDefinitionOutput struct {
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
@@ -2049,6 +2570,16 @@ type RegisterTaskDefinitionOutput struct {
 
 type metadataRegisterTaskDefinitionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterTaskDefinitionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterTaskDefinitionOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the resources available for a container instance.
@@ -2079,6 +2610,16 @@ type Resource struct {
 
 type metadataResource struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Resource) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Resource) GoString() string {
+	return s.String()
 }
 
 type RunTaskInput struct {
@@ -2127,6 +2668,16 @@ type metadataRunTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RunTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RunTaskInput) GoString() string {
+	return s.String()
+}
+
 type RunTaskOutput struct {
 	// Any failed tasks from your RunTask action are listed here.
 	Failures []*Failure `locationName:"failures" type:"list"`
@@ -2140,6 +2691,16 @@ type RunTaskOutput struct {
 
 type metadataRunTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RunTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RunTaskOutput) GoString() string {
+	return s.String()
 }
 
 type Service struct {
@@ -2198,6 +2759,16 @@ type metadataService struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Service) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Service) GoString() string {
+	return s.String()
+}
+
 type ServiceEvent struct {
 	// The Unix time in seconds and milliseconds when the event was triggered.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
@@ -2213,6 +2784,16 @@ type ServiceEvent struct {
 
 type metadataServiceEvent struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServiceEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ServiceEvent) GoString() string {
+	return s.String()
 }
 
 type StartTaskInput struct {
@@ -2261,6 +2842,16 @@ type metadataStartTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartTaskInput) GoString() string {
+	return s.String()
+}
+
 type StartTaskOutput struct {
 	// Any failed tasks from your StartTask action are listed here.
 	Failures []*Failure `locationName:"failures" type:"list"`
@@ -2274,6 +2865,16 @@ type StartTaskOutput struct {
 
 type metadataStartTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartTaskOutput) GoString() string {
+	return s.String()
 }
 
 type StopTaskInput struct {
@@ -2293,6 +2894,16 @@ type metadataStopTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StopTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StopTaskInput) GoString() string {
+	return s.String()
+}
+
 type StopTaskOutput struct {
 	Task *Task `locationName:"task" type:"structure"`
 
@@ -2301,6 +2912,16 @@ type StopTaskOutput struct {
 
 type metadataStopTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StopTaskOutput) GoString() string {
+	return s.String()
 }
 
 type SubmitContainerStateChangeInput struct {
@@ -2334,6 +2955,16 @@ type metadataSubmitContainerStateChangeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SubmitContainerStateChangeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubmitContainerStateChangeInput) GoString() string {
+	return s.String()
+}
+
 type SubmitContainerStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
@@ -2343,6 +2974,16 @@ type SubmitContainerStateChangeOutput struct {
 
 type metadataSubmitContainerStateChangeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SubmitContainerStateChangeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubmitContainerStateChangeOutput) GoString() string {
+	return s.String()
 }
 
 type SubmitTaskStateChangeInput struct {
@@ -2367,6 +3008,16 @@ type metadataSubmitTaskStateChangeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SubmitTaskStateChangeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubmitTaskStateChangeInput) GoString() string {
+	return s.String()
+}
+
 type SubmitTaskStateChangeOutput struct {
 	// Acknowledgement of the state change.
 	Acknowledgment *string `locationName:"acknowledgment" type:"string"`
@@ -2376,6 +3027,16 @@ type SubmitTaskStateChangeOutput struct {
 
 type metadataSubmitTaskStateChangeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SubmitTaskStateChangeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubmitTaskStateChangeOutput) GoString() string {
+	return s.String()
 }
 
 type Task struct {
@@ -2416,6 +3077,16 @@ type metadataTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Task) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Task) GoString() string {
+	return s.String()
+}
+
 type TaskDefinition struct {
 	// A list of container definitions in JSON format that describe the different
 	// containers that make up your task. For more information on container definition
@@ -2453,6 +3124,16 @@ type metadataTaskDefinition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TaskDefinition) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TaskDefinition) GoString() string {
+	return s.String()
+}
+
 // A list of container overrides in JSON format that specify the name of a container
 // in a task definition and the command it should run instead of its default.
 type TaskOverride struct {
@@ -2464,6 +3145,16 @@ type TaskOverride struct {
 
 type metadataTaskOverride struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TaskOverride) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TaskOverride) GoString() string {
+	return s.String()
 }
 
 type UpdateContainerAgentInput struct {
@@ -2484,6 +3175,16 @@ type metadataUpdateContainerAgentInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateContainerAgentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContainerAgentInput) GoString() string {
+	return s.String()
+}
+
 type UpdateContainerAgentOutput struct {
 	// An Amazon EC2 instance that is running the Amazon ECS agent and has been
 	// registered with a cluster.
@@ -2494,6 +3195,16 @@ type UpdateContainerAgentOutput struct {
 
 type metadataUpdateContainerAgentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContainerAgentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContainerAgentOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateServiceInput struct {
@@ -2524,6 +3235,16 @@ type metadataUpdateServiceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateServiceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateServiceInput) GoString() string {
+	return s.String()
+}
+
 type UpdateServiceOutput struct {
 	// The full description of your service following the update call.
 	Service *Service `locationName:"service" type:"structure"`
@@ -2533,6 +3254,16 @@ type UpdateServiceOutput struct {
 
 type metadataUpdateServiceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateServiceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateServiceOutput) GoString() string {
+	return s.String()
 }
 
 type VersionInfo struct {
@@ -2553,6 +3284,16 @@ type metadataVersionInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VersionInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VersionInfo) GoString() string {
+	return s.String()
+}
+
 type Volume struct {
 	// The path on the host container instance that is presented to the containers
 	// which access the volume. If this parameter is empty, then the Docker daemon
@@ -2570,6 +3311,16 @@ type metadataVolume struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Volume) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Volume) GoString() string {
+	return s.String()
+}
+
 type VolumeFrom struct {
 	// If this value is true, the container has read-only access to the volume.
 	// If this value is false, then the container can write to the volume. The default
@@ -2584,4 +3335,14 @@ type VolumeFrom struct {
 
 type metadataVolumeFrom struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeFrom) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeFrom) GoString() string {
+	return s.String()
 }

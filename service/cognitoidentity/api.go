@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateIdentityPool = "CreateIdentityPool"
@@ -607,6 +608,16 @@ type metadataCreateIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateIdentityPoolInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateIdentityPoolInput) GoString() string {
+	return s.String()
+}
+
 // Credentials for the the provided identity ID.
 type Credentials struct {
 	// The Access Key portion of the credentials.
@@ -628,6 +639,16 @@ type metadataCredentials struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Credentials) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Credentials) GoString() string {
+	return s.String()
+}
+
 // Input to the DeleteIdentities action.
 type DeleteIdentitiesInput struct {
 	// A list of 1-60 identities that you want to delete.
@@ -638,6 +659,16 @@ type DeleteIdentitiesInput struct {
 
 type metadataDeleteIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIdentitiesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentitiesInput) GoString() string {
+	return s.String()
 }
 
 // Returned in response to a successful DeleteIdentities operation.
@@ -653,6 +684,16 @@ type metadataDeleteIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteIdentitiesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentitiesOutput) GoString() string {
+	return s.String()
+}
+
 // Input to the DeleteIdentityPool action.
 type DeleteIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
@@ -665,12 +706,32 @@ type metadataDeleteIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteIdentityPoolInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentityPoolInput) GoString() string {
+	return s.String()
+}
+
 type DeleteIdentityPoolOutput struct {
 	metadataDeleteIdentityPoolOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteIdentityPoolOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIdentityPoolOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentityPoolOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the DescribeIdentity action.
@@ -685,6 +746,16 @@ type metadataDescribeIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIdentityInput) GoString() string {
+	return s.String()
+}
+
 // Input to the DescribeIdentityPool action.
 type DescribeIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
@@ -695,6 +766,16 @@ type DescribeIdentityPoolInput struct {
 
 type metadataDescribeIdentityPoolInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeIdentityPoolInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIdentityPoolInput) GoString() string {
+	return s.String()
 }
 
 // Input to the GetCredentialsForIdentity action.
@@ -712,6 +793,16 @@ type metadataGetCredentialsForIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetCredentialsForIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCredentialsForIdentityInput) GoString() string {
+	return s.String()
+}
+
 // Returned in response to a successful GetCredentialsForIdentity operation.
 type GetCredentialsForIdentityOutput struct {
 	// Credentials for the the provided identity ID.
@@ -725,6 +816,16 @@ type GetCredentialsForIdentityOutput struct {
 
 type metadataGetCredentialsForIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCredentialsForIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCredentialsForIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the GetId action.
@@ -749,6 +850,16 @@ type metadataGetIDInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetIDInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIDInput) GoString() string {
+	return s.String()
+}
+
 // Returned in response to a GetId request.
 type GetIDOutput struct {
 	// A unique identifier in the format REGION:GUID.
@@ -761,6 +872,16 @@ type metadataGetIDOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetIDOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIDOutput) GoString() string {
+	return s.String()
+}
+
 // Input to the GetIdentityPoolRoles action.
 type GetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
@@ -771,6 +892,16 @@ type GetIdentityPoolRolesInput struct {
 
 type metadataGetIdentityPoolRolesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityPoolRolesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityPoolRolesInput) GoString() string {
+	return s.String()
 }
 
 // Returned in response to a successful GetIdentityPoolRoles operation.
@@ -787,6 +918,16 @@ type GetIdentityPoolRolesOutput struct {
 
 type metadataGetIdentityPoolRolesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityPoolRolesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityPoolRolesOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the GetOpenIdTokenForDeveloperIdentity action.
@@ -825,6 +966,16 @@ type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetOpenIDTokenForDeveloperIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOpenIDTokenForDeveloperIdentityInput) GoString() string {
+	return s.String()
+}
+
 // Returned in response to a successful GetOpenIdTokenForDeveloperIdentity request.
 type GetOpenIDTokenForDeveloperIdentityOutput struct {
 	// A unique identifier in the format REGION:GUID.
@@ -838,6 +989,16 @@ type GetOpenIDTokenForDeveloperIdentityOutput struct {
 
 type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetOpenIDTokenForDeveloperIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOpenIDTokenForDeveloperIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the GetOpenIdToken action.
@@ -858,6 +1019,16 @@ type metadataGetOpenIDTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetOpenIDTokenInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOpenIDTokenInput) GoString() string {
+	return s.String()
+}
+
 // Returned in response to a successful GetOpenIdToken request.
 type GetOpenIDTokenOutput struct {
 	// A unique identifier in the format REGION:GUID. Note that the IdentityId returned
@@ -872,6 +1043,16 @@ type GetOpenIDTokenOutput struct {
 
 type metadataGetOpenIDTokenOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetOpenIDTokenOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOpenIDTokenOutput) GoString() string {
+	return s.String()
 }
 
 // A description of the identity.
@@ -893,6 +1074,16 @@ type IdentityDescription struct {
 
 type metadataIdentityDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IdentityDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityDescription) GoString() string {
+	return s.String()
 }
 
 // An object representing a Cognito identity pool.
@@ -922,6 +1113,16 @@ type metadataIdentityPool struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IdentityPool) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityPool) GoString() string {
+	return s.String()
+}
+
 // A description of the identity pool.
 type IdentityPoolShortDescription struct {
 	// An identity pool ID in the format REGION:GUID.
@@ -935,6 +1136,16 @@ type IdentityPoolShortDescription struct {
 
 type metadataIdentityPoolShortDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IdentityPoolShortDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityPoolShortDescription) GoString() string {
+	return s.String()
 }
 
 // Input to the ListIdentities action.
@@ -960,6 +1171,16 @@ type metadataListIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListIdentitiesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentitiesInput) GoString() string {
+	return s.String()
+}
+
 // The response to a ListIdentities request.
 type ListIdentitiesOutput struct {
 	// An object containing a set of identities and associated mappings.
@@ -978,6 +1199,16 @@ type metadataListIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListIdentitiesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentitiesOutput) GoString() string {
+	return s.String()
+}
+
 // Input to the ListIdentityPools action.
 type ListIdentityPoolsInput struct {
 	// The maximum number of identities to return.
@@ -993,6 +1224,16 @@ type metadataListIdentityPoolsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListIdentityPoolsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentityPoolsInput) GoString() string {
+	return s.String()
+}
+
 // The result of a successful ListIdentityPools action.
 type ListIdentityPoolsOutput struct {
 	// The identity pools returned by the ListIdentityPools action.
@@ -1006,6 +1247,16 @@ type ListIdentityPoolsOutput struct {
 
 type metadataListIdentityPoolsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListIdentityPoolsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentityPoolsOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the LookupDeveloperIdentityInput action.
@@ -1039,6 +1290,16 @@ type metadataLookupDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LookupDeveloperIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LookupDeveloperIdentityInput) GoString() string {
+	return s.String()
+}
+
 // Returned in response to a successful LookupDeveloperIdentity action.
 type LookupDeveloperIdentityOutput struct {
 	// This is the list of developer user identifiers associated with an identity
@@ -1062,6 +1323,16 @@ type LookupDeveloperIdentityOutput struct {
 
 type metadataLookupDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LookupDeveloperIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LookupDeveloperIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the MergeDeveloperIdentities action.
@@ -1089,6 +1360,16 @@ type metadataMergeDeveloperIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MergeDeveloperIdentitiesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MergeDeveloperIdentitiesInput) GoString() string {
+	return s.String()
+}
+
 // Returned in response to a successful MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesOutput struct {
 	// A unique identifier in the format REGION:GUID.
@@ -1099,6 +1380,16 @@ type MergeDeveloperIdentitiesOutput struct {
 
 type metadataMergeDeveloperIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MergeDeveloperIdentitiesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MergeDeveloperIdentitiesOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the SetIdentityPoolRoles action.
@@ -1118,12 +1409,32 @@ type metadataSetIdentityPoolRolesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetIdentityPoolRolesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityPoolRolesInput) GoString() string {
+	return s.String()
+}
+
 type SetIdentityPoolRolesOutput struct {
 	metadataSetIdentityPoolRolesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetIdentityPoolRolesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetIdentityPoolRolesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityPoolRolesOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the UnlinkDeveloperIdentity action.
@@ -1147,12 +1458,32 @@ type metadataUnlinkDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnlinkDeveloperIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnlinkDeveloperIdentityInput) GoString() string {
+	return s.String()
+}
+
 type UnlinkDeveloperIdentityOutput struct {
 	metadataUnlinkDeveloperIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataUnlinkDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnlinkDeveloperIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnlinkDeveloperIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the UnlinkIdentity action.
@@ -1173,12 +1504,32 @@ type metadataUnlinkIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnlinkIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnlinkIdentityInput) GoString() string {
+	return s.String()
+}
+
 type UnlinkIdentityOutput struct {
 	metadataUnlinkIdentityOutput `json:"-" xml:"-"`
 }
 
 type metadataUnlinkIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnlinkIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnlinkIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
@@ -1195,4 +1546,14 @@ type UnprocessedIdentityID struct {
 
 type metadataUnprocessedIdentityID struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnprocessedIdentityID) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnprocessedIdentityID) GoString() string {
+	return s.String()
 }

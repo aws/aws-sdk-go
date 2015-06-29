@@ -7,6 +7,7 @@ import (
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAbortMultipartUpload = "AbortMultipartUpload"
@@ -1464,12 +1465,32 @@ type metadataAbortMultipartUploadInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AbortMultipartUploadInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AbortMultipartUploadInput) GoString() string {
+	return s.String()
+}
+
 type AbortMultipartUploadOutput struct {
 	metadataAbortMultipartUploadOutput `json:"-" xml:"-"`
 }
 
 type metadataAbortMultipartUploadOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AbortMultipartUploadOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AbortMultipartUploadOutput) GoString() string {
+	return s.String()
 }
 
 // The input value for AddTagsToVault.
@@ -1495,12 +1516,32 @@ type metadataAddTagsToVaultInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsToVaultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToVaultInput) GoString() string {
+	return s.String()
+}
+
 type AddTagsToVaultOutput struct {
 	metadataAddTagsToVaultOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsToVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToVaultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToVaultOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the Amazon Glacier response to your request.
@@ -1523,6 +1564,16 @@ type ArchiveCreationOutput struct {
 
 type metadataArchiveCreationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ArchiveCreationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ArchiveCreationOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options to complete a multipart upload operation. This informs Amazon
@@ -1561,6 +1612,16 @@ type metadataCompleteMultipartUploadInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CompleteMultipartUploadInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteMultipartUploadInput) GoString() string {
+	return s.String()
+}
+
 // Provides options to create a vault.
 type CreateVaultInput struct {
 	// The AccountId value is the AWS account ID. This value must match the AWS
@@ -1581,6 +1642,16 @@ type metadataCreateVaultInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVaultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVaultInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type CreateVaultOutput struct {
 	// The URI of the vault that was created.
@@ -1591,6 +1662,16 @@ type CreateVaultOutput struct {
 
 type metadataCreateVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVaultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVaultOutput) GoString() string {
+	return s.String()
 }
 
 // Data retrieval policy.
@@ -1604,6 +1685,16 @@ type DataRetrievalPolicy struct {
 
 type metadataDataRetrievalPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DataRetrievalPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DataRetrievalPolicy) GoString() string {
+	return s.String()
 }
 
 // Data retrieval policy rule.
@@ -1625,6 +1716,16 @@ type DataRetrievalRule struct {
 
 type metadataDataRetrievalRule struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DataRetrievalRule) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DataRetrievalRule) GoString() string {
+	return s.String()
 }
 
 // Provides options for deleting an archive from an Amazon Glacier vault.
@@ -1649,12 +1750,32 @@ type metadataDeleteArchiveInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteArchiveInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteArchiveInput) GoString() string {
+	return s.String()
+}
+
 type DeleteArchiveOutput struct {
 	metadataDeleteArchiveOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteArchiveOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteArchiveOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteArchiveOutput) GoString() string {
+	return s.String()
 }
 
 // DeleteVaultAccessPolicy input.
@@ -1676,12 +1797,32 @@ type metadataDeleteVaultAccessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVaultAccessPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVaultAccessPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVaultAccessPolicyOutput struct {
 	metadataDeleteVaultAccessPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVaultAccessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVaultAccessPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVaultAccessPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for deleting a vault from Amazon Glacier.
@@ -1701,6 +1842,16 @@ type DeleteVaultInput struct {
 
 type metadataDeleteVaultInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVaultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVaultInput) GoString() string {
+	return s.String()
 }
 
 // Provides options for deleting a vault notification configuration from an
@@ -1723,6 +1874,16 @@ type metadataDeleteVaultNotificationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVaultNotificationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVaultNotificationsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVaultNotificationsOutput struct {
 	metadataDeleteVaultNotificationsOutput `json:"-" xml:"-"`
 }
@@ -1731,12 +1892,32 @@ type metadataDeleteVaultNotificationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVaultNotificationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVaultNotificationsOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteVaultOutput struct {
 	metadataDeleteVaultOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVaultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVaultOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for retrieving a job description.
@@ -1761,6 +1942,16 @@ type metadataDescribeJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeJobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobInput) GoString() string {
+	return s.String()
+}
+
 // Provides options for retrieving metadata for a specific vault in Amazon Glacier.
 type DescribeVaultInput struct {
 	// The AccountId value is the AWS account ID of the account that owns the vault.
@@ -1778,6 +1969,16 @@ type DescribeVaultInput struct {
 
 type metadataDescribeVaultInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVaultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVaultInput) GoString() string {
+	return s.String()
 }
 
 // Contains the Amazon Glacier response to your request.
@@ -1813,6 +2014,16 @@ type metadataDescribeVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVaultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVaultOutput) GoString() string {
+	return s.String()
+}
+
 // Input for GetDataRetrievalPolicy.
 type GetDataRetrievalPolicyInput struct {
 	// The AccountId value is the AWS account ID. This value must match the AWS
@@ -1830,6 +2041,16 @@ type metadataGetDataRetrievalPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetDataRetrievalPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDataRetrievalPolicyInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to the GetDataRetrievalPolicy request.
 type GetDataRetrievalPolicyOutput struct {
 	// Contains the returned data retrieval policy in JSON format.
@@ -1840,6 +2061,16 @@ type GetDataRetrievalPolicyOutput struct {
 
 type metadataGetDataRetrievalPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDataRetrievalPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDataRetrievalPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for downloading output of an Amazon Glacier job.
@@ -1867,6 +2098,16 @@ type GetJobOutputInput struct {
 
 type metadataGetJobOutputInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetJobOutputInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetJobOutputInput) GoString() string {
+	return s.String()
 }
 
 // Contains the Amazon Glacier response to your request.
@@ -1916,6 +2157,16 @@ type metadataGetJobOutputOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Body"`
 }
 
+// String returns the string representation
+func (s GetJobOutputOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetJobOutputOutput) GoString() string {
+	return s.String()
+}
+
 // Input for GetVaultAccessPolicy.
 type GetVaultAccessPolicyInput struct {
 	// The AccountId value is the AWS account ID of the account that owns the vault.
@@ -1935,6 +2186,16 @@ type metadataGetVaultAccessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetVaultAccessPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetVaultAccessPolicyInput) GoString() string {
+	return s.String()
+}
+
 // Output for GetVaultAccessPolicy.
 type GetVaultAccessPolicyOutput struct {
 	// Contains the returned vault access policy as a JSON string.
@@ -1945,6 +2206,16 @@ type GetVaultAccessPolicyOutput struct {
 
 type metadataGetVaultAccessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+}
+
+// String returns the string representation
+func (s GetVaultAccessPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetVaultAccessPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for retrieving the notification configuration set on an
@@ -1967,6 +2238,16 @@ type metadataGetVaultNotificationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetVaultNotificationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetVaultNotificationsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type GetVaultNotificationsOutput struct {
 	// Returns the notification configuration set on the vault.
@@ -1977,6 +2258,16 @@ type GetVaultNotificationsOutput struct {
 
 type metadataGetVaultNotificationsOutput struct {
 	SDKShapeTraits bool `type:"structure" payload:"VaultNotificationConfig"`
+}
+
+// String returns the string representation
+func (s GetVaultNotificationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetVaultNotificationsOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for initiating an Amazon Glacier job.
@@ -2001,6 +2292,16 @@ type metadataInitiateJobInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"JobParameters"`
 }
 
+// String returns the string representation
+func (s InitiateJobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InitiateJobInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type InitiateJobOutput struct {
 	// The ID of the job.
@@ -2014,6 +2315,16 @@ type InitiateJobOutput struct {
 
 type metadataInitiateJobOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InitiateJobOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InitiateJobOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for initiating a multipart upload to an Amazon Glacier vault.
@@ -2047,6 +2358,16 @@ type metadataInitiateMultipartUploadInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InitiateMultipartUploadInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InitiateMultipartUploadInput) GoString() string {
+	return s.String()
+}
+
 // The Amazon Glacier response to your request.
 type InitiateMultipartUploadOutput struct {
 	// The relative URI path of the multipart upload ID Amazon Glacier created.
@@ -2061,6 +2382,16 @@ type InitiateMultipartUploadOutput struct {
 
 type metadataInitiateMultipartUploadOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InitiateMultipartUploadOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InitiateMultipartUploadOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the options for a range inventory retrieval job.
@@ -2099,6 +2430,16 @@ type metadataInventoryRetrievalJobDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InventoryRetrievalJobDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InventoryRetrievalJobDescription) GoString() string {
+	return s.String()
+}
+
 // Provides options for specifying a range inventory retrieval job.
 type InventoryRetrievalJobInput struct {
 	// The end of the date range in UTC for vault inventory retrieval that includes
@@ -2126,6 +2467,16 @@ type InventoryRetrievalJobInput struct {
 
 type metadataInventoryRetrievalJobInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InventoryRetrievalJobInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InventoryRetrievalJobInput) GoString() string {
+	return s.String()
 }
 
 // Describes an Amazon Glacier job.
@@ -2215,6 +2566,16 @@ type metadataJobDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobDescription) GoString() string {
+	return s.String()
+}
+
 // Provides options for defining a job.
 type JobParameters struct {
 	// The ID of the archive that you want to retrieve. This field is required only
@@ -2264,6 +2625,16 @@ type metadataJobParameters struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobParameters) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobParameters) GoString() string {
+	return s.String()
+}
+
 // Provides options for retrieving a job list for an Amazon Glacier vault.
 type ListJobsInput struct {
 	// The AccountId value is the AWS account ID of the account that owns the vault.
@@ -2300,6 +2671,16 @@ type metadataListJobsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListJobsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListJobsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListJobsOutput struct {
 	// A list of job objects. Each job object contains metadata describing the job.
@@ -2315,6 +2696,16 @@ type ListJobsOutput struct {
 
 type metadataListJobsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListJobsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListJobsOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for retrieving list of in-progress multipart uploads for
@@ -2348,6 +2739,16 @@ type metadataListMultipartUploadsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListMultipartUploadsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListMultipartUploadsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListMultipartUploadsOutput struct {
 	// An opaque string that represents where to continue pagination of the results.
@@ -2363,6 +2764,16 @@ type ListMultipartUploadsOutput struct {
 
 type metadataListMultipartUploadsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListMultipartUploadsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListMultipartUploadsOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options for retrieving a list of parts of an archive that have been
@@ -2399,6 +2810,16 @@ type metadataListPartsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPartsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPartsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListPartsOutput struct {
 	// The description of the archive that was specified in the Initiate Multipart
@@ -2433,6 +2854,16 @@ type metadataListPartsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPartsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPartsOutput) GoString() string {
+	return s.String()
+}
+
 // The input value for ListTagsForVaultInput.
 type ListTagsForVaultInput struct {
 	// The AccountId value is the AWS account ID of the account that owns the vault.
@@ -2452,6 +2883,16 @@ type metadataListTagsForVaultInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTagsForVaultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForVaultInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListTagsForVaultOutput struct {
 	// The tags attached to the vault. Each tag is composed of a key and a value.
@@ -2462,6 +2903,16 @@ type ListTagsForVaultOutput struct {
 
 type metadataListTagsForVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForVaultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForVaultOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options to retrieve the vault list owned by the calling user's account.
@@ -2490,6 +2941,16 @@ type metadataListVaultsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListVaultsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVaultsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type ListVaultsOutput struct {
 	// The vault ARN at which to continue pagination of the results. You use the
@@ -2506,6 +2967,16 @@ type metadataListVaultsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListVaultsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVaultsOutput) GoString() string {
+	return s.String()
+}
+
 // A list of the part sizes of the multipart upload.
 type PartListElement struct {
 	// The byte range of a part, inclusive of the upper value of the range.
@@ -2520,6 +2991,16 @@ type PartListElement struct {
 
 type metadataPartListElement struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PartListElement) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PartListElement) GoString() string {
+	return s.String()
 }
 
 // The input value for RemoveTagsFromVaultInput.
@@ -2544,12 +3025,32 @@ type metadataRemoveTagsFromVaultInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveTagsFromVaultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromVaultInput) GoString() string {
+	return s.String()
+}
+
 type RemoveTagsFromVaultOutput struct {
 	metadataRemoveTagsFromVaultOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsFromVaultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromVaultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromVaultOutput) GoString() string {
+	return s.String()
 }
 
 // SetDataRetrievalPolicy input.
@@ -2572,12 +3073,32 @@ type metadataSetDataRetrievalPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetDataRetrievalPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetDataRetrievalPolicyInput) GoString() string {
+	return s.String()
+}
+
 type SetDataRetrievalPolicyOutput struct {
 	metadataSetDataRetrievalPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDataRetrievalPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetDataRetrievalPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetDataRetrievalPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // SetVaultAccessPolicy input.
@@ -2602,12 +3123,32 @@ type metadataSetVaultAccessPolicyInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Policy"`
 }
 
+// String returns the string representation
+func (s SetVaultAccessPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetVaultAccessPolicyInput) GoString() string {
+	return s.String()
+}
+
 type SetVaultAccessPolicyOutput struct {
 	metadataSetVaultAccessPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataSetVaultAccessPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetVaultAccessPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetVaultAccessPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options to configure notifications that will be sent when specific
@@ -2633,12 +3174,32 @@ type metadataSetVaultNotificationsInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"VaultNotificationConfig"`
 }
 
+// String returns the string representation
+func (s SetVaultNotificationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetVaultNotificationsInput) GoString() string {
+	return s.String()
+}
+
 type SetVaultNotificationsOutput struct {
 	metadataSetVaultNotificationsOutput `json:"-" xml:"-"`
 }
 
 type metadataSetVaultNotificationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetVaultNotificationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetVaultNotificationsOutput) GoString() string {
+	return s.String()
 }
 
 // Provides options to add an archive to a vault.
@@ -2669,6 +3230,16 @@ type metadataUploadArchiveInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Body"`
 }
 
+// String returns the string representation
+func (s UploadArchiveInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadArchiveInput) GoString() string {
+	return s.String()
+}
+
 // A list of in-progress multipart uploads for a vault.
 type UploadListElement struct {
 	// The description of the archive that was specified in the Initiate Multipart
@@ -2694,6 +3265,16 @@ type UploadListElement struct {
 
 type metadataUploadListElement struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UploadListElement) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadListElement) GoString() string {
+	return s.String()
 }
 
 // Provides options to upload a part of an archive in a multipart upload operation.
@@ -2730,6 +3311,16 @@ type metadataUploadMultipartPartInput struct {
 	SDKShapeTraits bool `type:"structure" payload:"Body"`
 }
 
+// String returns the string representation
+func (s UploadMultipartPartInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadMultipartPartInput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Glacier response to your request.
 type UploadMultipartPartOutput struct {
 	// The SHA256 tree hash that Amazon Glacier computed for the uploaded part.
@@ -2742,6 +3333,16 @@ type metadataUploadMultipartPartOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UploadMultipartPartOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadMultipartPartOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the vault access policy.
 type VaultAccessPolicy struct {
 	// The vault access policy.
@@ -2752,6 +3353,16 @@ type VaultAccessPolicy struct {
 
 type metadataVaultAccessPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VaultAccessPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VaultAccessPolicy) GoString() string {
+	return s.String()
 }
 
 // Represents a vault's notification configuration.
@@ -2769,4 +3380,14 @@ type VaultNotificationConfig struct {
 
 type metadataVaultNotificationConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VaultNotificationConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VaultNotificationConfig) GoString() string {
+	return s.String()
 }

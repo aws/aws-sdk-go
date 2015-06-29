@@ -1,9 +1,11 @@
 package api
 
 import (
+	"bytes"
 	"fmt"
 	"sort"
 	"strings"
+	"text/template"
 
 	"github.com/aws/aws-sdk-go/internal/util"
 )
@@ -245,6 +247,27 @@ func (s *Shape) Docstring() string {
 	return s.Documentation
 }
 
+const goCodeStringerTmpl = `
+// String returns the string representation
+func (s {{ .ShapeName }}) String() string {
+	return awsutil.StringValue(s)
+}
+// GoString returns the string representation
+func (s {{ .ShapeName }}) GoString() string {
+	return s.String()
+}
+`
+
+func (s *Shape) goCodeStringers() string {
+	tmpl := template.Must(template.New("goCodeStringerTmpl").Parse(goCodeStringerTmpl))
+	w := bytes.Buffer{}
+	if err := tmpl.Execute(&w, s); err != nil {
+		panic(fmt.Sprintln("Unexpected error executing goCodeStringers template", err))
+	}
+
+	return w.String()
+}
+
 // GoCode returns the rendered Go code for the Shape.
 func (s *Shape) GoCode() string {
 	code := s.Docstring() + "type " + s.ShapeName + " "
@@ -275,6 +298,10 @@ func (s *Shape) GoCode() string {
 		code += "type " + metaStruct + " struct {\n"
 		code += "SDKShapeTraits bool " + ref.GoTags(true, false)
 		code += "}"
+
+		if (!s.API.NoStringerMethods) {
+			code += s.goCodeStringers()
+		}
 	default:
 		panic("Cannot generate toplevel shape for " + s.Type)
 	}

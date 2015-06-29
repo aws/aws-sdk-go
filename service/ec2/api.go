@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAcceptVPCPeeringConnection = "AcceptVpcPeeringConnection"
@@ -6268,6 +6269,16 @@ type metadataAcceptVPCPeeringConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AcceptVPCPeeringConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AcceptVPCPeeringConnectionInput) GoString() string {
+	return s.String()
+}
+
 type AcceptVPCPeeringConnectionOutput struct {
 	// Information about the VPC peering connection.
 	VPCPeeringConnection *VPCPeeringConnection `locationName:"vpcPeeringConnection" type:"structure"`
@@ -6277,6 +6288,16 @@ type AcceptVPCPeeringConnectionOutput struct {
 
 type metadataAcceptVPCPeeringConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AcceptVPCPeeringConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AcceptVPCPeeringConnectionOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an account attribute.
@@ -6294,6 +6315,16 @@ type metadataAccountAttribute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccountAttribute) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccountAttribute) GoString() string {
+	return s.String()
+}
+
 // Describes a value of an account attribute.
 type AccountAttributeValue struct {
 	// The value of the attribute.
@@ -6304,6 +6335,16 @@ type AccountAttributeValue struct {
 
 type metadataAccountAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AccountAttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccountAttributeValue) GoString() string {
+	return s.String()
 }
 
 // Describes a running instance in a Spot fleet.
@@ -6322,6 +6363,16 @@ type ActiveInstance struct {
 
 type metadataActiveInstance struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActiveInstance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActiveInstance) GoString() string {
+	return s.String()
 }
 
 // Describes an Elastic IP address.
@@ -6359,6 +6410,16 @@ type metadataAddress struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Address) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Address) GoString() string {
+	return s.String()
+}
+
 type AllocateAddressInput struct {
 	// Set to vpc to allocate the address for use with instances in a VPC.
 	//
@@ -6378,6 +6439,16 @@ type metadataAllocateAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AllocateAddressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AllocateAddressInput) GoString() string {
+	return s.String()
+}
+
 type AllocateAddressOutput struct {
 	// [EC2-VPC] The ID that AWS assigns to represent the allocation of the Elastic
 	// IP address for use with instances in a VPC.
@@ -6395,6 +6466,16 @@ type AllocateAddressOutput struct {
 
 type metadataAllocateAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AllocateAddressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AllocateAddressOutput) GoString() string {
+	return s.String()
 }
 
 type AssignPrivateIPAddressesInput struct {
@@ -6424,12 +6505,32 @@ type metadataAssignPrivateIPAddressesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssignPrivateIPAddressesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssignPrivateIPAddressesInput) GoString() string {
+	return s.String()
+}
+
 type AssignPrivateIPAddressesOutput struct {
 	metadataAssignPrivateIPAddressesOutput `json:"-" xml:"-"`
 }
 
 type metadataAssignPrivateIPAddressesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssignPrivateIPAddressesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssignPrivateIPAddressesOutput) GoString() string {
+	return s.String()
 }
 
 type AssociateAddressInput struct {
@@ -6474,6 +6575,16 @@ type metadataAssociateAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssociateAddressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateAddressInput) GoString() string {
+	return s.String()
+}
+
 type AssociateAddressOutput struct {
 	// [EC2-VPC] The ID that represents the association of the Elastic IP address
 	// with an instance.
@@ -6484,6 +6595,16 @@ type AssociateAddressOutput struct {
 
 type metadataAssociateAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateAddressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateAddressOutput) GoString() string {
+	return s.String()
 }
 
 type AssociateDHCPOptionsInput struct {
@@ -6507,12 +6628,32 @@ type metadataAssociateDHCPOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssociateDHCPOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateDHCPOptionsInput) GoString() string {
+	return s.String()
+}
+
 type AssociateDHCPOptionsOutput struct {
 	metadataAssociateDHCPOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataAssociateDHCPOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateDHCPOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateDHCPOptionsOutput) GoString() string {
+	return s.String()
 }
 
 type AssociateRouteTableInput struct {
@@ -6535,6 +6676,16 @@ type metadataAssociateRouteTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AssociateRouteTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateRouteTableInput) GoString() string {
+	return s.String()
+}
+
 type AssociateRouteTableOutput struct {
 	// The route table association ID (needed to disassociate the route table).
 	AssociationID *string `locationName:"associationId" type:"string"`
@@ -6544,6 +6695,16 @@ type AssociateRouteTableOutput struct {
 
 type metadataAssociateRouteTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateRouteTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AssociateRouteTableOutput) GoString() string {
+	return s.String()
 }
 
 type AttachClassicLinkVPCInput struct {
@@ -6570,6 +6731,16 @@ type metadataAttachClassicLinkVPCInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachClassicLinkVPCInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachClassicLinkVPCInput) GoString() string {
+	return s.String()
+}
+
 type AttachClassicLinkVPCOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -6579,6 +6750,16 @@ type AttachClassicLinkVPCOutput struct {
 
 type metadataAttachClassicLinkVPCOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachClassicLinkVPCOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachClassicLinkVPCOutput) GoString() string {
+	return s.String()
 }
 
 type AttachInternetGatewayInput struct {
@@ -6601,12 +6782,32 @@ type metadataAttachInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachInternetGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachInternetGatewayInput) GoString() string {
+	return s.String()
+}
+
 type AttachInternetGatewayOutput struct {
 	metadataAttachInternetGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachInternetGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachInternetGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachInternetGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type AttachNetworkInterfaceInput struct {
@@ -6632,6 +6833,16 @@ type metadataAttachNetworkInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachNetworkInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachNetworkInterfaceInput) GoString() string {
+	return s.String()
+}
+
 type AttachNetworkInterfaceOutput struct {
 	// The ID of the network interface attachment.
 	AttachmentID *string `locationName:"attachmentId" type:"string"`
@@ -6641,6 +6852,16 @@ type AttachNetworkInterfaceOutput struct {
 
 type metadataAttachNetworkInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachNetworkInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachNetworkInterfaceOutput) GoString() string {
+	return s.String()
 }
 
 type AttachVPNGatewayInput struct {
@@ -6663,6 +6884,16 @@ type metadataAttachVPNGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachVPNGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachVPNGatewayInput) GoString() string {
+	return s.String()
+}
+
 type AttachVPNGatewayOutput struct {
 	// Information about the attachment.
 	VPCAttachment *VPCAttachment `locationName:"attachment" type:"structure"`
@@ -6672,6 +6903,16 @@ type AttachVPNGatewayOutput struct {
 
 type metadataAttachVPNGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachVPNGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachVPNGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type AttachVolumeInput struct {
@@ -6698,6 +6939,16 @@ type metadataAttachVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachVolumeInput) GoString() string {
+	return s.String()
+}
+
 // The value to use when a resource attribute accepts a Boolean value.
 type AttributeBooleanValue struct {
 	// Valid values are true or false.
@@ -6710,6 +6961,16 @@ type metadataAttributeBooleanValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttributeBooleanValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttributeBooleanValue) GoString() string {
+	return s.String()
+}
+
 // The value to use for a resource attribute.
 type AttributeValue struct {
 	// Valid values are case-sensitive and vary by action.
@@ -6720,6 +6981,16 @@ type AttributeValue struct {
 
 type metadataAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttributeValue) GoString() string {
+	return s.String()
 }
 
 type AuthorizeSecurityGroupEgressInput struct {
@@ -6767,12 +7038,32 @@ type metadataAuthorizeSecurityGroupEgressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AuthorizeSecurityGroupEgressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeSecurityGroupEgressInput) GoString() string {
+	return s.String()
+}
+
 type AuthorizeSecurityGroupEgressOutput struct {
 	metadataAuthorizeSecurityGroupEgressOutput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeSecurityGroupEgressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AuthorizeSecurityGroupEgressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeSecurityGroupEgressOutput) GoString() string {
+	return s.String()
 }
 
 type AuthorizeSecurityGroupIngressInput struct {
@@ -6826,12 +7117,32 @@ type metadataAuthorizeSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AuthorizeSecurityGroupIngressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeSecurityGroupIngressInput) GoString() string {
+	return s.String()
+}
+
 type AuthorizeSecurityGroupIngressOutput struct {
 	metadataAuthorizeSecurityGroupIngressOutput `json:"-" xml:"-"`
 }
 
 type metadataAuthorizeSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AuthorizeSecurityGroupIngressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeSecurityGroupIngressOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an Availability Zone.
@@ -6855,6 +7166,16 @@ type metadataAvailabilityZone struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AvailabilityZone) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AvailabilityZone) GoString() string {
+	return s.String()
+}
+
 // Describes a message about an Availability Zone.
 type AvailabilityZoneMessage struct {
 	// The message about the Availability Zone.
@@ -6867,6 +7188,16 @@ type metadataAvailabilityZoneMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AvailabilityZoneMessage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AvailabilityZoneMessage) GoString() string {
+	return s.String()
+}
+
 type BlobAttributeValue struct {
 	Value []byte `locationName:"value" type:"blob"`
 
@@ -6875,6 +7206,16 @@ type BlobAttributeValue struct {
 
 type metadataBlobAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BlobAttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BlobAttributeValue) GoString() string {
+	return s.String()
 }
 
 // Describes a block device mapping.
@@ -6909,6 +7250,16 @@ type metadataBlockDeviceMapping struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BlockDeviceMapping) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BlockDeviceMapping) GoString() string {
+	return s.String()
+}
+
 type BundleInstanceInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -6937,6 +7288,16 @@ type metadataBundleInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BundleInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BundleInstanceInput) GoString() string {
+	return s.String()
+}
+
 type BundleInstanceOutput struct {
 	// Information about the bundle task.
 	BundleTask *BundleTask `locationName:"bundleInstanceTask" type:"structure"`
@@ -6946,6 +7307,16 @@ type BundleInstanceOutput struct {
 
 type metadataBundleInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BundleInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BundleInstanceOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a bundle task.
@@ -6981,6 +7352,16 @@ type metadataBundleTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BundleTask) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BundleTask) GoString() string {
+	return s.String()
+}
+
 // Describes an error for BundleInstance.
 type BundleTaskError struct {
 	// The error code.
@@ -6994,6 +7375,16 @@ type BundleTaskError struct {
 
 type metadataBundleTaskError struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BundleTaskError) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BundleTaskError) GoString() string {
+	return s.String()
 }
 
 type CancelBundleTaskInput struct {
@@ -7013,6 +7404,16 @@ type metadataCancelBundleTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelBundleTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelBundleTaskInput) GoString() string {
+	return s.String()
+}
+
 type CancelBundleTaskOutput struct {
 	// Information about the bundle task.
 	BundleTask *BundleTask `locationName:"bundleInstanceTask" type:"structure"`
@@ -7022,6 +7423,16 @@ type CancelBundleTaskOutput struct {
 
 type metadataCancelBundleTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelBundleTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelBundleTaskOutput) GoString() string {
+	return s.String()
 }
 
 type CancelConversionTaskInput struct {
@@ -7044,12 +7455,32 @@ type metadataCancelConversionTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelConversionTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelConversionTaskInput) GoString() string {
+	return s.String()
+}
+
 type CancelConversionTaskOutput struct {
 	metadataCancelConversionTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelConversionTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelConversionTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelConversionTaskOutput) GoString() string {
+	return s.String()
 }
 
 type CancelExportTaskInput struct {
@@ -7063,12 +7494,32 @@ type metadataCancelExportTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelExportTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelExportTaskInput) GoString() string {
+	return s.String()
+}
+
 type CancelExportTaskOutput struct {
 	metadataCancelExportTaskOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelExportTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelExportTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelExportTaskOutput) GoString() string {
+	return s.String()
 }
 
 type CancelImportTaskInput struct {
@@ -7091,6 +7542,16 @@ type metadataCancelImportTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelImportTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelImportTaskInput) GoString() string {
+	return s.String()
+}
+
 type CancelImportTaskOutput struct {
 	// The ID of the task being canceled.
 	ImportTaskID *string `locationName:"importTaskId" type:"string"`
@@ -7108,6 +7569,16 @@ type metadataCancelImportTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelImportTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelImportTaskOutput) GoString() string {
+	return s.String()
+}
+
 type CancelReservedInstancesListingInput struct {
 	// The ID of the Reserved Instance listing.
 	ReservedInstancesListingID *string `locationName:"reservedInstancesListingId" type:"string" required:"true"`
@@ -7119,6 +7590,16 @@ type metadataCancelReservedInstancesListingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelReservedInstancesListingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelReservedInstancesListingInput) GoString() string {
+	return s.String()
+}
+
 type CancelReservedInstancesListingOutput struct {
 	// The Reserved Instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
@@ -7128,6 +7609,16 @@ type CancelReservedInstancesListingOutput struct {
 
 type metadataCancelReservedInstancesListingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelReservedInstancesListingOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelReservedInstancesListingOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a Spot fleet error.
@@ -7145,6 +7636,16 @@ type metadataCancelSpotFleetRequestsError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelSpotFleetRequestsError) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotFleetRequestsError) GoString() string {
+	return s.String()
+}
+
 // Describes a Spot fleet request that was not successfully canceled.
 type CancelSpotFleetRequestsErrorItem struct {
 	// The error.
@@ -7158,6 +7659,16 @@ type CancelSpotFleetRequestsErrorItem struct {
 
 type metadataCancelSpotFleetRequestsErrorItem struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelSpotFleetRequestsErrorItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotFleetRequestsErrorItem) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for CancelSpotFleetRequests.
@@ -7182,6 +7693,16 @@ type metadataCancelSpotFleetRequestsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelSpotFleetRequestsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotFleetRequestsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of CancelSpotFleetRequests.
 type CancelSpotFleetRequestsOutput struct {
 	// Information about the Spot fleet requests that are successfully canceled.
@@ -7195,6 +7716,16 @@ type CancelSpotFleetRequestsOutput struct {
 
 type metadataCancelSpotFleetRequestsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelSpotFleetRequestsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotFleetRequestsOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a Spot fleet request that was successfully canceled.
@@ -7215,6 +7746,16 @@ type metadataCancelSpotFleetRequestsSuccessItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelSpotFleetRequestsSuccessItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotFleetRequestsSuccessItem) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for CancelSpotInstanceRequests.
 type CancelSpotInstanceRequestsInput struct {
 	// Checks whether you have the required permissions for the action, without
@@ -7233,6 +7774,16 @@ type metadataCancelSpotInstanceRequestsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelSpotInstanceRequestsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotInstanceRequestsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of CancelSpotInstanceRequests.
 type CancelSpotInstanceRequestsOutput struct {
 	// One or more Spot Instance requests.
@@ -7243,6 +7794,16 @@ type CancelSpotInstanceRequestsOutput struct {
 
 type metadataCancelSpotInstanceRequestsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelSpotInstanceRequestsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelSpotInstanceRequestsOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a request to cancel a Spot Instance.
@@ -7258,6 +7819,16 @@ type CancelledSpotInstanceRequest struct {
 
 type metadataCancelledSpotInstanceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelledSpotInstanceRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelledSpotInstanceRequest) GoString() string {
+	return s.String()
 }
 
 // Describes a linked EC2-Classic instance.
@@ -7281,6 +7852,16 @@ type metadataClassicLinkInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ClassicLinkInstance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ClassicLinkInstance) GoString() string {
+	return s.String()
+}
+
 // Describes the client-specific data.
 type ClientData struct {
 	// A user-defined comment about the disk upload.
@@ -7300,6 +7881,16 @@ type ClientData struct {
 
 type metadataClientData struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClientData) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ClientData) GoString() string {
+	return s.String()
 }
 
 type ConfirmProductInstanceInput struct {
@@ -7322,6 +7913,16 @@ type metadataConfirmProductInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfirmProductInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmProductInstanceInput) GoString() string {
+	return s.String()
+}
+
 type ConfirmProductInstanceOutput struct {
 	// The AWS account ID of the instance owner. This is only present if the product
 	// code is attached to the instance.
@@ -7332,6 +7933,16 @@ type ConfirmProductInstanceOutput struct {
 
 type metadataConfirmProductInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmProductInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmProductInstanceOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a conversion task.
@@ -7367,6 +7978,16 @@ type metadataConversionTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConversionTask) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConversionTask) GoString() string {
+	return s.String()
+}
+
 type CopyImageInput struct {
 	// Unique, case-sensitive identifier you provide to ensure idempotency of the
 	// request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
@@ -7398,6 +8019,16 @@ type metadataCopyImageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CopyImageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyImageInput) GoString() string {
+	return s.String()
+}
+
 type CopyImageOutput struct {
 	// The ID of the new AMI.
 	ImageID *string `locationName:"imageId" type:"string"`
@@ -7407,6 +8038,16 @@ type CopyImageOutput struct {
 
 type metadataCopyImageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyImageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopyImageOutput) GoString() string {
+	return s.String()
 }
 
 type CopySnapshotInput struct {
@@ -7456,6 +8097,16 @@ type metadataCopySnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CopySnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopySnapshotInput) GoString() string {
+	return s.String()
+}
+
 type CopySnapshotOutput struct {
 	// The ID of the new snapshot.
 	SnapshotID *string `locationName:"snapshotId" type:"string"`
@@ -7465,6 +8116,16 @@ type CopySnapshotOutput struct {
 
 type metadataCopySnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopySnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CopySnapshotOutput) GoString() string {
+	return s.String()
 }
 
 type CreateCustomerGatewayInput struct {
@@ -7493,6 +8154,16 @@ type metadataCreateCustomerGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCustomerGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomerGatewayInput) GoString() string {
+	return s.String()
+}
+
 type CreateCustomerGatewayOutput struct {
 	// Information about the customer gateway.
 	CustomerGateway *CustomerGateway `locationName:"customerGateway" type:"structure"`
@@ -7502,6 +8173,16 @@ type CreateCustomerGatewayOutput struct {
 
 type metadataCreateCustomerGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCustomerGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCustomerGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDHCPOptionsInput struct {
@@ -7521,6 +8202,16 @@ type metadataCreateDHCPOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDHCPOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDHCPOptionsInput) GoString() string {
+	return s.String()
+}
+
 type CreateDHCPOptionsOutput struct {
 	// A set of DHCP options.
 	DHCPOptions *DHCPOptions `locationName:"dhcpOptions" type:"structure"`
@@ -7530,6 +8221,16 @@ type CreateDHCPOptionsOutput struct {
 
 type metadataCreateDHCPOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDHCPOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDHCPOptionsOutput) GoString() string {
+	return s.String()
 }
 
 type CreateFlowLogsInput struct {
@@ -7560,6 +8261,16 @@ type metadataCreateFlowLogsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateFlowLogsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateFlowLogsInput) GoString() string {
+	return s.String()
+}
+
 type CreateFlowLogsOutput struct {
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
 	// the request.
@@ -7576,6 +8287,16 @@ type CreateFlowLogsOutput struct {
 
 type metadataCreateFlowLogsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateFlowLogsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateFlowLogsOutput) GoString() string {
+	return s.String()
 }
 
 type CreateImageInput struct {
@@ -7615,6 +8336,16 @@ type metadataCreateImageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateImageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateImageInput) GoString() string {
+	return s.String()
+}
+
 type CreateImageOutput struct {
 	// The ID of the new AMI.
 	ImageID *string `locationName:"imageId" type:"string"`
@@ -7624,6 +8355,16 @@ type CreateImageOutput struct {
 
 type metadataCreateImageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateImageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateImageOutput) GoString() string {
+	return s.String()
 }
 
 type CreateInstanceExportTaskInput struct {
@@ -7647,6 +8388,16 @@ type metadataCreateInstanceExportTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateInstanceExportTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstanceExportTaskInput) GoString() string {
+	return s.String()
+}
+
 type CreateInstanceExportTaskOutput struct {
 	// Information about the instance export task.
 	ExportTask *ExportTask `locationName:"exportTask" type:"structure"`
@@ -7656,6 +8407,16 @@ type CreateInstanceExportTaskOutput struct {
 
 type metadataCreateInstanceExportTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateInstanceExportTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstanceExportTaskOutput) GoString() string {
+	return s.String()
 }
 
 type CreateInternetGatewayInput struct {
@@ -7672,6 +8433,16 @@ type metadataCreateInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateInternetGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInternetGatewayInput) GoString() string {
+	return s.String()
+}
+
 type CreateInternetGatewayOutput struct {
 	// Information about the Internet gateway.
 	InternetGateway *InternetGateway `locationName:"internetGateway" type:"structure"`
@@ -7681,6 +8452,16 @@ type CreateInternetGatewayOutput struct {
 
 type metadataCreateInternetGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateInternetGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInternetGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type CreateKeyPairInput struct {
@@ -7702,6 +8483,16 @@ type metadataCreateKeyPairInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateKeyPairInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateKeyPairInput) GoString() string {
+	return s.String()
+}
+
 // Describes a key pair.
 type CreateKeyPairOutput struct {
 	// The SHA-1 digest of the DER encoded private key.
@@ -7718,6 +8509,16 @@ type CreateKeyPairOutput struct {
 
 type metadataCreateKeyPairOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateKeyPairOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateKeyPairOutput) GoString() string {
+	return s.String()
 }
 
 type CreateNetworkACLEntryInput struct {
@@ -7763,12 +8564,32 @@ type metadataCreateNetworkACLEntryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateNetworkACLEntryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkACLEntryInput) GoString() string {
+	return s.String()
+}
+
 type CreateNetworkACLEntryOutput struct {
 	metadataCreateNetworkACLEntryOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateNetworkACLEntryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateNetworkACLEntryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkACLEntryOutput) GoString() string {
+	return s.String()
 }
 
 type CreateNetworkACLInput struct {
@@ -7788,6 +8609,16 @@ type metadataCreateNetworkACLInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateNetworkACLInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkACLInput) GoString() string {
+	return s.String()
+}
+
 type CreateNetworkACLOutput struct {
 	// Information about the network ACL.
 	NetworkACL *NetworkACL `locationName:"networkAcl" type:"structure"`
@@ -7797,6 +8628,16 @@ type CreateNetworkACLOutput struct {
 
 type metadataCreateNetworkACLOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateNetworkACLOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkACLOutput) GoString() string {
+	return s.String()
 }
 
 type CreateNetworkInterfaceInput struct {
@@ -7842,6 +8683,16 @@ type metadataCreateNetworkInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateNetworkInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkInterfaceInput) GoString() string {
+	return s.String()
+}
+
 type CreateNetworkInterfaceOutput struct {
 	// Information about the network interface.
 	NetworkInterface *NetworkInterface `locationName:"networkInterface" type:"structure"`
@@ -7851,6 +8702,16 @@ type CreateNetworkInterfaceOutput struct {
 
 type metadataCreateNetworkInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateNetworkInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateNetworkInterfaceOutput) GoString() string {
+	return s.String()
 }
 
 type CreatePlacementGroupInput struct {
@@ -7875,12 +8736,32 @@ type metadataCreatePlacementGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePlacementGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePlacementGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreatePlacementGroupOutput struct {
 	metadataCreatePlacementGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreatePlacementGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePlacementGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePlacementGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateReservedInstancesListingInput struct {
@@ -7909,6 +8790,16 @@ type metadataCreateReservedInstancesListingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateReservedInstancesListingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateReservedInstancesListingInput) GoString() string {
+	return s.String()
+}
+
 type CreateReservedInstancesListingOutput struct {
 	// Information about the Reserved Instances listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
@@ -7918,6 +8809,16 @@ type CreateReservedInstancesListingOutput struct {
 
 type metadataCreateReservedInstancesListingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateReservedInstancesListingOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateReservedInstancesListingOutput) GoString() string {
+	return s.String()
 }
 
 type CreateRouteInput struct {
@@ -7959,6 +8860,16 @@ type metadataCreateRouteInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateRouteInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRouteInput) GoString() string {
+	return s.String()
+}
+
 type CreateRouteOutput struct {
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
 	// the request.
@@ -7972,6 +8883,16 @@ type CreateRouteOutput struct {
 
 type metadataCreateRouteOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRouteOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRouteOutput) GoString() string {
+	return s.String()
 }
 
 type CreateRouteTableInput struct {
@@ -7991,6 +8912,16 @@ type metadataCreateRouteTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateRouteTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRouteTableInput) GoString() string {
+	return s.String()
+}
+
 type CreateRouteTableOutput struct {
 	// Information about the route table.
 	RouteTable *RouteTable `locationName:"routeTable" type:"structure"`
@@ -8000,6 +8931,16 @@ type CreateRouteTableOutput struct {
 
 type metadataCreateRouteTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRouteTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRouteTableOutput) GoString() string {
+	return s.String()
 }
 
 type CreateSecurityGroupInput struct {
@@ -8037,6 +8978,16 @@ type metadataCreateSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSecurityGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateSecurityGroupOutput struct {
 	// The ID of the security group.
 	GroupID *string `locationName:"groupId" type:"string"`
@@ -8046,6 +8997,16 @@ type CreateSecurityGroupOutput struct {
 
 type metadataCreateSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSecurityGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSecurityGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateSnapshotInput struct {
@@ -8066,6 +9027,16 @@ type CreateSnapshotInput struct {
 
 type metadataCreateSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotInput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for CreateSpotDatafeedSubscription.
@@ -8089,6 +9060,16 @@ type metadataCreateSpotDatafeedSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSpotDatafeedSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSpotDatafeedSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of CreateSpotDatafeedSubscription.
 type CreateSpotDatafeedSubscriptionOutput struct {
 	// The Spot Instance data feed subscription.
@@ -8099,6 +9080,16 @@ type CreateSpotDatafeedSubscriptionOutput struct {
 
 type metadataCreateSpotDatafeedSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSpotDatafeedSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSpotDatafeedSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateSubnetInput struct {
@@ -8126,6 +9117,16 @@ type metadataCreateSubnetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSubnetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSubnetInput) GoString() string {
+	return s.String()
+}
+
 type CreateSubnetOutput struct {
 	// Information about the subnet.
 	Subnet *Subnet `locationName:"subnet" type:"structure"`
@@ -8135,6 +9136,16 @@ type CreateSubnetOutput struct {
 
 type metadataCreateSubnetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSubnetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSubnetOutput) GoString() string {
+	return s.String()
 }
 
 type CreateTagsInput struct {
@@ -8159,12 +9170,32 @@ type metadataCreateTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTagsInput) GoString() string {
+	return s.String()
+}
+
 type CreateTagsOutput struct {
 	metadataCreateTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTagsOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVPCEndpointInput struct {
@@ -8200,6 +9231,16 @@ type metadataCreateVPCEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVPCEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPCEndpointInput) GoString() string {
+	return s.String()
+}
+
 type CreateVPCEndpointOutput struct {
 	// Unique, case-sensitive identifier you provide to ensure the idempotency of
 	// the request.
@@ -8213,6 +9254,16 @@ type CreateVPCEndpointOutput struct {
 
 type metadataCreateVPCEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVPCEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPCEndpointOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVPCInput struct {
@@ -8241,6 +9292,16 @@ type metadataCreateVPCInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVPCInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPCInput) GoString() string {
+	return s.String()
+}
+
 type CreateVPCOutput struct {
 	// Information about the VPC.
 	VPC *VPC `locationName:"vpc" type:"structure"`
@@ -8250,6 +9311,16 @@ type CreateVPCOutput struct {
 
 type metadataCreateVPCOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVPCOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPCOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVPCPeeringConnectionInput struct {
@@ -8277,6 +9348,16 @@ type metadataCreateVPCPeeringConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVPCPeeringConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPCPeeringConnectionInput) GoString() string {
+	return s.String()
+}
+
 type CreateVPCPeeringConnectionOutput struct {
 	// Information about the VPC peering connection.
 	VPCPeeringConnection *VPCPeeringConnection `locationName:"vpcPeeringConnection" type:"structure"`
@@ -8286,6 +9367,16 @@ type CreateVPCPeeringConnectionOutput struct {
 
 type metadataCreateVPCPeeringConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVPCPeeringConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPCPeeringConnectionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVPNConnectionInput struct {
@@ -8318,6 +9409,16 @@ type metadataCreateVPNConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVPNConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPNConnectionInput) GoString() string {
+	return s.String()
+}
+
 type CreateVPNConnectionOutput struct {
 	// Information about the VPN connection.
 	VPNConnection *VPNConnection `locationName:"vpnConnection" type:"structure"`
@@ -8327,6 +9428,16 @@ type CreateVPNConnectionOutput struct {
 
 type metadataCreateVPNConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVPNConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPNConnectionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVPNConnectionRouteInput struct {
@@ -8343,12 +9454,32 @@ type metadataCreateVPNConnectionRouteInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVPNConnectionRouteInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPNConnectionRouteInput) GoString() string {
+	return s.String()
+}
+
 type CreateVPNConnectionRouteOutput struct {
 	metadataCreateVPNConnectionRouteOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateVPNConnectionRouteOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVPNConnectionRouteOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPNConnectionRouteOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVPNGatewayInput struct {
@@ -8371,6 +9502,16 @@ type metadataCreateVPNGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVPNGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPNGatewayInput) GoString() string {
+	return s.String()
+}
+
 type CreateVPNGatewayOutput struct {
 	// Information about the virtual private gateway.
 	VPNGateway *VPNGateway `locationName:"vpnGateway" type:"structure"`
@@ -8380,6 +9521,16 @@ type CreateVPNGatewayOutput struct {
 
 type metadataCreateVPNGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVPNGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVPNGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVolumeInput struct {
@@ -8443,6 +9594,16 @@ type metadataCreateVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumeInput) GoString() string {
+	return s.String()
+}
+
 // Describes the user or group to be added or removed from the permissions for
 // a volume.
 type CreateVolumePermission struct {
@@ -8461,6 +9622,16 @@ type metadataCreateVolumePermission struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVolumePermission) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumePermission) GoString() string {
+	return s.String()
+}
+
 // Describes modifications to the permissions for a volume.
 type CreateVolumePermissionModifications struct {
 	// Adds a specific AWS account ID or group to a volume's list of create volume
@@ -8476,6 +9647,16 @@ type CreateVolumePermissionModifications struct {
 
 type metadataCreateVolumePermissionModifications struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVolumePermissionModifications) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumePermissionModifications) GoString() string {
+	return s.String()
 }
 
 // Describes a customer gateway.
@@ -8507,6 +9688,16 @@ type metadataCustomerGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CustomerGateway) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CustomerGateway) GoString() string {
+	return s.String()
+}
+
 // Describes a DHCP configuration option.
 type DHCPConfiguration struct {
 	// The name of a DHCP option.
@@ -8520,6 +9711,16 @@ type DHCPConfiguration struct {
 
 type metadataDHCPConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DHCPConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DHCPConfiguration) GoString() string {
+	return s.String()
 }
 
 // Describes a set of DHCP options.
@@ -8540,6 +9741,16 @@ type metadataDHCPOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DHCPOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DHCPOptions) GoString() string {
+	return s.String()
+}
+
 type DeleteCustomerGatewayInput struct {
 	// The ID of the customer gateway.
 	CustomerGatewayID *string `locationName:"CustomerGatewayId" type:"string" required:"true"`
@@ -8557,12 +9768,32 @@ type metadataDeleteCustomerGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteCustomerGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomerGatewayInput) GoString() string {
+	return s.String()
+}
+
 type DeleteCustomerGatewayOutput struct {
 	metadataDeleteCustomerGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteCustomerGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCustomerGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCustomerGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDHCPOptionsInput struct {
@@ -8582,12 +9813,32 @@ type metadataDeleteDHCPOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDHCPOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDHCPOptionsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDHCPOptionsOutput struct {
 	metadataDeleteDHCPOptionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDHCPOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDHCPOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDHCPOptionsOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteFlowLogsInput struct {
@@ -8601,6 +9852,16 @@ type metadataDeleteFlowLogsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteFlowLogsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFlowLogsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteFlowLogsOutput struct {
 	// Information about the flow logs that could not be deleted successfully.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
@@ -8610,6 +9871,16 @@ type DeleteFlowLogsOutput struct {
 
 type metadataDeleteFlowLogsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFlowLogsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFlowLogsOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteInternetGatewayInput struct {
@@ -8629,12 +9900,32 @@ type metadataDeleteInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteInternetGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInternetGatewayInput) GoString() string {
+	return s.String()
+}
+
 type DeleteInternetGatewayOutput struct {
 	metadataDeleteInternetGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInternetGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteInternetGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInternetGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteKeyPairInput struct {
@@ -8654,12 +9945,32 @@ type metadataDeleteKeyPairInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteKeyPairInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteKeyPairInput) GoString() string {
+	return s.String()
+}
+
 type DeleteKeyPairOutput struct {
 	metadataDeleteKeyPairOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteKeyPairOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteKeyPairOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteKeyPairOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteNetworkACLEntryInput struct {
@@ -8685,12 +9996,32 @@ type metadataDeleteNetworkACLEntryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteNetworkACLEntryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkACLEntryInput) GoString() string {
+	return s.String()
+}
+
 type DeleteNetworkACLEntryOutput struct {
 	metadataDeleteNetworkACLEntryOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNetworkACLEntryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteNetworkACLEntryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkACLEntryOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteNetworkACLInput struct {
@@ -8710,12 +10041,32 @@ type metadataDeleteNetworkACLInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteNetworkACLInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkACLInput) GoString() string {
+	return s.String()
+}
+
 type DeleteNetworkACLOutput struct {
 	metadataDeleteNetworkACLOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNetworkACLOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteNetworkACLOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkACLOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteNetworkInterfaceInput struct {
@@ -8735,12 +10086,32 @@ type metadataDeleteNetworkInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteNetworkInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkInterfaceInput) GoString() string {
+	return s.String()
+}
+
 type DeleteNetworkInterfaceOutput struct {
 	metadataDeleteNetworkInterfaceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteNetworkInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteNetworkInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteNetworkInterfaceOutput) GoString() string {
+	return s.String()
 }
 
 type DeletePlacementGroupInput struct {
@@ -8760,12 +10131,32 @@ type metadataDeletePlacementGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePlacementGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePlacementGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeletePlacementGroupOutput struct {
 	metadataDeletePlacementGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePlacementGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePlacementGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePlacementGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteRouteInput struct {
@@ -8789,12 +10180,32 @@ type metadataDeleteRouteInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteRouteInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRouteInput) GoString() string {
+	return s.String()
+}
+
 type DeleteRouteOutput struct {
 	metadataDeleteRouteOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRouteOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRouteOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRouteOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteRouteTableInput struct {
@@ -8814,12 +10225,32 @@ type metadataDeleteRouteTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteRouteTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRouteTableInput) GoString() string {
+	return s.String()
+}
+
 type DeleteRouteTableOutput struct {
 	metadataDeleteRouteTableOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRouteTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRouteTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRouteTableOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSecurityGroupInput struct {
@@ -8843,12 +10274,32 @@ type metadataDeleteSecurityGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSecurityGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSecurityGroupOutput struct {
 	metadataDeleteSecurityGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSecurityGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSecurityGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSecurityGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSnapshotInput struct {
@@ -8868,12 +10319,32 @@ type metadataDeleteSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSnapshotOutput struct {
 	metadataDeleteSnapshotOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DeleteSpotDatafeedSubscription.
@@ -8891,12 +10362,32 @@ type metadataDeleteSpotDatafeedSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSpotDatafeedSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSpotDatafeedSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSpotDatafeedSubscriptionOutput struct {
 	metadataDeleteSpotDatafeedSubscriptionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSpotDatafeedSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSpotDatafeedSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSpotDatafeedSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSubnetInput struct {
@@ -8916,12 +10407,32 @@ type metadataDeleteSubnetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSubnetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSubnetInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSubnetOutput struct {
 	metadataDeleteSubnetOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSubnetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSubnetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSubnetOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteTagsInput struct {
@@ -8947,12 +10458,32 @@ type metadataDeleteTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteTagsOutput struct {
 	metadataDeleteTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVPCEndpointsInput struct {
@@ -8972,6 +10503,16 @@ type metadataDeleteVPCEndpointsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVPCEndpointsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPCEndpointsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVPCEndpointsOutput struct {
 	// Information about the endpoints that were not successfully deleted.
 	Unsuccessful []*UnsuccessfulItem `locationName:"unsuccessful" locationNameList:"item" type:"list"`
@@ -8981,6 +10522,16 @@ type DeleteVPCEndpointsOutput struct {
 
 type metadataDeleteVPCEndpointsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVPCEndpointsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPCEndpointsOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVPCInput struct {
@@ -9000,12 +10551,32 @@ type metadataDeleteVPCInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVPCInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPCInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVPCOutput struct {
 	metadataDeleteVPCOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVPCOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVPCOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPCOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVPCPeeringConnectionInput struct {
@@ -9025,6 +10596,16 @@ type metadataDeleteVPCPeeringConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVPCPeeringConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPCPeeringConnectionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVPCPeeringConnectionOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -9034,6 +10615,16 @@ type DeleteVPCPeeringConnectionOutput struct {
 
 type metadataDeleteVPCPeeringConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVPCPeeringConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPCPeeringConnectionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVPNConnectionInput struct {
@@ -9053,12 +10644,32 @@ type metadataDeleteVPNConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVPNConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPNConnectionInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVPNConnectionOutput struct {
 	metadataDeleteVPNConnectionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVPNConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVPNConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPNConnectionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVPNConnectionRouteInput struct {
@@ -9075,12 +10686,32 @@ type metadataDeleteVPNConnectionRouteInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVPNConnectionRouteInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPNConnectionRouteInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVPNConnectionRouteOutput struct {
 	metadataDeleteVPNConnectionRouteOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVPNConnectionRouteOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVPNConnectionRouteOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPNConnectionRouteOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVPNGatewayInput struct {
@@ -9100,12 +10731,32 @@ type metadataDeleteVPNGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVPNGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPNGatewayInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVPNGatewayOutput struct {
 	metadataDeleteVPNGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVPNGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVPNGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVPNGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVolumeInput struct {
@@ -9125,12 +10776,32 @@ type metadataDeleteVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVolumeOutput struct {
 	metadataDeleteVolumeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVolumeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeOutput) GoString() string {
+	return s.String()
 }
 
 type DeregisterImageInput struct {
@@ -9150,12 +10821,32 @@ type metadataDeregisterImageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeregisterImageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterImageInput) GoString() string {
+	return s.String()
+}
+
 type DeregisterImageOutput struct {
 	metadataDeregisterImageOutput `json:"-" xml:"-"`
 }
 
 type metadataDeregisterImageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterImageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterImageOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAccountAttributesInput struct {
@@ -9175,6 +10866,16 @@ type metadataDescribeAccountAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAccountAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountAttributesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeAccountAttributesOutput struct {
 	// Information about one or more account attributes.
 	AccountAttributes []*AccountAttribute `locationName:"accountAttributeSet" locationNameList:"item" type:"list"`
@@ -9184,6 +10885,16 @@ type DescribeAccountAttributesOutput struct {
 
 type metadataDescribeAccountAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountAttributesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAddressesInput struct {
@@ -9233,6 +10944,16 @@ type metadataDescribeAddressesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAddressesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAddressesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeAddressesOutput struct {
 	// Information about one or more Elastic IP addresses.
 	Addresses []*Address `locationName:"addressesSet" locationNameList:"item" type:"list"`
@@ -9242,6 +10963,16 @@ type DescribeAddressesOutput struct {
 
 type metadataDescribeAddressesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAddressesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAddressesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAvailabilityZonesInput struct {
@@ -9273,6 +11004,16 @@ type metadataDescribeAvailabilityZonesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAvailabilityZonesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAvailabilityZonesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeAvailabilityZonesOutput struct {
 	// Information about one or more Availability Zones.
 	AvailabilityZones []*AvailabilityZone `locationName:"availabilityZoneInfo" locationNameList:"item" type:"list"`
@@ -9282,6 +11023,16 @@ type DescribeAvailabilityZonesOutput struct {
 
 type metadataDescribeAvailabilityZonesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAvailabilityZonesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAvailabilityZonesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeBundleTasksInput struct {
@@ -9328,6 +11079,16 @@ type metadataDescribeBundleTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeBundleTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeBundleTasksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeBundleTasksOutput struct {
 	// Information about one or more bundle tasks.
 	BundleTasks []*BundleTask `locationName:"bundleInstanceTasksSet" locationNameList:"item" type:"list"`
@@ -9337,6 +11098,16 @@ type DescribeBundleTasksOutput struct {
 
 type metadataDescribeBundleTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeBundleTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeBundleTasksOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeClassicLinkInstancesInput struct {
@@ -9390,6 +11161,16 @@ type metadataDescribeClassicLinkInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeClassicLinkInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClassicLinkInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeClassicLinkInstancesOutput struct {
 	// Information about one or more linked EC2-Classic instances.
 	Instances []*ClassicLinkInstance `locationName:"instancesSet" locationNameList:"item" type:"list"`
@@ -9403,6 +11184,16 @@ type DescribeClassicLinkInstancesOutput struct {
 
 type metadataDescribeClassicLinkInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeClassicLinkInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClassicLinkInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeConversionTasksInput struct {
@@ -9425,6 +11216,16 @@ type metadataDescribeConversionTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeConversionTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConversionTasksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeConversionTasksOutput struct {
 	// Information about the conversion tasks.
 	ConversionTasks []*ConversionTask `locationName:"conversionTasks" locationNameList:"item" type:"list"`
@@ -9434,6 +11235,16 @@ type DescribeConversionTasksOutput struct {
 
 type metadataDescribeConversionTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConversionTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConversionTasksOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeCustomerGatewaysInput struct {
@@ -9484,6 +11295,16 @@ type metadataDescribeCustomerGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCustomerGatewaysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomerGatewaysInput) GoString() string {
+	return s.String()
+}
+
 type DescribeCustomerGatewaysOutput struct {
 	// Information about one or more customer gateways.
 	CustomerGateways []*CustomerGateway `locationName:"customerGatewaySet" locationNameList:"item" type:"list"`
@@ -9493,6 +11314,16 @@ type DescribeCustomerGatewaysOutput struct {
 
 type metadataDescribeCustomerGatewaysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCustomerGatewaysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCustomerGatewaysOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDHCPOptionsInput struct {
@@ -9535,6 +11366,16 @@ type metadataDescribeDHCPOptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDHCPOptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDHCPOptionsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeDHCPOptionsOutput struct {
 	// Information about one or more DHCP options sets.
 	DHCPOptions []*DHCPOptions `locationName:"dhcpOptionsSet" locationNameList:"item" type:"list"`
@@ -9544,6 +11385,16 @@ type DescribeDHCPOptionsOutput struct {
 
 type metadataDescribeDHCPOptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDHCPOptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDHCPOptionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeExportTasksInput struct {
@@ -9557,6 +11408,16 @@ type metadataDescribeExportTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeExportTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportTasksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeExportTasksOutput struct {
 	// Information about the export tasks.
 	ExportTasks []*ExportTask `locationName:"exportTaskSet" locationNameList:"item" type:"list"`
@@ -9566,6 +11427,16 @@ type DescribeExportTasksOutput struct {
 
 type metadataDescribeExportTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeExportTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportTasksOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeFlowLogsInput struct {
@@ -9602,6 +11473,16 @@ type metadataDescribeFlowLogsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeFlowLogsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFlowLogsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeFlowLogsOutput struct {
 	// Information about the flow logs.
 	FlowLogs []*FlowLog `locationName:"flowLogSet" locationNameList:"item" type:"list"`
@@ -9615,6 +11496,16 @@ type DescribeFlowLogsOutput struct {
 
 type metadataDescribeFlowLogsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeFlowLogsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFlowLogsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeImageAttributeInput struct {
@@ -9639,6 +11530,16 @@ type DescribeImageAttributeInput struct {
 
 type metadataDescribeImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeImageAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImageAttributeInput) GoString() string {
+	return s.String()
 }
 
 // Describes an image attribute.
@@ -9672,6 +11573,16 @@ type DescribeImageAttributeOutput struct {
 
 type metadataDescribeImageAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeImageAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImageAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeImagesInput struct {
@@ -9775,6 +11686,16 @@ type metadataDescribeImagesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeImagesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeImagesOutput struct {
 	// Information about one or more images.
 	Images []*Image `locationName:"imagesSet" locationNameList:"item" type:"list"`
@@ -9784,6 +11705,16 @@ type DescribeImagesOutput struct {
 
 type metadataDescribeImagesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeImagesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImagesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeImportImageTasksInput struct {
@@ -9812,6 +11743,16 @@ type metadataDescribeImportImageTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeImportImageTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImportImageTasksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeImportImageTasksOutput struct {
 	// A list of zero or more import image tasks that are currently active or were
 	// completed or canceled in the previous 7 days.
@@ -9826,6 +11767,16 @@ type DescribeImportImageTasksOutput struct {
 
 type metadataDescribeImportImageTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeImportImageTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImportImageTasksOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeImportSnapshotTasksInput struct {
@@ -9854,6 +11805,16 @@ type metadataDescribeImportSnapshotTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeImportSnapshotTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImportSnapshotTasksInput) GoString() string {
+	return s.String()
+}
+
 type DescribeImportSnapshotTasksOutput struct {
 	// A list of zero or more import snapshot tasks that are currently active or
 	// were completed or canceled in the previous 7 days.
@@ -9868,6 +11829,16 @@ type DescribeImportSnapshotTasksOutput struct {
 
 type metadataDescribeImportSnapshotTasksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeImportSnapshotTasksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImportSnapshotTasksOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeInstanceAttributeInput struct {
@@ -9888,6 +11859,16 @@ type DescribeInstanceAttributeInput struct {
 
 type metadataDescribeInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceAttributeInput) GoString() string {
+	return s.String()
 }
 
 // Describes an instance attribute.
@@ -9943,6 +11924,16 @@ type DescribeInstanceAttributeOutput struct {
 
 type metadataDescribeInstanceAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeInstanceStatusInput struct {
@@ -10020,6 +12011,16 @@ type metadataDescribeInstanceStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeInstanceStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceStatusInput) GoString() string {
+	return s.String()
+}
+
 type DescribeInstanceStatusOutput struct {
 	// One or more instance status descriptions.
 	InstanceStatuses []*InstanceStatus `locationName:"instanceStatusSet" locationNameList:"item" type:"list"`
@@ -10033,6 +12034,16 @@ type DescribeInstanceStatusOutput struct {
 
 type metadataDescribeInstanceStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstanceStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstanceStatusOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeInstancesInput struct {
@@ -10290,6 +12301,16 @@ type metadataDescribeInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeInstancesOutput struct {
 	// The token to use to retrieve the next page of results. This value is null
 	// when there are no more results to return.
@@ -10303,6 +12324,16 @@ type DescribeInstancesOutput struct {
 
 type metadataDescribeInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeInternetGatewaysInput struct {
@@ -10346,6 +12377,16 @@ type metadataDescribeInternetGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeInternetGatewaysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInternetGatewaysInput) GoString() string {
+	return s.String()
+}
+
 type DescribeInternetGatewaysOutput struct {
 	// Information about one or more Internet gateways.
 	InternetGateways []*InternetGateway `locationName:"internetGatewaySet" locationNameList:"item" type:"list"`
@@ -10355,6 +12396,16 @@ type DescribeInternetGatewaysOutput struct {
 
 type metadataDescribeInternetGatewaysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInternetGatewaysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInternetGatewaysOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeKeyPairsInput struct {
@@ -10383,6 +12434,16 @@ type metadataDescribeKeyPairsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeKeyPairsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeKeyPairsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeKeyPairsOutput struct {
 	// Information about one or more key pairs.
 	KeyPairs []*KeyPairInfo `locationName:"keySet" locationNameList:"item" type:"list"`
@@ -10392,6 +12453,16 @@ type DescribeKeyPairsOutput struct {
 
 type metadataDescribeKeyPairsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeKeyPairsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeKeyPairsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeMovingAddressesInput struct {
@@ -10427,6 +12498,16 @@ type metadataDescribeMovingAddressesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeMovingAddressesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMovingAddressesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeMovingAddressesOutput struct {
 	// The status for each Elastic IP address.
 	MovingAddressStatuses []*MovingAddressStatus `locationName:"movingAddressStatusSet" locationNameList:"item" type:"list"`
@@ -10440,6 +12521,16 @@ type DescribeMovingAddressesOutput struct {
 
 type metadataDescribeMovingAddressesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMovingAddressesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMovingAddressesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeNetworkACLsInput struct {
@@ -10510,6 +12601,16 @@ type metadataDescribeNetworkACLsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeNetworkACLsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNetworkACLsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeNetworkACLsOutput struct {
 	// Information about one or more network ACLs.
 	NetworkACLs []*NetworkACL `locationName:"networkAclSet" locationNameList:"item" type:"list"`
@@ -10519,6 +12620,16 @@ type DescribeNetworkACLsOutput struct {
 
 type metadataDescribeNetworkACLsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeNetworkACLsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNetworkACLsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeNetworkInterfaceAttributeInput struct {
@@ -10539,6 +12650,16 @@ type DescribeNetworkInterfaceAttributeInput struct {
 
 type metadataDescribeNetworkInterfaceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeNetworkInterfaceAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNetworkInterfaceAttributeInput) GoString() string {
+	return s.String()
 }
 
 type DescribeNetworkInterfaceAttributeOutput struct {
@@ -10562,6 +12683,16 @@ type DescribeNetworkInterfaceAttributeOutput struct {
 
 type metadataDescribeNetworkInterfaceAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeNetworkInterfaceAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNetworkInterfaceAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeNetworkInterfacesInput struct {
@@ -10684,6 +12815,16 @@ type metadataDescribeNetworkInterfacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeNetworkInterfacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNetworkInterfacesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeNetworkInterfacesOutput struct {
 	// Information about one or more network interfaces.
 	NetworkInterfaces []*NetworkInterface `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
@@ -10693,6 +12834,16 @@ type DescribeNetworkInterfacesOutput struct {
 
 type metadataDescribeNetworkInterfacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeNetworkInterfacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeNetworkInterfacesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribePlacementGroupsInput struct {
@@ -10724,6 +12875,16 @@ type metadataDescribePlacementGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribePlacementGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePlacementGroupsInput) GoString() string {
+	return s.String()
+}
+
 type DescribePlacementGroupsOutput struct {
 	// One or more placement groups.
 	PlacementGroups []*PlacementGroup `locationName:"placementGroupSet" locationNameList:"item" type:"list"`
@@ -10733,6 +12894,16 @@ type DescribePlacementGroupsOutput struct {
 
 type metadataDescribePlacementGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribePlacementGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePlacementGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribePrefixListsInput struct {
@@ -10771,6 +12942,16 @@ type metadataDescribePrefixListsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribePrefixListsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePrefixListsInput) GoString() string {
+	return s.String()
+}
+
 type DescribePrefixListsOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -10784,6 +12965,16 @@ type DescribePrefixListsOutput struct {
 
 type metadataDescribePrefixListsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribePrefixListsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribePrefixListsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeRegionsInput struct {
@@ -10810,6 +13001,16 @@ type metadataDescribeRegionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeRegionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRegionsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeRegionsOutput struct {
 	// Information about one or more regions.
 	Regions []*Region `locationName:"regionInfo" locationNameList:"item" type:"list"`
@@ -10819,6 +13020,16 @@ type DescribeRegionsOutput struct {
 
 type metadataDescribeRegionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeRegionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRegionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeReservedInstancesInput struct {
@@ -10895,6 +13106,16 @@ type metadataDescribeReservedInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeReservedInstancesListingsInput struct {
 	// One or more filters.
 	//
@@ -10921,6 +13142,16 @@ type metadataDescribeReservedInstancesListingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedInstancesListingsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesListingsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeReservedInstancesListingsOutput struct {
 	// Information about the Reserved Instance listing.
 	ReservedInstancesListings []*ReservedInstancesListing `locationName:"reservedInstancesListingsSet" locationNameList:"item" type:"list"`
@@ -10930,6 +13161,16 @@ type DescribeReservedInstancesListingsOutput struct {
 
 type metadataDescribeReservedInstancesListingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReservedInstancesListingsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesListingsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeReservedInstancesModificationsInput struct {
@@ -10982,6 +13223,16 @@ type metadataDescribeReservedInstancesModificationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedInstancesModificationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesModificationsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeReservedInstancesModificationsOutput struct {
 	// The token to use to retrieve the next page of results. This value is null
 	// when there are no more results to return.
@@ -10995,6 +13246,16 @@ type DescribeReservedInstancesModificationsOutput struct {
 
 type metadataDescribeReservedInstancesModificationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReservedInstancesModificationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesModificationsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeReservedInstancesOfferingsInput struct {
@@ -11099,6 +13360,16 @@ type metadataDescribeReservedInstancesOfferingsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedInstancesOfferingsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesOfferingsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeReservedInstancesOfferingsOutput struct {
 	// The token to use to retrieve the next page of results. This value is null
 	// when there are no more results to return.
@@ -11114,6 +13385,16 @@ type metadataDescribeReservedInstancesOfferingsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeReservedInstancesOfferingsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesOfferingsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeReservedInstancesOutput struct {
 	// A list of Reserved Instances.
 	ReservedInstances []*ReservedInstances `locationName:"reservedInstancesSet" locationNameList:"item" type:"list"`
@@ -11123,6 +13404,16 @@ type DescribeReservedInstancesOutput struct {
 
 type metadataDescribeReservedInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReservedInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservedInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeRouteTablesInput struct {
@@ -11199,6 +13490,16 @@ type metadataDescribeRouteTablesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeRouteTablesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRouteTablesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeRouteTablesOutput struct {
 	// Information about one or more route tables.
 	RouteTables []*RouteTable `locationName:"routeTableSet" locationNameList:"item" type:"list"`
@@ -11208,6 +13509,16 @@ type DescribeRouteTablesOutput struct {
 
 type metadataDescribeRouteTablesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeRouteTablesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRouteTablesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSecurityGroupsInput struct {
@@ -11278,6 +13589,16 @@ type metadataDescribeSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSecurityGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSecurityGroupsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeSecurityGroupsOutput struct {
 	// Information about one or more security groups.
 	SecurityGroups []*SecurityGroup `locationName:"securityGroupInfo" locationNameList:"item" type:"list"`
@@ -11287,6 +13608,16 @@ type DescribeSecurityGroupsOutput struct {
 
 type metadataDescribeSecurityGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSecurityGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSecurityGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSnapshotAttributeInput struct {
@@ -11309,6 +13640,16 @@ type metadataDescribeSnapshotAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSnapshotAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotAttributeInput) GoString() string {
+	return s.String()
+}
+
 type DescribeSnapshotAttributeOutput struct {
 	// A list of permissions for creating volumes from the snapshot.
 	CreateVolumePermissions []*CreateVolumePermission `locationName:"createVolumePermission" locationNameList:"item" type:"list"`
@@ -11324,6 +13665,16 @@ type DescribeSnapshotAttributeOutput struct {
 
 type metadataDescribeSnapshotAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSnapshotAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSnapshotsInput struct {
@@ -11405,6 +13756,16 @@ type metadataDescribeSnapshotsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSnapshotsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeSnapshotsOutput struct {
 	// The NextToken value to include in a future DescribeSnapshots request. When
 	// the results of a DescribeSnapshots request exceed MaxResults, this value
@@ -11422,6 +13783,16 @@ type metadataDescribeSnapshotsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSnapshotsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotsOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for DescribeSpotDatafeedSubscription.
 type DescribeSpotDatafeedSubscriptionInput struct {
 	// Checks whether you have the required permissions for the action, without
@@ -11437,6 +13808,16 @@ type metadataDescribeSpotDatafeedSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotDatafeedSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotDatafeedSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeSpotDatafeedSubscription.
 type DescribeSpotDatafeedSubscriptionOutput struct {
 	// The Spot Instance data feed subscription.
@@ -11447,6 +13828,16 @@ type DescribeSpotDatafeedSubscriptionOutput struct {
 
 type metadataDescribeSpotDatafeedSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSpotDatafeedSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotDatafeedSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DescribeSpotFleetInstances.
@@ -11475,6 +13866,16 @@ type metadataDescribeSpotFleetInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotFleetInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotFleetInstancesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeSpotFleetInstances.
 type DescribeSpotFleetInstancesOutput struct {
 	// The running instances. Note that this list is refreshed periodically and
@@ -11493,6 +13894,16 @@ type DescribeSpotFleetInstancesOutput struct {
 
 type metadataDescribeSpotFleetInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSpotFleetInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotFleetInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DescribeSpotFleetRequestHistory.
@@ -11527,6 +13938,16 @@ type metadataDescribeSpotFleetRequestHistoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotFleetRequestHistoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotFleetRequestHistoryInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeSpotFleetRequestHistory.
 type DescribeSpotFleetRequestHistoryOutput struct {
 	// Information about the events in the history of the Spot fleet request.
@@ -11555,6 +13976,16 @@ type metadataDescribeSpotFleetRequestHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotFleetRequestHistoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotFleetRequestHistoryOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the parameters for DescribeSpotFleetRequests.
 type DescribeSpotFleetRequestsInput struct {
 	// Checks whether you have the required permissions for the action, without
@@ -11581,6 +14012,16 @@ type metadataDescribeSpotFleetRequestsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotFleetRequestsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotFleetRequestsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeSpotFleetRequests.
 type DescribeSpotFleetRequestsOutput struct {
 	// The token required to retrieve the next set of results. This value is null
@@ -11595,6 +14036,16 @@ type DescribeSpotFleetRequestsOutput struct {
 
 type metadataDescribeSpotFleetRequestsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSpotFleetRequestsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotFleetRequestsOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DescribeSpotInstanceRequests.
@@ -11725,6 +14176,16 @@ type metadataDescribeSpotInstanceRequestsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotInstanceRequestsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotInstanceRequestsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeSpotInstanceRequests.
 type DescribeSpotInstanceRequestsOutput struct {
 	// One or more Spot Instance requests.
@@ -11735,6 +14196,16 @@ type DescribeSpotInstanceRequestsOutput struct {
 
 type metadataDescribeSpotInstanceRequestsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSpotInstanceRequestsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotInstanceRequestsOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for DescribeSpotPriceHistory.
@@ -11795,6 +14266,16 @@ type metadataDescribeSpotPriceHistoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSpotPriceHistoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotPriceHistoryInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of DescribeSpotPriceHistory.
 type DescribeSpotPriceHistoryOutput struct {
 	// The token required to retrieve the next set of results. This value is null
@@ -11809,6 +14290,16 @@ type DescribeSpotPriceHistoryOutput struct {
 
 type metadataDescribeSpotPriceHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSpotPriceHistoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSpotPriceHistoryOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSubnetsInput struct {
@@ -11864,6 +14355,16 @@ type metadataDescribeSubnetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSubnetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSubnetsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeSubnetsOutput struct {
 	// Information about one or more subnets.
 	Subnets []*Subnet `locationName:"subnetSet" locationNameList:"item" type:"list"`
@@ -11873,6 +14374,16 @@ type DescribeSubnetsOutput struct {
 
 type metadataDescribeSubnetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSubnetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSubnetsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeTagsInput struct {
@@ -11913,6 +14424,16 @@ type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsOutput struct {
 	// The token to use to retrieve the next page of results. This value is null
 	// when there are no more results to return..
@@ -11926,6 +14447,16 @@ type DescribeTagsOutput struct {
 
 type metadataDescribeTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPCAttributeInput struct {
@@ -11948,6 +14479,16 @@ type metadataDescribeVPCAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPCAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCAttributeInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPCAttributeOutput struct {
 	// Indicates whether the instances launched in the VPC get DNS hostnames. If
 	// this attribute is true, instances in the VPC get DNS hostnames; otherwise,
@@ -11967,6 +14508,16 @@ type DescribeVPCAttributeOutput struct {
 
 type metadataDescribeVPCAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPCAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPCClassicLinkInput struct {
@@ -12004,6 +14555,16 @@ type metadataDescribeVPCClassicLinkInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPCClassicLinkInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCClassicLinkInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPCClassicLinkOutput struct {
 	// The ClassicLink status of one or more VPCs.
 	VPCs []*VPCClassicLink `locationName:"vpcSet" locationNameList:"item" type:"list"`
@@ -12013,6 +14574,16 @@ type DescribeVPCClassicLinkOutput struct {
 
 type metadataDescribeVPCClassicLinkOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPCClassicLinkOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCClassicLinkOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPCEndpointServicesInput struct {
@@ -12040,6 +14611,16 @@ type metadataDescribeVPCEndpointServicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPCEndpointServicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCEndpointServicesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPCEndpointServicesOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -12053,6 +14634,16 @@ type DescribeVPCEndpointServicesOutput struct {
 
 type metadataDescribeVPCEndpointServicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPCEndpointServicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCEndpointServicesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPCEndpointsInput struct {
@@ -12095,6 +14686,16 @@ type metadataDescribeVPCEndpointsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPCEndpointsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCEndpointsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPCEndpointsOutput struct {
 	// The token to use when requesting the next set of items. If there are no additional
 	// items to return, the string is empty.
@@ -12108,6 +14709,16 @@ type DescribeVPCEndpointsOutput struct {
 
 type metadataDescribeVPCEndpointsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPCEndpointsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCEndpointsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPCPeeringConnectionsInput struct {
@@ -12168,6 +14779,16 @@ type metadataDescribeVPCPeeringConnectionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPCPeeringConnectionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCPeeringConnectionsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPCPeeringConnectionsOutput struct {
 	// Information about the VPC peering connections.
 	VPCPeeringConnections []*VPCPeeringConnection `locationName:"vpcPeeringConnectionSet" locationNameList:"item" type:"list"`
@@ -12177,6 +14798,16 @@ type DescribeVPCPeeringConnectionsOutput struct {
 
 type metadataDescribeVPCPeeringConnectionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPCPeeringConnectionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCPeeringConnectionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPCsInput struct {
@@ -12225,6 +14856,16 @@ type metadataDescribeVPCsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPCsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPCsOutput struct {
 	// Information about one or more VPCs.
 	VPCs []*VPC `locationName:"vpcSet" locationNameList:"item" type:"list"`
@@ -12234,6 +14875,16 @@ type DescribeVPCsOutput struct {
 
 type metadataDescribeVPCsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPCsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPCsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPNConnectionsInput struct {
@@ -12297,6 +14948,16 @@ type metadataDescribeVPNConnectionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPNConnectionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPNConnectionsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPNConnectionsOutput struct {
 	// Information about one or more VPN connections.
 	VPNConnections []*VPNConnection `locationName:"vpnConnectionSet" locationNameList:"item" type:"list"`
@@ -12306,6 +14967,16 @@ type DescribeVPNConnectionsOutput struct {
 
 type metadataDescribeVPNConnectionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPNConnectionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPNConnectionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVPNGatewaysInput struct {
@@ -12357,6 +15028,16 @@ type metadataDescribeVPNGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVPNGatewaysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPNGatewaysInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVPNGatewaysOutput struct {
 	// Information about one or more virtual private gateways.
 	VPNGateways []*VPNGateway `locationName:"vpnGatewaySet" locationNameList:"item" type:"list"`
@@ -12366,6 +15047,16 @@ type DescribeVPNGatewaysOutput struct {
 
 type metadataDescribeVPNGatewaysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVPNGatewaysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVPNGatewaysOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVolumeAttributeInput struct {
@@ -12388,6 +15079,16 @@ type metadataDescribeVolumeAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVolumeAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumeAttributeInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVolumeAttributeOutput struct {
 	// The state of autoEnableIO attribute.
 	AutoEnableIO *AttributeBooleanValue `locationName:"autoEnableIO" type:"structure"`
@@ -12403,6 +15104,16 @@ type DescribeVolumeAttributeOutput struct {
 
 type metadataDescribeVolumeAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVolumeAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumeAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVolumeStatusInput struct {
@@ -12473,6 +15184,16 @@ type metadataDescribeVolumeStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVolumeStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumeStatusInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVolumeStatusOutput struct {
 	// The token to use to retrieve the next page of results. This value is null
 	// when there are no more results to return.
@@ -12486,6 +15207,16 @@ type DescribeVolumeStatusOutput struct {
 
 type metadataDescribeVolumeStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVolumeStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumeStatusOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeVolumesInput struct {
@@ -12570,6 +15301,16 @@ type metadataDescribeVolumesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVolumesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeVolumesOutput struct {
 	// The NextToken value to include in a future DescribeVolumes request. When
 	// the results of a DescribeVolumes request exceed MaxResults, this value can
@@ -12585,6 +15326,16 @@ type DescribeVolumesOutput struct {
 
 type metadataDescribeVolumesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeVolumesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumesOutput) GoString() string {
+	return s.String()
 }
 
 type DetachClassicLinkVPCInput struct {
@@ -12607,6 +15358,16 @@ type metadataDetachClassicLinkVPCInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachClassicLinkVPCInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachClassicLinkVPCInput) GoString() string {
+	return s.String()
+}
+
 type DetachClassicLinkVPCOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -12616,6 +15377,16 @@ type DetachClassicLinkVPCOutput struct {
 
 type metadataDetachClassicLinkVPCOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachClassicLinkVPCOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachClassicLinkVPCOutput) GoString() string {
+	return s.String()
 }
 
 type DetachInternetGatewayInput struct {
@@ -12638,12 +15409,32 @@ type metadataDetachInternetGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachInternetGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachInternetGatewayInput) GoString() string {
+	return s.String()
+}
+
 type DetachInternetGatewayOutput struct {
 	metadataDetachInternetGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachInternetGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachInternetGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachInternetGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type DetachNetworkInterfaceInput struct {
@@ -12666,12 +15457,32 @@ type metadataDetachNetworkInterfaceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachNetworkInterfaceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachNetworkInterfaceInput) GoString() string {
+	return s.String()
+}
+
 type DetachNetworkInterfaceOutput struct {
 	metadataDetachNetworkInterfaceOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachNetworkInterfaceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachNetworkInterfaceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachNetworkInterfaceOutput) GoString() string {
+	return s.String()
 }
 
 type DetachVPNGatewayInput struct {
@@ -12694,12 +15505,32 @@ type metadataDetachVPNGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachVPNGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachVPNGatewayInput) GoString() string {
+	return s.String()
+}
+
 type DetachVPNGatewayOutput struct {
 	metadataDetachVPNGatewayOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachVPNGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachVPNGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachVPNGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type DetachVolumeInput struct {
@@ -12734,6 +15565,16 @@ type metadataDetachVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachVolumeInput) GoString() string {
+	return s.String()
+}
+
 type DisableVGWRoutePropagationInput struct {
 	// The ID of the virtual private gateway.
 	GatewayID *string `locationName:"GatewayId" type:"string" required:"true"`
@@ -12748,12 +15589,32 @@ type metadataDisableVGWRoutePropagationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableVGWRoutePropagationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableVGWRoutePropagationInput) GoString() string {
+	return s.String()
+}
+
 type DisableVGWRoutePropagationOutput struct {
 	metadataDisableVGWRoutePropagationOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableVGWRoutePropagationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableVGWRoutePropagationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableVGWRoutePropagationOutput) GoString() string {
+	return s.String()
 }
 
 type DisableVPCClassicLinkInput struct {
@@ -12773,6 +15634,16 @@ type metadataDisableVPCClassicLinkInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableVPCClassicLinkInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableVPCClassicLinkInput) GoString() string {
+	return s.String()
+}
+
 type DisableVPCClassicLinkOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -12782,6 +15653,16 @@ type DisableVPCClassicLinkOutput struct {
 
 type metadataDisableVPCClassicLinkOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableVPCClassicLinkOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableVPCClassicLinkOutput) GoString() string {
+	return s.String()
 }
 
 type DisassociateAddressInput struct {
@@ -12804,12 +15685,32 @@ type metadataDisassociateAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisassociateAddressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateAddressInput) GoString() string {
+	return s.String()
+}
+
 type DisassociateAddressOutput struct {
 	metadataDisassociateAddressOutput `json:"-" xml:"-"`
 }
 
 type metadataDisassociateAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateAddressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateAddressOutput) GoString() string {
+	return s.String()
 }
 
 type DisassociateRouteTableInput struct {
@@ -12830,12 +15731,32 @@ type metadataDisassociateRouteTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisassociateRouteTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateRouteTableInput) GoString() string {
+	return s.String()
+}
+
 type DisassociateRouteTableOutput struct {
 	metadataDisassociateRouteTableOutput `json:"-" xml:"-"`
 }
 
 type metadataDisassociateRouteTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateRouteTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateRouteTableOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a disk image.
@@ -12854,6 +15775,16 @@ type DiskImage struct {
 
 type metadataDiskImage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DiskImage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DiskImage) GoString() string {
+	return s.String()
 }
 
 // Describes a disk image.
@@ -12881,6 +15812,16 @@ type metadataDiskImageDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DiskImageDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DiskImageDescription) GoString() string {
+	return s.String()
+}
+
 // Describes a disk image.
 type DiskImageDetail struct {
 	// The size of the disk image, in GiB.
@@ -12903,6 +15844,16 @@ type metadataDiskImageDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DiskImageDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DiskImageDetail) GoString() string {
+	return s.String()
+}
+
 // Describes a disk image volume.
 type DiskImageVolumeDescription struct {
 	// The volume identifier.
@@ -12916,6 +15867,16 @@ type DiskImageVolumeDescription struct {
 
 type metadataDiskImageVolumeDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DiskImageVolumeDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DiskImageVolumeDescription) GoString() string {
+	return s.String()
 }
 
 // Describes a block device for an EBS volume.
@@ -12968,6 +15929,16 @@ type metadataEBSBlockDevice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EBSBlockDevice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EBSBlockDevice) GoString() string {
+	return s.String()
+}
+
 // Describes a parameter used to set up an EBS volume in a block device mapping.
 type EBSInstanceBlockDevice struct {
 	// The time stamp when the attachment initiated.
@@ -12989,6 +15960,16 @@ type metadataEBSInstanceBlockDevice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EBSInstanceBlockDevice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EBSInstanceBlockDevice) GoString() string {
+	return s.String()
+}
+
 type EBSInstanceBlockDeviceSpecification struct {
 	// Indicates whether the volume is deleted on instance termination.
 	DeleteOnTermination *bool `locationName:"deleteOnTermination" type:"boolean"`
@@ -13001,6 +15982,16 @@ type EBSInstanceBlockDeviceSpecification struct {
 
 type metadataEBSInstanceBlockDeviceSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EBSInstanceBlockDeviceSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EBSInstanceBlockDeviceSpecification) GoString() string {
+	return s.String()
 }
 
 type EnableVGWRoutePropagationInput struct {
@@ -13017,12 +16008,32 @@ type metadataEnableVGWRoutePropagationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableVGWRoutePropagationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableVGWRoutePropagationInput) GoString() string {
+	return s.String()
+}
+
 type EnableVGWRoutePropagationOutput struct {
 	metadataEnableVGWRoutePropagationOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableVGWRoutePropagationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableVGWRoutePropagationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableVGWRoutePropagationOutput) GoString() string {
+	return s.String()
 }
 
 type EnableVPCClassicLinkInput struct {
@@ -13042,6 +16053,16 @@ type metadataEnableVPCClassicLinkInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableVPCClassicLinkInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableVPCClassicLinkInput) GoString() string {
+	return s.String()
+}
+
 type EnableVPCClassicLinkOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -13051,6 +16072,16 @@ type EnableVPCClassicLinkOutput struct {
 
 type metadataEnableVPCClassicLinkOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableVPCClassicLinkOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableVPCClassicLinkOutput) GoString() string {
+	return s.String()
 }
 
 type EnableVolumeIOInput struct {
@@ -13070,12 +16101,32 @@ type metadataEnableVolumeIOInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableVolumeIOInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableVolumeIOInput) GoString() string {
+	return s.String()
+}
+
 type EnableVolumeIOOutput struct {
 	metadataEnableVolumeIOOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableVolumeIOOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableVolumeIOOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableVolumeIOOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a Spot fleet event.
@@ -13137,6 +16188,16 @@ type metadataEventInformation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EventInformation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EventInformation) GoString() string {
+	return s.String()
+}
+
 // Describes an instance export task.
 type ExportTask struct {
 	// A description of the resource being exported.
@@ -13164,6 +16225,16 @@ type metadataExportTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExportTask) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExportTask) GoString() string {
+	return s.String()
+}
+
 // Describes the format and location for an instance export task.
 type ExportToS3Task struct {
 	// The container format used to combine disk images with metadata (such as OVF).
@@ -13185,6 +16256,16 @@ type ExportToS3Task struct {
 
 type metadataExportToS3Task struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportToS3Task) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExportToS3Task) GoString() string {
+	return s.String()
 }
 
 // Describes an instance export task.
@@ -13211,6 +16292,16 @@ type metadataExportToS3TaskSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExportToS3TaskSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExportToS3TaskSpecification) GoString() string {
+	return s.String()
+}
+
 // A filter name and value pair that is used to return a more specific list
 // of results. Filters can be used to match a set of resources by various criteria,
 // such as tags, attributes, or IDs.
@@ -13226,6 +16317,16 @@ type Filter struct {
 
 type metadataFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Filter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Filter) GoString() string {
+	return s.String()
 }
 
 // Describes a flow log.
@@ -13268,6 +16369,16 @@ type metadataFlowLog struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FlowLog) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FlowLog) GoString() string {
+	return s.String()
+}
+
 type GetConsoleOutputInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -13283,6 +16394,16 @@ type GetConsoleOutputInput struct {
 
 type metadataGetConsoleOutputInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetConsoleOutputInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetConsoleOutputInput) GoString() string {
+	return s.String()
 }
 
 type GetConsoleOutputOutput struct {
@@ -13302,6 +16423,16 @@ type metadataGetConsoleOutputOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetConsoleOutputOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetConsoleOutputOutput) GoString() string {
+	return s.String()
+}
+
 type GetPasswordDataInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -13317,6 +16448,16 @@ type GetPasswordDataInput struct {
 
 type metadataGetPasswordDataInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPasswordDataInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPasswordDataInput) GoString() string {
+	return s.String()
 }
 
 type GetPasswordDataOutput struct {
@@ -13336,6 +16477,16 @@ type metadataGetPasswordDataOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetPasswordDataOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPasswordDataOutput) GoString() string {
+	return s.String()
+}
+
 // Describes a security group.
 type GroupIdentifier struct {
 	// The ID of the security group.
@@ -13349,6 +16500,16 @@ type GroupIdentifier struct {
 
 type metadataGroupIdentifier struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GroupIdentifier) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GroupIdentifier) GoString() string {
+	return s.String()
 }
 
 // Describes an event in the history of the Spot fleet request.
@@ -13376,6 +16537,16 @@ type metadataHistoryRecord struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HistoryRecord) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HistoryRecord) GoString() string {
+	return s.String()
+}
+
 // Describes an IAM instance profile.
 type IAMInstanceProfile struct {
 	// The Amazon Resource Name (ARN) of the instance profile.
@@ -13389,6 +16560,16 @@ type IAMInstanceProfile struct {
 
 type metadataIAMInstanceProfile struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IAMInstanceProfile) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IAMInstanceProfile) GoString() string {
+	return s.String()
 }
 
 // Describes an IAM instance profile.
@@ -13406,6 +16587,16 @@ type metadataIAMInstanceProfileSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IAMInstanceProfileSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IAMInstanceProfileSpecification) GoString() string {
+	return s.String()
+}
+
 // Describes the ICMP type and code.
 type ICMPTypeCode struct {
 	// The ICMP type. A value of -1 means all types.
@@ -13419,6 +16610,16 @@ type ICMPTypeCode struct {
 
 type metadataICMPTypeCode struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ICMPTypeCode) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ICMPTypeCode) GoString() string {
+	return s.String()
 }
 
 // Describes a security group rule.
@@ -13460,6 +16661,16 @@ type metadataIPPermission struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IPPermission) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IPPermission) GoString() string {
+	return s.String()
+}
+
 // Describes an IP range.
 type IPRange struct {
 	// The CIDR range. You can either specify a CIDR range or a source security
@@ -13471,6 +16682,16 @@ type IPRange struct {
 
 type metadataIPRange struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IPRange) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IPRange) GoString() string {
+	return s.String()
 }
 
 // Describes an image.
@@ -13558,6 +16779,16 @@ type metadataImage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Image) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Image) GoString() string {
+	return s.String()
+}
+
 // Describes the disk container object for an import image task.
 type ImageDiskContainer struct {
 	// The description of the disk image.
@@ -13586,6 +16817,16 @@ type ImageDiskContainer struct {
 
 type metadataImageDiskContainer struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImageDiskContainer) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImageDiskContainer) GoString() string {
+	return s.String()
 }
 
 type ImportImageInput struct {
@@ -13642,6 +16883,16 @@ type metadataImportImageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportImageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportImageInput) GoString() string {
+	return s.String()
+}
+
 type ImportImageOutput struct {
 	// The architecture of the virtual machine.
 	Architecture *string `locationName:"architecture" type:"string"`
@@ -13681,6 +16932,16 @@ type ImportImageOutput struct {
 
 type metadataImportImageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportImageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportImageOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an import image task.
@@ -13729,6 +16990,16 @@ type metadataImportImageTask struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportImageTask) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportImageTask) GoString() string {
+	return s.String()
+}
+
 type ImportInstanceInput struct {
 	// A description for the instance being imported.
 	Description *string `locationName:"description" type:"string"`
@@ -13753,6 +17024,16 @@ type ImportInstanceInput struct {
 
 type metadataImportInstanceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportInstanceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportInstanceInput) GoString() string {
+	return s.String()
 }
 
 // Describes the launch specification for VM import.
@@ -13800,6 +17081,16 @@ type metadataImportInstanceLaunchSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportInstanceLaunchSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportInstanceLaunchSpecification) GoString() string {
+	return s.String()
+}
+
 type ImportInstanceOutput struct {
 	// Information about the conversion task.
 	ConversionTask *ConversionTask `locationName:"conversionTask" type:"structure"`
@@ -13809,6 +17100,16 @@ type ImportInstanceOutput struct {
 
 type metadataImportInstanceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportInstanceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportInstanceOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an import instance task.
@@ -13830,6 +17131,16 @@ type ImportInstanceTaskDetails struct {
 
 type metadataImportInstanceTaskDetails struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportInstanceTaskDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportInstanceTaskDetails) GoString() string {
+	return s.String()
 }
 
 // Describes an import volume task.
@@ -13862,6 +17173,16 @@ type metadataImportInstanceVolumeDetailItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportInstanceVolumeDetailItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportInstanceVolumeDetailItem) GoString() string {
+	return s.String()
+}
+
 type ImportKeyPairInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -13883,6 +17204,16 @@ type metadataImportKeyPairInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportKeyPairInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportKeyPairInput) GoString() string {
+	return s.String()
+}
+
 type ImportKeyPairOutput struct {
 	// The MD5 public key fingerprint as specified in section 4 of RFC 4716.
 	KeyFingerprint *string `locationName:"keyFingerprint" type:"string"`
@@ -13895,6 +17226,16 @@ type ImportKeyPairOutput struct {
 
 type metadataImportKeyPairOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportKeyPairOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportKeyPairOutput) GoString() string {
+	return s.String()
 }
 
 type ImportSnapshotInput struct {
@@ -13926,6 +17267,16 @@ type metadataImportSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportSnapshotInput) GoString() string {
+	return s.String()
+}
+
 type ImportSnapshotOutput struct {
 	// A description of the import snapshot task.
 	Description *string `locationName:"description" type:"string"`
@@ -13941,6 +17292,16 @@ type ImportSnapshotOutput struct {
 
 type metadataImportSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an import snapshot task.
@@ -13959,6 +17320,16 @@ type ImportSnapshotTask struct {
 
 type metadataImportSnapshotTask struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportSnapshotTask) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportSnapshotTask) GoString() string {
+	return s.String()
 }
 
 type ImportVolumeInput struct {
@@ -13987,6 +17358,16 @@ type metadataImportVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ImportVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportVolumeInput) GoString() string {
+	return s.String()
+}
+
 type ImportVolumeOutput struct {
 	// Information about the conversion task.
 	ConversionTask *ConversionTask `locationName:"conversionTask" type:"structure"`
@@ -13996,6 +17377,16 @@ type ImportVolumeOutput struct {
 
 type metadataImportVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportVolumeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportVolumeOutput) GoString() string {
+	return s.String()
 }
 
 // Describes an import volume task.
@@ -14020,6 +17411,16 @@ type ImportVolumeTaskDetails struct {
 
 type metadataImportVolumeTaskDetails struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportVolumeTaskDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ImportVolumeTaskDetails) GoString() string {
+	return s.String()
 }
 
 // Describes an instance.
@@ -14157,6 +17558,16 @@ type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Instance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Instance) GoString() string {
+	return s.String()
+}
+
 // Describes a block device mapping.
 type InstanceBlockDeviceMapping struct {
 	// The device name exposed to the instance (for example, /dev/sdh or xvdh).
@@ -14171,6 +17582,16 @@ type InstanceBlockDeviceMapping struct {
 
 type metadataInstanceBlockDeviceMapping struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceBlockDeviceMapping) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceBlockDeviceMapping) GoString() string {
+	return s.String()
 }
 
 // Describes a block device mapping entry.
@@ -14195,6 +17616,16 @@ type metadataInstanceBlockDeviceMappingSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceBlockDeviceMappingSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceBlockDeviceMappingSpecification) GoString() string {
+	return s.String()
+}
+
 // Describes a Reserved Instance listing state.
 type InstanceCount struct {
 	// The number of listed Reserved Instances in the state specified by the state.
@@ -14208,6 +17639,16 @@ type InstanceCount struct {
 
 type metadataInstanceCount struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceCount) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceCount) GoString() string {
+	return s.String()
 }
 
 // Describes an instance to export.
@@ -14225,6 +17666,16 @@ type metadataInstanceExportDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceExportDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceExportDetails) GoString() string {
+	return s.String()
+}
+
 // Describes the monitoring information of the instance.
 type InstanceMonitoring struct {
 	// The ID of the instance.
@@ -14238,6 +17689,16 @@ type InstanceMonitoring struct {
 
 type metadataInstanceMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceMonitoring) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceMonitoring) GoString() string {
+	return s.String()
 }
 
 // Describes a network interface.
@@ -14292,6 +17753,16 @@ type metadataInstanceNetworkInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceNetworkInterface) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceNetworkInterface) GoString() string {
+	return s.String()
+}
+
 // Describes association information for an Elastic IP address.
 type InstanceNetworkInterfaceAssociation struct {
 	// The ID of the owner of the Elastic IP address.
@@ -14308,6 +17779,16 @@ type InstanceNetworkInterfaceAssociation struct {
 
 type metadataInstanceNetworkInterfaceAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceNetworkInterfaceAssociation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceNetworkInterfaceAssociation) GoString() string {
+	return s.String()
 }
 
 // Describes a network interface attachment.
@@ -14332,6 +17813,16 @@ type InstanceNetworkInterfaceAttachment struct {
 
 type metadataInstanceNetworkInterfaceAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceNetworkInterfaceAttachment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceNetworkInterfaceAttachment) GoString() string {
+	return s.String()
 }
 
 // Describes a network interface.
@@ -14388,6 +17879,16 @@ type metadataInstanceNetworkInterfaceSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceNetworkInterfaceSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceNetworkInterfaceSpecification) GoString() string {
+	return s.String()
+}
+
 // Describes a private IP address.
 type InstancePrivateIPAddress struct {
 	// The association information for an Elastic IP address for the network interface.
@@ -14408,6 +17909,16 @@ type InstancePrivateIPAddress struct {
 
 type metadataInstancePrivateIPAddress struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstancePrivateIPAddress) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstancePrivateIPAddress) GoString() string {
+	return s.String()
 }
 
 // Describes the current state of the instance.
@@ -14438,6 +17949,16 @@ type metadataInstanceState struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceState) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceState) GoString() string {
+	return s.String()
+}
+
 // Describes an instance state change.
 type InstanceStateChange struct {
 	// The current state of the instance.
@@ -14454,6 +17975,16 @@ type InstanceStateChange struct {
 
 type metadataInstanceStateChange struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceStateChange) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStateChange) GoString() string {
+	return s.String()
 }
 
 // Describes the status of an instance.
@@ -14487,6 +18018,16 @@ type metadataInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStatus) GoString() string {
+	return s.String()
+}
+
 // Describes the instance status.
 type InstanceStatusDetails struct {
 	// The time when a status check failed. For an instance that was launched and
@@ -14504,6 +18045,16 @@ type InstanceStatusDetails struct {
 
 type metadataInstanceStatusDetails struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceStatusDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStatusDetails) GoString() string {
+	return s.String()
 }
 
 // Describes a scheduled event for an instance.
@@ -14531,6 +18082,16 @@ type metadataInstanceStatusEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceStatusEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStatusEvent) GoString() string {
+	return s.String()
+}
+
 // Describes the status of an instance.
 type InstanceStatusSummary struct {
 	// The system instance health or application instance health.
@@ -14544,6 +18105,16 @@ type InstanceStatusSummary struct {
 
 type metadataInstanceStatusSummary struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceStatusSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStatusSummary) GoString() string {
+	return s.String()
 }
 
 // Describes an Internet gateway.
@@ -14564,6 +18135,16 @@ type metadataInternetGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InternetGateway) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InternetGateway) GoString() string {
+	return s.String()
+}
+
 // Describes the attachment of a VPC to an Internet gateway.
 type InternetGatewayAttachment struct {
 	// The current state of the attachment.
@@ -14577,6 +18158,16 @@ type InternetGatewayAttachment struct {
 
 type metadataInternetGatewayAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InternetGatewayAttachment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InternetGatewayAttachment) GoString() string {
+	return s.String()
 }
 
 // Describes a key pair.
@@ -14597,6 +18188,16 @@ type metadataKeyPairInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s KeyPairInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s KeyPairInfo) GoString() string {
+	return s.String()
+}
+
 // Describes a launch permission.
 type LaunchPermission struct {
 	// The name of the group.
@@ -14610,6 +18211,16 @@ type LaunchPermission struct {
 
 type metadataLaunchPermission struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LaunchPermission) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LaunchPermission) GoString() string {
+	return s.String()
 }
 
 // Describes a launch permission modification.
@@ -14626,6 +18237,16 @@ type LaunchPermissionModifications struct {
 
 type metadataLaunchPermissionModifications struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LaunchPermissionModifications) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LaunchPermissionModifications) GoString() string {
+	return s.String()
 }
 
 // Describes the launch specification for an instance.
@@ -14691,6 +18312,16 @@ type metadataLaunchSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LaunchSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LaunchSpecification) GoString() string {
+	return s.String()
+}
+
 type ModifyImageAttributeInput struct {
 	// The name of the attribute to modify.
 	Attribute *string `type:"string"`
@@ -14736,12 +18367,32 @@ type metadataModifyImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyImageAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyImageAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifyImageAttributeOutput struct {
 	metadataModifyImageAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyImageAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyImageAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyImageAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyInstanceAttributeInput struct {
@@ -14830,12 +18481,32 @@ type metadataModifyInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyInstanceAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyInstanceAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifyInstanceAttributeOutput struct {
 	metadataModifyInstanceAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyInstanceAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyInstanceAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyInstanceAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyNetworkInterfaceAttributeInput struct {
@@ -14875,12 +18546,32 @@ type metadataModifyNetworkInterfaceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyNetworkInterfaceAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyNetworkInterfaceAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifyNetworkInterfaceAttributeOutput struct {
 	metadataModifyNetworkInterfaceAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyNetworkInterfaceAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyNetworkInterfaceAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyNetworkInterfaceAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyReservedInstancesInput struct {
@@ -14901,6 +18592,16 @@ type metadataModifyReservedInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyReservedInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyReservedInstancesInput) GoString() string {
+	return s.String()
+}
+
 type ModifyReservedInstancesOutput struct {
 	// The ID for the modification.
 	ReservedInstancesModificationID *string `locationName:"reservedInstancesModificationId" type:"string"`
@@ -14910,6 +18611,16 @@ type ModifyReservedInstancesOutput struct {
 
 type metadataModifyReservedInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyReservedInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyReservedInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type ModifySnapshotAttributeInput struct {
@@ -14944,12 +18655,32 @@ type metadataModifySnapshotAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifySnapshotAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifySnapshotAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifySnapshotAttributeOutput struct {
 	metadataModifySnapshotAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifySnapshotAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifySnapshotAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifySnapshotAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ModifySubnetAttributeInput struct {
@@ -14967,12 +18698,32 @@ type metadataModifySubnetAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifySubnetAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifySubnetAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifySubnetAttributeOutput struct {
 	metadataModifySubnetAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifySubnetAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifySubnetAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifySubnetAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyVPCAttributeInput struct {
@@ -14999,12 +18750,32 @@ type metadataModifyVPCAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyVPCAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVPCAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifyVPCAttributeOutput struct {
 	metadataModifyVPCAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyVPCAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyVPCAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVPCAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyVPCEndpointInput struct {
@@ -15038,6 +18809,16 @@ type metadataModifyVPCEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyVPCEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVPCEndpointInput) GoString() string {
+	return s.String()
+}
+
 type ModifyVPCEndpointOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -15047,6 +18828,16 @@ type ModifyVPCEndpointOutput struct {
 
 type metadataModifyVPCEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyVPCEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVPCEndpointOutput) GoString() string {
+	return s.String()
 }
 
 type ModifyVolumeAttributeInput struct {
@@ -15069,12 +18860,32 @@ type metadataModifyVolumeAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyVolumeAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVolumeAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ModifyVolumeAttributeOutput struct {
 	metadataModifyVolumeAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyVolumeAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyVolumeAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyVolumeAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type MonitorInstancesInput struct {
@@ -15094,6 +18905,16 @@ type metadataMonitorInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MonitorInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MonitorInstancesInput) GoString() string {
+	return s.String()
+}
+
 type MonitorInstancesOutput struct {
 	// Monitoring information for one or more instances.
 	InstanceMonitorings []*InstanceMonitoring `locationName:"instancesSet" locationNameList:"item" type:"list"`
@@ -15103,6 +18924,16 @@ type MonitorInstancesOutput struct {
 
 type metadataMonitorInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MonitorInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MonitorInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the monitoring for the instance.
@@ -15115,6 +18946,16 @@ type Monitoring struct {
 
 type metadataMonitoring struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Monitoring) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Monitoring) GoString() string {
+	return s.String()
 }
 
 type MoveAddressToVPCInput struct {
@@ -15134,6 +18975,16 @@ type metadataMoveAddressToVPCInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MoveAddressToVPCInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MoveAddressToVPCInput) GoString() string {
+	return s.String()
+}
+
 type MoveAddressToVPCOutput struct {
 	// The allocation ID for the Elastic IP address.
 	AllocationID *string `locationName:"allocationId" type:"string"`
@@ -15146,6 +18997,16 @@ type MoveAddressToVPCOutput struct {
 
 type metadataMoveAddressToVPCOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MoveAddressToVPCOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MoveAddressToVPCOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the status of a moving Elastic IP address.
@@ -15162,6 +19023,16 @@ type MovingAddressStatus struct {
 
 type metadataMovingAddressStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MovingAddressStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MovingAddressStatus) GoString() string {
+	return s.String()
 }
 
 // Describes a network ACL.
@@ -15191,6 +19062,16 @@ type metadataNetworkACL struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NetworkACL) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkACL) GoString() string {
+	return s.String()
+}
+
 // Describes an association between a network ACL and a subnet.
 type NetworkACLAssociation struct {
 	// The ID of the association between a network ACL and a subnet.
@@ -15207,6 +19088,16 @@ type NetworkACLAssociation struct {
 
 type metadataNetworkACLAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkACLAssociation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkACLAssociation) GoString() string {
+	return s.String()
 }
 
 // Describes an entry in a network ACL.
@@ -15239,6 +19130,16 @@ type NetworkACLEntry struct {
 
 type metadataNetworkACLEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkACLEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkACLEntry) GoString() string {
+	return s.String()
 }
 
 // Describes a network interface.
@@ -15306,6 +19207,16 @@ type metadataNetworkInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NetworkInterface) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterface) GoString() string {
+	return s.String()
+}
+
 // Describes association information for an Elastic IP address.
 type NetworkInterfaceAssociation struct {
 	// The allocation ID.
@@ -15328,6 +19239,16 @@ type NetworkInterfaceAssociation struct {
 
 type metadataNetworkInterfaceAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkInterfaceAssociation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterfaceAssociation) GoString() string {
+	return s.String()
 }
 
 // Describes a network interface attachment.
@@ -15360,6 +19281,16 @@ type metadataNetworkInterfaceAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NetworkInterfaceAttachment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterfaceAttachment) GoString() string {
+	return s.String()
+}
+
 // Describes an attachment change.
 type NetworkInterfaceAttachmentChanges struct {
 	// The ID of the network interface attachment.
@@ -15373,6 +19304,16 @@ type NetworkInterfaceAttachmentChanges struct {
 
 type metadataNetworkInterfaceAttachmentChanges struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NetworkInterfaceAttachmentChanges) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterfaceAttachmentChanges) GoString() string {
+	return s.String()
 }
 
 // Describes the private IP address of a network interface.
@@ -15398,6 +19339,16 @@ type metadataNetworkInterfacePrivateIPAddress struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NetworkInterfacePrivateIPAddress) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterfacePrivateIPAddress) GoString() string {
+	return s.String()
+}
+
 type NewDHCPConfiguration struct {
 	Key *string `locationName:"key" type:"string"`
 
@@ -15408,6 +19359,16 @@ type NewDHCPConfiguration struct {
 
 type metadataNewDHCPConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NewDHCPConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NewDHCPConfiguration) GoString() string {
+	return s.String()
 }
 
 // Describes the placement for the instance.
@@ -15429,6 +19390,16 @@ type metadataPlacement struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Placement) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Placement) GoString() string {
+	return s.String()
+}
+
 // Describes a placement group.
 type PlacementGroup struct {
 	// The name of the placement group.
@@ -15447,6 +19418,16 @@ type metadataPlacementGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PlacementGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PlacementGroup) GoString() string {
+	return s.String()
+}
+
 // Describes a range of ports.
 type PortRange struct {
 	// The first port in the range.
@@ -15460,6 +19441,16 @@ type PortRange struct {
 
 type metadataPortRange struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PortRange) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PortRange) GoString() string {
+	return s.String()
 }
 
 // Describes prefixes for AWS services.
@@ -15480,6 +19471,16 @@ type metadataPrefixList struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PrefixList) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PrefixList) GoString() string {
+	return s.String()
+}
+
 // The ID of the prefix.
 type PrefixListID struct {
 	// The ID of the prefix.
@@ -15490,6 +19491,16 @@ type PrefixListID struct {
 
 type metadataPrefixListID struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PrefixListID) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PrefixListID) GoString() string {
+	return s.String()
 }
 
 // Describes the price for a Reserved Instance.
@@ -15524,6 +19535,16 @@ type metadataPriceSchedule struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PriceSchedule) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PriceSchedule) GoString() string {
+	return s.String()
+}
+
 // Describes the price for a Reserved Instance.
 type PriceScheduleSpecification struct {
 	// The currency for transacting the Reserved Instance resale. At this time,
@@ -15544,6 +19565,16 @@ type metadataPriceScheduleSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PriceScheduleSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PriceScheduleSpecification) GoString() string {
+	return s.String()
+}
+
 // Describes a Reserved Instance offering.
 type PricingDetail struct {
 	// The number of instances available for the price.
@@ -15557,6 +19588,16 @@ type PricingDetail struct {
 
 type metadataPricingDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PricingDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PricingDetail) GoString() string {
+	return s.String()
 }
 
 // Describes a secondary private IP address for a network interface.
@@ -15575,6 +19616,16 @@ type metadataPrivateIPAddressSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PrivateIPAddressSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PrivateIPAddressSpecification) GoString() string {
+	return s.String()
+}
+
 // Describes a product code.
 type ProductCode struct {
 	// The product code.
@@ -15590,6 +19641,16 @@ type metadataProductCode struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ProductCode) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ProductCode) GoString() string {
+	return s.String()
+}
+
 // Describes a virtual private gateway propagating route.
 type PropagatingVGW struct {
 	// The ID of the virtual private gateway (VGW).
@@ -15600,6 +19661,16 @@ type PropagatingVGW struct {
 
 type metadataPropagatingVGW struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PropagatingVGW) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PropagatingVGW) GoString() string {
+	return s.String()
 }
 
 type PurchaseReservedInstancesOfferingInput struct {
@@ -15627,6 +19698,16 @@ type metadataPurchaseReservedInstancesOfferingInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PurchaseReservedInstancesOfferingInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseReservedInstancesOfferingInput) GoString() string {
+	return s.String()
+}
+
 type PurchaseReservedInstancesOfferingOutput struct {
 	// The IDs of the purchased Reserved Instances.
 	ReservedInstancesID *string `locationName:"reservedInstancesId" type:"string"`
@@ -15636,6 +19717,16 @@ type PurchaseReservedInstancesOfferingOutput struct {
 
 type metadataPurchaseReservedInstancesOfferingOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PurchaseReservedInstancesOfferingOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseReservedInstancesOfferingOutput) GoString() string {
+	return s.String()
 }
 
 type RebootInstancesInput struct {
@@ -15655,12 +19746,32 @@ type metadataRebootInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RebootInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootInstancesInput) GoString() string {
+	return s.String()
+}
+
 type RebootInstancesOutput struct {
 	metadataRebootInstancesOutput `json:"-" xml:"-"`
 }
 
 type metadataRebootInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RebootInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a recurring charge.
@@ -15678,6 +19789,16 @@ type metadataRecurringCharge struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecurringCharge) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecurringCharge) GoString() string {
+	return s.String()
+}
+
 // Describes a region.
 type Region struct {
 	// The region service endpoint.
@@ -15691,6 +19812,16 @@ type Region struct {
 
 type metadataRegion struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Region) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Region) GoString() string {
+	return s.String()
 }
 
 type RegisterImageInput struct {
@@ -15752,6 +19883,16 @@ type metadataRegisterImageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterImageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterImageInput) GoString() string {
+	return s.String()
+}
+
 type RegisterImageOutput struct {
 	// The ID of the newly registered AMI.
 	ImageID *string `locationName:"imageId" type:"string"`
@@ -15761,6 +19902,16 @@ type RegisterImageOutput struct {
 
 type metadataRegisterImageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterImageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterImageOutput) GoString() string {
+	return s.String()
 }
 
 type RejectVPCPeeringConnectionInput struct {
@@ -15780,6 +19931,16 @@ type metadataRejectVPCPeeringConnectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RejectVPCPeeringConnectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RejectVPCPeeringConnectionInput) GoString() string {
+	return s.String()
+}
+
 type RejectVPCPeeringConnectionOutput struct {
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
@@ -15789,6 +19950,16 @@ type RejectVPCPeeringConnectionOutput struct {
 
 type metadataRejectVPCPeeringConnectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RejectVPCPeeringConnectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RejectVPCPeeringConnectionOutput) GoString() string {
+	return s.String()
 }
 
 type ReleaseAddressInput struct {
@@ -15811,12 +19982,32 @@ type metadataReleaseAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReleaseAddressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReleaseAddressInput) GoString() string {
+	return s.String()
+}
+
 type ReleaseAddressOutput struct {
 	metadataReleaseAddressOutput `json:"-" xml:"-"`
 }
 
 type metadataReleaseAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReleaseAddressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReleaseAddressOutput) GoString() string {
+	return s.String()
 }
 
 type ReplaceNetworkACLAssociationInput struct {
@@ -15840,6 +20031,16 @@ type metadataReplaceNetworkACLAssociationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReplaceNetworkACLAssociationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceNetworkACLAssociationInput) GoString() string {
+	return s.String()
+}
+
 type ReplaceNetworkACLAssociationOutput struct {
 	// The ID of the new association.
 	NewAssociationID *string `locationName:"newAssociationId" type:"string"`
@@ -15849,6 +20050,16 @@ type ReplaceNetworkACLAssociationOutput struct {
 
 type metadataReplaceNetworkACLAssociationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReplaceNetworkACLAssociationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceNetworkACLAssociationOutput) GoString() string {
+	return s.String()
 }
 
 type ReplaceNetworkACLEntryInput struct {
@@ -15893,12 +20104,32 @@ type metadataReplaceNetworkACLEntryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReplaceNetworkACLEntryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceNetworkACLEntryInput) GoString() string {
+	return s.String()
+}
+
 type ReplaceNetworkACLEntryOutput struct {
 	metadataReplaceNetworkACLEntryOutput `json:"-" xml:"-"`
 }
 
 type metadataReplaceNetworkACLEntryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReplaceNetworkACLEntryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceNetworkACLEntryOutput) GoString() string {
+	return s.String()
 }
 
 type ReplaceRouteInput struct {
@@ -15934,12 +20165,32 @@ type metadataReplaceRouteInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReplaceRouteInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceRouteInput) GoString() string {
+	return s.String()
+}
+
 type ReplaceRouteOutput struct {
 	metadataReplaceRouteOutput `json:"-" xml:"-"`
 }
 
 type metadataReplaceRouteOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReplaceRouteOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceRouteOutput) GoString() string {
+	return s.String()
 }
 
 type ReplaceRouteTableAssociationInput struct {
@@ -15962,6 +20213,16 @@ type metadataReplaceRouteTableAssociationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReplaceRouteTableAssociationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceRouteTableAssociationInput) GoString() string {
+	return s.String()
+}
+
 type ReplaceRouteTableAssociationOutput struct {
 	// The ID of the new association.
 	NewAssociationID *string `locationName:"newAssociationId" type:"string"`
@@ -15971,6 +20232,16 @@ type ReplaceRouteTableAssociationOutput struct {
 
 type metadataReplaceRouteTableAssociationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReplaceRouteTableAssociationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReplaceRouteTableAssociationOutput) GoString() string {
+	return s.String()
 }
 
 type ReportInstanceStatusInput struct {
@@ -16026,12 +20297,32 @@ type metadataReportInstanceStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReportInstanceStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReportInstanceStatusInput) GoString() string {
+	return s.String()
+}
+
 type ReportInstanceStatusOutput struct {
 	metadataReportInstanceStatusOutput `json:"-" xml:"-"`
 }
 
 type metadataReportInstanceStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReportInstanceStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReportInstanceStatusOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for RequestSpotFleet.
@@ -16052,6 +20343,16 @@ type metadataRequestSpotFleetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestSpotFleetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestSpotFleetInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of RequestSpotFleet.
 type RequestSpotFleetOutput struct {
 	// The ID of the Spot fleet request.
@@ -16062,6 +20363,16 @@ type RequestSpotFleetOutput struct {
 
 type metadataRequestSpotFleetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RequestSpotFleetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestSpotFleetOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the parameters for RequestSpotInstances.
@@ -16145,6 +20456,16 @@ type metadataRequestSpotInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestSpotInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestSpotInstancesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the output of RequestSpotInstances.
 type RequestSpotInstancesOutput struct {
 	// One or more Spot Instance requests.
@@ -16155,6 +20476,16 @@ type RequestSpotInstancesOutput struct {
 
 type metadataRequestSpotInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RequestSpotInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestSpotInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the launch specification for an instance.
@@ -16218,6 +20549,16 @@ type metadataRequestSpotLaunchSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestSpotLaunchSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestSpotLaunchSpecification) GoString() string {
+	return s.String()
+}
+
 // Describes a reservation.
 type Reservation struct {
 	// One or more security groups.
@@ -16243,6 +20584,16 @@ type metadataReservation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Reservation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Reservation) GoString() string {
+	return s.String()
+}
+
 // Describes the limit price of a Reserved Instance offering.
 type ReservedInstanceLimitPrice struct {
 	// Used for Reserved Instance Marketplace offerings. Specifies the limit price
@@ -16258,6 +20609,16 @@ type ReservedInstanceLimitPrice struct {
 
 type metadataReservedInstanceLimitPrice struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReservedInstanceLimitPrice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstanceLimitPrice) GoString() string {
+	return s.String()
 }
 
 // Describes a Reserved Instance.
@@ -16318,6 +20679,16 @@ type metadataReservedInstances struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedInstances) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstances) GoString() string {
+	return s.String()
+}
+
 // Describes the configuration settings for the modified Reserved Instances.
 type ReservedInstancesConfiguration struct {
 	// The Availability Zone for the modified Reserved Instances.
@@ -16340,6 +20711,16 @@ type metadataReservedInstancesConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedInstancesConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstancesConfiguration) GoString() string {
+	return s.String()
+}
+
 // Describes the ID of a Reserved Instance.
 type ReservedInstancesID struct {
 	// The ID of the Reserved Instance.
@@ -16350,6 +20731,16 @@ type ReservedInstancesID struct {
 
 type metadataReservedInstancesID struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReservedInstancesID) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstancesID) GoString() string {
+	return s.String()
 }
 
 // Describes a Reserved Instance listing.
@@ -16393,6 +20784,16 @@ type metadataReservedInstancesListing struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedInstancesListing) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstancesListing) GoString() string {
+	return s.String()
+}
+
 // Describes a Reserved Instance modification.
 type ReservedInstancesModification struct {
 	// A unique, case-sensitive key supplied by the client to ensure that the request
@@ -16431,6 +20832,16 @@ type metadataReservedInstancesModification struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedInstancesModification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstancesModification) GoString() string {
+	return s.String()
+}
+
 type ReservedInstancesModificationResult struct {
 	// The ID for the Reserved Instances that were created as part of the modification
 	// request. This field is only available when the modification is fulfilled.
@@ -16445,6 +20856,16 @@ type ReservedInstancesModificationResult struct {
 
 type metadataReservedInstancesModificationResult struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReservedInstancesModificationResult) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstancesModificationResult) GoString() string {
+	return s.String()
 }
 
 // Describes a Reserved Instance offering.
@@ -16499,6 +20920,16 @@ type metadataReservedInstancesOffering struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReservedInstancesOffering) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReservedInstancesOffering) GoString() string {
+	return s.String()
+}
+
 type ResetImageAttributeInput struct {
 	// The attribute to reset (currently you can only reset the launch permission
 	// attribute).
@@ -16520,12 +20951,32 @@ type metadataResetImageAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetImageAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetImageAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ResetImageAttributeOutput struct {
 	metadataResetImageAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataResetImageAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetImageAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetImageAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ResetInstanceAttributeInput struct {
@@ -16548,12 +20999,32 @@ type metadataResetInstanceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetInstanceAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetInstanceAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ResetInstanceAttributeOutput struct {
 	metadataResetInstanceAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataResetInstanceAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetInstanceAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetInstanceAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ResetNetworkInterfaceAttributeInput struct {
@@ -16576,12 +21047,32 @@ type metadataResetNetworkInterfaceAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetNetworkInterfaceAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetNetworkInterfaceAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ResetNetworkInterfaceAttributeOutput struct {
 	metadataResetNetworkInterfaceAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataResetNetworkInterfaceAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetNetworkInterfaceAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetNetworkInterfaceAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type ResetSnapshotAttributeInput struct {
@@ -16605,12 +21096,32 @@ type metadataResetSnapshotAttributeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetSnapshotAttributeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetSnapshotAttributeInput) GoString() string {
+	return s.String()
+}
+
 type ResetSnapshotAttributeOutput struct {
 	metadataResetSnapshotAttributeOutput `json:"-" xml:"-"`
 }
 
 type metadataResetSnapshotAttributeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetSnapshotAttributeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetSnapshotAttributeOutput) GoString() string {
+	return s.String()
 }
 
 type RestoreAddressToClassicInput struct {
@@ -16630,6 +21141,16 @@ type metadataRestoreAddressToClassicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RestoreAddressToClassicInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreAddressToClassicInput) GoString() string {
+	return s.String()
+}
+
 type RestoreAddressToClassicOutput struct {
 	// The Elastic IP address.
 	PublicIP *string `locationName:"publicIp" type:"string"`
@@ -16642,6 +21163,16 @@ type RestoreAddressToClassicOutput struct {
 
 type metadataRestoreAddressToClassicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreAddressToClassicOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RestoreAddressToClassicOutput) GoString() string {
+	return s.String()
 }
 
 type RevokeSecurityGroupEgressInput struct {
@@ -16689,12 +21220,32 @@ type metadataRevokeSecurityGroupEgressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RevokeSecurityGroupEgressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSecurityGroupEgressInput) GoString() string {
+	return s.String()
+}
+
 type RevokeSecurityGroupEgressOutput struct {
 	metadataRevokeSecurityGroupEgressOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeSecurityGroupEgressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeSecurityGroupEgressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSecurityGroupEgressOutput) GoString() string {
+	return s.String()
 }
 
 type RevokeSecurityGroupIngressInput struct {
@@ -16748,12 +21299,32 @@ type metadataRevokeSecurityGroupIngressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RevokeSecurityGroupIngressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSecurityGroupIngressInput) GoString() string {
+	return s.String()
+}
+
 type RevokeSecurityGroupIngressOutput struct {
 	metadataRevokeSecurityGroupIngressOutput `json:"-" xml:"-"`
 }
 
 type metadataRevokeSecurityGroupIngressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeSecurityGroupIngressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RevokeSecurityGroupIngressOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a route in a route table.
@@ -16799,6 +21370,16 @@ type metadataRoute struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Route) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Route) GoString() string {
+	return s.String()
+}
+
 // Describes a route table.
 type RouteTable struct {
 	// The associations between the route table and one or more subnets.
@@ -16826,6 +21407,16 @@ type metadataRouteTable struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RouteTable) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RouteTable) GoString() string {
+	return s.String()
+}
+
 // Describes an association between a route table and a subnet.
 type RouteTableAssociation struct {
 	// Indicates whether this is the main route table.
@@ -16845,6 +21436,16 @@ type RouteTableAssociation struct {
 
 type metadataRouteTableAssociation struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RouteTableAssociation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RouteTableAssociation) GoString() string {
+	return s.String()
 }
 
 type RunInstancesInput struct {
@@ -16988,6 +21589,16 @@ type metadataRunInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RunInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RunInstancesInput) GoString() string {
+	return s.String()
+}
+
 // Describes the monitoring for the instance.
 type RunInstancesMonitoringEnabled struct {
 	// Indicates whether monitoring is enabled for the instance.
@@ -16998,6 +21609,16 @@ type RunInstancesMonitoringEnabled struct {
 
 type metadataRunInstancesMonitoringEnabled struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RunInstancesMonitoringEnabled) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RunInstancesMonitoringEnabled) GoString() string {
+	return s.String()
 }
 
 // Describes the storage parameters for S3 and S3 buckets for an instance store-backed
@@ -17028,6 +21649,16 @@ type S3Storage struct {
 
 type metadataS3Storage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s S3Storage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s S3Storage) GoString() string {
+	return s.String()
 }
 
 // Describes a security group
@@ -17061,6 +21692,16 @@ type SecurityGroup struct {
 
 type metadataSecurityGroup struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SecurityGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SecurityGroup) GoString() string {
+	return s.String()
 }
 
 // Describes a snapshot.
@@ -17110,6 +21751,16 @@ type metadataSnapshot struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Snapshot) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Snapshot) GoString() string {
+	return s.String()
+}
+
 // Describes the snapshot created from the imported disk.
 type SnapshotDetail struct {
 	// A description for the snapshot.
@@ -17149,6 +21800,16 @@ type metadataSnapshotDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SnapshotDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SnapshotDetail) GoString() string {
+	return s.String()
+}
+
 // The disk container object for the import snapshot request.
 type SnapshotDiskContainer struct {
 	// The description of the disk image being imported.
@@ -17171,6 +21832,16 @@ type SnapshotDiskContainer struct {
 
 type metadataSnapshotDiskContainer struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SnapshotDiskContainer) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SnapshotDiskContainer) GoString() string {
+	return s.String()
 }
 
 // Details about the import snapshot task.
@@ -17209,6 +21880,16 @@ type metadataSnapshotTaskDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SnapshotTaskDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SnapshotTaskDetail) GoString() string {
+	return s.String()
+}
+
 // Describes the data feed for a Spot Instance.
 type SpotDatafeedSubscription struct {
 	// The Amazon S3 bucket where the Spot Instance data feed is located.
@@ -17233,6 +21914,16 @@ type metadataSpotDatafeedSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SpotDatafeedSubscription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotDatafeedSubscription) GoString() string {
+	return s.String()
+}
+
 // Describes a Spot fleet request.
 type SpotFleetRequestConfig struct {
 	// Information about the configuration of the Spot fleet request.
@@ -17249,6 +21940,16 @@ type SpotFleetRequestConfig struct {
 
 type metadataSpotFleetRequestConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SpotFleetRequestConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotFleetRequestConfig) GoString() string {
+	return s.String()
 }
 
 // Describes the configuration of a Spot fleet request.
@@ -17291,6 +21992,16 @@ type SpotFleetRequestConfigData struct {
 
 type metadataSpotFleetRequestConfigData struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SpotFleetRequestConfigData) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotFleetRequestConfigData) GoString() string {
+	return s.String()
 }
 
 // Describe a Spot Instance request.
@@ -17366,6 +22077,16 @@ type metadataSpotInstanceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SpotInstanceRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotInstanceRequest) GoString() string {
+	return s.String()
+}
+
 // Describes a Spot Instance state change.
 type SpotInstanceStateFault struct {
 	// The reason code for the Spot Instance state change.
@@ -17379,6 +22100,16 @@ type SpotInstanceStateFault struct {
 
 type metadataSpotInstanceStateFault struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SpotInstanceStateFault) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotInstanceStateFault) GoString() string {
+	return s.String()
 }
 
 // Describes the status of a Spot Instance request.
@@ -17400,6 +22131,16 @@ type metadataSpotInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SpotInstanceStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotInstanceStatus) GoString() string {
+	return s.String()
+}
+
 // Describes Spot Instance placement.
 type SpotPlacement struct {
 	// The Availability Zone.
@@ -17413,6 +22154,16 @@ type SpotPlacement struct {
 
 type metadataSpotPlacement struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SpotPlacement) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotPlacement) GoString() string {
+	return s.String()
 }
 
 // Describes the maximum hourly price (bid) for any Spot Instance launched to
@@ -17440,6 +22191,16 @@ type metadataSpotPrice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SpotPrice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotPrice) GoString() string {
+	return s.String()
+}
+
 type StartInstancesInput struct {
 	// Reserved.
 	AdditionalInfo *string `locationName:"additionalInfo" type:"string"`
@@ -17460,6 +22221,16 @@ type metadataStartInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartInstancesInput) GoString() string {
+	return s.String()
+}
+
 type StartInstancesOutput struct {
 	// Information about one or more started instances.
 	StartingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
@@ -17469,6 +22240,16 @@ type StartInstancesOutput struct {
 
 type metadataStartInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a state change.
@@ -17508,6 +22289,16 @@ type metadataStateReason struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StateReason) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StateReason) GoString() string {
+	return s.String()
+}
+
 type StopInstancesInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -17533,6 +22324,16 @@ type metadataStopInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StopInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StopInstancesInput) GoString() string {
+	return s.String()
+}
+
 type StopInstancesOutput struct {
 	// Information about one or more stopped instances.
 	StoppingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
@@ -17542,6 +22343,16 @@ type StopInstancesOutput struct {
 
 type metadataStopInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StopInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the storage location for an instance store-backed AMI.
@@ -17554,6 +22365,16 @@ type Storage struct {
 
 type metadataStorage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Storage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Storage) GoString() string {
+	return s.String()
 }
 
 // Describes a subnet.
@@ -17593,6 +22414,16 @@ type metadataSubnet struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Subnet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Subnet) GoString() string {
+	return s.String()
+}
+
 // Describes a tag.
 type Tag struct {
 	// The key of the tag.
@@ -17612,6 +22443,16 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
 
 // Describes a tag.
@@ -17635,6 +22476,16 @@ type metadataTagDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TagDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TagDescription) GoString() string {
+	return s.String()
+}
+
 type TerminateInstancesInput struct {
 	// Checks whether you have the required permissions for the action, without
 	// actually making the request, and provides an error response. If you have
@@ -17652,6 +22503,16 @@ type metadataTerminateInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TerminateInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateInstancesInput) GoString() string {
+	return s.String()
+}
+
 type TerminateInstancesOutput struct {
 	// Information about one or more terminated instances.
 	TerminatingInstances []*InstanceStateChange `locationName:"instancesSet" locationNameList:"item" type:"list"`
@@ -17661,6 +22522,16 @@ type TerminateInstancesOutput struct {
 
 type metadataTerminateInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TerminateInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateInstancesOutput) GoString() string {
+	return s.String()
 }
 
 type UnassignPrivateIPAddressesInput struct {
@@ -17678,12 +22549,32 @@ type metadataUnassignPrivateIPAddressesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnassignPrivateIPAddressesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnassignPrivateIPAddressesInput) GoString() string {
+	return s.String()
+}
+
 type UnassignPrivateIPAddressesOutput struct {
 	metadataUnassignPrivateIPAddressesOutput `json:"-" xml:"-"`
 }
 
 type metadataUnassignPrivateIPAddressesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnassignPrivateIPAddressesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnassignPrivateIPAddressesOutput) GoString() string {
+	return s.String()
 }
 
 type UnmonitorInstancesInput struct {
@@ -17703,6 +22594,16 @@ type metadataUnmonitorInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnmonitorInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnmonitorInstancesInput) GoString() string {
+	return s.String()
+}
+
 type UnmonitorInstancesOutput struct {
 	// Monitoring information for one or more instances.
 	InstanceMonitorings []*InstanceMonitoring `locationName:"instancesSet" locationNameList:"item" type:"list"`
@@ -17712,6 +22613,16 @@ type UnmonitorInstancesOutput struct {
 
 type metadataUnmonitorInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnmonitorInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnmonitorInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // Information about items that were not successfully processed in a batch call.
@@ -17727,6 +22638,16 @@ type UnsuccessfulItem struct {
 
 type metadataUnsuccessfulItem struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnsuccessfulItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnsuccessfulItem) GoString() string {
+	return s.String()
 }
 
 // Information about the error that occured. For more information about errors,
@@ -17745,6 +22666,16 @@ type metadataUnsuccessfulItemError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnsuccessfulItemError) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnsuccessfulItemError) GoString() string {
+	return s.String()
+}
+
 // Describes the S3 bucket for the disk image.
 type UserBucket struct {
 	// The name of the S3 bucket where the disk image is located.
@@ -17758,6 +22689,16 @@ type UserBucket struct {
 
 type metadataUserBucket struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UserBucket) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UserBucket) GoString() string {
+	return s.String()
 }
 
 // Describes the S3 bucket for the disk image.
@@ -17775,6 +22716,16 @@ type metadataUserBucketDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UserBucketDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UserBucketDetails) GoString() string {
+	return s.String()
+}
+
 // Describes the user data to be made available to an instance.
 type UserData struct {
 	// The Base64-encoded MIME user data for the instance.
@@ -17785,6 +22736,16 @@ type UserData struct {
 
 type metadataUserData struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UserData) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UserData) GoString() string {
+	return s.String()
 }
 
 // Describes a security group and AWS account ID pair.
@@ -17805,6 +22766,16 @@ type UserIDGroupPair struct {
 
 type metadataUserIDGroupPair struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UserIDGroupPair) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UserIDGroupPair) GoString() string {
+	return s.String()
 }
 
 // Describes telemetry for a VPN tunnel.
@@ -17830,6 +22801,16 @@ type VGWTelemetry struct {
 
 type metadataVGWTelemetry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VGWTelemetry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VGWTelemetry) GoString() string {
+	return s.String()
 }
 
 // Describes a VPC.
@@ -17863,6 +22844,16 @@ type metadataVPC struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VPC) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPC) GoString() string {
+	return s.String()
+}
+
 // Describes an attachment between a virtual private gateway and a VPC.
 type VPCAttachment struct {
 	// The current state of the attachment.
@@ -17876,6 +22867,16 @@ type VPCAttachment struct {
 
 type metadataVPCAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPCAttachment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCAttachment) GoString() string {
+	return s.String()
 }
 
 // Describes whether a VPC is enabled for ClassicLink.
@@ -17894,6 +22895,16 @@ type VPCClassicLink struct {
 
 type metadataVPCClassicLink struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPCClassicLink) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCClassicLink) GoString() string {
+	return s.String()
 }
 
 // Describes a VPC endpoint.
@@ -17926,6 +22937,16 @@ type metadataVPCEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VPCEndpoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCEndpoint) GoString() string {
+	return s.String()
+}
+
 // Describes a VPC peering connection.
 type VPCPeeringConnection struct {
 	// The information of the peer VPC.
@@ -17953,6 +22974,16 @@ type metadataVPCPeeringConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VPCPeeringConnection) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCPeeringConnection) GoString() string {
+	return s.String()
+}
+
 // Describes the status of a VPC peering connection.
 type VPCPeeringConnectionStateReason struct {
 	// The status of the VPC peering connection.
@@ -17966,6 +22997,16 @@ type VPCPeeringConnectionStateReason struct {
 
 type metadataVPCPeeringConnectionStateReason struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPCPeeringConnectionStateReason) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCPeeringConnectionStateReason) GoString() string {
+	return s.String()
 }
 
 // Describes a VPC in a VPC peering connection.
@@ -17984,6 +23025,16 @@ type VPCPeeringConnectionVPCInfo struct {
 
 type metadataVPCPeeringConnectionVPCInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPCPeeringConnectionVPCInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPCPeeringConnectionVPCInfo) GoString() string {
+	return s.String()
 }
 
 // Describes a VPN connection.
@@ -18028,6 +23079,16 @@ type metadataVPNConnection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VPNConnection) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPNConnection) GoString() string {
+	return s.String()
+}
+
 // Describes VPN connection options.
 type VPNConnectionOptions struct {
 	// Indicates whether the VPN connection uses static routes only. Static routes
@@ -18041,6 +23102,16 @@ type metadataVPNConnectionOptions struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VPNConnectionOptions) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPNConnectionOptions) GoString() string {
+	return s.String()
+}
+
 // Describes VPN connection options.
 type VPNConnectionOptionsSpecification struct {
 	// Indicates whether the VPN connection uses static routes only. Static routes
@@ -18052,6 +23123,16 @@ type VPNConnectionOptionsSpecification struct {
 
 type metadataVPNConnectionOptionsSpecification struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPNConnectionOptionsSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPNConnectionOptionsSpecification) GoString() string {
+	return s.String()
 }
 
 // Describes a virtual private gateway.
@@ -18081,6 +23162,16 @@ type metadataVPNGateway struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VPNGateway) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPNGateway) GoString() string {
+	return s.String()
+}
+
 // Describes a static route for a VPN connection.
 type VPNStaticRoute struct {
 	// The CIDR block associated with the local subnet of the customer data center.
@@ -18097,6 +23188,16 @@ type VPNStaticRoute struct {
 
 type metadataVPNStaticRoute struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VPNStaticRoute) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VPNStaticRoute) GoString() string {
+	return s.String()
 }
 
 // Describes a volume.
@@ -18158,6 +23259,16 @@ type metadataVolume struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Volume) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Volume) GoString() string {
+	return s.String()
+}
+
 // Describes volume attachment details.
 type VolumeAttachment struct {
 	// The time stamp when the attachment initiated.
@@ -18185,6 +23296,16 @@ type metadataVolumeAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VolumeAttachment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeAttachment) GoString() string {
+	return s.String()
+}
+
 // Describes an EBS volume.
 type VolumeDetail struct {
 	// The size of the volume, in GiB.
@@ -18195,6 +23316,16 @@ type VolumeDetail struct {
 
 type metadataVolumeDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeDetail) GoString() string {
+	return s.String()
 }
 
 // Describes a volume status operation code.
@@ -18218,6 +23349,16 @@ type metadataVolumeStatusAction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VolumeStatusAction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatusAction) GoString() string {
+	return s.String()
+}
+
 // Describes a volume status.
 type VolumeStatusDetails struct {
 	// The name of the volume status.
@@ -18231,6 +23372,16 @@ type VolumeStatusDetails struct {
 
 type metadataVolumeStatusDetails struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeStatusDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatusDetails) GoString() string {
+	return s.String()
 }
 
 // Describes a volume status event.
@@ -18257,6 +23408,16 @@ type metadataVolumeStatusEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VolumeStatusEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatusEvent) GoString() string {
+	return s.String()
+}
+
 // Describes the status of a volume.
 type VolumeStatusInfo struct {
 	// The details of the volume status.
@@ -18270,6 +23431,16 @@ type VolumeStatusInfo struct {
 
 type metadataVolumeStatusInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeStatusInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatusInfo) GoString() string {
+	return s.String()
 }
 
 // Describes the volume status.
@@ -18294,4 +23465,14 @@ type VolumeStatusItem struct {
 
 type metadataVolumeStatusItem struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeStatusItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeStatusItem) GoString() string {
+	return s.String()
 }

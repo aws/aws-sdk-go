@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCancelUpdateStack = "CancelUpdateStack"
@@ -605,12 +606,32 @@ type metadataCancelUpdateStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelUpdateStackInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelUpdateStackInput) GoString() string {
+	return s.String()
+}
+
 type CancelUpdateStackOutput struct {
 	metadataCancelUpdateStackOutput `json:"-" xml:"-"`
 }
 
 type metadataCancelUpdateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelUpdateStackOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelUpdateStackOutput) GoString() string {
+	return s.String()
 }
 
 // The input for CreateStack action.
@@ -709,6 +730,16 @@ type metadataCreateStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateStackInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStackInput) GoString() string {
+	return s.String()
+}
+
 // The output for a CreateStack action.
 type CreateStackOutput struct {
 	// Unique identifier of the stack.
@@ -719,6 +750,16 @@ type CreateStackOutput struct {
 
 type metadataCreateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateStackOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStackOutput) GoString() string {
+	return s.String()
 }
 
 // The input for DeleteStack action.
@@ -733,12 +774,32 @@ type metadataDeleteStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteStackInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStackInput) GoString() string {
+	return s.String()
+}
+
 type DeleteStackOutput struct {
 	metadataDeleteStackOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStackOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStackOutput) GoString() string {
+	return s.String()
 }
 
 // The input for DescribeStackEvents action.
@@ -764,6 +825,16 @@ type metadataDescribeStackEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStackEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStackEventsInput) GoString() string {
+	return s.String()
+}
+
 // The output for a DescribeStackEvents action.
 type DescribeStackEventsOutput struct {
 	// String that identifies the start of the next list of events, if there is
@@ -778,6 +849,16 @@ type DescribeStackEventsOutput struct {
 
 type metadataDescribeStackEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStackEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStackEventsOutput) GoString() string {
+	return s.String()
 }
 
 // The input for DescribeStackResource action.
@@ -802,6 +883,16 @@ type metadataDescribeStackResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStackResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStackResourceInput) GoString() string {
+	return s.String()
+}
+
 // The output for a DescribeStackResource action.
 type DescribeStackResourceOutput struct {
 	// A StackResourceDetail structure containing the description of the specified
@@ -813,6 +904,16 @@ type DescribeStackResourceOutput struct {
 
 type metadataDescribeStackResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStackResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStackResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The input for DescribeStackResources action.
@@ -854,6 +955,16 @@ type metadataDescribeStackResourcesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStackResourcesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStackResourcesInput) GoString() string {
+	return s.String()
+}
+
 // The output for a DescribeStackResources action.
 type DescribeStackResourcesOutput struct {
 	// A list of StackResource structures.
@@ -864,6 +975,16 @@ type DescribeStackResourcesOutput struct {
 
 type metadataDescribeStackResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStackResourcesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStackResourcesOutput) GoString() string {
+	return s.String()
 }
 
 // The input for DescribeStacks action.
@@ -887,6 +1008,16 @@ type metadataDescribeStacksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStacksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStacksInput) GoString() string {
+	return s.String()
+}
+
 // The output for a DescribeStacks action.
 type DescribeStacksOutput struct {
 	// String that identifies the start of the next list of stacks, if there is
@@ -901,6 +1032,16 @@ type DescribeStacksOutput struct {
 
 type metadataDescribeStacksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStacksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStacksOutput) GoString() string {
+	return s.String()
 }
 
 type EstimateTemplateCostInput struct {
@@ -932,6 +1073,16 @@ type metadataEstimateTemplateCostInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EstimateTemplateCostInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EstimateTemplateCostInput) GoString() string {
+	return s.String()
+}
+
 // The output for a EstimateTemplateCost action.
 type EstimateTemplateCostOutput struct {
 	// An AWS Simple Monthly Calculator URL with a query string that describes the
@@ -943,6 +1094,16 @@ type EstimateTemplateCostOutput struct {
 
 type metadataEstimateTemplateCostOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EstimateTemplateCostOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EstimateTemplateCostOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the GetStackPolicy action.
@@ -958,6 +1119,16 @@ type metadataGetStackPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetStackPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetStackPolicyInput) GoString() string {
+	return s.String()
+}
+
 // The output for the GetStackPolicy action.
 type GetStackPolicyOutput struct {
 	// Structure containing the stack policy body. (For more information, go to
@@ -970,6 +1141,16 @@ type GetStackPolicyOutput struct {
 
 type metadataGetStackPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetStackPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetStackPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // The input for a GetTemplate action.
@@ -989,6 +1170,16 @@ type metadataGetTemplateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetTemplateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetTemplateInput) GoString() string {
+	return s.String()
+}
+
 // The output for GetTemplate action.
 type GetTemplateOutput struct {
 	// Structure containing the template body. (For more information, go to Template
@@ -1001,6 +1192,16 @@ type GetTemplateOutput struct {
 
 type metadataGetTemplateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetTemplateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetTemplateOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the GetTemplateSummary action.
@@ -1039,6 +1240,16 @@ type metadataGetTemplateSummaryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetTemplateSummaryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetTemplateSummaryInput) GoString() string {
+	return s.String()
+}
+
 // The output for the GetTemplateSummary action.
 type GetTemplateSummaryOutput struct {
 	// The capabilities found within the template. Currently, AWS CloudFormation
@@ -1073,6 +1284,16 @@ type metadataGetTemplateSummaryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetTemplateSummaryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetTemplateSummaryOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the ListStackResource action.
 type ListStackResourcesInput struct {
 	// String that identifies the start of the next list of stack resource summaries,
@@ -1096,6 +1317,16 @@ type metadataListStackResourcesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListStackResourcesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStackResourcesInput) GoString() string {
+	return s.String()
+}
+
 // The output for a ListStackResources action.
 type ListStackResourcesOutput struct {
 	// String that identifies the start of the next list of stack resources, if
@@ -1110,6 +1341,16 @@ type ListStackResourcesOutput struct {
 
 type metadataListStackResourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListStackResourcesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStackResourcesOutput) GoString() string {
+	return s.String()
 }
 
 // The input for ListStacks action.
@@ -1132,6 +1373,16 @@ type metadataListStacksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListStacksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStacksInput) GoString() string {
+	return s.String()
+}
+
 // The output for ListStacks action.
 type ListStacksOutput struct {
 	// String that identifies the start of the next list of stacks, if there is
@@ -1147,6 +1398,16 @@ type ListStacksOutput struct {
 
 type metadataListStacksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListStacksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStacksOutput) GoString() string {
+	return s.String()
 }
 
 // The Output data type.
@@ -1165,6 +1426,16 @@ type Output struct {
 
 type metadataOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Output) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Output) GoString() string {
+	return s.String()
 }
 
 // The Parameter data type.
@@ -1189,6 +1460,16 @@ type metadataParameter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Parameter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Parameter) GoString() string {
+	return s.String()
+}
+
 // A set of criteria that AWS CloudFormation uses to validate parameter values.
 // Although other constraints might be defined in the stack template, AWS CloudFormation
 // returns only the AllowedValues property.
@@ -1201,6 +1482,16 @@ type ParameterConstraints struct {
 
 type metadataParameterConstraints struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ParameterConstraints) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ParameterConstraints) GoString() string {
+	return s.String()
 }
 
 // The ParameterDeclaration data type.
@@ -1231,6 +1522,16 @@ type metadataParameterDeclaration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ParameterDeclaration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ParameterDeclaration) GoString() string {
+	return s.String()
+}
+
 // The input for the SetStackPolicy action.
 type SetStackPolicyInput struct {
 	// The name or unique stack ID that you want to associate a policy with.
@@ -1255,12 +1556,32 @@ type metadataSetStackPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetStackPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetStackPolicyInput) GoString() string {
+	return s.String()
+}
+
 type SetStackPolicyOutput struct {
 	metadataSetStackPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataSetStackPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetStackPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetStackPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the SignalResource action.
@@ -1290,12 +1611,32 @@ type metadataSignalResourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SignalResourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalResourceInput) GoString() string {
+	return s.String()
+}
+
 type SignalResourceOutput struct {
 	metadataSignalResourceOutput `json:"-" xml:"-"`
 }
 
 type metadataSignalResourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SignalResourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The Stack data type.
@@ -1352,6 +1693,16 @@ type metadataStack struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Stack) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Stack) GoString() string {
+	return s.String()
+}
+
 // The StackEvent data type.
 type StackEvent struct {
 	// The unique ID of this event.
@@ -1394,6 +1745,16 @@ type metadataStackEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StackEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StackEvent) GoString() string {
+	return s.String()
+}
+
 // The StackResource data type.
 type StackResource struct {
 	// User defined description associated with the resource.
@@ -1431,6 +1792,16 @@ type StackResource struct {
 
 type metadataStackResource struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StackResource) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StackResource) GoString() string {
+	return s.String()
 }
 
 // Contains detailed information about the specified stack resource.
@@ -1477,6 +1848,16 @@ type metadataStackResourceDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StackResourceDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StackResourceDetail) GoString() string {
+	return s.String()
+}
+
 // Contains high-level information about the specified stack resource.
 type StackResourceSummary struct {
 	// Time the status was updated.
@@ -1505,6 +1886,16 @@ type StackResourceSummary struct {
 
 type metadataStackResourceSummary struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StackResourceSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StackResourceSummary) GoString() string {
+	return s.String()
 }
 
 // The StackSummary Data Type
@@ -1541,6 +1932,16 @@ type metadataStackSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StackSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StackSummary) GoString() string {
+	return s.String()
+}
+
 // The Tag type is used by CreateStack in the Tags parameter. It allows you
 // to specify a key/value pair that can be used to store information related
 // to cost allocation for an AWS CloudFormation stack.
@@ -1559,6 +1960,16 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
 
 // The TemplateParameter data type.
@@ -1581,6 +1992,16 @@ type TemplateParameter struct {
 
 type metadataTemplateParameter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TemplateParameter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TemplateParameter) GoString() string {
+	return s.String()
 }
 
 // The input for UpdateStack action.
@@ -1679,6 +2100,16 @@ type metadataUpdateStackInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateStackInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStackInput) GoString() string {
+	return s.String()
+}
+
 // The output for a UpdateStack action.
 type UpdateStackOutput struct {
 	// Unique identifier of the stack.
@@ -1689,6 +2120,16 @@ type UpdateStackOutput struct {
 
 type metadataUpdateStackOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateStackOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStackOutput) GoString() string {
+	return s.String()
 }
 
 // The input for ValidateTemplate action.
@@ -1718,6 +2159,16 @@ type metadataValidateTemplateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ValidateTemplateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ValidateTemplateInput) GoString() string {
+	return s.String()
+}
+
 // The output for ValidateTemplate action.
 type ValidateTemplateOutput struct {
 	// The capabilities found within the template. Currently, AWS CloudFormation
@@ -1742,4 +2193,14 @@ type ValidateTemplateOutput struct {
 
 type metadataValidateTemplateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ValidateTemplateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ValidateTemplateOutput) GoString() string {
+	return s.String()
 }

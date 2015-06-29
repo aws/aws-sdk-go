@@ -5,6 +5,7 @@ package kinesis
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddTagsToStream = "AddTagsToStream"
@@ -743,12 +744,32 @@ type metadataAddTagsToStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsToStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToStreamInput) GoString() string {
+	return s.String()
+}
+
 type AddTagsToStreamOutput struct {
 	metadataAddTagsToStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataAddTagsToStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToStreamOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for CreateStream.
@@ -774,12 +795,32 @@ type metadataCreateStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStreamInput) GoString() string {
+	return s.String()
+}
+
 type CreateStreamOutput struct {
 	metadataCreateStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStreamOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for DeleteStream.
@@ -794,12 +835,32 @@ type metadataDeleteStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStreamInput) GoString() string {
+	return s.String()
+}
+
 type DeleteStreamOutput struct {
 	metadataDeleteStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStreamOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for DescribeStream.
@@ -820,6 +881,16 @@ type metadataDescribeStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStreamInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output for DescribeStream.
 type DescribeStreamOutput struct {
 	// The current status of the stream, the stream ARN, an array of shard objects
@@ -831,6 +902,16 @@ type DescribeStreamOutput struct {
 
 type metadataDescribeStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStreamOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for GetRecords.
@@ -849,6 +930,16 @@ type GetRecordsInput struct {
 
 type metadataGetRecordsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRecordsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetRecordsInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output for GetRecords.
@@ -872,6 +963,16 @@ type GetRecordsOutput struct {
 
 type metadataGetRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRecordsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetRecordsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for GetShardIterator.
@@ -907,6 +1008,16 @@ type metadataGetShardIteratorInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetShardIteratorInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetShardIteratorInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output for GetShardIterator.
 type GetShardIteratorOutput struct {
 	// The position in the shard from which to start reading data records sequentially.
@@ -919,6 +1030,16 @@ type GetShardIteratorOutput struct {
 
 type metadataGetShardIteratorOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetShardIteratorOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetShardIteratorOutput) GoString() string {
+	return s.String()
 }
 
 // The range of possible hash key values for the shard, which is a set of ordered
@@ -937,6 +1058,16 @@ type metadataHashKeyRange struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HashKeyRange) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HashKeyRange) GoString() string {
+	return s.String()
+}
+
 // Represents the input for ListStreams.
 type ListStreamsInput struct {
 	// The name of the stream to start the list with.
@@ -950,6 +1081,16 @@ type ListStreamsInput struct {
 
 type metadataListStreamsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListStreamsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStreamsInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output for ListStreams.
@@ -966,6 +1107,16 @@ type ListStreamsOutput struct {
 
 type metadataListStreamsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListStreamsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStreamsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for ListTagsForStream.
@@ -989,6 +1140,16 @@ type metadataListTagsForStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTagsForStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForStreamInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output for ListTagsForStream.
 type ListTagsForStreamOutput struct {
 	// If set to true, more tags are available. To request additional tags, set
@@ -1004,6 +1165,16 @@ type ListTagsForStreamOutput struct {
 
 type metadataListTagsForStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForStreamOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for MergeShards.
@@ -1024,12 +1195,32 @@ type metadataMergeShardsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MergeShardsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MergeShardsInput) GoString() string {
+	return s.String()
+}
+
 type MergeShardsOutput struct {
 	metadataMergeShardsOutput `json:"-" xml:"-"`
 }
 
 type metadataMergeShardsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MergeShardsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MergeShardsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input for PutRecord.
@@ -1070,6 +1261,16 @@ type metadataPutRecordInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutRecordInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRecordInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output for PutRecord.
 type PutRecordOutput struct {
 	// The sequence number identifier that was assigned to the put data record.
@@ -1088,6 +1289,16 @@ type metadataPutRecordOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutRecordOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRecordOutput) GoString() string {
+	return s.String()
+}
+
 // A PutRecords request.
 type PutRecordsInput struct {
 	// The records associated with the request.
@@ -1101,6 +1312,16 @@ type PutRecordsInput struct {
 
 type metadataPutRecordsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRecordsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRecordsInput) GoString() string {
+	return s.String()
 }
 
 // PutRecords results.
@@ -1120,6 +1341,16 @@ type PutRecordsOutput struct {
 
 type metadataPutRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRecordsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRecordsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the output for PutRecords.
@@ -1148,6 +1379,16 @@ type PutRecordsRequestEntry struct {
 
 type metadataPutRecordsRequestEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRecordsRequestEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRecordsRequestEntry) GoString() string {
+	return s.String()
 }
 
 // Represents the result of an individual record from a PutRecords request.
@@ -1179,6 +1420,16 @@ type metadataPutRecordsResultEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutRecordsResultEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRecordsResultEntry) GoString() string {
+	return s.String()
+}
+
 // The unit of data of the Amazon Kinesis stream, which is composed of a sequence
 // number, a partition key, and a data blob.
 type Record struct {
@@ -1201,6 +1452,16 @@ type metadataRecord struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Record) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Record) GoString() string {
+	return s.String()
+}
+
 // Represents the input for RemoveTagsFromStream.
 type RemoveTagsFromStreamInput struct {
 	// The name of the stream.
@@ -1216,12 +1477,32 @@ type metadataRemoveTagsFromStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveTagsFromStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromStreamInput) GoString() string {
+	return s.String()
+}
+
 type RemoveTagsFromStreamOutput struct {
 	metadataRemoveTagsFromStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveTagsFromStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromStreamOutput) GoString() string {
+	return s.String()
 }
 
 // The range of possible sequence numbers for the shard.
@@ -1238,6 +1519,16 @@ type SequenceNumberRange struct {
 
 type metadataSequenceNumberRange struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SequenceNumberRange) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SequenceNumberRange) GoString() string {
+	return s.String()
 }
 
 // A uniquely identified group of data records in an Amazon Kinesis stream.
@@ -1265,6 +1556,16 @@ type metadataShard struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Shard) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Shard) GoString() string {
+	return s.String()
+}
+
 // Represents the input for SplitShard.
 type SplitShardInput struct {
 	// A hash key value for the starting hash key of one of the child shards created
@@ -1289,12 +1590,32 @@ type metadataSplitShardInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SplitShardInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SplitShardInput) GoString() string {
+	return s.String()
+}
+
 type SplitShardOutput struct {
 	metadataSplitShardOutput `json:"-" xml:"-"`
 }
 
 type metadataSplitShardOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SplitShardOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SplitShardOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the output for DescribeStream.
@@ -1332,6 +1653,16 @@ type metadataStreamDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StreamDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamDescription) GoString() string {
+	return s.String()
+}
+
 // Metadata assigned to the stream, consisting of a key-value pair.
 type Tag struct {
 	// A unique identifier for the tag. Maximum length: 128 characters. Valid characters:
@@ -1348,4 +1679,14 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
