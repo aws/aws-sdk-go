@@ -235,14 +235,14 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 // Docstring returns the godocs formated documentation
 func (ref *ShapeRef) Docstring() string {
 	if ref.Documentation != "" {
-		return docstring(ref.Documentation)
+		return ref.Documentation
 	}
 	return ref.Shape.Docstring()
 }
 
 // Docstring returns the godocs formated documentation
 func (s *Shape) Docstring() string {
-	return docstring(s.Documentation)
+	return s.Documentation
 }
 
 // GoCode returns the rendered Go code for the Shape.

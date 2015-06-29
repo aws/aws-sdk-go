@@ -80,7 +80,6 @@ func (p *paginationDefinitions) setup() {
 			paginator.OutputTokens = toks
 		}
 
-		n = p.ExportableName(n)
 		if o, ok := p.Operations[n]; ok {
 			o.Paginator = &paginator
 		} else {

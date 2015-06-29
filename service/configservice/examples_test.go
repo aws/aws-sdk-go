@@ -26,7 +26,7 @@ func ExampleConfigService_DeleteDeliveryChannel() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -53,7 +53,7 @@ func ExampleConfigService_DeliverConfigSnapshot() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -83,7 +83,7 @@ func ExampleConfigService_DescribeConfigurationRecorderStatus() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -113,7 +113,7 @@ func ExampleConfigService_DescribeConfigurationRecorders() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -143,7 +143,7 @@ func ExampleConfigService_DescribeDeliveryChannelStatus() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -173,7 +173,7 @@ func ExampleConfigService_DescribeDeliveryChannels() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -206,7 +206,7 @@ func ExampleConfigService_GetResourceConfigHistory() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -243,7 +243,7 @@ func ExampleConfigService_PutConfigurationRecorder() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -275,7 +275,7 @@ func ExampleConfigService_PutDeliveryChannel() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -302,7 +302,7 @@ func ExampleConfigService_StartConfigurationRecorder() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -329,7 +329,7 @@ func ExampleConfigService_StopConfigurationRecorder() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred

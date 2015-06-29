@@ -27,7 +27,7 @@ func ExampleRoute53Domains_CheckDomainAvailability() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -58,7 +58,7 @@ func ExampleRoute53Domains_DeleteTagsForDomain() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -85,7 +85,7 @@ func ExampleRoute53Domains_DisableDomainAutoRenew() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -112,7 +112,7 @@ func ExampleRoute53Domains_DisableDomainTransferLock() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -139,7 +139,7 @@ func ExampleRoute53Domains_EnableDomainAutoRenew() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -166,7 +166,7 @@ func ExampleRoute53Domains_EnableDomainTransferLock() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -193,7 +193,7 @@ func ExampleRoute53Domains_GetDomainDetail() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -220,7 +220,7 @@ func ExampleRoute53Domains_GetOperationDetail() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -248,7 +248,7 @@ func ExampleRoute53Domains_ListDomains() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -276,7 +276,7 @@ func ExampleRoute53Domains_ListOperations() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -303,7 +303,7 @@ func ExampleRoute53Domains_ListTagsForDomain() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -402,7 +402,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -429,7 +429,7 @@ func ExampleRoute53Domains_RetrieveDomainAuthCode() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -539,7 +539,7 @@ func ExampleRoute53Domains_TransferDomain() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -632,7 +632,7 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -662,7 +662,7 @@ func ExampleRoute53Domains_UpdateDomainContactPrivacy() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -700,7 +700,7 @@ func ExampleRoute53Domains_UpdateDomainNameservers() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -734,7 +734,7 @@ func ExampleRoute53Domains_UpdateTagsForDomain() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred

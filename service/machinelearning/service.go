@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// MachineLearning is a client for Amazon Machine Learning.
+// Definition of the public APIs exposed by Amazon Machine Learning
 type MachineLearning struct {
 	*aws.Service
 }

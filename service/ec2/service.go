@@ -8,7 +8,10 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// EC2 is a client for Amazon EC2.
+// Amazon Elastic Compute Cloud (Amazon EC2) provides resizable computing capacity
+// in the Amazon Web Services (AWS) cloud. Using Amazon EC2 eliminates your
+// need to invest in hardware up front, so you can develop and deploy applications
+// faster.
 type EC2 struct {
 	*aws.Service
 }

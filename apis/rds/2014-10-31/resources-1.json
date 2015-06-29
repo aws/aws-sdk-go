@@ -1,0 +1,71 @@
+{
+  "service": {
+    "actions": {
+      "CreateDBInstance": {
+        "request": { "operation": "CreateDBInstance" },
+        "resource": {
+          "type": "DBInstance",
+          "identifiers": [
+            { "target": "Id", "source": "requestParameter", "path": "DBInstanceIdentifier" }
+          ]
+        }
+      }
+    },
+    "has": {
+      "DBInstance": {
+        "resource": {
+          "type": "DBInstance",
+          "identifiers": [
+            { "target": "Id", "source": "input" }
+          ]
+        }
+      }
+    },
+    "hasMany": {
+      "DBInstances": {
+        "request": { "operation": "DescribeDBInstances" },
+        "resource": {
+          "type": "DBInstance",
+          "identifiers": [
+            { "target": "Id", "source": "response", "path": "DBInstances[].DBInstanceIdentifier" }
+          ]
+        }
+      }
+    }
+  },
+  "resources": {
+    "DBInstance": {
+      "identifiers": [
+        { "name": "Id" }
+      ],
+      "shape": "DBInstance",
+      "load": {
+        "request": {
+          "operation": "DescribeDBInstances",
+          "params": [
+            { "target": "DBInstanceIdentifier", "source": "identifier", "name": "Id" }
+          ]
+        },
+        "path": "DBInstances[0]"
+      },
+      "actions": {
+        "Delete": {
+          "request": {
+            "operation": "DeleteDBInstance",
+            "params": [
+              { "target": "DBInstanceIdentifier", "source": "identifier", "name": "Id" }
+            ]
+          }
+        },
+        "Modify": {
+          "request": {
+            "operation": "ModifyDBInstance",
+            "params": [
+              { "target": "DBInstanceIdentifier", "source": "identifier", "name": "Id" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

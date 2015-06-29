@@ -44,6 +44,12 @@ func (c *WorkSpaces) DescribeWorkspaceBundlesRequest(input *DescribeWorkspaceBun
 		Name:       opDescribeWorkspaceBundles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -72,6 +78,13 @@ func (c *WorkSpaces) DescribeWorkspaceBundles(input *DescribeWorkspaceBundlesInp
 	return out, err
 }
 
+func (c *WorkSpaces) DescribeWorkspaceBundlesPages(input *DescribeWorkspaceBundlesInput, fn func(p *DescribeWorkspaceBundlesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeWorkspaceBundlesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeWorkspaceBundlesOutput), lastPage)
+	})
+}
+
 const opDescribeWorkspaceDirectories = "DescribeWorkspaceDirectories"
 
 // DescribeWorkspaceDirectoriesRequest generates a request for the DescribeWorkspaceDirectories operation.
@@ -80,6 +93,12 @@ func (c *WorkSpaces) DescribeWorkspaceDirectoriesRequest(input *DescribeWorkspac
 		Name:       opDescribeWorkspaceDirectories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -106,6 +125,13 @@ func (c *WorkSpaces) DescribeWorkspaceDirectories(input *DescribeWorkspaceDirect
 	return out, err
 }
 
+func (c *WorkSpaces) DescribeWorkspaceDirectoriesPages(input *DescribeWorkspaceDirectoriesInput, fn func(p *DescribeWorkspaceDirectoriesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeWorkspaceDirectoriesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeWorkspaceDirectoriesOutput), lastPage)
+	})
+}
+
 const opDescribeWorkspaces = "DescribeWorkspaces"
 
 // DescribeWorkspacesRequest generates a request for the DescribeWorkspaces operation.
@@ -114,6 +140,12 @@ func (c *WorkSpaces) DescribeWorkspacesRequest(input *DescribeWorkspacesInput) (
 		Name:       opDescribeWorkspaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -139,6 +171,13 @@ func (c *WorkSpaces) DescribeWorkspaces(input *DescribeWorkspacesInput) (*Descri
 	req, out := c.DescribeWorkspacesRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *WorkSpaces) DescribeWorkspacesPages(input *DescribeWorkspacesInput, fn func(p *DescribeWorkspacesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeWorkspacesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeWorkspacesOutput), lastPage)
+	})
 }
 
 const opRebootWorkspaces = "RebootWorkspaces"

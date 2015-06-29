@@ -13,7 +13,7 @@ func main() {
 	dir, _ := os.Open("apis")
 	names, _ := dir.Readdirnames(0)
 	for _, name := range names {
-		m, _ := filepath.Glob(filepath.Join("apis", name, "*.normal.json"))
+		m, _ := filepath.Glob(filepath.Join("apis", name, "*", "api-2.json"))
 		if len(m) == 0 {
 			continue
 		}

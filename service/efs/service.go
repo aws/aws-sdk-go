@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// EFS is a client for Amazon EFS.
 type EFS struct {
 	*aws.Service
 }

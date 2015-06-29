@@ -8,7 +8,9 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// AutoScaling is a client for Auto Scaling.
+// Auto Scaling is designed to automatically launch or terminate EC2 instances
+// based on user-defined policies, schedules, and health checks. Use this service
+// in conjunction with the Amazon CloudWatch and Elastic Load Balancing services.
 type AutoScaling struct {
 	*aws.Service
 }

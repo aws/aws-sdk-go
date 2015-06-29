@@ -8,7 +8,45 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// OpsWorks is a client for AWS OpsWorks.
+// Welcome to the AWS OpsWorks API Reference. This guide provides descriptions,
+// syntax, and usage examples about AWS OpsWorks actions and data types, including
+// common parameters and error codes.
+//
+// AWS OpsWorks is an application management service that provides an integrated
+// experience for overseeing the complete application lifecycle. For information
+// about this product, go to the AWS OpsWorks (http://aws.amazon.com/opsworks/)
+// details page.
+//
+//  SDKs and CLI
+//
+// The most common way to use the AWS OpsWorks API is by using the AWS Command
+// Line Interface (CLI) or by using one of the AWS SDKs to implement applications
+// in your preferred language. For more information, see:
+//
+//   AWS CLI (http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+//   AWS SDK for Java (http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/opsworks/AWSOpsWorksClient.html)
+//   AWS SDK for .NET (http://docs.aws.amazon.com/sdkfornet/latest/apidocs/html/N_Amazon_OpsWorks.htm)
+//   AWS SDK for PHP 2 (http://docs.aws.amazon.com/aws-sdk-php-2/latest/class-Aws.OpsWorks.OpsWorksClient.html)
+//   AWS SDK for Ruby (http://docs.aws.amazon.com/AWSRubySDK/latest/AWS/OpsWorks/Client.html)
+//   AWS SDK for Node.js (http://aws.amazon.com/documentation/sdkforjavascript/)
+//   AWS SDK for Python(Boto) (http://docs.pythonboto.org/en/latest/ref/opsworks.html)
+//    Endpoints
+//
+// AWS OpsWorks supports only one endpoint, opsworks.us-east-1.amazonaws.com
+// (HTTPS), so you must connect to that endpoint. You can then use the API to
+// direct AWS OpsWorks to create stacks in any AWS Region.
+//
+//  Chef Versions
+//
+// When you call CreateStack, CloneStack, or UpdateStack we recommend you use
+// the ConfigurationManager parameter to specify the Chef version, 0.9, 11.4,
+// or 11.10. The default value is currently 11.10. For more information, see
+// Chef Versions (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html).
+//
+// You can still specify Chef 0.9 for your stack, but new features are not
+// available for Chef 0.9 stacks, and support is scheduled to end on July 24,
+// 2014. We do not recommend using Chef 0.9 for new stacks, and we recommend
+// migrating your existing Chef 0.9 stacks to Chef 11.10 as soon as possible.
 type OpsWorks struct {
 	*aws.Service
 }

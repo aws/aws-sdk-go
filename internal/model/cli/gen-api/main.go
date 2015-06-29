@@ -1,7 +1,7 @@
 // Command aws-gen-gocli parses a JSON description of an AWS API and generates a
 // Go file containing a client for the API.
 //
-//     aws-gen-gocli apis/s3/2006-03-03.normal.json
+//     aws-gen-gocli apis/s3/2006-03-03/api-2.json
 package main
 
 import (
@@ -40,10 +40,17 @@ func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 		return nil
 	}
 
-	paginatorsFile := strings.Replace(modelFile, ".normal.json", ".paginators.json", -1)
+	paginatorsFile := strings.Replace(modelFile, "api-2.json", "paginators-1.json", -1)
 	if _, err := os.Stat(paginatorsFile); err == nil {
 		g.API.AttachPaginators(paginatorsFile)
 	}
+
+	docsFile := strings.Replace(modelFile, "api-2.json", "docs-2.json", -1)
+	if _, err := os.Stat(docsFile); err == nil {
+		g.API.AttachDocs(docsFile)
+	}
+
+	g.API.Setup()
 
 	if svc := os.Getenv("SERVICES"); svc != "" {
 		svcs := strings.Split(svc, ",")

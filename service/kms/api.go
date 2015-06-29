@@ -530,6 +530,12 @@ func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *aws.Request, out
 		Name:       opListAliases,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "Limit",
+			TruncationToken: "Truncated",
+		},
 	}
 
 	if input == nil {
@@ -549,6 +555,13 @@ func (c *KMS) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 	return out, err
 }
 
+func (c *KMS) ListAliasesPages(input *ListAliasesInput, fn func(p *ListAliasesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListAliasesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListAliasesOutput), lastPage)
+	})
+}
+
 const opListGrants = "ListGrants"
 
 // ListGrantsRequest generates a request for the ListGrants operation.
@@ -557,6 +570,12 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *aws.Request, outpu
 		Name:       opListGrants,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "Limit",
+			TruncationToken: "Truncated",
+		},
 	}
 
 	if input == nil {
@@ -576,6 +595,13 @@ func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsOutput, error) {
 	return out, err
 }
 
+func (c *KMS) ListGrantsPages(input *ListGrantsInput, fn func(p *ListGrantsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListGrantsRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListGrantsOutput), lastPage)
+	})
+}
+
 const opListKeyPolicies = "ListKeyPolicies"
 
 // ListKeyPoliciesRequest generates a request for the ListKeyPolicies operation.
@@ -584,6 +610,12 @@ func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *aws.Requ
 		Name:       opListKeyPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "Limit",
+			TruncationToken: "Truncated",
+		},
 	}
 
 	if input == nil {
@@ -603,6 +635,13 @@ func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (*ListKeyPoliciesOutp
 	return out, err
 }
 
+func (c *KMS) ListKeyPoliciesPages(input *ListKeyPoliciesInput, fn func(p *ListKeyPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListKeyPoliciesRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListKeyPoliciesOutput), lastPage)
+	})
+}
+
 const opListKeys = "ListKeys"
 
 // ListKeysRequest generates a request for the ListKeys operation.
@@ -611,6 +650,12 @@ func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *aws.Request, output *L
 		Name:       opListKeys,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &aws.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "Limit",
+			TruncationToken: "Truncated",
+		},
 	}
 
 	if input == nil {
@@ -628,6 +673,13 @@ func (c *KMS) ListKeys(input *ListKeysInput) (*ListKeysOutput, error) {
 	req, out := c.ListKeysRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *KMS) ListKeysPages(input *ListKeysInput, fn func(p *ListKeysOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.ListKeysRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*ListKeysOutput), lastPage)
+	})
 }
 
 const opPutKeyPolicy = "PutKeyPolicy"

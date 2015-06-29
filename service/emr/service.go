@@ -8,7 +8,11 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// EMR is a client for Amazon EMR.
+// Amazon Elastic MapReduce (Amazon EMR) is a web service that makes it easy
+// to process large amounts of data efficiently. Amazon EMR uses Hadoop processing
+// combined with several AWS products to do tasks such as web indexing, data
+// mining, log file analysis, machine learning, scientific simulation, and data
+// warehousing.
 type EMR struct {
 	*aws.Service
 }

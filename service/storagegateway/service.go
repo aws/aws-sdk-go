@@ -8,7 +8,27 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// StorageGateway is a client for AWS Storage Gateway.
+// AWS Storage Gateway is the service that connects an on-premises software
+// appliance with cloud-based storage to provide seamless and secure integration
+// between an organization's on-premises IT environment and AWS's storage infrastructure.
+// The service enables you to securely upload data to the AWS cloud for cost
+// effective backup and rapid disaster recovery.
+//
+// Use the following links to get started using the AWS Storage Gateway Service
+// API Reference:
+//
+//   AWS Storage Gateway Required Request Headers (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayHTTPRequestsHeaders.html):
+// Describes the required headers that you must send with every POST request
+// to AWS Storage Gateway.  Signing Requests (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewaySigningRequests.html):
+// AWS Storage Gateway requires that you authenticate every request you send;
+// this topic describes how sign such a request.  Error Responses (http://docs.aws.amazon.com/storagegateway/latest/userguide/APIErrorResponses.html):
+// Provides reference information about AWS Storage Gateway errors.  Operations
+// in AWS Storage Gateway (http://docs.aws.amazon.com/storagegateway/latest/userguide/AWSStorageGatewayAPIOperations.html):
+// Contains detailed descriptions of all AWS Storage Gateway operations, their
+// request parameters, response elements, possible errors, and examples of requests
+// and responses.  AWS Storage Gateway Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html):
+// Provides a list of each of the regions and endpoints available for use with
+// AWS Storage Gateway.
 type StorageGateway struct {
 	*aws.Service
 }
