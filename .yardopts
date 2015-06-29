@@ -1,0 +1,5 @@
+--plugin go
+-m markdown
+-o doc/api
+aws/**/*.go
+service/**/*.go

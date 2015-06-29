@@ -6,6 +6,7 @@ help:
 	@echo "  api_info                to print a list of services and versions"
 	@echo "  build                   to go build the SDK"
 	@echo "  deps                    to go get the SDK dependencies"
+	@echo "  docs                    to build SDK documentation"
 	@echo "  generate                to go generate and make services"
 	@echo "  generate-protocol-test  to generate protocol tests"
 	@echo "  integration             to run integration tests"
@@ -43,6 +44,9 @@ unit: deps build lint
 
 build:
 	go build ./...
+
+docs:
+	bundle install && bundle exec yard
 
 deps:
 	@go get ./...
