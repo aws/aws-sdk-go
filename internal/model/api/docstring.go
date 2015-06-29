@@ -2,14 +2,79 @@ package api
 
 import (
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"html"
+	"os"
 	"regexp"
 	"strings"
 )
 
+type apiDocumentation struct {
+	*API
+	Operations map[string]string
+	Service    string
+	Shapes     map[string]shapeDocumentation
+}
+
+type shapeDocumentation struct {
+	Base string
+	Refs map[string]string
+}
+
+// AttachDocs attaches documentation from a JSON filename.
+func (a *API) AttachDocs(filename string) {
+	d := apiDocumentation{API: a}
+
+	f, err := os.Open(filename)
+	defer f.Close()
+	if err != nil {
+		panic(err)
+	}
+	err = json.NewDecoder(f).Decode(&d)
+	if err != nil {
+		panic(err)
+	}
+
+	d.setup()
+
+}
+
+func (d *apiDocumentation) setup() {
+	d.API.Documentation = docstring(d.Service)
+	if d.Service == "" {
+		d.API.Documentation =
+			fmt.Sprintf("// %s is a client for %s.\n", d.API.StructName(), d.API.NiceName())
+	}
+
+	for op, doc := range d.Operations {
+		d.API.Operations[op].Documentation = docstring(doc)
+	}
+
+	for shape, info := range d.Shapes {
+		if sh := d.API.Shapes[shape]; sh != nil {
+			sh.Documentation = docstring(info.Base)
+		}
+
+		for ref, doc := range info.Refs {
+			if doc == "" {
+				continue
+			}
+
+			parts := strings.Split(ref, "$")
+			if sh := d.API.Shapes[parts[0]]; sh != nil {
+				if m := sh.MemberRefs[parts[1]]; m != nil {
+					m.Documentation = docstring(doc)
+				}
+			}
+		}
+	}
+}
+
 var reNewline = regexp.MustCompile(`\r?\n`)
 var reMultiSpace = regexp.MustCompile(`\s+`)
 var reComments = regexp.MustCompile(`<!--.*?-->`)
+var reFullname = regexp.MustCompile(`\s*<fullname?>.+?<\/fullname?>\s*`)
 var reExamples = regexp.MustCompile(`<examples?>.+?<\/examples?>`)
 var rePara = regexp.MustCompile(`<(?:p|h\d)>(.+?)</(?:p|h\d)>`)
 var reLink = regexp.MustCompile(`<a href="(.+?)">(.+?)</a>`)
@@ -21,6 +86,7 @@ func docstring(doc string) string {
 	doc = reNewline.ReplaceAllString(doc, "")
 	doc = reMultiSpace.ReplaceAllString(doc, " ")
 	doc = reComments.ReplaceAllString(doc, "")
+	doc = reFullname.ReplaceAllString(doc, "")
 	doc = reExamples.ReplaceAllString(doc, "")
 	doc = rePara.ReplaceAllString(doc, "$1\n\n")
 	doc = reLink.ReplaceAllString(doc, "$2 ($1)")

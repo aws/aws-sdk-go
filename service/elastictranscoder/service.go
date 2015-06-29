@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// ElasticTranscoder is a client for Amazon Elastic Transcoder.
+// The AWS Elastic Transcoder Service.
 type ElasticTranscoder struct {
 	*aws.Service
 }

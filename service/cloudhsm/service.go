@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// CloudHSM is a client for CloudHSM.
 type CloudHSM struct {
 	*aws.Service
 }

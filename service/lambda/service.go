@@ -8,7 +8,13 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// Lambda is a client for AWS Lambda.
+// Overview
+//
+// This is the AWS Lambda API Reference. The AWS Lambda Developer Guide provides
+// additional information. For the service overview, go to What is AWS Lambda
+// (http://docs.aws.amazon.com/lambda/latest/dg/welcome.html), and for information
+// about how the service works, go to AWS Lambda: How it Works (http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html)
+// in the AWS Lambda Developer Guide.
 type Lambda struct {
 	*aws.Service
 }

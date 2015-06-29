@@ -547,7 +547,7 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 		Paginator: &aws.Paginator{
 			InputTokens:     []string{"ExclusiveStartKey"},
 			OutputTokens:    []string{"LastEvaluatedKey"},
-			LimitToken:      "Limit",
+			LimitToken:      "",
 			TruncationToken: "",
 		},
 	}

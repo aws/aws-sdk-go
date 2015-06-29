@@ -1,5 +1,5 @@
 LINTIGNOREDOT='internal/features.+should not use dot imports'
-LINTIGNOREDOC='service/[^/]+/(api)\.go:.+(comment on exported|should have comment or be unexported)'
+LINTIGNOREDOC='service/[^/]+/(api|service)\.go:.+(comment on exported|should have comment or be unexported)'
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"

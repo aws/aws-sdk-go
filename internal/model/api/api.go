@@ -14,9 +14,10 @@ import (
 
 // An API defines a service API's definition. and logic to serialize the definition.
 type API struct {
-	Metadata   Metadata
-	Operations map[string]*Operation
-	Shapes     map[string]*Shape
+	Metadata      Metadata
+	Operations    map[string]*Operation
+	Shapes        map[string]*Shape
+	Documentation string
 
 	// Disables inflection checks. Only use this when generating tests
 	NoInflections bool
@@ -208,8 +209,7 @@ func (a *API) APIGoCode() string {
 
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Parse(`
-// {{ .StructName }} is a client for {{ .NiceName }}.
-type {{ .StructName }} struct {
+{{ .Documentation }}type {{ .StructName }} struct {
 	*aws.Service
 }
 

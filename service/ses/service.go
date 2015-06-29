@@ -8,7 +8,13 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// SES is a client for Amazon SES.
+// This is the API Reference for Amazon Simple Email Service (Amazon SES). This
+// documentation is intended to be used in conjunction with the Amazon SES Developer
+// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html).
+//
+// For a list of Amazon SES endpoints to use in service requests, see Regions
+// and Amazon SES (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/regions.html)
+// in the Amazon SES Developer Guide.
 type SES struct {
 	*aws.Service
 }

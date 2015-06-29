@@ -8,7 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// Kinesis is a client for Kinesis.
+// Amazon Kinesis is a managed service that scales elastically for real time
+// processing of streaming big data.
 type Kinesis struct {
 	*aws.Service
 }

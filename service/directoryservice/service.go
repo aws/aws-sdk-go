@@ -8,7 +8,9 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// DirectoryService is a client for Directory Service.
+// This is the AWS Directory Service API Reference. This guide provides detailed
+// information about AWS Directory Service operations, data types, parameters,
+// and errors.
 type DirectoryService struct {
 	*aws.Service
 }

@@ -17,6 +17,7 @@ func Load(api, docs, paginators, waiters string) *API {
 	a.Attach(docs)
 	a.Attach(paginators)
 	a.Attach(waiters)
+	a.Setup()
 	return &a
 }
 
@@ -29,10 +30,6 @@ func (a *API) Attach(filename string) {
 		panic(err)
 	}
 	json.NewDecoder(f).Decode(a)
-
-	if !a.initialized {
-		a.Setup()
-	}
 }
 
 // AttachString will unmarshal a raw JSON string, and setup the

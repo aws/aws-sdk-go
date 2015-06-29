@@ -40,14 +40,6 @@ func (o *Operation) HasOutput() bool {
 	return o.OutputRef.ShapeName != ""
 }
 
-// Docstring returns the docstring formated documentation for the Operation
-func (o *Operation) Docstring() string {
-	if o.Documentation != "" {
-		return docstring(o.Documentation)
-	}
-	return ""
-}
-
 // tplOperation defines a template for rendering an API Operation
 var tplOperation = template.Must(template.New("operation").Parse(`
 const op{{ .ExportedName }} = "{{ .Name }}"
@@ -78,7 +70,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	return
 }
 
-{{ .Docstring }}func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
+{{ .Documentation }}func (c *{{ .API.StructName }}) {{ .ExportedName }}(` +
 	`input {{ .InputRef.GoType }}) ({{ .OutputRef.GoType }}, error) {
 	req, out := c.{{ .ExportedName }}Request(input)
 	err := req.Send()
@@ -134,7 +126,7 @@ func Example{{ .API.StructName }}_{{ .ExportedName }}() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred

@@ -8,7 +8,22 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// SSM is a client for Amazon SSM.
+// Amazon EC2 Simple Systems Manager (SSM) enables you to configure and manage
+// your EC2 instances. You can create a configuration document and then associate
+// it with one or more running instances.
+//
+// You can use a configuration document to automate the following tasks for
+// your Windows instances:
+//
+//  Join an AWS Directory
+//
+// Install, repair, or uninstall software using an MSI package
+//
+// Run PowerShell scripts
+//
+// Configure CloudWatch Logs to monitor applications and systems
+//
+//  Note that configuration documents are not supported on Linux instances.
 type SSM struct {
 	*aws.Service
 }

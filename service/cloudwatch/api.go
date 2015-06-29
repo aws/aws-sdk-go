@@ -65,9 +65,6 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 // Retrieves history for the specified alarm. Filter alarms by date range or
 // item type. If an alarm name is not specified, Amazon CloudWatch returns histories
 // for all of the owner's alarms.
-//
-//  Amazon CloudWatch retains the history of an alarm for two weeks, whether
-// or not you delete the alarm.
 func (c *CloudWatch) DescribeAlarmHistory(input *DescribeAlarmHistoryInput) (*DescribeAlarmHistoryOutput, error) {
 	req, out := c.DescribeAlarmHistoryRequest(input)
 	err := req.Send()
@@ -287,12 +284,6 @@ func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *aws.Reque
 // Returns a list of valid metrics stored for the AWS account owner. Returned
 // metrics can be used with GetMetricStatistics to obtain statistical data for
 // a given metric.
-//
-//  Up to 500 results are returned for any one call. To retrieve further results,
-// use returned NextToken values with subsequent ListMetrics operations.   If
-// you create a metric with the PutMetricData action, allow up to fifteen minutes
-// for the metric to appear in calls to the ListMetrics action. Statistics about
-// the metric, however, are available sooner using GetMetricStatistics.
 func (c *CloudWatch) ListMetrics(input *ListMetricsInput) (*ListMetricsOutput, error) {
 	req, out := c.ListMetricsRequest(input)
 	err := req.Send()
@@ -333,8 +324,6 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *aws
 //  When this operation creates an alarm, the alarm state is immediately set
 // to INSUFFICIENT_DATA. The alarm is evaluated and its StateValue is set appropriately.
 // Any actions associated with the StateValue is then executed.
-//
-//  When updating an existing alarm, its StateValue is left unchanged.
 func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (*PutMetricAlarmOutput, error) {
 	req, out := c.PutMetricAlarmRequest(input)
 	err := req.Send()
@@ -643,9 +632,6 @@ type DimensionFilter struct {
 	Name *string `type:"string" required:"true"`
 
 	// The value of the dimension to be matched.
-	//
-	//  Specifying a Name without specifying a Value returns all values associated
-	// with that Name.
 	Value *string `type:"string"`
 
 	metadataDimensionFilter `json:"-" xml:"-"`
@@ -715,13 +701,6 @@ type GetMetricStatisticsInput struct {
 	// The time stamp to use for determining the first datapoint to return. The
 	// value specified is inclusive; results include datapoints with the time stamp
 	// specified.
-	//
-	//  The specified start time is rounded down to the nearest value. Datapoints
-	// are returned for start times up to two weeks in the past. Specified start
-	// times that are more than two weeks in the past will not return datapoints
-	// for metrics that are older than two weeks. Data that is timestamped 24 hours
-	// or more in the past may take in excess of 48 hours to become available from
-	// submission time using GetMetricStatistics.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The metric statistics to return. For information about specific statistics
@@ -1028,10 +1007,6 @@ type PutMetricDataInput struct {
 	MetricData []*MetricDatum `type:"list" required:"true"`
 
 	// The namespace for the metric data.
-	//
-	//  You cannot specify a namespace that begins with "AWS/". Namespaces that
-	// begin with "AWS/" are reserved for other Amazon Web Services products that
-	// send metrics to Amazon CloudWatch.
 	Namespace *string `type:"string" required:"true"`
 
 	metadataPutMetricDataInput `json:"-" xml:"-"`

@@ -8,7 +8,9 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// WorkSpaces is a client for Amazon WorkSpaces.
+// This is the Amazon WorkSpaces API Reference. This guide provides detailed
+// information about Amazon WorkSpaces operations, data types, parameters, and
+// errors.
 type WorkSpaces struct {
 	*aws.Service
 }
