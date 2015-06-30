@@ -6,29 +6,88 @@ import (
 	"time"
 )
 
-// String converts a Go string into a string pointer.
+// String returns a pointer of the string value passed in.
 func String(v string) *string {
 	return &v
 }
 
-// Boolean converts a Go bool into a boolean pointer.
+// StringValue returns the value of the string pointer passed in or empty
+// string if the pointer is nil.
+func StringValue(a *string) string {
+	if a != nil {
+		return *a
+	}
+	return ""
+}
+
+// Boolean returns a pointer of the bool value passed in.
 func Boolean(v bool) *bool {
 	return &v
 }
 
-// Long converts a Go int64 into a long pointer.
+// BooleanValue returns the value of the bool pointer passed in or false if the
+// pointer is nil.
+func BooleanValue(a *bool) bool {
+	if a != nil {
+		return *a
+	}
+	return false
+}
+
+// Int returns a pointer of the int value passed in.
+func Int(v int) *int {
+	return &v
+}
+
+// IntValue returns the value of the int pointer passed in or zero if the
+// pointer is nil.
+func IntValue(a *int) int {
+	if a != nil {
+		return *a
+	}
+	return 0
+}
+
+// Long returns a pointer of the int64 value passed in.
 func Long(v int64) *int64 {
 	return &v
 }
 
-// Double converts a Go float64 into a double pointer.
+// LongValue returns the value of the int64 pointer passed in or zero if the
+// pointer is nil.
+func LongValue(a *int64) int64 {
+	if a != nil {
+		return *a
+	}
+	return 0
+}
+
+// Double returns a pointer of the float64 value passed in.
 func Double(v float64) *float64 {
 	return &v
 }
 
-// Time converts a Go Time into a Time pointer
+// DoubleValue returns the value of the float64 pointer passed in or zero if the
+// pointer is nil.
+func DoubleValue(a *float64) float64 {
+	if a != nil {
+		return *a
+	}
+	return 0
+}
+
+// Time returns a pointer of the Time value passed in.
 func Time(t time.Time) *time.Time {
 	return &t
+}
+
+// TimeValue returns the value of the Time pointer passed in or zero
+// time if the pointer is nil.
+func TimeValue(a *time.Time) time.Time {
+	if a != nil {
+		return *a
+	}
+	return time.Time{}
 }
 
 // ReadSeekCloser wraps a io.Reader returning a ReaderSeakerCloser
