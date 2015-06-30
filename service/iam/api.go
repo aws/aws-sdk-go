@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddClientIDToOpenIDConnectProvider = "AddClientIDToOpenIDConnectProvider"
@@ -3829,6 +3830,16 @@ type metadataAccessKey struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccessKey) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccessKey) GoString() string {
+	return s.String()
+}
+
 // Contains information about the last time an AWS access key was used.
 //
 // This data type is used as a response element in the GetAccessKeyLastUsed
@@ -3877,6 +3888,16 @@ type metadataAccessKeyLastUsed struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccessKeyLastUsed) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccessKeyLastUsed) GoString() string {
+	return s.String()
+}
+
 // Contains information about an AWS access key, without its secret key.
 //
 // This data type is used as a response element in the ListAccessKeys action.
@@ -3901,6 +3922,16 @@ type metadataAccessKeyMetadata struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AccessKeyMetadata) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AccessKeyMetadata) GoString() string {
+	return s.String()
+}
+
 type AddClientIDToOpenIDConnectProviderInput struct {
 	// The client ID (also known as audience) to add to the IAM OpenID Connect provider.
 	ClientID *string `type:"string" required:"true"`
@@ -3917,12 +3948,32 @@ type metadataAddClientIDToOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddClientIDToOpenIDConnectProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddClientIDToOpenIDConnectProviderInput) GoString() string {
+	return s.String()
+}
+
 type AddClientIDToOpenIDConnectProviderOutput struct {
 	metadataAddClientIDToOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataAddClientIDToOpenIDConnectProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddClientIDToOpenIDConnectProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddClientIDToOpenIDConnectProviderOutput) GoString() string {
+	return s.String()
 }
 
 type AddRoleToInstanceProfileInput struct {
@@ -3939,12 +3990,32 @@ type metadataAddRoleToInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddRoleToInstanceProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddRoleToInstanceProfileInput) GoString() string {
+	return s.String()
+}
+
 type AddRoleToInstanceProfileOutput struct {
 	metadataAddRoleToInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataAddRoleToInstanceProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddRoleToInstanceProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddRoleToInstanceProfileOutput) GoString() string {
+	return s.String()
 }
 
 type AddUserToGroupInput struct {
@@ -3961,12 +4032,32 @@ type metadataAddUserToGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddUserToGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddUserToGroupInput) GoString() string {
+	return s.String()
+}
+
 type AddUserToGroupOutput struct {
 	metadataAddUserToGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataAddUserToGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddUserToGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddUserToGroupOutput) GoString() string {
+	return s.String()
 }
 
 type AttachGroupPolicyInput struct {
@@ -3987,12 +4078,32 @@ type metadataAttachGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachGroupPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
 type AttachGroupPolicyOutput struct {
 	metadataAttachGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachGroupPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachGroupPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachGroupPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type AttachRolePolicyInput struct {
@@ -4013,12 +4124,32 @@ type metadataAttachRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachRolePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachRolePolicyInput) GoString() string {
+	return s.String()
+}
+
 type AttachRolePolicyOutput struct {
 	metadataAttachRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachRolePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachRolePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachRolePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type AttachUserPolicyInput struct {
@@ -4039,12 +4170,32 @@ type metadataAttachUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachUserPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachUserPolicyInput) GoString() string {
+	return s.String()
+}
+
 type AttachUserPolicyOutput struct {
 	metadataAttachUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataAttachUserPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachUserPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachUserPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about an attached policy.
@@ -4075,6 +4226,16 @@ type metadataAttachedPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttachedPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachedPolicy) GoString() string {
+	return s.String()
+}
+
 type ChangePasswordInput struct {
 	// The new password. The new password must conform to the AWS account's password
 	// policy, if one exists.
@@ -4090,12 +4251,32 @@ type metadataChangePasswordInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChangePasswordInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangePasswordInput) GoString() string {
+	return s.String()
+}
+
 type ChangePasswordOutput struct {
 	metadataChangePasswordOutput `json:"-" xml:"-"`
 }
 
 type metadataChangePasswordOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangePasswordOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangePasswordOutput) GoString() string {
+	return s.String()
 }
 
 type CreateAccessKeyInput struct {
@@ -4107,6 +4288,16 @@ type CreateAccessKeyInput struct {
 
 type metadataCreateAccessKeyInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAccessKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessKeyInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful CreateAccessKey request.
@@ -4121,6 +4312,16 @@ type metadataCreateAccessKeyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAccessKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessKeyOutput) GoString() string {
+	return s.String()
+}
+
 type CreateAccountAliasInput struct {
 	// The account alias to create.
 	AccountAlias *string `type:"string" required:"true"`
@@ -4132,12 +4333,32 @@ type metadataCreateAccountAliasInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateAccountAliasInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccountAliasInput) GoString() string {
+	return s.String()
+}
+
 type CreateAccountAliasOutput struct {
 	metadataCreateAccountAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateAccountAliasOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateAccountAliasOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccountAliasOutput) GoString() string {
+	return s.String()
 }
 
 type CreateGroupInput struct {
@@ -4159,6 +4380,16 @@ type metadataCreateGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateGroupInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateGroup request.
 type CreateGroupOutput struct {
 	// Information about the group.
@@ -4169,6 +4400,16 @@ type CreateGroupOutput struct {
 
 type metadataCreateGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateInstanceProfileInput struct {
@@ -4190,6 +4431,16 @@ type metadataCreateInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateInstanceProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstanceProfileInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateInstanceProfile request.
 type CreateInstanceProfileOutput struct {
 	// Information about the instance profile.
@@ -4200,6 +4451,16 @@ type CreateInstanceProfileOutput struct {
 
 type metadataCreateInstanceProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateInstanceProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateInstanceProfileOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLoginProfileInput struct {
@@ -4219,6 +4480,16 @@ type metadataCreateLoginProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLoginProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoginProfileInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateLoginProfile request.
 type CreateLoginProfileOutput struct {
 	// The user name and password create date.
@@ -4229,6 +4500,16 @@ type CreateLoginProfileOutput struct {
 
 type metadataCreateLoginProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLoginProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLoginProfileOutput) GoString() string {
+	return s.String()
 }
 
 type CreateOpenIDConnectProviderInput struct {
@@ -4284,6 +4565,16 @@ type metadataCreateOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateOpenIDConnectProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateOpenIDConnectProviderInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateOpenIDConnectProvider request.
 type CreateOpenIDConnectProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect provider that was
@@ -4295,6 +4586,16 @@ type CreateOpenIDConnectProviderOutput struct {
 
 type metadataCreateOpenIDConnectProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateOpenIDConnectProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateOpenIDConnectProviderOutput) GoString() string {
+	return s.String()
 }
 
 type CreatePolicyInput struct {
@@ -4329,6 +4630,16 @@ type metadataCreatePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePolicyInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreatePolicy request.
 type CreatePolicyOutput struct {
 	// Information about the policy.
@@ -4339,6 +4650,16 @@ type CreatePolicyOutput struct {
 
 type metadataCreatePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type CreatePolicyVersionInput struct {
@@ -4370,6 +4691,16 @@ type metadataCreatePolicyVersionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePolicyVersionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePolicyVersionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreatePolicyVersion request.
 type CreatePolicyVersionOutput struct {
 	// Information about the policy version.
@@ -4380,6 +4711,16 @@ type CreatePolicyVersionOutput struct {
 
 type metadataCreatePolicyVersionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePolicyVersionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePolicyVersionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateRoleInput struct {
@@ -4404,6 +4745,16 @@ type metadataCreateRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateRoleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoleInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateRole request.
 type CreateRoleOutput struct {
 	// Information about the role.
@@ -4414,6 +4765,16 @@ type CreateRoleOutput struct {
 
 type metadataCreateRoleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRoleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoleOutput) GoString() string {
+	return s.String()
 }
 
 type CreateSAMLProviderInput struct {
@@ -4438,6 +4799,16 @@ type metadataCreateSAMLProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSAMLProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSAMLProviderInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateSAMLProvider request.
 type CreateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
@@ -4448,6 +4819,16 @@ type CreateSAMLProviderOutput struct {
 
 type metadataCreateSAMLProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSAMLProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSAMLProviderOutput) GoString() string {
+	return s.String()
 }
 
 type CreateUserInput struct {
@@ -4469,6 +4850,16 @@ type metadataCreateUserInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateUserInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateUser request.
 type CreateUserOutput struct {
 	// Information about the user.
@@ -4479,6 +4870,16 @@ type CreateUserOutput struct {
 
 type metadataCreateUserOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateUserOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserOutput) GoString() string {
+	return s.String()
 }
 
 type CreateVirtualMFADeviceInput struct {
@@ -4501,6 +4902,16 @@ type metadataCreateVirtualMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateVirtualMFADeviceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVirtualMFADeviceInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful CreateVirtualMFADevice request.
 type CreateVirtualMFADeviceOutput struct {
 	// A newly created virtual MFA device.
@@ -4511,6 +4922,16 @@ type CreateVirtualMFADeviceOutput struct {
 
 type metadataCreateVirtualMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVirtualMFADeviceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateVirtualMFADeviceOutput) GoString() string {
+	return s.String()
 }
 
 type DeactivateMFADeviceInput struct {
@@ -4528,12 +4949,32 @@ type metadataDeactivateMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeactivateMFADeviceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeactivateMFADeviceInput) GoString() string {
+	return s.String()
+}
+
 type DeactivateMFADeviceOutput struct {
 	metadataDeactivateMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeactivateMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeactivateMFADeviceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeactivateMFADeviceOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAccessKeyInput struct {
@@ -4551,12 +4992,32 @@ type metadataDeleteAccessKeyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAccessKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessKeyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteAccessKeyOutput struct {
 	metadataDeleteAccessKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccessKeyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessKeyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAccountAliasInput struct {
@@ -4570,12 +5031,32 @@ type metadataDeleteAccountAliasInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAccountAliasInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccountAliasInput) GoString() string {
+	return s.String()
+}
+
 type DeleteAccountAliasOutput struct {
 	metadataDeleteAccountAliasOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccountAliasOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccountAliasOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccountAliasOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteAccountPasswordPolicyInput struct {
@@ -4586,12 +5067,32 @@ type metadataDeleteAccountPasswordPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAccountPasswordPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccountPasswordPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteAccountPasswordPolicyOutput struct {
 	metadataDeleteAccountPasswordPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAccountPasswordPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccountPasswordPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccountPasswordPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteGroupInput struct {
@@ -4605,12 +5106,32 @@ type metadataDeleteGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteGroupOutput struct {
 	metadataDeleteGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteGroupPolicyInput struct {
@@ -4628,12 +5149,32 @@ type metadataDeleteGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteGroupPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteGroupPolicyOutput struct {
 	metadataDeleteGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteGroupPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGroupPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGroupPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteInstanceProfileInput struct {
@@ -4647,12 +5188,32 @@ type metadataDeleteInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteInstanceProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInstanceProfileInput) GoString() string {
+	return s.String()
+}
+
 type DeleteInstanceProfileOutput struct {
 	metadataDeleteInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteInstanceProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteInstanceProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteInstanceProfileOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLoginProfileInput struct {
@@ -4666,12 +5227,32 @@ type metadataDeleteLoginProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLoginProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoginProfileInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLoginProfileOutput struct {
 	metadataDeleteLoginProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLoginProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLoginProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLoginProfileOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteOpenIDConnectProviderInput struct {
@@ -4687,12 +5268,32 @@ type metadataDeleteOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteOpenIDConnectProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOpenIDConnectProviderInput) GoString() string {
+	return s.String()
+}
+
 type DeleteOpenIDConnectProviderOutput struct {
 	metadataDeleteOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteOpenIDConnectProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteOpenIDConnectProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOpenIDConnectProviderOutput) GoString() string {
+	return s.String()
 }
 
 type DeletePolicyInput struct {
@@ -4710,12 +5311,32 @@ type metadataDeletePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeletePolicyOutput struct {
 	metadataDeletePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeletePolicyVersionInput struct {
@@ -4740,12 +5361,32 @@ type metadataDeletePolicyVersionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePolicyVersionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePolicyVersionInput) GoString() string {
+	return s.String()
+}
+
 type DeletePolicyVersionOutput struct {
 	metadataDeletePolicyVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePolicyVersionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePolicyVersionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePolicyVersionOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteRoleInput struct {
@@ -4759,12 +5400,32 @@ type metadataDeleteRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteRoleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRoleInput) GoString() string {
+	return s.String()
+}
+
 type DeleteRoleOutput struct {
 	metadataDeleteRoleOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRoleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRoleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRoleOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteRolePolicyInput struct {
@@ -4782,12 +5443,32 @@ type metadataDeleteRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteRolePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRolePolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteRolePolicyOutput struct {
 	metadataDeleteRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRolePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRolePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRolePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSAMLProviderInput struct {
@@ -4801,12 +5482,32 @@ type metadataDeleteSAMLProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSAMLProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSAMLProviderInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSAMLProviderOutput struct {
 	metadataDeleteSAMLProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSAMLProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSAMLProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSAMLProviderOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteServerCertificateInput struct {
@@ -4820,12 +5521,32 @@ type metadataDeleteServerCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteServerCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteServerCertificateInput) GoString() string {
+	return s.String()
+}
+
 type DeleteServerCertificateOutput struct {
 	metadataDeleteServerCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteServerCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteServerCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteServerCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSigningCertificateInput struct {
@@ -4842,12 +5563,32 @@ type metadataDeleteSigningCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSigningCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSigningCertificateInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSigningCertificateOutput struct {
 	metadataDeleteSigningCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSigningCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSigningCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSigningCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteUserInput struct {
@@ -4861,12 +5602,32 @@ type metadataDeleteUserInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteUserInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserInput) GoString() string {
+	return s.String()
+}
+
 type DeleteUserOutput struct {
 	metadataDeleteUserOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUserOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteUserPolicyInput struct {
@@ -4884,12 +5645,32 @@ type metadataDeleteUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteUserPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteUserPolicyOutput struct {
 	metadataDeleteUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteUserPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUserPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteVirtualMFADeviceInput struct {
@@ -4904,12 +5685,32 @@ type metadataDeleteVirtualMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVirtualMFADeviceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVirtualMFADeviceInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVirtualMFADeviceOutput struct {
 	metadataDeleteVirtualMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVirtualMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVirtualMFADeviceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVirtualMFADeviceOutput) GoString() string {
+	return s.String()
 }
 
 type DetachGroupPolicyInput struct {
@@ -4930,12 +5731,32 @@ type metadataDetachGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachGroupPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DetachGroupPolicyOutput struct {
 	metadataDetachGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachGroupPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachGroupPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachGroupPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DetachRolePolicyInput struct {
@@ -4956,12 +5777,32 @@ type metadataDetachRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachRolePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachRolePolicyInput) GoString() string {
+	return s.String()
+}
+
 type DetachRolePolicyOutput struct {
 	metadataDetachRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachRolePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachRolePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachRolePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DetachUserPolicyInput struct {
@@ -4982,12 +5823,32 @@ type metadataDetachUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DetachUserPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachUserPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DetachUserPolicyOutput struct {
 	metadataDetachUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDetachUserPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetachUserPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DetachUserPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type EnableMFADeviceInput struct {
@@ -5011,6 +5872,16 @@ type metadataEnableMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableMFADeviceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableMFADeviceInput) GoString() string {
+	return s.String()
+}
+
 type EnableMFADeviceOutput struct {
 	metadataEnableMFADeviceOutput `json:"-" xml:"-"`
 }
@@ -5019,12 +5890,32 @@ type metadataEnableMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableMFADeviceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableMFADeviceOutput) GoString() string {
+	return s.String()
+}
+
 type GenerateCredentialReportInput struct {
 	metadataGenerateCredentialReportInput `json:"-" xml:"-"`
 }
 
 type metadataGenerateCredentialReportInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GenerateCredentialReportInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GenerateCredentialReportInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GenerateCredentialReport request.
@@ -5042,6 +5933,16 @@ type metadataGenerateCredentialReportOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GenerateCredentialReportOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GenerateCredentialReportOutput) GoString() string {
+	return s.String()
+}
+
 type GetAccessKeyLastUsedInput struct {
 	// The identifier of an access key.
 	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
@@ -5051,6 +5952,16 @@ type GetAccessKeyLastUsedInput struct {
 
 type metadataGetAccessKeyLastUsedInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessKeyLastUsedInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessKeyLastUsedInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetAccessKeyLastUsed request. It is
@@ -5068,6 +5979,16 @@ type GetAccessKeyLastUsedOutput struct {
 
 type metadataGetAccessKeyLastUsedOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccessKeyLastUsedOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccessKeyLastUsedOutput) GoString() string {
+	return s.String()
 }
 
 type GetAccountAuthorizationDetailsInput struct {
@@ -5091,6 +6012,16 @@ type GetAccountAuthorizationDetailsInput struct {
 
 type metadataGetAccountAuthorizationDetailsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccountAuthorizationDetailsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountAuthorizationDetailsInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetAccountAuthorizationDetails request.
@@ -5123,12 +6054,32 @@ type metadataGetAccountAuthorizationDetailsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetAccountAuthorizationDetailsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountAuthorizationDetailsOutput) GoString() string {
+	return s.String()
+}
+
 type GetAccountPasswordPolicyInput struct {
 	metadataGetAccountPasswordPolicyInput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountPasswordPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccountPasswordPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountPasswordPolicyInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetAccountPasswordPolicy request.
@@ -5146,12 +6097,32 @@ type metadataGetAccountPasswordPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetAccountPasswordPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountPasswordPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type GetAccountSummaryInput struct {
 	metadataGetAccountSummaryInput `json:"-" xml:"-"`
 }
 
 type metadataGetAccountSummaryInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAccountSummaryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountSummaryInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetAccountSummary request.
@@ -5308,12 +6279,32 @@ type metadataGetAccountSummaryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetAccountSummaryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetAccountSummaryOutput) GoString() string {
+	return s.String()
+}
+
 type GetCredentialReportInput struct {
 	metadataGetCredentialReportInput `json:"-" xml:"-"`
 }
 
 type metadataGetCredentialReportInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCredentialReportInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCredentialReportInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetCredentialReport request.
@@ -5333,6 +6324,16 @@ type GetCredentialReportOutput struct {
 
 type metadataGetCredentialReportOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCredentialReportOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCredentialReportOutput) GoString() string {
+	return s.String()
 }
 
 type GetGroupInput struct {
@@ -5355,6 +6356,16 @@ type GetGroupInput struct {
 
 type metadataGetGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetGroup request.
@@ -5381,6 +6392,16 @@ type metadataGetGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupOutput) GoString() string {
+	return s.String()
+}
+
 type GetGroupPolicyInput struct {
 	// The name of the group the policy is associated with.
 	GroupName *string `type:"string" required:"true"`
@@ -5393,6 +6414,16 @@ type GetGroupPolicyInput struct {
 
 type metadataGetGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetGroupPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupPolicyInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetGroupPolicy request.
@@ -5413,6 +6444,16 @@ type metadataGetGroupPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetGroupPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetGroupPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type GetInstanceProfileInput struct {
 	// The name of the instance profile to get information about.
 	InstanceProfileName *string `type:"string" required:"true"`
@@ -5422,6 +6463,16 @@ type GetInstanceProfileInput struct {
 
 type metadataGetInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetInstanceProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetInstanceProfileInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetInstanceProfile request.
@@ -5436,6 +6487,16 @@ type metadataGetInstanceProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetInstanceProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetInstanceProfileOutput) GoString() string {
+	return s.String()
+}
+
 type GetLoginProfileInput struct {
 	// The name of the user whose login profile you want to retrieve.
 	UserName *string `type:"string" required:"true"`
@@ -5445,6 +6506,16 @@ type GetLoginProfileInput struct {
 
 type metadataGetLoginProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetLoginProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetLoginProfileInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetLoginProfile request.
@@ -5459,6 +6530,16 @@ type metadataGetLoginProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetLoginProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetLoginProfileOutput) GoString() string {
+	return s.String()
+}
+
 type GetOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to get information for. You can get a list of OIDC provider ARNs by using
@@ -5470,6 +6551,16 @@ type GetOpenIDConnectProviderInput struct {
 
 type metadataGetOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetOpenIDConnectProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOpenIDConnectProviderInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetOpenIDConnectProvider request.
@@ -5497,6 +6588,16 @@ type metadataGetOpenIDConnectProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetOpenIDConnectProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOpenIDConnectProviderOutput) GoString() string {
+	return s.String()
+}
+
 type GetPolicyInput struct {
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
@@ -5512,6 +6613,16 @@ type metadataGetPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful GetPolicy request.
 type GetPolicyOutput struct {
 	// Information about the policy.
@@ -5522,6 +6633,16 @@ type GetPolicyOutput struct {
 
 type metadataGetPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type GetPolicyVersionInput struct {
@@ -5542,6 +6663,16 @@ type metadataGetPolicyVersionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetPolicyVersionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyVersionInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful GetPolicyVersion request.
 type GetPolicyVersionOutput struct {
 	// Information about the policy version.
@@ -5558,6 +6689,16 @@ type metadataGetPolicyVersionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetPolicyVersionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPolicyVersionOutput) GoString() string {
+	return s.String()
+}
+
 type GetRoleInput struct {
 	// The name of the role to get information about.
 	RoleName *string `type:"string" required:"true"`
@@ -5567,6 +6708,16 @@ type GetRoleInput struct {
 
 type metadataGetRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRoleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetRoleInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetRole request.
@@ -5581,6 +6732,16 @@ type metadataGetRoleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetRoleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetRoleOutput) GoString() string {
+	return s.String()
+}
+
 type GetRolePolicyInput struct {
 	// The name of the policy document to get.
 	PolicyName *string `type:"string" required:"true"`
@@ -5593,6 +6754,16 @@ type GetRolePolicyInput struct {
 
 type metadataGetRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRolePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetRolePolicyInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetRolePolicy request.
@@ -5613,6 +6784,16 @@ type metadataGetRolePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetRolePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetRolePolicyOutput) GoString() string {
+	return s.String()
+}
+
 type GetSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to get information about.
 	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
@@ -5622,6 +6803,16 @@ type GetSAMLProviderInput struct {
 
 type metadataGetSAMLProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSAMLProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSAMLProviderInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetSAMLProvider request.
@@ -5642,6 +6833,16 @@ type metadataGetSAMLProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetSAMLProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSAMLProviderOutput) GoString() string {
+	return s.String()
+}
+
 type GetServerCertificateInput struct {
 	// The name of the server certificate you want to retrieve information about.
 	ServerCertificateName *string `type:"string" required:"true"`
@@ -5651,6 +6852,16 @@ type GetServerCertificateInput struct {
 
 type metadataGetServerCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetServerCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetServerCertificateInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetServerCertificate request.
@@ -5663,6 +6874,16 @@ type GetServerCertificateOutput struct {
 
 type metadataGetServerCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetServerCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetServerCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type GetUserInput struct {
@@ -5679,6 +6900,16 @@ type metadataGetUserInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetUserInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetUserInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful GetUser request.
 type GetUserOutput struct {
 	// Information about the user.
@@ -5689,6 +6920,16 @@ type GetUserOutput struct {
 
 type metadataGetUserOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetUserOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetUserOutput) GoString() string {
+	return s.String()
 }
 
 type GetUserPolicyInput struct {
@@ -5703,6 +6944,16 @@ type GetUserPolicyInput struct {
 
 type metadataGetUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetUserPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetUserPolicyInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful GetUserPolicy request.
@@ -5721,6 +6972,16 @@ type GetUserPolicyOutput struct {
 
 type metadataGetUserPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetUserPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetUserPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about an IAM group entity.
@@ -5756,6 +7017,16 @@ type Group struct {
 
 type metadataGroup struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Group) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Group) GoString() string {
+	return s.String()
 }
 
 // Contains information about an IAM group, including all of the group's policies.
@@ -5798,6 +7069,16 @@ type GroupDetail struct {
 
 type metadataGroupDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GroupDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GroupDetail) GoString() string {
+	return s.String()
 }
 
 // Contains information about an instance profile.
@@ -5844,6 +7125,16 @@ type metadataInstanceProfile struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceProfile) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceProfile) GoString() string {
+	return s.String()
+}
+
 type ListAccessKeysInput struct {
 	// Use this parameter only when paginating results, and only in a subsequent
 	// request after you've received a response where the results are truncated.
@@ -5864,6 +7155,16 @@ type ListAccessKeysInput struct {
 
 type metadataListAccessKeysInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAccessKeysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessKeysInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful ListAccessKeys request.
@@ -5887,6 +7188,16 @@ type metadataListAccessKeysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListAccessKeysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessKeysOutput) GoString() string {
+	return s.String()
+}
+
 type ListAccountAliasesInput struct {
 	// Use this only when paginating results, and only in a subsequent request after
 	// you've received a response where the results are truncated. Set it to the
@@ -5904,6 +7215,16 @@ type ListAccountAliasesInput struct {
 
 type metadataListAccountAliasesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAccountAliasesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAccountAliasesInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful ListAccountAliases request.
@@ -5927,6 +7248,16 @@ type ListAccountAliasesOutput struct {
 
 type metadataListAccountAliasesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAccountAliasesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAccountAliasesOutput) GoString() string {
+	return s.String()
 }
 
 type ListAttachedGroupPoliciesInput struct {
@@ -5956,6 +7287,16 @@ type metadataListAttachedGroupPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListAttachedGroupPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAttachedGroupPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListAttachedGroupPolicies request.
 type ListAttachedGroupPoliciesOutput struct {
 	// A list of the attached policies.
@@ -5975,6 +7316,16 @@ type ListAttachedGroupPoliciesOutput struct {
 
 type metadataListAttachedGroupPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAttachedGroupPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAttachedGroupPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListAttachedRolePoliciesInput struct {
@@ -6003,6 +7354,16 @@ type metadataListAttachedRolePoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListAttachedRolePoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAttachedRolePoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListAttachedRolePolicies request.
 type ListAttachedRolePoliciesOutput struct {
 	// A list of the attached policies.
@@ -6022,6 +7383,16 @@ type ListAttachedRolePoliciesOutput struct {
 
 type metadataListAttachedRolePoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAttachedRolePoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAttachedRolePoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListAttachedUserPoliciesInput struct {
@@ -6050,6 +7421,16 @@ type metadataListAttachedUserPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListAttachedUserPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAttachedUserPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListAttachedUserPolicies request.
 type ListAttachedUserPoliciesOutput struct {
 	// A list of the attached policies.
@@ -6069,6 +7450,16 @@ type ListAttachedUserPoliciesOutput struct {
 
 type metadataListAttachedUserPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListAttachedUserPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListAttachedUserPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListEntitiesForPolicyInput struct {
@@ -6108,6 +7499,16 @@ type metadataListEntitiesForPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListEntitiesForPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListEntitiesForPolicyInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListEntitiesForPolicy request.
 type ListEntitiesForPolicyOutput struct {
 	// A flag that indicates whether there are more entities to list. If your results
@@ -6135,6 +7536,16 @@ type metadataListEntitiesForPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListEntitiesForPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListEntitiesForPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type ListGroupPoliciesInput struct {
 	// The name of the group to list policies for.
 	GroupName *string `type:"string" required:"true"`
@@ -6157,6 +7568,16 @@ type metadataListGroupPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListGroupPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListGroupPolicies request.
 type ListGroupPoliciesOutput struct {
 	// A flag that indicates whether there are more policy names to list. If your
@@ -6176,6 +7597,16 @@ type ListGroupPoliciesOutput struct {
 
 type metadataListGroupPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListGroupPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListGroupsForUserInput struct {
@@ -6200,6 +7631,16 @@ type metadataListGroupsForUserInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListGroupsForUserInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsForUserInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListGroupsForUser request.
 type ListGroupsForUserOutput struct {
 	// A list of groups.
@@ -6219,6 +7660,16 @@ type ListGroupsForUserOutput struct {
 
 type metadataListGroupsForUserOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListGroupsForUserOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsForUserOutput) GoString() string {
+	return s.String()
 }
 
 type ListGroupsInput struct {
@@ -6247,6 +7698,16 @@ type metadataListGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListGroups request.
 type ListGroupsOutput struct {
 	// A list of groups.
@@ -6266,6 +7727,16 @@ type ListGroupsOutput struct {
 
 type metadataListGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type ListInstanceProfilesForRoleInput struct {
@@ -6291,6 +7762,16 @@ type metadataListInstanceProfilesForRoleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListInstanceProfilesForRoleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceProfilesForRoleInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListInstanceProfilesForRole request.
 type ListInstanceProfilesForRoleOutput struct {
 	// A list of instance profiles.
@@ -6311,6 +7792,16 @@ type ListInstanceProfilesForRoleOutput struct {
 
 type metadataListInstanceProfilesForRoleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListInstanceProfilesForRoleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceProfilesForRoleOutput) GoString() string {
+	return s.String()
 }
 
 type ListInstanceProfilesInput struct {
@@ -6340,6 +7831,16 @@ type metadataListInstanceProfilesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListInstanceProfilesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceProfilesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListInstanceProfiles request.
 type ListInstanceProfilesOutput struct {
 	// A list of instance profiles.
@@ -6360,6 +7861,16 @@ type ListInstanceProfilesOutput struct {
 
 type metadataListInstanceProfilesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListInstanceProfilesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceProfilesOutput) GoString() string {
+	return s.String()
 }
 
 type ListMFADevicesInput struct {
@@ -6384,6 +7895,16 @@ type metadataListMFADevicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListMFADevicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListMFADevicesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListMFADevices request.
 type ListMFADevicesOutput struct {
 	// A flag that indicates whether there are more MFA devices to list. If your
@@ -6405,12 +7926,32 @@ type metadataListMFADevicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListMFADevicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListMFADevicesOutput) GoString() string {
+	return s.String()
+}
+
 type ListOpenIDConnectProvidersInput struct {
 	metadataListOpenIDConnectProvidersInput `json:"-" xml:"-"`
 }
 
 type metadataListOpenIDConnectProvidersInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListOpenIDConnectProvidersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListOpenIDConnectProvidersInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful ListOpenIDConnectProviders request.
@@ -6423,6 +7964,16 @@ type ListOpenIDConnectProvidersOutput struct {
 
 type metadataListOpenIDConnectProvidersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListOpenIDConnectProvidersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListOpenIDConnectProvidersOutput) GoString() string {
+	return s.String()
 }
 
 type ListPoliciesInput struct {
@@ -6464,6 +8015,16 @@ type metadataListPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListPolicies request.
 type ListPoliciesOutput struct {
 	// A flag that indicates whether there are more policies to list. If your results
@@ -6483,6 +8044,16 @@ type ListPoliciesOutput struct {
 
 type metadataListPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListPolicyVersionsInput struct {
@@ -6512,6 +8083,16 @@ type metadataListPolicyVersionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPolicyVersionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPolicyVersionsInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListPolicyVersions request.
 type ListPolicyVersionsOutput struct {
 	// A flag that indicates whether there are more policy versions to list. If
@@ -6538,6 +8119,16 @@ type metadataListPolicyVersionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPolicyVersionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPolicyVersionsOutput) GoString() string {
+	return s.String()
+}
+
 type ListRolePoliciesInput struct {
 	// Use this parameter only when paginating results, and only in a subsequent
 	// request after you've received a response where the results are truncated.
@@ -6560,6 +8151,16 @@ type metadataListRolePoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListRolePoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListRolePoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListRolePolicies request.
 type ListRolePoliciesOutput struct {
 	// A flag that indicates whether there are more policy names to list. If your
@@ -6579,6 +8180,16 @@ type ListRolePoliciesOutput struct {
 
 type metadataListRolePoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListRolePoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListRolePoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListRolesInput struct {
@@ -6607,6 +8218,16 @@ type metadataListRolesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListRolesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListRolesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListRoles request.
 type ListRolesOutput struct {
 	// A flag that indicates whether there are more roles to list. If your results
@@ -6628,12 +8249,32 @@ type metadataListRolesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListRolesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListRolesOutput) GoString() string {
+	return s.String()
+}
+
 type ListSAMLProvidersInput struct {
 	metadataListSAMLProvidersInput `json:"-" xml:"-"`
 }
 
 type metadataListSAMLProvidersInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSAMLProvidersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSAMLProvidersInput) GoString() string {
+	return s.String()
 }
 
 // Contains the response to a successful ListSAMLProviders request.
@@ -6646,6 +8287,16 @@ type ListSAMLProvidersOutput struct {
 
 type metadataListSAMLProvidersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSAMLProvidersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSAMLProvidersOutput) GoString() string {
+	return s.String()
 }
 
 type ListServerCertificatesInput struct {
@@ -6675,6 +8326,16 @@ type metadataListServerCertificatesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListServerCertificatesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListServerCertificatesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListServerCertificates request.
 type ListServerCertificatesOutput struct {
 	// A flag that indicates whether there are more server certificates to list.
@@ -6695,6 +8356,16 @@ type ListServerCertificatesOutput struct {
 
 type metadataListServerCertificatesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListServerCertificatesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListServerCertificatesOutput) GoString() string {
+	return s.String()
 }
 
 type ListSigningCertificatesInput struct {
@@ -6719,6 +8390,16 @@ type metadataListSigningCertificatesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListSigningCertificatesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSigningCertificatesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListSigningCertificates request.
 type ListSigningCertificatesOutput struct {
 	// A list of the user's signing certificate information.
@@ -6738,6 +8419,16 @@ type ListSigningCertificatesOutput struct {
 
 type metadataListSigningCertificatesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSigningCertificatesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSigningCertificatesOutput) GoString() string {
+	return s.String()
 }
 
 type ListUserPoliciesInput struct {
@@ -6762,6 +8453,16 @@ type metadataListUserPoliciesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListUserPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListUserPoliciesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListUserPolicies request.
 type ListUserPoliciesOutput struct {
 	// A flag that indicates whether there are more policy names to list. If your
@@ -6781,6 +8482,16 @@ type ListUserPoliciesOutput struct {
 
 type metadataListUserPoliciesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListUserPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListUserPoliciesOutput) GoString() string {
+	return s.String()
 }
 
 type ListUsersInput struct {
@@ -6809,6 +8520,16 @@ type metadataListUsersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListUsersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListUsersInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListUsers request.
 type ListUsersOutput struct {
 	// A flag that indicates whether there are more user names to list. If your
@@ -6828,6 +8549,16 @@ type ListUsersOutput struct {
 
 type metadataListUsersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListUsersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListUsersOutput) GoString() string {
+	return s.String()
 }
 
 type ListVirtualMFADevicesInput struct {
@@ -6854,6 +8585,16 @@ type metadataListVirtualMFADevicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListVirtualMFADevicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVirtualMFADevicesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful ListVirtualMFADevices request.
 type ListVirtualMFADevicesOutput struct {
 	// A flag that indicates whether there are more items to list. If your results
@@ -6874,6 +8615,16 @@ type ListVirtualMFADevicesOutput struct {
 
 type metadataListVirtualMFADevicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVirtualMFADevicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVirtualMFADevicesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the user name and password create date for a user.
@@ -6898,6 +8649,16 @@ type metadataLoginProfile struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LoginProfile) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LoginProfile) GoString() string {
+	return s.String()
+}
+
 // Contains information about an MFA device.
 //
 // This data type is used as a response element in the ListMFADevices action.
@@ -6917,6 +8678,16 @@ type MFADevice struct {
 
 type metadataMFADevice struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MFADevice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MFADevice) GoString() string {
+	return s.String()
 }
 
 // Contains information about a managed policy, including the policy's ARN,
@@ -6993,6 +8764,16 @@ type metadataManagedPolicyDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ManagedPolicyDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ManagedPolicyDetail) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon Resource Name (ARN) for an IAM OpenID Connect provider.
 type OpenIDConnectProviderListEntry struct {
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
@@ -7007,6 +8788,16 @@ type OpenIDConnectProviderListEntry struct {
 
 type metadataOpenIDConnectProviderListEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OpenIDConnectProviderListEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OpenIDConnectProviderListEntry) GoString() string {
+	return s.String()
 }
 
 // Contains information about the account password policy.
@@ -7052,6 +8843,16 @@ type PasswordPolicy struct {
 
 type metadataPasswordPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PasswordPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PasswordPolicy) GoString() string {
+	return s.String()
 }
 
 // Contains information about a managed policy.
@@ -7121,6 +8922,16 @@ type metadataPolicy struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Policy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Policy) GoString() string {
+	return s.String()
+}
+
 // Contains information about an IAM policy, including the policy document.
 //
 // This data type is used as a response element in the GetAccountAuthorizationDetails
@@ -7137,6 +8948,16 @@ type PolicyDetail struct {
 
 type metadataPolicyDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PolicyDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyDetail) GoString() string {
+	return s.String()
 }
 
 // Contains information about a group that a managed policy is attached to.
@@ -7158,6 +8979,16 @@ type metadataPolicyGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PolicyGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyGroup) GoString() string {
+	return s.String()
+}
+
 // Contains information about a role that a managed policy is attached to.
 //
 // This data type is used as a response element in the ListEntitiesForPolicy
@@ -7177,6 +9008,16 @@ type metadataPolicyRole struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PolicyRole) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyRole) GoString() string {
+	return s.String()
+}
+
 // Contains information about a user that a managed policy is attached to.
 //
 // This data type is used as a response element in the ListEntitiesForPolicy
@@ -7194,6 +9035,16 @@ type PolicyUser struct {
 
 type metadataPolicyUser struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PolicyUser) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyUser) GoString() string {
+	return s.String()
 }
 
 // Contains information about a version of a managed policy.
@@ -7233,6 +9084,16 @@ type metadataPolicyVersion struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PolicyVersion) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PolicyVersion) GoString() string {
+	return s.String()
+}
+
 type PutGroupPolicyInput struct {
 	// The name of the group to associate the policy with.
 	GroupName *string `type:"string" required:"true"`
@@ -7250,12 +9111,32 @@ type metadataPutGroupPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutGroupPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
 type PutGroupPolicyOutput struct {
 	metadataPutGroupPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutGroupPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutGroupPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutGroupPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type PutRolePolicyInput struct {
@@ -7275,12 +9156,32 @@ type metadataPutRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutRolePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRolePolicyInput) GoString() string {
+	return s.String()
+}
+
 type PutRolePolicyOutput struct {
 	metadataPutRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRolePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRolePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRolePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type PutUserPolicyInput struct {
@@ -7300,12 +9201,32 @@ type metadataPutUserPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutUserPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutUserPolicyInput) GoString() string {
+	return s.String()
+}
+
 type PutUserPolicyOutput struct {
 	metadataPutUserPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutUserPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutUserPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutUserPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type RemoveClientIDFromOpenIDConnectProviderInput struct {
@@ -7325,12 +9246,32 @@ type metadataRemoveClientIDFromOpenIDConnectProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveClientIDFromOpenIDConnectProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveClientIDFromOpenIDConnectProviderInput) GoString() string {
+	return s.String()
+}
+
 type RemoveClientIDFromOpenIDConnectProviderOutput struct {
 	metadataRemoveClientIDFromOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveClientIDFromOpenIDConnectProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveClientIDFromOpenIDConnectProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveClientIDFromOpenIDConnectProviderOutput) GoString() string {
+	return s.String()
 }
 
 type RemoveRoleFromInstanceProfileInput struct {
@@ -7347,12 +9288,32 @@ type metadataRemoveRoleFromInstanceProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveRoleFromInstanceProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveRoleFromInstanceProfileInput) GoString() string {
+	return s.String()
+}
+
 type RemoveRoleFromInstanceProfileOutput struct {
 	metadataRemoveRoleFromInstanceProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveRoleFromInstanceProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveRoleFromInstanceProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveRoleFromInstanceProfileOutput) GoString() string {
+	return s.String()
 }
 
 type RemoveUserFromGroupInput struct {
@@ -7369,12 +9330,32 @@ type metadataRemoveUserFromGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveUserFromGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveUserFromGroupInput) GoString() string {
+	return s.String()
+}
+
 type RemoveUserFromGroupOutput struct {
 	metadataRemoveUserFromGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataRemoveUserFromGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveUserFromGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveUserFromGroupOutput) GoString() string {
+	return s.String()
 }
 
 type ResyncMFADeviceInput struct {
@@ -7397,12 +9378,32 @@ type metadataResyncMFADeviceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResyncMFADeviceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResyncMFADeviceInput) GoString() string {
+	return s.String()
+}
+
 type ResyncMFADeviceOutput struct {
 	metadataResyncMFADeviceOutput `json:"-" xml:"-"`
 }
 
 type metadataResyncMFADeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResyncMFADeviceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResyncMFADeviceOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about an IAM role.
@@ -7445,6 +9446,16 @@ type Role struct {
 
 type metadataRole struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Role) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Role) GoString() string {
+	return s.String()
 }
 
 // Contains information about an IAM role, including all of the role's policies.
@@ -7497,6 +9508,16 @@ type metadataRoleDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RoleDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RoleDetail) GoString() string {
+	return s.String()
+}
+
 // Contains the list of SAML providers for this account.
 type SAMLProviderListEntry struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
@@ -7513,6 +9534,16 @@ type SAMLProviderListEntry struct {
 
 type metadataSAMLProviderListEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SAMLProviderListEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SAMLProviderListEntry) GoString() string {
+	return s.String()
 }
 
 // Contains information about a server certificate.
@@ -7535,6 +9566,16 @@ type ServerCertificate struct {
 
 type metadataServerCertificate struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ServerCertificate) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ServerCertificate) GoString() string {
+	return s.String()
 }
 
 // Contains information about a server certificate without its certificate body,
@@ -7575,6 +9616,16 @@ type metadataServerCertificateMetadata struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ServerCertificateMetadata) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ServerCertificateMetadata) GoString() string {
+	return s.String()
+}
+
 type SetDefaultPolicyVersionInput struct {
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
@@ -7597,12 +9648,32 @@ type metadataSetDefaultPolicyVersionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetDefaultPolicyVersionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetDefaultPolicyVersionInput) GoString() string {
+	return s.String()
+}
+
 type SetDefaultPolicyVersionOutput struct {
 	metadataSetDefaultPolicyVersionOutput `json:"-" xml:"-"`
 }
 
 type metadataSetDefaultPolicyVersionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetDefaultPolicyVersionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetDefaultPolicyVersionOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about an X.509 signing certificate.
@@ -7633,6 +9704,16 @@ type metadataSigningCertificate struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SigningCertificate) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SigningCertificate) GoString() string {
+	return s.String()
+}
+
 type UpdateAccessKeyInput struct {
 	// The access key ID of the secret access key you want to update.
 	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
@@ -7652,12 +9733,32 @@ type metadataUpdateAccessKeyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateAccessKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccessKeyInput) GoString() string {
+	return s.String()
+}
+
 type UpdateAccessKeyOutput struct {
 	metadataUpdateAccessKeyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAccessKeyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAccessKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccessKeyOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAccountPasswordPolicyInput struct {
@@ -7725,12 +9826,32 @@ type metadataUpdateAccountPasswordPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateAccountPasswordPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccountPasswordPolicyInput) GoString() string {
+	return s.String()
+}
+
 type UpdateAccountPasswordPolicyOutput struct {
 	metadataUpdateAccountPasswordPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAccountPasswordPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAccountPasswordPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccountPasswordPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateAssumeRolePolicyInput struct {
@@ -7747,12 +9868,32 @@ type metadataUpdateAssumeRolePolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateAssumeRolePolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAssumeRolePolicyInput) GoString() string {
+	return s.String()
+}
+
 type UpdateAssumeRolePolicyOutput struct {
 	metadataUpdateAssumeRolePolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateAssumeRolePolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAssumeRolePolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAssumeRolePolicyOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateGroupInput struct {
@@ -7773,12 +9914,32 @@ type metadataUpdateGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGroupInput) GoString() string {
+	return s.String()
+}
+
 type UpdateGroupOutput struct {
 	metadataUpdateGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGroupOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateLoginProfileInput struct {
@@ -7798,12 +9959,32 @@ type metadataUpdateLoginProfileInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateLoginProfileInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLoginProfileInput) GoString() string {
+	return s.String()
+}
+
 type UpdateLoginProfileOutput struct {
 	metadataUpdateLoginProfileOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateLoginProfileOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLoginProfileOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLoginProfileOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateOpenIDConnectProviderThumbprintInput struct {
@@ -7823,12 +10004,32 @@ type metadataUpdateOpenIDConnectProviderThumbprintInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateOpenIDConnectProviderThumbprintInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateOpenIDConnectProviderThumbprintInput) GoString() string {
+	return s.String()
+}
+
 type UpdateOpenIDConnectProviderThumbprintOutput struct {
 	metadataUpdateOpenIDConnectProviderThumbprintOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateOpenIDConnectProviderThumbprintOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateOpenIDConnectProviderThumbprintOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateOpenIDConnectProviderThumbprintOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateSAMLProviderInput struct {
@@ -7849,6 +10050,16 @@ type metadataUpdateSAMLProviderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateSAMLProviderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSAMLProviderInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful UpdateSAMLProvider request.
 type UpdateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider that was updated.
@@ -7859,6 +10070,16 @@ type UpdateSAMLProviderOutput struct {
 
 type metadataUpdateSAMLProviderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSAMLProviderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSAMLProviderOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateServerCertificateInput struct {
@@ -7881,12 +10102,32 @@ type metadataUpdateServerCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateServerCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateServerCertificateInput) GoString() string {
+	return s.String()
+}
+
 type UpdateServerCertificateOutput struct {
 	metadataUpdateServerCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateServerCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateServerCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateServerCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateSigningCertificateInput struct {
@@ -7908,12 +10149,32 @@ type metadataUpdateSigningCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateSigningCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSigningCertificateInput) GoString() string {
+	return s.String()
+}
+
 type UpdateSigningCertificateOutput struct {
 	metadataUpdateSigningCertificateOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateSigningCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSigningCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSigningCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateUserInput struct {
@@ -7936,12 +10197,32 @@ type metadataUpdateUserInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateUserInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserInput) GoString() string {
+	return s.String()
+}
+
 type UpdateUserOutput struct {
 	metadataUpdateUserOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateUserOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateUserOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserOutput) GoString() string {
+	return s.String()
 }
 
 type UploadServerCertificateInput struct {
@@ -7979,6 +10260,16 @@ type metadataUploadServerCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UploadServerCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadServerCertificateInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful UploadServerCertificate request.
 type UploadServerCertificateOutput struct {
 	// The meta information of the uploaded server certificate without its certificate
@@ -7990,6 +10281,16 @@ type UploadServerCertificateOutput struct {
 
 type metadataUploadServerCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UploadServerCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadServerCertificateOutput) GoString() string {
+	return s.String()
 }
 
 type UploadSigningCertificateInput struct {
@@ -8006,6 +10307,16 @@ type metadataUploadSigningCertificateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UploadSigningCertificateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadSigningCertificateInput) GoString() string {
+	return s.String()
+}
+
 // Contains the response to a successful UploadSigningCertificate request.
 type UploadSigningCertificateOutput struct {
 	// Information about the certificate.
@@ -8016,6 +10327,16 @@ type UploadSigningCertificateOutput struct {
 
 type metadataUploadSigningCertificateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UploadSigningCertificateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadSigningCertificateOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about an IAM user entity.
@@ -8075,6 +10396,16 @@ type metadataUser struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s User) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s User) GoString() string {
+	return s.String()
+}
+
 // Contains information about an IAM user, including all the user's policies
 // and all the IAM groups the user is in.
 //
@@ -8121,6 +10452,16 @@ type metadataUserDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UserDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UserDetail) GoString() string {
+	return s.String()
+}
+
 // Contains information about a virtual MFA device.
 type VirtualMFADevice struct {
 	// The Base32 seed defined as specified in RFC3548 (http://www.ietf.org/rfc/rfc3548.txt).
@@ -8155,4 +10496,14 @@ type VirtualMFADevice struct {
 
 type metadataVirtualMFADevice struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VirtualMFADevice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VirtualMFADevice) GoString() string {
+	return s.String()
 }

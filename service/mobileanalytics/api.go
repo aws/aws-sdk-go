@@ -5,6 +5,7 @@ package mobileanalytics
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opPutEvents = "PutEvents"
@@ -71,6 +72,16 @@ type metadataEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Event) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Event) GoString() string {
+	return s.String()
+}
+
 // A container for the data needed for a PutEvent operation
 type PutEventsInput struct {
 	// The client context including the client ID, app title, app version and package
@@ -90,12 +101,32 @@ type metadataPutEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutEventsInput) GoString() string {
+	return s.String()
+}
+
 type PutEventsOutput struct {
 	metadataPutEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataPutEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutEventsOutput) GoString() string {
+	return s.String()
 }
 
 // Describes the session. Session information is required on ALL events.
@@ -119,4 +150,14 @@ type Session struct {
 
 type metadataSession struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Session) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Session) GoString() string {
+	return s.String()
 }

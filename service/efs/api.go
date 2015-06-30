@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateFileSystem = "CreateFileSystem"
@@ -527,6 +528,16 @@ type metadataCreateFileSystemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateFileSystemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateFileSystemInput) GoString() string {
+	return s.String()
+}
+
 type CreateMountTargetInput struct {
 	// The ID of the file system for which to create the mount target.
 	FileSystemID *string `locationName:"FileSystemId" type:"string" required:"true"`
@@ -548,6 +559,16 @@ type metadataCreateMountTargetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateMountTargetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateMountTargetInput) GoString() string {
+	return s.String()
+}
+
 type CreateTagsInput struct {
 	// String. The ID of the file system whose tags you want to modify. This operation
 	// modifies only the tags and not the file system.
@@ -563,12 +584,32 @@ type metadataCreateTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTagsInput) GoString() string {
+	return s.String()
+}
+
 type CreateTagsOutput struct {
 	metadataCreateTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTagsOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteFileSystemInput struct {
@@ -582,12 +623,32 @@ type metadataDeleteFileSystemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteFileSystemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFileSystemInput) GoString() string {
+	return s.String()
+}
+
 type DeleteFileSystemOutput struct {
 	metadataDeleteFileSystemOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteFileSystemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFileSystemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFileSystemOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteMountTargetInput struct {
@@ -601,12 +662,32 @@ type metadataDeleteMountTargetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteMountTargetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMountTargetInput) GoString() string {
+	return s.String()
+}
+
 type DeleteMountTargetOutput struct {
 	metadataDeleteMountTargetOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMountTargetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMountTargetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMountTargetOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteTagsInput struct {
@@ -623,12 +704,32 @@ type metadataDeleteTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteTagsOutput struct {
 	metadataDeleteTagsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeFileSystemsInput struct {
@@ -659,6 +760,16 @@ type metadataDescribeFileSystemsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeFileSystemsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFileSystemsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeFileSystemsOutput struct {
 	// An array of file system descriptions.
 	FileSystems []*FileSystemDescription `type:"list"`
@@ -677,6 +788,16 @@ type metadataDescribeFileSystemsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeFileSystemsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFileSystemsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeMountTargetSecurityGroupsInput struct {
 	// The ID of the mount target whose security groups you want to retrieve.
 	MountTargetID *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
@@ -688,6 +809,16 @@ type metadataDescribeMountTargetSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeMountTargetSecurityGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMountTargetSecurityGroupsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeMountTargetSecurityGroupsOutput struct {
 	// An array of security groups.
 	SecurityGroups []*string `type:"list" required:"true"`
@@ -697,6 +828,16 @@ type DescribeMountTargetSecurityGroupsOutput struct {
 
 type metadataDescribeMountTargetSecurityGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMountTargetSecurityGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMountTargetSecurityGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeMountTargetsInput struct {
@@ -717,6 +858,16 @@ type DescribeMountTargetsInput struct {
 
 type metadataDescribeMountTargetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMountTargetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMountTargetsInput) GoString() string {
+	return s.String()
 }
 
 type DescribeMountTargetsOutput struct {
@@ -740,6 +891,16 @@ type metadataDescribeMountTargetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeMountTargetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMountTargetsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsInput struct {
 	// The ID of the file system whose tag set you want to retrieve.
 	FileSystemID *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
@@ -760,6 +921,16 @@ type metadataDescribeTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeTagsOutput struct {
 	// If the request included a Marker, the response returns that value in this
 	// field.
@@ -778,6 +949,16 @@ type DescribeTagsOutput struct {
 
 type metadataDescribeTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTagsOutput) GoString() string {
+	return s.String()
 }
 
 // This object provides description of a file system.
@@ -826,6 +1007,16 @@ type metadataFileSystemDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FileSystemDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemDescription) GoString() string {
+	return s.String()
+}
+
 // This object provides the latest known metered size, in bytes, of data stored
 // in the file system, in its Value field, and the time at which that size was
 // determined in its Timestamp field. Note that the value does not represent
@@ -849,6 +1040,16 @@ type metadataFileSystemSize struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FileSystemSize) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemSize) GoString() string {
+	return s.String()
+}
+
 type ModifyMountTargetSecurityGroupsInput struct {
 	// The ID of the mount target whose security groups you want to modify.
 	MountTargetID *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
@@ -863,12 +1064,32 @@ type metadataModifyMountTargetSecurityGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyMountTargetSecurityGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyMountTargetSecurityGroupsInput) GoString() string {
+	return s.String()
+}
+
 type ModifyMountTargetSecurityGroupsOutput struct {
 	metadataModifyMountTargetSecurityGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyMountTargetSecurityGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyMountTargetSecurityGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // This object provides description of a mount target.
@@ -902,6 +1123,16 @@ type metadataMountTargetDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MountTargetDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MountTargetDescription) GoString() string {
+	return s.String()
+}
+
 // A tag is a pair of key and value. The allowed characters in keys and values
 // are letters, whitespace, and numbers, representable in UTF-8, and the characters
 // '+', '-', '=', '.', '_', ':', and '/'.
@@ -917,4 +1148,14 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }

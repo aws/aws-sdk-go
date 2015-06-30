@@ -5,6 +5,7 @@ package sns
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddPermission = "AddPermission"
@@ -859,12 +860,32 @@ type metadataAddPermissionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddPermissionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddPermissionInput) GoString() string {
+	return s.String()
+}
+
 type AddPermissionOutput struct {
 	metadataAddPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddPermissionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddPermissionOutput) GoString() string {
+	return s.String()
 }
 
 // Input for ConfirmSubscription action.
@@ -888,6 +909,16 @@ type metadataConfirmSubscriptionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfirmSubscriptionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmSubscriptionInput) GoString() string {
+	return s.String()
+}
+
 // Response for ConfirmSubscriptions action.
 type ConfirmSubscriptionOutput struct {
 	// The ARN of the created subscription.
@@ -898,6 +929,16 @@ type ConfirmSubscriptionOutput struct {
 
 type metadataConfirmSubscriptionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfirmSubscriptionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfirmSubscriptionOutput) GoString() string {
+	return s.String()
 }
 
 // Input for CreatePlatformApplication action.
@@ -921,6 +962,16 @@ type metadataCreatePlatformApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePlatformApplicationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePlatformApplicationInput) GoString() string {
+	return s.String()
+}
+
 // Response from CreatePlatformApplication action.
 type CreatePlatformApplicationOutput struct {
 	// PlatformApplicationArn is returned.
@@ -931,6 +982,16 @@ type CreatePlatformApplicationOutput struct {
 
 type metadataCreatePlatformApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePlatformApplicationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePlatformApplicationOutput) GoString() string {
+	return s.String()
 }
 
 // Input for CreatePlatformEndpoint action.
@@ -960,6 +1021,16 @@ type metadataCreatePlatformEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreatePlatformEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePlatformEndpointInput) GoString() string {
+	return s.String()
+}
+
 // Response from CreateEndpoint action.
 type CreatePlatformEndpointOutput struct {
 	// EndpointArn returned from CreateEndpoint action.
@@ -970,6 +1041,16 @@ type CreatePlatformEndpointOutput struct {
 
 type metadataCreatePlatformEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreatePlatformEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreatePlatformEndpointOutput) GoString() string {
+	return s.String()
 }
 
 // Input for CreateTopic action.
@@ -988,6 +1069,16 @@ type metadataCreateTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateTopicInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTopicInput) GoString() string {
+	return s.String()
+}
+
 // Response from CreateTopic action.
 type CreateTopicOutput struct {
 	// The Amazon Resource Name (ARN) assigned to the created topic.
@@ -998,6 +1089,16 @@ type CreateTopicOutput struct {
 
 type metadataCreateTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateTopicOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTopicOutput) GoString() string {
+	return s.String()
 }
 
 // Input for DeleteEndpoint action.
@@ -1012,12 +1113,32 @@ type metadataDeleteEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointInput) GoString() string {
+	return s.String()
+}
+
 type DeleteEndpointOutput struct {
 	metadataDeleteEndpointOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointOutput) GoString() string {
+	return s.String()
 }
 
 // Input for DeletePlatformApplication action.
@@ -1032,12 +1153,32 @@ type metadataDeletePlatformApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeletePlatformApplicationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePlatformApplicationInput) GoString() string {
+	return s.String()
+}
+
 type DeletePlatformApplicationOutput struct {
 	metadataDeletePlatformApplicationOutput `json:"-" xml:"-"`
 }
 
 type metadataDeletePlatformApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePlatformApplicationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeletePlatformApplicationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteTopicInput struct {
@@ -1051,12 +1192,32 @@ type metadataDeleteTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTopicInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTopicInput) GoString() string {
+	return s.String()
+}
+
 type DeleteTopicOutput struct {
 	metadataDeleteTopicOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTopicOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTopicOutput) GoString() string {
+	return s.String()
 }
 
 // Endpoint for mobile app and device.
@@ -1074,6 +1235,16 @@ type metadataEndpoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Endpoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Endpoint) GoString() string {
+	return s.String()
+}
+
 // Input for GetEndpointAttributes action.
 type GetEndpointAttributesInput struct {
 	// EndpointArn for GetEndpointAttributes input.
@@ -1084,6 +1255,16 @@ type GetEndpointAttributesInput struct {
 
 type metadataGetEndpointAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetEndpointAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetEndpointAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Response from GetEndpointAttributes of the EndpointArn.
@@ -1108,6 +1289,16 @@ type metadataGetEndpointAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetEndpointAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetEndpointAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // Input for GetPlatformApplicationAttributes action.
 type GetPlatformApplicationAttributesInput struct {
 	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
@@ -1118,6 +1309,16 @@ type GetPlatformApplicationAttributesInput struct {
 
 type metadataGetPlatformApplicationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetPlatformApplicationAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPlatformApplicationAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Response for GetPlatformApplicationAttributes action.
@@ -1140,6 +1341,16 @@ type metadataGetPlatformApplicationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetPlatformApplicationAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetPlatformApplicationAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // Input for GetSubscriptionAttributes.
 type GetSubscriptionAttributesInput struct {
 	// The ARN of the subscription whose properties you want to get.
@@ -1150,6 +1361,16 @@ type GetSubscriptionAttributesInput struct {
 
 type metadataGetSubscriptionAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSubscriptionAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSubscriptionAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Response for GetSubscriptionAttributes action.
@@ -1173,6 +1394,16 @@ type metadataGetSubscriptionAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetSubscriptionAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSubscriptionAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // Input for GetTopicAttributes action.
 type GetTopicAttributesInput struct {
 	// The ARN of the topic whose properties you want to get.
@@ -1183,6 +1414,16 @@ type GetTopicAttributesInput struct {
 
 type metadataGetTopicAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetTopicAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetTopicAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Response for GetTopicAttributes action.
@@ -1208,6 +1449,16 @@ type metadataGetTopicAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetTopicAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetTopicAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // Input for ListEndpointsByPlatformApplication action.
 type ListEndpointsByPlatformApplicationInput struct {
 	// NextToken string is used when calling ListEndpointsByPlatformApplication
@@ -1223,6 +1474,16 @@ type ListEndpointsByPlatformApplicationInput struct {
 
 type metadataListEndpointsByPlatformApplicationInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListEndpointsByPlatformApplicationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListEndpointsByPlatformApplicationInput) GoString() string {
+	return s.String()
 }
 
 // Response for ListEndpointsByPlatformApplication action.
@@ -1241,6 +1502,16 @@ type metadataListEndpointsByPlatformApplicationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListEndpointsByPlatformApplicationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListEndpointsByPlatformApplicationOutput) GoString() string {
+	return s.String()
+}
+
 // Input for ListPlatformApplications action.
 type ListPlatformApplicationsInput struct {
 	// NextToken string is used when calling ListPlatformApplications action to
@@ -1252,6 +1523,16 @@ type ListPlatformApplicationsInput struct {
 
 type metadataListPlatformApplicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPlatformApplicationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPlatformApplicationsInput) GoString() string {
+	return s.String()
 }
 
 // Response for ListPlatformApplications action.
@@ -1270,6 +1551,16 @@ type metadataListPlatformApplicationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListPlatformApplicationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListPlatformApplicationsOutput) GoString() string {
+	return s.String()
+}
+
 // Input for ListSubscriptionsByTopic action.
 type ListSubscriptionsByTopicInput struct {
 	// Token returned by the previous ListSubscriptionsByTopic request.
@@ -1283,6 +1574,16 @@ type ListSubscriptionsByTopicInput struct {
 
 type metadataListSubscriptionsByTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSubscriptionsByTopicInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSubscriptionsByTopicInput) GoString() string {
+	return s.String()
 }
 
 // Response for ListSubscriptionsByTopic action.
@@ -1301,6 +1602,16 @@ type metadataListSubscriptionsByTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListSubscriptionsByTopicOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSubscriptionsByTopicOutput) GoString() string {
+	return s.String()
+}
+
 // Input for ListSubscriptions action.
 type ListSubscriptionsInput struct {
 	// Token returned by the previous ListSubscriptions request.
@@ -1311,6 +1622,16 @@ type ListSubscriptionsInput struct {
 
 type metadataListSubscriptionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSubscriptionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSubscriptionsInput) GoString() string {
+	return s.String()
 }
 
 // Response for ListSubscriptions action
@@ -1329,6 +1650,16 @@ type metadataListSubscriptionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListSubscriptionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSubscriptionsOutput) GoString() string {
+	return s.String()
+}
+
 type ListTopicsInput struct {
 	// Token returned by the previous ListTopics request.
 	NextToken *string `type:"string"`
@@ -1338,6 +1669,16 @@ type ListTopicsInput struct {
 
 type metadataListTopicsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTopicsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTopicsInput) GoString() string {
+	return s.String()
 }
 
 // Response for ListTopics action.
@@ -1354,6 +1695,16 @@ type ListTopicsOutput struct {
 
 type metadataListTopicsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTopicsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTopicsOutput) GoString() string {
+	return s.String()
 }
 
 // The user-specified message attribute value. For string data types, the value
@@ -1385,6 +1736,16 @@ type metadataMessageAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MessageAttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MessageAttributeValue) GoString() string {
+	return s.String()
+}
+
 // Platform application object.
 type PlatformApplication struct {
 	// Attributes for platform application object.
@@ -1398,6 +1759,16 @@ type PlatformApplication struct {
 
 type metadataPlatformApplication struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PlatformApplication) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PlatformApplication) GoString() string {
+	return s.String()
 }
 
 // Input for Publish action.
@@ -1471,6 +1842,16 @@ type metadataPublishInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PublishInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PublishInput) GoString() string {
+	return s.String()
+}
+
 // Response for Publish action.
 type PublishOutput struct {
 	// Unique identifier assigned to the published message.
@@ -1483,6 +1864,16 @@ type PublishOutput struct {
 
 type metadataPublishOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PublishOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PublishOutput) GoString() string {
+	return s.String()
 }
 
 // Input for RemovePermission action.
@@ -1500,12 +1891,32 @@ type metadataRemovePermissionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemovePermissionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionInput) GoString() string {
+	return s.String()
+}
+
 type RemovePermissionOutput struct {
 	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemovePermissionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionOutput) GoString() string {
+	return s.String()
 }
 
 // Input for SetEndpointAttributes action.
@@ -1533,12 +1944,32 @@ type metadataSetEndpointAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetEndpointAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetEndpointAttributesInput) GoString() string {
+	return s.String()
+}
+
 type SetEndpointAttributesOutput struct {
 	metadataSetEndpointAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetEndpointAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetEndpointAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetEndpointAttributesOutput) GoString() string {
+	return s.String()
 }
 
 // Input for SetPlatformApplicationAttributes action.
@@ -1570,12 +2001,32 @@ type metadataSetPlatformApplicationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetPlatformApplicationAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetPlatformApplicationAttributesInput) GoString() string {
+	return s.String()
+}
+
 type SetPlatformApplicationAttributesOutput struct {
 	metadataSetPlatformApplicationAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetPlatformApplicationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetPlatformApplicationAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetPlatformApplicationAttributesOutput) GoString() string {
+	return s.String()
 }
 
 // Input for SetSubscriptionAttributes action.
@@ -1599,12 +2050,32 @@ type metadataSetSubscriptionAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetSubscriptionAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetSubscriptionAttributesInput) GoString() string {
+	return s.String()
+}
+
 type SetSubscriptionAttributesOutput struct {
 	metadataSetSubscriptionAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetSubscriptionAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetSubscriptionAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetSubscriptionAttributesOutput) GoString() string {
+	return s.String()
 }
 
 // Input for SetTopicAttributes action.
@@ -1628,12 +2099,32 @@ type metadataSetTopicAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetTopicAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetTopicAttributesInput) GoString() string {
+	return s.String()
+}
+
 type SetTopicAttributesOutput struct {
 	metadataSetTopicAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetTopicAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetTopicAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetTopicAttributesOutput) GoString() string {
+	return s.String()
 }
 
 // Input for Subscribe action.
@@ -1669,6 +2160,16 @@ type metadataSubscribeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SubscribeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeInput) GoString() string {
+	return s.String()
+}
+
 // Response for Subscribe action.
 type SubscribeOutput struct {
 	// The ARN of the subscription, if the service was able to create a subscription
@@ -1680,6 +2181,16 @@ type SubscribeOutput struct {
 
 type metadataSubscribeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SubscribeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeOutput) GoString() string {
+	return s.String()
 }
 
 // A wrapper type for the attributes of an Amazon SNS subscription.
@@ -1706,6 +2217,16 @@ type metadataSubscription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Subscription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Subscription) GoString() string {
+	return s.String()
+}
+
 // A wrapper type for the topic's Amazon Resource Name (ARN). To retrieve a
 // topic's attributes, use GetTopicAttributes.
 type Topic struct {
@@ -1717,6 +2238,16 @@ type Topic struct {
 
 type metadataTopic struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Topic) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Topic) GoString() string {
+	return s.String()
 }
 
 // Input for Unsubscribe action.
@@ -1731,10 +2262,30 @@ type metadataUnsubscribeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnsubscribeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnsubscribeInput) GoString() string {
+	return s.String()
+}
+
 type UnsubscribeOutput struct {
 	metadataUnsubscribeOutput `json:"-" xml:"-"`
 }
 
 type metadataUnsubscribeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnsubscribeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnsubscribeOutput) GoString() string {
+	return s.String()
 }

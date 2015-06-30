@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opBulkPublish = "BulkPublish"
@@ -569,6 +570,16 @@ type metadataBulkPublishInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BulkPublishInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BulkPublishInput) GoString() string {
+	return s.String()
+}
+
 // The output for the BulkPublish operation.
 type BulkPublishOutput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
@@ -580,6 +591,16 @@ type BulkPublishOutput struct {
 
 type metadataBulkPublishOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BulkPublishOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BulkPublishOutput) GoString() string {
+	return s.String()
 }
 
 // Configuration options for configure Cognito streams.
@@ -605,6 +626,16 @@ type CognitoStreams struct {
 
 type metadataCognitoStreams struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CognitoStreams) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CognitoStreams) GoString() string {
+	return s.String()
 }
 
 // A collection of data for an identity pool. An identity pool can have multiple
@@ -643,6 +674,16 @@ type metadataDataset struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Dataset) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Dataset) GoString() string {
+	return s.String()
+}
+
 // A request to delete the specific dataset.
 type DeleteDatasetInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
@@ -664,6 +705,16 @@ type metadataDeleteDatasetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDatasetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDatasetInput) GoString() string {
+	return s.String()
+}
+
 // Response to a successful DeleteDataset request.
 type DeleteDatasetOutput struct {
 	// A collection of data for an identity pool. An identity pool can have multiple
@@ -678,6 +729,16 @@ type DeleteDatasetOutput struct {
 
 type metadataDeleteDatasetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDatasetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDatasetOutput) GoString() string {
+	return s.String()
 }
 
 // A request for meta data about a dataset (creation date, number of records,
@@ -702,6 +763,16 @@ type metadataDescribeDatasetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDatasetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDatasetInput) GoString() string {
+	return s.String()
+}
+
 // Response to a successful DescribeDataset request.
 type DescribeDatasetOutput struct {
 	// Meta data for a collection of data for an identity. An identity can have
@@ -718,6 +789,16 @@ type metadataDescribeDatasetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDatasetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDatasetOutput) GoString() string {
+	return s.String()
+}
+
 // A request for usage information about the identity pool.
 type DescribeIdentityPoolUsageInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
@@ -731,6 +812,16 @@ type metadataDescribeIdentityPoolUsageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeIdentityPoolUsageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIdentityPoolUsageInput) GoString() string {
+	return s.String()
+}
+
 // Response to a successful DescribeIdentityPoolUsage request.
 type DescribeIdentityPoolUsageOutput struct {
 	// Information about the usage of the identity pool.
@@ -741,6 +832,16 @@ type DescribeIdentityPoolUsageOutput struct {
 
 type metadataDescribeIdentityPoolUsageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeIdentityPoolUsageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIdentityPoolUsageOutput) GoString() string {
+	return s.String()
 }
 
 // A request for information about the usage of an identity pool.
@@ -760,6 +861,16 @@ type metadataDescribeIdentityUsageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeIdentityUsageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIdentityUsageInput) GoString() string {
+	return s.String()
+}
+
 // The response to a successful DescribeIdentityUsage request.
 type DescribeIdentityUsageOutput struct {
 	// Usage information for the identity.
@@ -770,6 +881,16 @@ type DescribeIdentityUsageOutput struct {
 
 type metadataDescribeIdentityUsageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeIdentityUsageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeIdentityUsageOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the GetBulkPublishDetails operation.
@@ -783,6 +904,16 @@ type GetBulkPublishDetailsInput struct {
 
 type metadataGetBulkPublishDetailsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBulkPublishDetailsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetBulkPublishDetailsInput) GoString() string {
+	return s.String()
 }
 
 // The output for the GetBulkPublishDetails operation.
@@ -821,6 +952,16 @@ type metadataGetBulkPublishDetailsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetBulkPublishDetailsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetBulkPublishDetailsOutput) GoString() string {
+	return s.String()
+}
+
 // A request for a list of the configured Cognito Events
 type GetCognitoEventsInput struct {
 	// The Cognito Identity Pool ID for the request
@@ -831,6 +972,16 @@ type GetCognitoEventsInput struct {
 
 type metadataGetCognitoEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCognitoEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCognitoEventsInput) GoString() string {
+	return s.String()
 }
 
 // The response from the GetCognitoEvents request
@@ -845,6 +996,16 @@ type metadataGetCognitoEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetCognitoEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetCognitoEventsOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
@@ -857,6 +1018,16 @@ type GetIdentityPoolConfigurationInput struct {
 
 type metadataGetIdentityPoolConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityPoolConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityPoolConfigurationInput) GoString() string {
+	return s.String()
 }
 
 // The output for the GetIdentityPoolConfiguration operation.
@@ -876,6 +1047,16 @@ type GetIdentityPoolConfigurationOutput struct {
 
 type metadataGetIdentityPoolConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityPoolConfigurationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityPoolConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 // Usage information for the identity pool.
@@ -898,6 +1079,16 @@ type IdentityPoolUsage struct {
 
 type metadataIdentityPoolUsage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IdentityPoolUsage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityPoolUsage) GoString() string {
+	return s.String()
 }
 
 // Usage information for the identity.
@@ -926,6 +1117,16 @@ type metadataIdentityUsage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IdentityUsage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityUsage) GoString() string {
+	return s.String()
+}
+
 // Request for a list of datasets for an identity.
 type ListDatasetsInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
@@ -949,6 +1150,16 @@ type metadataListDatasetsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDatasetsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDatasetsInput) GoString() string {
+	return s.String()
+}
+
 // Returned for a successful ListDatasets request.
 type ListDatasetsOutput struct {
 	// Number of datasets returned.
@@ -967,6 +1178,16 @@ type metadataListDatasetsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDatasetsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDatasetsOutput) GoString() string {
+	return s.String()
+}
+
 // A request for usage information on an identity pool.
 type ListIdentityPoolUsageInput struct {
 	// The maximum number of results to be returned.
@@ -980,6 +1201,16 @@ type ListIdentityPoolUsageInput struct {
 
 type metadataListIdentityPoolUsageInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListIdentityPoolUsageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentityPoolUsageInput) GoString() string {
+	return s.String()
 }
 
 // Returned for a successful ListIdentityPoolUsage request.
@@ -1001,6 +1232,16 @@ type ListIdentityPoolUsageOutput struct {
 
 type metadataListIdentityPoolUsageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListIdentityPoolUsageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentityPoolUsageOutput) GoString() string {
+	return s.String()
 }
 
 // A request for a list of records.
@@ -1034,6 +1275,16 @@ type ListRecordsInput struct {
 
 type metadataListRecordsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListRecordsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListRecordsInput) GoString() string {
+	return s.String()
 }
 
 // Returned for a successful ListRecordsRequest.
@@ -1072,6 +1323,16 @@ type metadataListRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListRecordsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListRecordsOutput) GoString() string {
+	return s.String()
+}
+
 // Configuration options to be applied to the identity pool.
 type PushSync struct {
 	// List of SNS platform application ARNs that could be used by clients.
@@ -1085,6 +1346,16 @@ type PushSync struct {
 
 type metadataPushSync struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PushSync) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PushSync) GoString() string {
+	return s.String()
 }
 
 // The basic data structure of a dataset.
@@ -1114,6 +1385,16 @@ type metadataRecord struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Record) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Record) GoString() string {
+	return s.String()
+}
+
 // An update operation for a record.
 type RecordPatch struct {
 	// The last modified date of the client device.
@@ -1136,6 +1417,16 @@ type RecordPatch struct {
 
 type metadataRecordPatch struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RecordPatch) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordPatch) GoString() string {
+	return s.String()
 }
 
 // A request to RegisterDevice.
@@ -1161,6 +1452,16 @@ type metadataRegisterDeviceInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterDeviceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDeviceInput) GoString() string {
+	return s.String()
+}
+
 // Response to a RegisterDevice request.
 type RegisterDeviceOutput struct {
 	// The unique ID generated for this device by Cognito.
@@ -1171,6 +1472,16 @@ type RegisterDeviceOutput struct {
 
 type metadataRegisterDeviceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterDeviceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDeviceOutput) GoString() string {
+	return s.String()
 }
 
 // A request to configure Cognito Events"
@@ -1190,12 +1501,32 @@ type metadataSetCognitoEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetCognitoEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetCognitoEventsInput) GoString() string {
+	return s.String()
+}
+
 type SetCognitoEventsOutput struct {
 	metadataSetCognitoEventsOutput `json:"-" xml:"-"`
 }
 
 type metadataSetCognitoEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetCognitoEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetCognitoEventsOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the SetIdentityPoolConfiguration operation.
@@ -1217,6 +1548,16 @@ type metadataSetIdentityPoolConfigurationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetIdentityPoolConfigurationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityPoolConfigurationInput) GoString() string {
+	return s.String()
+}
+
 // The output for the SetIdentityPoolConfiguration operation
 type SetIdentityPoolConfigurationOutput struct {
 	// Options to apply to this identity pool for Amazon Cognito streams.
@@ -1234,6 +1575,16 @@ type SetIdentityPoolConfigurationOutput struct {
 
 type metadataSetIdentityPoolConfigurationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetIdentityPoolConfigurationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityPoolConfigurationOutput) GoString() string {
+	return s.String()
 }
 
 // A request to SubscribeToDatasetRequest.
@@ -1258,6 +1609,16 @@ type metadataSubscribeToDatasetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SubscribeToDatasetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeToDatasetInput) GoString() string {
+	return s.String()
+}
+
 // Response to a SubscribeToDataset request.
 type SubscribeToDatasetOutput struct {
 	metadataSubscribeToDatasetOutput `json:"-" xml:"-"`
@@ -1265,6 +1626,16 @@ type SubscribeToDatasetOutput struct {
 
 type metadataSubscribeToDatasetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SubscribeToDatasetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubscribeToDatasetOutput) GoString() string {
+	return s.String()
 }
 
 // A request to UnsubscribeFromDataset.
@@ -1289,6 +1660,16 @@ type metadataUnsubscribeFromDatasetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UnsubscribeFromDatasetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnsubscribeFromDatasetInput) GoString() string {
+	return s.String()
+}
+
 // Response to an UnsubscribeFromDataset request.
 type UnsubscribeFromDatasetOutput struct {
 	metadataUnsubscribeFromDatasetOutput `json:"-" xml:"-"`
@@ -1296,6 +1677,16 @@ type UnsubscribeFromDatasetOutput struct {
 
 type metadataUnsubscribeFromDatasetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UnsubscribeFromDatasetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UnsubscribeFromDatasetOutput) GoString() string {
+	return s.String()
 }
 
 // A request to post updates to records or add and delete records for a dataset
@@ -1334,6 +1725,16 @@ type metadataUpdateRecordsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateRecordsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRecordsInput) GoString() string {
+	return s.String()
+}
+
 // Returned for a successful UpdateRecordsRequest.
 type UpdateRecordsOutput struct {
 	// A list of records that have been updated.
@@ -1344,4 +1745,14 @@ type UpdateRecordsOutput struct {
 
 type metadataUpdateRecordsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRecordsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRecordsOutput) GoString() string {
+	return s.String()
 }

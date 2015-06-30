@@ -5,6 +5,7 @@ package support
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddAttachmentsToSet = "AddAttachmentsToSet"
@@ -539,6 +540,16 @@ type metadataAddAttachmentsToSetInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddAttachmentsToSetInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddAttachmentsToSetInput) GoString() string {
+	return s.String()
+}
+
 // The ID and expiry time of the attachment set returned by the AddAttachmentsToSet
 // operation.
 type AddAttachmentsToSetOutput struct {
@@ -556,6 +567,16 @@ type AddAttachmentsToSetOutput struct {
 
 type metadataAddAttachmentsToSetOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddAttachmentsToSetOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddAttachmentsToSetOutput) GoString() string {
+	return s.String()
 }
 
 // To be written.
@@ -582,6 +603,16 @@ type metadataAddCommunicationToCaseInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddCommunicationToCaseInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddCommunicationToCaseInput) GoString() string {
+	return s.String()
+}
+
 // The result of the AddCommunicationToCase operation.
 type AddCommunicationToCaseOutput struct {
 	// True if AddCommunicationToCase succeeds. Otherwise, returns an error.
@@ -592,6 +623,16 @@ type AddCommunicationToCaseOutput struct {
 
 type metadataAddCommunicationToCaseOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddCommunicationToCaseOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddCommunicationToCaseOutput) GoString() string {
+	return s.String()
 }
 
 // An attachment to a case communication. The attachment consists of the file
@@ -610,6 +651,16 @@ type metadataAttachment struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Attachment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Attachment) GoString() string {
+	return s.String()
+}
+
 // The file name and ID of an attachment to a case communication. You can use
 // the ID to retrieve the attachment with the DescribeAttachment operation.
 type AttachmentDetails struct {
@@ -624,6 +675,16 @@ type AttachmentDetails struct {
 
 type metadataAttachmentDetails struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttachmentDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttachmentDetails) GoString() string {
+	return s.String()
 }
 
 // A JSON-formatted object that contains the metadata for a support case. It
@@ -697,6 +758,16 @@ type metadataCaseDetails struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CaseDetails) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CaseDetails) GoString() string {
+	return s.String()
+}
+
 // A JSON-formatted name/value pair that represents the category name and category
 // code of the problem, selected from the DescribeServices response for each
 // AWS service.
@@ -712,6 +783,16 @@ type Category struct {
 
 type metadataCategory struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Category) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Category) GoString() string {
+	return s.String()
 }
 
 // A communication associated with an AWS Support case. The communication consists
@@ -739,6 +820,16 @@ type Communication struct {
 
 type metadataCommunication struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Communication) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Communication) GoString() string {
+	return s.String()
 }
 
 type CreateCaseInput struct {
@@ -785,6 +876,16 @@ type metadataCreateCaseInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCaseInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCaseInput) GoString() string {
+	return s.String()
+}
+
 // The AWS Support case ID returned by a successful completion of the CreateCase
 // operation.
 type CreateCaseOutput struct {
@@ -799,6 +900,16 @@ type metadataCreateCaseOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCaseOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCaseOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAttachmentInput struct {
 	// The ID of the attachment to return. Attachment IDs are returned by the DescribeCommunications
 	// operation.
@@ -809,6 +920,16 @@ type DescribeAttachmentInput struct {
 
 type metadataDescribeAttachmentInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAttachmentInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAttachmentInput) GoString() string {
+	return s.String()
 }
 
 // The content and file name of the attachment returned by the DescribeAttachment
@@ -822,6 +943,16 @@ type DescribeAttachmentOutput struct {
 
 type metadataDescribeAttachmentOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAttachmentOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAttachmentOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeCasesInput struct {
@@ -866,6 +997,16 @@ type metadataDescribeCasesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCasesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCasesInput) GoString() string {
+	return s.String()
+}
+
 // Returns an array of CaseDetails objects and a NextToken that defines a point
 // for pagination in the result set.
 type DescribeCasesOutput struct {
@@ -880,6 +1021,16 @@ type DescribeCasesOutput struct {
 
 type metadataDescribeCasesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCasesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCasesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeCommunicationsInput struct {
@@ -908,6 +1059,16 @@ type metadataDescribeCommunicationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCommunicationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCommunicationsInput) GoString() string {
+	return s.String()
+}
+
 // The communications returned by the DescribeCommunications operation.
 type DescribeCommunicationsOutput struct {
 	// The communications for the case.
@@ -921,6 +1082,16 @@ type DescribeCommunicationsOutput struct {
 
 type metadataDescribeCommunicationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCommunicationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCommunicationsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeServicesInput struct {
@@ -939,6 +1110,16 @@ type metadataDescribeServicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeServicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeServicesInput) GoString() string {
+	return s.String()
+}
+
 // The list of AWS services returned by the DescribeServices operation.
 type DescribeServicesOutput struct {
 	// A JSON-formatted list of AWS services.
@@ -949,6 +1130,16 @@ type DescribeServicesOutput struct {
 
 type metadataDescribeServicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeServicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeServicesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSeverityLevelsInput struct {
@@ -964,6 +1155,16 @@ type metadataDescribeSeverityLevelsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSeverityLevelsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSeverityLevelsInput) GoString() string {
+	return s.String()
+}
+
 // The list of severity levels returned by the DescribeSeverityLevels operation.
 type DescribeSeverityLevelsOutput struct {
 	// The available severity levels for the support case. Available severity levels
@@ -977,6 +1178,16 @@ type metadataDescribeSeverityLevelsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSeverityLevelsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSeverityLevelsOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	// The IDs of the Trusted Advisor checks.
 	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
@@ -986,6 +1197,16 @@ type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 
 type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTrustedAdvisorCheckRefreshStatusesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorCheckRefreshStatusesInput) GoString() string {
+	return s.String()
 }
 
 // The statuses of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckRefreshStatuses
@@ -999,6 +1220,16 @@ type DescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 
 type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTrustedAdvisorCheckRefreshStatusesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorCheckRefreshStatusesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeTrustedAdvisorCheckResultInput struct {
@@ -1017,6 +1248,16 @@ type metadataDescribeTrustedAdvisorCheckResultInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTrustedAdvisorCheckResultInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorCheckResultInput) GoString() string {
+	return s.String()
+}
+
 // The result of the Trusted Advisor check returned by the DescribeTrustedAdvisorCheckResult
 // operation.
 type DescribeTrustedAdvisorCheckResultOutput struct {
@@ -1030,6 +1271,16 @@ type metadataDescribeTrustedAdvisorCheckResultOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTrustedAdvisorCheckResultOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorCheckResultOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTrustedAdvisorCheckSummariesInput struct {
 	// The IDs of the Trusted Advisor checks.
 	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
@@ -1039,6 +1290,16 @@ type DescribeTrustedAdvisorCheckSummariesInput struct {
 
 type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTrustedAdvisorCheckSummariesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorCheckSummariesInput) GoString() string {
+	return s.String()
 }
 
 // The summaries of the Trusted Advisor checks returned by the DescribeTrustedAdvisorCheckSummaries
@@ -1054,6 +1315,16 @@ type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTrustedAdvisorCheckSummariesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorCheckSummariesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeTrustedAdvisorChecksInput struct {
 	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
 	// currently supports English ("en") and Japanese ("ja"). Language parameters
@@ -1067,6 +1338,16 @@ type metadataDescribeTrustedAdvisorChecksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTrustedAdvisorChecksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorChecksInput) GoString() string {
+	return s.String()
+}
+
 // Information about the Trusted Advisor checks returned by the DescribeTrustedAdvisorChecks
 // operation.
 type DescribeTrustedAdvisorChecksOutput struct {
@@ -1078,6 +1359,16 @@ type DescribeTrustedAdvisorChecksOutput struct {
 
 type metadataDescribeTrustedAdvisorChecksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTrustedAdvisorChecksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTrustedAdvisorChecksOutput) GoString() string {
+	return s.String()
 }
 
 // The five most recent communications associated with the case.
@@ -1095,6 +1386,16 @@ type metadataRecentCaseCommunications struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecentCaseCommunications) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecentCaseCommunications) GoString() string {
+	return s.String()
+}
+
 type RefreshTrustedAdvisorCheckInput struct {
 	// The unique identifier for the Trusted Advisor check.
 	CheckID *string `locationName:"checkId" type:"string" required:"true"`
@@ -1104,6 +1405,16 @@ type RefreshTrustedAdvisorCheckInput struct {
 
 type metadataRefreshTrustedAdvisorCheckInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RefreshTrustedAdvisorCheckInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RefreshTrustedAdvisorCheckInput) GoString() string {
+	return s.String()
 }
 
 // The current refresh status of a Trusted Advisor check.
@@ -1119,6 +1430,16 @@ type metadataRefreshTrustedAdvisorCheckOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RefreshTrustedAdvisorCheckOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RefreshTrustedAdvisorCheckOutput) GoString() string {
+	return s.String()
+}
+
 type ResolveCaseInput struct {
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
@@ -1129,6 +1450,16 @@ type ResolveCaseInput struct {
 
 type metadataResolveCaseInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResolveCaseInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResolveCaseInput) GoString() string {
+	return s.String()
 }
 
 // The status of the case returned by the ResolveCase operation.
@@ -1144,6 +1475,16 @@ type ResolveCaseOutput struct {
 
 type metadataResolveCaseOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResolveCaseOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResolveCaseOutput) GoString() string {
+	return s.String()
 }
 
 // Information about an AWS service returned by the DescribeServices operation.
@@ -1168,6 +1509,16 @@ type metadataService struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Service) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Service) GoString() string {
+	return s.String()
+}
+
 // A code and name pair that represent a severity level that can be applied
 // to a support case.
 type SeverityLevel struct {
@@ -1185,6 +1536,16 @@ type metadataSeverityLevel struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SeverityLevel) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SeverityLevel) GoString() string {
+	return s.String()
+}
+
 // The container for summary information that relates to the category of the
 // Trusted Advisor check.
 type TrustedAdvisorCategorySpecificSummary struct {
@@ -1197,6 +1558,16 @@ type TrustedAdvisorCategorySpecificSummary struct {
 
 type metadataTrustedAdvisorCategorySpecificSummary struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TrustedAdvisorCategorySpecificSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorCategorySpecificSummary) GoString() string {
+	return s.String()
 }
 
 // The description and metadata for a Trusted Advisor check.
@@ -1228,6 +1599,16 @@ type metadataTrustedAdvisorCheckDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TrustedAdvisorCheckDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorCheckDescription) GoString() string {
+	return s.String()
+}
+
 // The refresh status of a Trusted Advisor check.
 type TrustedAdvisorCheckRefreshStatus struct {
 	// The unique identifier for the Trusted Advisor check.
@@ -1246,6 +1627,16 @@ type TrustedAdvisorCheckRefreshStatus struct {
 
 type metadataTrustedAdvisorCheckRefreshStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TrustedAdvisorCheckRefreshStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorCheckRefreshStatus) GoString() string {
+	return s.String()
 }
 
 // The results of a Trusted Advisor check returned by DescribeTrustedAdvisorCheckResult.
@@ -1276,6 +1667,16 @@ type TrustedAdvisorCheckResult struct {
 
 type metadataTrustedAdvisorCheckResult struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TrustedAdvisorCheckResult) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorCheckResult) GoString() string {
+	return s.String()
 }
 
 // A summary of a Trusted Advisor check result, including the alert status,
@@ -1309,6 +1710,16 @@ type metadataTrustedAdvisorCheckSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TrustedAdvisorCheckSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorCheckSummary) GoString() string {
+	return s.String()
+}
+
 // The estimated cost savings that might be realized if the recommended actions
 // are taken.
 type TrustedAdvisorCostOptimizingSummary struct {
@@ -1325,6 +1736,16 @@ type TrustedAdvisorCostOptimizingSummary struct {
 
 type metadataTrustedAdvisorCostOptimizingSummary struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TrustedAdvisorCostOptimizingSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorCostOptimizingSummary) GoString() string {
+	return s.String()
 }
 
 // Contains information about a resource identified by a Trusted Advisor check.
@@ -1356,6 +1777,16 @@ type metadataTrustedAdvisorResourceDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TrustedAdvisorResourceDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorResourceDetail) GoString() string {
+	return s.String()
+}
+
 // Details about AWS resources that were analyzed in a call to Trusted Advisor
 // DescribeTrustedAdvisorCheckSummaries.
 type TrustedAdvisorResourcesSummary struct {
@@ -1379,4 +1810,14 @@ type TrustedAdvisorResourcesSummary struct {
 
 type metadataTrustedAdvisorResourcesSummary struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TrustedAdvisorResourcesSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TrustedAdvisorResourcesSummary) GoString() string {
+	return s.String()
 }

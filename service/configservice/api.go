@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
@@ -403,6 +404,16 @@ type metadataConfigExportDeliveryInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfigExportDeliveryInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigExportDeliveryInfo) GoString() string {
+	return s.String()
+}
+
 // A list that contains the status of the delivery of the configuration stream
 // notification to the Amazon SNS topic.
 type ConfigStreamDeliveryInfo struct {
@@ -427,6 +438,16 @@ type ConfigStreamDeliveryInfo struct {
 
 type metadataConfigStreamDeliveryInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigStreamDeliveryInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigStreamDeliveryInfo) GoString() string {
+	return s.String()
 }
 
 // A list that contains detailed configurations of a specified resource.
@@ -497,6 +518,16 @@ type metadataConfigurationItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfigurationItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationItem) GoString() string {
+	return s.String()
+}
+
 // An object that represents the recording of configuration changes of an AWS
 // resource.
 type ConfigurationRecorder struct {
@@ -519,6 +550,16 @@ type ConfigurationRecorder struct {
 
 type metadataConfigurationRecorder struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigurationRecorder) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationRecorder) GoString() string {
+	return s.String()
 }
 
 // The current status of the configuration recorder.
@@ -554,6 +595,16 @@ type metadataConfigurationRecorderStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConfigurationRecorderStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConfigurationRecorderStatus) GoString() string {
+	return s.String()
+}
+
 // The input for the DeleteDeliveryChannel action. The action accepts the following
 // data in JSON format.
 type DeleteDeliveryChannelInput struct {
@@ -567,12 +618,32 @@ type metadataDeleteDeliveryChannelInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDeliveryChannelInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDeliveryChannelInput) GoString() string {
+	return s.String()
+}
+
 type DeleteDeliveryChannelOutput struct {
 	metadataDeleteDeliveryChannelOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteDeliveryChannelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDeliveryChannelOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDeliveryChannelOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the DeliverConfigSnapshot action.
@@ -587,6 +658,16 @@ type metadataDeliverConfigSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeliverConfigSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeliverConfigSnapshotInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DeliverConfigSnapshot action in JSON format.
 type DeliverConfigSnapshotOutput struct {
 	// The ID of the snapshot that is being created.
@@ -597,6 +678,16 @@ type DeliverConfigSnapshotOutput struct {
 
 type metadataDeliverConfigSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeliverConfigSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeliverConfigSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // A logical container used for storing the configuration changes of an AWS
@@ -625,6 +716,16 @@ type metadataDeliveryChannel struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeliveryChannel) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeliveryChannel) GoString() string {
+	return s.String()
+}
+
 // The status of a specified delivery channel.
 //
 // Valid values: Success | Failure
@@ -651,6 +752,16 @@ type metadataDeliveryChannelStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeliveryChannelStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeliveryChannelStatus) GoString() string {
+	return s.String()
+}
+
 // The input for the DescribeConfigurationRecorderStatus action.
 type DescribeConfigurationRecorderStatusInput struct {
 	// The name(s) of the configuration recorder. If the name is not specified,
@@ -665,6 +776,16 @@ type metadataDescribeConfigurationRecorderStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeConfigurationRecorderStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationRecorderStatusInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeConfigurationRecorderStatus action in JSON format.
 type DescribeConfigurationRecorderStatusOutput struct {
 	// A list that contains status of the specified recorders.
@@ -675,6 +796,16 @@ type DescribeConfigurationRecorderStatusOutput struct {
 
 type metadataDescribeConfigurationRecorderStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConfigurationRecorderStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationRecorderStatusOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the DescribeConfigurationRecorders action.
@@ -689,6 +820,16 @@ type metadataDescribeConfigurationRecordersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeConfigurationRecordersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationRecordersInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeConfigurationRecorders action.
 type DescribeConfigurationRecordersOutput struct {
 	// A list that contains the descriptions of the specified configuration recorders.
@@ -699,6 +840,16 @@ type DescribeConfigurationRecordersOutput struct {
 
 type metadataDescribeConfigurationRecordersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConfigurationRecordersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigurationRecordersOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the DeliveryChannelStatus action.
@@ -713,6 +864,16 @@ type metadataDescribeDeliveryChannelStatusInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDeliveryChannelStatusInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeliveryChannelStatusInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeDeliveryChannelStatus action.
 type DescribeDeliveryChannelStatusOutput struct {
 	// A list that contains the status of a specified delivery channel.
@@ -723,6 +884,16 @@ type DescribeDeliveryChannelStatusOutput struct {
 
 type metadataDescribeDeliveryChannelStatusOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDeliveryChannelStatusOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeliveryChannelStatusOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the DescribeDeliveryChannels action.
@@ -737,6 +908,16 @@ type metadataDescribeDeliveryChannelsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDeliveryChannelsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeliveryChannelsInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeDeliveryChannels action.
 type DescribeDeliveryChannelsOutput struct {
 	// A list that contains the descriptions of the specified delivery channel.
@@ -747,6 +928,16 @@ type DescribeDeliveryChannelsOutput struct {
 
 type metadataDescribeDeliveryChannelsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDeliveryChannelsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDeliveryChannelsOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the GetResourceConfigHistory action.
@@ -784,6 +975,16 @@ type metadataGetResourceConfigHistoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetResourceConfigHistoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetResourceConfigHistoryInput) GoString() string {
+	return s.String()
+}
+
 // The output for the GetResourceConfigHistory action.
 type GetResourceConfigHistoryOutput struct {
 	// A list that contains the configuration history of one or more resources.
@@ -799,6 +1000,16 @@ type metadataGetResourceConfigHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetResourceConfigHistoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetResourceConfigHistoryOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the PutConfigurationRecorder action.
 type PutConfigurationRecorderInput struct {
 	// The configuration recorder object that records each configuration change
@@ -812,12 +1023,32 @@ type metadataPutConfigurationRecorderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutConfigurationRecorderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutConfigurationRecorderInput) GoString() string {
+	return s.String()
+}
+
 type PutConfigurationRecorderOutput struct {
 	metadataPutConfigurationRecorderOutput `json:"-" xml:"-"`
 }
 
 type metadataPutConfigurationRecorderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutConfigurationRecorderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutConfigurationRecorderOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the PutDeliveryChannel action.
@@ -833,12 +1064,32 @@ type metadataPutDeliveryChannelInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutDeliveryChannelInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutDeliveryChannelInput) GoString() string {
+	return s.String()
+}
+
 type PutDeliveryChannelOutput struct {
 	metadataPutDeliveryChannelOutput `json:"-" xml:"-"`
 }
 
 type metadataPutDeliveryChannelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutDeliveryChannelOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutDeliveryChannelOutput) GoString() string {
+	return s.String()
 }
 
 // The group of AWS resource types that AWS Config records when starting the
@@ -866,6 +1117,16 @@ type metadataRecordingGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecordingGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordingGroup) GoString() string {
+	return s.String()
+}
+
 // The relationship of the related resource to the main resource.
 type Relationship struct {
 	// The name of the related resource.
@@ -884,6 +1145,16 @@ type metadataRelationship struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Relationship) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Relationship) GoString() string {
+	return s.String()
+}
+
 // The input for the StartConfigurationRecorder action.
 type StartConfigurationRecorderInput struct {
 	// The name of the recorder object that records each configuration change made
@@ -897,12 +1168,32 @@ type metadataStartConfigurationRecorderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartConfigurationRecorderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartConfigurationRecorderInput) GoString() string {
+	return s.String()
+}
+
 type StartConfigurationRecorderOutput struct {
 	metadataStartConfigurationRecorderOutput `json:"-" xml:"-"`
 }
 
 type metadataStartConfigurationRecorderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartConfigurationRecorderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartConfigurationRecorderOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the StopConfigurationRecorder action.
@@ -918,10 +1209,30 @@ type metadataStopConfigurationRecorderInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StopConfigurationRecorderInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StopConfigurationRecorderInput) GoString() string {
+	return s.String()
+}
+
 type StopConfigurationRecorderOutput struct {
 	metadataStopConfigurationRecorderOutput `json:"-" xml:"-"`
 }
 
 type metadataStopConfigurationRecorderOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopConfigurationRecorderOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StopConfigurationRecorderOutput) GoString() string {
+	return s.String()
 }

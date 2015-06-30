@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateBatchPrediction = "CreateBatchPrediction"
@@ -962,6 +963,16 @@ type metadataBatchPrediction struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BatchPrediction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BatchPrediction) GoString() string {
+	return s.String()
+}
+
 type CreateBatchPredictionInput struct {
 	// The ID of the DataSource that points to the group of observations to predict.
 	BatchPredictionDataSourceID *string `locationName:"BatchPredictionDataSourceId" type:"string" required:"true"`
@@ -992,6 +1003,16 @@ type metadataCreateBatchPredictionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateBatchPredictionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateBatchPredictionInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateBatchPrediction operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1008,6 +1029,16 @@ type CreateBatchPredictionOutput struct {
 
 type metadataCreateBatchPredictionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateBatchPredictionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateBatchPredictionOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDataSourceFromRDSInput struct {
@@ -1077,6 +1108,16 @@ type metadataCreateDataSourceFromRDSInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDataSourceFromRDSInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataSourceFromRDSInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateDataSourceFromRDS operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1096,6 +1137,16 @@ type CreateDataSourceFromRDSOutput struct {
 
 type metadataCreateDataSourceFromRDSOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDataSourceFromRDSOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataSourceFromRDSOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDataSourceFromRedshiftInput struct {
@@ -1154,6 +1205,16 @@ type metadataCreateDataSourceFromRedshiftInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDataSourceFromRedshiftInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataSourceFromRedshiftInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateDataSourceFromRedshift operation, and is
 // an acknowledgement that Amazon ML received the request.
 //
@@ -1170,6 +1231,16 @@ type CreateDataSourceFromRedshiftOutput struct {
 
 type metadataCreateDataSourceFromRedshiftOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDataSourceFromRedshiftOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataSourceFromRedshiftOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDataSourceFromS3Input struct {
@@ -1208,6 +1279,16 @@ type metadataCreateDataSourceFromS3Input struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateDataSourceFromS3Input) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataSourceFromS3Input) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateDataSourceFromS3 operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1223,6 +1304,16 @@ type CreateDataSourceFromS3Output struct {
 
 type metadataCreateDataSourceFromS3Output struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDataSourceFromS3Output) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateDataSourceFromS3Output) GoString() string {
+	return s.String()
 }
 
 type CreateEvaluationInput struct {
@@ -1249,6 +1340,16 @@ type metadataCreateEvaluationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateEvaluationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateEvaluationInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateEvaluation operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1264,6 +1365,16 @@ type CreateEvaluationOutput struct {
 
 type metadataCreateEvaluationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateEvaluationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateEvaluationOutput) GoString() string {
+	return s.String()
 }
 
 type CreateMLModelInput struct {
@@ -1336,6 +1447,16 @@ type metadataCreateMLModelInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateMLModelInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateMLModelInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateMLModel operation, and is an acknowledgement
 // that Amazon ML received the request.
 //
@@ -1353,6 +1474,16 @@ type metadataCreateMLModelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateMLModelOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateMLModelOutput) GoString() string {
+	return s.String()
+}
+
 type CreateRealtimeEndpointInput struct {
 	// The ID assigned to the MLModel during creation.
 	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
@@ -1362,6 +1493,16 @@ type CreateRealtimeEndpointInput struct {
 
 type metadataCreateRealtimeEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRealtimeEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRealtimeEndpointInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of an CreateRealtimeEndpoint operation.
@@ -1383,6 +1524,16 @@ type CreateRealtimeEndpointOutput struct {
 
 type metadataCreateRealtimeEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRealtimeEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateRealtimeEndpointOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of the GetDataSource operation.
@@ -1457,6 +1608,16 @@ type metadataDataSource struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DataSource) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DataSource) GoString() string {
+	return s.String()
+}
+
 type DeleteBatchPredictionInput struct {
 	// A user-supplied ID that uniquely identifies the BatchPrediction.
 	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
@@ -1466,6 +1627,16 @@ type DeleteBatchPredictionInput struct {
 
 type metadataDeleteBatchPredictionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBatchPredictionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBatchPredictionInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a DeleteBatchPrediction operation.
@@ -1484,6 +1655,16 @@ type metadataDeleteBatchPredictionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteBatchPredictionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBatchPredictionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteDataSourceInput struct {
 	// A user-supplied ID that uniquely identifies the DataSource.
 	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
@@ -1493,6 +1674,16 @@ type DeleteDataSourceInput struct {
 
 type metadataDeleteDataSourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDataSourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDataSourceInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a DeleteDataSource operation.
@@ -1508,6 +1699,16 @@ type metadataDeleteDataSourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteDataSourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDataSourceOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEvaluationInput struct {
 	// A user-supplied ID that uniquely identifies the Evaluation to delete.
 	EvaluationID *string `locationName:"EvaluationId" type:"string" required:"true"`
@@ -1517,6 +1718,16 @@ type DeleteEvaluationInput struct {
 
 type metadataDeleteEvaluationInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEvaluationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEvaluationInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a DeleteEvaluation operation. The output indicates
@@ -1536,6 +1747,16 @@ type metadataDeleteEvaluationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteEvaluationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEvaluationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteMLModelInput struct {
 	// A user-supplied ID that uniquely identifies the MLModel.
 	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
@@ -1545,6 +1766,16 @@ type DeleteMLModelInput struct {
 
 type metadataDeleteMLModelInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMLModelInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMLModelInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a DeleteMLModel operation.
@@ -1563,6 +1794,16 @@ type metadataDeleteMLModelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteMLModelOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMLModelOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteRealtimeEndpointInput struct {
 	// The ID assigned to the MLModel during creation.
 	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
@@ -1572,6 +1813,16 @@ type DeleteRealtimeEndpointInput struct {
 
 type metadataDeleteRealtimeEndpointInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRealtimeEndpointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRealtimeEndpointInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of an DeleteRealtimeEndpoint operation.
@@ -1590,6 +1841,16 @@ type DeleteRealtimeEndpointOutput struct {
 
 type metadataDeleteRealtimeEndpointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRealtimeEndpointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRealtimeEndpointOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeBatchPredictionsInput struct {
@@ -1666,6 +1927,16 @@ type metadataDescribeBatchPredictionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeBatchPredictionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeBatchPredictionsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeBatchPredictions operation. The content
 // is essentially a list of BatchPredictions.
 type DescribeBatchPredictionsOutput struct {
@@ -1681,6 +1952,16 @@ type DescribeBatchPredictionsOutput struct {
 
 type metadataDescribeBatchPredictionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeBatchPredictionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeBatchPredictionsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeDataSourcesInput struct {
@@ -1752,6 +2033,16 @@ type metadataDescribeDataSourcesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDataSourcesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSourcesInput) GoString() string {
+	return s.String()
+}
+
 // Represents the query results from a DescribeDataSources operation. The content
 // is essentially a list of DataSource.
 type DescribeDataSourcesOutput struct {
@@ -1767,6 +2058,16 @@ type DescribeDataSourcesOutput struct {
 
 type metadataDescribeDataSourcesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDataSourcesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSourcesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeEvaluationsInput struct {
@@ -1840,6 +2141,16 @@ type metadataDescribeEvaluationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeEvaluationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEvaluationsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the query results from a DescribeEvaluations operation. The content
 // is essentially a list of Evaluation.
 type DescribeEvaluationsOutput struct {
@@ -1855,6 +2166,16 @@ type DescribeEvaluationsOutput struct {
 
 type metadataDescribeEvaluationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEvaluationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEvaluationsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeMLModelsInput struct {
@@ -1931,6 +2252,16 @@ type metadataDescribeMLModelsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeMLModelsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMLModelsInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeMLModels operation. The content is essentially
 // a list of MLModel.
 type DescribeMLModelsOutput struct {
@@ -1946,6 +2277,16 @@ type DescribeMLModelsOutput struct {
 
 type metadataDescribeMLModelsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMLModelsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMLModelsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of GetEvaluation operation.
@@ -2020,6 +2361,16 @@ type metadataEvaluation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Evaluation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Evaluation) GoString() string {
+	return s.String()
+}
+
 type GetBatchPredictionInput struct {
 	// An ID assigned to the BatchPrediction at creation.
 	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
@@ -2029,6 +2380,16 @@ type GetBatchPredictionInput struct {
 
 type metadataGetBatchPredictionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBatchPredictionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetBatchPredictionInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a GetBatchPrediction operation and describes a BatchPrediction.
@@ -2091,6 +2452,16 @@ type metadataGetBatchPredictionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetBatchPredictionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetBatchPredictionOutput) GoString() string {
+	return s.String()
+}
+
 type GetDataSourceInput struct {
 	// The ID assigned to the DataSource at creation.
 	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
@@ -2107,6 +2478,16 @@ type GetDataSourceInput struct {
 
 type metadataGetDataSourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDataSourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDataSourceInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a GetDataSource operation and describes a DataSource.
@@ -2187,6 +2568,16 @@ type metadataGetDataSourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetDataSourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDataSourceOutput) GoString() string {
+	return s.String()
+}
+
 type GetEvaluationInput struct {
 	// The ID of the Evaluation to retrieve. The evaluation of each MLModel is recorded
 	// and cataloged. The ID provides the means to access the information.
@@ -2197,6 +2588,16 @@ type GetEvaluationInput struct {
 
 type metadataGetEvaluationInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetEvaluationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetEvaluationInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a GetEvaluation operation and describes an Evaluation.
@@ -2271,6 +2672,16 @@ type metadataGetEvaluationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetEvaluationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetEvaluationOutput) GoString() string {
+	return s.String()
+}
+
 type GetMLModelInput struct {
 	// The ID assigned to the MLModel at creation.
 	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
@@ -2287,6 +2698,16 @@ type GetMLModelInput struct {
 
 type metadataGetMLModelInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMLModelInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetMLModelInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a GetMLModel operation, and provides detailed information
@@ -2411,6 +2832,16 @@ type metadataGetMLModelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetMLModelOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetMLModelOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a GetMLModel operation.
 //
 // The content consists of the detailed metadata and the current status of
@@ -2522,6 +2953,16 @@ type metadataMLModel struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MLModel) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MLModel) GoString() string {
+	return s.String()
+}
+
 // Measurements of how well the MLModel performed on known observations. One
 // of the following metrics is returned, based on the type of the MLModel:
 //
@@ -2547,6 +2988,16 @@ type metadataPerformanceMetrics struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PerformanceMetrics) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PerformanceMetrics) GoString() string {
+	return s.String()
+}
+
 type PredictInput struct {
 	// A unique identifier of the MLModel.
 	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
@@ -2561,6 +3012,16 @@ type PredictInput struct {
 
 type metadataPredictInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PredictInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PredictInput) GoString() string {
+	return s.String()
 }
 
 type PredictOutput struct {
@@ -2582,6 +3043,16 @@ type PredictOutput struct {
 
 type metadataPredictOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PredictOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PredictOutput) GoString() string {
+	return s.String()
 }
 
 // The output from a Predict operation:
@@ -2613,6 +3084,16 @@ type Prediction struct {
 
 type metadataPrediction struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Prediction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Prediction) GoString() string {
+	return s.String()
 }
 
 // The data specification of an Amazon Relational Database Service (Amazon RDS)
@@ -2675,6 +3156,16 @@ type metadataRDSDataSpec struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RDSDataSpec) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RDSDataSpec) GoString() string {
+	return s.String()
+}
+
 // The database details of an Amazon RDS database.
 type RDSDatabase struct {
 	// The name of a database hosted on an RDS DB instance.
@@ -2688,6 +3179,16 @@ type RDSDatabase struct {
 
 type metadataRDSDatabase struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RDSDatabase) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RDSDatabase) GoString() string {
+	return s.String()
 }
 
 // The database credentials to connect to a database on an RDS DB instance.
@@ -2707,6 +3208,16 @@ type RDSDatabaseCredentials struct {
 
 type metadataRDSDatabaseCredentials struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RDSDatabaseCredentials) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RDSDatabaseCredentials) GoString() string {
+	return s.String()
 }
 
 // The datasource details that are specific to Amazon RDS.
@@ -2747,6 +3258,16 @@ type metadataRDSMetadata struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RDSMetadata) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RDSMetadata) GoString() string {
+	return s.String()
+}
+
 // Describes the real-time endpoint information for an MLModel.
 type RealtimeEndpointInfo struct {
 	// The time that the request to create the real-time endpoint for the MLModel
@@ -2777,6 +3298,16 @@ type RealtimeEndpointInfo struct {
 
 type metadataRealtimeEndpointInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RealtimeEndpointInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RealtimeEndpointInfo) GoString() string {
+	return s.String()
 }
 
 // Describes the data specification of an Amazon Redshift DataSource.
@@ -2812,6 +3343,16 @@ type metadataRedshiftDataSpec struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RedshiftDataSpec) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RedshiftDataSpec) GoString() string {
+	return s.String()
+}
+
 // Describes the database details required to connect to an Amazon Redshift
 // database.
 type RedshiftDatabase struct {
@@ -2826,6 +3367,16 @@ type RedshiftDatabase struct {
 
 type metadataRedshiftDatabase struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RedshiftDatabase) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RedshiftDatabase) GoString() string {
+	return s.String()
 }
 
 // Describes the database credentials for connecting to a database on an Amazon
@@ -2848,6 +3399,16 @@ type RedshiftDatabaseCredentials struct {
 
 type metadataRedshiftDatabaseCredentials struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RedshiftDatabaseCredentials) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RedshiftDatabaseCredentials) GoString() string {
+	return s.String()
 }
 
 // Describes the DataSource details specific to Amazon Redshift.
@@ -2873,6 +3434,16 @@ type metadataRedshiftMetadata struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RedshiftMetadata) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RedshiftMetadata) GoString() string {
+	return s.String()
+}
+
 // Describes the data specification of a DataSource.
 type S3DataSpec struct {
 	// The location of the data file(s) used by a DataSource. The URI specifies
@@ -2896,6 +3467,16 @@ type metadataS3DataSpec struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s S3DataSpec) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s S3DataSpec) GoString() string {
+	return s.String()
+}
+
 type UpdateBatchPredictionInput struct {
 	// The ID assigned to the BatchPrediction during creation.
 	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
@@ -2908,6 +3489,16 @@ type UpdateBatchPredictionInput struct {
 
 type metadataUpdateBatchPredictionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateBatchPredictionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateBatchPredictionInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of an UpdateBatchPrediction operation.
@@ -2925,6 +3516,16 @@ type metadataUpdateBatchPredictionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateBatchPredictionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateBatchPredictionOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateDataSourceInput struct {
 	// The ID assigned to the DataSource during creation.
 	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
@@ -2938,6 +3539,16 @@ type UpdateDataSourceInput struct {
 
 type metadataUpdateDataSourceInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDataSourceInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDataSourceInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of an UpdateDataSource operation.
@@ -2955,6 +3566,16 @@ type metadataUpdateDataSourceOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateDataSourceOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDataSourceOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateEvaluationInput struct {
 	// The ID assigned to the Evaluation during creation.
 	EvaluationID *string `locationName:"EvaluationId" type:"string" required:"true"`
@@ -2970,6 +3591,16 @@ type metadataUpdateEvaluationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateEvaluationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateEvaluationInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of an UpdateEvaluation operation.
 //
 // You can see the updated content by using the GetEvaluation operation.
@@ -2983,6 +3614,16 @@ type UpdateEvaluationOutput struct {
 
 type metadataUpdateEvaluationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateEvaluationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateEvaluationOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateMLModelInput struct {
@@ -3007,6 +3648,16 @@ type metadataUpdateMLModelInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateMLModelInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMLModelInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of an UpdateMLModel operation.
 //
 // You can see the updated content by using the GetMLModel operation.
@@ -3020,4 +3671,14 @@ type UpdateMLModelOutput struct {
 
 type metadataUpdateMLModelOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateMLModelOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMLModelOutput) GoString() string {
+	return s.String()
 }

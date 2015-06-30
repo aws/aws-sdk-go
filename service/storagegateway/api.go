@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opActivateGateway = "ActivateGateway"
@@ -1825,6 +1826,16 @@ type metadataActivateGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivateGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivateGatewayInput) GoString() string {
+	return s.String()
+}
+
 // AWS Storage Gateway returns the Amazon Resource Name (ARN) of the activated
 // gateway. It is a string made of information such as your account, gateway
 // name, and region. This ARN is used to reference the gateway in other API
@@ -1841,6 +1852,16 @@ type metadataActivateGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivateGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivateGatewayOutput) GoString() string {
+	return s.String()
+}
+
 type AddCacheInput struct {
 	DiskIDs []*string `locationName:"DiskIds" type:"list" required:"true"`
 
@@ -1855,6 +1876,16 @@ type metadataAddCacheInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddCacheInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddCacheInput) GoString() string {
+	return s.String()
+}
+
 type AddCacheOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -1865,6 +1896,16 @@ type AddCacheOutput struct {
 
 type metadataAddCacheOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddCacheOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddCacheOutput) GoString() string {
+	return s.String()
 }
 
 type AddUploadBufferInput struct {
@@ -1881,6 +1922,16 @@ type metadataAddUploadBufferInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddUploadBufferInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddUploadBufferInput) GoString() string {
+	return s.String()
+}
+
 type AddUploadBufferOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -1891,6 +1942,16 @@ type AddUploadBufferOutput struct {
 
 type metadataAddUploadBufferOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddUploadBufferOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddUploadBufferOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing one or more of the following fields:
@@ -1913,6 +1974,16 @@ type metadataAddWorkingStorageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddWorkingStorageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddWorkingStorageInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway for which working storage was
 // configured.
 type AddWorkingStorageOutput struct {
@@ -1925,6 +1996,16 @@ type AddWorkingStorageOutput struct {
 
 type metadataAddWorkingStorageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddWorkingStorageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddWorkingStorageOutput) GoString() string {
+	return s.String()
 }
 
 type CachediSCSIVolume struct {
@@ -1952,6 +2033,16 @@ type metadataCachediSCSIVolume struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CachediSCSIVolume) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CachediSCSIVolume) GoString() string {
+	return s.String()
+}
+
 // CancelArchivalInput
 type CancelArchivalInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -1969,6 +2060,16 @@ type metadataCancelArchivalInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelArchivalInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelArchivalInput) GoString() string {
+	return s.String()
+}
+
 // CancelArchivalOutput
 type CancelArchivalOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape for which archiving was
@@ -1980,6 +2081,16 @@ type CancelArchivalOutput struct {
 
 type metadataCancelArchivalOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelArchivalOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelArchivalOutput) GoString() string {
+	return s.String()
 }
 
 // CancelRetrievalInput
@@ -1999,6 +2110,16 @@ type metadataCancelRetrievalInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelRetrievalInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelRetrievalInput) GoString() string {
+	return s.String()
+}
+
 // CancelRetrievalOutput
 type CancelRetrievalOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape for which retrieval was
@@ -2010,6 +2131,16 @@ type CancelRetrievalOutput struct {
 
 type metadataCancelRetrievalOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelRetrievalOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelRetrievalOutput) GoString() string {
+	return s.String()
 }
 
 // Describes Challenge-Handshake Authentication Protocol (CHAP) information
@@ -2039,6 +2170,16 @@ type metadataChapInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChapInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChapInfo) GoString() string {
+	return s.String()
+}
+
 type CreateCachediSCSIVolumeInput struct {
 	ClientToken *string `type:"string" required:"true"`
 
@@ -2061,6 +2202,16 @@ type metadataCreateCachediSCSIVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateCachediSCSIVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCachediSCSIVolumeInput) GoString() string {
+	return s.String()
+}
+
 type CreateCachediSCSIVolumeOutput struct {
 	TargetARN *string `type:"string"`
 
@@ -2071,6 +2222,16 @@ type CreateCachediSCSIVolumeOutput struct {
 
 type metadataCreateCachediSCSIVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCachediSCSIVolumeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateCachediSCSIVolumeOutput) GoString() string {
+	return s.String()
 }
 
 type CreateSnapshotFromVolumeRecoveryPointInput struct {
@@ -2085,6 +2246,16 @@ type metadataCreateSnapshotFromVolumeRecoveryPointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSnapshotFromVolumeRecoveryPointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotFromVolumeRecoveryPointInput) GoString() string {
+	return s.String()
+}
+
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 	SnapshotID *string `locationName:"SnapshotId" type:"string"`
 
@@ -2097,6 +2268,16 @@ type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 
 type metadataCreateSnapshotFromVolumeRecoveryPointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSnapshotFromVolumeRecoveryPointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotFromVolumeRecoveryPointOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing one or more of the following fields:
@@ -2119,6 +2300,16 @@ type metadataCreateSnapshotInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateSnapshotInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the following fields:
 type CreateSnapshotOutput struct {
 	// The snapshot ID that is used to refer to the snapshot in future operations
@@ -2134,6 +2325,16 @@ type CreateSnapshotOutput struct {
 
 type metadataCreateSnapshotOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSnapshotOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateSnapshotOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing one or more of the following fields:
@@ -2184,6 +2385,16 @@ type metadataCreateStorediSCSIVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateStorediSCSIVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStorediSCSIVolumeInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the following fields:
 type CreateStorediSCSIVolumeOutput struct {
 	// he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
@@ -2201,6 +2412,16 @@ type CreateStorediSCSIVolumeOutput struct {
 
 type metadataCreateStorediSCSIVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateStorediSCSIVolumeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateStorediSCSIVolumeOutput) GoString() string {
+	return s.String()
 }
 
 // CreateTapesInput
@@ -2238,6 +2459,16 @@ type metadataCreateTapesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateTapesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTapesInput) GoString() string {
+	return s.String()
+}
+
 // CreateTapeOutput
 type CreateTapesOutput struct {
 	// A list of unique Amazon Resource Named (ARN) the represents the virtual tapes
@@ -2249,6 +2480,16 @@ type CreateTapesOutput struct {
 
 type metadataCreateTapesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateTapesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTapesOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteBandwidthRateLimitInput struct {
@@ -2265,6 +2506,16 @@ type metadataDeleteBandwidthRateLimitInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteBandwidthRateLimitInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBandwidthRateLimitInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway whose bandwidth rate information
 // was deleted.
 type DeleteBandwidthRateLimitOutput struct {
@@ -2277,6 +2528,16 @@ type DeleteBandwidthRateLimitOutput struct {
 
 type metadataDeleteBandwidthRateLimitOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBandwidthRateLimitOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBandwidthRateLimitOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing one or more of the following fields:
@@ -2297,6 +2558,16 @@ type metadataDeleteChapCredentialsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteChapCredentialsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChapCredentialsInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the following fields:
 type DeleteChapCredentialsOutput struct {
 	// The iSCSI initiator that connects to the target.
@@ -2312,6 +2583,16 @@ type metadataDeleteChapCredentialsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteChapCredentialsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteChapCredentialsOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the id of the gateway to delete.
 type DeleteGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2323,6 +2604,16 @@ type DeleteGatewayInput struct {
 
 type metadataDeleteGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGatewayInput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the id of the deleted gateway.
@@ -2338,6 +2629,16 @@ type metadataDeleteGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGatewayOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteSnapshotScheduleInput struct {
 	VolumeARN *string `type:"string" required:"true"`
 
@@ -2348,6 +2649,16 @@ type metadataDeleteSnapshotScheduleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSnapshotScheduleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotScheduleInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSnapshotScheduleOutput struct {
 	VolumeARN *string `type:"string"`
 
@@ -2356,6 +2667,16 @@ type DeleteSnapshotScheduleOutput struct {
 
 type metadataDeleteSnapshotScheduleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSnapshotScheduleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSnapshotScheduleOutput) GoString() string {
+	return s.String()
 }
 
 // DeleteTapeArchiveInput
@@ -2371,6 +2692,16 @@ type metadataDeleteTapeArchiveInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTapeArchiveInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTapeArchiveInput) GoString() string {
+	return s.String()
+}
+
 // DeleteTapeArchiveOutput
 type DeleteTapeArchiveOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape that was deleted from
@@ -2382,6 +2713,16 @@ type DeleteTapeArchiveOutput struct {
 
 type metadataDeleteTapeArchiveOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTapeArchiveOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTapeArchiveOutput) GoString() string {
+	return s.String()
 }
 
 // DeleteTapeInput
@@ -2401,6 +2742,16 @@ type metadataDeleteTapeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTapeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTapeInput) GoString() string {
+	return s.String()
+}
+
 // DeleteTapeOutput
 type DeleteTapeOutput struct {
 	// The Amazon Resource Name (ARN) of the deleted virtual tape.
@@ -2411,6 +2762,16 @@ type DeleteTapeOutput struct {
 
 type metadataDeleteTapeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTapeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTapeOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the DeleteVolumeInput$VolumeARN to delete.
@@ -2426,6 +2787,16 @@ type metadataDeleteVolumeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVolumeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the storage volume that was deleted
 type DeleteVolumeOutput struct {
 	// The Amazon Resource Name (ARN) of the storage volume that was deleted. It
@@ -2439,6 +2810,16 @@ type metadataDeleteVolumeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVolumeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway.
 type DescribeBandwidthRateLimitInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2450,6 +2831,16 @@ type DescribeBandwidthRateLimitInput struct {
 
 type metadataDescribeBandwidthRateLimitInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeBandwidthRateLimitInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeBandwidthRateLimitInput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the following fields:
@@ -2473,6 +2864,16 @@ type metadataDescribeBandwidthRateLimitOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeBandwidthRateLimitOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeBandwidthRateLimitOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeCacheInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2483,6 +2884,16 @@ type DescribeCacheInput struct {
 
 type metadataDescribeCacheInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCacheInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheInput) GoString() string {
+	return s.String()
 }
 
 type DescribeCacheOutput struct {
@@ -2509,6 +2920,16 @@ type metadataDescribeCacheOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCacheOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCacheOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeCachediSCSIVolumesInput struct {
 	VolumeARNs []*string `type:"list" required:"true"`
 
@@ -2517,6 +2938,16 @@ type DescribeCachediSCSIVolumesInput struct {
 
 type metadataDescribeCachediSCSIVolumesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeCachediSCSIVolumesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCachediSCSIVolumesInput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the following fields:
@@ -2532,6 +2963,16 @@ type metadataDescribeCachediSCSIVolumesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeCachediSCSIVolumesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeCachediSCSIVolumesOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the Amazon Resource Name (ARN) of the iSCSI volume
 // target.
 type DescribeChapCredentialsInput struct {
@@ -2544,6 +2985,16 @@ type DescribeChapCredentialsInput struct {
 
 type metadataDescribeChapCredentialsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeChapCredentialsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChapCredentialsInput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing a .
@@ -2572,6 +3023,16 @@ type metadataDescribeChapCredentialsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeChapCredentialsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeChapCredentialsOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the id of the gateway.
 type DescribeGatewayInformationInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2583,6 +3044,16 @@ type DescribeGatewayInformationInput struct {
 
 type metadataDescribeGatewayInformationInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeGatewayInformationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGatewayInformationInput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the following fields:
@@ -2624,6 +3095,16 @@ type metadataDescribeGatewayInformationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeGatewayInformationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGatewayInformationOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway.
 type DescribeMaintenanceStartTimeInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2635,6 +3116,16 @@ type DescribeMaintenanceStartTimeInput struct {
 
 type metadataDescribeMaintenanceStartTimeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMaintenanceStartTimeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMaintenanceStartTimeInput) GoString() string {
+	return s.String()
 }
 
 type DescribeMaintenanceStartTimeOutput struct {
@@ -2657,6 +3148,16 @@ type metadataDescribeMaintenanceStartTimeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeMaintenanceStartTimeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMaintenanceStartTimeOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the DescribeSnapshotScheduleInput$VolumeARN of the
 // volume.
 type DescribeSnapshotScheduleInput struct {
@@ -2669,6 +3170,16 @@ type DescribeSnapshotScheduleInput struct {
 
 type metadataDescribeSnapshotScheduleInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSnapshotScheduleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotScheduleInput) GoString() string {
+	return s.String()
 }
 
 type DescribeSnapshotScheduleOutput struct {
@@ -2689,6 +3200,16 @@ type metadataDescribeSnapshotScheduleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSnapshotScheduleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSnapshotScheduleOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON Object containing a list of DescribeStorediSCSIVolumesInput$VolumeARNs.
 type DescribeStorediSCSIVolumesInput struct {
 	// An array of strings where each string represents the Amazon Resource Name
@@ -2703,6 +3224,16 @@ type metadataDescribeStorediSCSIVolumesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStorediSCSIVolumesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStorediSCSIVolumesInput) GoString() string {
+	return s.String()
+}
+
 type DescribeStorediSCSIVolumesOutput struct {
 	StorediSCSIVolumes []*StorediSCSIVolume `type:"list"`
 
@@ -2711,6 +3242,16 @@ type DescribeStorediSCSIVolumesOutput struct {
 
 type metadataDescribeStorediSCSIVolumesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStorediSCSIVolumesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStorediSCSIVolumesOutput) GoString() string {
+	return s.String()
 }
 
 // DescribeTapeArchivesInput
@@ -2732,6 +3273,16 @@ type DescribeTapeArchivesInput struct {
 
 type metadataDescribeTapeArchivesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTapeArchivesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTapeArchivesInput) GoString() string {
+	return s.String()
 }
 
 // DescribeTapeArchivesOutput
@@ -2756,6 +3307,16 @@ type metadataDescribeTapeArchivesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTapeArchivesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTapeArchivesOutput) GoString() string {
+	return s.String()
+}
+
 // DescribeTapeRecoveryPointsInput
 type DescribeTapeRecoveryPointsInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2775,6 +3336,16 @@ type DescribeTapeRecoveryPointsInput struct {
 
 type metadataDescribeTapeRecoveryPointsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTapeRecoveryPointsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTapeRecoveryPointsInput) GoString() string {
+	return s.String()
 }
 
 // DescribeTapeRecoveryPointsOutput
@@ -2799,6 +3370,16 @@ type DescribeTapeRecoveryPointsOutput struct {
 
 type metadataDescribeTapeRecoveryPointsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTapeRecoveryPointsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTapeRecoveryPointsOutput) GoString() string {
+	return s.String()
 }
 
 // DescribeTapesInput
@@ -2832,6 +3413,16 @@ type metadataDescribeTapesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTapesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTapesInput) GoString() string {
+	return s.String()
+}
+
 // DescribeTapesOutput
 type DescribeTapesOutput struct {
 	// An opaque string which can be used as part of a subsequent DescribeTapes
@@ -2851,6 +3442,16 @@ type metadataDescribeTapesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTapesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTapesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeUploadBufferInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2861,6 +3462,16 @@ type DescribeUploadBufferInput struct {
 
 type metadataDescribeUploadBufferInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeUploadBufferInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUploadBufferInput) GoString() string {
+	return s.String()
 }
 
 type DescribeUploadBufferOutput struct {
@@ -2879,6 +3490,16 @@ type DescribeUploadBufferOutput struct {
 
 type metadataDescribeUploadBufferOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeUploadBufferOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUploadBufferOutput) GoString() string {
+	return s.String()
 }
 
 // DescribeVTLDevicesInput
@@ -2910,6 +3531,16 @@ type metadataDescribeVTLDevicesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVTLDevicesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVTLDevicesInput) GoString() string {
+	return s.String()
+}
+
 // DescribeVTLDevicesOutput
 type DescribeVTLDevicesOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2933,6 +3564,16 @@ type metadataDescribeVTLDevicesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeVTLDevicesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVTLDevicesOutput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway.
 type DescribeWorkingStorageInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -2944,6 +3585,16 @@ type DescribeWorkingStorageInput struct {
 
 type metadataDescribeWorkingStorageInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeWorkingStorageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkingStorageInput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the following fields:
@@ -2973,6 +3624,16 @@ type metadataDescribeWorkingStorageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeWorkingStorageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkingStorageOutput) GoString() string {
+	return s.String()
+}
+
 // Lists iSCSI information about a VTL device.
 type DeviceiSCSIAttributes struct {
 	// Indicates whether mutual CHAP is enabled for the iSCSI target.
@@ -2995,6 +3656,16 @@ type metadataDeviceiSCSIAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeviceiSCSIAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeviceiSCSIAttributes) GoString() string {
+	return s.String()
+}
+
 // DisableGatewayInput
 type DisableGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -3008,6 +3679,16 @@ type metadataDisableGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableGatewayInput) GoString() string {
+	return s.String()
+}
+
 // DisableGatewayOutput
 type DisableGatewayOutput struct {
 	// The unique Amazon Resource Name of the disabled gateway.
@@ -3018,6 +3699,16 @@ type DisableGatewayOutput struct {
 
 type metadataDisableGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type Disk struct {
@@ -3042,6 +3733,16 @@ type metadataDisk struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Disk) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Disk) GoString() string {
+	return s.String()
+}
+
 // Provides additional information about an error that was returned by the service
 // as an or. See the errorCode and errorDetails members for more information
 // about the error.
@@ -3059,6 +3760,16 @@ type metadataError struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Error) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Error) GoString() string {
+	return s.String()
+}
+
 type GatewayInfo struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3073,6 +3784,16 @@ type GatewayInfo struct {
 
 type metadataGatewayInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GatewayInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GatewayInfo) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing zero or more of the following fields:
@@ -3094,6 +3815,16 @@ type metadataListGatewaysInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListGatewaysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGatewaysInput) GoString() string {
+	return s.String()
+}
+
 type ListGatewaysOutput struct {
 	Gateways []*GatewayInfo `type:"list"`
 
@@ -3104,6 +3835,16 @@ type ListGatewaysOutput struct {
 
 type metadataListGatewaysOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListGatewaysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListGatewaysOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the of the gateway.
@@ -3117,6 +3858,16 @@ type ListLocalDisksInput struct {
 
 type metadataListLocalDisksInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListLocalDisksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListLocalDisksInput) GoString() string {
+	return s.String()
 }
 
 type ListLocalDisksOutput struct {
@@ -3133,6 +3884,16 @@ type metadataListLocalDisksOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListLocalDisksOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListLocalDisksOutput) GoString() string {
+	return s.String()
+}
+
 // ListVolumeInitiatorsInput
 type ListVolumeInitiatorsInput struct {
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
@@ -3144,6 +3905,16 @@ type ListVolumeInitiatorsInput struct {
 
 type metadataListVolumeInitiatorsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVolumeInitiatorsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVolumeInitiatorsInput) GoString() string {
+	return s.String()
 }
 
 // ListVolumeInitiatorsOutput
@@ -3159,6 +3930,16 @@ type metadataListVolumeInitiatorsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListVolumeInitiatorsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVolumeInitiatorsOutput) GoString() string {
+	return s.String()
+}
+
 type ListVolumeRecoveryPointsInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3169,6 +3950,16 @@ type ListVolumeRecoveryPointsInput struct {
 
 type metadataListVolumeRecoveryPointsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVolumeRecoveryPointsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVolumeRecoveryPointsInput) GoString() string {
+	return s.String()
 }
 
 type ListVolumeRecoveryPointsOutput struct {
@@ -3183,6 +3974,16 @@ type ListVolumeRecoveryPointsOutput struct {
 
 type metadataListVolumeRecoveryPointsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVolumeRecoveryPointsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVolumeRecoveryPointsOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object that contains one or more of the following fields:
@@ -3209,6 +4010,16 @@ type metadataListVolumesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListVolumesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVolumesInput) GoString() string {
+	return s.String()
+}
+
 type ListVolumesOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3223,6 +4034,16 @@ type ListVolumesOutput struct {
 
 type metadataListVolumesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVolumesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVolumesOutput) GoString() string {
+	return s.String()
 }
 
 // Describes a gateway's network interface.
@@ -3246,6 +4067,16 @@ type metadataNetworkInterface struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s NetworkInterface) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s NetworkInterface) GoString() string {
+	return s.String()
+}
+
 type ResetCacheInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3258,6 +4089,16 @@ type metadataResetCacheInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ResetCacheInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetCacheInput) GoString() string {
+	return s.String()
+}
+
 type ResetCacheOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3268,6 +4109,16 @@ type ResetCacheOutput struct {
 
 type metadataResetCacheOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetCacheOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ResetCacheOutput) GoString() string {
+	return s.String()
 }
 
 // RetrieveTapeArchiveInput
@@ -3291,6 +4142,16 @@ type metadataRetrieveTapeArchiveInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RetrieveTapeArchiveInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RetrieveTapeArchiveInput) GoString() string {
+	return s.String()
+}
+
 // RetrieveTapeArchiveOutput
 type RetrieveTapeArchiveOutput struct {
 	// The Amazon Resource Name (ARN) of the retrieved virtual tape.
@@ -3301,6 +4162,16 @@ type RetrieveTapeArchiveOutput struct {
 
 type metadataRetrieveTapeArchiveOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RetrieveTapeArchiveOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RetrieveTapeArchiveOutput) GoString() string {
+	return s.String()
 }
 
 // RetrieveTapeRecoveryPointInput
@@ -3320,6 +4191,16 @@ type metadataRetrieveTapeRecoveryPointInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RetrieveTapeRecoveryPointInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RetrieveTapeRecoveryPointInput) GoString() string {
+	return s.String()
+}
+
 // RetrieveTapeRecoveryPointOutput
 type RetrieveTapeRecoveryPointOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape for which the recovery
@@ -3331,6 +4212,16 @@ type RetrieveTapeRecoveryPointOutput struct {
 
 type metadataRetrieveTapeRecoveryPointOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RetrieveTapeRecoveryPointOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RetrieveTapeRecoveryPointOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the of the gateway to shut down.
@@ -3346,6 +4237,16 @@ type metadataShutdownGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ShutdownGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ShutdownGatewayInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway that was shut down.
 type ShutdownGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -3357,6 +4258,16 @@ type ShutdownGatewayOutput struct {
 
 type metadataShutdownGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ShutdownGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ShutdownGatewayOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the of the gateway to start.
@@ -3372,6 +4283,16 @@ type metadataStartGatewayInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartGatewayInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartGatewayInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway that was restarted.
 type StartGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -3383,6 +4304,16 @@ type StartGatewayOutput struct {
 
 type metadataStartGatewayOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartGatewayOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartGatewayOutput) GoString() string {
+	return s.String()
 }
 
 type StorediSCSIVolume struct {
@@ -3414,6 +4345,16 @@ type metadataStorediSCSIVolume struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StorediSCSIVolume) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StorediSCSIVolume) GoString() string {
+	return s.String()
+}
+
 // Describes a virtual tape object.
 type Tape struct {
 	// For archiving virtual tapes, indicates how much data remains to be uploaded
@@ -3443,6 +4384,16 @@ type Tape struct {
 
 type metadataTape struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tape) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tape) GoString() string {
+	return s.String()
 }
 
 // Represents a virtual tape that is archived in the virtual tape shelf (VTS).
@@ -3478,6 +4429,16 @@ type metadataTapeArchive struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TapeArchive) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TapeArchive) GoString() string {
+	return s.String()
+}
+
 // Describes a recovery point.
 type TapeRecoveryPointInfo struct {
 	// The Amazon Resource Name (ARN) of the virtual tape.
@@ -3502,6 +4463,16 @@ type metadataTapeRecoveryPointInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TapeRecoveryPointInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TapeRecoveryPointInfo) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing one or more of the following fields:
 //
 //   UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec   UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
@@ -3523,6 +4494,16 @@ type metadataUpdateBandwidthRateLimitInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateBandwidthRateLimitInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateBandwidthRateLimitInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway whose throttle information was
 // updated.
 type UpdateBandwidthRateLimitOutput struct {
@@ -3535,6 +4516,16 @@ type UpdateBandwidthRateLimitOutput struct {
 
 type metadataUpdateBandwidthRateLimitOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateBandwidthRateLimitOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateBandwidthRateLimitOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing one or more of the following fields:
@@ -3570,6 +4561,16 @@ type metadataUpdateChapCredentialsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateChapCredentialsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChapCredentialsInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the following fields:
 type UpdateChapCredentialsOutput struct {
 	// The iSCSI initiator that connects to the target. This is the same initiator
@@ -3585,6 +4586,16 @@ type UpdateChapCredentialsOutput struct {
 
 type metadataUpdateChapCredentialsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateChapCredentialsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateChapCredentialsOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateGatewayInformationInput struct {
@@ -3605,6 +4616,16 @@ type metadataUpdateGatewayInformationInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateGatewayInformationInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGatewayInformationInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway that was updated.
 type UpdateGatewayInformationOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -3616,6 +4637,16 @@ type UpdateGatewayInformationOutput struct {
 
 type metadataUpdateGatewayInformationOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGatewayInformationOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGatewayInformationOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the of the gateway to update.
@@ -3631,6 +4662,16 @@ type metadataUpdateGatewaySoftwareNowInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateGatewaySoftwareNowInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGatewaySoftwareNowInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway that was updated.
 type UpdateGatewaySoftwareNowOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
@@ -3642,6 +4683,16 @@ type UpdateGatewaySoftwareNowOutput struct {
 
 type metadataUpdateGatewaySoftwareNowOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGatewaySoftwareNowOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGatewaySoftwareNowOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing the following fields:
@@ -3673,6 +4724,16 @@ type metadataUpdateMaintenanceStartTimeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateMaintenanceStartTimeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMaintenanceStartTimeInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the gateway whose maintenance start time
 // is updated.
 type UpdateMaintenanceStartTimeOutput struct {
@@ -3685,6 +4746,16 @@ type UpdateMaintenanceStartTimeOutput struct {
 
 type metadataUpdateMaintenanceStartTimeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateMaintenanceStartTimeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMaintenanceStartTimeOutput) GoString() string {
+	return s.String()
 }
 
 // A JSON object containing one or more of the following fields:
@@ -3714,6 +4785,16 @@ type metadataUpdateSnapshotScheduleInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateSnapshotScheduleInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSnapshotScheduleInput) GoString() string {
+	return s.String()
+}
+
 // A JSON object containing the of the updated storage volume.
 type UpdateSnapshotScheduleOutput struct {
 	VolumeARN *string `type:"string"`
@@ -3723,6 +4804,16 @@ type UpdateSnapshotScheduleOutput struct {
 
 type metadataUpdateSnapshotScheduleOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSnapshotScheduleOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSnapshotScheduleOutput) GoString() string {
+	return s.String()
 }
 
 // UpdateVTLDeviceTypeInput
@@ -3742,6 +4833,16 @@ type metadataUpdateVTLDeviceTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateVTLDeviceTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateVTLDeviceTypeInput) GoString() string {
+	return s.String()
+}
+
 // UpdateVTLDeviceTypeOutput
 type UpdateVTLDeviceTypeOutput struct {
 	// The Amazon Resource Name (ARN) of the medium changer you have selected.
@@ -3752,6 +4853,16 @@ type UpdateVTLDeviceTypeOutput struct {
 
 type metadataUpdateVTLDeviceTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateVTLDeviceTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateVTLDeviceTypeOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a device object associated with a gateway-VTL.
@@ -3776,6 +4887,16 @@ type metadataVTLDevice struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VTLDevice) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VTLDevice) GoString() string {
+	return s.String()
+}
+
 type VolumeInfo struct {
 	VolumeARN *string `type:"string"`
 
@@ -3786,6 +4907,16 @@ type VolumeInfo struct {
 
 type metadataVolumeInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeInfo) GoString() string {
+	return s.String()
 }
 
 type VolumeRecoveryPointInfo struct {
@@ -3802,6 +4933,16 @@ type VolumeRecoveryPointInfo struct {
 
 type metadataVolumeRecoveryPointInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeRecoveryPointInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeRecoveryPointInfo) GoString() string {
+	return s.String()
 }
 
 // Lists iSCSI information about a volume.
@@ -3826,4 +4967,14 @@ type VolumeiSCSIAttributes struct {
 
 type metadataVolumeiSCSIAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VolumeiSCSIAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VolumeiSCSIAttributes) GoString() string {
+	return s.String()
 }

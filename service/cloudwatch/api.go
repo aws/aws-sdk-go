@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opDeleteAlarms = "DeleteAlarms"
@@ -430,6 +431,16 @@ type metadataAlarmHistoryItem struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AlarmHistoryItem) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AlarmHistoryItem) GoString() string {
+	return s.String()
+}
+
 // The Datapoint data type encapsulates the statistical data that Amazon CloudWatch
 // computes from metric data.
 type Datapoint struct {
@@ -466,6 +477,16 @@ type metadataDatapoint struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Datapoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Datapoint) GoString() string {
+	return s.String()
+}
+
 type DeleteAlarmsInput struct {
 	// A list of alarms to be deleted.
 	AlarmNames []*string `type:"list" required:"true"`
@@ -477,12 +498,32 @@ type metadataDeleteAlarmsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteAlarmsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAlarmsInput) GoString() string {
+	return s.String()
+}
+
 type DeleteAlarmsOutput struct {
 	metadataDeleteAlarmsOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteAlarmsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAlarmsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAlarmsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAlarmHistoryInput struct {
@@ -512,6 +553,16 @@ type metadataDescribeAlarmHistoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAlarmHistoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAlarmHistoryInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeAlarmHistory action.
 type DescribeAlarmHistoryOutput struct {
 	// A list of alarm histories in JSON format.
@@ -525,6 +576,16 @@ type DescribeAlarmHistoryOutput struct {
 
 type metadataDescribeAlarmHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAlarmHistoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAlarmHistoryOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAlarmsForMetricInput struct {
@@ -553,6 +614,16 @@ type metadataDescribeAlarmsForMetricInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAlarmsForMetricInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAlarmsForMetricInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeAlarmsForMetric action.
 type DescribeAlarmsForMetricOutput struct {
 	// A list of information for each alarm with the specified metric.
@@ -563,6 +634,16 @@ type DescribeAlarmsForMetricOutput struct {
 
 type metadataDescribeAlarmsForMetricOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAlarmsForMetricOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAlarmsForMetricOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAlarmsInput struct {
@@ -593,6 +674,16 @@ type metadataDescribeAlarmsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeAlarmsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAlarmsInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeAlarms action.
 type DescribeAlarmsOutput struct {
 	// A list of information for the specified alarms.
@@ -606,6 +697,16 @@ type DescribeAlarmsOutput struct {
 
 type metadataDescribeAlarmsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAlarmsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAlarmsOutput) GoString() string {
+	return s.String()
 }
 
 // The Dimension data type further expands on the identity of a metric using
@@ -626,6 +727,16 @@ type metadataDimension struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Dimension) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Dimension) GoString() string {
+	return s.String()
+}
+
 // The DimensionFilter data type is used to filter ListMetrics results.
 type DimensionFilter struct {
 	// The dimension name to be matched.
@@ -641,6 +752,16 @@ type metadataDimensionFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DimensionFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DimensionFilter) GoString() string {
+	return s.String()
+}
+
 type DisableAlarmActionsInput struct {
 	// The names of the alarms to disable actions for.
 	AlarmNames []*string `type:"list" required:"true"`
@@ -652,12 +773,32 @@ type metadataDisableAlarmActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableAlarmActionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableAlarmActionsInput) GoString() string {
+	return s.String()
+}
+
 type DisableAlarmActionsOutput struct {
 	metadataDisableAlarmActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableAlarmActionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableAlarmActionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableAlarmActionsOutput) GoString() string {
+	return s.String()
 }
 
 type EnableAlarmActionsInput struct {
@@ -671,12 +812,32 @@ type metadataEnableAlarmActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableAlarmActionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableAlarmActionsInput) GoString() string {
+	return s.String()
+}
+
 type EnableAlarmActionsOutput struct {
 	metadataEnableAlarmActionsOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableAlarmActionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableAlarmActionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableAlarmActionsOutput) GoString() string {
+	return s.String()
 }
 
 type GetMetricStatisticsInput struct {
@@ -720,6 +881,16 @@ type metadataGetMetricStatisticsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetMetricStatisticsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetMetricStatisticsInput) GoString() string {
+	return s.String()
+}
+
 // The output for the GetMetricStatistics action.
 type GetMetricStatisticsOutput struct {
 	// The datapoints for the specified metric.
@@ -733,6 +904,16 @@ type GetMetricStatisticsOutput struct {
 
 type metadataGetMetricStatisticsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMetricStatisticsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetMetricStatisticsOutput) GoString() string {
+	return s.String()
 }
 
 type ListMetricsInput struct {
@@ -756,6 +937,16 @@ type metadataListMetricsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListMetricsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListMetricsInput) GoString() string {
+	return s.String()
+}
+
 // The output for the ListMetrics action.
 type ListMetricsOutput struct {
 	// A list of metrics used to generate statistics for an AWS account.
@@ -769,6 +960,16 @@ type ListMetricsOutput struct {
 
 type metadataListMetricsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListMetricsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListMetricsOutput) GoString() string {
+	return s.String()
 }
 
 // The Metric data type contains information about a specific metric. If you
@@ -793,6 +994,16 @@ type Metric struct {
 
 type metadataMetric struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Metric) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Metric) GoString() string {
+	return s.String()
 }
 
 // The MetricAlarm data type represents an alarm. You can use PutMetricAlarm
@@ -889,6 +1100,16 @@ type metadataMetricAlarm struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MetricAlarm) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricAlarm) GoString() string {
+	return s.String()
+}
+
 // The MetricDatum data type encapsulates the information sent with PutMetricData
 // to either create a new metric or add new values to be aggregated into an
 // existing metric.
@@ -927,6 +1148,16 @@ type MetricDatum struct {
 
 type metadataMetricDatum struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MetricDatum) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricDatum) GoString() string {
+	return s.String()
 }
 
 type PutMetricAlarmInput struct {
@@ -994,12 +1225,32 @@ type metadataPutMetricAlarmInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutMetricAlarmInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricAlarmInput) GoString() string {
+	return s.String()
+}
+
 type PutMetricAlarmOutput struct {
 	metadataPutMetricAlarmOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricAlarmOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutMetricAlarmOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricAlarmOutput) GoString() string {
+	return s.String()
 }
 
 type PutMetricDataInput struct {
@@ -1016,12 +1267,32 @@ type metadataPutMetricDataInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutMetricDataInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricDataInput) GoString() string {
+	return s.String()
+}
+
 type PutMetricDataOutput struct {
 	metadataPutMetricDataOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricDataOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutMetricDataOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricDataOutput) GoString() string {
+	return s.String()
 }
 
 type SetAlarmStateInput struct {
@@ -1047,12 +1318,32 @@ type metadataSetAlarmStateInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetAlarmStateInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetAlarmStateInput) GoString() string {
+	return s.String()
+}
+
 type SetAlarmStateOutput struct {
 	metadataSetAlarmStateOutput `json:"-" xml:"-"`
 }
 
 type metadataSetAlarmStateOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetAlarmStateOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetAlarmStateOutput) GoString() string {
+	return s.String()
 }
 
 // The StatisticSet data type describes the StatisticValues component of MetricDatum,
@@ -1075,4 +1366,14 @@ type StatisticSet struct {
 
 type metadataStatisticSet struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StatisticSet) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StatisticSet) GoString() string {
+	return s.String()
 }

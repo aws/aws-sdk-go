@@ -5,6 +5,7 @@ package sqs
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddPermission = "AddPermission"
@@ -769,12 +770,32 @@ type metadataAddPermissionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddPermissionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddPermissionInput) GoString() string {
+	return s.String()
+}
+
 type AddPermissionOutput struct {
 	metadataAddPermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataAddPermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddPermissionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddPermissionOutput) GoString() string {
+	return s.String()
 }
 
 // This is used in the responses of batch API to give a detailed description
@@ -799,6 +820,16 @@ type metadataBatchResultErrorEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BatchResultErrorEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BatchResultErrorEntry) GoString() string {
+	return s.String()
+}
+
 type ChangeMessageVisibilityBatchInput struct {
 	// A list of receipt handles of the messages for which the visibility timeout
 	// must be changed.
@@ -812,6 +843,16 @@ type ChangeMessageVisibilityBatchInput struct {
 
 type metadataChangeMessageVisibilityBatchInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeMessageVisibilityBatchInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeMessageVisibilityBatchInput) GoString() string {
+	return s.String()
 }
 
 // For each message in the batch, the response contains a ChangeMessageVisibilityBatchResultEntry
@@ -829,6 +870,16 @@ type ChangeMessageVisibilityBatchOutput struct {
 
 type metadataChangeMessageVisibilityBatchOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeMessageVisibilityBatchOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeMessageVisibilityBatchOutput) GoString() string {
+	return s.String()
 }
 
 // Encloses a receipt handle and an entry id for each message in ChangeMessageVisibilityBatch.
@@ -862,6 +913,16 @@ type metadataChangeMessageVisibilityBatchRequestEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChangeMessageVisibilityBatchRequestEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeMessageVisibilityBatchRequestEntry) GoString() string {
+	return s.String()
+}
+
 // Encloses the id of an entry in ChangeMessageVisibilityBatch.
 type ChangeMessageVisibilityBatchResultEntry struct {
 	// Represents a message whose visibility timeout has been changed successfully.
@@ -872,6 +933,16 @@ type ChangeMessageVisibilityBatchResultEntry struct {
 
 type metadataChangeMessageVisibilityBatchResultEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeMessageVisibilityBatchResultEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeMessageVisibilityBatchResultEntry) GoString() string {
+	return s.String()
 }
 
 type ChangeMessageVisibilityInput struct {
@@ -893,12 +964,32 @@ type metadataChangeMessageVisibilityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChangeMessageVisibilityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeMessageVisibilityInput) GoString() string {
+	return s.String()
+}
+
 type ChangeMessageVisibilityOutput struct {
 	metadataChangeMessageVisibilityOutput `json:"-" xml:"-"`
 }
 
 type metadataChangeMessageVisibilityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChangeMessageVisibilityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChangeMessageVisibilityOutput) GoString() string {
+	return s.String()
 }
 
 type CreateQueueInput struct {
@@ -936,6 +1027,16 @@ type metadataCreateQueueInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateQueueInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateQueueInput) GoString() string {
+	return s.String()
+}
+
 // Returns the QueueUrl element of the created queue.
 type CreateQueueOutput struct {
 	// The URL for the created Amazon SQS queue.
@@ -946,6 +1047,16 @@ type CreateQueueOutput struct {
 
 type metadataCreateQueueOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateQueueOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateQueueOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteMessageBatchInput struct {
@@ -960,6 +1071,16 @@ type DeleteMessageBatchInput struct {
 
 type metadataDeleteMessageBatchInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMessageBatchInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMessageBatchInput) GoString() string {
+	return s.String()
 }
 
 // For each message in the batch, the response contains a DeleteMessageBatchResultEntry
@@ -979,6 +1100,16 @@ type metadataDeleteMessageBatchOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteMessageBatchOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMessageBatchOutput) GoString() string {
+	return s.String()
+}
+
 // Encloses a receipt handle and an identifier for it.
 type DeleteMessageBatchRequestEntry struct {
 	// An identifier for this particular receipt handle. This is used to communicate
@@ -996,6 +1127,16 @@ type metadataDeleteMessageBatchRequestEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteMessageBatchRequestEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMessageBatchRequestEntry) GoString() string {
+	return s.String()
+}
+
 // Encloses the id an entry in DeleteMessageBatch.
 type DeleteMessageBatchResultEntry struct {
 	// Represents a successfully deleted message.
@@ -1006,6 +1147,16 @@ type DeleteMessageBatchResultEntry struct {
 
 type metadataDeleteMessageBatchResultEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMessageBatchResultEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMessageBatchResultEntry) GoString() string {
+	return s.String()
 }
 
 type DeleteMessageInput struct {
@@ -1022,12 +1173,32 @@ type metadataDeleteMessageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteMessageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMessageInput) GoString() string {
+	return s.String()
+}
+
 type DeleteMessageOutput struct {
 	metadataDeleteMessageOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMessageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMessageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMessageOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteQueueInput struct {
@@ -1041,12 +1212,32 @@ type metadataDeleteQueueInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteQueueInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQueueInput) GoString() string {
+	return s.String()
+}
+
 type DeleteQueueOutput struct {
 	metadataDeleteQueueOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteQueueOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteQueueOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQueueOutput) GoString() string {
+	return s.String()
 }
 
 type GetQueueAttributesInput struct {
@@ -1063,6 +1254,16 @@ type metadataGetQueueAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetQueueAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetQueueAttributesInput) GoString() string {
+	return s.String()
+}
+
 // A list of returned queue attributes.
 type GetQueueAttributesOutput struct {
 	// A map of attributes to the respective values.
@@ -1073,6 +1274,16 @@ type GetQueueAttributesOutput struct {
 
 type metadataGetQueueAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetQueueAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetQueueAttributesOutput) GoString() string {
+	return s.String()
 }
 
 type GetQueueURLInput struct {
@@ -1090,6 +1301,16 @@ type metadataGetQueueURLInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetQueueURLInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetQueueURLInput) GoString() string {
+	return s.String()
+}
+
 // For more information, see Responses (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html)
 // in the Amazon SQS Developer Guide.
 type GetQueueURLOutput struct {
@@ -1103,6 +1324,16 @@ type metadataGetQueueURLOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetQueueURLOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetQueueURLOutput) GoString() string {
+	return s.String()
+}
+
 type ListDeadLetterSourceQueuesInput struct {
 	// The queue URL of a dead letter queue.
 	QueueURL *string `locationName:"QueueUrl" type:"string" required:"true"`
@@ -1112,6 +1343,16 @@ type ListDeadLetterSourceQueuesInput struct {
 
 type metadataListDeadLetterSourceQueuesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDeadLetterSourceQueuesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDeadLetterSourceQueuesInput) GoString() string {
+	return s.String()
 }
 
 // A list of your dead letter source queues.
@@ -1127,6 +1368,16 @@ type metadataListDeadLetterSourceQueuesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDeadLetterSourceQueuesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDeadLetterSourceQueuesOutput) GoString() string {
+	return s.String()
+}
+
 type ListQueuesInput struct {
 	// A string to use for filtering the list results. Only those queues whose name
 	// begins with the specified string are returned.
@@ -1139,6 +1390,16 @@ type metadataListQueuesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListQueuesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListQueuesInput) GoString() string {
+	return s.String()
+}
+
 // A list of your queues.
 type ListQueuesOutput struct {
 	// A list of queue URLs, up to 1000 entries.
@@ -1149,6 +1410,16 @@ type ListQueuesOutput struct {
 
 type metadataListQueuesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListQueuesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListQueuesOutput) GoString() string {
+	return s.String()
 }
 
 // An Amazon SQS message.
@@ -1191,6 +1462,16 @@ type metadataMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Message) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Message) GoString() string {
+	return s.String()
+}
+
 // The user-specified message attribute value. For string data types, the value
 // attribute has the same restrictions on the content as the message body. For
 // more information, see SendMessage (http://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SendMessage.html).
@@ -1226,6 +1507,16 @@ type metadataMessageAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MessageAttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MessageAttributeValue) GoString() string {
+	return s.String()
+}
+
 type PurgeQueueInput struct {
 	// The queue URL of the queue to delete the messages from when using the PurgeQueue
 	// API.
@@ -1238,12 +1529,32 @@ type metadataPurgeQueueInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PurgeQueueInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurgeQueueInput) GoString() string {
+	return s.String()
+}
+
 type PurgeQueueOutput struct {
 	metadataPurgeQueueOutput `json:"-" xml:"-"`
 }
 
 type metadataPurgeQueueOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PurgeQueueOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PurgeQueueOutput) GoString() string {
+	return s.String()
 }
 
 type ReceiveMessageInput struct {
@@ -1302,6 +1613,16 @@ type metadataReceiveMessageInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ReceiveMessageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReceiveMessageInput) GoString() string {
+	return s.String()
+}
+
 // A list of received messages.
 type ReceiveMessageOutput struct {
 	// A list of messages.
@@ -1312,6 +1633,16 @@ type ReceiveMessageOutput struct {
 
 type metadataReceiveMessageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReceiveMessageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ReceiveMessageOutput) GoString() string {
+	return s.String()
 }
 
 type RemovePermissionInput struct {
@@ -1329,12 +1660,32 @@ type metadataRemovePermissionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemovePermissionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionInput) GoString() string {
+	return s.String()
+}
+
 type RemovePermissionOutput struct {
 	metadataRemovePermissionOutput `json:"-" xml:"-"`
 }
 
 type metadataRemovePermissionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemovePermissionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemovePermissionOutput) GoString() string {
+	return s.String()
 }
 
 type SendMessageBatchInput struct {
@@ -1349,6 +1700,16 @@ type SendMessageBatchInput struct {
 
 type metadataSendMessageBatchInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendMessageBatchInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendMessageBatchInput) GoString() string {
+	return s.String()
 }
 
 // For each message in the batch, the response contains a SendMessageBatchResultEntry
@@ -1367,6 +1728,16 @@ type SendMessageBatchOutput struct {
 
 type metadataSendMessageBatchOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendMessageBatchOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendMessageBatchOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the details of a single Amazon SQS message along with a Id.
@@ -1391,6 +1762,16 @@ type SendMessageBatchRequestEntry struct {
 
 type metadataSendMessageBatchRequestEntry struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendMessageBatchRequestEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendMessageBatchRequestEntry) GoString() string {
+	return s.String()
 }
 
 // Encloses a message ID for successfully enqueued message of a SendMessageBatch.
@@ -1420,6 +1801,16 @@ type metadataSendMessageBatchResultEntry struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SendMessageBatchResultEntry) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendMessageBatchResultEntry) GoString() string {
+	return s.String()
+}
+
 type SendMessageInput struct {
 	// The number of seconds (0 to 900 - 15 minutes) to delay a specific message.
 	// Messages with a positive DelaySeconds value become available for processing
@@ -1443,6 +1834,16 @@ type SendMessageInput struct {
 
 type metadataSendMessageInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendMessageInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendMessageInput) GoString() string {
+	return s.String()
 }
 
 // The MD5OfMessageBody and MessageId elements.
@@ -1469,6 +1870,16 @@ type SendMessageOutput struct {
 
 type metadataSendMessageOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendMessageOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendMessageOutput) GoString() string {
+	return s.String()
 }
 
 type SetQueueAttributesInput struct {
@@ -1508,10 +1919,30 @@ type metadataSetQueueAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetQueueAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetQueueAttributesInput) GoString() string {
+	return s.String()
+}
+
 type SetQueueAttributesOutput struct {
 	metadataSetQueueAttributesOutput `json:"-" xml:"-"`
 }
 
 type metadataSetQueueAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetQueueAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetQueueAttributesOutput) GoString() string {
+	return s.String()
 }

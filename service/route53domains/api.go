@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCheckDomainAvailability = "CheckDomainAvailability"
@@ -652,6 +653,16 @@ type metadataCheckDomainAvailabilityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CheckDomainAvailabilityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CheckDomainAvailabilityInput) GoString() string {
+	return s.String()
+}
+
 // The CheckDomainAvailability response includes the following elements.
 type CheckDomainAvailabilityOutput struct {
 	// Whether the domain name is available for registering.
@@ -679,6 +690,16 @@ type CheckDomainAvailabilityOutput struct {
 
 type metadataCheckDomainAvailabilityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CheckDomainAvailabilityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CheckDomainAvailabilityOutput) GoString() string {
+	return s.String()
 }
 
 // ContactDetail includes the following elements.
@@ -880,6 +901,16 @@ type metadataContactDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ContactDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ContactDetail) GoString() string {
+	return s.String()
+}
+
 // The DeleteTagsForDomainRequest includes the following elements.
 type DeleteTagsForDomainInput struct {
 	// The domain for which you want to delete one or more tags.
@@ -917,12 +948,32 @@ type metadataDeleteTagsForDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTagsForDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsForDomainInput) GoString() string {
+	return s.String()
+}
+
 type DeleteTagsForDomainOutput struct {
 	metadataDeleteTagsForDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteTagsForDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTagsForDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTagsForDomainOutput) GoString() string {
+	return s.String()
 }
 
 type DisableDomainAutoRenewInput struct {
@@ -935,12 +986,32 @@ type metadataDisableDomainAutoRenewInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableDomainAutoRenewInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableDomainAutoRenewInput) GoString() string {
+	return s.String()
+}
+
 type DisableDomainAutoRenewOutput struct {
 	metadataDisableDomainAutoRenewOutput `json:"-" xml:"-"`
 }
 
 type metadataDisableDomainAutoRenewOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableDomainAutoRenewOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableDomainAutoRenewOutput) GoString() string {
+	return s.String()
 }
 
 // The DisableDomainTransferLock request includes the following element.
@@ -965,6 +1036,16 @@ type metadataDisableDomainTransferLockInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DisableDomainTransferLockInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableDomainTransferLockInput) GoString() string {
+	return s.String()
+}
+
 // The DisableDomainTransferLock response includes the following element.
 type DisableDomainTransferLockOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -982,6 +1063,16 @@ type DisableDomainTransferLockOutput struct {
 
 type metadataDisableDomainTransferLockOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisableDomainTransferLockOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DisableDomainTransferLockOutput) GoString() string {
+	return s.String()
 }
 
 type DomainSummary struct {
@@ -1017,6 +1108,16 @@ type metadataDomainSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DomainSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DomainSummary) GoString() string {
+	return s.String()
+}
+
 type EnableDomainAutoRenewInput struct {
 	DomainName *string `type:"string" required:"true"`
 
@@ -1027,12 +1128,32 @@ type metadataEnableDomainAutoRenewInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableDomainAutoRenewInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableDomainAutoRenewInput) GoString() string {
+	return s.String()
+}
+
 type EnableDomainAutoRenewOutput struct {
 	metadataEnableDomainAutoRenewOutput `json:"-" xml:"-"`
 }
 
 type metadataEnableDomainAutoRenewOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableDomainAutoRenewOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableDomainAutoRenewOutput) GoString() string {
+	return s.String()
 }
 
 // The EnableDomainTransferLock request includes the following element.
@@ -1057,6 +1178,16 @@ type metadataEnableDomainTransferLockInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EnableDomainTransferLockInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableDomainTransferLockInput) GoString() string {
+	return s.String()
+}
+
 // The EnableDomainTransferLock response includes the following elements.
 type EnableDomainTransferLockOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -1074,6 +1205,16 @@ type EnableDomainTransferLockOutput struct {
 
 type metadataEnableDomainTransferLockOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnableDomainTransferLockOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EnableDomainTransferLockOutput) GoString() string {
+	return s.String()
 }
 
 // ExtraParam includes the following elements.
@@ -1116,6 +1257,16 @@ type metadataExtraParam struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExtraParam) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExtraParam) GoString() string {
+	return s.String()
+}
+
 // The GetDomainDetail request includes the following element.
 type GetDomainDetailInput struct {
 	// The name of a domain.
@@ -1136,6 +1287,16 @@ type GetDomainDetailInput struct {
 
 type metadataGetDomainDetailInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetDomainDetailInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDomainDetailInput) GoString() string {
+	return s.String()
 }
 
 // The GetDomainDetail response includes the following elements.
@@ -1284,6 +1445,16 @@ type metadataGetDomainDetailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetDomainDetailOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetDomainDetailOutput) GoString() string {
+	return s.String()
+}
+
 // The GetOperationDetail request includes the following element.
 type GetOperationDetailInput struct {
 	// The identifier for the operation for which you want to get the status. Amazon
@@ -1301,6 +1472,16 @@ type GetOperationDetailInput struct {
 
 type metadataGetOperationDetailInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetOperationDetailInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOperationDetailInput) GoString() string {
+	return s.String()
 }
 
 // The GetOperationDetail response includes the following elements.
@@ -1340,6 +1521,16 @@ type metadataGetOperationDetailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetOperationDetailOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetOperationDetailOutput) GoString() string {
+	return s.String()
+}
+
 // The ListDomains request includes the following elements.
 type ListDomainsInput struct {
 	// For an initial request for a list of domains, omit this element. If the number
@@ -1376,6 +1567,16 @@ type metadataListDomainsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDomainsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDomainsInput) GoString() string {
+	return s.String()
+}
+
 // The ListDomains response includes the following elements.
 type ListDomainsOutput struct {
 	// A summary of domains.
@@ -1399,6 +1600,16 @@ type ListDomainsOutput struct {
 
 type metadataListDomainsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDomainsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDomainsOutput) GoString() string {
+	return s.String()
 }
 
 // The ListOperations request includes the following elements.
@@ -1435,6 +1646,16 @@ type metadataListOperationsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListOperationsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListOperationsInput) GoString() string {
+	return s.String()
+}
+
 // The ListOperations response includes the following elements.
 type ListOperationsOutput struct {
 	// If there are more operations than you specified for MaxItems in the request,
@@ -1460,6 +1681,16 @@ type metadataListOperationsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListOperationsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListOperationsOutput) GoString() string {
+	return s.String()
+}
+
 // The ListTagsForDomainRequest includes the following elements.
 type ListTagsForDomainInput struct {
 	// The domain for which you want to get a list of tags.
@@ -1470,6 +1701,16 @@ type ListTagsForDomainInput struct {
 
 type metadataListTagsForDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForDomainInput) GoString() string {
+	return s.String()
 }
 
 // The ListTagsForDomain response includes the following elements.
@@ -1498,6 +1739,16 @@ type ListTagsForDomainOutput struct {
 
 type metadataListTagsForDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForDomainOutput) GoString() string {
+	return s.String()
 }
 
 // Nameserver includes the following elements.
@@ -1530,6 +1781,16 @@ type metadataNameserver struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Nameserver) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Nameserver) GoString() string {
+	return s.String()
+}
+
 // OperationSummary includes the following elements.
 type OperationSummary struct {
 	// Identifier returned to track the requested action.
@@ -1558,6 +1819,16 @@ type OperationSummary struct {
 
 type metadataOperationSummary struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OperationSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OperationSummary) GoString() string {
+	return s.String()
 }
 
 // The RegisterDomain request includes the following elements.
@@ -1684,6 +1955,16 @@ type metadataRegisterDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDomainInput) GoString() string {
+	return s.String()
+}
+
 // The RegisterDomain response includes the following element.
 type RegisterDomainOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -1701,6 +1982,16 @@ type RegisterDomainOutput struct {
 
 type metadataRegisterDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDomainOutput) GoString() string {
+	return s.String()
 }
 
 // The RetrieveDomainAuthCode request includes the following element.
@@ -1725,6 +2016,16 @@ type metadataRetrieveDomainAuthCodeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RetrieveDomainAuthCodeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RetrieveDomainAuthCodeInput) GoString() string {
+	return s.String()
+}
+
 // The RetrieveDomainAuthCode response includes the following element.
 type RetrieveDomainAuthCodeOutput struct {
 	// The authorization code for the domain.
@@ -1737,6 +2038,16 @@ type RetrieveDomainAuthCodeOutput struct {
 
 type metadataRetrieveDomainAuthCodeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RetrieveDomainAuthCodeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RetrieveDomainAuthCodeOutput) GoString() string {
+	return s.String()
 }
 
 // Each tag includes the following elements.
@@ -1772,6 +2083,16 @@ type Tag struct {
 
 type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
 }
 
 // The TransferDomain request includes the following elements.
@@ -1915,6 +2236,16 @@ type metadataTransferDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TransferDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TransferDomainInput) GoString() string {
+	return s.String()
+}
+
 // The TranserDomain response includes the following element.
 type TransferDomainOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -1932,6 +2263,16 @@ type TransferDomainOutput struct {
 
 type metadataTransferDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TransferDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TransferDomainOutput) GoString() string {
+	return s.String()
 }
 
 // The UpdateDomainContact request includes the following elements.
@@ -1989,6 +2330,16 @@ type metadataUpdateDomainContactInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateDomainContactInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDomainContactInput) GoString() string {
+	return s.String()
+}
+
 // The UpdateDomainContact response includes the following element.
 type UpdateDomainContactOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -2006,6 +2357,16 @@ type UpdateDomainContactOutput struct {
 
 type metadataUpdateDomainContactOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDomainContactOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDomainContactOutput) GoString() string {
+	return s.String()
 }
 
 // The UpdateDomainContactPrivacy request includes the following elements.
@@ -2072,6 +2433,16 @@ type metadataUpdateDomainContactPrivacyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateDomainContactPrivacyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDomainContactPrivacyInput) GoString() string {
+	return s.String()
+}
+
 // The UpdateDomainContactPrivacy response includes the following element.
 type UpdateDomainContactPrivacyOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -2089,6 +2460,16 @@ type UpdateDomainContactPrivacyOutput struct {
 
 type metadataUpdateDomainContactPrivacyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDomainContactPrivacyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDomainContactPrivacyOutput) GoString() string {
+	return s.String()
 }
 
 // The UpdateDomainNameserver request includes the following elements.
@@ -2125,6 +2506,16 @@ type metadataUpdateDomainNameserversInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateDomainNameserversInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDomainNameserversInput) GoString() string {
+	return s.String()
+}
+
 // The UpdateDomainNameservers response includes the following element.
 type UpdateDomainNameserversOutput struct {
 	// Identifier for tracking the progress of the request. To use this ID to query
@@ -2142,6 +2533,16 @@ type UpdateDomainNameserversOutput struct {
 
 type metadataUpdateDomainNameserversOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDomainNameserversOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDomainNameserversOutput) GoString() string {
+	return s.String()
 }
 
 // The UpdateTagsForDomainRequest includes the following elements.
@@ -2210,10 +2611,30 @@ type metadataUpdateTagsForDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateTagsForDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTagsForDomainInput) GoString() string {
+	return s.String()
+}
+
 type UpdateTagsForDomainOutput struct {
 	metadataUpdateTagsForDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataUpdateTagsForDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateTagsForDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTagsForDomainOutput) GoString() string {
+	return s.String()
 }

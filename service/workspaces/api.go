@@ -5,6 +5,7 @@ package workspaces
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateWorkspaces = "CreateWorkspaces"
@@ -303,6 +304,16 @@ type metadataComputeType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ComputeType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ComputeType) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the CreateWorkspaces operation.
 type CreateWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to create.
@@ -313,6 +324,16 @@ type CreateWorkspacesInput struct {
 
 type metadataCreateWorkspacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateWorkspacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateWorkspacesInput) GoString() string {
+	return s.String()
 }
 
 // Contains the result of the CreateWorkspaces operation.
@@ -332,6 +353,16 @@ type CreateWorkspacesOutput struct {
 
 type metadataCreateWorkspacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateWorkspacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateWorkspacesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains default WorkSpace creation information.
@@ -361,6 +392,16 @@ type metadataDefaultWorkspaceCreationProperties struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DefaultWorkspaceCreationProperties) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DefaultWorkspaceCreationProperties) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesInput struct {
 	// An array of strings that contains the identifiers of the bundles to retrieve.
@@ -387,6 +428,16 @@ type metadataDescribeWorkspaceBundlesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeWorkspaceBundlesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspaceBundlesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DescribeWorkspaceBundles operation.
 type DescribeWorkspaceBundlesOutput struct {
 	// An array of structures that contain information about the bundles.
@@ -402,6 +453,16 @@ type DescribeWorkspaceBundlesOutput struct {
 
 type metadataDescribeWorkspaceBundlesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeWorkspaceBundlesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspaceBundlesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DescribeWorkspaceDirectories operation.
@@ -421,6 +482,16 @@ type metadataDescribeWorkspaceDirectoriesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeWorkspaceDirectoriesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspaceDirectoriesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the DescribeWorkspaceDirectories operation.
 type DescribeWorkspaceDirectoriesOutput struct {
 	// An array of structures that contain information about the directories.
@@ -436,6 +507,16 @@ type DescribeWorkspaceDirectoriesOutput struct {
 
 type metadataDescribeWorkspaceDirectoriesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeWorkspaceDirectoriesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspaceDirectoriesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the DescribeWorkspaces operation.
@@ -477,6 +558,16 @@ type metadataDescribeWorkspacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeWorkspacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspacesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results for the DescribeWorkspaces operation.
 type DescribeWorkspacesOutput struct {
 	// If not null, more results are available. Pass this value for the NextToken
@@ -495,6 +586,16 @@ type DescribeWorkspacesOutput struct {
 
 type metadataDescribeWorkspacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeWorkspacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkspacesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about a WorkSpace that could not be created.
@@ -516,6 +617,16 @@ type metadataFailedCreateWorkspaceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FailedCreateWorkspaceRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FailedCreateWorkspaceRequest) GoString() string {
+	return s.String()
+}
+
 // Contains information about a WorkSpace that could not be rebooted (RebootWorkspaces),
 // rebuilt (RebuildWorkspaces), or terminated (TerminateWorkspaces).
 type FailedWorkspaceChangeRequest struct {
@@ -535,6 +646,16 @@ type metadataFailedWorkspaceChangeRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FailedWorkspaceChangeRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FailedWorkspaceChangeRequest) GoString() string {
+	return s.String()
+}
+
 // Contains information used with the RebootWorkspaces operation to reboot a
 // WorkSpace.
 type RebootRequest struct {
@@ -546,6 +667,16 @@ type RebootRequest struct {
 
 type metadataRebootRequest struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RebootRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootRequest) GoString() string {
+	return s.String()
 }
 
 // Contains the inputs for the RebootWorkspaces operation.
@@ -560,6 +691,16 @@ type metadataRebootWorkspacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RebootWorkspacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootWorkspacesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the RebootWorkspaces operation.
 type RebootWorkspacesOutput struct {
 	// An array of structures that represent any WorkSpaces that could not be rebooted.
@@ -570,6 +711,16 @@ type RebootWorkspacesOutput struct {
 
 type metadataRebootWorkspacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RebootWorkspacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebootWorkspacesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information used with the RebuildWorkspaces operation to rebuild
@@ -585,6 +736,16 @@ type metadataRebuildRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RebuildRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebuildRequest) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the RebuildWorkspaces operation.
 type RebuildWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to rebuild.
@@ -597,6 +758,16 @@ type metadataRebuildWorkspacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RebuildWorkspacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebuildWorkspacesInput) GoString() string {
+	return s.String()
+}
+
 // Contains the results of the RebuildWorkspaces operation.
 type RebuildWorkspacesOutput struct {
 	// An array of structures that represent any WorkSpaces that could not be rebuilt.
@@ -607,6 +778,16 @@ type RebuildWorkspacesOutput struct {
 
 type metadataRebuildWorkspacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RebuildWorkspacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RebuildWorkspacesOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information used with the TerminateWorkspaces operation to terminate
@@ -622,6 +803,16 @@ type metadataTerminateRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TerminateRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateRequest) GoString() string {
+	return s.String()
+}
+
 // Contains the inputs for the TerminateWorkspaces operation.
 type TerminateWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to terminate.
@@ -632,6 +823,16 @@ type TerminateWorkspacesInput struct {
 
 type metadataTerminateWorkspacesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TerminateWorkspacesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateWorkspacesInput) GoString() string {
+	return s.String()
 }
 
 // Contains the results of the TerminateWorkspaces operation.
@@ -646,6 +847,16 @@ type metadataTerminateWorkspacesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TerminateWorkspacesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateWorkspacesOutput) GoString() string {
+	return s.String()
+}
+
 // Contains information about the user storage for a WorkSpace bundle.
 type UserStorage struct {
 	// The amount of user storage for the bundle.
@@ -656,6 +867,16 @@ type UserStorage struct {
 
 type metadataUserStorage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UserStorage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UserStorage) GoString() string {
+	return s.String()
 }
 
 // Contains information about a WorkSpace.
@@ -696,6 +917,16 @@ type metadataWorkspace struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Workspace) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Workspace) GoString() string {
+	return s.String()
+}
+
 // Contains information about a WorkSpace bundle.
 type WorkspaceBundle struct {
 	// The bundle identifier.
@@ -723,6 +954,16 @@ type WorkspaceBundle struct {
 
 type metadataWorkspaceBundle struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkspaceBundle) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkspaceBundle) GoString() string {
+	return s.String()
 }
 
 // Contains information about an AWS Directory Service directory for use with
@@ -776,6 +1017,16 @@ type metadataWorkspaceDirectory struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkspaceDirectory) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkspaceDirectory) GoString() string {
+	return s.String()
+}
+
 // Contains information about a WorkSpace creation request.
 type WorkspaceRequest struct {
 	// The identifier of the bundle to create the WorkSpace from. You can use the
@@ -797,4 +1048,14 @@ type WorkspaceRequest struct {
 
 type metadataWorkspaceRequest struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkspaceRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkspaceRequest) GoString() string {
+	return s.String()
 }

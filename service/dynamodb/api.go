@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opBatchGetItem = "BatchGetItem"
@@ -687,6 +688,16 @@ type metadataAttributeDefinition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AttributeDefinition) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttributeDefinition) GoString() string {
+	return s.String()
+}
+
 // Represents the data for an attribute. You can set one, and only one, of the
 // elements.
 //
@@ -730,6 +741,16 @@ type AttributeValue struct {
 
 type metadataAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttributeValue) GoString() string {
+	return s.String()
 }
 
 // For the UpdateItem operation, represents the attributes to be modified, the
@@ -821,6 +842,16 @@ type AttributeValueUpdate struct {
 
 type metadataAttributeValueUpdate struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AttributeValueUpdate) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AttributeValueUpdate) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a BatchGetItem operation.
@@ -920,6 +951,16 @@ type metadataBatchGetItemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BatchGetItemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetItemInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a BatchGetItem operation.
 type BatchGetItemOutput struct {
 	// The read capacity units consumed by the operation.
@@ -963,6 +1004,16 @@ type BatchGetItemOutput struct {
 
 type metadataBatchGetItemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BatchGetItemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetItemOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a BatchWriteItem operation.
@@ -1011,6 +1062,16 @@ type BatchWriteItemInput struct {
 
 type metadataBatchWriteItemInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BatchWriteItemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BatchWriteItemInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a BatchWriteItem operation.
@@ -1083,6 +1144,16 @@ type metadataBatchWriteItemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BatchWriteItemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BatchWriteItemOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the amount of provisioned throughput capacity consumed on a table
 // or an index.
 type Capacity struct {
@@ -1094,6 +1165,16 @@ type Capacity struct {
 
 type metadataCapacity struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Capacity) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Capacity) GoString() string {
+	return s.String()
 }
 
 // Represents the selection criteria for a Query or Scan operation:
@@ -1264,6 +1345,16 @@ type metadataCondition struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Condition) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Condition) GoString() string {
+	return s.String()
+}
+
 // The capacity units consumed by an operation. The data returned includes the
 // total provisioned throughput consumed, along with statistics for the table
 // and any indexes involved in the operation. ConsumedCapacity is only returned
@@ -1293,6 +1384,16 @@ type metadataConsumedCapacity struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ConsumedCapacity) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ConsumedCapacity) GoString() string {
+	return s.String()
+}
+
 // Represents a new global secondary index to be added to an existing table.
 type CreateGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be created.
@@ -1319,6 +1420,16 @@ type CreateGlobalSecondaryIndexAction struct {
 
 type metadataCreateGlobalSecondaryIndexAction struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateGlobalSecondaryIndexAction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateGlobalSecondaryIndexAction) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a CreateTable operation.
@@ -1432,6 +1543,16 @@ type metadataCreateTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTableInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a CreateTable operation.
 type CreateTableOutput struct {
 	// Represents the properties of a table.
@@ -1444,6 +1565,16 @@ type metadataCreateTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateTableOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a global secondary index to be deleted from an existing table.
 type DeleteGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be deleted.
@@ -1454,6 +1585,16 @@ type DeleteGlobalSecondaryIndexAction struct {
 
 type metadataDeleteGlobalSecondaryIndexAction struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGlobalSecondaryIndexAction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGlobalSecondaryIndexAction) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a DeleteItem operation.
@@ -1792,6 +1933,16 @@ type metadataDeleteItemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteItemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteItemInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DeleteItem operation.
 type DeleteItemOutput struct {
 	// A map of attribute names to AttributeValue objects, representing the item
@@ -1835,6 +1986,16 @@ type metadataDeleteItemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteItemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteItemOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request to perform a DeleteItem operation on an item.
 type DeleteRequest struct {
 	// A map of attribute name to attribute values, representing the primary key
@@ -1849,6 +2010,16 @@ type metadataDeleteRequest struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRequest) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a DeleteTable operation.
 type DeleteTableInput struct {
 	// The name of the table to delete.
@@ -1859,6 +2030,16 @@ type DeleteTableInput struct {
 
 type metadataDeleteTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTableInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a DeleteTable operation.
@@ -1873,6 +2054,16 @@ type metadataDeleteTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteTableOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a DescribeTable operation.
 type DescribeTableInput struct {
 	// The name of the table to describe.
@@ -1885,6 +2076,16 @@ type metadataDescribeTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTableInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a DescribeTable operation.
 type DescribeTableOutput struct {
 	// Represents the properties of a table.
@@ -1895,6 +2096,16 @@ type DescribeTableOutput struct {
 
 type metadataDescribeTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeTableOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a condition to be compared with an attribute value. This condition
@@ -2104,6 +2315,16 @@ type metadataExpectedAttributeValue struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExpectedAttributeValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExpectedAttributeValue) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a GetItem operation.
 type GetItemInput struct {
 	// This is a legacy parameter, for backward compatibility. New applications
@@ -2202,6 +2423,16 @@ type metadataGetItemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetItemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetItemInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a GetItem operation.
 type GetItemOutput struct {
 	// The capacity units consumed by an operation. The data returned includes the
@@ -2220,6 +2451,16 @@ type GetItemOutput struct {
 
 type metadataGetItemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetItemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetItemOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the properties of a global secondary index.
@@ -2250,6 +2491,16 @@ type GlobalSecondaryIndex struct {
 
 type metadataGlobalSecondaryIndex struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GlobalSecondaryIndex) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GlobalSecondaryIndex) GoString() string {
+	return s.String()
 }
 
 // Represents the properties of a global secondary index.
@@ -2308,6 +2559,16 @@ type metadataGlobalSecondaryIndexDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GlobalSecondaryIndexDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GlobalSecondaryIndexDescription) GoString() string {
+	return s.String()
+}
+
 // Represents one of the following:
 //
 //  A new global secondary index to be added to an existing table.
@@ -2344,6 +2605,16 @@ type metadataGlobalSecondaryIndexUpdate struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GlobalSecondaryIndexUpdate) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GlobalSecondaryIndexUpdate) GoString() string {
+	return s.String()
+}
+
 // Information about item collections, if any, that were affected by the operation.
 // ItemCollectionMetrics is only returned if the request asked for it. If the
 // table does not have any local secondary indexes, this information is not
@@ -2371,6 +2642,16 @@ type metadataItemCollectionMetrics struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ItemCollectionMetrics) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ItemCollectionMetrics) GoString() string {
+	return s.String()
+}
+
 // Represents a single element of a key schema. A key schema specifies the attributes
 // that make up the primary key of a table, or the key attributes of an index.
 //
@@ -2390,6 +2671,16 @@ type KeySchemaElement struct {
 
 type metadataKeySchemaElement struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s KeySchemaElement) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s KeySchemaElement) GoString() string {
+	return s.String()
 }
 
 // Represents a set of primary keys and, for each key, the attributes to retrieve
@@ -2470,6 +2761,16 @@ type metadataKeysAndAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s KeysAndAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s KeysAndAttributes) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a ListTables operation.
 type ListTablesInput struct {
 	// The first table name that this operation will evaluate. Use the value that
@@ -2486,6 +2787,16 @@ type ListTablesInput struct {
 
 type metadataListTablesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTablesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTablesInput) GoString() string {
+	return s.String()
 }
 
 // Represents the output of a ListTables operation.
@@ -2513,6 +2824,16 @@ type metadataListTablesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListTablesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListTablesOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndex struct {
 	// The name of the local secondary index. The name must be unique among all
@@ -2533,6 +2854,16 @@ type LocalSecondaryIndex struct {
 
 type metadataLocalSecondaryIndex struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LocalSecondaryIndex) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LocalSecondaryIndex) GoString() string {
+	return s.String()
 }
 
 // Represents the properties of a local secondary index.
@@ -2565,6 +2896,16 @@ type metadataLocalSecondaryIndexDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LocalSecondaryIndexDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LocalSecondaryIndexDescription) GoString() string {
+	return s.String()
+}
+
 // Represents attributes that are copied (projected) from the table into an
 // index. These are in addition to the primary key attributes and index key
 // attributes, which are automatically projected.
@@ -2594,6 +2935,16 @@ type metadataProjection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Projection) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Projection) GoString() string {
+	return s.String()
+}
+
 // Represents the provisioned throughput settings for a specified table or index.
 // The settings can be modified using the UpdateTable operation.
 //
@@ -2618,6 +2969,16 @@ type ProvisionedThroughput struct {
 
 type metadataProvisionedThroughput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ProvisionedThroughput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ProvisionedThroughput) GoString() string {
+	return s.String()
 }
 
 // Represents the provisioned throughput settings for the table, consisting
@@ -2650,6 +3011,16 @@ type ProvisionedThroughputDescription struct {
 
 type metadataProvisionedThroughputDescription struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ProvisionedThroughputDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ProvisionedThroughputDescription) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a PutItem operation.
@@ -3000,6 +3371,16 @@ type metadataPutItemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutItemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutItemInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a PutItem operation.
 type PutItemOutput struct {
 	// The attribute values as they appeared before the PutItem operation, but only
@@ -3043,6 +3424,16 @@ type metadataPutItemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutItemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutItemOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request to perform a PutItem operation on an item.
 type PutRequest struct {
 	// A map of attribute name to attribute values, representing the primary key
@@ -3057,6 +3448,16 @@ type PutRequest struct {
 
 type metadataPutRequest struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRequest) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a Query operation.
@@ -3527,6 +3928,16 @@ type metadataQueryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s QueryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s QueryInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a Query operation.
 type QueryOutput struct {
 	// The capacity units consumed by an operation. The data returned includes the
@@ -3577,6 +3988,16 @@ type QueryOutput struct {
 
 type metadataQueryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s QueryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s QueryOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of a Scan operation.
@@ -3845,6 +4266,16 @@ type metadataScanInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ScanInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScanInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of a Scan operation.
 type ScanOutput struct {
 	// The capacity units consumed by an operation. The data returned includes the
@@ -3894,6 +4325,16 @@ type ScanOutput struct {
 
 type metadataScanOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScanOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScanOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the properties of a table.
@@ -4061,6 +4502,16 @@ type metadataTableDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TableDescription) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TableDescription) GoString() string {
+	return s.String()
+}
+
 // Represents the new provisioned throughput settings to be applied to a global
 // secondary index.
 type UpdateGlobalSecondaryIndexAction struct {
@@ -4080,6 +4531,16 @@ type UpdateGlobalSecondaryIndexAction struct {
 
 type metadataUpdateGlobalSecondaryIndexAction struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGlobalSecondaryIndexAction) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGlobalSecondaryIndexAction) GoString() string {
+	return s.String()
 }
 
 // Represents the input of an UpdateItem operation.
@@ -4590,6 +5051,16 @@ type metadataUpdateItemInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateItemInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateItemInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of an UpdateItem operation.
 type UpdateItemOutput struct {
 	// A map of attribute values as they appeared before the UpdateItem operation.
@@ -4616,6 +5087,16 @@ type UpdateItemOutput struct {
 
 type metadataUpdateItemOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateItemOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateItemOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of an UpdateTable operation.
@@ -4654,6 +5135,16 @@ type metadataUpdateTableInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s UpdateTableInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTableInput) GoString() string {
+	return s.String()
+}
+
 // Represents the output of an UpdateTable operation.
 type UpdateTableOutput struct {
 	// Represents the properties of a table.
@@ -4664,6 +5155,16 @@ type UpdateTableOutput struct {
 
 type metadataUpdateTableOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateTableOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTableOutput) GoString() string {
+	return s.String()
 }
 
 // Represents an operation to perform - either DeleteItem or PutItem. You can
@@ -4682,4 +5183,14 @@ type WriteRequest struct {
 
 type metadataWriteRequest struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WriteRequest) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WriteRequest) GoString() string {
+	return s.String()
 }

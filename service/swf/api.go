@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCountClosedWorkflowExecutions = "CountClosedWorkflowExecutions"
@@ -1592,6 +1593,16 @@ type metadataActivityTaskCancelRequestedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivityTaskCancelRequestedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskCancelRequestedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ActivityTaskCanceled event.
 type ActivityTaskCanceledEventAttributes struct {
 	// Details of the cancellation (if any).
@@ -1619,6 +1630,16 @@ type metadataActivityTaskCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivityTaskCanceledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskCanceledEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ActivityTaskCompleted event.
 type ActivityTaskCompletedEventAttributes struct {
 	// The results of the activity task (if any).
@@ -1639,6 +1660,16 @@ type ActivityTaskCompletedEventAttributes struct {
 
 type metadataActivityTaskCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActivityTaskCompletedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskCompletedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ActivityTaskFailed event.
@@ -1664,6 +1695,16 @@ type ActivityTaskFailedEventAttributes struct {
 
 type metadataActivityTaskFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActivityTaskFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ActivityTaskScheduled event.
@@ -1726,6 +1767,16 @@ type metadataActivityTaskScheduledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivityTaskScheduledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskScheduledEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ActivityTaskStarted event.
 type ActivityTaskStartedEventAttributes struct {
 	// Identity of the worker that was assigned this task. This aids diagnostics
@@ -1742,6 +1793,16 @@ type ActivityTaskStartedEventAttributes struct {
 
 type metadataActivityTaskStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActivityTaskStartedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskStartedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ActivityTaskTimedOut event.
@@ -1770,6 +1831,16 @@ type metadataActivityTaskTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivityTaskTimedOutEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTaskTimedOutEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Represents an activity type.
 type ActivityType struct {
 	// The name of this activity.
@@ -1789,6 +1860,16 @@ type ActivityType struct {
 
 type metadataActivityType struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActivityType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityType) GoString() string {
+	return s.String()
 }
 
 // Configuration settings registered with the activity type.
@@ -1857,6 +1938,16 @@ type metadataActivityTypeConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ActivityTypeConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTypeConfiguration) GoString() string {
+	return s.String()
+}
+
 // Detailed information about an activity type.
 type ActivityTypeInfo struct {
 	// The ActivityType type structure representing the activity type.
@@ -1879,6 +1970,16 @@ type ActivityTypeInfo struct {
 
 type metadataActivityTypeInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ActivityTypeInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ActivityTypeInfo) GoString() string {
+	return s.String()
 }
 
 // Provides details of the CancelTimer decision.
@@ -1907,6 +2008,16 @@ type metadataCancelTimerDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelTimerDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelTimerDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the CancelTimerFailed event.
 type CancelTimerFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -1931,6 +2042,16 @@ type CancelTimerFailedEventAttributes struct {
 
 type metadataCancelTimerFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelTimerFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelTimerFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the CancelWorkflowExecution decision.
@@ -1959,6 +2080,16 @@ type metadataCancelWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CancelWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the CancelWorkflowExecutionFailed event.
 type CancelWorkflowExecutionFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -1980,6 +2111,16 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 
 type metadataCancelWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CancelWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provide details of the ChildWorkflowExecutionCanceled event.
@@ -2011,6 +2152,16 @@ type metadataChildWorkflowExecutionCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChildWorkflowExecutionCanceledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChildWorkflowExecutionCanceledEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ChildWorkflowExecutionCompleted event.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
 	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
@@ -2038,6 +2189,16 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 
 type metadataChildWorkflowExecutionCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChildWorkflowExecutionCompletedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChildWorkflowExecutionCompletedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ChildWorkflowExecutionFailed event.
@@ -2072,6 +2233,16 @@ type metadataChildWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChildWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChildWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ChildWorkflowExecutionStarted event.
 type ChildWorkflowExecutionStartedEventAttributes struct {
 	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
@@ -2091,6 +2262,16 @@ type ChildWorkflowExecutionStartedEventAttributes struct {
 
 type metadataChildWorkflowExecutionStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChildWorkflowExecutionStartedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChildWorkflowExecutionStartedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ChildWorkflowExecutionTerminated event.
@@ -2117,6 +2298,16 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 
 type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ChildWorkflowExecutionTerminatedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChildWorkflowExecutionTerminatedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ChildWorkflowExecutionTimedOut event.
@@ -2149,6 +2340,16 @@ type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ChildWorkflowExecutionTimedOutEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ChildWorkflowExecutionTimedOutEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Used to filter the closed workflow executions in visibility APIs by their
 // close status.
 type CloseStatusFilter struct {
@@ -2161,6 +2362,16 @@ type CloseStatusFilter struct {
 
 type metadataCloseStatusFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CloseStatusFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CloseStatusFilter) GoString() string {
+	return s.String()
 }
 
 // Provides details of the CompleteWorkflowExecution decision.
@@ -2190,6 +2401,16 @@ type metadataCompleteWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CompleteWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the CompleteWorkflowExecutionFailed event.
 type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -2211,6 +2432,16 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 
 type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CompleteWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ContinueAsNewWorkflowExecution decision.
@@ -2308,6 +2539,16 @@ type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ContinueAsNewWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ContinueAsNewWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ContinueAsNewWorkflowExecutionFailed event.
 type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -2329,6 +2570,16 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 
 type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ContinueAsNewWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ContinueAsNewWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 type CountClosedWorkflowExecutionsInput struct {
@@ -2383,6 +2634,16 @@ type metadataCountClosedWorkflowExecutionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CountClosedWorkflowExecutionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CountClosedWorkflowExecutionsInput) GoString() string {
+	return s.String()
+}
+
 type CountOpenWorkflowExecutionsInput struct {
 	// The name of the domain containing the workflow executions to count.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -2418,6 +2679,16 @@ type metadataCountOpenWorkflowExecutionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CountOpenWorkflowExecutionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CountOpenWorkflowExecutionsInput) GoString() string {
+	return s.String()
+}
+
 type CountPendingActivityTasksInput struct {
 	// The name of the domain that contains the task list.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -2432,6 +2703,16 @@ type metadataCountPendingActivityTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CountPendingActivityTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CountPendingActivityTasksInput) GoString() string {
+	return s.String()
+}
+
 type CountPendingDecisionTasksInput struct {
 	// The name of the domain that contains the task list.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -2444,6 +2725,16 @@ type CountPendingDecisionTasksInput struct {
 
 type metadataCountPendingDecisionTasksInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CountPendingDecisionTasksInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CountPendingDecisionTasksInput) GoString() string {
+	return s.String()
 }
 
 // Specifies a decision made by the decider. A decision can be one of these
@@ -2608,6 +2899,16 @@ type metadataDecision struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Decision) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Decision) GoString() string {
+	return s.String()
+}
+
 // Provides details of the DecisionTaskCompleted event.
 type DecisionTaskCompletedEventAttributes struct {
 	// User defined context for the workflow execution.
@@ -2628,6 +2929,16 @@ type DecisionTaskCompletedEventAttributes struct {
 
 type metadataDecisionTaskCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DecisionTaskCompletedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DecisionTaskCompletedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details about the DecisionTaskScheduled event.
@@ -2659,6 +2970,16 @@ type metadataDecisionTaskScheduledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DecisionTaskScheduledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DecisionTaskScheduledEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the DecisionTaskStarted event.
 type DecisionTaskStartedEventAttributes struct {
 	// Identity of the decider making the request. This enables diagnostic tracing
@@ -2675,6 +2996,16 @@ type DecisionTaskStartedEventAttributes struct {
 
 type metadataDecisionTaskStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DecisionTaskStartedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DecisionTaskStartedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the DecisionTaskTimedOut event.
@@ -2699,6 +3030,16 @@ type metadataDecisionTaskTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DecisionTaskTimedOutEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DecisionTaskTimedOutEventAttributes) GoString() string {
+	return s.String()
+}
+
 type DeprecateActivityTypeInput struct {
 	// The activity type to deprecate.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -2713,12 +3054,32 @@ type metadataDeprecateActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeprecateActivityTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateActivityTypeInput) GoString() string {
+	return s.String()
+}
+
 type DeprecateActivityTypeOutput struct {
 	metadataDeprecateActivityTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateActivityTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeprecateActivityTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateActivityTypeOutput) GoString() string {
+	return s.String()
 }
 
 type DeprecateDomainInput struct {
@@ -2732,12 +3093,32 @@ type metadataDeprecateDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeprecateDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateDomainInput) GoString() string {
+	return s.String()
+}
+
 type DeprecateDomainOutput struct {
 	metadataDeprecateDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeprecateDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateDomainOutput) GoString() string {
+	return s.String()
 }
 
 type DeprecateWorkflowTypeInput struct {
@@ -2754,12 +3135,32 @@ type metadataDeprecateWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeprecateWorkflowTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateWorkflowTypeInput) GoString() string {
+	return s.String()
+}
+
 type DeprecateWorkflowTypeOutput struct {
 	metadataDeprecateWorkflowTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataDeprecateWorkflowTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeprecateWorkflowTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeprecateWorkflowTypeOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeActivityTypeInput struct {
@@ -2775,6 +3176,16 @@ type DescribeActivityTypeInput struct {
 
 type metadataDescribeActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeActivityTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivityTypeInput) GoString() string {
+	return s.String()
 }
 
 // Detailed information about an activity type.
@@ -2800,6 +3211,16 @@ type metadataDescribeActivityTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeActivityTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeActivityTypeOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeDomainInput struct {
 	// The name of the domain to describe.
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -2809,6 +3230,16 @@ type DescribeDomainInput struct {
 
 type metadataDescribeDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDomainInput) GoString() string {
+	return s.String()
 }
 
 // Contains details of a domain.
@@ -2826,6 +3257,16 @@ type metadataDescribeDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDomainOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeWorkflowExecutionInput struct {
 	// The name of the domain containing the workflow execution.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -2838,6 +3279,16 @@ type DescribeWorkflowExecutionInput struct {
 
 type metadataDescribeWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeWorkflowExecutionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkflowExecutionInput) GoString() string {
+	return s.String()
 }
 
 // Contains details about a workflow execution.
@@ -2870,6 +3321,16 @@ type metadataDescribeWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeWorkflowExecutionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkflowExecutionOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeWorkflowTypeInput struct {
 	// The name of the domain in which this workflow type is registered.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -2882,6 +3343,16 @@ type DescribeWorkflowTypeInput struct {
 
 type metadataDescribeWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeWorkflowTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkflowTypeInput) GoString() string {
+	return s.String()
 }
 
 // Contains details about a workflow type.
@@ -2907,6 +3378,16 @@ type metadataDescribeWorkflowTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeWorkflowTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkflowTypeOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the configuration settings of a domain.
 type DomainConfiguration struct {
 	// The retention period for workflow executions in this domain.
@@ -2917,6 +3398,16 @@ type DomainConfiguration struct {
 
 type metadataDomainConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DomainConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DomainConfiguration) GoString() string {
+	return s.String()
 }
 
 // Contains general information about a domain.
@@ -2942,6 +3433,16 @@ type metadataDomainInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DomainInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DomainInfo) GoString() string {
+	return s.String()
+}
+
 // Used to filter the workflow executions in visibility APIs by various time-based
 // rules. Each parameter, if specified, defines a rule that must be satisfied
 // by each returned query result. The parameter values are in the Unix Time
@@ -2959,6 +3460,16 @@ type ExecutionTimeFilter struct {
 
 type metadataExecutionTimeFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExecutionTimeFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExecutionTimeFilter) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ExternalWorkflowExecutionCancelRequested event.
@@ -2979,6 +3490,16 @@ type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ExternalWorkflowExecutionCancelRequestedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExternalWorkflowExecutionCancelRequestedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ExternalWorkflowExecutionSignaled event.
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
 	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
@@ -2995,6 +3516,16 @@ type ExternalWorkflowExecutionSignaledEventAttributes struct {
 
 type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExternalWorkflowExecutionSignaledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ExternalWorkflowExecutionSignaledEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the FailWorkflowExecution decision.
@@ -3026,6 +3557,16 @@ type metadataFailWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FailWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FailWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the FailWorkflowExecutionFailed event.
 type FailWorkflowExecutionFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -3047,6 +3588,16 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 
 type metadataFailWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FailWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FailWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 type GetWorkflowExecutionHistoryInput struct {
@@ -3084,6 +3635,16 @@ type metadataGetWorkflowExecutionHistoryInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetWorkflowExecutionHistoryInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetWorkflowExecutionHistoryInput) GoString() string {
+	return s.String()
+}
+
 // Paginated representation of a workflow history for a workflow execution.
 // This is the up to date, complete and authoritative record of the events related
 // to all tasks and events in the life of the workflow execution.
@@ -3104,6 +3665,16 @@ type GetWorkflowExecutionHistoryOutput struct {
 
 type metadataGetWorkflowExecutionHistoryOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetWorkflowExecutionHistoryOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetWorkflowExecutionHistoryOutput) GoString() string {
+	return s.String()
 }
 
 // Event within a workflow execution. A history event can be one of these types:
@@ -3408,6 +3979,16 @@ type metadataHistoryEvent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HistoryEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HistoryEvent) GoString() string {
+	return s.String()
+}
+
 type ListActivityTypesInput struct {
 	// The name of the domain in which the activity types have been registered.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -3446,6 +4027,16 @@ type metadataListActivityTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListActivityTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListActivityTypesInput) GoString() string {
+	return s.String()
+}
+
 // Contains a paginated list of activity type information structures.
 type ListActivityTypesOutput struct {
 	// If a NextPageToken was returned by a previous call, there are more results
@@ -3464,6 +4055,16 @@ type ListActivityTypesOutput struct {
 
 type metadataListActivityTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListActivityTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListActivityTypesOutput) GoString() string {
+	return s.String()
 }
 
 type ListClosedWorkflowExecutionsInput struct {
@@ -3543,6 +4144,16 @@ type metadataListClosedWorkflowExecutionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListClosedWorkflowExecutionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListClosedWorkflowExecutionsInput) GoString() string {
+	return s.String()
+}
+
 type ListDomainsInput struct {
 	// The maximum number of results that will be returned per call. nextPageToken
 	// can be used to obtain futher pages of results. The default is 100, which
@@ -3575,6 +4186,16 @@ type metadataListDomainsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListDomainsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDomainsInput) GoString() string {
+	return s.String()
+}
+
 // Contains a paginated collection of DomainInfo structures.
 type ListDomainsOutput struct {
 	// A list of DomainInfo structures.
@@ -3593,6 +4214,16 @@ type ListDomainsOutput struct {
 
 type metadataListDomainsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDomainsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListDomainsOutput) GoString() string {
+	return s.String()
 }
 
 type ListOpenWorkflowExecutionsInput struct {
@@ -3650,6 +4281,16 @@ type metadataListOpenWorkflowExecutionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListOpenWorkflowExecutionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListOpenWorkflowExecutionsInput) GoString() string {
+	return s.String()
+}
+
 type ListWorkflowTypesInput struct {
 	// The name of the domain in which the workflow types have been registered.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -3689,6 +4330,16 @@ type metadataListWorkflowTypesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListWorkflowTypesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListWorkflowTypesInput) GoString() string {
+	return s.String()
+}
+
 // Contains a paginated list of information structures about workflow types.
 type ListWorkflowTypesOutput struct {
 	// If a NextPageToken was returned by a previous call, there are more results
@@ -3707,6 +4358,16 @@ type ListWorkflowTypesOutput struct {
 
 type metadataListWorkflowTypesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListWorkflowTypesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListWorkflowTypesOutput) GoString() string {
+	return s.String()
 }
 
 // Provides details of the MarkerRecorded event.
@@ -3730,6 +4391,16 @@ type metadataMarkerRecordedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MarkerRecordedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MarkerRecordedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Contains the count of tasks in a task list.
 type PendingTaskCount struct {
 	// The number of tasks in the task list.
@@ -3744,6 +4415,16 @@ type PendingTaskCount struct {
 
 type metadataPendingTaskCount struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PendingTaskCount) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PendingTaskCount) GoString() string {
+	return s.String()
 }
 
 type PollForActivityTaskInput struct {
@@ -3768,6 +4449,16 @@ type PollForActivityTaskInput struct {
 
 type metadataPollForActivityTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PollForActivityTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PollForActivityTaskInput) GoString() string {
+	return s.String()
 }
 
 // Unit of work sent to an activity worker.
@@ -3798,6 +4489,16 @@ type PollForActivityTaskOutput struct {
 
 type metadataPollForActivityTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PollForActivityTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PollForActivityTaskOutput) GoString() string {
+	return s.String()
 }
 
 type PollForDecisionTaskInput struct {
@@ -3850,6 +4551,16 @@ type metadataPollForDecisionTaskInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PollForDecisionTaskInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PollForDecisionTaskInput) GoString() string {
+	return s.String()
+}
+
 // A structure that represents a decision task. Decision tasks are sent to deciders
 // in order for them to make decisions.
 type PollForDecisionTaskOutput struct {
@@ -3892,6 +4603,16 @@ type metadataPollForDecisionTaskOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PollForDecisionTaskOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PollForDecisionTaskOutput) GoString() string {
+	return s.String()
+}
+
 type RecordActivityTaskHeartbeatInput struct {
 	// If specified, contains details about the progress of the task.
 	Details *string `locationName:"details" type:"string"`
@@ -3910,6 +4631,16 @@ type metadataRecordActivityTaskHeartbeatInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecordActivityTaskHeartbeatInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordActivityTaskHeartbeatInput) GoString() string {
+	return s.String()
+}
+
 // Status information about an activity task.
 type RecordActivityTaskHeartbeatOutput struct {
 	// Set to true if cancellation of the task is requested.
@@ -3920,6 +4651,16 @@ type RecordActivityTaskHeartbeatOutput struct {
 
 type metadataRecordActivityTaskHeartbeatOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RecordActivityTaskHeartbeatOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordActivityTaskHeartbeatOutput) GoString() string {
+	return s.String()
 }
 
 // Provides details of the RecordMarker decision.
@@ -3951,6 +4692,16 @@ type metadataRecordMarkerDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RecordMarkerDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordMarkerDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the RecordMarkerFailed event.
 type RecordMarkerFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -3975,6 +4726,16 @@ type RecordMarkerFailedEventAttributes struct {
 
 type metadataRecordMarkerFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RecordMarkerFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RecordMarkerFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 type RegisterActivityTypeInput struct {
@@ -4060,12 +4821,32 @@ type metadataRegisterActivityTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterActivityTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterActivityTypeInput) GoString() string {
+	return s.String()
+}
+
 type RegisterActivityTypeOutput struct {
 	metadataRegisterActivityTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterActivityTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterActivityTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterActivityTypeOutput) GoString() string {
+	return s.String()
 }
 
 type RegisterDomainInput struct {
@@ -4101,12 +4882,32 @@ type metadataRegisterDomainInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterDomainInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDomainInput) GoString() string {
+	return s.String()
+}
+
 type RegisterDomainOutput struct {
 	metadataRegisterDomainOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterDomainOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterDomainOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterDomainOutput) GoString() string {
+	return s.String()
 }
 
 type RegisterWorkflowTypeInput struct {
@@ -4192,12 +4993,32 @@ type metadataRegisterWorkflowTypeInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RegisterWorkflowTypeInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterWorkflowTypeInput) GoString() string {
+	return s.String()
+}
+
 type RegisterWorkflowTypeOutput struct {
 	metadataRegisterWorkflowTypeOutput `json:"-" xml:"-"`
 }
 
 type metadataRegisterWorkflowTypeOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterWorkflowTypeOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RegisterWorkflowTypeOutput) GoString() string {
+	return s.String()
 }
 
 // Provides details of the RequestCancelActivityTask decision.
@@ -4226,6 +5047,16 @@ type metadataRequestCancelActivityTaskDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestCancelActivityTaskDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelActivityTaskDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the RequestCancelActivityTaskFailed event.
 type RequestCancelActivityTaskFailedEventAttributes struct {
 	// The activityId provided in the RequestCancelActivityTask decision that failed.
@@ -4250,6 +5081,16 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 
 type metadataRequestCancelActivityTaskFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RequestCancelActivityTaskFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelActivityTaskFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the RequestCancelExternalWorkflowExecution decision.
@@ -4283,6 +5124,16 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 
 type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RequestCancelExternalWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelExternalWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the RequestCancelExternalWorkflowExecutionFailed event.
@@ -4323,6 +5174,16 @@ type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestCancelExternalWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelExternalWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the RequestCancelExternalWorkflowExecutionInitiated event.
 type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// Optional. Data attached to the event that can be used by the decider in subsequent
@@ -4348,6 +5209,16 @@ type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes stru
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) GoString() string {
+	return s.String()
+}
+
 type RequestCancelWorkflowExecutionInput struct {
 	// The name of the domain containing the workflow execution to cancel.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -4365,12 +5236,32 @@ type metadataRequestCancelWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RequestCancelWorkflowExecutionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelWorkflowExecutionInput) GoString() string {
+	return s.String()
+}
+
 type RequestCancelWorkflowExecutionOutput struct {
 	metadataRequestCancelWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataRequestCancelWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RequestCancelWorkflowExecutionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RequestCancelWorkflowExecutionOutput) GoString() string {
+	return s.String()
 }
 
 type RespondActivityTaskCanceledInput struct {
@@ -4391,12 +5282,32 @@ type metadataRespondActivityTaskCanceledInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RespondActivityTaskCanceledInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondActivityTaskCanceledInput) GoString() string {
+	return s.String()
+}
+
 type RespondActivityTaskCanceledOutput struct {
 	metadataRespondActivityTaskCanceledOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskCanceledOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RespondActivityTaskCanceledOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondActivityTaskCanceledOutput) GoString() string {
+	return s.String()
 }
 
 type RespondActivityTaskCompletedInput struct {
@@ -4418,12 +5329,32 @@ type metadataRespondActivityTaskCompletedInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RespondActivityTaskCompletedInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondActivityTaskCompletedInput) GoString() string {
+	return s.String()
+}
+
 type RespondActivityTaskCompletedOutput struct {
 	metadataRespondActivityTaskCompletedOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskCompletedOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RespondActivityTaskCompletedOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondActivityTaskCompletedOutput) GoString() string {
+	return s.String()
 }
 
 type RespondActivityTaskFailedInput struct {
@@ -4447,12 +5378,32 @@ type metadataRespondActivityTaskFailedInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RespondActivityTaskFailedInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondActivityTaskFailedInput) GoString() string {
+	return s.String()
+}
+
 type RespondActivityTaskFailedOutput struct {
 	metadataRespondActivityTaskFailedOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondActivityTaskFailedOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RespondActivityTaskFailedOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondActivityTaskFailedOutput) GoString() string {
+	return s.String()
 }
 
 type RespondDecisionTaskCompletedInput struct {
@@ -4477,12 +5428,32 @@ type metadataRespondDecisionTaskCompletedInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RespondDecisionTaskCompletedInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondDecisionTaskCompletedInput) GoString() string {
+	return s.String()
+}
+
 type RespondDecisionTaskCompletedOutput struct {
 	metadataRespondDecisionTaskCompletedOutput `json:"-" xml:"-"`
 }
 
 type metadataRespondDecisionTaskCompletedOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RespondDecisionTaskCompletedOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RespondDecisionTaskCompletedOutput) GoString() string {
+	return s.String()
 }
 
 // Provides details of the ScheduleActivityTask decision.
@@ -4601,6 +5572,16 @@ type metadataScheduleActivityTaskDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ScheduleActivityTaskDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleActivityTaskDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the ScheduleActivityTaskFailed event.
 type ScheduleActivityTaskFailedEventAttributes struct {
 	// The activityId provided in the ScheduleActivityTask decision that failed.
@@ -4628,6 +5609,16 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 
 type metadataScheduleActivityTaskFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScheduleActivityTaskFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleActivityTaskFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the SignalExternalWorkflowExecution decision.
@@ -4671,6 +5662,16 @@ type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SignalExternalWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalExternalWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the SignalExternalWorkflowExecutionFailed event.
 type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -4710,6 +5711,16 @@ type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SignalExternalWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalExternalWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the SignalExternalWorkflowExecutionInitiated event.
 type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// Optional. data attached to the event that can be used by the decider in subsequent
@@ -4741,6 +5752,16 @@ type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SignalExternalWorkflowExecutionInitiatedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalExternalWorkflowExecutionInitiatedEventAttributes) GoString() string {
+	return s.String()
+}
+
 type SignalWorkflowExecutionInput struct {
 	// The name of the domain containing the workflow execution to signal.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -4765,12 +5786,32 @@ type metadataSignalWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SignalWorkflowExecutionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalWorkflowExecutionInput) GoString() string {
+	return s.String()
+}
+
 type SignalWorkflowExecutionOutput struct {
 	metadataSignalWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataSignalWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SignalWorkflowExecutionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SignalWorkflowExecutionOutput) GoString() string {
+	return s.String()
 }
 
 // Provides details of the StartChildWorkflowExecution decision.
@@ -4890,6 +5931,16 @@ type metadataStartChildWorkflowExecutionDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartChildWorkflowExecutionDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartChildWorkflowExecutionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the StartChildWorkflowExecutionFailed event.
 type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -4926,6 +5977,16 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 
 type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartChildWorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartChildWorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the StartChildWorkflowExecutionInitiated event.
@@ -4999,6 +6060,16 @@ type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartChildWorkflowExecutionInitiatedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartChildWorkflowExecutionInitiatedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the StartTimer decision.
 //
 // Access Control
@@ -5040,6 +6111,16 @@ type metadataStartTimerDecisionAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartTimerDecisionAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartTimerDecisionAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the StartTimerFailed event.
 type StartTimerFailedEventAttributes struct {
 	// The cause of the failure. This information is generated by the system and
@@ -5064,6 +6145,16 @@ type StartTimerFailedEventAttributes struct {
 
 type metadataStartTimerFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartTimerFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartTimerFailedEventAttributes) GoString() string {
+	return s.String()
 }
 
 type StartWorkflowExecutionInput struct {
@@ -5174,6 +6265,16 @@ type metadataStartWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StartWorkflowExecutionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartWorkflowExecutionInput) GoString() string {
+	return s.String()
+}
+
 // Specifies the runId of a workflow execution.
 type StartWorkflowExecutionOutput struct {
 	// The runId of a workflow execution. This Id is generated by the service and
@@ -5185,6 +6286,16 @@ type StartWorkflowExecutionOutput struct {
 
 type metadataStartWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartWorkflowExecutionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StartWorkflowExecutionOutput) GoString() string {
+	return s.String()
 }
 
 // Used to filter the workflow executions in visibility APIs based on a tag.
@@ -5200,6 +6311,16 @@ type metadataTagFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TagFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TagFilter) GoString() string {
+	return s.String()
+}
+
 // Represents a task list.
 type TaskList struct {
 	// The name of the task list.
@@ -5210,6 +6331,16 @@ type TaskList struct {
 
 type metadataTaskList struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TaskList) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TaskList) GoString() string {
+	return s.String()
 }
 
 type TerminateWorkflowExecutionInput struct {
@@ -5253,12 +6384,32 @@ type metadataTerminateWorkflowExecutionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TerminateWorkflowExecutionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateWorkflowExecutionInput) GoString() string {
+	return s.String()
+}
+
 type TerminateWorkflowExecutionOutput struct {
 	metadataTerminateWorkflowExecutionOutput `json:"-" xml:"-"`
 }
 
 type metadataTerminateWorkflowExecutionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TerminateWorkflowExecutionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateWorkflowExecutionOutput) GoString() string {
+	return s.String()
 }
 
 // Provides details of the TimerCanceled event.
@@ -5284,6 +6435,16 @@ type metadataTimerCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TimerCanceledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TimerCanceledEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the TimerFired event.
 type TimerFiredEventAttributes struct {
 	// The id of the TimerStarted event that was recorded when this timer was started.
@@ -5299,6 +6460,16 @@ type TimerFiredEventAttributes struct {
 
 type metadataTimerFiredEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TimerFiredEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TimerFiredEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of the TimerStarted event.
@@ -5329,6 +6500,16 @@ type metadataTimerStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TimerStartedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TimerStartedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Represents a workflow execution.
 type WorkflowExecution struct {
 	// A system-generated unique identifier for the workflow execution.
@@ -5342,6 +6523,16 @@ type WorkflowExecution struct {
 
 type metadataWorkflowExecution struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecution) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecution) GoString() string {
+	return s.String()
 }
 
 // Provides details of the WorkflowExecutionCancelRequested event.
@@ -5368,6 +6559,16 @@ type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionCancelRequestedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionCancelRequestedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the WorkflowExecutionCanceled event.
 type WorkflowExecutionCanceledEventAttributes struct {
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
@@ -5386,6 +6587,16 @@ type metadataWorkflowExecutionCanceledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionCanceledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionCanceledEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the WorkflowExecutionCompleted event.
 type WorkflowExecutionCompletedEventAttributes struct {
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
@@ -5402,6 +6613,16 @@ type WorkflowExecutionCompletedEventAttributes struct {
 
 type metadataWorkflowExecutionCompletedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionCompletedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionCompletedEventAttributes) GoString() string {
+	return s.String()
 }
 
 // The configuration settings for a workflow execution including timeout values,
@@ -5451,6 +6672,16 @@ type WorkflowExecutionConfiguration struct {
 
 type metadataWorkflowExecutionConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionConfiguration) GoString() string {
+	return s.String()
 }
 
 // Provides details of the WorkflowExecutionContinuedAsNew event.
@@ -5510,6 +6741,16 @@ type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionContinuedAsNewEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionContinuedAsNewEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Contains the count of workflow executions returned from CountOpenWorkflowExecutions
 // or CountClosedWorkflowExecutions
 type WorkflowExecutionCount struct {
@@ -5525,6 +6766,16 @@ type WorkflowExecutionCount struct {
 
 type metadataWorkflowExecutionCount struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionCount) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionCount) GoString() string {
+	return s.String()
 }
 
 // Provides details of the WorkflowExecutionFailed event.
@@ -5548,6 +6799,16 @@ type metadataWorkflowExecutionFailedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionFailedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Used to filter the workflow executions in visibility APIs by their workflowId.
 type WorkflowExecutionFilter struct {
 	// The workflowId to pass of match the criteria of this filter.
@@ -5558,6 +6819,16 @@ type WorkflowExecutionFilter struct {
 
 type metadataWorkflowExecutionFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionFilter) GoString() string {
+	return s.String()
 }
 
 // Contains information about a workflow execution.
@@ -5609,6 +6880,16 @@ type metadataWorkflowExecutionInfo struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionInfo) GoString() string {
+	return s.String()
+}
+
 // Contains a paginated list of information about workflow executions.
 type WorkflowExecutionInfos struct {
 	// The list of workflow information structures.
@@ -5627,6 +6908,16 @@ type WorkflowExecutionInfos struct {
 
 type metadataWorkflowExecutionInfos struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionInfos) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionInfos) GoString() string {
+	return s.String()
 }
 
 // Contains the counts of open tasks, child workflow executions and timers for
@@ -5651,6 +6942,16 @@ type WorkflowExecutionOpenCounts struct {
 
 type metadataWorkflowExecutionOpenCounts struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionOpenCounts) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionOpenCounts) GoString() string {
+	return s.String()
 }
 
 // Provides details of the WorkflowExecutionSignaled event.
@@ -5680,6 +6981,16 @@ type WorkflowExecutionSignaledEventAttributes struct {
 
 type metadataWorkflowExecutionSignaledEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowExecutionSignaledEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionSignaledEventAttributes) GoString() string {
+	return s.String()
 }
 
 // Provides details of WorkflowExecutionStarted event.
@@ -5748,6 +7059,16 @@ type metadataWorkflowExecutionStartedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionStartedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionStartedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the WorkflowExecutionTerminated event.
 type WorkflowExecutionTerminatedEventAttributes struct {
 	// If set, indicates that the workflow execution was automatically terminated,
@@ -5779,6 +7100,16 @@ type metadataWorkflowExecutionTerminatedEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionTerminatedEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionTerminatedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the WorkflowExecutionTimedOut event.
 type WorkflowExecutionTimedOutEventAttributes struct {
 	// The policy used for the child workflow executions of this workflow execution.
@@ -5802,6 +7133,16 @@ type metadataWorkflowExecutionTimedOutEventAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowExecutionTimedOutEventAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowExecutionTimedOutEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Represents a workflow type.
 type WorkflowType struct {
 	// Required. The name of the workflow type.
@@ -5821,6 +7162,16 @@ type WorkflowType struct {
 
 type metadataWorkflowType struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowType) GoString() string {
+	return s.String()
 }
 
 // The configuration settings of a workflow type.
@@ -5887,6 +7238,16 @@ type metadataWorkflowTypeConfiguration struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s WorkflowTypeConfiguration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowTypeConfiguration) GoString() string {
+	return s.String()
+}
+
 // Used to filter workflow execution query results by type. Each parameter,
 // if specified, defines a rule that must be satisfied by each returned result.
 type WorkflowTypeFilter struct {
@@ -5901,6 +7262,16 @@ type WorkflowTypeFilter struct {
 
 type metadataWorkflowTypeFilter struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowTypeFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowTypeFilter) GoString() string {
+	return s.String()
 }
 
 // Contains information about a workflow type.
@@ -5926,4 +7297,14 @@ type WorkflowTypeInfo struct {
 
 type metadataWorkflowTypeInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s WorkflowTypeInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowTypeInfo) GoString() string {
+	return s.String()
 }

@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opDeleteIdentity = "DeleteIdentity"
@@ -677,6 +678,16 @@ type metadataBody struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Body) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Body) GoString() string {
+	return s.String()
+}
+
 // Represents textual data, plus an optional character set specification.
 //
 // By default, the text must be 7-bit ASCII, due to the constraints of the
@@ -696,6 +707,16 @@ type metadataContent struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Content) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Content) GoString() string {
+	return s.String()
+}
+
 // Represents a request instructing the service to delete an identity from the
 // list of identities for the AWS Account.
 type DeleteIdentityInput struct {
@@ -709,6 +730,16 @@ type metadataDeleteIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentityInput) GoString() string {
+	return s.String()
+}
+
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type DeleteIdentityOutput struct {
@@ -717,6 +748,16 @@ type DeleteIdentityOutput struct {
 
 type metadataDeleteIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentityOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to delete an address from the
@@ -732,12 +773,32 @@ type metadataDeleteVerifiedEmailAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteVerifiedEmailAddressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVerifiedEmailAddressInput) GoString() string {
+	return s.String()
+}
+
 type DeleteVerifiedEmailAddressOutput struct {
 	metadataDeleteVerifiedEmailAddressOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteVerifiedEmailAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVerifiedEmailAddressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVerifiedEmailAddressOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the destination of the message, consisting of To:, CC:, and BCC:
@@ -764,6 +825,16 @@ type metadataDestination struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Destination) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Destination) GoString() string {
+	return s.String()
+}
+
 // Given a list of verified identities, describes their DKIM attributes. The
 // DKIM attributes of an email address identity includes whether DKIM signing
 // is individually enabled or disabled for that address. The DKIM attributes
@@ -782,6 +853,16 @@ type metadataGetIdentityDKIMAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetIdentityDKIMAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityDKIMAttributesInput) GoString() string {
+	return s.String()
+}
+
 // Represents a list of all the DKIM attributes for the specified identity.
 type GetIdentityDKIMAttributesOutput struct {
 	// The DKIM attributes for an email address or a domain.
@@ -794,6 +875,16 @@ type metadataGetIdentityDKIMAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetIdentityDKIMAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityDKIMAttributesOutput) GoString() string {
+	return s.String()
+}
+
 type GetIdentityNotificationAttributesInput struct {
 	// A list of one or more identities.
 	Identities []*string `type:"list" required:"true"`
@@ -803,6 +894,16 @@ type GetIdentityNotificationAttributesInput struct {
 
 type metadataGetIdentityNotificationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityNotificationAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityNotificationAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Describes whether an identity has Amazon Simple Notification Service (Amazon
@@ -820,6 +921,16 @@ type metadataGetIdentityNotificationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetIdentityNotificationAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityNotificationAttributesOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request instructing the service to provide the verification
 // attributes for a list of identities.
 type GetIdentityVerificationAttributesInput struct {
@@ -831,6 +942,16 @@ type GetIdentityVerificationAttributesInput struct {
 
 type metadataGetIdentityVerificationAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityVerificationAttributesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityVerificationAttributesInput) GoString() string {
+	return s.String()
 }
 
 // Represents the verification attributes for a list of identities.
@@ -845,12 +966,32 @@ type metadataGetIdentityVerificationAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetIdentityVerificationAttributesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityVerificationAttributesOutput) GoString() string {
+	return s.String()
+}
+
 type GetSendQuotaInput struct {
 	metadataGetSendQuotaInput `json:"-" xml:"-"`
 }
 
 type metadataGetSendQuotaInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSendQuotaInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSendQuotaInput) GoString() string {
+	return s.String()
 }
 
 // Represents the user's current activity limits returned from a successful
@@ -877,12 +1018,32 @@ type metadataGetSendQuotaOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetSendQuotaOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSendQuotaOutput) GoString() string {
+	return s.String()
+}
+
 type GetSendStatisticsInput struct {
 	metadataGetSendStatisticsInput `json:"-" xml:"-"`
 }
 
 type metadataGetSendStatisticsInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSendStatisticsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSendStatisticsInput) GoString() string {
+	return s.String()
 }
 
 // Represents a list of SendDataPoint items returned from a successful GetSendStatistics
@@ -897,6 +1058,16 @@ type GetSendStatisticsOutput struct {
 
 type metadataGetSendStatisticsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSendStatisticsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSendStatisticsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the DKIM attributes of a verified email address or a domain.
@@ -926,6 +1097,16 @@ type IdentityDKIMAttributes struct {
 
 type metadataIdentityDKIMAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IdentityDKIMAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityDKIMAttributes) GoString() string {
+	return s.String()
 }
 
 // Represents the notification attributes of an identity, including whether
@@ -958,6 +1139,16 @@ type metadataIdentityNotificationAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s IdentityNotificationAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityNotificationAttributes) GoString() string {
+	return s.String()
+}
+
 // Represents the verification attributes of a single identity.
 type IdentityVerificationAttributes struct {
 	// The verification status of the identity: "Pending", "Success", "Failed",
@@ -972,6 +1163,16 @@ type IdentityVerificationAttributes struct {
 
 type metadataIdentityVerificationAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IdentityVerificationAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s IdentityVerificationAttributes) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to list all identities for the
@@ -994,6 +1195,16 @@ type metadataListIdentitiesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListIdentitiesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentitiesInput) GoString() string {
+	return s.String()
+}
+
 // Represents a list of all verified identities for the AWS Account.
 type ListIdentitiesOutput struct {
 	// A list of identities.
@@ -1009,12 +1220,32 @@ type metadataListIdentitiesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListIdentitiesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentitiesOutput) GoString() string {
+	return s.String()
+}
+
 type ListVerifiedEmailAddressesInput struct {
 	metadataListVerifiedEmailAddressesInput `json:"-" xml:"-"`
 }
 
 type metadataListVerifiedEmailAddressesInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVerifiedEmailAddressesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVerifiedEmailAddressesInput) GoString() string {
+	return s.String()
 }
 
 // Represents a list of all the email addresses verified for the current user.
@@ -1027,6 +1258,16 @@ type ListVerifiedEmailAddressesOutput struct {
 
 type metadataListVerifiedEmailAddressesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListVerifiedEmailAddressesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListVerifiedEmailAddressesOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the message to be sent, composed of a subject and a body.
@@ -1045,6 +1286,16 @@ type metadataMessage struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Message) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Message) GoString() string {
+	return s.String()
+}
+
 // Represents the raw data of the message.
 type RawMessage struct {
 	// The raw data of the message. The client must ensure that the message format
@@ -1061,6 +1312,16 @@ type RawMessage struct {
 
 type metadataRawMessage struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RawMessage) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RawMessage) GoString() string {
+	return s.String()
 }
 
 // Represents sending statistics data. Each SendDataPoint contains statistics
@@ -1086,6 +1347,16 @@ type SendDataPoint struct {
 
 type metadataSendDataPoint struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendDataPoint) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendDataPoint) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to send a single email message.
@@ -1128,6 +1399,16 @@ type metadataSendEmailInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SendEmailInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendEmailInput) GoString() string {
+	return s.String()
+}
+
 // Represents a unique message ID returned from a successful SendEmail request.
 type SendEmailOutput struct {
 	// The unique message identifier returned from the SendEmail action.
@@ -1138,6 +1419,16 @@ type SendEmailOutput struct {
 
 type metadataSendEmailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendEmailOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendEmailOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to send a raw email message.
@@ -1182,6 +1473,16 @@ type metadataSendRawEmailInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SendRawEmailInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendRawEmailInput) GoString() string {
+	return s.String()
+}
+
 // Represents a unique message ID returned from a successful SendRawEmail request.
 type SendRawEmailOutput struct {
 	// The unique message identifier returned from the SendRawEmail action.
@@ -1192,6 +1493,16 @@ type SendRawEmailOutput struct {
 
 type metadataSendRawEmailOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendRawEmailOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SendRawEmailOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to enable or disable DKIM signing
@@ -1211,6 +1522,16 @@ type metadataSetIdentityDKIMEnabledInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetIdentityDKIMEnabledInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityDKIMEnabledInput) GoString() string {
+	return s.String()
+}
+
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityDKIMEnabledOutput struct {
@@ -1219,6 +1540,16 @@ type SetIdentityDKIMEnabledOutput struct {
 
 type metadataSetIdentityDKIMEnabledOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetIdentityDKIMEnabledOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityDKIMEnabledOutput) GoString() string {
+	return s.String()
 }
 
 type SetIdentityFeedbackForwardingEnabledInput struct {
@@ -1241,6 +1572,16 @@ type metadataSetIdentityFeedbackForwardingEnabledInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetIdentityFeedbackForwardingEnabledInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityFeedbackForwardingEnabledInput) GoString() string {
+	return s.String()
+}
+
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityFeedbackForwardingEnabledOutput struct {
@@ -1249,6 +1590,16 @@ type SetIdentityFeedbackForwardingEnabledOutput struct {
 
 type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetIdentityFeedbackForwardingEnabledOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityFeedbackForwardingEnabledOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request to set or clear an identity's notification topic.
@@ -1273,6 +1624,16 @@ type metadataSetIdentityNotificationTopicInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetIdentityNotificationTopicInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityNotificationTopicInput) GoString() string {
+	return s.String()
+}
+
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type SetIdentityNotificationTopicOutput struct {
@@ -1281,6 +1642,16 @@ type SetIdentityNotificationTopicOutput struct {
 
 type metadataSetIdentityNotificationTopicOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetIdentityNotificationTopicOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetIdentityNotificationTopicOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to begin DKIM verification for
@@ -1294,6 +1665,16 @@ type VerifyDomainDKIMInput struct {
 
 type metadataVerifyDomainDKIMInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VerifyDomainDKIMInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyDomainDKIMInput) GoString() string {
+	return s.String()
 }
 
 // Represents the DNS records that must be published in the domain name's DNS
@@ -1319,6 +1700,16 @@ type metadataVerifyDomainDKIMOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VerifyDomainDKIMOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyDomainDKIMOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request instructing the service to begin domain verification.
 type VerifyDomainIdentityInput struct {
 	// The domain to be verified.
@@ -1329,6 +1720,16 @@ type VerifyDomainIdentityInput struct {
 
 type metadataVerifyDomainIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VerifyDomainIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyDomainIdentityInput) GoString() string {
+	return s.String()
 }
 
 // Represents a token used for domain ownership verification.
@@ -1344,6 +1745,16 @@ type metadataVerifyDomainIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VerifyDomainIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyDomainIdentityOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request instructing the service to begin email address verification.
 type VerifyEmailAddressInput struct {
 	// The email address to be verified.
@@ -1356,12 +1767,32 @@ type metadataVerifyEmailAddressInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VerifyEmailAddressInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyEmailAddressInput) GoString() string {
+	return s.String()
+}
+
 type VerifyEmailAddressOutput struct {
 	metadataVerifyEmailAddressOutput `json:"-" xml:"-"`
 }
 
 type metadataVerifyEmailAddressOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VerifyEmailAddressOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyEmailAddressOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a request instructing the service to begin email address verification.
@@ -1376,6 +1807,16 @@ type metadataVerifyEmailIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s VerifyEmailIdentityInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyEmailIdentityInput) GoString() string {
+	return s.String()
+}
+
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
 type VerifyEmailIdentityOutput struct {
@@ -1384,4 +1825,14 @@ type VerifyEmailIdentityOutput struct {
 
 type metadataVerifyEmailIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VerifyEmailIdentityOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VerifyEmailIdentityOutput) GoString() string {
+	return s.String()
 }

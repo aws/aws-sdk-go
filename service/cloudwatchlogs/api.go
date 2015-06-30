@@ -5,6 +5,7 @@ package cloudwatchlogs
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opCreateLogGroup = "CreateLogGroup"
@@ -649,12 +650,32 @@ type metadataCreateLogGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLogGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLogGroupInput) GoString() string {
+	return s.String()
+}
+
 type CreateLogGroupOutput struct {
 	metadataCreateLogGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLogGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLogGroupOutput) GoString() string {
+	return s.String()
 }
 
 type CreateLogStreamInput struct {
@@ -671,12 +692,32 @@ type metadataCreateLogStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s CreateLogStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLogStreamInput) GoString() string {
+	return s.String()
+}
+
 type CreateLogStreamOutput struct {
 	metadataCreateLogStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataCreateLogStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLogStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CreateLogStreamOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLogGroupInput struct {
@@ -690,12 +731,32 @@ type metadataDeleteLogGroupInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLogGroupInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLogGroupInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLogGroupOutput struct {
 	metadataDeleteLogGroupOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogGroupOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLogGroupOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLogGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLogStreamInput struct {
@@ -712,12 +773,32 @@ type metadataDeleteLogStreamInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteLogStreamInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLogStreamInput) GoString() string {
+	return s.String()
+}
+
 type DeleteLogStreamOutput struct {
 	metadataDeleteLogStreamOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteLogStreamOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLogStreamOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLogStreamOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteMetricFilterInput struct {
@@ -734,12 +815,32 @@ type metadataDeleteMetricFilterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteMetricFilterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMetricFilterInput) GoString() string {
+	return s.String()
+}
+
 type DeleteMetricFilterOutput struct {
 	metadataDeleteMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteMetricFilterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMetricFilterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMetricFilterOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteRetentionPolicyInput struct {
@@ -754,12 +855,32 @@ type metadataDeleteRetentionPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteRetentionPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRetentionPolicyInput) GoString() string {
+	return s.String()
+}
+
 type DeleteRetentionPolicyOutput struct {
 	metadataDeleteRetentionPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteRetentionPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRetentionPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRetentionPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteSubscriptionFilterInput struct {
@@ -777,12 +898,32 @@ type metadataDeleteSubscriptionFilterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DeleteSubscriptionFilterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSubscriptionFilterInput) GoString() string {
+	return s.String()
+}
+
 type DeleteSubscriptionFilterOutput struct {
 	metadataDeleteSubscriptionFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataDeleteSubscriptionFilterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSubscriptionFilterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSubscriptionFilterOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLogGroupsInput struct {
@@ -806,6 +947,16 @@ type metadataDescribeLogGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLogGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLogGroupsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLogGroupsOutput struct {
 	// A list of log groups.
 	LogGroups []*LogGroup `locationName:"logGroups" type:"list"`
@@ -820,6 +971,16 @@ type DescribeLogGroupsOutput struct {
 
 type metadataDescribeLogGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLogGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLogGroupsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeLogStreamsInput struct {
@@ -856,6 +1017,16 @@ type metadataDescribeLogStreamsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeLogStreamsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLogStreamsInput) GoString() string {
+	return s.String()
+}
+
 type DescribeLogStreamsOutput struct {
 	// A list of log streams.
 	LogStreams []*LogStream `locationName:"logStreams" type:"list"`
@@ -870,6 +1041,16 @@ type DescribeLogStreamsOutput struct {
 
 type metadataDescribeLogStreamsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeLogStreamsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeLogStreamsOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeMetricFiltersInput struct {
@@ -896,6 +1077,16 @@ type metadataDescribeMetricFiltersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeMetricFiltersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMetricFiltersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeMetricFiltersOutput struct {
 	MetricFilters []*MetricFilter `locationName:"metricFilters" type:"list"`
 
@@ -909,6 +1100,16 @@ type DescribeMetricFiltersOutput struct {
 
 type metadataDescribeMetricFiltersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMetricFiltersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMetricFiltersOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSubscriptionFiltersInput struct {
@@ -934,6 +1135,16 @@ type metadataDescribeSubscriptionFiltersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeSubscriptionFiltersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSubscriptionFiltersInput) GoString() string {
+	return s.String()
+}
+
 type DescribeSubscriptionFiltersOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
@@ -947,6 +1158,16 @@ type DescribeSubscriptionFiltersOutput struct {
 
 type metadataDescribeSubscriptionFiltersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeSubscriptionFiltersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeSubscriptionFiltersOutput) GoString() string {
+	return s.String()
 }
 
 type FilterLogEventsInput struct {
@@ -990,6 +1211,16 @@ type metadataFilterLogEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s FilterLogEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FilterLogEventsInput) GoString() string {
+	return s.String()
+}
+
 type FilterLogEventsOutput struct {
 	// A list of FilteredLogEvent objects representing the matched events from the
 	// request.
@@ -1009,6 +1240,16 @@ type FilterLogEventsOutput struct {
 
 type metadataFilterLogEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FilterLogEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FilterLogEventsOutput) GoString() string {
+	return s.String()
 }
 
 // Represents a matched event from a FilterLogEvents request.
@@ -1035,6 +1276,16 @@ type FilteredLogEvent struct {
 
 type metadataFilteredLogEvent struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FilteredLogEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s FilteredLogEvent) GoString() string {
+	return s.String()
 }
 
 type GetLogEventsInput struct {
@@ -1073,6 +1324,16 @@ type metadataGetLogEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetLogEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetLogEventsInput) GoString() string {
+	return s.String()
+}
+
 type GetLogEventsOutput struct {
 	Events []*OutputLogEvent `locationName:"events" type:"list"`
 
@@ -1093,6 +1354,16 @@ type metadataGetLogEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s GetLogEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetLogEventsOutput) GoString() string {
+	return s.String()
+}
+
 // A log event is a record of some activity that was recorded by the application
 // or resource being monitored. The log event record that Amazon CloudWatch
 // Logs understands contains two properties: the timestamp of when the event
@@ -1109,6 +1380,16 @@ type InputLogEvent struct {
 
 type metadataInputLogEvent struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InputLogEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InputLogEvent) GoString() string {
+	return s.String()
 }
 
 type LogGroup struct {
@@ -1135,6 +1416,16 @@ type LogGroup struct {
 
 type metadataLogGroup struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LogGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LogGroup) GoString() string {
+	return s.String()
 }
 
 // A log stream is sequence of log events from a single emitter of logs.
@@ -1173,6 +1464,16 @@ type metadataLogStream struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s LogStream) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s LogStream) GoString() string {
+	return s.String()
+}
+
 // Metric filters can be used to express how Amazon CloudWatch Logs would extract
 // metric observations from ingested log events and transform them to metric
 // data in a CloudWatch metric.
@@ -1199,6 +1500,16 @@ type metadataMetricFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MetricFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricFilter) GoString() string {
+	return s.String()
+}
+
 type MetricFilterMatchRecord struct {
 	EventMessage *string `locationName:"eventMessage" type:"string"`
 
@@ -1211,6 +1522,16 @@ type MetricFilterMatchRecord struct {
 
 type metadataMetricFilterMatchRecord struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s MetricFilterMatchRecord) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricFilterMatchRecord) GoString() string {
+	return s.String()
 }
 
 type MetricTransformation struct {
@@ -1234,6 +1555,16 @@ type metadataMetricTransformation struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s MetricTransformation) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s MetricTransformation) GoString() string {
+	return s.String()
+}
+
 type OutputLogEvent struct {
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1250,6 +1581,16 @@ type OutputLogEvent struct {
 
 type metadataOutputLogEvent struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s OutputLogEvent) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s OutputLogEvent) GoString() string {
+	return s.String()
 }
 
 type PutLogEventsInput struct {
@@ -1273,6 +1614,16 @@ type metadataPutLogEventsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutLogEventsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutLogEventsInput) GoString() string {
+	return s.String()
+}
+
 type PutLogEventsOutput struct {
 	// A string token used for making PutLogEvents requests. A sequenceToken can
 	// only be used once, and PutLogEvents requests must include the sequenceToken
@@ -1286,6 +1637,16 @@ type PutLogEventsOutput struct {
 
 type metadataPutLogEventsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutLogEventsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutLogEventsOutput) GoString() string {
+	return s.String()
 }
 
 type PutMetricFilterInput struct {
@@ -1309,12 +1670,32 @@ type metadataPutMetricFilterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutMetricFilterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricFilterInput) GoString() string {
+	return s.String()
+}
+
 type PutMetricFilterOutput struct {
 	metadataPutMetricFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataPutMetricFilterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutMetricFilterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricFilterOutput) GoString() string {
+	return s.String()
 }
 
 type PutRetentionPolicyInput struct {
@@ -1333,12 +1714,32 @@ type metadataPutRetentionPolicyInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutRetentionPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRetentionPolicyInput) GoString() string {
+	return s.String()
+}
+
 type PutRetentionPolicyOutput struct {
 	metadataPutRetentionPolicyOutput `json:"-" xml:"-"`
 }
 
 type metadataPutRetentionPolicyOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutRetentionPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutRetentionPolicyOutput) GoString() string {
+	return s.String()
 }
 
 type PutSubscriptionFilterInput struct {
@@ -1366,12 +1767,32 @@ type metadataPutSubscriptionFilterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s PutSubscriptionFilterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutSubscriptionFilterInput) GoString() string {
+	return s.String()
+}
+
 type PutSubscriptionFilterOutput struct {
 	metadataPutSubscriptionFilterOutput `json:"-" xml:"-"`
 }
 
 type metadataPutSubscriptionFilterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutSubscriptionFilterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutSubscriptionFilterOutput) GoString() string {
+	return s.String()
 }
 
 type RejectedLogEventsInfo struct {
@@ -1386,6 +1807,16 @@ type RejectedLogEventsInfo struct {
 
 type metadataRejectedLogEventsInfo struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RejectedLogEventsInfo) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RejectedLogEventsInfo) GoString() string {
+	return s.String()
 }
 
 // An object indicating the search status of a log stream in a FilterLogEvents
@@ -1403,6 +1834,16 @@ type SearchedLogStream struct {
 
 type metadataSearchedLogStream struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SearchedLogStream) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SearchedLogStream) GoString() string {
+	return s.String()
 }
 
 type SubscriptionFilter struct {
@@ -1432,6 +1873,16 @@ type metadataSubscriptionFilter struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SubscriptionFilter) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SubscriptionFilter) GoString() string {
+	return s.String()
+}
+
 type TestMetricFilterInput struct {
 	// A symbolic description of how Amazon CloudWatch Logs should interpret the
 	// data in each log event. For example, a log event may contain timestamps,
@@ -1449,6 +1900,16 @@ type metadataTestMetricFilterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TestMetricFilterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TestMetricFilterInput) GoString() string {
+	return s.String()
+}
+
 type TestMetricFilterOutput struct {
 	Matches []*MetricFilterMatchRecord `locationName:"matches" type:"list"`
 
@@ -1457,4 +1918,14 @@ type TestMetricFilterOutput struct {
 
 type metadataTestMetricFilterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TestMetricFilterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TestMetricFilterOutput) GoString() string {
+	return s.String()
 }

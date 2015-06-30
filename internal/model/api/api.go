@@ -28,6 +28,9 @@ type API struct {
 	// Set to true to ignore service/request init methods (for testing)
 	NoInitMethods bool
 
+	// Set to true to ignore String() and GoString methods (for generated tests)
+	NoStringerMethods bool
+
 	initialized       bool
 	imports           map[string]bool
 	name              string
@@ -197,6 +200,7 @@ var tplAPI = template.Must(template.New("api").Parse(`
 // APIGoCode renders the API in Go code. Returning it as a string
 func (a *API) APIGoCode() string {
 	a.resetImports()
+	a.imports["github.com/aws/aws-sdk-go/aws/awsutil"] = true
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {

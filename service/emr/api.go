@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
 const opAddInstanceGroups = "AddInstanceGroups"
@@ -659,6 +660,16 @@ type metadataAddInstanceGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddInstanceGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddInstanceGroupsInput) GoString() string {
+	return s.String()
+}
+
 // Output from an AddInstanceGroups call.
 type AddInstanceGroupsOutput struct {
 	// Instance group IDs of the newly created instance groups.
@@ -672,6 +683,16 @@ type AddInstanceGroupsOutput struct {
 
 type metadataAddInstanceGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddInstanceGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddInstanceGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // The input argument to the AddJobFlowSteps operation.
@@ -690,6 +711,16 @@ type metadataAddJobFlowStepsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddJobFlowStepsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddJobFlowStepsInput) GoString() string {
+	return s.String()
+}
+
 // The output for the AddJobFlowSteps operation.
 type AddJobFlowStepsOutput struct {
 	// The identifiers of the list of steps added to the job flow.
@@ -700,6 +731,16 @@ type AddJobFlowStepsOutput struct {
 
 type metadataAddJobFlowStepsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddJobFlowStepsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddJobFlowStepsOutput) GoString() string {
+	return s.String()
 }
 
 // This input identifies a cluster and a list of tags to attach.
@@ -721,6 +762,16 @@ type metadataAddTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s AddTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsInput) GoString() string {
+	return s.String()
+}
+
 // This output indicates the result of adding tags to a resource.
 type AddTagsOutput struct {
 	metadataAddTagsOutput `json:"-" xml:"-"`
@@ -728,6 +779,16 @@ type AddTagsOutput struct {
 
 type metadataAddTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsOutput) GoString() string {
+	return s.String()
 }
 
 // An application is any Amazon or third-party software that you can add to
@@ -763,6 +824,16 @@ type metadataApplication struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Application) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Application) GoString() string {
+	return s.String()
+}
+
 // Configuration of a bootstrap action.
 type BootstrapActionConfig struct {
 	// The name of the bootstrap action.
@@ -778,6 +849,16 @@ type metadataBootstrapActionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s BootstrapActionConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BootstrapActionConfig) GoString() string {
+	return s.String()
+}
+
 // Reports the configuration of a bootstrap action in a job flow.
 type BootstrapActionDetail struct {
 	// A description of the bootstrap action.
@@ -788,6 +869,16 @@ type BootstrapActionDetail struct {
 
 type metadataBootstrapActionDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BootstrapActionDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s BootstrapActionDetail) GoString() string {
+	return s.String()
 }
 
 // The detailed description of the cluster.
@@ -859,6 +950,16 @@ type metadataCluster struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Cluster) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Cluster) GoString() string {
+	return s.String()
+}
+
 // The reason that the cluster changed to its current state.
 type ClusterStateChangeReason struct {
 	// The programmatic code for the state change reason.
@@ -872,6 +973,16 @@ type ClusterStateChangeReason struct {
 
 type metadataClusterStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClusterStateChangeReason) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ClusterStateChangeReason) GoString() string {
+	return s.String()
 }
 
 // The detailed status of the cluster.
@@ -891,6 +1002,16 @@ type ClusterStatus struct {
 
 type metadataClusterStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClusterStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ClusterStatus) GoString() string {
+	return s.String()
 }
 
 // The summary description of the cluster.
@@ -919,6 +1040,16 @@ type metadataClusterSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ClusterSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ClusterSummary) GoString() string {
+	return s.String()
+}
+
 // Represents the timeline of the cluster's lifecycle.
 type ClusterTimeline struct {
 	// The creation date and time of the cluster.
@@ -935,6 +1066,16 @@ type ClusterTimeline struct {
 
 type metadataClusterTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClusterTimeline) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ClusterTimeline) GoString() string {
+	return s.String()
 }
 
 // An entity describing an executable that runs on a cluster.
@@ -955,6 +1096,16 @@ type metadataCommand struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Command) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Command) GoString() string {
+	return s.String()
+}
+
 // This input determines which cluster to describe.
 type DescribeClusterInput struct {
 	// The identifier of the cluster to describe.
@@ -967,6 +1118,16 @@ type metadataDescribeClusterInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeClusterInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClusterInput) GoString() string {
+	return s.String()
+}
+
 // This output contains the description of the cluster.
 type DescribeClusterOutput struct {
 	// This output contains the details for the requested cluster.
@@ -977,6 +1138,16 @@ type DescribeClusterOutput struct {
 
 type metadataDescribeClusterOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeClusterOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClusterOutput) GoString() string {
+	return s.String()
 }
 
 // The input for the DescribeJobFlows operation.
@@ -1000,6 +1171,16 @@ type metadataDescribeJobFlowsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeJobFlowsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobFlowsInput) GoString() string {
+	return s.String()
+}
+
 // The output for the DescribeJobFlows operation.
 type DescribeJobFlowsOutput struct {
 	// A list of job flows matching the parameters supplied.
@@ -1010,6 +1191,16 @@ type DescribeJobFlowsOutput struct {
 
 type metadataDescribeJobFlowsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeJobFlowsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobFlowsOutput) GoString() string {
+	return s.String()
 }
 
 // This input determines which step to describe.
@@ -1027,6 +1218,16 @@ type metadataDescribeStepInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s DescribeStepInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStepInput) GoString() string {
+	return s.String()
+}
+
 // This output contains the description of the cluster step.
 type DescribeStepOutput struct {
 	// The step details for the requested step identifier.
@@ -1037,6 +1238,16 @@ type DescribeStepOutput struct {
 
 type metadataDescribeStepOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStepOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStepOutput) GoString() string {
+	return s.String()
 }
 
 // Provides information about the EC2 instances in a cluster grouped by category.
@@ -1084,6 +1295,16 @@ type metadataEC2InstanceAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s EC2InstanceAttributes) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s EC2InstanceAttributes) GoString() string {
+	return s.String()
+}
+
 // A job flow step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
@@ -1110,6 +1331,16 @@ type metadataHadoopJARStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s HadoopJARStepConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HadoopJARStepConfig) GoString() string {
+	return s.String()
+}
+
 // A cluster step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
@@ -1134,6 +1365,16 @@ type HadoopStepConfig struct {
 
 type metadataHadoopStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s HadoopStepConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s HadoopStepConfig) GoString() string {
+	return s.String()
 }
 
 // Represents an EC2 instance provisioned as part of cluster.
@@ -1164,6 +1405,16 @@ type Instance struct {
 
 type metadataInstance struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Instance) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Instance) GoString() string {
+	return s.String()
 }
 
 // This entity represents an instance group, which is a group of instances that
@@ -1205,6 +1456,16 @@ type metadataInstanceGroup struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceGroup) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroup) GoString() string {
+	return s.String()
+}
+
 // Configuration defining a new instance group.
 type InstanceGroupConfig struct {
 	// Bid price for each Amazon EC2 instance in the instance group when launching
@@ -1231,6 +1492,16 @@ type InstanceGroupConfig struct {
 
 type metadataInstanceGroupConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceGroupConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroupConfig) GoString() string {
+	return s.String()
 }
 
 // Detailed information about an instance group.
@@ -1286,6 +1557,16 @@ type metadataInstanceGroupDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceGroupDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroupDetail) GoString() string {
+	return s.String()
+}
+
 // Modify an instance group size.
 type InstanceGroupModifyConfig struct {
 	// The EC2 InstanceIds to terminate. For advanced users only. Once you terminate
@@ -1306,6 +1587,16 @@ type metadataInstanceGroupModifyConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceGroupModifyConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroupModifyConfig) GoString() string {
+	return s.String()
+}
+
 // The status change reason details for the instance group.
 type InstanceGroupStateChangeReason struct {
 	// The programmable code for the state change reason.
@@ -1319,6 +1610,16 @@ type InstanceGroupStateChangeReason struct {
 
 type metadataInstanceGroupStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceGroupStateChangeReason) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroupStateChangeReason) GoString() string {
+	return s.String()
 }
 
 // The details of the instance group status.
@@ -1339,6 +1640,16 @@ type metadataInstanceGroupStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceGroupStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroupStatus) GoString() string {
+	return s.String()
+}
+
 // The timeline of the instance group lifecycle.
 type InstanceGroupTimeline struct {
 	// The creation date and time of the instance group.
@@ -1357,6 +1668,16 @@ type metadataInstanceGroupTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceGroupTimeline) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceGroupTimeline) GoString() string {
+	return s.String()
+}
+
 // The details of the status change reason for the instance.
 type InstanceStateChangeReason struct {
 	// The programmable code for the state change reason.
@@ -1370,6 +1691,16 @@ type InstanceStateChangeReason struct {
 
 type metadataInstanceStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceStateChangeReason) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStateChangeReason) GoString() string {
+	return s.String()
 }
 
 // The instance status details.
@@ -1390,6 +1721,16 @@ type metadataInstanceStatus struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s InstanceStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceStatus) GoString() string {
+	return s.String()
+}
+
 // The timeline of the instance lifecycle.
 type InstanceTimeline struct {
 	// The creation date and time of the instance.
@@ -1406,6 +1747,16 @@ type InstanceTimeline struct {
 
 type metadataInstanceTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceTimeline) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InstanceTimeline) GoString() string {
+	return s.String()
 }
 
 // A description of a job flow.
@@ -1465,6 +1816,16 @@ type metadataJobFlowDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobFlowDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobFlowDetail) GoString() string {
+	return s.String()
+}
+
 // Describes the status of the job flow.
 type JobFlowExecutionStatusDetail struct {
 	// The creation date and time of the job flow.
@@ -1491,6 +1852,16 @@ type JobFlowExecutionStatusDetail struct {
 
 type metadataJobFlowExecutionStatusDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s JobFlowExecutionStatusDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobFlowExecutionStatusDetail) GoString() string {
+	return s.String()
 }
 
 // A description of the Amazon EC2 instance running the job flow. A valid JobFlowInstancesConfig
@@ -1562,6 +1933,16 @@ type metadataJobFlowInstancesConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobFlowInstancesConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobFlowInstancesConfig) GoString() string {
+	return s.String()
+}
+
 // Specify the type of Amazon EC2 instances to run the job flow on.
 type JobFlowInstancesDetail struct {
 	// The name of an Amazon EC2 key pair that can be used to ssh to the master
@@ -1621,6 +2002,16 @@ type metadataJobFlowInstancesDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s JobFlowInstancesDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s JobFlowInstancesDetail) GoString() string {
+	return s.String()
+}
+
 // A key value pair.
 type KeyValue struct {
 	// The unique identifier of a key value pair.
@@ -1634,6 +2025,16 @@ type KeyValue struct {
 
 type metadataKeyValue struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s KeyValue) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s KeyValue) GoString() string {
+	return s.String()
 }
 
 // This input determines which bootstrap actions to retrieve.
@@ -1651,6 +2052,16 @@ type metadataListBootstrapActionsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListBootstrapActionsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListBootstrapActionsInput) GoString() string {
+	return s.String()
+}
+
 // This output contains the boostrap actions detail .
 type ListBootstrapActionsOutput struct {
 	// The bootstrap actions associated with the cluster .
@@ -1664,6 +2075,16 @@ type ListBootstrapActionsOutput struct {
 
 type metadataListBootstrapActionsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListBootstrapActionsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListBootstrapActionsOutput) GoString() string {
+	return s.String()
 }
 
 // This input determines how the ListClusters action filters the list of clusters
@@ -1688,6 +2109,16 @@ type metadataListClustersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListClustersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListClustersInput) GoString() string {
+	return s.String()
+}
+
 // This contains a ClusterSummaryList with the cluster details; for example,
 // the cluster IDs, names, and status.
 type ListClustersOutput struct {
@@ -1702,6 +2133,16 @@ type ListClustersOutput struct {
 
 type metadataListClustersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListClustersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListClustersOutput) GoString() string {
+	return s.String()
 }
 
 // This input determines which instance groups to retrieve.
@@ -1719,6 +2160,16 @@ type metadataListInstanceGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListInstanceGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceGroupsInput) GoString() string {
+	return s.String()
+}
+
 // This input determines which instance groups to retrieve.
 type ListInstanceGroupsOutput struct {
 	// The list of instance groups for the cluster and given filters.
@@ -1732,6 +2183,16 @@ type ListInstanceGroupsOutput struct {
 
 type metadataListInstanceGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListInstanceGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstanceGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // This input determines which instances to list.
@@ -1755,6 +2216,16 @@ type metadataListInstancesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListInstancesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstancesInput) GoString() string {
+	return s.String()
+}
+
 // This output contains the list of instances.
 type ListInstancesOutput struct {
 	// The list of instances for the cluster and given filters.
@@ -1768,6 +2239,16 @@ type ListInstancesOutput struct {
 
 type metadataListInstancesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListInstancesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListInstancesOutput) GoString() string {
+	return s.String()
 }
 
 // This input determines which steps to list.
@@ -1791,6 +2272,16 @@ type metadataListStepsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListStepsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStepsInput) GoString() string {
+	return s.String()
+}
+
 // This output contains the list of steps.
 type ListStepsOutput struct {
 	// The pagination token that indicates the next set of results to retrieve.
@@ -1806,6 +2297,16 @@ type metadataListStepsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ListStepsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListStepsOutput) GoString() string {
+	return s.String()
+}
+
 // Change the size of some instance groups.
 type ModifyInstanceGroupsInput struct {
 	// Instance groups to change.
@@ -1818,12 +2319,32 @@ type metadataModifyInstanceGroupsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s ModifyInstanceGroupsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyInstanceGroupsInput) GoString() string {
+	return s.String()
+}
+
 type ModifyInstanceGroupsOutput struct {
 	metadataModifyInstanceGroupsOutput `json:"-" xml:"-"`
 }
 
 type metadataModifyInstanceGroupsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyInstanceGroupsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ModifyInstanceGroupsOutput) GoString() string {
+	return s.String()
 }
 
 // The Amazon EC2 location for the job flow.
@@ -1836,6 +2357,16 @@ type PlacementType struct {
 
 type metadataPlacementType struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PlacementType) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PlacementType) GoString() string {
+	return s.String()
 }
 
 // This input identifies a cluster and a list of tags to remove.
@@ -1854,6 +2385,16 @@ type metadataRemoveTagsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RemoveTagsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsInput) GoString() string {
+	return s.String()
+}
+
 // This output indicates the result of removing tags from a resource.
 type RemoveTagsOutput struct {
 	metadataRemoveTagsOutput `json:"-" xml:"-"`
@@ -1861,6 +2402,16 @@ type RemoveTagsOutput struct {
 
 type metadataRemoveTagsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsOutput) GoString() string {
+	return s.String()
 }
 
 // Input to the RunJobFlow operation.
@@ -1948,6 +2499,16 @@ type metadataRunJobFlowInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s RunJobFlowInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RunJobFlowInput) GoString() string {
+	return s.String()
+}
+
 // The result of the RunJobFlow operation.
 type RunJobFlowOutput struct {
 	// An unique identifier for the job flow.
@@ -1958,6 +2519,16 @@ type RunJobFlowOutput struct {
 
 type metadataRunJobFlowOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RunJobFlowOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s RunJobFlowOutput) GoString() string {
+	return s.String()
 }
 
 // Configuration of the script to run during a bootstrap action.
@@ -1974,6 +2545,16 @@ type ScriptBootstrapActionConfig struct {
 
 type metadataScriptBootstrapActionConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScriptBootstrapActionConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ScriptBootstrapActionConfig) GoString() string {
+	return s.String()
 }
 
 // The input argument to the TerminationProtection operation.
@@ -1995,12 +2576,32 @@ type metadataSetTerminationProtectionInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetTerminationProtectionInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetTerminationProtectionInput) GoString() string {
+	return s.String()
+}
+
 type SetTerminationProtectionOutput struct {
 	metadataSetTerminationProtectionOutput `json:"-" xml:"-"`
 }
 
 type metadataSetTerminationProtectionOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetTerminationProtectionOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetTerminationProtectionOutput) GoString() string {
+	return s.String()
 }
 
 // The input to the SetVisibleToAllUsers action.
@@ -2022,12 +2623,32 @@ type metadataSetVisibleToAllUsersInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s SetVisibleToAllUsersInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetVisibleToAllUsersInput) GoString() string {
+	return s.String()
+}
+
 type SetVisibleToAllUsersOutput struct {
 	metadataSetVisibleToAllUsersOutput `json:"-" xml:"-"`
 }
 
 type metadataSetVisibleToAllUsersOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SetVisibleToAllUsersOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SetVisibleToAllUsersOutput) GoString() string {
+	return s.String()
 }
 
 // This represents a step in a cluster.
@@ -2055,6 +2676,16 @@ type metadataStep struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Step) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Step) GoString() string {
+	return s.String()
+}
+
 // Specification of a job flow step.
 type StepConfig struct {
 	// The action to take if the job flow step fails.
@@ -2073,6 +2704,16 @@ type metadataStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StepConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepConfig) GoString() string {
+	return s.String()
+}
+
 // Combines the execution state and configuration of a step.
 type StepDetail struct {
 	// The description of the step status.
@@ -2086,6 +2727,16 @@ type StepDetail struct {
 
 type metadataStepDetail struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StepDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepDetail) GoString() string {
+	return s.String()
 }
 
 // The execution state of a step.
@@ -2112,6 +2763,16 @@ type metadataStepExecutionStatusDetail struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StepExecutionStatusDetail) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepExecutionStatusDetail) GoString() string {
+	return s.String()
+}
+
 // The details of the step state change reason.
 type StepStateChangeReason struct {
 	// The programmable code for the state change reason.
@@ -2125,6 +2786,16 @@ type StepStateChangeReason struct {
 
 type metadataStepStateChangeReason struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StepStateChangeReason) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepStateChangeReason) GoString() string {
+	return s.String()
 }
 
 // The execution status details of the cluster step.
@@ -2143,6 +2814,16 @@ type StepStatus struct {
 
 type metadataStepStatus struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StepStatus) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepStatus) GoString() string {
+	return s.String()
 }
 
 // The summary of the cluster step.
@@ -2170,6 +2851,16 @@ type metadataStepSummary struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StepSummary) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepSummary) GoString() string {
+	return s.String()
+}
+
 // The timeline of the cluster step lifecycle.
 type StepTimeline struct {
 	// The date and time when the cluster step was created.
@@ -2188,6 +2879,16 @@ type metadataStepTimeline struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s StepTimeline) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepTimeline) GoString() string {
+	return s.String()
+}
+
 // The list of supported product configurations which allow user-supplied arguments.
 // EMR accepts these arguments and forwards them to the corresponding installation
 // script as bootstrap action arguments.
@@ -2203,6 +2904,16 @@ type SupportedProductConfig struct {
 
 type metadataSupportedProductConfig struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SupportedProductConfig) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SupportedProductConfig) GoString() string {
+	return s.String()
 }
 
 // A key/value pair containing user-defined metadata that you can associate
@@ -2226,6 +2937,16 @@ type metadataTag struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 // Input to the TerminateJobFlows operation.
 type TerminateJobFlowsInput struct {
 	// A list of job flows to be shutdown.
@@ -2238,10 +2959,30 @@ type metadataTerminateJobFlowsInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+// String returns the string representation
+func (s TerminateJobFlowsInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateJobFlowsInput) GoString() string {
+	return s.String()
+}
+
 type TerminateJobFlowsOutput struct {
 	metadataTerminateJobFlowsOutput `json:"-" xml:"-"`
 }
 
 type metadataTerminateJobFlowsOutput struct {
 	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s TerminateJobFlowsOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s TerminateJobFlowsOutput) GoString() string {
+	return s.String()
 }
