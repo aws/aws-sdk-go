@@ -30,7 +30,6 @@ var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
 
-// OutputService1ProtocolTest is a client for OutputService1ProtocolTest.
 type OutputService1ProtocolTest struct {
 	*aws.Service
 }
@@ -104,7 +103,6 @@ type metadataOutputService1TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// OutputService2ProtocolTest is a client for OutputService2ProtocolTest.
 type OutputService2ProtocolTest struct {
 	*aws.Service
 }
@@ -194,7 +192,6 @@ type metadataOutputService2TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// OutputService3ProtocolTest is a client for OutputService3ProtocolTest.
 type OutputService3ProtocolTest struct {
 	*aws.Service
 }
@@ -282,7 +279,6 @@ type metadataOutputService3TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// OutputService4ProtocolTest is a client for OutputService4ProtocolTest.
 type OutputService4ProtocolTest struct {
 	*aws.Service
 }
@@ -370,7 +366,6 @@ type metadataOutputService4TestShapeTimeContainer struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// OutputService5ProtocolTest is a client for OutputService5ProtocolTest.
 type OutputService5ProtocolTest struct {
 	*aws.Service
 }
@@ -446,7 +441,6 @@ type metadataOutputService5TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// OutputService6ProtocolTest is a client for OutputService6ProtocolTest.
 type OutputService6ProtocolTest struct {
 	*aws.Service
 }
@@ -522,7 +516,6 @@ type metadataOutputService6TestShapeOutputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// OutputService7ProtocolTest is a client for OutputService7ProtocolTest.
 type OutputService7ProtocolTest struct {
 	*aws.Service
 }

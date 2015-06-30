@@ -30,7 +30,6 @@ var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
 
-// InputService1ProtocolTest is a client for InputService1ProtocolTest.
 type InputService1ProtocolTest struct {
 	*aws.Service
 }
@@ -106,7 +105,6 @@ type metadataInputService1TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService2ProtocolTest is a client for InputService2ProtocolTest.
 type InputService2ProtocolTest struct {
 	*aws.Service
 }
@@ -182,7 +180,6 @@ type metadataInputService2TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService3ProtocolTest is a client for InputService3ProtocolTest.
 type InputService3ProtocolTest struct {
 	*aws.Service
 }
@@ -262,7 +259,6 @@ type metadataInputService3TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService4ProtocolTest is a client for InputService4ProtocolTest.
 type InputService4ProtocolTest struct {
 	*aws.Service
 }
@@ -356,7 +352,6 @@ type metadataInputService4TestShapeStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService5ProtocolTest is a client for InputService5ProtocolTest.
 type InputService5ProtocolTest struct {
 	*aws.Service
 }
@@ -452,7 +447,6 @@ type metadataInputService5TestShapeStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService6ProtocolTest is a client for InputService6ProtocolTest.
 type InputService6ProtocolTest struct {
 	*aws.Service
 }
@@ -532,7 +526,6 @@ type metadataInputService6TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure" payload:"Body"`
 }
 
-// InputService7ProtocolTest is a client for InputService7ProtocolTest.
 type InputService7ProtocolTest struct {
 	*aws.Service
 }
@@ -642,7 +635,6 @@ type metadataInputService7TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService8ProtocolTest is a client for InputService8ProtocolTest.
 type InputService8ProtocolTest struct {
 	*aws.Service
 }
@@ -904,7 +896,6 @@ type metadataInputService8TestShapeRecursiveStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
-// InputService9ProtocolTest is a client for InputService9ProtocolTest.
 type InputService9ProtocolTest struct {
 	*aws.Service
 }
