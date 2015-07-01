@@ -73,7 +73,7 @@ func Sign(req *aws.Request) {
 
 	region := req.Service.SigningRegion
 	if region == "" {
-		region = req.Service.Config.Region
+		region = aws.StringValue(req.Service.Config.Region)
 	}
 
 	name := req.Service.SigningName
@@ -90,7 +90,7 @@ func Sign(req *aws.Request) {
 		ServiceName: name,
 		Region:      region,
 		Credentials: req.Service.Config.Credentials,
-		Debug:       req.Service.Config.LogLevel,
+		Debug:       uint(aws.IntValue(req.Service.Config.LogLevel)),
 		Logger:      req.Service.Config.Logger,
 	}
 

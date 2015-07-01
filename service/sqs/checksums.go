@@ -16,7 +16,7 @@ var (
 )
 
 func setupChecksumValidation(r *aws.Request) {
-	if r.Config.DisableComputeChecksums {
+	if aws.BooleanValue(r.Config.DisableComputeChecksums) {
 		return
 	}
 

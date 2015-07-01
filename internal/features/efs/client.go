@@ -13,6 +13,6 @@ var _ = shared.Imported
 func init() {
 	Before("@efs", func() {
 		// FIXME remove custom region
-		World["client"] = efs.New(&aws.Config{Region: "us-west-2"})
+		World["client"] = efs.New(aws.NewConfig().WithRegion("us-west-2"))
 	})
 }

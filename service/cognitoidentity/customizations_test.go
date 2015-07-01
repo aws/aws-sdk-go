@@ -9,7 +9,7 @@ import (
 )
 
 var svc = cognitoidentity.New(&aws.Config{
-	Region: "mock-region",
+	Region: aws.String("mock-region"),
 })
 
 func TestUnsignedRequest_GetID(t *testing.T) {
