@@ -45,11 +45,11 @@ the function callback.
 
 @note This operation can generate multiple requests to a service.
 @example Iterating over at most 3 pages of a #{opname} operation
-  page := 0
+  pageNum := 0
   err := client.#{obj.name}(params, func(page *#{obj.parent.parent.name}.#{obj.parameters.first[0].split("*").last}, lastPage bool) bool {
-    page++
+    pageNum++
     fmt.Println(page)
-    return page <= 3
+    return pageNum <= 3
   })
 @see #{opname}
 eof
