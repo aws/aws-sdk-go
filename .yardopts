@@ -1,4 +1,5 @@
 --plugin go
+-e doc-src/plugin/plugin.rb
 -m markdown
 -o doc/api
 aws/**/*.go
