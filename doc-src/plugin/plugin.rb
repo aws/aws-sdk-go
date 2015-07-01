@@ -59,11 +59,16 @@ end
 def apply_docs
   pkgs = YARD::Registry.at('service').children.select {|t| t.type == :package }
   pkgs.each do |pkg|
-    file = Dir.glob("apis/#{pkg.name.to_s}/*/docs-2.json").sort.last
-    return if file.nil?
+    svc = pkg.children.find {|t| t.has_tag?(:service) }
+    ctor = P(svc, ".New")
+    svc_name = ctor.source[/ServiceName:\s*"(.+?)",/, 1]
+    api_ver = ctor.source[/APIVersion:\s*"(.+?)",/, 1]
+    log.progress "Parsing service documentation for #{svc_name} (#{api_ver})"
+    file = Dir.glob("apis/#{svc_name}/#{api_ver}/docs-2.json").sort.last
+    next if file.nil?
 
     json = JSON.parse(File.read(file))
-    if svc = pkg.children.find {|t| t.has_tag?(:service) }
+    if svc
       apply_doc(svc, json["service"])
     end
 
@@ -112,7 +117,7 @@ def clean_docstring(docs)
     text = $1.gsub(/<\/?p>/, '')
     "<div class=\"note\"><strong>Note:</strong> #{text}</div>"
   end
-  docs = docs.gsub(/\{(\S+)\}/, '`{\1}`')
+  docs = docs.gsub(/\{(.+?)\}/, '`{\1}`')
   docs = docs.gsub(/\s+/, ' ').strip
   docs == '' ? nil : docs
 end
