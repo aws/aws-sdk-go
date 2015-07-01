@@ -18,5 +18,5 @@ func init() {
 	// mock region and credentials
 	aws.DefaultConfig.Credentials =
 		credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
-	aws.DefaultConfig.Region = "mock-region"
+	aws.DefaultConfig.WithRegion("mock-region")
 }

@@ -47,7 +47,7 @@ func validateCRC32(r *aws.Request) {
 	}
 
 	// Checksum validation is off, skip
-	if r.Service.Config.DisableComputeChecksums {
+	if aws.BooleanValue(r.Service.Config.DisableComputeChecksums) {
 		return
 	}
 

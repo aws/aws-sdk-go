@@ -9,7 +9,7 @@ import (
 )
 
 var svc = sts.New(&aws.Config{
-	Region: "mock-region",
+	Region: aws.String("mock-region"),
 })
 
 func TestUnsignedRequest_AssumeRoleWithSAML(t *testing.T) {
