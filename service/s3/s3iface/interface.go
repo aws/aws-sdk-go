@@ -77,11 +77,19 @@ type S3API interface {
 
 	ListMultipartUploads(*s3.ListMultipartUploadsInput) (*s3.ListMultipartUploadsOutput, error)
 
+	ListMultipartUploadsPages(*s3.ListMultipartUploadsInput, func(*s3.ListMultipartUploadsOutput, bool) bool) error
+
 	ListObjectVersions(*s3.ListObjectVersionsInput) (*s3.ListObjectVersionsOutput, error)
+
+	ListObjectVersionsPages(*s3.ListObjectVersionsInput, func(*s3.ListObjectVersionsOutput, bool) bool) error
 
 	ListObjects(*s3.ListObjectsInput) (*s3.ListObjectsOutput, error)
 
+	ListObjectsPages(*s3.ListObjectsInput, func(*s3.ListObjectsOutput, bool) bool) error
+
 	ListParts(*s3.ListPartsInput) (*s3.ListPartsOutput, error)
+
+	ListPartsPages(*s3.ListPartsInput, func(*s3.ListPartsOutput, bool) bool) error
 
 	PutBucketACL(*s3.PutBucketACLInput) (*s3.PutBucketACLOutput, error)
 

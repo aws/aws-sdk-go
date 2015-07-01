@@ -33,7 +33,11 @@ type LambdaAPI interface {
 
 	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error)
 
+	ListEventSourceMappingsPages(*lambda.ListEventSourceMappingsInput, func(*lambda.ListEventSourceMappingsOutput, bool) bool) error
+
 	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error)
+
+	ListFunctionsPages(*lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool) error
 
 	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error)
 

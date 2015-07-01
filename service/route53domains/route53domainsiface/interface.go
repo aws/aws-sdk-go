@@ -27,7 +27,11 @@ type Route53DomainsAPI interface {
 
 	ListDomains(*route53domains.ListDomainsInput) (*route53domains.ListDomainsOutput, error)
 
+	ListDomainsPages(*route53domains.ListDomainsInput, func(*route53domains.ListDomainsOutput, bool) bool) error
+
 	ListOperations(*route53domains.ListOperationsInput) (*route53domains.ListOperationsOutput, error)
+
+	ListOperationsPages(*route53domains.ListOperationsInput, func(*route53domains.ListOperationsOutput, bool) bool) error
 
 	ListTagsForDomain(*route53domains.ListTagsForDomainInput) (*route53domains.ListTagsForDomainOutput, error)
 

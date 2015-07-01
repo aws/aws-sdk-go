@@ -29,6 +29,8 @@ type SESAPI interface {
 
 	ListIdentities(*ses.ListIdentitiesInput) (*ses.ListIdentitiesOutput, error)
 
+	ListIdentitiesPages(*ses.ListIdentitiesInput, func(*ses.ListIdentitiesOutput, bool) bool) error
+
 	ListIdentityPolicies(*ses.ListIdentityPoliciesInput) (*ses.ListIdentityPoliciesOutput, error)
 
 	ListVerifiedEmailAddresses(*ses.ListVerifiedEmailAddressesInput) (*ses.ListVerifiedEmailAddressesOutput, error)

@@ -23,11 +23,19 @@ type ElasticTranscoderAPI interface {
 
 	ListJobsByPipeline(*elastictranscoder.ListJobsByPipelineInput) (*elastictranscoder.ListJobsByPipelineOutput, error)
 
+	ListJobsByPipelinePages(*elastictranscoder.ListJobsByPipelineInput, func(*elastictranscoder.ListJobsByPipelineOutput, bool) bool) error
+
 	ListJobsByStatus(*elastictranscoder.ListJobsByStatusInput) (*elastictranscoder.ListJobsByStatusOutput, error)
+
+	ListJobsByStatusPages(*elastictranscoder.ListJobsByStatusInput, func(*elastictranscoder.ListJobsByStatusOutput, bool) bool) error
 
 	ListPipelines(*elastictranscoder.ListPipelinesInput) (*elastictranscoder.ListPipelinesOutput, error)
 
+	ListPipelinesPages(*elastictranscoder.ListPipelinesInput, func(*elastictranscoder.ListPipelinesOutput, bool) bool) error
+
 	ListPresets(*elastictranscoder.ListPresetsInput) (*elastictranscoder.ListPresetsOutput, error)
+
+	ListPresetsPages(*elastictranscoder.ListPresetsInput, func(*elastictranscoder.ListPresetsOutput, bool) bool) error
 
 	ReadJob(*elastictranscoder.ReadJobInput) (*elastictranscoder.ReadJobOutput, error)
 

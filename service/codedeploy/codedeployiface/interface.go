@@ -49,15 +49,27 @@ type CodeDeployAPI interface {
 
 	ListApplicationRevisions(*codedeploy.ListApplicationRevisionsInput) (*codedeploy.ListApplicationRevisionsOutput, error)
 
+	ListApplicationRevisionsPages(*codedeploy.ListApplicationRevisionsInput, func(*codedeploy.ListApplicationRevisionsOutput, bool) bool) error
+
 	ListApplications(*codedeploy.ListApplicationsInput) (*codedeploy.ListApplicationsOutput, error)
+
+	ListApplicationsPages(*codedeploy.ListApplicationsInput, func(*codedeploy.ListApplicationsOutput, bool) bool) error
 
 	ListDeploymentConfigs(*codedeploy.ListDeploymentConfigsInput) (*codedeploy.ListDeploymentConfigsOutput, error)
 
+	ListDeploymentConfigsPages(*codedeploy.ListDeploymentConfigsInput, func(*codedeploy.ListDeploymentConfigsOutput, bool) bool) error
+
 	ListDeploymentGroups(*codedeploy.ListDeploymentGroupsInput) (*codedeploy.ListDeploymentGroupsOutput, error)
+
+	ListDeploymentGroupsPages(*codedeploy.ListDeploymentGroupsInput, func(*codedeploy.ListDeploymentGroupsOutput, bool) bool) error
 
 	ListDeploymentInstances(*codedeploy.ListDeploymentInstancesInput) (*codedeploy.ListDeploymentInstancesOutput, error)
 
+	ListDeploymentInstancesPages(*codedeploy.ListDeploymentInstancesInput, func(*codedeploy.ListDeploymentInstancesOutput, bool) bool) error
+
 	ListDeployments(*codedeploy.ListDeploymentsInput) (*codedeploy.ListDeploymentsOutput, error)
+
+	ListDeploymentsPages(*codedeploy.ListDeploymentsInput, func(*codedeploy.ListDeploymentsOutput, bool) bool) error
 
 	ListOnPremisesInstances(*codedeploy.ListOnPremisesInstancesInput) (*codedeploy.ListOnPremisesInstancesOutput, error)
 

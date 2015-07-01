@@ -35,15 +35,27 @@ type ECSAPI interface {
 
 	ListClusters(*ecs.ListClustersInput) (*ecs.ListClustersOutput, error)
 
+	ListClustersPages(*ecs.ListClustersInput, func(*ecs.ListClustersOutput, bool) bool) error
+
 	ListContainerInstances(*ecs.ListContainerInstancesInput) (*ecs.ListContainerInstancesOutput, error)
+
+	ListContainerInstancesPages(*ecs.ListContainerInstancesInput, func(*ecs.ListContainerInstancesOutput, bool) bool) error
 
 	ListServices(*ecs.ListServicesInput) (*ecs.ListServicesOutput, error)
 
+	ListServicesPages(*ecs.ListServicesInput, func(*ecs.ListServicesOutput, bool) bool) error
+
 	ListTaskDefinitionFamilies(*ecs.ListTaskDefinitionFamiliesInput) (*ecs.ListTaskDefinitionFamiliesOutput, error)
+
+	ListTaskDefinitionFamiliesPages(*ecs.ListTaskDefinitionFamiliesInput, func(*ecs.ListTaskDefinitionFamiliesOutput, bool) bool) error
 
 	ListTaskDefinitions(*ecs.ListTaskDefinitionsInput) (*ecs.ListTaskDefinitionsOutput, error)
 
+	ListTaskDefinitionsPages(*ecs.ListTaskDefinitionsInput, func(*ecs.ListTaskDefinitionsOutput, bool) bool) error
+
 	ListTasks(*ecs.ListTasksInput) (*ecs.ListTasksOutput, error)
+
+	ListTasksPages(*ecs.ListTasksInput, func(*ecs.ListTasksOutput, bool) bool) error
 
 	RegisterContainerInstance(*ecs.RegisterContainerInstanceInput) (*ecs.RegisterContainerInstanceOutput, error)
 

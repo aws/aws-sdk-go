@@ -57,37 +57,67 @@ type RedshiftAPI interface {
 
 	DescribeClusterParameterGroups(*redshift.DescribeClusterParameterGroupsInput) (*redshift.DescribeClusterParameterGroupsOutput, error)
 
+	DescribeClusterParameterGroupsPages(*redshift.DescribeClusterParameterGroupsInput, func(*redshift.DescribeClusterParameterGroupsOutput, bool) bool) error
+
 	DescribeClusterParameters(*redshift.DescribeClusterParametersInput) (*redshift.DescribeClusterParametersOutput, error)
+
+	DescribeClusterParametersPages(*redshift.DescribeClusterParametersInput, func(*redshift.DescribeClusterParametersOutput, bool) bool) error
 
 	DescribeClusterSecurityGroups(*redshift.DescribeClusterSecurityGroupsInput) (*redshift.DescribeClusterSecurityGroupsOutput, error)
 
+	DescribeClusterSecurityGroupsPages(*redshift.DescribeClusterSecurityGroupsInput, func(*redshift.DescribeClusterSecurityGroupsOutput, bool) bool) error
+
 	DescribeClusterSnapshots(*redshift.DescribeClusterSnapshotsInput) (*redshift.DescribeClusterSnapshotsOutput, error)
+
+	DescribeClusterSnapshotsPages(*redshift.DescribeClusterSnapshotsInput, func(*redshift.DescribeClusterSnapshotsOutput, bool) bool) error
 
 	DescribeClusterSubnetGroups(*redshift.DescribeClusterSubnetGroupsInput) (*redshift.DescribeClusterSubnetGroupsOutput, error)
 
+	DescribeClusterSubnetGroupsPages(*redshift.DescribeClusterSubnetGroupsInput, func(*redshift.DescribeClusterSubnetGroupsOutput, bool) bool) error
+
 	DescribeClusterVersions(*redshift.DescribeClusterVersionsInput) (*redshift.DescribeClusterVersionsOutput, error)
+
+	DescribeClusterVersionsPages(*redshift.DescribeClusterVersionsInput, func(*redshift.DescribeClusterVersionsOutput, bool) bool) error
 
 	DescribeClusters(*redshift.DescribeClustersInput) (*redshift.DescribeClustersOutput, error)
 
+	DescribeClustersPages(*redshift.DescribeClustersInput, func(*redshift.DescribeClustersOutput, bool) bool) error
+
 	DescribeDefaultClusterParameters(*redshift.DescribeDefaultClusterParametersInput) (*redshift.DescribeDefaultClusterParametersOutput, error)
+
+	DescribeDefaultClusterParametersPages(*redshift.DescribeDefaultClusterParametersInput, func(*redshift.DescribeDefaultClusterParametersOutput, bool) bool) error
 
 	DescribeEventCategories(*redshift.DescribeEventCategoriesInput) (*redshift.DescribeEventCategoriesOutput, error)
 
 	DescribeEventSubscriptions(*redshift.DescribeEventSubscriptionsInput) (*redshift.DescribeEventSubscriptionsOutput, error)
 
+	DescribeEventSubscriptionsPages(*redshift.DescribeEventSubscriptionsInput, func(*redshift.DescribeEventSubscriptionsOutput, bool) bool) error
+
 	DescribeEvents(*redshift.DescribeEventsInput) (*redshift.DescribeEventsOutput, error)
+
+	DescribeEventsPages(*redshift.DescribeEventsInput, func(*redshift.DescribeEventsOutput, bool) bool) error
 
 	DescribeHSMClientCertificates(*redshift.DescribeHSMClientCertificatesInput) (*redshift.DescribeHSMClientCertificatesOutput, error)
 
+	DescribeHSMClientCertificatesPages(*redshift.DescribeHSMClientCertificatesInput, func(*redshift.DescribeHSMClientCertificatesOutput, bool) bool) error
+
 	DescribeHSMConfigurations(*redshift.DescribeHSMConfigurationsInput) (*redshift.DescribeHSMConfigurationsOutput, error)
+
+	DescribeHSMConfigurationsPages(*redshift.DescribeHSMConfigurationsInput, func(*redshift.DescribeHSMConfigurationsOutput, bool) bool) error
 
 	DescribeLoggingStatus(*redshift.DescribeLoggingStatusInput) (*redshift.LoggingStatus, error)
 
 	DescribeOrderableClusterOptions(*redshift.DescribeOrderableClusterOptionsInput) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 
+	DescribeOrderableClusterOptionsPages(*redshift.DescribeOrderableClusterOptionsInput, func(*redshift.DescribeOrderableClusterOptionsOutput, bool) bool) error
+
 	DescribeReservedNodeOfferings(*redshift.DescribeReservedNodeOfferingsInput) (*redshift.DescribeReservedNodeOfferingsOutput, error)
 
+	DescribeReservedNodeOfferingsPages(*redshift.DescribeReservedNodeOfferingsInput, func(*redshift.DescribeReservedNodeOfferingsOutput, bool) bool) error
+
 	DescribeReservedNodes(*redshift.DescribeReservedNodesInput) (*redshift.DescribeReservedNodesOutput, error)
+
+	DescribeReservedNodesPages(*redshift.DescribeReservedNodesInput, func(*redshift.DescribeReservedNodesOutput, bool) bool) error
 
 	DescribeResize(*redshift.DescribeResizeInput) (*redshift.DescribeResizeOutput, error)
 
