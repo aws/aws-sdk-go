@@ -46,7 +46,7 @@ build:
 	go build ./...
 
 docs:
-	bundle install && bundle exec yard
+	rm -rf doc && bundle install && bundle exec yard
 
 deps:
 	@go get ./...
