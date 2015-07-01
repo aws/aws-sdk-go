@@ -172,6 +172,7 @@ def clean_docstring(docs)
   docs = docs.gsub(/<fullname>.+?<\/fullname?>/m, '')
   docs = docs.gsub(/<examples?>.+?<\/examples?>/m, '')
   docs = docs.gsub(/<note>\s*<\/note>/m, '')
+  docs = docs.gsub(/<a>(.+?)<\/a>/, '\1')
   docs = docs.gsub(/<note>(.+?)<\/note>/m) do
     text = $1.gsub(/<\/?p>/, '')
     "<div class=\"note\"><strong>Note:</strong> #{text}</div>"
