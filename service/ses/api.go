@@ -1355,7 +1355,7 @@ type IdentityDKIMAttributes struct {
 	// Describes whether Amazon SES has successfully verified the DKIM DNS records
 	// (tokens) published in the domain name's DNS. (This only applies to domain
 	// identities, not email address identities.)
-	DKIMVerificationStatus *string `locationName:"DkimVerificationStatus" type:"string" required:"true"`
+	DKIMVerificationStatus *string `locationName:"DkimVerificationStatus" type:"string" required:"true" enum:"VerificationStatus"`
 
 	metadataIdentityDKIMAttributes `json:"-" xml:"-"`
 }
@@ -1418,7 +1418,7 @@ func (s IdentityNotificationAttributes) GoString() string {
 type IdentityVerificationAttributes struct {
 	// The verification status of the identity: "Pending", "Success", "Failed",
 	// or "TemporaryFailure".
-	VerificationStatus *string `type:"string" required:"true"`
+	VerificationStatus *string `type:"string" required:"true" enum:"VerificationStatus"`
 
 	// The verification token for a domain identity. Null for email address identities.
 	VerificationToken *string `type:"string"`
@@ -1445,7 +1445,7 @@ func (s IdentityVerificationAttributes) GoString() string {
 type ListIdentitiesInput struct {
 	// The type of the identities to list. Possible values are "EmailAddress" and
 	// "Domain". If this parameter is omitted, then all identities will be listed.
-	IdentityType *string `type:"string"`
+	IdentityType *string `type:"string" enum:"IdentityType"`
 
 	// The maximum number of identities per page. Possible values are 1-1000 inclusive.
 	MaxItems *int64 `type:"integer"`
@@ -2074,7 +2074,7 @@ type SetIdentityNotificationTopicInput struct {
 
 	// The type of notifications that will be published to the specified Amazon
 	// SNS topic.
-	NotificationType *string `type:"string" required:"true"`
+	NotificationType *string `type:"string" required:"true" enum:"NotificationType"`
 
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic. If the parameter
 	// is omitted from the request or a null value is passed, SnsTopic is cleared
@@ -2300,3 +2300,32 @@ func (s VerifyEmailIdentityOutput) String() string {
 func (s VerifyEmailIdentityOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum IdentityType
+	IdentityTypeEmailAddress = "EmailAddress"
+	// @enum IdentityType
+	IdentityTypeDomain = "Domain"
+)
+
+const (
+	// @enum NotificationType
+	NotificationTypeBounce = "Bounce"
+	// @enum NotificationType
+	NotificationTypeComplaint = "Complaint"
+	// @enum NotificationType
+	NotificationTypeDelivery = "Delivery"
+)
+
+const (
+	// @enum VerificationStatus
+	VerificationStatusPending = "Pending"
+	// @enum VerificationStatus
+	VerificationStatusSuccess = "Success"
+	// @enum VerificationStatus
+	VerificationStatusFailed = "Failed"
+	// @enum VerificationStatus
+	VerificationStatusTemporaryFailure = "TemporaryFailure"
+	// @enum VerificationStatus
+	VerificationStatusNotStarted = "NotStarted"
+)

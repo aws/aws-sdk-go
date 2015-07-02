@@ -1654,7 +1654,7 @@ type Activity struct {
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The current status of the activity.
-	StatusCode *string `type:"string" required:"true"`
+	StatusCode *string `type:"string" required:"true" enum:"ScalingActivityStatusCode"`
 
 	// A friendly, more verbose description of the activity status.
 	StatusMessage *string `type:"string"`
@@ -4006,7 +4006,7 @@ type Instance struct {
 
 	// A description of the current lifecycle state. Note that the Quarantined state
 	// is not used.
-	LifecycleState *string `type:"string" required:"true"`
+	LifecycleState *string `type:"string" required:"true" enum:"LifecycleState"`
 
 	metadataInstance `json:"-" xml:"-"`
 }
@@ -5394,3 +5394,57 @@ func (s UpdateAutoScalingGroupOutput) String() string {
 func (s UpdateAutoScalingGroupOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum LifecycleState
+	LifecycleStatePending = "Pending"
+	// @enum LifecycleState
+	LifecycleStatePendingWait = "Pending:Wait"
+	// @enum LifecycleState
+	LifecycleStatePendingProceed = "Pending:Proceed"
+	// @enum LifecycleState
+	LifecycleStateQuarantined = "Quarantined"
+	// @enum LifecycleState
+	LifecycleStateInService = "InService"
+	// @enum LifecycleState
+	LifecycleStateTerminating = "Terminating"
+	// @enum LifecycleState
+	LifecycleStateTerminatingWait = "Terminating:Wait"
+	// @enum LifecycleState
+	LifecycleStateTerminatingProceed = "Terminating:Proceed"
+	// @enum LifecycleState
+	LifecycleStateTerminated = "Terminated"
+	// @enum LifecycleState
+	LifecycleStateDetaching = "Detaching"
+	// @enum LifecycleState
+	LifecycleStateDetached = "Detached"
+	// @enum LifecycleState
+	LifecycleStateEnteringStandby = "EnteringStandby"
+	// @enum LifecycleState
+	LifecycleStateStandby = "Standby"
+)
+
+const (
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForSpotInstanceRequestId = "WaitingForSpotInstanceRequestId"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForSpotInstanceId = "WaitingForSpotInstanceId"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForInstanceId = "WaitingForInstanceId"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodePreInService = "PreInService"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeInProgress = "InProgress"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForElbconnectionDraining = "WaitingForELBConnectionDraining"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeMidLifecycleAction = "MidLifecycleAction"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForInstanceWarmup = "WaitingForInstanceWarmup"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeSuccessful = "Successful"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeFailed = "Failed"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeCancelled = "Cancelled"
+)

@@ -392,7 +392,7 @@ type ConfigExportDeliveryInfo struct {
 	LastErrorMessage *string `locationName:"lastErrorMessage" type:"string"`
 
 	// Status of the last attempted delivery.
-	LastStatus *string `locationName:"lastStatus" type:"string"`
+	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
 
 	// The time of the last successful delivery.
 	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix"`
@@ -428,7 +428,7 @@ type ConfigStreamDeliveryInfo struct {
 	// Note Providing an SNS topic on a DeliveryChannel (http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
 	// for AWS Config is optional. If the SNS delivery is turned off, the last status
 	// will be Not_Applicable.
-	LastStatus *string `locationName:"lastStatus" type:"string"`
+	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
 
 	// The time from the last status change.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
@@ -477,7 +477,7 @@ type ConfigurationItem struct {
 	ConfigurationItemMD5Hash *string `locationName:"configurationItemMD5Hash" type:"string"`
 
 	// The configuration item status.
-	ConfigurationItemStatus *string `locationName:"configurationItemStatus" type:"string"`
+	ConfigurationItemStatus *string `locationName:"configurationItemStatus" type:"string" enum:"ConfigurationItemStatus"`
 
 	// An identifier that indicates the ordering of the configuration items of a
 	// resource.
@@ -503,7 +503,7 @@ type ConfigurationItem struct {
 	ResourceID *string `locationName:"resourceId" type:"string"`
 
 	// The type of AWS resource.
-	ResourceType *string `locationName:"resourceType" type:"string"`
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	// A mapping of key value tags associated with the resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -574,7 +574,7 @@ type ConfigurationRecorderStatus struct {
 	LastStartTime *time.Time `locationName:"lastStartTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The last (previous) status of the recorder.
-	LastStatus *string `locationName:"lastStatus" type:"string"`
+	LastStatus *string `locationName:"lastStatus" type:"string" enum:"RecorderStatus"`
 
 	// The time when the status was last changed.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
@@ -944,7 +944,7 @@ func (s DescribeDeliveryChannelsOutput) GoString() string {
 type GetResourceConfigHistoryInput struct {
 	// The chronological order for configuration items listed. By default the results
 	// are listed in reverse chronological order.
-	ChronologicalOrder *string `locationName:"chronologicalOrder" type:"string"`
+	ChronologicalOrder *string `locationName:"chronologicalOrder" type:"string" enum:"ChronologicalOrder"`
 
 	// The time stamp that indicates an earlier time. If not specified, the action
 	// returns paginated results that contain configuration items that start from
@@ -966,7 +966,7 @@ type GetResourceConfigHistoryInput struct {
 	ResourceID *string `locationName:"resourceId" type:"string" required:"true"`
 
 	// The resource type.
-	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
 	metadataGetResourceConfigHistoryInput `json:"-" xml:"-"`
 }
@@ -1136,7 +1136,7 @@ type Relationship struct {
 	ResourceID *string `locationName:"resourceId" type:"string"`
 
 	// The resource type of the related resource.
-	ResourceType *string `locationName:"resourceType" type:"string"`
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	metadataRelationship `json:"-" xml:"-"`
 }
@@ -1236,3 +1236,70 @@ func (s StopConfigurationRecorderOutput) String() string {
 func (s StopConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ChronologicalOrder
+	ChronologicalOrderReverse = "Reverse"
+	// @enum ChronologicalOrder
+	ChronologicalOrderForward = "Forward"
+)
+
+const (
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusOk = "Ok"
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusFailed = "Failed"
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusDiscovered = "Discovered"
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusDeleted = "Deleted"
+)
+
+const (
+	// @enum DeliveryStatus
+	DeliveryStatusSuccess = "Success"
+	// @enum DeliveryStatus
+	DeliveryStatusFailure = "Failure"
+	// @enum DeliveryStatus
+	DeliveryStatusNotApplicable = "Not_Applicable"
+)
+
+const (
+	// @enum RecorderStatus
+	RecorderStatusPending = "Pending"
+	// @enum RecorderStatus
+	RecorderStatusSuccess = "Success"
+	// @enum RecorderStatus
+	RecorderStatusFailure = "Failure"
+)
+
+const (
+	// @enum ResourceType
+	ResourceTypeAwsEc2CustomerGateway = "AWS::EC2::CustomerGateway"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Eip = "AWS::EC2::EIP"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Instance = "AWS::EC2::Instance"
+	// @enum ResourceType
+	ResourceTypeAwsEc2InternetGateway = "AWS::EC2::InternetGateway"
+	// @enum ResourceType
+	ResourceTypeAwsEc2NetworkAcl = "AWS::EC2::NetworkAcl"
+	// @enum ResourceType
+	ResourceTypeAwsEc2NetworkInterface = "AWS::EC2::NetworkInterface"
+	// @enum ResourceType
+	ResourceTypeAwsEc2RouteTable = "AWS::EC2::RouteTable"
+	// @enum ResourceType
+	ResourceTypeAwsEc2SecurityGroup = "AWS::EC2::SecurityGroup"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Subnet = "AWS::EC2::Subnet"
+	// @enum ResourceType
+	ResourceTypeAwsCloudTrailTrail = "AWS::CloudTrail::Trail"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Volume = "AWS::EC2::Volume"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Vpc = "AWS::EC2::VPC"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Vpnconnection = "AWS::EC2::VPNConnection"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Vpngateway = "AWS::EC2::VPNGateway"
+)

@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 // updateTopLevelShapeReferences moves resultWrapper, locationName, and
@@ -123,7 +124,12 @@ func (a *API) renameToplevelShapes() {
 // "Stuttering" is when the prefix of a structure or function matches the
 // package name (case insensitive).
 func (a *API) fixStutterNames() {
-	re := regexp.MustCompile(fmt.Sprintf(`\A(?i:%s)`, a.PackageName()))
+	str, end := a.StructName(), ""
+	if len(str) > 1 {
+		l := len(str) - 1
+		str, end = str[0:l], str[l:]
+	}
+	re := regexp.MustCompile(fmt.Sprintf(`\A(?i:%s)%s`, str, end))
 
 	for name, op := range a.Operations {
 		newName := re.ReplaceAllString(name, "")
@@ -191,6 +197,18 @@ func (a *API) renameExportable() {
 		// fix required trait names
 		for i, n := range s.Required {
 			s.Required[i] = a.ExportableName(n)
+		}
+	}
+
+	for _, s := range a.Shapes {
+		// fix enum names
+		if s.IsEnum() {
+			s.EnumConsts = make([]string, len(s.Enum))
+			for i := range s.Enum {
+				shape := s.ShapeName
+				shape = strings.ToUpper(shape[0:1]) + shape[1:]
+				s.EnumConsts[i] = shape + s.EnumName(i)
+			}
 		}
 	}
 }

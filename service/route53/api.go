@@ -1196,7 +1196,7 @@ type Change struct {
 	// The action to perform.
 	//
 	// Valid values: CREATE | DELETE | UPSERT
-	Action *string `type:"string" required:"true"`
+	Action *string `type:"string" required:"true" enum:"ChangeAction"`
 
 	// Information about the resource record set to create or delete.
 	ResourceRecordSet *ResourceRecordSet `type:"structure" required:"true"`
@@ -1266,7 +1266,7 @@ type ChangeInfo struct {
 	// not yet been applied to all Amazon Route 53 DNS servers.
 	//
 	// Valid Values: PENDING | INSYNC
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"ChangeStatus"`
 
 	// The date and time the change was submitted, in the format YYYY-MM-DDThh:mm:ssZ,
 	// as specified in the ISO 8601 standard (for example, 2009-11-19T19:37:58Z).
@@ -1361,7 +1361,7 @@ type ChangeTagsForResourceInput struct {
 	// - The resource type for health checks is healthcheck.
 	//
 	// - The resource type for hosted zones is hostedzone.
-	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true"`
+	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 
 	metadataChangeTagsForResourceInput `json:"-" xml:"-"`
 }
@@ -2452,7 +2452,7 @@ type HealthCheckConfig struct {
 
 	// The type of health check to be performed. Currently supported types are TCP,
 	// HTTP, HTTPS, HTTP_STR_MATCH, and HTTPS_STR_MATCH.
-	Type *string `type:"string" required:"true"`
+	Type *string `type:"string" required:"true" enum:"HealthCheckType"`
 
 	metadataHealthCheckConfig `json:"-" xml:"-"`
 }
@@ -2971,7 +2971,7 @@ type ListResourceRecordSetsInput struct {
 	//
 	// Constraint: Specifying type without specifying name returns an InvalidInput
 	// error.
-	StartRecordType *string `location:"querystring" locationName:"type" type:"string"`
+	StartRecordType *string `location:"querystring" locationName:"type" type:"string" enum:"RRType"`
 
 	metadataListResourceRecordSetsInput `json:"-" xml:"-"`
 }
@@ -3018,7 +3018,7 @@ type ListResourceRecordSetsOutput struct {
 	// If the results were truncated, the type of the next record in the list. This
 	// element is present only if ListResourceRecordSetsResponse$IsTruncated is
 	// true.
-	NextRecordType *string `type:"string"`
+	NextRecordType *string `type:"string" enum:"RRType"`
 
 	// A complex type that contains information about the resource record sets that
 	// are returned by the request.
@@ -3138,7 +3138,7 @@ type ListTagsForResourceInput struct {
 	// - The resource type for health checks is healthcheck.
 	//
 	// - The resource type for hosted zones is hostedzone.
-	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true"`
+	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 
 	metadataListTagsForResourceInput `json:"-" xml:"-"`
 }
@@ -3191,7 +3191,7 @@ type ListTagsForResourcesInput struct {
 	// - The resource type for health checks is healthcheck.
 	//
 	// - The resource type for hosted zones is hostedzone.
-	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true"`
+	ResourceType *string `location:"uri" locationName:"ResourceType" type:"string" required:"true" enum:"TagResourceType"`
 
 	metadataListTagsForResourcesInput `json:"-" xml:"-"`
 }
@@ -3278,7 +3278,7 @@ type ResourceRecordSet struct {
 	// set.
 	//
 	// Valid values: PRIMARY | SECONDARY
-	Failover *string `type:"string"`
+	Failover *string `type:"string" enum:"ResourceRecordSetFailover"`
 
 	// Geo location resource record sets only: Among resource record sets that have
 	// the same combination of DNS name and type, a value that specifies the geo
@@ -3296,7 +3296,7 @@ type ResourceRecordSet struct {
 	// Latency-based resource record sets only: Among resource record sets that
 	// have the same combination of DNS name and type, a value that specifies the
 	// AWS region for the current resource record set.
-	Region *string `type:"string"`
+	Region *string `type:"string" enum:"ResourceRecordSetRegion"`
 
 	// A complex type that contains the resource records for the current resource
 	// record set.
@@ -3311,7 +3311,7 @@ type ResourceRecordSet struct {
 	TTL *int64 `type:"long"`
 
 	// The type of the current resource record set.
-	Type *string `type:"string" required:"true"`
+	Type *string `type:"string" required:"true" enum:"RRType"`
 
 	// Weighted resource record sets only: Among resource record sets that have
 	// the same combination of DNS name and type, a value that determines what portion
@@ -3346,7 +3346,7 @@ type ResourceTagSet struct {
 	// - The resource type for health checks is healthcheck.
 	//
 	// - The resource type for hosted zones is hostedzone.
-	ResourceType *string `type:"string"`
+	ResourceType *string `type:"string" enum:"TagResourceType"`
 
 	// The tags associated with the specified resource.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -3568,7 +3568,7 @@ type VPC struct {
 	// A VPC ID
 	VPCID *string `locationName:"VPCId" type:"string"`
 
-	VPCRegion *string `type:"string"`
+	VPCRegion *string `type:"string" enum:"VPCRegion"`
 
 	metadataVPC `json:"-" xml:"-"`
 }
@@ -3586,3 +3586,115 @@ func (s VPC) String() string {
 func (s VPC) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ChangeAction
+	ChangeActionCreate = "CREATE"
+	// @enum ChangeAction
+	ChangeActionDelete = "DELETE"
+	// @enum ChangeAction
+	ChangeActionUpsert = "UPSERT"
+)
+
+const (
+	// @enum ChangeStatus
+	ChangeStatusPending = "PENDING"
+	// @enum ChangeStatus
+	ChangeStatusInsync = "INSYNC"
+)
+
+const (
+	// @enum HealthCheckType
+	HealthCheckTypeHttp = "HTTP"
+	// @enum HealthCheckType
+	HealthCheckTypeHttps = "HTTPS"
+	// @enum HealthCheckType
+	HealthCheckTypeHttpStrMatch = "HTTP_STR_MATCH"
+	// @enum HealthCheckType
+	HealthCheckTypeHttpsStrMatch = "HTTPS_STR_MATCH"
+	// @enum HealthCheckType
+	HealthCheckTypeTcp = "TCP"
+)
+
+const (
+	// @enum RRType
+	RRTypeSoa = "SOA"
+	// @enum RRType
+	RRTypeA = "A"
+	// @enum RRType
+	RRTypeTxt = "TXT"
+	// @enum RRType
+	RRTypeNs = "NS"
+	// @enum RRType
+	RRTypeCname = "CNAME"
+	// @enum RRType
+	RRTypeMx = "MX"
+	// @enum RRType
+	RRTypePtr = "PTR"
+	// @enum RRType
+	RRTypeSrv = "SRV"
+	// @enum RRType
+	RRTypeSpf = "SPF"
+	// @enum RRType
+	RRTypeAaaa = "AAAA"
+)
+
+const (
+	// @enum ResourceRecordSetFailover
+	ResourceRecordSetFailoverPrimary = "PRIMARY"
+	// @enum ResourceRecordSetFailover
+	ResourceRecordSetFailoverSecondary = "SECONDARY"
+)
+
+const (
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionUsEast1 = "us-east-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionUsWest1 = "us-west-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionUsWest2 = "us-west-2"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionEuWest1 = "eu-west-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionEuCentral1 = "eu-central-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionApSoutheast1 = "ap-southeast-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionApSoutheast2 = "ap-southeast-2"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionApNortheast1 = "ap-northeast-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionSaEast1 = "sa-east-1"
+	// @enum ResourceRecordSetRegion
+	ResourceRecordSetRegionCnNorth1 = "cn-north-1"
+)
+
+const (
+	// @enum TagResourceType
+	TagResourceTypeHealthcheck = "healthcheck"
+	// @enum TagResourceType
+	TagResourceTypeHostedzone = "hostedzone"
+)
+
+const (
+	// @enum VPCRegion
+	VPCRegionUsEast1 = "us-east-1"
+	// @enum VPCRegion
+	VPCRegionUsWest1 = "us-west-1"
+	// @enum VPCRegion
+	VPCRegionUsWest2 = "us-west-2"
+	// @enum VPCRegion
+	VPCRegionEuWest1 = "eu-west-1"
+	// @enum VPCRegion
+	VPCRegionEuCentral1 = "eu-central-1"
+	// @enum VPCRegion
+	VPCRegionApSoutheast1 = "ap-southeast-1"
+	// @enum VPCRegion
+	VPCRegionApSoutheast2 = "ap-southeast-2"
+	// @enum VPCRegion
+	VPCRegionApNortheast1 = "ap-northeast-1"
+	// @enum VPCRegion
+	VPCRegionSaEast1 = "sa-east-1"
+	// @enum VPCRegion
+	VPCRegionCnNorth1 = "cn-north-1"
+)

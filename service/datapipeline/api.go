@@ -1249,7 +1249,7 @@ type Operator struct {
 	// only alpha-numeric values, as symbols may be reserved by AWS Data Pipeline.
 	// User-defined fields that you add to a pipeline should prefix their name with
 	// the string "my".
-	Type *string `locationName:"type" type:"string"`
+	Type *string `locationName:"type" type:"string" enum:"OperatorType"`
 
 	// The value that the actual field value will be compared with.
 	Values []*string `locationName:"values" type:"list"`
@@ -1917,7 +1917,7 @@ type SetTaskStatusInput struct {
 
 	// If FINISHED, the task successfully completed. If FAILED, the task ended unsuccessfully.
 	// Preconditions use false.
-	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true"`
+	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true" enum:"TaskStatus"`
 
 	metadataSetTaskStatusInput `json:"-" xml:"-"`
 }
@@ -2134,3 +2134,25 @@ func (s ValidationWarning) String() string {
 func (s ValidationWarning) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum OperatorType
+	OperatorTypeEq = "EQ"
+	// @enum OperatorType
+	OperatorTypeRefEq = "REF_EQ"
+	// @enum OperatorType
+	OperatorTypeLe = "LE"
+	// @enum OperatorType
+	OperatorTypeGe = "GE"
+	// @enum OperatorType
+	OperatorTypeBetween = "BETWEEN"
+)
+
+const (
+	// @enum TaskStatus
+	TaskStatusFinished = "FINISHED"
+	// @enum TaskStatus
+	TaskStatusFailed = "FAILED"
+	// @enum TaskStatus
+	TaskStatusFalse = "FALSE"
+)

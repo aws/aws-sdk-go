@@ -556,7 +556,7 @@ func (s GetTrailStatusOutput) GoString() string {
 // Specifies an attribute and value that filter the events returned.
 type LookupAttribute struct {
 	// Specifies an attribute on which to filter the events returned.
-	AttributeKey *string `type:"string" required:"true"`
+	AttributeKey *string `type:"string" required:"true" enum:"LookupAttributeKey"`
 
 	// Specifies a value for the specified AttributeKey.
 	AttributeValue *string `type:"string" required:"true"`
@@ -908,3 +908,16 @@ func (s UpdateTrailOutput) String() string {
 func (s UpdateTrailOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum LookupAttributeKey
+	LookupAttributeKeyEventId = "EventId"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyEventName = "EventName"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyUsername = "Username"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyResourceType = "ResourceType"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyResourceName = "ResourceName"
+)

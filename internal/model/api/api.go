@@ -196,6 +196,11 @@ var tplAPI = template.Must(template.New("api").Parse(`
 {{ if and $s.IsInternal (eq $s.Type "structure") }}{{ $s.GoCode }}{{ end }}
 
 {{ end }}
+
+{{ range $_, $s := .ShapeList }}
+{{ if $s.IsEnum }}{{ $s.GoCode }}{{ end }}
+
+{{ end }}
 `))
 
 // APIGoCode renders the API in Go code. Returning it as a string

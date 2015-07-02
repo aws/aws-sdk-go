@@ -1936,7 +1936,7 @@ type CreateCacheClusterInput struct {
 	//
 	// If the AZMode and PreferredAvailabilityZones are not specified, ElastiCache
 	// assumes single-az mode.
-	AZMode *string `type:"string"`
+	AZMode *string `type:"string" enum:"AZMode"`
 
 	// This parameter is currently disabled.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
@@ -3341,7 +3341,7 @@ type DescribeEventsInput struct {
 	//
 	// Valid values are: cache-cluster | cache-parameter-group | cache-security-group
 	// | cache-subnet-group
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
 	// 8601 format.
@@ -3843,7 +3843,7 @@ type Event struct {
 
 	// Specifies the origin of this event - a cache cluster, a parameter group,
 	// a security group, etc.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	metadataEvent `json:"-" xml:"-"`
 }
@@ -3902,7 +3902,7 @@ type ModifyCacheClusterInput struct {
 	// For instructions on how to move existing Memcached nodes to different Availability
 	// Zones, see the Availability Zone Considerations section of Cache Node Considerations
 	// for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNode.Memcached.html).
-	AZMode *string `type:"string"`
+	AZMode *string `type:"string" enum:"AZMode"`
 
 	// If true, this parameter causes the modifications in this request and any
 	// pending modifications to be applied, asynchronously and as soon as possible,
@@ -4729,7 +4729,7 @@ type ReplicationGroup struct {
 	// ElastiCache Multi-AZ replication groups are not supported on:
 	//
 	//  Redis versions earlier than 2.8.6. T1 and T2 cache node types.
-	AutomaticFailover *string `type:"string"`
+	AutomaticFailover *string `type:"string" enum:"AutomaticFailoverStatus"`
 
 	// The description of the replication group.
 	Description *string `type:"string"`
@@ -4780,7 +4780,7 @@ type ReplicationGroupPendingModifiedValues struct {
 	// ElastiCache Multi-AZ replication groups are not supported on:
 	//
 	//  Redis versions earlier than 2.8.6. T1 and T2 cache node types.
-	AutomaticFailoverStatus *string `type:"string"`
+	AutomaticFailoverStatus *string `type:"string" enum:"PendingAutomaticFailoverStatus"`
 
 	// The primary cluster ID which will be applied immediately (if --apply-immediately
 	// was specified), or during the next maintenance window.
@@ -5249,3 +5249,39 @@ func (s TagListMessage) String() string {
 func (s TagListMessage) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AZMode
+	AZModeSingleAz = "single-az"
+	// @enum AZMode
+	AZModeCrossAz = "cross-az"
+)
+
+const (
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusEnabled = "enabled"
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusDisabled = "disabled"
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusEnabling = "enabling"
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusDisabling = "disabling"
+)
+
+const (
+	// @enum PendingAutomaticFailoverStatus
+	PendingAutomaticFailoverStatusEnabled = "enabled"
+	// @enum PendingAutomaticFailoverStatus
+	PendingAutomaticFailoverStatusDisabled = "disabled"
+)
+
+const (
+	// @enum SourceType
+	SourceTypeCacheCluster = "cache-cluster"
+	// @enum SourceType
+	SourceTypeCacheParameterGroup = "cache-parameter-group"
+	// @enum SourceType
+	SourceTypeCacheSecurityGroup = "cache-security-group"
+	// @enum SourceType
+	SourceTypeCacheSubnetGroup = "cache-subnet-group"
+)

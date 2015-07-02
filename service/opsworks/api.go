@@ -2312,7 +2312,7 @@ type App struct {
 	StackID *string `locationName:"StackId" type:"string"`
 
 	// The app type.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"AppType"`
 
 	metadataApp `json:"-" xml:"-"`
 }
@@ -2698,7 +2698,7 @@ type CloneStackInput struct {
 	// The default root device type. This value is used by default for all instances
 	// in the cloned stack, but you can override it when you create an instance.
 	// For more information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
-	DefaultRootDeviceType *string `type:"string"`
+	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key pair name. The default value is none. If you specify
 	// a key pair name, AWS OpsWorks installs the public key on the instance and
@@ -2940,7 +2940,7 @@ type CreateAppInput struct {
 	// deploys an application to those instances that are members of the corresponding
 	// layer. If your app isn't one of the standard types, or you prefer to implement
 	// your own Deploy recipes, specify other.
-	Type *string `type:"string" required:"true"`
+	Type *string `type:"string" required:"true" enum:"AppType"`
 
 	metadataCreateAppInput `json:"-" xml:"-"`
 }
@@ -3072,11 +3072,11 @@ type CreateInstanceInput struct {
 	// not necessarily support both architectures. For a list of the architectures
 	// that are supported by the different instance types, see Instance Families
 	// and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
-	Architecture *string `type:"string"`
+	Architecture *string `type:"string" enum:"Architecture"`
 
 	// For load-based or time-based instances, the type. Windows stacks can use
 	// only time-based instances.
-	AutoScalingType *string `type:"string"`
+	AutoScalingType *string `type:"string" enum:"AutoScalingType"`
 
 	// The instance Availability Zone. For more information, see Regions and Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
@@ -3130,7 +3130,7 @@ type CreateInstanceInput struct {
 
 	// The instance root device type. For more information, see Storage for the
 	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
-	RootDeviceType *string `type:"string"`
+	RootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// The instance's Amazon EC2 key-pair name.
 	SSHKeyName *string `locationName:"SshKeyName" type:"string"`
@@ -3247,7 +3247,7 @@ type CreateLayerInput struct {
 
 	// The layer type. A stack cannot have more than one built-in layer of the same
 	// type. It can have any number of custom layers.
-	Type *string `type:"string" required:"true"`
+	Type *string `type:"string" required:"true" enum:"LayerType"`
 
 	// Whether to use Amazon EBS-optimized instances.
 	UseEBSOptimizedInstances *bool `locationName:"UseEbsOptimizedInstances" type:"boolean"`
@@ -3367,7 +3367,7 @@ type CreateStackInput struct {
 	// in the stack, but you can override it when you create an instance. The default
 	// option is instance-store. For more information, see Storage for the Root
 	// Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
-	DefaultRootDeviceType *string `type:"string"`
+	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key pair name. The default value is none. If you specify
 	// a key pair name, AWS OpsWorks installs the public key on the instance and
@@ -3890,7 +3890,7 @@ type DeploymentCommand struct {
 	// or application server.  stop: Stop the app's web or application server.
 	// restart: Restart the app's web or application server.  undeploy: Undeploy
 	// the app.
-	Name *string `type:"string" required:"true"`
+	Name *string `type:"string" required:"true" enum:"DeploymentCommandName"`
 
 	metadataDeploymentCommand `json:"-" xml:"-"`
 }
@@ -5139,7 +5139,7 @@ type EBSBlockDevice struct {
 
 	// The volume type. gp2 for General Purpose (SSD) volumes, io1 for Provisioned
 	// IOPS (SSD) volumes, and standard for Magnetic volumes.
-	VolumeType *string `type:"string"`
+	VolumeType *string `type:"string" enum:"VolumeType"`
 
 	metadataEBSBlockDevice `json:"-" xml:"-"`
 }
@@ -5382,10 +5382,10 @@ type Instance struct {
 	AgentVersion *string `type:"string"`
 
 	// The instance architecture: "i386" or "x86_64".
-	Architecture *string `type:"string"`
+	Architecture *string `type:"string" enum:"Architecture"`
 
 	// For load-based or time-based instances, the type.
-	AutoScalingType *string `type:"string"`
+	AutoScalingType *string `type:"string" enum:"AutoScalingType"`
 
 	// The instance Availability Zone. For more information, see Regions and Endpoints
 	// (http://docs.aws.amazon.com/general/latest/gr/rande.html).
@@ -5468,7 +5468,7 @@ type Instance struct {
 
 	// The instance's root device type. For more information, see Storage for the
 	// Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
-	RootDeviceType *string `type:"string"`
+	RootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// The root device volume ID.
 	RootDeviceVolumeID *string `locationName:"RootDeviceVolumeId" type:"string"`
@@ -5499,7 +5499,7 @@ type Instance struct {
 	SubnetID *string `locationName:"SubnetId" type:"string"`
 
 	// The instance's virtualization type: paravirtual or hvm.
-	VirtualizationType *string `type:"string"`
+	VirtualizationType *string `type:"string" enum:"VirtualizationType"`
 
 	metadataInstance `json:"-" xml:"-"`
 }
@@ -5698,7 +5698,7 @@ type Layer struct {
 	StackID *string `locationName:"StackId" type:"string"`
 
 	// The layer type.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"LayerType"`
 
 	// Whether the layer uses Amazon EBS-optimized instances.
 	UseEBSOptimizedInstances *bool `locationName:"UseEbsOptimizedInstances" type:"boolean"`
@@ -6536,7 +6536,7 @@ type Source struct {
 	SSHKey *string `locationName:"SshKey" type:"string"`
 
 	// The repository type.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"SourceType"`
 
 	// The source URL.
 	URL *string `locationName:"Url" type:"string"`
@@ -6619,7 +6619,7 @@ type Stack struct {
 	// The default root device type. This value is used by default for all instances
 	// in the stack, but you can override it when you create an instance. For more
 	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
-	DefaultRootDeviceType *string `type:"string"`
+	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key pair for the stack's instances. You can override
 	// this value when you create or update an instance.
@@ -7074,7 +7074,7 @@ type UpdateAppInput struct {
 	SSLConfiguration *SSLConfiguration `locationName:"SslConfiguration" type:"structure"`
 
 	// The app type.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"AppType"`
 
 	metadataUpdateAppInput `json:"-" xml:"-"`
 }
@@ -7176,11 +7176,11 @@ type UpdateInstanceInput struct {
 	// The instance architecture. Instance types do not necessarily support both
 	// architectures. For a list of the architectures that are supported by the
 	// different instance types, see Instance Families and Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html).
-	Architecture *string `type:"string"`
+	Architecture *string `type:"string" enum:"Architecture"`
 
 	// For load-based or time-based instances, the type. Windows stacks can use
 	// only time-based instances.
-	AutoScalingType *string `type:"string"`
+	AutoScalingType *string `type:"string" enum:"AutoScalingType"`
 
 	// This property cannot be updated.
 	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
@@ -7520,7 +7520,7 @@ type UpdateStackInput struct {
 	// The default root device type. This value is used by default for all instances
 	// in the stack, but you can override it when you create an instance. For more
 	// information, see Storage for the Root Device (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device).
-	DefaultRootDeviceType *string `type:"string"`
+	DefaultRootDeviceType *string `type:"string" enum:"RootDeviceType"`
 
 	// A default Amazon EC2 key-pair name. The default value is none. If you specify
 	// a key-pair name, AWS OpsWorks installs the public key on the instance and
@@ -7907,3 +7907,181 @@ func (s WeeklyAutoScalingSchedule) String() string {
 func (s WeeklyAutoScalingSchedule) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AppAttributesKeys
+	AppAttributesKeysDocumentRoot = "DocumentRoot"
+	// @enum AppAttributesKeys
+	AppAttributesKeysRailsEnv = "RailsEnv"
+	// @enum AppAttributesKeys
+	AppAttributesKeysAutoBundleOnDeploy = "AutoBundleOnDeploy"
+)
+
+const (
+	// @enum AppType
+	AppTypeJava = "java"
+	// @enum AppType
+	AppTypeRails = "rails"
+	// @enum AppType
+	AppTypePhp = "php"
+	// @enum AppType
+	AppTypeNodejs = "nodejs"
+	// @enum AppType
+	AppTypeStatic = "static"
+	// @enum AppType
+	AppTypeOther = "other"
+)
+
+const (
+	// @enum Architecture
+	ArchitectureX8664 = "x86_64"
+	// @enum Architecture
+	ArchitectureI386 = "i386"
+)
+
+const (
+	// @enum AutoScalingType
+	AutoScalingTypeLoad = "load"
+	// @enum AutoScalingType
+	AutoScalingTypeTimer = "timer"
+)
+
+const (
+	// @enum DeploymentCommandName
+	DeploymentCommandNameInstallDependencies = "install_dependencies"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameUpdateDependencies = "update_dependencies"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameUpdateCustomCookbooks = "update_custom_cookbooks"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameExecuteRecipes = "execute_recipes"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameConfigure = "configure"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameSetup = "setup"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameDeploy = "deploy"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameRollback = "rollback"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameStart = "start"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameStop = "stop"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameRestart = "restart"
+	// @enum DeploymentCommandName
+	DeploymentCommandNameUndeploy = "undeploy"
+)
+
+const (
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysEnableHaproxyStats = "EnableHaproxyStats"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysHaproxyStatsUrl = "HaproxyStatsUrl"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysHaproxyStatsUser = "HaproxyStatsUser"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysHaproxyStatsPassword = "HaproxyStatsPassword"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysHaproxyHealthCheckUrl = "HaproxyHealthCheckUrl"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysHaproxyHealthCheckMethod = "HaproxyHealthCheckMethod"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysMysqlRootPassword = "MysqlRootPassword"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysMysqlRootPasswordUbiquitous = "MysqlRootPasswordUbiquitous"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysGangliaUrl = "GangliaUrl"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysGangliaUser = "GangliaUser"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysGangliaPassword = "GangliaPassword"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysMemcachedMemory = "MemcachedMemory"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysNodejsVersion = "NodejsVersion"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysRubyVersion = "RubyVersion"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysRubygemsVersion = "RubygemsVersion"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysManageBundler = "ManageBundler"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysBundlerVersion = "BundlerVersion"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysRailsStack = "RailsStack"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysPassengerVersion = "PassengerVersion"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysJvm = "Jvm"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysJvmVersion = "JvmVersion"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysJvmOptions = "JvmOptions"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysJavaAppServer = "JavaAppServer"
+	// @enum LayerAttributesKeys
+	LayerAttributesKeysJavaAppServerVersion = "JavaAppServerVersion"
+)
+
+const (
+	// @enum LayerType
+	LayerTypeJavaApp = "java-app"
+	// @enum LayerType
+	LayerTypeLb = "lb"
+	// @enum LayerType
+	LayerTypeWeb = "web"
+	// @enum LayerType
+	LayerTypePhpApp = "php-app"
+	// @enum LayerType
+	LayerTypeRailsApp = "rails-app"
+	// @enum LayerType
+	LayerTypeNodejsApp = "nodejs-app"
+	// @enum LayerType
+	LayerTypeMemcached = "memcached"
+	// @enum LayerType
+	LayerTypeDbMaster = "db-master"
+	// @enum LayerType
+	LayerTypeMonitoringMaster = "monitoring-master"
+	// @enum LayerType
+	LayerTypeCustom = "custom"
+)
+
+const (
+	// @enum RootDeviceType
+	RootDeviceTypeEbs = "ebs"
+	// @enum RootDeviceType
+	RootDeviceTypeInstanceStore = "instance-store"
+)
+
+const (
+	// @enum SourceType
+	SourceTypeGit = "git"
+	// @enum SourceType
+	SourceTypeSvn = "svn"
+	// @enum SourceType
+	SourceTypeArchive = "archive"
+	// @enum SourceType
+	SourceTypeS3 = "s3"
+)
+
+const (
+	// @enum StackAttributesKeys
+	StackAttributesKeysColor = "Color"
+)
+
+const (
+	// @enum VirtualizationType
+	VirtualizationTypeParavirtual = "paravirtual"
+	// @enum VirtualizationType
+	VirtualizationTypeHvm = "hvm"
+)
+
+const (
+	// @enum VolumeType
+	VolumeTypeGp2 = "gp2"
+	// @enum VolumeType
+	VolumeTypeIo1 = "io1"
+	// @enum VolumeType
+	VolumeTypeStandard = "standard"
+)

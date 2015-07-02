@@ -412,7 +412,7 @@ type AlarmHistoryItem struct {
 	HistoryData *string `type:"string"`
 
 	// The type of alarm history item.
-	HistoryItemType *string `type:"string"`
+	HistoryItemType *string `type:"string" enum:"HistoryItemType"`
 
 	// A human-readable summary of the alarm history.
 	HistorySummary *string `type:"string"`
@@ -468,7 +468,7 @@ type Datapoint struct {
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The standard unit used for the datapoint.
-	Unit *string `type:"string"`
+	Unit *string `type:"string" enum:"StandardUnit"`
 
 	metadataDatapoint `json:"-" xml:"-"`
 }
@@ -534,7 +534,7 @@ type DescribeAlarmHistoryInput struct {
 	EndDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The type of alarm histories to retrieve.
-	HistoryItemType *string `type:"string"`
+	HistoryItemType *string `type:"string" enum:"HistoryItemType"`
 
 	// The maximum number of alarm history records to retrieve.
 	MaxRecords *int64 `type:"integer"`
@@ -602,10 +602,10 @@ type DescribeAlarmsForMetricInput struct {
 	Period *int64 `type:"integer"`
 
 	// The statistic for the metric.
-	Statistic *string `type:"string"`
+	Statistic *string `type:"string" enum:"Statistic"`
 
 	// The unit for the metric.
-	Unit *string `type:"string"`
+	Unit *string `type:"string" enum:"StandardUnit"`
 
 	metadataDescribeAlarmsForMetricInput `json:"-" xml:"-"`
 }
@@ -665,7 +665,7 @@ type DescribeAlarmsInput struct {
 	NextToken *string `type:"string"`
 
 	// The state value to be used in matching alarms.
-	StateValue *string `type:"string"`
+	StateValue *string `type:"string" enum:"StateValue"`
 
 	metadataDescribeAlarmsInput `json:"-" xml:"-"`
 }
@@ -872,7 +872,7 @@ type GetMetricStatisticsInput struct {
 	Statistics []*string `type:"list" required:"true"`
 
 	// The unit for the metric.
-	Unit *string `type:"string"`
+	Unit *string `type:"string" enum:"StandardUnit"`
 
 	metadataGetMetricStatisticsInput `json:"-" xml:"-"`
 }
@@ -1037,7 +1037,7 @@ type MetricAlarm struct {
 
 	// The arithmetic operation to use when comparing the specified Statistic and
 	// Threshold. The specified Statistic value is used as the first operand.
-	ComparisonOperator *string `type:"string"`
+	ComparisonOperator *string `type:"string" enum:"ComparisonOperator"`
 
 	// The list of dimensions associated with the alarm's associated metric.
 	Dimensions []*Dimension `type:"list"`
@@ -1082,16 +1082,16 @@ type MetricAlarm struct {
 	StateUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The state value for the alarm.
-	StateValue *string `type:"string"`
+	StateValue *string `type:"string" enum:"StateValue"`
 
 	// The statistic to apply to the alarm's associated metric.
-	Statistic *string `type:"string"`
+	Statistic *string `type:"string" enum:"Statistic"`
 
 	// The value against which the specified statistic is compared.
 	Threshold *float64 `type:"double"`
 
 	// The unit of the alarm's associated metric.
-	Unit *string `type:"string"`
+	Unit *string `type:"string" enum:"StandardUnit"`
 
 	metadataMetricAlarm `json:"-" xml:"-"`
 }
@@ -1133,7 +1133,7 @@ type MetricDatum struct {
 	Timestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The unit of the metric.
-	Unit *string `type:"string"`
+	Unit *string `type:"string" enum:"StandardUnit"`
 
 	// The value for the metric.
 	//
@@ -1180,7 +1180,7 @@ type PutMetricAlarmInput struct {
 
 	// The arithmetic operation to use when comparing the specified Statistic and
 	// Threshold. The specified Statistic value is used as the first operand.
-	ComparisonOperator *string `type:"string" required:"true"`
+	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
 	// The dimensions for the alarm's associated metric.
 	Dimensions []*Dimension `type:"list"`
@@ -1210,13 +1210,13 @@ type PutMetricAlarmInput struct {
 	Period *int64 `type:"integer" required:"true"`
 
 	// The statistic to apply to the alarm's associated metric.
-	Statistic *string `type:"string" required:"true"`
+	Statistic *string `type:"string" required:"true" enum:"Statistic"`
 
 	// The value against which the specified statistic is compared.
 	Threshold *float64 `type:"double" required:"true"`
 
 	// The unit for the alarm's associated metric.
-	Unit *string `type:"string"`
+	Unit *string `type:"string" enum:"StandardUnit"`
 
 	metadataPutMetricAlarmInput `json:"-" xml:"-"`
 }
@@ -1309,7 +1309,7 @@ type SetAlarmStateInput struct {
 	StateReasonData *string `type:"string"`
 
 	// The value of the state.
-	StateValue *string `type:"string" required:"true"`
+	StateValue *string `type:"string" required:"true" enum:"StateValue"`
 
 	metadataSetAlarmStateInput `json:"-" xml:"-"`
 }
@@ -1377,3 +1377,102 @@ func (s StatisticSet) String() string {
 func (s StatisticSet) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ComparisonOperator
+	ComparisonOperatorGreaterThanOrEqualToThreshold = "GreaterThanOrEqualToThreshold"
+	// @enum ComparisonOperator
+	ComparisonOperatorGreaterThanThreshold = "GreaterThanThreshold"
+	// @enum ComparisonOperator
+	ComparisonOperatorLessThanThreshold = "LessThanThreshold"
+	// @enum ComparisonOperator
+	ComparisonOperatorLessThanOrEqualToThreshold = "LessThanOrEqualToThreshold"
+)
+
+const (
+	// @enum HistoryItemType
+	HistoryItemTypeConfigurationUpdate = "ConfigurationUpdate"
+	// @enum HistoryItemType
+	HistoryItemTypeStateUpdate = "StateUpdate"
+	// @enum HistoryItemType
+	HistoryItemTypeAction = "Action"
+)
+
+const (
+	// @enum StandardUnit
+	StandardUnitSeconds = "Seconds"
+	// @enum StandardUnit
+	StandardUnitMicroseconds = "Microseconds"
+	// @enum StandardUnit
+	StandardUnitMilliseconds = "Milliseconds"
+	// @enum StandardUnit
+	StandardUnitBytes = "Bytes"
+	// @enum StandardUnit
+	StandardUnitKilobytes = "Kilobytes"
+	// @enum StandardUnit
+	StandardUnitMegabytes = "Megabytes"
+	// @enum StandardUnit
+	StandardUnitGigabytes = "Gigabytes"
+	// @enum StandardUnit
+	StandardUnitTerabytes = "Terabytes"
+	// @enum StandardUnit
+	StandardUnitBits = "Bits"
+	// @enum StandardUnit
+	StandardUnitKilobits = "Kilobits"
+	// @enum StandardUnit
+	StandardUnitMegabits = "Megabits"
+	// @enum StandardUnit
+	StandardUnitGigabits = "Gigabits"
+	// @enum StandardUnit
+	StandardUnitTerabits = "Terabits"
+	// @enum StandardUnit
+	StandardUnitPercent = "Percent"
+	// @enum StandardUnit
+	StandardUnitCount = "Count"
+	// @enum StandardUnit
+	StandardUnitBytesSecond = "Bytes/Second"
+	// @enum StandardUnit
+	StandardUnitKilobytesSecond = "Kilobytes/Second"
+	// @enum StandardUnit
+	StandardUnitMegabytesSecond = "Megabytes/Second"
+	// @enum StandardUnit
+	StandardUnitGigabytesSecond = "Gigabytes/Second"
+	// @enum StandardUnit
+	StandardUnitTerabytesSecond = "Terabytes/Second"
+	// @enum StandardUnit
+	StandardUnitBitsSecond = "Bits/Second"
+	// @enum StandardUnit
+	StandardUnitKilobitsSecond = "Kilobits/Second"
+	// @enum StandardUnit
+	StandardUnitMegabitsSecond = "Megabits/Second"
+	// @enum StandardUnit
+	StandardUnitGigabitsSecond = "Gigabits/Second"
+	// @enum StandardUnit
+	StandardUnitTerabitsSecond = "Terabits/Second"
+	// @enum StandardUnit
+	StandardUnitCountSecond = "Count/Second"
+	// @enum StandardUnit
+	StandardUnitNone = "None"
+)
+
+const (
+	// @enum StateValue
+	StateValueOk = "OK"
+	// @enum StateValue
+	StateValueAlarm = "ALARM"
+	// @enum StateValue
+	StateValueInsufficientData = "INSUFFICIENT_DATA"
+)
+
+const (
+	// @enum Statistic
+	StatisticSampleCount = "SampleCount"
+	// @enum Statistic
+	StatisticAverage = "Average"
+	// @enum Statistic
+	StatisticSum = "Sum"
+	// @enum Statistic
+	StatisticMinimum = "Minimum"
+	// @enum Statistic
+	StatisticMaximum = "Maximum"
+)
