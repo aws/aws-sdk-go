@@ -1536,7 +1536,7 @@ func (s UnlinkIdentityOutput) GoString() string {
 // and IdentityId.
 type UnprocessedIdentityID struct {
 	// The error code indicating the type of error that occurred.
-	ErrorCode *string `type:"string"`
+	ErrorCode *string `type:"string" enum:"ErrorCode"`
 
 	// A unique identifier in the format REGION:GUID.
 	IdentityID *string `locationName:"IdentityId" type:"string"`
@@ -1557,3 +1557,10 @@ func (s UnprocessedIdentityID) String() string {
 func (s UnprocessedIdentityID) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ErrorCode
+	ErrorCodeAccessDenied = "AccessDenied"
+	// @enum ErrorCode
+	ErrorCodeInternalServerError = "InternalServerError"
+)

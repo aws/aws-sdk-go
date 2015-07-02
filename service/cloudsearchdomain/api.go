@@ -525,7 +525,7 @@ type SearchInput struct {
 	//   dismax: search using the simplified subset of the Apache Lucene query parser
 	// syntax defined by the DisMax query parser. For more information, see DisMax
 	// Query Parser Syntax (http://wiki.apache.org/solr/DisMaxQParserPlugin#Query_Syntax).
-	QueryParser *string `location:"querystring" locationName:"q.parser" type:"string"`
+	QueryParser *string `location:"querystring" locationName:"q.parser" type:"string" enum:"QueryParser"`
 
 	// Specifies the field and expression values to include in the response. Multiple
 	// fields or expressions are specified as a comma-separated list. By default,
@@ -772,7 +772,7 @@ type UploadDocumentsInput struct {
 	// document batch formats:
 	//
 	//  application/json application/xml
-	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true"`
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true" enum:"ContentType"`
 
 	// A batch of documents formatted in JSON or HTML.
 	Documents io.ReadSeeker `locationName:"documents" type:"blob" required:"true"`
@@ -824,3 +824,21 @@ func (s UploadDocumentsOutput) String() string {
 func (s UploadDocumentsOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ContentType
+	ContentTypeApplicationJson = "application/json"
+	// @enum ContentType
+	ContentTypeApplicationXml = "application/xml"
+)
+
+const (
+	// @enum QueryParser
+	QueryParserSimple = "simple"
+	// @enum QueryParser
+	QueryParserStructured = "structured"
+	// @enum QueryParser
+	QueryParserLucene = "lucene"
+	// @enum QueryParser
+	QueryParserDismax = "dismax"
+)

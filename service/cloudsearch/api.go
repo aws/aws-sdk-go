@@ -783,7 +783,7 @@ type AnalysisOptions struct {
 	// The available levels vary depending on the language. For more information,
 	// see Language Specific Text Processing Settings (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/text-processing.html#text-processing-settings"
 	// target="_blank) in the Amazon CloudSearch Developer Guide
-	AlgorithmicStemming *string `type:"string"`
+	AlgorithmicStemming *string `type:"string" enum:"AlgorithmicStemming"`
 
 	// A JSON array that contains a collection of terms, tokens, readings and part
 	// of speech for Japanese Tokenizaiton. The Japanese tokenization dictionary
@@ -843,7 +843,7 @@ type AnalysisScheme struct {
 
 	// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
 	// code or mul for multiple languages.
-	AnalysisSchemeLanguage *string `type:"string" required:"true"`
+	AnalysisSchemeLanguage *string `type:"string" required:"true" enum:"AnalysisSchemeLanguage"`
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
@@ -2010,7 +2010,7 @@ type DocumentSuggesterOptions struct {
 	// With low, suggestions must differ from the specified string by no more than
 	// one character. With high, suggestions can differ by up to two characters.
 	// The default is none.
-	FuzzyMatching *string `type:"string"`
+	FuzzyMatching *string `type:"string" enum:"SuggesterFuzzyMatching"`
 
 	// An expression that computes a score for each suggestion to control how they
 	// are sorted. The scores are rounded to the nearest integer, with a floor of
@@ -2333,7 +2333,7 @@ type IndexField struct {
 	// For more information about the supported field types, see Configuring Index
 	// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
-	IndexFieldType *string `type:"string" required:"true"`
+	IndexFieldType *string `type:"string" required:"true" enum:"IndexFieldType"`
 
 	// Options for a field that contains an array of 64-bit signed integers. Present
 	// if IndexFieldType specifies the field is of type int-array. All options are
@@ -2706,7 +2706,7 @@ type OptionStatus struct {
 	// option value is not compatible with the domain's data and cannot be used
 	// to index the data. You must either modify the option value or update or remove
 	// the incompatible documents.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"OptionState"`
 
 	// A timestamp for when this option was last updated.
 	UpdateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -2735,7 +2735,7 @@ func (s OptionStatus) GoString() string {
 type ScalingParameters struct {
 	// The instance type that you want to preconfigure for your domain. For example,
 	// search.m1.small.
-	DesiredInstanceType *string `type:"string"`
+	DesiredInstanceType *string `type:"string" enum:"PartitionInstanceType"`
 
 	// The number of partitions you want to preconfigure for your domain. Only valid
 	// when you select m2.2xlarge as the desired instance type.
@@ -3115,3 +3115,168 @@ func (s UpdateServiceAccessPoliciesOutput) String() string {
 func (s UpdateServiceAccessPoliciesOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AlgorithmicStemming
+	AlgorithmicStemmingNone = "none"
+	// @enum AlgorithmicStemming
+	AlgorithmicStemmingMinimal = "minimal"
+	// @enum AlgorithmicStemming
+	AlgorithmicStemmingLight = "light"
+	// @enum AlgorithmicStemming
+	AlgorithmicStemmingFull = "full"
+)
+
+// An IETF RFC 4646 (http://tools.ietf.org/html/rfc4646" target="_blank) language
+// code or mul for multiple languages.
+const (
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageAr = "ar"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageBg = "bg"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageCa = "ca"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageCs = "cs"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageDa = "da"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageDe = "de"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageEl = "el"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageEn = "en"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageEs = "es"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageEu = "eu"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageFa = "fa"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageFi = "fi"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageFr = "fr"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageGa = "ga"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageGl = "gl"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageHe = "he"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageHi = "hi"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageHu = "hu"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageHy = "hy"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageId = "id"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageIt = "it"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageJa = "ja"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageKo = "ko"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageLv = "lv"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageMul = "mul"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageNl = "nl"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageNo = "no"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguagePt = "pt"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageRo = "ro"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageRu = "ru"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageSv = "sv"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageTh = "th"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageTr = "tr"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageZhHans = "zh-Hans"
+	// @enum AnalysisSchemeLanguage
+	AnalysisSchemeLanguageZhHant = "zh-Hant"
+)
+
+// The type of field. The valid options for a field depend on the field type.
+// For more information about the supported field types, see Configuring Index
+// Fields (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-index-fields.html"
+// target="_blank) in the Amazon CloudSearch Developer Guide.
+const (
+	// @enum IndexFieldType
+	IndexFieldTypeInt = "int"
+	// @enum IndexFieldType
+	IndexFieldTypeDouble = "double"
+	// @enum IndexFieldType
+	IndexFieldTypeLiteral = "literal"
+	// @enum IndexFieldType
+	IndexFieldTypeText = "text"
+	// @enum IndexFieldType
+	IndexFieldTypeDate = "date"
+	// @enum IndexFieldType
+	IndexFieldTypeLatlon = "latlon"
+	// @enum IndexFieldType
+	IndexFieldTypeIntArray = "int-array"
+	// @enum IndexFieldType
+	IndexFieldTypeDoubleArray = "double-array"
+	// @enum IndexFieldType
+	IndexFieldTypeLiteralArray = "literal-array"
+	// @enum IndexFieldType
+	IndexFieldTypeTextArray = "text-array"
+	// @enum IndexFieldType
+	IndexFieldTypeDateArray = "date-array"
+)
+
+// The state of processing a change to an option. One of:
+//
+//  RequiresIndexDocuments: The option's latest value will not be deployed
+// until IndexDocuments has been called and indexing is complete. Processing:
+// The option's latest value is in the process of being activated. Active: The
+// option's latest value is fully deployed.  FailedToValidate: The option value
+// is not compatible with the domain's data and cannot be used to index the
+// data. You must either modify the option value or update or remove the incompatible
+// documents.
+const (
+	// @enum OptionState
+	OptionStateRequiresIndexDocuments = "RequiresIndexDocuments"
+	// @enum OptionState
+	OptionStateProcessing = "Processing"
+	// @enum OptionState
+	OptionStateActive = "Active"
+	// @enum OptionState
+	OptionStateFailedToValidate = "FailedToValidate"
+)
+
+// The instance type (such as search.m1.small) on which an index partition is
+// hosted.
+const (
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM1Small = "search.m1.small"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM1Large = "search.m1.large"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM2Xlarge = "search.m2.xlarge"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM22xlarge = "search.m2.2xlarge"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM3Medium = "search.m3.medium"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM3Large = "search.m3.large"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM3Xlarge = "search.m3.xlarge"
+	// @enum PartitionInstanceType
+	PartitionInstanceTypeSearchM32xlarge = "search.m3.2xlarge"
+)
+
+const (
+	// @enum SuggesterFuzzyMatching
+	SuggesterFuzzyMatchingNone = "none"
+	// @enum SuggesterFuzzyMatching
+	SuggesterFuzzyMatchingLow = "low"
+	// @enum SuggesterFuzzyMatching
+	SuggesterFuzzyMatchingHigh = "high"
+)

@@ -2879,7 +2879,7 @@ func (s InventoryRetrievalJobInput) GoString() string {
 // Describes an Amazon Glacier job.
 type JobDescription struct {
 	// The job type. It is either ArchiveRetrieval or InventoryRetrieval.
-	Action *string `type:"string"`
+	Action *string `type:"string" enum:"ActionCode"`
 
 	// For an ArchiveRetrieval job, this is the archive ID requested for download.
 	// Otherwise, this field is null.
@@ -2947,7 +2947,7 @@ type JobDescription struct {
 
 	// The status code can be InProgress, Succeeded, or Failed, and indicates the
 	// status of the job.
-	StatusCode *string `type:"string"`
+	StatusCode *string `type:"string" enum:"StatusCode"`
 
 	// A friendly message that describes the job status.
 	StatusMessage *string `type:"string"`
@@ -3810,3 +3810,19 @@ func (s VaultNotificationConfig) String() string {
 func (s VaultNotificationConfig) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ActionCode
+	ActionCodeArchiveRetrieval = "ArchiveRetrieval"
+	// @enum ActionCode
+	ActionCodeInventoryRetrieval = "InventoryRetrieval"
+)
+
+const (
+	// @enum StatusCode
+	StatusCodeInProgress = "InProgress"
+	// @enum StatusCode
+	StatusCodeSucceeded = "Succeeded"
+	// @enum StatusCode
+	StatusCodeFailed = "Failed"
+)

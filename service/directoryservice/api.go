@@ -579,7 +579,7 @@ type ConnectDirectoryInput struct {
 	ShortName *string `type:"string"`
 
 	// The size of the directory.
-	Size *string `type:"string" required:"true"`
+	Size *string `type:"string" required:"true" enum:"DirectorySize"`
 
 	metadataConnectDirectoryInput `json:"-" xml:"-"`
 }
@@ -749,7 +749,7 @@ type CreateDirectoryInput struct {
 	ShortName *string `type:"string"`
 
 	// The size of the directory.
-	Size *string `type:"string" required:"true"`
+	Size *string `type:"string" required:"true" enum:"DirectorySize"`
 
 	// A DirectoryVpcSettings object that contains additional information for the
 	// operation.
@@ -1171,7 +1171,7 @@ type DirectoryDescription struct {
 	RadiusSettings *RadiusSettings `type:"structure"`
 
 	// The status of the RADIUS MFA server connection.
-	RadiusStatus *string `type:"string"`
+	RadiusStatus *string `type:"string" enum:"RadiusStatus"`
 
 	// Indicates if single-sign on is enabled for the directory. For more information,
 	// see EnableSso and DisableSso.
@@ -1181,10 +1181,10 @@ type DirectoryDescription struct {
 	ShortName *string `type:"string"`
 
 	// The directory size.
-	Size *string `type:"string"`
+	Size *string `type:"string" enum:"DirectorySize"`
 
 	// The current stage of the directory.
-	Stage *string `type:"string"`
+	Stage *string `type:"string" enum:"DirectoryStage"`
 
 	// The date and time that the stage was last updated.
 	StageLastUpdatedDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1193,7 +1193,7 @@ type DirectoryDescription struct {
 	StageReason *string `type:"string"`
 
 	// The directory size.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"DirectoryType"`
 
 	// A DirectoryVpcSettingsDescription object that contains additional information
 	// about a Simple AD directory. This member is only present if the directory
@@ -1603,7 +1603,7 @@ func (s GetSnapshotLimitsOutput) GoString() string {
 // server.
 type RadiusSettings struct {
 	// The protocol specified for your RADIUS endpoints.
-	AuthenticationProtocol *string `type:"string"`
+	AuthenticationProtocol *string `type:"string" enum:"RadiusAuthenticationProtocol"`
 
 	// Not currently used.
 	DisplayLabel *string `type:"string"`
@@ -1704,10 +1704,10 @@ type Snapshot struct {
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The snapshot status.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"SnapshotStatus"`
 
 	// The snapshot type.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"SnapshotType"`
 
 	metadataSnapshot `json:"-" xml:"-"`
 }
@@ -1797,3 +1797,78 @@ func (s UpdateRadiusOutput) String() string {
 func (s UpdateRadiusOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum DirectorySize
+	DirectorySizeSmall = "Small"
+	// @enum DirectorySize
+	DirectorySizeLarge = "Large"
+)
+
+const (
+	// @enum DirectoryStage
+	DirectoryStageRequested = "Requested"
+	// @enum DirectoryStage
+	DirectoryStageCreating = "Creating"
+	// @enum DirectoryStage
+	DirectoryStageCreated = "Created"
+	// @enum DirectoryStage
+	DirectoryStageActive = "Active"
+	// @enum DirectoryStage
+	DirectoryStageInoperable = "Inoperable"
+	// @enum DirectoryStage
+	DirectoryStageImpaired = "Impaired"
+	// @enum DirectoryStage
+	DirectoryStageRestoring = "Restoring"
+	// @enum DirectoryStage
+	DirectoryStageRestoreFailed = "RestoreFailed"
+	// @enum DirectoryStage
+	DirectoryStageDeleting = "Deleting"
+	// @enum DirectoryStage
+	DirectoryStageDeleted = "Deleted"
+	// @enum DirectoryStage
+	DirectoryStageFailed = "Failed"
+)
+
+const (
+	// @enum DirectoryType
+	DirectoryTypeSimpleAd = "SimpleAD"
+	// @enum DirectoryType
+	DirectoryTypeAdconnector = "ADConnector"
+)
+
+const (
+	// @enum RadiusAuthenticationProtocol
+	RadiusAuthenticationProtocolPap = "PAP"
+	// @enum RadiusAuthenticationProtocol
+	RadiusAuthenticationProtocolChap = "CHAP"
+	// @enum RadiusAuthenticationProtocol
+	RadiusAuthenticationProtocolMsChapv1 = "MS-CHAPv1"
+	// @enum RadiusAuthenticationProtocol
+	RadiusAuthenticationProtocolMsChapv2 = "MS-CHAPv2"
+)
+
+const (
+	// @enum RadiusStatus
+	RadiusStatusCreating = "Creating"
+	// @enum RadiusStatus
+	RadiusStatusCompleted = "Completed"
+	// @enum RadiusStatus
+	RadiusStatusFailed = "Failed"
+)
+
+const (
+	// @enum SnapshotStatus
+	SnapshotStatusCreating = "Creating"
+	// @enum SnapshotStatus
+	SnapshotStatusCompleted = "Completed"
+	// @enum SnapshotStatus
+	SnapshotStatusFailed = "Failed"
+)
+
+const (
+	// @enum SnapshotType
+	SnapshotTypeAuto = "Auto"
+	// @enum SnapshotType
+	SnapshotTypeManual = "Manual"
+)

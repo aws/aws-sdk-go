@@ -733,7 +733,7 @@ func (s AcknowledgeJobInput) GoString() string {
 // Represents the output of an acknowledge job action.
 type AcknowledgeJobOutput struct {
 	// Whether the job worker has received the specified job.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 
 	metadataAcknowledgeJobOutput `json:"-" xml:"-"`
 }
@@ -786,7 +786,7 @@ func (s AcknowledgeThirdPartyJobInput) GoString() string {
 // Represents the output of an acknowledge third party job action.
 type AcknowledgeThirdPartyJobOutput struct {
 	// The status information for the third party job, if any.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"JobStatus"`
 
 	metadataAcknowledgeThirdPartyJobOutput `json:"-" xml:"-"`
 }
@@ -862,7 +862,7 @@ type ActionConfigurationProperty struct {
 	Secret *bool `locationName:"secret" type:"boolean" required:"true"`
 
 	// The type of the configuration property.
-	Type *string `locationName:"type" type:"string"`
+	Type *string `locationName:"type" type:"string" enum:"ActionConfigurationPropertyType"`
 
 	metadataActionConfigurationProperty `json:"-" xml:"-"`
 }
@@ -967,7 +967,7 @@ type ActionExecution struct {
 
 	// The status of the action, or for a completed action, the last status of the
 	// action.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"ActionExecutionStatus"`
 
 	// A summary of the run of the action.
 	Summary *string `locationName:"summary" type:"string"`
@@ -1095,10 +1095,10 @@ type ActionTypeID struct {
 	// A category defines what kind of action can be taken in the stage, and constrains
 	// the provider type for the action. Valid categories are limited to one of
 	// the values below.
-	Category *string `locationName:"category" type:"string" required:"true"`
+	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The creator of the action being called.
-	Owner *string `locationName:"owner" type:"string" required:"true"`
+	Owner *string `locationName:"owner" type:"string" required:"true" enum:"ActionOwner"`
 
 	// The provider of the service being called by the action. Valid providers are
 	// determined by the action category. For example, an action in the Deploy category
@@ -1228,7 +1228,7 @@ type ArtifactLocation struct {
 	S3Location *S3ArtifactLocation `locationName:"s3Location" type:"structure"`
 
 	// The type of artifact in the location.
-	Type *string `locationName:"type" type:"string"`
+	Type *string `locationName:"type" type:"string" enum:"ArtifactLocationType"`
 
 	metadataArtifactLocation `json:"-" xml:"-"`
 }
@@ -1256,7 +1256,7 @@ type ArtifactStore struct {
 	Location *string `locationName:"location" type:"string" required:"true"`
 
 	// The type of the artifact store, such as S3.
-	Type *string `locationName:"type" type:"string" required:"true"`
+	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactStoreType"`
 
 	metadataArtifactStore `json:"-" xml:"-"`
 }
@@ -1281,7 +1281,7 @@ type BlockerDeclaration struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The type of the gate declaration.
-	Type *string `locationName:"type" type:"string" required:"true"`
+	Type *string `locationName:"type" type:"string" required:"true" enum:"BlockerType"`
 
 	metadataBlockerDeclaration `json:"-" xml:"-"`
 }
@@ -1303,7 +1303,7 @@ func (s BlockerDeclaration) GoString() string {
 // Represents the input of a create custom action operation.
 type CreateCustomActionTypeInput struct {
 	// The category of the custom action, such as a source action or a build action.
-	Category *string `locationName:"category" type:"string" required:"true"`
+	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The configuration properties for the custom action.
 	ConfigurationProperties []*ActionConfigurationProperty `locationName:"configurationProperties" type:"list"`
@@ -1439,7 +1439,7 @@ func (s CurrentRevision) GoString() string {
 type DeleteCustomActionTypeInput struct {
 	// The category of the custom action that you want to delete, such as source
 	// or deploy.
-	Category *string `locationName:"category" type:"string" required:"true"`
+	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The provider of the service used in the custom action, such as AWS CodeDeploy.
 	Provider *string `locationName:"provider" type:"string" required:"true"`
@@ -1541,7 +1541,7 @@ type DisableStageTransitionInput struct {
 	// stage and being processed by the actions in that stage (inbound), or prevented
 	// from transitioning from the stage after they have been processed by the actions
 	// in that stage (outbound).
-	TransitionType *string `locationName:"transitionType" type:"string" required:"true"`
+	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 
 	metadataDisableStageTransitionInput `json:"-" xml:"-"`
 }
@@ -1591,7 +1591,7 @@ type EnableStageTransitionInput struct {
 	// Specifies whether artifacts will be allowed to enter the stage and be processed
 	// by the actions in that stage (inbound) or whether already-processed artifacts
 	// will be allowed to transition to the next stage (outbound).
-	TransitionType *string `locationName:"transitionType" type:"string" required:"true"`
+	TransitionType *string `locationName:"transitionType" type:"string" required:"true" enum:"StageTransitionType"`
 
 	metadataEnableStageTransitionInput `json:"-" xml:"-"`
 }
@@ -1693,7 +1693,7 @@ type FailureDetails struct {
 	Message *string `locationName:"message" type:"string"`
 
 	// The type of the failure.
-	Type *string `locationName:"type" type:"string" required:"true"`
+	Type *string `locationName:"type" type:"string" required:"true" enum:"FailureType"`
 
 	metadataFailureDetails `json:"-" xml:"-"`
 }
@@ -2054,7 +2054,7 @@ func (s JobDetails) GoString() string {
 // Represents the input of a list action types action.
 type ListActionTypesInput struct {
 	// Filters the list of action types to those created by a specified entity.
-	ActionOwnerFilter *string `locationName:"actionOwnerFilter" type:"string"`
+	ActionOwnerFilter *string `locationName:"actionOwnerFilter" type:"string" enum:"ActionOwner"`
 
 	// An identifier that was returned from the previous list action types call,
 	// which can be used to return the next set of action types in the list.
@@ -2971,3 +2971,97 @@ func (s UpdatePipelineOutput) String() string {
 func (s UpdatePipelineOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ActionCategory
+	ActionCategorySource = "Source"
+	// @enum ActionCategory
+	ActionCategoryBuild = "Build"
+	// @enum ActionCategory
+	ActionCategoryDeploy = "Deploy"
+	// @enum ActionCategory
+	ActionCategoryTest = "Test"
+	// @enum ActionCategory
+	ActionCategoryInvoke = "Invoke"
+)
+
+const (
+	// @enum ActionConfigurationPropertyType
+	ActionConfigurationPropertyTypeString = "String"
+	// @enum ActionConfigurationPropertyType
+	ActionConfigurationPropertyTypeNumber = "Number"
+	// @enum ActionConfigurationPropertyType
+	ActionConfigurationPropertyTypeBoolean = "Boolean"
+)
+
+const (
+	// @enum ActionExecutionStatus
+	ActionExecutionStatusInProgress = "InProgress"
+	// @enum ActionExecutionStatus
+	ActionExecutionStatusSucceeded = "Succeeded"
+	// @enum ActionExecutionStatus
+	ActionExecutionStatusFailed = "Failed"
+)
+
+const (
+	// @enum ActionOwner
+	ActionOwnerAws = "AWS"
+	// @enum ActionOwner
+	ActionOwnerThirdParty = "ThirdParty"
+	// @enum ActionOwner
+	ActionOwnerCustom = "Custom"
+)
+
+const (
+	// @enum ArtifactLocationType
+	ArtifactLocationTypeS3 = "S3"
+)
+
+const (
+	// @enum ArtifactStoreType
+	ArtifactStoreTypeS3 = "S3"
+)
+
+const (
+	// @enum BlockerType
+	BlockerTypeSchedule = "Schedule"
+)
+
+const (
+	// @enum FailureType
+	FailureTypeJobFailed = "JobFailed"
+	// @enum FailureType
+	FailureTypeConfigurationError = "ConfigurationError"
+	// @enum FailureType
+	FailureTypePermissionError = "PermissionError"
+	// @enum FailureType
+	FailureTypeRevisionOutOfSync = "RevisionOutOfSync"
+	// @enum FailureType
+	FailureTypeRevisionUnavailable = "RevisionUnavailable"
+	// @enum FailureType
+	FailureTypeSystemUnavailable = "SystemUnavailable"
+)
+
+const (
+	// @enum JobStatus
+	JobStatusCreated = "Created"
+	// @enum JobStatus
+	JobStatusQueued = "Queued"
+	// @enum JobStatus
+	JobStatusDispatched = "Dispatched"
+	// @enum JobStatus
+	JobStatusInProgress = "InProgress"
+	// @enum JobStatus
+	JobStatusTimedOut = "TimedOut"
+	// @enum JobStatus
+	JobStatusSucceeded = "Succeeded"
+	// @enum JobStatus
+	JobStatusFailed = "Failed"
+)
+
+const (
+	// @enum StageTransitionType
+	StageTransitionTypeInbound = "Inbound"
+	// @enum StageTransitionType
+	StageTransitionTypeOutbound = "Outbound"
+)

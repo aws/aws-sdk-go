@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"path"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -47,6 +48,7 @@ type Shape struct {
 	Type          string
 	Exception     bool
 	Enum          []string
+	EnumConsts    []string
 	Flattened     bool
 	Streaming     bool
 	Location      string
@@ -220,7 +222,11 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 
 	if isRequired {
-		code += `required:"true"`
+		code += `required:"true" `
+	}
+
+	if ref.Shape.IsEnum() {
+		code += `enum:"` + ref.ShapeName + `" `
 	}
 
 	if toplevel {
@@ -277,11 +283,39 @@ func (s *Shape) goCodeStringers() string {
 	return w.String()
 }
 
+var enumStrip = regexp.MustCompile(`[^a-zA-Z0-9_:\./-]`)
+var enumDelims = regexp.MustCompile(`[-_:\./]+`)
+var enumCamelCase = regexp.MustCompile(`([a-z])([A-Z])`)
+
+// EnumName returns the Nth enum in the shapes Enum list
+func (s *Shape) EnumName(n int) string {
+	enum := s.Enum[n]
+	enum = enumStrip.ReplaceAllLiteralString(enum, "")
+	enum = enumCamelCase.ReplaceAllString(enum, "$1-$2")
+	parts := enumDelims.Split(enum, -1)
+	for i, v := range parts {
+		v = strings.ToLower(v)
+		parts[i] = ""
+		if len(v) > 0 {
+			parts[i] = strings.ToUpper(v[0:1])
+		}
+		if len(v) > 1 {
+			parts[i] += v[1:]
+		}
+	}
+	enum = strings.Join(parts, "")
+	enum = strings.ToUpper(enum[0:1]) + enum[1:]
+	return enum
+}
+
 // GoCode returns the rendered Go code for the Shape.
 func (s *Shape) GoCode() string {
-	code := s.Docstring() + "type " + s.ShapeName + " "
-	switch s.Type {
-	case "structure":
+	code := s.Docstring()
+	if !s.IsEnum() {
+		code += "type " + s.ShapeName + " "
+	}
+	switch {
+	case s.Type == "structure":
 		code += "struct {\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
@@ -311,11 +345,23 @@ func (s *Shape) GoCode() string {
 		if !s.API.NoStringerMethods {
 			code += s.goCodeStringers()
 		}
+	case s.IsEnum():
+		code += "const (\n"
+		for n, e := range s.Enum {
+			code += fmt.Sprintf("\t// @enum %s\n\t%s = %q\n",
+				s.ShapeName, s.EnumConsts[n], e)
+		}
+		code += ")"
 	default:
 		panic("Cannot generate toplevel shape for " + s.Type)
 	}
 
 	return util.GoFmt(code)
+}
+
+// IsEnum returns whether this shape is an enum list
+func (s *Shape) IsEnum() bool {
+	return s.Type == "string" && len(s.Enum) > 0
 }
 
 // IsRequired returns if member is a required field.

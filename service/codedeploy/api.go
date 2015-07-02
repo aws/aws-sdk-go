@@ -1699,7 +1699,7 @@ type DeploymentInfo struct {
 	//
 	//  user: A user created the deployment. autoscaling: Auto Scaling created
 	// the deployment.
-	Creator *string `locationName:"creator" type:"string"`
+	Creator *string `locationName:"creator" type:"string" enum:"DeploymentCreator"`
 
 	// The deployment configuration name.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
@@ -1743,7 +1743,7 @@ type DeploymentInfo struct {
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The current state of the deployment as a whole.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
 
 	metadataDeploymentInfo `json:"-" xml:"-"`
 }
@@ -1846,7 +1846,7 @@ type Diagnostics struct {
 	// script did not finish running in the specified time period. ScriptFailed:
 	// The specified script failed to run as expected. UnknownError: The specified
 	// script did not run for an unknown reason.
-	ErrorCode *string `locationName:"errorCode" type:"string"`
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"LifecycleErrorCode"`
 
 	// The last portion of the associated diagnostic log.
 	LogTail *string `locationName:"logTail" type:"string"`
@@ -1882,7 +1882,7 @@ type EC2TagFilter struct {
 	// The tag filter type:
 	//
 	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"EC2TagFilterType"`
 
 	// The tag filter value.
 	Value *string `type:"string"`
@@ -1927,7 +1927,7 @@ type ErrorInformation struct {
 	// has timed out. REVISION_MISSING: The revision ID was missing. Note that this
 	// error code will most likely be raised if the revision is deleted after the
 	// deployment is created but before it starts.
-	Code *string `locationName:"code" type:"string"`
+	Code *string `locationName:"code" type:"string" enum:"ErrorCode"`
 
 	// An accompanying error message.
 	Message *string `locationName:"message" type:"string"`
@@ -2401,7 +2401,7 @@ type InstanceSummary struct {
 	// succeeded for this instance. Failed: The deployment has failed for this instance.
 	// Skipped: The deployment has been skipped for this instance. Unknown: The
 	// deployment status is unknown for this instance.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"InstanceStatus"`
 
 	metadataInstanceSummary `json:"-" xml:"-"`
 }
@@ -2442,7 +2442,7 @@ type LifecycleEvent struct {
 	// has succeeded. Failed: The deployment lifecycle event has failed. Skipped:
 	// The deployment lifecycle event has been skipped. Unknown: The deployment
 	// lifecycle event is unknown.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"LifecycleEventStatus"`
 
 	metadataLifecycleEvent `json:"-" xml:"-"`
 }
@@ -2474,7 +2474,7 @@ type ListApplicationRevisionsInput struct {
 	// exclude: Do not list revisions that are target revisions of a deployment
 	// group. ignore: List all revisions, regardless of whether they are target
 	// revisions of a deployment group.
-	Deployed *string `locationName:"deployed" type:"string"`
+	Deployed *string `locationName:"deployed" type:"string" enum:"ListStateFilterAction"`
 
 	// An identifier that was returned from the previous list application revisions
 	// call, which can be used to return the next set of applications in the list.
@@ -2496,7 +2496,7 @@ type ListApplicationRevisionsInput struct {
 	// were first used by in a deployment. lastUsedTime: Sort the list results by
 	// when the revisions were last used in a deployment.  If not specified or set
 	// to null, the results will be returned in an arbitrary order.
-	SortBy *string `locationName:"sortBy" type:"string"`
+	SortBy *string `locationName:"sortBy" type:"string" enum:"ApplicationRevisionSortBy"`
 
 	// The order to sort the list results by:
 	//
@@ -2505,7 +2505,7 @@ type ListApplicationRevisionsInput struct {
 	// be sorted in ascending order.
 	//
 	// If set to null, the results will be sorted in an arbitrary order.
-	SortOrder *string `locationName:"sortOrder" type:"string"`
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
 
 	metadataListApplicationRevisionsInput `json:"-" xml:"-"`
 }
@@ -2863,7 +2863,7 @@ type ListOnPremisesInstancesInput struct {
 	//
 	//  Deregistered: Include in the resulting list deregistered on-premises instances.
 	// Registered: Include in the resulting list registered on-premises instances.
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" enum:"RegistrationStatus"`
 
 	// The on-premises instance tags that will be used to restrict the corresponding
 	// on-premises instance names that are returned.
@@ -2931,7 +2931,7 @@ type MinimumHealthyHosts struct {
 	// will return a minimum healthy instances type of MOST_CONCURRENCY and a value
 	// of 1. This means a deployment to only one instances at a time. (You cannot
 	// set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)
-	Type *string `locationName:"type" type:"string"`
+	Type *string `locationName:"type" type:"string" enum:"MinimumHealthyHostsType"`
 
 	// The minimum healthy instances value.
 	Value *int64 `locationName:"value" type:"integer"`
@@ -3097,7 +3097,7 @@ type RevisionLocation struct {
 	//
 	//  S3: An application revision stored in Amazon S3. GitHub: An application
 	// revision stored in GitHub.
-	RevisionType *string `locationName:"revisionType" type:"string"`
+	RevisionType *string `locationName:"revisionType" type:"string" enum:"RevisionLocationType"`
 
 	// Information about the location of application artifacts that are stored in
 	// Amazon S3.
@@ -3130,7 +3130,7 @@ type S3Location struct {
 	//
 	//  tar: A tar archive file. tgz: A compressed tar archive file. zip: A zip
 	// archive file.
-	BundleType *string `locationName:"bundleType" type:"string"`
+	BundleType *string `locationName:"bundleType" type:"string" enum:"BundleType"`
 
 	// The ETag of the Amazon S3 object that represents the bundled artifacts for
 	// the application revision.
@@ -3194,7 +3194,7 @@ type StopDeploymentOutput struct {
 	// The status of the stop deployment operation:
 	//
 	//  Pending: The stop operation is pending. Succeeded: The stop operation succeeded.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"StopStatus"`
 
 	// An accompanying status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
@@ -3249,7 +3249,7 @@ type TagFilter struct {
 	// The on-premises instance tag filter type:
 	//
 	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"TagFilterType"`
 
 	// The on-premises instance tag filter value.
 	Value *string `type:"string"`
@@ -3415,3 +3415,179 @@ func (s UpdateDeploymentGroupOutput) String() string {
 func (s UpdateDeploymentGroupOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ApplicationRevisionSortBy
+	ApplicationRevisionSortByRegisterTime = "registerTime"
+	// @enum ApplicationRevisionSortBy
+	ApplicationRevisionSortByFirstUsedTime = "firstUsedTime"
+	// @enum ApplicationRevisionSortBy
+	ApplicationRevisionSortByLastUsedTime = "lastUsedTime"
+)
+
+const (
+	// @enum BundleType
+	BundleTypeTar = "tar"
+	// @enum BundleType
+	BundleTypeTgz = "tgz"
+	// @enum BundleType
+	BundleTypeZip = "zip"
+)
+
+const (
+	// @enum DeploymentCreator
+	DeploymentCreatorUser = "user"
+	// @enum DeploymentCreator
+	DeploymentCreatorAutoscaling = "autoscaling"
+)
+
+const (
+	// @enum DeploymentStatus
+	DeploymentStatusCreated = "Created"
+	// @enum DeploymentStatus
+	DeploymentStatusQueued = "Queued"
+	// @enum DeploymentStatus
+	DeploymentStatusInProgress = "InProgress"
+	// @enum DeploymentStatus
+	DeploymentStatusSucceeded = "Succeeded"
+	// @enum DeploymentStatus
+	DeploymentStatusFailed = "Failed"
+	// @enum DeploymentStatus
+	DeploymentStatusStopped = "Stopped"
+)
+
+const (
+	// @enum EC2TagFilterType
+	EC2TagFilterTypeKeyOnly = "KEY_ONLY"
+	// @enum EC2TagFilterType
+	EC2TagFilterTypeValueOnly = "VALUE_ONLY"
+	// @enum EC2TagFilterType
+	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
+)
+
+const (
+	// @enum ErrorCode
+	ErrorCodeDeploymentGroupMissing = "DEPLOYMENT_GROUP_MISSING"
+	// @enum ErrorCode
+	ErrorCodeApplicationMissing = "APPLICATION_MISSING"
+	// @enum ErrorCode
+	ErrorCodeRevisionMissing = "REVISION_MISSING"
+	// @enum ErrorCode
+	ErrorCodeIamRoleMissing = "IAM_ROLE_MISSING"
+	// @enum ErrorCode
+	ErrorCodeIamRolePermissions = "IAM_ROLE_PERMISSIONS"
+	// @enum ErrorCode
+	ErrorCodeNoEc2Subscription = "NO_EC2_SUBSCRIPTION"
+	// @enum ErrorCode
+	ErrorCodeOverMaxInstances = "OVER_MAX_INSTANCES"
+	// @enum ErrorCode
+	ErrorCodeNoInstances = "NO_INSTANCES"
+	// @enum ErrorCode
+	ErrorCodeTimeout = "TIMEOUT"
+	// @enum ErrorCode
+	ErrorCodeHealthConstraintsInvalid = "HEALTH_CONSTRAINTS_INVALID"
+	// @enum ErrorCode
+	ErrorCodeHealthConstraints = "HEALTH_CONSTRAINTS"
+	// @enum ErrorCode
+	ErrorCodeInternalError = "INTERNAL_ERROR"
+	// @enum ErrorCode
+	ErrorCodeThrottled = "THROTTLED"
+)
+
+const (
+	// @enum InstanceStatus
+	InstanceStatusPending = "Pending"
+	// @enum InstanceStatus
+	InstanceStatusInProgress = "InProgress"
+	// @enum InstanceStatus
+	InstanceStatusSucceeded = "Succeeded"
+	// @enum InstanceStatus
+	InstanceStatusFailed = "Failed"
+	// @enum InstanceStatus
+	InstanceStatusSkipped = "Skipped"
+	// @enum InstanceStatus
+	InstanceStatusUnknown = "Unknown"
+)
+
+const (
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeSuccess = "Success"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptMissing = "ScriptMissing"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptNotExecutable = "ScriptNotExecutable"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptTimedOut = "ScriptTimedOut"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptFailed = "ScriptFailed"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeUnknownError = "UnknownError"
+)
+
+const (
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusPending = "Pending"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusInProgress = "InProgress"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusSucceeded = "Succeeded"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusFailed = "Failed"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusSkipped = "Skipped"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusUnknown = "Unknown"
+)
+
+const (
+	// @enum ListStateFilterAction
+	ListStateFilterActionInclude = "include"
+	// @enum ListStateFilterAction
+	ListStateFilterActionExclude = "exclude"
+	// @enum ListStateFilterAction
+	ListStateFilterActionIgnore = "ignore"
+)
+
+const (
+	// @enum MinimumHealthyHostsType
+	MinimumHealthyHostsTypeHostCount = "HOST_COUNT"
+	// @enum MinimumHealthyHostsType
+	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
+)
+
+const (
+	// @enum RegistrationStatus
+	RegistrationStatusRegistered = "Registered"
+	// @enum RegistrationStatus
+	RegistrationStatusDeregistered = "Deregistered"
+)
+
+const (
+	// @enum RevisionLocationType
+	RevisionLocationTypeS3 = "S3"
+	// @enum RevisionLocationType
+	RevisionLocationTypeGitHub = "GitHub"
+)
+
+const (
+	// @enum SortOrder
+	SortOrderAscending = "ascending"
+	// @enum SortOrder
+	SortOrderDescending = "descending"
+)
+
+const (
+	// @enum StopStatus
+	StopStatusPending = "Pending"
+	// @enum StopStatus
+	StopStatusSucceeded = "Succeeded"
+)
+
+const (
+	// @enum TagFilterType
+	TagFilterTypeKeyOnly = "KEY_ONLY"
+	// @enum TagFilterType
+	TagFilterTypeValueOnly = "VALUE_ONLY"
+	// @enum TagFilterType
+	TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
+)

@@ -1,5 +1,6 @@
 LINTIGNOREDOT='internal/features.+should not use dot imports'
 LINTIGNOREDOC='service/[^/]+/(api|service)\.go:.+(comment on exported|should have comment or be unexported)'
+LINTIGNORECONST='service/[^/]+/(api|service)\.go:.+const ([^ ]+) should be ([^ ]+)'
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -35,7 +36,7 @@ integration: deps
 lint: deps
 	@echo "golint ./..."
 	@lint=`golint ./...`; \
-	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC}`; \
+	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST}`; \
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 

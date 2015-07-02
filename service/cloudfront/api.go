@@ -826,7 +826,7 @@ type CacheBehavior struct {
 	// request with an HTTP status code of 301 (Moved Permanently) and the HTTPS
 	// URL, specify redirect-to-https. The viewer then resubmits the request using
 	// the HTTPS URL.
-	ViewerProtocolPolicy *string `type:"string" required:"true"`
+	ViewerProtocolPolicy *string `type:"string" required:"true" enum:"ViewerProtocolPolicy"`
 
 	metadataCacheBehavior `json:"-" xml:"-"`
 }
@@ -938,7 +938,7 @@ type CookiePreference struct {
 	// to the origin that is associated with this cache behavior. You can specify
 	// all, none or whitelist. If you choose All, CloudFront forwards all cookies
 	// regardless of how many your application uses.
-	Forward *string `type:"string" required:"true"`
+	Forward *string `type:"string" required:"true" enum:"ItemSelection"`
 
 	// A complex type that specifies the whitelisted cookies, if any, that you want
 	// CloudFront to forward to your origin that is associated with this cache behavior.
@@ -1251,7 +1251,7 @@ type CustomOriginConfig struct {
 	HTTPSPort *int64 `type:"integer" required:"true"`
 
 	// The origin protocol policy to apply to your origin.
-	OriginProtocolPolicy *string `type:"string" required:"true"`
+	OriginProtocolPolicy *string `type:"string" required:"true" enum:"OriginProtocolPolicy"`
 
 	metadataCustomOriginConfig `json:"-" xml:"-"`
 }
@@ -1342,7 +1342,7 @@ type DefaultCacheBehavior struct {
 	// request with an HTTP status code of 301 (Moved Permanently) and the HTTPS
 	// URL, specify redirect-to-https. The viewer then resubmits the request using
 	// the HTTPS URL.
-	ViewerProtocolPolicy *string `type:"string" required:"true"`
+	ViewerProtocolPolicy *string `type:"string" required:"true" enum:"ViewerProtocolPolicy"`
 
 	metadataDefaultCacheBehavior `json:"-" xml:"-"`
 }
@@ -1594,7 +1594,7 @@ type DistributionConfig struct {
 	Origins *Origins `type:"structure" required:"true"`
 
 	// A complex type that contains information about price class for this distribution.
-	PriceClass *string `type:"string"`
+	PriceClass *string `type:"string" enum:"PriceClass"`
 
 	// A complex type that identifies ways in which you want to restrict distribution
 	// of your content.
@@ -1699,7 +1699,7 @@ type DistributionSummary struct {
 	// A complex type that contains information about origins for this distribution.
 	Origins *Origins `type:"structure" required:"true"`
 
-	PriceClass *string `type:"string" required:"true"`
+	PriceClass *string `type:"string" required:"true" enum:"PriceClass"`
 
 	// A complex type that identifies ways in which you want to restrict distribution
 	// of your content.
@@ -1792,7 +1792,7 @@ type GeoRestriction struct {
 	// specify the countries in which you do not want CloudFront to distribute your
 	// content. - whitelist: The Location elements specify the countries in which
 	// you want CloudFront to distribute your content.
-	RestrictionType *string `type:"string" required:"true"`
+	RestrictionType *string `type:"string" required:"true" enum:"GeoRestrictionType"`
 
 	metadataGeoRestriction `json:"-" xml:"-"`
 }
@@ -3035,7 +3035,7 @@ type StreamingDistributionConfig struct {
 
 	// A complex type that contains information about price class for this streaming
 	// distribution.
-	PriceClass *string `type:"string"`
+	PriceClass *string `type:"string" enum:"PriceClass"`
 
 	// A complex type that contains information about the Amazon S3 bucket from
 	// which you want CloudFront to get your media files for distribution.
@@ -3136,7 +3136,7 @@ type StreamingDistributionSummary struct {
 	// The date and time the distribution was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	PriceClass *string `type:"string" required:"true"`
+	PriceClass *string `type:"string" required:"true" enum:"PriceClass"`
 
 	// A complex type that contains information about the Amazon S3 bucket from
 	// which you want CloudFront to get your media files for distribution.
@@ -3442,7 +3442,7 @@ type ViewerCertificate struct {
 	// If you're using a custom certificate (if you specify a value for IAMCertificateId)
 	// and if you're using SNI (if you specify sni-only for SSLSupportMethod), you
 	// must specify TLSv1 for MinimumProtocolVersion.
-	MinimumProtocolVersion *string `type:"string"`
+	MinimumProtocolVersion *string `type:"string" enum:"MinimumProtocolVersion"`
 
 	// If you specify a value for IAMCertificateId, you must also specify how you
 	// want CloudFront to serve HTTPS requests. Valid values are vip and sni-only.
@@ -3453,7 +3453,7 @@ type ViewerCertificate struct {
 	// viewers that support Server Name Indication (SNI). All modern browsers support
 	// SNI, but some browsers still in use don't support SNI. Do not specify a value
 	// for SSLSupportMethod if you specified true for CloudFrontDefaultCertificate.
-	SSLSupportMethod *string `type:"string"`
+	SSLSupportMethod *string `type:"string" enum:"SSLSupportMethod"`
 
 	metadataViewerCertificate `json:"-" xml:"-"`
 }
@@ -3471,3 +3471,77 @@ func (s ViewerCertificate) String() string {
 func (s ViewerCertificate) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum GeoRestrictionType
+	GeoRestrictionTypeBlacklist = "blacklist"
+	// @enum GeoRestrictionType
+	GeoRestrictionTypeWhitelist = "whitelist"
+	// @enum GeoRestrictionType
+	GeoRestrictionTypeNone = "none"
+)
+
+const (
+	// @enum ItemSelection
+	ItemSelectionNone = "none"
+	// @enum ItemSelection
+	ItemSelectionWhitelist = "whitelist"
+	// @enum ItemSelection
+	ItemSelectionAll = "all"
+)
+
+const (
+	// @enum Method
+	MethodGet = "GET"
+	// @enum Method
+	MethodHead = "HEAD"
+	// @enum Method
+	MethodPost = "POST"
+	// @enum Method
+	MethodPut = "PUT"
+	// @enum Method
+	MethodPatch = "PATCH"
+	// @enum Method
+	MethodOptions = "OPTIONS"
+	// @enum Method
+	MethodDelete = "DELETE"
+)
+
+const (
+	// @enum MinimumProtocolVersion
+	MinimumProtocolVersionSslv3 = "SSLv3"
+	// @enum MinimumProtocolVersion
+	MinimumProtocolVersionTlsv1 = "TLSv1"
+)
+
+const (
+	// @enum OriginProtocolPolicy
+	OriginProtocolPolicyHttpOnly = "http-only"
+	// @enum OriginProtocolPolicy
+	OriginProtocolPolicyMatchViewer = "match-viewer"
+)
+
+const (
+	// @enum PriceClass
+	PriceClassPriceClass100 = "PriceClass_100"
+	// @enum PriceClass
+	PriceClassPriceClass200 = "PriceClass_200"
+	// @enum PriceClass
+	PriceClassPriceClassAll = "PriceClass_All"
+)
+
+const (
+	// @enum SSLSupportMethod
+	SSLSupportMethodSniOnly = "sni-only"
+	// @enum SSLSupportMethod
+	SSLSupportMethodVip = "vip"
+)
+
+const (
+	// @enum ViewerProtocolPolicy
+	ViewerProtocolPolicyAllowAll = "allow-all"
+	// @enum ViewerProtocolPolicy
+	ViewerProtocolPolicyHttpsOnly = "https-only"
+	// @enum ViewerProtocolPolicy
+	ViewerProtocolPolicyRedirectToHttps = "redirect-to-https"
+)

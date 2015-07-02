@@ -713,7 +713,7 @@ type CreateEventSourceMappingInput struct {
 	// The position in the stream where AWS Lambda should start reading. For more
 	// information, go to ShardIteratorType (http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType)
 	// in the Amazon Kinesis API Reference.
-	StartingPosition *string `type:"string" required:"true"`
+	StartingPosition *string `type:"string" required:"true" enum:"EventSourcePosition"`
 
 	metadataCreateEventSourceMappingInput `json:"-" xml:"-"`
 }
@@ -772,7 +772,7 @@ type CreateFunctionInput struct {
 
 	// The runtime environment for the Lambda function you are uploading. Currently,
 	// Lambda supports "java" and "nodejs" as the runtime.
-	Runtime *string `type:"string" required:"true"`
+	Runtime *string `type:"string" required:"true" enum:"Runtime"`
 
 	// The function execution time at which Lambda should terminate the function.
 	// Because the execution time has cost implications, we recommend you set this
@@ -1001,7 +1001,7 @@ type FunctionConfiguration struct {
 	Role *string `type:"string"`
 
 	// The runtime environment for the Lambda function.
-	Runtime *string `type:"string"`
+	Runtime *string `type:"string" enum:"Runtime"`
 
 	// The function execution time at which Lambda should terminate the function.
 	// Because the execution time has cost implications, we recommend you set this
@@ -1251,13 +1251,13 @@ type InvokeInput struct {
 	// is authorized to invoke the function and if the inputs are valid. You request
 	// this by specifying "DryRun" as the InvocationType. This is useful in a cross-account
 	// scenario when you want to verify access to a function without running it.
-	InvocationType *string `location:"header" locationName:"X-Amz-Invocation-Type" type:"string"`
+	InvocationType *string `location:"header" locationName:"X-Amz-Invocation-Type" type:"string" enum:"InvocationType"`
 
 	// You can set this optional parameter to "Tail" in the request only if you
 	// specify the InvocationType parameter with value "RequestResponse". In this
 	// case, AWS Lambda returns the base64-encoded last 4 KB of log data produced
 	// by your Lambda function in the x-amz-log-results header.
-	LogType *string `location:"header" locationName:"X-Amz-Log-Type" type:"string"`
+	LogType *string `location:"header" locationName:"X-Amz-Log-Type" type:"string" enum:"LogType"`
 
 	// JSON that you want to provide to your Lambda function as input.
 	Payload []byte `type:"blob"`
@@ -1623,3 +1623,33 @@ func (s UpdateFunctionConfigurationInput) String() string {
 func (s UpdateFunctionConfigurationInput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum EventSourcePosition
+	EventSourcePositionTrimHorizon = "TRIM_HORIZON"
+	// @enum EventSourcePosition
+	EventSourcePositionLatest = "LATEST"
+)
+
+const (
+	// @enum InvocationType
+	InvocationTypeEvent = "Event"
+	// @enum InvocationType
+	InvocationTypeRequestResponse = "RequestResponse"
+	// @enum InvocationType
+	InvocationTypeDryRun = "DryRun"
+)
+
+const (
+	// @enum LogType
+	LogTypeNone = "None"
+	// @enum LogType
+	LogTypeTail = "Tail"
+)
+
+const (
+	// @enum Runtime
+	RuntimeNodejs = "nodejs"
+	// @enum Runtime
+	RuntimeJava8 = "java8"
+)

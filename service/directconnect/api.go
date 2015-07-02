@@ -768,7 +768,7 @@ type ConfirmConnectionOutput struct {
 	// for use.  Down: The network link is down.  Deleted: The connection has been
 	// deleted.  Rejected: A hosted connection in the 'Ordering' state will enter
 	// the 'Rejected' state if it is deleted by the end customer.
-	ConnectionState *string `locationName:"connectionState" type:"string"`
+	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
 	metadataConfirmConnectionOutput `json:"-" xml:"-"`
 }
@@ -840,7 +840,7 @@ type ConfirmPrivateVirtualInterfaceOutput struct {
 	// of the virtual interface. If a virtual interface in the 'Confirming' state
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
 	metadataConfirmPrivateVirtualInterfaceOutput `json:"-" xml:"-"`
 }
@@ -903,7 +903,7 @@ type ConfirmPublicVirtualInterfaceOutput struct {
 	// of the virtual interface. If a virtual interface in the 'Confirming' state
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
 	metadataConfirmPublicVirtualInterfaceOutput `json:"-" xml:"-"`
 }
@@ -956,7 +956,7 @@ type Connection struct {
 	// for use.  Down: The network link is down.  Deleted: The connection has been
 	// deleted.  Rejected: A hosted connection in the 'Ordering' state will enter
 	// the 'Rejected' state if it is deleted by the end customer.
-	ConnectionState *string `locationName:"connectionState" type:"string"`
+	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
 	// Where the connection is located.
 	//
@@ -1222,7 +1222,7 @@ type DeleteInterconnectOutput struct {
 	// and is being initialized.  Available: The network link is up, and the interconnect
 	// is ready for use.  Down: The network link is down.  Deleted: The interconnect
 	// has been deleted.
-	InterconnectState *string `locationName:"interconnectState" type:"string"`
+	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 
 	metadataDeleteInterconnectOutput `json:"-" xml:"-"`
 }
@@ -1285,7 +1285,7 @@ type DeleteVirtualInterfaceOutput struct {
 	// of the virtual interface. If a virtual interface in the 'Confirming' state
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
 	metadataDeleteVirtualInterfaceOutput `json:"-" xml:"-"`
 }
@@ -1571,7 +1571,7 @@ type Interconnect struct {
 	// and is being initialized.  Available: The network link is up, and the interconnect
 	// is ready for use.  Down: The network link is down.  Deleted: The interconnect
 	// has been deleted.
-	InterconnectState *string `locationName:"interconnectState" type:"string"`
+	InterconnectState *string `locationName:"interconnectState" type:"string" enum:"InterconnectState"`
 
 	// Where the connection is located.
 	//
@@ -1990,7 +1990,7 @@ type VirtualInterface struct {
 	// of the virtual interface. If a virtual interface in the 'Confirming' state
 	// is deleted by the virtual interface owner, the virtual interface will enter
 	// the 'Rejected' state.
-	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string"`
+	VirtualInterfaceState *string `locationName:"virtualInterfaceState" type:"string" enum:"VirtualInterfaceState"`
 
 	// The type of virtual interface.
 	//
@@ -2014,3 +2014,86 @@ func (s VirtualInterface) String() string {
 func (s VirtualInterface) GoString() string {
 	return s.String()
 }
+
+// State of the connection.   Ordering: The initial state of a hosted connection
+// provisioned on an interconnect. The connection stays in the ordering state
+// until the owner of the hosted connection confirms or declines the connection
+// order.  Requested: The initial state of a standard connection. The connection
+// stays in the requested state until the Letter of Authorization (LOA) is sent
+// to the customer.  Pending: The connection has been approved, and is being
+// initialized.  Available: The network link is up, and the connection is ready
+// for use.  Down: The network link is down.  Deleted: The connection has been
+// deleted.  Rejected: A hosted connection in the 'Ordering' state will enter
+// the 'Rejected' state if it is deleted by the end customer.
+const (
+	// @enum ConnectionState
+	ConnectionStateOrdering = "ordering"
+	// @enum ConnectionState
+	ConnectionStateRequested = "requested"
+	// @enum ConnectionState
+	ConnectionStatePending = "pending"
+	// @enum ConnectionState
+	ConnectionStateAvailable = "available"
+	// @enum ConnectionState
+	ConnectionStateDown = "down"
+	// @enum ConnectionState
+	ConnectionStateDeleting = "deleting"
+	// @enum ConnectionState
+	ConnectionStateDeleted = "deleted"
+	// @enum ConnectionState
+	ConnectionStateRejected = "rejected"
+)
+
+// State of the interconnect.   Requested: The initial state of an interconnect.
+// The interconnect stays in the requested state until the Letter of Authorization
+// (LOA) is sent to the customer.  Pending: The interconnect has been approved,
+// and is being initialized.  Available: The network link is up, and the interconnect
+// is ready for use.  Down: The network link is down.  Deleted: The interconnect
+// has been deleted.
+const (
+	// @enum InterconnectState
+	InterconnectStateRequested = "requested"
+	// @enum InterconnectState
+	InterconnectStatePending = "pending"
+	// @enum InterconnectState
+	InterconnectStateAvailable = "available"
+	// @enum InterconnectState
+	InterconnectStateDown = "down"
+	// @enum InterconnectState
+	InterconnectStateDeleting = "deleting"
+	// @enum InterconnectState
+	InterconnectStateDeleted = "deleted"
+)
+
+// State of the virtual interface.   Confirming: The creation of the virtual
+// interface is pending confirmation from the virtual interface owner. If the
+// owner of the virtual interface is different from the owner of the connection
+// on which it is provisioned, then the virtual interface will remain in this
+// state until it is confirmed by the virtual interface owner.  Verifying: This
+// state only applies to public virtual interfaces. Each public virtual interface
+// needs validation before the virtual interface can be created.  Pending: A
+// virtual interface is in this state from the time that it is created until
+// the virtual interface is ready to forward traffic.  Available: A virtual
+// interface that is able to forward traffic.  Deleting: A virtual interface
+// is in this state immediately after calling DeleteVirtualInterface until it
+// can no longer forward traffic.  Deleted: A virtual interface that cannot
+// forward traffic.  Rejected: The virtual interface owner has declined creation
+// of the virtual interface. If a virtual interface in the 'Confirming' state
+// is deleted by the virtual interface owner, the virtual interface will enter
+// the 'Rejected' state.
+const (
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateConfirming = "confirming"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateVerifying = "verifying"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStatePending = "pending"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateAvailable = "available"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateDeleting = "deleting"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateDeleted = "deleted"
+	// @enum VirtualInterfaceState
+	VirtualInterfaceStateRejected = "rejected"
+)

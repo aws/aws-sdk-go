@@ -395,7 +395,7 @@ func (s AssociationDescription) GoString() string {
 // Describes a filter.
 type AssociationFilter struct {
 	// The name of the filter.
-	Key *string `locationName:"key" type:"string" required:"true"`
+	Key *string `locationName:"key" type:"string" required:"true" enum:"AssociationFilterKey"`
 
 	// The filter value.
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -429,7 +429,7 @@ type AssociationStatus struct {
 	Message *string `type:"string" required:"true"`
 
 	// The status.
-	Name *string `type:"string" required:"true"`
+	Name *string `type:"string" required:"true" enum:"AssociationStatusName"`
 
 	metadataAssociationStatus `json:"-" xml:"-"`
 }
@@ -789,7 +789,7 @@ type DocumentDescription struct {
 	SHA1 *string `locationName:"Sha1" type:"string"`
 
 	// The status of the configuration document.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"DocumentStatus"`
 
 	metadataDocumentDescription `json:"-" xml:"-"`
 }
@@ -811,7 +811,7 @@ func (s DocumentDescription) GoString() string {
 // Describes a filter.
 type DocumentFilter struct {
 	// The name of the filter.
-	Key *string `locationName:"key" type:"string" required:"true"`
+	Key *string `locationName:"key" type:"string" required:"true" enum:"DocumentFilterKey"`
 
 	// The value of the filter.
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -861,7 +861,7 @@ type FailedCreateAssociation struct {
 	Entry *CreateAssociationBatchRequestEntry `type:"structure"`
 
 	// The source of the failure.
-	Fault *string `type:"string"`
+	Fault *string `type:"string" enum:"Fault"`
 
 	// A description of the failure.
 	Message *string `type:"string"`
@@ -1085,3 +1085,42 @@ func (s UpdateAssociationStatusOutput) String() string {
 func (s UpdateAssociationStatusOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AssociationFilterKey
+	AssociationFilterKeyInstanceId = "InstanceId"
+	// @enum AssociationFilterKey
+	AssociationFilterKeyName = "Name"
+)
+
+const (
+	// @enum AssociationStatusName
+	AssociationStatusNamePending = "Pending"
+	// @enum AssociationStatusName
+	AssociationStatusNameSuccess = "Success"
+	// @enum AssociationStatusName
+	AssociationStatusNameFailed = "Failed"
+)
+
+const (
+	// @enum DocumentFilterKey
+	DocumentFilterKeyName = "Name"
+)
+
+const (
+	// @enum DocumentStatus
+	DocumentStatusCreating = "Creating"
+	// @enum DocumentStatus
+	DocumentStatusActive = "Active"
+	// @enum DocumentStatus
+	DocumentStatusDeleting = "Deleting"
+)
+
+const (
+	// @enum Fault
+	FaultClient = "Client"
+	// @enum Fault
+	FaultServer = "Server"
+	// @enum Fault
+	FaultUnknown = "Unknown"
+)

@@ -974,7 +974,7 @@ type FileSystemDescription struct {
 
 	// A predefined string value that indicates the lifecycle phase of the file
 	// system.
-	LifeCycleState *string `type:"string" required:"true"`
+	LifeCycleState *string `type:"string" required:"true" enum:"LifeCycleState"`
 
 	// You can add tags to a file system (see CreateTags) including a "Name" tag.
 	// If the file system has a "Name" tag, Amazon EFS returns the value in this
@@ -1101,7 +1101,7 @@ type MountTargetDescription struct {
 	IPAddress *string `locationName:"IpAddress" type:"string"`
 
 	// The lifecycle state the mount target is in.
-	LifeCycleState *string `type:"string" required:"true"`
+	LifeCycleState *string `type:"string" required:"true" enum:"LifeCycleState"`
 
 	// The system-assigned mount target ID.
 	MountTargetID *string `locationName:"MountTargetId" type:"string" required:"true"`
@@ -1159,3 +1159,14 @@ func (s Tag) String() string {
 func (s Tag) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum LifeCycleState
+	LifeCycleStateCreating = "creating"
+	// @enum LifeCycleState
+	LifeCycleStateAvailable = "available"
+	// @enum LifeCycleState
+	LifeCycleStateDeleting = "deleting"
+	// @enum LifeCycleState
+	LifeCycleStateDeleted = "deleted"
+)

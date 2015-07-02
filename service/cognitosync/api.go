@@ -619,7 +619,7 @@ type CognitoStreams struct {
 	//
 	// DISABLED - Streaming of updates to identity pool is disabled. Bulk publish
 	// will also fail if StreamingStatus is DISABLED.
-	StreamingStatus *string `type:"string"`
+	StreamingStatus *string `type:"string" enum:"StreamingStatus"`
 
 	metadataCognitoStreams `json:"-" xml:"-"`
 }
@@ -935,7 +935,7 @@ type GetBulkPublishDetailsOutput struct {
 	//
 	// FAILED - Some portion of the data has failed to publish, check FailureMessage
 	// for the cause.
-	BulkPublishStatus *string `type:"string"`
+	BulkPublishStatus *string `type:"string" enum:"BulkPublishStatus"`
 
 	// If BulkPublishStatus is FAILED this field will contain the error message
 	// that caused the bulk publish to fail.
@@ -1404,7 +1404,7 @@ type RecordPatch struct {
 	Key *string `type:"string" required:"true"`
 
 	// An operation, either replace or remove.
-	Op *string `type:"string" required:"true"`
+	Op *string `type:"string" required:"true" enum:"Operation"`
 
 	// Last known server sync count for this record. Set to 0 if unknown.
 	SyncCount *int64 `type:"long" required:"true"`
@@ -1440,7 +1440,7 @@ type RegisterDeviceInput struct {
 	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
 
 	// The SNS platform type (e.g. GCM, SDM, APNS, APNS_SANDBOX).
-	Platform *string `type:"string" required:"true"`
+	Platform *string `type:"string" required:"true" enum:"Platform"`
 
 	// The push token.
 	Token *string `type:"string" required:"true"`
@@ -1756,3 +1756,39 @@ func (s UpdateRecordsOutput) String() string {
 func (s UpdateRecordsOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum BulkPublishStatus
+	BulkPublishStatusNotStarted = "NOT_STARTED"
+	// @enum BulkPublishStatus
+	BulkPublishStatusInProgress = "IN_PROGRESS"
+	// @enum BulkPublishStatus
+	BulkPublishStatusFailed = "FAILED"
+	// @enum BulkPublishStatus
+	BulkPublishStatusSucceeded = "SUCCEEDED"
+)
+
+const (
+	// @enum Operation
+	OperationReplace = "replace"
+	// @enum Operation
+	OperationRemove = "remove"
+)
+
+const (
+	// @enum Platform
+	PlatformApns = "APNS"
+	// @enum Platform
+	PlatformApnsSandbox = "APNS_SANDBOX"
+	// @enum Platform
+	PlatformGcm = "GCM"
+	// @enum Platform
+	PlatformAdm = "ADM"
+)
+
+const (
+	// @enum StreamingStatus
+	StreamingStatusEnabled = "ENABLED"
+	// @enum StreamingStatus
+	StreamingStatusDisabled = "DISABLED"
+)

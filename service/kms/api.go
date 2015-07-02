@@ -1027,7 +1027,7 @@ type CreateKeyInput struct {
 
 	// Specifies the intended use of the key. Currently this defaults to ENCRYPT/DECRYPT,
 	// and only symmetric encryption and decryption are supported.
-	KeyUsage *string `type:"string"`
+	KeyUsage *string `type:"string" enum:"KeyUsageType"`
 
 	// Policy to be attached to the key. This is required and delegates back to
 	// the account. The key is the root of trust.
@@ -1463,7 +1463,7 @@ type GenerateDataKeyInput struct {
 
 	// Value that identifies the encryption algorithm and key size to generate a
 	// data key for. Currently this can be AES_128 or AES_256.
-	KeySpec *string `type:"string"`
+	KeySpec *string `type:"string" enum:"DataKeySpec"`
 
 	// Integer that contains the number of bytes to generate. Common values are
 	// 128, 256, 512, and 1024. 1024 is the current limit. We recommend that you
@@ -1541,7 +1541,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 
 	// Value that identifies the encryption algorithm and key size. Currently this
 	// can be AES_128 or AES_256.
-	KeySpec *string `type:"string"`
+	KeySpec *string `type:"string" enum:"DataKeySpec"`
 
 	// Integer that contains the number of bytes to generate. Common values are
 	// 128, 256, 512, 1024 and so on. We recommend that you use the KeySpec parameter
@@ -1843,7 +1843,7 @@ type KeyMetadata struct {
 	KeyID *string `locationName:"KeyId" type:"string" required:"true"`
 
 	// A value that specifies what operation(s) the key can perform.
-	KeyUsage *string `type:"string"`
+	KeyUsage *string `type:"string" enum:"KeyUsageType"`
 
 	metadataKeyMetadata `json:"-" xml:"-"`
 }
@@ -2414,3 +2414,34 @@ func (s UpdateKeyDescriptionOutput) String() string {
 func (s UpdateKeyDescriptionOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum DataKeySpec
+	DataKeySpecAes256 = "AES_256"
+	// @enum DataKeySpec
+	DataKeySpecAes128 = "AES_128"
+)
+
+const (
+	// @enum GrantOperation
+	GrantOperationDecrypt = "Decrypt"
+	// @enum GrantOperation
+	GrantOperationEncrypt = "Encrypt"
+	// @enum GrantOperation
+	GrantOperationGenerateDataKey = "GenerateDataKey"
+	// @enum GrantOperation
+	GrantOperationGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
+	// @enum GrantOperation
+	GrantOperationReEncryptFrom = "ReEncryptFrom"
+	// @enum GrantOperation
+	GrantOperationReEncryptTo = "ReEncryptTo"
+	// @enum GrantOperation
+	GrantOperationCreateGrant = "CreateGrant"
+	// @enum GrantOperation
+	GrantOperationRetireGrant = "RetireGrant"
+)
+
+const (
+	// @enum KeyUsageType
+	KeyUsageTypeEncryptDecrypt = "ENCRYPT_DECRYPT"
+)

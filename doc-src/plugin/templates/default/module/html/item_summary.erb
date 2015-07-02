@@ -7,6 +7,7 @@
       from <%= linkify @item, object.relative_path(@item.namespace) %>
     </span>
   <% end %>
+  <% if @item.type == :enum %><span class="note title writeonly">enum</span><% end %>
   <% if @item.type == :bare_struct || @item.type == :struct %><span class="note title readonly">struct</span><% end %>
   <% if @item.has_tag?(:service) %><span class="note title writeonly">client</span><% end %>
   <% if @item.has_tag?(:service_operation) %><span class="note title readonly">operation</span><% end %>

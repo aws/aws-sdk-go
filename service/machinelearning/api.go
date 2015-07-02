@@ -954,7 +954,7 @@ type BatchPrediction struct {
 	//  FAILED - The request to peform a batch prediction did not run to completion.
 	// It is not usable.  COMPLETED - The batch prediction process completed successfully.
 	//  DELETED - The BatchPrediction is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	metadataBatchPrediction `json:"-" xml:"-"`
 }
@@ -1391,7 +1391,7 @@ type CreateMLModelInput struct {
 	// Choose BINARY if the MLModel result has two possible values. Choose MULTICLASS
 	// if the MLModel result has a limited number of values.    For more information,
 	// see the Amazon Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
-	MLModelType *string `type:"string" required:"true"`
+	MLModelType *string `type:"string" required:"true" enum:"MLModelType"`
 
 	// A list of the training parameters in the MLModel. The list is implemented
 	// as a map of key/value pairs.
@@ -1599,7 +1599,7 @@ type DataSource struct {
 	// request to create a DataSource did not run to completion. It is not usable.
 	// COMPLETED - The creation process completed successfully. DELETED - The DataSource
 	// is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	metadataDataSource `json:"-" xml:"-"`
 }
@@ -1869,7 +1869,7 @@ type DescribeBatchPredictionsInput struct {
 	// used in the BatchPrediction.  DataURI - Sets the search criteria to the data
 	// file(s) used in the BatchPrediction. The URL can identify either a file or
 	// an Amazon Simple Storage Solution (Amazon S3) bucket or directory.
-	FilterVariable *string `type:"string"`
+	FilterVariable *string `type:"string" enum:"BatchPredictionFilterVariable"`
 
 	// The greater than or equal to operator. The BatchPrediction results will have
 	// FilterVariable values that are greater than or equal to the value specified
@@ -1918,7 +1918,7 @@ type DescribeBatchPredictionsInput struct {
 	//
 	//   asc - Arranges the list in ascending order (A-Z, 0-9).  dsc - Arranges
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
-	SortOrder *string `type:"string"`
+	SortOrder *string `type:"string" enum:"SortOrder"`
 
 	metadataDescribeBatchPredictionsInput `json:"-" xml:"-"`
 }
@@ -1978,7 +1978,7 @@ type DescribeDataSourcesInput struct {
 	// can identify either a file or an Amazon Simple Storage Service (Amazon S3)
 	// bucket or directory.  IAMUser - Sets the search criteria to the user account
 	// that invoked the DataSource creation.
-	FilterVariable *string `type:"string"`
+	FilterVariable *string `type:"string" enum:"DataSourceFilterVariable"`
 
 	// The greater than or equal to operator. The DataSource results will have FilterVariable
 	// values that are greater than or equal to the value specified with GE.
@@ -2024,7 +2024,7 @@ type DescribeDataSourcesInput struct {
 	//
 	//   asc - Arranges the list in ascending order (A-Z, 0-9).  dsc - Arranges
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
-	SortOrder *string `type:"string"`
+	SortOrder *string `type:"string" enum:"SortOrder"`
 
 	metadataDescribeDataSourcesInput `json:"-" xml:"-"`
 }
@@ -2086,7 +2086,7 @@ type DescribeEvaluationsInput struct {
 	// - Sets the search criteria to the data file(s) used in Evaluation. The URL
 	// can identify either a file or an Amazon Simple Storage Solution (Amazon S3)
 	// bucket or directory.
-	FilterVariable *string `type:"string"`
+	FilterVariable *string `type:"string" enum:"EvaluationFilterVariable"`
 
 	// The greater than or equal to operator. The Evaluation results will have FilterVariable
 	// values that are greater than or equal to the value specified with GE.
@@ -2132,7 +2132,7 @@ type DescribeEvaluationsInput struct {
 	//
 	//   asc - Arranges the list in ascending order (A-Z, 0-9).  dsc - Arranges
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
-	SortOrder *string `type:"string"`
+	SortOrder *string `type:"string" enum:"SortOrder"`
 
 	metadataDescribeEvaluationsInput `json:"-" xml:"-"`
 }
@@ -2196,7 +2196,7 @@ type DescribeMLModelsInput struct {
 	// to the algorithm that the MLModel uses.  TrainingDataURI - Sets the search
 	// criteria to the data file(s) used in training a MLModel. The URL can identify
 	// either a file or an Amazon Simple Storage Service (Amazon S3) bucket or directory.
-	FilterVariable *string `type:"string"`
+	FilterVariable *string `type:"string" enum:"MLModelFilterVariable"`
 
 	// The greater than or equal to operator. The MLModel results will have FilterVariable
 	// values that are greater than or equal to the value specified with GE.
@@ -2243,7 +2243,7 @@ type DescribeMLModelsInput struct {
 	//
 	//   asc - Arranges the list in ascending order (A-Z, 0-9).  dsc - Arranges
 	// the list in descending order (Z-A, 9-0).  Results are sorted by FilterVariable.
-	SortOrder *string `type:"string"`
+	SortOrder *string `type:"string" enum:"SortOrder"`
 
 	metadataDescribeMLModelsInput `json:"-" xml:"-"`
 }
@@ -2352,7 +2352,7 @@ type Evaluation struct {
 	// to evaluate an MLModel did not run to completion. It is not usable.  COMPLETED
 	// - The evaluation process completed successfully.  DELETED - The Evaluation
 	// is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	metadataEvaluation `json:"-" xml:"-"`
 }
@@ -2443,7 +2443,7 @@ type GetBatchPredictionOutput struct {
 	// FAILED - The request to perform a batch prediction did not run to completion.
 	// It is not usable.  COMPLETED - The batch prediction process completed successfully.
 	//  DELETED - The BatchPrediction is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	metadataGetBatchPredictionOutput `json:"-" xml:"-"`
 }
@@ -2559,7 +2559,7 @@ type GetDataSourceOutput struct {
 	// request to create a DataSource did not run to completion. It is not usable.
 	//  COMPLETED - The creation process completed successfully.  DELETED - The
 	// DataSource is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	metadataGetDataSourceOutput `json:"-" xml:"-"`
 }
@@ -2663,7 +2663,7 @@ type GetEvaluationOutput struct {
 	// to evaluate an MLModel did not run to completion. It is not usable.  COMPLETED
 	// - The evaluation process completed successfully.  DELETED - The Evaluation
 	// is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	metadataGetEvaluationOutput `json:"-" xml:"-"`
 }
@@ -2744,7 +2744,7 @@ type GetMLModelOutput struct {
 	// should a house have?" BINARY -- Produces one of two possible results. For
 	// example, "Is this an e-commerce website?" MULTICLASS -- Produces more than
 	// two possible results. For example, "Is this a HIGH, LOW or MEDIUM risk trade?"
-	MLModelType *string `type:"string"`
+	MLModelType *string `type:"string" enum:"MLModelType"`
 
 	// Description of the most recent details about accessing the MLModel.
 	Message *string `type:"string"`
@@ -2786,7 +2786,7 @@ type GetMLModelOutput struct {
 	// a MLModel.  INPROGRESS - The request is processing.  FAILED - The request
 	// did not run to completion. It is not usable.  COMPLETED - The request completed
 	// successfully.  DELETED - The MLModel is marked as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The ID of the training DataSource.
 	TrainingDataSourceID *string `locationName:"TrainingDataSourceId" type:"string"`
@@ -2851,7 +2851,7 @@ type MLModel struct {
 	//
 	//  SGD -- Stochastic gradient descent. The goal of SGD is to minimize the
 	// gradient of the loss function.
-	Algorithm *string `type:"string"`
+	Algorithm *string `type:"string" enum:"Algorithm"`
 
 	// The time that the MLModel was created. The time is expressed in epoch time.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -2882,7 +2882,7 @@ type MLModel struct {
 	// example, "Is this a child-friendly web site?". MULTICLASS - Produces more
 	// than two possible results. For example, "Is this a HIGH, LOW or MEDIUM risk
 	// trade?".
-	MLModelType *string `type:"string"`
+	MLModelType *string `type:"string" enum:"MLModelType"`
 
 	// A description of the most recent details about accessing the MLModel.
 	Message *string `type:"string"`
@@ -2907,7 +2907,7 @@ type MLModel struct {
 	// to create an MLModel did not run to completion. It is not usable. COMPLETED
 	// - The creation process completed successfully. DELETED - The MLModel is marked
 	// as deleted. It is not usable.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The ID of the training DataSource. The CreateMLModel operation uses the TrainingDataSourceId.
 	TrainingDataSourceID *string `locationName:"TrainingDataSourceId" type:"string"`
@@ -3280,7 +3280,7 @@ type RealtimeEndpointInfo struct {
 	//  NONE - Endpoint does not exist or was previously deleted. READY - Endpoint
 	// is ready to be used for real-time predictions. UPDATING - Updating/creating
 	// the endpoint.
-	EndpointStatus *string `type:"string"`
+	EndpointStatus *string `type:"string" enum:"RealtimeEndpointStatus"`
 
 	// The URI that specifies where to send real-time prediction requests for the
 	// MLModel.
@@ -3682,3 +3682,179 @@ func (s UpdateMLModelOutput) String() string {
 func (s UpdateMLModelOutput) GoString() string {
 	return s.String()
 }
+
+// The function used to train a MLModel. Training choices supported by Amazon
+// ML include the following:
+//
+//  SGD - Stochastic Gradient Descent. RandomForest - Random forest of decision
+// trees.
+const (
+	// @enum Algorithm
+	AlgorithmSgd = "sgd"
+)
+
+// A list of the variables to use in searching or filtering BatchPrediction.
+//
+//   CreatedAt - Sets the search criteria to BatchPrediction creation date.
+//  Status - Sets the search criteria to BatchPrediction status.  Name - Sets
+// the search criteria to the contents of BatchPrediction  Name.  IAMUser -
+// Sets the search criteria to the user account that invoked the BatchPrediction
+// creation.  MLModelId - Sets the search criteria to the MLModel used in the
+// BatchPrediction.  DataSourceId - Sets the search criteria to the DataSource
+// used in the BatchPrediction.  DataURI - Sets the search criteria to the data
+// file(s) used in the BatchPrediction. The URL can identify either a file or
+// an Amazon Simple Storage Service (Amazon S3) bucket or directory.
+const (
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableCreatedAt = "CreatedAt"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableLastUpdatedAt = "LastUpdatedAt"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableStatus = "Status"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableName = "Name"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableIamuser = "IAMUser"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableMlmodelId = "MLModelId"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableDataSourceId = "DataSourceId"
+	// @enum BatchPredictionFilterVariable
+	BatchPredictionFilterVariableDataUri = "DataURI"
+)
+
+// A list of the variables to use in searching or filtering DataSource.
+//
+//   CreatedAt - Sets the search criteria to DataSource creation date.  Status
+// - Sets the search criteria to DataSource status.  Name - Sets the search
+// criteria to the contents of DataSource   Name.  DataUri - Sets the search
+// criteria to the URI of data files used to create the DataSource. The URI
+// can identify either a file or an Amazon Simple Storage Service (Amazon S3)
+// bucket or directory.  IAMUser - Sets the search criteria to the user account
+// that invoked the DataSource creation.  Note The variable names should match
+// the variable names in the DataSource.
+const (
+	// @enum DataSourceFilterVariable
+	DataSourceFilterVariableCreatedAt = "CreatedAt"
+	// @enum DataSourceFilterVariable
+	DataSourceFilterVariableLastUpdatedAt = "LastUpdatedAt"
+	// @enum DataSourceFilterVariable
+	DataSourceFilterVariableStatus = "Status"
+	// @enum DataSourceFilterVariable
+	DataSourceFilterVariableName = "Name"
+	// @enum DataSourceFilterVariable
+	DataSourceFilterVariableDataLocationS3 = "DataLocationS3"
+	// @enum DataSourceFilterVariable
+	DataSourceFilterVariableIamuser = "IAMUser"
+)
+
+// Contains the key values of DetailsMap: PredictiveModelType - Indicates the
+// type of the MLModel. Algorithm - Indicates the algorithm was used for the
+// MLModel.
+const (
+	// @enum DetailsAttributes
+	DetailsAttributesPredictiveModelType = "PredictiveModelType"
+	// @enum DetailsAttributes
+	DetailsAttributesAlgorithm = "Algorithm"
+)
+
+// Entity status with the following possible values:
+//
+//  PENDING INPROGRESS FAILED COMPLETED DELETED
+const (
+	// @enum EntityStatus
+	EntityStatusPending = "PENDING"
+	// @enum EntityStatus
+	EntityStatusInprogress = "INPROGRESS"
+	// @enum EntityStatus
+	EntityStatusFailed = "FAILED"
+	// @enum EntityStatus
+	EntityStatusCompleted = "COMPLETED"
+	// @enum EntityStatus
+	EntityStatusDeleted = "DELETED"
+)
+
+// A list of the variables to use in searching or filtering Evaluation.
+//
+//   CreatedAt - Sets the search criteria to Evaluation creation date.  Status
+// - Sets the search criteria to Evaluation status.  Name - Sets the search
+// criteria to the contents of Evaluation   Name.  IAMUser - Sets the search
+// criteria to the user account that invoked an evaluation.  MLModelId - Sets
+// the search criteria to the Predictor that was evaluated.  DataSourceId -
+// Sets the search criteria to the DataSource used in evaluation.  DataUri -
+// Sets the search criteria to the data file(s) used in evaluation. The URL
+// can identify either a file or an Amazon Simple Storage Service (Amazon S3)
+// bucket or directory.
+const (
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableCreatedAt = "CreatedAt"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableLastUpdatedAt = "LastUpdatedAt"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableStatus = "Status"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableName = "Name"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableIamuser = "IAMUser"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableMlmodelId = "MLModelId"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableDataSourceId = "DataSourceId"
+	// @enum EvaluationFilterVariable
+	EvaluationFilterVariableDataUri = "DataURI"
+)
+
+const (
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableCreatedAt = "CreatedAt"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableLastUpdatedAt = "LastUpdatedAt"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableStatus = "Status"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableName = "Name"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableIamuser = "IAMUser"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableTrainingDataSourceId = "TrainingDataSourceId"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableRealtimeEndpointStatus = "RealtimeEndpointStatus"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableMlmodelType = "MLModelType"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableAlgorithm = "Algorithm"
+	// @enum MLModelFilterVariable
+	MLModelFilterVariableTrainingDataUri = "TrainingDataURI"
+)
+
+const (
+	// @enum MLModelType
+	MLModelTypeRegression = "REGRESSION"
+	// @enum MLModelType
+	MLModelTypeBinary = "BINARY"
+	// @enum MLModelType
+	MLModelTypeMulticlass = "MULTICLASS"
+)
+
+const (
+	// @enum RealtimeEndpointStatus
+	RealtimeEndpointStatusNone = "NONE"
+	// @enum RealtimeEndpointStatus
+	RealtimeEndpointStatusReady = "READY"
+	// @enum RealtimeEndpointStatus
+	RealtimeEndpointStatusUpdating = "UPDATING"
+	// @enum RealtimeEndpointStatus
+	RealtimeEndpointStatusFailed = "FAILED"
+)
+
+// The sort order specified in a listing condition. Possible values include
+// the following:
+//
+//   asc - Present the information in ascending order (from A-Z).  dsc - Present
+// the information in descending order (from Z-A).
+const (
+	// @enum SortOrder
+	SortOrderAsc = "asc"
+	// @enum SortOrder
+	SortOrderDsc = "dsc"
+)

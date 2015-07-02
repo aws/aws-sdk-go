@@ -1008,7 +1008,7 @@ type DescribeLogStreamsInput struct {
 	// 'LogStreamName' or 'LastEventTime'. If you don't specify a value, results
 	// are ordered by LogStreamName. If 'LastEventTime' is chosen, the request cannot
 	// also contain a logStreamNamePrefix.
-	OrderBy *string `locationName:"orderBy" type:"string"`
+	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
 
 	metadataDescribeLogStreamsInput `json:"-" xml:"-"`
 }
@@ -1929,3 +1929,10 @@ func (s TestMetricFilterOutput) String() string {
 func (s TestMetricFilterOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum OrderBy
+	OrderByLogStreamName = "LogStreamName"
+	// @enum OrderBy
+	OrderByLastEventTime = "LastEventTime"
+)

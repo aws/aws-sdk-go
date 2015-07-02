@@ -4974,7 +4974,7 @@ type DescribeEventsInput struct {
 	// name. Specify cluster-parameter-group when SourceIdentifier is a cluster
 	// parameter group name. Specify cluster-snapshot when SourceIdentifier is a
 	// cluster snapshot identifier.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
 	// 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia
@@ -6003,7 +6003,7 @@ type Event struct {
 	SourceIdentifier *string `type:"string"`
 
 	// The source type for this event.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	metadataEvent `json:"-" xml:"-"`
 }
@@ -6763,7 +6763,7 @@ type Parameter struct {
 	AllowedValues *string `type:"string"`
 
 	// Specifies how to apply the parameter. Supported value: static.
-	ApplyType *string `type:"string"`
+	ApplyType *string `type:"string" enum:"ParameterApplyType"`
 
 	// The data type of the parameter.
 	DataType *string `type:"string"`
@@ -7744,3 +7744,21 @@ func (s VPCSecurityGroupMembership) String() string {
 func (s VPCSecurityGroupMembership) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ParameterApplyType
+	ParameterApplyTypeStatic = "static"
+	// @enum ParameterApplyType
+	ParameterApplyTypeDynamic = "dynamic"
+)
+
+const (
+	// @enum SourceType
+	SourceTypeCluster = "cluster"
+	// @enum SourceType
+	SourceTypeClusterParameterGroup = "cluster-parameter-group"
+	// @enum SourceType
+	SourceTypeClusterSecurityGroup = "cluster-security-group"
+	// @enum SourceType
+	SourceTypeClusterSnapshot = "cluster-snapshot"
+)

@@ -1118,7 +1118,7 @@ type ContainerInstance struct {
 
 	// The status of the most recent agent update. If an update has never been requested,
 	// this value is NULL.
-	AgentUpdateStatus *string `locationName:"agentUpdateStatus" type:"string"`
+	AgentUpdateStatus *string `locationName:"agentUpdateStatus" type:"string" enum:"AgentUpdateStatus"`
 
 	// The Amazon Resource Name (ARN) of the container instance. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the container instance,
@@ -2212,7 +2212,7 @@ type ListTaskDefinitionsInput struct {
 	// in a family are listed last. Setting this parameter to DESC reverses the
 	// sort order on family name and revision so that the newest task definitions
 	// in a family are listed first.
-	Sort *string `locationName:"sort" type:"string"`
+	Sort *string `locationName:"sort" type:"string" enum:"SortOrder"`
 
 	// The task definition status that you want to filter the ListTaskDefinitions
 	// results with. By default, only ACTIVE task definitions are listed. By setting
@@ -2220,7 +2220,7 @@ type ListTaskDefinitionsInput struct {
 	// as long as an active task or service still references them. If you paginate
 	// the resulting output, be sure to keep the status value constant in each subsequent
 	// request.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
 	metadataListTaskDefinitionsInput `json:"-" xml:"-"`
 }
@@ -2283,7 +2283,7 @@ type ListTasksInput struct {
 	// a desiredStatus of STOPPED will limit the results to tasks that are in the
 	// STOPPED status, which can be useful for debugging tasks that are not starting
 	// properly or have died or finished. The default status filter is RUNNING.
-	DesiredStatus *string `locationName:"desiredStatus" type:"string"`
+	DesiredStatus *string `locationName:"desiredStatus" type:"string" enum:"DesiredStatus"`
 
 	// The name of the family that you want to filter the ListTasks results with.
 	// Specifying a family will limit the results to tasks that belong to that family.
@@ -2432,7 +2432,7 @@ type NetworkBinding struct {
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
 	// The protocol used for the network binding.
-	Protocol *string `locationName:"protocol" type:"string"`
+	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 
 	metadataNetworkBinding `json:"-" xml:"-"`
 }
@@ -2486,7 +2486,7 @@ type PortMapping struct {
 
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
 	// default is tcp.
-	Protocol *string `locationName:"protocol" type:"string"`
+	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 
 	metadataPortMapping `json:"-" xml:"-"`
 }
@@ -3154,7 +3154,7 @@ type TaskDefinition struct {
 	Revision *int64 `locationName:"revision" type:"integer"`
 
 	// The status of the task definition.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
 	// The full Amazon Resource Name (ARN) of the of the task definition.
 	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
@@ -3396,3 +3396,48 @@ func (s VolumeFrom) String() string {
 func (s VolumeFrom) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusPending = "PENDING"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusStaging = "STAGING"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusStaged = "STAGED"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusUpdating = "UPDATING"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusUpdated = "UPDATED"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusFailed = "FAILED"
+)
+
+const (
+	// @enum DesiredStatus
+	DesiredStatusRunning = "RUNNING"
+	// @enum DesiredStatus
+	DesiredStatusPending = "PENDING"
+	// @enum DesiredStatus
+	DesiredStatusStopped = "STOPPED"
+)
+
+const (
+	// @enum SortOrder
+	SortOrderAsc = "ASC"
+	// @enum SortOrder
+	SortOrderDesc = "DESC"
+)
+
+const (
+	// @enum TaskDefinitionStatus
+	TaskDefinitionStatusActive = "ACTIVE"
+	// @enum TaskDefinitionStatus
+	TaskDefinitionStatusInactive = "INACTIVE"
+)
+
+const (
+	// @enum TransportProtocol
+	TransportProtocolTcp = "tcp"
+	// @enum TransportProtocol
+	TransportProtocolUdp = "udp"
+)

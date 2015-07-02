@@ -5386,7 +5386,7 @@ type DescribeEventsInput struct {
 
 	// The event source to retrieve events for. If no value is specified, all events
 	// are returned.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
 	// 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia
@@ -6119,7 +6119,7 @@ type Event struct {
 	SourceIdentifier *string `type:"string"`
 
 	// Specifies the source type for this event.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	metadataEvent `json:"-" xml:"-"`
 }
@@ -7255,7 +7255,7 @@ type Parameter struct {
 	AllowedValues *string `type:"string"`
 
 	// Indicates when to apply parameter updates.
-	ApplyMethod *string `type:"string"`
+	ApplyMethod *string `type:"string" enum:"ApplyMethod"`
 
 	// Specifies the engine specific parameters type.
 	ApplyType *string `type:"string"`
@@ -8419,3 +8419,21 @@ func (s VPCSecurityGroupMembership) String() string {
 func (s VPCSecurityGroupMembership) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ApplyMethod
+	ApplyMethodImmediate = "immediate"
+	// @enum ApplyMethod
+	ApplyMethodPendingReboot = "pending-reboot"
+)
+
+const (
+	// @enum SourceType
+	SourceTypeDbInstance = "db-instance"
+	// @enum SourceType
+	SourceTypeDbParameterGroup = "db-parameter-group"
+	// @enum SourceType
+	SourceTypeDbSecurityGroup = "db-security-group"
+	// @enum SourceType
+	SourceTypeDbSnapshot = "db-snapshot"
+)

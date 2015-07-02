@@ -687,7 +687,7 @@ type AttributeDefinition struct {
 	AttributeName *string `type:"string" required:"true"`
 
 	// The data type for the attribute.
-	AttributeType *string `type:"string" required:"true"`
+	AttributeType *string `type:"string" required:"true" enum:"ScalarAttributeType"`
 
 	metadataAttributeDefinition `json:"-" xml:"-"`
 }
@@ -834,7 +834,7 @@ type AttributeValueUpdate struct {
 	//   ADD - DynamoDB creates an item with the supplied primary key and number
 	// (or set of numbers) for the attribute value. The only data types allowed
 	// are number and number set; no other data types can be specified.
-	Action *string `type:"string"`
+	Action *string `type:"string" enum:"AttributeAction"`
 
 	// Represents the data for an attribute. You can set one, and only one, of the
 	// elements.
@@ -961,7 +961,7 @@ type BatchGetItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	metadataBatchGetItemInput `json:"-" xml:"-"`
 }
@@ -1080,13 +1080,13 @@ type BatchWriteItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	metadataBatchWriteItemInput `json:"-" xml:"-"`
 }
@@ -1367,7 +1367,7 @@ type Condition struct {
 	//   For usage examples of AttributeValueList and ComparisonOperator, see Legacy
 	// Conditional Parameters (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ComparisonOperator *string `type:"string" required:"true"`
+	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
 	metadataCondition `json:"-" xml:"-"`
 }
@@ -1692,7 +1692,7 @@ type DeleteItemInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ConditionExpression instead. Do not combine legacy parameters
@@ -1971,13 +1971,13 @@ type DeleteItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
 	// before they were deleted. For DeleteItem, the valid values are:
@@ -1986,7 +1986,7 @@ type DeleteItemInput struct {
 	// nothing is returned. (This setting is the default for ReturnValues.)
 	//
 	//   ALL_OLD - The content of the old item is returned.
-	ReturnValues *string `type:"string"`
+	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table from which to delete the item.
 	TableName *string `type:"string" required:"true"`
@@ -2338,7 +2338,7 @@ type ExpectedAttributeValue struct {
 	// element of a different type than the one provided in the request, the value
 	// does not match. For example, {"S":"6"} does not compare to {"N":"6"}. Also,
 	// {"N":"6"} does not compare to {"NS":["6", "2", "1"]}
-	ComparisonOperator *string `type:"string"`
+	ComparisonOperator *string `type:"string" enum:"ComparisonOperator"`
 
 	// Causes DynamoDB to evaluate the value before attempting a conditional operation:
 	//
@@ -2488,7 +2488,7 @@ type GetItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// The name of the table containing the requested item.
 	TableName *string `type:"string" required:"true"`
@@ -2613,7 +2613,7 @@ type GlobalSecondaryIndexDescription struct {
 	//   DELETING - The index is being deleted.
 	//
 	//   ACTIVE - The index is ready for use.
-	IndexStatus *string `type:"string"`
+	IndexStatus *string `type:"string" enum:"IndexStatus"`
 
 	// The number of items in the specified index. DynamoDB updates this value approximately
 	// every six hours. Recent changes might not be reflected in this value.
@@ -2744,7 +2744,7 @@ type KeySchemaElement struct {
 	AttributeName *string `type:"string" required:"true"`
 
 	// The attribute data, consisting of the data type and the attribute value itself.
-	KeyType *string `type:"string" required:"true"`
+	KeyType *string `type:"string" required:"true" enum:"KeyType"`
 
 	metadataKeySchemaElement `json:"-" xml:"-"`
 }
@@ -3009,7 +3009,7 @@ type Projection struct {
 	// The list of projected attributes are in NonKeyAttributes.
 	//
 	//   ALL - All of the table attributes are projected into the index.
-	ProjectionType *string `type:"string"`
+	ProjectionType *string `type:"string" enum:"ProjectionType"`
 
 	metadataProjection `json:"-" xml:"-"`
 }
@@ -3148,7 +3148,7 @@ type PutItemInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ConditionExpression instead. Do not combine legacy parameters
@@ -3437,13 +3437,13 @@ type PutItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
 	// before they were updated with the PutItem request. For PutItem, the valid
@@ -3456,7 +3456,7 @@ type PutItemInput struct {
 	// content of the old item is returned.
 	//
 	//   Other "Valid Values" are not relevant to PutItem.
-	ReturnValues *string `type:"string"`
+	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table to contain the item.
 	TableName *string `type:"string" required:"true"`
@@ -3609,7 +3609,7 @@ type QueryInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// Determines the read consistency model: If set to true, then the operation
 	// uses strongly consistent reads; otherwise, the operation uses eventually
@@ -3970,7 +3970,7 @@ type QueryInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Specifies the order in which to return the query results - either ascending
 	// (true) or descending (false).
@@ -4031,7 +4031,7 @@ type QueryInput struct {
 	// If you use the ProjectionExpression parameter, then the value for Select
 	// can only be SPECIFIC_ATTRIBUTES. Any other value for Select will return an
 	// error.
-	Select *string `type:"string"`
+	Select *string `type:"string" enum:"Select"`
 
 	// The name of the table containing the requested items.
 	TableName *string `type:"string" required:"true"`
@@ -4152,7 +4152,7 @@ type ScanInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// A Boolean value that determines the read consistency model during the scan:
 	//
@@ -4301,7 +4301,7 @@ type ScanInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use FilterExpression instead. Do not combine legacy parameters and
@@ -4385,7 +4385,7 @@ type ScanInput struct {
 	// in a single request, unless the value for Select is SPECIFIC_ATTRIBUTES.
 	// (This usage is equivalent to specifying AttributesToGet without any value
 	// for Select.)
-	Select *string `type:"string"`
+	Select *string `type:"string" enum:"Select"`
 
 	// The name of the table containing the requested items; or, if you provide
 	// IndexName, the name of the table to which that index belongs.
@@ -4508,7 +4508,7 @@ type StreamSpecification struct {
 	//
 	// NEW_AND_OLD_IMAGES - Both the new and the old item images of the item are
 	// written to the stream.
-	StreamViewType *string `type:"string"`
+	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	metadataStreamSpecification `json:"-" xml:"-"`
 }
@@ -4707,7 +4707,7 @@ type TableDescription struct {
 	//   DELETING - The table is being deleted.
 	//
 	//   ACTIVE - The table is ready for use.
-	TableStatus *string `type:"string"`
+	TableStatus *string `type:"string" enum:"TableStatus"`
 
 	metadataTableDescription `json:"-" xml:"-"`
 }
@@ -4888,7 +4888,7 @@ type UpdateItemInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use  ConditionExpression  instead. Do not combine legacy parameters
@@ -5167,13 +5167,13 @@ type UpdateItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
 	// either before or after they were updated. For UpdateItem, the valid values
@@ -5190,7 +5190,7 @@ type UpdateItemInput struct {
 	//   ALL_NEW - All of the attributes of the new version of the item are returned.
 	//
 	//   UPDATED_NEW - The new versions of only the updated attributes are returned.
-	ReturnValues *string `type:"string"`
+	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table containing the item to update.
 	TableName *string `type:"string" required:"true"`
@@ -5431,3 +5431,161 @@ func (s WriteRequest) String() string {
 func (s WriteRequest) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AttributeAction
+	AttributeActionAdd = "ADD"
+	// @enum AttributeAction
+	AttributeActionPut = "PUT"
+	// @enum AttributeAction
+	AttributeActionDelete = "DELETE"
+)
+
+const (
+	// @enum ComparisonOperator
+	ComparisonOperatorEq = "EQ"
+	// @enum ComparisonOperator
+	ComparisonOperatorNe = "NE"
+	// @enum ComparisonOperator
+	ComparisonOperatorIn = "IN"
+	// @enum ComparisonOperator
+	ComparisonOperatorLe = "LE"
+	// @enum ComparisonOperator
+	ComparisonOperatorLt = "LT"
+	// @enum ComparisonOperator
+	ComparisonOperatorGe = "GE"
+	// @enum ComparisonOperator
+	ComparisonOperatorGt = "GT"
+	// @enum ComparisonOperator
+	ComparisonOperatorBetween = "BETWEEN"
+	// @enum ComparisonOperator
+	ComparisonOperatorNotNull = "NOT_NULL"
+	// @enum ComparisonOperator
+	ComparisonOperatorNull = "NULL"
+	// @enum ComparisonOperator
+	ComparisonOperatorContains = "CONTAINS"
+	// @enum ComparisonOperator
+	ComparisonOperatorNotContains = "NOT_CONTAINS"
+	// @enum ComparisonOperator
+	ComparisonOperatorBeginsWith = "BEGINS_WITH"
+)
+
+const (
+	// @enum ConditionalOperator
+	ConditionalOperatorAnd = "AND"
+	// @enum ConditionalOperator
+	ConditionalOperatorOr = "OR"
+)
+
+const (
+	// @enum IndexStatus
+	IndexStatusCreating = "CREATING"
+	// @enum IndexStatus
+	IndexStatusUpdating = "UPDATING"
+	// @enum IndexStatus
+	IndexStatusDeleting = "DELETING"
+	// @enum IndexStatus
+	IndexStatusActive = "ACTIVE"
+)
+
+const (
+	// @enum KeyType
+	KeyTypeHash = "HASH"
+	// @enum KeyType
+	KeyTypeRange = "RANGE"
+)
+
+const (
+	// @enum ProjectionType
+	ProjectionTypeAll = "ALL"
+	// @enum ProjectionType
+	ProjectionTypeKeysOnly = "KEYS_ONLY"
+	// @enum ProjectionType
+	ProjectionTypeInclude = "INCLUDE"
+)
+
+// Determines the level of detail about provisioned throughput consumption that
+// is returned in the response:
+//
+//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+// operation, together with ConsumedCapacity for each table and secondary index
+// that was accessed.
+//
+// Note that some operations, such as GetItem and BatchGetItem, do not access
+// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+// information for table(s).
+//
+//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+// operation.
+//
+// NONE - No ConsumedCapacity details are included in the response.
+const (
+	// @enum ReturnConsumedCapacity
+	ReturnConsumedCapacityIndexes = "INDEXES"
+	// @enum ReturnConsumedCapacity
+	ReturnConsumedCapacityTotal = "TOTAL"
+	// @enum ReturnConsumedCapacity
+	ReturnConsumedCapacityNone = "NONE"
+)
+
+const (
+	// @enum ReturnItemCollectionMetrics
+	ReturnItemCollectionMetricsSize = "SIZE"
+	// @enum ReturnItemCollectionMetrics
+	ReturnItemCollectionMetricsNone = "NONE"
+)
+
+const (
+	// @enum ReturnValue
+	ReturnValueNone = "NONE"
+	// @enum ReturnValue
+	ReturnValueAllOld = "ALL_OLD"
+	// @enum ReturnValue
+	ReturnValueUpdatedOld = "UPDATED_OLD"
+	// @enum ReturnValue
+	ReturnValueAllNew = "ALL_NEW"
+	// @enum ReturnValue
+	ReturnValueUpdatedNew = "UPDATED_NEW"
+)
+
+const (
+	// @enum ScalarAttributeType
+	ScalarAttributeTypeS = "S"
+	// @enum ScalarAttributeType
+	ScalarAttributeTypeN = "N"
+	// @enum ScalarAttributeType
+	ScalarAttributeTypeB = "B"
+)
+
+const (
+	// @enum Select
+	SelectAllAttributes = "ALL_ATTRIBUTES"
+	// @enum Select
+	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
+	// @enum Select
+	SelectSpecificAttributes = "SPECIFIC_ATTRIBUTES"
+	// @enum Select
+	SelectCount = "COUNT"
+)
+
+const (
+	// @enum StreamViewType
+	StreamViewTypeNewImage = "NEW_IMAGE"
+	// @enum StreamViewType
+	StreamViewTypeOldImage = "OLD_IMAGE"
+	// @enum StreamViewType
+	StreamViewTypeNewAndOldImages = "NEW_AND_OLD_IMAGES"
+	// @enum StreamViewType
+	StreamViewTypeKeysOnly = "KEYS_ONLY"
+)
+
+const (
+	// @enum TableStatus
+	TableStatusCreating = "CREATING"
+	// @enum TableStatus
+	TableStatusUpdating = "UPDATING"
+	// @enum TableStatus
+	TableStatusDeleting = "DELETING"
+	// @enum TableStatus
+	TableStatusActive = "ACTIVE"
+)

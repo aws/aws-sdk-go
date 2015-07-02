@@ -295,7 +295,7 @@ func (c *WorkSpaces) TerminateWorkspaces(input *TerminateWorkspacesInput) (*Term
 // Contains information about the compute type of a WorkSpace bundle.
 type ComputeType struct {
 	// The name of the compute type for the bundle.
-	Name *string `type:"string"`
+	Name *string `type:"string" enum:"Compute"`
 
 	metadataComputeType `json:"-" xml:"-"`
 }
@@ -899,7 +899,7 @@ type Workspace struct {
 	IPAddress *string `locationName:"IpAddress" type:"string"`
 
 	// The operational state of the WorkSpace.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"WorkspaceState"`
 
 	// The identifier of the subnet that the WorkSpace is in.
 	SubnetID *string `locationName:"SubnetId" type:"string"`
@@ -986,7 +986,7 @@ type WorkspaceDirectory struct {
 	DirectoryName *string `type:"string"`
 
 	// The directory type.
-	DirectoryType *string `type:"string"`
+	DirectoryType *string `type:"string" enum:"WorkspaceDirectoryType"`
 
 	// The identifier of the IAM role. This is the role that allows Amazon WorkSpaces
 	// to make calls to other services, such as Amazon EC2, on your behalf.
@@ -997,7 +997,7 @@ type WorkspaceDirectory struct {
 	RegistrationCode *string `type:"string"`
 
 	// The state of the directory's registration with Amazon WorkSpaces
-	State *string `type:"string"`
+	State *string `type:"string" enum:"WorkspaceDirectoryState"`
 
 	// An array of strings that contains the identifiers of the subnets used with
 	// the directory.
@@ -1059,3 +1059,55 @@ func (s WorkspaceRequest) String() string {
 func (s WorkspaceRequest) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum Compute
+	ComputeValue = "VALUE"
+	// @enum Compute
+	ComputeStandard = "STANDARD"
+	// @enum Compute
+	ComputePerformance = "PERFORMANCE"
+)
+
+const (
+	// @enum WorkspaceDirectoryState
+	WorkspaceDirectoryStateRegistering = "REGISTERING"
+	// @enum WorkspaceDirectoryState
+	WorkspaceDirectoryStateRegistered = "REGISTERED"
+	// @enum WorkspaceDirectoryState
+	WorkspaceDirectoryStateDeregistering = "DEREGISTERING"
+	// @enum WorkspaceDirectoryState
+	WorkspaceDirectoryStateDeregistered = "DEREGISTERED"
+	// @enum WorkspaceDirectoryState
+	WorkspaceDirectoryStateError = "ERROR"
+)
+
+const (
+	// @enum WorkspaceDirectoryType
+	WorkspaceDirectoryTypeSimpleAd = "SIMPLE_AD"
+	// @enum WorkspaceDirectoryType
+	WorkspaceDirectoryTypeAdConnector = "AD_CONNECTOR"
+)
+
+const (
+	// @enum WorkspaceState
+	WorkspaceStatePending = "PENDING"
+	// @enum WorkspaceState
+	WorkspaceStateAvailable = "AVAILABLE"
+	// @enum WorkspaceState
+	WorkspaceStateImpaired = "IMPAIRED"
+	// @enum WorkspaceState
+	WorkspaceStateUnhealthy = "UNHEALTHY"
+	// @enum WorkspaceState
+	WorkspaceStateRebooting = "REBOOTING"
+	// @enum WorkspaceState
+	WorkspaceStateRebuilding = "REBUILDING"
+	// @enum WorkspaceState
+	WorkspaceStateTerminating = "TERMINATING"
+	// @enum WorkspaceState
+	WorkspaceStateTerminated = "TERMINATED"
+	// @enum WorkspaceState
+	WorkspaceStateSuspended = "SUSPENDED"
+	// @enum WorkspaceState
+	WorkspaceStateError = "ERROR"
+)

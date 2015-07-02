@@ -706,10 +706,10 @@ type ListRepositoriesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The order in which to sort the results of a list repositories operation.
-	Order *string `locationName:"order" type:"string"`
+	Order *string `locationName:"order" type:"string" enum:"OrderEnum"`
 
 	// The criteria used to sort the results of a list repositories operation.
-	SortBy *string `locationName:"sortBy" type:"string"`
+	SortBy *string `locationName:"sortBy" type:"string" enum:"SortByEnum"`
 
 	metadataListRepositoriesInput `json:"-" xml:"-"`
 }
@@ -964,3 +964,17 @@ func (s UpdateRepositoryNameOutput) String() string {
 func (s UpdateRepositoryNameOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum OrderEnum
+	OrderEnumAscending = "ascending"
+	// @enum OrderEnum
+	OrderEnumDescending = "descending"
+)
+
+const (
+	// @enum SortByEnum
+	SortByEnumRepositoryName = "repositoryName"
+	// @enum SortByEnum
+	SortByEnumLastModifiedDate = "lastModifiedDate"
+)

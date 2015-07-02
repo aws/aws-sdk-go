@@ -973,7 +973,7 @@ func (s Cluster) GoString() string {
 // The reason that the cluster changed to its current state.
 type ClusterStateChangeReason struct {
 	// The programmatic code for the state change reason.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"ClusterStateChangeReasonCode"`
 
 	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
@@ -998,7 +998,7 @@ func (s ClusterStateChangeReason) GoString() string {
 // The detailed status of the cluster.
 type ClusterStatus struct {
 	// The current state of the cluster.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"ClusterState"`
 
 	// The reason for the cluster status change.
 	StateChangeReason *ClusterStateChangeReason `type:"structure"`
@@ -1480,14 +1480,14 @@ type InstanceGroup struct {
 	ID *string `locationName:"Id" type:"string"`
 
 	// The type of the instance group. Valid values are MASTER, CORE or TASK.
-	InstanceGroupType *string `type:"string"`
+	InstanceGroupType *string `type:"string" enum:"InstanceGroupType"`
 
 	// The EC2 instance type for all instances in the instance group.
 	InstanceType *string `type:"string"`
 
 	// The marketplace to provision instances for this group. Valid values are ON_DEMAND
 	// or SPOT.
-	Market *string `type:"string"`
+	Market *string `type:"string" enum:"MarketType"`
 
 	// The name of the instance group.
 	Name *string `type:"string"`
@@ -1535,13 +1535,13 @@ type InstanceGroupConfig struct {
 	InstanceCount *int64 `type:"integer" required:"true"`
 
 	// The role of the instance group in the cluster.
-	InstanceRole *string `type:"string" required:"true"`
+	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// The Amazon EC2 instance type for all instances in the instance group.
 	InstanceType *string `type:"string" required:"true"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
-	Market *string `type:"string"`
+	Market *string `type:"string" enum:"MarketType"`
 
 	// Friendly name given to the instance group.
 	Name *string `type:"string"`
@@ -1582,7 +1582,7 @@ type InstanceGroupDetail struct {
 	InstanceRequestCount *int64 `type:"integer" required:"true"`
 
 	// Instance group role in the cluster
-	InstanceRole *string `type:"string" required:"true"`
+	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// Actual count of running instances.
 	InstanceRunningCount *int64 `type:"integer" required:"true"`
@@ -1594,7 +1594,7 @@ type InstanceGroupDetail struct {
 	LastStateChangeReason *string `type:"string"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
-	Market *string `type:"string" required:"true"`
+	Market *string `type:"string" required:"true" enum:"MarketType"`
 
 	// Friendly name for the instance group.
 	Name *string `type:"string"`
@@ -1607,7 +1607,7 @@ type InstanceGroupDetail struct {
 
 	// State of instance group. The following values are deprecated: STARTING, TERMINATED,
 	// and FAILED.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"InstanceGroupState"`
 
 	metadataInstanceGroupDetail `json:"-" xml:"-"`
 }
@@ -1659,7 +1659,7 @@ func (s InstanceGroupModifyConfig) GoString() string {
 // The status change reason details for the instance group.
 type InstanceGroupStateChangeReason struct {
 	// The programmable code for the state change reason.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"InstanceGroupStateChangeReasonCode"`
 
 	// The status change reason description.
 	Message *string `type:"string"`
@@ -1684,7 +1684,7 @@ func (s InstanceGroupStateChangeReason) GoString() string {
 // The details of the instance group status.
 type InstanceGroupStatus struct {
 	// The current state of the instance group.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"InstanceGroupState"`
 
 	// The status change reason details for the instance group.
 	StateChangeReason *InstanceGroupStateChangeReason `type:"structure"`
@@ -1740,7 +1740,7 @@ func (s InstanceGroupTimeline) GoString() string {
 // The details of the status change reason for the instance.
 type InstanceStateChangeReason struct {
 	// The programmable code for the state change reason.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"InstanceStateChangeReasonCode"`
 
 	// The status change reason description.
 	Message *string `type:"string"`
@@ -1765,7 +1765,7 @@ func (s InstanceStateChangeReason) GoString() string {
 // The instance status details.
 type InstanceStatus struct {
 	// The current state of the instance.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"InstanceState"`
 
 	// The details of the status change reason for the instance.
 	StateChangeReason *InstanceStateChangeReason `type:"structure"`
@@ -1904,7 +1904,7 @@ type JobFlowExecutionStatusDetail struct {
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the job flow.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"JobFlowExecutionState"`
 
 	metadataJobFlowExecutionStatusDetail `json:"-" xml:"-"`
 }
@@ -2745,7 +2745,7 @@ func (s SetVisibleToAllUsersOutput) GoString() string {
 type Step struct {
 	// This specifies what action to take when the cluster step fails. Possible
 	// values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE.
-	ActionOnFailure *string `type:"string"`
+	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The Hadoop job configuration of the cluster step.
 	Config *HadoopStepConfig `type:"structure"`
@@ -2779,7 +2779,7 @@ func (s Step) GoString() string {
 // Specification of a job flow step.
 type StepConfig struct {
 	// The action to take if the job flow step fails.
-	ActionOnFailure *string `type:"string"`
+	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The JAR file used for the job flow step.
 	HadoopJARStep *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"`
@@ -2844,7 +2844,7 @@ type StepExecutionStatusDetail struct {
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the job flow step.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"StepExecutionState"`
 
 	metadataStepExecutionStatusDetail `json:"-" xml:"-"`
 }
@@ -2867,7 +2867,7 @@ func (s StepExecutionStatusDetail) GoString() string {
 type StepStateChangeReason struct {
 	// The programmable code for the state change reason. Note: Currently, the service
 	// provides no code for the state change.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"StepStateChangeReasonCode"`
 
 	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
@@ -2892,7 +2892,7 @@ func (s StepStateChangeReason) GoString() string {
 // The execution status details of the cluster step.
 type StepStatus struct {
 	// The execution state of the cluster step.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"StepState"`
 
 	// The reason for the step execution status change.
 	StateChangeReason *StepStateChangeReason `type:"structure"`
@@ -2921,7 +2921,7 @@ func (s StepStatus) GoString() string {
 type StepSummary struct {
 	// This specifies what action to take when the cluster step fails. Possible
 	// values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE.
-	ActionOnFailure *string `type:"string"`
+	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The Hadoop job configuration of the cluster step.
 	Config *HadoopStepConfig `type:"structure"`
@@ -3077,3 +3077,194 @@ func (s TerminateJobFlowsOutput) String() string {
 func (s TerminateJobFlowsOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ActionOnFailure
+	ActionOnFailureTerminateJobFlow = "TERMINATE_JOB_FLOW"
+	// @enum ActionOnFailure
+	ActionOnFailureTerminateCluster = "TERMINATE_CLUSTER"
+	// @enum ActionOnFailure
+	ActionOnFailureCancelAndWait = "CANCEL_AND_WAIT"
+	// @enum ActionOnFailure
+	ActionOnFailureContinue = "CONTINUE"
+)
+
+const (
+	// @enum ClusterState
+	ClusterStateStarting = "STARTING"
+	// @enum ClusterState
+	ClusterStateBootstrapping = "BOOTSTRAPPING"
+	// @enum ClusterState
+	ClusterStateRunning = "RUNNING"
+	// @enum ClusterState
+	ClusterStateWaiting = "WAITING"
+	// @enum ClusterState
+	ClusterStateTerminating = "TERMINATING"
+	// @enum ClusterState
+	ClusterStateTerminated = "TERMINATED"
+	// @enum ClusterState
+	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
+)
+
+const (
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeBootstrapFailure = "BOOTSTRAP_FAILURE"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeUserRequest = "USER_REQUEST"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeStepFailure = "STEP_FAILURE"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
+)
+
+const (
+	// @enum InstanceGroupState
+	InstanceGroupStateProvisioning = "PROVISIONING"
+	// @enum InstanceGroupState
+	InstanceGroupStateBootstrapping = "BOOTSTRAPPING"
+	// @enum InstanceGroupState
+	InstanceGroupStateRunning = "RUNNING"
+	// @enum InstanceGroupState
+	InstanceGroupStateResizing = "RESIZING"
+	// @enum InstanceGroupState
+	InstanceGroupStateSuspended = "SUSPENDED"
+	// @enum InstanceGroupState
+	InstanceGroupStateTerminating = "TERMINATING"
+	// @enum InstanceGroupState
+	InstanceGroupStateTerminated = "TERMINATED"
+	// @enum InstanceGroupState
+	InstanceGroupStateArrested = "ARRESTED"
+	// @enum InstanceGroupState
+	InstanceGroupStateShuttingDown = "SHUTTING_DOWN"
+	// @enum InstanceGroupState
+	InstanceGroupStateEnded = "ENDED"
+)
+
+const (
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+)
+
+const (
+	// @enum InstanceGroupType
+	InstanceGroupTypeMaster = "MASTER"
+	// @enum InstanceGroupType
+	InstanceGroupTypeCore = "CORE"
+	// @enum InstanceGroupType
+	InstanceGroupTypeTask = "TASK"
+)
+
+const (
+	// @enum InstanceRoleType
+	InstanceRoleTypeMaster = "MASTER"
+	// @enum InstanceRoleType
+	InstanceRoleTypeCore = "CORE"
+	// @enum InstanceRoleType
+	InstanceRoleTypeTask = "TASK"
+)
+
+const (
+	// @enum InstanceState
+	InstanceStateAwaitingFulfillment = "AWAITING_FULFILLMENT"
+	// @enum InstanceState
+	InstanceStateProvisioning = "PROVISIONING"
+	// @enum InstanceState
+	InstanceStateBootstrapping = "BOOTSTRAPPING"
+	// @enum InstanceState
+	InstanceStateRunning = "RUNNING"
+	// @enum InstanceState
+	InstanceStateTerminated = "TERMINATED"
+)
+
+const (
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeBootstrapFailure = "BOOTSTRAP_FAILURE"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+)
+
+// The type of instance.
+//
+//   A small instance
+//
+//   A large instance
+const (
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateStarting = "STARTING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateBootstrapping = "BOOTSTRAPPING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateRunning = "RUNNING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateWaiting = "WAITING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateShuttingDown = "SHUTTING_DOWN"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateTerminated = "TERMINATED"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateCompleted = "COMPLETED"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateFailed = "FAILED"
+)
+
+const (
+	// @enum MarketType
+	MarketTypeOnDemand = "ON_DEMAND"
+	// @enum MarketType
+	MarketTypeSpot = "SPOT"
+)
+
+const (
+	// @enum StepExecutionState
+	StepExecutionStatePending = "PENDING"
+	// @enum StepExecutionState
+	StepExecutionStateRunning = "RUNNING"
+	// @enum StepExecutionState
+	StepExecutionStateContinue = "CONTINUE"
+	// @enum StepExecutionState
+	StepExecutionStateCompleted = "COMPLETED"
+	// @enum StepExecutionState
+	StepExecutionStateCancelled = "CANCELLED"
+	// @enum StepExecutionState
+	StepExecutionStateFailed = "FAILED"
+	// @enum StepExecutionState
+	StepExecutionStateInterrupted = "INTERRUPTED"
+)
+
+const (
+	// @enum StepState
+	StepStatePending = "PENDING"
+	// @enum StepState
+	StepStateRunning = "RUNNING"
+	// @enum StepState
+	StepStateCompleted = "COMPLETED"
+	// @enum StepState
+	StepStateCancelled = "CANCELLED"
+	// @enum StepState
+	StepStateFailed = "FAILED"
+	// @enum StepState
+	StepStateInterrupted = "INTERRUPTED"
+)
+
+const (
+	// @enum StepStateChangeReasonCode
+	StepStateChangeReasonCodeNone = "NONE"
+)

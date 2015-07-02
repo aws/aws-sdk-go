@@ -992,7 +992,7 @@ type GetShardIteratorInput struct {
 	// the oldest data record in the shard. LATEST - Start reading just after the
 	// most recent record in the shard, so that you always read the most recent
 	// data in the shard.
-	ShardIteratorType *string `type:"string" required:"true"`
+	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
 
 	// The sequence number of the data record in the shard from which to start reading
 	// from.
@@ -1644,7 +1644,7 @@ type StreamDescription struct {
 	// on an ACTIVE stream.  UPDATING - Shards in the stream are being merged or
 	// split. Read and write operations continue to work while the stream is in
 	// the UPDATING state.
-	StreamStatus *string `type:"string" required:"true"`
+	StreamStatus *string `type:"string" required:"true" enum:"StreamStatus"`
 
 	metadataStreamDescription `json:"-" xml:"-"`
 }
@@ -1690,3 +1690,25 @@ func (s Tag) String() string {
 func (s Tag) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ShardIteratorType
+	ShardIteratorTypeAtSequenceNumber = "AT_SEQUENCE_NUMBER"
+	// @enum ShardIteratorType
+	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
+	// @enum ShardIteratorType
+	ShardIteratorTypeTrimHorizon = "TRIM_HORIZON"
+	// @enum ShardIteratorType
+	ShardIteratorTypeLatest = "LATEST"
+)
+
+const (
+	// @enum StreamStatus
+	StreamStatusCreating = "CREATING"
+	// @enum StreamStatus
+	StreamStatusDeleting = "DELETING"
+	// @enum StreamStatus
+	StreamStatusActive = "ACTIVE"
+	// @enum StreamStatus
+	StreamStatusUpdating = "UPDATING"
+)
