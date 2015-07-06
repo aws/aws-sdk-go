@@ -17,7 +17,6 @@ import (
 type Service struct {
 	Config            *Config
 	Handlers          Handlers
-	ManualSend        bool
 	ServiceName       string
 	APIVersion        string
 	Endpoint          string

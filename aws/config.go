@@ -26,12 +26,17 @@ var DefaultChainCredentials = credentials.NewChainCredentials(
 const DefaultRetries = -1
 
 // DefaultConfig is the default all service configuration will be based off of.
+// By default, all clients use this structure for initialization options unless
+// a custom configuration object is passed in.
+//
+// You may modify this global structure to change all default configuration
+// in the SDK. Note that configuration options are copied by value, so any
+// modifications must happen before constructing a client.
 var DefaultConfig = &Config{
 	Credentials:             DefaultChainCredentials,
 	Endpoint:                "",
 	Region:                  os.Getenv("AWS_REGION"),
 	DisableSSL:              false,
-	ManualSend:              false,
 	HTTPClient:              http.DefaultClient,
 	LogHTTPBody:             false,
 	LogLevel:                0,
@@ -42,21 +47,76 @@ var DefaultConfig = &Config{
 	S3ForcePathStyle:        false,
 }
 
-// A Config provides service configuration
+// A Config provides service configuration for service clients. By default,
+// all clients will use the {DefaultConfig
 type Config struct {
-	Credentials             *credentials.Credentials
-	Endpoint                string
-	Region                  string
-	DisableSSL              bool
-	ManualSend              bool
-	HTTPClient              *http.Client
-	LogHTTPBody             bool
-	LogLevel                uint
-	Logger                  io.Writer
-	MaxRetries              int
-	DisableParamValidation  bool
+	// The credentials object to use when signing requests. Defaults to
+	// {DefaultChainCredentials}.
+	Credentials *credentials.Credentials
+
+	// An optional endpoint URL (hostname only or fully qualified URI)
+	// that overrides the default generated endpoint for a client. Set this
+	// to `""` to use the default generated endpoint.
+	//
+	// @note You must still provide a `Region` value when specifying an
+	//   endpoint for a client.
+	Endpoint string
+
+	// The region to send requests to. This parameter is required and must
+	// be configured globally or on a per-client basis unless otherwise
+	// noted. A full list of regions is found in the "Regions and Endpoints"
+	// document.
+	//
+	// @see http://docs.aws.amazon.com/general/latest/gr/rande.html
+	//   AWS Regions and Endpoints
+	Region string
+
+	// Set this to `true` to disable SSL when sending requests. Defaults
+	// to `false`.
+	DisableSSL bool
+
+	// The HTTP client to use when sending requests. Defaults to
+	// `http.DefaultClient`.
+	HTTPClient *http.Client
+
+	// Set this to `true` to also log the body of the HTTP requests made by the
+	// client.
+	//
+	// @note `LogLevel` must be set to a non-zero value in order to activate
+	//   body logging.
+	LogHTTPBody bool
+
+	// An integer value representing the logging level. The default log level
+	// is zero (0), which represents no logging. Set to a non-zero value to
+	// perform logging.
+	LogLevel uint
+
+	// The logger writer interface to write logging messages to. Defaults to
+	// standard out.
+	Logger io.Writer
+
+	// The maximum number of times that a request will be retried for failures.
+	// Defaults to -1, which defers the max retry setting to the service specific
+	// configuration.
+	MaxRetries int
+
+	// Disables semantic parameter validation, which validates input for missing
+	// required fields and/or other semantic request input errors.
+	DisableParamValidation bool
+
+	// Disables the computation of request and response checksums, e.g.,
+	// CRC32 checksums in Amazon DynamoDB.
 	DisableComputeChecksums bool
-	S3ForcePathStyle        bool
+
+	// Set this to `true` to force the request to use path-style addressing,
+	// i.e., `http://s3.amazonaws.com/BUCKET/KEY`. By default, the S3 client will
+	// use virtual hosted bucket addressing when possible
+	// (`http://BUCKET.s3.amazonaws.com/KEY`).
+	//
+	// @note This configuration option is specific to the Amazon S3 service.
+	// @see http://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html
+	//   Amazon S3: Virtual Hosting of Buckets
+	S3ForcePathStyle bool
 }
 
 // Copy will return a shallow copy of the Config object.
@@ -66,7 +126,6 @@ func (c Config) Copy() Config {
 	dst.Endpoint = c.Endpoint
 	dst.Region = c.Region
 	dst.DisableSSL = c.DisableSSL
-	dst.ManualSend = c.ManualSend
 	dst.HTTPClient = c.HTTPClient
 	dst.LogHTTPBody = c.LogHTTPBody
 	dst.LogLevel = c.LogLevel
@@ -113,12 +172,6 @@ func (c Config) Merge(newcfg *Config) *Config {
 		cfg.DisableSSL = newcfg.DisableSSL
 	} else {
 		cfg.DisableSSL = c.DisableSSL
-	}
-
-	if newcfg.ManualSend {
-		cfg.ManualSend = newcfg.ManualSend
-	} else {
-		cfg.ManualSend = c.ManualSend
 	}
 
 	if newcfg.HTTPClient != nil {
