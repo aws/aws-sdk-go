@@ -48,7 +48,7 @@ var DefaultConfig = &Config{
 }
 
 // A Config provides service configuration for service clients. By default,
-// all clients will use the {DefaultConfig
+// all clients will use the {DefaultConfig} structure.
 type Config struct {
 	// The credentials object to use when signing requests. Defaults to
 	// {DefaultChainCredentials}.
