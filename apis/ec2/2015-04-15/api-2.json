@@ -2623,6 +2623,10 @@
         "OwnerId":{
           "shape":"String",
           "locationName":"ownerId"
+        },
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -2732,6 +2736,14 @@
         "PresignedUrl":{
           "shape":"String",
           "locationName":"presignedUrl"
+        },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
+        "KmsKeyId":{
+          "shape":"String",
+          "locationName":"kmsKeyId"
         }
       }
     },
@@ -7643,6 +7655,7 @@
         "t2.micro",
         "t2.small",
         "t2.medium",
+        "t2.large",
         "m2.xlarge",
         "m2.2xlarge",
         "m2.4xlarge",
@@ -8095,6 +8108,10 @@
         }
       }
     },
+    "ModifySnapshotAttributeName":{
+      "type":"string",
+      "enum":["createVolumePermission"]
+    },
     "ModifySnapshotAttributeRequest":{
       "type":"structure",
       "required":["SnapshotId"],
@@ -8104,7 +8121,7 @@
           "locationName":"dryRun"
         },
         "SnapshotId":{"shape":"String"},
-        "Attribute":{"shape":"SnapshotAttributeName"},
+        "Attribute":{"shape":"ModifySnapshotAttributeName"},
         "OperationType":{"shape":"String"},
         "UserIds":{
           "shape":"UserIdStringList",
@@ -9806,7 +9823,7 @@
           "locationName":"dryRun"
         },
         "SnapshotId":{"shape":"String"},
-        "Attribute":{"shape":"SnapshotAttributeName"}
+        "Attribute":{"shape":"ModifySnapshotAttributeName"}
       }
     },
     "ResourceIdList":{
@@ -11615,7 +11632,7 @@
       "type":"structure",
       "members":{
         "Code":{
-          "shape":"String",
+          "shape":"VpcPeeringConnectionStateReasonCode",
           "locationName":"code"
         },
         "Message":{
@@ -11623,6 +11640,20 @@
           "locationName":"message"
         }
       }
+    },
+    "VpcPeeringConnectionStateReasonCode":{
+      "type":"string",
+      "enum":[
+        "initiating-request",
+        "pending-acceptance",
+        "active",
+        "deleted",
+        "rejected",
+        "failed",
+        "expired",
+        "provisioning",
+        "deleting"
+      ]
     },
     "VpcPeeringConnectionVpcInfo":{
       "type":"structure",
