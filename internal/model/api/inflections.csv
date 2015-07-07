@@ -1622,3 +1622,11 @@ Hide:
 Contention:
 Traffic:
 Concurrent:
+Warmup:
+Magnitude:
+Lower:
+Upper:
+Breach:
+Aggregation:
+Adjustments:
+Scale:

@@ -827,12 +827,12 @@ func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, o
 // the HTTP request to.
 //
 // Copies of encrypted EBS snapshots remain encrypted. Copies of unencrypted
-// snapshots remain unencrypted.
+// snapshots remain unencrypted, unless the Encrypted flag is specified during
+// the snapshot copy operation. By default, encrypted snapshot copies use the
+// default AWS Key Management Service (KMS) Customer Master Key (CMK); however,
+// you can specify a non-default CMK with the KmsKeyId parameter.
 //
-//  Copying snapshots that were encrypted with non-default AWS Key Management
-// Service (KMS) master keys is not supported at this time.
-//
-//  For more information, see Copying an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
+// For more information, see Copying an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error) {
 	req, out := c.CopySnapshotRequest(input)
@@ -3602,6 +3602,11 @@ func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *
 }
 
 // Describes one or more of your route tables.
+//
+// Each subnet in your VPC must be associated with a route table. If a subnet
+// is not explicitly associated with any route table, it is implicitly associated
+// with the main route table. This command does not return the subnet ID for
+// implicit associations.
 //
 // For more information about route tables, see Route Tables (http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)
 // in the Amazon Virtual Private Cloud User Guide.
@@ -7928,6 +7933,10 @@ type ConfirmProductInstanceOutput struct {
 	// code is attached to the instance.
 	OwnerID *string `locationName:"ownerId" type:"string"`
 
+	// The return value of the request. Returns true if the specified product code
+	// is owned by the requester and associated with the specified instance.
+	Return *bool `locationName:"return" type:"boolean"`
+
 	metadataConfirmProductInstanceOutput `json:"-" xml:"-"`
 }
 
@@ -8069,6 +8078,25 @@ type CopySnapshotInput struct {
 	// the required permissions, the error response is DryRunOperation. Otherwise,
 	// it is UnauthorizedOperation.
 	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// Specifies whether the destination snapshot should be encrypted. There is
+	// no way to create an unencrypted snapshot copy from an encrypted snapshot;
+	// however, you can encrypt a copy of an unencrypted snapshot with this flag.
+	// The default CMK for EBS is used unless a non-default AWS Key Management Service
+	// (KMS) CMK is specified with KmsKeyId. For more information, see Amazon EBS
+	// Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	Encrypted *bool `locationName:"encrypted" type:"boolean"`
+
+	// The full ARN of the AWS Key Management Service (KMS) CMK to use when creating
+	// the snapshot copy. This parameter is only required if you want to use a non-default
+	// CMK; if this parameter is not specified, the default CMK for EBS is used.
+	// The ARN contains the arn:aws:kms namespace, followed by the region of the
+	// CMK, the AWS account ID of the CMK owner, the key namespace, and then the
+	// CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// The specified CMK must exist in the region that the snapshot is being copied
+	// to. If a KmsKeyId is specified, the Encrypted flag must also be set.
+	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
 
 	// The pre-signed URL that facilitates copying an encrypted snapshot. This parameter
 	// is only required when copying an encrypted snapshot with the Amazon EC2 Query
@@ -9560,12 +9588,13 @@ type CreateVolumeInput struct {
 	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes
 	IOPS *int64 `locationName:"Iops" type:"integer"`
 
-	// The full ARN of the AWS Key Management Service (KMS) master key to use when
-	// creating the encrypted volume. This parameter is only required if you want
-	// to use a non-default master key; if this parameter is not specified, the
-	// default master key is used. The ARN contains the arn:aws:kms namespace, followed
-	// by the region of the master key, the AWS account ID of the master key owner,
-	// the key namespace, and then the master key ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// The full ARN of the AWS Key Management Service (KMS) Customer Master Key
+	// (CMK) to use when creating the encrypted volume. This parameter is only required
+	// if you want to use a non-default CMK; if this parameter is not specified,
+	// the default CMK for EBS is used. The ARN contains the arn:aws:kms namespace,
+	// followed by the region of the CMK, the AWS account ID of the CMK owner, the
+	// key namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// If a KmsKeyId is specified, the Encrypted flag must also be set.
 	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
 
 	// The size of the volume, in GiBs.
@@ -13062,7 +13091,8 @@ type DescribeReservedInstancesInput struct {
 	// VPC) | Red Hat Enterprise Linux | Red Hat Enterprise Linux (Amazon VPC) |
 	// Windows | Windows (Amazon VPC) | Windows with SQL Server Standard | Windows
 	// with SQL Server Standard (Amazon VPC) | Windows with SQL Server Web | Windows
-	// with SQL Server Web (Amazon VPC)).
+	// with SQL Server Web (Amazon VPC) | Windows with SQL Server Enterprise | Windows
+	// with SQL Server Enterprise (Amazon VPC)).
 	//
 	//   reserved-instances-id - The ID of the Reserved Instance.
 	//
@@ -13291,9 +13321,10 @@ type DescribeReservedInstancesOfferingsInput struct {
 	// only be displayed to EC2-Classic account holders and are for use with Amazon
 	// VPC. (Linux/UNIX | Linux/UNIX (Amazon VPC) | SUSE Linux | SUSE Linux (Amazon
 	// VPC) | Red Hat Enterprise Linux | Red Hat Enterprise Linux (Amazon VPC) |
-	// Windows | Windows (Amazon VPC)) | Windows with SQL Server Standard | Windows
+	// Windows | Windows (Amazon VPC) | Windows with SQL Server Standard | Windows
 	// with SQL Server Standard (Amazon VPC) | Windows with SQL Server Web |  Windows
-	// with SQL Server Web (Amazon VPC))
+	// with SQL Server Web (Amazon VPC) | Windows with SQL Server Enterprise | Windows
+	// with SQL Server Enterprise (Amazon VPC))
 	//
 	//   reserved-instances-offering-id - The Reserved Instances offering ID.
 	//
@@ -21076,8 +21107,8 @@ func (s ResetNetworkInterfaceAttributeOutput) GoString() string {
 }
 
 type ResetSnapshotAttributeInput struct {
-	// The attribute to reset (currently only the attribute for permission to create
-	// volumes can be reset).
+	// The attribute to reset. Currently, only the attribute for permission to create
+	// volumes can be reset.
 	Attribute *string `type:"string" required:"true"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -21428,7 +21459,7 @@ type RouteTableAssociation struct {
 	// The ID of the route table.
 	RouteTableID *string `locationName:"routeTableId" type:"string"`
 
-	// The ID of the subnet.
+	// The ID of the subnet. A subnet ID is not returned for an implicit association.
 	SubnetID *string `locationName:"subnetId" type:"string"`
 
 	metadataRouteTableAssociation `json:"-" xml:"-"`
@@ -21712,8 +21743,8 @@ type Snapshot struct {
 	// Indicates whether the snapshot is encrypted.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// The full ARN of the AWS Key Management Service (KMS) master key that was
-	// used to protect the volume encryption key for the parent volume.
+	// The full ARN of the AWS Key Management Service (KMS) Customer Master Key
+	// (CMK) that was used to protect the volume encryption key for the parent volume.
 	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
 
 	// The AWS account alias (for example, amazon, self) or AWS account ID that
@@ -23229,8 +23260,8 @@ type Volume struct {
 	// it is not used in requests to create standard or gp2 volumes.
 	IOPS *int64 `locationName:"iops" type:"integer"`
 
-	// The full ARN of the AWS Key Management Service (KMS) master key that was
-	// used to protect the volume encryption key for the volume.
+	// The full ARN of the AWS Key Management Service (KMS) Customer Master Key
+	// (CMK) that was used to protect the volume encryption key for the volume.
 	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
 
 	// The size of the volume, in GiBs.

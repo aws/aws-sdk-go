@@ -782,6 +782,8 @@ func ExampleEC2_CopySnapshot() {
 		Description:       aws.String("String"),
 		DestinationRegion: aws.String("String"),
 		DryRun:            aws.Boolean(true),
+		Encrypted:         aws.Boolean(true),
+		KMSKeyID:          aws.String("String"),
 		PresignedURL:      aws.String("String"),
 	}
 	resp, err := svc.CopySnapshot(params)
@@ -5292,7 +5294,7 @@ func ExampleEC2_ModifySnapshotAttribute() {
 
 	params := &ec2.ModifySnapshotAttributeInput{
 		SnapshotID: aws.String("String"), // Required
-		Attribute:  aws.String("SnapshotAttributeName"),
+		Attribute:  aws.String("ModifySnapshotAttributeName"),
 		CreateVolumePermission: &ec2.CreateVolumePermissionModifications{
 			Add: []*ec2.CreateVolumePermission{
 				{ // Required
@@ -6180,8 +6182,8 @@ func ExampleEC2_ResetSnapshotAttribute() {
 	svc := ec2.New(nil)
 
 	params := &ec2.ResetSnapshotAttributeInput{
-		Attribute:  aws.String("SnapshotAttributeName"), // Required
-		SnapshotID: aws.String("String"),                // Required
+		Attribute:  aws.String("ModifySnapshotAttributeName"), // Required
+		SnapshotID: aws.String("String"),                      // Required
 		DryRun:     aws.Boolean(true),
 	}
 	resp, err := svc.ResetSnapshotAttribute(params)

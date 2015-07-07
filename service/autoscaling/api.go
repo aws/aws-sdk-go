@@ -140,7 +140,7 @@ func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGrou
 //
 // If you exceed your maximum limit of Auto Scaling groups, which by default
 // is 20 per region, the call fails. For information about viewing and updating
-// these limits, see DescribeAccountLimits.
+// this limit, see DescribeAccountLimits.
 //
 // For more information, see Auto Scaling Groups (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroup.html)
 // in the Auto Scaling Developer Guide.
@@ -174,7 +174,7 @@ func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfig
 //
 // If you exceed your maximum limit of launch configurations, which by default
 // is 100 per region, the call fails. For information about viewing and updating
-// these limits, see DescribeAccountLimits.
+// this limit, see DescribeAccountLimits.
 //
 // For more information, see Launch Configurations (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/LaunchConfiguration.html)
 // in the Auto Scaling Developer Guide.
@@ -1261,6 +1261,11 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 // action.  For more information, see Auto Scaling Pending State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingPendingState.html)
 // and Auto Scaling Terminating State (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingTerminatingState.html)
 // in the Auto Scaling Developer Guide.
+//
+// If you exceed your maximum limit of lifecycle hooks, which by default is
+// 50 per region, the call fails. For information about updating this limit,
+// see AWS Service Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// in the Amazon Web Services General Reference.
 func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (*PutLifecycleHookOutput, error) {
 	req, out := c.PutLifecycleHookRequest(input)
 	err := req.Send()
@@ -1326,6 +1331,11 @@ func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req
 // policy, use the existing policy name and set the parameters you want to change.
 // Any existing parameter not changed in an update to an existing policy is
 // not changed in this update request.
+//
+// If you exceed your maximum limit of step adjustments, which by default is
+// 20 per region, the call fails. For information about updating this limit,
+// see AWS Service Limits (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// in the Amazon Web Services General Reference.
 func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalingPolicyOutput, error) {
 	req, out := c.PutScalingPolicyRequest(input)
 	err := req.Send()
@@ -1811,9 +1821,9 @@ type BlockDeviceMapping struct {
 
 	// Suppresses a device mapping.
 	//
-	// If NoDevice is set to true for the root device, the instance might fail
-	// the EC2 health check. Auto Scaling launches a replacement instance if the
-	// instance fails the health check.
+	// If this parameter is true for the root device, the instance might fail the
+	// EC2 health check. Auto Scaling launches a replacement instance if the instance
+	// fails the health check.
 	NoDevice *bool `type:"boolean"`
 
 	// The name of the virtual device, ephemeral0 to ephemeral3.
@@ -1899,12 +1909,12 @@ type CreateAutoScalingGroupInput struct {
 	// The amount of time, in seconds, after a scaling activity completes before
 	// another scaling activity can start.
 	//
-	// If DefaultCooldown is not specified, the default value is 300. For more
-	// information, see Understanding Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
+	// If this parameter is not specified, the default value is 300. For more information,
+	// see Understanding Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
 	// in the Auto Scaling Developer Guide.
 	DefaultCooldown *int64 `type:"integer"`
 
-	// The number of EC2 instances that should be running in the group. This value
+	// The number of EC2 instances that should be running in the group. This number
 	// must be greater than or equal to the minimum size of the group and less than
 	// or equal to the maximum size of the group.
 	DesiredCapacity *int64 `type:"integer"`
@@ -2047,14 +2057,14 @@ type CreateLaunchConfigurationInput struct {
 	BlockDeviceMappings []*BlockDeviceMapping `type:"list"`
 
 	// The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.
-	// This parameter can only be used if you are launching EC2-Classic instances.
+	// This parameter is supported only if you are launching EC2-Classic instances.
 	// For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	ClassicLinkVPCID *string `locationName:"ClassicLinkVPCId" type:"string"`
 
 	// The IDs of one or more security groups for the VPC specified in ClassicLinkVPCId.
-	// This parameter is required if ClassicLinkVPCId is specified, and cannot be
-	// used otherwise. For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
+	// This parameter is required if ClassicLinkVPCId is specified, and is not supported
+	// otherwise. For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	ClassicLinkVPCSecurityGroups []*string `type:"list"`
 
@@ -3084,6 +3094,9 @@ type DescribePoliciesInput struct {
 	// an unknown policy name, it is ignored with no error.
 	PolicyNames []*string `type:"list"`
 
+	// One or more policy types. Valid values are SimpleScaling and StepScaling.
+	PolicyTypes []*string `type:"list"`
+
 	metadataDescribePoliciesInput `json:"-" xml:"-"`
 }
 
@@ -3127,11 +3140,11 @@ func (s DescribePoliciesOutput) GoString() string {
 }
 
 type DescribeScalingActivitiesInput struct {
-	// A list containing the activity IDs of the desired scaling activities. If
-	// this list is omitted, all activities are described. If an AutoScalingGroupName
-	// is provided, the results are limited to that group. The list of requested
-	// activities cannot contain more than 50 items. If unknown activities are requested,
-	// they are ignored with no error.
+	// The activity IDs of the desired scaling activities. If this list is omitted,
+	// all activities are described. If the AutoScalingGroupName parameter is provided,
+	// the results are limited to that group. The list of requested activities cannot
+	// contain more than 50 items. If unknown activities are requested, they are
+	// ignored with no error.
 	ActivityIDs []*string `locationName:"ActivityIds" type:"list"`
 
 	// The name of the group.
@@ -3753,16 +3766,34 @@ type ExecutePolicyInput struct {
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
 	AutoScalingGroupName *string `type:"string"`
 
-	// Set to True if you want Auto Scaling to wait for the cooldown period associated
-	// with the Auto Scaling group to complete before executing the policy.
+	// The breach threshold for the alarm.
 	//
-	// Set to False if you want Auto Scaling to circumvent the cooldown period
-	// associated with the Auto Scaling group and execute the policy before the
-	// cooldown period ends.
+	// This parameter is required if the policy type is StepScaling and not supported
+	// otherwise.
+	BreachThreshold *float64 `type:"double"`
+
+	// If this parameter is true, Auto Scaling waits for the cooldown period to
+	// complete before executing the policy. Otherwise, Auto Scaling executes the
+	// policy without waiting for the cooldown period to complete.
+	//
+	// This parameter is not supported if the policy type is StepScaling.
 	//
 	// For more information, see Understanding Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
 	// in the Auto Scaling Developer Guide.
 	HonorCooldown *bool `type:"boolean"`
+
+	// The metric value to compare to BreachThreshold. This enables you to execute
+	// a policy of type StepScaling and determine which step adjustment to use.
+	// For example, if the breach threshold is 50 and you want to use a step adjustment
+	// with a lower bound of 0 and an upper bound of 10, you can set the metric
+	// value to 59.
+	//
+	// If you specify a metric value that doesn't correspond to a step adjustment
+	// for the policy, the call returns an error.
+	//
+	// This parameter is required if the policy type is StepScaling and not supported
+	// otherwise.
+	MetricValue *float64 `type:"double"`
 
 	// The name or ARN of the policy.
 	PolicyName *string `type:"string" required:"true"`
@@ -4162,7 +4193,7 @@ type LifecycleHook struct {
 	DefaultResult *string `type:"string"`
 
 	// The maximum length of time an instance can remain in a Pending:Wait or Terminating:Wait
-	// state. Currently, this value is set at 48 hours.
+	// state. Currently, the maximum is set to 48 hours.
 	GlobalTimeout *int64 `type:"integer"`
 
 	// The amount of time that can elapse before the lifecycle hook times out. When
@@ -4542,29 +4573,59 @@ type PutScalingPolicyInput struct {
 	AutoScalingGroupName *string `type:"string" required:"true"`
 
 	// The amount of time, in seconds, after a scaling activity completes and before
-	// the next scaling activity can start.
+	// the next scaling activity can start. If this parameter is not specified,
+	// the default cooldown period for the group applies.
+	//
+	// This parameter is not supported unless the policy type is SimpleScaling.
 	//
 	// For more information, see Understanding Auto Scaling Cooldowns (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html)
 	// in the Auto Scaling Developer Guide.
 	Cooldown *int64 `type:"integer"`
 
-	// Used with AdjustmentType with the value PercentChangeInCapacity, the scaling
-	// policy changes the DesiredCapacity of the Auto Scaling group by at least
-	// the number of instances specified in the value.
+	// The estimated time, in seconds, until a newly launched instance can contribute
+	// to the CloudWatch metrics. The default is to use the value specified for
+	// the default cooldown period for the group.
 	//
-	// You will get a ValidationError if you use MinAdjustmentStep on a policy
-	// with an AdjustmentType other than PercentChangeInCapacity.
+	// This parameter is not supported if the policy type is SimpleScaling.
+	EstimatedInstanceWarmup *int64 `type:"integer"`
+
+	// The aggregation type for the CloudWatch metrics. Valid values are Minimum,
+	// Maximum, and Average. If the aggregation type is null, the value is treated
+	// as Average.
+	//
+	// This parameter is not supported if the policy type is SimpleScaling.
+	MetricAggregationType *string `type:"string"`
+
+	// The minimum number of instances to scale. If the value of AdjustmentType
+	// is PercentChangeInCapacity, the scaling policy changes the DesiredCapacity
+	// of the Auto Scaling group by at least this many instances. Otherwise, the
+	// error is ValidationError.
+	MinAdjustmentMagnitude *int64 `type:"integer"`
+
+	// Available for backward compatibility. Use MinAdjustmentMagnitude instead.
 	MinAdjustmentStep *int64 `type:"integer"`
 
 	// The name of the policy.
 	PolicyName *string `type:"string" required:"true"`
 
-	// The number of instances by which to scale. AdjustmentType determines the
-	// interpretation of this number (for example, as an absolute number or as a
-	// percentage of the existing Auto Scaling group size). A positive increment
-	// adds to the current capacity and a negative value removes from the current
-	// capacity.
+	// The policy type. Valid values are SimpleScaling and StepScaling. If the policy
+	// type is null, the value is treated as SimpleScaling.
+	PolicyType *string `type:"string"`
+
+	// The amount by which to scale, based on the specified adjustment type. A positive
+	// value adds to the current capacity while a negative number removes from the
+	// current capacity.
+	//
+	// This parameter is required if the policy type is SimpleScaling and not supported
+	// otherwise.
 	ScalingAdjustment *int64 `type:"integer"`
+
+	// A set of adjustments that enable you to scale based on the size of the alarm
+	// breach.
+	//
+	// This parameter is required if the policy type is StepScaling and not supported
+	// otherwise.
+	StepAdjustments []*StepAdjustment `type:"list"`
 
 	metadataPutScalingPolicyInput `json:"-" xml:"-"`
 }
@@ -4641,7 +4702,7 @@ type PutScheduledUpdateGroupActionInput struct {
 	// boundaries of when the recurring action starts and stops.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Time is deprecated; use StartTime instead.
+	// This parameter is deprecated; use StartTime instead.
 	//
 	// The time for this action to start. If both Time and StartTime are specified,
 	// their values must be identical.
@@ -4749,9 +4810,8 @@ func (s ResumeProcessesOutput) GoString() string {
 
 // Describes a scaling policy.
 type ScalingPolicy struct {
-	// Specifies whether the ScalingAdjustment is an absolute number or a percentage
-	// of the current capacity. Valid values are ChangeInCapacity, ExactCapacity,
-	// and PercentChangeInCapacity.
+	// The adjustment type, which specifies how ScalingAdjustment is interpreted.
+	// Valid values are ChangeInCapacity, ExactCapacity, and PercentChangeInCapacity.
 	AdjustmentType *string `type:"string"`
 
 	// The CloudWatch alarms related to the policy.
@@ -4764,8 +4824,21 @@ type ScalingPolicy struct {
 	// any further trigger-related scaling activities can start.
 	Cooldown *int64 `type:"integer"`
 
-	// Changes the DesiredCapacity of the Auto Scaling group by at least the specified
-	// number of instances.
+	// The estimated time, in seconds, until a newly launched instance can contribute
+	// to the CloudWatch metrics.
+	EstimatedInstanceWarmup *int64 `type:"integer"`
+
+	// The aggregation type for the CloudWatch metrics. Valid values are Minimum,
+	// Maximum, and Average.
+	MetricAggregationType *string `type:"string"`
+
+	// The minimum number of instances to scale. If the value of AdjustmentType
+	// is PercentChangeInCapacity, the scaling policy changes the DesiredCapacity
+	// of the Auto Scaling group by at least this many instances. Otherwise, the
+	// error is ValidationError.
+	MinAdjustmentMagnitude *int64 `type:"integer"`
+
+	// Available for backward compatibility. Use MinAdjustmentMagnitude instead.
 	MinAdjustmentStep *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the policy.
@@ -4774,10 +4847,17 @@ type ScalingPolicy struct {
 	// The name of the scaling policy.
 	PolicyName *string `type:"string"`
 
-	// The number associated with the specified adjustment type. A positive value
-	// adds to the current capacity and a negative value removes from the current
-	// capacity.
+	// The policy type. Valid values are SimpleScaling and StepScaling.
+	PolicyType *string `type:"string"`
+
+	// The amount by which to scale, based on the specified adjustment type. A positive
+	// value adds to the current capacity while a negative number removes from the
+	// current capacity.
 	ScalingAdjustment *int64 `type:"integer"`
+
+	// A set of adjustments that enable you to scale based on the size of the alarm
+	// breach.
+	StepAdjustments []*StepAdjustment `type:"list"`
 
 	metadataScalingPolicy `json:"-" xml:"-"`
 }
@@ -4844,8 +4924,8 @@ type ScheduledUpdateGroupAction struct {
 	// The number of instances you prefer to maintain in the group.
 	DesiredCapacity *int64 `type:"integer"`
 
-	// The time that the action is scheduled to end. This value can be up to one
-	// month in the future.
+	// The date and time that the action is scheduled to end. This date and time
+	// can be up to one month in the future.
 	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The maximum size of the group.
@@ -4863,14 +4943,14 @@ type ScheduledUpdateGroupAction struct {
 	// The name of the scheduled action.
 	ScheduledActionName *string `type:"string"`
 
-	// The time that the action is scheduled to begin. This value can be up to one
-	// month in the future.
+	// The date and time that the action is scheduled to begin. This date and time
+	// can be up to one month in the future.
 	//
 	// When StartTime and EndTime are specified with Recurrence, they form the
 	// boundaries of when the recurring action will start and stop.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Time is deprecated; use StartTime instead.
+	// This parameter is deprecated; use StartTime instead.
 	Time *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataScheduledUpdateGroupAction `json:"-" xml:"-"`
@@ -4988,6 +5068,74 @@ func (s SetInstanceHealthOutput) String() string {
 
 // GoString returns the string representation
 func (s SetInstanceHealthOutput) GoString() string {
+	return s.String()
+}
+
+// Describes an adjustment based on the difference between the value of the
+// aggregated CloudWatch metric and the breach threshold that you've defined
+// for the alarm.
+//
+// For the following examples, suppose that you have an alarm with a breach
+// threshold of 50:
+//
+//   If you want the adjustment to be triggered when the metric is greater
+// than or equal to 50 and less than 60, specify a lower bound of 0 and an upper
+// bound of 10.
+//
+//   If you want the adjustment to be triggered when the metric is greater
+// than 40 and less than or equal to 50, specify a lower bound of -10 and an
+// upper bound of 0.
+//
+//   There are a few rules for the step adjustments for your step policy:
+//
+//   The ranges of your step adjustments can't overlap or have a gap.
+//
+//   At most one step adjustment can have a null lower bound. If one step adjustment
+// has a negative lower bound, then there must be a step adjustment with a null
+// lower bound.
+//
+//   At most one step adjustment can have a null upper bound. If one step adjustment
+// has a positive upper bound, then there must be a step adjustment with a null
+// upper bound.
+//
+//   The upper and lower bound can't be null in the same step adjustment.
+type StepAdjustment struct {
+	// The lower bound for the difference between the alarm threshold and the CloudWatch
+	// metric. If the metric value is above the breach threshold, the lower bound
+	// is inclusive (the metric must be greater than or equal to the threshold plus
+	// the lower bound). Otherwise, it is exclusive (the metric must be greater
+	// than the threshold plus the lower bound). A null value indicates negative
+	// infinity.
+	MetricIntervalLowerBound *float64 `type:"double"`
+
+	// The upper bound for the difference between the alarm threshold and the CloudWatch
+	// metric. If the metric value is above the breach threshold, the upper bound
+	// is exclusive (the metric must be less than the threshold plus the upper bound).
+	// Otherwise, it is inclusive (the metric must be less than or equal to the
+	// threshold plus the upper bound). A null value indicates positive infinity.
+	//
+	// The upper bound must be greater than the lower bound.
+	MetricIntervalUpperBound *float64 `type:"double"`
+
+	// The amount by which to scale, based on the specified adjustment type. A positive
+	// value adds to the current capacity while a negative number removes from the
+	// current capacity.
+	ScalingAdjustment *int64 `type:"integer" required:"true"`
+
+	metadataStepAdjustment `json:"-" xml:"-"`
+}
+
+type metadataStepAdjustment struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StepAdjustment) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StepAdjustment) GoString() string {
 	return s.String()
 }
 
@@ -5164,7 +5312,7 @@ type UpdateAutoScalingGroupInput struct {
 	DefaultCooldown *int64 `type:"integer"`
 
 	// The number of EC2 instances that should be running in the Auto Scaling group.
-	// This value must be greater than or equal to the minimum size of the group
+	// This number must be greater than or equal to the minimum size of the group
 	// and less than or equal to the maximum size of the group.
 	DesiredCapacity *int64 `type:"integer"`
 

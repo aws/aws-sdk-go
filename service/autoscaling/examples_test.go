@@ -796,6 +796,10 @@ func ExampleAutoScaling_DescribePolicies() {
 			aws.String("ResourceName"), // Required
 			// More values...
 		},
+		PolicyTypes: []*string{
+			aws.String("XmlStringMaxLen64"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.DescribePolicies(params)
 
@@ -1138,7 +1142,9 @@ func ExampleAutoScaling_ExecutePolicy() {
 	params := &autoscaling.ExecutePolicyInput{
 		PolicyName:           aws.String("ResourceName"), // Required
 		AutoScalingGroupName: aws.String("ResourceName"),
+		BreachThreshold:      aws.Double(1.0),
 		HonorCooldown:        aws.Boolean(true),
+		MetricValue:          aws.Double(1.0),
 	}
 	resp, err := svc.ExecutePolicy(params)
 
@@ -1262,12 +1268,24 @@ func ExampleAutoScaling_PutScalingPolicy() {
 	svc := autoscaling.New(nil)
 
 	params := &autoscaling.PutScalingPolicyInput{
-		AdjustmentType:       aws.String("XmlStringMaxLen255"), // Required
-		AutoScalingGroupName: aws.String("ResourceName"),       // Required
-		PolicyName:           aws.String("XmlStringMaxLen255"), // Required
-		Cooldown:             aws.Long(1),
-		MinAdjustmentStep:    aws.Long(1),
-		ScalingAdjustment:    aws.Long(1),
+		AdjustmentType:          aws.String("XmlStringMaxLen255"), // Required
+		AutoScalingGroupName:    aws.String("ResourceName"),       // Required
+		PolicyName:              aws.String("XmlStringMaxLen255"), // Required
+		Cooldown:                aws.Long(1),
+		EstimatedInstanceWarmup: aws.Long(1),
+		MetricAggregationType:   aws.String("XmlStringMaxLen32"),
+		MinAdjustmentMagnitude:  aws.Long(1),
+		MinAdjustmentStep:       aws.Long(1),
+		PolicyType:              aws.String("XmlStringMaxLen64"),
+		ScalingAdjustment:       aws.Long(1),
+		StepAdjustments: []*autoscaling.StepAdjustment{
+			{ // Required
+				ScalingAdjustment:        aws.Long(1), // Required
+				MetricIntervalLowerBound: aws.Double(1.0),
+				MetricIntervalUpperBound: aws.Double(1.0),
+			},
+			// More values...
+		},
 	}
 	resp, err := svc.PutScalingPolicy(params)
 
