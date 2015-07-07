@@ -1746,6 +1746,7 @@
       "members":{
         "AutoScalingGroupName":{"shape":"ResourceName"},
         "PolicyNames":{"shape":"PolicyNames"},
+        "PolicyTypes":{"shape":"PolicyTypes"},
         "NextToken":{"shape":"XmlString"},
         "MaxRecords":{"shape":"MaxRecords"}
       }
@@ -1874,13 +1875,16 @@
         "ShouldDecrementDesiredCapacity":{"shape":"ShouldDecrementDesiredCapacity"}
       }
     },
+    "EstimatedInstanceWarmup":{"type":"integer"},
     "ExecutePolicyType":{
       "type":"structure",
       "required":["PolicyName"],
       "members":{
         "AutoScalingGroupName":{"shape":"ResourceName"},
         "PolicyName":{"shape":"ResourceName"},
-        "HonorCooldown":{"shape":"HonorCooldown"}
+        "HonorCooldown":{"shape":"HonorCooldown"},
+        "MetricValue":{"shape":"MetricScale"},
+        "BreachThreshold":{"shape":"MetricScale"}
       }
     },
     "ExitStandbyAnswer":{
@@ -2114,11 +2118,16 @@
       "type":"list",
       "member":{"shape":"MetricGranularityType"}
     },
+    "MetricScale":{"type":"double"},
     "Metrics":{
       "type":"list",
       "member":{"shape":"XmlStringMaxLen255"}
     },
-    "MinAdjustmentStep":{"type":"integer"},
+    "MinAdjustmentMagnitude":{"type":"integer"},
+    "MinAdjustmentStep":{
+      "type":"integer",
+      "deprecated":true
+    },
     "MonitoringEnabled":{"type":"boolean"},
     "NoDevice":{"type":"boolean"},
     "NotificationConfiguration":{
@@ -2150,6 +2159,10 @@
     "PolicyNames":{
       "type":"list",
       "member":{"shape":"ResourceName"}
+    },
+    "PolicyTypes":{
+      "type":"list",
+      "member":{"shape":"XmlStringMaxLen64"}
     },
     "ProcessNames":{
       "type":"list",
@@ -2219,10 +2232,15 @@
       "members":{
         "AutoScalingGroupName":{"shape":"ResourceName"},
         "PolicyName":{"shape":"XmlStringMaxLen255"},
+        "PolicyType":{"shape":"XmlStringMaxLen64"},
         "AdjustmentType":{"shape":"XmlStringMaxLen255"},
         "MinAdjustmentStep":{"shape":"MinAdjustmentStep"},
+        "MinAdjustmentMagnitude":{"shape":"MinAdjustmentMagnitude"},
         "ScalingAdjustment":{"shape":"PolicyIncrement"},
-        "Cooldown":{"shape":"Cooldown"}
+        "Cooldown":{"shape":"Cooldown"},
+        "MetricAggregationType":{"shape":"XmlStringMaxLen32"},
+        "StepAdjustments":{"shape":"StepAdjustments"},
+        "EstimatedInstanceWarmup":{"shape":"EstimatedInstanceWarmup"}
       }
     },
     "PutScheduledUpdateGroupActionType":{
@@ -2313,6 +2331,7 @@
         "InProgress",
         "WaitingForELBConnectionDraining",
         "MidLifecycleAction",
+        "WaitingForInstanceWarmup",
         "Successful",
         "Failed",
         "Cancelled"
@@ -2328,10 +2347,15 @@
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "PolicyName":{"shape":"XmlStringMaxLen255"},
         "PolicyARN":{"shape":"ResourceName"},
-        "MinAdjustmentStep":{"shape":"MinAdjustmentStep"},
+        "PolicyType":{"shape":"XmlStringMaxLen64"},
         "AdjustmentType":{"shape":"XmlStringMaxLen255"},
+        "MinAdjustmentStep":{"shape":"MinAdjustmentStep"},
+        "MinAdjustmentMagnitude":{"shape":"MinAdjustmentMagnitude"},
         "ScalingAdjustment":{"shape":"PolicyIncrement"},
         "Cooldown":{"shape":"Cooldown"},
+        "StepAdjustments":{"shape":"StepAdjustments"},
+        "MetricAggregationType":{"shape":"XmlStringMaxLen32"},
+        "EstimatedInstanceWarmup":{"shape":"EstimatedInstanceWarmup"},
         "Alarms":{"shape":"Alarms"}
       }
     },
@@ -2407,6 +2431,19 @@
       "type":"string",
       "min":1,
       "max":255
+    },
+    "StepAdjustment":{
+      "type":"structure",
+      "required":["ScalingAdjustment"],
+      "members":{
+        "MetricIntervalLowerBound":{"shape":"MetricScale"},
+        "MetricIntervalUpperBound":{"shape":"MetricScale"},
+        "ScalingAdjustment":{"shape":"PolicyIncrement"}
+      }
+    },
+    "StepAdjustments":{
+      "type":"list",
+      "member":{"shape":"StepAdjustment"}
     },
     "SuspendedProcess":{
       "type":"structure",
