@@ -146,6 +146,18 @@ func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInsta
 
 // Deregisters an Amazon ECS container instance from the specified cluster.
 // This instance will no longer be available to run tasks.
+//
+// If you intend to use the container instance for some other purpose after
+// deregistration, you should stop all of the tasks running on the container
+// instance before deregistration to avoid any orphaned tasks from consuming
+// resources.
+//
+// Deregistering a container instance removes the instance from a cluster,
+// but it does not terminate the EC2 instance; if you are finished using the
+// instance, be sure to terminate it in the Amazon EC2 console to stop billing.
+//
+// When you terminate a container instance, it is automatically deregistered
+// from your cluster.
 func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInput) (*DeregisterContainerInstanceOutput, error) {
 	req, out := c.DeregisterContainerInstanceRequest(input)
 	err := req.Send()
@@ -838,6 +850,16 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 }
 
 // Updates the Amazon ECS container agent on a specified container instance.
+// Updating the Amazon ECS container agent does not interrupt running tasks
+// or services on the container instance. The process for updating the agent
+// differs depending on whether your container instance was launched with the
+// Amazon ECS-optimized AMI or another operating system.
+//
+// UpdateContainerAgent requires the Amazon ECS-optimized AMI or Amazon Linux
+// with the ecs-init service installed and running. For help updating the Amazon
+// ECS container agent on other operating systems, see Manually Updating the
+// Amazon ECS Container Agent (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent)
+// in the Amazon EC2 Container Service Developer Guide.
 func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateContainerAgentOutput, error) {
 	req, out := c.UpdateContainerAgentRequest(input)
 	err := req.Send()
@@ -934,6 +956,7 @@ func (s Cluster) GoString() string {
 	return s.String()
 }
 
+// A docker container that is part of a task.
 type Container struct {
 	// The Amazon Resource Name (ARN) of the container.
 	ContainerARN *string `locationName:"containerArn" type:"string"`
@@ -947,6 +970,7 @@ type Container struct {
 	// The name of the container.
 	Name *string `locationName:"name" type:"string"`
 
+	// The network bindings associated with the container.
 	NetworkBindings []*NetworkBinding `locationName:"networkBindings" type:"list"`
 
 	// A short (255 max characters) human-readable string to provide additional
@@ -1144,8 +1168,7 @@ func (s ContainerInstance) GoString() string {
 	return s.String()
 }
 
-// The name of a container in a task definition and the command it should run
-// instead of its default.
+// The overrides that should be sent to a container.
 type ContainerOverride struct {
 	// The command to send to the container that overrides the default command from
 	// the Docker image or the task definition.
@@ -1246,7 +1269,9 @@ type CreateServiceInput struct {
 	Role *string `locationName:"role" type:"string"`
 
 	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
-	// hyphens, and underscores are allowed.
+	// hyphens, and underscores are allowed. Service names must be unique within
+	// a cluster, but you can have similarly named services in multiple clusters
+	// within a region or across multiple regions.
 	ServiceName *string `locationName:"serviceName" type:"string" required:"true"`
 
 	// The family and revision (family:revision) or full Amazon Resource Name (ARN)
@@ -1360,6 +1385,7 @@ func (s DeleteServiceInput) GoString() string {
 }
 
 type DeleteServiceOutput struct {
+	// Details on a service within a cluster
 	Service *Service `locationName:"service" type:"structure"`
 
 	metadataDeleteServiceOutput `json:"-" xml:"-"`
@@ -1379,6 +1405,7 @@ func (s DeleteServiceOutput) GoString() string {
 	return s.String()
 }
 
+// The details of an Amazon ECS service deployment.
 type Deployment struct {
 	// The Unix time in seconds and milliseconds when the service was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
@@ -1438,10 +1465,14 @@ type DeregisterContainerInstanceInput struct {
 	// container instance UUID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_UUID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
 
-	// Force the deregistration of the container instance. You can use the force
-	// parameter if you have several tasks running on a container instance and you
-	// don't want to run StopTask for each task before deregistering the container
-	// instance.
+	// Force the deregistration of the container instance. If you have tasks running
+	// on the container instance when you deregister it with the force option, these
+	// tasks remain running and they will continue to pass Elastic Load Balancing
+	// load balancer health checks until you terminate the instance or the tasks
+	// stop through some other means, but they are orphaned (no longer monitored
+	// or accounted for by Amazon ECS). If an orphaned task on your container instance
+	// is part of an Amazon ECS service, then the service scheduler will start another
+	// copy of that task on a different container instance if possible.
 	Force *bool `locationName:"force" type:"boolean"`
 
 	metadataDeregisterContainerInstanceInput `json:"-" xml:"-"`
@@ -1814,6 +1845,7 @@ func (s DiscoverPollEndpointOutput) GoString() string {
 	return s.String()
 }
 
+// A failed resource.
 type Failure struct {
 	// The Amazon Resource Name (ARN) of the failed resource.
 	ARN *string `locationName:"arn" type:"string"`
@@ -1838,6 +1870,7 @@ func (s Failure) GoString() string {
 	return s.String()
 }
 
+// Details on a container instance host volume.
 type HostVolumeProperties struct {
 	// The path on the host container instance that is presented to the container.
 	// If this parameter is empty, then the Docker daemon has assigned a host path
@@ -2325,6 +2358,7 @@ func (s ListTasksOutput) GoString() string {
 	return s.String()
 }
 
+// Details on a load balancer that is used with a service.
 type LoadBalancer struct {
 	// The name of the container to associate with the load balancer.
 	ContainerName *string `locationName:"containerName" type:"string"`
@@ -2355,6 +2389,7 @@ func (s LoadBalancer) GoString() string {
 	return s.String()
 }
 
+// Details on a volume mount point that is used in a container definition.
 type MountPoint struct {
 	// The path on the container to mount the host volume at.
 	ContainerPath *string `locationName:"containerPath" type:"string"`
@@ -2384,6 +2419,8 @@ func (s MountPoint) GoString() string {
 	return s.String()
 }
 
+// Details on the network bindings between a container and its host container
+// instance.
 type NetworkBinding struct {
 	// The IP address that the container is bound to on the container instance.
 	BindIP *string `locationName:"bindIP" type:"string"`
@@ -2474,6 +2511,10 @@ type RegisterContainerInstanceInput struct {
 	// the default cluster is assumed..
 	Cluster *string `locationName:"cluster" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the container instance (if it was previously
+	// registered).
+	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+
 	// The instance identity document for the Amazon EC2 instance to register. This
 	// document can be found by running the following command from the instance:
 	// curl http://169.254.169.254/latest/dynamic/instance-identity/document/
@@ -2563,6 +2604,7 @@ func (s RegisterTaskDefinitionInput) GoString() string {
 }
 
 type RegisterTaskDefinitionOutput struct {
+	// Details of a task definition.
 	TaskDefinition *TaskDefinition `locationName:"taskDefinition" type:"structure"`
 
 	metadataRegisterTaskDefinitionOutput `json:"-" xml:"-"`
@@ -2703,6 +2745,7 @@ func (s RunTaskOutput) GoString() string {
 	return s.String()
 }
 
+// Details on a service within a cluster
 type Service struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the service.
 	ClusterARN *string `locationName:"clusterArn" type:"string"`
@@ -2769,6 +2812,7 @@ func (s Service) GoString() string {
 	return s.String()
 }
 
+// Details on an event associated with a service.
 type ServiceEvent struct {
 	// The Unix time in seconds and milliseconds when the event was triggered.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
@@ -2905,6 +2949,7 @@ func (s StopTaskInput) GoString() string {
 }
 
 type StopTaskOutput struct {
+	// Details on a task in a cluster.
 	Task *Task `locationName:"task" type:"structure"`
 
 	metadataStopTaskOutput `json:"-" xml:"-"`
@@ -3039,6 +3084,7 @@ func (s SubmitTaskStateChangeOutput) GoString() string {
 	return s.String()
 }
 
+// Details on a task in a cluster.
 type Task struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the task.
 	ClusterARN *string `locationName:"clusterArn" type:"string"`
@@ -3087,6 +3133,7 @@ func (s Task) GoString() string {
 	return s.String()
 }
 
+// Details of a task definition.
 type TaskDefinition struct {
 	// A list of container definitions in JSON format that describe the different
 	// containers that make up your task. For more information on container definition
@@ -3134,8 +3181,7 @@ func (s TaskDefinition) GoString() string {
 	return s.String()
 }
 
-// A list of container overrides in JSON format that specify the name of a container
-// in a task definition and the command it should run instead of its default.
+// The overrides associated with a task.
 type TaskOverride struct {
 	// One or more container overrides sent to a task.
 	ContainerOverrides []*ContainerOverride `locationName:"containerOverrides" type:"list"`
@@ -3266,6 +3312,8 @@ func (s UpdateServiceOutput) GoString() string {
 	return s.String()
 }
 
+// The Docker and Amazon ECS container agent version information on a container
+// instance.
 type VersionInfo struct {
 	// The Git commit hash for the Amazon ECS container agent build on the amazon-ecs-agent
 	//  (https://github.com/aws/amazon-ecs-agent/commits/master) GitHub repository.
@@ -3294,6 +3342,7 @@ func (s VersionInfo) GoString() string {
 	return s.String()
 }
 
+// A data volume used in a task definition.
 type Volume struct {
 	// The path on the host container instance that is presented to the containers
 	// which access the volume. If this parameter is empty, then the Docker daemon
@@ -3321,6 +3370,7 @@ func (s Volume) GoString() string {
 	return s.String()
 }
 
+// Details on a data volume from another container.
 type VolumeFrom struct {
 	// If this value is true, the container has read-only access to the volume.
 	// If this value is false, then the container can write to the volume. The default

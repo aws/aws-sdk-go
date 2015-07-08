@@ -557,6 +557,7 @@ func ExampleECS_RegisterContainerInstance() {
 
 	params := &ecs.RegisterContainerInstanceInput{
 		Cluster:                           aws.String("String"),
+		ContainerInstanceARN:              aws.String("String"),
 		InstanceIdentityDocument:          aws.String("String"),
 		InstanceIdentityDocumentSignature: aws.String("String"),
 		TotalResources: []*ecs.Resource{

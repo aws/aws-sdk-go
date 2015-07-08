@@ -5,7 +5,7 @@
     "CreateService": "<p>Runs and maintains a desired number of tasks from a specified task definition. If the number of tasks running in a service drops below <code>desiredCount</code>, Amazon ECS will spawn another instantiation of the task in the specified cluster.</p>",
     "DeleteCluster": "<p>Deletes the specified cluster. You must deregister all container instances from this cluster before you may delete it. You can list the container instances in a cluster with <a>ListContainerInstances</a> and deregister them with <a>DeregisterContainerInstance</a>.</p>",
     "DeleteService": "<p>Deletes a specified service within a cluster.</p>",
-    "DeregisterContainerInstance": "<p>Deregisters an Amazon ECS container instance from the specified cluster. This instance will no longer be available to run tasks.</p>",
+    "DeregisterContainerInstance": "<p>Deregisters an Amazon ECS container instance from the specified cluster. This instance will no longer be available to run tasks.</p> <p>If you intend to use the container instance for some other purpose after deregistration, you should stop all of the tasks running on the container instance before deregistration to avoid any orphaned tasks from consuming resources.</p> <p>Deregistering a container instance removes the instance from a cluster, but it does not terminate the EC2 instance; if you are finished using the instance, be sure to terminate it in the Amazon EC2 console to stop billing.</p> <note><p>When you terminate a container instance, it is automatically deregistered from your cluster.</p></note>",
     "DeregisterTaskDefinition": "<p>Deregisters the specified task definition by family and revision. Upon deregistration, the task definition is marked as <code>INACTIVE</code>. Existing tasks and services that reference an <code>INACTIVE</code> task definition continue to run without disruption. Existing services that reference an <code>INACTIVE</code> task definition can still scale up or down by modifying the service's desired count.</p> <p>You cannot use an <code>INACTIVE</code> task definition to run new tasks or create new services, and you cannot update an existing service to reference an <code>INACTIVE</code> task definition (although there may be up to a 10 minute window following deregistration where these restrictions have not yet taken effect).</p>",
     "DescribeClusters": "<p>Describes one or more of your clusters.</p>",
     "DescribeContainerInstances": "<p>Describes Amazon EC2 Container Service container instances. Returns metadata about registered and remaining resources on each container instance requested.</p>",
@@ -26,7 +26,7 @@
     "StopTask": "<p>Stops a running task.</p>",
     "SubmitContainerStateChange": "<note><p>This action is only used by the Amazon EC2 Container Service agent, and it is not intended for use outside of the agent.</p></note> <p>Sent to acknowledge that a container changed states.</p>",
     "SubmitTaskStateChange": "<note><p>This action is only used by the Amazon EC2 Container Service agent, and it is not intended for use outside of the agent.</p></note> <p>Sent to acknowledge that a task changed states.</p>",
-    "UpdateContainerAgent": "<p>Updates the Amazon ECS container agent on a specified container instance.</p>",
+    "UpdateContainerAgent": "<p>Updates the Amazon ECS container agent on a specified container instance. Updating the Amazon ECS container agent does not interrupt running tasks or services on the container instance. The process for updating the agent differs depending on whether your container instance was launched with the Amazon ECS-optimized AMI or another operating system.</p> <p><code>UpdateContainerAgent</code> requires the Amazon ECS-optimized AMI or Amazon Linux with the <code>ecs-init</code> service installed and running. For help updating the Amazon ECS container agent on other operating systems, see <a href=\"http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent\">Manually Updating the Amazon ECS Container Agent</a> in the <i>Amazon EC2 Container Service Developer Guide</i>.</p>",
     "UpdateService": "<p>Modify the desired count or task definition used in a service.</p> <p>You can add to or subtract from the number of instantiations of a task definition in a service by specifying the cluster that the service is running in and a new <code>desiredCount</code> parameter.</p> <p>You can use <code>UpdateService</code> to modify your task definition and deploy a new version of your service, one task at a time. If you modify the task definition with <code>UpdateService</code>, Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running. Because <code>UpdateService</code> starts a new version of the task before stopping an old version, your cluster must have capacity to support one more instantiation of the task when <code>UpdateService</code> is run. If your cluster cannot support another instantiation of the task used in your service, you can reduce the desired count of your service by one before modifying the task definition.</p>"
   },
   "service": "<p></p> <p>Amazon EC2 Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster of Amazon EC2 instances. Amazon ECS lets you launch and stop container-enabled applications with simple API calls, allows you to get the state of your cluster from a centralized service, and gives you access to many familiar Amazon EC2 features like security groups, Amazon EBS volumes, and IAM roles.</p> <p>You can use Amazon ECS to schedule the placement of containers across your cluster based on your resource needs, isolation policies, and availability requirements. Amazon EC2 Container Service eliminates the need for you to operate your own cluster management and configuration management systems or worry about scaling your management infrastructure.</p>",
@@ -47,7 +47,7 @@
       "base": null,
       "refs": {
         "ContainerDefinition$essential": "<p>If the <code>essential</code> parameter of a container is marked as <code>true</code>, the failure of that container will stop the task. If the <code>essential</code> parameter of a container is marked as <code>false</code>, then its failure will not affect the rest of the containers in a task. If this parameter is omitted, a container is assumed to be essential.</p> <note> <p>All tasks must have at least one essential container.</p> </note>",
-        "DeregisterContainerInstanceRequest$force": "<p>Force the deregistration of the container instance. You can use the <code>force</code> parameter if you have several tasks running on a container instance and you don't want to run <code>StopTask</code> for each task before deregistering the container instance.</p>",
+        "DeregisterContainerInstanceRequest$force": "<p>Force the deregistration of the container instance. If you have tasks running on the container instance when you deregister it with the <code>force</code> option, these tasks remain running and they will continue to pass Elastic Load Balancing load balancer health checks until you terminate the instance or the tasks stop through some other means, but they are orphaned (no longer monitored or accounted for by Amazon ECS). If an orphaned task on your container instance is part of an Amazon ECS service, then the service scheduler will start another copy of that task on a different container instance if possible.</p>",
         "MountPoint$readOnly": "<p>If this value is <code>true</code>, the container has read-only access to the volume. If this value is <code>false</code>, then the container can write to the volume. The default value is <code>false</code>.</p>",
         "VolumeFrom$readOnly": "<p>If this value is <code>true</code>, the container has read-only access to the volume. If this value is <code>false</code>, then the container can write to the volume. The default value is <code>false</code>.</p>"
       }
@@ -106,7 +106,7 @@
       }
     },
     "Container": {
-      "base": null,
+      "base": "<p>A docker container that is part of a task.</p>",
       "refs": {
         "Containers$member": null
       }
@@ -140,7 +140,7 @@
       }
     },
     "ContainerOverride": {
-      "base": "<p>The name of a container in a task definition and the command it should run instead of its default.</p>",
+      "base": "<p>The overrides that should be sent to a container.</p>",
       "refs": {
         "ContainerOverrides$member": null
       }
@@ -198,7 +198,7 @@
       }
     },
     "Deployment": {
-      "base": null,
+      "base": "<p>The details of an Amazon ECS service deployment.</p>",
       "refs": {
         "Deployments$member": null
       }
@@ -309,7 +309,7 @@
       }
     },
     "Failure": {
-      "base": null,
+      "base": "<p>A failed resource.</p>",
       "refs": {
         "Failures$member": null
       }
@@ -326,7 +326,7 @@
       }
     },
     "HostVolumeProperties": {
-      "base": null,
+      "base": "<p>Details on a container instance host volume.</p>",
       "refs": {
         "Volume$host": "<p>The path on the host container instance that is presented to the containers which access the volume. If this parameter is empty, then the Docker daemon assigns a host path for you.</p>"
       }
@@ -426,7 +426,7 @@
       }
     },
     "LoadBalancer": {
-      "base": null,
+      "base": "<p>Details on a load balancer that is used with a service.</p>",
       "refs": {
         "LoadBalancers$member": null
       }
@@ -450,7 +450,7 @@
       }
     },
     "MountPoint": {
-      "base": null,
+      "base": "<p>Details on a volume mount point that is used in a container definition.</p>",
       "refs": {
         "MountPointList$member": null
       }
@@ -462,7 +462,7 @@
       }
     },
     "NetworkBinding": {
-      "base": null,
+      "base": "<p>Details on the network bindings between a container and its host container instance.</p>",
       "refs": {
         "NetworkBindings$member": null
       }
@@ -470,7 +470,7 @@
     "NetworkBindings": {
       "base": null,
       "refs": {
-        "Container$networkBindings": null,
+        "Container$networkBindings": "<p>The network bindings associated with the container.</p>",
         "SubmitContainerStateChangeRequest$networkBindings": "<p>The network bindings of the container.</p>"
       }
     },
@@ -541,7 +541,7 @@
       }
     },
     "Service": {
-      "base": null,
+      "base": "<p>Details on a service within a cluster</p>",
       "refs": {
         "CreateServiceResponse$service": "<p>The full description of your service following the create call.</p>",
         "DeleteServiceResponse$service": null,
@@ -550,7 +550,7 @@
       }
     },
     "ServiceEvent": {
-      "base": null,
+      "base": "<p>Details on an event associated with a service.</p>",
       "refs": {
         "ServiceEvents$member": null
       }
@@ -623,7 +623,7 @@
         "ContainerOverride$name": "<p>The name of the container that receives the override.</p>",
         "CreateClusterRequest$clusterName": "<p>The name of your cluster. If you do not specify a name for your cluster, you will create a cluster named <code>default</code>. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>",
         "CreateServiceRequest$cluster": "<p>The short name or full Amazon Resource Name (ARN) of the cluster that you want to run your service on. If you do not specify a cluster, the default cluster is assumed.</p>",
-        "CreateServiceRequest$serviceName": "<p>The name of your service. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>",
+        "CreateServiceRequest$serviceName": "<p>The name of your service. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a region or across multiple regions.</p>",
         "CreateServiceRequest$taskDefinition": "<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full Amazon Resource Name (ARN) of the task definition that you want to run in your service. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p>",
         "CreateServiceRequest$clientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. Up to 32 ASCII characters are allowed.</p>",
         "CreateServiceRequest$role": "<p>The name or full Amazon Resource Name (ARN) of the IAM role that allows your Amazon ECS container agent to make calls to your load balancer on your behalf. This parameter is only required if you are using a load balancer with your service.</p>",
@@ -678,6 +678,7 @@
         "RegisterContainerInstanceRequest$cluster": "<p>The short name or full Amazon Resource Name (ARN) of the cluster that you want to register your container instance with. If you do not specify a cluster, the default cluster is assumed..</p>",
         "RegisterContainerInstanceRequest$instanceIdentityDocument": "<p>The instance identity document for the Amazon EC2 instance to register. This document can be found by running the following command from the instance: <code>curl http://169.254.169.254/latest/dynamic/instance-identity/document/</code></p>",
         "RegisterContainerInstanceRequest$instanceIdentityDocumentSignature": "<p>The instance identity document signature for the Amazon EC2 instance to register. This signature can be found by running the following command from the instance: <code>curl http://169.254.169.254/latest/dynamic/instance-identity/signature/</code></p>",
+        "RegisterContainerInstanceRequest$containerInstanceArn": "<p>The Amazon Resource Name (ARN) of the container instance (if it was previously registered).</p>",
         "RegisterTaskDefinitionRequest$family": "<p>You must specify a <code>family</code> for a task definition, which allows you to track multiple versions of the same task definition. You can think of the <code>family</code> as a name for your task definition. Up to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>",
         "Resource$name": "<p>The name of the resource, such as <code>CPU</code>, <code>MEMORY</code>, <code>PORTS</code>, or a user-defined resource.</p>",
         "Resource$type": "<p>The type of the resource, such as <code>INTEGER</code>, <code>DOUBLE</code>, <code>LONG</code>, or <code>STRINGSET</code>.</p>",
@@ -773,14 +774,14 @@
       }
     },
     "Task": {
-      "base": null,
+      "base": "<p>Details on a task in a cluster.</p>",
       "refs": {
         "StopTaskResponse$task": null,
         "Tasks$member": null
       }
     },
     "TaskDefinition": {
-      "base": null,
+      "base": "<p>Details of a task definition.</p>",
       "refs": {
         "DeregisterTaskDefinitionResponse$taskDefinition": "<p>The full description of the deregistered task.</p>",
         "DescribeTaskDefinitionResponse$taskDefinition": "<p>The full task definition description.</p>",
@@ -795,7 +796,7 @@
       }
     },
     "TaskOverride": {
-      "base": "<p>A list of container overrides in JSON format that specify the name of a container in a task definition and the command it should run instead of its default.</p>",
+      "base": "<p>The overrides associated with a task.</p>",
       "refs": {
         "RunTaskRequest$overrides": "<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that is specified in the task definition or Docker image) with a <code>command</code> override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an <code>environment</code> override.</p> <note> <p>A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p> </note>",
         "StartTaskRequest$overrides": "<p>A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that is specified in the task definition or Docker image) with a <code>command</code> override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an <code>environment</code> override.</p> <note> <p>A total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.</p> </note>",
@@ -851,20 +852,20 @@
       }
     },
     "VersionInfo": {
-      "base": null,
+      "base": "<p>The Docker and Amazon ECS container agent version information on a container instance.</p>",
       "refs": {
         "ContainerInstance$versionInfo": "<p>The version information for the Amazon ECS container agent and Docker daemon running on the container instance.</p>",
         "RegisterContainerInstanceRequest$versionInfo": "<p>The version information for the Amazon ECS container agent and Docker daemon running on the container instance.</p>"
       }
     },
     "Volume": {
-      "base": null,
+      "base": "<p>A data volume used in a task definition.</p>",
       "refs": {
         "VolumeList$member": null
       }
     },
     "VolumeFrom": {
-      "base": null,
+      "base": "<p>Details on a data volume from another container.</p>",
       "refs": {
         "VolumeFromList$member": null
       }

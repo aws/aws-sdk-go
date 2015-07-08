@@ -1267,7 +1267,8 @@
         "instanceIdentityDocument":{"shape":"String"},
         "instanceIdentityDocumentSignature":{"shape":"String"},
         "totalResources":{"shape":"Resources"},
-        "versionInfo":{"shape":"VersionInfo"}
+        "versionInfo":{"shape":"VersionInfo"},
+        "containerInstanceArn":{"shape":"String"}
       }
     },
     "RegisterContainerInstanceResponse":{
