@@ -43,6 +43,34 @@ func ExampleSES_DeleteIdentity() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleSES_DeleteIdentityPolicy() {
+	svc := ses.New(nil)
+
+	params := &ses.DeleteIdentityPolicyInput{
+		Identity:   aws.String("Identity"),   // Required
+		PolicyName: aws.String("PolicyName"), // Required
+	}
+	resp, err := svc.DeleteIdentityPolicy(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleSES_DeleteVerifiedEmailAddress() {
 	svc := ses.New(nil)
 
@@ -110,6 +138,37 @@ func ExampleSES_GetIdentityNotificationAttributes() {
 		},
 	}
 	resp, err := svc.GetIdentityNotificationAttributes(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleSES_GetIdentityPolicies() {
+	svc := ses.New(nil)
+
+	params := &ses.GetIdentityPoliciesInput{
+		Identity: aws.String("Identity"), // Required
+		PolicyNames: []*string{ // Required
+			aws.String("PolicyName"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.GetIdentityPolicies(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -239,11 +298,67 @@ func ExampleSES_ListIdentities() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleSES_ListIdentityPolicies() {
+	svc := ses.New(nil)
+
+	params := &ses.ListIdentityPoliciesInput{
+		Identity: aws.String("Identity"), // Required
+	}
+	resp, err := svc.ListIdentityPolicies(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleSES_ListVerifiedEmailAddresses() {
 	svc := ses.New(nil)
 
 	var params *ses.ListVerifiedEmailAddressesInput
 	resp, err := svc.ListVerifiedEmailAddresses(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleSES_PutIdentityPolicy() {
+	svc := ses.New(nil)
+
+	params := &ses.PutIdentityPolicyInput{
+		Identity:   aws.String("Identity"),   // Required
+		Policy:     aws.String("Policy"),     // Required
+		PolicyName: aws.String("PolicyName"), // Required
+	}
+	resp, err := svc.PutIdentityPolicy(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -303,7 +418,9 @@ func ExampleSES_SendEmail() {
 			aws.String("Address"), // Required
 			// More values...
 		},
-		ReturnPath: aws.String("Address"),
+		ReturnPath:    aws.String("Address"),
+		ReturnPathARN: aws.String("AmazonResourceName"),
+		SourceARN:     aws.String("AmazonResourceName"),
 	}
 	resp, err := svc.SendEmail(params)
 
@@ -337,7 +454,10 @@ func ExampleSES_SendRawEmail() {
 			aws.String("Address"), // Required
 			// More values...
 		},
-		Source: aws.String("Address"),
+		FromARN:       aws.String("AmazonResourceName"),
+		ReturnPathARN: aws.String("AmazonResourceName"),
+		Source:        aws.String("Address"),
+		SourceARN:     aws.String("AmazonResourceName"),
 	}
 	resp, err := svc.SendRawEmail(params)
 

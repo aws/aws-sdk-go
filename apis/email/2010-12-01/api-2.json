@@ -23,6 +23,18 @@
         "resultWrapper":"DeleteIdentityResult"
       }
     },
+    "DeleteIdentityPolicy":{
+      "name":"DeleteIdentityPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIdentityPolicyRequest"},
+      "output":{
+        "shape":"DeleteIdentityPolicyResponse",
+        "resultWrapper":"DeleteIdentityPolicyResult"
+      }
+    },
     "DeleteVerifiedEmailAddress":{
       "name":"DeleteVerifiedEmailAddress",
       "http":{
@@ -53,6 +65,18 @@
       "output":{
         "shape":"GetIdentityNotificationAttributesResponse",
         "resultWrapper":"GetIdentityNotificationAttributesResult"
+      }
+    },
+    "GetIdentityPolicies":{
+      "name":"GetIdentityPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIdentityPoliciesRequest"},
+      "output":{
+        "shape":"GetIdentityPoliciesResponse",
+        "resultWrapper":"GetIdentityPoliciesResult"
       }
     },
     "GetIdentityVerificationAttributes":{
@@ -101,6 +125,18 @@
         "resultWrapper":"ListIdentitiesResult"
       }
     },
+    "ListIdentityPolicies":{
+      "name":"ListIdentityPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListIdentityPoliciesRequest"},
+      "output":{
+        "shape":"ListIdentityPoliciesResponse",
+        "resultWrapper":"ListIdentityPoliciesResult"
+      }
+    },
     "ListVerifiedEmailAddresses":{
       "name":"ListVerifiedEmailAddresses",
       "http":{
@@ -111,6 +147,29 @@
         "shape":"ListVerifiedEmailAddressesResponse",
         "resultWrapper":"ListVerifiedEmailAddressesResult"
       }
+    },
+    "PutIdentityPolicy":{
+      "name":"PutIdentityPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutIdentityPolicyRequest"},
+      "output":{
+        "shape":"PutIdentityPolicyResponse",
+        "resultWrapper":"PutIdentityPolicyResult"
+      },
+      "errors":[
+        {
+          "shape":"InvalidPolicyException",
+          "error":{
+            "code":"InvalidPolicy",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
     },
     "SendEmail":{
       "name":"SendEmail",
@@ -245,6 +304,7 @@
       "type":"list",
       "member":{"shape":"Address"}
     },
+    "AmazonResourceName":{"type":"string"},
     "Body":{
       "type":"structure",
       "members":{
@@ -262,6 +322,22 @@
       }
     },
     "Counter":{"type":"long"},
+    "DeleteIdentityPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "Identity",
+        "PolicyName"
+      ],
+      "members":{
+        "Identity":{"shape":"Identity"},
+        "PolicyName":{"shape":"PolicyName"}
+      }
+    },
+    "DeleteIdentityPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteIdentityRequest":{
       "type":"structure",
       "required":["Identity"],
@@ -322,6 +398,24 @@
       "required":["NotificationAttributes"],
       "members":{
         "NotificationAttributes":{"shape":"NotificationAttributes"}
+      }
+    },
+    "GetIdentityPoliciesRequest":{
+      "type":"structure",
+      "required":[
+        "Identity",
+        "PolicyNames"
+      ],
+      "members":{
+        "Identity":{"shape":"Identity"},
+        "PolicyNames":{"shape":"PolicyNameList"}
+      }
+    },
+    "GetIdentityPoliciesResponse":{
+      "type":"structure",
+      "required":["Policies"],
+      "members":{
+        "Policies":{"shape":"PolicyMap"}
       }
     },
     "GetIdentityVerificationAttributesRequest":{
@@ -399,6 +493,17 @@
         "VerificationToken":{"shape":"VerificationToken"}
       }
     },
+    "InvalidPolicyException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidPolicy",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ListIdentitiesRequest":{
       "type":"structure",
       "members":{
@@ -413,6 +518,20 @@
       "members":{
         "Identities":{"shape":"IdentityList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListIdentityPoliciesRequest":{
+      "type":"structure",
+      "required":["Identity"],
+      "members":{
+        "Identity":{"shape":"Identity"}
+      }
+    },
+    "ListIdentityPoliciesResponse":{
+      "type":"structure",
+      "required":["PolicyNames"],
+      "members":{
+        "PolicyNames":{"shape":"PolicyNameList"}
       }
     },
     "ListVerifiedEmailAddressesResponse":{
@@ -463,6 +582,43 @@
         "Delivery"
       ]
     },
+    "Policy":{
+      "type":"string",
+      "min":1
+    },
+    "PolicyMap":{
+      "type":"map",
+      "key":{"shape":"PolicyName"},
+      "value":{"shape":"Policy"}
+    },
+    "PolicyName":{
+      "type":"string",
+      "min":1,
+      "max":64,
+      "pattern":"[^\\\\/\\?\\*\\s]+"
+    },
+    "PolicyNameList":{
+      "type":"list",
+      "member":{"shape":"PolicyName"}
+    },
+    "PutIdentityPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "Identity",
+        "PolicyName",
+        "Policy"
+      ],
+      "members":{
+        "Identity":{"shape":"Identity"},
+        "PolicyName":{"shape":"PolicyName"},
+        "Policy":{"shape":"Policy"}
+      }
+    },
+    "PutIdentityPolicyResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RawMessage":{
       "type":"structure",
       "required":["Data"],
@@ -497,7 +653,9 @@
         "Destination":{"shape":"Destination"},
         "Message":{"shape":"Message"},
         "ReplyToAddresses":{"shape":"AddressList"},
-        "ReturnPath":{"shape":"Address"}
+        "ReturnPath":{"shape":"Address"},
+        "SourceArn":{"shape":"AmazonResourceName"},
+        "ReturnPathArn":{"shape":"AmazonResourceName"}
       }
     },
     "SendEmailResponse":{
@@ -513,7 +671,10 @@
       "members":{
         "Source":{"shape":"Address"},
         "Destinations":{"shape":"AddressList"},
-        "RawMessage":{"shape":"RawMessage"}
+        "RawMessage":{"shape":"RawMessage"},
+        "FromArn":{"shape":"AmazonResourceName"},
+        "SourceArn":{"shape":"AmazonResourceName"},
+        "ReturnPathArn":{"shape":"AmazonResourceName"}
       }
     },
     "SendRawEmailResponse":{

@@ -40,6 +40,42 @@ func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (*DeleteIdentityOutput,
 	return out, err
 }
 
+const opDeleteIdentityPolicy = "DeleteIdentityPolicy"
+
+// DeleteIdentityPolicyRequest generates a request for the DeleteIdentityPolicy operation.
+func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req *aws.Request, output *DeleteIdentityPolicyOutput) {
+	op := &aws.Operation{
+		Name:       opDeleteIdentityPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteIdentityPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteIdentityPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the specified sending authorization policy for the given identity
+// (email address or domain). This API returns successfully even if a policy
+// with the specified name does not exist.
+//
+// This API is for the identity owner only. If you have not verified the identity,
+// this API will return an error. Sending authorization is a feature that enables
+// an identity owner to authorize other senders to use its identities. For information
+// about using sending authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+//
+// This action is throttled at one request per second.
+func (c *SES) DeleteIdentityPolicy(input *DeleteIdentityPolicyInput) (*DeleteIdentityPolicyOutput, error) {
+	req, out := c.DeleteIdentityPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteVerifiedEmailAddress = "DeleteVerifiedEmailAddress"
 
 // DeleteVerifiedEmailAddressRequest generates a request for the DeleteVerifiedEmailAddress operation.
@@ -145,6 +181,42 @@ func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotific
 // Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/notifications.html).
 func (c *SES) GetIdentityNotificationAttributes(input *GetIdentityNotificationAttributesInput) (*GetIdentityNotificationAttributesOutput, error) {
 	req, out := c.GetIdentityNotificationAttributesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetIdentityPolicies = "GetIdentityPolicies"
+
+// GetIdentityPoliciesRequest generates a request for the GetIdentityPolicies operation.
+func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *aws.Request, output *GetIdentityPoliciesOutput) {
+	op := &aws.Operation{
+		Name:       opGetIdentityPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetIdentityPoliciesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetIdentityPoliciesOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the requested sending authorization policies for the given identity
+// (email address or domain). The policies are returned as a map of policy names
+// to policy contents. You can retrieve a maximum of 20 policies at a time.
+//
+// This API is for the identity owner only. If you have not verified the identity,
+// this API will return an error. Sending authorization is a feature that enables
+// an identity owner to authorize other senders to use its identities. For information
+// about using sending authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+//
+// This action is throttled at one request per second.
+func (c *SES) GetIdentityPolicies(input *GetIdentityPoliciesInput) (*GetIdentityPoliciesOutput, error) {
+	req, out := c.GetIdentityPoliciesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -285,6 +357,42 @@ func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(p *ListIde
 	})
 }
 
+const opListIdentityPolicies = "ListIdentityPolicies"
+
+// ListIdentityPoliciesRequest generates a request for the ListIdentityPolicies operation.
+func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req *aws.Request, output *ListIdentityPoliciesOutput) {
+	op := &aws.Operation{
+		Name:       opListIdentityPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListIdentityPoliciesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListIdentityPoliciesOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of sending authorization policies that are attached to the
+// given identity (email address or domain). This API returns only a list. If
+// you want the actual policy content, you can use GetIdentityPolicies.
+//
+// This API is for the identity owner only. If you have not verified the identity,
+// this API will return an error. Sending authorization is a feature that enables
+// an identity owner to authorize other senders to use its identities. For information
+// about using sending authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+//
+// This action is throttled at one request per second.
+func (c *SES) ListIdentityPolicies(input *ListIdentityPoliciesInput) (*ListIdentityPoliciesOutput, error) {
+	req, out := c.ListIdentityPoliciesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListVerifiedEmailAddresses = "ListVerifiedEmailAddresses"
 
 // ListVerifiedEmailAddressesRequest generates a request for the ListVerifiedEmailAddresses operation.
@@ -316,6 +424,41 @@ func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput)
 	return out, err
 }
 
+const opPutIdentityPolicy = "PutIdentityPolicy"
+
+// PutIdentityPolicyRequest generates a request for the PutIdentityPolicy operation.
+func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *aws.Request, output *PutIdentityPolicyOutput) {
+	op := &aws.Operation{
+		Name:       opPutIdentityPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutIdentityPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutIdentityPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Adds or updates a sending authorization policy for the specified identity
+// (email address or domain).
+//
+// This API is for the identity owner only. If you have not verified the identity,
+// this API will return an error. Sending authorization is a feature that enables
+// an identity owner to authorize other senders to use its identities. For information
+// about using sending authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+//
+// This action is throttled at one request per second.
+func (c *SES) PutIdentityPolicy(input *PutIdentityPolicyInput) (*PutIdentityPolicyOutput, error) {
+	req, out := c.PutIdentityPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opSendEmail = "SendEmail"
 
 // SendEmailRequest generates a request for the SendEmail operation.
@@ -339,20 +482,21 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output 
 // Composes an email message based on input data, and then immediately queues
 // the message for sending.
 //
-//  You can only send email from verified email addresses and domains. If your
-// account is still in the Amazon SES sandbox, you must also verify every recipient
-// email address except for the recipients provided by the Amazon SES mailbox
-// simulator. For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
-//  The total size of the message cannot exceed 10 MB.
+// There are several important points to know about SendEmail:
 //
-// Amazon SES has a limit on the total number of recipients per message: The
-// combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
-// you need to send an email message to a larger audience, you can divide your
-// recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly
-// to send the message to each group.
-//
-// For every message that you send, the total number of recipients (To:, CC:
-// and BCC:) is counted against your sending quota - the maximum number of emails
+//  You can only send email from verified email addresses and domains; otherwise,
+// you will get an "Email address not verified" error. If your account is still
+// in the Amazon SES sandbox, you must also verify every recipient email address
+// except for the recipients provided by the Amazon SES mailbox simulator. For
+// more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+// The total size of the message cannot exceed 10 MB. This includes any attachments
+// that are part of the message. Amazon SES has a limit on the total number
+// of recipients per message. The combined number of To:, CC: and BCC: email
+// addresses cannot exceed 50. If you need to send an email message to a larger
+// audience, you can divide your recipient list into groups of 50 or fewer,
+// and then call Amazon SES repeatedly to send the message to each group. For
+// every message that you send, the total number of recipients (To:, CC: and
+// BCC:) is counted against your sending quota - the maximum number of emails
 // you can send in a 24-hour period. For information about your sending quota,
 // go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
 func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
@@ -386,27 +530,39 @@ func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, o
 // raw text of the message must comply with Internet email standards; otherwise,
 // the message cannot be sent.
 //
-//  You can only send email from verified email addresses and domains. If your
-// account is still in the Amazon SES sandbox, you must also verify every recipient
-// email address except for the recipients provided by the Amazon SES mailbox
-// simulator. For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
-//  The total size of the message cannot exceed 10 MB. This includes any attachments
-// that are part of the message.
+// There are several important points to know about SendRawEmail:
 //
-// Amazon SES has a limit on the total number of recipients per message: The
-// combined number of To:, CC: and BCC: email addresses cannot exceed 50. If
-// you need to send an email message to a larger audience, you can divide your
-// recipient list into groups of 50 or fewer, and then call Amazon SES repeatedly
-// to send the message to each group.
-//
-// The To:, CC:, and BCC: headers in the raw message can contain a group list.
-// Note that each recipient in a group list counts towards the 50-recipient
-// limit.
-//
+//  You can only send email from verified email addresses and domains; otherwise,
+// you will get an "Email address not verified" error. If your account is still
+// in the Amazon SES sandbox, you must also verify every recipient email address
+// except for the recipients provided by the Amazon SES mailbox simulator. For
+// more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+// The total size of the message cannot exceed 10 MB. This includes any attachments
+// that are part of the message. Amazon SES has a limit on the total number
+// of recipients per message. The combined number of To:, CC: and BCC: email
+// addresses cannot exceed 50. If you need to send an email message to a larger
+// audience, you can divide your recipient list into groups of 50 or fewer,
+// and then call Amazon SES repeatedly to send the message to each group. The
+// To:, CC:, and BCC: headers in the raw message can contain a group list. Note
+// that each recipient in a group list counts towards the 50-recipient limit.
 // For every message that you send, the total number of recipients (To:, CC:
 // and BCC:) is counted against your sending quota - the maximum number of emails
 // you can send in a 24-hour period. For information about your sending quota,
 // go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/manage-sending-limits.html).
+// If you are using sending authorization to send on behalf of another user,
+// SendRawEmail enables you to specify the cross-account identity for the email's
+// "Source," "From," and "Return-Path" parameters in one of two ways: you can
+// pass optional parameters SourceArn, FromArn, and/or ReturnPathArn to the
+// API, or you can include the following X-headers in the header of your raw
+// email:  X-SES-SOURCE-ARN X-SES-FROM-ARN X-SES-RETURN-PATH-ARN  Do not include
+// these X-headers in the DKIM signature, because they are removed by Amazon
+// SES before sending the email. For the most common sending authorization use
+// case, we recommend that you specify the SourceIdentityArn and do not specify
+// either the FromIdentityArn or ReturnPathIdentityArn. (The same note applies
+// to the corresponding X-headers.) If you only specify the SourceIdentityArn,
+// Amazon SES will simply set the "From" address and the "Return Path" address
+// to the identity specified in SourceIdentityArn. For more information about
+// sending authorization, see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error) {
 	req, out := c.SendRawEmailRequest(input)
 	err := req.Send()
@@ -760,6 +916,58 @@ func (s DeleteIdentityOutput) GoString() string {
 	return s.String()
 }
 
+// Represents a request instructing the service to delete an authorization policy
+// applying to an identity.
+//
+// This request succeeds regardless of whether the specified policy exists.
+type DeleteIdentityPolicyInput struct {
+	// The identity that is associated with the policy that you want to delete.
+	// You can specify the identity by using its name or by using its Amazon Resource
+	// Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	//
+	// To successfully call this API, you must own the identity.
+	Identity *string `type:"string" required:"true"`
+
+	// The name of the policy to be deleted.
+	PolicyName *string `type:"string" required:"true"`
+
+	metadataDeleteIdentityPolicyInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteIdentityPolicyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIdentityPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentityPolicyInput) GoString() string {
+	return s.String()
+}
+
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
+type DeleteIdentityPolicyOutput struct {
+	metadataDeleteIdentityPolicyOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteIdentityPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteIdentityPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteIdentityPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a request instructing the service to delete an address from the
 // list of verified email addresses.
 type DeleteVerifiedEmailAddressInput struct {
@@ -886,7 +1094,9 @@ func (s GetIdentityDKIMAttributesOutput) GoString() string {
 }
 
 type GetIdentityNotificationAttributesInput struct {
-	// A list of one or more identities.
+	// A list of one or more identities. You can specify an identity by using its
+	// name or by using its Amazon Resource Name (ARN). Examples: user@example.com,
+	// example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	Identities []*string `type:"list" required:"true"`
 
 	metadataGetIdentityNotificationAttributesInput `json:"-" xml:"-"`
@@ -928,6 +1138,61 @@ func (s GetIdentityNotificationAttributesOutput) String() string {
 
 // GoString returns the string representation
 func (s GetIdentityNotificationAttributesOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request instructing the service to retrieve the text of a list
+// of authorization policies applying to an identity.
+type GetIdentityPoliciesInput struct {
+	// The identity for which the policies will be retrieved. You can specify an
+	// identity by using its name or by using its Amazon Resource Name (ARN). Examples:
+	// user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	//
+	// To successfully call this API, you must own the identity.
+	Identity *string `type:"string" required:"true"`
+
+	// A list of the names of policies to be retrieved. You can retrieve a maximum
+	// of 20 policies at a time. If you do not know the names of the policies that
+	// are attached to the identity, you can use ListIdentityPolicies.
+	PolicyNames []*string `type:"list" required:"true"`
+
+	metadataGetIdentityPoliciesInput `json:"-" xml:"-"`
+}
+
+type metadataGetIdentityPoliciesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Represents a map of policy names to policies returned from a successful GetIdentityPolicies
+// request.
+type GetIdentityPoliciesOutput struct {
+	// A map of policy names to policies.
+	Policies map[string]*string `type:"map" required:"true"`
+
+	metadataGetIdentityPoliciesOutput `json:"-" xml:"-"`
+}
+
+type metadataGetIdentityPoliciesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetIdentityPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetIdentityPoliciesOutput) GoString() string {
 	return s.String()
 }
 
@@ -1230,6 +1495,56 @@ func (s ListIdentitiesOutput) GoString() string {
 	return s.String()
 }
 
+// Represents a request instructing the service to list all authorization policies,
+// by name, applying to an identity.
+type ListIdentityPoliciesInput struct {
+	// The identity that is associated with the policy for which the policies will
+	// be listed. You can specify an identity by using its name or by using its
+	// Amazon Resource Name (ARN). Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	//
+	// To successfully call this API, you must own the identity.
+	Identity *string `type:"string" required:"true"`
+
+	metadataListIdentityPoliciesInput `json:"-" xml:"-"`
+}
+
+type metadataListIdentityPoliciesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListIdentityPoliciesInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentityPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Represents a list of policy names returned from a successful ListIdentityPolicies
+// request.
+type ListIdentityPoliciesOutput struct {
+	// A list of names of policies that apply to the specified identity.
+	PolicyNames []*string `type:"list" required:"true"`
+
+	metadataListIdentityPoliciesOutput `json:"-" xml:"-"`
+}
+
+type metadataListIdentityPoliciesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListIdentityPoliciesOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListIdentityPoliciesOutput) GoString() string {
+	return s.String()
+}
+
 type ListVerifiedEmailAddressesInput struct {
 	metadataListVerifiedEmailAddressesInput `json:"-" xml:"-"`
 }
@@ -1296,6 +1611,65 @@ func (s Message) GoString() string {
 	return s.String()
 }
 
+// Represents a request instructing the service to apply an authorization policy
+// to an identity.
+type PutIdentityPolicyInput struct {
+	// The identity to which the policy will apply. You can specify an identity
+	// by using its name or by using its Amazon Resource Name (ARN). Examples: user@example.com,
+	// example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
+	//
+	// To successfully call this API, you must own the identity.
+	Identity *string `type:"string" required:"true"`
+
+	// The text of the policy in JSON format. The policy cannot exceed 4 KB.
+	//
+	// For information about the syntax of sending authorization policies, see
+	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html).
+	Policy *string `type:"string" required:"true"`
+
+	// The name of the policy.
+	//
+	// The policy name cannot exceed 64 characters and can only include alphanumeric
+	// characters, dashes, and underscores.
+	PolicyName *string `type:"string" required:"true"`
+
+	metadataPutIdentityPolicyInput `json:"-" xml:"-"`
+}
+
+type metadataPutIdentityPolicyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutIdentityPolicyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutIdentityPolicyInput) GoString() string {
+	return s.String()
+}
+
+// An empty element. Receiving this element indicates that the request completed
+// successfully.
+type PutIdentityPolicyOutput struct {
+	metadataPutIdentityPolicyOutput `json:"-" xml:"-"`
+}
+
+type metadataPutIdentityPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutIdentityPolicyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s PutIdentityPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the raw data of the message.
 type RawMessage struct {
 	// The raw data of the message. The client must ensure that the message format
@@ -1304,7 +1678,13 @@ type RawMessage struct {
 	//
 	// The To:, CC:, and BCC: headers in the raw message can contain a group list.
 	//
-	// For more information, go to the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
+	// If you are using SendRawEmail with sending authorization, you can include
+	// X-headers in the raw message to specify the "Source," "From," and "Return-Path"
+	// addresses. For more information, see the documentation for SendRawEmail.
+	//
+	// Do not include these X-headers in the DKIM signature, because they are removed
+	// by Amazon SES before sending the email. For more information, go to the Amazon
+	// SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html).
 	Data []byte `type:"blob" required:"true"`
 
 	metadataRawMessage `json:"-" xml:"-"`
@@ -1384,13 +1764,48 @@ type SendEmailInput struct {
 	// a domain that has been verified with Amazon SES.
 	ReturnPath *string `type:"string"`
 
-	// The identity's email address.
+	// This parameter is used only for sending authorization. It is the ARN of the
+	// identity that is associated with the sending authorization policy that permits
+	// you to use the email address specified in the ReturnPath parameter.
 	//
-	//  By default, the string must be 7-bit ASCII. If the text must contain any
-	// other characters, then you must use MIME encoded-word syntax (RFC 2047) instead
-	// of a literal string. MIME encoded-word syntax uses the following form: =?charset?encoding?encoded-text?=.
-	// For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
+	// For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com)
+	// attaches a policy to it that authorizes you to use feedback@example.com,
+	// then you would specify the ReturnPathArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
+	// and the ReturnPath to be feedback@example.com.
+	//
+	// For more information about sending authorization, see the Amazon SES Developer
+	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+	ReturnPathARN *string `locationName:"ReturnPathArn" type:"string"`
+
+	// The email address that is sending the email. This email address must be either
+	// individually verified with Amazon SES, or from a domain that has been verified
+	// with Amazon SES. For information about verifying identities, see the Amazon
+	// SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-addresses-and-domains.html).
+	//
+	// If you are sending on behalf of another user and have been permitted to
+	// do so by a sending authorization policy, then you must also specify the SourceArn
+	// parameter. For more information about sending authorization, see the Amazon
+	// SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+	//
+	//  In all cases, the email address must be 7-bit ASCII. If the text must contain
+	// any other characters, then you must use MIME encoded-word syntax (RFC 2047)
+	// instead of a literal string. MIME encoded-word syntax uses the following
+	// form: =?charset?encoding?encoded-text?=. For more information, see RFC 2047
+	// (http://tools.ietf.org/html/rfc2047).
 	Source *string `type:"string" required:"true"`
+
+	// This parameter is used only for sending authorization. It is the ARN of the
+	// identity that is associated with the sending authorization policy that permits
+	// you to send for the email address specified in the Source parameter.
+	//
+	// For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com)
+	// attaches a policy to it that authorizes you to send from user@example.com,
+	// then you would specify the SourceArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
+	// and the Source to be user@example.com.
+	//
+	// For more information about sending authorization, see the Amazon SES Developer
+	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
+	SourceARN *string `locationName:"SourceArn" type:"string"`
 
 	metadataSendEmailInput `json:"-" xml:"-"`
 }
@@ -1441,6 +1856,18 @@ type SendRawEmailInput struct {
 	// addresses.
 	Destinations []*string `type:"list"`
 
+	// This parameter is used only for sending authorization. It is the ARN of the
+	// identity that is associated with the sending authorization policy that permits
+	// you to specify a particular "From" address in the header of the raw email.
+	//
+	// Instead of using this parameter, you can use the X-header X-SES-FROM-ARN
+	// in the raw message of the email. If you use both the FromArn parameter and
+	// the corresponding X-header, Amazon SES uses the value of the FromArn parameter.
+	//
+	// For information about when to use this parameter, see the description of
+	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
+	FromARN *string `locationName:"FromArn" type:"string"`
+
 	// The raw text of the message. The client is responsible for ensuring the following:
 	//
 	//   Message must contain a header and a body, separated by a blank line. All
@@ -1450,6 +1877,24 @@ type SendRawEmailInput struct {
 	// (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/mime-types.html).
 	// Content must be base64-encoded, if MIME requires it.
 	RawMessage *RawMessage `type:"structure" required:"true"`
+
+	// This parameter is used only for sending authorization. It is the ARN of the
+	// identity that is associated with the sending authorization policy that permits
+	// you to use the email address specified in the ReturnPath parameter.
+	//
+	// For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com)
+	// attaches a policy to it that authorizes you to use feedback@example.com,
+	// then you would specify the ReturnPathArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
+	// and the ReturnPath to be feedback@example.com.
+	//
+	// Instead of using this parameter, you can use the X-header X-SES-RETURN-PATH-ARN
+	// in the raw message of the email. If you use both the ReturnPathArn parameter
+	// and the corresponding X-header, Amazon SES uses the value of the ReturnPathArn
+	// parameter.
+	//
+	// For information about when to use this parameter, see the description of
+	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
+	ReturnPathARN *string `locationName:"ReturnPathArn" type:"string"`
 
 	// The identity's email address. If you do not provide a value for this parameter,
 	// you must specify a "From" address in the raw text of the message. (You can
@@ -1465,6 +1910,24 @@ type SendRawEmailInput struct {
 	// precedence over any Return-Path header that you might include in the raw
 	// text of the message.
 	Source *string `type:"string"`
+
+	// This parameter is used only for sending authorization. It is the ARN of the
+	// identity that is associated with the sending authorization policy that permits
+	// you to send for the email address specified in the Source parameter.
+	//
+	// For example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com)
+	// attaches a policy to it that authorizes you to send from user@example.com,
+	// then you would specify the SourceArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com,
+	// and the Source to be user@example.com.
+	//
+	// Instead of using this parameter, you can use the X-header X-SES-SOURCE-ARN
+	// in the raw message of the email. If you use both the SourceArn parameter
+	// and the corresponding X-header, Amazon SES uses the value of the SourceArn
+	// parameter.
+	//
+	// For information about when to use this parameter, see the description of
+	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
+	SourceARN *string `locationName:"SourceArn" type:"string"`
 
 	metadataSendRawEmailInput `json:"-" xml:"-"`
 }
@@ -1604,8 +2067,9 @@ func (s SetIdentityFeedbackForwardingEnabledOutput) GoString() string {
 
 // Represents a request to set or clear an identity's notification topic.
 type SetIdentityNotificationTopicInput struct {
-	// The identity for which the Amazon SNS topic will be set. Examples: user@example.com,
-	// example.com.
+	// The identity for which the Amazon SNS topic will be set. You can specify
+	// an identity by using its name or by using its Amazon Resource Name (ARN).
+	// Examples: user@example.com, example.com, arn:aws:ses:us-east-1:123456789012:identity/example.com.
 	Identity *string `type:"string" required:"true"`
 
 	// The type of notifications that will be published to the specified Amazon
