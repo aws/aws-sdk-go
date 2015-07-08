@@ -275,7 +275,7 @@
         "PrincipalArn":{"shape":"arnType"},
         "SAMLAssertion":{"shape":"SAMLAssertionType"},
         "Policy":{"shape":"sessionPolicyDocumentType"},
-        "DurationSeconds":{"shape":"durationSecondsType"}
+        "DurationSeconds":{"shape":"roleDurationSecondsType"}
       }
     },
     "AssumeRoleWithSAMLResponse":{
@@ -304,7 +304,7 @@
         "WebIdentityToken":{"shape":"clientTokenType"},
         "ProviderId":{"shape":"urlType"},
         "Policy":{"shape":"sessionPolicyDocumentType"},
-        "DurationSeconds":{"shape":"durationSecondsType"}
+        "DurationSeconds":{"shape":"roleDurationSecondsType"}
       }
     },
     "AssumeRoleWithWebIdentityResponse":{
