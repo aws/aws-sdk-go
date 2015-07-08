@@ -939,6 +939,34 @@ func ExampleIAM_DeleteSAMLProvider() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleIAM_DeleteSSHPublicKey() {
+	svc := iam.New(nil)
+
+	params := &iam.DeleteSSHPublicKeyInput{
+		SSHPublicKeyID: aws.String("publicKeyIdType"), // Required
+		UserName:       aws.String("userNameType"),    // Required
+	}
+	resp, err := svc.DeleteSSHPublicKey(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleIAM_DeleteServerCertificate() {
 	svc := iam.New(nil)
 
@@ -1624,6 +1652,35 @@ func ExampleIAM_GetSAMLProvider() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleIAM_GetSSHPublicKey() {
+	svc := iam.New(nil)
+
+	params := &iam.GetSSHPublicKeyInput{
+		Encoding:       aws.String("encodingType"),    // Required
+		SSHPublicKeyID: aws.String("publicKeyIdType"), // Required
+		UserName:       aws.String("userNameType"),    // Required
+	}
+	resp, err := svc.GetSSHPublicKey(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleIAM_GetServerCertificate() {
 	svc := iam.New(nil)
 
@@ -2206,6 +2263,35 @@ func ExampleIAM_ListSAMLProviders() {
 
 	var params *iam.ListSAMLProvidersInput
 	resp, err := svc.ListSAMLProviders(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleIAM_ListSSHPublicKeys() {
+	svc := iam.New(nil)
+
+	params := &iam.ListSSHPublicKeysInput{
+		Marker:   aws.String("markerType"),
+		MaxItems: aws.Long(1),
+		UserName: aws.String("userNameType"),
+	}
+	resp, err := svc.ListSSHPublicKeys(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -2809,6 +2895,35 @@ func ExampleIAM_UpdateSAMLProvider() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleIAM_UpdateSSHPublicKey() {
+	svc := iam.New(nil)
+
+	params := &iam.UpdateSSHPublicKeyInput{
+		SSHPublicKeyID: aws.String("publicKeyIdType"), // Required
+		Status:         aws.String("statusType"),      // Required
+		UserName:       aws.String("userNameType"),    // Required
+	}
+	resp, err := svc.UpdateSSHPublicKey(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleIAM_UpdateServerCertificate() {
 	svc := iam.New(nil)
 
@@ -2876,6 +2991,34 @@ func ExampleIAM_UpdateUser() {
 		NewUserName: aws.String("userNameType"),
 	}
 	resp, err := svc.UpdateUser(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleIAM_UploadSSHPublicKey() {
+	svc := iam.New(nil)
+
+	params := &iam.UploadSSHPublicKeyInput{
+		SSHPublicKeyBody: aws.String("publicKeyMaterialType"), // Required
+		UserName:         aws.String("userNameType"),          // Required
+	}
+	resp, err := svc.UploadSSHPublicKey(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

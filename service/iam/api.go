@@ -1127,6 +1127,39 @@ func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLPro
 	return out, err
 }
 
+const opDeleteSSHPublicKey = "DeleteSSHPublicKey"
+
+// DeleteSSHPublicKeyRequest generates a request for the DeleteSSHPublicKey operation.
+func (c *IAM) DeleteSSHPublicKeyRequest(input *DeleteSSHPublicKeyInput) (req *aws.Request, output *DeleteSSHPublicKeyOutput) {
+	op := &aws.Operation{
+		Name:       opDeleteSSHPublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSSHPublicKeyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteSSHPublicKeyOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the specified SSH public key.
+//
+// The SSH public key deleted by this action is used only for authenticating
+// the associated IAM user to an AWS CodeCommit repository. For more information
+// about using SSH keys to authenticate to an AWS CodeCommit repository, see
+// Set up AWS CodeCommit for SSH Connections (http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html)
+// in the AWS CodeCommit User Guide.
+func (c *IAM) DeleteSSHPublicKey(input *DeleteSSHPublicKeyInput) (*DeleteSSHPublicKeyOutput, error) {
+	req, out := c.DeleteSSHPublicKeyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteServerCertificate = "DeleteServerCertificate"
 
 // DeleteServerCertificateRequest generates a request for the DeleteServerCertificate operation.
@@ -1942,6 +1975,39 @@ func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *aws.Requ
 // This operation requires Signature Version 4 (http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (*GetSAMLProviderOutput, error) {
 	req, out := c.GetSAMLProviderRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetSSHPublicKey = "GetSSHPublicKey"
+
+// GetSSHPublicKeyRequest generates a request for the GetSSHPublicKey operation.
+func (c *IAM) GetSSHPublicKeyRequest(input *GetSSHPublicKeyInput) (req *aws.Request, output *GetSSHPublicKeyOutput) {
+	op := &aws.Operation{
+		Name:       opGetSSHPublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSSHPublicKeyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetSSHPublicKeyOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves the specified SSH public key, including metadata about the key.
+//
+// The SSH public key retrieved by this action is used only for authenticating
+// the associated IAM user to an AWS CodeCommit repository. For more information
+// about using SSH keys to authenticate to an AWS CodeCommit repository, see
+// Set up AWS CodeCommit for SSH Connections (http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html)
+// in the AWS CodeCommit User Guide.
+func (c *IAM) GetSSHPublicKey(input *GetSSHPublicKeyInput) (*GetSSHPublicKeyOutput, error) {
+	req, out := c.GetSSHPublicKeyRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -2841,6 +2907,43 @@ func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvide
 	return out, err
 }
 
+const opListSSHPublicKeys = "ListSSHPublicKeys"
+
+// ListSSHPublicKeysRequest generates a request for the ListSSHPublicKeys operation.
+func (c *IAM) ListSSHPublicKeysRequest(input *ListSSHPublicKeysInput) (req *aws.Request, output *ListSSHPublicKeysOutput) {
+	op := &aws.Operation{
+		Name:       opListSSHPublicKeys,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListSSHPublicKeysInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListSSHPublicKeysOutput{}
+	req.Data = output
+	return
+}
+
+// Returns information about the SSH public keys associated with the specified
+// IAM user. If there are none, the action returns an empty list.
+//
+// The SSH public keys returned by this action are used only for authenticating
+// the IAM user to an AWS CodeCommit repository. For more information about
+// using SSH keys to authenticate to an AWS CodeCommit repository, see Set up
+// AWS CodeCommit for SSH Connections (http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html)
+// in the AWS CodeCommit User Guide.
+//
+// Although each user is limited to a small number of keys, you can still paginate
+// the results using the MaxItems and Marker parameters.
+func (c *IAM) ListSSHPublicKeys(input *ListSSHPublicKeysInput) (*ListSSHPublicKeysOutput, error) {
+	req, out := c.ListSSHPublicKeysRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListServerCertificates = "ListServerCertificates"
 
 // ListServerCertificatesRequest generates a request for the ListServerCertificates operation.
@@ -3606,6 +3709,42 @@ func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (*UpdateSAMLPro
 	return out, err
 }
 
+const opUpdateSSHPublicKey = "UpdateSSHPublicKey"
+
+// UpdateSSHPublicKeyRequest generates a request for the UpdateSSHPublicKey operation.
+func (c *IAM) UpdateSSHPublicKeyRequest(input *UpdateSSHPublicKeyInput) (req *aws.Request, output *UpdateSSHPublicKeyOutput) {
+	op := &aws.Operation{
+		Name:       opUpdateSSHPublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSSHPublicKeyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateSSHPublicKeyOutput{}
+	req.Data = output
+	return
+}
+
+// Sets the status of the specified SSH public key to active or inactive. SSH
+// public keys that are inactive cannot be used for authentication. This action
+// can be used to disable a user's SSH public key as part of a key rotation
+// work flow.
+//
+// The SSH public key affected by this action is used only for authenticating
+// the associated IAM user to an AWS CodeCommit repository. For more information
+// about using SSH keys to authenticate to an AWS CodeCommit repository, see
+// Set up AWS CodeCommit for SSH Connections (http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html)
+// in the AWS CodeCommit User Guide.
+func (c *IAM) UpdateSSHPublicKey(input *UpdateSSHPublicKeyInput) (*UpdateSSHPublicKeyOutput, error) {
+	req, out := c.UpdateSSHPublicKeyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opUpdateServerCertificate = "UpdateServerCertificate"
 
 // UpdateServerCertificateRequest generates a request for the UpdateServerCertificate operation.
@@ -3709,6 +3848,39 @@ func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *aws.Request, outpu
 // target="blank).
 func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 	req, out := c.UpdateUserRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opUploadSSHPublicKey = "UploadSSHPublicKey"
+
+// UploadSSHPublicKeyRequest generates a request for the UploadSSHPublicKey operation.
+func (c *IAM) UploadSSHPublicKeyRequest(input *UploadSSHPublicKeyInput) (req *aws.Request, output *UploadSSHPublicKeyOutput) {
+	op := &aws.Operation{
+		Name:       opUploadSSHPublicKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UploadSSHPublicKeyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UploadSSHPublicKeyOutput{}
+	req.Data = output
+	return
+}
+
+// Uploads an SSH public key and associates it with the specified IAM user.
+//
+// The SSH public key uploaded by this action can be used only for authenticating
+// the associated IAM user to an AWS CodeCommit repository. For more information
+// about using SSH keys to authenticate to an AWS CodeCommit repository, see
+// Set up AWS CodeCommit for SSH Connections (http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html)
+// in the AWS CodeCommit User Guide.
+func (c *IAM) UploadSSHPublicKey(input *UploadSSHPublicKeyInput) (*UploadSSHPublicKeyOutput, error) {
+	req, out := c.UploadSSHPublicKeyRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -5510,6 +5682,48 @@ func (s DeleteSAMLProviderOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteSSHPublicKeyInput struct {
+	// The unique identifier for the SSH public key.
+	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+
+	// The name of the IAM user associated with the SSH public key.
+	UserName *string `type:"string" required:"true"`
+
+	metadataDeleteSSHPublicKeyInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteSSHPublicKeyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSSHPublicKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSSHPublicKeyInput) GoString() string {
+	return s.String()
+}
+
+type DeleteSSHPublicKeyOutput struct {
+	metadataDeleteSSHPublicKeyOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteSSHPublicKeyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSSHPublicKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSSHPublicKeyOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteServerCertificateInput struct {
 	// The name of the server certificate you want to delete.
 	ServerCertificateName *string `type:"string" required:"true"`
@@ -5996,15 +6210,16 @@ type GetAccountAuthorizationDetailsInput struct {
 	// policy) for filtering the results.
 	Filter []*string `type:"list"`
 
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	metadataGetAccountAuthorizationDetailsInput `json:"-" xml:"-"`
@@ -6034,8 +6249,8 @@ type GetAccountAuthorizationDetailsOutput struct {
 	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list containing information about managed policies.
@@ -6340,15 +6555,16 @@ type GetGroupInput struct {
 	// The name of the group.
 	GroupName *string `type:"string" required:"true"`
 
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of groups
-	// you want in the response. If there are additional groups beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	metadataGetGroupInput `json:"-" xml:"-"`
@@ -6373,12 +6589,12 @@ type GetGroupOutput struct {
 	// Information about the group.
 	Group *Group `type:"structure" required:"true"`
 
-	// A flag that indicates whether there are more user names to list. If your
-	// results were truncated, you can make a subsequent pagination request using
-	// the Marker request parameter to retrieve more user names in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, then this element is present and contains the value
+	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
@@ -6843,6 +7059,57 @@ func (s GetSAMLProviderOutput) GoString() string {
 	return s.String()
 }
 
+type GetSSHPublicKeyInput struct {
+	// Specifies the public key encoding format to use in the response. To retrieve
+	// the public key in ssh-rsa format, use SSH. To retrieve the public key in
+	// PEM format, use PEM.
+	Encoding *string `type:"string" required:"true"`
+
+	// The unique identifier for the SSH public key.
+	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+
+	// The name of the IAM user associated with the SSH public key.
+	UserName *string `type:"string" required:"true"`
+
+	metadataGetSSHPublicKeyInput `json:"-" xml:"-"`
+}
+
+type metadataGetSSHPublicKeyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSSHPublicKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSSHPublicKeyInput) GoString() string {
+	return s.String()
+}
+
+// Contains the response to a successful GetSSHPublicKey request.
+type GetSSHPublicKeyOutput struct {
+	// Information about the SSH public key.
+	SSHPublicKey *SSHPublicKey `type:"structure"`
+
+	metadataGetSSHPublicKeyOutput `json:"-" xml:"-"`
+}
+
+type metadataGetSSHPublicKeyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSSHPublicKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetSSHPublicKeyOutput) GoString() string {
+	return s.String()
+}
+
 type GetServerCertificateInput struct {
 	// The name of the server certificate you want to retrieve information about.
 	ServerCertificateName *string `type:"string" required:"true"`
@@ -7136,15 +7403,16 @@ func (s InstanceProfile) GoString() string {
 }
 
 type ListAccessKeysInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of keys you want in the response. If there are additional keys beyond the
-	// maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The name of the user.
@@ -7172,13 +7440,13 @@ type ListAccessKeysOutput struct {
 	// A list of access key metadata.
 	AccessKeyMetadata []*AccessKeyMetadata `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more keys to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more keys in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListAccessKeysOutput `json:"-" xml:"-"`
@@ -7199,14 +7467,15 @@ func (s ListAccessKeysOutput) GoString() string {
 }
 
 type ListAccountAliasesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of account
-	// aliases you want in the response. If there are additional account aliases
-	// beyond the maximum you specify, the IsTruncated response element is true.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
 	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
@@ -7232,15 +7501,13 @@ type ListAccountAliasesOutput struct {
 	// A list of aliases associated with the account.
 	AccountAliases []*string `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more account aliases to list. If
-	// your results were truncated, you can make a subsequent pagination request
-	// using the Marker request parameter to retrieve more account aliases in the
-	// list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListAccountAliasesOutput `json:"-" xml:"-"`
@@ -7265,15 +7532,16 @@ type ListAttachedGroupPoliciesInput struct {
 	// for.
 	GroupName *string `type:"string" required:"true"`
 
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of policies
-	// you want in the response. If there are additional policies beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
@@ -7302,13 +7570,13 @@ type ListAttachedGroupPoliciesOutput struct {
 	// A list of the attached policies.
 	AttachedPolicies []*AttachedPolicy `type:"list"`
 
-	// A flag that indicates whether there are more policies to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more policies in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListAttachedGroupPoliciesOutput `json:"-" xml:"-"`
@@ -7329,15 +7597,16 @@ func (s ListAttachedGroupPoliciesOutput) GoString() string {
 }
 
 type ListAttachedRolePoliciesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of policies
-	// you want in the response. If there are additional policies beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
@@ -7369,13 +7638,13 @@ type ListAttachedRolePoliciesOutput struct {
 	// A list of the attached policies.
 	AttachedPolicies []*AttachedPolicy `type:"list"`
 
-	// A flag that indicates whether there are more policies to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more policies in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListAttachedRolePoliciesOutput `json:"-" xml:"-"`
@@ -7396,15 +7665,16 @@ func (s ListAttachedRolePoliciesOutput) GoString() string {
 }
 
 type ListAttachedUserPoliciesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of policies
-	// you want in the response. If there are additional policies beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
@@ -7436,13 +7706,13 @@ type ListAttachedUserPoliciesOutput struct {
 	// A list of the attached policies.
 	AttachedPolicies []*AttachedPolicy `type:"list"`
 
-	// A flag that indicates whether there are more policies to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more policies in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListAttachedUserPoliciesOutput `json:"-" xml:"-"`
@@ -7470,15 +7740,16 @@ type ListEntitiesForPolicyInput struct {
 	// not included, all attached entities (users, groups, and roles) are returned.
 	EntityFilter *string `type:"string"`
 
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of entities
-	// you want in the response. If there are additional entities beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
@@ -7511,13 +7782,13 @@ func (s ListEntitiesForPolicyInput) GoString() string {
 
 // Contains the response to a successful ListEntitiesForPolicy request.
 type ListEntitiesForPolicyOutput struct {
-	// A flag that indicates whether there are more entities to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more entities in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of groups that the policy is attached to.
@@ -7550,15 +7821,16 @@ type ListGroupPoliciesInput struct {
 	// The name of the group to list policies for.
 	GroupName *string `type:"string" required:"true"`
 
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of policy
-	// names you want in the response. If there are additional policy names beyond
-	// the maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	metadataListGroupPoliciesInput `json:"-" xml:"-"`
@@ -7580,13 +7852,13 @@ func (s ListGroupPoliciesInput) GoString() string {
 
 // Contains the response to a successful ListGroupPolicies request.
 type ListGroupPoliciesOutput struct {
-	// A flag that indicates whether there are more policy names to list. If your
-	// results were truncated, you can make a subsequent pagination request using
-	// the Marker request parameter to retrieve more policy names in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of policy names.
@@ -7610,15 +7882,16 @@ func (s ListGroupPoliciesOutput) GoString() string {
 }
 
 type ListGroupsForUserInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of groups
-	// you want in the response. If there are additional groups beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The name of the user to list groups for.
@@ -7646,13 +7919,13 @@ type ListGroupsForUserOutput struct {
 	// A list of groups.
 	Groups []*Group `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more groups to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more groups in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListGroupsForUserOutput `json:"-" xml:"-"`
@@ -7673,15 +7946,16 @@ func (s ListGroupsForUserOutput) GoString() string {
 }
 
 type ListGroupsInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of groups
-	// you want in the response. If there are additional groups beyond the maximum
-	// you specify, the IsTruncated response element is true. This parameter is
-	// optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/
@@ -7713,13 +7987,13 @@ type ListGroupsOutput struct {
 	// A list of groups.
 	Groups []*Group `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more groups to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more groups in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListGroupsOutput `json:"-" xml:"-"`
@@ -7740,16 +8014,16 @@ func (s ListGroupsOutput) GoString() string {
 }
 
 type ListInstanceProfilesForRoleInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of instance profiles you want in the response. If there are additional instance
-	// profiles beyond the maximum you specify, the IsTruncated response element
-	// is true. This parameter is optional. If you do not include it, it defaults
-	// to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The name of the role to list instance profiles for.
@@ -7777,14 +8051,13 @@ type ListInstanceProfilesForRoleOutput struct {
 	// A list of instance profiles.
 	InstanceProfiles []*InstanceProfile `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more instance profiles to list. If
-	// your results were truncated, you can make a subsequent pagination request
-	// using the Marker request parameter to retrieve more instance profiles in
-	// the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListInstanceProfilesForRoleOutput `json:"-" xml:"-"`
@@ -7805,16 +8078,16 @@ func (s ListInstanceProfilesForRoleOutput) GoString() string {
 }
 
 type ListInstanceProfilesInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of instance profiles you want in the response. If there are additional instance
-	// profiles beyond the maximum you specify, the IsTruncated response element
-	// is true. This parameter is optional. If you do not include it, it defaults
-	// to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/
@@ -7846,14 +8119,13 @@ type ListInstanceProfilesOutput struct {
 	// A list of instance profiles.
 	InstanceProfiles []*InstanceProfile `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more instance profiles to list. If
-	// your results were truncated, you can make a subsequent pagination request
-	// using the Marker request parameter to retrieve more instance profiles in
-	// the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListInstanceProfilesOutput `json:"-" xml:"-"`
@@ -7874,15 +8146,16 @@ func (s ListInstanceProfilesOutput) GoString() string {
 }
 
 type ListMFADevicesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of MFA
-	// devices you want in the response. If there are additional MFA devices beyond
-	// the maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The name of the user whose MFA devices you want to list.
@@ -7907,16 +8180,16 @@ func (s ListMFADevicesInput) GoString() string {
 
 // Contains the response to a successful ListMFADevices request.
 type ListMFADevicesOutput struct {
-	// A flag that indicates whether there are more MFA devices to list. If your
-	// results were truncated, you can make a subsequent pagination request using
-	// the Marker request parameter to retrieve more MFA devices in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
 	// A list of MFA devices.
 	MFADevices []*MFADevice `type:"list" required:"true"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListMFADevicesOutput `json:"-" xml:"-"`
@@ -7977,15 +8250,16 @@ func (s ListOpenIDConnectProvidersOutput) GoString() string {
 }
 
 type ListPoliciesInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of policies you want in the response. If there are additional policies beyond
-	// the maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// A flag to filter the results to only the attached policies.
@@ -8027,13 +8301,13 @@ func (s ListPoliciesInput) GoString() string {
 
 // Contains the response to a successful ListPolicies request.
 type ListPoliciesOutput struct {
-	// A flag that indicates whether there are more policies to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more policies in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of policies.
@@ -8057,16 +8331,16 @@ func (s ListPoliciesOutput) GoString() string {
 }
 
 type ListPolicyVersionsInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of policy versions you want in the response. If there are additional policy
-	// versions beyond the maximum you specify, the IsTruncated response element
-	// is true. This parameter is optional. If you do not include it, it defaults
-	// to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
@@ -8095,14 +8369,13 @@ func (s ListPolicyVersionsInput) GoString() string {
 
 // Contains the response to a successful ListPolicyVersions request.
 type ListPolicyVersionsOutput struct {
-	// A flag that indicates whether there are more policy versions to list. If
-	// your results were truncated, you can make a subsequent pagination request
-	// using the Marker request parameter to retrieve more policy versions in the
-	// list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of policy versions.
@@ -8130,14 +8403,15 @@ func (s ListPolicyVersionsOutput) GoString() string {
 }
 
 type ListRolePoliciesInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of role policies you want in the response. If there are additional role policies
-	// beyond the maximum you specify, the IsTruncated response element is true.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
 	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
@@ -8163,13 +8437,13 @@ func (s ListRolePoliciesInput) GoString() string {
 
 // Contains the response to a successful ListRolePolicies request.
 type ListRolePoliciesOutput struct {
-	// A flag that indicates whether there are more policy names to list. If your
-	// results were truncated, you can make a subsequent pagination request using
-	// the Marker request parameter to retrieve more policy names in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of policy names.
@@ -8193,15 +8467,16 @@ func (s ListRolePoliciesOutput) GoString() string {
 }
 
 type ListRolesInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of roles you want in the response. If there are additional roles beyond the
-	// maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/
@@ -8230,13 +8505,13 @@ func (s ListRolesInput) GoString() string {
 
 // Contains the response to a successful ListRoles request.
 type ListRolesOutput struct {
-	// A flag that indicates whether there are more roles to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more roles in the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of roles.
@@ -8299,17 +8574,83 @@ func (s ListSAMLProvidersOutput) GoString() string {
 	return s.String()
 }
 
-type ListServerCertificatesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+type ListSSHPublicKeysInput struct {
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of server
-	// certificates you want in the response. If there are additional server certificates
-	// beyond the maximum you specify, the IsTruncated response element will be
-	// set to true. This parameter is optional. If you do not include it, it defaults
-	// to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
+	MaxItems *int64 `type:"integer"`
+
+	// The name of the IAM user to list SSH public keys for. If none is specified,
+	// the UserName field is determined implicitly based on the AWS access key used
+	// to sign the request.
+	UserName *string `type:"string"`
+
+	metadataListSSHPublicKeysInput `json:"-" xml:"-"`
+}
+
+type metadataListSSHPublicKeysInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSSHPublicKeysInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSSHPublicKeysInput) GoString() string {
+	return s.String()
+}
+
+// Contains the response to a successful ListSSHPublicKeys request.
+type ListSSHPublicKeysOutput struct {
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
+	IsTruncated *bool `type:"boolean"`
+
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
+	Marker *string `type:"string"`
+
+	// A list of SSH public keys.
+	SSHPublicKeys []*SSHPublicKeyMetadata `type:"list"`
+
+	metadataListSSHPublicKeysOutput `json:"-" xml:"-"`
+}
+
+type metadataListSSHPublicKeysOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListSSHPublicKeysOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s ListSSHPublicKeysOutput) GoString() string {
+	return s.String()
+}
+
+type ListServerCertificatesInput struct {
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
+	Marker *string `type:"string"`
+
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The path prefix for filtering the results. For example: /company/servercerts
@@ -8338,14 +8679,13 @@ func (s ListServerCertificatesInput) GoString() string {
 
 // Contains the response to a successful ListServerCertificates request.
 type ListServerCertificatesOutput struct {
-	// A flag that indicates whether there are more server certificates to list.
-	// If your results were truncated, you can make a subsequent pagination request
-	// using the Marker request parameter to retrieve more server certificates in
-	// the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of server certificates.
@@ -8369,15 +8709,16 @@ func (s ListServerCertificatesOutput) GoString() string {
 }
 
 type ListSigningCertificatesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of certificate
-	// IDs you want in the response. If there are additional certificate IDs beyond
-	// the maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The name of the user.
@@ -8405,13 +8746,13 @@ type ListSigningCertificatesOutput struct {
 	// A list of the user's signing certificate information.
 	Certificates []*SigningCertificate `type:"list" required:"true"`
 
-	// A flag that indicates whether there are more certificate IDs to list. If
-	// your results were truncated, you can make a subsequent pagination request
-	// using the Marker request parameter to retrieve more certificates in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	metadataListSigningCertificatesOutput `json:"-" xml:"-"`
@@ -8432,15 +8773,16 @@ func (s ListSigningCertificatesOutput) GoString() string {
 }
 
 type ListUserPoliciesInput struct {
-	// Use this only when paginating results, and only in a subsequent request after
-	// you've received a response where the results are truncated. Set it to the
-	// value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this only when paginating results to indicate the maximum number of policy
-	// names you want in the response. If there are additional policy names beyond
-	// the maximum you specify, the IsTruncated response element is true. This parameter
-	// is optional. If you do not include it, it defaults to 100.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
+	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
 	// The name of the user to list policies for.
@@ -8465,13 +8807,13 @@ func (s ListUserPoliciesInput) GoString() string {
 
 // Contains the response to a successful ListUserPolicies request.
 type ListUserPoliciesOutput struct {
-	// A flag that indicates whether there are more policy names to list. If your
-	// results were truncated, you can make a subsequent pagination request using
-	// the Marker request parameter to retrieve more policy names in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of policy names.
@@ -8495,14 +8837,15 @@ func (s ListUserPoliciesOutput) GoString() string {
 }
 
 type ListUsersInput struct {
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of user names you want in the response. If there are additional user names
-	// beyond the maximum you specify, the IsTruncated response element is true.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
 	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
@@ -8532,13 +8875,13 @@ func (s ListUsersInput) GoString() string {
 
 // Contains the response to a successful ListUsers request.
 type ListUsersOutput struct {
-	// A flag that indicates whether there are more user names to list. If your
-	// results were truncated, you can make a subsequent pagination request using
-	// the Marker request parameter to retrieve more users in the list.
+	// A flag that indicates whether there are more items to return. If your results
+	// were truncated, you can make a subsequent pagination request using the Marker
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// A list of users.
@@ -8567,14 +8910,15 @@ type ListVirtualMFADevicesInput struct {
 	// assigned and unassigned virtual MFA devices.
 	AssignmentStatus *string `type:"string"`
 
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the Marker element in the response you just received.
+	// Use this parameter only when paginating results and only after you have received
+	// a response where the results are truncated. Set it to the value of the Marker
+	// element in the response you just received.
 	Marker *string `type:"string"`
 
-	// Use this parameter only when paginating results to indicate the maximum number
-	// of MFA devices you want in the response. If there are additional MFA devices
-	// beyond the maximum you specify, the IsTruncated response element is true.
+	// Use this only when paginating results to indicate the maximum number of items
+	// you want in the response. If there are additional items beyond the maximum
+	// you specify, the IsTruncated response element is true.
+	//
 	// This parameter is optional. If you do not include it, it defaults to 100.
 	MaxItems *int64 `type:"integer"`
 
@@ -8597,13 +8941,13 @@ func (s ListVirtualMFADevicesInput) GoString() string {
 
 // Contains the response to a successful ListVirtualMFADevices request.
 type ListVirtualMFADevicesOutput struct {
-	// A flag that indicates whether there are more items to list. If your results
+	// A flag that indicates whether there are more items to return. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more items the list.
+	// request parameter to retrieve more items.
 	IsTruncated *bool `type:"boolean"`
 
-	// If IsTruncated is true, this element is present and contains the value to
-	// use for the Marker parameter in a subsequent pagination request.
+	// When IsTruncated is true, this element is present and contains the value
+	// to use for the Marker parameter in a subsequent pagination request.
 	Marker *string `type:"string"`
 
 	// The list of virtual MFA devices in the current account that match the AssignmentStatus
@@ -9546,6 +9890,83 @@ func (s SAMLProviderListEntry) GoString() string {
 	return s.String()
 }
 
+// Contains information about an SSH public key.
+//
+// This data type is used as a response element in the GetSSHPublicKey and
+// UploadSSHPublicKey actions.
+type SSHPublicKey struct {
+	// The MD5 message digest of the SSH public key.
+	Fingerprint *string `type:"string" required:"true"`
+
+	// The SSH public key.
+	SSHPublicKeyBody *string `type:"string" required:"true"`
+
+	// The unique identifier for the SSH public key.
+	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+
+	// The status of the SSH public key. Active means the key can be used for authentication
+	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
+	Status *string `type:"string" required:"true"`
+
+	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
+	// when the SSH public key was uploaded.
+	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The name of the IAM user associated with the SSH public key.
+	UserName *string `type:"string" required:"true"`
+
+	metadataSSHPublicKey `json:"-" xml:"-"`
+}
+
+type metadataSSHPublicKey struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SSHPublicKey) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SSHPublicKey) GoString() string {
+	return s.String()
+}
+
+// Contains information about an SSH public key, without the key's body or fingerprint.
+//
+// This data type is used as a response element in the ListSSHPublicKeys action.
+type SSHPublicKeyMetadata struct {
+	// The unique identifier for the SSH public key.
+	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+
+	// The status of the SSH public key. Active means the key can be used for authentication
+	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
+	Status *string `type:"string" required:"true"`
+
+	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
+	// when the SSH public key was uploaded.
+	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The name of the IAM user associated with the SSH public key.
+	UserName *string `type:"string" required:"true"`
+
+	metadataSSHPublicKeyMetadata `json:"-" xml:"-"`
+}
+
+type metadataSSHPublicKeyMetadata struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SSHPublicKeyMetadata) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SSHPublicKeyMetadata) GoString() string {
+	return s.String()
+}
+
 // Contains information about a server certificate.
 //
 //  This data type is used as a response element in the GetServerCertificate
@@ -10082,6 +10503,53 @@ func (s UpdateSAMLProviderOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateSSHPublicKeyInput struct {
+	// The unique identifier for the SSH public key.
+	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+
+	// The status to assign to the SSH public key. Active means the key can be used
+	// for authentication with an AWS CodeCommit repository. Inactive means the
+	// key cannot be used.
+	Status *string `type:"string" required:"true"`
+
+	// The name of the IAM user associated with the SSH public key.
+	UserName *string `type:"string" required:"true"`
+
+	metadataUpdateSSHPublicKeyInput `json:"-" xml:"-"`
+}
+
+type metadataUpdateSSHPublicKeyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSSHPublicKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSSHPublicKeyInput) GoString() string {
+	return s.String()
+}
+
+type UpdateSSHPublicKeyOutput struct {
+	metadataUpdateSSHPublicKeyOutput `json:"-" xml:"-"`
+}
+
+type metadataUpdateSSHPublicKeyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSSHPublicKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSSHPublicKeyOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateServerCertificateInput struct {
 	// The new path for the server certificate. Include this only if you are updating
 	// the server certificate's path.
@@ -10222,6 +10690,53 @@ func (s UpdateUserOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateUserOutput) GoString() string {
+	return s.String()
+}
+
+type UploadSSHPublicKeyInput struct {
+	// The SSH public key. The public key must be encoded in ssh-rsa format or PEM
+	// format.
+	SSHPublicKeyBody *string `type:"string" required:"true"`
+
+	// The name of the IAM user to associate the SSH public key with.
+	UserName *string `type:"string" required:"true"`
+
+	metadataUploadSSHPublicKeyInput `json:"-" xml:"-"`
+}
+
+type metadataUploadSSHPublicKeyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UploadSSHPublicKeyInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadSSHPublicKeyInput) GoString() string {
+	return s.String()
+}
+
+// Contains the response to a successful UploadSSHPublicKey request.
+type UploadSSHPublicKeyOutput struct {
+	// Contains information about the SSH public key.
+	SSHPublicKey *SSHPublicKey `type:"structure"`
+
+	metadataUploadSSHPublicKeyOutput `json:"-" xml:"-"`
+}
+
+type metadataUploadSSHPublicKeyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UploadSSHPublicKeyOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s UploadSSHPublicKeyOutput) GoString() string {
 	return s.String()
 }
 

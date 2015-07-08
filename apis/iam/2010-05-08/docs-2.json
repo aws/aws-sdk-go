@@ -34,6 +34,7 @@
     "DeleteRole": "<p>Deletes the specified role. The role must not have any policies attached. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <important>Make sure you do not have any Amazon EC2 instances running with the role you are about to delete. Deleting a role or instance profile that is associated with a running instance will break any applications running on the instance. </important>",
     "DeleteRolePolicy": "<p>Deletes the specified inline policy that is embedded in the specified role.</p> <p>A role can also have managed policies attached to it. To detach a managed policy from a role, use <a>DetachRolePolicy</a>. For more information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>",
     "DeleteSAMLProvider": "<p>Deletes a SAML provider.</p> <p> Deleting the provider does not update any roles that reference the SAML provider as a principal in their trust policies. Any attempt to assume a role that references a SAML provider that has been deleted will fail. </p> <note> This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>",
+    "DeleteSSHPublicKey": "<p>Deletes the specified SSH public key.</p> <p>The SSH public key deleted by this action is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html\">Set up AWS CodeCommit for SSH Connections</a> in the <i>AWS CodeCommit User Guide</i>.</p>",
     "DeleteServerCertificate": "<p>Deletes the specified server certificate.</p> <important> If you are using a server certificate with Elastic Load Balancing, deleting the certificate could have implications for your application. If Elastic Load Balancing doesn't detect the deletion of bound certificates, it may continue to use the certificates. This could cause Elastic Load Balancing to stop accepting traffic. We recommend that you remove the reference to the certificate from Elastic Load Balancing before using this command to delete the certificate. For more information, go to <a href=\"http://docs.aws.amazon.com/ElasticLoadBalancing/latest/APIReference/API_DeleteLoadBalancerListeners.html\">DeleteLoadBalancerListeners</a> in the <i>Elastic Load Balancing API Reference</i>. </important>",
     "DeleteSigningCertificate": "<p>Deletes the specified signing certificate associated with the specified user.</p> <p>If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID signing the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>",
     "DeleteUser": "<p> Deletes the specified user. The user must not belong to any groups, have any keys or signing certificates, or have any attached policies. </p>",
@@ -59,6 +60,7 @@
     "GetRole": "<p>Retrieves information about the specified role, including the role's path, GUID, ARN, and the policy granting permission to assume the role. For more information about ARNs, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html#Identifiers_ARNs\">ARNs</a>. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p>",
     "GetRolePolicy": "<p>Retrieves the specified inline policy document that is embedded with the specified role. </p> <p>A role can also have managed policies attached to it. To retrieve a managed policy document that is attached to a role, use <a>GetPolicy</a> to determine the policy's default version, then use <a>GetPolicyVersion</a> to retrieve the policy document. </p> <p>For more information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p> <p>For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html\">Using Roles to Delegate Permissions and Federate Identities</a>. </p>",
     "GetSAMLProvider": "<p>Returns the SAML provider metadocument that was uploaded when the provider was created or updated. </p> <note>This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>",
+    "GetSSHPublicKey": "<p>Retrieves the specified SSH public key, including metadata about the key.</p> <p>The SSH public key retrieved by this action is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html\">Set up AWS CodeCommit for SSH Connections</a> in the <i>AWS CodeCommit User Guide</i>.</p>",
     "GetServerCertificate": "<p>Retrieves information about the specified server certificate.</p>",
     "GetUser": "<p>Retrieves information about the specified user, including the user's creation date, path, unique ID, and ARN. </p> <p>If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID used to sign the request. </p>",
     "GetUserPolicy": "<p>Retrieves the specified inline policy document that is embedded in the specified user. </p> <p>A user can also have managed policies attached to it. To retrieve a managed policy document that is attached to a user, use <a>GetPolicy</a> to determine the policy's default version, then use <a>GetPolicyVersion</a> to retrieve the policy document. </p> <p>For more information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p>",
@@ -80,6 +82,7 @@
     "ListRolePolicies": "<p>Lists the names of the inline policies that are embedded in the specified role. </p> <p>A role can also have managed policies attached to it. To list the managed policies that are attached to a role, use <a>ListAttachedRolePolicies</a>. For more information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. If there are no inline policies embedded with the specified role, the action returns an empty list. </p>",
     "ListRoles": "<p>Lists the roles that have the specified path prefix. If there are none, the action returns an empty list. For more information about roles, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/WorkingWithRoles.html\">Working with Roles</a>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>",
     "ListSAMLProviders": "<p>Lists the SAML providers in the account.</p> <note> This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>",
+    "ListSSHPublicKeys": "<p>Returns information about the SSH public keys associated with the specified IAM user. If there are none, the action returns an empty list.</p> <p>The SSH public keys returned by this action are used only for authenticating the IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html\">Set up AWS CodeCommit for SSH Connections</a> in the <i>AWS CodeCommit User Guide</i>.</p> <p>Although each user is limited to a small number of keys, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters.</p>",
     "ListServerCertificates": "<p> Lists the server certificates that have the specified path prefix. If none exist, the action returns an empty list. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>",
     "ListSigningCertificates": "<p>Returns information about the signing certificates associated with the specified user. If there are none, the action returns an empty list. </p> <p>Although each user is limited to a small number of signing certificates, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p>If the <code>UserName</code> field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>",
     "ListUserPolicies": "<p>Lists the names of the inline policies embedded in the specified user. </p> <p>A user can also have managed policies attached to it. To list the managed policies that are attached to a user, use <a>ListAttachedUserPolicies</a>. For more information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>Using IAM</i> guide. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. If there are no inline policies embedded with the specified user, the action returns an empty list. </p>",
@@ -100,9 +103,11 @@
     "UpdateLoginProfile": "<p>Changes the password for the specified user.</p> <p>Users can change their own passwords by calling <a>ChangePassword</a>. For more information about modifying passwords, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingLogins.html\">Managing Passwords</a> in the <i>Using IAM</i> guide. </p>",
     "UpdateOpenIDConnectProviderThumbprint": "<p>Replaces the existing list of server certificate thumbprints with a new list. </p> <p>The list that you pass with this action completely replaces the existing list of thumbprints. (The lists are not merged.)</p> <p>Typically, you need to update a thumbprint only when the identity provider's certificate changes, which occurs rarely. However, if the provider's certificate <i>does</i> change, any attempt to assume an IAM role that specifies the OIDC provider as a principal will fail until the certificate thumbprint is updated.</p> <note>Because trust for the OpenID Connect provider is ultimately derived from the provider's certificate and is validated by the thumbprint, it is a best practice to limit access to the <code>UpdateOpenIDConnectProviderThumbprint</code> action to highly-privileged users. </note>",
     "UpdateSAMLProvider": "<p>Updates the metadata document for an existing SAML provider.</p> <note>This operation requires <a href=\"http://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4</a>. </note>",
+    "UpdateSSHPublicKey": "<p>Sets the status of the specified SSH public key to active or inactive. SSH public keys that are inactive cannot be used for authentication. This action can be used to disable a user's SSH public key as part of a key rotation work flow. </p> <p>The SSH public key affected by this action is used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html\">Set up AWS CodeCommit for SSH Connections</a> in the <i>AWS CodeCommit User Guide</i>.</p>",
     "UpdateServerCertificate": "<p>Updates the name and/or the path of the specified server certificate.</p> <important> You should understand the implications of changing a server certificate's path or name. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingServerCerts.html\">Managing Server Certificates</a> in the <i>Using IAM</i> guide. </important> <note>To change a server certificate name the requester must have appropriate permissions on both the source object and the target object. For example, to change the name from ProductionCert to ProdCert, the entity making the request must have permission on ProductionCert and ProdCert, or must have permission on all (*). For more information about permissions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html\" target=\"blank\">Permissions and Policies</a>. </note>",
     "UpdateSigningCertificate": "<p>Changes the status of the specified signing certificate from active to disabled, or vice versa. This action can be used to disable a user's signing certificate as part of a certificate rotation work flow. </p> <p>If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p>",
     "UpdateUser": "<p>Updates the name and/or the path of the specified user.</p> <important> You should understand the implications of changing a user's path or name. For more information, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_WorkingWithGroupsAndUsers.html\">Renaming Users and Groups</a> in the <i>Using IAM</i> guide. </important> <note> To change a user name the requester must have appropriate permissions on both the source object and the target object. For example, to change Bob to Robert, the entity making the request must have permission on Bob and Robert, or must have permission on all (*). For more information about permissions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/PermissionsAndPolicies.html\" target=\"blank\">Permissions and Policies</a>. </note>",
+    "UploadSSHPublicKey": "<p>Uploads an SSH public key and associates it with the specified IAM user.</p> <p>The SSH public key uploaded by this action can be used only for authenticating the associated IAM user to an AWS CodeCommit repository. For more information about using SSH keys to authenticate to an AWS CodeCommit repository, see <a href=\"http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-credentials-ssh.html\">Set up AWS CodeCommit for SSH Connections</a> in the <i>AWS CodeCommit User Guide</i>.</p>",
     "UploadServerCertificate": "<p>Uploads a server certificate entity for the AWS account. The server certificate entity includes a public key certificate, a private key, and an optional certificate chain, which should all be PEM-encoded. </p> <p>For information about the number of server certificates you can upload, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/LimitationsOnEntities.html\">Limitations on IAM Entities</a> in the <i>Using IAM</i> guide. </p> <note>Because the body of the public key certificate, private key, and the certificate chain can be large, you should use POST rather than GET when calling <code>UploadServerCertificate</code>. For information about setting up signatures and authorization through the API, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a> in the <i>AWS General Reference</i>. For general information about using the Query API with IAM, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i> guide. </note>",
     "UploadSigningCertificate": "<p>Uploads an X.509 signing certificate and associates it with the specified user. Some AWS services use X.509 signing certificates to validate requests that are signed with a corresponding private key. When you upload the certificate, its default status is <code>Active</code>. </p> <p>If the <code>UserName</code> field is not specified, the user name is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <note>Because the body of a X.509 certificate can be large, you should use POST rather than GET when calling <code>UploadSigningCertificate</code>. For information about setting up signatures and authorization through the API, go to <a href=\"http://docs.aws.amazon.com/general/latest/gr/signing_aws_api_requests.html\">Signing AWS API Requests</a> in the <i>AWS General Reference</i>. For general information about using the Query API with IAM, go to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html\">Making Query Requests</a> in the <i>Using IAM</i>guide. </note>"
   },
@@ -290,12 +295,12 @@
       }
     },
     "CredentialReportExpiredException": {
-      "base": "<p> The request was rejected because the most recent credential report has expired. To generate a new credential report, use <a>GenerateCredentialReport</a>. For more information about credential report expiration, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html\">Getting Credential Reports</a> in the <i>Using IAM</i> guide. </p>",
+      "base": "<p>The request was rejected because the most recent credential report has expired. To generate a new credential report, use <a>GenerateCredentialReport</a>. For more information about credential report expiration, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/credential-reports.html\">Getting Credential Reports</a> in the <i>Using IAM</i> guide.</p>",
       "refs": {
       }
     },
     "CredentialReportNotPresentException": {
-      "base": "<p> The request was rejected because the credential report does not exist. To generate a credential report, use <a>GenerateCredentialReport</a>. </p>",
+      "base": "<p>The request was rejected because the credential report does not exist. To generate a credential report, use <a>GenerateCredentialReport</a>.</p>",
       "refs": {
       }
     },
@@ -320,7 +325,7 @@
       }
     },
     "DeleteConflictException": {
-      "base": "<p> The request was rejected because it attempted to delete a resource that has attached subordinate entities. The error message describes these entities. </p>",
+      "base": "<p>The request was rejected because it attempted to delete a resource that has attached subordinate entities. The error message describes these entities. </p>",
       "refs": {
       }
     },
@@ -374,6 +379,11 @@
       "refs": {
       }
     },
+    "DeleteSSHPublicKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteServerCertificateRequest": {
       "base": null,
       "refs": {
@@ -415,7 +425,12 @@
       }
     },
     "DuplicateCertificateException": {
-      "base": "<p> The request was rejected because the same certificate is associated to another user under the account. </p>",
+      "base": "<p>The request was rejected because the same certificate is associated with an IAM user in the account. </p>",
+      "refs": {
+      }
+    },
+    "DuplicateSSHPublicKeyException": {
+      "base": "<p>The request was rejected because the SSH public key is already associated with the specified IAM user.</p>",
       "refs": {
       }
     },
@@ -430,7 +445,7 @@
       }
     },
     "EntityTemporarilyUnmodifiableException": {
-      "base": "<p> The request was rejected because it referenced an entity that is temporarily unmodifiable, such as a user name that was deleted and then recreated. The error indicates that the request is likely to succeed if you try again after waiting several minutes. The error message describes the entity. </p>",
+      "base": "<p>The request was rejected because it referenced an entity that is temporarily unmodifiable, such as a user name that was deleted and then recreated. The error indicates that the request is likely to succeed if you try again after waiting several minutes. The error message describes the entity. </p>",
       "refs": {
       }
     },
@@ -581,6 +596,16 @@
       "refs": {
       }
     },
+    "GetSSHPublicKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSSHPublicKeyResponse": {
+      "base": "<p>Contains the response to a successful <a>GetSSHPublicKey</a> request.</p>",
+      "refs": {
+      }
+    },
     "GetServerCertificateRequest": {
       "base": null,
       "refs": {
@@ -634,7 +659,7 @@
       }
     },
     "InvalidAuthenticationCodeException": {
-      "base": "<p> The request was rejected because the authentication code was not recognized. The error message describes the specific error. </p>",
+      "base": "<p>The request was rejected because the authentication code was not recognized. The error message describes the specific error. </p>",
       "refs": {
       }
     },
@@ -645,6 +670,11 @@
     },
     "InvalidInputException": {
       "base": "<p>The request was rejected because an invalid or out-of-range value was supplied for an input parameter.</p>",
+      "refs": {
+      }
+    },
+    "InvalidPublicKeyException": {
+      "base": "<p>The request was rejected because the public key is malformed or otherwise invalid.</p>",
       "refs": {
       }
     },
@@ -659,7 +689,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p> The request was rejected because it attempted to create resources beyond the current AWS account limits. The error message describes the limit exceeded. </p>",
+      "base": "<p>The request was rejected because it attempted to create resources beyond the current AWS account limits. The error message describes the limit exceeded. </p>",
       "refs": {
       }
     },
@@ -843,6 +873,16 @@
       "refs": {
       }
     },
+    "ListSSHPublicKeysRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSSHPublicKeysResponse": {
+      "base": "<p>Contains the response to a successful <a>ListSSHPublicKeys</a> request.</p>",
+      "refs": {
+      }
+    },
     "ListServerCertificatesRequest": {
       "base": null,
       "refs": {
@@ -907,12 +947,12 @@
       }
     },
     "MalformedCertificateException": {
-      "base": "<p> The request was rejected because the certificate was malformed or expired. The error message describes the specific error. </p>",
+      "base": "<p>The request was rejected because the certificate was malformed or expired. The error message describes the specific error. </p>",
       "refs": {
       }
     },
     "MalformedPolicyDocumentException": {
-      "base": "<p> The request was rejected because the policy document was malformed. The error message describes the specific error. </p>",
+      "base": "<p>The request was rejected because the policy document was malformed. The error message describes the specific error. </p>",
       "refs": {
       }
     },
@@ -929,7 +969,7 @@
       }
     },
     "NoSuchEntityException": {
-      "base": "<p> The request was rejected because it referenced an entity that does not exist. The error message describes the entity. </p>",
+      "base": "<p>The request was rejected because it referenced an entity that does not exist. The error message describes the entity. </p>",
       "refs": {
       }
     },
@@ -959,7 +999,7 @@
       }
     },
     "PasswordPolicyViolationException": {
-      "base": "<p> The request was rejected because the provided password did not meet the requirements imposed by the account password policy. </p>",
+      "base": "<p>The request was rejected because the provided password did not meet the requirements imposed by the account password policy. </p>",
       "refs": {
       }
     },
@@ -1120,6 +1160,25 @@
         "CreateSAMLProviderRequest$Name": "<p>The name of the provider to create.</p>"
       }
     },
+    "SSHPublicKey": {
+      "base": "<p>Contains information about an SSH public key.</p> <p>This data type is used as a response element in the <a>GetSSHPublicKey</a> and <a>UploadSSHPublicKey</a> actions. </p>",
+      "refs": {
+        "GetSSHPublicKeyResponse$SSHPublicKey": "<p>Information about the SSH public key.</p>",
+        "UploadSSHPublicKeyResponse$SSHPublicKey": "<p>Contains information about the SSH public key.</p>"
+      }
+    },
+    "SSHPublicKeyListType": {
+      "base": null,
+      "refs": {
+        "ListSSHPublicKeysResponse$SSHPublicKeys": "<p>A list of SSH public keys.</p>"
+      }
+    },
+    "SSHPublicKeyMetadata": {
+      "base": "<p>Contains information about an SSH public key, without the key's body or fingerprint.</p> <p>This data type is used as a response element in the <a>ListSSHPublicKeys</a> action.</p>",
+      "refs": {
+        "SSHPublicKeyListType$member": null
+      }
+    },
     "ServerCertificate": {
       "base": "<p>Contains information about a server certificate.</p> <p> This data type is used as a response element in the <a>GetServerCertificate</a> action. </p>",
       "refs": {
@@ -1135,7 +1194,7 @@
       }
     },
     "ServiceFailureException": {
-      "base": "<p> The request processing has failed because of an unknown error, exception or failure. </p>",
+      "base": "<p>The request processing has failed because of an unknown error, exception or failure. </p>",
       "refs": {
       }
     },
@@ -1149,6 +1208,11 @@
       "refs": {
         "UploadSigningCertificateResponse$Certificate": "<p>Information about the certificate.</p>",
         "certificateListType$member": null
+      }
+    },
+    "UnrecognizedPublicKeyEncodingException": {
+      "base": "<p>The request was rejected because the public key encoding format is unsupported or unrecognized.</p>",
+      "refs": {
       }
     },
     "UpdateAccessKeyRequest": {
@@ -1191,6 +1255,11 @@
       "refs": {
       }
     },
+    "UpdateSSHPublicKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateServerCertificateRequest": {
       "base": null,
       "refs": {
@@ -1203,6 +1272,16 @@
     },
     "UpdateUserRequest": {
       "base": null,
+      "refs": {
+      }
+    },
+    "UploadSSHPublicKeyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UploadSSHPublicKeyResponse": {
+      "base": "<p>Contains the response to a successful <a>UploadSSHPublicKey</a> request.</p>",
       "refs": {
       }
     },
@@ -1374,29 +1453,30 @@
         "CreateLoginProfileRequest$PasswordResetRequired": "<p> Specifies whether the user is required to set a new password on next sign-in. </p>",
         "CreatePolicyVersionRequest$SetAsDefault": "<p>Specifies whether to set this version as the policy's default version.</p> <p>When this parameter is <code>true</code>, the new policy version becomes the operative version; that is, the version that is in effect for the IAM users, groups, and roles that the policy is attached to.</p> <p>For more information about managed policy versions, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html\">Versioning for Managed Policies</a> in the <i>Using IAM</i> guide. </p>",
         "GetAccountAuthorizationDetailsResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
-        "GetGroupResponse$IsTruncated": "<p> A flag that indicates whether there are more user names to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more user names in the list. </p>",
-        "ListAccessKeysResponse$IsTruncated": "<p> A flag that indicates whether there are more keys to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more keys in the list. </p>",
-        "ListAccountAliasesResponse$IsTruncated": "<p> A flag that indicates whether there are more account aliases to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more account aliases in the list. </p>",
-        "ListAttachedGroupPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more policies to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policies in the list.</p>",
-        "ListAttachedRolePoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more policies to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policies in the list.</p>",
-        "ListAttachedUserPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more policies to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policies in the list.</p>",
-        "ListEntitiesForPolicyResponse$IsTruncated": "<p>A flag that indicates whether there are more entities to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more entities in the list.</p>",
-        "ListGroupPoliciesResponse$IsTruncated": "<p> A flag that indicates whether there are more policy names to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policy names in the list. </p>",
-        "ListGroupsForUserResponse$IsTruncated": "<p> A flag that indicates whether there are more groups to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more groups in the list. </p>",
-        "ListGroupsResponse$IsTruncated": "<p> A flag that indicates whether there are more groups to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more groups in the list. </p>",
-        "ListInstanceProfilesForRoleResponse$IsTruncated": "<p> A flag that indicates whether there are more instance profiles to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more instance profiles in the list. </p>",
-        "ListInstanceProfilesResponse$IsTruncated": "<p> A flag that indicates whether there are more instance profiles to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more instance profiles in the list. </p>",
-        "ListMFADevicesResponse$IsTruncated": "<p> A flag that indicates whether there are more MFA devices to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more MFA devices in the list. </p>",
+        "GetGroupResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListAccessKeysResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListAccountAliasesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListAttachedGroupPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListAttachedRolePoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListAttachedUserPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListEntitiesForPolicyResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListGroupPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListGroupsForUserResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListGroupsResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListInstanceProfilesForRoleResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListInstanceProfilesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListMFADevicesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
         "ListPoliciesRequest$OnlyAttached": "<p>A flag to filter the results to only the attached policies. </p> <p>When <code>OnlyAttached</code> is <code>true</code>, the returned list contains only the policies that are attached to a user, group, or role. When <code>OnlyAttached</code> is <code>false</code>, or when the parameter is not included, all policies are returned.</p>",
-        "ListPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more policies to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policies in the list.</p>",
-        "ListPolicyVersionsResponse$IsTruncated": "<p>A flag that indicates whether there are more policy versions to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policy versions in the list.</p>",
-        "ListRolePoliciesResponse$IsTruncated": "<p> A flag that indicates whether there are more policy names to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policy names in the list. </p>",
-        "ListRolesResponse$IsTruncated": "<p> A flag that indicates whether there are more roles to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more roles in the list. </p>",
-        "ListServerCertificatesResponse$IsTruncated": "<p> A flag that indicates whether there are more server certificates to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more server certificates in the list. </p>",
-        "ListSigningCertificatesResponse$IsTruncated": "<p> A flag that indicates whether there are more certificate IDs to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more certificates in the list. </p>",
-        "ListUserPoliciesResponse$IsTruncated": "<p> A flag that indicates whether there are more policy names to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more policy names in the list. </p>",
-        "ListUsersResponse$IsTruncated": "<p> A flag that indicates whether there are more user names to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more users in the list. </p>",
-        "ListVirtualMFADevicesResponse$IsTruncated": "<p> A flag that indicates whether there are more items to list. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items the list. </p>",
+        "ListPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListPolicyVersionsResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListRolePoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListRolesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListSSHPublicKeysResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListServerCertificatesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListSigningCertificatesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListUserPoliciesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListUsersResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
+        "ListVirtualMFADevicesResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items.</p>",
         "LoginProfile$PasswordResetRequired": "<p>Specifies whether the user is required to set a new password on next sign-in.</p>",
         "ManagedPolicyDetail$IsAttachable": "<p>Specifies whether the policy can be attached to an IAM user, group, or role. </p>",
         "PasswordPolicy$RequireSymbols": "<p>Specifies whether to require symbols for IAM user passwords.</p>",
@@ -1501,6 +1581,8 @@
         "RoleDetail$CreateDate": "<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the role was created.</p>",
         "SAMLProviderListEntry$ValidUntil": "<p>The expiration date and time for the SAML provider.</p>",
         "SAMLProviderListEntry$CreateDate": "<p>The date and time when the SAML provider was created.</p>",
+        "SSHPublicKey$UploadDate": "<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the SSH public key was uploaded.</p>",
+        "SSHPublicKeyMetadata$UploadDate": "<p>The date and time, in <a href=\"http://www.iso.org/iso/iso8601\">ISO 8601 date-time format</a>, when the SSH public key was uploaded.</p>",
         "ServerCertificateMetadata$UploadDate": "<p>The date when the server certificate was uploaded.</p>",
         "ServerCertificateMetadata$Expiration": "<p>The date on which the certificate is set to expire.</p>",
         "SigningCertificate$UploadDate": "<p>The date when the signing certificate was uploaded.</p>",
@@ -1520,6 +1602,18 @@
       "base": null,
       "refs": {
         "DuplicateCertificateException$message": null
+      }
+    },
+    "duplicateSSHPublicKeyMessage": {
+      "base": null,
+      "refs": {
+        "DuplicateSSHPublicKeyException$message": null
+      }
+    },
+    "encodingType": {
+      "base": null,
+      "refs": {
+        "GetSSHPublicKeyRequest$Encoding": "<p>Specifies the public key encoding format to use in the response. To retrieve the public key in ssh-rsa format, use <code>SSH</code>. To retrieve the public key in PEM format, use <code>PEM</code>.</p>"
       }
     },
     "entityAlreadyExistsMessage": {
@@ -1664,6 +1758,12 @@
         "InvalidInputException$message": null
       }
     },
+    "invalidPublicKeyMessage": {
+      "base": null,
+      "refs": {
+        "InvalidPublicKeyException$message": null
+      }
+    },
     "invalidUserTypeMessage": {
       "base": null,
       "refs": {
@@ -1697,80 +1797,83 @@
     "markerType": {
       "base": null,
       "refs": {
-        "GetAccountAuthorizationDetailsRequest$Marker": "<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "GetAccountAuthorizationDetailsResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "GetGroupRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "GetGroupResponse$Marker": "<p> If IsTruncated is <code>true</code>, then this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListAccessKeysRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListAccessKeysResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListAccountAliasesRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListAccountAliasesResponse$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListAttachedGroupPoliciesRequest$Marker": "<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "ListAttachedGroupPoliciesResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "ListAttachedRolePoliciesRequest$Marker": "<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "ListAttachedRolePoliciesResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "ListAttachedUserPoliciesRequest$Marker": "<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "ListAttachedUserPoliciesResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "ListEntitiesForPolicyRequest$Marker": "<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "ListEntitiesForPolicyResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "ListGroupPoliciesRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListGroupPoliciesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListGroupsForUserRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListGroupsForUserResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListGroupsRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListGroupsResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListInstanceProfilesForRoleRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListInstanceProfilesForRoleResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListInstanceProfilesRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListInstanceProfilesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListMFADevicesRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListMFADevicesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListPoliciesRequest$Marker": "<p>Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "ListPoliciesResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "ListPolicyVersionsRequest$Marker": "<p>Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
-        "ListPolicyVersionsResponse$Marker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
-        "ListRolePoliciesRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListRolePoliciesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListRolesRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListRolesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListServerCertificatesRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListServerCertificatesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListSigningCertificatesRequest$Marker": "<p>Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListSigningCertificatesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListUserPoliciesRequest$Marker": "<p> Use this only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListUserPoliciesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListUsersRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListUsersResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>",
-        "ListVirtualMFADevicesRequest$Marker": "<p> Use this parameter only when paginating results, and only in a subsequent request after you've received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received. </p>",
-        "ListVirtualMFADevicesResponse$Marker": "<p> If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request. </p>"
+        "GetAccountAuthorizationDetailsRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "GetAccountAuthorizationDetailsResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "GetGroupRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "GetGroupResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListAccessKeysRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListAccessKeysResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListAccountAliasesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListAccountAliasesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListAttachedGroupPoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListAttachedGroupPoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListAttachedRolePoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListAttachedRolePoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListAttachedUserPoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListAttachedUserPoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListEntitiesForPolicyRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListEntitiesForPolicyResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListGroupPoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListGroupPoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListGroupsForUserRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListGroupsForUserResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListGroupsRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListGroupsResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListInstanceProfilesForRoleRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListInstanceProfilesForRoleResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListInstanceProfilesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListInstanceProfilesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListMFADevicesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListMFADevicesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListPoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListPoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListPolicyVersionsRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListPolicyVersionsResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListRolePoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListRolePoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListRolesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListRolesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListSSHPublicKeysRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListSSHPublicKeysResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListServerCertificatesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListServerCertificatesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListSigningCertificatesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListSigningCertificatesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListUserPoliciesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListUserPoliciesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListUsersRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListUsersResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>",
+        "ListVirtualMFADevicesRequest$Marker": "<p>Use this parameter only when paginating results and only after you have received a response where the results are truncated. Set it to the value of the <code>Marker</code> element in the response you just received.</p>",
+        "ListVirtualMFADevicesResponse$Marker": "<p>When <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value to use for the <code>Marker</code> parameter in a subsequent pagination request.</p>"
       }
     },
     "maxItemsType": {
       "base": null,
       "refs": {
-        "GetAccountAuthorizationDetailsRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "GetGroupRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of groups you want in the response. If there are additional groups beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListAccessKeysRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of keys you want in the response. If there are additional keys beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListAccountAliasesRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of account aliases you want in the response. If there are additional account aliases beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListAttachedGroupPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of policies you want in the response. If there are additional policies beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "ListAttachedRolePoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of policies you want in the response. If there are additional policies beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "ListAttachedUserPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of policies you want in the response. If there are additional policies beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "ListEntitiesForPolicyRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of entities you want in the response. If there are additional entities beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "ListGroupPoliciesRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of policy names you want in the response. If there are additional policy names beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListGroupsForUserRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of groups you want in the response. If there are additional groups beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListGroupsRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of groups you want in the response. If there are additional groups beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListInstanceProfilesForRoleRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of instance profiles you want in the response. If there are additional instance profiles beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListInstanceProfilesRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of instance profiles you want in the response. If there are additional instance profiles beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListMFADevicesRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of MFA devices you want in the response. If there are additional MFA devices beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListPoliciesRequest$MaxItems": "<p>Use this parameter only when paginating results to indicate the maximum number of policies you want in the response. If there are additional policies beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "ListPolicyVersionsRequest$MaxItems": "<p>Use this parameter only when paginating results to indicate the maximum number of policy versions you want in the response. If there are additional policy versions beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100.</p>",
-        "ListRolePoliciesRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of role policies you want in the response. If there are additional role policies beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListRolesRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of roles you want in the response. If there are additional roles beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListServerCertificatesRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of server certificates you want in the response. If there are additional server certificates beyond the maximum you specify, the <code>IsTruncated</code> response element will be set to <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListSigningCertificatesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of certificate IDs you want in the response. If there are additional certificate IDs beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListUserPoliciesRequest$MaxItems": "<p> Use this only when paginating results to indicate the maximum number of policy names you want in the response. If there are additional policy names beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListUsersRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of user names you want in the response. If there are additional user names beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>",
-        "ListVirtualMFADevicesRequest$MaxItems": "<p> Use this parameter only when paginating results to indicate the maximum number of MFA devices you want in the response. If there are additional MFA devices beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>. This parameter is optional. If you do not include it, it defaults to 100. </p>"
+        "GetAccountAuthorizationDetailsRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "GetGroupRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListAccessKeysRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListAccountAliasesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListAttachedGroupPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListAttachedRolePoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListAttachedUserPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListEntitiesForPolicyRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListGroupPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListGroupsForUserRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListGroupsRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListInstanceProfilesForRoleRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListInstanceProfilesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListMFADevicesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListPolicyVersionsRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListRolePoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListRolesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListSSHPublicKeysRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListServerCertificatesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListSigningCertificatesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListUserPoliciesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListUsersRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>",
+        "ListVirtualMFADevicesRequest$MaxItems": "<p>Use this only when paginating results to indicate the maximum number of items you want in the response. If there are additional items beyond the maximum you specify, the <code>IsTruncated</code> response element is <code>true</code>.</p> <p>This parameter is optional. If you do not include it, it defaults to 100.</p>"
       }
     },
     "maxPasswordAgeType": {
@@ -1968,6 +2071,29 @@
         "UploadServerCertificateRequest$PrivateKey": "<p>The contents of the private key in PEM-encoded format.</p>"
       }
     },
+    "publicKeyFingerprintType": {
+      "base": null,
+      "refs": {
+        "SSHPublicKey$Fingerprint": "<p>The MD5 message digest of the SSH public key.</p>"
+      }
+    },
+    "publicKeyIdType": {
+      "base": null,
+      "refs": {
+        "DeleteSSHPublicKeyRequest$SSHPublicKeyId": "<p>The unique identifier for the SSH public key.</p>",
+        "GetSSHPublicKeyRequest$SSHPublicKeyId": "<p>The unique identifier for the SSH public key.</p>",
+        "SSHPublicKey$SSHPublicKeyId": "<p>The unique identifier for the SSH public key.</p>",
+        "SSHPublicKeyMetadata$SSHPublicKeyId": "<p>The unique identifier for the SSH public key.</p>",
+        "UpdateSSHPublicKeyRequest$SSHPublicKeyId": "<p>The unique identifier for the SSH public key.</p>"
+      }
+    },
+    "publicKeyMaterialType": {
+      "base": null,
+      "refs": {
+        "SSHPublicKey$SSHPublicKeyBody": "<p>The SSH public key.</p>",
+        "UploadSSHPublicKeyRequest$SSHPublicKeyBody": "<p>The SSH public key. The public key must be encoded in ssh-rsa format or PEM format.</p>"
+      }
+    },
     "roleDetailListType": {
       "base": null,
       "refs": {
@@ -2043,8 +2169,11 @@
       "refs": {
         "AccessKey$Status": "<p>The status of the access key. <code>Active</code> means the key is valid for API calls, while <code>Inactive</code> means it is not. </p>",
         "AccessKeyMetadata$Status": "<p>The status of the access key. <code>Active</code> means the key is valid for API calls; <code>Inactive</code> means it is not.</p>",
+        "SSHPublicKey$Status": "<p>The status of the SSH public key. <code>Active</code> means the key can be used for authentication with an AWS CodeCommit repository. <code>Inactive</code> means the key cannot be used.</p>",
+        "SSHPublicKeyMetadata$Status": "<p>The status of the SSH public key. <code>Active</code> means the key can be used for authentication with an AWS CodeCommit repository. <code>Inactive</code> means the key cannot be used.</p>",
         "SigningCertificate$Status": "<p>The status of the signing certificate. <code>Active</code> means the key is valid for API calls, while <code>Inactive</code> means it is not.</p>",
         "UpdateAccessKeyRequest$Status": "<p> The status you want to assign to the secret access key. <code>Active</code> means the key can be used for API calls to AWS, while <code>Inactive</code> means the key cannot be used. </p>",
+        "UpdateSSHPublicKeyRequest$Status": "<p>The status to assign to the SSH public key. <code>Active</code> means the key can be used for authentication with an AWS CodeCommit repository. <code>Inactive</code> means the key cannot be used.</p>",
         "UpdateSigningCertificateRequest$Status": "<p> The status you want to assign to the certificate. <code>Active</code> means the certificate can be used for API calls to AWS, while <code>Inactive</code> means the certificate cannot be used. </p>"
       }
     },
@@ -2087,6 +2216,12 @@
         "thumbprintListType$member": null
       }
     },
+    "unrecognizedPublicKeyEncodingMessage": {
+      "base": null,
+      "refs": {
+        "UnrecognizedPublicKeyEncodingException$message": null
+      }
+    },
     "userDetailListType": {
       "base": null,
       "refs": {
@@ -2109,15 +2244,22 @@
         "CreateLoginProfileRequest$UserName": "<p>The name of the user to create a password for.</p>",
         "CreateUserRequest$UserName": "<p>The name of the user to create.</p>",
         "DeleteLoginProfileRequest$UserName": "<p>The name of the user whose password you want to delete.</p>",
+        "DeleteSSHPublicKeyRequest$UserName": "<p>The name of the IAM user associated with the SSH public key.</p>",
         "DetachUserPolicyRequest$UserName": "<p>The name (friendly name, not ARN) of the user to detach the policy from.</p>",
         "GetLoginProfileRequest$UserName": "<p>The name of the user whose login profile you want to retrieve.</p>",
+        "GetSSHPublicKeyRequest$UserName": "<p>The name of the IAM user associated with the SSH public key.</p>",
         "ListAttachedUserPoliciesRequest$UserName": "<p>The name (friendly name, not ARN) of the user to list attached policies for.</p>",
+        "ListSSHPublicKeysRequest$UserName": "<p>The name of the IAM user to list SSH public keys for. If none is specified, the UserName field is determined implicitly based on the AWS access key used to sign the request.</p>",
         "LoginProfile$UserName": "<p>The name of the user, which can be used for signing in to the AWS Management Console.</p>",
         "MFADevice$UserName": "<p>The user with whom the MFA device is associated.</p>",
         "PolicyUser$UserName": "<p>The name (friendly name, not ARN) identifying the user.</p>",
+        "SSHPublicKey$UserName": "<p>The name of the IAM user associated with the SSH public key.</p>",
+        "SSHPublicKeyMetadata$UserName": "<p>The name of the IAM user associated with the SSH public key.</p>",
         "SigningCertificate$UserName": "<p>The name of the user the signing certificate is associated with.</p>",
         "UpdateLoginProfileRequest$UserName": "<p>The name of the user whose password you want to update.</p>",
+        "UpdateSSHPublicKeyRequest$UserName": "<p>The name of the IAM user associated with the SSH public key.</p>",
         "UpdateUserRequest$NewUserName": "<p>New name for the user. Include this parameter only if you're changing the user's name.</p>",
+        "UploadSSHPublicKeyRequest$UserName": "<p>The name of the IAM user to associate the SSH public key with.</p>",
         "User$UserName": "<p>The friendly name identifying the user.</p>",
         "UserDetail$UserName": "<p>The friendly name identifying the user.</p>"
       }

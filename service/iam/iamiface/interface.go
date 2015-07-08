@@ -75,6 +75,8 @@ type IAMAPI interface {
 
 	DeleteSAMLProvider(*iam.DeleteSAMLProviderInput) (*iam.DeleteSAMLProviderOutput, error)
 
+	DeleteSSHPublicKey(*iam.DeleteSSHPublicKeyInput) (*iam.DeleteSSHPublicKeyOutput, error)
+
 	DeleteServerCertificate(*iam.DeleteServerCertificateInput) (*iam.DeleteServerCertificateOutput, error)
 
 	DeleteSigningCertificate(*iam.DeleteSigningCertificateInput) (*iam.DeleteSigningCertificateOutput, error)
@@ -125,6 +127,8 @@ type IAMAPI interface {
 
 	GetSAMLProvider(*iam.GetSAMLProviderInput) (*iam.GetSAMLProviderOutput, error)
 
+	GetSSHPublicKey(*iam.GetSSHPublicKeyInput) (*iam.GetSSHPublicKeyOutput, error)
+
 	GetServerCertificate(*iam.GetServerCertificateInput) (*iam.GetServerCertificateOutput, error)
 
 	GetUser(*iam.GetUserInput) (*iam.GetUserOutput, error)
@@ -167,6 +171,8 @@ type IAMAPI interface {
 
 	ListSAMLProviders(*iam.ListSAMLProvidersInput) (*iam.ListSAMLProvidersOutput, error)
 
+	ListSSHPublicKeys(*iam.ListSSHPublicKeysInput) (*iam.ListSSHPublicKeysOutput, error)
+
 	ListServerCertificates(*iam.ListServerCertificatesInput) (*iam.ListServerCertificatesOutput, error)
 
 	ListSigningCertificates(*iam.ListSigningCertificatesInput) (*iam.ListSigningCertificatesOutput, error)
@@ -207,11 +213,15 @@ type IAMAPI interface {
 
 	UpdateSAMLProvider(*iam.UpdateSAMLProviderInput) (*iam.UpdateSAMLProviderOutput, error)
 
+	UpdateSSHPublicKey(*iam.UpdateSSHPublicKeyInput) (*iam.UpdateSSHPublicKeyOutput, error)
+
 	UpdateServerCertificate(*iam.UpdateServerCertificateInput) (*iam.UpdateServerCertificateOutput, error)
 
 	UpdateSigningCertificate(*iam.UpdateSigningCertificateInput) (*iam.UpdateSigningCertificateOutput, error)
 
 	UpdateUser(*iam.UpdateUserInput) (*iam.UpdateUserOutput, error)
+
+	UploadSSHPublicKey(*iam.UploadSSHPublicKeyInput) (*iam.UploadSSHPublicKeyOutput, error)
 
 	UploadServerCertificate(*iam.UploadServerCertificateInput) (*iam.UploadServerCertificateOutput, error)
 

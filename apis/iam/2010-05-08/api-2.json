@@ -1503,6 +1503,25 @@
         }
       ]
     },
+    "DeleteSSHPublicKey":{
+      "name":"DeleteSSHPublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteSSHPublicKeyRequest"},
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "DeleteServerCertificate":{
       "name":"DeleteServerCertificate",
       "http":{
@@ -2428,6 +2447,38 @@
         }
       ]
     },
+    "GetSSHPublicKey":{
+      "name":"GetSSHPublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSSHPublicKeyRequest"},
+      "output":{
+        "shape":"GetSSHPublicKeyResponse",
+        "resultWrapper":"GetSSHPublicKeyResult"
+      },
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnrecognizedPublicKeyEncodingException",
+          "error":{
+            "code":"UnrecognizedPublicKeyEncoding",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "GetServerCertificate":{
       "name":"GetServerCertificate",
       "http":{
@@ -3056,6 +3107,29 @@
           "error":{
             "code":"ServiceFailure",
             "httpStatusCode":500
+          },
+          "exception":true
+        }
+      ]
+    },
+    "ListSSHPublicKeys":{
+      "name":"ListSSHPublicKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSSHPublicKeysRequest"},
+      "output":{
+        "shape":"ListSSHPublicKeysResponse",
+        "resultWrapper":"ListSSHPublicKeysResult"
+      },
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
           },
           "exception":true
         }
@@ -3822,6 +3896,25 @@
         }
       ]
     },
+    "UpdateSSHPublicKey":{
+      "name":"UpdateSSHPublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSSHPublicKeyRequest"},
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "UpdateServerCertificate":{
       "name":"UpdateServerCertificate",
       "http":{
@@ -3952,6 +4045,65 @@
           "error":{
             "code":"ServiceFailure",
             "httpStatusCode":500
+          },
+          "exception":true
+        }
+      ]
+    },
+    "UploadSSHPublicKey":{
+      "name":"UploadSSHPublicKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UploadSSHPublicKeyRequest"},
+      "output":{
+        "shape":"UploadSSHPublicKeyResponse",
+        "resultWrapper":"UploadSSHPublicKeyResult"
+      },
+      "errors":[
+        {
+          "shape":"LimitExceededException",
+          "error":{
+            "code":"LimitExceeded",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidPublicKeyException",
+          "error":{
+            "code":"InvalidPublicKey",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"DuplicateSSHPublicKeyException",
+          "error":{
+            "code":"DuplicateSSHPublicKey",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnrecognizedPublicKeyEncodingException",
+          "error":{
+            "code":"UnrecognizedPublicKeyEncoding",
+            "httpStatusCode":400,
+            "senderFault":true
           },
           "exception":true
         }
@@ -4564,6 +4716,17 @@
         "SAMLProviderArn":{"shape":"arnType"}
       }
     },
+    "DeleteSSHPublicKeyRequest":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "SSHPublicKeyId"
+      ],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SSHPublicKeyId":{"shape":"publicKeyIdType"}
+      }
+    },
     "DeleteServerCertificateRequest":{
       "type":"structure",
       "required":["ServerCertificateName"],
@@ -4645,6 +4808,18 @@
       "error":{
         "code":"DuplicateCertificate",
         "httpStatusCode":409,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DuplicateSSHPublicKeyException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"duplicateSSHPublicKeyMessage"}
+      },
+      "error":{
+        "code":"DuplicateSSHPublicKey",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -4932,6 +5107,25 @@
         "ValidUntil":{"shape":"dateType"}
       }
     },
+    "GetSSHPublicKeyRequest":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "SSHPublicKeyId",
+        "Encoding"
+      ],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SSHPublicKeyId":{"shape":"publicKeyIdType"},
+        "Encoding":{"shape":"encodingType"}
+      }
+    },
+    "GetSSHPublicKeyResponse":{
+      "type":"structure",
+      "members":{
+        "SSHPublicKey":{"shape":"SSHPublicKey"}
+      }
+    },
     "GetServerCertificateRequest":{
       "type":"structure",
       "required":["ServerCertificateName"],
@@ -5062,6 +5256,18 @@
       },
       "error":{
         "code":"InvalidInput",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidPublicKeyException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"invalidPublicKeyMessage"}
+      },
+      "error":{
+        "code":"InvalidPublicKey",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -5406,6 +5612,22 @@
       "type":"structure",
       "members":{
         "SAMLProviderList":{"shape":"SAMLProviderListType"}
+      }
+    },
+    "ListSSHPublicKeysRequest":{
+      "type":"structure",
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "Marker":{"shape":"markerType"},
+        "MaxItems":{"shape":"maxItemsType"}
+      }
+    },
+    "ListSSHPublicKeysResponse":{
+      "type":"structure",
+      "members":{
+        "SSHPublicKeys":{"shape":"SSHPublicKeyListType"},
+        "IsTruncated":{"shape":"booleanType"},
+        "Marker":{"shape":"markerType"}
       }
     },
     "ListServerCertificatesRequest":{
@@ -5832,7 +6054,44 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[\\w._-]*"
+      "pattern":"[\\w._-]+"
+    },
+    "SSHPublicKey":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "SSHPublicKeyId",
+        "Fingerprint",
+        "SSHPublicKeyBody",
+        "Status"
+      ],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SSHPublicKeyId":{"shape":"publicKeyIdType"},
+        "Fingerprint":{"shape":"publicKeyFingerprintType"},
+        "SSHPublicKeyBody":{"shape":"publicKeyMaterialType"},
+        "Status":{"shape":"statusType"},
+        "UploadDate":{"shape":"dateType"}
+      }
+    },
+    "SSHPublicKeyListType":{
+      "type":"list",
+      "member":{"shape":"SSHPublicKeyMetadata"}
+    },
+    "SSHPublicKeyMetadata":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "SSHPublicKeyId",
+        "Status",
+        "UploadDate"
+      ],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SSHPublicKeyId":{"shape":"publicKeyIdType"},
+        "Status":{"shape":"statusType"},
+        "UploadDate":{"shape":"dateType"}
+      }
     },
     "ServerCertificate":{
       "type":"structure",
@@ -5900,6 +6159,18 @@
         "Status":{"shape":"statusType"},
         "UploadDate":{"shape":"dateType"}
       }
+    },
+    "UnrecognizedPublicKeyEncodingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"unrecognizedPublicKeyEncodingMessage"}
+      },
+      "error":{
+        "code":"UnrecognizedPublicKeyEncoding",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "UpdateAccessKeyRequest":{
       "type":"structure",
@@ -5984,6 +6255,19 @@
         "SAMLProviderArn":{"shape":"arnType"}
       }
     },
+    "UpdateSSHPublicKeyRequest":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "SSHPublicKeyId",
+        "Status"
+      ],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SSHPublicKeyId":{"shape":"publicKeyIdType"},
+        "Status":{"shape":"statusType"}
+      }
+    },
     "UpdateServerCertificateRequest":{
       "type":"structure",
       "required":["ServerCertificateName"],
@@ -6012,6 +6296,23 @@
         "UserName":{"shape":"existingUserNameType"},
         "NewPath":{"shape":"pathType"},
         "NewUserName":{"shape":"userNameType"}
+      }
+    },
+    "UploadSSHPublicKeyRequest":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "SSHPublicKeyBody"
+      ],
+      "members":{
+        "UserName":{"shape":"userNameType"},
+        "SSHPublicKeyBody":{"shape":"publicKeyMaterialType"}
+      }
+    },
+    "UploadSSHPublicKeyResponse":{
+      "type":"structure",
+      "members":{
+        "SSHPublicKey":{"shape":"SSHPublicKey"}
       }
     },
     "UploadServerCertificateRequest":{
@@ -6096,7 +6397,7 @@
       "type":"string",
       "min":16,
       "max":32,
-      "pattern":"[\\w]*"
+      "pattern":"[\\w]+"
     },
     "accessKeyMetadataListType":{
       "type":"list",
@@ -6138,7 +6439,7 @@
       "type":"string",
       "min":6,
       "max":6,
-      "pattern":"[\\d]*"
+      "pattern":"[\\d]+"
     },
     "booleanObjectType":{
       "type":"boolean",
@@ -6155,13 +6456,13 @@
       "type":"string",
       "min":1,
       "max":2097152,
-      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*"
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "certificateIdType":{
       "type":"string",
       "min":24,
       "max":128,
-      "pattern":"[\\w]*"
+      "pattern":"[\\w]+"
     },
     "certificateListType":{
       "type":"list",
@@ -6182,6 +6483,14 @@
     "dateType":{"type":"timestamp"},
     "deleteConflictMessage":{"type":"string"},
     "duplicateCertificateMessage":{"type":"string"},
+    "duplicateSSHPublicKeyMessage":{"type":"string"},
+    "encodingType":{
+      "type":"string",
+      "enum":[
+        "SSH",
+        "PEM"
+      ]
+    },
     "entityAlreadyExistsMessage":{"type":"string"},
     "entityListType":{
       "type":"list",
@@ -6192,7 +6501,7 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "groupDetailListType":{
       "type":"list",
@@ -6210,13 +6519,13 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "idType":{
       "type":"string",
       "min":16,
       "max":32,
-      "pattern":"[\\w]*"
+      "pattern":"[\\w]+"
     },
     "instanceProfileListType":{
       "type":"list",
@@ -6226,11 +6535,12 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "invalidAuthenticationCodeMessage":{"type":"string"},
     "invalidCertificateMessage":{"type":"string"},
     "invalidInputMessage":{"type":"string"},
+    "invalidPublicKeyMessage":{"type":"string"},
     "invalidUserTypeMessage":{"type":"string"},
     "keyPairMismatchMessage":{"type":"string"},
     "limitExceededMessage":{"type":"string"},
@@ -6240,7 +6550,7 @@
       "type":"string",
       "min":1,
       "max":320,
-      "pattern":"[\\u0020-\\u00FF]*"
+      "pattern":"[\\u0020-\\u00FF]+"
     },
     "maxItemsType":{
       "type":"integer",
@@ -6319,7 +6629,7 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "policyPathType":{
       "type":"string",
@@ -6341,8 +6651,26 @@
       "type":"string",
       "min":1,
       "max":16384,
-      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]*",
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+",
       "sensitive":true
+    },
+    "publicKeyFingerprintType":{
+      "type":"string",
+      "min":48,
+      "max":48,
+      "pattern":"[:\\w]+"
+    },
+    "publicKeyIdType":{
+      "type":"string",
+      "min":20,
+      "max":128,
+      "pattern":"[\\w]+"
+    },
+    "publicKeyMaterialType":{
+      "type":"string",
+      "min":1,
+      "max":16384,
+      "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
     },
     "roleDetailListType":{
       "type":"list",
@@ -6356,13 +6684,13 @@
       "type":"string",
       "min":1,
       "max":64,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "serialNumberType":{
       "type":"string",
       "min":9,
       "max":256,
-      "pattern":"[\\w+=/:,.@-]*"
+      "pattern":"[\\w+=/:,.@-]+"
     },
     "serverCertificateMetadataListType":{
       "type":"list",
@@ -6372,7 +6700,7 @@
       "type":"string",
       "min":1,
       "max":128,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "serviceFailureExceptionMessage":{"type":"string"},
     "statusType":{
@@ -6428,6 +6756,7 @@
       "min":40,
       "max":40
     },
+    "unrecognizedPublicKeyEncodingMessage":{"type":"string"},
     "userDetailListType":{
       "type":"list",
       "member":{"shape":"UserDetail"}
@@ -6440,7 +6769,7 @@
       "type":"string",
       "min":1,
       "max":64,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     },
     "virtualMFADeviceListType":{
       "type":"list",
@@ -6449,7 +6778,7 @@
     "virtualMFADeviceName":{
       "type":"string",
       "min":1,
-      "pattern":"[\\w+=,.@-]*"
+      "pattern":"[\\w+=,.@-]+"
     }
   }
 }
