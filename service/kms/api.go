@@ -897,7 +897,7 @@ type metadataAliasListEntry struct {
 
 // String returns the string representation
 func (s AliasListEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -926,7 +926,7 @@ type metadataCreateAliasInput struct {
 
 // String returns the string representation
 func (s CreateAliasInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -944,7 +944,7 @@ type metadataCreateAliasOutput struct {
 
 // String returns the string representation
 func (s CreateAliasOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -988,7 +988,7 @@ type metadataCreateGrantInput struct {
 
 // String returns the string representation
 func (s CreateGrantInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1012,7 +1012,7 @@ type metadataCreateGrantOutput struct {
 
 // String returns the string representation
 func (s CreateGrantOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1042,7 +1042,7 @@ type metadataCreateKeyInput struct {
 
 // String returns the string representation
 func (s CreateKeyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1063,7 +1063,7 @@ type metadataCreateKeyOutput struct {
 
 // String returns the string representation
 func (s CreateKeyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1092,7 +1092,7 @@ type metadataDecryptInput struct {
 
 // String returns the string representation
 func (s DecryptInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1118,7 +1118,7 @@ type metadataDecryptOutput struct {
 
 // String returns the string representation
 func (s DecryptOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1140,7 +1140,7 @@ type metadataDeleteAliasInput struct {
 
 // String returns the string representation
 func (s DeleteAliasInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1158,7 +1158,7 @@ type metadataDeleteAliasOutput struct {
 
 // String returns the string representation
 func (s DeleteAliasOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1184,7 +1184,7 @@ type metadataDescribeKeyInput struct {
 
 // String returns the string representation
 func (s DescribeKeyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1205,7 +1205,7 @@ type metadataDescribeKeyOutput struct {
 
 // String returns the string representation
 func (s DescribeKeyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1229,7 +1229,7 @@ type metadataDisableKeyInput struct {
 
 // String returns the string representation
 func (s DisableKeyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1247,7 +1247,7 @@ type metadataDisableKeyOutput struct {
 
 // String returns the string representation
 func (s DisableKeyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1271,7 +1271,7 @@ type metadataDisableKeyRotationInput struct {
 
 // String returns the string representation
 func (s DisableKeyRotationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1289,7 +1289,7 @@ type metadataDisableKeyRotationOutput struct {
 
 // String returns the string representation
 func (s DisableKeyRotationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1313,7 +1313,7 @@ type metadataEnableKeyInput struct {
 
 // String returns the string representation
 func (s EnableKeyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1331,7 +1331,7 @@ type metadataEnableKeyOutput struct {
 
 // String returns the string representation
 func (s EnableKeyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1355,7 +1355,7 @@ type metadataEnableKeyRotationInput struct {
 
 // String returns the string representation
 func (s EnableKeyRotationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1373,7 +1373,7 @@ type metadataEnableKeyRotationOutput struct {
 
 // String returns the string representation
 func (s EnableKeyRotationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1411,7 +1411,7 @@ type metadataEncryptInput struct {
 
 // String returns the string representation
 func (s EncryptInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1436,7 +1436,7 @@ type metadataEncryptOutput struct {
 
 // String returns the string representation
 func (s EncryptOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1479,7 +1479,7 @@ type metadataGenerateDataKeyInput struct {
 
 // String returns the string representation
 func (s GenerateDataKeyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1515,7 +1515,7 @@ type metadataGenerateDataKeyOutput struct {
 
 // String returns the string representation
 func (s GenerateDataKeyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1557,7 +1557,7 @@ type metadataGenerateDataKeyWithoutPlaintextInput struct {
 
 // String returns the string representation
 func (s GenerateDataKeyWithoutPlaintextInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1586,7 +1586,7 @@ type metadataGenerateDataKeyWithoutPlaintextOutput struct {
 
 // String returns the string representation
 func (s GenerateDataKeyWithoutPlaintextOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1608,7 +1608,7 @@ type metadataGenerateRandomInput struct {
 
 // String returns the string representation
 func (s GenerateRandomInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1629,7 +1629,7 @@ type metadataGenerateRandomOutput struct {
 
 // String returns the string representation
 func (s GenerateRandomOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1657,7 +1657,7 @@ type metadataGetKeyPolicyInput struct {
 
 // String returns the string representation
 func (s GetKeyPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1678,7 +1678,7 @@ type metadataGetKeyPolicyOutput struct {
 
 // String returns the string representation
 func (s GetKeyPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1702,7 +1702,7 @@ type metadataGetKeyRotationStatusInput struct {
 
 // String returns the string representation
 func (s GetKeyRotationStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1723,7 +1723,7 @@ type metadataGetKeyRotationStatusOutput struct {
 
 // String returns the string representation
 func (s GetKeyRotationStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1749,7 +1749,7 @@ type metadataGrantConstraints struct {
 
 // String returns the string representation
 func (s GrantConstraints) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1789,7 +1789,7 @@ type metadataGrantListEntry struct {
 
 // String returns the string representation
 func (s GrantListEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1814,7 +1814,7 @@ type metadataKeyListEntry struct {
 
 // String returns the string representation
 func (s KeyListEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1854,7 +1854,7 @@ type metadataKeyMetadata struct {
 
 // String returns the string representation
 func (s KeyMetadata) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1882,7 +1882,7 @@ type metadataListAliasesInput struct {
 
 // String returns the string representation
 func (s ListAliasesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1912,7 +1912,7 @@ type metadataListAliasesOutput struct {
 
 // String returns the string representation
 func (s ListAliasesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1947,7 +1947,7 @@ type metadataListGrantsInput struct {
 
 // String returns the string representation
 func (s ListGrantsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1977,7 +1977,7 @@ type metadataListGrantsOutput struct {
 
 // String returns the string representation
 func (s ListGrantsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2014,7 +2014,7 @@ type metadataListKeyPoliciesInput struct {
 
 // String returns the string representation
 func (s ListKeyPoliciesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2045,7 +2045,7 @@ type metadataListKeyPoliciesOutput struct {
 
 // String returns the string representation
 func (s ListKeyPoliciesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2074,7 +2074,7 @@ type metadataListKeysInput struct {
 
 // String returns the string representation
 func (s ListKeysInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2104,7 +2104,7 @@ type metadataListKeysOutput struct {
 
 // String returns the string representation
 func (s ListKeysOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2135,7 +2135,7 @@ type metadataPutKeyPolicyInput struct {
 
 // String returns the string representation
 func (s PutKeyPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2153,7 +2153,7 @@ type metadataPutKeyPolicyOutput struct {
 
 // String returns the string representation
 func (s PutKeyPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2193,7 +2193,7 @@ type metadataReEncryptInput struct {
 
 // String returns the string representation
 func (s ReEncryptInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2221,7 +2221,7 @@ type metadataReEncryptOutput struct {
 
 // String returns the string representation
 func (s ReEncryptOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2252,7 +2252,7 @@ type metadataRetireGrantInput struct {
 
 // String returns the string representation
 func (s RetireGrantInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2270,7 +2270,7 @@ type metadataRetireGrantOutput struct {
 
 // String returns the string representation
 func (s RetireGrantOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2297,7 +2297,7 @@ type metadataRevokeGrantInput struct {
 
 // String returns the string representation
 func (s RevokeGrantInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2315,7 +2315,7 @@ type metadataRevokeGrantOutput struct {
 
 // String returns the string representation
 func (s RevokeGrantOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2344,7 +2344,7 @@ type metadataUpdateAliasInput struct {
 
 // String returns the string representation
 func (s UpdateAliasInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2362,7 +2362,7 @@ type metadataUpdateAliasOutput struct {
 
 // String returns the string representation
 func (s UpdateAliasOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2389,7 +2389,7 @@ type metadataUpdateKeyDescriptionInput struct {
 
 // String returns the string representation
 func (s UpdateKeyDescriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2407,7 +2407,7 @@ type metadataUpdateKeyDescriptionOutput struct {
 
 // String returns the string representation
 func (s UpdateKeyDescriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

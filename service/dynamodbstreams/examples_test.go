@@ -22,7 +22,7 @@ func ExampleDynamoDBStreams_DescribeStream() {
 	params := &dynamodbstreams.DescribeStreamInput{
 		StreamARN:             aws.String("StreamArn"), // Required
 		ExclusiveStartShardID: aws.String("ShardId"),
-		Limit: aws.Long(1),
+		Limit: aws.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
 
@@ -42,7 +42,7 @@ func ExampleDynamoDBStreams_DescribeStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDynamoDBStreams_GetRecords() {
@@ -50,7 +50,7 @@ func ExampleDynamoDBStreams_GetRecords() {
 
 	params := &dynamodbstreams.GetRecordsInput{
 		ShardIterator: aws.String("ShardIterator"), // Required
-		Limit:         aws.Long(1),
+		Limit:         aws.Int64(1),
 	}
 	resp, err := svc.GetRecords(params)
 
@@ -70,7 +70,7 @@ func ExampleDynamoDBStreams_GetRecords() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDynamoDBStreams_GetShardIterator() {
@@ -100,7 +100,7 @@ func ExampleDynamoDBStreams_GetShardIterator() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDynamoDBStreams_ListStreams() {
@@ -108,7 +108,7 @@ func ExampleDynamoDBStreams_ListStreams() {
 
 	params := &dynamodbstreams.ListStreamsInput{
 		ExclusiveStartStreamARN: aws.String("StreamArn"),
-		Limit:     aws.Long(1),
+		Limit:     aws.Int64(1),
 		TableName: aws.String("TableName"),
 	}
 	resp, err := svc.ListStreams(params)
@@ -129,5 +129,5 @@ func ExampleDynamoDBStreams_ListStreams() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

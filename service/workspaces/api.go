@@ -306,7 +306,7 @@ type metadataComputeType struct {
 
 // String returns the string representation
 func (s ComputeType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -328,7 +328,7 @@ type metadataCreateWorkspacesInput struct {
 
 // String returns the string representation
 func (s CreateWorkspacesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -357,7 +357,7 @@ type metadataCreateWorkspacesOutput struct {
 
 // String returns the string representation
 func (s CreateWorkspacesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -394,7 +394,7 @@ type metadataDefaultWorkspaceCreationProperties struct {
 
 // String returns the string representation
 func (s DefaultWorkspaceCreationProperties) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -430,7 +430,7 @@ type metadataDescribeWorkspaceBundlesInput struct {
 
 // String returns the string representation
 func (s DescribeWorkspaceBundlesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -457,7 +457,7 @@ type metadataDescribeWorkspaceBundlesOutput struct {
 
 // String returns the string representation
 func (s DescribeWorkspaceBundlesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -484,7 +484,7 @@ type metadataDescribeWorkspaceDirectoriesInput struct {
 
 // String returns the string representation
 func (s DescribeWorkspaceDirectoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -511,7 +511,7 @@ type metadataDescribeWorkspaceDirectoriesOutput struct {
 
 // String returns the string representation
 func (s DescribeWorkspaceDirectoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -560,7 +560,7 @@ type metadataDescribeWorkspacesInput struct {
 
 // String returns the string representation
 func (s DescribeWorkspacesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -590,7 +590,7 @@ type metadataDescribeWorkspacesOutput struct {
 
 // String returns the string representation
 func (s DescribeWorkspacesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -619,7 +619,7 @@ type metadataFailedCreateWorkspaceRequest struct {
 
 // String returns the string representation
 func (s FailedCreateWorkspaceRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -648,7 +648,7 @@ type metadataFailedWorkspaceChangeRequest struct {
 
 // String returns the string representation
 func (s FailedWorkspaceChangeRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -671,7 +671,7 @@ type metadataRebootRequest struct {
 
 // String returns the string representation
 func (s RebootRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -693,7 +693,7 @@ type metadataRebootWorkspacesInput struct {
 
 // String returns the string representation
 func (s RebootWorkspacesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -715,7 +715,7 @@ type metadataRebootWorkspacesOutput struct {
 
 // String returns the string representation
 func (s RebootWorkspacesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -738,7 +738,7 @@ type metadataRebuildRequest struct {
 
 // String returns the string representation
 func (s RebuildRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -760,7 +760,7 @@ type metadataRebuildWorkspacesInput struct {
 
 // String returns the string representation
 func (s RebuildWorkspacesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -782,7 +782,7 @@ type metadataRebuildWorkspacesOutput struct {
 
 // String returns the string representation
 func (s RebuildWorkspacesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -805,7 +805,7 @@ type metadataTerminateRequest struct {
 
 // String returns the string representation
 func (s TerminateRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -827,7 +827,7 @@ type metadataTerminateWorkspacesInput struct {
 
 // String returns the string representation
 func (s TerminateWorkspacesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -849,7 +849,7 @@ type metadataTerminateWorkspacesOutput struct {
 
 // String returns the string representation
 func (s TerminateWorkspacesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -871,7 +871,7 @@ type metadataUserStorage struct {
 
 // String returns the string representation
 func (s UserStorage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -919,7 +919,7 @@ type metadataWorkspace struct {
 
 // String returns the string representation
 func (s Workspace) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -958,7 +958,7 @@ type metadataWorkspaceBundle struct {
 
 // String returns the string representation
 func (s WorkspaceBundle) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1019,7 +1019,7 @@ type metadataWorkspaceDirectory struct {
 
 // String returns the string representation
 func (s WorkspaceDirectory) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1052,7 +1052,7 @@ type metadataWorkspaceRequest struct {
 
 // String returns the string representation
 func (s WorkspaceRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

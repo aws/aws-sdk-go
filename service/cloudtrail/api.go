@@ -292,7 +292,7 @@ type metadataCreateTrailInput struct {
 
 // String returns the string representation
 func (s CreateTrailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -339,7 +339,7 @@ type metadataCreateTrailOutput struct {
 
 // String returns the string representation
 func (s CreateTrailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -361,7 +361,7 @@ type metadataDeleteTrailInput struct {
 
 // String returns the string representation
 func (s DeleteTrailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -381,7 +381,7 @@ type metadataDeleteTrailOutput struct {
 
 // String returns the string representation
 func (s DeleteTrailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -403,7 +403,7 @@ type metadataDescribeTrailsInput struct {
 
 // String returns the string representation
 func (s DescribeTrailsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -426,7 +426,7 @@ type metadataDescribeTrailsOutput struct {
 
 // String returns the string representation
 func (s DescribeTrailsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -465,7 +465,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -487,7 +487,7 @@ type metadataGetTrailStatusInput struct {
 
 // String returns the string representation
 func (s GetTrailStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -545,7 +545,7 @@ type metadataGetTrailStatusOutput struct {
 
 // String returns the string representation
 func (s GetTrailStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -570,7 +570,7 @@ type metadataLookupAttribute struct {
 
 // String returns the string representation
 func (s LookupAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -614,7 +614,7 @@ type metadataLookupEventsInput struct {
 
 // String returns the string representation
 func (s LookupEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -645,7 +645,7 @@ type metadataLookupEventsOutput struct {
 
 // String returns the string representation
 func (s LookupEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -677,7 +677,7 @@ type metadataResource struct {
 
 // String returns the string representation
 func (s Resource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -699,7 +699,7 @@ type metadataStartLoggingInput struct {
 
 // String returns the string representation
 func (s StartLoggingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -719,7 +719,7 @@ type metadataStartLoggingOutput struct {
 
 // String returns the string representation
 func (s StartLoggingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -743,7 +743,7 @@ type metadataStopLoggingInput struct {
 
 // String returns the string representation
 func (s StopLoggingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -763,7 +763,7 @@ type metadataStopLoggingOutput struct {
 
 // String returns the string representation
 func (s StopLoggingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -807,7 +807,7 @@ type metadataTrail struct {
 
 // String returns the string representation
 func (s Trail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -854,7 +854,7 @@ type metadataUpdateTrailInput struct {
 
 // String returns the string representation
 func (s UpdateTrailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -901,7 +901,7 @@ type metadataUpdateTrailOutput struct {
 
 // String returns the string representation
 func (s UpdateTrailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

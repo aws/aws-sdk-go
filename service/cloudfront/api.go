@@ -656,7 +656,7 @@ type metadataActiveTrustedSigners struct {
 
 // String returns the string representation
 func (s ActiveTrustedSigners) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -683,7 +683,7 @@ type metadataAliases struct {
 
 // String returns the string representation
 func (s Aliases) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -726,7 +726,7 @@ type metadataAllowedMethods struct {
 
 // String returns the string representation
 func (s AllowedMethods) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -837,7 +837,7 @@ type metadataCacheBehavior struct {
 
 // String returns the string representation
 func (s CacheBehavior) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -863,7 +863,7 @@ type metadataCacheBehaviors struct {
 
 // String returns the string representation
 func (s CacheBehaviors) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -896,7 +896,7 @@ type metadataCachedMethods struct {
 
 // String returns the string representation
 func (s CachedMethods) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -923,7 +923,7 @@ type metadataCookieNames struct {
 
 // String returns the string representation
 func (s CookieNames) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -953,7 +953,7 @@ type metadataCookiePreference struct {
 
 // String returns the string representation
 func (s CookiePreference) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -975,7 +975,7 @@ type metadataCreateCloudFrontOriginAccessIdentityInput struct {
 
 // String returns the string representation
 func (s CreateCloudFrontOriginAccessIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1004,7 +1004,7 @@ type metadataCreateCloudFrontOriginAccessIdentityOutput struct {
 
 // String returns the string representation
 func (s CreateCloudFrontOriginAccessIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1026,7 +1026,7 @@ type metadataCreateDistributionInput struct {
 
 // String returns the string representation
 func (s CreateDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1055,7 +1055,7 @@ type metadataCreateDistributionOutput struct {
 
 // String returns the string representation
 func (s CreateDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1080,7 +1080,7 @@ type metadataCreateInvalidationInput struct {
 
 // String returns the string representation
 func (s CreateInvalidationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1106,7 +1106,7 @@ type metadataCreateInvalidationOutput struct {
 
 // String returns the string representation
 func (s CreateInvalidationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1128,7 +1128,7 @@ type metadataCreateStreamingDistributionInput struct {
 
 // String returns the string representation
 func (s CreateStreamingDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1157,7 +1157,7 @@ type metadataCreateStreamingDistributionOutput struct {
 
 // String returns the string representation
 func (s CreateStreamingDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1208,7 +1208,7 @@ type metadataCustomErrorResponse struct {
 
 // String returns the string representation
 func (s CustomErrorResponse) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1234,7 +1234,7 @@ type metadataCustomErrorResponses struct {
 
 // String returns the string representation
 func (s CustomErrorResponses) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1262,7 +1262,7 @@ type metadataCustomOriginConfig struct {
 
 // String returns the string representation
 func (s CustomOriginConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1353,7 +1353,7 @@ type metadataDefaultCacheBehavior struct {
 
 // String returns the string representation
 func (s DefaultCacheBehavior) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1379,7 +1379,7 @@ type metadataDeleteCloudFrontOriginAccessIdentityInput struct {
 
 // String returns the string representation
 func (s DeleteCloudFrontOriginAccessIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1397,7 +1397,7 @@ type metadataDeleteCloudFrontOriginAccessIdentityOutput struct {
 
 // String returns the string representation
 func (s DeleteCloudFrontOriginAccessIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1423,7 +1423,7 @@ type metadataDeleteDistributionInput struct {
 
 // String returns the string representation
 func (s DeleteDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1441,7 +1441,7 @@ type metadataDeleteDistributionOutput struct {
 
 // String returns the string representation
 func (s DeleteDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1467,7 +1467,7 @@ type metadataDeleteStreamingDistributionInput struct {
 
 // String returns the string representation
 func (s DeleteStreamingDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1485,7 +1485,7 @@ type metadataDeleteStreamingDistributionOutput struct {
 
 // String returns the string representation
 func (s DeleteStreamingDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1534,7 +1534,7 @@ type metadataDistribution struct {
 
 // String returns the string representation
 func (s Distribution) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1613,7 +1613,7 @@ type metadataDistributionConfig struct {
 
 // String returns the string representation
 func (s DistributionConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1656,7 +1656,7 @@ type metadataDistributionList struct {
 
 // String returns the string representation
 func (s DistributionList) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1723,7 +1723,7 @@ type metadataDistributionSummary struct {
 
 // String returns the string representation
 func (s DistributionSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1755,7 +1755,7 @@ type metadataForwardedValues struct {
 
 // String returns the string representation
 func (s ForwardedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1803,7 +1803,7 @@ type metadataGeoRestriction struct {
 
 // String returns the string representation
 func (s GeoRestriction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1825,7 +1825,7 @@ type metadataGetCloudFrontOriginAccessIdentityConfigInput struct {
 
 // String returns the string representation
 func (s GetCloudFrontOriginAccessIdentityConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1850,7 +1850,7 @@ type metadataGetCloudFrontOriginAccessIdentityConfigOutput struct {
 
 // String returns the string representation
 func (s GetCloudFrontOriginAccessIdentityConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1872,7 +1872,7 @@ type metadataGetCloudFrontOriginAccessIdentityInput struct {
 
 // String returns the string representation
 func (s GetCloudFrontOriginAccessIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1898,7 +1898,7 @@ type metadataGetCloudFrontOriginAccessIdentityOutput struct {
 
 // String returns the string representation
 func (s GetCloudFrontOriginAccessIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1920,7 +1920,7 @@ type metadataGetDistributionConfigInput struct {
 
 // String returns the string representation
 func (s GetDistributionConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1945,7 +1945,7 @@ type metadataGetDistributionConfigOutput struct {
 
 // String returns the string representation
 func (s GetDistributionConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1967,7 +1967,7 @@ type metadataGetDistributionInput struct {
 
 // String returns the string representation
 func (s GetDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1992,7 +1992,7 @@ type metadataGetDistributionOutput struct {
 
 // String returns the string representation
 func (s GetDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2017,7 +2017,7 @@ type metadataGetInvalidationInput struct {
 
 // String returns the string representation
 func (s GetInvalidationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2039,7 +2039,7 @@ type metadataGetInvalidationOutput struct {
 
 // String returns the string representation
 func (s GetInvalidationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2061,7 +2061,7 @@ type metadataGetStreamingDistributionConfigInput struct {
 
 // String returns the string representation
 func (s GetStreamingDistributionConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2086,7 +2086,7 @@ type metadataGetStreamingDistributionConfigOutput struct {
 
 // String returns the string representation
 func (s GetStreamingDistributionConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2108,7 +2108,7 @@ type metadataGetStreamingDistributionInput struct {
 
 // String returns the string representation
 func (s GetStreamingDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2134,7 +2134,7 @@ type metadataGetStreamingDistributionOutput struct {
 
 // String returns the string representation
 func (s GetStreamingDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2174,7 +2174,7 @@ type metadataHeaders struct {
 
 // String returns the string representation
 func (s Headers) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2206,7 +2206,7 @@ type metadataInvalidation struct {
 
 // String returns the string representation
 func (s Invalidation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2244,7 +2244,7 @@ type metadataInvalidationBatch struct {
 
 // String returns the string representation
 func (s InvalidationBatch) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2287,7 +2287,7 @@ type metadataInvalidationList struct {
 
 // String returns the string representation
 func (s InvalidationList) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2314,7 +2314,7 @@ type metadataInvalidationSummary struct {
 
 // String returns the string representation
 func (s InvalidationSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2341,7 +2341,7 @@ type metadataKeyPairIDs struct {
 
 // String returns the string representation
 func (s KeyPairIDs) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2370,7 +2370,7 @@ type metadataListCloudFrontOriginAccessIdentitiesInput struct {
 
 // String returns the string representation
 func (s ListCloudFrontOriginAccessIdentitiesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2392,7 +2392,7 @@ type metadataListCloudFrontOriginAccessIdentitiesOutput struct {
 
 // String returns the string representation
 func (s ListCloudFrontOriginAccessIdentitiesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2421,7 +2421,7 @@ type metadataListDistributionsInput struct {
 
 // String returns the string representation
 func (s ListDistributionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2443,7 +2443,7 @@ type metadataListDistributionsOutput struct {
 
 // String returns the string representation
 func (s ListDistributionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2477,7 +2477,7 @@ type metadataListInvalidationsInput struct {
 
 // String returns the string representation
 func (s ListInvalidationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2499,7 +2499,7 @@ type metadataListInvalidationsOutput struct {
 
 // String returns the string representation
 func (s ListInvalidationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2528,7 +2528,7 @@ type metadataListStreamingDistributionsInput struct {
 
 // String returns the string representation
 func (s ListStreamingDistributionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2550,7 +2550,7 @@ type metadataListStreamingDistributionsOutput struct {
 
 // String returns the string representation
 func (s ListStreamingDistributionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2594,7 +2594,7 @@ type metadataLoggingConfig struct {
 
 // String returns the string representation
 func (s LoggingConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2641,7 +2641,7 @@ type metadataOrigin struct {
 
 // String returns the string representation
 func (s Origin) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2671,7 +2671,7 @@ type metadataOriginAccessIdentity struct {
 
 // String returns the string representation
 func (s OriginAccessIdentity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2706,7 +2706,7 @@ type metadataOriginAccessIdentityConfig struct {
 
 // String returns the string representation
 func (s OriginAccessIdentityConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2750,7 +2750,7 @@ type metadataOriginAccessIdentityList struct {
 
 // String returns the string representation
 func (s OriginAccessIdentityList) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2781,7 +2781,7 @@ type metadataOriginAccessIdentitySummary struct {
 
 // String returns the string representation
 func (s OriginAccessIdentitySummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2806,7 +2806,7 @@ type metadataOrigins struct {
 
 // String returns the string representation
 func (s Origins) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2832,7 +2832,7 @@ type metadataPaths struct {
 
 // String returns the string representation
 func (s Paths) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2860,7 +2860,7 @@ type metadataRestrictions struct {
 
 // String returns the string representation
 func (s Restrictions) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2886,7 +2886,7 @@ type metadataS3Origin struct {
 
 // String returns the string representation
 func (s S3Origin) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2919,7 +2919,7 @@ type metadataS3OriginConfig struct {
 
 // String returns the string representation
 func (s S3OriginConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2949,7 +2949,7 @@ type metadataSigner struct {
 
 // String returns the string representation
 func (s Signer) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2996,7 +2996,7 @@ type metadataStreamingDistribution struct {
 
 // String returns the string representation
 func (s StreamingDistribution) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3063,7 +3063,7 @@ type metadataStreamingDistributionConfig struct {
 
 // String returns the string representation
 func (s StreamingDistributionConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3107,7 +3107,7 @@ type metadataStreamingDistributionList struct {
 
 // String returns the string representation
 func (s StreamingDistributionList) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3169,7 +3169,7 @@ type metadataStreamingDistributionSummary struct {
 
 // String returns the string representation
 func (s StreamingDistributionSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3206,7 +3206,7 @@ type metadataStreamingLoggingConfig struct {
 
 // String returns the string representation
 func (s StreamingLoggingConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3246,7 +3246,7 @@ type metadataTrustedSigners struct {
 
 // String returns the string representation
 func (s TrustedSigners) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3275,7 +3275,7 @@ type metadataUpdateCloudFrontOriginAccessIdentityInput struct {
 
 // String returns the string representation
 func (s UpdateCloudFrontOriginAccessIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3300,7 +3300,7 @@ type metadataUpdateCloudFrontOriginAccessIdentityOutput struct {
 
 // String returns the string representation
 func (s UpdateCloudFrontOriginAccessIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3329,7 +3329,7 @@ type metadataUpdateDistributionInput struct {
 
 // String returns the string representation
 func (s UpdateDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3354,7 +3354,7 @@ type metadataUpdateDistributionOutput struct {
 
 // String returns the string representation
 func (s UpdateDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3383,7 +3383,7 @@ type metadataUpdateStreamingDistributionInput struct {
 
 // String returns the string representation
 func (s UpdateStreamingDistributionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3408,7 +3408,7 @@ type metadataUpdateStreamingDistributionOutput struct {
 
 // String returns the string representation
 func (s UpdateStreamingDistributionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3464,7 +3464,7 @@ type metadataViewerCertificate struct {
 
 // String returns the string representation
 func (s ViewerCertificate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

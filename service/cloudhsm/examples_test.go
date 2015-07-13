@@ -40,7 +40,7 @@ func ExampleCloudHSM_CreateHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_CreateHSM() {
@@ -74,7 +74,7 @@ func ExampleCloudHSM_CreateHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_CreateLunaClient() {
@@ -102,7 +102,7 @@ func ExampleCloudHSM_CreateLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DeleteHAPG() {
@@ -129,7 +129,7 @@ func ExampleCloudHSM_DeleteHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DeleteHSM() {
@@ -156,7 +156,7 @@ func ExampleCloudHSM_DeleteHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DeleteLunaClient() {
@@ -183,7 +183,7 @@ func ExampleCloudHSM_DeleteLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DescribeHAPG() {
@@ -210,7 +210,7 @@ func ExampleCloudHSM_DescribeHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DescribeHSM() {
@@ -238,7 +238,7 @@ func ExampleCloudHSM_DescribeHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DescribeLunaClient() {
@@ -266,7 +266,7 @@ func ExampleCloudHSM_DescribeLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_GetConfig() {
@@ -298,7 +298,7 @@ func ExampleCloudHSM_GetConfig() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListAvailableZones() {
@@ -323,7 +323,7 @@ func ExampleCloudHSM_ListAvailableZones() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListHSMs() {
@@ -350,7 +350,7 @@ func ExampleCloudHSM_ListHSMs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListHapgs() {
@@ -377,7 +377,7 @@ func ExampleCloudHSM_ListHapgs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListLunaClients() {
@@ -404,7 +404,7 @@ func ExampleCloudHSM_ListLunaClients() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ModifyHAPG() {
@@ -436,7 +436,7 @@ func ExampleCloudHSM_ModifyHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ModifyHSM() {
@@ -468,7 +468,7 @@ func ExampleCloudHSM_ModifyHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ModifyLunaClient() {
@@ -496,5 +496,5 @@ func ExampleCloudHSM_ModifyLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

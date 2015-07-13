@@ -46,7 +46,7 @@ func ExampleStorageGateway_ActivateGateway() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_AddCache() {
@@ -77,7 +77,7 @@ func ExampleStorageGateway_AddCache() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_AddUploadBuffer() {
@@ -108,7 +108,7 @@ func ExampleStorageGateway_AddUploadBuffer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_AddWorkingStorage() {
@@ -139,7 +139,7 @@ func ExampleStorageGateway_AddWorkingStorage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CancelArchival() {
@@ -167,7 +167,7 @@ func ExampleStorageGateway_CancelArchival() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CancelRetrieval() {
@@ -195,7 +195,7 @@ func ExampleStorageGateway_CancelRetrieval() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CreateCachediSCSIVolume() {
@@ -206,7 +206,7 @@ func ExampleStorageGateway_CreateCachediSCSIVolume() {
 		GatewayARN:         aws.String("GatewayARN"),         // Required
 		NetworkInterfaceID: aws.String("NetworkInterfaceId"), // Required
 		TargetName:         aws.String("TargetName"),         // Required
-		VolumeSizeInBytes:  aws.Long(1),                      // Required
+		VolumeSizeInBytes:  aws.Int64(1),                     // Required
 		SnapshotID:         aws.String("SnapshotId"),
 	}
 	resp, err := svc.CreateCachediSCSIVolume(params)
@@ -227,7 +227,7 @@ func ExampleStorageGateway_CreateCachediSCSIVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CreateSnapshot() {
@@ -255,7 +255,7 @@ func ExampleStorageGateway_CreateSnapshot() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint() {
@@ -283,7 +283,7 @@ func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CreateStorediSCSIVolume() {
@@ -293,7 +293,7 @@ func ExampleStorageGateway_CreateStorediSCSIVolume() {
 		DiskID:               aws.String("DiskId"),             // Required
 		GatewayARN:           aws.String("GatewayARN"),         // Required
 		NetworkInterfaceID:   aws.String("NetworkInterfaceId"), // Required
-		PreserveExistingData: aws.Boolean(true),                // Required
+		PreserveExistingData: aws.Bool(true),                   // Required
 		TargetName:           aws.String("TargetName"),         // Required
 		SnapshotID:           aws.String("SnapshotId"),
 	}
@@ -315,7 +315,7 @@ func ExampleStorageGateway_CreateStorediSCSIVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_CreateTapes() {
@@ -324,9 +324,9 @@ func ExampleStorageGateway_CreateTapes() {
 	params := &storagegateway.CreateTapesInput{
 		ClientToken:       aws.String("ClientToken"),       // Required
 		GatewayARN:        aws.String("GatewayARN"),        // Required
-		NumTapesToCreate:  aws.Long(1),                     // Required
+		NumTapesToCreate:  aws.Int64(1),                    // Required
 		TapeBarcodePrefix: aws.String("TapeBarcodePrefix"), // Required
-		TapeSizeInBytes:   aws.Long(1),                     // Required
+		TapeSizeInBytes:   aws.Int64(1),                    // Required
 	}
 	resp, err := svc.CreateTapes(params)
 
@@ -346,7 +346,7 @@ func ExampleStorageGateway_CreateTapes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteBandwidthRateLimit() {
@@ -374,7 +374,7 @@ func ExampleStorageGateway_DeleteBandwidthRateLimit() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteChapCredentials() {
@@ -402,7 +402,7 @@ func ExampleStorageGateway_DeleteChapCredentials() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteGateway() {
@@ -429,7 +429,7 @@ func ExampleStorageGateway_DeleteGateway() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteSnapshotSchedule() {
@@ -456,7 +456,7 @@ func ExampleStorageGateway_DeleteSnapshotSchedule() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteTape() {
@@ -484,7 +484,7 @@ func ExampleStorageGateway_DeleteTape() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteTapeArchive() {
@@ -511,7 +511,7 @@ func ExampleStorageGateway_DeleteTapeArchive() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DeleteVolume() {
@@ -538,7 +538,7 @@ func ExampleStorageGateway_DeleteVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeBandwidthRateLimit() {
@@ -565,7 +565,7 @@ func ExampleStorageGateway_DescribeBandwidthRateLimit() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeCache() {
@@ -592,7 +592,7 @@ func ExampleStorageGateway_DescribeCache() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeCachediSCSIVolumes() {
@@ -622,7 +622,7 @@ func ExampleStorageGateway_DescribeCachediSCSIVolumes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeChapCredentials() {
@@ -649,7 +649,7 @@ func ExampleStorageGateway_DescribeChapCredentials() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeGatewayInformation() {
@@ -676,7 +676,7 @@ func ExampleStorageGateway_DescribeGatewayInformation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeMaintenanceStartTime() {
@@ -703,7 +703,7 @@ func ExampleStorageGateway_DescribeMaintenanceStartTime() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeSnapshotSchedule() {
@@ -730,7 +730,7 @@ func ExampleStorageGateway_DescribeSnapshotSchedule() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeStorediSCSIVolumes() {
@@ -760,14 +760,14 @@ func ExampleStorageGateway_DescribeStorediSCSIVolumes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeTapeArchives() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.DescribeTapeArchivesInput{
-		Limit:  aws.Long(1),
+		Limit:  aws.Int64(1),
 		Marker: aws.String("Marker"),
 		TapeARNs: []*string{
 			aws.String("TapeARN"), // Required
@@ -792,7 +792,7 @@ func ExampleStorageGateway_DescribeTapeArchives() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeTapeRecoveryPoints() {
@@ -800,7 +800,7 @@ func ExampleStorageGateway_DescribeTapeRecoveryPoints() {
 
 	params := &storagegateway.DescribeTapeRecoveryPointsInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
-		Limit:      aws.Long(1),
+		Limit:      aws.Int64(1),
 		Marker:     aws.String("Marker"),
 	}
 	resp, err := svc.DescribeTapeRecoveryPoints(params)
@@ -821,7 +821,7 @@ func ExampleStorageGateway_DescribeTapeRecoveryPoints() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeTapes() {
@@ -829,7 +829,7 @@ func ExampleStorageGateway_DescribeTapes() {
 
 	params := &storagegateway.DescribeTapesInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
-		Limit:      aws.Long(1),
+		Limit:      aws.Int64(1),
 		Marker:     aws.String("Marker"),
 		TapeARNs: []*string{
 			aws.String("TapeARN"), // Required
@@ -854,7 +854,7 @@ func ExampleStorageGateway_DescribeTapes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeUploadBuffer() {
@@ -881,7 +881,7 @@ func ExampleStorageGateway_DescribeUploadBuffer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeVTLDevices() {
@@ -889,7 +889,7 @@ func ExampleStorageGateway_DescribeVTLDevices() {
 
 	params := &storagegateway.DescribeVTLDevicesInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
-		Limit:      aws.Long(1),
+		Limit:      aws.Int64(1),
 		Marker:     aws.String("Marker"),
 		VTLDeviceARNs: []*string{
 			aws.String("VTLDeviceARN"), // Required
@@ -914,7 +914,7 @@ func ExampleStorageGateway_DescribeVTLDevices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DescribeWorkingStorage() {
@@ -941,7 +941,7 @@ func ExampleStorageGateway_DescribeWorkingStorage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_DisableGateway() {
@@ -968,14 +968,14 @@ func ExampleStorageGateway_DisableGateway() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ListGateways() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.ListGatewaysInput{
-		Limit:  aws.Long(1),
+		Limit:  aws.Int64(1),
 		Marker: aws.String("Marker"),
 	}
 	resp, err := svc.ListGateways(params)
@@ -996,7 +996,7 @@ func ExampleStorageGateway_ListGateways() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ListLocalDisks() {
@@ -1023,7 +1023,7 @@ func ExampleStorageGateway_ListLocalDisks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ListVolumeInitiators() {
@@ -1050,7 +1050,7 @@ func ExampleStorageGateway_ListVolumeInitiators() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ListVolumeRecoveryPoints() {
@@ -1077,7 +1077,7 @@ func ExampleStorageGateway_ListVolumeRecoveryPoints() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ListVolumes() {
@@ -1085,7 +1085,7 @@ func ExampleStorageGateway_ListVolumes() {
 
 	params := &storagegateway.ListVolumesInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
-		Limit:      aws.Long(1),
+		Limit:      aws.Int64(1),
 		Marker:     aws.String("Marker"),
 	}
 	resp, err := svc.ListVolumes(params)
@@ -1106,7 +1106,7 @@ func ExampleStorageGateway_ListVolumes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ResetCache() {
@@ -1133,7 +1133,7 @@ func ExampleStorageGateway_ResetCache() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_RetrieveTapeArchive() {
@@ -1161,7 +1161,7 @@ func ExampleStorageGateway_RetrieveTapeArchive() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_RetrieveTapeRecoveryPoint() {
@@ -1189,7 +1189,7 @@ func ExampleStorageGateway_RetrieveTapeRecoveryPoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_ShutdownGateway() {
@@ -1216,7 +1216,7 @@ func ExampleStorageGateway_ShutdownGateway() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_StartGateway() {
@@ -1243,7 +1243,7 @@ func ExampleStorageGateway_StartGateway() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateBandwidthRateLimit() {
@@ -1251,8 +1251,8 @@ func ExampleStorageGateway_UpdateBandwidthRateLimit() {
 
 	params := &storagegateway.UpdateBandwidthRateLimitInput{
 		GatewayARN:                           aws.String("GatewayARN"), // Required
-		AverageDownloadRateLimitInBitsPerSec: aws.Long(1),
-		AverageUploadRateLimitInBitsPerSec:   aws.Long(1),
+		AverageDownloadRateLimitInBitsPerSec: aws.Int64(1),
+		AverageUploadRateLimitInBitsPerSec:   aws.Int64(1),
 	}
 	resp, err := svc.UpdateBandwidthRateLimit(params)
 
@@ -1272,7 +1272,7 @@ func ExampleStorageGateway_UpdateBandwidthRateLimit() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateChapCredentials() {
@@ -1302,7 +1302,7 @@ func ExampleStorageGateway_UpdateChapCredentials() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateGatewayInformation() {
@@ -1331,7 +1331,7 @@ func ExampleStorageGateway_UpdateGatewayInformation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateGatewaySoftwareNow() {
@@ -1358,17 +1358,17 @@ func ExampleStorageGateway_UpdateGatewaySoftwareNow() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateMaintenanceStartTime() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.UpdateMaintenanceStartTimeInput{
-		DayOfWeek:    aws.Long(1),              // Required
+		DayOfWeek:    aws.Int64(1),             // Required
 		GatewayARN:   aws.String("GatewayARN"), // Required
-		HourOfDay:    aws.Long(1),              // Required
-		MinuteOfHour: aws.Long(1),              // Required
+		HourOfDay:    aws.Int64(1),             // Required
+		MinuteOfHour: aws.Int64(1),             // Required
 	}
 	resp, err := svc.UpdateMaintenanceStartTime(params)
 
@@ -1388,15 +1388,15 @@ func ExampleStorageGateway_UpdateMaintenanceStartTime() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateSnapshotSchedule() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.UpdateSnapshotScheduleInput{
-		RecurrenceInHours: aws.Long(1),             // Required
-		StartAt:           aws.Long(1),             // Required
+		RecurrenceInHours: aws.Int64(1),            // Required
+		StartAt:           aws.Int64(1),            // Required
 		VolumeARN:         aws.String("VolumeARN"), // Required
 		Description:       aws.String("Description"),
 	}
@@ -1418,7 +1418,7 @@ func ExampleStorageGateway_UpdateSnapshotSchedule() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleStorageGateway_UpdateVTLDeviceType() {
@@ -1446,5 +1446,5 @@ func ExampleStorageGateway_UpdateVTLDeviceType() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

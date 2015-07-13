@@ -142,7 +142,7 @@ func Example{{ .API.StructName }}_{{ .ExportedName }}() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 `))
 
@@ -292,9 +292,9 @@ func (e *example) traverseScalar(s *Shape, required, payload bool) string {
 	str := ""
 	switch s.Type {
 	case "integer", "long":
-		str = `aws.Long(1)`
+		str = `aws.Int64(1)`
 	case "float", "double":
-		str = `aws.Double(1.0)`
+		str = `aws.Float64(1.0)`
 	case "string", "character":
 		str = `aws.String("` + s.ShapeName + `")`
 	case "blob":
@@ -304,7 +304,7 @@ func (e *example) traverseScalar(s *Shape, required, payload bool) string {
 			str = `[]byte("PAYLOAD")`
 		}
 	case "boolean":
-		str = `aws.Boolean(true)`
+		str = `aws.Bool(true)`
 	case "timestamp":
 		str = `aws.Time(time.Now())`
 	default:

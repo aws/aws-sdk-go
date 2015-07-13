@@ -40,7 +40,7 @@ func ExampleCloudFormation_CancelUpdateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_CreateStack() {
@@ -52,7 +52,7 @@ func ExampleCloudFormation_CreateStack() {
 			aws.String("Capability"), // Required
 			// More values...
 		},
-		DisableRollback: aws.Boolean(true),
+		DisableRollback: aws.Bool(true),
 		NotificationARNs: []*string{
 			aws.String("NotificationARN"), // Required
 			// More values...
@@ -62,7 +62,7 @@ func ExampleCloudFormation_CreateStack() {
 			{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
-				UsePreviousValue: aws.Boolean(true),
+				UsePreviousValue: aws.Bool(true),
 			},
 			// More values...
 		},
@@ -77,7 +77,7 @@ func ExampleCloudFormation_CreateStack() {
 		},
 		TemplateBody:     aws.String("TemplateBody"),
 		TemplateURL:      aws.String("TemplateURL"),
-		TimeoutInMinutes: aws.Long(1),
+		TimeoutInMinutes: aws.Int64(1),
 	}
 	resp, err := svc.CreateStack(params)
 
@@ -97,7 +97,7 @@ func ExampleCloudFormation_CreateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_DeleteStack() {
@@ -124,7 +124,7 @@ func ExampleCloudFormation_DeleteStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_DescribeStackEvents() {
@@ -152,7 +152,7 @@ func ExampleCloudFormation_DescribeStackEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_DescribeStackResource() {
@@ -180,7 +180,7 @@ func ExampleCloudFormation_DescribeStackResource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_DescribeStackResources() {
@@ -209,7 +209,7 @@ func ExampleCloudFormation_DescribeStackResources() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_DescribeStacks() {
@@ -237,7 +237,7 @@ func ExampleCloudFormation_DescribeStacks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_EstimateTemplateCost() {
@@ -248,7 +248,7 @@ func ExampleCloudFormation_EstimateTemplateCost() {
 			{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
-				UsePreviousValue: aws.Boolean(true),
+				UsePreviousValue: aws.Bool(true),
 			},
 			// More values...
 		},
@@ -273,7 +273,7 @@ func ExampleCloudFormation_EstimateTemplateCost() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_GetStackPolicy() {
@@ -300,7 +300,7 @@ func ExampleCloudFormation_GetStackPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_GetTemplate() {
@@ -327,7 +327,7 @@ func ExampleCloudFormation_GetTemplate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_GetTemplateSummary() {
@@ -356,7 +356,7 @@ func ExampleCloudFormation_GetTemplateSummary() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_ListStackResources() {
@@ -384,7 +384,7 @@ func ExampleCloudFormation_ListStackResources() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_ListStacks() {
@@ -415,7 +415,7 @@ func ExampleCloudFormation_ListStacks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_SetStackPolicy() {
@@ -444,7 +444,7 @@ func ExampleCloudFormation_SetStackPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_SignalResource() {
@@ -474,7 +474,7 @@ func ExampleCloudFormation_SignalResource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_UpdateStack() {
@@ -494,7 +494,7 @@ func ExampleCloudFormation_UpdateStack() {
 			{ // Required
 				ParameterKey:     aws.String("ParameterKey"),
 				ParameterValue:   aws.String("ParameterValue"),
-				UsePreviousValue: aws.Boolean(true),
+				UsePreviousValue: aws.Bool(true),
 			},
 			// More values...
 		},
@@ -504,7 +504,7 @@ func ExampleCloudFormation_UpdateStack() {
 		StackPolicyURL:              aws.String("StackPolicyURL"),
 		TemplateBody:                aws.String("TemplateBody"),
 		TemplateURL:                 aws.String("TemplateURL"),
-		UsePreviousTemplate:         aws.Boolean(true),
+		UsePreviousTemplate:         aws.Bool(true),
 	}
 	resp, err := svc.UpdateStack(params)
 
@@ -524,7 +524,7 @@ func ExampleCloudFormation_UpdateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudFormation_ValidateTemplate() {
@@ -552,5 +552,5 @@ func ExampleCloudFormation_ValidateTemplate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

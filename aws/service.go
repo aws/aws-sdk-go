@@ -66,7 +66,7 @@ func (s *Service) Initialize() {
 	s.AddDebugHandlers()
 	s.buildEndpoint()
 
-	if !BooleanValue(s.Config.DisableParamValidation) {
+	if !BoolValue(s.Config.DisableParamValidation) {
 		s.Handlers.Validate.PushBack(ValidateParameters)
 	}
 }
@@ -82,7 +82,7 @@ func (s *Service) buildEndpoint() {
 
 	if s.Endpoint != "" && !schemeRE.MatchString(s.Endpoint) {
 		scheme := "https"
-		if BooleanValue(s.Config.DisableSSL) {
+		if BoolValue(s.Config.DisableSSL) {
 			scheme = "http"
 		}
 		s.Endpoint = scheme + "://" + s.Endpoint
@@ -98,7 +98,7 @@ func (s *Service) AddDebugHandlers() {
 	}
 
 	s.Handlers.Send.PushFront(func(r *Request) {
-		logBody := BooleanValue(r.Config.LogHTTPBody)
+		logBody := BoolValue(r.Config.LogHTTPBody)
 		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 
 		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
@@ -108,7 +108,7 @@ func (s *Service) AddDebugHandlers() {
 	s.Handlers.Send.PushBack(func(r *Request) {
 		fmt.Fprintf(out, "---[ RESPONSE ]--------------------------------------\n")
 		if r.HTTPResponse != nil {
-			logBody := BooleanValue(r.Config.LogHTTPBody)
+			logBody := BoolValue(r.Config.LogHTTPBody)
 			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
 			fmt.Fprintf(out, "%s\n", string(dumpedBody))
 		} else if r.Error != nil {

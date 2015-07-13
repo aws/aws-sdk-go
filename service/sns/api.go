@@ -862,7 +862,7 @@ type metadataAddPermissionInput struct {
 
 // String returns the string representation
 func (s AddPermissionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -880,7 +880,7 @@ type metadataAddPermissionOutput struct {
 
 // String returns the string representation
 func (s AddPermissionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -911,7 +911,7 @@ type metadataConfirmSubscriptionInput struct {
 
 // String returns the string representation
 func (s ConfirmSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -933,7 +933,7 @@ type metadataConfirmSubscriptionOutput struct {
 
 // String returns the string representation
 func (s ConfirmSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -964,7 +964,7 @@ type metadataCreatePlatformApplicationInput struct {
 
 // String returns the string representation
 func (s CreatePlatformApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -986,7 +986,7 @@ type metadataCreatePlatformApplicationOutput struct {
 
 // String returns the string representation
 func (s CreatePlatformApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1023,7 +1023,7 @@ type metadataCreatePlatformEndpointInput struct {
 
 // String returns the string representation
 func (s CreatePlatformEndpointInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1045,7 +1045,7 @@ type metadataCreatePlatformEndpointOutput struct {
 
 // String returns the string representation
 func (s CreatePlatformEndpointOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1071,7 +1071,7 @@ type metadataCreateTopicInput struct {
 
 // String returns the string representation
 func (s CreateTopicInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1093,7 +1093,7 @@ type metadataCreateTopicOutput struct {
 
 // String returns the string representation
 func (s CreateTopicOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1115,7 +1115,7 @@ type metadataDeleteEndpointInput struct {
 
 // String returns the string representation
 func (s DeleteEndpointInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1133,7 +1133,7 @@ type metadataDeleteEndpointOutput struct {
 
 // String returns the string representation
 func (s DeleteEndpointOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1155,7 +1155,7 @@ type metadataDeletePlatformApplicationInput struct {
 
 // String returns the string representation
 func (s DeletePlatformApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1173,7 +1173,7 @@ type metadataDeletePlatformApplicationOutput struct {
 
 // String returns the string representation
 func (s DeletePlatformApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1194,7 +1194,7 @@ type metadataDeleteTopicInput struct {
 
 // String returns the string representation
 func (s DeleteTopicInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1212,7 +1212,7 @@ type metadataDeleteTopicOutput struct {
 
 // String returns the string representation
 func (s DeleteTopicOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1237,7 +1237,7 @@ type metadataEndpoint struct {
 
 // String returns the string representation
 func (s Endpoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1259,7 +1259,7 @@ type metadataGetEndpointAttributesInput struct {
 
 // String returns the string representation
 func (s GetEndpointAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1291,7 +1291,7 @@ type metadataGetEndpointAttributesOutput struct {
 
 // String returns the string representation
 func (s GetEndpointAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1313,7 +1313,7 @@ type metadataGetPlatformApplicationAttributesInput struct {
 
 // String returns the string representation
 func (s GetPlatformApplicationAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1343,7 +1343,7 @@ type metadataGetPlatformApplicationAttributesOutput struct {
 
 // String returns the string representation
 func (s GetPlatformApplicationAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1365,7 +1365,7 @@ type metadataGetSubscriptionAttributesInput struct {
 
 // String returns the string representation
 func (s GetSubscriptionAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1396,7 +1396,7 @@ type metadataGetSubscriptionAttributesOutput struct {
 
 // String returns the string representation
 func (s GetSubscriptionAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1418,7 +1418,7 @@ type metadataGetTopicAttributesInput struct {
 
 // String returns the string representation
 func (s GetTopicAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1451,7 +1451,7 @@ type metadataGetTopicAttributesOutput struct {
 
 // String returns the string representation
 func (s GetTopicAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1478,7 +1478,7 @@ type metadataListEndpointsByPlatformApplicationInput struct {
 
 // String returns the string representation
 func (s ListEndpointsByPlatformApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1504,7 +1504,7 @@ type metadataListEndpointsByPlatformApplicationOutput struct {
 
 // String returns the string representation
 func (s ListEndpointsByPlatformApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1527,7 +1527,7 @@ type metadataListPlatformApplicationsInput struct {
 
 // String returns the string representation
 func (s ListPlatformApplicationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1553,7 +1553,7 @@ type metadataListPlatformApplicationsOutput struct {
 
 // String returns the string representation
 func (s ListPlatformApplicationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1578,7 +1578,7 @@ type metadataListSubscriptionsByTopicInput struct {
 
 // String returns the string representation
 func (s ListSubscriptionsByTopicInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1604,7 +1604,7 @@ type metadataListSubscriptionsByTopicOutput struct {
 
 // String returns the string representation
 func (s ListSubscriptionsByTopicOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1626,7 +1626,7 @@ type metadataListSubscriptionsInput struct {
 
 // String returns the string representation
 func (s ListSubscriptionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1652,7 +1652,7 @@ type metadataListSubscriptionsOutput struct {
 
 // String returns the string representation
 func (s ListSubscriptionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1673,7 +1673,7 @@ type metadataListTopicsInput struct {
 
 // String returns the string representation
 func (s ListTopicsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1699,7 +1699,7 @@ type metadataListTopicsOutput struct {
 
 // String returns the string representation
 func (s ListTopicsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1738,7 +1738,7 @@ type metadataMessageAttributeValue struct {
 
 // String returns the string representation
 func (s MessageAttributeValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1763,7 +1763,7 @@ type metadataPlatformApplication struct {
 
 // String returns the string representation
 func (s PlatformApplication) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1844,7 +1844,7 @@ type metadataPublishInput struct {
 
 // String returns the string representation
 func (s PublishInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1868,7 +1868,7 @@ type metadataPublishOutput struct {
 
 // String returns the string representation
 func (s PublishOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1893,7 +1893,7 @@ type metadataRemovePermissionInput struct {
 
 // String returns the string representation
 func (s RemovePermissionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1911,7 +1911,7 @@ type metadataRemovePermissionOutput struct {
 
 // String returns the string representation
 func (s RemovePermissionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1946,7 +1946,7 @@ type metadataSetEndpointAttributesInput struct {
 
 // String returns the string representation
 func (s SetEndpointAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1964,7 +1964,7 @@ type metadataSetEndpointAttributesOutput struct {
 
 // String returns the string representation
 func (s SetEndpointAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2003,7 +2003,7 @@ type metadataSetPlatformApplicationAttributesInput struct {
 
 // String returns the string representation
 func (s SetPlatformApplicationAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2021,7 +2021,7 @@ type metadataSetPlatformApplicationAttributesOutput struct {
 
 // String returns the string representation
 func (s SetPlatformApplicationAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2052,7 +2052,7 @@ type metadataSetSubscriptionAttributesInput struct {
 
 // String returns the string representation
 func (s SetSubscriptionAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2070,7 +2070,7 @@ type metadataSetSubscriptionAttributesOutput struct {
 
 // String returns the string representation
 func (s SetSubscriptionAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2101,7 +2101,7 @@ type metadataSetTopicAttributesInput struct {
 
 // String returns the string representation
 func (s SetTopicAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2119,7 +2119,7 @@ type metadataSetTopicAttributesOutput struct {
 
 // String returns the string representation
 func (s SetTopicAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2162,7 +2162,7 @@ type metadataSubscribeInput struct {
 
 // String returns the string representation
 func (s SubscribeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2185,7 +2185,7 @@ type metadataSubscribeOutput struct {
 
 // String returns the string representation
 func (s SubscribeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2219,7 +2219,7 @@ type metadataSubscription struct {
 
 // String returns the string representation
 func (s Subscription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2242,7 +2242,7 @@ type metadataTopic struct {
 
 // String returns the string representation
 func (s Topic) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2264,7 +2264,7 @@ type metadataUnsubscribeInput struct {
 
 // String returns the string representation
 func (s UnsubscribeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2282,7 +2282,7 @@ type metadataUnsubscribeOutput struct {
 
 // String returns the string representation
 func (s UnsubscribeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

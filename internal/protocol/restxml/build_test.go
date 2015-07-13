@@ -1966,10 +1966,10 @@ func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService2TestShapeInputShape{
-		First:  aws.Boolean(true),
-		Fourth: aws.Long(3),
-		Second: aws.Boolean(false),
-		Third:  aws.Double(1.2),
+		First:  aws.Bool(true),
+		Fourth: aws.Int64(3),
+		Second: aws.Bool(false),
+		Third:  aws.Float64(1.2),
 	}
 	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest

@@ -22,7 +22,7 @@ func ExampleEMR_AddInstanceGroups() {
 	params := &emr.AddInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupConfig{ // Required
 			{ // Required
-				InstanceCount: aws.Long(1),                    // Required
+				InstanceCount: aws.Int64(1),                   // Required
 				InstanceRole:  aws.String("InstanceRoleType"), // Required
 				InstanceType:  aws.String("InstanceType"),     // Required
 				BidPrice:      aws.String("XmlStringMaxLen256"),
@@ -64,7 +64,7 @@ func ExampleEMR_AddInstanceGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_AddJobFlowSteps() {
@@ -113,7 +113,7 @@ func ExampleEMR_AddJobFlowSteps() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_AddTags() {
@@ -147,7 +147,7 @@ func ExampleEMR_AddTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_DescribeCluster() {
@@ -174,7 +174,7 @@ func ExampleEMR_DescribeCluster() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_DescribeJobFlows() {
@@ -210,7 +210,7 @@ func ExampleEMR_DescribeJobFlows() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_DescribeStep() {
@@ -238,7 +238,7 @@ func ExampleEMR_DescribeStep() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_ListBootstrapActions() {
@@ -266,7 +266,7 @@ func ExampleEMR_ListBootstrapActions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_ListClusters() {
@@ -299,7 +299,7 @@ func ExampleEMR_ListClusters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_ListInstanceGroups() {
@@ -327,7 +327,7 @@ func ExampleEMR_ListInstanceGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_ListInstances() {
@@ -360,7 +360,7 @@ func ExampleEMR_ListInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_ListSteps() {
@@ -396,7 +396,7 @@ func ExampleEMR_ListSteps() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_ModifyInstanceGroups() {
@@ -410,7 +410,7 @@ func ExampleEMR_ModifyInstanceGroups() {
 					aws.String("InstanceId"), // Required
 					// More values...
 				},
-				InstanceCount: aws.Long(1),
+				InstanceCount: aws.Int64(1),
 			},
 			// More values...
 		},
@@ -433,7 +433,7 @@ func ExampleEMR_ModifyInstanceGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_RemoveTags() {
@@ -464,7 +464,7 @@ func ExampleEMR_RemoveTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_RunJobFlow() {
@@ -485,10 +485,10 @@ func ExampleEMR_RunJobFlow() {
 			EMRManagedMasterSecurityGroup: aws.String("XmlStringMaxLen256"),
 			EMRManagedSlaveSecurityGroup:  aws.String("XmlStringMaxLen256"),
 			HadoopVersion:                 aws.String("XmlStringMaxLen256"),
-			InstanceCount:                 aws.Long(1),
+			InstanceCount:                 aws.Int64(1),
 			InstanceGroups: []*emr.InstanceGroupConfig{
 				{ // Required
-					InstanceCount: aws.Long(1),                    // Required
+					InstanceCount: aws.Int64(1),                   // Required
 					InstanceRole:  aws.String("InstanceRoleType"), // Required
 					InstanceType:  aws.String("InstanceType"),     // Required
 					BidPrice:      aws.String("XmlStringMaxLen256"),
@@ -510,13 +510,13 @@ func ExampleEMR_RunJobFlow() {
 				},
 				// More values...
 			},
-			KeepJobFlowAliveWhenNoSteps: aws.Boolean(true),
+			KeepJobFlowAliveWhenNoSteps: aws.Bool(true),
 			MasterInstanceType:          aws.String("InstanceType"),
 			Placement: &emr.PlacementType{
 				AvailabilityZone: aws.String("XmlString"), // Required
 			},
 			SlaveInstanceType:    aws.String("InstanceType"),
-			TerminationProtected: aws.Boolean(true),
+			TerminationProtected: aws.Bool(true),
 		},
 		Name:           aws.String("XmlStringMaxLen256"), // Required
 		AMIVersion:     aws.String("XmlStringMaxLen256"),
@@ -609,7 +609,7 @@ func ExampleEMR_RunJobFlow() {
 			},
 			// More values...
 		},
-		VisibleToAllUsers: aws.Boolean(true),
+		VisibleToAllUsers: aws.Bool(true),
 	}
 	resp, err := svc.RunJobFlow(params)
 
@@ -629,7 +629,7 @@ func ExampleEMR_RunJobFlow() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_SetTerminationProtection() {
@@ -640,7 +640,7 @@ func ExampleEMR_SetTerminationProtection() {
 			aws.String("XmlString"), // Required
 			// More values...
 		},
-		TerminationProtected: aws.Boolean(true), // Required
+		TerminationProtected: aws.Bool(true), // Required
 	}
 	resp, err := svc.SetTerminationProtection(params)
 
@@ -660,7 +660,7 @@ func ExampleEMR_SetTerminationProtection() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_SetVisibleToAllUsers() {
@@ -671,7 +671,7 @@ func ExampleEMR_SetVisibleToAllUsers() {
 			aws.String("XmlString"), // Required
 			// More values...
 		},
-		VisibleToAllUsers: aws.Boolean(true), // Required
+		VisibleToAllUsers: aws.Bool(true), // Required
 	}
 	resp, err := svc.SetVisibleToAllUsers(params)
 
@@ -691,7 +691,7 @@ func ExampleEMR_SetVisibleToAllUsers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEMR_TerminateJobFlows() {
@@ -721,5 +721,5 @@ func ExampleEMR_TerminateJobFlows() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

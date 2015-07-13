@@ -168,7 +168,7 @@ type metadataDescribeStreamInput struct {
 
 // String returns the string representation
 func (s DescribeStreamInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -193,7 +193,7 @@ type metadataDescribeStreamOutput struct {
 
 // String returns the string representation
 func (s DescribeStreamOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -220,7 +220,7 @@ type metadataGetRecordsInput struct {
 
 // String returns the string representation
 func (s GetRecordsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -247,7 +247,7 @@ type metadataGetRecordsOutput struct {
 
 // String returns the string representation
 func (s GetRecordsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -294,7 +294,7 @@ type metadataGetShardIteratorInput struct {
 
 // String returns the string representation
 func (s GetShardIteratorInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -318,7 +318,7 @@ type metadataGetShardIteratorOutput struct {
 
 // String returns the string representation
 func (s GetShardIteratorOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -349,7 +349,7 @@ type metadataListStreamsInput struct {
 
 // String returns the string representation
 func (s ListStreamsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -383,7 +383,7 @@ type metadataListStreamsOutput struct {
 
 // String returns the string representation
 func (s ListStreamsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -429,7 +429,7 @@ type metadataRecord struct {
 
 // String returns the string representation
 func (s Record) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -455,7 +455,7 @@ type metadataSequenceNumberRange struct {
 
 // String returns the string representation
 func (s SequenceNumberRange) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -483,7 +483,7 @@ type metadataShard struct {
 
 // String returns the string representation
 func (s Shard) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -522,7 +522,7 @@ type metadataStream struct {
 
 // String returns the string representation
 func (s Stream) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -607,7 +607,7 @@ type metadataStreamDescription struct {
 
 // String returns the string representation
 func (s StreamDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -654,7 +654,7 @@ type metadataStreamRecord struct {
 
 // String returns the string representation
 func (s StreamRecord) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

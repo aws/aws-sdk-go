@@ -982,7 +982,7 @@ type metadataAddTagsToOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s AddTagsToOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1000,7 +1000,7 @@ type metadataAddTagsToOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s AddTagsToOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1032,7 +1032,7 @@ type metadataApplicationInfo struct {
 
 // String returns the string representation
 func (s ApplicationInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1057,7 +1057,7 @@ type metadataAutoScalingGroup struct {
 
 // String returns the string representation
 func (s AutoScalingGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1080,7 +1080,7 @@ type metadataBatchGetApplicationsInput struct {
 
 // String returns the string representation
 func (s BatchGetApplicationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1102,7 +1102,7 @@ type metadataBatchGetApplicationsOutput struct {
 
 // String returns the string representation
 func (s BatchGetApplicationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1124,7 +1124,7 @@ type metadataBatchGetDeploymentsInput struct {
 
 // String returns the string representation
 func (s BatchGetDeploymentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1146,7 +1146,7 @@ type metadataBatchGetDeploymentsOutput struct {
 
 // String returns the string representation
 func (s BatchGetDeploymentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1168,7 +1168,7 @@ type metadataBatchGetOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s BatchGetOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1190,7 +1190,7 @@ type metadataBatchGetOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s BatchGetOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1213,7 +1213,7 @@ type metadataCreateApplicationInput struct {
 
 // String returns the string representation
 func (s CreateApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1235,7 +1235,7 @@ type metadataCreateApplicationOutput struct {
 
 // String returns the string representation
 func (s CreateApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1275,7 +1275,7 @@ type metadataCreateDeploymentConfigInput struct {
 
 // String returns the string representation
 func (s CreateDeploymentConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1297,7 +1297,7 @@ type metadataCreateDeploymentConfigOutput struct {
 
 // String returns the string representation
 func (s CreateDeploymentConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1367,7 +1367,7 @@ type metadataCreateDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s CreateDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1389,7 +1389,7 @@ type metadataCreateDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s CreateDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1441,7 +1441,7 @@ type metadataCreateDeploymentInput struct {
 
 // String returns the string representation
 func (s CreateDeploymentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1463,7 +1463,7 @@ type metadataCreateDeploymentOutput struct {
 
 // String returns the string representation
 func (s CreateDeploymentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1486,7 +1486,7 @@ type metadataDeleteApplicationInput struct {
 
 // String returns the string representation
 func (s DeleteApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1504,7 +1504,7 @@ type metadataDeleteApplicationOutput struct {
 
 // String returns the string representation
 func (s DeleteApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1527,7 +1527,7 @@ type metadataDeleteDeploymentConfigInput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1545,7 +1545,7 @@ type metadataDeleteDeploymentConfigOutput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1571,7 +1571,7 @@ type metadataDeleteDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1598,7 +1598,7 @@ type metadataDeleteDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1629,7 +1629,7 @@ type metadataDeploymentConfigInfo struct {
 
 // String returns the string representation
 func (s DeploymentConfigInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1676,7 +1676,7 @@ type metadataDeploymentGroupInfo struct {
 
 // String returns the string representation
 func (s DeploymentGroupInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1754,7 +1754,7 @@ type metadataDeploymentInfo struct {
 
 // String returns the string representation
 func (s DeploymentInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1788,7 +1788,7 @@ type metadataDeploymentOverview struct {
 
 // String returns the string representation
 func (s DeploymentOverview) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1810,7 +1810,7 @@ type metadataDeregisterOnPremisesInstanceInput struct {
 
 // String returns the string representation
 func (s DeregisterOnPremisesInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1828,7 +1828,7 @@ type metadataDeregisterOnPremisesInstanceOutput struct {
 
 // String returns the string representation
 func (s DeregisterOnPremisesInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1866,7 +1866,7 @@ type metadataDiagnostics struct {
 
 // String returns the string representation
 func (s Diagnostics) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1896,7 +1896,7 @@ type metadataEC2TagFilter struct {
 
 // String returns the string representation
 func (s EC2TagFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1941,7 +1941,7 @@ type metadataErrorInformation struct {
 
 // String returns the string representation
 func (s ErrorInformation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1975,7 +1975,7 @@ type metadataGenericRevisionInfo struct {
 
 // String returns the string representation
 func (s GenericRevisionInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1998,7 +1998,7 @@ type metadataGetApplicationInput struct {
 
 // String returns the string representation
 func (s GetApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2020,7 +2020,7 @@ type metadataGetApplicationOutput struct {
 
 // String returns the string representation
 func (s GetApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2046,7 +2046,7 @@ type metadataGetApplicationRevisionInput struct {
 
 // String returns the string representation
 func (s GetApplicationRevisionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2075,7 +2075,7 @@ type metadataGetApplicationRevisionOutput struct {
 
 // String returns the string representation
 func (s GetApplicationRevisionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2098,7 +2098,7 @@ type metadataGetDeploymentConfigInput struct {
 
 // String returns the string representation
 func (s GetDeploymentConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2120,7 +2120,7 @@ type metadataGetDeploymentConfigOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2146,7 +2146,7 @@ type metadataGetDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s GetDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2168,7 +2168,7 @@ type metadataGetDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2191,7 +2191,7 @@ type metadataGetDeploymentInput struct {
 
 // String returns the string representation
 func (s GetDeploymentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2216,7 +2216,7 @@ type metadataGetDeploymentInstanceInput struct {
 
 // String returns the string representation
 func (s GetDeploymentInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2238,7 +2238,7 @@ type metadataGetDeploymentInstanceOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2260,7 +2260,7 @@ type metadataGetDeploymentOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2282,7 +2282,7 @@ type metadataGetOnPremisesInstanceInput struct {
 
 // String returns the string representation
 func (s GetOnPremisesInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2304,7 +2304,7 @@ type metadataGetOnPremisesInstanceOutput struct {
 
 // String returns the string representation
 func (s GetOnPremisesInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2334,7 +2334,7 @@ type metadataGitHubLocation struct {
 
 // String returns the string representation
 func (s GitHubLocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2372,7 +2372,7 @@ type metadataInstanceInfo struct {
 
 // String returns the string representation
 func (s InstanceInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2412,7 +2412,7 @@ type metadataInstanceSummary struct {
 
 // String returns the string representation
 func (s InstanceSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2453,7 +2453,7 @@ type metadataLifecycleEvent struct {
 
 // String returns the string representation
 func (s LifecycleEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2516,7 +2516,7 @@ type metadataListApplicationRevisionsInput struct {
 
 // String returns the string representation
 func (s ListApplicationRevisionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2544,7 +2544,7 @@ type metadataListApplicationRevisionsOutput struct {
 
 // String returns the string representation
 func (s ListApplicationRevisionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2567,7 +2567,7 @@ type metadataListApplicationsInput struct {
 
 // String returns the string representation
 func (s ListApplicationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2594,7 +2594,7 @@ type metadataListApplicationsOutput struct {
 
 // String returns the string representation
 func (s ListApplicationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2618,7 +2618,7 @@ type metadataListDeploymentConfigsInput struct {
 
 // String returns the string representation
 func (s ListDeploymentConfigsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2647,7 +2647,7 @@ type metadataListDeploymentConfigsOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentConfigsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2675,7 +2675,7 @@ type metadataListDeploymentGroupsInput struct {
 
 // String returns the string representation
 func (s ListDeploymentGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2706,7 +2706,7 @@ type metadataListDeploymentGroupsOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2744,7 +2744,7 @@ type metadataListDeploymentInstancesInput struct {
 
 // String returns the string representation
 func (s ListDeploymentInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2772,7 +2772,7 @@ type metadataListDeploymentInstancesOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2815,7 +2815,7 @@ type metadataListDeploymentsInput struct {
 
 // String returns the string representation
 func (s ListDeploymentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2842,7 +2842,7 @@ type metadataListDeploymentsOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2878,7 +2878,7 @@ type metadataListOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s ListOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2906,7 +2906,7 @@ type metadataListOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s ListOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2945,7 +2945,7 @@ type metadataMinimumHealthyHosts struct {
 
 // String returns the string representation
 func (s MinimumHealthyHosts) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2975,7 +2975,7 @@ type metadataRegisterApplicationRevisionInput struct {
 
 // String returns the string representation
 func (s RegisterApplicationRevisionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2993,7 +2993,7 @@ type metadataRegisterApplicationRevisionOutput struct {
 
 // String returns the string representation
 func (s RegisterApplicationRevisionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3018,7 +3018,7 @@ type metadataRegisterOnPremisesInstanceInput struct {
 
 // String returns the string representation
 func (s RegisterOnPremisesInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3036,7 +3036,7 @@ type metadataRegisterOnPremisesInstanceOutput struct {
 
 // String returns the string representation
 func (s RegisterOnPremisesInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3061,7 +3061,7 @@ type metadataRemoveTagsFromOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3079,7 +3079,7 @@ type metadataRemoveTagsFromOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3112,7 +3112,7 @@ type metadataRevisionLocation struct {
 
 // String returns the string representation
 func (s RevisionLocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3159,7 +3159,7 @@ type metadataS3Location struct {
 
 // String returns the string representation
 func (s S3Location) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3181,7 +3181,7 @@ type metadataStopDeploymentInput struct {
 
 // String returns the string representation
 func (s StopDeploymentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3208,7 +3208,7 @@ type metadataStopDeploymentOutput struct {
 
 // String returns the string representation
 func (s StopDeploymentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3233,7 +3233,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3263,7 +3263,7 @@ type metadataTagFilter struct {
 
 // String returns the string representation
 func (s TagFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3292,7 +3292,7 @@ type metadataTimeRange struct {
 
 // String returns the string representation
 func (s TimeRange) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3317,7 +3317,7 @@ type metadataUpdateApplicationInput struct {
 
 // String returns the string representation
 func (s UpdateApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3335,7 +3335,7 @@ type metadataUpdateApplicationOutput struct {
 
 // String returns the string representation
 func (s UpdateApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3382,7 +3382,7 @@ type metadataUpdateDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s UpdateDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3408,7 +3408,7 @@ type metadataUpdateDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s UpdateDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

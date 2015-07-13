@@ -74,7 +74,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -103,7 +103,7 @@ type metadataPutEventsInput struct {
 
 // String returns the string representation
 func (s PutEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -121,7 +121,7 @@ type metadataPutEventsOutput struct {
 
 // String returns the string representation
 func (s PutEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -154,7 +154,7 @@ type metadataSession struct {
 
 // String returns the string representation
 func (s Session) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

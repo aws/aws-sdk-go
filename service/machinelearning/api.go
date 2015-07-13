@@ -965,7 +965,7 @@ type metadataBatchPrediction struct {
 
 // String returns the string representation
 func (s BatchPrediction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1005,7 +1005,7 @@ type metadataCreateBatchPredictionInput struct {
 
 // String returns the string representation
 func (s CreateBatchPredictionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1033,7 +1033,7 @@ type metadataCreateBatchPredictionOutput struct {
 
 // String returns the string representation
 func (s CreateBatchPredictionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1110,7 +1110,7 @@ type metadataCreateDataSourceFromRDSInput struct {
 
 // String returns the string representation
 func (s CreateDataSourceFromRDSInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1141,7 +1141,7 @@ type metadataCreateDataSourceFromRDSOutput struct {
 
 // String returns the string representation
 func (s CreateDataSourceFromRDSOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1207,7 +1207,7 @@ type metadataCreateDataSourceFromRedshiftInput struct {
 
 // String returns the string representation
 func (s CreateDataSourceFromRedshiftInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1235,7 +1235,7 @@ type metadataCreateDataSourceFromRedshiftOutput struct {
 
 // String returns the string representation
 func (s CreateDataSourceFromRedshiftOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1281,7 +1281,7 @@ type metadataCreateDataSourceFromS3Input struct {
 
 // String returns the string representation
 func (s CreateDataSourceFromS3Input) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1308,7 +1308,7 @@ type metadataCreateDataSourceFromS3Output struct {
 
 // String returns the string representation
 func (s CreateDataSourceFromS3Output) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1342,7 +1342,7 @@ type metadataCreateEvaluationInput struct {
 
 // String returns the string representation
 func (s CreateEvaluationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1369,7 +1369,7 @@ type metadataCreateEvaluationOutput struct {
 
 // String returns the string representation
 func (s CreateEvaluationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1449,7 +1449,7 @@ type metadataCreateMLModelInput struct {
 
 // String returns the string representation
 func (s CreateMLModelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1476,7 +1476,7 @@ type metadataCreateMLModelOutput struct {
 
 // String returns the string representation
 func (s CreateMLModelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1497,7 +1497,7 @@ type metadataCreateRealtimeEndpointInput struct {
 
 // String returns the string representation
 func (s CreateRealtimeEndpointInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1528,7 +1528,7 @@ type metadataCreateRealtimeEndpointOutput struct {
 
 // String returns the string representation
 func (s CreateRealtimeEndpointOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1610,7 +1610,7 @@ type metadataDataSource struct {
 
 // String returns the string representation
 func (s DataSource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1631,7 +1631,7 @@ type metadataDeleteBatchPredictionInput struct {
 
 // String returns the string representation
 func (s DeleteBatchPredictionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1657,7 +1657,7 @@ type metadataDeleteBatchPredictionOutput struct {
 
 // String returns the string representation
 func (s DeleteBatchPredictionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1678,7 +1678,7 @@ type metadataDeleteDataSourceInput struct {
 
 // String returns the string representation
 func (s DeleteDataSourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1701,7 +1701,7 @@ type metadataDeleteDataSourceOutput struct {
 
 // String returns the string representation
 func (s DeleteDataSourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1722,7 +1722,7 @@ type metadataDeleteEvaluationInput struct {
 
 // String returns the string representation
 func (s DeleteEvaluationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1749,7 +1749,7 @@ type metadataDeleteEvaluationOutput struct {
 
 // String returns the string representation
 func (s DeleteEvaluationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1770,7 +1770,7 @@ type metadataDeleteMLModelInput struct {
 
 // String returns the string representation
 func (s DeleteMLModelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1796,7 +1796,7 @@ type metadataDeleteMLModelOutput struct {
 
 // String returns the string representation
 func (s DeleteMLModelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1817,7 +1817,7 @@ type metadataDeleteRealtimeEndpointInput struct {
 
 // String returns the string representation
 func (s DeleteRealtimeEndpointInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1845,7 +1845,7 @@ type metadataDeleteRealtimeEndpointOutput struct {
 
 // String returns the string representation
 func (s DeleteRealtimeEndpointOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1929,7 +1929,7 @@ type metadataDescribeBatchPredictionsInput struct {
 
 // String returns the string representation
 func (s DescribeBatchPredictionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1956,7 +1956,7 @@ type metadataDescribeBatchPredictionsOutput struct {
 
 // String returns the string representation
 func (s DescribeBatchPredictionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2035,7 +2035,7 @@ type metadataDescribeDataSourcesInput struct {
 
 // String returns the string representation
 func (s DescribeDataSourcesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2062,7 +2062,7 @@ type metadataDescribeDataSourcesOutput struct {
 
 // String returns the string representation
 func (s DescribeDataSourcesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2143,7 +2143,7 @@ type metadataDescribeEvaluationsInput struct {
 
 // String returns the string representation
 func (s DescribeEvaluationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2170,7 +2170,7 @@ type metadataDescribeEvaluationsOutput struct {
 
 // String returns the string representation
 func (s DescribeEvaluationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2254,7 +2254,7 @@ type metadataDescribeMLModelsInput struct {
 
 // String returns the string representation
 func (s DescribeMLModelsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2281,7 +2281,7 @@ type metadataDescribeMLModelsOutput struct {
 
 // String returns the string representation
 func (s DescribeMLModelsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2363,7 +2363,7 @@ type metadataEvaluation struct {
 
 // String returns the string representation
 func (s Evaluation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2384,7 +2384,7 @@ type metadataGetBatchPredictionInput struct {
 
 // String returns the string representation
 func (s GetBatchPredictionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2454,7 +2454,7 @@ type metadataGetBatchPredictionOutput struct {
 
 // String returns the string representation
 func (s GetBatchPredictionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2482,7 +2482,7 @@ type metadataGetDataSourceInput struct {
 
 // String returns the string representation
 func (s GetDataSourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2570,7 +2570,7 @@ type metadataGetDataSourceOutput struct {
 
 // String returns the string representation
 func (s GetDataSourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2592,7 +2592,7 @@ type metadataGetEvaluationInput struct {
 
 // String returns the string representation
 func (s GetEvaluationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2674,7 +2674,7 @@ type metadataGetEvaluationOutput struct {
 
 // String returns the string representation
 func (s GetEvaluationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2702,7 +2702,7 @@ type metadataGetMLModelInput struct {
 
 // String returns the string representation
 func (s GetMLModelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2834,7 +2834,7 @@ type metadataGetMLModelOutput struct {
 
 // String returns the string representation
 func (s GetMLModelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2955,7 +2955,7 @@ type metadataMLModel struct {
 
 // String returns the string representation
 func (s MLModel) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2990,7 +2990,7 @@ type metadataPerformanceMetrics struct {
 
 // String returns the string representation
 func (s PerformanceMetrics) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3016,7 +3016,7 @@ type metadataPredictInput struct {
 
 // String returns the string representation
 func (s PredictInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3047,7 +3047,7 @@ type metadataPredictOutput struct {
 
 // String returns the string representation
 func (s PredictOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3088,7 +3088,7 @@ type metadataPrediction struct {
 
 // String returns the string representation
 func (s Prediction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3158,7 +3158,7 @@ type metadataRDSDataSpec struct {
 
 // String returns the string representation
 func (s RDSDataSpec) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3183,7 +3183,7 @@ type metadataRDSDatabase struct {
 
 // String returns the string representation
 func (s RDSDatabase) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3212,7 +3212,7 @@ type metadataRDSDatabaseCredentials struct {
 
 // String returns the string representation
 func (s RDSDatabaseCredentials) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3260,7 +3260,7 @@ type metadataRDSMetadata struct {
 
 // String returns the string representation
 func (s RDSMetadata) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3302,7 +3302,7 @@ type metadataRealtimeEndpointInfo struct {
 
 // String returns the string representation
 func (s RealtimeEndpointInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3345,7 +3345,7 @@ type metadataRedshiftDataSpec struct {
 
 // String returns the string representation
 func (s RedshiftDataSpec) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3371,7 +3371,7 @@ type metadataRedshiftDatabase struct {
 
 // String returns the string representation
 func (s RedshiftDatabase) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3403,7 +3403,7 @@ type metadataRedshiftDatabaseCredentials struct {
 
 // String returns the string representation
 func (s RedshiftDatabaseCredentials) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3436,7 +3436,7 @@ type metadataRedshiftMetadata struct {
 
 // String returns the string representation
 func (s RedshiftMetadata) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3469,7 +3469,7 @@ type metadataS3DataSpec struct {
 
 // String returns the string representation
 func (s S3DataSpec) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3493,7 +3493,7 @@ type metadataUpdateBatchPredictionInput struct {
 
 // String returns the string representation
 func (s UpdateBatchPredictionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3518,7 +3518,7 @@ type metadataUpdateBatchPredictionOutput struct {
 
 // String returns the string representation
 func (s UpdateBatchPredictionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3543,7 +3543,7 @@ type metadataUpdateDataSourceInput struct {
 
 // String returns the string representation
 func (s UpdateDataSourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3568,7 +3568,7 @@ type metadataUpdateDataSourceOutput struct {
 
 // String returns the string representation
 func (s UpdateDataSourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3593,7 +3593,7 @@ type metadataUpdateEvaluationInput struct {
 
 // String returns the string representation
 func (s UpdateEvaluationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3618,7 +3618,7 @@ type metadataUpdateEvaluationOutput struct {
 
 // String returns the string representation
 func (s UpdateEvaluationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3650,7 +3650,7 @@ type metadataUpdateMLModelInput struct {
 
 // String returns the string representation
 func (s UpdateMLModelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3675,7 +3675,7 @@ type metadataUpdateMLModelOutput struct {
 
 // String returns the string representation
 func (s UpdateMLModelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
