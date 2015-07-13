@@ -229,7 +229,6 @@ func (c Config) Merge(other *Config) *Config {
 		dst.DisableSSL = other.DisableSSL
 	}
 
-
 	if other.HTTPClient != nil {
 		dst.HTTPClient = other.HTTPClient
 	}
