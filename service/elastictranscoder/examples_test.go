@@ -40,7 +40,7 @@ func ExampleElasticTranscoder_CancelJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_CreateJob() {
@@ -51,11 +51,11 @@ func ExampleElasticTranscoder_CreateJob() {
 			AspectRatio: aws.String("AspectRatio"),
 			Container:   aws.String("JobContainer"),
 			DetectedProperties: &elastictranscoder.DetectedProperties{
-				DurationMillis: aws.Long(1),
-				FileSize:       aws.Long(1),
+				DurationMillis: aws.Int64(1),
+				FileSize:       aws.Int64(1),
 				FrameRate:      aws.String("FloatString"),
-				Height:         aws.Long(1),
-				Width:          aws.Long(1),
+				Height:         aws.Int64(1),
+				Width:          aws.Int64(1),
 			},
 			Encryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
@@ -307,7 +307,7 @@ func ExampleElasticTranscoder_CreateJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_CreatePipeline() {
@@ -374,7 +374,7 @@ func ExampleElasticTranscoder_CreatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_CreatePreset() {
@@ -460,7 +460,7 @@ func ExampleElasticTranscoder_CreatePreset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_DeletePipeline() {
@@ -487,7 +487,7 @@ func ExampleElasticTranscoder_DeletePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_DeletePreset() {
@@ -514,7 +514,7 @@ func ExampleElasticTranscoder_DeletePreset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ListJobsByPipeline() {
@@ -543,7 +543,7 @@ func ExampleElasticTranscoder_ListJobsByPipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ListJobsByStatus() {
@@ -572,7 +572,7 @@ func ExampleElasticTranscoder_ListJobsByStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ListPipelines() {
@@ -600,7 +600,7 @@ func ExampleElasticTranscoder_ListPipelines() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ListPresets() {
@@ -628,7 +628,7 @@ func ExampleElasticTranscoder_ListPresets() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ReadJob() {
@@ -655,7 +655,7 @@ func ExampleElasticTranscoder_ReadJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ReadPipeline() {
@@ -682,7 +682,7 @@ func ExampleElasticTranscoder_ReadPipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_ReadPreset() {
@@ -709,7 +709,7 @@ func ExampleElasticTranscoder_ReadPreset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_TestRole() {
@@ -742,7 +742,7 @@ func ExampleElasticTranscoder_TestRole() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_UpdatePipeline() {
@@ -809,7 +809,7 @@ func ExampleElasticTranscoder_UpdatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_UpdatePipelineNotifications() {
@@ -842,7 +842,7 @@ func ExampleElasticTranscoder_UpdatePipelineNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleElasticTranscoder_UpdatePipelineStatus() {
@@ -870,5 +870,5 @@ func ExampleElasticTranscoder_UpdatePipelineStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

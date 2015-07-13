@@ -540,7 +540,7 @@ type metadataAssumeRoleInput struct {
 
 // String returns the string representation
 func (s AssumeRoleInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -576,7 +576,7 @@ type metadataAssumeRoleOutput struct {
 
 // String returns the string representation
 func (s AssumeRoleOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -637,7 +637,7 @@ type metadataAssumeRoleWithSAMLInput struct {
 
 // String returns the string representation
 func (s AssumeRoleWithSAMLInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -700,7 +700,7 @@ type metadataAssumeRoleWithSAMLOutput struct {
 
 // String returns the string representation
 func (s AssumeRoleWithSAMLOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -766,7 +766,7 @@ type metadataAssumeRoleWithWebIdentityInput struct {
 
 // String returns the string representation
 func (s AssumeRoleWithWebIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -821,7 +821,7 @@ type metadataAssumeRoleWithWebIdentityOutput struct {
 
 // String returns the string representation
 func (s AssumeRoleWithWebIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -852,7 +852,7 @@ type metadataAssumedRoleUser struct {
 
 // String returns the string representation
 func (s AssumedRoleUser) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -883,7 +883,7 @@ type metadataCredentials struct {
 
 // String returns the string representation
 func (s Credentials) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -904,7 +904,7 @@ type metadataDecodeAuthorizationMessageInput struct {
 
 // String returns the string representation
 func (s DecodeAuthorizationMessageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -929,7 +929,7 @@ type metadataDecodeAuthorizationMessageOutput struct {
 
 // String returns the string representation
 func (s DecodeAuthorizationMessageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -958,7 +958,7 @@ type metadataFederatedUser struct {
 
 // String returns the string representation
 func (s FederatedUser) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1014,7 +1014,7 @@ type metadataGetFederationTokenInput struct {
 
 // String returns the string representation
 func (s GetFederationTokenInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1048,7 +1048,7 @@ type metadataGetFederationTokenOutput struct {
 
 // String returns the string representation
 func (s GetFederationTokenOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1090,7 +1090,7 @@ type metadataGetSessionTokenInput struct {
 
 // String returns the string representation
 func (s GetSessionTokenInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1113,7 +1113,7 @@ type metadataGetSessionTokenOutput struct {
 
 // String returns the string representation
 func (s GetSessionTokenOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

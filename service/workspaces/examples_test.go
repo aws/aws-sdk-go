@@ -47,7 +47,7 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleWorkSpaces_DescribeWorkspaceBundles() {
@@ -79,7 +79,7 @@ func ExampleWorkSpaces_DescribeWorkspaceBundles() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleWorkSpaces_DescribeWorkspaceDirectories() {
@@ -110,7 +110,7 @@ func ExampleWorkSpaces_DescribeWorkspaceDirectories() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleWorkSpaces_DescribeWorkspaces() {
@@ -119,7 +119,7 @@ func ExampleWorkSpaces_DescribeWorkspaces() {
 	params := &workspaces.DescribeWorkspacesInput{
 		BundleID:    aws.String("BundleId"),
 		DirectoryID: aws.String("DirectoryId"),
-		Limit:       aws.Long(1),
+		Limit:       aws.Int64(1),
 		NextToken:   aws.String("PaginationToken"),
 		UserName:    aws.String("UserName"),
 		WorkspaceIDs: []*string{
@@ -145,7 +145,7 @@ func ExampleWorkSpaces_DescribeWorkspaces() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleWorkSpaces_RebootWorkspaces() {
@@ -177,7 +177,7 @@ func ExampleWorkSpaces_RebootWorkspaces() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleWorkSpaces_RebuildWorkspaces() {
@@ -209,7 +209,7 @@ func ExampleWorkSpaces_RebuildWorkspaces() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleWorkSpaces_TerminateWorkspaces() {
@@ -241,5 +241,5 @@ func ExampleWorkSpaces_TerminateWorkspaces() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

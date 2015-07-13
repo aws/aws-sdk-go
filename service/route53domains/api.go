@@ -655,7 +655,7 @@ type metadataCheckDomainAvailabilityInput struct {
 
 // String returns the string representation
 func (s CheckDomainAvailabilityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -694,7 +694,7 @@ type metadataCheckDomainAvailabilityOutput struct {
 
 // String returns the string representation
 func (s CheckDomainAvailabilityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -903,7 +903,7 @@ type metadataContactDetail struct {
 
 // String returns the string representation
 func (s ContactDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -950,7 +950,7 @@ type metadataDeleteTagsForDomainInput struct {
 
 // String returns the string representation
 func (s DeleteTagsForDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -968,7 +968,7 @@ type metadataDeleteTagsForDomainOutput struct {
 
 // String returns the string representation
 func (s DeleteTagsForDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -988,7 +988,7 @@ type metadataDisableDomainAutoRenewInput struct {
 
 // String returns the string representation
 func (s DisableDomainAutoRenewInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1006,7 +1006,7 @@ type metadataDisableDomainAutoRenewOutput struct {
 
 // String returns the string representation
 func (s DisableDomainAutoRenewOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1038,7 +1038,7 @@ type metadataDisableDomainTransferLockInput struct {
 
 // String returns the string representation
 func (s DisableDomainTransferLockInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1067,7 +1067,7 @@ type metadataDisableDomainTransferLockOutput struct {
 
 // String returns the string representation
 func (s DisableDomainTransferLockOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1110,7 +1110,7 @@ type metadataDomainSummary struct {
 
 // String returns the string representation
 func (s DomainSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1130,7 +1130,7 @@ type metadataEnableDomainAutoRenewInput struct {
 
 // String returns the string representation
 func (s EnableDomainAutoRenewInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1148,7 +1148,7 @@ type metadataEnableDomainAutoRenewOutput struct {
 
 // String returns the string representation
 func (s EnableDomainAutoRenewOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1180,7 +1180,7 @@ type metadataEnableDomainTransferLockInput struct {
 
 // String returns the string representation
 func (s EnableDomainTransferLockInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1209,7 +1209,7 @@ type metadataEnableDomainTransferLockOutput struct {
 
 // String returns the string representation
 func (s EnableDomainTransferLockOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1259,7 +1259,7 @@ type metadataExtraParam struct {
 
 // String returns the string representation
 func (s ExtraParam) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1291,7 +1291,7 @@ type metadataGetDomainDetailInput struct {
 
 // String returns the string representation
 func (s GetDomainDetailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1447,7 +1447,7 @@ type metadataGetDomainDetailOutput struct {
 
 // String returns the string representation
 func (s GetDomainDetailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1476,7 +1476,7 @@ type metadataGetOperationDetailInput struct {
 
 // String returns the string representation
 func (s GetOperationDetailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1523,7 +1523,7 @@ type metadataGetOperationDetailOutput struct {
 
 // String returns the string representation
 func (s GetOperationDetailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1569,7 +1569,7 @@ type metadataListDomainsInput struct {
 
 // String returns the string representation
 func (s ListDomainsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1604,7 +1604,7 @@ type metadataListDomainsOutput struct {
 
 // String returns the string representation
 func (s ListDomainsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1648,7 +1648,7 @@ type metadataListOperationsInput struct {
 
 // String returns the string representation
 func (s ListOperationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1683,7 +1683,7 @@ type metadataListOperationsOutput struct {
 
 // String returns the string representation
 func (s ListOperationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1705,7 +1705,7 @@ type metadataListTagsForDomainInput struct {
 
 // String returns the string representation
 func (s ListTagsForDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1743,7 +1743,7 @@ type metadataListTagsForDomainOutput struct {
 
 // String returns the string representation
 func (s ListTagsForDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1783,7 +1783,7 @@ type metadataNameserver struct {
 
 // String returns the string representation
 func (s Nameserver) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1823,7 +1823,7 @@ type metadataOperationSummary struct {
 
 // String returns the string representation
 func (s OperationSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1957,7 +1957,7 @@ type metadataRegisterDomainInput struct {
 
 // String returns the string representation
 func (s RegisterDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1986,7 +1986,7 @@ type metadataRegisterDomainOutput struct {
 
 // String returns the string representation
 func (s RegisterDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2018,7 +2018,7 @@ type metadataRetrieveDomainAuthCodeInput struct {
 
 // String returns the string representation
 func (s RetrieveDomainAuthCodeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2042,7 +2042,7 @@ type metadataRetrieveDomainAuthCodeOutput struct {
 
 // String returns the string representation
 func (s RetrieveDomainAuthCodeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2087,7 +2087,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2238,7 +2238,7 @@ type metadataTransferDomainInput struct {
 
 // String returns the string representation
 func (s TransferDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2267,7 +2267,7 @@ type metadataTransferDomainOutput struct {
 
 // String returns the string representation
 func (s TransferDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2332,7 +2332,7 @@ type metadataUpdateDomainContactInput struct {
 
 // String returns the string representation
 func (s UpdateDomainContactInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2361,7 +2361,7 @@ type metadataUpdateDomainContactOutput struct {
 
 // String returns the string representation
 func (s UpdateDomainContactOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2435,7 +2435,7 @@ type metadataUpdateDomainContactPrivacyInput struct {
 
 // String returns the string representation
 func (s UpdateDomainContactPrivacyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2464,7 +2464,7 @@ type metadataUpdateDomainContactPrivacyOutput struct {
 
 // String returns the string representation
 func (s UpdateDomainContactPrivacyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2508,7 +2508,7 @@ type metadataUpdateDomainNameserversInput struct {
 
 // String returns the string representation
 func (s UpdateDomainNameserversInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2537,7 +2537,7 @@ type metadataUpdateDomainNameserversOutput struct {
 
 // String returns the string representation
 func (s UpdateDomainNameserversOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2613,7 +2613,7 @@ type metadataUpdateTagsForDomainInput struct {
 
 // String returns the string representation
 func (s UpdateTagsForDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2631,7 +2631,7 @@ type metadataUpdateTagsForDomainOutput struct {
 
 // String returns the string representation
 func (s UpdateTagsForDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

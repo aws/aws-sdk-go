@@ -1317,7 +1317,7 @@ type metadataAddTagsToResourceInput struct {
 
 // String returns the string representation
 func (s AddTagsToResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1348,7 +1348,7 @@ type metadataAuthorizeCacheSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s AuthorizeCacheSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1371,7 +1371,7 @@ type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s AuthorizeCacheSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1393,7 +1393,7 @@ type metadataAvailabilityZone struct {
 
 // String returns the string representation
 func (s AvailabilityZone) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1524,7 +1524,7 @@ type metadataCacheCluster struct {
 
 // String returns the string representation
 func (s CacheCluster) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1558,7 +1558,7 @@ type metadataCacheEngineVersion struct {
 
 // String returns the string representation
 func (s CacheEngineVersion) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1622,7 +1622,7 @@ type metadataCacheNode struct {
 
 // String returns the string representation
 func (s CacheNode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1669,7 +1669,7 @@ type metadataCacheNodeTypeSpecificParameter struct {
 
 // String returns the string representation
 func (s CacheNodeTypeSpecificParameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1694,7 +1694,7 @@ type metadataCacheNodeTypeSpecificValue struct {
 
 // String returns the string representation
 func (s CacheNodeTypeSpecificValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1723,7 +1723,7 @@ type metadataCacheParameterGroup struct {
 
 // String returns the string representation
 func (s CacheParameterGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1747,7 +1747,7 @@ type metadataCacheParameterGroupNameMessage struct {
 
 // String returns the string representation
 func (s CacheParameterGroupNameMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1776,7 +1776,7 @@ type metadataCacheParameterGroupStatus struct {
 
 // String returns the string representation
 func (s CacheParameterGroupStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1810,7 +1810,7 @@ type metadataCacheSecurityGroup struct {
 
 // String returns the string representation
 func (s CacheSecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1837,7 +1837,7 @@ type metadataCacheSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s CacheSecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1871,7 +1871,7 @@ type metadataCacheSubnetGroup struct {
 
 // String returns the string representation
 func (s CacheSubnetGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1896,7 +1896,7 @@ type metadataCopySnapshotInput struct {
 
 // String returns the string representation
 func (s CopySnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1918,7 +1918,7 @@ type metadataCopySnapshotOutput struct {
 
 // String returns the string representation
 func (s CopySnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2127,7 +2127,7 @@ type metadataCreateCacheClusterInput struct {
 
 // String returns the string representation
 func (s CreateCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2148,7 +2148,7 @@ type metadataCreateCacheClusterOutput struct {
 
 // String returns the string representation
 func (s CreateCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2179,7 +2179,7 @@ type metadataCreateCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s CreateCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2200,7 +2200,7 @@ type metadataCreateCacheParameterGroupOutput struct {
 
 // String returns the string representation
 func (s CreateCacheParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2231,7 +2231,7 @@ type metadataCreateCacheSecurityGroupInput struct {
 
 // String returns the string representation
 func (s CreateCacheSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2254,7 +2254,7 @@ type metadataCreateCacheSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s CreateCacheSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2286,7 +2286,7 @@ type metadataCreateCacheSubnetGroupInput struct {
 
 // String returns the string representation
 func (s CreateCacheSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2309,7 +2309,7 @@ type metadataCreateCacheSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s CreateCacheSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2497,7 +2497,7 @@ type metadataCreateReplicationGroupInput struct {
 
 // String returns the string representation
 func (s CreateReplicationGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2518,7 +2518,7 @@ type metadataCreateReplicationGroupOutput struct {
 
 // String returns the string representation
 func (s CreateReplicationGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2544,7 +2544,7 @@ type metadataCreateSnapshotInput struct {
 
 // String returns the string representation
 func (s CreateSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2566,7 +2566,7 @@ type metadataCreateSnapshotOutput struct {
 
 // String returns the string representation
 func (s CreateSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2594,7 +2594,7 @@ type metadataDeleteCacheClusterInput struct {
 
 // String returns the string representation
 func (s DeleteCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2615,7 +2615,7 @@ type metadataDeleteCacheClusterOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2640,7 +2640,7 @@ type metadataDeleteCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s DeleteCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2658,7 +2658,7 @@ type metadataDeleteCacheParameterGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2682,7 +2682,7 @@ type metadataDeleteCacheSecurityGroupInput struct {
 
 // String returns the string representation
 func (s DeleteCacheSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2700,7 +2700,7 @@ type metadataDeleteCacheSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2724,7 +2724,7 @@ type metadataDeleteCacheSubnetGroupInput struct {
 
 // String returns the string representation
 func (s DeleteCacheSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2742,7 +2742,7 @@ type metadataDeleteCacheSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2775,7 +2775,7 @@ type metadataDeleteReplicationGroupInput struct {
 
 // String returns the string representation
 func (s DeleteReplicationGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2796,7 +2796,7 @@ type metadataDeleteReplicationGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteReplicationGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2818,7 +2818,7 @@ type metadataDeleteSnapshotInput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2840,7 +2840,7 @@ type metadataDeleteSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2882,7 +2882,7 @@ type metadataDescribeCacheClustersInput struct {
 
 // String returns the string representation
 func (s DescribeCacheClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2908,7 +2908,7 @@ type metadataDescribeCacheClustersOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2961,7 +2961,7 @@ type metadataDescribeCacheEngineVersionsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheEngineVersionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2987,7 +2987,7 @@ type metadataDescribeCacheEngineVersionsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheEngineVersionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3023,7 +3023,7 @@ type metadataDescribeCacheParameterGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheParameterGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3049,7 +3049,7 @@ type metadataDescribeCacheParameterGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheParameterGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3090,7 +3090,7 @@ type metadataDescribeCacheParametersInput struct {
 
 // String returns the string representation
 func (s DescribeCacheParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3119,7 +3119,7 @@ type metadataDescribeCacheParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3155,7 +3155,7 @@ type metadataDescribeCacheSecurityGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheSecurityGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3181,7 +3181,7 @@ type metadataDescribeCacheSecurityGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheSecurityGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3217,7 +3217,7 @@ type metadataDescribeCacheSubnetGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheSubnetGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3243,7 +3243,7 @@ type metadataDescribeCacheSubnetGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheSubnetGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3280,7 +3280,7 @@ type metadataDescribeEngineDefaultParametersInput struct {
 
 // String returns the string representation
 func (s DescribeEngineDefaultParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3301,7 +3301,7 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeEngineDefaultParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3356,7 +3356,7 @@ type metadataDescribeEventsInput struct {
 
 // String returns the string representation
 func (s DescribeEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3382,7 +3382,7 @@ type metadataDescribeEventsOutput struct {
 
 // String returns the string representation
 func (s DescribeEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3422,7 +3422,7 @@ type metadataDescribeReplicationGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeReplicationGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3448,7 +3448,7 @@ type metadataDescribeReplicationGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeReplicationGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3527,7 +3527,7 @@ type metadataDescribeReservedCacheNodesInput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3604,7 +3604,7 @@ type metadataDescribeReservedCacheNodesOfferingsInput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesOfferingsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3630,7 +3630,7 @@ type metadataDescribeReservedCacheNodesOfferingsOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesOfferingsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3656,7 +3656,7 @@ type metadataDescribeReservedCacheNodesOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3703,7 +3703,7 @@ type metadataDescribeSnapshotsInput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3731,7 +3731,7 @@ type metadataDescribeSnapshotsOutput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3759,7 +3759,7 @@ type metadataEC2SecurityGroup struct {
 
 // String returns the string representation
 func (s EC2SecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3785,7 +3785,7 @@ type metadataEndpoint struct {
 
 // String returns the string representation
 func (s Endpoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3818,7 +3818,7 @@ type metadataEngineDefaults struct {
 
 // String returns the string representation
 func (s EngineDefaults) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3854,7 +3854,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3877,7 +3877,7 @@ type metadataListTagsForResourceInput struct {
 
 // String returns the string representation
 func (s ListTagsForResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4074,7 +4074,7 @@ type metadataModifyCacheClusterInput struct {
 
 // String returns the string representation
 func (s ModifyCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4095,7 +4095,7 @@ type metadataModifyCacheClusterOutput struct {
 
 // String returns the string representation
 func (s ModifyCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4122,7 +4122,7 @@ type metadataModifyCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s ModifyCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4155,7 +4155,7 @@ type metadataModifyCacheSubnetGroupInput struct {
 
 // String returns the string representation
 func (s ModifyCacheSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4178,7 +4178,7 @@ type metadataModifyCacheSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyCacheSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4304,7 +4304,7 @@ type metadataModifyReplicationGroupInput struct {
 
 // String returns the string representation
 func (s ModifyReplicationGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4325,7 +4325,7 @@ type metadataModifyReplicationGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyReplicationGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4358,7 +4358,7 @@ type metadataNodeGroup struct {
 
 // String returns the string representation
 func (s NodeGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4394,7 +4394,7 @@ type metadataNodeGroupMember struct {
 
 // String returns the string representation
 func (s NodeGroupMember) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4426,7 +4426,7 @@ type metadataNodeSnapshot struct {
 
 // String returns the string representation
 func (s NodeSnapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4453,7 +4453,7 @@ type metadataNotificationConfiguration struct {
 
 // String returns the string representation
 func (s NotificationConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4499,7 +4499,7 @@ type metadataParameter struct {
 
 // String returns the string representation
 func (s Parameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4524,7 +4524,7 @@ type metadataParameterNameValue struct {
 
 // String returns the string representation
 func (s ParameterNameValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4557,7 +4557,7 @@ type metadataPendingModifiedValues struct {
 
 // String returns the string representation
 func (s PendingModifiedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4591,7 +4591,7 @@ type metadataPurchaseReservedCacheNodesOfferingInput struct {
 
 // String returns the string representation
 func (s PurchaseReservedCacheNodesOfferingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4612,7 +4612,7 @@ type metadataPurchaseReservedCacheNodesOfferingOutput struct {
 
 // String returns the string representation
 func (s PurchaseReservedCacheNodesOfferingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4639,7 +4639,7 @@ type metadataRebootCacheClusterInput struct {
 
 // String returns the string representation
 func (s RebootCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4660,7 +4660,7 @@ type metadataRebootCacheClusterOutput struct {
 
 // String returns the string representation
 func (s RebootCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4686,7 +4686,7 @@ type metadataRecurringCharge struct {
 
 // String returns the string representation
 func (s RecurringCharge) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4714,7 +4714,7 @@ type metadataRemoveTagsFromResourceInput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4764,7 +4764,7 @@ type metadataReplicationGroup struct {
 
 // String returns the string representation
 func (s ReplicationGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4795,7 +4795,7 @@ type metadataReplicationGroupPendingModifiedValues struct {
 
 // String returns the string representation
 func (s ReplicationGroupPendingModifiedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4868,7 +4868,7 @@ type metadataReservedCacheNode struct {
 
 // String returns the string representation
 func (s ReservedCacheNode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4929,7 +4929,7 @@ type metadataReservedCacheNodesOffering struct {
 
 // String returns the string representation
 func (s ReservedCacheNodesOffering) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4961,7 +4961,7 @@ type metadataResetCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s ResetCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4991,7 +4991,7 @@ type metadataRevokeCacheSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s RevokeCacheSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5014,7 +5014,7 @@ type metadataRevokeCacheSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s RevokeCacheSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5041,7 +5041,7 @@ type metadataSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s SecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5165,7 +5165,7 @@ type metadataSnapshot struct {
 
 // String returns the string representation
 func (s Snapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5192,7 +5192,7 @@ type metadataSubnet struct {
 
 // String returns the string representation
 func (s Subnet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5219,7 +5219,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5242,7 +5242,7 @@ type metadataTagListMessage struct {
 
 // String returns the string representation
 func (s TagListMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

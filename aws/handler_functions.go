@@ -90,7 +90,7 @@ func SendHandler(r *Request) {
 		}
 		// Catch all other request errors.
 		r.Error = awserr.New("RequestError", "send request failed", err)
-		r.Retryable.Set(true) // network errors are retryable
+		r.Retryable = Bool(true) // network errors are retryable
 	}
 }
 
@@ -107,8 +107,8 @@ func ValidateResponseHandler(r *Request) {
 func AfterRetryHandler(r *Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
-	if !r.Retryable.IsSet() {
-		r.Retryable.Set(r.Service.ShouldRetry(r))
+	if r.Retryable == nil {
+		r.Retryable = Bool(r.Service.ShouldRetry(r))
 	}
 
 	if r.WillRetry() {

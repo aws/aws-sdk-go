@@ -40,7 +40,7 @@ func ExampleEFS_CreateFileSystem() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_CreateMountTarget() {
@@ -73,7 +73,7 @@ func ExampleEFS_CreateMountTarget() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_CreateTags() {
@@ -107,7 +107,7 @@ func ExampleEFS_CreateTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DeleteFileSystem() {
@@ -134,7 +134,7 @@ func ExampleEFS_DeleteFileSystem() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DeleteMountTarget() {
@@ -161,7 +161,7 @@ func ExampleEFS_DeleteMountTarget() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DeleteTags() {
@@ -192,7 +192,7 @@ func ExampleEFS_DeleteTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DescribeFileSystems() {
@@ -202,7 +202,7 @@ func ExampleEFS_DescribeFileSystems() {
 		CreationToken: aws.String("CreationToken"),
 		FileSystemID:  aws.String("FileSystemId"),
 		Marker:        aws.String("Marker"),
-		MaxItems:      aws.Long(1),
+		MaxItems:      aws.Int64(1),
 	}
 	resp, err := svc.DescribeFileSystems(params)
 
@@ -222,7 +222,7 @@ func ExampleEFS_DescribeFileSystems() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DescribeMountTargetSecurityGroups() {
@@ -249,7 +249,7 @@ func ExampleEFS_DescribeMountTargetSecurityGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DescribeMountTargets() {
@@ -258,7 +258,7 @@ func ExampleEFS_DescribeMountTargets() {
 	params := &efs.DescribeMountTargetsInput{
 		FileSystemID: aws.String("FileSystemId"), // Required
 		Marker:       aws.String("Marker"),
-		MaxItems:     aws.Long(1),
+		MaxItems:     aws.Int64(1),
 	}
 	resp, err := svc.DescribeMountTargets(params)
 
@@ -278,7 +278,7 @@ func ExampleEFS_DescribeMountTargets() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_DescribeTags() {
@@ -287,7 +287,7 @@ func ExampleEFS_DescribeTags() {
 	params := &efs.DescribeTagsInput{
 		FileSystemID: aws.String("FileSystemId"), // Required
 		Marker:       aws.String("Marker"),
-		MaxItems:     aws.Long(1),
+		MaxItems:     aws.Int64(1),
 	}
 	resp, err := svc.DescribeTags(params)
 
@@ -307,7 +307,7 @@ func ExampleEFS_DescribeTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleEFS_ModifyMountTargetSecurityGroups() {
@@ -338,5 +338,5 @@ func ExampleEFS_ModifyMountTargetSecurityGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

@@ -48,7 +48,7 @@ func ExampleDataPipeline_ActivatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_AddTags() {
@@ -82,7 +82,7 @@ func ExampleDataPipeline_AddTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_CreatePipeline() {
@@ -118,7 +118,7 @@ func ExampleDataPipeline_CreatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_DeactivatePipeline() {
@@ -126,7 +126,7 @@ func ExampleDataPipeline_DeactivatePipeline() {
 
 	params := &datapipeline.DeactivatePipelineInput{
 		PipelineID:   aws.String("id"), // Required
-		CancelActive: aws.Boolean(true),
+		CancelActive: aws.Bool(true),
 	}
 	resp, err := svc.DeactivatePipeline(params)
 
@@ -146,7 +146,7 @@ func ExampleDataPipeline_DeactivatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_DeletePipeline() {
@@ -173,7 +173,7 @@ func ExampleDataPipeline_DeletePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_DescribeObjects() {
@@ -185,7 +185,7 @@ func ExampleDataPipeline_DescribeObjects() {
 			// More values...
 		},
 		PipelineID:          aws.String("id"), // Required
-		EvaluateExpressions: aws.Boolean(true),
+		EvaluateExpressions: aws.Bool(true),
 		Marker:              aws.String("string"),
 	}
 	resp, err := svc.DescribeObjects(params)
@@ -206,7 +206,7 @@ func ExampleDataPipeline_DescribeObjects() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_DescribePipelines() {
@@ -236,7 +236,7 @@ func ExampleDataPipeline_DescribePipelines() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_EvaluateExpression() {
@@ -265,7 +265,7 @@ func ExampleDataPipeline_EvaluateExpression() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_GetPipelineDefinition() {
@@ -293,7 +293,7 @@ func ExampleDataPipeline_GetPipelineDefinition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_ListPipelines() {
@@ -320,7 +320,7 @@ func ExampleDataPipeline_ListPipelines() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_PollForTask() {
@@ -352,7 +352,7 @@ func ExampleDataPipeline_PollForTask() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_PutPipelineDefinition() {
@@ -414,7 +414,7 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_QueryObjects() {
@@ -423,7 +423,7 @@ func ExampleDataPipeline_QueryObjects() {
 	params := &datapipeline.QueryObjectsInput{
 		PipelineID: aws.String("id"),     // Required
 		Sphere:     aws.String("string"), // Required
-		Limit:      aws.Long(1),
+		Limit:      aws.Int64(1),
 		Marker:     aws.String("string"),
 		Query: &datapipeline.Query{
 			Selectors: []*datapipeline.Selector{
@@ -459,7 +459,7 @@ func ExampleDataPipeline_QueryObjects() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_RemoveTags() {
@@ -490,7 +490,7 @@ func ExampleDataPipeline_RemoveTags() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_ReportTaskProgress() {
@@ -525,7 +525,7 @@ func ExampleDataPipeline_ReportTaskProgress() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_ReportTaskRunnerHeartbeat() {
@@ -554,7 +554,7 @@ func ExampleDataPipeline_ReportTaskRunnerHeartbeat() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_SetStatus() {
@@ -586,7 +586,7 @@ func ExampleDataPipeline_SetStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_SetTaskStatus() {
@@ -617,7 +617,7 @@ func ExampleDataPipeline_SetTaskStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDataPipeline_ValidatePipelineDefinition() {
@@ -679,5 +679,5 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

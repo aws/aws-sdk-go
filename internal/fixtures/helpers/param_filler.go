@@ -63,17 +63,17 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 	case "boolean":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Boolean(%#v)", v.Interface())
+			return fmt.Sprintf("aws.Bool(%#v)", v.Interface())
 		}
 	case "integer", "long":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Long(%v)", v.Interface())
+			return fmt.Sprintf("aws.Int64(%v)", v.Interface())
 		}
 	case "float", "double":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Double(%v)", v.Interface())
+			return fmt.Sprintf("aws.Float64(%v)", v.Interface())
 		}
 	case "timestamp":
 		v := reflect.Indirect(reflect.ValueOf(value))

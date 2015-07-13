@@ -250,7 +250,7 @@ func (s *Shape) Docstring() string {
 const goCodeStringerTmpl = `
 // String returns the string representation
 func (s {{ .ShapeName }}) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 // GoString returns the string representation
 func (s {{ .ShapeName }}) GoString() string {

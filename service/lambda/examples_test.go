@@ -45,7 +45,7 @@ func ExampleLambda_AddPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_CreateEventSourceMapping() {
@@ -55,8 +55,8 @@ func ExampleLambda_CreateEventSourceMapping() {
 		EventSourceARN:   aws.String("Arn"),                 // Required
 		FunctionName:     aws.String("FunctionName"),        // Required
 		StartingPosition: aws.String("EventSourcePosition"), // Required
-		BatchSize:        aws.Long(1),
-		Enabled:          aws.Boolean(true),
+		BatchSize:        aws.Int64(1),
+		Enabled:          aws.Bool(true),
 	}
 	resp, err := svc.CreateEventSourceMapping(params)
 
@@ -76,7 +76,7 @@ func ExampleLambda_CreateEventSourceMapping() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_CreateFunction() {
@@ -94,8 +94,8 @@ func ExampleLambda_CreateFunction() {
 		Role:         aws.String("RoleArn"),      // Required
 		Runtime:      aws.String("Runtime"),      // Required
 		Description:  aws.String("Description"),
-		MemorySize:   aws.Long(1),
-		Timeout:      aws.Long(1),
+		MemorySize:   aws.Int64(1),
+		Timeout:      aws.Int64(1),
 	}
 	resp, err := svc.CreateFunction(params)
 
@@ -115,7 +115,7 @@ func ExampleLambda_CreateFunction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_DeleteEventSourceMapping() {
@@ -142,7 +142,7 @@ func ExampleLambda_DeleteEventSourceMapping() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_DeleteFunction() {
@@ -169,7 +169,7 @@ func ExampleLambda_DeleteFunction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_GetEventSourceMapping() {
@@ -196,7 +196,7 @@ func ExampleLambda_GetEventSourceMapping() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_GetFunction() {
@@ -223,7 +223,7 @@ func ExampleLambda_GetFunction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_GetFunctionConfiguration() {
@@ -250,7 +250,7 @@ func ExampleLambda_GetFunctionConfiguration() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_GetPolicy() {
@@ -277,7 +277,7 @@ func ExampleLambda_GetPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_Invoke() {
@@ -308,7 +308,7 @@ func ExampleLambda_Invoke() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_InvokeAsync() {
@@ -336,7 +336,7 @@ func ExampleLambda_InvokeAsync() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_ListEventSourceMappings() {
@@ -346,7 +346,7 @@ func ExampleLambda_ListEventSourceMappings() {
 		EventSourceARN: aws.String("Arn"),
 		FunctionName:   aws.String("FunctionName"),
 		Marker:         aws.String("String"),
-		MaxItems:       aws.Long(1),
+		MaxItems:       aws.Int64(1),
 	}
 	resp, err := svc.ListEventSourceMappings(params)
 
@@ -366,7 +366,7 @@ func ExampleLambda_ListEventSourceMappings() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_ListFunctions() {
@@ -374,7 +374,7 @@ func ExampleLambda_ListFunctions() {
 
 	params := &lambda.ListFunctionsInput{
 		Marker:   aws.String("String"),
-		MaxItems: aws.Long(1),
+		MaxItems: aws.Int64(1),
 	}
 	resp, err := svc.ListFunctions(params)
 
@@ -394,7 +394,7 @@ func ExampleLambda_ListFunctions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_RemovePermission() {
@@ -422,7 +422,7 @@ func ExampleLambda_RemovePermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_UpdateEventSourceMapping() {
@@ -430,8 +430,8 @@ func ExampleLambda_UpdateEventSourceMapping() {
 
 	params := &lambda.UpdateEventSourceMappingInput{
 		UUID:         aws.String("String"), // Required
-		BatchSize:    aws.Long(1),
-		Enabled:      aws.Boolean(true),
+		BatchSize:    aws.Int64(1),
+		Enabled:      aws.Bool(true),
 		FunctionName: aws.String("FunctionName"),
 	}
 	resp, err := svc.UpdateEventSourceMapping(params)
@@ -452,7 +452,7 @@ func ExampleLambda_UpdateEventSourceMapping() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_UpdateFunctionCode() {
@@ -483,7 +483,7 @@ func ExampleLambda_UpdateFunctionCode() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleLambda_UpdateFunctionConfiguration() {
@@ -493,9 +493,9 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 		FunctionName: aws.String("FunctionName"), // Required
 		Description:  aws.String("Description"),
 		Handler:      aws.String("Handler"),
-		MemorySize:   aws.Long(1),
+		MemorySize:   aws.Int64(1),
 		Role:         aws.String("RoleArn"),
-		Timeout:      aws.Long(1),
+		Timeout:      aws.Int64(1),
 	}
 	resp, err := svc.UpdateFunctionConfiguration(params)
 
@@ -515,5 +515,5 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

@@ -41,7 +41,7 @@ func ExampleCodePipeline_AcknowledgeJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_AcknowledgeThirdPartyJob() {
@@ -70,7 +70,7 @@ func ExampleCodePipeline_AcknowledgeThirdPartyJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_CreateCustomActionType() {
@@ -79,23 +79,23 @@ func ExampleCodePipeline_CreateCustomActionType() {
 	params := &codepipeline.CreateCustomActionTypeInput{
 		Category: aws.String("ActionCategory"), // Required
 		InputArtifactDetails: &codepipeline.ArtifactDetails{ // Required
-			MaximumCount: aws.Long(1), // Required
-			MinimumCount: aws.Long(1), // Required
+			MaximumCount: aws.Int64(1), // Required
+			MinimumCount: aws.Int64(1), // Required
 		},
 		OutputArtifactDetails: &codepipeline.ArtifactDetails{ // Required
-			MaximumCount: aws.Long(1), // Required
-			MinimumCount: aws.Long(1), // Required
+			MaximumCount: aws.Int64(1), // Required
+			MinimumCount: aws.Int64(1), // Required
 		},
 		Provider: aws.String("ActionProvider"), // Required
 		Version:  aws.String("Version"),        // Required
 		ConfigurationProperties: []*codepipeline.ActionConfigurationProperty{
 			{ // Required
-				Key:         aws.Boolean(true),                    // Required
+				Key:         aws.Bool(true),                       // Required
 				Name:        aws.String("ActionConfigurationKey"), // Required
-				Required:    aws.Boolean(true),                    // Required
-				Secret:      aws.Boolean(true),                    // Required
+				Required:    aws.Bool(true),                       // Required
+				Secret:      aws.Bool(true),                       // Required
 				Description: aws.String("Description"),
-				Queryable:   aws.Boolean(true),
+				Queryable:   aws.Bool(true),
 				Type:        aws.String("ActionConfigurationPropertyType"),
 			},
 			// More values...
@@ -125,7 +125,7 @@ func ExampleCodePipeline_CreateCustomActionType() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_CreatePipeline() {
@@ -167,7 +167,7 @@ func ExampleCodePipeline_CreatePipeline() {
 								// More values...
 							},
 							RoleARN:  aws.String("RoleArn"),
-							RunOrder: aws.Long(1),
+							RunOrder: aws.Int64(1),
 						},
 						// More values...
 					},
@@ -182,7 +182,7 @@ func ExampleCodePipeline_CreatePipeline() {
 				},
 				// More values...
 			},
-			Version: aws.Long(1),
+			Version: aws.Int64(1),
 		},
 	}
 	resp, err := svc.CreatePipeline(params)
@@ -203,7 +203,7 @@ func ExampleCodePipeline_CreatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_DeleteCustomActionType() {
@@ -232,7 +232,7 @@ func ExampleCodePipeline_DeleteCustomActionType() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_DeletePipeline() {
@@ -259,7 +259,7 @@ func ExampleCodePipeline_DeletePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_DisableStageTransition() {
@@ -289,7 +289,7 @@ func ExampleCodePipeline_DisableStageTransition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_EnableStageTransition() {
@@ -318,7 +318,7 @@ func ExampleCodePipeline_EnableStageTransition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetJobDetails() {
@@ -345,7 +345,7 @@ func ExampleCodePipeline_GetJobDetails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetPipeline() {
@@ -353,7 +353,7 @@ func ExampleCodePipeline_GetPipeline() {
 
 	params := &codepipeline.GetPipelineInput{
 		Name:    aws.String("PipelineName"), // Required
-		Version: aws.Long(1),
+		Version: aws.Int64(1),
 	}
 	resp, err := svc.GetPipeline(params)
 
@@ -373,7 +373,7 @@ func ExampleCodePipeline_GetPipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetPipelineState() {
@@ -400,7 +400,7 @@ func ExampleCodePipeline_GetPipelineState() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetThirdPartyJobDetails() {
@@ -428,7 +428,7 @@ func ExampleCodePipeline_GetThirdPartyJobDetails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_ListActionTypes() {
@@ -456,7 +456,7 @@ func ExampleCodePipeline_ListActionTypes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_ListPipelines() {
@@ -483,7 +483,7 @@ func ExampleCodePipeline_ListPipelines() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PollForJobs() {
@@ -496,7 +496,7 @@ func ExampleCodePipeline_PollForJobs() {
 			Provider: aws.String("ActionProvider"), // Required
 			Version:  aws.String("Version"),        // Required
 		},
-		MaxBatchSize: aws.Long(1),
+		MaxBatchSize: aws.Int64(1),
 		QueryParam: map[string]*string{
 			"Key": aws.String("ActionConfigurationQueryableValue"), // Required
 			// More values...
@@ -520,7 +520,7 @@ func ExampleCodePipeline_PollForJobs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PollForThirdPartyJobs() {
@@ -533,7 +533,7 @@ func ExampleCodePipeline_PollForThirdPartyJobs() {
 			Provider: aws.String("ActionProvider"), // Required
 			Version:  aws.String("Version"),        // Required
 		},
-		MaxBatchSize: aws.Long(1),
+		MaxBatchSize: aws.Int64(1),
 	}
 	resp, err := svc.PollForThirdPartyJobs(params)
 
@@ -553,7 +553,7 @@ func ExampleCodePipeline_PollForThirdPartyJobs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutActionRevision() {
@@ -587,7 +587,7 @@ func ExampleCodePipeline_PutActionRevision() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutJobFailureResult() {
@@ -619,7 +619,7 @@ func ExampleCodePipeline_PutJobFailureResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutJobSuccessResult() {
@@ -634,7 +634,7 @@ func ExampleCodePipeline_PutJobSuccessResult() {
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
 			ExternalExecutionID: aws.String("ExecutionId"),
-			PercentComplete:     aws.Long(1),
+			PercentComplete:     aws.Int64(1),
 			Summary:             aws.String("ExecutionSummary"),
 		},
 	}
@@ -656,7 +656,7 @@ func ExampleCodePipeline_PutJobSuccessResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutThirdPartyJobFailureResult() {
@@ -689,7 +689,7 @@ func ExampleCodePipeline_PutThirdPartyJobFailureResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
@@ -705,7 +705,7 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
 			ExternalExecutionID: aws.String("ExecutionId"),
-			PercentComplete:     aws.Long(1),
+			PercentComplete:     aws.Int64(1),
 			Summary:             aws.String("ExecutionSummary"),
 		},
 	}
@@ -727,7 +727,7 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_StartPipelineExecution() {
@@ -754,7 +754,7 @@ func ExampleCodePipeline_StartPipelineExecution() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_UpdatePipeline() {
@@ -796,7 +796,7 @@ func ExampleCodePipeline_UpdatePipeline() {
 								// More values...
 							},
 							RoleARN:  aws.String("RoleArn"),
-							RunOrder: aws.Long(1),
+							RunOrder: aws.Int64(1),
 						},
 						// More values...
 					},
@@ -811,7 +811,7 @@ func ExampleCodePipeline_UpdatePipeline() {
 				},
 				// More values...
 			},
-			Version: aws.Long(1),
+			Version: aws.Int64(1),
 		},
 	}
 	resp, err := svc.UpdatePipeline(params)
@@ -832,5 +832,5 @@ func ExampleCodePipeline_UpdatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

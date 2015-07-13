@@ -44,7 +44,7 @@ func ExampleMachineLearning_CreateBatchPrediction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_CreateDataSourceFromRDS() {
@@ -75,7 +75,7 @@ func ExampleMachineLearning_CreateDataSourceFromRDS() {
 			DataSchemaURI:     aws.String("S3Url"),
 		},
 		RoleARN:           aws.String("RoleARN"), // Required
-		ComputeStatistics: aws.Boolean(true),
+		ComputeStatistics: aws.Bool(true),
 		DataSourceName:    aws.String("EntityName"),
 	}
 	resp, err := svc.CreateDataSourceFromRDS(params)
@@ -96,7 +96,7 @@ func ExampleMachineLearning_CreateDataSourceFromRDS() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_CreateDataSourceFromRedshift() {
@@ -120,7 +120,7 @@ func ExampleMachineLearning_CreateDataSourceFromRedshift() {
 			DataSchemaURI:     aws.String("S3Url"),
 		},
 		RoleARN:           aws.String("RoleARN"), // Required
-		ComputeStatistics: aws.Boolean(true),
+		ComputeStatistics: aws.Bool(true),
 		DataSourceName:    aws.String("EntityName"),
 	}
 	resp, err := svc.CreateDataSourceFromRedshift(params)
@@ -141,7 +141,7 @@ func ExampleMachineLearning_CreateDataSourceFromRedshift() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_CreateDataSourceFromS3() {
@@ -155,7 +155,7 @@ func ExampleMachineLearning_CreateDataSourceFromS3() {
 			DataSchema:           aws.String("DataSchema"),
 			DataSchemaLocationS3: aws.String("S3Url"),
 		},
-		ComputeStatistics: aws.Boolean(true),
+		ComputeStatistics: aws.Bool(true),
 		DataSourceName:    aws.String("EntityName"),
 	}
 	resp, err := svc.CreateDataSourceFromS3(params)
@@ -176,7 +176,7 @@ func ExampleMachineLearning_CreateDataSourceFromS3() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_CreateEvaluation() {
@@ -206,7 +206,7 @@ func ExampleMachineLearning_CreateEvaluation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_CreateMLModel() {
@@ -242,7 +242,7 @@ func ExampleMachineLearning_CreateMLModel() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_CreateRealtimeEndpoint() {
@@ -269,7 +269,7 @@ func ExampleMachineLearning_CreateRealtimeEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DeleteBatchPrediction() {
@@ -296,7 +296,7 @@ func ExampleMachineLearning_DeleteBatchPrediction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DeleteDataSource() {
@@ -323,7 +323,7 @@ func ExampleMachineLearning_DeleteDataSource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DeleteEvaluation() {
@@ -350,7 +350,7 @@ func ExampleMachineLearning_DeleteEvaluation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DeleteMLModel() {
@@ -377,7 +377,7 @@ func ExampleMachineLearning_DeleteMLModel() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DeleteRealtimeEndpoint() {
@@ -404,7 +404,7 @@ func ExampleMachineLearning_DeleteRealtimeEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DescribeBatchPredictions() {
@@ -417,7 +417,7 @@ func ExampleMachineLearning_DescribeBatchPredictions() {
 		GT:             aws.String("ComparatorValue"),
 		LE:             aws.String("ComparatorValue"),
 		LT:             aws.String("ComparatorValue"),
-		Limit:          aws.Long(1),
+		Limit:          aws.Int64(1),
 		NE:             aws.String("ComparatorValue"),
 		NextToken:      aws.String("StringType"),
 		Prefix:         aws.String("ComparatorValue"),
@@ -441,7 +441,7 @@ func ExampleMachineLearning_DescribeBatchPredictions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DescribeDataSources() {
@@ -454,7 +454,7 @@ func ExampleMachineLearning_DescribeDataSources() {
 		GT:             aws.String("ComparatorValue"),
 		LE:             aws.String("ComparatorValue"),
 		LT:             aws.String("ComparatorValue"),
-		Limit:          aws.Long(1),
+		Limit:          aws.Int64(1),
 		NE:             aws.String("ComparatorValue"),
 		NextToken:      aws.String("StringType"),
 		Prefix:         aws.String("ComparatorValue"),
@@ -478,7 +478,7 @@ func ExampleMachineLearning_DescribeDataSources() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DescribeEvaluations() {
@@ -491,7 +491,7 @@ func ExampleMachineLearning_DescribeEvaluations() {
 		GT:             aws.String("ComparatorValue"),
 		LE:             aws.String("ComparatorValue"),
 		LT:             aws.String("ComparatorValue"),
-		Limit:          aws.Long(1),
+		Limit:          aws.Int64(1),
 		NE:             aws.String("ComparatorValue"),
 		NextToken:      aws.String("StringType"),
 		Prefix:         aws.String("ComparatorValue"),
@@ -515,7 +515,7 @@ func ExampleMachineLearning_DescribeEvaluations() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_DescribeMLModels() {
@@ -528,7 +528,7 @@ func ExampleMachineLearning_DescribeMLModels() {
 		GT:             aws.String("ComparatorValue"),
 		LE:             aws.String("ComparatorValue"),
 		LT:             aws.String("ComparatorValue"),
-		Limit:          aws.Long(1),
+		Limit:          aws.Int64(1),
 		NE:             aws.String("ComparatorValue"),
 		NextToken:      aws.String("StringType"),
 		Prefix:         aws.String("ComparatorValue"),
@@ -552,7 +552,7 @@ func ExampleMachineLearning_DescribeMLModels() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_GetBatchPrediction() {
@@ -579,7 +579,7 @@ func ExampleMachineLearning_GetBatchPrediction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_GetDataSource() {
@@ -587,7 +587,7 @@ func ExampleMachineLearning_GetDataSource() {
 
 	params := &machinelearning.GetDataSourceInput{
 		DataSourceID: aws.String("EntityId"), // Required
-		Verbose:      aws.Boolean(true),
+		Verbose:      aws.Bool(true),
 	}
 	resp, err := svc.GetDataSource(params)
 
@@ -607,7 +607,7 @@ func ExampleMachineLearning_GetDataSource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_GetEvaluation() {
@@ -634,7 +634,7 @@ func ExampleMachineLearning_GetEvaluation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_GetMLModel() {
@@ -642,7 +642,7 @@ func ExampleMachineLearning_GetMLModel() {
 
 	params := &machinelearning.GetMLModelInput{
 		MLModelID: aws.String("EntityId"), // Required
-		Verbose:   aws.Boolean(true),
+		Verbose:   aws.Bool(true),
 	}
 	resp, err := svc.GetMLModel(params)
 
@@ -662,7 +662,7 @@ func ExampleMachineLearning_GetMLModel() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_Predict() {
@@ -694,7 +694,7 @@ func ExampleMachineLearning_Predict() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_UpdateBatchPrediction() {
@@ -722,7 +722,7 @@ func ExampleMachineLearning_UpdateBatchPrediction() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_UpdateDataSource() {
@@ -750,7 +750,7 @@ func ExampleMachineLearning_UpdateDataSource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_UpdateEvaluation() {
@@ -778,7 +778,7 @@ func ExampleMachineLearning_UpdateEvaluation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleMachineLearning_UpdateMLModel() {
@@ -787,7 +787,7 @@ func ExampleMachineLearning_UpdateMLModel() {
 	params := &machinelearning.UpdateMLModelInput{
 		MLModelID:      aws.String("EntityId"), // Required
 		MLModelName:    aws.String("EntityName"),
-		ScoreThreshold: aws.Double(1.0),
+		ScoreThreshold: aws.Float64(1.0),
 	}
 	resp, err := svc.UpdateMLModel(params)
 
@@ -807,5 +807,5 @@ func ExampleMachineLearning_UpdateMLModel() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

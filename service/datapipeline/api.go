@@ -666,7 +666,7 @@ type metadataActivatePipelineInput struct {
 
 // String returns the string representation
 func (s ActivatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -685,7 +685,7 @@ type metadataActivatePipelineOutput struct {
 
 // String returns the string representation
 func (s ActivatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -710,7 +710,7 @@ type metadataAddTagsInput struct {
 
 // String returns the string representation
 func (s AddTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -729,7 +729,7 @@ type metadataAddTagsOutput struct {
 
 // String returns the string representation
 func (s AddTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -775,7 +775,7 @@ type metadataCreatePipelineInput struct {
 
 // String returns the string representation
 func (s CreatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -798,7 +798,7 @@ type metadataCreatePipelineOutput struct {
 
 // String returns the string representation
 func (s CreatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -825,7 +825,7 @@ type metadataDeactivatePipelineInput struct {
 
 // String returns the string representation
 func (s DeactivatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -844,7 +844,7 @@ type metadataDeactivatePipelineOutput struct {
 
 // String returns the string representation
 func (s DeactivatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -866,7 +866,7 @@ type metadataDeletePipelineInput struct {
 
 // String returns the string representation
 func (s DeletePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -884,7 +884,7 @@ type metadataDeletePipelineOutput struct {
 
 // String returns the string representation
 func (s DeletePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -920,7 +920,7 @@ type metadataDescribeObjectsInput struct {
 
 // String returns the string representation
 func (s DescribeObjectsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -950,7 +950,7 @@ type metadataDescribeObjectsOutput struct {
 
 // String returns the string representation
 func (s DescribeObjectsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -973,7 +973,7 @@ type metadataDescribePipelinesInput struct {
 
 // String returns the string representation
 func (s DescribePipelinesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -995,7 +995,7 @@ type metadataDescribePipelinesOutput struct {
 
 // String returns the string representation
 func (s DescribePipelinesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1023,7 +1023,7 @@ type metadataEvaluateExpressionInput struct {
 
 // String returns the string representation
 func (s EvaluateExpressionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1045,7 +1045,7 @@ type metadataEvaluateExpressionOutput struct {
 
 // String returns the string representation
 func (s EvaluateExpressionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1075,7 +1075,7 @@ type metadataField struct {
 
 // String returns the string representation
 func (s Field) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1102,7 +1102,7 @@ type metadataGetPipelineDefinitionInput struct {
 
 // String returns the string representation
 func (s GetPipelineDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1130,7 +1130,7 @@ type metadataGetPipelineDefinitionOutput struct {
 
 // String returns the string representation
 func (s GetPipelineDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1163,7 +1163,7 @@ type metadataInstanceIdentity struct {
 
 // String returns the string representation
 func (s InstanceIdentity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1188,7 +1188,7 @@ type metadataListPipelinesInput struct {
 
 // String returns the string representation
 func (s ListPipelinesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1220,7 +1220,7 @@ type metadataListPipelinesOutput struct {
 
 // String returns the string representation
 func (s ListPipelinesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1263,7 +1263,7 @@ type metadataOperator struct {
 
 // String returns the string representation
 func (s Operator) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1288,7 +1288,7 @@ type metadataParameterAttribute struct {
 
 // String returns the string representation
 func (s ParameterAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1313,7 +1313,7 @@ type metadataParameterObject struct {
 
 // String returns the string representation
 func (s ParameterObject) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1338,7 +1338,7 @@ type metadataParameterValue struct {
 
 // String returns the string representation
 func (s ParameterValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1377,7 +1377,7 @@ type metadataPipelineDescription struct {
 
 // String returns the string representation
 func (s PipelineDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1403,7 +1403,7 @@ type metadataPipelineIDName struct {
 
 // String returns the string representation
 func (s PipelineIDName) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1433,7 +1433,7 @@ type metadataPipelineObject struct {
 
 // String returns the string representation
 func (s PipelineObject) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1470,7 +1470,7 @@ type metadataPollForTaskInput struct {
 
 // String returns the string representation
 func (s PollForTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1495,7 +1495,7 @@ type metadataPollForTaskOutput struct {
 
 // String returns the string representation
 func (s PollForTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1527,7 +1527,7 @@ type metadataPutPipelineDefinitionInput struct {
 
 // String returns the string representation
 func (s PutPipelineDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1557,7 +1557,7 @@ type metadataPutPipelineDefinitionOutput struct {
 
 // String returns the string representation
 func (s PutPipelineDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1580,7 +1580,7 @@ type metadataQuery struct {
 
 // String returns the string representation
 func (s Query) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1622,7 +1622,7 @@ type metadataQueryObjectsInput struct {
 
 // String returns the string representation
 func (s QueryObjectsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1653,7 +1653,7 @@ type metadataQueryObjectsOutput struct {
 
 // String returns the string representation
 func (s QueryObjectsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1678,7 +1678,7 @@ type metadataRemoveTagsInput struct {
 
 // String returns the string representation
 func (s RemoveTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1697,7 +1697,7 @@ type metadataRemoveTagsOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1724,7 +1724,7 @@ type metadataReportTaskProgressInput struct {
 
 // String returns the string representation
 func (s ReportTaskProgressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1747,7 +1747,7 @@ type metadataReportTaskProgressOutput struct {
 
 // String returns the string representation
 func (s ReportTaskProgressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1783,7 +1783,7 @@ type metadataReportTaskRunnerHeartbeatInput struct {
 
 // String returns the string representation
 func (s ReportTaskRunnerHeartbeatInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1805,7 +1805,7 @@ type metadataReportTaskRunnerHeartbeatOutput struct {
 
 // String returns the string representation
 func (s ReportTaskRunnerHeartbeatOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1835,7 +1835,7 @@ type metadataSelector struct {
 
 // String returns the string representation
 func (s Selector) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1865,7 +1865,7 @@ type metadataSetStatusInput struct {
 
 // String returns the string representation
 func (s SetStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1883,7 +1883,7 @@ type metadataSetStatusOutput struct {
 
 // String returns the string representation
 func (s SetStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1928,7 +1928,7 @@ type metadataSetTaskStatusInput struct {
 
 // String returns the string representation
 func (s SetTaskStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1947,7 +1947,7 @@ type metadataSetTaskStatusOutput struct {
 
 // String returns the string representation
 func (s SetTaskStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1980,7 +1980,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2014,7 +2014,7 @@ type metadataTaskObject struct {
 
 // String returns the string representation
 func (s TaskObject) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2045,7 +2045,7 @@ type metadataValidatePipelineDefinitionInput struct {
 
 // String returns the string representation
 func (s ValidatePipelineDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2073,7 +2073,7 @@ type metadataValidatePipelineDefinitionOutput struct {
 
 // String returns the string representation
 func (s ValidatePipelineDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2100,7 +2100,7 @@ type metadataValidationError struct {
 
 // String returns the string representation
 func (s ValidationError) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2127,7 +2127,7 @@ type metadataValidationWarning struct {
 
 // String returns the string representation
 func (s ValidationWarning) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

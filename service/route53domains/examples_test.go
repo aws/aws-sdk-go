@@ -41,7 +41,7 @@ func ExampleRoute53Domains_CheckDomainAvailability() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_DeleteTagsForDomain() {
@@ -72,7 +72,7 @@ func ExampleRoute53Domains_DeleteTagsForDomain() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_DisableDomainAutoRenew() {
@@ -99,7 +99,7 @@ func ExampleRoute53Domains_DisableDomainAutoRenew() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_DisableDomainTransferLock() {
@@ -126,7 +126,7 @@ func ExampleRoute53Domains_DisableDomainTransferLock() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_EnableDomainAutoRenew() {
@@ -153,7 +153,7 @@ func ExampleRoute53Domains_EnableDomainAutoRenew() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_EnableDomainTransferLock() {
@@ -180,7 +180,7 @@ func ExampleRoute53Domains_EnableDomainTransferLock() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_GetDomainDetail() {
@@ -207,7 +207,7 @@ func ExampleRoute53Domains_GetDomainDetail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_GetOperationDetail() {
@@ -234,7 +234,7 @@ func ExampleRoute53Domains_GetOperationDetail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_ListDomains() {
@@ -242,7 +242,7 @@ func ExampleRoute53Domains_ListDomains() {
 
 	params := &route53domains.ListDomainsInput{
 		Marker:   aws.String("PageMarker"),
-		MaxItems: aws.Long(1),
+		MaxItems: aws.Int64(1),
 	}
 	resp, err := svc.ListDomains(params)
 
@@ -262,7 +262,7 @@ func ExampleRoute53Domains_ListDomains() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_ListOperations() {
@@ -270,7 +270,7 @@ func ExampleRoute53Domains_ListOperations() {
 
 	params := &route53domains.ListOperationsInput{
 		Marker:   aws.String("PageMarker"),
-		MaxItems: aws.Long(1),
+		MaxItems: aws.Int64(1),
 	}
 	resp, err := svc.ListOperations(params)
 
@@ -290,7 +290,7 @@ func ExampleRoute53Domains_ListOperations() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_ListTagsForDomain() {
@@ -317,7 +317,7 @@ func ExampleRoute53Domains_ListTagsForDomain() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_RegisterDomain() {
@@ -347,7 +347,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 			ZipCode:          aws.String("ZipCode"),
 		},
 		DomainName:      aws.String("DomainName"), // Required
-		DurationInYears: aws.Long(1),              // Required
+		DurationInYears: aws.Int64(1),             // Required
 		RegistrantContact: &route53domains.ContactDetail{ // Required
 			AddressLine1: aws.String("AddressLine"),
 			AddressLine2: aws.String("AddressLine"),
@@ -392,11 +392,11 @@ func ExampleRoute53Domains_RegisterDomain() {
 			State:            aws.String("State"),
 			ZipCode:          aws.String("ZipCode"),
 		},
-		AutoRenew:                       aws.Boolean(true),
+		AutoRenew:                       aws.Bool(true),
 		IDNLangCode:                     aws.String("LangCode"),
-		PrivacyProtectAdminContact:      aws.Boolean(true),
-		PrivacyProtectRegistrantContact: aws.Boolean(true),
-		PrivacyProtectTechContact:       aws.Boolean(true),
+		PrivacyProtectAdminContact:      aws.Bool(true),
+		PrivacyProtectRegistrantContact: aws.Bool(true),
+		PrivacyProtectTechContact:       aws.Bool(true),
 	}
 	resp, err := svc.RegisterDomain(params)
 
@@ -416,7 +416,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_RetrieveDomainAuthCode() {
@@ -443,7 +443,7 @@ func ExampleRoute53Domains_RetrieveDomainAuthCode() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_TransferDomain() {
@@ -473,7 +473,7 @@ func ExampleRoute53Domains_TransferDomain() {
 			ZipCode:          aws.String("ZipCode"),
 		},
 		DomainName:      aws.String("DomainName"), // Required
-		DurationInYears: aws.Long(1),              // Required
+		DurationInYears: aws.Int64(1),             // Required
 		RegistrantContact: &route53domains.ContactDetail{ // Required
 			AddressLine1: aws.String("AddressLine"),
 			AddressLine2: aws.String("AddressLine"),
@@ -519,7 +519,7 @@ func ExampleRoute53Domains_TransferDomain() {
 			ZipCode:          aws.String("ZipCode"),
 		},
 		AuthCode:    aws.String("DomainAuthCode"),
-		AutoRenew:   aws.Boolean(true),
+		AutoRenew:   aws.Bool(true),
 		IDNLangCode: aws.String("LangCode"),
 		Nameservers: []*route53domains.Nameserver{
 			{ // Required
@@ -531,9 +531,9 @@ func ExampleRoute53Domains_TransferDomain() {
 			},
 			// More values...
 		},
-		PrivacyProtectAdminContact:      aws.Boolean(true),
-		PrivacyProtectRegistrantContact: aws.Boolean(true),
-		PrivacyProtectTechContact:       aws.Boolean(true),
+		PrivacyProtectAdminContact:      aws.Bool(true),
+		PrivacyProtectRegistrantContact: aws.Bool(true),
+		PrivacyProtectTechContact:       aws.Bool(true),
 	}
 	resp, err := svc.TransferDomain(params)
 
@@ -553,7 +553,7 @@ func ExampleRoute53Domains_TransferDomain() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_UpdateDomainContact() {
@@ -646,7 +646,7 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_UpdateDomainContactPrivacy() {
@@ -654,9 +654,9 @@ func ExampleRoute53Domains_UpdateDomainContactPrivacy() {
 
 	params := &route53domains.UpdateDomainContactPrivacyInput{
 		DomainName:        aws.String("DomainName"), // Required
-		AdminPrivacy:      aws.Boolean(true),
-		RegistrantPrivacy: aws.Boolean(true),
-		TechPrivacy:       aws.Boolean(true),
+		AdminPrivacy:      aws.Bool(true),
+		RegistrantPrivacy: aws.Bool(true),
+		TechPrivacy:       aws.Bool(true),
 	}
 	resp, err := svc.UpdateDomainContactPrivacy(params)
 
@@ -676,7 +676,7 @@ func ExampleRoute53Domains_UpdateDomainContactPrivacy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_UpdateDomainNameservers() {
@@ -714,7 +714,7 @@ func ExampleRoute53Domains_UpdateDomainNameservers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53Domains_UpdateTagsForDomain() {
@@ -748,5 +748,5 @@ func ExampleRoute53Domains_UpdateTagsForDomain() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

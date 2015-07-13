@@ -24,7 +24,7 @@ func ExampleDirectConnect_AllocateConnectionOnInterconnect() {
 		ConnectionName: aws.String("ConnectionName"), // Required
 		InterconnectID: aws.String("InterconnectId"), // Required
 		OwnerAccount:   aws.String("OwnerAccount"),   // Required
-		VLAN:           aws.Long(1),                  // Required
+		VLAN:           aws.Int64(1),                 // Required
 	}
 	resp, err := svc.AllocateConnectionOnInterconnect(params)
 
@@ -44,7 +44,7 @@ func ExampleDirectConnect_AllocateConnectionOnInterconnect() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_AllocatePrivateVirtualInterface() {
@@ -53,8 +53,8 @@ func ExampleDirectConnect_AllocatePrivateVirtualInterface() {
 	params := &directconnect.AllocatePrivateVirtualInterfaceInput{
 		ConnectionID: aws.String("ConnectionId"), // Required
 		NewPrivateVirtualInterfaceAllocation: &directconnect.NewPrivateVirtualInterfaceAllocation{ // Required
-			ASN:                  aws.Long(1),                        // Required
-			VLAN:                 aws.Long(1),                        // Required
+			ASN:                  aws.Int64(1),                       // Required
+			VLAN:                 aws.Int64(1),                       // Required
 			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
 			AmazonAddress:        aws.String("AmazonAddress"),
 			AuthKey:              aws.String("BGPAuthKey"),
@@ -80,7 +80,7 @@ func ExampleDirectConnect_AllocatePrivateVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_AllocatePublicVirtualInterface() {
@@ -89,7 +89,7 @@ func ExampleDirectConnect_AllocatePublicVirtualInterface() {
 	params := &directconnect.AllocatePublicVirtualInterfaceInput{
 		ConnectionID: aws.String("ConnectionId"), // Required
 		NewPublicVirtualInterfaceAllocation: &directconnect.NewPublicVirtualInterfaceAllocation{ // Required
-			ASN:             aws.Long(1),                   // Required
+			ASN:             aws.Int64(1),                  // Required
 			AmazonAddress:   aws.String("AmazonAddress"),   // Required
 			CustomerAddress: aws.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
@@ -98,7 +98,7 @@ func ExampleDirectConnect_AllocatePublicVirtualInterface() {
 				},
 				// More values...
 			},
-			VLAN:                 aws.Long(1),                        // Required
+			VLAN:                 aws.Int64(1),                       // Required
 			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
 			AuthKey:              aws.String("BGPAuthKey"),
 		},
@@ -122,7 +122,7 @@ func ExampleDirectConnect_AllocatePublicVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_ConfirmConnection() {
@@ -149,7 +149,7 @@ func ExampleDirectConnect_ConfirmConnection() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_ConfirmPrivateVirtualInterface() {
@@ -177,7 +177,7 @@ func ExampleDirectConnect_ConfirmPrivateVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_ConfirmPublicVirtualInterface() {
@@ -204,7 +204,7 @@ func ExampleDirectConnect_ConfirmPublicVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_CreateConnection() {
@@ -233,7 +233,7 @@ func ExampleDirectConnect_CreateConnection() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_CreateInterconnect() {
@@ -262,7 +262,7 @@ func ExampleDirectConnect_CreateInterconnect() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_CreatePrivateVirtualInterface() {
@@ -271,8 +271,8 @@ func ExampleDirectConnect_CreatePrivateVirtualInterface() {
 	params := &directconnect.CreatePrivateVirtualInterfaceInput{
 		ConnectionID: aws.String("ConnectionId"), // Required
 		NewPrivateVirtualInterface: &directconnect.NewPrivateVirtualInterface{ // Required
-			ASN:                  aws.Long(1),                        // Required
-			VLAN:                 aws.Long(1),                        // Required
+			ASN:                  aws.Int64(1),                       // Required
+			VLAN:                 aws.Int64(1),                       // Required
 			VirtualGatewayID:     aws.String("VirtualGatewayId"),     // Required
 			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
 			AmazonAddress:        aws.String("AmazonAddress"),
@@ -298,7 +298,7 @@ func ExampleDirectConnect_CreatePrivateVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_CreatePublicVirtualInterface() {
@@ -307,7 +307,7 @@ func ExampleDirectConnect_CreatePublicVirtualInterface() {
 	params := &directconnect.CreatePublicVirtualInterfaceInput{
 		ConnectionID: aws.String("ConnectionId"), // Required
 		NewPublicVirtualInterface: &directconnect.NewPublicVirtualInterface{ // Required
-			ASN:             aws.Long(1),                   // Required
+			ASN:             aws.Int64(1),                  // Required
 			AmazonAddress:   aws.String("AmazonAddress"),   // Required
 			CustomerAddress: aws.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
@@ -316,7 +316,7 @@ func ExampleDirectConnect_CreatePublicVirtualInterface() {
 				},
 				// More values...
 			},
-			VLAN:                 aws.Long(1),                        // Required
+			VLAN:                 aws.Int64(1),                       // Required
 			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
 			AuthKey:              aws.String("BGPAuthKey"),
 		},
@@ -339,7 +339,7 @@ func ExampleDirectConnect_CreatePublicVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DeleteConnection() {
@@ -366,7 +366,7 @@ func ExampleDirectConnect_DeleteConnection() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DeleteInterconnect() {
@@ -393,7 +393,7 @@ func ExampleDirectConnect_DeleteInterconnect() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DeleteVirtualInterface() {
@@ -420,7 +420,7 @@ func ExampleDirectConnect_DeleteVirtualInterface() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DescribeConnections() {
@@ -447,7 +447,7 @@ func ExampleDirectConnect_DescribeConnections() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DescribeConnectionsOnInterconnect() {
@@ -474,7 +474,7 @@ func ExampleDirectConnect_DescribeConnectionsOnInterconnect() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DescribeInterconnects() {
@@ -501,7 +501,7 @@ func ExampleDirectConnect_DescribeInterconnects() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DescribeLocations() {
@@ -526,7 +526,7 @@ func ExampleDirectConnect_DescribeLocations() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DescribeVirtualGateways() {
@@ -551,7 +551,7 @@ func ExampleDirectConnect_DescribeVirtualGateways() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectConnect_DescribeVirtualInterfaces() {
@@ -579,5 +579,5 @@ func ExampleDirectConnect_DescribeVirtualInterfaces() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

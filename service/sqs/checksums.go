@@ -16,7 +16,7 @@ var (
 )
 
 func setupChecksumValidation(r *aws.Request) {
-	if aws.BooleanValue(r.Config.DisableComputeChecksums) {
+	if aws.BoolValue(r.Config.DisableComputeChecksums) {
 		return
 	}
 
@@ -99,6 +99,6 @@ func checksumsMatch(body, expectedMD5 *string) error {
 }
 
 func setChecksumError(r *aws.Request, format string, args ...interface{}) {
-	r.Retryable.Set(true)
+	r.Retryable = aws.Bool(true)
 	r.Error = awserr.New("InvalidChecksum", fmt.Sprintf(format, args...), nil)
 }

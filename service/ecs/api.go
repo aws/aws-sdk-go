@@ -948,7 +948,7 @@ type metadataCluster struct {
 
 // String returns the string representation
 func (s Cluster) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -989,7 +989,7 @@ type metadataContainer struct {
 
 // String returns the string representation
 func (s Container) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1099,7 +1099,7 @@ type metadataContainerDefinition struct {
 
 // String returns the string representation
 func (s ContainerDefinition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1160,7 +1160,7 @@ type metadataContainerInstance struct {
 
 // String returns the string representation
 func (s ContainerInstance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1191,7 +1191,7 @@ type metadataContainerOverride struct {
 
 // String returns the string representation
 func (s ContainerOverride) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1214,7 +1214,7 @@ type metadataCreateClusterInput struct {
 
 // String returns the string representation
 func (s CreateClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1235,7 +1235,7 @@ type metadataCreateClusterOutput struct {
 
 // String returns the string representation
 func (s CreateClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1288,7 +1288,7 @@ type metadataCreateServiceInput struct {
 
 // String returns the string representation
 func (s CreateServiceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1309,7 +1309,7 @@ type metadataCreateServiceOutput struct {
 
 // String returns the string representation
 func (s CreateServiceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1331,7 +1331,7 @@ type metadataDeleteClusterInput struct {
 
 // String returns the string representation
 func (s DeleteClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1352,7 +1352,7 @@ type metadataDeleteClusterOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1376,7 +1376,7 @@ type metadataDeleteServiceInput struct {
 
 // String returns the string representation
 func (s DeleteServiceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1397,7 +1397,7 @@ type metadataDeleteServiceOutput struct {
 
 // String returns the string representation
 func (s DeleteServiceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1444,7 +1444,7 @@ type metadataDeployment struct {
 
 // String returns the string representation
 func (s Deployment) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1484,7 +1484,7 @@ type metadataDeregisterContainerInstanceInput struct {
 
 // String returns the string representation
 func (s DeregisterContainerInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1506,7 +1506,7 @@ type metadataDeregisterContainerInstanceOutput struct {
 
 // String returns the string representation
 func (s DeregisterContainerInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1528,7 +1528,7 @@ type metadataDeregisterTaskDefinitionInput struct {
 
 // String returns the string representation
 func (s DeregisterTaskDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1549,7 +1549,7 @@ type metadataDeregisterTaskDefinitionOutput struct {
 
 // String returns the string representation
 func (s DeregisterTaskDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1571,7 +1571,7 @@ type metadataDescribeClustersInput struct {
 
 // String returns the string representation
 func (s DescribeClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1594,7 +1594,7 @@ type metadataDescribeClustersOutput struct {
 
 // String returns the string representation
 func (s DescribeClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1621,7 +1621,7 @@ type metadataDescribeContainerInstancesInput struct {
 
 // String returns the string representation
 func (s DescribeContainerInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1644,7 +1644,7 @@ type metadataDescribeContainerInstancesOutput struct {
 
 // String returns the string representation
 func (s DescribeContainerInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1668,7 +1668,7 @@ type metadataDescribeServicesInput struct {
 
 // String returns the string representation
 func (s DescribeServicesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1692,7 +1692,7 @@ type metadataDescribeServicesOutput struct {
 
 // String returns the string representation
 func (s DescribeServicesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1715,7 +1715,7 @@ type metadataDescribeTaskDefinitionInput struct {
 
 // String returns the string representation
 func (s DescribeTaskDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1736,7 +1736,7 @@ type metadataDescribeTaskDefinitionOutput struct {
 
 // String returns the string representation
 func (s DescribeTaskDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1762,7 +1762,7 @@ type metadataDescribeTasksInput struct {
 
 // String returns the string representation
 func (s DescribeTasksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1785,7 +1785,7 @@ type metadataDescribeTasksOutput struct {
 
 // String returns the string representation
 func (s DescribeTasksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1813,7 +1813,7 @@ type metadataDiscoverPollEndpointInput struct {
 
 // String returns the string representation
 func (s DiscoverPollEndpointInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1837,7 +1837,7 @@ type metadataDiscoverPollEndpointOutput struct {
 
 // String returns the string representation
 func (s DiscoverPollEndpointOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1862,7 +1862,7 @@ type metadataFailure struct {
 
 // String returns the string representation
 func (s Failure) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1886,7 +1886,7 @@ type metadataHostVolumeProperties struct {
 
 // String returns the string representation
 func (s HostVolumeProperties) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1913,7 +1913,7 @@ type metadataKeyValuePair struct {
 
 // String returns the string representation
 func (s KeyValuePair) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1946,7 +1946,7 @@ type metadataListClustersInput struct {
 
 // String returns the string representation
 func (s ListClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1974,7 +1974,7 @@ type metadataListClustersOutput struct {
 
 // String returns the string representation
 func (s ListClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2014,7 +2014,7 @@ type metadataListContainerInstancesInput struct {
 
 // String returns the string representation
 func (s ListContainerInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2042,7 +2042,7 @@ type metadataListContainerInstancesOutput struct {
 
 // String returns the string representation
 func (s ListContainerInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2080,7 +2080,7 @@ type metadataListServicesInput struct {
 
 // String returns the string representation
 func (s ListServicesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2108,7 +2108,7 @@ type metadataListServicesOutput struct {
 
 // String returns the string representation
 func (s ListServicesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2148,7 +2148,7 @@ type metadataListTaskDefinitionFamiliesInput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionFamiliesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2176,7 +2176,7 @@ type metadataListTaskDefinitionFamiliesOutput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionFamiliesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2231,7 +2231,7 @@ type metadataListTaskDefinitionsInput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2259,7 +2259,7 @@ type metadataListTaskDefinitionsOutput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2323,7 +2323,7 @@ type metadataListTasksInput struct {
 
 // String returns the string representation
 func (s ListTasksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2350,7 +2350,7 @@ type metadataListTasksOutput struct {
 
 // String returns the string representation
 func (s ListTasksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2381,7 +2381,7 @@ type metadataLoadBalancer struct {
 
 // String returns the string representation
 func (s LoadBalancer) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2411,7 +2411,7 @@ type metadataMountPoint struct {
 
 // String returns the string representation
 func (s MountPoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2443,7 +2443,7 @@ type metadataNetworkBinding struct {
 
 // String returns the string representation
 func (s NetworkBinding) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2497,7 +2497,7 @@ type metadataPortMapping struct {
 
 // String returns the string representation
 func (s PortMapping) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2541,7 +2541,7 @@ type metadataRegisterContainerInstanceInput struct {
 
 // String returns the string representation
 func (s RegisterContainerInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2563,7 +2563,7 @@ type metadataRegisterContainerInstanceOutput struct {
 
 // String returns the string representation
 func (s RegisterContainerInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2595,7 +2595,7 @@ type metadataRegisterTaskDefinitionInput struct {
 
 // String returns the string representation
 func (s RegisterTaskDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2616,7 +2616,7 @@ type metadataRegisterTaskDefinitionOutput struct {
 
 // String returns the string representation
 func (s RegisterTaskDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2656,7 +2656,7 @@ type metadataResource struct {
 
 // String returns the string representation
 func (s Resource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2712,7 +2712,7 @@ type metadataRunTaskInput struct {
 
 // String returns the string representation
 func (s RunTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2737,7 +2737,7 @@ type metadataRunTaskOutput struct {
 
 // String returns the string representation
 func (s RunTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2804,7 +2804,7 @@ type metadataService struct {
 
 // String returns the string representation
 func (s Service) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2832,7 +2832,7 @@ type metadataServiceEvent struct {
 
 // String returns the string representation
 func (s ServiceEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2888,7 +2888,7 @@ type metadataStartTaskInput struct {
 
 // String returns the string representation
 func (s StartTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2913,7 +2913,7 @@ type metadataStartTaskOutput struct {
 
 // String returns the string representation
 func (s StartTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2940,7 +2940,7 @@ type metadataStopTaskInput struct {
 
 // String returns the string representation
 func (s StopTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2961,7 +2961,7 @@ type metadataStopTaskOutput struct {
 
 // String returns the string representation
 func (s StopTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3002,7 +3002,7 @@ type metadataSubmitContainerStateChangeInput struct {
 
 // String returns the string representation
 func (s SubmitContainerStateChangeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3023,7 +3023,7 @@ type metadataSubmitContainerStateChangeOutput struct {
 
 // String returns the string representation
 func (s SubmitContainerStateChangeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3055,7 +3055,7 @@ type metadataSubmitTaskStateChangeInput struct {
 
 // String returns the string representation
 func (s SubmitTaskStateChangeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3076,7 +3076,7 @@ type metadataSubmitTaskStateChangeOutput struct {
 
 // String returns the string representation
 func (s SubmitTaskStateChangeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3125,7 +3125,7 @@ type metadataTask struct {
 
 // String returns the string representation
 func (s Task) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3173,7 +3173,7 @@ type metadataTaskDefinition struct {
 
 // String returns the string representation
 func (s TaskDefinition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3195,7 +3195,7 @@ type metadataTaskOverride struct {
 
 // String returns the string representation
 func (s TaskOverride) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3223,7 +3223,7 @@ type metadataUpdateContainerAgentInput struct {
 
 // String returns the string representation
 func (s UpdateContainerAgentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3245,7 +3245,7 @@ type metadataUpdateContainerAgentOutput struct {
 
 // String returns the string representation
 func (s UpdateContainerAgentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3283,7 +3283,7 @@ type metadataUpdateServiceInput struct {
 
 // String returns the string representation
 func (s UpdateServiceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3304,7 +3304,7 @@ type metadataUpdateServiceOutput struct {
 
 // String returns the string representation
 func (s UpdateServiceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3334,7 +3334,7 @@ type metadataVersionInfo struct {
 
 // String returns the string representation
 func (s VersionInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3362,7 +3362,7 @@ type metadataVolume struct {
 
 // String returns the string representation
 func (s Volume) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3389,7 +3389,7 @@ type metadataVolumeFrom struct {
 
 // String returns the string representation
 func (s VolumeFrom) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

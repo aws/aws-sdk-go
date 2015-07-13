@@ -1,7 +1,6 @@
 package aws
 
 import (
-	"fmt"
 	"io"
 	"time"
 )
@@ -20,14 +19,14 @@ func StringValue(a *string) string {
 	return ""
 }
 
-// Boolean returns a pointer of the bool value passed in.
-func Boolean(v bool) *bool {
+// Bool returns a pointer of the bool value passed in.
+func Bool(v bool) *bool {
 	return &v
 }
 
-// BooleanValue returns the value of the bool pointer passed in or false if the
+// BoolValue returns the value of the bool pointer passed in or false if the
 // pointer is nil.
-func BooleanValue(a *bool) bool {
+func BoolValue(a *bool) bool {
 	if a != nil {
 		return *a
 	}
@@ -48,28 +47,28 @@ func IntValue(a *int) int {
 	return 0
 }
 
-// Long returns a pointer of the int64 value passed in.
-func Long(v int64) *int64 {
+// Int64 returns a pointer of the int64 value passed in.
+func Int64(v int64) *int64 {
 	return &v
 }
 
-// LongValue returns the value of the int64 pointer passed in or zero if the
+// Int64Value returns the value of the int64 pointer passed in or zero if the
 // pointer is nil.
-func LongValue(a *int64) int64 {
+func Int64Value(a *int64) int64 {
 	if a != nil {
 		return *a
 	}
 	return 0
 }
 
-// Double returns a pointer of the float64 value passed in.
-func Double(v float64) *float64 {
+// Float64 returns a pointer of the float64 value passed in.
+func Float64(v float64) *float64 {
 	return &v
 }
 
-// DoubleValue returns the value of the float64 pointer passed in or zero if the
+// Float64Value returns the value of the float64 pointer passed in or zero if the
 // pointer is nil.
-func DoubleValue(a *float64) float64 {
+func Float64Value(a *float64) float64 {
 	if a != nil {
 		return *a
 	}
@@ -138,53 +137,4 @@ func (r ReaderSeekerCloser) Close() error {
 		return t.Close()
 	}
 	return nil
-}
-
-// A SettableBool provides a boolean value which includes the state if
-// the value was set or unset.  The set state is in addition to the value's
-// value(true|false)
-type SettableBool struct {
-	value bool
-	set   bool
-}
-
-// SetBool returns a SettableBool with a value set
-func SetBool(value bool) SettableBool {
-	return SettableBool{value: value, set: true}
-}
-
-// Get returns the value. Will always be false if the SettableBool was not set.
-func (b *SettableBool) Get() bool {
-	if !b.set {
-		return false
-	}
-	return b.value
-}
-
-// Set sets the value and updates the state that the value has been set.
-func (b *SettableBool) Set(value bool) {
-	b.value = value
-	b.set = true
-}
-
-// IsSet returns if the value has been set
-func (b *SettableBool) IsSet() bool {
-	return b.set
-}
-
-// Reset resets the state and value of the SettableBool to its initial default
-// state of not set and zero value.
-func (b *SettableBool) Reset() {
-	b.value = false
-	b.set = false
-}
-
-// String returns the string representation of the value if set. Zero if not set.
-func (b *SettableBool) String() string {
-	return fmt.Sprintf("%t", b.Get())
-}
-
-// GoString returns the string representation of the SettableBool value and state
-func (b *SettableBool) GoString() string {
-	return fmt.Sprintf("Bool{value:%t, set:%t}", b.value, b.set)
 }

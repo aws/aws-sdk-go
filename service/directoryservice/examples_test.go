@@ -56,7 +56,7 @@ func ExampleDirectoryService_ConnectDirectory() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_CreateAlias() {
@@ -84,7 +84,7 @@ func ExampleDirectoryService_CreateAlias() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_CreateComputer() {
@@ -121,7 +121,7 @@ func ExampleDirectoryService_CreateComputer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_CreateDirectory() {
@@ -159,7 +159,7 @@ func ExampleDirectoryService_CreateDirectory() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_CreateSnapshot() {
@@ -187,7 +187,7 @@ func ExampleDirectoryService_CreateSnapshot() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_DeleteDirectory() {
@@ -214,7 +214,7 @@ func ExampleDirectoryService_DeleteDirectory() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_DeleteSnapshot() {
@@ -241,7 +241,7 @@ func ExampleDirectoryService_DeleteSnapshot() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_DescribeDirectories() {
@@ -252,7 +252,7 @@ func ExampleDirectoryService_DescribeDirectories() {
 			aws.String("DirectoryId"), // Required
 			// More values...
 		},
-		Limit:     aws.Long(1),
+		Limit:     aws.Int64(1),
 		NextToken: aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeDirectories(params)
@@ -273,7 +273,7 @@ func ExampleDirectoryService_DescribeDirectories() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_DescribeSnapshots() {
@@ -281,7 +281,7 @@ func ExampleDirectoryService_DescribeSnapshots() {
 
 	params := &directoryservice.DescribeSnapshotsInput{
 		DirectoryID: aws.String("DirectoryId"),
-		Limit:       aws.Long(1),
+		Limit:       aws.Int64(1),
 		NextToken:   aws.String("NextToken"),
 		SnapshotIDs: []*string{
 			aws.String("SnapshotId"), // Required
@@ -306,7 +306,7 @@ func ExampleDirectoryService_DescribeSnapshots() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_DisableRadius() {
@@ -333,7 +333,7 @@ func ExampleDirectoryService_DisableRadius() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_DisableSSO() {
@@ -362,7 +362,7 @@ func ExampleDirectoryService_DisableSSO() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_EnableRadius() {
@@ -373,15 +373,15 @@ func ExampleDirectoryService_EnableRadius() {
 		RadiusSettings: &directoryservice.RadiusSettings{ // Required
 			AuthenticationProtocol: aws.String("RadiusAuthenticationProtocol"),
 			DisplayLabel:           aws.String("RadiusDisplayLabel"),
-			RadiusPort:             aws.Long(1),
-			RadiusRetries:          aws.Long(1),
+			RadiusPort:             aws.Int64(1),
+			RadiusRetries:          aws.Int64(1),
 			RadiusServers: []*string{
 				aws.String("Server"), // Required
 				// More values...
 			},
-			RadiusTimeout:   aws.Long(1),
+			RadiusTimeout:   aws.Int64(1),
 			SharedSecret:    aws.String("RadiusSharedSecret"),
-			UseSameUsername: aws.Boolean(true),
+			UseSameUsername: aws.Bool(true),
 		},
 	}
 	resp, err := svc.EnableRadius(params)
@@ -402,7 +402,7 @@ func ExampleDirectoryService_EnableRadius() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_EnableSSO() {
@@ -431,7 +431,7 @@ func ExampleDirectoryService_EnableSSO() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_GetDirectoryLimits() {
@@ -456,7 +456,7 @@ func ExampleDirectoryService_GetDirectoryLimits() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_GetSnapshotLimits() {
@@ -483,7 +483,7 @@ func ExampleDirectoryService_GetSnapshotLimits() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_RestoreFromSnapshot() {
@@ -510,7 +510,7 @@ func ExampleDirectoryService_RestoreFromSnapshot() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleDirectoryService_UpdateRadius() {
@@ -521,15 +521,15 @@ func ExampleDirectoryService_UpdateRadius() {
 		RadiusSettings: &directoryservice.RadiusSettings{ // Required
 			AuthenticationProtocol: aws.String("RadiusAuthenticationProtocol"),
 			DisplayLabel:           aws.String("RadiusDisplayLabel"),
-			RadiusPort:             aws.Long(1),
-			RadiusRetries:          aws.Long(1),
+			RadiusPort:             aws.Int64(1),
+			RadiusRetries:          aws.Int64(1),
 			RadiusServers: []*string{
 				aws.String("Server"), // Required
 				// More values...
 			},
-			RadiusTimeout:   aws.Long(1),
+			RadiusTimeout:   aws.Int64(1),
 			SharedSecret:    aws.String("RadiusSharedSecret"),
-			UseSameUsername: aws.Boolean(true),
+			UseSameUsername: aws.Bool(true),
 		},
 	}
 	resp, err := svc.UpdateRadius(params)
@@ -550,5 +550,5 @@ func ExampleDirectoryService_UpdateRadius() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

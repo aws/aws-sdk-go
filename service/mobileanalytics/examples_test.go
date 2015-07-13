@@ -30,11 +30,10 @@ func ExampleMobileAnalytics_PutEvents() {
 					// More values...
 				},
 				Metrics: map[string]*float64{
-					"Key": aws.Double(1.0), // Required
-					// More values...
+					"Key": aws.Float64(1.0),
 				},
 				Session: &mobileanalytics.Session{
-					Duration:       aws.Long(1),
+					Duration:       aws.Int64(1),
 					ID:             aws.String("String50Chars"),
 					StartTimestamp: aws.String("ISO8601Timestamp"),
 					StopTimestamp:  aws.String("ISO8601Timestamp"),
@@ -63,5 +62,5 @@ func ExampleMobileAnalytics_PutEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
