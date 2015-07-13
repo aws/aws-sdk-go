@@ -433,7 +433,7 @@ type metadataAlarmHistoryItem struct {
 
 // String returns the string representation
 func (s AlarmHistoryItem) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -479,7 +479,7 @@ type metadataDatapoint struct {
 
 // String returns the string representation
 func (s Datapoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -500,7 +500,7 @@ type metadataDeleteAlarmsInput struct {
 
 // String returns the string representation
 func (s DeleteAlarmsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -518,7 +518,7 @@ type metadataDeleteAlarmsOutput struct {
 
 // String returns the string representation
 func (s DeleteAlarmsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -555,7 +555,7 @@ type metadataDescribeAlarmHistoryInput struct {
 
 // String returns the string representation
 func (s DescribeAlarmHistoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -580,7 +580,7 @@ type metadataDescribeAlarmHistoryOutput struct {
 
 // String returns the string representation
 func (s DescribeAlarmHistoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -616,7 +616,7 @@ type metadataDescribeAlarmsForMetricInput struct {
 
 // String returns the string representation
 func (s DescribeAlarmsForMetricInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -638,7 +638,7 @@ type metadataDescribeAlarmsForMetricOutput struct {
 
 // String returns the string representation
 func (s DescribeAlarmsForMetricOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -676,7 +676,7 @@ type metadataDescribeAlarmsInput struct {
 
 // String returns the string representation
 func (s DescribeAlarmsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -701,7 +701,7 @@ type metadataDescribeAlarmsOutput struct {
 
 // String returns the string representation
 func (s DescribeAlarmsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -729,7 +729,7 @@ type metadataDimension struct {
 
 // String returns the string representation
 func (s Dimension) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -754,7 +754,7 @@ type metadataDimensionFilter struct {
 
 // String returns the string representation
 func (s DimensionFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -775,7 +775,7 @@ type metadataDisableAlarmActionsInput struct {
 
 // String returns the string representation
 func (s DisableAlarmActionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -793,7 +793,7 @@ type metadataDisableAlarmActionsOutput struct {
 
 // String returns the string representation
 func (s DisableAlarmActionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -814,7 +814,7 @@ type metadataEnableAlarmActionsInput struct {
 
 // String returns the string representation
 func (s EnableAlarmActionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -832,7 +832,7 @@ type metadataEnableAlarmActionsOutput struct {
 
 // String returns the string representation
 func (s EnableAlarmActionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -883,7 +883,7 @@ type metadataGetMetricStatisticsInput struct {
 
 // String returns the string representation
 func (s GetMetricStatisticsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -908,7 +908,7 @@ type metadataGetMetricStatisticsOutput struct {
 
 // String returns the string representation
 func (s GetMetricStatisticsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -939,7 +939,7 @@ type metadataListMetricsInput struct {
 
 // String returns the string representation
 func (s ListMetricsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -964,7 +964,7 @@ type metadataListMetricsOutput struct {
 
 // String returns the string representation
 func (s ListMetricsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -998,7 +998,7 @@ type metadataMetric struct {
 
 // String returns the string representation
 func (s Metric) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1102,7 +1102,7 @@ type metadataMetricAlarm struct {
 
 // String returns the string representation
 func (s MetricAlarm) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1152,7 +1152,7 @@ type metadataMetricDatum struct {
 
 // String returns the string representation
 func (s MetricDatum) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1227,7 +1227,7 @@ type metadataPutMetricAlarmInput struct {
 
 // String returns the string representation
 func (s PutMetricAlarmInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1245,7 +1245,7 @@ type metadataPutMetricAlarmOutput struct {
 
 // String returns the string representation
 func (s PutMetricAlarmOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1269,7 +1269,7 @@ type metadataPutMetricDataInput struct {
 
 // String returns the string representation
 func (s PutMetricDataInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1287,7 +1287,7 @@ type metadataPutMetricDataOutput struct {
 
 // String returns the string representation
 func (s PutMetricDataOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1320,7 +1320,7 @@ type metadataSetAlarmStateInput struct {
 
 // String returns the string representation
 func (s SetAlarmStateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1338,7 +1338,7 @@ type metadataSetAlarmStateOutput struct {
 
 // String returns the string representation
 func (s SetAlarmStateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1370,7 +1370,7 @@ type metadataStatisticSet struct {
 
 // String returns the string representation
 func (s StatisticSet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

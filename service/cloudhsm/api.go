@@ -505,7 +505,7 @@ type metadataCreateHAPGInput struct {
 
 // String returns the string representation
 func (s CreateHAPGInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -527,7 +527,7 @@ type metadataCreateHAPGOutput struct {
 
 // String returns the string representation
 func (s CreateHAPGOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -572,7 +572,7 @@ type metadataCreateHSMInput struct {
 
 // String returns the string representation
 func (s CreateHSMInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -594,7 +594,7 @@ type metadataCreateHSMOutput struct {
 
 // String returns the string representation
 func (s CreateHSMOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -620,7 +620,7 @@ type metadataCreateLunaClientInput struct {
 
 // String returns the string representation
 func (s CreateLunaClientInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -642,7 +642,7 @@ type metadataCreateLunaClientOutput struct {
 
 // String returns the string representation
 func (s CreateLunaClientOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -664,7 +664,7 @@ type metadataDeleteHAPGInput struct {
 
 // String returns the string representation
 func (s DeleteHAPGInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -686,7 +686,7 @@ type metadataDeleteHAPGOutput struct {
 
 // String returns the string representation
 func (s DeleteHAPGOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -708,7 +708,7 @@ type metadataDeleteHSMInput struct {
 
 // String returns the string representation
 func (s DeleteHSMInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -730,7 +730,7 @@ type metadataDeleteHSMOutput struct {
 
 // String returns the string representation
 func (s DeleteHSMOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -751,7 +751,7 @@ type metadataDeleteLunaClientInput struct {
 
 // String returns the string representation
 func (s DeleteLunaClientInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -772,7 +772,7 @@ type metadataDeleteLunaClientOutput struct {
 
 // String returns the string representation
 func (s DeleteLunaClientOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -794,7 +794,7 @@ type metadataDescribeHAPGInput struct {
 
 // String returns the string representation
 func (s DescribeHAPGInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -841,7 +841,7 @@ type metadataDescribeHAPGOutput struct {
 
 // String returns the string representation
 func (s DescribeHAPGOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -868,7 +868,7 @@ type metadataDescribeHSMInput struct {
 
 // String returns the string representation
 func (s DescribeHSMInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -950,7 +950,7 @@ type metadataDescribeHSMOutput struct {
 
 // String returns the string representation
 func (s DescribeHSMOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -974,7 +974,7 @@ type metadataDescribeLunaClientInput struct {
 
 // String returns the string representation
 func (s DescribeLunaClientInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1007,7 +1007,7 @@ type metadataDescribeLunaClientOutput struct {
 
 // String returns the string representation
 func (s DescribeLunaClientOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1035,7 +1035,7 @@ type metadataGetConfigInput struct {
 
 // String returns the string representation
 func (s GetConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1062,7 +1062,7 @@ type metadataGetConfigOutput struct {
 
 // String returns the string representation
 func (s GetConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1081,7 +1081,7 @@ type metadataListAvailableZonesInput struct {
 
 // String returns the string representation
 func (s ListAvailableZonesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1102,7 +1102,7 @@ type metadataListAvailableZonesOutput struct {
 
 // String returns the string representation
 func (s ListAvailableZonesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1124,7 +1124,7 @@ type metadataListHSMsInput struct {
 
 // String returns the string representation
 func (s ListHSMsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1150,7 +1150,7 @@ type metadataListHSMsOutput struct {
 
 // String returns the string representation
 func (s ListHSMsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1172,7 +1172,7 @@ type metadataListHapgsInput struct {
 
 // String returns the string representation
 func (s ListHapgsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1197,7 +1197,7 @@ type metadataListHapgsOutput struct {
 
 // String returns the string representation
 func (s ListHapgsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1219,7 +1219,7 @@ type metadataListLunaClientsInput struct {
 
 // String returns the string representation
 func (s ListLunaClientsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1244,7 +1244,7 @@ type metadataListLunaClientsOutput struct {
 
 // String returns the string representation
 func (s ListLunaClientsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1272,7 +1272,7 @@ type metadataModifyHAPGInput struct {
 
 // String returns the string representation
 func (s ModifyHAPGInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1293,7 +1293,7 @@ type metadataModifyHAPGOutput struct {
 
 // String returns the string representation
 func (s ModifyHAPGOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1330,7 +1330,7 @@ type metadataModifyHSMInput struct {
 
 // String returns the string representation
 func (s ModifyHSMInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1352,7 +1352,7 @@ type metadataModifyHSMOutput struct {
 
 // String returns the string representation
 func (s ModifyHSMOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1376,7 +1376,7 @@ type metadataModifyLunaClientInput struct {
 
 // String returns the string representation
 func (s ModifyLunaClientInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1397,7 +1397,7 @@ type metadataModifyLunaClientOutput struct {
 
 // String returns the string representation
 func (s ModifyLunaClientOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

@@ -44,14 +44,14 @@ func ExampleKinesis_AddTagsToStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_CreateStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.CreateStreamInput{
-		ShardCount: aws.Long(1),              // Required
+		ShardCount: aws.Int64(1),             // Required
 		StreamName: aws.String("StreamName"), // Required
 	}
 	resp, err := svc.CreateStream(params)
@@ -72,7 +72,7 @@ func ExampleKinesis_CreateStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_DeleteStream() {
@@ -99,7 +99,7 @@ func ExampleKinesis_DeleteStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_DescribeStream() {
@@ -108,7 +108,7 @@ func ExampleKinesis_DescribeStream() {
 	params := &kinesis.DescribeStreamInput{
 		StreamName:            aws.String("StreamName"), // Required
 		ExclusiveStartShardID: aws.String("ShardId"),
-		Limit: aws.Long(1),
+		Limit: aws.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
 
@@ -128,7 +128,7 @@ func ExampleKinesis_DescribeStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_GetRecords() {
@@ -136,7 +136,7 @@ func ExampleKinesis_GetRecords() {
 
 	params := &kinesis.GetRecordsInput{
 		ShardIterator: aws.String("ShardIterator"), // Required
-		Limit:         aws.Long(1),
+		Limit:         aws.Int64(1),
 	}
 	resp, err := svc.GetRecords(params)
 
@@ -156,7 +156,7 @@ func ExampleKinesis_GetRecords() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_GetShardIterator() {
@@ -186,7 +186,7 @@ func ExampleKinesis_GetShardIterator() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_ListStreams() {
@@ -194,7 +194,7 @@ func ExampleKinesis_ListStreams() {
 
 	params := &kinesis.ListStreamsInput{
 		ExclusiveStartStreamName: aws.String("StreamName"),
-		Limit: aws.Long(1),
+		Limit: aws.Int64(1),
 	}
 	resp, err := svc.ListStreams(params)
 
@@ -214,7 +214,7 @@ func ExampleKinesis_ListStreams() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_ListTagsForStream() {
@@ -223,7 +223,7 @@ func ExampleKinesis_ListTagsForStream() {
 	params := &kinesis.ListTagsForStreamInput{
 		StreamName:           aws.String("StreamName"), // Required
 		ExclusiveStartTagKey: aws.String("TagKey"),
-		Limit:                aws.Long(1),
+		Limit:                aws.Int64(1),
 	}
 	resp, err := svc.ListTagsForStream(params)
 
@@ -243,7 +243,7 @@ func ExampleKinesis_ListTagsForStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_MergeShards() {
@@ -272,7 +272,7 @@ func ExampleKinesis_MergeShards() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_PutRecord() {
@@ -303,7 +303,7 @@ func ExampleKinesis_PutRecord() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_PutRecords() {
@@ -338,7 +338,7 @@ func ExampleKinesis_PutRecords() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_RemoveTagsFromStream() {
@@ -369,7 +369,7 @@ func ExampleKinesis_RemoveTagsFromStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKinesis_SplitShard() {
@@ -398,5 +398,5 @@ func ExampleKinesis_SplitShard() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

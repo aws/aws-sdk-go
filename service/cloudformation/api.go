@@ -608,7 +608,7 @@ type metadataCancelUpdateStackInput struct {
 
 // String returns the string representation
 func (s CancelUpdateStackInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -626,7 +626,7 @@ type metadataCancelUpdateStackOutput struct {
 
 // String returns the string representation
 func (s CancelUpdateStackOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -732,7 +732,7 @@ type metadataCreateStackInput struct {
 
 // String returns the string representation
 func (s CreateStackInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -754,7 +754,7 @@ type metadataCreateStackOutput struct {
 
 // String returns the string representation
 func (s CreateStackOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -776,7 +776,7 @@ type metadataDeleteStackInput struct {
 
 // String returns the string representation
 func (s DeleteStackInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -794,7 +794,7 @@ type metadataDeleteStackOutput struct {
 
 // String returns the string representation
 func (s DeleteStackOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -827,7 +827,7 @@ type metadataDescribeStackEventsInput struct {
 
 // String returns the string representation
 func (s DescribeStackEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -853,7 +853,7 @@ type metadataDescribeStackEventsOutput struct {
 
 // String returns the string representation
 func (s DescribeStackEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -885,7 +885,7 @@ type metadataDescribeStackResourceInput struct {
 
 // String returns the string representation
 func (s DescribeStackResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -908,7 +908,7 @@ type metadataDescribeStackResourceOutput struct {
 
 // String returns the string representation
 func (s DescribeStackResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -957,7 +957,7 @@ type metadataDescribeStackResourcesInput struct {
 
 // String returns the string representation
 func (s DescribeStackResourcesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -979,7 +979,7 @@ type metadataDescribeStackResourcesOutput struct {
 
 // String returns the string representation
 func (s DescribeStackResourcesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1010,7 +1010,7 @@ type metadataDescribeStacksInput struct {
 
 // String returns the string representation
 func (s DescribeStacksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1036,7 +1036,7 @@ type metadataDescribeStacksOutput struct {
 
 // String returns the string representation
 func (s DescribeStacksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1075,7 +1075,7 @@ type metadataEstimateTemplateCostInput struct {
 
 // String returns the string representation
 func (s EstimateTemplateCostInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1098,7 +1098,7 @@ type metadataEstimateTemplateCostOutput struct {
 
 // String returns the string representation
 func (s EstimateTemplateCostOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1121,7 +1121,7 @@ type metadataGetStackPolicyInput struct {
 
 // String returns the string representation
 func (s GetStackPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1145,7 +1145,7 @@ type metadataGetStackPolicyOutput struct {
 
 // String returns the string representation
 func (s GetStackPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1172,7 +1172,7 @@ type metadataGetTemplateInput struct {
 
 // String returns the string representation
 func (s GetTemplateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1196,7 +1196,7 @@ type metadataGetTemplateOutput struct {
 
 // String returns the string representation
 func (s GetTemplateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1242,7 +1242,7 @@ type metadataGetTemplateSummaryInput struct {
 
 // String returns the string representation
 func (s GetTemplateSummaryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1286,7 +1286,7 @@ type metadataGetTemplateSummaryOutput struct {
 
 // String returns the string representation
 func (s GetTemplateSummaryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1319,7 +1319,7 @@ type metadataListStackResourcesInput struct {
 
 // String returns the string representation
 func (s ListStackResourcesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1345,7 +1345,7 @@ type metadataListStackResourcesOutput struct {
 
 // String returns the string representation
 func (s ListStackResourcesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1375,7 +1375,7 @@ type metadataListStacksInput struct {
 
 // String returns the string representation
 func (s ListStacksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1402,7 +1402,7 @@ type metadataListStacksOutput struct {
 
 // String returns the string representation
 func (s ListStacksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1430,7 +1430,7 @@ type metadataOutput struct {
 
 // String returns the string representation
 func (s Output) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1462,7 +1462,7 @@ type metadataParameter struct {
 
 // String returns the string representation
 func (s Parameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1486,7 +1486,7 @@ type metadataParameterConstraints struct {
 
 // String returns the string representation
 func (s ParameterConstraints) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1524,7 +1524,7 @@ type metadataParameterDeclaration struct {
 
 // String returns the string representation
 func (s ParameterDeclaration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1558,7 +1558,7 @@ type metadataSetStackPolicyInput struct {
 
 // String returns the string representation
 func (s SetStackPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1576,7 +1576,7 @@ type metadataSetStackPolicyOutput struct {
 
 // String returns the string representation
 func (s SetStackPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1613,7 +1613,7 @@ type metadataSignalResourceInput struct {
 
 // String returns the string representation
 func (s SignalResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1631,7 +1631,7 @@ type metadataSignalResourceOutput struct {
 
 // String returns the string representation
 func (s SignalResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1695,7 +1695,7 @@ type metadataStack struct {
 
 // String returns the string representation
 func (s Stack) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1747,7 +1747,7 @@ type metadataStackEvent struct {
 
 // String returns the string representation
 func (s StackEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1796,7 +1796,7 @@ type metadataStackResource struct {
 
 // String returns the string representation
 func (s StackResource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1850,7 +1850,7 @@ type metadataStackResourceDetail struct {
 
 // String returns the string representation
 func (s StackResourceDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1890,7 +1890,7 @@ type metadataStackResourceSummary struct {
 
 // String returns the string representation
 func (s StackResourceSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1934,7 +1934,7 @@ type metadataStackSummary struct {
 
 // String returns the string representation
 func (s StackSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1964,7 +1964,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1996,7 +1996,7 @@ type metadataTemplateParameter struct {
 
 // String returns the string representation
 func (s TemplateParameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2102,7 +2102,7 @@ type metadataUpdateStackInput struct {
 
 // String returns the string representation
 func (s UpdateStackInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2124,7 +2124,7 @@ type metadataUpdateStackOutput struct {
 
 // String returns the string representation
 func (s UpdateStackOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2161,7 +2161,7 @@ type metadataValidateTemplateInput struct {
 
 // String returns the string representation
 func (s ValidateTemplateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2197,7 +2197,7 @@ type metadataValidateTemplateOutput struct {
 
 // String returns the string representation
 func (s ValidateTemplateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

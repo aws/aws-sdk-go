@@ -530,7 +530,7 @@ type metadataCreateFileSystemInput struct {
 
 // String returns the string representation
 func (s CreateFileSystemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -561,7 +561,7 @@ type metadataCreateMountTargetInput struct {
 
 // String returns the string representation
 func (s CreateMountTargetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -586,7 +586,7 @@ type metadataCreateTagsInput struct {
 
 // String returns the string representation
 func (s CreateTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -604,7 +604,7 @@ type metadataCreateTagsOutput struct {
 
 // String returns the string representation
 func (s CreateTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -625,7 +625,7 @@ type metadataDeleteFileSystemInput struct {
 
 // String returns the string representation
 func (s DeleteFileSystemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -643,7 +643,7 @@ type metadataDeleteFileSystemOutput struct {
 
 // String returns the string representation
 func (s DeleteFileSystemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -664,7 +664,7 @@ type metadataDeleteMountTargetInput struct {
 
 // String returns the string representation
 func (s DeleteMountTargetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -682,7 +682,7 @@ type metadataDeleteMountTargetOutput struct {
 
 // String returns the string representation
 func (s DeleteMountTargetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -706,7 +706,7 @@ type metadataDeleteTagsInput struct {
 
 // String returns the string representation
 func (s DeleteTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -724,7 +724,7 @@ type metadataDeleteTagsOutput struct {
 
 // String returns the string representation
 func (s DeleteTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -762,7 +762,7 @@ type metadataDescribeFileSystemsInput struct {
 
 // String returns the string representation
 func (s DescribeFileSystemsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -790,7 +790,7 @@ type metadataDescribeFileSystemsOutput struct {
 
 // String returns the string representation
 func (s DescribeFileSystemsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -811,7 +811,7 @@ type metadataDescribeMountTargetSecurityGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeMountTargetSecurityGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -832,7 +832,7 @@ type metadataDescribeMountTargetSecurityGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeMountTargetSecurityGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -862,7 +862,7 @@ type metadataDescribeMountTargetsInput struct {
 
 // String returns the string representation
 func (s DescribeMountTargetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -893,7 +893,7 @@ type metadataDescribeMountTargetsOutput struct {
 
 // String returns the string representation
 func (s DescribeMountTargetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -923,7 +923,7 @@ type metadataDescribeTagsInput struct {
 
 // String returns the string representation
 func (s DescribeTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -953,7 +953,7 @@ type metadataDescribeTagsOutput struct {
 
 // String returns the string representation
 func (s DescribeTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1009,7 +1009,7 @@ type metadataFileSystemDescription struct {
 
 // String returns the string representation
 func (s FileSystemDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1042,7 +1042,7 @@ type metadataFileSystemSize struct {
 
 // String returns the string representation
 func (s FileSystemSize) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1066,7 +1066,7 @@ type metadataModifyMountTargetSecurityGroupsInput struct {
 
 // String returns the string representation
 func (s ModifyMountTargetSecurityGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1084,7 +1084,7 @@ type metadataModifyMountTargetSecurityGroupsOutput struct {
 
 // String returns the string representation
 func (s ModifyMountTargetSecurityGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1125,7 +1125,7 @@ type metadataMountTargetDescription struct {
 
 // String returns the string representation
 func (s MountTargetDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1152,7 +1152,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

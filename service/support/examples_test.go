@@ -47,7 +47,7 @@ func ExampleSupport_AddAttachmentsToSet() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_AddCommunicationToCase() {
@@ -80,7 +80,7 @@ func ExampleSupport_AddCommunicationToCase() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_CreateCase() {
@@ -118,7 +118,7 @@ func ExampleSupport_CreateCase() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeAttachment() {
@@ -145,7 +145,7 @@ func ExampleSupport_DescribeAttachment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeCases() {
@@ -159,10 +159,10 @@ func ExampleSupport_DescribeCases() {
 			// More values...
 		},
 		DisplayID:             aws.String("DisplayId"),
-		IncludeCommunications: aws.Boolean(true),
-		IncludeResolvedCases:  aws.Boolean(true),
+		IncludeCommunications: aws.Bool(true),
+		IncludeResolvedCases:  aws.Bool(true),
 		Language:              aws.String("Language"),
-		MaxResults:            aws.Long(1),
+		MaxResults:            aws.Int64(1),
 		NextToken:             aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeCases(params)
@@ -183,7 +183,7 @@ func ExampleSupport_DescribeCases() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeCommunications() {
@@ -193,7 +193,7 @@ func ExampleSupport_DescribeCommunications() {
 		CaseID:     aws.String("CaseId"), // Required
 		AfterTime:  aws.String("AfterTime"),
 		BeforeTime: aws.String("BeforeTime"),
-		MaxResults: aws.Long(1),
+		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeCommunications(params)
@@ -214,7 +214,7 @@ func ExampleSupport_DescribeCommunications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeServices() {
@@ -245,7 +245,7 @@ func ExampleSupport_DescribeServices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeSeverityLevels() {
@@ -272,7 +272,7 @@ func ExampleSupport_DescribeSeverityLevels() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorCheckRefreshStatuses() {
@@ -302,7 +302,7 @@ func ExampleSupport_DescribeTrustedAdvisorCheckRefreshStatuses() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorCheckResult() {
@@ -330,7 +330,7 @@ func ExampleSupport_DescribeTrustedAdvisorCheckResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorCheckSummaries() {
@@ -360,7 +360,7 @@ func ExampleSupport_DescribeTrustedAdvisorCheckSummaries() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorChecks() {
@@ -387,7 +387,7 @@ func ExampleSupport_DescribeTrustedAdvisorChecks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_RefreshTrustedAdvisorCheck() {
@@ -414,7 +414,7 @@ func ExampleSupport_RefreshTrustedAdvisorCheck() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_ResolveCase() {
@@ -441,5 +441,5 @@ func ExampleSupport_ResolveCase() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

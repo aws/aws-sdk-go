@@ -836,7 +836,7 @@ type metadataBody struct {
 
 // String returns the string representation
 func (s Body) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -865,7 +865,7 @@ type metadataContent struct {
 
 // String returns the string representation
 func (s Content) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -888,7 +888,7 @@ type metadataDeleteIdentityInput struct {
 
 // String returns the string representation
 func (s DeleteIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -908,7 +908,7 @@ type metadataDeleteIdentityOutput struct {
 
 // String returns the string representation
 func (s DeleteIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -940,7 +940,7 @@ type metadataDeleteIdentityPolicyInput struct {
 
 // String returns the string representation
 func (s DeleteIdentityPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -960,7 +960,7 @@ type metadataDeleteIdentityPolicyOutput struct {
 
 // String returns the string representation
 func (s DeleteIdentityPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -983,7 +983,7 @@ type metadataDeleteVerifiedEmailAddressInput struct {
 
 // String returns the string representation
 func (s DeleteVerifiedEmailAddressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1001,7 +1001,7 @@ type metadataDeleteVerifiedEmailAddressOutput struct {
 
 // String returns the string representation
 func (s DeleteVerifiedEmailAddressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1035,7 +1035,7 @@ type metadataDestination struct {
 
 // String returns the string representation
 func (s Destination) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1063,7 +1063,7 @@ type metadataGetIdentityDKIMAttributesInput struct {
 
 // String returns the string representation
 func (s GetIdentityDKIMAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1085,7 +1085,7 @@ type metadataGetIdentityDKIMAttributesOutput struct {
 
 // String returns the string representation
 func (s GetIdentityDKIMAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1108,7 +1108,7 @@ type metadataGetIdentityNotificationAttributesInput struct {
 
 // String returns the string representation
 func (s GetIdentityNotificationAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1133,7 +1133,7 @@ type metadataGetIdentityNotificationAttributesOutput struct {
 
 // String returns the string representation
 func (s GetIdentityNotificationAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1165,7 +1165,7 @@ type metadataGetIdentityPoliciesInput struct {
 
 // String returns the string representation
 func (s GetIdentityPoliciesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1188,7 +1188,7 @@ type metadataGetIdentityPoliciesOutput struct {
 
 // String returns the string representation
 func (s GetIdentityPoliciesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1211,7 +1211,7 @@ type metadataGetIdentityVerificationAttributesInput struct {
 
 // String returns the string representation
 func (s GetIdentityVerificationAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1233,7 +1233,7 @@ type metadataGetIdentityVerificationAttributesOutput struct {
 
 // String returns the string representation
 func (s GetIdentityVerificationAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1251,7 +1251,7 @@ type metadataGetSendQuotaInput struct {
 
 // String returns the string representation
 func (s GetSendQuotaInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1285,7 +1285,7 @@ type metadataGetSendQuotaOutput struct {
 
 // String returns the string representation
 func (s GetSendQuotaOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1303,7 +1303,7 @@ type metadataGetSendStatisticsInput struct {
 
 // String returns the string representation
 func (s GetSendStatisticsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1327,7 +1327,7 @@ type metadataGetSendStatisticsOutput struct {
 
 // String returns the string representation
 func (s GetSendStatisticsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1366,7 +1366,7 @@ type metadataIdentityDKIMAttributes struct {
 
 // String returns the string representation
 func (s IdentityDKIMAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1406,7 +1406,7 @@ type metadataIdentityNotificationAttributes struct {
 
 // String returns the string representation
 func (s IdentityNotificationAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1432,7 +1432,7 @@ type metadataIdentityVerificationAttributes struct {
 
 // String returns the string representation
 func (s IdentityVerificationAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1462,7 +1462,7 @@ type metadataListIdentitiesInput struct {
 
 // String returns the string representation
 func (s ListIdentitiesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1487,7 +1487,7 @@ type metadataListIdentitiesOutput struct {
 
 // String returns the string representation
 func (s ListIdentitiesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1514,7 +1514,7 @@ type metadataListIdentityPoliciesInput struct {
 
 // String returns the string representation
 func (s ListIdentityPoliciesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1537,7 +1537,7 @@ type metadataListIdentityPoliciesOutput struct {
 
 // String returns the string representation
 func (s ListIdentityPoliciesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1555,7 +1555,7 @@ type metadataListVerifiedEmailAddressesInput struct {
 
 // String returns the string representation
 func (s ListVerifiedEmailAddressesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1577,7 +1577,7 @@ type metadataListVerifiedEmailAddressesOutput struct {
 
 // String returns the string representation
 func (s ListVerifiedEmailAddressesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1603,7 +1603,7 @@ type metadataMessage struct {
 
 // String returns the string representation
 func (s Message) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1642,7 +1642,7 @@ type metadataPutIdentityPolicyInput struct {
 
 // String returns the string representation
 func (s PutIdentityPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1662,7 +1662,7 @@ type metadataPutIdentityPolicyOutput struct {
 
 // String returns the string representation
 func (s PutIdentityPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1696,7 +1696,7 @@ type metadataRawMessage struct {
 
 // String returns the string representation
 func (s RawMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1731,7 +1731,7 @@ type metadataSendDataPoint struct {
 
 // String returns the string representation
 func (s SendDataPoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1816,7 +1816,7 @@ type metadataSendEmailInput struct {
 
 // String returns the string representation
 func (s SendEmailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1838,7 +1838,7 @@ type metadataSendEmailOutput struct {
 
 // String returns the string representation
 func (s SendEmailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1938,7 +1938,7 @@ type metadataSendRawEmailInput struct {
 
 // String returns the string representation
 func (s SendRawEmailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1960,7 +1960,7 @@ type metadataSendRawEmailOutput struct {
 
 // String returns the string representation
 func (s SendRawEmailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1987,7 +1987,7 @@ type metadataSetIdentityDKIMEnabledInput struct {
 
 // String returns the string representation
 func (s SetIdentityDKIMEnabledInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2007,7 +2007,7 @@ type metadataSetIdentityDKIMEnabledOutput struct {
 
 // String returns the string representation
 func (s SetIdentityDKIMEnabledOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2037,7 +2037,7 @@ type metadataSetIdentityFeedbackForwardingEnabledInput struct {
 
 // String returns the string representation
 func (s SetIdentityFeedbackForwardingEnabledInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2057,7 +2057,7 @@ type metadataSetIdentityFeedbackForwardingEnabledOutput struct {
 
 // String returns the string representation
 func (s SetIdentityFeedbackForwardingEnabledOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2090,7 +2090,7 @@ type metadataSetIdentityNotificationTopicInput struct {
 
 // String returns the string representation
 func (s SetIdentityNotificationTopicInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2110,7 +2110,7 @@ type metadataSetIdentityNotificationTopicOutput struct {
 
 // String returns the string representation
 func (s SetIdentityNotificationTopicOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2133,7 +2133,7 @@ type metadataVerifyDomainDKIMInput struct {
 
 // String returns the string representation
 func (s VerifyDomainDKIMInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2166,7 +2166,7 @@ type metadataVerifyDomainDKIMOutput struct {
 
 // String returns the string representation
 func (s VerifyDomainDKIMOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2188,7 +2188,7 @@ type metadataVerifyDomainIdentityInput struct {
 
 // String returns the string representation
 func (s VerifyDomainIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2211,7 +2211,7 @@ type metadataVerifyDomainIdentityOutput struct {
 
 // String returns the string representation
 func (s VerifyDomainIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2233,7 +2233,7 @@ type metadataVerifyEmailAddressInput struct {
 
 // String returns the string representation
 func (s VerifyEmailAddressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2251,7 +2251,7 @@ type metadataVerifyEmailAddressOutput struct {
 
 // String returns the string representation
 func (s VerifyEmailAddressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2273,7 +2273,7 @@ type metadataVerifyEmailIdentityInput struct {
 
 // String returns the string representation
 func (s VerifyEmailIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2293,7 +2293,7 @@ type metadataVerifyEmailIdentityOutput struct {
 
 // String returns the string representation
 func (s VerifyEmailIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

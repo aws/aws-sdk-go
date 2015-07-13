@@ -27,7 +27,7 @@ func ExampleCopy() {
 	awsutil.Copy(&f2, f1)
 
 	// Print the result
-	fmt.Println(awsutil.StringValue(f2))
+	fmt.Println(awsutil.Prettify(f2))
 
 	// Output:
 	// {
@@ -191,7 +191,7 @@ func ExampleCopyOf() {
 	var f2 *Foo = v.(*Foo)
 
 	// Print the result
-	fmt.Println(awsutil.StringValue(f2))
+	fmt.Println(awsutil.Prettify(f2))
 
 	// Output:
 	// {

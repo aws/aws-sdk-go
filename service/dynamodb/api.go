@@ -698,7 +698,7 @@ type metadataAttributeDefinition struct {
 
 // String returns the string representation
 func (s AttributeDefinition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -753,7 +753,7 @@ type metadataAttributeValue struct {
 
 // String returns the string representation
 func (s AttributeValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -854,7 +854,7 @@ type metadataAttributeValueUpdate struct {
 
 // String returns the string representation
 func (s AttributeValueUpdate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -972,7 +972,7 @@ type metadataBatchGetItemInput struct {
 
 // String returns the string representation
 func (s BatchGetItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1027,7 +1027,7 @@ type metadataBatchGetItemOutput struct {
 
 // String returns the string representation
 func (s BatchGetItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1097,7 +1097,7 @@ type metadataBatchWriteItemInput struct {
 
 // String returns the string representation
 func (s BatchWriteItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1177,7 +1177,7 @@ type metadataBatchWriteItemOutput struct {
 
 // String returns the string representation
 func (s BatchWriteItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1200,7 +1200,7 @@ type metadataCapacity struct {
 
 // String returns the string representation
 func (s Capacity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1378,7 +1378,7 @@ type metadataCondition struct {
 
 // String returns the string representation
 func (s Condition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1417,7 +1417,7 @@ type metadataConsumedCapacity struct {
 
 // String returns the string representation
 func (s ConsumedCapacity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1455,7 +1455,7 @@ type metadataCreateGlobalSecondaryIndexAction struct {
 
 // String returns the string representation
 func (s CreateGlobalSecondaryIndexAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1598,7 +1598,7 @@ type metadataCreateTableInput struct {
 
 // String returns the string representation
 func (s CreateTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1620,7 +1620,7 @@ type metadataCreateTableOutput struct {
 
 // String returns the string representation
 func (s CreateTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1642,7 +1642,7 @@ type metadataDeleteGlobalSecondaryIndexAction struct {
 
 // String returns the string representation
 func (s DeleteGlobalSecondaryIndexAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2000,7 +2000,7 @@ type metadataDeleteItemInput struct {
 
 // String returns the string representation
 func (s DeleteItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2053,7 +2053,7 @@ type metadataDeleteItemOutput struct {
 
 // String returns the string representation
 func (s DeleteItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2077,7 +2077,7 @@ type metadataDeleteRequest struct {
 
 // String returns the string representation
 func (s DeleteRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2099,7 +2099,7 @@ type metadataDeleteTableInput struct {
 
 // String returns the string representation
 func (s DeleteTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2121,7 +2121,7 @@ type metadataDeleteTableOutput struct {
 
 // String returns the string representation
 func (s DeleteTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2143,7 +2143,7 @@ type metadataDescribeTableInput struct {
 
 // String returns the string representation
 func (s DescribeTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2165,7 +2165,7 @@ type metadataDescribeTableOutput struct {
 
 // String returns the string representation
 func (s DescribeTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2382,7 +2382,7 @@ type metadataExpectedAttributeValue struct {
 
 // String returns the string representation
 func (s ExpectedAttributeValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2502,7 +2502,7 @@ type metadataGetItemInput struct {
 
 // String returns the string representation
 func (s GetItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2532,7 +2532,7 @@ type metadataGetItemOutput struct {
 
 // String returns the string representation
 func (s GetItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2572,7 +2572,7 @@ type metadataGlobalSecondaryIndex struct {
 
 // String returns the string representation
 func (s GlobalSecondaryIndex) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2641,7 +2641,7 @@ type metadataGlobalSecondaryIndexDescription struct {
 
 // String returns the string representation
 func (s GlobalSecondaryIndexDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2687,7 +2687,7 @@ type metadataGlobalSecondaryIndexUpdate struct {
 
 // String returns the string representation
 func (s GlobalSecondaryIndexUpdate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2724,7 +2724,7 @@ type metadataItemCollectionMetrics struct {
 
 // String returns the string representation
 func (s ItemCollectionMetrics) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2755,7 +2755,7 @@ type metadataKeySchemaElement struct {
 
 // String returns the string representation
 func (s KeySchemaElement) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2843,7 +2843,7 @@ type metadataKeysAndAttributes struct {
 
 // String returns the string representation
 func (s KeysAndAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2871,7 +2871,7 @@ type metadataListTablesInput struct {
 
 // String returns the string representation
 func (s ListTablesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2906,7 +2906,7 @@ type metadataListTablesOutput struct {
 
 // String returns the string representation
 func (s ListTablesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2938,7 +2938,7 @@ type metadataLocalSecondaryIndex struct {
 
 // String returns the string representation
 func (s LocalSecondaryIndex) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2981,7 +2981,7 @@ type metadataLocalSecondaryIndexDescription struct {
 
 // String returns the string representation
 func (s LocalSecondaryIndexDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3020,7 +3020,7 @@ type metadataProjection struct {
 
 // String returns the string representation
 func (s Projection) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3056,7 +3056,7 @@ type metadataProvisionedThroughput struct {
 
 // String returns the string representation
 func (s ProvisionedThroughput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3098,7 +3098,7 @@ type metadataProvisionedThroughputDescription struct {
 
 // String returns the string representation
 func (s ProvisionedThroughputDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3470,7 +3470,7 @@ type metadataPutItemInput struct {
 
 // String returns the string representation
 func (s PutItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3523,7 +3523,7 @@ type metadataPutItemOutput struct {
 
 // String returns the string representation
 func (s PutItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3549,7 +3549,7 @@ type metadataPutRequest struct {
 
 // String returns the string representation
 func (s PutRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4045,7 +4045,7 @@ type metadataQueryInput struct {
 
 // String returns the string representation
 func (s QueryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4107,7 +4107,7 @@ type metadataQueryOutput struct {
 
 // String returns the string representation
 func (s QueryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4413,7 +4413,7 @@ type metadataScanInput struct {
 
 // String returns the string representation
 func (s ScanInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4474,7 +4474,7 @@ type metadataScanOutput struct {
 
 // String returns the string representation
 func (s ScanOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4519,7 +4519,7 @@ type metadataStreamSpecification struct {
 
 // String returns the string representation
 func (s StreamSpecification) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4718,7 +4718,7 @@ type metadataTableDescription struct {
 
 // String returns the string representation
 func (s TableDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4749,7 +4749,7 @@ type metadataUpdateGlobalSecondaryIndexAction struct {
 
 // String returns the string representation
 func (s UpdateGlobalSecondaryIndexAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5280,7 +5280,7 @@ type metadataUpdateItemInput struct {
 
 // String returns the string representation
 func (s UpdateItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5318,7 +5318,7 @@ type metadataUpdateItemOutput struct {
 
 // String returns the string representation
 func (s UpdateItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5374,7 +5374,7 @@ type metadataUpdateTableInput struct {
 
 // String returns the string representation
 func (s UpdateTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5396,7 +5396,7 @@ type metadataUpdateTableOutput struct {
 
 // String returns the string representation
 func (s UpdateTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5424,7 +5424,7 @@ type metadataWriteRequest struct {
 
 // String returns the string representation
 func (s WriteRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

@@ -42,7 +42,7 @@ func ExampleGlacier_AbortMultipartUpload() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_AddTagsToVault() {
@@ -74,7 +74,7 @@ func ExampleGlacier_AddTagsToVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_CompleteMultipartUpload() {
@@ -105,7 +105,7 @@ func ExampleGlacier_CompleteMultipartUpload() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_CreateVault() {
@@ -133,7 +133,7 @@ func ExampleGlacier_CreateVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteArchive() {
@@ -162,7 +162,7 @@ func ExampleGlacier_DeleteArchive() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteVault() {
@@ -190,7 +190,7 @@ func ExampleGlacier_DeleteVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteVaultAccessPolicy() {
@@ -218,7 +218,7 @@ func ExampleGlacier_DeleteVaultAccessPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteVaultNotifications() {
@@ -246,7 +246,7 @@ func ExampleGlacier_DeleteVaultNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DescribeJob() {
@@ -275,7 +275,7 @@ func ExampleGlacier_DescribeJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DescribeVault() {
@@ -303,7 +303,7 @@ func ExampleGlacier_DescribeVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetDataRetrievalPolicy() {
@@ -330,7 +330,7 @@ func ExampleGlacier_GetDataRetrievalPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetJobOutput() {
@@ -360,7 +360,7 @@ func ExampleGlacier_GetJobOutput() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetVaultAccessPolicy() {
@@ -388,7 +388,7 @@ func ExampleGlacier_GetVaultAccessPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetVaultNotifications() {
@@ -416,7 +416,7 @@ func ExampleGlacier_GetVaultNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_InitiateJob() {
@@ -458,7 +458,7 @@ func ExampleGlacier_InitiateJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_InitiateMultipartUpload() {
@@ -488,7 +488,7 @@ func ExampleGlacier_InitiateMultipartUpload() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListJobs() {
@@ -520,7 +520,7 @@ func ExampleGlacier_ListJobs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListMultipartUploads() {
@@ -550,7 +550,7 @@ func ExampleGlacier_ListMultipartUploads() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListParts() {
@@ -581,7 +581,7 @@ func ExampleGlacier_ListParts() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListTagsForVault() {
@@ -609,7 +609,7 @@ func ExampleGlacier_ListTagsForVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListVaults() {
@@ -638,7 +638,7 @@ func ExampleGlacier_ListVaults() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_RemoveTagsFromVault() {
@@ -670,7 +670,7 @@ func ExampleGlacier_RemoveTagsFromVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_SetDataRetrievalPolicy() {
@@ -681,7 +681,7 @@ func ExampleGlacier_SetDataRetrievalPolicy() {
 		Policy: &glacier.DataRetrievalPolicy{
 			Rules: []*glacier.DataRetrievalRule{
 				{ // Required
-					BytesPerHour: aws.Long(1),
+					BytesPerHour: aws.Int64(1),
 					Strategy:     aws.String("string"),
 				},
 				// More values...
@@ -706,7 +706,7 @@ func ExampleGlacier_SetDataRetrievalPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_SetVaultAccessPolicy() {
@@ -737,7 +737,7 @@ func ExampleGlacier_SetVaultAccessPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_SetVaultNotifications() {
@@ -772,7 +772,7 @@ func ExampleGlacier_SetVaultNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_UploadArchive() {
@@ -803,7 +803,7 @@ func ExampleGlacier_UploadArchive() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_UploadMultipartPart() {
@@ -835,5 +835,5 @@ func ExampleGlacier_UploadMultipartPart() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

@@ -610,7 +610,7 @@ type metadataCreateIdentityPoolInput struct {
 
 // String returns the string representation
 func (s CreateIdentityPoolInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -641,7 +641,7 @@ type metadataCredentials struct {
 
 // String returns the string representation
 func (s Credentials) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -663,7 +663,7 @@ type metadataDeleteIdentitiesInput struct {
 
 // String returns the string representation
 func (s DeleteIdentitiesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -686,7 +686,7 @@ type metadataDeleteIdentitiesOutput struct {
 
 // String returns the string representation
 func (s DeleteIdentitiesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -708,7 +708,7 @@ type metadataDeleteIdentityPoolInput struct {
 
 // String returns the string representation
 func (s DeleteIdentityPoolInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -726,7 +726,7 @@ type metadataDeleteIdentityPoolOutput struct {
 
 // String returns the string representation
 func (s DeleteIdentityPoolOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -748,7 +748,7 @@ type metadataDescribeIdentityInput struct {
 
 // String returns the string representation
 func (s DescribeIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -770,7 +770,7 @@ type metadataDescribeIdentityPoolInput struct {
 
 // String returns the string representation
 func (s DescribeIdentityPoolInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -795,7 +795,7 @@ type metadataGetCredentialsForIdentityInput struct {
 
 // String returns the string representation
 func (s GetCredentialsForIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -820,7 +820,7 @@ type metadataGetCredentialsForIdentityOutput struct {
 
 // String returns the string representation
 func (s GetCredentialsForIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -852,7 +852,7 @@ type metadataGetIDInput struct {
 
 // String returns the string representation
 func (s GetIDInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -874,7 +874,7 @@ type metadataGetIDOutput struct {
 
 // String returns the string representation
 func (s GetIDOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -896,7 +896,7 @@ type metadataGetIdentityPoolRolesInput struct {
 
 // String returns the string representation
 func (s GetIdentityPoolRolesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -922,7 +922,7 @@ type metadataGetIdentityPoolRolesOutput struct {
 
 // String returns the string representation
 func (s GetIdentityPoolRolesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -968,7 +968,7 @@ type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
 
 // String returns the string representation
 func (s GetOpenIDTokenForDeveloperIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -993,7 +993,7 @@ type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
 
 // String returns the string representation
 func (s GetOpenIDTokenForDeveloperIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1021,7 +1021,7 @@ type metadataGetOpenIDTokenInput struct {
 
 // String returns the string representation
 func (s GetOpenIDTokenInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1047,7 +1047,7 @@ type metadataGetOpenIDTokenOutput struct {
 
 // String returns the string representation
 func (s GetOpenIDTokenOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1078,7 +1078,7 @@ type metadataIdentityDescription struct {
 
 // String returns the string representation
 func (s IdentityDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1115,7 +1115,7 @@ type metadataIdentityPool struct {
 
 // String returns the string representation
 func (s IdentityPool) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1140,7 +1140,7 @@ type metadataIdentityPoolShortDescription struct {
 
 // String returns the string representation
 func (s IdentityPoolShortDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1173,7 +1173,7 @@ type metadataListIdentitiesInput struct {
 
 // String returns the string representation
 func (s ListIdentitiesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1201,7 +1201,7 @@ type metadataListIdentitiesOutput struct {
 
 // String returns the string representation
 func (s ListIdentitiesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1226,7 +1226,7 @@ type metadataListIdentityPoolsInput struct {
 
 // String returns the string representation
 func (s ListIdentityPoolsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1251,7 +1251,7 @@ type metadataListIdentityPoolsOutput struct {
 
 // String returns the string representation
 func (s ListIdentityPoolsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1292,7 +1292,7 @@ type metadataLookupDeveloperIdentityInput struct {
 
 // String returns the string representation
 func (s LookupDeveloperIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1327,7 +1327,7 @@ type metadataLookupDeveloperIdentityOutput struct {
 
 // String returns the string representation
 func (s LookupDeveloperIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1362,7 +1362,7 @@ type metadataMergeDeveloperIdentitiesInput struct {
 
 // String returns the string representation
 func (s MergeDeveloperIdentitiesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1384,7 +1384,7 @@ type metadataMergeDeveloperIdentitiesOutput struct {
 
 // String returns the string representation
 func (s MergeDeveloperIdentitiesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1411,7 +1411,7 @@ type metadataSetIdentityPoolRolesInput struct {
 
 // String returns the string representation
 func (s SetIdentityPoolRolesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1429,7 +1429,7 @@ type metadataSetIdentityPoolRolesOutput struct {
 
 // String returns the string representation
 func (s SetIdentityPoolRolesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1460,7 +1460,7 @@ type metadataUnlinkDeveloperIdentityInput struct {
 
 // String returns the string representation
 func (s UnlinkDeveloperIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1478,7 +1478,7 @@ type metadataUnlinkDeveloperIdentityOutput struct {
 
 // String returns the string representation
 func (s UnlinkDeveloperIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1506,7 +1506,7 @@ type metadataUnlinkIdentityInput struct {
 
 // String returns the string representation
 func (s UnlinkIdentityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1524,7 +1524,7 @@ type metadataUnlinkIdentityOutput struct {
 
 // String returns the string representation
 func (s UnlinkIdentityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1550,7 +1550,7 @@ type metadataUnprocessedIdentityID struct {
 
 // String returns the string representation
 func (s UnprocessedIdentityID) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

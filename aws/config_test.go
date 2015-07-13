@@ -22,15 +22,15 @@ var copyTestConfig = Config{
 	Credentials:             testCredentials,
 	Endpoint:                String("CopyTestEndpoint"),
 	Region:                  String("COPY_TEST_AWS_REGION"),
-	DisableSSL:              Boolean(true),
+	DisableSSL:              Bool(true),
 	HTTPClient:              http.DefaultClient,
-	LogHTTPBody:             Boolean(true),
+	LogHTTPBody:             Bool(true),
 	LogLevel:                Int(2),
 	Logger:                  os.Stdout,
 	MaxRetries:              Int(DefaultRetries),
-	DisableParamValidation:  Boolean(true),
-	DisableComputeChecksums: Boolean(true),
-	S3ForcePathStyle:        Boolean(true),
+	DisableParamValidation:  Bool(true),
+	DisableComputeChecksums: Bool(true),
+	S3ForcePathStyle:        Bool(true),
 }
 
 func TestCopy(t *testing.T) {
@@ -56,15 +56,15 @@ var mergeTestConfig = Config{
 	Credentials:             testCredentials,
 	Endpoint:                String("MergeTestEndpoint"),
 	Region:                  String("MERGE_TEST_AWS_REGION"),
-	DisableSSL:              Boolean(true),
+	DisableSSL:              Bool(true),
 	HTTPClient:              http.DefaultClient,
-	LogHTTPBody:             Boolean(true),
+	LogHTTPBody:             Bool(true),
 	LogLevel:                Int(2),
 	Logger:                  os.Stdout,
 	MaxRetries:              Int(10),
-	DisableParamValidation:  Boolean(true),
-	DisableComputeChecksums: Boolean(true),
-	S3ForcePathStyle:        Boolean(true),
+	DisableParamValidation:  Bool(true),
+	DisableComputeChecksums: Bool(true),
+	S3ForcePathStyle:        Bool(true),
 }
 
 var mergeTests = []struct {

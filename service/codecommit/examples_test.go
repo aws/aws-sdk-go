@@ -43,7 +43,7 @@ func ExampleCodeCommit_BatchGetRepositories() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_CreateBranch() {
@@ -72,7 +72,7 @@ func ExampleCodeCommit_CreateBranch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_CreateRepository() {
@@ -100,7 +100,7 @@ func ExampleCodeCommit_CreateRepository() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_DeleteRepository() {
@@ -127,7 +127,7 @@ func ExampleCodeCommit_DeleteRepository() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_GetBranch() {
@@ -155,7 +155,7 @@ func ExampleCodeCommit_GetBranch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_GetRepository() {
@@ -182,7 +182,7 @@ func ExampleCodeCommit_GetRepository() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_ListBranches() {
@@ -210,7 +210,7 @@ func ExampleCodeCommit_ListBranches() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_ListRepositories() {
@@ -239,7 +239,7 @@ func ExampleCodeCommit_ListRepositories() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_UpdateDefaultBranch() {
@@ -267,7 +267,7 @@ func ExampleCodeCommit_UpdateDefaultBranch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_UpdateRepositoryDescription() {
@@ -295,7 +295,7 @@ func ExampleCodeCommit_UpdateRepositoryDescription() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeCommit_UpdateRepositoryName() {
@@ -323,5 +323,5 @@ func ExampleCodeCommit_UpdateRepositoryName() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

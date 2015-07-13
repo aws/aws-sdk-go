@@ -2191,7 +2191,7 @@ type metadataAccountWithRestoreAccess struct {
 
 // String returns the string representation
 func (s AccountWithRestoreAccess) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2226,7 +2226,7 @@ type metadataAuthorizeClusterSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s AuthorizeClusterSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2247,7 +2247,7 @@ type metadataAuthorizeClusterSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s AuthorizeClusterSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2277,7 +2277,7 @@ type metadataAuthorizeSnapshotAccessInput struct {
 
 // String returns the string representation
 func (s AuthorizeSnapshotAccessInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2298,7 +2298,7 @@ type metadataAuthorizeSnapshotAccessOutput struct {
 
 // String returns the string representation
 func (s AuthorizeSnapshotAccessOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2320,7 +2320,7 @@ type metadataAvailabilityZone struct {
 
 // String returns the string representation
 func (s AvailabilityZone) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2454,7 +2454,7 @@ type metadataCluster struct {
 
 // String returns the string representation
 func (s Cluster) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2482,7 +2482,7 @@ type metadataClusterNode struct {
 
 // String returns the string representation
 func (s ClusterNode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2514,7 +2514,7 @@ type metadataClusterParameterGroup struct {
 
 // String returns the string representation
 func (s ClusterParameterGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2543,7 +2543,7 @@ type metadataClusterParameterGroupNameMessage struct {
 
 // String returns the string representation
 func (s ClusterParameterGroupNameMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2575,7 +2575,7 @@ type metadataClusterParameterGroupStatus struct {
 
 // String returns the string representation
 func (s ClusterParameterGroupStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2616,7 +2616,7 @@ type metadataClusterParameterStatus struct {
 
 // String returns the string representation
 func (s ClusterParameterStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2652,7 +2652,7 @@ type metadataClusterSecurityGroup struct {
 
 // String returns the string representation
 func (s ClusterSecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2677,7 +2677,7 @@ type metadataClusterSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s ClusterSecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2708,7 +2708,7 @@ type metadataClusterSnapshotCopyStatus struct {
 
 // String returns the string representation
 func (s ClusterSnapshotCopyStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2746,7 +2746,7 @@ type metadataClusterSubnetGroup struct {
 
 // String returns the string representation
 func (s ClusterSubnetGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2775,7 +2775,7 @@ type metadataClusterVersion struct {
 
 // String returns the string representation
 func (s ClusterVersion) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2819,7 +2819,7 @@ type metadataCopyClusterSnapshotInput struct {
 
 // String returns the string representation
 func (s CopyClusterSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2840,7 +2840,7 @@ type metadataCopyClusterSnapshotOutput struct {
 
 // String returns the string representation
 func (s CopyClusterSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3071,7 +3071,7 @@ type metadataCreateClusterInput struct {
 
 // String returns the string representation
 func (s CreateClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3092,7 +3092,7 @@ type metadataCreateClusterOutput struct {
 
 // String returns the string representation
 func (s CreateClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3137,7 +3137,7 @@ type metadataCreateClusterParameterGroupInput struct {
 
 // String returns the string representation
 func (s CreateClusterParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3158,7 +3158,7 @@ type metadataCreateClusterParameterGroupOutput struct {
 
 // String returns the string representation
 func (s CreateClusterParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3193,7 +3193,7 @@ type metadataCreateClusterSecurityGroupInput struct {
 
 // String returns the string representation
 func (s CreateClusterSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3214,7 +3214,7 @@ type metadataCreateClusterSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s CreateClusterSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3248,7 +3248,7 @@ type metadataCreateClusterSnapshotInput struct {
 
 // String returns the string representation
 func (s CreateClusterSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3269,7 +3269,7 @@ type metadataCreateClusterSnapshotOutput struct {
 
 // String returns the string representation
 func (s CreateClusterSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3307,7 +3307,7 @@ type metadataCreateClusterSubnetGroupInput struct {
 
 // String returns the string representation
 func (s CreateClusterSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3328,7 +3328,7 @@ type metadataCreateClusterSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s CreateClusterSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3400,7 +3400,7 @@ type metadataCreateEventSubscriptionInput struct {
 
 // String returns the string representation
 func (s CreateEventSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3420,7 +3420,7 @@ type metadataCreateEventSubscriptionOutput struct {
 
 // String returns the string representation
 func (s CreateEventSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3445,7 +3445,7 @@ type metadataCreateHSMClientCertificateInput struct {
 
 // String returns the string representation
 func (s CreateHSMClientCertificateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3468,7 +3468,7 @@ type metadataCreateHSMClientCertificateOutput struct {
 
 // String returns the string representation
 func (s CreateHSMClientCertificateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3509,7 +3509,7 @@ type metadataCreateHSMConfigurationInput struct {
 
 // String returns the string representation
 func (s CreateHSMConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3532,7 +3532,7 @@ type metadataCreateHSMConfigurationOutput struct {
 
 // String returns the string representation
 func (s CreateHSMConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3569,7 +3569,7 @@ type metadataCreateSnapshotCopyGrantInput struct {
 
 // String returns the string representation
 func (s CreateSnapshotCopyGrantInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3596,7 +3596,7 @@ type metadataCreateSnapshotCopyGrantOutput struct {
 
 // String returns the string representation
 func (s CreateSnapshotCopyGrantOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3626,7 +3626,7 @@ type metadataCreateTagsInput struct {
 
 // String returns the string representation
 func (s CreateTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3644,7 +3644,7 @@ type metadataCreateTagsOutput struct {
 
 // String returns the string representation
 func (s CreateTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3677,7 +3677,7 @@ type metadataDefaultClusterParameters struct {
 
 // String returns the string representation
 func (s DefaultClusterParameters) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3722,7 +3722,7 @@ type metadataDeleteClusterInput struct {
 
 // String returns the string representation
 func (s DeleteClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3743,7 +3743,7 @@ type metadataDeleteClusterOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3769,7 +3769,7 @@ type metadataDeleteClusterParameterGroupInput struct {
 
 // String returns the string representation
 func (s DeleteClusterParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3787,7 +3787,7 @@ type metadataDeleteClusterParameterGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3808,7 +3808,7 @@ type metadataDeleteClusterSecurityGroupInput struct {
 
 // String returns the string representation
 func (s DeleteClusterSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3826,7 +3826,7 @@ type metadataDeleteClusterSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3857,7 +3857,7 @@ type metadataDeleteClusterSnapshotInput struct {
 
 // String returns the string representation
 func (s DeleteClusterSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3878,7 +3878,7 @@ type metadataDeleteClusterSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3899,7 +3899,7 @@ type metadataDeleteClusterSubnetGroupInput struct {
 
 // String returns the string representation
 func (s DeleteClusterSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3917,7 +3917,7 @@ type metadataDeleteClusterSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3938,7 +3938,7 @@ type metadataDeleteEventSubscriptionInput struct {
 
 // String returns the string representation
 func (s DeleteEventSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3956,7 +3956,7 @@ type metadataDeleteEventSubscriptionOutput struct {
 
 // String returns the string representation
 func (s DeleteEventSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3977,7 +3977,7 @@ type metadataDeleteHSMClientCertificateInput struct {
 
 // String returns the string representation
 func (s DeleteHSMClientCertificateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3995,7 +3995,7 @@ type metadataDeleteHSMClientCertificateOutput struct {
 
 // String returns the string representation
 func (s DeleteHSMClientCertificateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4016,7 +4016,7 @@ type metadataDeleteHSMConfigurationInput struct {
 
 // String returns the string representation
 func (s DeleteHSMConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4034,7 +4034,7 @@ type metadataDeleteHSMConfigurationOutput struct {
 
 // String returns the string representation
 func (s DeleteHSMConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4056,7 +4056,7 @@ type metadataDeleteSnapshotCopyGrantInput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotCopyGrantInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4074,7 +4074,7 @@ type metadataDeleteSnapshotCopyGrantOutput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotCopyGrantOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4100,7 +4100,7 @@ type metadataDeleteTagsInput struct {
 
 // String returns the string representation
 func (s DeleteTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4118,7 +4118,7 @@ type metadataDeleteTagsOutput struct {
 
 // String returns the string representation
 func (s DeleteTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4174,7 +4174,7 @@ type metadataDescribeClusterParameterGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeClusterParameterGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4204,7 +4204,7 @@ type metadataDescribeClusterParameterGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterParameterGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4252,7 +4252,7 @@ type metadataDescribeClusterParametersInput struct {
 
 // String returns the string representation
 func (s DescribeClusterParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4282,7 +4282,7 @@ type metadataDescribeClusterParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4345,7 +4345,7 @@ type metadataDescribeClusterSecurityGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeClusterSecurityGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4374,7 +4374,7 @@ type metadataDescribeClusterSecurityGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterSecurityGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4458,7 +4458,7 @@ type metadataDescribeClusterSnapshotsInput struct {
 
 // String returns the string representation
 func (s DescribeClusterSnapshotsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4487,7 +4487,7 @@ type metadataDescribeClusterSnapshotsOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterSnapshotsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4542,7 +4542,7 @@ type metadataDescribeClusterSubnetGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeClusterSubnetGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4571,7 +4571,7 @@ type metadataDescribeClusterSubnetGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterSubnetGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4619,7 +4619,7 @@ type metadataDescribeClusterVersionsInput struct {
 
 // String returns the string representation
 func (s DescribeClusterVersionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4648,7 +4648,7 @@ type metadataDescribeClusterVersionsOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterVersionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4708,7 +4708,7 @@ type metadataDescribeClustersInput struct {
 
 // String returns the string representation
 func (s DescribeClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4737,7 +4737,7 @@ type metadataDescribeClustersOutput struct {
 
 // String returns the string representation
 func (s DescribeClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4776,7 +4776,7 @@ type metadataDescribeDefaultClusterParametersInput struct {
 
 // String returns the string representation
 func (s DescribeDefaultClusterParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4797,7 +4797,7 @@ type metadataDescribeDefaultClusterParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeDefaultClusterParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4821,7 +4821,7 @@ type metadataDescribeEventCategoriesInput struct {
 
 // String returns the string representation
 func (s DescribeEventCategoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4842,7 +4842,7 @@ type metadataDescribeEventCategoriesOutput struct {
 
 // String returns the string representation
 func (s DescribeEventCategoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4881,7 +4881,7 @@ type metadataDescribeEventSubscriptionsInput struct {
 
 // String returns the string representation
 func (s DescribeEventSubscriptionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4909,7 +4909,7 @@ type metadataDescribeEventSubscriptionsOutput struct {
 
 // String returns the string representation
 func (s DescribeEventSubscriptionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4992,7 +4992,7 @@ type metadataDescribeEventsInput struct {
 
 // String returns the string representation
 func (s DescribeEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5021,7 +5021,7 @@ type metadataDescribeEventsOutput struct {
 
 // String returns the string representation
 func (s DescribeEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5078,7 +5078,7 @@ type metadataDescribeHSMClientCertificatesInput struct {
 
 // String returns the string representation
 func (s DescribeHSMClientCertificatesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5108,7 +5108,7 @@ type metadataDescribeHSMClientCertificatesOutput struct {
 
 // String returns the string representation
 func (s DescribeHSMClientCertificatesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5165,7 +5165,7 @@ type metadataDescribeHSMConfigurationsInput struct {
 
 // String returns the string representation
 func (s DescribeHSMConfigurationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5193,7 +5193,7 @@ type metadataDescribeHSMConfigurationsOutput struct {
 
 // String returns the string representation
 func (s DescribeHSMConfigurationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5216,7 +5216,7 @@ type metadataDescribeLoggingStatusInput struct {
 
 // String returns the string representation
 func (s DescribeLoggingStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5264,7 +5264,7 @@ type metadataDescribeOrderableClusterOptionsInput struct {
 
 // String returns the string representation
 func (s DescribeOrderableClusterOptionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5294,7 +5294,7 @@ type metadataDescribeOrderableClusterOptionsOutput struct {
 
 // String returns the string representation
 func (s DescribeOrderableClusterOptionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5333,7 +5333,7 @@ type metadataDescribeReservedNodeOfferingsInput struct {
 
 // String returns the string representation
 func (s DescribeReservedNodeOfferingsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5362,7 +5362,7 @@ type metadataDescribeReservedNodeOfferingsOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedNodeOfferingsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5400,7 +5400,7 @@ type metadataDescribeReservedNodesInput struct {
 
 // String returns the string representation
 func (s DescribeReservedNodesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5429,7 +5429,7 @@ type metadataDescribeReservedNodesOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedNodesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5454,7 +5454,7 @@ type metadataDescribeResizeInput struct {
 
 // String returns the string representation
 func (s DescribeResizeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5532,7 +5532,7 @@ type metadataDescribeResizeOutput struct {
 
 // String returns the string representation
 func (s DescribeResizeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5591,7 +5591,7 @@ type metadataDescribeSnapshotCopyGrantsInput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotCopyGrantsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5624,7 +5624,7 @@ type metadataDescribeSnapshotCopyGrantsOutput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotCopyGrantsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5686,7 +5686,7 @@ type metadataDescribeTagsInput struct {
 
 // String returns the string representation
 func (s DescribeTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5715,7 +5715,7 @@ type metadataDescribeTagsOutput struct {
 
 // String returns the string representation
 func (s DescribeTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5738,7 +5738,7 @@ type metadataDisableLoggingInput struct {
 
 // String returns the string representation
 func (s DisableLoggingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5763,7 +5763,7 @@ type metadataDisableSnapshotCopyInput struct {
 
 // String returns the string representation
 func (s DisableSnapshotCopyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5784,7 +5784,7 @@ type metadataDisableSnapshotCopyOutput struct {
 
 // String returns the string representation
 func (s DisableSnapshotCopyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5816,7 +5816,7 @@ type metadataEC2SecurityGroup struct {
 
 // String returns the string representation
 func (s EC2SecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5841,7 +5841,7 @@ type metadataElasticIPStatus struct {
 
 // String returns the string representation
 func (s ElasticIPStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5881,7 +5881,7 @@ type metadataEnableLoggingInput struct {
 
 // String returns the string representation
 func (s EnableLoggingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5924,7 +5924,7 @@ type metadataEnableSnapshotCopyInput struct {
 
 // String returns the string representation
 func (s EnableSnapshotCopyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5945,7 +5945,7 @@ type metadataEnableSnapshotCopyOutput struct {
 
 // String returns the string representation
 func (s EnableSnapshotCopyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5970,7 +5970,7 @@ type metadataEndpoint struct {
 
 // String returns the string representation
 func (s Endpoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6014,7 +6014,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6039,7 +6039,7 @@ type metadataEventCategoriesMap struct {
 
 // String returns the string representation
 func (s EventCategoriesMap) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6071,7 +6071,7 @@ type metadataEventInfoMap struct {
 
 // String returns the string representation
 func (s EventInfoMap) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6140,7 +6140,7 @@ type metadataEventSubscription struct {
 
 // String returns the string representation
 func (s EventSubscription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6171,7 +6171,7 @@ type metadataHSMClientCertificate struct {
 
 // String returns the string representation
 func (s HSMClientCertificate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6208,7 +6208,7 @@ type metadataHSMConfiguration struct {
 
 // String returns the string representation
 func (s HSMConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6240,7 +6240,7 @@ type metadataHSMStatus struct {
 
 // String returns the string representation
 func (s HSMStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6268,7 +6268,7 @@ type metadataIPRange struct {
 
 // String returns the string representation
 func (s IPRange) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6305,7 +6305,7 @@ type metadataLoggingStatus struct {
 
 // String returns the string representation
 func (s LoggingStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6478,7 +6478,7 @@ type metadataModifyClusterInput struct {
 
 // String returns the string representation
 func (s ModifyClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6499,7 +6499,7 @@ type metadataModifyClusterOutput struct {
 
 // String returns the string representation
 func (s ModifyClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6530,7 +6530,7 @@ type metadataModifyClusterParameterGroupInput struct {
 
 // String returns the string representation
 func (s ModifyClusterParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6558,7 +6558,7 @@ type metadataModifyClusterSubnetGroupInput struct {
 
 // String returns the string representation
 func (s ModifyClusterSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6579,7 +6579,7 @@ type metadataModifyClusterSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyClusterSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6641,7 +6641,7 @@ type metadataModifyEventSubscriptionInput struct {
 
 // String returns the string representation
 func (s ModifyEventSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6661,7 +6661,7 @@ type metadataModifyEventSubscriptionOutput struct {
 
 // String returns the string representation
 func (s ModifyEventSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6697,7 +6697,7 @@ type metadataModifySnapshotCopyRetentionPeriodInput struct {
 
 // String returns the string representation
 func (s ModifySnapshotCopyRetentionPeriodInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6718,7 +6718,7 @@ type metadataModifySnapshotCopyRetentionPeriodOutput struct {
 
 // String returns the string representation
 func (s ModifySnapshotCopyRetentionPeriodOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6749,7 +6749,7 @@ type metadataOrderableClusterOption struct {
 
 // String returns the string representation
 func (s OrderableClusterOption) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6796,7 +6796,7 @@ type metadataParameter struct {
 
 // String returns the string representation
 func (s Parameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6837,7 +6837,7 @@ type metadataPendingModifiedValues struct {
 
 // String returns the string representation
 func (s PendingModifiedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6863,7 +6863,7 @@ type metadataPurchaseReservedNodeOfferingInput struct {
 
 // String returns the string representation
 func (s PurchaseReservedNodeOfferingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6885,7 +6885,7 @@ type metadataPurchaseReservedNodeOfferingOutput struct {
 
 // String returns the string representation
 func (s PurchaseReservedNodeOfferingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6906,7 +6906,7 @@ type metadataRebootClusterInput struct {
 
 // String returns the string representation
 func (s RebootClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6927,7 +6927,7 @@ type metadataRebootClusterOutput struct {
 
 // String returns the string representation
 func (s RebootClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6953,7 +6953,7 @@ type metadataRecurringCharge struct {
 
 // String returns the string representation
 func (s RecurringCharge) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7018,7 +7018,7 @@ type metadataReservedNode struct {
 
 // String returns the string representation
 func (s ReservedNode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7066,7 +7066,7 @@ type metadataReservedNodeOffering struct {
 
 // String returns the string representation
 func (s ReservedNodeOffering) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7099,7 +7099,7 @@ type metadataResetClusterParameterGroupInput struct {
 
 // String returns the string representation
 func (s ResetClusterParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7252,7 +7252,7 @@ type metadataRestoreFromClusterSnapshotInput struct {
 
 // String returns the string representation
 func (s RestoreFromClusterSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7273,7 +7273,7 @@ type metadataRestoreFromClusterSnapshotOutput struct {
 
 // String returns the string representation
 func (s RestoreFromClusterSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7315,7 +7315,7 @@ type metadataRestoreStatus struct {
 
 // String returns the string representation
 func (s RestoreStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7355,7 +7355,7 @@ type metadataRevokeClusterSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s RevokeClusterSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7376,7 +7376,7 @@ type metadataRevokeClusterSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s RevokeClusterSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7406,7 +7406,7 @@ type metadataRevokeSnapshotAccessInput struct {
 
 // String returns the string representation
 func (s RevokeSnapshotAccessInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7427,7 +7427,7 @@ type metadataRevokeSnapshotAccessOutput struct {
 
 // String returns the string representation
 func (s RevokeSnapshotAccessOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7451,7 +7451,7 @@ type metadataRotateEncryptionKeyInput struct {
 
 // String returns the string representation
 func (s RotateEncryptionKeyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7472,7 +7472,7 @@ type metadataRotateEncryptionKeyOutput struct {
 
 // String returns the string representation
 func (s RotateEncryptionKeyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7591,7 +7591,7 @@ type metadataSnapshot struct {
 
 // String returns the string representation
 func (s Snapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7626,7 +7626,7 @@ type metadataSnapshotCopyGrant struct {
 
 // String returns the string representation
 func (s SnapshotCopyGrant) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7654,7 +7654,7 @@ type metadataSubnet struct {
 
 // String returns the string representation
 func (s Subnet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7679,7 +7679,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7714,7 +7714,7 @@ type metadataTaggedResource struct {
 
 // String returns the string representation
 func (s TaggedResource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7737,7 +7737,7 @@ type metadataVPCSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s VPCSecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

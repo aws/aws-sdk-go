@@ -542,7 +542,7 @@ type metadataAddAttachmentsToSetInput struct {
 
 // String returns the string representation
 func (s AddAttachmentsToSetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -571,7 +571,7 @@ type metadataAddAttachmentsToSetOutput struct {
 
 // String returns the string representation
 func (s AddAttachmentsToSetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -605,7 +605,7 @@ type metadataAddCommunicationToCaseInput struct {
 
 // String returns the string representation
 func (s AddCommunicationToCaseInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -627,7 +627,7 @@ type metadataAddCommunicationToCaseOutput struct {
 
 // String returns the string representation
 func (s AddCommunicationToCaseOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -653,7 +653,7 @@ type metadataAttachment struct {
 
 // String returns the string representation
 func (s Attachment) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -679,7 +679,7 @@ type metadataAttachmentDetails struct {
 
 // String returns the string representation
 func (s AttachmentDetails) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -760,7 +760,7 @@ type metadataCaseDetails struct {
 
 // String returns the string representation
 func (s CaseDetails) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -787,7 +787,7 @@ type metadataCategory struct {
 
 // String returns the string representation
 func (s Category) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -824,7 +824,7 @@ type metadataCommunication struct {
 
 // String returns the string representation
 func (s Communication) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -878,7 +878,7 @@ type metadataCreateCaseInput struct {
 
 // String returns the string representation
 func (s CreateCaseInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -902,7 +902,7 @@ type metadataCreateCaseOutput struct {
 
 // String returns the string representation
 func (s CreateCaseOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -924,7 +924,7 @@ type metadataDescribeAttachmentInput struct {
 
 // String returns the string representation
 func (s DescribeAttachmentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -947,7 +947,7 @@ type metadataDescribeAttachmentOutput struct {
 
 // String returns the string representation
 func (s DescribeAttachmentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -999,7 +999,7 @@ type metadataDescribeCasesInput struct {
 
 // String returns the string representation
 func (s DescribeCasesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1025,7 +1025,7 @@ type metadataDescribeCasesOutput struct {
 
 // String returns the string representation
 func (s DescribeCasesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1061,7 +1061,7 @@ type metadataDescribeCommunicationsInput struct {
 
 // String returns the string representation
 func (s DescribeCommunicationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1086,7 +1086,7 @@ type metadataDescribeCommunicationsOutput struct {
 
 // String returns the string representation
 func (s DescribeCommunicationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1112,7 +1112,7 @@ type metadataDescribeServicesInput struct {
 
 // String returns the string representation
 func (s DescribeServicesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1134,7 +1134,7 @@ type metadataDescribeServicesOutput struct {
 
 // String returns the string representation
 func (s DescribeServicesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1157,7 +1157,7 @@ type metadataDescribeSeverityLevelsInput struct {
 
 // String returns the string representation
 func (s DescribeSeverityLevelsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1180,7 +1180,7 @@ type metadataDescribeSeverityLevelsOutput struct {
 
 // String returns the string representation
 func (s DescribeSeverityLevelsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1201,7 +1201,7 @@ type metadataDescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorCheckRefreshStatusesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1224,7 +1224,7 @@ type metadataDescribeTrustedAdvisorCheckRefreshStatusesOutput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorCheckRefreshStatusesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1250,7 +1250,7 @@ type metadataDescribeTrustedAdvisorCheckResultInput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorCheckResultInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1273,7 +1273,7 @@ type metadataDescribeTrustedAdvisorCheckResultOutput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorCheckResultOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1294,7 +1294,7 @@ type metadataDescribeTrustedAdvisorCheckSummariesInput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorCheckSummariesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1317,7 +1317,7 @@ type metadataDescribeTrustedAdvisorCheckSummariesOutput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorCheckSummariesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1340,7 +1340,7 @@ type metadataDescribeTrustedAdvisorChecksInput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorChecksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1363,7 +1363,7 @@ type metadataDescribeTrustedAdvisorChecksOutput struct {
 
 // String returns the string representation
 func (s DescribeTrustedAdvisorChecksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1388,7 +1388,7 @@ type metadataRecentCaseCommunications struct {
 
 // String returns the string representation
 func (s RecentCaseCommunications) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1409,7 +1409,7 @@ type metadataRefreshTrustedAdvisorCheckInput struct {
 
 // String returns the string representation
 func (s RefreshTrustedAdvisorCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1432,7 +1432,7 @@ type metadataRefreshTrustedAdvisorCheckOutput struct {
 
 // String returns the string representation
 func (s RefreshTrustedAdvisorCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1454,7 +1454,7 @@ type metadataResolveCaseInput struct {
 
 // String returns the string representation
 func (s ResolveCaseInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1479,7 +1479,7 @@ type metadataResolveCaseOutput struct {
 
 // String returns the string representation
 func (s ResolveCaseOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1511,7 +1511,7 @@ type metadataService struct {
 
 // String returns the string representation
 func (s Service) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1538,7 +1538,7 @@ type metadataSeverityLevel struct {
 
 // String returns the string representation
 func (s SeverityLevel) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1562,7 +1562,7 @@ type metadataTrustedAdvisorCategorySpecificSummary struct {
 
 // String returns the string representation
 func (s TrustedAdvisorCategorySpecificSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1601,7 +1601,7 @@ type metadataTrustedAdvisorCheckDescription struct {
 
 // String returns the string representation
 func (s TrustedAdvisorCheckDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1631,7 +1631,7 @@ type metadataTrustedAdvisorCheckRefreshStatus struct {
 
 // String returns the string representation
 func (s TrustedAdvisorCheckRefreshStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1671,7 +1671,7 @@ type metadataTrustedAdvisorCheckResult struct {
 
 // String returns the string representation
 func (s TrustedAdvisorCheckResult) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1712,7 +1712,7 @@ type metadataTrustedAdvisorCheckSummary struct {
 
 // String returns the string representation
 func (s TrustedAdvisorCheckSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1740,7 +1740,7 @@ type metadataTrustedAdvisorCostOptimizingSummary struct {
 
 // String returns the string representation
 func (s TrustedAdvisorCostOptimizingSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1779,7 +1779,7 @@ type metadataTrustedAdvisorResourceDetail struct {
 
 // String returns the string representation
 func (s TrustedAdvisorResourceDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1814,7 +1814,7 @@ type metadataTrustedAdvisorResourcesSummary struct {
 
 // String returns the string representation
 func (s TrustedAdvisorResourcesSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

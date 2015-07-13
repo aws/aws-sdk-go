@@ -49,7 +49,7 @@ func ExampleSQS_AddPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ChangeMessageVisibility() {
@@ -58,7 +58,7 @@ func ExampleSQS_ChangeMessageVisibility() {
 	params := &sqs.ChangeMessageVisibilityInput{
 		QueueURL:          aws.String("String"), // Required
 		ReceiptHandle:     aws.String("String"), // Required
-		VisibilityTimeout: aws.Long(1),          // Required
+		VisibilityTimeout: aws.Int64(1),         // Required
 	}
 	resp, err := svc.ChangeMessageVisibility(params)
 
@@ -78,7 +78,7 @@ func ExampleSQS_ChangeMessageVisibility() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ChangeMessageVisibilityBatch() {
@@ -89,7 +89,7 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 			{ // Required
 				ID:                aws.String("String"), // Required
 				ReceiptHandle:     aws.String("String"), // Required
-				VisibilityTimeout: aws.Long(1),
+				VisibilityTimeout: aws.Int64(1),
 			},
 			// More values...
 		},
@@ -113,7 +113,7 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_CreateQueue() {
@@ -144,7 +144,7 @@ func ExampleSQS_CreateQueue() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_DeleteMessage() {
@@ -172,7 +172,7 @@ func ExampleSQS_DeleteMessage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_DeleteMessageBatch() {
@@ -206,7 +206,7 @@ func ExampleSQS_DeleteMessageBatch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_DeleteQueue() {
@@ -233,7 +233,7 @@ func ExampleSQS_DeleteQueue() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_GetQueueAttributes() {
@@ -264,7 +264,7 @@ func ExampleSQS_GetQueueAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_GetQueueURL() {
@@ -292,7 +292,7 @@ func ExampleSQS_GetQueueURL() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ListDeadLetterSourceQueues() {
@@ -319,7 +319,7 @@ func ExampleSQS_ListDeadLetterSourceQueues() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ListQueues() {
@@ -346,7 +346,7 @@ func ExampleSQS_ListQueues() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_PurgeQueue() {
@@ -373,7 +373,7 @@ func ExampleSQS_PurgeQueue() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ReceiveMessage() {
@@ -385,13 +385,13 @@ func ExampleSQS_ReceiveMessage() {
 			aws.String("QueueAttributeName"), // Required
 			// More values...
 		},
-		MaxNumberOfMessages: aws.Long(1),
+		MaxNumberOfMessages: aws.Int64(1),
 		MessageAttributeNames: []*string{
 			aws.String("MessageAttributeName"), // Required
 			// More values...
 		},
-		VisibilityTimeout: aws.Long(1),
-		WaitTimeSeconds:   aws.Long(1),
+		VisibilityTimeout: aws.Int64(1),
+		WaitTimeSeconds:   aws.Int64(1),
 	}
 	resp, err := svc.ReceiveMessage(params)
 
@@ -411,7 +411,7 @@ func ExampleSQS_ReceiveMessage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_RemovePermission() {
@@ -439,7 +439,7 @@ func ExampleSQS_RemovePermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_SendMessage() {
@@ -448,7 +448,7 @@ func ExampleSQS_SendMessage() {
 	params := &sqs.SendMessageInput{
 		MessageBody:  aws.String("String"), // Required
 		QueueURL:     aws.String("String"), // Required
-		DelaySeconds: aws.Long(1),
+		DelaySeconds: aws.Int64(1),
 		MessageAttributes: map[string]*sqs.MessageAttributeValue{
 			"Key": { // Required
 				DataType: aws.String("String"), // Required
@@ -484,7 +484,7 @@ func ExampleSQS_SendMessage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_SendMessageBatch() {
@@ -495,7 +495,7 @@ func ExampleSQS_SendMessageBatch() {
 			{ // Required
 				ID:           aws.String("String"), // Required
 				MessageBody:  aws.String("String"), // Required
-				DelaySeconds: aws.Long(1),
+				DelaySeconds: aws.Int64(1),
 				MessageAttributes: map[string]*sqs.MessageAttributeValue{
 					"Key": { // Required
 						DataType: aws.String("String"), // Required
@@ -535,7 +535,7 @@ func ExampleSQS_SendMessageBatch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_SetQueueAttributes() {
@@ -566,5 +566,5 @@ func ExampleSQS_SetQueueAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

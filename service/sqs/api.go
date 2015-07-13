@@ -772,7 +772,7 @@ type metadataAddPermissionInput struct {
 
 // String returns the string representation
 func (s AddPermissionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -790,7 +790,7 @@ type metadataAddPermissionOutput struct {
 
 // String returns the string representation
 func (s AddPermissionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -822,7 +822,7 @@ type metadataBatchResultErrorEntry struct {
 
 // String returns the string representation
 func (s BatchResultErrorEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -847,7 +847,7 @@ type metadataChangeMessageVisibilityBatchInput struct {
 
 // String returns the string representation
 func (s ChangeMessageVisibilityBatchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -874,7 +874,7 @@ type metadataChangeMessageVisibilityBatchOutput struct {
 
 // String returns the string representation
 func (s ChangeMessageVisibilityBatchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -915,7 +915,7 @@ type metadataChangeMessageVisibilityBatchRequestEntry struct {
 
 // String returns the string representation
 func (s ChangeMessageVisibilityBatchRequestEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -937,7 +937,7 @@ type metadataChangeMessageVisibilityBatchResultEntry struct {
 
 // String returns the string representation
 func (s ChangeMessageVisibilityBatchResultEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -966,7 +966,7 @@ type metadataChangeMessageVisibilityInput struct {
 
 // String returns the string representation
 func (s ChangeMessageVisibilityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -984,7 +984,7 @@ type metadataChangeMessageVisibilityOutput struct {
 
 // String returns the string representation
 func (s ChangeMessageVisibilityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1029,7 +1029,7 @@ type metadataCreateQueueInput struct {
 
 // String returns the string representation
 func (s CreateQueueInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1051,7 +1051,7 @@ type metadataCreateQueueOutput struct {
 
 // String returns the string representation
 func (s CreateQueueOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1075,7 +1075,7 @@ type metadataDeleteMessageBatchInput struct {
 
 // String returns the string representation
 func (s DeleteMessageBatchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1102,7 +1102,7 @@ type metadataDeleteMessageBatchOutput struct {
 
 // String returns the string representation
 func (s DeleteMessageBatchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1129,7 +1129,7 @@ type metadataDeleteMessageBatchRequestEntry struct {
 
 // String returns the string representation
 func (s DeleteMessageBatchRequestEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1151,7 +1151,7 @@ type metadataDeleteMessageBatchResultEntry struct {
 
 // String returns the string representation
 func (s DeleteMessageBatchResultEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1175,7 +1175,7 @@ type metadataDeleteMessageInput struct {
 
 // String returns the string representation
 func (s DeleteMessageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1193,7 +1193,7 @@ type metadataDeleteMessageOutput struct {
 
 // String returns the string representation
 func (s DeleteMessageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1214,7 +1214,7 @@ type metadataDeleteQueueInput struct {
 
 // String returns the string representation
 func (s DeleteQueueInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1232,7 +1232,7 @@ type metadataDeleteQueueOutput struct {
 
 // String returns the string representation
 func (s DeleteQueueOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1256,7 +1256,7 @@ type metadataGetQueueAttributesInput struct {
 
 // String returns the string representation
 func (s GetQueueAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1278,7 +1278,7 @@ type metadataGetQueueAttributesOutput struct {
 
 // String returns the string representation
 func (s GetQueueAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1303,7 +1303,7 @@ type metadataGetQueueURLInput struct {
 
 // String returns the string representation
 func (s GetQueueURLInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1326,7 +1326,7 @@ type metadataGetQueueURLOutput struct {
 
 // String returns the string representation
 func (s GetQueueURLOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1347,7 +1347,7 @@ type metadataListDeadLetterSourceQueuesInput struct {
 
 // String returns the string representation
 func (s ListDeadLetterSourceQueuesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1370,7 +1370,7 @@ type metadataListDeadLetterSourceQueuesOutput struct {
 
 // String returns the string representation
 func (s ListDeadLetterSourceQueuesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1392,7 +1392,7 @@ type metadataListQueuesInput struct {
 
 // String returns the string representation
 func (s ListQueuesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1414,7 +1414,7 @@ type metadataListQueuesOutput struct {
 
 // String returns the string representation
 func (s ListQueuesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1464,7 +1464,7 @@ type metadataMessage struct {
 
 // String returns the string representation
 func (s Message) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1509,7 +1509,7 @@ type metadataMessageAttributeValue struct {
 
 // String returns the string representation
 func (s MessageAttributeValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1531,7 +1531,7 @@ type metadataPurgeQueueInput struct {
 
 // String returns the string representation
 func (s PurgeQueueInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1549,7 +1549,7 @@ type metadataPurgeQueueOutput struct {
 
 // String returns the string representation
 func (s PurgeQueueOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1615,7 +1615,7 @@ type metadataReceiveMessageInput struct {
 
 // String returns the string representation
 func (s ReceiveMessageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1637,7 +1637,7 @@ type metadataReceiveMessageOutput struct {
 
 // String returns the string representation
 func (s ReceiveMessageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1662,7 +1662,7 @@ type metadataRemovePermissionInput struct {
 
 // String returns the string representation
 func (s RemovePermissionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1680,7 +1680,7 @@ type metadataRemovePermissionOutput struct {
 
 // String returns the string representation
 func (s RemovePermissionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1704,7 +1704,7 @@ type metadataSendMessageBatchInput struct {
 
 // String returns the string representation
 func (s SendMessageBatchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1732,7 +1732,7 @@ type metadataSendMessageBatchOutput struct {
 
 // String returns the string representation
 func (s SendMessageBatchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1766,7 +1766,7 @@ type metadataSendMessageBatchRequestEntry struct {
 
 // String returns the string representation
 func (s SendMessageBatchRequestEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1803,7 +1803,7 @@ type metadataSendMessageBatchResultEntry struct {
 
 // String returns the string representation
 func (s SendMessageBatchResultEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1838,7 +1838,7 @@ type metadataSendMessageInput struct {
 
 // String returns the string representation
 func (s SendMessageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1874,7 +1874,7 @@ type metadataSendMessageOutput struct {
 
 // String returns the string representation
 func (s SendMessageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1921,7 +1921,7 @@ type metadataSetQueueAttributesInput struct {
 
 // String returns the string representation
 func (s SetQueueAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1939,7 +1939,7 @@ type metadataSetQueueAttributesOutput struct {
 
 // String returns the string representation
 func (s SetQueueAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

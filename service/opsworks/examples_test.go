@@ -44,7 +44,7 @@ func ExampleOpsWorks_AssignInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_AssignVolume() {
@@ -72,7 +72,7 @@ func ExampleOpsWorks_AssignVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_AssociateElasticIP() {
@@ -100,7 +100,7 @@ func ExampleOpsWorks_AssociateElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_AttachElasticLoadBalancer() {
@@ -128,7 +128,7 @@ func ExampleOpsWorks_AttachElasticLoadBalancer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CloneStack() {
@@ -144,13 +144,13 @@ func ExampleOpsWorks_CloneStack() {
 		},
 		ChefConfiguration: &opsworks.ChefConfiguration{
 			BerkshelfVersion: aws.String("String"),
-			ManageBerkshelf:  aws.Boolean(true),
+			ManageBerkshelf:  aws.Bool(true),
 		},
 		CloneAppIDs: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
-		ClonePermissions: aws.Boolean(true),
+		ClonePermissions: aws.Bool(true),
 		ConfigurationManager: &opsworks.StackConfigurationManager{
 			Name:    aws.String("String"),
 			Version: aws.String("String"),
@@ -173,8 +173,8 @@ func ExampleOpsWorks_CloneStack() {
 		HostnameTheme:             aws.String("String"),
 		Name:                      aws.String("String"),
 		Region:                    aws.String("String"),
-		UseCustomCookbooks:        aws.Boolean(true),
-		UseOpsWorksSecurityGroups: aws.Boolean(true),
+		UseCustomCookbooks:        aws.Bool(true),
+		UseOpsWorksSecurityGroups: aws.Bool(true),
 		VPCID: aws.String("String"),
 	}
 	resp, err := svc.CloneStack(params)
@@ -195,7 +195,7 @@ func ExampleOpsWorks_CloneStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateApp() {
@@ -230,12 +230,12 @@ func ExampleOpsWorks_CreateApp() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		EnableSSL: aws.Boolean(true),
+		EnableSSL: aws.Bool(true),
 		Environment: []*opsworks.EnvironmentVariable{
 			{ // Required
 				Key:    aws.String("String"), // Required
 				Value:  aws.String("String"), // Required
-				Secure: aws.Boolean(true),
+				Secure: aws.Bool(true),
 			},
 			// More values...
 		},
@@ -264,7 +264,7 @@ func ExampleOpsWorks_CreateApp() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateDeployment() {
@@ -308,7 +308,7 @@ func ExampleOpsWorks_CreateDeployment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateInstance() {
@@ -330,10 +330,10 @@ func ExampleOpsWorks_CreateInstance() {
 			{ // Required
 				DeviceName: aws.String("String"),
 				EBS: &opsworks.EBSBlockDevice{
-					DeleteOnTermination: aws.Boolean(true),
-					IOPS:                aws.Long(1),
+					DeleteOnTermination: aws.Bool(true),
+					IOPS:                aws.Int64(1),
 					SnapshotID:          aws.String("String"),
-					VolumeSize:          aws.Long(1),
+					VolumeSize:          aws.Int64(1),
 					VolumeType:          aws.String("VolumeType"),
 				},
 				NoDevice:    aws.String("String"),
@@ -341,9 +341,9 @@ func ExampleOpsWorks_CreateInstance() {
 			},
 			// More values...
 		},
-		EBSOptimized:         aws.Boolean(true),
+		EBSOptimized:         aws.Bool(true),
 		Hostname:             aws.String("String"),
-		InstallUpdatesOnBoot: aws.Boolean(true),
+		InstallUpdatesOnBoot: aws.Bool(true),
 		Os:                   aws.String("String"),
 		RootDeviceType:       aws.String("RootDeviceType"),
 		SSHKeyName:           aws.String("String"),
@@ -368,7 +368,7 @@ func ExampleOpsWorks_CreateInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateLayer() {
@@ -383,8 +383,8 @@ func ExampleOpsWorks_CreateLayer() {
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
-		AutoAssignElasticIPs:     aws.Boolean(true),
-		AutoAssignPublicIPs:      aws.Boolean(true),
+		AutoAssignElasticIPs:     aws.Bool(true),
+		AutoAssignPublicIPs:      aws.Bool(true),
 		CustomInstanceProfileARN: aws.String("String"),
 		CustomRecipes: &opsworks.Recipes{
 			Configure: []*string{
@@ -412,26 +412,26 @@ func ExampleOpsWorks_CreateLayer() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		EnableAutoHealing:    aws.Boolean(true),
-		InstallUpdatesOnBoot: aws.Boolean(true),
+		EnableAutoHealing:    aws.Bool(true),
+		InstallUpdatesOnBoot: aws.Bool(true),
 		LifecycleEventConfiguration: &opsworks.LifecycleEventConfiguration{
 			Shutdown: &opsworks.ShutdownEventConfiguration{
-				DelayUntilELBConnectionsDrained: aws.Boolean(true),
-				ExecutionTimeout:                aws.Long(1),
+				DelayUntilELBConnectionsDrained: aws.Bool(true),
+				ExecutionTimeout:                aws.Int64(1),
 			},
 		},
 		Packages: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
-		UseEBSOptimizedInstances: aws.Boolean(true),
+		UseEBSOptimizedInstances: aws.Bool(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
 			{ // Required
 				MountPoint:    aws.String("String"), // Required
-				NumberOfDisks: aws.Long(1),          // Required
-				Size:          aws.Long(1),          // Required
-				IOPS:          aws.Long(1),
-				RAIDLevel:     aws.Long(1),
+				NumberOfDisks: aws.Int64(1),         // Required
+				Size:          aws.Int64(1),         // Required
+				IOPS:          aws.Int64(1),
+				RAIDLevel:     aws.Int64(1),
 				VolumeType:    aws.String("String"),
 			},
 			// More values...
@@ -455,7 +455,7 @@ func ExampleOpsWorks_CreateLayer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateStack() {
@@ -473,7 +473,7 @@ func ExampleOpsWorks_CreateStack() {
 		},
 		ChefConfiguration: &opsworks.ChefConfiguration{
 			BerkshelfVersion: aws.String("String"),
-			ManageBerkshelf:  aws.Boolean(true),
+			ManageBerkshelf:  aws.Bool(true),
 		},
 		ConfigurationManager: &opsworks.StackConfigurationManager{
 			Name:    aws.String("String"),
@@ -494,8 +494,8 @@ func ExampleOpsWorks_CreateStack() {
 		DefaultSSHKeyName:         aws.String("String"),
 		DefaultSubnetID:           aws.String("String"),
 		HostnameTheme:             aws.String("String"),
-		UseCustomCookbooks:        aws.Boolean(true),
-		UseOpsWorksSecurityGroups: aws.Boolean(true),
+		UseCustomCookbooks:        aws.Bool(true),
+		UseOpsWorksSecurityGroups: aws.Bool(true),
 		VPCID: aws.String("String"),
 	}
 	resp, err := svc.CreateStack(params)
@@ -516,7 +516,7 @@ func ExampleOpsWorks_CreateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateUserProfile() {
@@ -524,7 +524,7 @@ func ExampleOpsWorks_CreateUserProfile() {
 
 	params := &opsworks.CreateUserProfileInput{
 		IAMUserARN:          aws.String("String"), // Required
-		AllowSelfManagement: aws.Boolean(true),
+		AllowSelfManagement: aws.Bool(true),
 		SSHPublicKey:        aws.String("String"),
 		SSHUsername:         aws.String("String"),
 	}
@@ -546,7 +546,7 @@ func ExampleOpsWorks_CreateUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteApp() {
@@ -573,7 +573,7 @@ func ExampleOpsWorks_DeleteApp() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteInstance() {
@@ -581,8 +581,8 @@ func ExampleOpsWorks_DeleteInstance() {
 
 	params := &opsworks.DeleteInstanceInput{
 		InstanceID:      aws.String("String"), // Required
-		DeleteElasticIP: aws.Boolean(true),
-		DeleteVolumes:   aws.Boolean(true),
+		DeleteElasticIP: aws.Bool(true),
+		DeleteVolumes:   aws.Bool(true),
 	}
 	resp, err := svc.DeleteInstance(params)
 
@@ -602,7 +602,7 @@ func ExampleOpsWorks_DeleteInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteLayer() {
@@ -629,7 +629,7 @@ func ExampleOpsWorks_DeleteLayer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteStack() {
@@ -656,7 +656,7 @@ func ExampleOpsWorks_DeleteStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteUserProfile() {
@@ -683,7 +683,7 @@ func ExampleOpsWorks_DeleteUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterElasticIP() {
@@ -710,7 +710,7 @@ func ExampleOpsWorks_DeregisterElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterInstance() {
@@ -737,7 +737,7 @@ func ExampleOpsWorks_DeregisterInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterRDSDBInstance() {
@@ -764,7 +764,7 @@ func ExampleOpsWorks_DeregisterRDSDBInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterVolume() {
@@ -791,7 +791,7 @@ func ExampleOpsWorks_DeregisterVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeAgentVersions() {
@@ -822,7 +822,7 @@ func ExampleOpsWorks_DescribeAgentVersions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeApps() {
@@ -853,7 +853,7 @@ func ExampleOpsWorks_DescribeApps() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeCommands() {
@@ -885,7 +885,7 @@ func ExampleOpsWorks_DescribeCommands() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeDeployments() {
@@ -917,7 +917,7 @@ func ExampleOpsWorks_DescribeDeployments() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeElasticIPs() {
@@ -949,7 +949,7 @@ func ExampleOpsWorks_DescribeElasticIPs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeElasticLoadBalancers() {
@@ -980,7 +980,7 @@ func ExampleOpsWorks_DescribeElasticLoadBalancers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeInstances() {
@@ -1012,7 +1012,7 @@ func ExampleOpsWorks_DescribeInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeLayers() {
@@ -1043,7 +1043,7 @@ func ExampleOpsWorks_DescribeLayers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeLoadBasedAutoScaling() {
@@ -1073,7 +1073,7 @@ func ExampleOpsWorks_DescribeLoadBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeMyUserProfile() {
@@ -1098,7 +1098,7 @@ func ExampleOpsWorks_DescribeMyUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribePermissions() {
@@ -1126,7 +1126,7 @@ func ExampleOpsWorks_DescribePermissions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeRAIDArrays() {
@@ -1158,7 +1158,7 @@ func ExampleOpsWorks_DescribeRAIDArrays() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeRDSDBInstances() {
@@ -1189,7 +1189,7 @@ func ExampleOpsWorks_DescribeRDSDBInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeServiceErrors() {
@@ -1221,7 +1221,7 @@ func ExampleOpsWorks_DescribeServiceErrors() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeStackProvisioningParameters() {
@@ -1248,7 +1248,7 @@ func ExampleOpsWorks_DescribeStackProvisioningParameters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeStackSummary() {
@@ -1275,7 +1275,7 @@ func ExampleOpsWorks_DescribeStackSummary() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeStacks() {
@@ -1305,7 +1305,7 @@ func ExampleOpsWorks_DescribeStacks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeTimeBasedAutoScaling() {
@@ -1335,7 +1335,7 @@ func ExampleOpsWorks_DescribeTimeBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeUserProfiles() {
@@ -1365,7 +1365,7 @@ func ExampleOpsWorks_DescribeUserProfiles() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeVolumes() {
@@ -1398,7 +1398,7 @@ func ExampleOpsWorks_DescribeVolumes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DetachElasticLoadBalancer() {
@@ -1426,7 +1426,7 @@ func ExampleOpsWorks_DetachElasticLoadBalancer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DisassociateElasticIP() {
@@ -1453,7 +1453,7 @@ func ExampleOpsWorks_DisassociateElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_GetHostnameSuggestion() {
@@ -1480,7 +1480,7 @@ func ExampleOpsWorks_GetHostnameSuggestion() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_GrantAccess() {
@@ -1488,7 +1488,7 @@ func ExampleOpsWorks_GrantAccess() {
 
 	params := &opsworks.GrantAccessInput{
 		InstanceID:        aws.String("String"), // Required
-		ValidForInMinutes: aws.Long(1),
+		ValidForInMinutes: aws.Int64(1),
 	}
 	resp, err := svc.GrantAccess(params)
 
@@ -1508,7 +1508,7 @@ func ExampleOpsWorks_GrantAccess() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RebootInstance() {
@@ -1535,7 +1535,7 @@ func ExampleOpsWorks_RebootInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterElasticIP() {
@@ -1563,7 +1563,7 @@ func ExampleOpsWorks_RegisterElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterInstance() {
@@ -1599,7 +1599,7 @@ func ExampleOpsWorks_RegisterInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterRDSDBInstance() {
@@ -1629,7 +1629,7 @@ func ExampleOpsWorks_RegisterRDSDBInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterVolume() {
@@ -1657,7 +1657,7 @@ func ExampleOpsWorks_RegisterVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_SetLoadBasedAutoScaling() {
@@ -1670,25 +1670,25 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 				aws.String("String"), // Required
 				// More values...
 			},
-			CPUThreshold:       aws.Double(1.0),
-			IgnoreMetricsTime:  aws.Long(1),
-			InstanceCount:      aws.Long(1),
-			LoadThreshold:      aws.Double(1.0),
-			MemoryThreshold:    aws.Double(1.0),
-			ThresholdsWaitTime: aws.Long(1),
+			CPUThreshold:       aws.Float64(1.0),
+			IgnoreMetricsTime:  aws.Int64(1),
+			InstanceCount:      aws.Int64(1),
+			LoadThreshold:      aws.Float64(1.0),
+			MemoryThreshold:    aws.Float64(1.0),
+			ThresholdsWaitTime: aws.Int64(1),
 		},
-		Enable: aws.Boolean(true),
+		Enable: aws.Bool(true),
 		UpScaling: &opsworks.AutoScalingThresholds{
 			Alarms: []*string{
 				aws.String("String"), // Required
 				// More values...
 			},
-			CPUThreshold:       aws.Double(1.0),
-			IgnoreMetricsTime:  aws.Long(1),
-			InstanceCount:      aws.Long(1),
-			LoadThreshold:      aws.Double(1.0),
-			MemoryThreshold:    aws.Double(1.0),
-			ThresholdsWaitTime: aws.Long(1),
+			CPUThreshold:       aws.Float64(1.0),
+			IgnoreMetricsTime:  aws.Int64(1),
+			InstanceCount:      aws.Int64(1),
+			LoadThreshold:      aws.Float64(1.0),
+			MemoryThreshold:    aws.Float64(1.0),
+			ThresholdsWaitTime: aws.Int64(1),
 		},
 	}
 	resp, err := svc.SetLoadBasedAutoScaling(params)
@@ -1709,7 +1709,7 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_SetPermission() {
@@ -1718,8 +1718,8 @@ func ExampleOpsWorks_SetPermission() {
 	params := &opsworks.SetPermissionInput{
 		IAMUserARN: aws.String("String"), // Required
 		StackID:    aws.String("String"), // Required
-		AllowSSH:   aws.Boolean(true),
-		AllowSudo:  aws.Boolean(true),
+		AllowSSH:   aws.Bool(true),
+		AllowSudo:  aws.Bool(true),
 		Level:      aws.String("String"),
 	}
 	resp, err := svc.SetPermission(params)
@@ -1740,7 +1740,7 @@ func ExampleOpsWorks_SetPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_SetTimeBasedAutoScaling() {
@@ -1797,7 +1797,7 @@ func ExampleOpsWorks_SetTimeBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StartInstance() {
@@ -1824,7 +1824,7 @@ func ExampleOpsWorks_StartInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StartStack() {
@@ -1851,7 +1851,7 @@ func ExampleOpsWorks_StartStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StopInstance() {
@@ -1878,7 +1878,7 @@ func ExampleOpsWorks_StopInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StopStack() {
@@ -1905,7 +1905,7 @@ func ExampleOpsWorks_StopStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UnassignInstance() {
@@ -1932,7 +1932,7 @@ func ExampleOpsWorks_UnassignInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UnassignVolume() {
@@ -1959,7 +1959,7 @@ func ExampleOpsWorks_UnassignVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateApp() {
@@ -1992,12 +1992,12 @@ func ExampleOpsWorks_UpdateApp() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		EnableSSL: aws.Boolean(true),
+		EnableSSL: aws.Bool(true),
 		Environment: []*opsworks.EnvironmentVariable{
 			{ // Required
 				Key:    aws.String("String"), // Required
 				Value:  aws.String("String"), // Required
-				Secure: aws.Boolean(true),
+				Secure: aws.Bool(true),
 			},
 			// More values...
 		},
@@ -2027,7 +2027,7 @@ func ExampleOpsWorks_UpdateApp() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateElasticIP() {
@@ -2055,7 +2055,7 @@ func ExampleOpsWorks_UpdateElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateInstance() {
@@ -2067,9 +2067,9 @@ func ExampleOpsWorks_UpdateInstance() {
 		AgentVersion:         aws.String("String"),
 		Architecture:         aws.String("Architecture"),
 		AutoScalingType:      aws.String("AutoScalingType"),
-		EBSOptimized:         aws.Boolean(true),
+		EBSOptimized:         aws.Bool(true),
 		Hostname:             aws.String("String"),
-		InstallUpdatesOnBoot: aws.Boolean(true),
+		InstallUpdatesOnBoot: aws.Bool(true),
 		InstanceType:         aws.String("String"),
 		LayerIDs: []*string{
 			aws.String("String"), // Required
@@ -2096,7 +2096,7 @@ func ExampleOpsWorks_UpdateInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateLayer() {
@@ -2108,8 +2108,8 @@ func ExampleOpsWorks_UpdateLayer() {
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
-		AutoAssignElasticIPs:     aws.Boolean(true),
-		AutoAssignPublicIPs:      aws.Boolean(true),
+		AutoAssignElasticIPs:     aws.Bool(true),
+		AutoAssignPublicIPs:      aws.Bool(true),
 		CustomInstanceProfileARN: aws.String("String"),
 		CustomRecipes: &opsworks.Recipes{
 			Configure: []*string{
@@ -2137,12 +2137,12 @@ func ExampleOpsWorks_UpdateLayer() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		EnableAutoHealing:    aws.Boolean(true),
-		InstallUpdatesOnBoot: aws.Boolean(true),
+		EnableAutoHealing:    aws.Bool(true),
+		InstallUpdatesOnBoot: aws.Bool(true),
 		LifecycleEventConfiguration: &opsworks.LifecycleEventConfiguration{
 			Shutdown: &opsworks.ShutdownEventConfiguration{
-				DelayUntilELBConnectionsDrained: aws.Boolean(true),
-				ExecutionTimeout:                aws.Long(1),
+				DelayUntilELBConnectionsDrained: aws.Bool(true),
+				ExecutionTimeout:                aws.Int64(1),
 			},
 		},
 		Name: aws.String("String"),
@@ -2151,14 +2151,14 @@ func ExampleOpsWorks_UpdateLayer() {
 			// More values...
 		},
 		Shortname:                aws.String("String"),
-		UseEBSOptimizedInstances: aws.Boolean(true),
+		UseEBSOptimizedInstances: aws.Bool(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
 			{ // Required
 				MountPoint:    aws.String("String"), // Required
-				NumberOfDisks: aws.Long(1),          // Required
-				Size:          aws.Long(1),          // Required
-				IOPS:          aws.Long(1),
-				RAIDLevel:     aws.Long(1),
+				NumberOfDisks: aws.Int64(1),         // Required
+				Size:          aws.Int64(1),         // Required
+				IOPS:          aws.Int64(1),
+				RAIDLevel:     aws.Int64(1),
 				VolumeType:    aws.String("String"),
 			},
 			// More values...
@@ -2182,7 +2182,7 @@ func ExampleOpsWorks_UpdateLayer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateMyUserProfile() {
@@ -2209,7 +2209,7 @@ func ExampleOpsWorks_UpdateMyUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateRDSDBInstance() {
@@ -2238,7 +2238,7 @@ func ExampleOpsWorks_UpdateRDSDBInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateStack() {
@@ -2253,7 +2253,7 @@ func ExampleOpsWorks_UpdateStack() {
 		},
 		ChefConfiguration: &opsworks.ChefConfiguration{
 			BerkshelfVersion: aws.String("String"),
-			ManageBerkshelf:  aws.Boolean(true),
+			ManageBerkshelf:  aws.Bool(true),
 		},
 		ConfigurationManager: &opsworks.StackConfigurationManager{
 			Name:    aws.String("String"),
@@ -2277,8 +2277,8 @@ func ExampleOpsWorks_UpdateStack() {
 		HostnameTheme:             aws.String("String"),
 		Name:                      aws.String("String"),
 		ServiceRoleARN:            aws.String("String"),
-		UseCustomCookbooks:        aws.Boolean(true),
-		UseOpsWorksSecurityGroups: aws.Boolean(true),
+		UseCustomCookbooks:        aws.Bool(true),
+		UseOpsWorksSecurityGroups: aws.Bool(true),
 	}
 	resp, err := svc.UpdateStack(params)
 
@@ -2298,7 +2298,7 @@ func ExampleOpsWorks_UpdateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateUserProfile() {
@@ -2306,7 +2306,7 @@ func ExampleOpsWorks_UpdateUserProfile() {
 
 	params := &opsworks.UpdateUserProfileInput{
 		IAMUserARN:          aws.String("String"), // Required
-		AllowSelfManagement: aws.Boolean(true),
+		AllowSelfManagement: aws.Bool(true),
 		SSHPublicKey:        aws.String("String"),
 		SSHUsername:         aws.String("String"),
 	}
@@ -2328,7 +2328,7 @@ func ExampleOpsWorks_UpdateUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateVolume() {
@@ -2357,5 +2357,5 @@ func ExampleOpsWorks_UpdateVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
