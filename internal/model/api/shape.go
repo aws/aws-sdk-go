@@ -299,7 +299,7 @@ func (s *Shape) GoCode() string {
 		code += "SDKShapeTraits bool " + ref.GoTags(true, false)
 		code += "}"
 
-		if (!s.API.NoStringerMethods) {
+		if !s.API.NoStringerMethods {
 			code += s.goCodeStringers()
 		}
 	default:

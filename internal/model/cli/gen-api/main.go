@@ -25,8 +25,8 @@ type generateInfo struct {
 }
 
 var excludeServices = map[string]struct{}{
-	"simpledb":     struct{}{},
-	"importexport": struct{}{},
+	"simpledb":     {},
+	"importexport": {},
 }
 
 // newGenerateInfo initializes the service API's folder structure for a specific service.

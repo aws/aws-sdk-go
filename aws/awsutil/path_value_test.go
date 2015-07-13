@@ -63,6 +63,6 @@ func TestSetValueAtPathSuccess(t *testing.T) {
 	var s2 Struct
 	awsutil.SetValueAtAnyPath(&s2, "b.b.c", "test0")
 	assert.Equal(t, "test0", s2.B.B.C)
-	awsutil.SetValueAtAnyPath(&s2, "A", []Struct{Struct{}})
-	assert.Equal(t, []Struct{Struct{}}, s2.A)
+	awsutil.SetValueAtAnyPath(&s2, "A", []Struct{{}})
+	assert.Equal(t, []Struct{{}}, s2.A)
 }
