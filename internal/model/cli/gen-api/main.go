@@ -115,7 +115,7 @@ func main() {
 	for i := range files {
 		idx := len(files) - 1 - i
 		parts := strings.Split(files[idx], string(filepath.Separator))
-		svc := parts[len(parts)-2] // service name is 2nd-to-last component
+		svc := parts[len(parts)-3] // service name is 2nd-to-last component
 
 		if m[svc] {
 			files[idx] = "" // wipe this one out if we already saw the service
