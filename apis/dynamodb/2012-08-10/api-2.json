@@ -569,7 +569,8 @@
         "KeySchema":{"shape":"KeySchema"},
         "LocalSecondaryIndexes":{"shape":"LocalSecondaryIndexList"},
         "GlobalSecondaryIndexes":{"shape":"GlobalSecondaryIndexList"},
-        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"}
+        "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
+        "StreamSpecification":{"shape":"StreamSpecification"}
       }
     },
     "CreateTableOutput":{
@@ -726,7 +727,8 @@
         "Backfilling":{"shape":"Backfilling"},
         "ProvisionedThroughput":{"shape":"ProvisionedThroughputDescription"},
         "IndexSizeBytes":{"shape":"Long"},
-        "ItemCount":{"shape":"Long"}
+        "ItemCount":{"shape":"Long"},
+        "IndexArn":{"shape":"String"}
       }
     },
     "GlobalSecondaryIndexDescriptionList":{
@@ -917,7 +919,8 @@
         "KeySchema":{"shape":"KeySchema"},
         "Projection":{"shape":"Projection"},
         "IndexSizeBytes":{"shape":"Long"},
-        "ItemCount":{"shape":"Long"}
+        "ItemCount":{"shape":"Long"},
+        "IndexArn":{"shape":"String"}
       }
     },
     "LocalSecondaryIndexDescriptionList":{
@@ -1140,7 +1143,8 @@
         "ProjectionExpression":{"shape":"ProjectionExpression"},
         "FilterExpression":{"shape":"ConditionExpression"},
         "ExpressionAttributeNames":{"shape":"ExpressionAttributeNameMap"},
-        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"}
+        "ExpressionAttributeValues":{"shape":"ExpressionAttributeValueMap"},
+        "ConsistentRead":{"shape":"ConsistentRead"}
       }
     },
     "ScanOutput":{
@@ -1177,6 +1181,29 @@
         "COUNT"
       ]
     },
+    "StreamArn":{
+      "type":"string",
+      "min":37,
+      "max":1024
+    },
+    "StreamEnabled":{"type":"boolean"},
+    "StreamSpecification":{
+      "type":"structure",
+      "members":{
+        "StreamEnabled":{"shape":"StreamEnabled"},
+        "StreamViewType":{"shape":"StreamViewType"}
+      }
+    },
+    "StreamViewType":{
+      "type":"string",
+      "enum":[
+        "NEW_IMAGE",
+        "OLD_IMAGE",
+        "NEW_AND_OLD_IMAGES",
+        "KEYS_ONLY"
+      ]
+    },
+    "String":{"type":"string"},
     "StringAttributeValue":{"type":"string"},
     "StringSetAttributeValue":{
       "type":"list",
@@ -1193,8 +1220,12 @@
         "ProvisionedThroughput":{"shape":"ProvisionedThroughputDescription"},
         "TableSizeBytes":{"shape":"Long"},
         "ItemCount":{"shape":"Long"},
+        "TableArn":{"shape":"String"},
         "LocalSecondaryIndexes":{"shape":"LocalSecondaryIndexDescriptionList"},
-        "GlobalSecondaryIndexes":{"shape":"GlobalSecondaryIndexDescriptionList"}
+        "GlobalSecondaryIndexes":{"shape":"GlobalSecondaryIndexDescriptionList"},
+        "StreamSpecification":{"shape":"StreamSpecification"},
+        "LatestStreamLabel":{"shape":"String"},
+        "LatestStreamArn":{"shape":"StreamArn"}
       }
     },
     "TableName":{
@@ -1264,7 +1295,8 @@
         "AttributeDefinitions":{"shape":"AttributeDefinitions"},
         "TableName":{"shape":"TableName"},
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
-        "GlobalSecondaryIndexUpdates":{"shape":"GlobalSecondaryIndexUpdateList"}
+        "GlobalSecondaryIndexUpdates":{"shape":"GlobalSecondaryIndexUpdateList"},
+        "StreamSpecification":{"shape":"StreamSpecification"}
       }
     },
     "UpdateTableOutput":{

@@ -46,6 +46,9 @@ func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Reque
 // operation returns a value for UnprocessedKeys. You can use this value to
 // retry the operation starting with the next item to get.
 //
+// If you request more than 100 items BatchGetItem will return a ValidationException
+// with the message "Too many items requested for the BatchGetItem call".
+//
 // For example, if you ask to retrieve 100 items, but each individual item
 // is 300 KB in size, the system returns 52 items (so as not to exceed the 16
 // MB limit). It also returns an appropriate UnprocessedKeys value so you can
@@ -154,14 +157,13 @@ func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.R
 // on individual put and delete requests, and BatchWriteItem does not return
 // deleted items in the response.
 //
-// If you use a programming language that supports concurrency, such as Java,
-// you can use threads to write items in parallel. Your application must include
-// the necessary logic to manage the threads. With languages that don't support
-// threading, such as PHP, you must update or delete the specified items one
-// at a time. In both situations, BatchWriteItem provides an alternative where
-// the API performs the specified put and delete operations in parallel, giving
-// you the power of the thread pool approach without having to introduce complexity
-// into your application.
+// If you use a programming language that supports concurrency, you can use
+// threads to write items in parallel. Your application must include the necessary
+// logic to manage the threads. With languages that don't support threading,
+// you must update or delete the specified items one at a time. In both situations,
+// BatchWriteItem provides an alternative where the API performs the specified
+// put and delete operations in parallel, giving you the power of the thread
+// pool approach without having to introduce complexity into your application.
 //
 // Parallel processing reduces latency, but each specified put and delete request
 // consumes the same number of write capacity units whether it is processed
@@ -304,6 +306,10 @@ func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request
 // deletion is complete.
 //
 //  When you delete a table, any indexes on that table are also deleted.
+//
+// If you have DynamoDB Streams enabled on the table, then the corresponding
+// stream on that table goes into the DISABLED state, and the stream is automatically
+// deleted after 24 hours.
 //
 // Use the DescribeTable API to check the status of the table.
 func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, error) {
@@ -505,24 +511,24 @@ func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *Qu
 // Use the KeyConditionExpression parameter to provide a specific hash key
 // value. The Query operation will return all of the items from the table or
 // index with that hash key value. You can optionally narrow the scope of the
-// Query by specifying a range key value and a comparison operator in the KeyConditionExpression.
-// You can use the ScanIndexForward parameter to get results in forward or reverse
-// order, by range key or by index key.
+// Query operation by specifying a range key value and a comparison operator
+// in KeyConditionExpression. You can use the ScanIndexForward parameter to
+// get results in forward or reverse order, by range key or by index key.
 //
 // Queries that do not return results consume the minimum number of read capacity
 // units for that type of read operation.
 //
 // If the total number of items meeting the query criteria exceeds the result
 // set size limit of 1 MB, the query stops and results are returned to the user
-// with LastEvaluatedKey to continue the query in a subsequent operation. Unlike
-// a Scan operation, a Query operation never returns both an empty result set
-// and a LastEvaluatedKey. The LastEvaluatedKey is only provided if the results
-// exceed 1 MB, or if you have used Limit.
+// with the LastEvaluatedKey element to continue the query in a subsequent operation.
+// Unlike a Scan operation, a Query operation never returns both an empty result
+// set and a LastEvaluatedKey value. LastEvaluatedKey is only provided if the
+// results exceed 1 MB, or if you have used the Limit parameter.
 //
 // You can query a table, a local secondary index, or a global secondary index.
-// For a query on a table or on a local secondary index, you can set ConsistentRead
-// to true and obtain a strongly consistent result. Global secondary indexes
-// support eventually consistent reads only, so do not specify ConsistentRead
+// For a query on a table or on a local secondary index, you can set the ConsistentRead
+// parameter to true and obtain a strongly consistent result. Global secondary
+// indexes support eventually consistent reads only, so do not specify ConsistentRead
 // when querying a global secondary index.
 func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 	req, out := c.QueryRequest(input)
@@ -548,7 +554,7 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 		Paginator: &aws.Paginator{
 			InputTokens:     []string{"ExclusiveStartKey"},
 			OutputTokens:    []string{"LastEvaluatedKey"},
-			LimitToken:      "",
+			LimitToken:      "Limit",
 			TruncationToken: "",
 		},
 	}
@@ -573,13 +579,15 @@ func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *Scan
 // the number of items exceeding the limit. A scan can result in no table data
 // meeting the filter criteria.
 //
-// The result set is eventually consistent.
-//
 // By default, Scan operations proceed sequentially; however, for faster performance
 // on a large table or secondary index, applications can request a parallel
 // Scan operation by providing the Segment and TotalSegments parameters. For
 // more information, see Parallel Scan (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/QueryAndScan.html#QueryAndScanParallelScan)
 // in the Amazon DynamoDB Developer Guide.
+//
+// By default, Scan uses eventually consistent reads when acessing the data
+// in the table or local secondary index. However, you can use strongly consistent
+// reads instead by setting the ConsistentRead parameter to true.
 func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 	req, out := c.ScanRequest(input)
 	err := req.Send()
@@ -649,24 +657,24 @@ func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request
 	return
 }
 
-// Updates the provisioned throughput for the given table, or manages the global
-// secondary indexes on the table.
+// Modifies the provisioned throughput settings, global secondary indexes, or
+// DynamoDB Streams settings for a given table.
 //
-// You can increase or decrease the table's provisioned throughput values within
-// the maximums and minimums listed in the Limits (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
-// section in the Amazon DynamoDB Developer Guide.
+// You can only perform one of the following operations at once:
 //
-// In addition, you can use UpdateTable to add, modify or delete global secondary
-// indexes on the table. For more information, see Managing Global Secondary
-// Indexes (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html)
-// in the Amazon DynamoDB Developer Guide.
+//  Modify the provisioned throughput settings of the table.
 //
-// The table must be in the ACTIVE state for UpdateTable to succeed. UpdateTable
-// is an asynchronous operation; while executing the operation, the table is
-// in the UPDATING state. While the table is in the UPDATING state, the table
-// still has the provisioned throughput from before the call. The table's new
-// provisioned throughput settings go into effect when the table returns to
-// the ACTIVE state; at that point, the UpdateTable operation is complete.
+// Enable or disable Streams on the table.
+//
+// Remove a global secondary index from the table.
+//
+//  Create a new global secondary index on the table. Once the index begins
+// backfilling, you can use UpdateTable to perform other operations.
+//
+//   UpdateTable is an asynchronous operation; while it is executing, the table
+// status changes from ACTIVE to UPDATING. While it is UPDATING, you cannot
+// issue another UpdateTable request. When the table returns to the ACTIVE state,
+// the UpdateTable operation is complete.
 func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, error) {
 	req, out := c.UpdateTableRequest(input)
 	err := req.Send()
@@ -894,7 +902,7 @@ type BatchGetItemInput struct {
 	//
 	// #P = :val
 	//
-	//  Tokens that begin with the : character are expression attribute values,
+	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
 	// For more information on expression attribute names, see Accessing Item Attributes
@@ -929,19 +937,30 @@ type BatchGetItemInput struct {
 	// This parameter allows you to retrieve attributes of type List or Map; however,
 	// it cannot retrieve individual elements within a List or a Map.
 	//
-	//  The names of one or more attributes to retrieve. If no attribute names
-	// are provided, then all attributes will be returned. If any of the requested
-	// attributes are not found, they will not appear in the result.
+	// The names of one or more attributes to retrieve. If no attribute names are
+	// provided, then all attributes will be returned. If any of the requested attributes
+	// are not found, they will not appear in the result.
 	//
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
 	RequestItems map[string]*KeysAndAttributes `type:"map" required:"true"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
 	metadataBatchGetItemInput `json:"-" xml:"-"`
@@ -1046,15 +1065,27 @@ type BatchWriteItemInput struct {
 	// attribute definition.
 	RequestItems map[string][]*WriteRequest `type:"map" required:"true"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
-	// A value that if set to SIZE, the response includes statistics about item
-	// collections, if any, that were modified during the operation are returned
-	// in the response. If set to NONE (the default), no statistics are returned.
+	// Determines whether item collection metrics are returned. If set to SIZE,
+	// the response includes statistics about item collections, if any, that were
+	// modified during the operation are returned in the response. If set to NONE
+	// (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string"`
 
 	metadataBatchWriteItemInput `json:"-" xml:"-"`
@@ -1533,6 +1564,28 @@ type CreateTableInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure" required:"true"`
 
+	// The settings for DynamoDB Streams on the table. These settings consist of:
+	//
+	//   StreamEnabled - Indicates whether Streams is to be enabled (true) or disabled
+	// (false).
+	//
+	//   StreamViewType - When an item in the table is modified, StreamViewType
+	// determines what information is written to the table's stream. Valid values
+	// for StreamViewType are:
+	//
+	//  KEYS_ONLY - Only the key attributes of the modified item are written to
+	// the stream.
+	//
+	// NEW_IMAGE - The entire item, as it appears after it was modified, is written
+	// to the stream.
+	//
+	// OLD_IMAGE - The entire item, as it appeared before it was modified, is written
+	// to the stream.
+	//
+	// NEW_AND_OLD_IMAGES - Both the new and the old item images of the item are
+	// written to the stream.
+	StreamSpecification *StreamSpecification `type:"structure"`
+
 	// The name of the table to create.
 	TableName *string `type:"string" required:"true"`
 
@@ -1604,8 +1657,8 @@ type DeleteItemInput struct {
 	//
 	// An expression can contain any of the following:
 	//
-	//   Boolean functions: attribute_exists | attribute_not_exists | contains
-	// | begins_with
+	//   Functions: attribute_exists | attribute_not_exists | attribute_type |
+	// contains | begins_with | size
 	//
 	// These function names are case-sensitive.
 	//
@@ -1867,8 +1920,8 @@ type DeleteItemInput struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -1889,8 +1942,8 @@ type DeleteItemInput struct {
 	//
 	// ProductStatus IN (:avail, :back, :disc)
 	//
-	// For more information on expression attribute values, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
+	// For more information on expression attribute values, see Specifying Conditions
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
@@ -1903,15 +1956,27 @@ type DeleteItemInput struct {
 	// and the range attribute.
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
-	// A value that if set to SIZE, the response includes statistics about item
-	// collections, if any, that were modified during the operation are returned
-	// in the response. If set to NONE (the default), no statistics are returned.
+	// Determines whether item collection metrics are returned. If set to SIZE,
+	// the response includes statistics about item collections, if any, that were
+	// modified during the operation are returned in the response. If set to NONE
+	// (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
@@ -2344,8 +2409,9 @@ type GetItemInput struct {
 	// amount of data that is returned to an application.
 	AttributesToGet []*string `type:"list"`
 
-	// A value that if set to true, then the operation uses strongly consistent
-	// reads; otherwise, eventually consistent reads are used.
+	// Determines the read consistency model: If set to true, then the operation
+	// uses strongly consistent reads; otherwise, the operation uses eventually
+	// consistent reads.
 	ConsistentRead *bool `type:"boolean"`
 
 	// One or more substitution tokens for attribute names in an expression. The
@@ -2379,8 +2445,8 @@ type GetItemInput struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -2407,10 +2473,21 @@ type GetItemInput struct {
 	// ProjectionExpression replaces the legacy AttributesToGet parameter.
 	ProjectionExpression *string `type:"string"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
 	// The name of the table containing the requested item.
@@ -2515,6 +2592,9 @@ type GlobalSecondaryIndexDescription struct {
 	// For indexes that were created during a CreateTable operation, the Backfilling
 	// attribute does not appear in the DescribeTable output.
 	Backfilling *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) that uniquely identifies the index.
+	IndexARN *string `locationName:"IndexArn" type:"string"`
 
 	// The name of the global secondary index.
 	IndexName *string `type:"string"`
@@ -2731,8 +2811,8 @@ type KeysAndAttributes struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -2868,6 +2948,9 @@ func (s LocalSecondaryIndex) GoString() string {
 
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndexDescription struct {
+	// The Amazon Resource Name (ARN) that uniquely identifies the index.
+	IndexARN *string `locationName:"IndexArn" type:"string"`
+
 	// Represents the name of the local secondary index.
 	IndexName *string `type:"string"`
 
@@ -3030,8 +3113,8 @@ type PutItemInput struct {
 	//
 	// An expression can contain any of the following:
 	//
-	//   Boolean functions: attribute_exists | attribute_not_exists | contains
-	// | begins_with
+	//   Functions: attribute_exists | attribute_not_exists | attribute_type |
+	// contains | begins_with | size
 	//
 	// These function names are case-sensitive.
 	//
@@ -3293,8 +3376,8 @@ type PutItemInput struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -3315,8 +3398,8 @@ type PutItemInput struct {
 	//
 	// ProductStatus IN (:avail, :back, :disc)
 	//
-	// For more information on expression attribute values, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
+	// For more information on expression attribute values, see Specifying Conditions
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
@@ -3339,15 +3422,27 @@ type PutItemInput struct {
 	// Each element in the Item map is an AttributeValue object.
 	Item map[string]*AttributeValue `type:"map" required:"true"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
-	// A value that if set to SIZE, the response includes statistics about item
-	// collections, if any, that were modified during the operation are returned
-	// in the response. If set to NONE (the default), no statistics are returned.
+	// Determines whether item collection metrics are returned. If set to SIZE,
+	// the response includes statistics about item collections, if any, that were
+	// modified during the operation are returned in the response. If set to NONE
+	// (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
@@ -3359,6 +3454,8 @@ type PutItemInput struct {
 	//
 	//   ALL_OLD - If PutItem overwrote an attribute name-value pair, then the
 	// content of the old item is returned.
+	//
+	//   Other "Valid Values" are not relevant to PutItem.
 	ReturnValues *string `type:"string"`
 
 	// The name of the table to contain the item.
@@ -3514,12 +3611,13 @@ type QueryInput struct {
 	// This parameter does not support attributes of type List or Map.
 	ConditionalOperator *string `type:"string"`
 
-	// A value that if set to true, then the operation uses strongly consistent
-	// reads; otherwise, eventually consistent reads are used.
+	// Determines the read consistency model: If set to true, then the operation
+	// uses strongly consistent reads; otherwise, the operation uses eventually
+	// consistent reads.
 	//
 	// Strongly consistent reads are not supported on global secondary indexes.
 	// If you query a global secondary index with ConsistentRead set to true, you
-	// will receive an error message.
+	// will receive a ValidationException.
 	ConsistentRead *bool `type:"boolean"`
 
 	// The primary key of the first item that this operation will evaluate. Use
@@ -3560,8 +3658,8 @@ type QueryInput struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -3582,8 +3680,8 @@ type QueryInput struct {
 	//
 	// ProductStatus IN (:avail, :back, :disc)
 	//
-	// For more information on expression attribute values, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
+	// For more information on expression attribute values, see Specifying Conditions
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
@@ -3610,10 +3708,10 @@ type QueryInput struct {
 	// the Query action.
 	//
 	// The condition must perform an equality test on a single hash key value.
-	// The condition can also test for one or more range key values. A Query can
-	// use KeyConditionExpression to retrieve a single item with a given hash and
-	// range key value, or several items that have the same hash key value but different
-	// range key values.
+	// The condition can also perform one of several comparison tests on a single
+	// range key value. Query can use KeyConditionExpression to retrieve one item
+	// with a given hash and range key value, or several items that have the same
+	// hash key value but different range key values.
 	//
 	// The hash key equality test is required, and must be specified in the following
 	// format:
@@ -3642,21 +3740,22 @@ type QueryInput struct {
 	// or equal to :rangeval.
 	//
 	//   rangeAttributeName BETWEEN :rangeval1 AND :rangeval2 - true if the range
-	// key is less than or greater than :rangeval1, and less than or equal to :rangeval2.
+	// key is greater than or equal to :rangeval1, and less than or equal to :rangeval2.
 	//
 	//   begins_with (rangeAttributeName, :rangeval) - true if the range key begins
-	// with a particular operand. Note that the function name begins_with is case-sensitive.
+	// with a particular operand. (You cannot use this function with a range key
+	// that is of type Number.) Note that the function name begins_with is case-sensitive.
 	//
 	//   Use the ExpressionAttributeValues parameter to replace tokens such as
 	// :hashval and :rangeval with actual values at runtime.
 	//
 	// You can optionally use the ExpressionAttributeNames parameter to replace
 	// the names of the hash and range attributes with placeholder tokens. This
-	// might be necessary if an attribute name conflicts with a DynamoDB reserved
-	// word. For example, the following KeyConditionExpression causes an error because
-	// Size is a reserved word:
+	// option might be necessary if an attribute name conflicts with a DynamoDB
+	// reserved word. For example, the following KeyConditionExpression parameter
+	// causes an error because Size is a reserved word:
 	//
-	//   Size = :myval   To work around this, define a placeholder (such a #myval)
+	//   Size = :myval   To work around this, define a placeholder (such a #S)
 	// to represent the attribute name Size. KeyConditionExpression then is as follows:
 	//
 	//   #S = :myval   For a list of reserved words, see Reserved Words (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html)
@@ -3811,7 +3910,7 @@ type QueryInput struct {
 	//
 	// This parameter does not support attributes of type List or Map.
 	//
-	//  A QueryFilter is applied after the items have already been read; the process
+	// A QueryFilter is applied after the items have already been read; the process
 	// of filtering does not consume any additional read capacity units.
 	//
 	// If you provide more than one condition in the QueryFilter map, then by default
@@ -3856,21 +3955,37 @@ type QueryInput struct {
 	// data type.
 	QueryFilter map[string]*Condition `type:"map"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
-	// A value that specifies ascending (true) or descending (false) traversal of
-	// the index. DynamoDB returns results reflecting the requested order determined
-	// by the range key. If the data type is Number, the results are returned in
-	// numeric order. For type String, the results are returned in order of ASCII
-	// character code values. For type Binary, DynamoDB treats each byte of the
-	// binary data as unsigned when it compares binary values.
+	// Specifies the order in which to return the query results - either ascending
+	// (true) or descending (false).
 	//
-	// If ScanIndexForward is not specified, the results are returned in ascending
-	// order.
+	// Items with the same hash key are stored in sorted order by range key .If
+	// the range key data type is Number, the results are stored in numeric order.
+	// For type String, the results are returned in order of ASCII character code
+	// values. For type Binary, DynamoDB treats each byte of the binary data as
+	// unsigned.
+	//
+	// If ScanIndexForward is true, DynamoDB returns the results in order, by range
+	// key. This is the default behavior.
+	//
+	// If ScanIndexForward is false, DynamoDB sorts the results in descending order
+	// by range key, and then returns the results to the client.
 	ScanIndexForward *bool `type:"boolean"`
 
 	// The attributes to be returned in the result. You can retrieve all item attributes,
@@ -4039,6 +4154,25 @@ type ScanInput struct {
 	// This parameter does not support attributes of type List or Map.
 	ConditionalOperator *string `type:"string"`
 
+	// A Boolean value that determines the read consistency model during the scan:
+	//
+	//   If ConsistentRead is false, then Scan will use eventually consistent reads.
+	// The data returned from Scan might not contain the results of other recently
+	// completed write operations (PutItem, UpdateItem or DeleteItem). The Scan
+	// response might include some stale data.
+	//
+	//   If ConsistentRead is true, then Scan will use strongly consistent reads.
+	// All of the write operations that completed before the Scan began are guaranteed
+	// to be contained in the Scan response.
+	//
+	//   The default setting for ConsistentRead is false, meaning that eventually
+	// consistent reads will be used.
+	//
+	// Strongly consistent reads are not supported on global secondary indexes.
+	// If you scan a global secondary index with ConsistentRead set to true, you
+	// will receive a ValidationException.
+	ConsistentRead *bool `type:"boolean"`
+
 	// The primary key of the first item that this operation will evaluate. Use
 	// the value that was returned for LastEvaluatedKey in the previous operation.
 	//
@@ -4081,8 +4215,8 @@ type ScanInput struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -4103,8 +4237,8 @@ type ScanInput struct {
 	//
 	// ProductStatus IN (:avail, :back, :disc)
 	//
-	// For more information on expression attribute values, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
+	// For more information on expression attribute values, see Specifying Conditions
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
@@ -4152,10 +4286,21 @@ type ScanInput struct {
 	// ProjectionExpression replaces the legacy AttributesToGet parameter.
 	ProjectionExpression *string `type:"string"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
@@ -4337,6 +4482,51 @@ func (s ScanOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the DynamoDB Streams configuration for a table in DynamoDB.
+type StreamSpecification struct {
+	// Indicates whether DynamoDB Streams is enabled (true) or disabled (false)
+	// on the table.
+	StreamEnabled *bool `type:"boolean"`
+
+	// The DynamoDB Streams settings for the table. These settings consist of:
+	//
+	//   StreamEnabled - Indicates whether DynamoDB Streams is enabled (true) or
+	// disabled (false) on the table.
+	//
+	//   StreamViewType - When an item in the table is modified, StreamViewType
+	// determines what information is written to the stream for this table. Valid
+	// values for StreamViewType are:
+	//
+	//  KEYS_ONLY - Only the key attributes of the modified item are written to
+	// the stream.
+	//
+	// NEW_IMAGE - The entire item, as it appears after it was modified, is written
+	// to the stream.
+	//
+	// OLD_IMAGE - The entire item, as it appeared before it was modified, is written
+	// to the stream.
+	//
+	// NEW_AND_OLD_IMAGES - Both the new and the old item images of the item are
+	// written to the stream.
+	StreamViewType *string `type:"string"`
+
+	metadataStreamSpecification `json:"-" xml:"-"`
+}
+
+type metadataStreamSpecification struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StreamSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s StreamSpecification) GoString() string {
+	return s.String()
+}
+
 // Represents the properties of a table.
 type TableDescription struct {
 	// An array of AttributeDefinition objects. Each of these objects describes
@@ -4428,6 +4618,24 @@ type TableDescription struct {
 	// in the Amazon DynamoDB Developer Guide.
 	KeySchema []*KeySchemaElement `type:"list"`
 
+	// The Amazon Resource Name (ARN) that uniquely identifies the latest stream
+	// for this table.
+	LatestStreamARN *string `locationName:"LatestStreamArn" type:"string"`
+
+	// A timestamp, in ISO 8601 format, for this stream.
+	//
+	// Note that LatestStreamLabel is not a unique identifier for the stream, because
+	// it is possible that a stream from another table might have the same timestamp.
+	// However, the combination of the following three elements is guaranteed to
+	// be unique:
+	//
+	//  the AWS customer ID.
+	//
+	// the table name.
+	//
+	// the StreamLabel.
+	LatestStreamLabel *string `type:"string"`
+
 	// Represents one or more local secondary indexes on the table. Each index is
 	// scoped to a given hash key value. Tables with one or more local secondary
 	// indexes are subject to an item collection size limit, where the amount of
@@ -4475,6 +4683,12 @@ type TableDescription struct {
 	// The provisioned throughput settings for the table, consisting of read and
 	// write capacity units, along with data about increases and decreases.
 	ProvisionedThroughput *ProvisionedThroughputDescription `type:"structure"`
+
+	// The current DynamoDB Streams configuration for the table.
+	StreamSpecification *StreamSpecification `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that uniquely identifies the table.
+	TableARN *string `locationName:"TableArn" type:"string"`
 
 	// The name of the table.
 	TableName *string `type:"string"`
@@ -4639,8 +4853,8 @@ type UpdateItemInput struct {
 	//
 	// An expression can contain any of the following:
 	//
-	//   Boolean functions: attribute_exists | attribute_not_exists | contains
-	// | begins_with
+	//   Functions: attribute_exists | attribute_not_exists | attribute_type |
+	// contains | begins_with | size
 	//
 	// These function names are case-sensitive.
 	//
@@ -4902,8 +5116,8 @@ type UpdateItemInput struct {
 	// Tokens that begin with the : character are expression attribute values,
 	// which are placeholders for the actual value at runtime.
 	//
-	// For more information on expression attribute names, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ExpressionPlaceholders.html)
+	// For more information on expression attribute names, see Accessing Item Attributes
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.AccessingItemAttributes.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeNames map[string]*string `type:"map"`
 
@@ -4924,8 +5138,8 @@ type UpdateItemInput struct {
 	//
 	// ProductStatus IN (:avail, :back, :disc)
 	//
-	// For more information on expression attribute values, see Using Placeholders
-	// for Attribute Names and Values (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ExpressionPlaceholders.html)
+	// For more information on expression attribute values, see Specifying Conditions
+	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.SpecifyingConditions.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ExpressionAttributeValues map[string]*AttributeValue `type:"map"`
 
@@ -4938,15 +5152,27 @@ type UpdateItemInput struct {
 	// and the range attribute.
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
-	// A value that if set to TOTAL, the response includes ConsumedCapacity data
-	// for tables and indexes. If set to INDEXES, the response includes ConsumedCapacity
-	// for indexes. If set to NONE (the default), ConsumedCapacity is not included
-	// in the response.
+	// Determines the level of detail about provisioned throughput consumption that
+	// is returned in the response:
+	//
+	//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+	// operation, together with ConsumedCapacity for each table and secondary index
+	// that was accessed.
+	//
+	// Note that some operations, such as GetItem and BatchGetItem, do not access
+	// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+	// information for table(s).
+	//
+	//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+	// operation.
+	//
+	// NONE - No ConsumedCapacity details are included in the response.
 	ReturnConsumedCapacity *string `type:"string"`
 
-	// A value that if set to SIZE, the response includes statistics about item
-	// collections, if any, that were modified during the operation are returned
-	// in the response. If set to NONE (the default), no statistics are returned.
+	// Determines whether item collection metrics are returned. If set to SIZE,
+	// the response includes statistics about item collections, if any, that were
+	// modified during the operation are returned in the response. If set to NONE
+	// (the default), no statistics are returned.
 	ReturnItemCollectionMetrics *string `type:"string"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
@@ -4976,7 +5202,8 @@ type UpdateItemInput struct {
 	//
 	//   SET - Adds one or more attributes and values to an item. If any of these
 	// attribute already exist, they are replaced by the new values. You can also
-	// use SET to add or subtract from an attribute that is of type Number.
+	// use SET to add or subtract from an attribute that is of type Number. For
+	// example: SET myNum = myNum + :val
 	//
 	// SET supports the following functions:
 	//
@@ -5031,8 +5258,8 @@ type UpdateItemInput struct {
 	// DELETE action specifies [a,c], then the final attribute value is [b]. Specifying
 	// an empty set is an error.
 	//
-	// The DELETE action only supports Number and set data types. In addition,
-	// DELETE can only be used on top-level attributes, not nested attributes.
+	// The DELETE action only supports set data types. In addition, DELETE can
+	// only be used on top-level attributes, not nested attributes.
 	//
 	//    You can have many actions in a single expression, such as the following:
 	// SET a=:value1, b=:value2 DELETE :value3, :value4, :value5
@@ -5115,6 +5342,9 @@ type UpdateTableInput struct {
 	// secondary index.
 	//
 	// Delete - remove a global secondary index from the table.
+	//
+	//  For more information, see Managing Global Secondary Indexes (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.OnlineOps.html)
+	// in the Amazon DynamoDB Developer Guide.
 	GlobalSecondaryIndexUpdates []*GlobalSecondaryIndexUpdate `type:"list"`
 
 	// Represents the provisioned throughput settings for a specified table or index.
@@ -5124,6 +5354,13 @@ type UpdateTableInput struct {
 	// (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
 	ProvisionedThroughput *ProvisionedThroughput `type:"structure"`
+
+	// Represents the DynamoDB Streams configuration for the table.
+	//
+	//  You will receive a ResourceInUseException if you attempt to enable a stream
+	// on a table that already has a stream, or if you attempt to disable a stream
+	// on a table which does not have a stream.
+	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to be updated.
 	TableName *string `type:"string" required:"true"`

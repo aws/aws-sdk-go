@@ -270,6 +270,10 @@ func ExampleDynamoDB_CreateTable() {
 			},
 			// More values...
 		},
+		StreamSpecification: &dynamodb.StreamSpecification{
+			StreamEnabled:  aws.Boolean(true),
+			StreamViewType: aws.String("StreamViewType"),
+		},
 	}
 	resp, err := svc.CreateTable(params)
 
@@ -1001,6 +1005,7 @@ func ExampleDynamoDB_Scan() {
 			// More values...
 		},
 		ConditionalOperator: aws.String("ConditionalOperator"),
+		ConsistentRead:      aws.Boolean(true),
 		ExclusiveStartKey: map[string]*dynamodb.AttributeValue{
 			"Key": { // Required
 				B:    []byte("PAYLOAD"),
@@ -1408,6 +1413,10 @@ func ExampleDynamoDB_UpdateTable() {
 		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
 			ReadCapacityUnits:  aws.Long(1), // Required
 			WriteCapacityUnits: aws.Long(1), // Required
+		},
+		StreamSpecification: &dynamodb.StreamSpecification{
+			StreamEnabled:  aws.Boolean(true),
+			StreamViewType: aws.String("StreamViewType"),
 		},
 	}
 	resp, err := svc.UpdateTable(params)
