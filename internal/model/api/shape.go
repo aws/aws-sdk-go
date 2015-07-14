@@ -3,6 +3,7 @@ package api
 import (
 	"bytes"
 	"fmt"
+	"path"
 	"sort"
 	"strings"
 	"text/template"
@@ -52,7 +53,8 @@ type Shape struct {
 	LocationName  string
 	XMLNamespace  XMLInfo
 
-	refs []*ShapeRef // References to this shape
+	refs       []*ShapeRef // References to this shape
+	resolvePkg string      // use this package in the goType() if present
 }
 
 // Rename changes the name of the Shape to newName. Also updates
@@ -113,8 +115,15 @@ func (ref *ShapeRef) GoTypeWithPkgName() string {
 func goType(s *Shape, withPkgName bool) string {
 	switch s.Type {
 	case "structure":
-		if withPkgName {
-			return fmt.Sprintf("*%s.%s", s.API.PackageName(), s.ShapeName)
+		if withPkgName || s.resolvePkg != "" {
+			pkg := s.resolvePkg
+			if pkg != "" {
+				s.API.imports[pkg] = true
+				pkg = path.Base(pkg)
+			} else {
+				pkg = s.API.PackageName()
+			}
+			return fmt.Sprintf("*%s.%s", pkg, s.ShapeName)
 		}
 		return "*" + s.ShapeName
 	case "map":
@@ -299,7 +308,7 @@ func (s *Shape) GoCode() string {
 		code += "SDKShapeTraits bool " + ref.GoTags(true, false)
 		code += "}"
 
-		if (!s.API.NoStringerMethods) {
+		if !s.API.NoStringerMethods {
 			code += s.goCodeStringers()
 		}
 	default:
@@ -317,4 +326,9 @@ func (s *Shape) IsRequired(member string) bool {
 		}
 	}
 	return false
+}
+
+// IsInternal returns whether the shape was defined in this package
+func (s *Shape) IsInternal() bool {
+	return s.resolvePkg == ""
 }

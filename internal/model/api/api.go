@@ -35,6 +35,7 @@ type API struct {
 	imports           map[string]bool
 	name              string
 	unrecognizedNames map[string]string
+	path              string
 }
 
 // A Metadata is the metadata about an API's definition.
@@ -192,7 +193,7 @@ var tplAPI = template.Must(template.New("api").Parse(`
 {{ end }}
 
 {{ range $_, $s := .ShapeList }}
-{{ if eq $s.Type "structure" }}{{ $s.GoCode }}{{ end }}
+{{ if and $s.IsInternal (eq $s.Type "structure") }}{{ $s.GoCode }}{{ end }}
 
 {{ end }}
 `))

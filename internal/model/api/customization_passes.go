@@ -1,12 +1,18 @@
 package api
 
-var svcCustomizations = map[string]func(*API){
-	"s3":         s3Customizations,
-	"cloudfront": cloudfrontCustomizations,
-}
+import (
+	"path/filepath"
+	"strings"
+)
 
 // customizationPasses Executes customization logic for the API by package name.
 func (a *API) customizationPasses() {
+	var svcCustomizations = map[string]func(*API){
+		"s3":              s3Customizations,
+		"cloudfront":      cloudfrontCustomizations,
+		"dynamodbstreams": dynamodbstreamsCustomizations,
+	}
+
 	if fn := svcCustomizations[a.PackageName()]; fn != nil {
 		fn(a)
 	}
@@ -35,6 +41,22 @@ func cloudfrontCustomizations(a *API) {
 		if ref, ok := s.MemberRefs["MaxItems"]; ok {
 			ref.ShapeName = "Integer"
 			ref.Shape = a.Shapes["Integer"]
+		}
+	}
+}
+
+// dynamodbstreamsCustomizations references any duplicate shapes from DynamoDB
+func dynamodbstreamsCustomizations(a *API) {
+	p := strings.Replace(a.path, "streams.dynamodb", "dynamodb", -1)
+	file := filepath.Join(p, "api-2.json")
+
+	dbAPI := API{}
+	dbAPI.Attach(file)
+	dbAPI.Setup()
+
+	for n := range a.Shapes {
+		if _, ok := dbAPI.Shapes[n]; ok {
+			a.Shapes[n].resolvePkg = "github.com/aws/aws-sdk-go/service/dynamodb"
 		}
 	}
 }

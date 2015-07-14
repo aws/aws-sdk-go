@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 // Load takes a set of files for each filetype and returns an API pointer.
@@ -24,6 +25,7 @@ func Load(api, docs, paginators, waiters string) *API {
 // Attach opens a file by name, and unmarshal its JSON data.
 // Will proceed to setup the API if not already done so.
 func (a *API) Attach(filename string) {
+	a.path = filepath.Dir(filename)
 	f, err := os.Open(filename)
 	defer f.Close()
 	if err != nil {
