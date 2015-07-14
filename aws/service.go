@@ -138,6 +138,9 @@ var retryableCodes = map[string]struct{}{
 	"RequestError":                           {},
 	"ProvisionedThroughputExceededException": {},
 	"Throttling":                             {},
+	"ThrottlingException":                    {},
+	"RequestLimitExceeded":                   {},
+	"RequestThrottled":                       {},
 }
 
 // credsExpiredCodes is a collection of error codes which signify the credentials
