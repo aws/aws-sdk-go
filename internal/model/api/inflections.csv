@@ -1648,3 +1648,6 @@ Store:
 Stages:
 Inbound:
 Artifacts:
+Trimmed:
+View:
+Dynamodb:DynamoDB
