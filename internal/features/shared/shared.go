@@ -26,11 +26,13 @@ const Imported = true
 
 func init() {
 	if os.Getenv("DEBUG") != "" {
-		aws.DefaultConfig.WithLogLevel(1)
+		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebug)
+	}
+	if os.Getenv("DEBUG_SIGNING") != "" {
+		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning)
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		aws.DefaultConfig.WithLogLevel(1)
-		aws.DefaultConfig.WithLogHTTPBody(true)
+		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
 	}
 
 	When(`^I call the "(.+?)" API$`, func(op string) {

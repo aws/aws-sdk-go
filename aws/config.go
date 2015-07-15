@@ -1,11 +1,11 @@
 package aws
 
 import (
-	"io"
 	"net/http"
 	"os"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awslog"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
@@ -25,6 +25,65 @@ var DefaultChainCredentials = credentials.NewChainCredentials(
 // the service specific retry default will be used.
 const DefaultRetries = -1
 
+// A LogLevel defines the level logging should be performed at. Used to instruct
+// the SDK which statements should be logged.
+type LogLevelType uint
+
+// LogLevel returns the pointer to a LogLevel. Should be used to workaround
+// not being able to take the address of a non-composite literal.
+func LogLevel(l LogLevelType) *LogLevelType {
+	return &l
+}
+
+// Value returns the LogLevel value or the default value LogOff if the LogLevel
+// is nil. Safe to use on nil value LogLevelTypes.
+func (l *LogLevelType) Value() LogLevelType {
+	if l != nil {
+		return *l
+	}
+	return LogOff
+}
+
+// Matches returns true if the v LogLevel is enabled by this LogLevel. Should be
+// used with logging sub levels. Is safe to use on nil value LogLevelTypes. If
+// LogLevel is nill, will default to LogOff comparison.
+func (l *LogLevelType) Matches(v LogLevelType) bool {
+	c := l.Value()
+	return c&v == v
+}
+
+// AtLeast returns true if this LogLevel is at least high enough to satisfies v.
+// Is safe to use on nil value LogLevelTypes. If LogLevel is nill, will default
+// to LogOff comparison.
+func (l *LogLevelType) AtLeast(v LogLevelType) bool {
+	c := l.Value()
+	return c >= v
+}
+
+const (
+	// LogOff states that no logging should be performed by the SDK. This is the
+	// default state of the SDK, and should be use to disable all logging.
+	LogOff LogLevelType = iota * 0x1000
+
+	// LogDebug state that debug output should be logged by the SDK. This should
+	// be used to inspect request made and responses received.
+	LogDebug
+)
+
+// Debug Logging Sub Levels
+const (
+	// LogDebugWithSigning states that the SDK should log request signing and
+	// presigning events. This should be used to log the signing details of
+	// requests for debugging. Will also enable LogDebug.
+	LogDebugWithSigning LogLevelType = LogDebug | (1 << iota)
+
+	// LogDebugWithHTTPBody states the SDK should log HTTP request and response
+	// HTTP bodys in addition to the headers and path. This should be used to
+	// see the body content of requests and responses made while using the SDK
+	// Will also enable LogDebug.
+	LogDebugWithHTTPBody
+)
+
 // DefaultConfig is the default all service configuration will be based off of.
 // By default, all clients use this structure for initialization options unless
 // a custom configuration object is passed in.
@@ -32,11 +91,14 @@ const DefaultRetries = -1
 // You may modify this global structure to change all default configuration
 // in the SDK. Note that configuration options are copied by value, so any
 // modifications must happen before constructing a client.
+
 var DefaultConfig = NewConfig().
 	WithCredentials(DefaultChainCredentials).
 	WithRegion(os.Getenv("AWS_REGION")).
 	WithHTTPClient(http.DefaultClient).
-	WithMaxRetries(DefaultRetries)
+	WithMaxRetries(DefaultRetries).
+	WithLogger(awslog.NewDefaultLogger()).
+	WithLogLevel(LogOff)
 
 // A Config provides service configuration for service clients. By default,
 // all clients will use the {DefaultConfig} structure.
@@ -70,21 +132,14 @@ type Config struct {
 	// `http.DefaultClient`.
 	HTTPClient *http.Client
 
-	// Set this to `true` to also log the body of the HTTP requests made by the
-	// client.
-	//
-	// @note `LogLevel` must be set to a non-zero value in order to activate
-	//   body logging.
-	LogHTTPBody *bool
-
 	// An integer value representing the logging level. The default log level
-	// is zero (0), which represents no logging. Set to a non-zero value to
-	// perform logging.
-	LogLevel *int
+	// is zero (LogOff), which represents no logging. To enable logging set
+	// to a LogLevel Value.
+	LogLevel *LogLevelType
 
 	// The logger writer interface to write logging messages to. Defaults to
 	// standard out.
-	Logger io.Writer
+	Logger awslog.Logger
 
 	// The maximum number of times that a request will be retried for failures.
 	// Defaults to -1, which defers the max retry setting to the service specific
@@ -175,23 +230,16 @@ func (c *Config) WithDisableComputeChecksums(disable bool) *Config {
 	return c
 }
 
-// WithLogHTTPBody sets a config LogHTTPBody value returning a Config pointer
-// for chaining.
-func (c *Config) WithLogHTTPBody(logHTTPBody bool) *Config {
-	c.LogHTTPBody = &logHTTPBody
-	return c
-}
-
 // WithLogLevel sets a config LogLevel value returning a Config pointer for
 // chaining.
-func (c *Config) WithLogLevel(level int) *Config {
+func (c *Config) WithLogLevel(level LogLevelType) *Config {
 	c.LogLevel = &level
 	return c
 }
 
 // WithLogger sets a config Logger value returning a Config pointer for
 // chaining.
-func (c *Config) WithLogger(logger io.Writer) *Config {
+func (c *Config) WithLogger(logger awslog.Logger) *Config {
 	c.Logger = logger
 	return c
 }
@@ -231,10 +279,6 @@ func (c Config) Merge(other *Config) *Config {
 
 	if other.HTTPClient != nil {
 		dst.HTTPClient = other.HTTPClient
-	}
-
-	if other.LogHTTPBody != nil {
-		dst.LogHTTPBody = other.LogHTTPBody
 	}
 
 	if other.LogLevel != nil {
