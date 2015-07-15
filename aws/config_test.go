@@ -2,7 +2,6 @@ package aws
 
 import (
 	"net/http"
-	"os"
 	"reflect"
 	"testing"
 	"time"
@@ -24,9 +23,8 @@ var copyTestConfig = Config{
 	Region:                  String("COPY_TEST_AWS_REGION"),
 	DisableSSL:              Bool(true),
 	HTTPClient:              http.DefaultClient,
-	LogHTTPBody:             Bool(true),
-	LogLevel:                Int(2),
-	Logger:                  os.Stdout,
+	LogLevel:                LogLevel(LogDebug),
+	Logger:                  NewDefaultLogger(),
 	MaxRetries:              Int(DefaultRetries),
 	DisableParamValidation:  Bool(true),
 	DisableComputeChecksums: Bool(true),
@@ -58,9 +56,8 @@ var mergeTestConfig = Config{
 	Region:                  String("MERGE_TEST_AWS_REGION"),
 	DisableSSL:              Bool(true),
 	HTTPClient:              http.DefaultClient,
-	LogHTTPBody:             Bool(true),
-	LogLevel:                Int(2),
-	Logger:                  os.Stdout,
+	LogLevel:                LogLevel(LogDebug),
+	Logger:                  NewDefaultLogger(),
 	MaxRetries:              Int(10),
 	DisableParamValidation:  Bool(true),
 	DisableComputeChecksums: Bool(true),

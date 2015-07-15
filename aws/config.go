@@ -1,7 +1,6 @@
 package aws
 
 import (
-	"io"
 	"net/http"
 	"os"
 	"time"
@@ -36,7 +35,9 @@ var DefaultConfig = NewConfig().
 	WithCredentials(DefaultChainCredentials).
 	WithRegion(os.Getenv("AWS_REGION")).
 	WithHTTPClient(http.DefaultClient).
-	WithMaxRetries(DefaultRetries)
+	WithMaxRetries(DefaultRetries).
+	WithLogger(NewDefaultLogger()).
+	WithLogLevel(LogOff)
 
 // A Config provides service configuration for service clients. By default,
 // all clients will use the {DefaultConfig} structure.
@@ -70,21 +71,14 @@ type Config struct {
 	// `http.DefaultClient`.
 	HTTPClient *http.Client
 
-	// Set this to `true` to also log the body of the HTTP requests made by the
-	// client.
-	//
-	// @note `LogLevel` must be set to a non-zero value in order to activate
-	//   body logging.
-	LogHTTPBody *bool
-
 	// An integer value representing the logging level. The default log level
-	// is zero (0), which represents no logging. Set to a non-zero value to
-	// perform logging.
-	LogLevel *int
+	// is zero (LogOff), which represents no logging. To enable logging set
+	// to a LogLevel Value.
+	LogLevel *LogLevelType
 
 	// The logger writer interface to write logging messages to. Defaults to
 	// standard out.
-	Logger io.Writer
+	Logger Logger
 
 	// The maximum number of times that a request will be retried for failures.
 	// Defaults to -1, which defers the max retry setting to the service specific
@@ -175,23 +169,16 @@ func (c *Config) WithDisableComputeChecksums(disable bool) *Config {
 	return c
 }
 
-// WithLogHTTPBody sets a config LogHTTPBody value returning a Config pointer
-// for chaining.
-func (c *Config) WithLogHTTPBody(logHTTPBody bool) *Config {
-	c.LogHTTPBody = &logHTTPBody
-	return c
-}
-
 // WithLogLevel sets a config LogLevel value returning a Config pointer for
 // chaining.
-func (c *Config) WithLogLevel(level int) *Config {
+func (c *Config) WithLogLevel(level LogLevelType) *Config {
 	c.LogLevel = &level
 	return c
 }
 
 // WithLogger sets a config Logger value returning a Config pointer for
 // chaining.
-func (c *Config) WithLogger(logger io.Writer) *Config {
+func (c *Config) WithLogger(logger Logger) *Config {
 	c.Logger = logger
 	return c
 }
@@ -231,10 +218,6 @@ func (c Config) Merge(other *Config) *Config {
 
 	if other.HTTPClient != nil {
 		dst.HTTPClient = other.HTTPClient
-	}
-
-	if other.LogHTTPBody != nil {
-		dst.LogHTTPBody = other.LogHTTPBody
 	}
 
 	if other.LogLevel != nil {
