@@ -92,30 +92,41 @@ func (s *Service) buildEndpoint() {
 // AddDebugHandlers injects debug logging handlers into the service to log request
 // debug information.
 func (s *Service) AddDebugHandlers() {
-	out := s.Config.Logger
-	if IntValue(s.Config.LogLevel) == 0 {
+	if !s.Config.LogLevel.AtLeast(LogDebug) {
 		return
 	}
 
-	s.Handlers.Send.PushFront(func(r *Request) {
-		logBody := BoolValue(r.Config.LogHTTPBody)
-		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+	s.Handlers.Send.PushFront(logRequest)
+	s.Handlers.Send.PushBack(logResponse)
+}
 
-		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
-		fmt.Fprintf(out, "%s\n", string(dumpedBody))
-		fmt.Fprintf(out, "-----------------------------------------------------\n")
-	})
-	s.Handlers.Send.PushBack(func(r *Request) {
-		fmt.Fprintf(out, "---[ RESPONSE ]--------------------------------------\n")
-		if r.HTTPResponse != nil {
-			logBody := BoolValue(r.Config.LogHTTPBody)
-			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
-			fmt.Fprintf(out, "%s\n", string(dumpedBody))
-		} else if r.Error != nil {
-			fmt.Fprintf(out, "%s\n", r.Error)
-		}
-		fmt.Fprintf(out, "-----------------------------------------------------\n")
-	})
+const logReqMsg = `DEBUG: Request %s/%s Details:
+---[ REQUEST POST-SIGN ]-----------------------------
+%s
+-----------------------------------------------------`
+
+func logRequest(r *Request) {
+	logBody := r.Config.LogLevel.Matches(LogDebugWithHTTPBody)
+	dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+
+	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ServiceName, r.Operation.Name, string(dumpedBody)))
+}
+
+const logRespMsg = `DEBUG: Response %s/%s Details:
+---[ RESPONSE ]--------------------------------------
+%s
+-----------------------------------------------------`
+
+func logResponse(r *Request) {
+	var msg = "no reponse data"
+	if r.HTTPResponse != nil {
+		logBody := r.Config.LogLevel.Matches(LogDebugWithHTTPBody)
+		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
+		msg = string(dumpedBody)
+	} else if r.Error != nil {
+		msg = r.Error.Error()
+	}
+	r.Config.Logger.Log(fmt.Sprintf(logRespMsg, r.ServiceName, r.Operation.Name, msg))
 }
 
 // MaxRetries returns the number of maximum returns the service will use to make
