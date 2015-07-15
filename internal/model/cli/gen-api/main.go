@@ -25,7 +25,6 @@ type generateInfo struct {
 }
 
 var excludeServices = map[string]struct{}{
-	"simpledb":     struct{}{},
 	"importexport": struct{}{},
 }
 

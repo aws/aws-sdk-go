@@ -239,8 +239,9 @@ func New(config *aws.Config) *{{ .StructName }} {
 	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
+	service.Handlers.Sign.PushBack({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.Sign)
+	{{if eq .Metadata.SignatureVersion "v2"}}service.Handlers.Sign.PushBack(aws.BuildContentLength)
+	{{end}}service.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
 	service.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
 	service.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
 	service.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
@@ -272,7 +273,11 @@ func (c *{{ .StructName }}) newRequest(op *aws.Operation, params, data interface
 // ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
-	a.imports["github.com/aws/aws-sdk-go/internal/signer/v4"] = true
+	if a.Metadata.SignatureVersion == "v2" {
+		a.imports["github.com/aws/aws-sdk-go/internal/signer/v2"] = true
+	} else {
+		a.imports["github.com/aws/aws-sdk-go/internal/signer/v4"] = true
+	}
 	a.imports["github.com/aws/aws-sdk-go/internal/protocol/"+a.ProtocolPackage()] = true
 
 	var buf bytes.Buffer
