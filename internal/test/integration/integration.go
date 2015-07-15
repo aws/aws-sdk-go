@@ -21,11 +21,13 @@ const Imported = true
 
 func init() {
 	if os.Getenv("DEBUG") != "" {
-		aws.DefaultConfig.LogLevel = 1
+		aws.DefaultConfig.LogLevel = aws.LogDebug
+	}
+	if os.Getenv("DEBUG_SIGNING") != "" {
+		aws.DefaultConfig.LogLevel = aws.LogDebugWithSigning
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		aws.DefaultConfig.LogLevel = 1
-		aws.DefaultConfig.LogHTTPBody = true
+		aws.DefaultConfig.LogLevel = aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody
 	}
 
 	if aws.DefaultConfig.Region == "" {
