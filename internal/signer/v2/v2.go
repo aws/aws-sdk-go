@@ -115,7 +115,7 @@ func (v2 *signer) Sign() error {
 
 	// obtain all of the query keys and sort them
 	queryKeys := make([]string, 0, len(v2.Query))
-	for key, _ := range v2.Query {
+	for key := range v2.Query {
 		queryKeys = append(queryKeys, key)
 	}
 	sort.Strings(queryKeys)
