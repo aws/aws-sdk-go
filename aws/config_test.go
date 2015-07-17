@@ -2,11 +2,11 @@ package aws
 
 import (
 	"net/http"
-	"os"
 	"reflect"
 	"testing"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awslog"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
@@ -24,9 +24,8 @@ var copyTestConfig = Config{
 	Region:                  "COPY_TEST_AWS_REGION",
 	DisableSSL:              true,
 	HTTPClient:              http.DefaultClient,
-	LogHTTPBody:             true,
-	LogLevel:                2,
-	Logger:                  os.Stdout,
+	LogLevel:                LogDebug,
+	Logger:                  awslog.NewDefaultLogger(),
 	MaxRetries:              DefaultRetries,
 	DisableParamValidation:  true,
 	DisableComputeChecksums: true,
@@ -58,9 +57,8 @@ var mergeTestConfig = Config{
 	Region:                  "MERGE_TEST_AWS_REGION",
 	DisableSSL:              true,
 	HTTPClient:              http.DefaultClient,
-	LogHTTPBody:             true,
-	LogLevel:                2,
-	Logger:                  os.Stdout,
+	LogLevel:                LogDebug,
+	Logger:                  awslog.NewDefaultLogger(),
 	MaxRetries:              10,
 	DisableParamValidation:  true,
 	DisableComputeChecksums: true,
