@@ -8,7 +8,19 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// ELB is a client for Elastic Load Balancing.
+// Elastic Load Balancing distributes incoming traffic across your EC2 instances.
+//
+// For information about the features of Elastic Load Balancing, see What Is
+// Elastic Load Balancing? (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elastic-load-balancing.html)
+// in the Elastic Load Balancing Developer Guide.
+//
+// For information about the AWS regions supported by Elastic Load Balancing,
+// see Regions and Endpoints - Elastic Load Balancing (http://docs.aws.amazon.com/general/latest/gr/rande.html#elb_region)
+// in the Amazon Web Services General Reference.
+//
+// All Elastic Load Balancing operations are idempotent, which means that they
+// complete at most one time. If you repeat an operation, it succeeds with a
+// 200 OK response code.
 type ELB struct {
 	*aws.Service
 }
