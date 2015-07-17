@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -43,7 +44,7 @@ func TestStatusCodeError(t *testing.T) {
 			}
 		})
 		_, err := s.PutBucketACL(&s3.PutBucketACLInput{
-			Bucket: aws.String("bucket"), ACL: aws.String("public-read"),
+			Bucket: awsconv.String("bucket"), ACL: awsconv.String("public-read"),
 		})
 
 		assert.Error(t, err)

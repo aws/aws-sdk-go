@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/kinesis"
@@ -20,9 +20,9 @@ func ExampleKinesis_AddTagsToStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.AddTagsToStreamInput{
-		StreamName: aws.String("StreamName"), // Required
+		StreamName: awsconv.String("StreamName"), // Required
 		Tags: map[string]*string{ // Required
-			"Key": aws.String("TagValue"), // Required
+			"Key": awsconv.String("TagValue"), // Required
 			// More values...
 		},
 	}
@@ -51,8 +51,8 @@ func ExampleKinesis_CreateStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.CreateStreamInput{
-		ShardCount: aws.Int64(1),             // Required
-		StreamName: aws.String("StreamName"), // Required
+		ShardCount: awsconv.Int64(1),             // Required
+		StreamName: awsconv.String("StreamName"), // Required
 	}
 	resp, err := svc.CreateStream(params)
 
@@ -79,7 +79,7 @@ func ExampleKinesis_DeleteStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.DeleteStreamInput{
-		StreamName: aws.String("StreamName"), // Required
+		StreamName: awsconv.String("StreamName"), // Required
 	}
 	resp, err := svc.DeleteStream(params)
 
@@ -106,9 +106,9 @@ func ExampleKinesis_DescribeStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.DescribeStreamInput{
-		StreamName:            aws.String("StreamName"), // Required
-		ExclusiveStartShardID: aws.String("ShardId"),
-		Limit: aws.Int64(1),
+		StreamName:            awsconv.String("StreamName"), // Required
+		ExclusiveStartShardID: awsconv.String("ShardId"),
+		Limit: awsconv.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
 
@@ -135,8 +135,8 @@ func ExampleKinesis_GetRecords() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.GetRecordsInput{
-		ShardIterator: aws.String("ShardIterator"), // Required
-		Limit:         aws.Int64(1),
+		ShardIterator: awsconv.String("ShardIterator"), // Required
+		Limit:         awsconv.Int64(1),
 	}
 	resp, err := svc.GetRecords(params)
 
@@ -163,10 +163,10 @@ func ExampleKinesis_GetShardIterator() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.GetShardIteratorInput{
-		ShardID:                aws.String("ShardId"),           // Required
-		ShardIteratorType:      aws.String("ShardIteratorType"), // Required
-		StreamName:             aws.String("StreamName"),        // Required
-		StartingSequenceNumber: aws.String("SequenceNumber"),
+		ShardID:                awsconv.String("ShardId"),           // Required
+		ShardIteratorType:      awsconv.String("ShardIteratorType"), // Required
+		StreamName:             awsconv.String("StreamName"),        // Required
+		StartingSequenceNumber: awsconv.String("SequenceNumber"),
 	}
 	resp, err := svc.GetShardIterator(params)
 
@@ -193,8 +193,8 @@ func ExampleKinesis_ListStreams() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.ListStreamsInput{
-		ExclusiveStartStreamName: aws.String("StreamName"),
-		Limit: aws.Int64(1),
+		ExclusiveStartStreamName: awsconv.String("StreamName"),
+		Limit: awsconv.Int64(1),
 	}
 	resp, err := svc.ListStreams(params)
 
@@ -221,9 +221,9 @@ func ExampleKinesis_ListTagsForStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.ListTagsForStreamInput{
-		StreamName:           aws.String("StreamName"), // Required
-		ExclusiveStartTagKey: aws.String("TagKey"),
-		Limit:                aws.Int64(1),
+		StreamName:           awsconv.String("StreamName"), // Required
+		ExclusiveStartTagKey: awsconv.String("TagKey"),
+		Limit:                awsconv.Int64(1),
 	}
 	resp, err := svc.ListTagsForStream(params)
 
@@ -250,9 +250,9 @@ func ExampleKinesis_MergeShards() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.MergeShardsInput{
-		AdjacentShardToMerge: aws.String("ShardId"),    // Required
-		ShardToMerge:         aws.String("ShardId"),    // Required
-		StreamName:           aws.String("StreamName"), // Required
+		AdjacentShardToMerge: awsconv.String("ShardId"),    // Required
+		ShardToMerge:         awsconv.String("ShardId"),    // Required
+		StreamName:           awsconv.String("StreamName"), // Required
 	}
 	resp, err := svc.MergeShards(params)
 
@@ -279,11 +279,11 @@ func ExampleKinesis_PutRecord() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.PutRecordInput{
-		Data:                      []byte("PAYLOAD"),          // Required
-		PartitionKey:              aws.String("PartitionKey"), // Required
-		StreamName:                aws.String("StreamName"),   // Required
-		ExplicitHashKey:           aws.String("HashKey"),
-		SequenceNumberForOrdering: aws.String("SequenceNumber"),
+		Data:                      []byte("PAYLOAD"),              // Required
+		PartitionKey:              awsconv.String("PartitionKey"), // Required
+		StreamName:                awsconv.String("StreamName"),   // Required
+		ExplicitHashKey:           awsconv.String("HashKey"),
+		SequenceNumberForOrdering: awsconv.String("SequenceNumber"),
 	}
 	resp, err := svc.PutRecord(params)
 
@@ -312,13 +312,13 @@ func ExampleKinesis_PutRecords() {
 	params := &kinesis.PutRecordsInput{
 		Records: []*kinesis.PutRecordsRequestEntry{ // Required
 			{ // Required
-				Data:            []byte("PAYLOAD"),          // Required
-				PartitionKey:    aws.String("PartitionKey"), // Required
-				ExplicitHashKey: aws.String("HashKey"),
+				Data:            []byte("PAYLOAD"),              // Required
+				PartitionKey:    awsconv.String("PartitionKey"), // Required
+				ExplicitHashKey: awsconv.String("HashKey"),
 			},
 			// More values...
 		},
-		StreamName: aws.String("StreamName"), // Required
+		StreamName: awsconv.String("StreamName"), // Required
 	}
 	resp, err := svc.PutRecords(params)
 
@@ -345,9 +345,9 @@ func ExampleKinesis_RemoveTagsFromStream() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.RemoveTagsFromStreamInput{
-		StreamName: aws.String("StreamName"), // Required
+		StreamName: awsconv.String("StreamName"), // Required
 		TagKeys: []*string{ // Required
-			aws.String("TagKey"), // Required
+			awsconv.String("TagKey"), // Required
 			// More values...
 		},
 	}
@@ -376,9 +376,9 @@ func ExampleKinesis_SplitShard() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.SplitShardInput{
-		NewStartingHashKey: aws.String("HashKey"),    // Required
-		ShardToSplit:       aws.String("ShardId"),    // Required
-		StreamName:         aws.String("StreamName"), // Required
+		NewStartingHashKey: awsconv.String("HashKey"),    // Required
+		ShardToSplit:       awsconv.String("ShardId"),    // Required
+		StreamName:         awsconv.String("StreamName"), // Required
 	}
 	resp, err := svc.SplitShard(params)
 

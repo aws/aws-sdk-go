@@ -14,11 +14,11 @@ import (
 	"strings"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
+	"github.com/aws/aws-sdk-go/aws/awslog"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/internal/protocol/rest"
-
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awslog"
 )
 
 const (
@@ -74,7 +74,7 @@ func Sign(req *aws.Request) {
 
 	region := req.Service.SigningRegion
 	if region == "" {
-		region = aws.StringValue(req.Service.Config.Region)
+		region = awsconv.StringValue(req.Service.Config.Region)
 	}
 
 	name := req.Service.SigningName

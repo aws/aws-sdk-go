@@ -53,6 +53,7 @@ var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
+var _ = awsconv.String
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -74,6 +75,7 @@ var extraImports = []string{
 	"time",
 	"net/url",
 	"",
+	"github.com/aws/aws-sdk-go/aws/awsconv",
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil",
 	"github.com/aws/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",

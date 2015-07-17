@@ -6,6 +6,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awslog"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
@@ -20,16 +21,16 @@ var testCredentials = credentials.NewChainCredentials([]credentials.Provider{
 
 var copyTestConfig = Config{
 	Credentials:             testCredentials,
-	Endpoint:                String("CopyTestEndpoint"),
-	Region:                  String("COPY_TEST_AWS_REGION"),
-	DisableSSL:              Bool(true),
+	Endpoint:                awsconv.String("CopyTestEndpoint"),
+	Region:                  awsconv.String("COPY_TEST_AWS_REGION"),
+	DisableSSL:              awsconv.Bool(true),
 	HTTPClient:              http.DefaultClient,
 	LogLevel:                LogLevel(LogDebug),
 	Logger:                  awslog.NewDefaultLogger(),
-	MaxRetries:              Int(DefaultRetries),
-	DisableParamValidation:  Bool(true),
-	DisableComputeChecksums: Bool(true),
-	S3ForcePathStyle:        Bool(true),
+	MaxRetries:              awsconv.Int(DefaultRetries),
+	DisableParamValidation:  awsconv.Bool(true),
+	DisableComputeChecksums: awsconv.Bool(true),
+	S3ForcePathStyle:        awsconv.Bool(true),
 }
 
 func TestCopy(t *testing.T) {
@@ -53,16 +54,16 @@ var mergeTestZeroValueConfig = Config{}
 
 var mergeTestConfig = Config{
 	Credentials:             testCredentials,
-	Endpoint:                String("MergeTestEndpoint"),
-	Region:                  String("MERGE_TEST_AWS_REGION"),
-	DisableSSL:              Bool(true),
+	Endpoint:                awsconv.String("MergeTestEndpoint"),
+	Region:                  awsconv.String("MERGE_TEST_AWS_REGION"),
+	DisableSSL:              awsconv.Bool(true),
 	HTTPClient:              http.DefaultClient,
 	LogLevel:                LogLevel(LogDebug),
 	Logger:                  awslog.NewDefaultLogger(),
-	MaxRetries:              Int(10),
-	DisableParamValidation:  Bool(true),
-	DisableComputeChecksums: Bool(true),
-	S3ForcePathStyle:        Bool(true),
+	MaxRetries:              awsconv.Int(10),
+	DisableParamValidation:  awsconv.Bool(true),
+	DisableComputeChecksums: awsconv.Bool(true),
+	S3ForcePathStyle:        awsconv.Bool(true),
 }
 
 var mergeTests = []struct {

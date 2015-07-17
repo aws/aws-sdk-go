@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/protocol/ec2query"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
@@ -29,6 +30,7 @@ var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
+var _ = awsconv.String
 
 type InputService1ProtocolTest struct {
 	*aws.Service
@@ -639,8 +641,8 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService1TestShapeInputShape{
-		Bar: aws.String("val2"),
-		Foo: aws.String("val1"),
+		Bar: awsconv.String("val2"),
+		Foo: awsconv.String("val1"),
 	}
 	req, _ := svc.InputService1TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -666,9 +668,9 @@ func TestInputService2ProtocolTestStructureWithLocationNameAndQueryNameAppliedTo
 	svc.Endpoint = "https://test"
 
 	input := &InputService2TestShapeInputShape{
-		Bar:  aws.String("val2"),
-		Foo:  aws.String("val1"),
-		Yuck: aws.String("val3"),
+		Bar:  awsconv.String("val2"),
+		Foo:  awsconv.String("val1"),
+		Yuck: awsconv.String("val3"),
 	}
 	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -695,7 +697,7 @@ func TestInputService3ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 
 	input := &InputService3TestShapeInputShape{
 		StructArg: &InputService3TestShapeStructType{
-			ScalarArg: aws.String("foo"),
+			ScalarArg: awsconv.String("foo"),
 		},
 	}
 	req, _ := svc.InputService3TestCaseOperation1Request(input)
@@ -723,9 +725,9 @@ func TestInputService4ProtocolTestListTypesCase1(t *testing.T) {
 
 	input := &InputService4TestShapeInputShape{
 		ListArg: []*string{
-			aws.String("foo"),
-			aws.String("bar"),
-			aws.String("baz"),
+			awsconv.String("foo"),
+			awsconv.String("bar"),
+			awsconv.String("baz"),
 		},
 	}
 	req, _ := svc.InputService4TestCaseOperation1Request(input)
@@ -753,9 +755,9 @@ func TestInputService5ProtocolTestListWithLocationNameAppliedToMemberCase1(t *te
 
 	input := &InputService5TestShapeInputShape{
 		ListArg: []*string{
-			aws.String("a"),
-			aws.String("b"),
-			aws.String("c"),
+			awsconv.String("a"),
+			awsconv.String("b"),
+			awsconv.String("c"),
 		},
 	}
 	req, _ := svc.InputService5TestCaseOperation1Request(input)
@@ -783,9 +785,9 @@ func TestInputService6ProtocolTestListWithLocationNameAndQueryNameCase1(t *testi
 
 	input := &InputService6TestShapeInputShape{
 		ListArg: []*string{
-			aws.String("a"),
-			aws.String("b"),
-			aws.String("c"),
+			awsconv.String("a"),
+			awsconv.String("b"),
+			awsconv.String("c"),
 		},
 	}
 	req, _ := svc.InputService6TestCaseOperation1Request(input)
@@ -838,7 +840,7 @@ func TestInputService8ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService8TestShapeInputShape{
-		TimeArg: aws.Time(time.Unix(1422172800, 0)),
+		TimeArg: awsconv.Time(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService8TestCaseOperation1Request(input)
 	r := req.HTTPRequest

@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/endpoints"
 )
@@ -65,23 +66,23 @@ func (s *Service) Initialize() {
 	s.AddDebugHandlers()
 	s.buildEndpoint()
 
-	if !BoolValue(s.Config.DisableParamValidation) {
+	if !awsconv.BoolValue(s.Config.DisableParamValidation) {
 		s.Handlers.Validate.PushBack(ValidateParameters)
 	}
 }
 
 // buildEndpoint builds the endpoint values the service will use to make requests with.
 func (s *Service) buildEndpoint() {
-	if StringValue(s.Config.Endpoint) != "" {
+	if awsconv.StringValue(s.Config.Endpoint) != "" {
 		s.Endpoint = *s.Config.Endpoint
 	} else {
 		s.Endpoint, s.SigningRegion =
-			endpoints.EndpointForRegion(s.ServiceName, StringValue(s.Config.Region))
+			endpoints.EndpointForRegion(s.ServiceName, awsconv.StringValue(s.Config.Region))
 	}
 
 	if s.Endpoint != "" && !schemeRE.MatchString(s.Endpoint) {
 		scheme := "https"
-		if BoolValue(s.Config.DisableSSL) {
+		if awsconv.BoolValue(s.Config.DisableSSL) {
 			scheme = "http"
 		}
 		s.Endpoint = scheme + "://" + s.Endpoint
@@ -131,10 +132,10 @@ func logResponse(r *Request) {
 // MaxRetries returns the number of maximum returns the service will use to make
 // an individual API request.
 func (s *Service) MaxRetries() uint {
-	if IntValue(s.Config.MaxRetries) < 0 {
+	if awsconv.IntValue(s.Config.MaxRetries) < 0 {
 		return s.DefaultMaxRetries
 	}
-	return uint(IntValue(s.Config.MaxRetries))
+	return uint(awsconv.IntValue(s.Config.MaxRetries))
 }
 
 // retryRules returns the delay duration before retrying this request again

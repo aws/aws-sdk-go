@@ -297,7 +297,7 @@ func (a *API) ExampleGoCode() string {
 		"bytes",
 		"fmt",
 		"time",
-		"github.com/aws/aws-sdk-go/aws",
+		"github.com/aws/aws-sdk-go/aws/awsconv",
 		"github.com/aws/aws-sdk-go/aws/awserr",
 		"github.com/aws/aws-sdk-go/aws/awsutil",
 		"github.com/aws/aws-sdk-go/service/"+a.PackageName(),

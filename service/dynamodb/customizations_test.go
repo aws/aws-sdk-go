@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -19,7 +20,7 @@ var db *dynamodb.DynamoDB
 
 func TestMain(m *testing.M) {
 	db = dynamodb.New(&aws.Config{
-		MaxRetries: aws.Int(2),
+		MaxRetries: awsconv.Int(2),
 	})
 	db.Handlers.Send.Clear() // mock sending
 
@@ -43,7 +44,7 @@ func mockCRCResponse(svc *dynamodb.DynamoDB, status int, body, crc string) (req 
 }
 
 func TestCustomRetryRules(t *testing.T) {
-	d := dynamodb.New(&aws.Config{MaxRetries: aws.Int(-1)})
+	d := dynamodb.New(&aws.Config{MaxRetries: awsconv.Int(-1)})
 	assert.Equal(t, d.MaxRetries(), uint(10))
 }
 
@@ -83,8 +84,8 @@ func TestValidateCRC32DoesNotMatch(t *testing.T) {
 
 func TestValidateCRC32DoesNotMatchNoComputeChecksum(t *testing.T) {
 	svc := dynamodb.New(&aws.Config{
-		MaxRetries:              aws.Int(2),
-		DisableComputeChecksums: aws.Bool(true),
+		MaxRetries:              awsconv.Int(2),
+		DisableComputeChecksums: awsconv.Bool(true),
 	})
 	svc.Handlers.Send.Clear() // mock sending
 

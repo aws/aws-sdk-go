@@ -8,7 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// MobileAnalytics is a client for Amazon Mobile Analytics.
+// Amazon Mobile Analytics is a service for collecting, visualizing, and understanding
+// app usage data at scale.
 type MobileAnalytics struct {
 	*aws.Service
 }

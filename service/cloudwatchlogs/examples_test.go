@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
@@ -20,7 +20,7 @@ func ExampleCloudWatchLogs_CreateLogGroup() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.CreateLogGroupInput{
-		LogGroupName: aws.String("LogGroupName"), // Required
+		LogGroupName: awsconv.String("LogGroupName"), // Required
 	}
 	resp, err := svc.CreateLogGroup(params)
 
@@ -47,8 +47,8 @@ func ExampleCloudWatchLogs_CreateLogStream() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.CreateLogStreamInput{
-		LogGroupName:  aws.String("LogGroupName"),  // Required
-		LogStreamName: aws.String("LogStreamName"), // Required
+		LogGroupName:  awsconv.String("LogGroupName"),  // Required
+		LogStreamName: awsconv.String("LogStreamName"), // Required
 	}
 	resp, err := svc.CreateLogStream(params)
 
@@ -75,7 +75,7 @@ func ExampleCloudWatchLogs_DeleteLogGroup() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DeleteLogGroupInput{
-		LogGroupName: aws.String("LogGroupName"), // Required
+		LogGroupName: awsconv.String("LogGroupName"), // Required
 	}
 	resp, err := svc.DeleteLogGroup(params)
 
@@ -102,8 +102,8 @@ func ExampleCloudWatchLogs_DeleteLogStream() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DeleteLogStreamInput{
-		LogGroupName:  aws.String("LogGroupName"),  // Required
-		LogStreamName: aws.String("LogStreamName"), // Required
+		LogGroupName:  awsconv.String("LogGroupName"),  // Required
+		LogStreamName: awsconv.String("LogStreamName"), // Required
 	}
 	resp, err := svc.DeleteLogStream(params)
 
@@ -130,8 +130,8 @@ func ExampleCloudWatchLogs_DeleteMetricFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DeleteMetricFilterInput{
-		FilterName:   aws.String("FilterName"),   // Required
-		LogGroupName: aws.String("LogGroupName"), // Required
+		FilterName:   awsconv.String("FilterName"),   // Required
+		LogGroupName: awsconv.String("LogGroupName"), // Required
 	}
 	resp, err := svc.DeleteMetricFilter(params)
 
@@ -158,7 +158,7 @@ func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DeleteRetentionPolicyInput{
-		LogGroupName: aws.String("LogGroupName"), // Required
+		LogGroupName: awsconv.String("LogGroupName"), // Required
 	}
 	resp, err := svc.DeleteRetentionPolicy(params)
 
@@ -185,8 +185,8 @@ func ExampleCloudWatchLogs_DeleteSubscriptionFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DeleteSubscriptionFilterInput{
-		FilterName:   aws.String("FilterName"),   // Required
-		LogGroupName: aws.String("LogGroupName"), // Required
+		FilterName:   awsconv.String("FilterName"),   // Required
+		LogGroupName: awsconv.String("LogGroupName"), // Required
 	}
 	resp, err := svc.DeleteSubscriptionFilter(params)
 
@@ -213,9 +213,9 @@ func ExampleCloudWatchLogs_DescribeLogGroups() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DescribeLogGroupsInput{
-		Limit:              aws.Int64(1),
-		LogGroupNamePrefix: aws.String("LogGroupName"),
-		NextToken:          aws.String("NextToken"),
+		Limit:              awsconv.Int64(1),
+		LogGroupNamePrefix: awsconv.String("LogGroupName"),
+		NextToken:          awsconv.String("NextToken"),
 	}
 	resp, err := svc.DescribeLogGroups(params)
 
@@ -242,12 +242,12 @@ func ExampleCloudWatchLogs_DescribeLogStreams() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DescribeLogStreamsInput{
-		LogGroupName:        aws.String("LogGroupName"), // Required
-		Descending:          aws.Bool(true),
-		Limit:               aws.Int64(1),
-		LogStreamNamePrefix: aws.String("LogStreamName"),
-		NextToken:           aws.String("NextToken"),
-		OrderBy:             aws.String("OrderBy"),
+		LogGroupName:        awsconv.String("LogGroupName"), // Required
+		Descending:          awsconv.Bool(true),
+		Limit:               awsconv.Int64(1),
+		LogStreamNamePrefix: awsconv.String("LogStreamName"),
+		NextToken:           awsconv.String("NextToken"),
+		OrderBy:             awsconv.String("OrderBy"),
 	}
 	resp, err := svc.DescribeLogStreams(params)
 
@@ -274,10 +274,10 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DescribeMetricFiltersInput{
-		LogGroupName:     aws.String("LogGroupName"), // Required
-		FilterNamePrefix: aws.String("FilterName"),
-		Limit:            aws.Int64(1),
-		NextToken:        aws.String("NextToken"),
+		LogGroupName:     awsconv.String("LogGroupName"), // Required
+		FilterNamePrefix: awsconv.String("FilterName"),
+		Limit:            awsconv.Int64(1),
+		NextToken:        awsconv.String("NextToken"),
 	}
 	resp, err := svc.DescribeMetricFilters(params)
 
@@ -304,10 +304,10 @@ func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DescribeSubscriptionFiltersInput{
-		LogGroupName:     aws.String("LogGroupName"), // Required
-		FilterNamePrefix: aws.String("FilterName"),
-		Limit:            aws.Int64(1),
-		NextToken:        aws.String("NextToken"),
+		LogGroupName:     awsconv.String("LogGroupName"), // Required
+		FilterNamePrefix: awsconv.String("FilterName"),
+		Limit:            awsconv.Int64(1),
+		NextToken:        awsconv.String("NextToken"),
 	}
 	resp, err := svc.DescribeSubscriptionFilters(params)
 
@@ -334,17 +334,17 @@ func ExampleCloudWatchLogs_FilterLogEvents() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.FilterLogEventsInput{
-		LogGroupName:  aws.String("LogGroupName"), // Required
-		EndTime:       aws.Int64(1),
-		FilterPattern: aws.String("FilterPattern"),
-		Interleaved:   aws.Bool(true),
-		Limit:         aws.Int64(1),
+		LogGroupName:  awsconv.String("LogGroupName"), // Required
+		EndTime:       awsconv.Int64(1),
+		FilterPattern: awsconv.String("FilterPattern"),
+		Interleaved:   awsconv.Bool(true),
+		Limit:         awsconv.Int64(1),
 		LogStreamNames: []*string{
-			aws.String("LogStreamName"), // Required
+			awsconv.String("LogStreamName"), // Required
 			// More values...
 		},
-		NextToken: aws.String("NextToken"),
-		StartTime: aws.Int64(1),
+		NextToken: awsconv.String("NextToken"),
+		StartTime: awsconv.Int64(1),
 	}
 	resp, err := svc.FilterLogEvents(params)
 
@@ -371,13 +371,13 @@ func ExampleCloudWatchLogs_GetLogEvents() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.GetLogEventsInput{
-		LogGroupName:  aws.String("LogGroupName"),  // Required
-		LogStreamName: aws.String("LogStreamName"), // Required
-		EndTime:       aws.Int64(1),
-		Limit:         aws.Int64(1),
-		NextToken:     aws.String("NextToken"),
-		StartFromHead: aws.Bool(true),
-		StartTime:     aws.Int64(1),
+		LogGroupName:  awsconv.String("LogGroupName"),  // Required
+		LogStreamName: awsconv.String("LogStreamName"), // Required
+		EndTime:       awsconv.Int64(1),
+		Limit:         awsconv.Int64(1),
+		NextToken:     awsconv.String("NextToken"),
+		StartFromHead: awsconv.Bool(true),
+		StartTime:     awsconv.Int64(1),
 	}
 	resp, err := svc.GetLogEvents(params)
 
@@ -406,14 +406,14 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 	params := &cloudwatchlogs.PutLogEventsInput{
 		LogEvents: []*cloudwatchlogs.InputLogEvent{ // Required
 			{ // Required
-				Message:   aws.String("EventMessage"), // Required
-				Timestamp: aws.Int64(1),               // Required
+				Message:   awsconv.String("EventMessage"), // Required
+				Timestamp: awsconv.Int64(1),               // Required
 			},
 			// More values...
 		},
-		LogGroupName:  aws.String("LogGroupName"),  // Required
-		LogStreamName: aws.String("LogStreamName"), // Required
-		SequenceToken: aws.String("SequenceToken"),
+		LogGroupName:  awsconv.String("LogGroupName"),  // Required
+		LogStreamName: awsconv.String("LogStreamName"), // Required
+		SequenceToken: awsconv.String("SequenceToken"),
 	}
 	resp, err := svc.PutLogEvents(params)
 
@@ -440,14 +440,14 @@ func ExampleCloudWatchLogs_PutMetricFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.PutMetricFilterInput{
-		FilterName:    aws.String("FilterName"),    // Required
-		FilterPattern: aws.String("FilterPattern"), // Required
-		LogGroupName:  aws.String("LogGroupName"),  // Required
+		FilterName:    awsconv.String("FilterName"),    // Required
+		FilterPattern: awsconv.String("FilterPattern"), // Required
+		LogGroupName:  awsconv.String("LogGroupName"),  // Required
 		MetricTransformations: []*cloudwatchlogs.MetricTransformation{ // Required
 			{ // Required
-				MetricName:      aws.String("MetricName"),      // Required
-				MetricNamespace: aws.String("MetricNamespace"), // Required
-				MetricValue:     aws.String("MetricValue"),     // Required
+				MetricName:      awsconv.String("MetricName"),      // Required
+				MetricNamespace: awsconv.String("MetricNamespace"), // Required
+				MetricValue:     awsconv.String("MetricValue"),     // Required
 			},
 			// More values...
 		},
@@ -477,8 +477,8 @@ func ExampleCloudWatchLogs_PutRetentionPolicy() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.PutRetentionPolicyInput{
-		LogGroupName:    aws.String("LogGroupName"), // Required
-		RetentionInDays: aws.Int64(1),               // Required
+		LogGroupName:    awsconv.String("LogGroupName"), // Required
+		RetentionInDays: awsconv.Int64(1),               // Required
 	}
 	resp, err := svc.PutRetentionPolicy(params)
 
@@ -505,11 +505,11 @@ func ExampleCloudWatchLogs_PutSubscriptionFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.PutSubscriptionFilterInput{
-		DestinationARN: aws.String("DestinationArn"), // Required
-		FilterName:     aws.String("FilterName"),     // Required
-		FilterPattern:  aws.String("FilterPattern"),  // Required
-		LogGroupName:   aws.String("LogGroupName"),   // Required
-		RoleARN:        aws.String("RoleArn"),        // Required
+		DestinationARN: awsconv.String("DestinationArn"), // Required
+		FilterName:     awsconv.String("FilterName"),     // Required
+		FilterPattern:  awsconv.String("FilterPattern"),  // Required
+		LogGroupName:   awsconv.String("LogGroupName"),   // Required
+		RoleARN:        awsconv.String("RoleArn"),        // Required
 	}
 	resp, err := svc.PutSubscriptionFilter(params)
 
@@ -536,9 +536,9 @@ func ExampleCloudWatchLogs_TestMetricFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.TestMetricFilterInput{
-		FilterPattern: aws.String("FilterPattern"), // Required
+		FilterPattern: awsconv.String("FilterPattern"), // Required
 		LogEventMessages: []*string{ // Required
-			aws.String("EventMessage"), // Required
+			awsconv.String("EventMessage"), // Required
 			// More values...
 		},
 	}

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/directconnect"
@@ -20,11 +20,11 @@ func ExampleDirectConnect_AllocateConnectionOnInterconnect() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.AllocateConnectionOnInterconnectInput{
-		Bandwidth:      aws.String("Bandwidth"),      // Required
-		ConnectionName: aws.String("ConnectionName"), // Required
-		InterconnectID: aws.String("InterconnectId"), // Required
-		OwnerAccount:   aws.String("OwnerAccount"),   // Required
-		VLAN:           aws.Int64(1),                 // Required
+		Bandwidth:      awsconv.String("Bandwidth"),      // Required
+		ConnectionName: awsconv.String("ConnectionName"), // Required
+		InterconnectID: awsconv.String("InterconnectId"), // Required
+		OwnerAccount:   awsconv.String("OwnerAccount"),   // Required
+		VLAN:           awsconv.Int64(1),                 // Required
 	}
 	resp, err := svc.AllocateConnectionOnInterconnect(params)
 
@@ -51,16 +51,16 @@ func ExampleDirectConnect_AllocatePrivateVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.AllocatePrivateVirtualInterfaceInput{
-		ConnectionID: aws.String("ConnectionId"), // Required
+		ConnectionID: awsconv.String("ConnectionId"), // Required
 		NewPrivateVirtualInterfaceAllocation: &directconnect.NewPrivateVirtualInterfaceAllocation{ // Required
-			ASN:                  aws.Int64(1),                       // Required
-			VLAN:                 aws.Int64(1),                       // Required
-			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
-			AmazonAddress:        aws.String("AmazonAddress"),
-			AuthKey:              aws.String("BGPAuthKey"),
-			CustomerAddress:      aws.String("CustomerAddress"),
+			ASN:                  awsconv.Int64(1),                       // Required
+			VLAN:                 awsconv.Int64(1),                       // Required
+			VirtualInterfaceName: awsconv.String("VirtualInterfaceName"), // Required
+			AmazonAddress:        awsconv.String("AmazonAddress"),
+			AuthKey:              awsconv.String("BGPAuthKey"),
+			CustomerAddress:      awsconv.String("CustomerAddress"),
 		},
-		OwnerAccount: aws.String("OwnerAccount"), // Required
+		OwnerAccount: awsconv.String("OwnerAccount"), // Required
 	}
 	resp, err := svc.AllocatePrivateVirtualInterface(params)
 
@@ -87,22 +87,22 @@ func ExampleDirectConnect_AllocatePublicVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.AllocatePublicVirtualInterfaceInput{
-		ConnectionID: aws.String("ConnectionId"), // Required
+		ConnectionID: awsconv.String("ConnectionId"), // Required
 		NewPublicVirtualInterfaceAllocation: &directconnect.NewPublicVirtualInterfaceAllocation{ // Required
-			ASN:             aws.Int64(1),                  // Required
-			AmazonAddress:   aws.String("AmazonAddress"),   // Required
-			CustomerAddress: aws.String("CustomerAddress"), // Required
+			ASN:             awsconv.Int64(1),                  // Required
+			AmazonAddress:   awsconv.String("AmazonAddress"),   // Required
+			CustomerAddress: awsconv.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
 				{ // Required
-					CIDR: aws.String("CIDR"),
+					CIDR: awsconv.String("CIDR"),
 				},
 				// More values...
 			},
-			VLAN:                 aws.Int64(1),                       // Required
-			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
-			AuthKey:              aws.String("BGPAuthKey"),
+			VLAN:                 awsconv.Int64(1),                       // Required
+			VirtualInterfaceName: awsconv.String("VirtualInterfaceName"), // Required
+			AuthKey:              awsconv.String("BGPAuthKey"),
 		},
-		OwnerAccount: aws.String("OwnerAccount"), // Required
+		OwnerAccount: awsconv.String("OwnerAccount"), // Required
 	}
 	resp, err := svc.AllocatePublicVirtualInterface(params)
 
@@ -129,7 +129,7 @@ func ExampleDirectConnect_ConfirmConnection() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.ConfirmConnectionInput{
-		ConnectionID: aws.String("ConnectionId"), // Required
+		ConnectionID: awsconv.String("ConnectionId"), // Required
 	}
 	resp, err := svc.ConfirmConnection(params)
 
@@ -156,8 +156,8 @@ func ExampleDirectConnect_ConfirmPrivateVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.ConfirmPrivateVirtualInterfaceInput{
-		VirtualGatewayID:   aws.String("VirtualGatewayId"),   // Required
-		VirtualInterfaceID: aws.String("VirtualInterfaceId"), // Required
+		VirtualGatewayID:   awsconv.String("VirtualGatewayId"),   // Required
+		VirtualInterfaceID: awsconv.String("VirtualInterfaceId"), // Required
 	}
 	resp, err := svc.ConfirmPrivateVirtualInterface(params)
 
@@ -184,7 +184,7 @@ func ExampleDirectConnect_ConfirmPublicVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.ConfirmPublicVirtualInterfaceInput{
-		VirtualInterfaceID: aws.String("VirtualInterfaceId"), // Required
+		VirtualInterfaceID: awsconv.String("VirtualInterfaceId"), // Required
 	}
 	resp, err := svc.ConfirmPublicVirtualInterface(params)
 
@@ -211,9 +211,9 @@ func ExampleDirectConnect_CreateConnection() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.CreateConnectionInput{
-		Bandwidth:      aws.String("Bandwidth"),      // Required
-		ConnectionName: aws.String("ConnectionName"), // Required
-		Location:       aws.String("LocationCode"),   // Required
+		Bandwidth:      awsconv.String("Bandwidth"),      // Required
+		ConnectionName: awsconv.String("ConnectionName"), // Required
+		Location:       awsconv.String("LocationCode"),   // Required
 	}
 	resp, err := svc.CreateConnection(params)
 
@@ -240,9 +240,9 @@ func ExampleDirectConnect_CreateInterconnect() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.CreateInterconnectInput{
-		Bandwidth:        aws.String("Bandwidth"),        // Required
-		InterconnectName: aws.String("InterconnectName"), // Required
-		Location:         aws.String("LocationCode"),     // Required
+		Bandwidth:        awsconv.String("Bandwidth"),        // Required
+		InterconnectName: awsconv.String("InterconnectName"), // Required
+		Location:         awsconv.String("LocationCode"),     // Required
 	}
 	resp, err := svc.CreateInterconnect(params)
 
@@ -269,15 +269,15 @@ func ExampleDirectConnect_CreatePrivateVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.CreatePrivateVirtualInterfaceInput{
-		ConnectionID: aws.String("ConnectionId"), // Required
+		ConnectionID: awsconv.String("ConnectionId"), // Required
 		NewPrivateVirtualInterface: &directconnect.NewPrivateVirtualInterface{ // Required
-			ASN:                  aws.Int64(1),                       // Required
-			VLAN:                 aws.Int64(1),                       // Required
-			VirtualGatewayID:     aws.String("VirtualGatewayId"),     // Required
-			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
-			AmazonAddress:        aws.String("AmazonAddress"),
-			AuthKey:              aws.String("BGPAuthKey"),
-			CustomerAddress:      aws.String("CustomerAddress"),
+			ASN:                  awsconv.Int64(1),                       // Required
+			VLAN:                 awsconv.Int64(1),                       // Required
+			VirtualGatewayID:     awsconv.String("VirtualGatewayId"),     // Required
+			VirtualInterfaceName: awsconv.String("VirtualInterfaceName"), // Required
+			AmazonAddress:        awsconv.String("AmazonAddress"),
+			AuthKey:              awsconv.String("BGPAuthKey"),
+			CustomerAddress:      awsconv.String("CustomerAddress"),
 		},
 	}
 	resp, err := svc.CreatePrivateVirtualInterface(params)
@@ -305,20 +305,20 @@ func ExampleDirectConnect_CreatePublicVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.CreatePublicVirtualInterfaceInput{
-		ConnectionID: aws.String("ConnectionId"), // Required
+		ConnectionID: awsconv.String("ConnectionId"), // Required
 		NewPublicVirtualInterface: &directconnect.NewPublicVirtualInterface{ // Required
-			ASN:             aws.Int64(1),                  // Required
-			AmazonAddress:   aws.String("AmazonAddress"),   // Required
-			CustomerAddress: aws.String("CustomerAddress"), // Required
+			ASN:             awsconv.Int64(1),                  // Required
+			AmazonAddress:   awsconv.String("AmazonAddress"),   // Required
+			CustomerAddress: awsconv.String("CustomerAddress"), // Required
 			RouteFilterPrefixes: []*directconnect.RouteFilterPrefix{ // Required
 				{ // Required
-					CIDR: aws.String("CIDR"),
+					CIDR: awsconv.String("CIDR"),
 				},
 				// More values...
 			},
-			VLAN:                 aws.Int64(1),                       // Required
-			VirtualInterfaceName: aws.String("VirtualInterfaceName"), // Required
-			AuthKey:              aws.String("BGPAuthKey"),
+			VLAN:                 awsconv.Int64(1),                       // Required
+			VirtualInterfaceName: awsconv.String("VirtualInterfaceName"), // Required
+			AuthKey:              awsconv.String("BGPAuthKey"),
 		},
 	}
 	resp, err := svc.CreatePublicVirtualInterface(params)
@@ -346,7 +346,7 @@ func ExampleDirectConnect_DeleteConnection() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DeleteConnectionInput{
-		ConnectionID: aws.String("ConnectionId"), // Required
+		ConnectionID: awsconv.String("ConnectionId"), // Required
 	}
 	resp, err := svc.DeleteConnection(params)
 
@@ -373,7 +373,7 @@ func ExampleDirectConnect_DeleteInterconnect() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DeleteInterconnectInput{
-		InterconnectID: aws.String("InterconnectId"), // Required
+		InterconnectID: awsconv.String("InterconnectId"), // Required
 	}
 	resp, err := svc.DeleteInterconnect(params)
 
@@ -400,7 +400,7 @@ func ExampleDirectConnect_DeleteVirtualInterface() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DeleteVirtualInterfaceInput{
-		VirtualInterfaceID: aws.String("VirtualInterfaceId"), // Required
+		VirtualInterfaceID: awsconv.String("VirtualInterfaceId"), // Required
 	}
 	resp, err := svc.DeleteVirtualInterface(params)
 
@@ -427,7 +427,7 @@ func ExampleDirectConnect_DescribeConnections() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DescribeConnectionsInput{
-		ConnectionID: aws.String("ConnectionId"),
+		ConnectionID: awsconv.String("ConnectionId"),
 	}
 	resp, err := svc.DescribeConnections(params)
 
@@ -454,7 +454,7 @@ func ExampleDirectConnect_DescribeConnectionsOnInterconnect() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DescribeConnectionsOnInterconnectInput{
-		InterconnectID: aws.String("InterconnectId"), // Required
+		InterconnectID: awsconv.String("InterconnectId"), // Required
 	}
 	resp, err := svc.DescribeConnectionsOnInterconnect(params)
 
@@ -481,7 +481,7 @@ func ExampleDirectConnect_DescribeInterconnects() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DescribeInterconnectsInput{
-		InterconnectID: aws.String("InterconnectId"),
+		InterconnectID: awsconv.String("InterconnectId"),
 	}
 	resp, err := svc.DescribeInterconnects(params)
 
@@ -558,8 +558,8 @@ func ExampleDirectConnect_DescribeVirtualInterfaces() {
 	svc := directconnect.New(nil)
 
 	params := &directconnect.DescribeVirtualInterfacesInput{
-		ConnectionID:       aws.String("ConnectionId"),
-		VirtualInterfaceID: aws.String("VirtualInterfaceId"),
+		ConnectionID:       awsconv.String("ConnectionId"),
+		VirtualInterfaceID: awsconv.String("VirtualInterfaceId"),
 	}
 	resp, err := svc.DescribeVirtualInterfaces(params)
 

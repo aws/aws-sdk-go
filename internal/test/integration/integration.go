@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 )
 
 // Imported is a marker to ensure that this package's init() function gets
@@ -30,7 +31,7 @@ func init() {
 		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
 	}
 
-	if aws.StringValue(aws.DefaultConfig.Region) == "" {
+	if awsconv.StringValue(aws.DefaultConfig.Region) == "" {
 		panic("AWS_REGION must be configured to run integration tests")
 	}
 }

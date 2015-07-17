@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -42,7 +42,7 @@ var converterScalarInputs = []converterTestInput{
 	},
 	{
 		input:    "some string",
-		expected: &dynamodb.AttributeValue{S: aws.String("some string")},
+		expected: &dynamodb.AttributeValue{S: awsconv.String("some string")},
 	},
 	{
 		input:    true,
@@ -54,31 +54,31 @@ var converterScalarInputs = []converterTestInput{
 	},
 	{
 		input:    3.14,
-		expected: &dynamodb.AttributeValue{N: aws.String("3.14")},
+		expected: &dynamodb.AttributeValue{N: awsconv.String("3.14")},
 	},
 	{
 		input:    math.MaxFloat32,
-		expected: &dynamodb.AttributeValue{N: aws.String("340282346638528860000000000000000000000")},
+		expected: &dynamodb.AttributeValue{N: awsconv.String("340282346638528860000000000000000000000")},
 	},
 	{
 		input:    math.MaxFloat64,
-		expected: &dynamodb.AttributeValue{N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")},
+		expected: &dynamodb.AttributeValue{N: awsconv.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")},
 	},
 	{
 		input:    12,
-		expected: &dynamodb.AttributeValue{N: aws.String("12")},
+		expected: &dynamodb.AttributeValue{N: awsconv.String("12")},
 	},
 	{
 		input: mySimpleStruct{},
 		expected: &dynamodb.AttributeValue{
 			M: map[string]*dynamodb.AttributeValue{
 				"Bool":    {BOOL: &falseValue},
-				"Float32": {N: aws.String("0")},
-				"Float64": {N: aws.String("0")},
-				"Int":     {N: aws.String("0")},
+				"Float32": {N: awsconv.String("0")},
+				"Float64": {N: awsconv.String("0")},
+				"Int":     {N: awsconv.String("0")},
 				"Null":    {NULL: &trueValue},
-				"String":  {S: aws.String("")},
-				"Uint":    {N: aws.String("0")},
+				"String":  {S: awsconv.String("")},
+				"Uint":    {N: awsconv.String("0")},
 			},
 		},
 		inputType: "mySimpleStruct",
@@ -93,7 +93,7 @@ var converterMapTestInputs = []converterTestInput{
 	},
 	{
 		input:    map[string]interface{}{"string": "some string"},
-		expected: map[string]*dynamodb.AttributeValue{"string": {S: aws.String("some string")}},
+		expected: map[string]*dynamodb.AttributeValue{"string": {S: awsconv.String("some string")}},
 	},
 	{
 		input:    map[string]interface{}{"bool": true},
@@ -109,19 +109,19 @@ var converterMapTestInputs = []converterTestInput{
 	},
 	{
 		input:    map[string]interface{}{"float": 3.14},
-		expected: map[string]*dynamodb.AttributeValue{"float": {N: aws.String("3.14")}},
+		expected: map[string]*dynamodb.AttributeValue{"float": {N: awsconv.String("3.14")}},
 	},
 	{
 		input:    map[string]interface{}{"float": math.MaxFloat32},
-		expected: map[string]*dynamodb.AttributeValue{"float": {N: aws.String("340282346638528860000000000000000000000")}},
+		expected: map[string]*dynamodb.AttributeValue{"float": {N: awsconv.String("340282346638528860000000000000000000000")}},
 	},
 	{
 		input:    map[string]interface{}{"float": math.MaxFloat64},
-		expected: map[string]*dynamodb.AttributeValue{"float": {N: aws.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")}},
+		expected: map[string]*dynamodb.AttributeValue{"float": {N: awsconv.String("179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")}},
 	},
 	{
 		input:    map[string]interface{}{"int": int(12)},
-		expected: map[string]*dynamodb.AttributeValue{"int": {N: aws.String("12")}},
+		expected: map[string]*dynamodb.AttributeValue{"int": {N: awsconv.String("12")}},
 	},
 	// List
 	{
@@ -129,9 +129,9 @@ var converterMapTestInputs = []converterTestInput{
 		expected: map[string]*dynamodb.AttributeValue{
 			"list": {
 				L: []*dynamodb.AttributeValue{
-					{S: aws.String("a string")},
-					{N: aws.String("12")},
-					{N: aws.String("3.14")},
+					{S: awsconv.String("a string")},
+					{N: awsconv.String("12")},
+					{N: awsconv.String("3.14")},
 					{BOOL: &trueValue},
 					{NULL: &trueValue},
 					{BOOL: &falseValue},
@@ -146,7 +146,7 @@ var converterMapTestInputs = []converterTestInput{
 			"map": {
 				M: map[string]*dynamodb.AttributeValue{
 					"nestedint": {
-						N: aws.String("12"),
+						N: awsconv.String("12"),
 					},
 				},
 			},
@@ -157,12 +157,12 @@ var converterMapTestInputs = []converterTestInput{
 		input: mySimpleStruct{},
 		expected: map[string]*dynamodb.AttributeValue{
 			"Bool":    {BOOL: &falseValue},
-			"Float32": {N: aws.String("0")},
-			"Float64": {N: aws.String("0")},
-			"Int":     {N: aws.String("0")},
+			"Float32": {N: awsconv.String("0")},
+			"Float64": {N: awsconv.String("0")},
+			"Int":     {N: awsconv.String("0")},
 			"Null":    {NULL: &trueValue},
-			"String":  {S: aws.String("")},
-			"Uint":    {N: aws.String("0")},
+			"String":  {S: awsconv.String("")},
+			"Uint":    {N: awsconv.String("0")},
 		},
 		inputType: "mySimpleStruct",
 	},
@@ -181,23 +181,23 @@ var converterMapTestInputs = []converterTestInput{
 					{
 						M: map[string]*dynamodb.AttributeValue{
 							"Bool":    {BOOL: &falseValue},
-							"Float32": {N: aws.String("0")},
-							"Float64": {N: aws.String("0")},
-							"Int":     {N: aws.String("-2")},
+							"Float32": {N: awsconv.String("0")},
+							"Float64": {N: awsconv.String("0")},
+							"Int":     {N: awsconv.String("-2")},
 							"Null":    {NULL: &trueValue},
-							"String":  {S: aws.String("")},
-							"Uint":    {N: aws.String("0")},
+							"String":  {S: awsconv.String("")},
+							"Uint":    {N: awsconv.String("0")},
 						},
 					},
 					{
 						M: map[string]*dynamodb.AttributeValue{
 							"Bool":    {BOOL: &falseValue},
-							"Float32": {N: aws.String("0")},
-							"Float64": {N: aws.String("0")},
-							"Int":     {N: aws.String("0")},
+							"Float32": {N: awsconv.String("0")},
+							"Float64": {N: awsconv.String("0")},
+							"Int":     {N: awsconv.String("0")},
 							"Null":    {NULL: &trueValue},
-							"String":  {S: aws.String("")},
-							"Uint":    {N: aws.String("5")},
+							"String":  {S: awsconv.String("")},
+							"Uint":    {N: awsconv.String("5")},
 						},
 					},
 				},
@@ -219,9 +219,9 @@ var converterListTestInputs = []converterTestInput{
 	{
 		input: []interface{}{"a string", 12, 3.14, true, nil, false},
 		expected: []*dynamodb.AttributeValue{
-			{S: aws.String("a string")},
-			{N: aws.String("12")},
-			{N: aws.String("3.14")},
+			{S: awsconv.String("a string")},
+			{N: awsconv.String("12")},
+			{N: awsconv.String("3.14")},
 			{BOOL: &trueValue},
 			{NULL: &trueValue},
 			{BOOL: &falseValue},
@@ -233,12 +233,12 @@ var converterListTestInputs = []converterTestInput{
 			{
 				M: map[string]*dynamodb.AttributeValue{
 					"Bool":    {BOOL: &falseValue},
-					"Float32": {N: aws.String("0")},
-					"Float64": {N: aws.String("0")},
-					"Int":     {N: aws.String("0")},
+					"Float32": {N: awsconv.String("0")},
+					"Float64": {N: awsconv.String("0")},
+					"Int":     {N: awsconv.String("0")},
 					"Null":    {NULL: &trueValue},
-					"String":  {S: aws.String("")},
-					"Uint":    {N: aws.String("0")},
+					"String":  {S: awsconv.String("")},
+					"Uint":    {N: awsconv.String("0")},
 				},
 			},
 		},

@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
@@ -27,10 +28,10 @@ func assertMD5(t *testing.T, req *aws.Request) {
 func TestMD5InPutBucketCORS(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.PutBucketCORSRequest(&s3.PutBucketCORSInput{
-		Bucket: aws.String("bucketname"),
+		Bucket: awsconv.String("bucketname"),
 		CORSConfiguration: &s3.CORSConfiguration{
 			CORSRules: []*s3.CORSRule{
-				{AllowedMethods: []*string{aws.String("GET")}},
+				{AllowedMethods: []*string{awsconv.String("GET")}},
 			},
 		},
 	})
@@ -40,13 +41,13 @@ func TestMD5InPutBucketCORS(t *testing.T) {
 func TestMD5InPutBucketLifecycle(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.PutBucketLifecycleRequest(&s3.PutBucketLifecycleInput{
-		Bucket: aws.String("bucketname"),
+		Bucket: awsconv.String("bucketname"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
 			Rules: []*s3.LifecycleRule{
 				{
-					ID:     aws.String("ID"),
-					Prefix: aws.String("Prefix"),
-					Status: aws.String("Enabled"),
+					ID:     awsconv.String("ID"),
+					Prefix: awsconv.String("Prefix"),
+					Status: awsconv.String("Enabled"),
 				},
 			},
 		},
@@ -57,8 +58,8 @@ func TestMD5InPutBucketLifecycle(t *testing.T) {
 func TestMD5InPutBucketPolicy(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.PutBucketPolicyRequest(&s3.PutBucketPolicyInput{
-		Bucket: aws.String("bucketname"),
-		Policy: aws.String("{}"),
+		Bucket: awsconv.String("bucketname"),
+		Policy: awsconv.String("{}"),
 	})
 	assertMD5(t, req)
 }
@@ -66,10 +67,10 @@ func TestMD5InPutBucketPolicy(t *testing.T) {
 func TestMD5InPutBucketTagging(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.PutBucketTaggingRequest(&s3.PutBucketTaggingInput{
-		Bucket: aws.String("bucketname"),
+		Bucket: awsconv.String("bucketname"),
 		Tagging: &s3.Tagging{
 			TagSet: []*s3.Tag{
-				{Key: aws.String("KEY"), Value: aws.String("VALUE")},
+				{Key: awsconv.String("KEY"), Value: awsconv.String("VALUE")},
 			},
 		},
 	})
@@ -79,10 +80,10 @@ func TestMD5InPutBucketTagging(t *testing.T) {
 func TestMD5InDeleteObjects(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.DeleteObjectsRequest(&s3.DeleteObjectsInput{
-		Bucket: aws.String("bucketname"),
+		Bucket: awsconv.String("bucketname"),
 		Delete: &s3.Delete{
 			Objects: []*s3.ObjectIdentifier{
-				{Key: aws.String("key")},
+				{Key: awsconv.String("key")},
 			},
 		},
 	})

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudtrail"
@@ -20,13 +20,13 @@ func ExampleCloudTrail_CreateTrail() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.CreateTrailInput{
-		Name:                       aws.String("String"), // Required
-		S3BucketName:               aws.String("String"), // Required
-		CloudWatchLogsLogGroupARN:  aws.String("String"),
-		CloudWatchLogsRoleARN:      aws.String("String"),
-		IncludeGlobalServiceEvents: aws.Bool(true),
-		S3KeyPrefix:                aws.String("String"),
-		SNSTopicName:               aws.String("String"),
+		Name:                       awsconv.String("String"), // Required
+		S3BucketName:               awsconv.String("String"), // Required
+		CloudWatchLogsLogGroupARN:  awsconv.String("String"),
+		CloudWatchLogsRoleARN:      awsconv.String("String"),
+		IncludeGlobalServiceEvents: awsconv.Bool(true),
+		S3KeyPrefix:                awsconv.String("String"),
+		SNSTopicName:               awsconv.String("String"),
 	}
 	resp, err := svc.CreateTrail(params)
 
@@ -53,7 +53,7 @@ func ExampleCloudTrail_DeleteTrail() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.DeleteTrailInput{
-		Name: aws.String("String"), // Required
+		Name: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteTrail(params)
 
@@ -81,7 +81,7 @@ func ExampleCloudTrail_DescribeTrails() {
 
 	params := &cloudtrail.DescribeTrailsInput{
 		TrailNameList: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -110,7 +110,7 @@ func ExampleCloudTrail_GetTrailStatus() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.GetTrailStatusInput{
-		Name: aws.String("String"), // Required
+		Name: awsconv.String("String"), // Required
 	}
 	resp, err := svc.GetTrailStatus(params)
 
@@ -137,17 +137,17 @@ func ExampleCloudTrail_LookupEvents() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.LookupEventsInput{
-		EndTime: aws.Time(time.Now()),
+		EndTime: awsconv.Time(time.Now()),
 		LookupAttributes: []*cloudtrail.LookupAttribute{
 			{ // Required
-				AttributeKey:   aws.String("LookupAttributeKey"), // Required
-				AttributeValue: aws.String("String"),             // Required
+				AttributeKey:   awsconv.String("LookupAttributeKey"), // Required
+				AttributeValue: awsconv.String("String"),             // Required
 			},
 			// More values...
 		},
-		MaxResults: aws.Int64(1),
-		NextToken:  aws.String("NextToken"),
-		StartTime:  aws.Time(time.Now()),
+		MaxResults: awsconv.Int64(1),
+		NextToken:  awsconv.String("NextToken"),
+		StartTime:  awsconv.Time(time.Now()),
 	}
 	resp, err := svc.LookupEvents(params)
 
@@ -174,7 +174,7 @@ func ExampleCloudTrail_StartLogging() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.StartLoggingInput{
-		Name: aws.String("String"), // Required
+		Name: awsconv.String("String"), // Required
 	}
 	resp, err := svc.StartLogging(params)
 
@@ -201,7 +201,7 @@ func ExampleCloudTrail_StopLogging() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.StopLoggingInput{
-		Name: aws.String("String"), // Required
+		Name: awsconv.String("String"), // Required
 	}
 	resp, err := svc.StopLogging(params)
 
@@ -228,13 +228,13 @@ func ExampleCloudTrail_UpdateTrail() {
 	svc := cloudtrail.New(nil)
 
 	params := &cloudtrail.UpdateTrailInput{
-		Name: aws.String("String"), // Required
-		CloudWatchLogsLogGroupARN:  aws.String("String"),
-		CloudWatchLogsRoleARN:      aws.String("String"),
-		IncludeGlobalServiceEvents: aws.Bool(true),
-		S3BucketName:               aws.String("String"),
-		S3KeyPrefix:                aws.String("String"),
-		SNSTopicName:               aws.String("String"),
+		Name: awsconv.String("String"), // Required
+		CloudWatchLogsLogGroupARN:  awsconv.String("String"),
+		CloudWatchLogsRoleARN:      awsconv.String("String"),
+		IncludeGlobalServiceEvents: awsconv.Bool(true),
+		S3BucketName:               awsconv.String("String"),
+		S3KeyPrefix:                awsconv.String("String"),
+		SNSTopicName:               awsconv.String("String"),
 	}
 	resp, err := svc.UpdateTrail(params)
 

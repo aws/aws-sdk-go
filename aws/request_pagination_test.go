@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -19,9 +20,9 @@ func TestPagination(t *testing.T) {
 
 	reqNum := 0
 	resps := []*dynamodb.ListTablesOutput{
-		{TableNames: []*string{aws.String("Table1"), aws.String("Table2")}, LastEvaluatedTableName: aws.String("Table2")},
-		{TableNames: []*string{aws.String("Table3"), aws.String("Table4")}, LastEvaluatedTableName: aws.String("Table4")},
-		{TableNames: []*string{aws.String("Table5")}},
+		{TableNames: []*string{awsconv.String("Table1"), awsconv.String("Table2")}, LastEvaluatedTableName: awsconv.String("Table2")},
+		{TableNames: []*string{awsconv.String("Table3"), awsconv.String("Table4")}, LastEvaluatedTableName: awsconv.String("Table4")},
+		{TableNames: []*string{awsconv.String("Table5")}},
 	}
 
 	db.Handlers.Send.Clear() // mock sending
@@ -41,7 +42,7 @@ func TestPagination(t *testing.T) {
 		reqNum++
 	})
 
-	params := &dynamodb.ListTablesInput{Limit: aws.Int64(2)}
+	params := &dynamodb.ListTablesInput{Limit: awsconv.Int64(2)}
 	err := db.ListTablesPages(params, func(p *dynamodb.ListTablesOutput, last bool) bool {
 		numPages++
 		for _, t := range p.TableNames {
@@ -71,9 +72,9 @@ func TestPaginationEachPage(t *testing.T) {
 
 	reqNum := 0
 	resps := []*dynamodb.ListTablesOutput{
-		{TableNames: []*string{aws.String("Table1"), aws.String("Table2")}, LastEvaluatedTableName: aws.String("Table2")},
-		{TableNames: []*string{aws.String("Table3"), aws.String("Table4")}, LastEvaluatedTableName: aws.String("Table4")},
-		{TableNames: []*string{aws.String("Table5")}},
+		{TableNames: []*string{awsconv.String("Table1"), awsconv.String("Table2")}, LastEvaluatedTableName: awsconv.String("Table2")},
+		{TableNames: []*string{awsconv.String("Table3"), awsconv.String("Table4")}, LastEvaluatedTableName: awsconv.String("Table4")},
+		{TableNames: []*string{awsconv.String("Table5")}},
 	}
 
 	db.Handlers.Send.Clear() // mock sending
@@ -93,7 +94,7 @@ func TestPaginationEachPage(t *testing.T) {
 		reqNum++
 	})
 
-	params := &dynamodb.ListTablesInput{Limit: aws.Int64(2)}
+	params := &dynamodb.ListTablesInput{Limit: awsconv.Int64(2)}
 	req, _ := db.ListTablesRequest(params)
 	err := req.EachPage(func(p interface{}, last bool) bool {
 		numPages++
@@ -124,9 +125,9 @@ func TestPaginationEarlyExit(t *testing.T) {
 
 	reqNum := 0
 	resps := []*dynamodb.ListTablesOutput{
-		{TableNames: []*string{aws.String("Table1"), aws.String("Table2")}, LastEvaluatedTableName: aws.String("Table2")},
-		{TableNames: []*string{aws.String("Table3"), aws.String("Table4")}, LastEvaluatedTableName: aws.String("Table4")},
-		{TableNames: []*string{aws.String("Table5")}},
+		{TableNames: []*string{awsconv.String("Table1"), awsconv.String("Table2")}, LastEvaluatedTableName: awsconv.String("Table2")},
+		{TableNames: []*string{awsconv.String("Table3"), awsconv.String("Table4")}, LastEvaluatedTableName: awsconv.String("Table4")},
+		{TableNames: []*string{awsconv.String("Table5")}},
 	}
 
 	db.Handlers.Send.Clear() // mock sending
@@ -138,7 +139,7 @@ func TestPaginationEarlyExit(t *testing.T) {
 		reqNum++
 	})
 
-	params := &dynamodb.ListTablesInput{Limit: aws.Int64(2)}
+	params := &dynamodb.ListTablesInput{Limit: awsconv.Int64(2)}
 	err := db.ListTablesPages(params, func(p *dynamodb.ListTablesOutput, last bool) bool {
 		numPages++
 		if numPages == 2 {
@@ -168,7 +169,7 @@ func TestSkipPagination(t *testing.T) {
 		r.Data = &s3.HeadBucketOutput{}
 	})
 
-	req, _ := client.HeadBucketRequest(&s3.HeadBucketInput{Bucket: aws.String("bucket")})
+	req, _ := client.HeadBucketRequest(&s3.HeadBucketInput{Bucket: awsconv.String("bucket")})
 
 	numPages, gotToEnd := 0, false
 	req.EachPage(func(p interface{}, last bool) bool {
@@ -189,10 +190,10 @@ func TestPaginationTruncation(t *testing.T) {
 
 	reqNum := &count
 	resps := []*s3.ListObjectsOutput{
-		{IsTruncated: aws.Bool(true), Contents: []*s3.Object{{Key: aws.String("Key1")}}},
-		{IsTruncated: aws.Bool(true), Contents: []*s3.Object{{Key: aws.String("Key2")}}},
-		{IsTruncated: aws.Bool(false), Contents: []*s3.Object{{Key: aws.String("Key3")}}},
-		{IsTruncated: aws.Bool(true), Contents: []*s3.Object{{Key: aws.String("Key4")}}},
+		{IsTruncated: awsconv.Bool(true), Contents: []*s3.Object{{Key: awsconv.String("Key1")}}},
+		{IsTruncated: awsconv.Bool(true), Contents: []*s3.Object{{Key: awsconv.String("Key2")}}},
+		{IsTruncated: awsconv.Bool(false), Contents: []*s3.Object{{Key: awsconv.String("Key3")}}},
+		{IsTruncated: awsconv.Bool(true), Contents: []*s3.Object{{Key: awsconv.String("Key4")}}},
 	}
 
 	client.Handlers.Send.Clear() // mock sending
@@ -204,7 +205,7 @@ func TestPaginationTruncation(t *testing.T) {
 		*reqNum++
 	})
 
-	params := &s3.ListObjectsInput{Bucket: aws.String("bucket")}
+	params := &s3.ListObjectsInput{Bucket: awsconv.String("bucket")}
 
 	results := []string{}
 	err := client.ListObjectsPages(params, func(p *s3.ListObjectsOutput, last bool) bool {
@@ -218,7 +219,7 @@ func TestPaginationTruncation(t *testing.T) {
 	// Try again without truncation token at all
 	count = 0
 	resps[1].IsTruncated = nil
-	resps[2].IsTruncated = aws.Bool(true)
+	resps[2].IsTruncated = awsconv.Bool(true)
 	results = []string{}
 	err = client.ListObjectsPages(params, func(p *s3.ListObjectsOutput, last bool) bool {
 		results = append(results, *p.Contents[0].Key)
@@ -232,20 +233,20 @@ func TestPaginationTruncation(t *testing.T) {
 
 // Benchmarks
 var benchResps = []*dynamodb.ListTablesOutput{
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE"), aws.String("NXT")}, LastEvaluatedTableName: aws.String("NXT")},
-	{TableNames: []*string{aws.String("TABLE")}},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE"), awsconv.String("NXT")}, LastEvaluatedTableName: awsconv.String("NXT")},
+	{TableNames: []*string{awsconv.String("TABLE")}},
 }
 
 var benchDb = func() *dynamodb.DynamoDB {
@@ -265,7 +266,7 @@ func BenchmarkCodegenIterator(b *testing.B) {
 		reqNum++
 	})
 
-	input := &dynamodb.ListTablesInput{Limit: aws.Int64(2)}
+	input := &dynamodb.ListTablesInput{Limit: awsconv.Int64(2)}
 	iter := func(fn func(*dynamodb.ListTablesOutput, bool) bool) error {
 		page, _ := db.ListTablesRequest(input)
 		for ; page != nil; page = page.NextPage() {
@@ -294,7 +295,7 @@ func BenchmarkEachPageIterator(b *testing.B) {
 		reqNum++
 	})
 
-	input := &dynamodb.ListTablesInput{Limit: aws.Int64(2)}
+	input := &dynamodb.ListTablesInput{Limit: awsconv.Int64(2)}
 	for i := 0; i < b.N; i++ {
 		reqNum = 0
 		req, _ := db.ListTablesRequest(input)

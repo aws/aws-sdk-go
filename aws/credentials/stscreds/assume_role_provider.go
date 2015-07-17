@@ -6,7 +6,7 @@ package stscreds
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/service/sts"
 	"time"
@@ -100,9 +100,9 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 	}
 
 	roleOutput, err := p.Client.AssumeRole(&sts.AssumeRoleInput{
-		DurationSeconds: aws.Int64(int64(p.Duration / time.Second)),
-		RoleARN:         aws.String(p.RoleARN),
-		RoleSessionName: aws.String(p.RoleSessionName),
+		DurationSeconds: awsconv.Int64(int64(p.Duration / time.Second)),
+		RoleARN:         awsconv.String(p.RoleARN),
+		RoleSessionName: awsconv.String(p.RoleSessionName),
 	})
 
 	if err != nil {

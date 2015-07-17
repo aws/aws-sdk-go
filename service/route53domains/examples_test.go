@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/route53domains"
@@ -20,8 +20,8 @@ func ExampleRoute53Domains_CheckDomainAvailability() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.CheckDomainAvailabilityInput{
-		DomainName:  aws.String("DomainName"), // Required
-		IDNLangCode: aws.String("LangCode"),
+		DomainName:  awsconv.String("DomainName"), // Required
+		IDNLangCode: awsconv.String("LangCode"),
 	}
 	resp, err := svc.CheckDomainAvailability(params)
 
@@ -48,9 +48,9 @@ func ExampleRoute53Domains_DeleteTagsForDomain() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.DeleteTagsForDomainInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 		TagsToDelete: []*string{ // Required
-			aws.String("TagKey"), // Required
+			awsconv.String("TagKey"), // Required
 			// More values...
 		},
 	}
@@ -79,7 +79,7 @@ func ExampleRoute53Domains_DisableDomainAutoRenew() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.DisableDomainAutoRenewInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.DisableDomainAutoRenew(params)
 
@@ -106,7 +106,7 @@ func ExampleRoute53Domains_DisableDomainTransferLock() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.DisableDomainTransferLockInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.DisableDomainTransferLock(params)
 
@@ -133,7 +133,7 @@ func ExampleRoute53Domains_EnableDomainAutoRenew() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.EnableDomainAutoRenewInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.EnableDomainAutoRenew(params)
 
@@ -160,7 +160,7 @@ func ExampleRoute53Domains_EnableDomainTransferLock() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.EnableDomainTransferLockInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.EnableDomainTransferLock(params)
 
@@ -187,7 +187,7 @@ func ExampleRoute53Domains_GetDomainDetail() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.GetDomainDetailInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.GetDomainDetail(params)
 
@@ -214,7 +214,7 @@ func ExampleRoute53Domains_GetOperationDetail() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.GetOperationDetailInput{
-		OperationID: aws.String("OperationId"), // Required
+		OperationID: awsconv.String("OperationId"), // Required
 	}
 	resp, err := svc.GetOperationDetail(params)
 
@@ -241,8 +241,8 @@ func ExampleRoute53Domains_ListDomains() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.ListDomainsInput{
-		Marker:   aws.String("PageMarker"),
-		MaxItems: aws.Int64(1),
+		Marker:   awsconv.String("PageMarker"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListDomains(params)
 
@@ -269,8 +269,8 @@ func ExampleRoute53Domains_ListOperations() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.ListOperationsInput{
-		Marker:   aws.String("PageMarker"),
-		MaxItems: aws.Int64(1),
+		Marker:   awsconv.String("PageMarker"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListOperations(params)
 
@@ -297,7 +297,7 @@ func ExampleRoute53Domains_ListTagsForDomain() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.ListTagsForDomainInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.ListTagsForDomain(params)
 
@@ -325,78 +325,78 @@ func ExampleRoute53Domains_RegisterDomain() {
 
 	params := &route53domains.RegisterDomainInput{
 		AdminContact: &route53domains.ContactDetail{ // Required
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
-		DomainName:      aws.String("DomainName"), // Required
-		DurationInYears: aws.Int64(1),             // Required
+		DomainName:      awsconv.String("DomainName"), // Required
+		DurationInYears: awsconv.Int64(1),             // Required
 		RegistrantContact: &route53domains.ContactDetail{ // Required
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
 		TechContact: &route53domains.ContactDetail{ // Required
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
-		AutoRenew:                       aws.Bool(true),
-		IDNLangCode:                     aws.String("LangCode"),
-		PrivacyProtectAdminContact:      aws.Bool(true),
-		PrivacyProtectRegistrantContact: aws.Bool(true),
-		PrivacyProtectTechContact:       aws.Bool(true),
+		AutoRenew:                       awsconv.Bool(true),
+		IDNLangCode:                     awsconv.String("LangCode"),
+		PrivacyProtectAdminContact:      awsconv.Bool(true),
+		PrivacyProtectRegistrantContact: awsconv.Bool(true),
+		PrivacyProtectTechContact:       awsconv.Bool(true),
 	}
 	resp, err := svc.RegisterDomain(params)
 
@@ -423,7 +423,7 @@ func ExampleRoute53Domains_RetrieveDomainAuthCode() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.RetrieveDomainAuthCodeInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 	}
 	resp, err := svc.RetrieveDomainAuthCode(params)
 
@@ -451,89 +451,89 @@ func ExampleRoute53Domains_TransferDomain() {
 
 	params := &route53domains.TransferDomainInput{
 		AdminContact: &route53domains.ContactDetail{ // Required
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
-		DomainName:      aws.String("DomainName"), // Required
-		DurationInYears: aws.Int64(1),             // Required
+		DomainName:      awsconv.String("DomainName"), // Required
+		DurationInYears: awsconv.Int64(1),             // Required
 		RegistrantContact: &route53domains.ContactDetail{ // Required
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
 		TechContact: &route53domains.ContactDetail{ // Required
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
-		AuthCode:    aws.String("DomainAuthCode"),
-		AutoRenew:   aws.Bool(true),
-		IDNLangCode: aws.String("LangCode"),
+		AuthCode:    awsconv.String("DomainAuthCode"),
+		AutoRenew:   awsconv.Bool(true),
+		IDNLangCode: awsconv.String("LangCode"),
 		Nameservers: []*route53domains.Nameserver{
 			{ // Required
-				Name: aws.String("HostName"), // Required
+				Name: awsconv.String("HostName"), // Required
 				GlueIPs: []*string{
-					aws.String("GlueIp"), // Required
+					awsconv.String("GlueIp"), // Required
 					// More values...
 				},
 			},
 			// More values...
 		},
-		PrivacyProtectAdminContact:      aws.Bool(true),
-		PrivacyProtectRegistrantContact: aws.Bool(true),
-		PrivacyProtectTechContact:       aws.Bool(true),
+		PrivacyProtectAdminContact:      awsconv.Bool(true),
+		PrivacyProtectRegistrantContact: awsconv.Bool(true),
+		PrivacyProtectTechContact:       awsconv.Bool(true),
 	}
 	resp, err := svc.TransferDomain(params)
 
@@ -560,72 +560,72 @@ func ExampleRoute53Domains_UpdateDomainContact() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.UpdateDomainContactInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 		AdminContact: &route53domains.ContactDetail{
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
 		RegistrantContact: &route53domains.ContactDetail{
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
 		TechContact: &route53domains.ContactDetail{
-			AddressLine1: aws.String("AddressLine"),
-			AddressLine2: aws.String("AddressLine"),
-			City:         aws.String("City"),
-			ContactType:  aws.String("ContactType"),
-			CountryCode:  aws.String("CountryCode"),
-			Email:        aws.String("Email"),
+			AddressLine1: awsconv.String("AddressLine"),
+			AddressLine2: awsconv.String("AddressLine"),
+			City:         awsconv.String("City"),
+			ContactType:  awsconv.String("ContactType"),
+			CountryCode:  awsconv.String("CountryCode"),
+			Email:        awsconv.String("Email"),
 			ExtraParams: []*route53domains.ExtraParam{
 				{ // Required
-					Name:  aws.String("ExtraParamName"),  // Required
-					Value: aws.String("ExtraParamValue"), // Required
+					Name:  awsconv.String("ExtraParamName"),  // Required
+					Value: awsconv.String("ExtraParamValue"), // Required
 				},
 				// More values...
 			},
-			Fax:              aws.String("ContactNumber"),
-			FirstName:        aws.String("ContactName"),
-			LastName:         aws.String("ContactName"),
-			OrganizationName: aws.String("ContactName"),
-			PhoneNumber:      aws.String("ContactNumber"),
-			State:            aws.String("State"),
-			ZipCode:          aws.String("ZipCode"),
+			Fax:              awsconv.String("ContactNumber"),
+			FirstName:        awsconv.String("ContactName"),
+			LastName:         awsconv.String("ContactName"),
+			OrganizationName: awsconv.String("ContactName"),
+			PhoneNumber:      awsconv.String("ContactNumber"),
+			State:            awsconv.String("State"),
+			ZipCode:          awsconv.String("ZipCode"),
 		},
 	}
 	resp, err := svc.UpdateDomainContact(params)
@@ -653,10 +653,10 @@ func ExampleRoute53Domains_UpdateDomainContactPrivacy() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.UpdateDomainContactPrivacyInput{
-		DomainName:        aws.String("DomainName"), // Required
-		AdminPrivacy:      aws.Bool(true),
-		RegistrantPrivacy: aws.Bool(true),
-		TechPrivacy:       aws.Bool(true),
+		DomainName:        awsconv.String("DomainName"), // Required
+		AdminPrivacy:      awsconv.Bool(true),
+		RegistrantPrivacy: awsconv.Bool(true),
+		TechPrivacy:       awsconv.Bool(true),
 	}
 	resp, err := svc.UpdateDomainContactPrivacy(params)
 
@@ -683,18 +683,18 @@ func ExampleRoute53Domains_UpdateDomainNameservers() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.UpdateDomainNameserversInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 		Nameservers: []*route53domains.Nameserver{ // Required
 			{ // Required
-				Name: aws.String("HostName"), // Required
+				Name: awsconv.String("HostName"), // Required
 				GlueIPs: []*string{
-					aws.String("GlueIp"), // Required
+					awsconv.String("GlueIp"), // Required
 					// More values...
 				},
 			},
 			// More values...
 		},
-		FIAuthKey: aws.String("FIAuthKey"),
+		FIAuthKey: awsconv.String("FIAuthKey"),
 	}
 	resp, err := svc.UpdateDomainNameservers(params)
 
@@ -721,11 +721,11 @@ func ExampleRoute53Domains_UpdateTagsForDomain() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.UpdateTagsForDomainInput{
-		DomainName: aws.String("DomainName"), // Required
+		DomainName: awsconv.String("DomainName"), // Required
 		TagsToUpdate: []*route53domains.Tag{
 			{ // Required
-				Key:   aws.String("TagKey"),
-				Value: aws.String("TagValue"),
+				Key:   awsconv.String("TagKey"),
+				Value: awsconv.String("TagValue"),
 			},
 			// More values...
 		},

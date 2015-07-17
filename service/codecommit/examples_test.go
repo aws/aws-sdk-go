@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/codecommit"
@@ -21,7 +21,7 @@ func ExampleCodeCommit_BatchGetRepositories() {
 
 	params := &codecommit.BatchGetRepositoriesInput{
 		RepositoryNames: []*string{ // Required
-			aws.String("RepositoryName"), // Required
+			awsconv.String("RepositoryName"), // Required
 			// More values...
 		},
 	}
@@ -50,9 +50,9 @@ func ExampleCodeCommit_CreateBranch() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.CreateBranchInput{
-		BranchName:     aws.String("BranchName"),     // Required
-		CommitID:       aws.String("CommitId"),       // Required
-		RepositoryName: aws.String("RepositoryName"), // Required
+		BranchName:     awsconv.String("BranchName"),     // Required
+		CommitID:       awsconv.String("CommitId"),       // Required
+		RepositoryName: awsconv.String("RepositoryName"), // Required
 	}
 	resp, err := svc.CreateBranch(params)
 
@@ -79,8 +79,8 @@ func ExampleCodeCommit_CreateRepository() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.CreateRepositoryInput{
-		RepositoryName:        aws.String("RepositoryName"), // Required
-		RepositoryDescription: aws.String("RepositoryDescription"),
+		RepositoryName:        awsconv.String("RepositoryName"), // Required
+		RepositoryDescription: awsconv.String("RepositoryDescription"),
 	}
 	resp, err := svc.CreateRepository(params)
 
@@ -107,7 +107,7 @@ func ExampleCodeCommit_DeleteRepository() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.DeleteRepositoryInput{
-		RepositoryName: aws.String("RepositoryName"), // Required
+		RepositoryName: awsconv.String("RepositoryName"), // Required
 	}
 	resp, err := svc.DeleteRepository(params)
 
@@ -134,8 +134,8 @@ func ExampleCodeCommit_GetBranch() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.GetBranchInput{
-		BranchName:     aws.String("BranchName"),
-		RepositoryName: aws.String("RepositoryName"),
+		BranchName:     awsconv.String("BranchName"),
+		RepositoryName: awsconv.String("RepositoryName"),
 	}
 	resp, err := svc.GetBranch(params)
 
@@ -162,7 +162,7 @@ func ExampleCodeCommit_GetRepository() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.GetRepositoryInput{
-		RepositoryName: aws.String("RepositoryName"), // Required
+		RepositoryName: awsconv.String("RepositoryName"), // Required
 	}
 	resp, err := svc.GetRepository(params)
 
@@ -189,8 +189,8 @@ func ExampleCodeCommit_ListBranches() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.ListBranchesInput{
-		RepositoryName: aws.String("RepositoryName"), // Required
-		NextToken:      aws.String("NextToken"),
+		RepositoryName: awsconv.String("RepositoryName"), // Required
+		NextToken:      awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListBranches(params)
 
@@ -217,9 +217,9 @@ func ExampleCodeCommit_ListRepositories() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.ListRepositoriesInput{
-		NextToken: aws.String("NextToken"),
-		Order:     aws.String("OrderEnum"),
-		SortBy:    aws.String("SortByEnum"),
+		NextToken: awsconv.String("NextToken"),
+		Order:     awsconv.String("OrderEnum"),
+		SortBy:    awsconv.String("SortByEnum"),
 	}
 	resp, err := svc.ListRepositories(params)
 
@@ -246,8 +246,8 @@ func ExampleCodeCommit_UpdateDefaultBranch() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.UpdateDefaultBranchInput{
-		DefaultBranchName: aws.String("BranchName"),     // Required
-		RepositoryName:    aws.String("RepositoryName"), // Required
+		DefaultBranchName: awsconv.String("BranchName"),     // Required
+		RepositoryName:    awsconv.String("RepositoryName"), // Required
 	}
 	resp, err := svc.UpdateDefaultBranch(params)
 
@@ -274,8 +274,8 @@ func ExampleCodeCommit_UpdateRepositoryDescription() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.UpdateRepositoryDescriptionInput{
-		RepositoryName:        aws.String("RepositoryName"), // Required
-		RepositoryDescription: aws.String("RepositoryDescription"),
+		RepositoryName:        awsconv.String("RepositoryName"), // Required
+		RepositoryDescription: awsconv.String("RepositoryDescription"),
 	}
 	resp, err := svc.UpdateRepositoryDescription(params)
 
@@ -302,8 +302,8 @@ func ExampleCodeCommit_UpdateRepositoryName() {
 	svc := codecommit.New(nil)
 
 	params := &codecommit.UpdateRepositoryNameInput{
-		NewName: aws.String("RepositoryName"), // Required
-		OldName: aws.String("RepositoryName"), // Required
+		NewName: awsconv.String("RepositoryName"), // Required
+		OldName: awsconv.String("RepositoryName"), // Required
 	}
 	resp, err := svc.UpdateRepositoryName(params)
 

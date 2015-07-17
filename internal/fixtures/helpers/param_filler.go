@@ -51,7 +51,7 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 	case "string", "character":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.String(%#v)", v.Interface())
+			return fmt.Sprintf("awsconv.String(%#v)", v.Interface())
 		}
 	case "blob":
 		v := reflect.Indirect(reflect.ValueOf(value))
@@ -63,22 +63,22 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 	case "boolean":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Bool(%#v)", v.Interface())
+			return fmt.Sprintf("awsconv.Bool(%#v)", v.Interface())
 		}
 	case "integer", "long":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Int64(%v)", v.Interface())
+			return fmt.Sprintf("awsconv.Int64(%v)", v.Interface())
 		}
 	case "float", "double":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Float64(%v)", v.Interface())
+			return fmt.Sprintf("awsconv.Float64(%v)", v.Interface())
 		}
 	case "timestamp":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Time(time.Unix(%d, 0))", int(v.Float()))
+			return fmt.Sprintf("awsconv.Time(time.Unix(%d, 0))", int(v.Float()))
 		}
 	default:
 		panic("Unhandled type " + shape.Type)

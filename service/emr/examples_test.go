@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/emr"
@@ -22,16 +22,16 @@ func ExampleEMR_AddInstanceGroups() {
 	params := &emr.AddInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupConfig{ // Required
 			{ // Required
-				InstanceCount: aws.Int64(1),                   // Required
-				InstanceRole:  aws.String("InstanceRoleType"), // Required
-				InstanceType:  aws.String("InstanceType"),     // Required
-				BidPrice:      aws.String("XmlStringMaxLen256"),
-				Market:        aws.String("MarketType"),
-				Name:          aws.String("XmlStringMaxLen256"),
+				InstanceCount: awsconv.Int64(1),                   // Required
+				InstanceRole:  awsconv.String("InstanceRoleType"), // Required
+				InstanceType:  awsconv.String("InstanceType"),     // Required
+				BidPrice:      awsconv.String("XmlStringMaxLen256"),
+				Market:        awsconv.String("MarketType"),
+				Name:          awsconv.String("XmlStringMaxLen256"),
 			},
 			// More values...
 		},
-		JobFlowID: aws.String("XmlStringMaxLen256"), // Required
+		JobFlowID: awsconv.String("XmlStringMaxLen256"), // Required
 	}
 	resp, err := svc.AddInstanceGroups(params)
 
@@ -58,26 +58,26 @@ func ExampleEMR_AddJobFlowSteps() {
 	svc := emr.New(nil)
 
 	params := &emr.AddJobFlowStepsInput{
-		JobFlowID: aws.String("XmlStringMaxLen256"), // Required
+		JobFlowID: awsconv.String("XmlStringMaxLen256"), // Required
 		Steps: []*emr.StepConfig{ // Required
 			{ // Required
 				HadoopJARStep: &emr.HadoopJARStepConfig{ // Required
-					JAR: aws.String("XmlString"), // Required
+					JAR: awsconv.String("XmlString"), // Required
 					Args: []*string{
-						aws.String("XmlString"), // Required
+						awsconv.String("XmlString"), // Required
 						// More values...
 					},
-					MainClass: aws.String("XmlString"),
+					MainClass: awsconv.String("XmlString"),
 					Properties: []*emr.KeyValue{
 						{ // Required
-							Key:   aws.String("XmlString"),
-							Value: aws.String("XmlString"),
+							Key:   awsconv.String("XmlString"),
+							Value: awsconv.String("XmlString"),
 						},
 						// More values...
 					},
 				},
-				Name:            aws.String("XmlStringMaxLen256"), // Required
-				ActionOnFailure: aws.String("ActionOnFailure"),
+				Name:            awsconv.String("XmlStringMaxLen256"), // Required
+				ActionOnFailure: awsconv.String("ActionOnFailure"),
 			},
 			// More values...
 		},
@@ -107,11 +107,11 @@ func ExampleEMR_AddTags() {
 	svc := emr.New(nil)
 
 	params := &emr.AddTagsInput{
-		ResourceID: aws.String("ResourceId"), // Required
+		ResourceID: awsconv.String("ResourceId"), // Required
 		Tags: []*emr.Tag{ // Required
 			{ // Required
-				Key:   aws.String("String"),
-				Value: aws.String("String"),
+				Key:   awsconv.String("String"),
+				Value: awsconv.String("String"),
 			},
 			// More values...
 		},
@@ -141,7 +141,7 @@ func ExampleEMR_DescribeCluster() {
 	svc := emr.New(nil)
 
 	params := &emr.DescribeClusterInput{
-		ClusterID: aws.String("ClusterId"), // Required
+		ClusterID: awsconv.String("ClusterId"), // Required
 	}
 	resp, err := svc.DescribeCluster(params)
 
@@ -168,14 +168,14 @@ func ExampleEMR_DescribeJobFlows() {
 	svc := emr.New(nil)
 
 	params := &emr.DescribeJobFlowsInput{
-		CreatedAfter:  aws.Time(time.Now()),
-		CreatedBefore: aws.Time(time.Now()),
+		CreatedAfter:  awsconv.Time(time.Now()),
+		CreatedBefore: awsconv.Time(time.Now()),
 		JobFlowIDs: []*string{
-			aws.String("XmlString"), // Required
+			awsconv.String("XmlString"), // Required
 			// More values...
 		},
 		JobFlowStates: []*string{
-			aws.String("JobFlowExecutionState"), // Required
+			awsconv.String("JobFlowExecutionState"), // Required
 			// More values...
 		},
 	}
@@ -204,8 +204,8 @@ func ExampleEMR_DescribeStep() {
 	svc := emr.New(nil)
 
 	params := &emr.DescribeStepInput{
-		ClusterID: aws.String("ClusterId"), // Required
-		StepID:    aws.String("StepId"),    // Required
+		ClusterID: awsconv.String("ClusterId"), // Required
+		StepID:    awsconv.String("StepId"),    // Required
 	}
 	resp, err := svc.DescribeStep(params)
 
@@ -232,8 +232,8 @@ func ExampleEMR_ListBootstrapActions() {
 	svc := emr.New(nil)
 
 	params := &emr.ListBootstrapActionsInput{
-		ClusterID: aws.String("ClusterId"), // Required
-		Marker:    aws.String("Marker"),
+		ClusterID: awsconv.String("ClusterId"), // Required
+		Marker:    awsconv.String("Marker"),
 	}
 	resp, err := svc.ListBootstrapActions(params)
 
@@ -261,12 +261,12 @@ func ExampleEMR_ListClusters() {
 
 	params := &emr.ListClustersInput{
 		ClusterStates: []*string{
-			aws.String("ClusterState"), // Required
+			awsconv.String("ClusterState"), // Required
 			// More values...
 		},
-		CreatedAfter:  aws.Time(time.Now()),
-		CreatedBefore: aws.Time(time.Now()),
-		Marker:        aws.String("Marker"),
+		CreatedAfter:  awsconv.Time(time.Now()),
+		CreatedBefore: awsconv.Time(time.Now()),
+		Marker:        awsconv.String("Marker"),
 	}
 	resp, err := svc.ListClusters(params)
 
@@ -293,8 +293,8 @@ func ExampleEMR_ListInstanceGroups() {
 	svc := emr.New(nil)
 
 	params := &emr.ListInstanceGroupsInput{
-		ClusterID: aws.String("ClusterId"), // Required
-		Marker:    aws.String("Marker"),
+		ClusterID: awsconv.String("ClusterId"), // Required
+		Marker:    awsconv.String("Marker"),
 	}
 	resp, err := svc.ListInstanceGroups(params)
 
@@ -321,13 +321,13 @@ func ExampleEMR_ListInstances() {
 	svc := emr.New(nil)
 
 	params := &emr.ListInstancesInput{
-		ClusterID:       aws.String("ClusterId"), // Required
-		InstanceGroupID: aws.String("InstanceGroupId"),
+		ClusterID:       awsconv.String("ClusterId"), // Required
+		InstanceGroupID: awsconv.String("InstanceGroupId"),
 		InstanceGroupTypes: []*string{
-			aws.String("InstanceGroupType"), // Required
+			awsconv.String("InstanceGroupType"), // Required
 			// More values...
 		},
-		Marker: aws.String("Marker"),
+		Marker: awsconv.String("Marker"),
 	}
 	resp, err := svc.ListInstances(params)
 
@@ -354,14 +354,14 @@ func ExampleEMR_ListSteps() {
 	svc := emr.New(nil)
 
 	params := &emr.ListStepsInput{
-		ClusterID: aws.String("ClusterId"), // Required
-		Marker:    aws.String("Marker"),
+		ClusterID: awsconv.String("ClusterId"), // Required
+		Marker:    awsconv.String("Marker"),
 		StepIDs: []*string{
-			aws.String("XmlString"), // Required
+			awsconv.String("XmlString"), // Required
 			// More values...
 		},
 		StepStates: []*string{
-			aws.String("StepState"), // Required
+			awsconv.String("StepState"), // Required
 			// More values...
 		},
 	}
@@ -392,12 +392,12 @@ func ExampleEMR_ModifyInstanceGroups() {
 	params := &emr.ModifyInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupModifyConfig{
 			{ // Required
-				InstanceGroupID: aws.String("XmlStringMaxLen256"), // Required
+				InstanceGroupID: awsconv.String("XmlStringMaxLen256"), // Required
 				EC2InstanceIDsToTerminate: []*string{
-					aws.String("InstanceId"), // Required
+					awsconv.String("InstanceId"), // Required
 					// More values...
 				},
-				InstanceCount: aws.Int64(1),
+				InstanceCount: awsconv.Int64(1),
 			},
 			// More values...
 		},
@@ -427,9 +427,9 @@ func ExampleEMR_RemoveTags() {
 	svc := emr.New(nil)
 
 	params := &emr.RemoveTagsInput{
-		ResourceID: aws.String("ResourceId"), // Required
+		ResourceID: awsconv.String("ResourceId"), // Required
 		TagKeys: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -460,101 +460,101 @@ func ExampleEMR_RunJobFlow() {
 	params := &emr.RunJobFlowInput{
 		Instances: &emr.JobFlowInstancesConfig{ // Required
 			AdditionalMasterSecurityGroups: []*string{
-				aws.String("XmlStringMaxLen256"), // Required
+				awsconv.String("XmlStringMaxLen256"), // Required
 				// More values...
 			},
 			AdditionalSlaveSecurityGroups: []*string{
-				aws.String("XmlStringMaxLen256"), // Required
+				awsconv.String("XmlStringMaxLen256"), // Required
 				// More values...
 			},
-			EC2KeyName:                    aws.String("XmlStringMaxLen256"),
-			EC2SubnetID:                   aws.String("XmlStringMaxLen256"),
-			EMRManagedMasterSecurityGroup: aws.String("XmlStringMaxLen256"),
-			EMRManagedSlaveSecurityGroup:  aws.String("XmlStringMaxLen256"),
-			HadoopVersion:                 aws.String("XmlStringMaxLen256"),
-			InstanceCount:                 aws.Int64(1),
+			EC2KeyName:                    awsconv.String("XmlStringMaxLen256"),
+			EC2SubnetID:                   awsconv.String("XmlStringMaxLen256"),
+			EMRManagedMasterSecurityGroup: awsconv.String("XmlStringMaxLen256"),
+			EMRManagedSlaveSecurityGroup:  awsconv.String("XmlStringMaxLen256"),
+			HadoopVersion:                 awsconv.String("XmlStringMaxLen256"),
+			InstanceCount:                 awsconv.Int64(1),
 			InstanceGroups: []*emr.InstanceGroupConfig{
 				{ // Required
-					InstanceCount: aws.Int64(1),                   // Required
-					InstanceRole:  aws.String("InstanceRoleType"), // Required
-					InstanceType:  aws.String("InstanceType"),     // Required
-					BidPrice:      aws.String("XmlStringMaxLen256"),
-					Market:        aws.String("MarketType"),
-					Name:          aws.String("XmlStringMaxLen256"),
+					InstanceCount: awsconv.Int64(1),                   // Required
+					InstanceRole:  awsconv.String("InstanceRoleType"), // Required
+					InstanceType:  awsconv.String("InstanceType"),     // Required
+					BidPrice:      awsconv.String("XmlStringMaxLen256"),
+					Market:        awsconv.String("MarketType"),
+					Name:          awsconv.String("XmlStringMaxLen256"),
 				},
 				// More values...
 			},
-			KeepJobFlowAliveWhenNoSteps: aws.Bool(true),
-			MasterInstanceType:          aws.String("InstanceType"),
+			KeepJobFlowAliveWhenNoSteps: awsconv.Bool(true),
+			MasterInstanceType:          awsconv.String("InstanceType"),
 			Placement: &emr.PlacementType{
-				AvailabilityZone: aws.String("XmlString"), // Required
+				AvailabilityZone: awsconv.String("XmlString"), // Required
 			},
-			SlaveInstanceType:    aws.String("InstanceType"),
-			TerminationProtected: aws.Bool(true),
+			SlaveInstanceType:    awsconv.String("InstanceType"),
+			TerminationProtected: awsconv.Bool(true),
 		},
-		Name:           aws.String("XmlStringMaxLen256"), // Required
-		AMIVersion:     aws.String("XmlStringMaxLen256"),
-		AdditionalInfo: aws.String("XmlString"),
+		Name:           awsconv.String("XmlStringMaxLen256"), // Required
+		AMIVersion:     awsconv.String("XmlStringMaxLen256"),
+		AdditionalInfo: awsconv.String("XmlString"),
 		BootstrapActions: []*emr.BootstrapActionConfig{
 			{ // Required
-				Name: aws.String("XmlStringMaxLen256"), // Required
+				Name: awsconv.String("XmlStringMaxLen256"), // Required
 				ScriptBootstrapAction: &emr.ScriptBootstrapActionConfig{ // Required
-					Path: aws.String("XmlString"), // Required
+					Path: awsconv.String("XmlString"), // Required
 					Args: []*string{
-						aws.String("XmlString"), // Required
+						awsconv.String("XmlString"), // Required
 						// More values...
 					},
 				},
 			},
 			// More values...
 		},
-		JobFlowRole: aws.String("XmlString"),
-		LogURI:      aws.String("XmlString"),
+		JobFlowRole: awsconv.String("XmlString"),
+		LogURI:      awsconv.String("XmlString"),
 		NewSupportedProducts: []*emr.SupportedProductConfig{
 			{ // Required
 				Args: []*string{
-					aws.String("XmlString"), // Required
+					awsconv.String("XmlString"), // Required
 					// More values...
 				},
-				Name: aws.String("XmlStringMaxLen256"),
+				Name: awsconv.String("XmlStringMaxLen256"),
 			},
 			// More values...
 		},
-		ServiceRole: aws.String("XmlString"),
+		ServiceRole: awsconv.String("XmlString"),
 		Steps: []*emr.StepConfig{
 			{ // Required
 				HadoopJARStep: &emr.HadoopJARStepConfig{ // Required
-					JAR: aws.String("XmlString"), // Required
+					JAR: awsconv.String("XmlString"), // Required
 					Args: []*string{
-						aws.String("XmlString"), // Required
+						awsconv.String("XmlString"), // Required
 						// More values...
 					},
-					MainClass: aws.String("XmlString"),
+					MainClass: awsconv.String("XmlString"),
 					Properties: []*emr.KeyValue{
 						{ // Required
-							Key:   aws.String("XmlString"),
-							Value: aws.String("XmlString"),
+							Key:   awsconv.String("XmlString"),
+							Value: awsconv.String("XmlString"),
 						},
 						// More values...
 					},
 				},
-				Name:            aws.String("XmlStringMaxLen256"), // Required
-				ActionOnFailure: aws.String("ActionOnFailure"),
+				Name:            awsconv.String("XmlStringMaxLen256"), // Required
+				ActionOnFailure: awsconv.String("ActionOnFailure"),
 			},
 			// More values...
 		},
 		SupportedProducts: []*string{
-			aws.String("XmlStringMaxLen256"), // Required
+			awsconv.String("XmlStringMaxLen256"), // Required
 			// More values...
 		},
 		Tags: []*emr.Tag{
 			{ // Required
-				Key:   aws.String("String"),
-				Value: aws.String("String"),
+				Key:   awsconv.String("String"),
+				Value: awsconv.String("String"),
 			},
 			// More values...
 		},
-		VisibleToAllUsers: aws.Bool(true),
+		VisibleToAllUsers: awsconv.Bool(true),
 	}
 	resp, err := svc.RunJobFlow(params)
 
@@ -582,10 +582,10 @@ func ExampleEMR_SetTerminationProtection() {
 
 	params := &emr.SetTerminationProtectionInput{
 		JobFlowIDs: []*string{ // Required
-			aws.String("XmlString"), // Required
+			awsconv.String("XmlString"), // Required
 			// More values...
 		},
-		TerminationProtected: aws.Bool(true), // Required
+		TerminationProtected: awsconv.Bool(true), // Required
 	}
 	resp, err := svc.SetTerminationProtection(params)
 
@@ -613,10 +613,10 @@ func ExampleEMR_SetVisibleToAllUsers() {
 
 	params := &emr.SetVisibleToAllUsersInput{
 		JobFlowIDs: []*string{ // Required
-			aws.String("XmlString"), // Required
+			awsconv.String("XmlString"), // Required
 			// More values...
 		},
-		VisibleToAllUsers: aws.Bool(true), // Required
+		VisibleToAllUsers: awsconv.Bool(true), // Required
 	}
 	resp, err := svc.SetVisibleToAllUsers(params)
 
@@ -644,7 +644,7 @@ func ExampleEMR_TerminateJobFlows() {
 
 	params := &emr.TerminateJobFlowsInput{
 		JobFlowIDs: []*string{ // Required
-			aws.String("XmlString"), // Required
+			awsconv.String("XmlString"), // Required
 			// More values...
 		},
 	}

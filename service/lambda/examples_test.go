@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/lambda"
@@ -20,12 +20,12 @@ func ExampleLambda_AddPermission() {
 	svc := lambda.New(nil)
 
 	params := &lambda.AddPermissionInput{
-		Action:        aws.String("Action"),       // Required
-		FunctionName:  aws.String("FunctionName"), // Required
-		Principal:     aws.String("Principal"),    // Required
-		StatementID:   aws.String("StatementId"),  // Required
-		SourceARN:     aws.String("Arn"),
-		SourceAccount: aws.String("SourceOwner"),
+		Action:        awsconv.String("Action"),       // Required
+		FunctionName:  awsconv.String("FunctionName"), // Required
+		Principal:     awsconv.String("Principal"),    // Required
+		StatementID:   awsconv.String("StatementId"),  // Required
+		SourceARN:     awsconv.String("Arn"),
+		SourceAccount: awsconv.String("SourceOwner"),
 	}
 	resp, err := svc.AddPermission(params)
 
@@ -52,11 +52,11 @@ func ExampleLambda_CreateEventSourceMapping() {
 	svc := lambda.New(nil)
 
 	params := &lambda.CreateEventSourceMappingInput{
-		EventSourceARN:   aws.String("Arn"),                 // Required
-		FunctionName:     aws.String("FunctionName"),        // Required
-		StartingPosition: aws.String("EventSourcePosition"), // Required
-		BatchSize:        aws.Int64(1),
-		Enabled:          aws.Bool(true),
+		EventSourceARN:   awsconv.String("Arn"),                 // Required
+		FunctionName:     awsconv.String("FunctionName"),        // Required
+		StartingPosition: awsconv.String("EventSourcePosition"), // Required
+		BatchSize:        awsconv.Int64(1),
+		Enabled:          awsconv.Bool(true),
 	}
 	resp, err := svc.CreateEventSourceMapping(params)
 
@@ -84,18 +84,18 @@ func ExampleLambda_CreateFunction() {
 
 	params := &lambda.CreateFunctionInput{
 		Code: &lambda.FunctionCode{ // Required
-			S3Bucket:        aws.String("S3Bucket"),
-			S3Key:           aws.String("S3Key"),
-			S3ObjectVersion: aws.String("S3ObjectVersion"),
+			S3Bucket:        awsconv.String("S3Bucket"),
+			S3Key:           awsconv.String("S3Key"),
+			S3ObjectVersion: awsconv.String("S3ObjectVersion"),
 			ZipFile:         []byte("PAYLOAD"),
 		},
-		FunctionName: aws.String("FunctionName"), // Required
-		Handler:      aws.String("Handler"),      // Required
-		Role:         aws.String("RoleArn"),      // Required
-		Runtime:      aws.String("Runtime"),      // Required
-		Description:  aws.String("Description"),
-		MemorySize:   aws.Int64(1),
-		Timeout:      aws.Int64(1),
+		FunctionName: awsconv.String("FunctionName"), // Required
+		Handler:      awsconv.String("Handler"),      // Required
+		Role:         awsconv.String("RoleArn"),      // Required
+		Runtime:      awsconv.String("Runtime"),      // Required
+		Description:  awsconv.String("Description"),
+		MemorySize:   awsconv.Int64(1),
+		Timeout:      awsconv.Int64(1),
 	}
 	resp, err := svc.CreateFunction(params)
 
@@ -122,7 +122,7 @@ func ExampleLambda_DeleteEventSourceMapping() {
 	svc := lambda.New(nil)
 
 	params := &lambda.DeleteEventSourceMappingInput{
-		UUID: aws.String("String"), // Required
+		UUID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteEventSourceMapping(params)
 
@@ -149,7 +149,7 @@ func ExampleLambda_DeleteFunction() {
 	svc := lambda.New(nil)
 
 	params := &lambda.DeleteFunctionInput{
-		FunctionName: aws.String("FunctionName"), // Required
+		FunctionName: awsconv.String("FunctionName"), // Required
 	}
 	resp, err := svc.DeleteFunction(params)
 
@@ -176,7 +176,7 @@ func ExampleLambda_GetEventSourceMapping() {
 	svc := lambda.New(nil)
 
 	params := &lambda.GetEventSourceMappingInput{
-		UUID: aws.String("String"), // Required
+		UUID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.GetEventSourceMapping(params)
 
@@ -203,7 +203,7 @@ func ExampleLambda_GetFunction() {
 	svc := lambda.New(nil)
 
 	params := &lambda.GetFunctionInput{
-		FunctionName: aws.String("FunctionName"), // Required
+		FunctionName: awsconv.String("FunctionName"), // Required
 	}
 	resp, err := svc.GetFunction(params)
 
@@ -230,7 +230,7 @@ func ExampleLambda_GetFunctionConfiguration() {
 	svc := lambda.New(nil)
 
 	params := &lambda.GetFunctionConfigurationInput{
-		FunctionName: aws.String("FunctionName"), // Required
+		FunctionName: awsconv.String("FunctionName"), // Required
 	}
 	resp, err := svc.GetFunctionConfiguration(params)
 
@@ -257,7 +257,7 @@ func ExampleLambda_GetPolicy() {
 	svc := lambda.New(nil)
 
 	params := &lambda.GetPolicyInput{
-		FunctionName: aws.String("FunctionName"), // Required
+		FunctionName: awsconv.String("FunctionName"), // Required
 	}
 	resp, err := svc.GetPolicy(params)
 
@@ -284,10 +284,10 @@ func ExampleLambda_Invoke() {
 	svc := lambda.New(nil)
 
 	params := &lambda.InvokeInput{
-		FunctionName:   aws.String("FunctionName"), // Required
-		ClientContext:  aws.String("String"),
-		InvocationType: aws.String("InvocationType"),
-		LogType:        aws.String("LogType"),
+		FunctionName:   awsconv.String("FunctionName"), // Required
+		ClientContext:  awsconv.String("String"),
+		InvocationType: awsconv.String("InvocationType"),
+		LogType:        awsconv.String("LogType"),
 		Payload:        []byte("PAYLOAD"),
 	}
 	resp, err := svc.Invoke(params)
@@ -315,7 +315,7 @@ func ExampleLambda_InvokeAsync() {
 	svc := lambda.New(nil)
 
 	params := &lambda.InvokeAsyncInput{
-		FunctionName: aws.String("FunctionName"),         // Required
+		FunctionName: awsconv.String("FunctionName"),     // Required
 		InvokeArgs:   bytes.NewReader([]byte("PAYLOAD")), // Required
 	}
 	resp, err := svc.InvokeAsync(params)
@@ -343,10 +343,10 @@ func ExampleLambda_ListEventSourceMappings() {
 	svc := lambda.New(nil)
 
 	params := &lambda.ListEventSourceMappingsInput{
-		EventSourceARN: aws.String("Arn"),
-		FunctionName:   aws.String("FunctionName"),
-		Marker:         aws.String("String"),
-		MaxItems:       aws.Int64(1),
+		EventSourceARN: awsconv.String("Arn"),
+		FunctionName:   awsconv.String("FunctionName"),
+		Marker:         awsconv.String("String"),
+		MaxItems:       awsconv.Int64(1),
 	}
 	resp, err := svc.ListEventSourceMappings(params)
 
@@ -373,8 +373,8 @@ func ExampleLambda_ListFunctions() {
 	svc := lambda.New(nil)
 
 	params := &lambda.ListFunctionsInput{
-		Marker:   aws.String("String"),
-		MaxItems: aws.Int64(1),
+		Marker:   awsconv.String("String"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListFunctions(params)
 
@@ -401,8 +401,8 @@ func ExampleLambda_RemovePermission() {
 	svc := lambda.New(nil)
 
 	params := &lambda.RemovePermissionInput{
-		FunctionName: aws.String("FunctionName"), // Required
-		StatementID:  aws.String("StatementId"),  // Required
+		FunctionName: awsconv.String("FunctionName"), // Required
+		StatementID:  awsconv.String("StatementId"),  // Required
 	}
 	resp, err := svc.RemovePermission(params)
 
@@ -429,10 +429,10 @@ func ExampleLambda_UpdateEventSourceMapping() {
 	svc := lambda.New(nil)
 
 	params := &lambda.UpdateEventSourceMappingInput{
-		UUID:         aws.String("String"), // Required
-		BatchSize:    aws.Int64(1),
-		Enabled:      aws.Bool(true),
-		FunctionName: aws.String("FunctionName"),
+		UUID:         awsconv.String("String"), // Required
+		BatchSize:    awsconv.Int64(1),
+		Enabled:      awsconv.Bool(true),
+		FunctionName: awsconv.String("FunctionName"),
 	}
 	resp, err := svc.UpdateEventSourceMapping(params)
 
@@ -459,10 +459,10 @@ func ExampleLambda_UpdateFunctionCode() {
 	svc := lambda.New(nil)
 
 	params := &lambda.UpdateFunctionCodeInput{
-		FunctionName:    aws.String("FunctionName"), // Required
-		S3Bucket:        aws.String("S3Bucket"),
-		S3Key:           aws.String("S3Key"),
-		S3ObjectVersion: aws.String("S3ObjectVersion"),
+		FunctionName:    awsconv.String("FunctionName"), // Required
+		S3Bucket:        awsconv.String("S3Bucket"),
+		S3Key:           awsconv.String("S3Key"),
+		S3ObjectVersion: awsconv.String("S3ObjectVersion"),
 		ZipFile:         []byte("PAYLOAD"),
 	}
 	resp, err := svc.UpdateFunctionCode(params)
@@ -490,12 +490,12 @@ func ExampleLambda_UpdateFunctionConfiguration() {
 	svc := lambda.New(nil)
 
 	params := &lambda.UpdateFunctionConfigurationInput{
-		FunctionName: aws.String("FunctionName"), // Required
-		Description:  aws.String("Description"),
-		Handler:      aws.String("Handler"),
-		MemorySize:   aws.Int64(1),
-		Role:         aws.String("RoleArn"),
-		Timeout:      aws.Int64(1),
+		FunctionName: awsconv.String("FunctionName"), // Required
+		Description:  awsconv.String("Description"),
+		Handler:      awsconv.String("Handler"),
+		MemorySize:   awsconv.Int64(1),
+		Role:         awsconv.String("RoleArn"),
+		Timeout:      awsconv.Int64(1),
 	}
 	resp, err := svc.UpdateFunctionConfiguration(params)
 

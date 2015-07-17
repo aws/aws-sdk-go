@@ -5,6 +5,7 @@ import (
 	"regexp"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
@@ -29,7 +30,7 @@ func buildGetBucketLocation(r *aws.Request) {
 }
 
 func populateLocationConstraint(r *aws.Request) {
-	if r.ParamsFilled() && aws.StringValue(r.Config.Region) != "us-east-1" {
+	if r.ParamsFilled() && awsconv.StringValue(r.Config.Region) != "us-east-1" {
 		in := r.Params.(*CreateBucketInput)
 		if in.CreateBucketConfiguration == nil {
 			r.Params = awsutil.CopyOf(r.Params)

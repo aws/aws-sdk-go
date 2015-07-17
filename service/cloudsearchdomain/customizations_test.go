@@ -4,14 +4,15 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/service/cloudsearchdomain"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestRequireEndpointIfRegionProvided(t *testing.T) {
 	svc := cloudsearchdomain.New(&aws.Config{
-		Region:                 aws.String("mock-region"),
-		DisableParamValidation: aws.Bool(true),
+		Region:                 awsconv.String("mock-region"),
+		DisableParamValidation: awsconv.Bool(true),
 	})
 	req, _ := svc.SearchRequest(nil)
 	err := req.Build()
@@ -23,8 +24,8 @@ func TestRequireEndpointIfRegionProvided(t *testing.T) {
 
 func TestRequireEndpointIfNoRegionProvided(t *testing.T) {
 	svc := cloudsearchdomain.New(&aws.Config{
-		Region:                 aws.String(""),
-		DisableParamValidation: aws.Bool(true),
+		Region:                 awsconv.String(""),
+		DisableParamValidation: awsconv.Bool(true),
 	})
 	req, _ := svc.SearchRequest(nil)
 	err := req.Build()
@@ -36,9 +37,9 @@ func TestRequireEndpointIfNoRegionProvided(t *testing.T) {
 
 func TestRequireEndpointUsed(t *testing.T) {
 	svc := cloudsearchdomain.New(&aws.Config{
-		Region:                 aws.String("mock-region"),
-		DisableParamValidation: aws.Bool(true),
-		Endpoint:               aws.String("https://endpoint"),
+		Region:                 awsconv.String("mock-region"),
+		DisableParamValidation: awsconv.Bool(true),
+		Endpoint:               awsconv.String("https://endpoint"),
 	})
 	req, _ := svc.SearchRequest(nil)
 	err := req.Build()

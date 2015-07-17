@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/dynamodbstreams"
@@ -20,9 +20,9 @@ func ExampleDynamoDBStreams_DescribeStream() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.DescribeStreamInput{
-		StreamARN:             aws.String("StreamArn"), // Required
-		ExclusiveStartShardID: aws.String("ShardId"),
-		Limit: aws.Int64(1),
+		StreamARN:             awsconv.String("StreamArn"), // Required
+		ExclusiveStartShardID: awsconv.String("ShardId"),
+		Limit: awsconv.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
 
@@ -49,8 +49,8 @@ func ExampleDynamoDBStreams_GetRecords() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.GetRecordsInput{
-		ShardIterator: aws.String("ShardIterator"), // Required
-		Limit:         aws.Int64(1),
+		ShardIterator: awsconv.String("ShardIterator"), // Required
+		Limit:         awsconv.Int64(1),
 	}
 	resp, err := svc.GetRecords(params)
 
@@ -77,10 +77,10 @@ func ExampleDynamoDBStreams_GetShardIterator() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.GetShardIteratorInput{
-		ShardID:           aws.String("ShardId"),           // Required
-		ShardIteratorType: aws.String("ShardIteratorType"), // Required
-		StreamARN:         aws.String("StreamArn"),         // Required
-		SequenceNumber:    aws.String("SequenceNumber"),
+		ShardID:           awsconv.String("ShardId"),           // Required
+		ShardIteratorType: awsconv.String("ShardIteratorType"), // Required
+		StreamARN:         awsconv.String("StreamArn"),         // Required
+		SequenceNumber:    awsconv.String("SequenceNumber"),
 	}
 	resp, err := svc.GetShardIterator(params)
 
@@ -107,9 +107,9 @@ func ExampleDynamoDBStreams_ListStreams() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.ListStreamsInput{
-		ExclusiveStartStreamARN: aws.String("StreamArn"),
-		Limit:     aws.Int64(1),
-		TableName: aws.String("TableName"),
+		ExclusiveStartStreamARN: awsconv.String("StreamArn"),
+		Limit:     awsconv.Int64(1),
+		TableName: awsconv.String("TableName"),
 	}
 	resp, err := svc.ListStreams(params)
 

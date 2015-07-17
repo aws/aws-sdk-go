@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/workspaces"
@@ -22,9 +22,9 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 	params := &workspaces.CreateWorkspacesInput{
 		Workspaces: []*workspaces.WorkspaceRequest{ // Required
 			{ // Required
-				BundleID:    aws.String("BundleId"),    // Required
-				DirectoryID: aws.String("DirectoryId"), // Required
-				UserName:    aws.String("UserName"),    // Required
+				BundleID:    awsconv.String("BundleId"),    // Required
+				DirectoryID: awsconv.String("DirectoryId"), // Required
+				UserName:    awsconv.String("UserName"),    // Required
 			},
 			// More values...
 		},
@@ -55,11 +55,11 @@ func ExampleWorkSpaces_DescribeWorkspaceBundles() {
 
 	params := &workspaces.DescribeWorkspaceBundlesInput{
 		BundleIDs: []*string{
-			aws.String("BundleId"), // Required
+			awsconv.String("BundleId"), // Required
 			// More values...
 		},
-		NextToken: aws.String("PaginationToken"),
-		Owner:     aws.String("BundleOwner"),
+		NextToken: awsconv.String("PaginationToken"),
+		Owner:     awsconv.String("BundleOwner"),
 	}
 	resp, err := svc.DescribeWorkspaceBundles(params)
 
@@ -87,10 +87,10 @@ func ExampleWorkSpaces_DescribeWorkspaceDirectories() {
 
 	params := &workspaces.DescribeWorkspaceDirectoriesInput{
 		DirectoryIDs: []*string{
-			aws.String("DirectoryId"), // Required
+			awsconv.String("DirectoryId"), // Required
 			// More values...
 		},
-		NextToken: aws.String("PaginationToken"),
+		NextToken: awsconv.String("PaginationToken"),
 	}
 	resp, err := svc.DescribeWorkspaceDirectories(params)
 
@@ -117,13 +117,13 @@ func ExampleWorkSpaces_DescribeWorkspaces() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspacesInput{
-		BundleID:    aws.String("BundleId"),
-		DirectoryID: aws.String("DirectoryId"),
-		Limit:       aws.Int64(1),
-		NextToken:   aws.String("PaginationToken"),
-		UserName:    aws.String("UserName"),
+		BundleID:    awsconv.String("BundleId"),
+		DirectoryID: awsconv.String("DirectoryId"),
+		Limit:       awsconv.Int64(1),
+		NextToken:   awsconv.String("PaginationToken"),
+		UserName:    awsconv.String("UserName"),
 		WorkspaceIDs: []*string{
-			aws.String("WorkspaceId"), // Required
+			awsconv.String("WorkspaceId"), // Required
 			// More values...
 		},
 	}
@@ -154,7 +154,7 @@ func ExampleWorkSpaces_RebootWorkspaces() {
 	params := &workspaces.RebootWorkspacesInput{
 		RebootWorkspaceRequests: []*workspaces.RebootRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceID: awsconv.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -186,7 +186,7 @@ func ExampleWorkSpaces_RebuildWorkspaces() {
 	params := &workspaces.RebuildWorkspacesInput{
 		RebuildWorkspaceRequests: []*workspaces.RebuildRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceID: awsconv.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -218,7 +218,7 @@ func ExampleWorkSpaces_TerminateWorkspaces() {
 	params := &workspaces.TerminateWorkspacesInput{
 		TerminateWorkspaceRequests: []*workspaces.TerminateRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceID: awsconv.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/sts"
@@ -20,13 +20,13 @@ func ExampleSTS_AssumeRole() {
 	svc := sts.New(nil)
 
 	params := &sts.AssumeRoleInput{
-		RoleARN:         aws.String("arnType"),      // Required
-		RoleSessionName: aws.String("userNameType"), // Required
-		DurationSeconds: aws.Int64(1),
-		ExternalID:      aws.String("externalIdType"),
-		Policy:          aws.String("sessionPolicyDocumentType"),
-		SerialNumber:    aws.String("serialNumberType"),
-		TokenCode:       aws.String("tokenCodeType"),
+		RoleARN:         awsconv.String("arnType"),      // Required
+		RoleSessionName: awsconv.String("userNameType"), // Required
+		DurationSeconds: awsconv.Int64(1),
+		ExternalID:      awsconv.String("externalIdType"),
+		Policy:          awsconv.String("sessionPolicyDocumentType"),
+		SerialNumber:    awsconv.String("serialNumberType"),
+		TokenCode:       awsconv.String("tokenCodeType"),
 	}
 	resp, err := svc.AssumeRole(params)
 
@@ -53,11 +53,11 @@ func ExampleSTS_AssumeRoleWithSAML() {
 	svc := sts.New(nil)
 
 	params := &sts.AssumeRoleWithSAMLInput{
-		PrincipalARN:    aws.String("arnType"),           // Required
-		RoleARN:         aws.String("arnType"),           // Required
-		SAMLAssertion:   aws.String("SAMLAssertionType"), // Required
-		DurationSeconds: aws.Int64(1),
-		Policy:          aws.String("sessionPolicyDocumentType"),
+		PrincipalARN:    awsconv.String("arnType"),           // Required
+		RoleARN:         awsconv.String("arnType"),           // Required
+		SAMLAssertion:   awsconv.String("SAMLAssertionType"), // Required
+		DurationSeconds: awsconv.Int64(1),
+		Policy:          awsconv.String("sessionPolicyDocumentType"),
 	}
 	resp, err := svc.AssumeRoleWithSAML(params)
 
@@ -84,12 +84,12 @@ func ExampleSTS_AssumeRoleWithWebIdentity() {
 	svc := sts.New(nil)
 
 	params := &sts.AssumeRoleWithWebIdentityInput{
-		RoleARN:          aws.String("arnType"),         // Required
-		RoleSessionName:  aws.String("userNameType"),    // Required
-		WebIdentityToken: aws.String("clientTokenType"), // Required
-		DurationSeconds:  aws.Int64(1),
-		Policy:           aws.String("sessionPolicyDocumentType"),
-		ProviderID:       aws.String("urlType"),
+		RoleARN:          awsconv.String("arnType"),         // Required
+		RoleSessionName:  awsconv.String("userNameType"),    // Required
+		WebIdentityToken: awsconv.String("clientTokenType"), // Required
+		DurationSeconds:  awsconv.Int64(1),
+		Policy:           awsconv.String("sessionPolicyDocumentType"),
+		ProviderID:       awsconv.String("urlType"),
 	}
 	resp, err := svc.AssumeRoleWithWebIdentity(params)
 
@@ -116,7 +116,7 @@ func ExampleSTS_DecodeAuthorizationMessage() {
 	svc := sts.New(nil)
 
 	params := &sts.DecodeAuthorizationMessageInput{
-		EncodedMessage: aws.String("encodedMessageType"), // Required
+		EncodedMessage: awsconv.String("encodedMessageType"), // Required
 	}
 	resp, err := svc.DecodeAuthorizationMessage(params)
 
@@ -143,9 +143,9 @@ func ExampleSTS_GetFederationToken() {
 	svc := sts.New(nil)
 
 	params := &sts.GetFederationTokenInput{
-		Name:            aws.String("userNameType"), // Required
-		DurationSeconds: aws.Int64(1),
-		Policy:          aws.String("sessionPolicyDocumentType"),
+		Name:            awsconv.String("userNameType"), // Required
+		DurationSeconds: awsconv.Int64(1),
+		Policy:          awsconv.String("sessionPolicyDocumentType"),
 	}
 	resp, err := svc.GetFederationToken(params)
 
@@ -172,9 +172,9 @@ func ExampleSTS_GetSessionToken() {
 	svc := sts.New(nil)
 
 	params := &sts.GetSessionTokenInput{
-		DurationSeconds: aws.Int64(1),
-		SerialNumber:    aws.String("serialNumberType"),
-		TokenCode:       aws.String("tokenCodeType"),
+		DurationSeconds: awsconv.Int64(1),
+		SerialNumber:    awsconv.String("serialNumberType"),
+		TokenCode:       awsconv.String("tokenCodeType"),
 	}
 	resp, err := svc.GetSessionToken(params)
 
