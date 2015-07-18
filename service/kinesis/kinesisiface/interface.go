@@ -17,11 +17,15 @@ type KinesisAPI interface {
 
 	DescribeStream(*kinesis.DescribeStreamInput) (*kinesis.DescribeStreamOutput, error)
 
+	DescribeStreamPages(*kinesis.DescribeStreamInput, func(*kinesis.DescribeStreamOutput, bool) bool) error
+
 	GetRecords(*kinesis.GetRecordsInput) (*kinesis.GetRecordsOutput, error)
 
 	GetShardIterator(*kinesis.GetShardIteratorInput) (*kinesis.GetShardIteratorOutput, error)
 
 	ListStreams(*kinesis.ListStreamsInput) (*kinesis.ListStreamsOutput, error)
+
+	ListStreamsPages(*kinesis.ListStreamsInput, func(*kinesis.ListStreamsOutput, bool) bool) error
 
 	ListTagsForStream(*kinesis.ListTagsForStreamInput) (*kinesis.ListTagsForStreamOutput, error)
 

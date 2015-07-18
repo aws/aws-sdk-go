@@ -23,13 +23,23 @@ type EMRAPI interface {
 
 	ListBootstrapActions(*emr.ListBootstrapActionsInput) (*emr.ListBootstrapActionsOutput, error)
 
+	ListBootstrapActionsPages(*emr.ListBootstrapActionsInput, func(*emr.ListBootstrapActionsOutput, bool) bool) error
+
 	ListClusters(*emr.ListClustersInput) (*emr.ListClustersOutput, error)
+
+	ListClustersPages(*emr.ListClustersInput, func(*emr.ListClustersOutput, bool) bool) error
 
 	ListInstanceGroups(*emr.ListInstanceGroupsInput) (*emr.ListInstanceGroupsOutput, error)
 
+	ListInstanceGroupsPages(*emr.ListInstanceGroupsInput, func(*emr.ListInstanceGroupsOutput, bool) bool) error
+
 	ListInstances(*emr.ListInstancesInput) (*emr.ListInstancesOutput, error)
 
+	ListInstancesPages(*emr.ListInstancesInput, func(*emr.ListInstancesOutput, bool) bool) error
+
 	ListSteps(*emr.ListStepsInput) (*emr.ListStepsOutput, error)
+
+	ListStepsPages(*emr.ListStepsInput, func(*emr.ListStepsOutput, bool) bool) error
 
 	ModifyInstanceGroups(*emr.ModifyInstanceGroupsInput) (*emr.ModifyInstanceGroupsOutput, error)
 

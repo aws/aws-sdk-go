@@ -43,13 +43,21 @@ type GlacierAPI interface {
 
 	ListJobs(*glacier.ListJobsInput) (*glacier.ListJobsOutput, error)
 
+	ListJobsPages(*glacier.ListJobsInput, func(*glacier.ListJobsOutput, bool) bool) error
+
 	ListMultipartUploads(*glacier.ListMultipartUploadsInput) (*glacier.ListMultipartUploadsOutput, error)
 
+	ListMultipartUploadsPages(*glacier.ListMultipartUploadsInput, func(*glacier.ListMultipartUploadsOutput, bool) bool) error
+
 	ListParts(*glacier.ListPartsInput) (*glacier.ListPartsOutput, error)
+
+	ListPartsPages(*glacier.ListPartsInput, func(*glacier.ListPartsOutput, bool) bool) error
 
 	ListTagsForVault(*glacier.ListTagsForVaultInput) (*glacier.ListTagsForVaultOutput, error)
 
 	ListVaults(*glacier.ListVaultsInput) (*glacier.ListVaultsOutput, error)
+
+	ListVaultsPages(*glacier.ListVaultsInput, func(*glacier.ListVaultsOutput, bool) bool) error
 
 	RemoveTagsFromVault(*glacier.RemoveTagsFromVaultInput) (*glacier.RemoveTagsFromVaultOutput, error)
 

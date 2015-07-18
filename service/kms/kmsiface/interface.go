@@ -43,11 +43,19 @@ type KMSAPI interface {
 
 	ListAliases(*kms.ListAliasesInput) (*kms.ListAliasesOutput, error)
 
+	ListAliasesPages(*kms.ListAliasesInput, func(*kms.ListAliasesOutput, bool) bool) error
+
 	ListGrants(*kms.ListGrantsInput) (*kms.ListGrantsOutput, error)
+
+	ListGrantsPages(*kms.ListGrantsInput, func(*kms.ListGrantsOutput, bool) bool) error
 
 	ListKeyPolicies(*kms.ListKeyPoliciesInput) (*kms.ListKeyPoliciesOutput, error)
 
+	ListKeyPoliciesPages(*kms.ListKeyPoliciesInput, func(*kms.ListKeyPoliciesOutput, bool) bool) error
+
 	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, error)
+
+	ListKeysPages(*kms.ListKeysInput, func(*kms.ListKeysOutput, bool) bool) error
 
 	PutKeyPolicy(*kms.PutKeyPolicyInput) (*kms.PutKeyPolicyOutput, error)
 

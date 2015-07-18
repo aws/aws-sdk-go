@@ -19,7 +19,11 @@ type SupportAPI interface {
 
 	DescribeCases(*support.DescribeCasesInput) (*support.DescribeCasesOutput, error)
 
+	DescribeCasesPages(*support.DescribeCasesInput, func(*support.DescribeCasesOutput, bool) bool) error
+
 	DescribeCommunications(*support.DescribeCommunicationsInput) (*support.DescribeCommunicationsOutput, error)
+
+	DescribeCommunicationsPages(*support.DescribeCommunicationsInput, func(*support.DescribeCommunicationsOutput, bool) bool) error
 
 	DescribeServices(*support.DescribeServicesInput) (*support.DescribeServicesOutput, error)
 

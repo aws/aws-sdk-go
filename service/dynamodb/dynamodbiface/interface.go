@@ -11,6 +11,8 @@ import (
 type DynamoDBAPI interface {
 	BatchGetItem(*dynamodb.BatchGetItemInput) (*dynamodb.BatchGetItemOutput, error)
 
+	BatchGetItemPages(*dynamodb.BatchGetItemInput, func(*dynamodb.BatchGetItemOutput, bool) bool) error
+
 	BatchWriteItem(*dynamodb.BatchWriteItemInput) (*dynamodb.BatchWriteItemOutput, error)
 
 	CreateTable(*dynamodb.CreateTableInput) (*dynamodb.CreateTableOutput, error)
@@ -25,11 +27,17 @@ type DynamoDBAPI interface {
 
 	ListTables(*dynamodb.ListTablesInput) (*dynamodb.ListTablesOutput, error)
 
+	ListTablesPages(*dynamodb.ListTablesInput, func(*dynamodb.ListTablesOutput, bool) bool) error
+
 	PutItem(*dynamodb.PutItemInput) (*dynamodb.PutItemOutput, error)
 
 	Query(*dynamodb.QueryInput) (*dynamodb.QueryOutput, error)
 
+	QueryPages(*dynamodb.QueryInput, func(*dynamodb.QueryOutput, bool) bool) error
+
 	Scan(*dynamodb.ScanInput) (*dynamodb.ScanOutput, error)
+
+	ScanPages(*dynamodb.ScanInput, func(*dynamodb.ScanOutput, bool) bool) error
 
 	UpdateItem(*dynamodb.UpdateItemInput) (*dynamodb.UpdateItemOutput, error)
 
