@@ -280,7 +280,7 @@ type GetShardIteratorInput struct {
 	//
 	//   LATEST - Start reading just after the most recent stream record in the
 	// shard, so that you always read the most recent data in the shard.
-	ShardIteratorType *string `type:"string" required:"true"`
+	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
 
 	// The Amazon Resource Name (ARN) for the stream.
 	StreamARN *string `locationName:"StreamArn" type:"string" required:"true"`
@@ -411,7 +411,7 @@ type Record struct {
 	// MODIFY - one or more of the item's attributes were updated.
 	//
 	// REMOVE - the item was deleted from the table
-	EventName *string `locationName:"eventName" type:"string"`
+	EventName *string `locationName:"eventName" type:"string" enum:"OperationType"`
 
 	// The AWS service from which the stream record originated. For DynamoDB Streams,
 	// this is aws:dynamodb.
@@ -579,7 +579,7 @@ type StreamDescription struct {
 	// DISABLING - Streams is currently being disabled on the DynamoDB table.
 	//
 	// DISABLED - the stream is disabled.
-	StreamStatus *string `type:"string"`
+	StreamStatus *string `type:"string" enum:"StreamStatus"`
 
 	// Indicates the format of the records within this stream:
 	//
@@ -593,7 +593,7 @@ type StreamDescription struct {
 	//
 	// NEW_AND_OLD_IMAGES - both the new and the old images of the items from the
 	// table.
-	StreamViewType *string `type:"string"`
+	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	// The DynamoDB table with which the stream is associated.
 	TableName *string `type:"string"`
@@ -643,7 +643,7 @@ type StreamRecord struct {
 	// OLD_IMAGE - the entire item, as it appeared before it was modified.
 	//
 	// NEW_AND_OLD_IMAGES — both the new and the old item images of the item.
-	StreamViewType *string `type:"string"`
+	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	metadataStreamRecord `json:"-" xml:"-"`
 }
@@ -661,3 +661,52 @@ func (s StreamRecord) String() string {
 func (s StreamRecord) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum KeyType
+	KeyTypeHash = "HASH"
+	// @enum KeyType
+	KeyTypeRange = "RANGE"
+)
+
+const (
+	// @enum OperationType
+	OperationTypeInsert = "INSERT"
+	// @enum OperationType
+	OperationTypeModify = "MODIFY"
+	// @enum OperationType
+	OperationTypeRemove = "REMOVE"
+)
+
+const (
+	// @enum ShardIteratorType
+	ShardIteratorTypeTrimHorizon = "TRIM_HORIZON"
+	// @enum ShardIteratorType
+	ShardIteratorTypeLatest = "LATEST"
+	// @enum ShardIteratorType
+	ShardIteratorTypeAtSequenceNumber = "AT_SEQUENCE_NUMBER"
+	// @enum ShardIteratorType
+	ShardIteratorTypeAfterSequenceNumber = "AFTER_SEQUENCE_NUMBER"
+)
+
+const (
+	// @enum StreamStatus
+	StreamStatusEnabling = "ENABLING"
+	// @enum StreamStatus
+	StreamStatusEnabled = "ENABLED"
+	// @enum StreamStatus
+	StreamStatusDisabling = "DISABLING"
+	// @enum StreamStatus
+	StreamStatusDisabled = "DISABLED"
+)
+
+const (
+	// @enum StreamViewType
+	StreamViewTypeNewImage = "NEW_IMAGE"
+	// @enum StreamViewType
+	StreamViewTypeOldImage = "OLD_IMAGE"
+	// @enum StreamViewType
+	StreamViewTypeNewAndOldImages = "NEW_AND_OLD_IMAGES"
+	// @enum StreamViewType
+	StreamViewTypeKeysOnly = "KEYS_ONLY"
+)

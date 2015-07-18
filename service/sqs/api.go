@@ -1946,3 +1946,32 @@ func (s SetQueueAttributesOutput) String() string {
 func (s SetQueueAttributesOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum QueueAttributeName
+	QueueAttributeNamePolicy = "Policy"
+	// @enum QueueAttributeName
+	QueueAttributeNameVisibilityTimeout = "VisibilityTimeout"
+	// @enum QueueAttributeName
+	QueueAttributeNameMaximumMessageSize = "MaximumMessageSize"
+	// @enum QueueAttributeName
+	QueueAttributeNameMessageRetentionPeriod = "MessageRetentionPeriod"
+	// @enum QueueAttributeName
+	QueueAttributeNameApproximateNumberOfMessages = "ApproximateNumberOfMessages"
+	// @enum QueueAttributeName
+	QueueAttributeNameApproximateNumberOfMessagesNotVisible = "ApproximateNumberOfMessagesNotVisible"
+	// @enum QueueAttributeName
+	QueueAttributeNameCreatedTimestamp = "CreatedTimestamp"
+	// @enum QueueAttributeName
+	QueueAttributeNameLastModifiedTimestamp = "LastModifiedTimestamp"
+	// @enum QueueAttributeName
+	QueueAttributeNameQueueArn = "QueueArn"
+	// @enum QueueAttributeName
+	QueueAttributeNameApproximateNumberOfMessagesDelayed = "ApproximateNumberOfMessagesDelayed"
+	// @enum QueueAttributeName
+	QueueAttributeNameDelaySeconds = "DelaySeconds"
+	// @enum QueueAttributeName
+	QueueAttributeNameReceiveMessageWaitTimeSeconds = "ReceiveMessageWaitTimeSeconds"
+	// @enum QueueAttributeName
+	QueueAttributeNameRedrivePolicy = "RedrivePolicy"
+)

@@ -3990,7 +3990,7 @@ type AccessKey struct {
 
 	// The status of the access key. Active means the key is valid for API calls,
 	// while Inactive means it is not.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user that the access key is associated with.
 	UserName *string `type:"string" required:"true"`
@@ -4082,7 +4082,7 @@ type AccessKeyMetadata struct {
 
 	// The status of the access key. Active means the key is valid for API calls;
 	// Inactive means it is not.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"statusType"`
 
 	// The name of the IAM user that the key is associated with.
 	UserName *string `type:"string"`
@@ -6138,7 +6138,7 @@ type GenerateCredentialReportOutput struct {
 	Description *string `type:"string"`
 
 	// Information about the state of the credential report.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"ReportStateType"`
 
 	metadataGenerateCredentialReportOutput `json:"-" xml:"-"`
 }
@@ -6532,7 +6532,7 @@ type GetCredentialReportOutput struct {
 	GeneratedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The format (MIME type) of the credential report.
-	ReportFormat *string `type:"string"`
+	ReportFormat *string `type:"string" enum:"ReportFormatType"`
 
 	metadataGetCredentialReportOutput `json:"-" xml:"-"`
 }
@@ -7063,7 +7063,7 @@ type GetSSHPublicKeyInput struct {
 	// Specifies the public key encoding format to use in the response. To retrieve
 	// the public key in ssh-rsa format, use SSH. To retrieve the public key in
 	// PEM format, use PEM.
-	Encoding *string `type:"string" required:"true"`
+	Encoding *string `type:"string" required:"true" enum:"encodingType"`
 
 	// The unique identifier for the SSH public key.
 	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
@@ -7738,7 +7738,7 @@ type ListEntitiesForPolicyInput struct {
 	// For example, when EntityFilter is Role, only the roles that are attached
 	// to the specified policy are returned. This parameter is optional. If it is
 	// not included, all attached entities (users, groups, and roles) are returned.
-	EntityFilter *string `type:"string"`
+	EntityFilter *string `type:"string" enum:"EntityType"`
 
 	// Use this parameter only when paginating results and only after you have received
 	// a response where the results are truncated. Set it to the value of the Marker
@@ -8280,7 +8280,7 @@ type ListPoliciesInput struct {
 	//
 	// This parameter is optional. If it is not included, or if it is set to All,
 	// all policies are returned.
-	Scope *string `type:"string"`
+	Scope *string `type:"string" enum:"policyScopeType"`
 
 	metadataListPoliciesInput `json:"-" xml:"-"`
 }
@@ -8908,7 +8908,7 @@ type ListVirtualMFADevicesInput struct {
 	// The status (unassigned or assigned) of the devices to list. If you do not
 	// specify an AssignmentStatus, the action defaults to Any which lists both
 	// assigned and unassigned virtual MFA devices.
-	AssignmentStatus *string `type:"string"`
+	AssignmentStatus *string `type:"string" enum:"assignmentStatusType"`
 
 	// Use this parameter only when paginating results and only after you have received
 	// a response where the results are truncated. Set it to the value of the Marker
@@ -9906,7 +9906,7 @@ type SSHPublicKey struct {
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the SSH public key was uploaded.
@@ -9941,7 +9941,7 @@ type SSHPublicKeyMetadata struct {
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the SSH public key was uploaded.
@@ -10110,7 +10110,7 @@ type SigningCertificate struct {
 
 	// The status of the signing certificate. Active means the key is valid for
 	// API calls, while Inactive means it is not.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The date when the signing certificate was uploaded.
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -10142,7 +10142,7 @@ type UpdateAccessKeyInput struct {
 	// The status you want to assign to the secret access key. Active means the
 	// key can be used for API calls to AWS, while Inactive means the key cannot
 	// be used.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the user whose key you want to update.
 	UserName *string `type:"string"`
@@ -10510,7 +10510,7 @@ type UpdateSSHPublicKeyInput struct {
 	// The status to assign to the SSH public key. Active means the key can be used
 	// for authentication with an AWS CodeCommit repository. Inactive means the
 	// key cannot be used.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `type:"string" required:"true"`
@@ -10605,7 +10605,7 @@ type UpdateSigningCertificateInput struct {
 	// The status you want to assign to the certificate. Active means the certificate
 	// can be used for API calls to AWS, while Inactive means the certificate cannot
 	// be used.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the user the signing certificate belongs to.
 	UserName *string `type:"string"`
@@ -11022,3 +11022,115 @@ func (s VirtualMFADevice) String() string {
 func (s VirtualMFADevice) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum EntityType
+	EntityTypeUser = "User"
+	// @enum EntityType
+	EntityTypeRole = "Role"
+	// @enum EntityType
+	EntityTypeGroup = "Group"
+	// @enum EntityType
+	EntityTypeLocalManagedPolicy = "LocalManagedPolicy"
+	// @enum EntityType
+	EntityTypeAwsmanagedPolicy = "AWSManagedPolicy"
+)
+
+const (
+	// @enum ReportFormatType
+	ReportFormatTypeTextCsv = "text/csv"
+)
+
+const (
+	// @enum ReportStateType
+	ReportStateTypeStarted = "STARTED"
+	// @enum ReportStateType
+	ReportStateTypeInprogress = "INPROGRESS"
+	// @enum ReportStateType
+	ReportStateTypeComplete = "COMPLETE"
+)
+
+const (
+	// @enum assignmentStatusType
+	AssignmentStatusTypeAssigned = "Assigned"
+	// @enum assignmentStatusType
+	AssignmentStatusTypeUnassigned = "Unassigned"
+	// @enum assignmentStatusType
+	AssignmentStatusTypeAny = "Any"
+)
+
+const (
+	// @enum encodingType
+	EncodingTypeSsh = "SSH"
+	// @enum encodingType
+	EncodingTypePem = "PEM"
+)
+
+const (
+	// @enum policyScopeType
+	PolicyScopeTypeAll = "All"
+	// @enum policyScopeType
+	PolicyScopeTypeAws = "AWS"
+	// @enum policyScopeType
+	PolicyScopeTypeLocal = "Local"
+)
+
+const (
+	// @enum statusType
+	StatusTypeActive = "Active"
+	// @enum statusType
+	StatusTypeInactive = "Inactive"
+)
+
+const (
+	// @enum summaryKeyType
+	SummaryKeyTypeUsers = "Users"
+	// @enum summaryKeyType
+	SummaryKeyTypeUsersQuota = "UsersQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeGroups = "Groups"
+	// @enum summaryKeyType
+	SummaryKeyTypeGroupsQuota = "GroupsQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeServerCertificates = "ServerCertificates"
+	// @enum summaryKeyType
+	SummaryKeyTypeServerCertificatesQuota = "ServerCertificatesQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeUserPolicySizeQuota = "UserPolicySizeQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeGroupPolicySizeQuota = "GroupPolicySizeQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeGroupsPerUserQuota = "GroupsPerUserQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeSigningCertificatesPerUserQuota = "SigningCertificatesPerUserQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeAccessKeysPerUserQuota = "AccessKeysPerUserQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeMfadevices = "MFADevices"
+	// @enum summaryKeyType
+	SummaryKeyTypeMfadevicesInUse = "MFADevicesInUse"
+	// @enum summaryKeyType
+	SummaryKeyTypeAccountMfaenabled = "AccountMFAEnabled"
+	// @enum summaryKeyType
+	SummaryKeyTypeAccountAccessKeysPresent = "AccountAccessKeysPresent"
+	// @enum summaryKeyType
+	SummaryKeyTypeAccountSigningCertificatesPresent = "AccountSigningCertificatesPresent"
+	// @enum summaryKeyType
+	SummaryKeyTypeAttachedPoliciesPerGroupQuota = "AttachedPoliciesPerGroupQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeAttachedPoliciesPerRoleQuota = "AttachedPoliciesPerRoleQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeAttachedPoliciesPerUserQuota = "AttachedPoliciesPerUserQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypePolicies = "Policies"
+	// @enum summaryKeyType
+	SummaryKeyTypePoliciesQuota = "PoliciesQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypePolicySizeQuota = "PolicySizeQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypePolicyVersionsInUse = "PolicyVersionsInUse"
+	// @enum summaryKeyType
+	SummaryKeyTypePolicyVersionsInUseQuota = "PolicyVersionsInUseQuota"
+	// @enum summaryKeyType
+	SummaryKeyTypeVersionsPerPolicyQuota = "VersionsPerPolicyQuota"
+)

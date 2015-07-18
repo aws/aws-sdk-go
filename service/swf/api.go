@@ -1822,7 +1822,7 @@ type ActivityTaskTimedOutEventAttributes struct {
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The type of the timeout that caused this event.
-	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"ActivityTaskTimeoutType"`
 
 	metadataActivityTaskTimedOutEventAttributes `json:"-" xml:"-"`
 }
@@ -1963,7 +1963,7 @@ type ActivityTypeInfo struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The current status of the activity type.
-	Status *string `locationName:"status" type:"string" required:"true"`
+	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
 
 	metadataActivityTypeInfo `json:"-" xml:"-"`
 }
@@ -2026,7 +2026,7 @@ type CancelTimerFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"CancelTimerFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelTimer decision to cancel this timer. This information
@@ -2098,7 +2098,7 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"CancelWorkflowExecutionFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelWorkflowExecution decision for this cancellation
@@ -2325,7 +2325,7 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 
 	// The type of the timeout that caused the child workflow execution to time
 	// out.
-	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"WorkflowExecutionTimeoutType"`
 
 	// The child workflow execution that timed out.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -2355,7 +2355,7 @@ func (s ChildWorkflowExecutionTimedOutEventAttributes) GoString() string {
 type CloseStatusFilter struct {
 	// Required. The close status that must match the close status of an execution
 	// for it to meet the criteria of this filter.
-	Status *string `locationName:"status" type:"string" required:"true"`
+	Status *string `locationName:"status" type:"string" required:"true" enum:"CloseStatus"`
 
 	metadataCloseStatusFilter `json:"-" xml:"-"`
 }
@@ -2419,7 +2419,7 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"CompleteWorkflowExecutionFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CompleteWorkflowExecution decision to complete this
@@ -2479,7 +2479,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	// workflow type or through this parameter. If neither this parameter is set
 	// nor a default child policy was specified at registration time then a fault
 	// will be returned.
-	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" enum:"ChildPolicy"`
 
 	// If set, specifies the total duration for this workflow execution. This overrides
 	// the defaultExecutionStartToCloseTimeout specified when registering the workflow
@@ -2557,7 +2557,7 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"ContinueAsNewWorkflowExecutionFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the ContinueAsNewWorkflowExecution decision that started
@@ -2858,7 +2858,7 @@ type Decision struct {
 	ContinueAsNewWorkflowExecutionDecisionAttributes *ContinueAsNewWorkflowExecutionDecisionAttributes `locationName:"continueAsNewWorkflowExecutionDecisionAttributes" type:"structure"`
 
 	// Specifies the type of the decision.
-	DecisionType *string `locationName:"decisionType" type:"string" required:"true"`
+	DecisionType *string `locationName:"decisionType" type:"string" required:"true" enum:"DecisionType"`
 
 	// Provides details of the FailWorkflowExecution decision. It is not set for
 	// other decision types.
@@ -3021,7 +3021,7 @@ type DecisionTaskTimedOutEventAttributes struct {
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The type of timeout that expired before the decision task could be completed.
-	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"DecisionTaskTimeoutType"`
 
 	metadataDecisionTaskTimedOutEventAttributes `json:"-" xml:"-"`
 }
@@ -3424,7 +3424,7 @@ type DomainInfo struct {
 	// this domain for registering types and creating new workflow executions.
 	//  DEPRECATED: The domain was deprecated using DeprecateDomain, but is still
 	// in use. You should not create new workflow executions in this domain.
-	Status *string `locationName:"status" type:"string" required:"true"`
+	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
 
 	metadataDomainInfo `json:"-" xml:"-"`
 }
@@ -3575,7 +3575,7 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"FailWorkflowExecutionFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the FailWorkflowExecution decision to fail this execution.
@@ -3846,7 +3846,7 @@ type HistoryEvent struct {
 	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// The type of the history event.
-	EventType *string `locationName:"eventType" type:"string" required:"true"`
+	EventType *string `locationName:"eventType" type:"string" required:"true" enum:"EventType"`
 
 	// If the event is of type ExternalWorkflowExecutionCancelRequested then this
 	// member is set and provides detailed information about the event. It is not
@@ -4014,7 +4014,7 @@ type ListActivityTypesInput struct {
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	// Specifies the registration status of the activity types to list.
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true" enum:"RegistrationStatus"`
 
 	// When set to true, returns the results in reverse order. By default, the results
 	// are returned in ascending alphabetical order by name of the activity types.
@@ -4173,7 +4173,7 @@ type ListDomainsInput struct {
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	// Specifies the registration status of the domains to list.
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true" enum:"RegistrationStatus"`
 
 	// When set to true, returns the results in reverse order. By default, the results
 	// are returned in ascending alphabetical order by name of the domains.
@@ -4316,7 +4316,7 @@ type ListWorkflowTypesInput struct {
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
 	// Specifies the registration status of the workflow types to list.
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" required:"true" enum:"RegistrationStatus"`
 
 	// When set to true, returns the results in reverse order. By default the results
 	// are returned in ascending alphabetical order of the name of the workflow
@@ -4710,7 +4710,7 @@ type RecordMarkerFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"RecordMarkerFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RecordMarkerFailed decision for this cancellation request.
@@ -4924,7 +4924,7 @@ type RegisterWorkflowTypeInput struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string"`
+	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string" enum:"ChildPolicy"`
 
 	// If set, specifies the default maximum duration for executions of this workflow
 	// type. You can override this default when starting an execution through the
@@ -5068,7 +5068,7 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"RequestCancelActivityTaskFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelActivityTask decision for this cancellation
@@ -5144,7 +5144,7 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"RequestCancelExternalWorkflowExecutionFailedCause"`
 
 	Control *string `locationName:"control" type:"string"`
 
@@ -5596,7 +5596,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"ScheduleActivityTaskFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision that
 	// resulted in the scheduling of this activity task. This information can be
@@ -5680,7 +5680,7 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"SignalExternalWorkflowExecutionFailedCause"`
 
 	Control *string `locationName:"control" type:"string"`
 
@@ -5850,7 +5850,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// workflow type or through this parameter. If neither this parameter is set
 	// nor a default child policy was specified at registration time then a fault
 	// will be returned.
-	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" enum:"ChildPolicy"`
 
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// workflow tasks. This data is not sent to the child workflow execution.
@@ -5949,7 +5949,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"StartChildWorkflowExecutionFailedCause"`
 
 	Control *string `locationName:"control" type:"string"`
 
@@ -6002,7 +6002,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
 	// Optional. Data attached to the event that can be used by the decider in subsequent
 	// decision tasks. This data is not sent to the activity.
@@ -6129,7 +6129,7 @@ type StartTimerFailedEventAttributes struct {
 	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
 	// it lacked sufficient permissions. For details and example IAM policies, see
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
-	Cause *string `locationName:"cause" type:"string" required:"true"`
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"StartTimerFailedCause"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the StartTimer decision for this activity task. This information
@@ -6174,7 +6174,7 @@ type StartWorkflowExecutionInput struct {
 	// workflow type or through this parameter. If neither this parameter is set
 	// nor a default child policy was specified at registration time then a fault
 	// will be returned.
-	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" enum:"ChildPolicy"`
 
 	// The name of the domain in which the workflow execution is created.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
@@ -6360,7 +6360,7 @@ type TerminateWorkflowExecutionInput struct {
 	// workflow type or through this parameter. If neither this parameter is set
 	// nor a default child policy was specified at registration time then a fault
 	// will be returned.
-	ChildPolicy *string `locationName:"childPolicy" type:"string"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" enum:"ChildPolicy"`
 
 	// Optional. Details for terminating the workflow execution.
 	Details *string `locationName:"details" type:"string"`
@@ -6540,7 +6540,7 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 	// If set, indicates that the request to cancel the workflow execution was automatically
 	// generated, and specifies the cause. This happens if the parent workflow execution
 	// times out or is terminated, and the child policy is set to cancel child executions.
-	Cause *string `locationName:"cause" type:"string"`
+	Cause *string `locationName:"cause" type:"string" enum:"WorkflowExecutionCancelRequestedCause"`
 
 	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this workflow
@@ -6641,7 +6641,7 @@ type WorkflowExecutionConfiguration struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
 	// The total duration for this workflow execution.
 	//
@@ -6697,7 +6697,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
 	// The id of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the ContinueAsNewWorkflowExecution decision that started
@@ -6846,7 +6846,7 @@ type WorkflowExecutionInfo struct {
 	// not complete in the alloted time and was automatically timed out.  CONTINUED_AS_NEW:
 	// the execution is logically continued. This means the current execution was
 	// completed and a new execution was started to carry on the workflow.
-	CloseStatus *string `locationName:"closeStatus" type:"string"`
+	CloseStatus *string `locationName:"closeStatus" type:"string" enum:"CloseStatus"`
 
 	// The time when the workflow execution was closed. Set only if the execution
 	// status is CLOSED.
@@ -6856,7 +6856,7 @@ type WorkflowExecutionInfo struct {
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
 
 	// The current status of the execution.
-	ExecutionStatus *string `locationName:"executionStatus" type:"string" required:"true"`
+	ExecutionStatus *string `locationName:"executionStatus" type:"string" required:"true" enum:"ExecutionStatus"`
 
 	// If this workflow execution is a child of another execution then contains
 	// the workflow execution that started this execution.
@@ -7006,7 +7006,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
 	// If this workflow execution was started due to a ContinueAsNewWorkflowExecution
 	// decision, then it contains the runId of the previous workflow execution that
@@ -7074,7 +7074,7 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	// If set, indicates that the workflow execution was automatically terminated,
 	// and specifies the cause. This happens if the parent workflow execution times
 	// out or is terminated and the child policy is set to terminate child executions.
-	Cause *string `locationName:"cause" type:"string"`
+	Cause *string `locationName:"cause" type:"string" enum:"WorkflowExecutionTerminatedCause"`
 
 	// The policy used for the child workflow executions of this workflow execution.
 	//
@@ -7085,7 +7085,7 @@ type WorkflowExecutionTerminatedEventAttributes struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
 	// The details provided for the termination (if any).
 	Details *string `locationName:"details" type:"string"`
@@ -7121,10 +7121,10 @@ type WorkflowExecutionTimedOutEventAttributes struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true"`
+	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
 	// The type of timeout that caused this event.
-	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true"`
+	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"WorkflowExecutionTimeoutType"`
 
 	metadataWorkflowExecutionTimedOutEventAttributes `json:"-" xml:"-"`
 }
@@ -7189,7 +7189,7 @@ type WorkflowTypeConfiguration struct {
 	// event in its history. It is up to the decider to take appropriate actions
 	// when it receives an execution history with this event. ABANDON: no action
 	// will be taken. The child executions will continue to run.
-	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string"`
+	DefaultChildPolicy *string `locationName:"defaultChildPolicy" type:"string" enum:"ChildPolicy"`
 
 	// Optional. The default maximum duration, specified when registering the workflow
 	// type, for executions of this workflow type. This default can be overridden
@@ -7287,7 +7287,7 @@ type WorkflowTypeInfo struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The current status of the workflow type.
-	Status *string `locationName:"status" type:"string" required:"true"`
+	Status *string `locationName:"status" type:"string" required:"true" enum:"RegistrationStatus"`
 
 	// The workflow type this information is about.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -7308,3 +7308,340 @@ func (s WorkflowTypeInfo) String() string {
 func (s WorkflowTypeInfo) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ActivityTaskTimeoutType
+	ActivityTaskTimeoutTypeStartToClose = "START_TO_CLOSE"
+	// @enum ActivityTaskTimeoutType
+	ActivityTaskTimeoutTypeScheduleToStart = "SCHEDULE_TO_START"
+	// @enum ActivityTaskTimeoutType
+	ActivityTaskTimeoutTypeScheduleToClose = "SCHEDULE_TO_CLOSE"
+	// @enum ActivityTaskTimeoutType
+	ActivityTaskTimeoutTypeHeartbeat = "HEARTBEAT"
+)
+
+const (
+	// @enum CancelTimerFailedCause
+	CancelTimerFailedCauseTimerIdUnknown = "TIMER_ID_UNKNOWN"
+	// @enum CancelTimerFailedCause
+	CancelTimerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum CancelWorkflowExecutionFailedCause
+	CancelWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
+	// @enum CancelWorkflowExecutionFailedCause
+	CancelWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum ChildPolicy
+	ChildPolicyTerminate = "TERMINATE"
+	// @enum ChildPolicy
+	ChildPolicyRequestCancel = "REQUEST_CANCEL"
+	// @enum ChildPolicy
+	ChildPolicyAbandon = "ABANDON"
+)
+
+const (
+	// @enum CloseStatus
+	CloseStatusCompleted = "COMPLETED"
+	// @enum CloseStatus
+	CloseStatusFailed = "FAILED"
+	// @enum CloseStatus
+	CloseStatusCanceled = "CANCELED"
+	// @enum CloseStatus
+	CloseStatusTerminated = "TERMINATED"
+	// @enum CloseStatus
+	CloseStatusContinuedAsNew = "CONTINUED_AS_NEW"
+	// @enum CloseStatus
+	CloseStatusTimedOut = "TIMED_OUT"
+)
+
+const (
+	// @enum CompleteWorkflowExecutionFailedCause
+	CompleteWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
+	// @enum CompleteWorkflowExecutionFailedCause
+	CompleteWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDeprecated = "WORKFLOW_TYPE_DEPRECATED"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist = "WORKFLOW_TYPE_DOES_NOT_EXIST"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined = "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined = "DEFAULT_TASK_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultTaskListUndefined = "DEFAULT_TASK_LIST_UNDEFINED"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseDefaultChildPolicyUndefined = "DEFAULT_CHILD_POLICY_UNDEFINED"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseContinueAsNewWorkflowExecutionRateExceeded = "CONTINUE_AS_NEW_WORKFLOW_EXECUTION_RATE_EXCEEDED"
+	// @enum ContinueAsNewWorkflowExecutionFailedCause
+	ContinueAsNewWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum DecisionTaskTimeoutType
+	DecisionTaskTimeoutTypeStartToClose = "START_TO_CLOSE"
+)
+
+const (
+	// @enum DecisionType
+	DecisionTypeScheduleActivityTask = "ScheduleActivityTask"
+	// @enum DecisionType
+	DecisionTypeRequestCancelActivityTask = "RequestCancelActivityTask"
+	// @enum DecisionType
+	DecisionTypeCompleteWorkflowExecution = "CompleteWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeFailWorkflowExecution = "FailWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeCancelWorkflowExecution = "CancelWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeContinueAsNewWorkflowExecution = "ContinueAsNewWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeRecordMarker = "RecordMarker"
+	// @enum DecisionType
+	DecisionTypeStartTimer = "StartTimer"
+	// @enum DecisionType
+	DecisionTypeCancelTimer = "CancelTimer"
+	// @enum DecisionType
+	DecisionTypeSignalExternalWorkflowExecution = "SignalExternalWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeRequestCancelExternalWorkflowExecution = "RequestCancelExternalWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeStartChildWorkflowExecution = "StartChildWorkflowExecution"
+)
+
+const (
+	// @enum EventType
+	EventTypeWorkflowExecutionStarted = "WorkflowExecutionStarted"
+	// @enum EventType
+	EventTypeWorkflowExecutionCancelRequested = "WorkflowExecutionCancelRequested"
+	// @enum EventType
+	EventTypeWorkflowExecutionCompleted = "WorkflowExecutionCompleted"
+	// @enum EventType
+	EventTypeCompleteWorkflowExecutionFailed = "CompleteWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeWorkflowExecutionFailed = "WorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeFailWorkflowExecutionFailed = "FailWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeWorkflowExecutionTimedOut = "WorkflowExecutionTimedOut"
+	// @enum EventType
+	EventTypeWorkflowExecutionCanceled = "WorkflowExecutionCanceled"
+	// @enum EventType
+	EventTypeCancelWorkflowExecutionFailed = "CancelWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeWorkflowExecutionContinuedAsNew = "WorkflowExecutionContinuedAsNew"
+	// @enum EventType
+	EventTypeContinueAsNewWorkflowExecutionFailed = "ContinueAsNewWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeWorkflowExecutionTerminated = "WorkflowExecutionTerminated"
+	// @enum EventType
+	EventTypeDecisionTaskScheduled = "DecisionTaskScheduled"
+	// @enum EventType
+	EventTypeDecisionTaskStarted = "DecisionTaskStarted"
+	// @enum EventType
+	EventTypeDecisionTaskCompleted = "DecisionTaskCompleted"
+	// @enum EventType
+	EventTypeDecisionTaskTimedOut = "DecisionTaskTimedOut"
+	// @enum EventType
+	EventTypeActivityTaskScheduled = "ActivityTaskScheduled"
+	// @enum EventType
+	EventTypeScheduleActivityTaskFailed = "ScheduleActivityTaskFailed"
+	// @enum EventType
+	EventTypeActivityTaskStarted = "ActivityTaskStarted"
+	// @enum EventType
+	EventTypeActivityTaskCompleted = "ActivityTaskCompleted"
+	// @enum EventType
+	EventTypeActivityTaskFailed = "ActivityTaskFailed"
+	// @enum EventType
+	EventTypeActivityTaskTimedOut = "ActivityTaskTimedOut"
+	// @enum EventType
+	EventTypeActivityTaskCanceled = "ActivityTaskCanceled"
+	// @enum EventType
+	EventTypeActivityTaskCancelRequested = "ActivityTaskCancelRequested"
+	// @enum EventType
+	EventTypeRequestCancelActivityTaskFailed = "RequestCancelActivityTaskFailed"
+	// @enum EventType
+	EventTypeWorkflowExecutionSignaled = "WorkflowExecutionSignaled"
+	// @enum EventType
+	EventTypeMarkerRecorded = "MarkerRecorded"
+	// @enum EventType
+	EventTypeRecordMarkerFailed = "RecordMarkerFailed"
+	// @enum EventType
+	EventTypeTimerStarted = "TimerStarted"
+	// @enum EventType
+	EventTypeStartTimerFailed = "StartTimerFailed"
+	// @enum EventType
+	EventTypeTimerFired = "TimerFired"
+	// @enum EventType
+	EventTypeTimerCanceled = "TimerCanceled"
+	// @enum EventType
+	EventTypeCancelTimerFailed = "CancelTimerFailed"
+	// @enum EventType
+	EventTypeStartChildWorkflowExecutionInitiated = "StartChildWorkflowExecutionInitiated"
+	// @enum EventType
+	EventTypeStartChildWorkflowExecutionFailed = "StartChildWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeChildWorkflowExecutionStarted = "ChildWorkflowExecutionStarted"
+	// @enum EventType
+	EventTypeChildWorkflowExecutionCompleted = "ChildWorkflowExecutionCompleted"
+	// @enum EventType
+	EventTypeChildWorkflowExecutionFailed = "ChildWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeChildWorkflowExecutionTimedOut = "ChildWorkflowExecutionTimedOut"
+	// @enum EventType
+	EventTypeChildWorkflowExecutionCanceled = "ChildWorkflowExecutionCanceled"
+	// @enum EventType
+	EventTypeChildWorkflowExecutionTerminated = "ChildWorkflowExecutionTerminated"
+	// @enum EventType
+	EventTypeSignalExternalWorkflowExecutionInitiated = "SignalExternalWorkflowExecutionInitiated"
+	// @enum EventType
+	EventTypeSignalExternalWorkflowExecutionFailed = "SignalExternalWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeExternalWorkflowExecutionSignaled = "ExternalWorkflowExecutionSignaled"
+	// @enum EventType
+	EventTypeRequestCancelExternalWorkflowExecutionInitiated = "RequestCancelExternalWorkflowExecutionInitiated"
+	// @enum EventType
+	EventTypeRequestCancelExternalWorkflowExecutionFailed = "RequestCancelExternalWorkflowExecutionFailed"
+	// @enum EventType
+	EventTypeExternalWorkflowExecutionCancelRequested = "ExternalWorkflowExecutionCancelRequested"
+)
+
+const (
+	// @enum ExecutionStatus
+	ExecutionStatusOpen = "OPEN"
+	// @enum ExecutionStatus
+	ExecutionStatusClosed = "CLOSED"
+)
+
+const (
+	// @enum FailWorkflowExecutionFailedCause
+	FailWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
+	// @enum FailWorkflowExecutionFailedCause
+	FailWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum RecordMarkerFailedCause
+	RecordMarkerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum RegistrationStatus
+	RegistrationStatusRegistered = "REGISTERED"
+	// @enum RegistrationStatus
+	RegistrationStatusDeprecated = "DEPRECATED"
+)
+
+const (
+	// @enum RequestCancelActivityTaskFailedCause
+	RequestCancelActivityTaskFailedCauseActivityIdUnknown = "ACTIVITY_ID_UNKNOWN"
+	// @enum RequestCancelActivityTaskFailedCause
+	RequestCancelActivityTaskFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum RequestCancelExternalWorkflowExecutionFailedCause
+	RequestCancelExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution = "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION"
+	// @enum RequestCancelExternalWorkflowExecutionFailedCause
+	RequestCancelExternalWorkflowExecutionFailedCauseRequestCancelExternalWorkflowExecutionRateExceeded = "REQUEST_CANCEL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED"
+	// @enum RequestCancelExternalWorkflowExecutionFailedCause
+	RequestCancelExternalWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseActivityTypeDeprecated = "ACTIVITY_TYPE_DEPRECATED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseActivityTypeDoesNotExist = "ACTIVITY_TYPE_DOES_NOT_EXIST"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseActivityIdAlreadyInUse = "ACTIVITY_ID_ALREADY_IN_USE"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseOpenActivitiesLimitExceeded = "OPEN_ACTIVITIES_LIMIT_EXCEEDED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseActivityCreationRateExceeded = "ACTIVITY_CREATION_RATE_EXCEEDED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseDefaultScheduleToCloseTimeoutUndefined = "DEFAULT_SCHEDULE_TO_CLOSE_TIMEOUT_UNDEFINED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseDefaultTaskListUndefined = "DEFAULT_TASK_LIST_UNDEFINED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseDefaultScheduleToStartTimeoutUndefined = "DEFAULT_SCHEDULE_TO_START_TIMEOUT_UNDEFINED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseDefaultStartToCloseTimeoutUndefined = "DEFAULT_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseDefaultHeartbeatTimeoutUndefined = "DEFAULT_HEARTBEAT_TIMEOUT_UNDEFINED"
+	// @enum ScheduleActivityTaskFailedCause
+	ScheduleActivityTaskFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum SignalExternalWorkflowExecutionFailedCause
+	SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution = "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION"
+	// @enum SignalExternalWorkflowExecutionFailedCause
+	SignalExternalWorkflowExecutionFailedCauseSignalExternalWorkflowExecutionRateExceeded = "SIGNAL_EXTERNAL_WORKFLOW_EXECUTION_RATE_EXCEEDED"
+	// @enum SignalExternalWorkflowExecutionFailedCause
+	SignalExternalWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseWorkflowTypeDoesNotExist = "WORKFLOW_TYPE_DOES_NOT_EXIST"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseWorkflowTypeDeprecated = "WORKFLOW_TYPE_DEPRECATED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseOpenChildrenLimitExceeded = "OPEN_CHILDREN_LIMIT_EXCEEDED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseOpenWorkflowsLimitExceeded = "OPEN_WORKFLOWS_LIMIT_EXCEEDED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseChildCreationRateExceeded = "CHILD_CREATION_RATE_EXCEEDED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseWorkflowAlreadyRunning = "WORKFLOW_ALREADY_RUNNING"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseDefaultExecutionStartToCloseTimeoutUndefined = "DEFAULT_EXECUTION_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseDefaultTaskListUndefined = "DEFAULT_TASK_LIST_UNDEFINED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseDefaultTaskStartToCloseTimeoutUndefined = "DEFAULT_TASK_START_TO_CLOSE_TIMEOUT_UNDEFINED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseDefaultChildPolicyUndefined = "DEFAULT_CHILD_POLICY_UNDEFINED"
+	// @enum StartChildWorkflowExecutionFailedCause
+	StartChildWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum StartTimerFailedCause
+	StartTimerFailedCauseTimerIdAlreadyInUse = "TIMER_ID_ALREADY_IN_USE"
+	// @enum StartTimerFailedCause
+	StartTimerFailedCauseOpenTimersLimitExceeded = "OPEN_TIMERS_LIMIT_EXCEEDED"
+	// @enum StartTimerFailedCause
+	StartTimerFailedCauseTimerCreationRateExceeded = "TIMER_CREATION_RATE_EXCEEDED"
+	// @enum StartTimerFailedCause
+	StartTimerFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum WorkflowExecutionCancelRequestedCause
+	WorkflowExecutionCancelRequestedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
+)
+
+const (
+	// @enum WorkflowExecutionTerminatedCause
+	WorkflowExecutionTerminatedCauseChildPolicyApplied = "CHILD_POLICY_APPLIED"
+	// @enum WorkflowExecutionTerminatedCause
+	WorkflowExecutionTerminatedCauseEventLimitExceeded = "EVENT_LIMIT_EXCEEDED"
+	// @enum WorkflowExecutionTerminatedCause
+	WorkflowExecutionTerminatedCauseOperatorInitiated = "OPERATOR_INITIATED"
+)
+
+const (
+	// @enum WorkflowExecutionTimeoutType
+	WorkflowExecutionTimeoutTypeStartToClose = "START_TO_CLOSE"
+)

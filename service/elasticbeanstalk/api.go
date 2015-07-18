@@ -1258,7 +1258,7 @@ type ConfigurationOptionDescription struct {
 	// constraints.   List : Values for this option are multiple selections from
 	// the possible values.   Boolean : Values for this option are either true or
 	// false .
-	ValueType *string `type:"string"`
+	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
 
 	metadataConfigurationOptionDescription `json:"-" xml:"-"`
 }
@@ -1340,7 +1340,7 @@ type ConfigurationSettingsDescription struct {
 	// environment but is in the process of deploying.   deployed: This is the configuration
 	// that is currently deployed to the associated running environment.   failed:
 	// This is a draft configuration that failed to successfully deploy.
-	DeploymentStatus *string `type:"string"`
+	DeploymentStatus *string `type:"string" enum:"ConfigurationDeploymentStatus"`
 
 	// Describes this configuration set.
 	Description *string `type:"string"`
@@ -2220,7 +2220,7 @@ type DescribeEventsInput struct {
 
 	// If specified, limits the events returned from this call to include only those
 	// with the specified severity or higher.
-	Severity *string `type:"string"`
+	Severity *string `type:"string" enum:"EventSeverity"`
 
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// those that occur on or after this time.
@@ -2329,7 +2329,7 @@ type EnvironmentDescription struct {
 	//   Grey: Default health for a new environment. The environment is not fully
 	// launched and health checks have not started or health checks are suspended
 	// during an UpdateEnvironment or RestartEnvironement request.    Default: Grey
-	Health *string `type:"string"`
+	Health *string `type:"string" enum:"EnvironmentHealth"`
 
 	// The description of the AWS resources used by this environment.
 	Resources *EnvironmentResourcesDescription `type:"structure"`
@@ -2344,7 +2344,7 @@ type EnvironmentDescription struct {
 	// version.   Ready: Environment is available to have an action performed on
 	// it, such as update or terminate.   Terminating: Environment is in the shut-down
 	// process.   Terminated: Environment is not running.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"EnvironmentStatus"`
 
 	// The name of the configuration template used to originally launch this environment.
 	TemplateName *string `type:"string"`
@@ -2378,7 +2378,7 @@ type EnvironmentInfoDescription struct {
 	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
 
 	// The type of information retrieved.
-	InfoType *string `type:"string"`
+	InfoType *string `type:"string" enum:"EnvironmentInfoType"`
 
 	// The retrieved information.
 	Message *string `type:"string"`
@@ -2512,7 +2512,7 @@ type EventDescription struct {
 	RequestID *string `locationName:"RequestId" type:"string"`
 
 	// The severity level of this event.
-	Severity *string `type:"string"`
+	Severity *string `type:"string" enum:"EventSeverity"`
 
 	// The name of the configuration associated with this event.
 	TemplateName *string `type:"string"`
@@ -2852,7 +2852,7 @@ type RequestEnvironmentInfoInput struct {
 	EnvironmentName *string `type:"string"`
 
 	// The type of information to request.
-	InfoType *string `type:"string" required:"true"`
+	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 
 	metadataRequestEnvironmentInfoInput `json:"-" xml:"-"`
 }
@@ -2960,7 +2960,7 @@ type RetrieveEnvironmentInfoInput struct {
 	EnvironmentName *string `type:"string"`
 
 	// The type of information to retrieve.
-	InfoType *string `type:"string" required:"true"`
+	InfoType *string `type:"string" required:"true" enum:"EnvironmentInfoType"`
 
 	metadataRetrieveEnvironmentInfoInput `json:"-" xml:"-"`
 }
@@ -3493,7 +3493,7 @@ type ValidationMessage struct {
 	//     error: This message indicates that this is not a valid setting for an
 	// option.   warning: This message is providing information you should take
 	// into account.
-	Severity *string `type:"string"`
+	Severity *string `type:"string" enum:"ValidationSeverity"`
 
 	metadataValidationMessage `json:"-" xml:"-"`
 }
@@ -3511,3 +3511,72 @@ func (s ValidationMessage) String() string {
 func (s ValidationMessage) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ConfigurationDeploymentStatus
+	ConfigurationDeploymentStatusDeployed = "deployed"
+	// @enum ConfigurationDeploymentStatus
+	ConfigurationDeploymentStatusPending = "pending"
+	// @enum ConfigurationDeploymentStatus
+	ConfigurationDeploymentStatusFailed = "failed"
+)
+
+const (
+	// @enum ConfigurationOptionValueType
+	ConfigurationOptionValueTypeScalar = "Scalar"
+	// @enum ConfigurationOptionValueType
+	ConfigurationOptionValueTypeList = "List"
+)
+
+const (
+	// @enum EnvironmentHealth
+	EnvironmentHealthGreen = "Green"
+	// @enum EnvironmentHealth
+	EnvironmentHealthYellow = "Yellow"
+	// @enum EnvironmentHealth
+	EnvironmentHealthRed = "Red"
+	// @enum EnvironmentHealth
+	EnvironmentHealthGrey = "Grey"
+)
+
+const (
+	// @enum EnvironmentInfoType
+	EnvironmentInfoTypeTail = "tail"
+	// @enum EnvironmentInfoType
+	EnvironmentInfoTypeBundle = "bundle"
+)
+
+const (
+	// @enum EnvironmentStatus
+	EnvironmentStatusLaunching = "Launching"
+	// @enum EnvironmentStatus
+	EnvironmentStatusUpdating = "Updating"
+	// @enum EnvironmentStatus
+	EnvironmentStatusReady = "Ready"
+	// @enum EnvironmentStatus
+	EnvironmentStatusTerminating = "Terminating"
+	// @enum EnvironmentStatus
+	EnvironmentStatusTerminated = "Terminated"
+)
+
+const (
+	// @enum EventSeverity
+	EventSeverityTrace = "TRACE"
+	// @enum EventSeverity
+	EventSeverityDebug = "DEBUG"
+	// @enum EventSeverity
+	EventSeverityInfo = "INFO"
+	// @enum EventSeverity
+	EventSeverityWarn = "WARN"
+	// @enum EventSeverity
+	EventSeverityError = "ERROR"
+	// @enum EventSeverity
+	EventSeverityFatal = "FATAL"
+)
+
+const (
+	// @enum ValidationSeverity
+	ValidationSeverityError = "error"
+	// @enum ValidationSeverity
+	ValidationSeverityWarning = "warning"
+)

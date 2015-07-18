@@ -1565,7 +1565,7 @@ type AbortMultipartUploadInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
@@ -1589,7 +1589,7 @@ func (s AbortMultipartUploadInput) GoString() string {
 type AbortMultipartUploadOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	metadataAbortMultipartUploadOutput `json:"-" xml:"-"`
 }
@@ -1736,7 +1736,7 @@ type CloudFunctionConfiguration struct {
 	CloudFunction *string `type:"string"`
 
 	// Bucket event for which to send notifications.
-	Event *string `type:"string"`
+	Event *string `type:"string" enum:"Event"`
 
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
 
@@ -1794,7 +1794,7 @@ type CompleteMultipartUploadInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
 
@@ -1831,7 +1831,7 @@ type CompleteMultipartUploadOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If present, specifies the ID of the AWS Key Management Service (KMS) master
 	// encryption key that was used for the object.
@@ -1839,7 +1839,7 @@ type CompleteMultipartUploadOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -1942,7 +1942,7 @@ func (s Condition) GoString() string {
 
 type CopyObjectInput struct {
 	// The canned ACL to apply to the object.
-	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -2015,13 +2015,13 @@ type CopyObjectInput struct {
 
 	// Specifies whether the metadata is copied from the source object or replaced
 	// with metadata provided in the request.
-	MetadataDirective *string `location:"header" locationName:"x-amz-metadata-directive" type:"string"`
+	MetadataDirective *string `location:"header" locationName:"x-amz-metadata-directive" type:"string" enum:"MetadataDirective"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -2046,10 +2046,10 @@ type CopyObjectInput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// The type of storage to use for the object. Defaults to 'STANDARD'.
-	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string"`
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// If the bucket is configured as a website, redirects requests for this object
 	// to another object in the same bucket or to an external URL. Amazon S3 stores
@@ -2083,7 +2083,7 @@ type CopyObjectOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -2101,7 +2101,7 @@ type CopyObjectOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	metadataCopyObjectOutput `json:"-" xml:"-"`
 }
@@ -2169,7 +2169,7 @@ func (s CopyPartResult) GoString() string {
 type CreateBucketConfiguration struct {
 	// Specifies the region where the bucket will be created. If you don't specify
 	// a region, the bucket will be created in US Standard.
-	LocationConstraint *string `type:"string"`
+	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
 
 	metadataCreateBucketConfiguration `json:"-" xml:"-"`
 }
@@ -2190,7 +2190,7 @@ func (s CreateBucketConfiguration) GoString() string {
 
 type CreateBucketInput struct {
 	// The canned ACL to apply to the bucket.
-	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"BucketCannedACL"`
 
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -2251,7 +2251,7 @@ func (s CreateBucketOutput) GoString() string {
 
 type CreateMultipartUploadInput struct {
 	// The canned ACL to apply to the object.
-	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -2296,7 +2296,7 @@ type CreateMultipartUploadInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -2321,10 +2321,10 @@ type CreateMultipartUploadInput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// The type of storage to use for the object. Defaults to 'STANDARD'.
-	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string"`
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// If the bucket is configured as a website, redirects requests for this object
 	// to another object in the same bucket or to an external URL. Amazon S3 stores
@@ -2357,7 +2357,7 @@ type CreateMultipartUploadOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -2375,7 +2375,7 @@ type CreateMultipartUploadOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// ID for the initiated multipart upload.
 	UploadID *string `locationName:"UploadId" type:"string"`
@@ -2733,7 +2733,7 @@ type DeleteObjectInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
@@ -2762,7 +2762,7 @@ type DeleteObjectOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// Returns the version ID of the delete marker created as a result of the DELETE
 	// operation.
@@ -2798,7 +2798,7 @@ type DeleteObjectsInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	metadataDeleteObjectsInput `json:"-" xml:"-"`
 }
@@ -2824,7 +2824,7 @@ type DeleteObjectsOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	metadataDeleteObjectsOutput `json:"-" xml:"-"`
 }
@@ -3082,7 +3082,7 @@ func (s GetBucketLocationInput) GoString() string {
 }
 
 type GetBucketLocationOutput struct {
-	LocationConstraint *string `type:"string"`
+	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
 
 	metadataGetBucketLocationOutput `json:"-" xml:"-"`
 }
@@ -3267,7 +3267,7 @@ func (s GetBucketRequestPaymentInput) GoString() string {
 
 type GetBucketRequestPaymentOutput struct {
 	// Specifies who pays for the download and request fees.
-	Payer *string `type:"string"`
+	Payer *string `type:"string" enum:"Payer"`
 
 	metadataGetBucketRequestPaymentOutput `json:"-" xml:"-"`
 }
@@ -3350,10 +3350,10 @@ type GetBucketVersioningOutput struct {
 	// Specifies whether MFA delete is enabled in the bucket versioning configuration.
 	// This element is only returned if the bucket has been configured with MFA
 	// delete. If the bucket has never been so configured, this element is not returned.
-	MFADelete *string `locationName:"MfaDelete" type:"string"`
+	MFADelete *string `locationName:"MfaDelete" type:"string" enum:"MFADeleteStatus"`
 
 	// The versioning state of the bucket.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"BucketVersioningStatus"`
 
 	metadataGetBucketVersioningOutput `json:"-" xml:"-"`
 }
@@ -3427,7 +3427,7 @@ type GetObjectACLInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// VersionId used to reference a specific version of the object.
 	VersionID *string `location:"querystring" locationName:"versionId" type:"string"`
@@ -3457,7 +3457,7 @@ type GetObjectACLOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	metadataGetObjectACLOutput `json:"-" xml:"-"`
 }
@@ -3505,7 +3505,7 @@ type GetObjectInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Sets the Cache-Control header of the response.
 	ResponseCacheControl *string `location:"querystring" locationName:"response-cache-control" type:"string"`
@@ -3618,11 +3618,11 @@ type GetObjectOutput struct {
 	// you can create metadata whose values are not legal HTTP headers.
 	MissingMeta *int64 `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
 
-	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string"`
+	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string" enum:"ReplicationStatus"`
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// Provides information about object restoration operation and expiration time
 	// of the restored object copy.
@@ -3644,7 +3644,7 @@ type GetObjectOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -3680,7 +3680,7 @@ type GetObjectTorrentInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	metadataGetObjectTorrentInput `json:"-" xml:"-"`
 }
@@ -3704,7 +3704,7 @@ type GetObjectTorrentOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	metadataGetObjectTorrentOutput `json:"-" xml:"-"`
 }
@@ -3727,7 +3727,7 @@ type Grant struct {
 	Grantee *Grantee `type:"structure"`
 
 	// Specifies the permission given to the grantee.
-	Permission *string `type:"string"`
+	Permission *string `type:"string" enum:"Permission"`
 
 	metadataGrant `json:"-" xml:"-"`
 }
@@ -3757,7 +3757,7 @@ type Grantee struct {
 	ID *string `type:"string"`
 
 	// Type of grantee
-	Type *string `locationName:"xsi:type" type:"string" xmlAttribute:"true" required:"true"`
+	Type *string `locationName:"xsi:type" type:"string" xmlAttribute:"true" required:"true" enum:"Type"`
 
 	// URI of the grantee group.
 	URI *string `type:"string"`
@@ -3846,7 +3846,7 @@ type HeadObjectInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -3935,11 +3935,11 @@ type HeadObjectOutput struct {
 	// you can create metadata whose values are not legal HTTP headers.
 	MissingMeta *int64 `location:"header" locationName:"x-amz-missing-meta" type:"integer"`
 
-	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string"`
+	ReplicationStatus *string `location:"header" locationName:"x-amz-replication-status" type:"string" enum:"ReplicationStatus"`
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// Provides information about object restoration operation and expiration time
 	// of the restored object copy.
@@ -3961,7 +3961,7 @@ type HeadObjectOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -4137,7 +4137,7 @@ type LifecycleRule struct {
 
 	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
 	// is not currently being applied.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
 
 	Transition *Transition `type:"structure"`
 
@@ -4210,7 +4210,7 @@ type ListMultipartUploadsInput struct {
 	// with an ASCII value from 0 to 10. For characters that are not supported in
 	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 	// keys in the response.
-	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
+	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string" enum:"EncodingType"`
 
 	// Together with upload-id-marker, this parameter specifies the multipart upload
 	// after which listing should begin.
@@ -4256,7 +4256,7 @@ type ListMultipartUploadsOutput struct {
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
-	EncodingType *string `type:"string"`
+	EncodingType *string `type:"string" enum:"EncodingType"`
 
 	// Indicates whether the returned list of multipart uploads is truncated. A
 	// value of true indicates that the list was truncated. The list can be truncated
@@ -4317,7 +4317,7 @@ type ListObjectVersionsInput struct {
 	// with an ASCII value from 0 to 10. For characters that are not supported in
 	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 	// keys in the response.
-	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
+	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string" enum:"EncodingType"`
 
 	// Specifies the key to start with when listing objects in a bucket.
 	KeyMarker *string `location:"querystring" locationName:"key-marker" type:"string"`
@@ -4357,7 +4357,7 @@ type ListObjectVersionsOutput struct {
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
-	EncodingType *string `type:"string"`
+	EncodingType *string `type:"string" enum:"EncodingType"`
 
 	// A flag that indicates whether or not Amazon S3 returned all of the results
 	// that satisfied the search criteria. If your results were truncated, you can
@@ -4414,7 +4414,7 @@ type ListObjectsInput struct {
 	// with an ASCII value from 0 to 10. For characters that are not supported in
 	// XML 1.0, you can add this parameter to request that Amazon S3 encode the
 	// keys in the response.
-	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string"`
+	EncodingType *string `location:"querystring" locationName:"encoding-type" type:"string" enum:"EncodingType"`
 
 	// Specifies the key to start with when listing objects in a bucket.
 	Marker *string `location:"querystring" locationName:"marker" type:"string"`
@@ -4451,7 +4451,7 @@ type ListObjectsOutput struct {
 	Delimiter *string `type:"string"`
 
 	// Encoding type used by Amazon S3 to encode object keys in the response.
-	EncodingType *string `type:"string"`
+	EncodingType *string `type:"string" enum:"EncodingType"`
 
 	// A flag that indicates whether or not Amazon S3 returned all of the results
 	// that satisfied the search criteria.
@@ -4507,7 +4507,7 @@ type ListPartsInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadID *string `location:"querystring" locationName:"uploadId" type:"string" required:"true"`
@@ -4559,10 +4559,10 @@ type ListPartsOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// The class of storage used to store the object.
-	StorageClass *string `type:"string"`
+	StorageClass *string `type:"string" enum:"StorageClass"`
 
 	// Upload ID identifying the multipart upload whose parts are being listed.
 	UploadID *string `locationName:"UploadId" type:"string"`
@@ -4629,7 +4629,7 @@ type MultipartUpload struct {
 	Owner *Owner `type:"structure"`
 
 	// The class of storage used to store the object.
-	StorageClass *string `type:"string"`
+	StorageClass *string `type:"string" enum:"StorageClass"`
 
 	// Upload ID that identifies the multipart upload.
 	UploadID *string `locationName:"UploadId" type:"string"`
@@ -4695,7 +4695,7 @@ type NoncurrentVersionTransition struct {
 	NoncurrentDays *int64 `type:"integer"`
 
 	// The class of storage used to store the object.
-	StorageClass *string `type:"string"`
+	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
 
 	metadataNoncurrentVersionTransition `json:"-" xml:"-"`
 }
@@ -4776,7 +4776,7 @@ type Object struct {
 	Size *int64 `type:"integer"`
 
 	// The class of storage used to store the object.
-	StorageClass *string `type:"string"`
+	StorageClass *string `type:"string" enum:"ObjectStorageClass"`
 
 	metadataObject `json:"-" xml:"-"`
 }
@@ -4838,7 +4838,7 @@ type ObjectVersion struct {
 	Size *int64 `type:"integer"`
 
 	// The class of storage used to store the object.
-	StorageClass *string `type:"string"`
+	StorageClass *string `type:"string" enum:"ObjectVersionStorageClass"`
 
 	// Version ID of an object.
 	VersionID *string `locationName:"VersionId" type:"string"`
@@ -4915,7 +4915,7 @@ func (s Part) GoString() string {
 
 type PutBucketACLInput struct {
 	// The canned ACL to apply to the bucket.
-	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"BucketCannedACL"`
 
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
 
@@ -5423,7 +5423,7 @@ func (s PutBucketWebsiteOutput) GoString() string {
 
 type PutObjectACLInput struct {
 	// The canned ACL to apply to the object.
-	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	AccessControlPolicy *AccessControlPolicy `locationName:"AccessControlPolicy" type:"structure"`
 
@@ -5451,7 +5451,7 @@ type PutObjectACLInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	metadataPutObjectACLInput `json:"-" xml:"-"`
 }
@@ -5473,7 +5473,7 @@ func (s PutObjectACLInput) GoString() string {
 type PutObjectACLOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	metadataPutObjectACLOutput `json:"-" xml:"-"`
 }
@@ -5494,7 +5494,7 @@ func (s PutObjectACLOutput) GoString() string {
 
 type PutObjectInput struct {
 	// The canned ACL to apply to the object.
-	ACL *string `location:"header" locationName:"x-amz-acl" type:"string"`
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	// Object data.
 	Body io.ReadSeeker `type:"blob"`
@@ -5546,7 +5546,7 @@ type PutObjectInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -5571,10 +5571,10 @@ type PutObjectInput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// The type of storage to use for the object. Defaults to 'STANDARD'.
-	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string"`
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// If the bucket is configured as a website, redirects requests for this object
 	// to another object in the same bucket or to an external URL. Amazon S3 stores
@@ -5608,7 +5608,7 @@ type PutObjectOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -5626,7 +5626,7 @@ type PutObjectOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -5680,7 +5680,7 @@ func (s QueueConfiguration) GoString() string {
 
 type QueueConfigurationDeprecated struct {
 	// Bucket event for which to send notifications.
-	Event *string `type:"string"`
+	Event *string `type:"string" enum:"Event"`
 
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
 
@@ -5717,7 +5717,7 @@ type Redirect struct {
 
 	// Protocol to use (http, https) when redirecting requests. The default is the
 	// protocol that is used in the original request.
-	Protocol *string `type:"string"`
+	Protocol *string `type:"string" enum:"Protocol"`
 
 	// The object key prefix to use in the redirect request. For example, to redirect
 	// requests for all pages with prefix docs/ (objects in the docs/ folder) to
@@ -5755,7 +5755,7 @@ type RedirectAllRequestsTo struct {
 
 	// Protocol to use (http, https) when redirecting requests. The default is the
 	// protocol that is used in the original request.
-	Protocol *string `type:"string"`
+	Protocol *string `type:"string" enum:"Protocol"`
 
 	metadataRedirectAllRequestsTo `json:"-" xml:"-"`
 }
@@ -5814,7 +5814,7 @@ type ReplicationRule struct {
 	Prefix *string `type:"string" required:"true"`
 
 	// The rule is ignored if status is not Enabled.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"ReplicationRuleStatus"`
 
 	metadataReplicationRule `json:"-" xml:"-"`
 }
@@ -5835,7 +5835,7 @@ func (s ReplicationRule) GoString() string {
 
 type RequestPaymentConfiguration struct {
 	// Specifies who pays for the download and request fees.
-	Payer *string `type:"string" required:"true"`
+	Payer *string `type:"string" required:"true" enum:"Payer"`
 
 	metadataRequestPaymentConfiguration `json:"-" xml:"-"`
 }
@@ -5863,7 +5863,7 @@ type RestoreObjectInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	RestoreRequest *RestoreRequest `locationName:"RestoreRequest" type:"structure"`
 
@@ -5889,7 +5889,7 @@ func (s RestoreObjectInput) GoString() string {
 type RestoreObjectOutput struct {
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	metadataRestoreObjectOutput `json:"-" xml:"-"`
 }
@@ -6006,7 +6006,7 @@ type TargetGrant struct {
 	Grantee *Grantee `type:"structure"`
 
 	// Logging permissions assigned to the Grantee for the bucket.
-	Permission *string `type:"string"`
+	Permission *string `type:"string" enum:"BucketLogsPermission"`
 
 	metadataTargetGrant `json:"-" xml:"-"`
 }
@@ -6057,7 +6057,7 @@ func (s TopicConfiguration) GoString() string {
 
 type TopicConfigurationDeprecated struct {
 	// Bucket event for which to send notifications.
-	Event *string `type:"string"`
+	Event *string `type:"string" enum:"Event"`
 
 	Events []*string `locationName:"Event" type:"list" flattened:"true"`
 
@@ -6096,7 +6096,7 @@ type Transition struct {
 	Days *int64 `type:"integer"`
 
 	// The class of storage used to store the object.
-	StorageClass *string `type:"string"`
+	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
 
 	metadataTransition `json:"-" xml:"-"`
 }
@@ -6165,7 +6165,7 @@ type UploadPartCopyInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -6212,7 +6212,7 @@ type UploadPartCopyOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -6230,7 +6230,7 @@ type UploadPartCopyOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	metadataUploadPartCopyOutput `json:"-" xml:"-"`
 }
@@ -6268,7 +6268,7 @@ type UploadPartInput struct {
 	// request. Bucket owners need not specify this parameter in their requests.
 	// Documentation on downloading objects from requester pays buckets can be found
 	// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
-	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string"`
+	RequestPayer *string `location:"header" locationName:"x-amz-request-payer" type:"string" enum:"RequestPayer"`
 
 	// Specifies the algorithm to use to when encrypting the object (e.g., AES256).
 	SSECustomerAlgorithm *string `location:"header" locationName:"x-amz-server-side-encryption-customer-algorithm" type:"string"`
@@ -6312,7 +6312,7 @@ type UploadPartOutput struct {
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
-	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string"`
+	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If server-side encryption with a customer-provided encryption key was requested,
 	// the response will include this header confirming the encryption algorithm
@@ -6330,7 +6330,7 @@ type UploadPartOutput struct {
 
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
-	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string"`
+	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	metadataUploadPartOutput `json:"-" xml:"-"`
 }
@@ -6353,10 +6353,10 @@ type VersioningConfiguration struct {
 	// Specifies whether MFA delete is enabled in the bucket versioning configuration.
 	// This element is only returned if the bucket has been configured with MFA
 	// delete. If the bucket has never been so configured, this element is not returned.
-	MFADelete *string `locationName:"MfaDelete" type:"string"`
+	MFADelete *string `locationName:"MfaDelete" type:"string" enum:"MFADelete"`
 
 	// The versioning state of the bucket.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"BucketVersioningStatus"`
 
 	metadataVersioningConfiguration `json:"-" xml:"-"`
 }
@@ -6400,3 +6400,224 @@ func (s WebsiteConfiguration) String() string {
 func (s WebsiteConfiguration) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum BucketCannedACL
+	BucketCannedACLPrivate = "private"
+	// @enum BucketCannedACL
+	BucketCannedACLPublicRead = "public-read"
+	// @enum BucketCannedACL
+	BucketCannedACLPublicReadWrite = "public-read-write"
+	// @enum BucketCannedACL
+	BucketCannedACLAuthenticatedRead = "authenticated-read"
+)
+
+const (
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintEu = "EU"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintEuWest1 = "eu-west-1"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintUsWest1 = "us-west-1"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintUsWest2 = "us-west-2"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintSaEast1 = "sa-east-1"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintCnNorth1 = "cn-north-1"
+	// @enum BucketLocationConstraint
+	BucketLocationConstraintEuCentral1 = "eu-central-1"
+)
+
+const (
+	// @enum BucketLogsPermission
+	BucketLogsPermissionFullControl = "FULL_CONTROL"
+	// @enum BucketLogsPermission
+	BucketLogsPermissionRead = "READ"
+	// @enum BucketLogsPermission
+	BucketLogsPermissionWrite = "WRITE"
+)
+
+const (
+	// @enum BucketVersioningStatus
+	BucketVersioningStatusEnabled = "Enabled"
+	// @enum BucketVersioningStatus
+	BucketVersioningStatusSuspended = "Suspended"
+)
+
+// Requests Amazon S3 to encode the object keys in the response and specifies
+// the encoding method to use. An object key may contain any Unicode character;
+// however, XML 1.0 parser cannot parse some characters, such as characters
+// with an ASCII value from 0 to 10. For characters that are not supported in
+// XML 1.0, you can add this parameter to request that Amazon S3 encode the
+// keys in the response.
+const (
+	// @enum EncodingType
+	EncodingTypeUrl = "url"
+)
+
+// Bucket event for which to send notifications.
+const (
+	// @enum Event
+	EventS3ReducedRedundancyLostObject = "s3:ReducedRedundancyLostObject"
+	// @enum Event
+	EventS3ObjectCreated = "s3:ObjectCreated:*"
+	// @enum Event
+	EventS3ObjectCreatedPut = "s3:ObjectCreated:Put"
+	// @enum Event
+	EventS3ObjectCreatedPost = "s3:ObjectCreated:Post"
+	// @enum Event
+	EventS3ObjectCreatedCopy = "s3:ObjectCreated:Copy"
+	// @enum Event
+	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
+)
+
+const (
+	// @enum ExpirationStatus
+	ExpirationStatusEnabled = "Enabled"
+	// @enum ExpirationStatus
+	ExpirationStatusDisabled = "Disabled"
+)
+
+const (
+	// @enum MFADelete
+	MFADeleteEnabled = "Enabled"
+	// @enum MFADelete
+	MFADeleteDisabled = "Disabled"
+)
+
+const (
+	// @enum MFADeleteStatus
+	MFADeleteStatusEnabled = "Enabled"
+	// @enum MFADeleteStatus
+	MFADeleteStatusDisabled = "Disabled"
+)
+
+const (
+	// @enum MetadataDirective
+	MetadataDirectiveCopy = "COPY"
+	// @enum MetadataDirective
+	MetadataDirectiveReplace = "REPLACE"
+)
+
+const (
+	// @enum ObjectCannedACL
+	ObjectCannedACLPrivate = "private"
+	// @enum ObjectCannedACL
+	ObjectCannedACLPublicRead = "public-read"
+	// @enum ObjectCannedACL
+	ObjectCannedACLPublicReadWrite = "public-read-write"
+	// @enum ObjectCannedACL
+	ObjectCannedACLAuthenticatedRead = "authenticated-read"
+	// @enum ObjectCannedACL
+	ObjectCannedACLBucketOwnerRead = "bucket-owner-read"
+	// @enum ObjectCannedACL
+	ObjectCannedACLBucketOwnerFullControl = "bucket-owner-full-control"
+)
+
+const (
+	// @enum ObjectStorageClass
+	ObjectStorageClassStandard = "STANDARD"
+	// @enum ObjectStorageClass
+	ObjectStorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	// @enum ObjectStorageClass
+	ObjectStorageClassGlacier = "GLACIER"
+)
+
+const (
+	// @enum ObjectVersionStorageClass
+	ObjectVersionStorageClassStandard = "STANDARD"
+)
+
+const (
+	// @enum Payer
+	PayerRequester = "Requester"
+	// @enum Payer
+	PayerBucketOwner = "BucketOwner"
+)
+
+const (
+	// @enum Permission
+	PermissionFullControl = "FULL_CONTROL"
+	// @enum Permission
+	PermissionWrite = "WRITE"
+	// @enum Permission
+	PermissionWriteAcp = "WRITE_ACP"
+	// @enum Permission
+	PermissionRead = "READ"
+	// @enum Permission
+	PermissionReadAcp = "READ_ACP"
+)
+
+const (
+	// @enum Protocol
+	ProtocolHttp = "http"
+	// @enum Protocol
+	ProtocolHttps = "https"
+)
+
+const (
+	// @enum ReplicationRuleStatus
+	ReplicationRuleStatusEnabled = "Enabled"
+	// @enum ReplicationRuleStatus
+	ReplicationRuleStatusDisabled = "Disabled"
+)
+
+const (
+	// @enum ReplicationStatus
+	ReplicationStatusComplete = "COMPLETE"
+	// @enum ReplicationStatus
+	ReplicationStatusPending = "PENDING"
+	// @enum ReplicationStatus
+	ReplicationStatusFailed = "FAILED"
+	// @enum ReplicationStatus
+	ReplicationStatusReplica = "REPLICA"
+)
+
+// If present, indicates that the requester was successfully charged for the
+// request.
+const (
+	// @enum RequestCharged
+	RequestChargedRequester = "requester"
+)
+
+// Confirms that the requester knows that she or he will be charged for the
+// request. Bucket owners need not specify this parameter in their requests.
+// Documentation on downloading objects from requester pays buckets can be found
+// at http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html
+const (
+	// @enum RequestPayer
+	RequestPayerRequester = "requester"
+)
+
+const (
+	// @enum ServerSideEncryption
+	ServerSideEncryptionAes256 = "AES256"
+)
+
+const (
+	// @enum StorageClass
+	StorageClassStandard = "STANDARD"
+	// @enum StorageClass
+	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+)
+
+const (
+	// @enum TransitionStorageClass
+	TransitionStorageClassGlacier = "GLACIER"
+)
+
+const (
+	// @enum Type
+	TypeCanonicalUser = "CanonicalUser"
+	// @enum Type
+	TypeAmazonCustomerByEmail = "AmazonCustomerByEmail"
+	// @enum Type
+	TypeGroup = "Group"
+)

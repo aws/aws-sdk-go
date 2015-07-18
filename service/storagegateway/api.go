@@ -3748,7 +3748,7 @@ func (s Disk) GoString() string {
 // about the error.
 type Error struct {
 	// Additional information about the error.
-	ErrorCode *string `locationName:"errorCode" type:"string"`
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"ErrorCode"`
 
 	// Human-readable text that provides detail about the error that occurred.
 	ErrorDetails map[string]*string `locationName:"errorDetails" type:"map"`
@@ -4978,3 +4978,128 @@ func (s VolumeiSCSIAttributes) String() string {
 func (s VolumeiSCSIAttributes) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ErrorCode
+	ErrorCodeActivationKeyExpired = "ActivationKeyExpired"
+	// @enum ErrorCode
+	ErrorCodeActivationKeyInvalid = "ActivationKeyInvalid"
+	// @enum ErrorCode
+	ErrorCodeActivationKeyNotFound = "ActivationKeyNotFound"
+	// @enum ErrorCode
+	ErrorCodeGatewayInternalError = "GatewayInternalError"
+	// @enum ErrorCode
+	ErrorCodeGatewayNotConnected = "GatewayNotConnected"
+	// @enum ErrorCode
+	ErrorCodeGatewayNotFound = "GatewayNotFound"
+	// @enum ErrorCode
+	ErrorCodeGatewayProxyNetworkConnectionBusy = "GatewayProxyNetworkConnectionBusy"
+	// @enum ErrorCode
+	ErrorCodeAuthenticationFailure = "AuthenticationFailure"
+	// @enum ErrorCode
+	ErrorCodeBandwidthThrottleScheduleNotFound = "BandwidthThrottleScheduleNotFound"
+	// @enum ErrorCode
+	ErrorCodeBlocked = "Blocked"
+	// @enum ErrorCode
+	ErrorCodeCannotExportSnapshot = "CannotExportSnapshot"
+	// @enum ErrorCode
+	ErrorCodeChapCredentialNotFound = "ChapCredentialNotFound"
+	// @enum ErrorCode
+	ErrorCodeDiskAlreadyAllocated = "DiskAlreadyAllocated"
+	// @enum ErrorCode
+	ErrorCodeDiskDoesNotExist = "DiskDoesNotExist"
+	// @enum ErrorCode
+	ErrorCodeDiskSizeGreaterThanVolumeMaxSize = "DiskSizeGreaterThanVolumeMaxSize"
+	// @enum ErrorCode
+	ErrorCodeDiskSizeLessThanVolumeSize = "DiskSizeLessThanVolumeSize"
+	// @enum ErrorCode
+	ErrorCodeDiskSizeNotGigAligned = "DiskSizeNotGigAligned"
+	// @enum ErrorCode
+	ErrorCodeDuplicateCertificateInfo = "DuplicateCertificateInfo"
+	// @enum ErrorCode
+	ErrorCodeDuplicateSchedule = "DuplicateSchedule"
+	// @enum ErrorCode
+	ErrorCodeEndpointNotFound = "EndpointNotFound"
+	// @enum ErrorCode
+	ErrorCodeIamnotSupported = "IAMNotSupported"
+	// @enum ErrorCode
+	ErrorCodeInitiatorInvalid = "InitiatorInvalid"
+	// @enum ErrorCode
+	ErrorCodeInitiatorNotFound = "InitiatorNotFound"
+	// @enum ErrorCode
+	ErrorCodeInternalError = "InternalError"
+	// @enum ErrorCode
+	ErrorCodeInvalidGateway = "InvalidGateway"
+	// @enum ErrorCode
+	ErrorCodeInvalidEndpoint = "InvalidEndpoint"
+	// @enum ErrorCode
+	ErrorCodeInvalidParameters = "InvalidParameters"
+	// @enum ErrorCode
+	ErrorCodeInvalidSchedule = "InvalidSchedule"
+	// @enum ErrorCode
+	ErrorCodeLocalStorageLimitExceeded = "LocalStorageLimitExceeded"
+	// @enum ErrorCode
+	ErrorCodeLunAlreadyAllocated = "LunAlreadyAllocated "
+	// @enum ErrorCode
+	ErrorCodeLunInvalid = "LunInvalid"
+	// @enum ErrorCode
+	ErrorCodeMaximumContentLengthExceeded = "MaximumContentLengthExceeded"
+	// @enum ErrorCode
+	ErrorCodeMaximumTapeCartridgeCountExceeded = "MaximumTapeCartridgeCountExceeded"
+	// @enum ErrorCode
+	ErrorCodeMaximumVolumeCountExceeded = "MaximumVolumeCountExceeded"
+	// @enum ErrorCode
+	ErrorCodeNetworkConfigurationChanged = "NetworkConfigurationChanged"
+	// @enum ErrorCode
+	ErrorCodeNoDisksAvailable = "NoDisksAvailable"
+	// @enum ErrorCode
+	ErrorCodeNotImplemented = "NotImplemented"
+	// @enum ErrorCode
+	ErrorCodeNotSupported = "NotSupported"
+	// @enum ErrorCode
+	ErrorCodeOperationAborted = "OperationAborted"
+	// @enum ErrorCode
+	ErrorCodeOutdatedGateway = "OutdatedGateway"
+	// @enum ErrorCode
+	ErrorCodeParametersNotImplemented = "ParametersNotImplemented"
+	// @enum ErrorCode
+	ErrorCodeRegionInvalid = "RegionInvalid"
+	// @enum ErrorCode
+	ErrorCodeRequestTimeout = "RequestTimeout"
+	// @enum ErrorCode
+	ErrorCodeServiceUnavailable = "ServiceUnavailable"
+	// @enum ErrorCode
+	ErrorCodeSnapshotDeleted = "SnapshotDeleted"
+	// @enum ErrorCode
+	ErrorCodeSnapshotIdInvalid = "SnapshotIdInvalid"
+	// @enum ErrorCode
+	ErrorCodeSnapshotInProgress = "SnapshotInProgress"
+	// @enum ErrorCode
+	ErrorCodeSnapshotNotFound = "SnapshotNotFound"
+	// @enum ErrorCode
+	ErrorCodeSnapshotScheduleNotFound = "SnapshotScheduleNotFound"
+	// @enum ErrorCode
+	ErrorCodeStagingAreaFull = "StagingAreaFull"
+	// @enum ErrorCode
+	ErrorCodeStorageFailure = "StorageFailure"
+	// @enum ErrorCode
+	ErrorCodeTapeCartridgeNotFound = "TapeCartridgeNotFound"
+	// @enum ErrorCode
+	ErrorCodeTargetAlreadyExists = "TargetAlreadyExists"
+	// @enum ErrorCode
+	ErrorCodeTargetInvalid = "TargetInvalid"
+	// @enum ErrorCode
+	ErrorCodeTargetNotFound = "TargetNotFound"
+	// @enum ErrorCode
+	ErrorCodeUnauthorizedOperation = "UnauthorizedOperation"
+	// @enum ErrorCode
+	ErrorCodeVolumeAlreadyExists = "VolumeAlreadyExists"
+	// @enum ErrorCode
+	ErrorCodeVolumeIdInvalid = "VolumeIdInvalid"
+	// @enum ErrorCode
+	ErrorCodeVolumeInUse = "VolumeInUse"
+	// @enum ErrorCode
+	ErrorCodeVolumeNotFound = "VolumeNotFound"
+	// @enum ErrorCode
+	ErrorCodeVolumeNotReady = "VolumeNotReady"
+)

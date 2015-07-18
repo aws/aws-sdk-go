@@ -670,7 +670,7 @@ type CreateStackInput struct {
 	// or DisableRollback, but not both.
 	//
 	// Default: ROLLBACK
-	OnFailure *string `type:"string"`
+	OnFailure *string `type:"string" enum:"OnFailure"`
 
 	// A list of Parameter structures that specify input parameters for the stack.
 	Parameters []*Parameter `type:"list"`
@@ -1596,7 +1596,7 @@ type SignalResourceInput struct {
 
 	// The status of the signal, which is either success or failure. A failure signal
 	// causes AWS CloudFormation to immediately fail the stack creation or update.
-	Status *string `type:"string" required:"true"`
+	Status *string `type:"string" required:"true" enum:"ResourceSignalStatus"`
 
 	// A unique ID of the signal. When you signal Amazon EC2 instances or Auto Scaling
 	// groups, specify the instance ID that you are signaling as the unique ID.
@@ -1675,7 +1675,7 @@ type Stack struct {
 	StackName *string `type:"string" required:"true"`
 
 	// Current status of the stack.
-	StackStatus *string `type:"string" required:"true"`
+	StackStatus *string `type:"string" required:"true" enum:"StackStatus"`
 
 	// Success/failure message associated with the stack status.
 	StackStatusReason *string `type:"string"`
@@ -1719,7 +1719,7 @@ type StackEvent struct {
 	ResourceProperties *string `type:"string"`
 
 	// Current status of the resource.
-	ResourceStatus *string `type:"string"`
+	ResourceStatus *string `type:"string" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
 	ResourceStatusReason *string `type:"string"`
@@ -1768,7 +1768,7 @@ type StackResource struct {
 	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
 
 	// Current status of the resource.
-	ResourceStatus *string `type:"string" required:"true"`
+	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
 	ResourceStatusReason *string `type:"string"`
@@ -1825,7 +1825,7 @@ type StackResourceDetail struct {
 	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
 
 	// Current status of the resource.
-	ResourceStatus *string `type:"string" required:"true"`
+	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
 	ResourceStatusReason *string `type:"string"`
@@ -1871,7 +1871,7 @@ type StackResourceSummary struct {
 	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
 
 	// Current status of the resource.
-	ResourceStatus *string `type:"string" required:"true"`
+	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
 
 	// Success/failure message associated with the resource.
 	ResourceStatusReason *string `type:"string"`
@@ -1917,7 +1917,7 @@ type StackSummary struct {
 	StackName *string `type:"string" required:"true"`
 
 	// The current status of the stack.
-	StackStatus *string `type:"string" required:"true"`
+	StackStatus *string `type:"string" required:"true" enum:"StackStatus"`
 
 	// Success/Failure message associated with the stack status.
 	StackStatusReason *string `type:"string"`
@@ -2204,3 +2204,82 @@ func (s ValidateTemplateOutput) String() string {
 func (s ValidateTemplateOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum Capability
+	CapabilityCapabilityIam = "CAPABILITY_IAM"
+)
+
+const (
+	// @enum OnFailure
+	OnFailureDoNothing = "DO_NOTHING"
+	// @enum OnFailure
+	OnFailureRollback = "ROLLBACK"
+	// @enum OnFailure
+	OnFailureDelete = "DELETE"
+)
+
+const (
+	// @enum ResourceSignalStatus
+	ResourceSignalStatusSuccess = "SUCCESS"
+	// @enum ResourceSignalStatus
+	ResourceSignalStatusFailure = "FAILURE"
+)
+
+const (
+	// @enum ResourceStatus
+	ResourceStatusCreateInProgress = "CREATE_IN_PROGRESS"
+	// @enum ResourceStatus
+	ResourceStatusCreateFailed = "CREATE_FAILED"
+	// @enum ResourceStatus
+	ResourceStatusCreateComplete = "CREATE_COMPLETE"
+	// @enum ResourceStatus
+	ResourceStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+	// @enum ResourceStatus
+	ResourceStatusDeleteFailed = "DELETE_FAILED"
+	// @enum ResourceStatus
+	ResourceStatusDeleteComplete = "DELETE_COMPLETE"
+	// @enum ResourceStatus
+	ResourceStatusDeleteSkipped = "DELETE_SKIPPED"
+	// @enum ResourceStatus
+	ResourceStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+	// @enum ResourceStatus
+	ResourceStatusUpdateFailed = "UPDATE_FAILED"
+	// @enum ResourceStatus
+	ResourceStatusUpdateComplete = "UPDATE_COMPLETE"
+)
+
+const (
+	// @enum StackStatus
+	StackStatusCreateInProgress = "CREATE_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusCreateFailed = "CREATE_FAILED"
+	// @enum StackStatus
+	StackStatusCreateComplete = "CREATE_COMPLETE"
+	// @enum StackStatus
+	StackStatusRollbackInProgress = "ROLLBACK_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusRollbackFailed = "ROLLBACK_FAILED"
+	// @enum StackStatus
+	StackStatusRollbackComplete = "ROLLBACK_COMPLETE"
+	// @enum StackStatus
+	StackStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusDeleteFailed = "DELETE_FAILED"
+	// @enum StackStatus
+	StackStatusDeleteComplete = "DELETE_COMPLETE"
+	// @enum StackStatus
+	StackStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusUpdateCompleteCleanupInProgress = "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusUpdateComplete = "UPDATE_COMPLETE"
+	// @enum StackStatus
+	StackStatusUpdateRollbackInProgress = "UPDATE_ROLLBACK_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusUpdateRollbackFailed = "UPDATE_ROLLBACK_FAILED"
+	// @enum StackStatus
+	StackStatusUpdateRollbackCompleteCleanupInProgress = "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS"
+	// @enum StackStatus
+	StackStatusUpdateRollbackComplete = "UPDATE_ROLLBACK_COMPLETE"
+)

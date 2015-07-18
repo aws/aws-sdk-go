@@ -558,7 +558,7 @@ type CreateHSMInput struct {
 	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
 
 	// The subscription type.
-	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true"`
+	SubscriptionType *string `locationName:"SubscriptionType" type:"string" required:"true" enum:"SubscriptionType"`
 
 	// The IP address for the syslog monitoring server.
 	SyslogIP *string `locationName:"SyslogIp" type:"string"`
@@ -830,7 +830,7 @@ type DescribeHAPGOutput struct {
 	PartitionSerialList []*string `type:"list"`
 
 	// The state of the high-availability partition group.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"CloudHsmObjectState"`
 
 	metadataDescribeHAPGOutput `json:"-" xml:"-"`
 }
@@ -918,7 +918,7 @@ type DescribeHSMOutput struct {
 	SoftwareVersion *string `type:"string"`
 
 	// The status of the HSM.
-	Status *string `type:"string"`
+	Status *string `type:"string" enum:"HsmStatus"`
 
 	// Contains additional information about the status of the HSM.
 	StatusDetails *string `type:"string"`
@@ -933,7 +933,7 @@ type DescribeHSMOutput struct {
 	SubscriptionStartDate *string `type:"string"`
 
 	// The subscription type.
-	SubscriptionType *string `type:"string"`
+	SubscriptionType *string `type:"string" enum:"SubscriptionType"`
 
 	// The identifier of the VPC that the HSM is in.
 	VPCID *string `locationName:"VpcId" type:"string"`
@@ -1020,7 +1020,7 @@ type GetConfigInput struct {
 	ClientARN *string `locationName:"ClientArn" type:"string" required:"true"`
 
 	// The client version.
-	ClientVersion *string `type:"string" required:"true"`
+	ClientVersion *string `type:"string" required:"true" enum:"ClientVersion"`
 
 	// A list of ARNs that identify the high-availability partition groups that
 	// are associated with the client.
@@ -1404,3 +1404,41 @@ func (s ModifyLunaClientOutput) String() string {
 func (s ModifyLunaClientOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ClientVersion
+	ClientVersion51 = "5.1"
+	// @enum ClientVersion
+	ClientVersion53 = "5.3"
+)
+
+const (
+	// @enum CloudHsmObjectState
+	CloudHsmObjectStateReady = "READY"
+	// @enum CloudHsmObjectState
+	CloudHsmObjectStateUpdating = "UPDATING"
+	// @enum CloudHsmObjectState
+	CloudHsmObjectStateDegraded = "DEGRADED"
+)
+
+const (
+	// @enum HsmStatus
+	HsmStatusPending = "PENDING"
+	// @enum HsmStatus
+	HsmStatusRunning = "RUNNING"
+	// @enum HsmStatus
+	HsmStatusUpdating = "UPDATING"
+	// @enum HsmStatus
+	HsmStatusSuspended = "SUSPENDED"
+	// @enum HsmStatus
+	HsmStatusTerminating = "TERMINATING"
+	// @enum HsmStatus
+	HsmStatusTerminated = "TERMINATED"
+	// @enum HsmStatus
+	HsmStatusDegraded = "DEGRADED"
+)
+
+const (
+	// @enum SubscriptionType
+	SubscriptionTypeProduction = "PRODUCTION"
+)
