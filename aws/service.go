@@ -8,6 +8,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/endpoints"
@@ -16,7 +17,7 @@ import (
 // A Service implements the base service request and response handling
 // used by all services.
 type Service struct {
-	Config            *Config
+	Config            *awscfg.Config
 	Handlers          Handlers
 	ServiceName       string
 	APIVersion        string
@@ -33,7 +34,7 @@ type Service struct {
 var schemeRE = regexp.MustCompile("^([^:]+)://")
 
 // NewService will return a pointer to a new Server object initialized.
-func NewService(config *Config) *Service {
+func NewService(config *awscfg.Config) *Service {
 	svc := &Service{Config: config}
 	svc.Initialize()
 	return svc
@@ -42,7 +43,7 @@ func NewService(config *Config) *Service {
 // Initialize initializes the service.
 func (s *Service) Initialize() {
 	if s.Config == nil {
-		s.Config = &Config{}
+		s.Config = &awscfg.Config{}
 	}
 	if s.Config.HTTPClient == nil {
 		s.Config.HTTPClient = http.DefaultClient
@@ -92,7 +93,7 @@ func (s *Service) buildEndpoint() {
 // AddDebugHandlers injects debug logging handlers into the service to log request
 // debug information.
 func (s *Service) AddDebugHandlers() {
-	if !s.Config.LogLevel.AtLeast(LogDebug) {
+	if !s.Config.LogLevel.AtLeast(awscfg.LogDebug) {
 		return
 	}
 
@@ -106,7 +107,7 @@ const logReqMsg = `DEBUG: Request %s/%s Details:
 -----------------------------------------------------`
 
 func logRequest(r *Request) {
-	logBody := r.Config.LogLevel.Matches(LogDebugWithHTTPBody)
+	logBody := r.Config.LogLevel.Matches(awscfg.LogDebugWithHTTPBody)
 	dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 
 	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ServiceName, r.Operation.Name, string(dumpedBody)))
@@ -120,7 +121,7 @@ const logRespMsg = `DEBUG: Response %s/%s Details:
 func logResponse(r *Request) {
 	var msg = "no reponse data"
 	if r.HTTPResponse != nil {
-		logBody := r.Config.LogLevel.Matches(LogDebugWithHTTPBody)
+		logBody := r.Config.LogLevel.Matches(awscfg.LogDebugWithHTTPBody)
 		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
 		msg = string(dumpedBody)
 	} else if r.Error != nil {

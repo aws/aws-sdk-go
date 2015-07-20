@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
@@ -37,9 +38,9 @@ type InputService1ProtocolTest struct {
 }
 
 // New returns a new InputService1ProtocolTest client.
-func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
+func NewInputService1ProtocolTest(config *awscfg.Config) *InputService1ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice1protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -148,9 +149,9 @@ type InputService2ProtocolTest struct {
 }
 
 // New returns a new InputService2ProtocolTest client.
-func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
+func NewInputService2ProtocolTest(config *awscfg.Config) *InputService2ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice2protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -229,9 +230,9 @@ type InputService3ProtocolTest struct {
 }
 
 // New returns a new InputService3ProtocolTest client.
-func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
+func NewInputService3ProtocolTest(config *awscfg.Config) *InputService3ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice3protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -318,9 +319,9 @@ type InputService4ProtocolTest struct {
 }
 
 // New returns a new InputService4ProtocolTest client.
-func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
+func NewInputService4ProtocolTest(config *awscfg.Config) *InputService4ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice4protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -407,9 +408,9 @@ type InputService5ProtocolTest struct {
 }
 
 // New returns a new InputService5ProtocolTest client.
-func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
+func NewInputService5ProtocolTest(config *awscfg.Config) *InputService5ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice5protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -482,9 +483,9 @@ type InputService6ProtocolTest struct {
 }
 
 // New returns a new InputService6ProtocolTest client.
-func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
+func NewInputService6ProtocolTest(config *awscfg.Config) *InputService6ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice6protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -557,9 +558,9 @@ type InputService7ProtocolTest struct {
 }
 
 // New returns a new InputService7ProtocolTest client.
-func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest {
+func NewInputService7ProtocolTest(config *awscfg.Config) *InputService7ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice7protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -632,9 +633,9 @@ type InputService8ProtocolTest struct {
 }
 
 // New returns a new InputService8ProtocolTest client.
-func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest {
+func NewInputService8ProtocolTest(config *awscfg.Config) *InputService8ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice8protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -707,9 +708,9 @@ type InputService9ProtocolTest struct {
 }
 
 // New returns a new InputService9ProtocolTest client.
-func NewInputService9ProtocolTest(config *aws.Config) *InputService9ProtocolTest {
+func NewInputService9ProtocolTest(config *awscfg.Config) *InputService9ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice9protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -792,9 +793,9 @@ type InputService10ProtocolTest struct {
 }
 
 // New returns a new InputService10ProtocolTest client.
-func NewInputService10ProtocolTest(config *aws.Config) *InputService10ProtocolTest {
+func NewInputService10ProtocolTest(config *awscfg.Config) *InputService10ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice10protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -879,9 +880,9 @@ type InputService11ProtocolTest struct {
 }
 
 // New returns a new InputService11ProtocolTest client.
-func NewInputService11ProtocolTest(config *aws.Config) *InputService11ProtocolTest {
+func NewInputService11ProtocolTest(config *awscfg.Config) *InputService11ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice11protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -954,9 +955,9 @@ type InputService12ProtocolTest struct {
 }
 
 // New returns a new InputService12ProtocolTest client.
-func NewInputService12ProtocolTest(config *aws.Config) *InputService12ProtocolTest {
+func NewInputService12ProtocolTest(config *awscfg.Config) *InputService12ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice12protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1029,9 +1030,9 @@ type InputService13ProtocolTest struct {
 }
 
 // New returns a new InputService13ProtocolTest client.
-func NewInputService13ProtocolTest(config *aws.Config) *InputService13ProtocolTest {
+func NewInputService13ProtocolTest(config *awscfg.Config) *InputService13ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice13protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1138,9 +1139,9 @@ type InputService14ProtocolTest struct {
 }
 
 // New returns a new InputService14ProtocolTest client.
-func NewInputService14ProtocolTest(config *aws.Config) *InputService14ProtocolTest {
+func NewInputService14ProtocolTest(config *awscfg.Config) *InputService14ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice14protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1291,9 +1292,9 @@ type InputService15ProtocolTest struct {
 }
 
 // New returns a new InputService15ProtocolTest client.
-func NewInputService15ProtocolTest(config *aws.Config) *InputService15ProtocolTest {
+func NewInputService15ProtocolTest(config *awscfg.Config) *InputService15ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice15protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1388,9 +1389,9 @@ type InputService16ProtocolTest struct {
 }
 
 // New returns a new InputService16ProtocolTest client.
-func NewInputService16ProtocolTest(config *aws.Config) *InputService16ProtocolTest {
+func NewInputService16ProtocolTest(config *awscfg.Config) *InputService16ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice16protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1465,9 +1466,9 @@ type InputService17ProtocolTest struct {
 }
 
 // New returns a new InputService17ProtocolTest client.
-func NewInputService17ProtocolTest(config *aws.Config) *InputService17ProtocolTest {
+func NewInputService17ProtocolTest(config *awscfg.Config) *InputService17ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice17protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1574,9 +1575,9 @@ type InputService18ProtocolTest struct {
 }
 
 // New returns a new InputService18ProtocolTest client.
-func NewInputService18ProtocolTest(config *aws.Config) *InputService18ProtocolTest {
+func NewInputService18ProtocolTest(config *awscfg.Config) *InputService18ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice18protocoltest",
 		APIVersion:  "2014-01-01",
 	}
@@ -1835,9 +1836,9 @@ type InputService19ProtocolTest struct {
 }
 
 // New returns a new InputService19ProtocolTest client.
-func NewInputService19ProtocolTest(config *aws.Config) *InputService19ProtocolTest {
+func NewInputService19ProtocolTest(config *awscfg.Config) *InputService19ProtocolTest {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "inputservice19protocoltest",
 		APIVersion:  "2014-01-01",
 	}

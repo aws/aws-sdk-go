@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
@@ -17,7 +18,7 @@ import (
 var _ = unit.Imported
 
 var svc = func() *sqs.SQS {
-	s := sqs.New(&aws.Config{
+	s := sqs.New(&awscfg.Config{
 		DisableParamValidation: awsconv.Bool(true),
 	})
 	s.Handlers.Send.Clear()
@@ -60,7 +61,7 @@ func TestSendMessageChecksumInvalid(t *testing.T) {
 }
 
 func TestSendMessageChecksumInvalidNoValidation(t *testing.T) {
-	s := sqs.New(&aws.Config{
+	s := sqs.New(&awscfg.Config{
 		DisableParamValidation:  awsconv.Bool(true),
 		DisableComputeChecksums: awsconv.Bool(true),
 	})

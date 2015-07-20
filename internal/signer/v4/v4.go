@@ -16,7 +16,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
-	"github.com/aws/aws-sdk-go/aws/awslog"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/internal/protocol/rest"
 )
@@ -44,8 +44,8 @@ type signer struct {
 	Credentials *credentials.Credentials
 	Query       url.Values
 	Body        io.ReadSeeker
-	Debug       aws.LogLevelType
-	Logger      awslog.Logger
+	Debug       awscfg.LogLevelType
+	Logger      awscfg.Logger
 
 	isPresign          bool
 	formattedTime      string
@@ -139,7 +139,7 @@ func (v4 *signer) sign() error {
 
 	v4.build()
 
-	if v4.Debug.Matches(aws.LogDebugWithSigning) {
+	if v4.Debug.Matches(awscfg.LogDebugWithSigning) {
 		v4.logSigningInfo()
 	}
 

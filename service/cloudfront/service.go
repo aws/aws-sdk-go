@@ -4,6 +4,7 @@ package cloudfront
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -20,9 +21,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new CloudFront client.
-func New(config *aws.Config) *CloudFront {
+func New(config *awscfg.Config) *CloudFront {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "cloudfront",
 		APIVersion:  "2015-04-17",
 	}

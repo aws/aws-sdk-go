@@ -4,6 +4,7 @@ package route53
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -20,9 +21,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new Route53 client.
-func New(config *aws.Config) *Route53 {
+func New(config *awscfg.Config) *Route53 {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "route53",
 		APIVersion:  "2013-04-01",
 	}

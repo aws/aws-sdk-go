@@ -60,7 +60,7 @@ import (
 // when making service API calls. For example, when accessing public
 // s3 buckets.
 //
-//     svc := s3.New(&aws.Config{Credentials: AnonymousCredentials})
+//     svc := s3.New(&awscfg.Config{Credentials: AnonymousCredentials})
 //     // Access public S3 buckets.
 //
 // @readonly

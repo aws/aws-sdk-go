@@ -4,6 +4,7 @@ package cloudwatchlogs
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -51,9 +52,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new CloudWatchLogs client.
-func New(config *aws.Config) *CloudWatchLogs {
+func New(config *awscfg.Config) *CloudWatchLogs {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "logs",
 		APIVersion:   "2014-03-28",
 		JSONVersion:  "1.1",

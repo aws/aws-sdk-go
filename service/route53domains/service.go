@@ -4,6 +4,7 @@ package route53domains
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -20,9 +21,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new Route53Domains client.
-func New(config *aws.Config) *Route53Domains {
+func New(config *awscfg.Config) *Route53Domains {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "route53domains",
 		APIVersion:   "2014-05-15",
 		JSONVersion:  "1.1",

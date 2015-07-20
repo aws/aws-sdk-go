@@ -4,6 +4,7 @@ package redshift
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -41,9 +42,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new Redshift client.
-func New(config *aws.Config) *Redshift {
+func New(config *awscfg.Config) *Redshift {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "redshift",
 		APIVersion:  "2012-12-01",
 	}

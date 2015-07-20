@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/stretchr/testify/assert"
@@ -11,7 +12,7 @@ import (
 
 var service = func() *aws.Service {
 	s := &aws.Service{
-		Config:      &aws.Config{},
+		Config:      &awscfg.Config{},
 		ServiceName: "mock-service",
 		APIVersion:  "2015-01-01",
 	}

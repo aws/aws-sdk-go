@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
@@ -66,7 +67,7 @@ func TestNoPopulateLocationConstraintIfProvided(t *testing.T) {
 }
 
 func TestNoPopulateLocationConstraintIfClassic(t *testing.T) {
-	s := s3.New(&aws.Config{Region: awsconv.String("us-east-1")})
+	s := s3.New(&awscfg.Config{Region: awsconv.String("us-east-1")})
 	req, _ := s.CreateBucketRequest(&s3.CreateBucketInput{
 		Bucket: awsconv.String("bucket"),
 	})

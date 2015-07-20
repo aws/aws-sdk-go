@@ -4,6 +4,7 @@ package ecs
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -32,9 +33,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new ECS client.
-func New(config *aws.Config) *ECS {
+func New(config *awscfg.Config) *ECS {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "ecs",
 		APIVersion:   "2014-11-13",
 		JSONVersion:  "1.1",

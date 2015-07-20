@@ -23,7 +23,7 @@ type AssumeRoler interface {
 //
 // Example how to configure a service to use this provider:
 //
-//		config := &aws.Config{
+//		config := &awscfg.Config{
 //			Credentials: stscreds.NewCredentials(nil, "arn-of-the-role-to-assume", 10*time.Second),
 //		})
 //		// Use config for creating your AWS service.

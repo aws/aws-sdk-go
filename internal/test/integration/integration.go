@@ -8,7 +8,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 )
 
@@ -22,16 +22,16 @@ const Imported = true
 
 func init() {
 	if os.Getenv("DEBUG") != "" {
-		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebug)
+		awscfg.DefaultConfig.LogLevel = awscfg.LogLevel(awscfg.LogDebug)
 	}
 	if os.Getenv("DEBUG_SIGNING") != "" {
-		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning)
+		awscfg.DefaultConfig.LogLevel = awscfg.LogLevel(awscfg.LogDebugWithSigning)
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
+		awscfg.DefaultConfig.LogLevel = awscfg.LogLevel(awscfg.LogDebugWithSigning | awscfg.LogDebugWithHTTPBody)
 	}
 
-	if awsconv.StringValue(aws.DefaultConfig.Region) == "" {
+	if awsconv.StringValue(awscfg.DefaultConfig.Region) == "" {
 		panic("AWS_REGION must be configured to run integration tests")
 	}
 }

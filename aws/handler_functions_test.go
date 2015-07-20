@@ -5,6 +5,7 @@ import (
 	"os"
 	"testing"
 
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -13,7 +14,7 @@ import (
 
 func TestValidateEndpointHandler(t *testing.T) {
 	os.Clearenv()
-	svc := NewService(NewConfig().WithRegion("us-west-2"))
+	svc := NewService(awscfg.New().WithRegion("us-west-2"))
 	svc.Handlers.Clear()
 	svc.Handlers.Validate.PushBack(ValidateEndpointHandler)
 
@@ -53,7 +54,7 @@ func (m *mockCredsProvider) IsExpired() bool {
 func TestAfterRetryRefreshCreds(t *testing.T) {
 	os.Clearenv()
 	credProvider := &mockCredsProvider{}
-	svc := NewService(&Config{Credentials: credentials.NewCredentials(credProvider), MaxRetries: awsconv.Int(1)})
+	svc := NewService(&awscfg.Config{Credentials: credentials.NewCredentials(credProvider), MaxRetries: awsconv.Int(1)})
 
 	svc.Handlers.Clear()
 	svc.Handlers.ValidateResponse.PushBack(func(r *Request) {

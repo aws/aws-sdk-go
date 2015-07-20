@@ -4,6 +4,7 @@ package cloudwatch
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -59,9 +60,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new CloudWatch client.
-func New(config *aws.Config) *CloudWatch {
+func New(config *awscfg.Config) *CloudWatch {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "monitoring",
 		APIVersion:  "2010-08-01",
 	}

@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
@@ -37,9 +38,9 @@ type OutputService1ProtocolTest struct {
 }
 
 // New returns a new OutputService1ProtocolTest client.
-func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
+func NewOutputService1ProtocolTest(config *awscfg.Config) *OutputService1ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice1protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -110,9 +111,9 @@ type OutputService2ProtocolTest struct {
 }
 
 // New returns a new OutputService2ProtocolTest client.
-func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
+func NewOutputService2ProtocolTest(config *awscfg.Config) *OutputService2ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice2protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -199,9 +200,9 @@ type OutputService3ProtocolTest struct {
 }
 
 // New returns a new OutputService3ProtocolTest client.
-func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
+func NewOutputService3ProtocolTest(config *awscfg.Config) *OutputService3ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice3protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -286,9 +287,9 @@ type OutputService4ProtocolTest struct {
 }
 
 // New returns a new OutputService4ProtocolTest client.
-func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
+func NewOutputService4ProtocolTest(config *awscfg.Config) *OutputService4ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice4protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -373,9 +374,9 @@ type OutputService5ProtocolTest struct {
 }
 
 // New returns a new OutputService5ProtocolTest client.
-func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
+func NewOutputService5ProtocolTest(config *awscfg.Config) *OutputService5ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice5protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -448,9 +449,9 @@ type OutputService6ProtocolTest struct {
 }
 
 // New returns a new OutputService6ProtocolTest client.
-func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
+func NewOutputService6ProtocolTest(config *awscfg.Config) *OutputService6ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice6protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",
@@ -523,9 +524,9 @@ type OutputService7ProtocolTest struct {
 }
 
 // New returns a new OutputService7ProtocolTest client.
-func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTest {
+func NewOutputService7ProtocolTest(config *awscfg.Config) *OutputService7ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "outputservice7protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "",

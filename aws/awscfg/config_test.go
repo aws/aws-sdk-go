@@ -1,4 +1,4 @@
-package aws
+package awscfg
 
 import (
 	"net/http"
@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsconv"
-	"github.com/aws/aws-sdk-go/aws/awslog"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
@@ -26,7 +25,7 @@ var copyTestConfig = Config{
 	DisableSSL:              awsconv.Bool(true),
 	HTTPClient:              http.DefaultClient,
 	LogLevel:                LogLevel(LogDebug),
-	Logger:                  awslog.NewDefaultLogger(),
+	Logger:                  NewDefaultLogger(),
 	MaxRetries:              awsconv.Int(DefaultRetries),
 	DisableParamValidation:  awsconv.Bool(true),
 	DisableComputeChecksums: awsconv.Bool(true),
@@ -59,7 +58,7 @@ var mergeTestConfig = Config{
 	DisableSSL:              awsconv.Bool(true),
 	HTTPClient:              http.DefaultClient,
 	LogLevel:                LogLevel(LogDebug),
-	Logger:                  awslog.NewDefaultLogger(),
+	Logger:                  NewDefaultLogger(),
 	MaxRetries:              awsconv.Int(10),
 	DisableParamValidation:  awsconv.Bool(true),
 	DisableComputeChecksums: awsconv.Bool(true),

@@ -1,11 +1,11 @@
-package aws
+// Package awscfg provides configuration for the SDK.
+package awscfg
 
 import (
 	"net/http"
 	"os"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws/awslog"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
@@ -25,65 +25,6 @@ var DefaultChainCredentials = credentials.NewChainCredentials(
 // the service specific retry default will be used.
 const DefaultRetries = -1
 
-// A LogLevel defines the level logging should be performed at. Used to instruct
-// the SDK which statements should be logged.
-type LogLevelType uint
-
-// LogLevel returns the pointer to a LogLevel. Should be used to workaround
-// not being able to take the address of a non-composite literal.
-func LogLevel(l LogLevelType) *LogLevelType {
-	return &l
-}
-
-// Value returns the LogLevel value or the default value LogOff if the LogLevel
-// is nil. Safe to use on nil value LogLevelTypes.
-func (l *LogLevelType) Value() LogLevelType {
-	if l != nil {
-		return *l
-	}
-	return LogOff
-}
-
-// Matches returns true if the v LogLevel is enabled by this LogLevel. Should be
-// used with logging sub levels. Is safe to use on nil value LogLevelTypes. If
-// LogLevel is nill, will default to LogOff comparison.
-func (l *LogLevelType) Matches(v LogLevelType) bool {
-	c := l.Value()
-	return c&v == v
-}
-
-// AtLeast returns true if this LogLevel is at least high enough to satisfies v.
-// Is safe to use on nil value LogLevelTypes. If LogLevel is nill, will default
-// to LogOff comparison.
-func (l *LogLevelType) AtLeast(v LogLevelType) bool {
-	c := l.Value()
-	return c >= v
-}
-
-const (
-	// LogOff states that no logging should be performed by the SDK. This is the
-	// default state of the SDK, and should be use to disable all logging.
-	LogOff LogLevelType = iota * 0x1000
-
-	// LogDebug state that debug output should be logged by the SDK. This should
-	// be used to inspect request made and responses received.
-	LogDebug
-)
-
-// Debug Logging Sub Levels
-const (
-	// LogDebugWithSigning states that the SDK should log request signing and
-	// presigning events. This should be used to log the signing details of
-	// requests for debugging. Will also enable LogDebug.
-	LogDebugWithSigning LogLevelType = LogDebug | (1 << iota)
-
-	// LogDebugWithHTTPBody states the SDK should log HTTP request and response
-	// HTTP bodys in addition to the headers and path. This should be used to
-	// see the body content of requests and responses made while using the SDK
-	// Will also enable LogDebug.
-	LogDebugWithHTTPBody
-)
-
 // DefaultConfig is the default all service configuration will be based off of.
 // By default, all clients use this structure for initialization options unless
 // a custom configuration object is passed in.
@@ -91,13 +32,12 @@ const (
 // You may modify this global structure to change all default configuration
 // in the SDK. Note that configuration options are copied by value, so any
 // modifications must happen before constructing a client.
-
-var DefaultConfig = NewConfig().
+var DefaultConfig = New().
 	WithCredentials(DefaultChainCredentials).
 	WithRegion(os.Getenv("AWS_REGION")).
 	WithHTTPClient(http.DefaultClient).
 	WithMaxRetries(DefaultRetries).
-	WithLogger(awslog.NewDefaultLogger()).
+	WithLogger(NewDefaultLogger()).
 	WithLogLevel(LogOff)
 
 // A Config provides service configuration for service clients. By default,
@@ -139,7 +79,7 @@ type Config struct {
 
 	// The logger writer interface to write logging messages to. Defaults to
 	// standard out.
-	Logger awslog.Logger
+	Logger Logger
 
 	// The maximum number of times that a request will be retried for failures.
 	// Defaults to -1, which defers the max retry setting to the service specific
@@ -165,12 +105,12 @@ type Config struct {
 	S3ForcePathStyle *bool
 }
 
-// NewConfig returns a new Config pointer that can be chained with builder methods to
+// New returns a new Config pointer that can be chained with builder methods to
 // set multiple configuration values inline without using pointers.
 //
-//     svc := s3.New(aws.NewConfig().WithRegion("us-west-2").WithMaxRetries(10))
+//     svc := s3.New(awscfg.New().WithRegion("us-west-2").WithMaxRetries(10))
 //
-func NewConfig() *Config {
+func New() *Config {
 	return &Config{}
 }
 
@@ -239,7 +179,7 @@ func (c *Config) WithLogLevel(level LogLevelType) *Config {
 
 // WithLogger sets a config Logger value returning a Config pointer for
 // chaining.
-func (c *Config) WithLogger(logger awslog.Logger) *Config {
+func (c *Config) WithLogger(logger Logger) *Config {
 	c.Logger = logger
 	return c
 }

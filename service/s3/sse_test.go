@@ -3,7 +3,7 @@ package s3_test
 import (
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
@@ -14,7 +14,7 @@ import (
 var _ = unit.Imported
 
 func TestSSECustomerKeyOverHTTPError(t *testing.T) {
-	s := s3.New(&aws.Config{DisableSSL: awsconv.Bool(true)})
+	s := s3.New(&awscfg.Config{DisableSSL: awsconv.Bool(true)})
 	req, _ := s.CopyObjectRequest(&s3.CopyObjectInput{
 		Bucket:         awsconv.String("bucket"),
 		CopySource:     awsconv.String("bucket/source"),
@@ -29,7 +29,7 @@ func TestSSECustomerKeyOverHTTPError(t *testing.T) {
 }
 
 func TestCopySourceSSECustomerKeyOverHTTPError(t *testing.T) {
-	s := s3.New(&aws.Config{DisableSSL: awsconv.Bool(true)})
+	s := s3.New(&awscfg.Config{DisableSSL: awsconv.Bool(true)})
 	req, _ := s.CopyObjectRequest(&s3.CopyObjectInput{
 		Bucket:     awsconv.String("bucket"),
 		CopySource: awsconv.String("bucket/source"),

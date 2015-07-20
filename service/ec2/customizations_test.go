@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/ec2"
@@ -15,7 +15,7 @@ import (
 var _ = unit.Imported
 
 func TestCopySnapshotPresignedURL(t *testing.T) {
-	svc := ec2.New(&aws.Config{Region: awsconv.String("us-west-2")})
+	svc := ec2.New(&awscfg.Config{Region: awsconv.String("us-west-2")})
 
 	assert.NotPanics(t, func() {
 		// Doesn't panic on nil input

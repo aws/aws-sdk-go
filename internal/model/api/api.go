@@ -226,9 +226,9 @@ var initRequest func(*aws.Request)
 {{ end }}
 
 // New returns a new {{ .StructName }} client.
-func New(config *aws.Config) *{{ .StructName }} {
+func New(config *awscfg.Config) *{{ .StructName }} {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "{{ .Metadata.EndpointPrefix }}",{{ if ne .Metadata.SigningName "" }}
 		SigningName:  "{{ .Metadata.SigningName }}",{{ end }}
 		APIVersion:   "{{ .Metadata.APIVersion }}",
@@ -272,6 +272,7 @@ func (c *{{ .StructName }}) newRequest(op *aws.Operation, params, data interface
 // ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
+	a.imports["github.com/aws/aws-sdk-go/aws/awscfg"] = true
 	a.imports["github.com/aws/aws-sdk-go/internal/signer/v4"] = true
 	a.imports["github.com/aws/aws-sdk-go/internal/protocol/"+a.ProtocolPackage()] = true
 
