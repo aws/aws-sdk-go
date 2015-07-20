@@ -24,7 +24,7 @@ func ExampleCloudTrail_CreateTrail() {
 		S3BucketName:               aws.String("String"), // Required
 		CloudWatchLogsLogGroupARN:  aws.String("String"),
 		CloudWatchLogsRoleARN:      aws.String("String"),
-		IncludeGlobalServiceEvents: aws.Boolean(true),
+		IncludeGlobalServiceEvents: aws.Bool(true),
 		S3KeyPrefix:                aws.String("String"),
 		SNSTopicName:               aws.String("String"),
 	}
@@ -46,7 +46,7 @@ func ExampleCloudTrail_CreateTrail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_DeleteTrail() {
@@ -73,7 +73,7 @@ func ExampleCloudTrail_DeleteTrail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_DescribeTrails() {
@@ -103,7 +103,7 @@ func ExampleCloudTrail_DescribeTrails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_GetTrailStatus() {
@@ -130,7 +130,7 @@ func ExampleCloudTrail_GetTrailStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_LookupEvents() {
@@ -145,7 +145,7 @@ func ExampleCloudTrail_LookupEvents() {
 			},
 			// More values...
 		},
-		MaxResults: aws.Long(1),
+		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("NextToken"),
 		StartTime:  aws.Time(time.Now()),
 	}
@@ -167,7 +167,7 @@ func ExampleCloudTrail_LookupEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_StartLogging() {
@@ -194,7 +194,7 @@ func ExampleCloudTrail_StartLogging() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_StopLogging() {
@@ -221,7 +221,7 @@ func ExampleCloudTrail_StopLogging() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudTrail_UpdateTrail() {
@@ -231,7 +231,7 @@ func ExampleCloudTrail_UpdateTrail() {
 		Name: aws.String("String"), // Required
 		CloudWatchLogsLogGroupARN:  aws.String("String"),
 		CloudWatchLogsRoleARN:      aws.String("String"),
-		IncludeGlobalServiceEvents: aws.Boolean(true),
+		IncludeGlobalServiceEvents: aws.Bool(true),
 		S3BucketName:               aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
 		SNSTopicName:               aws.String("String"),
@@ -254,5 +254,5 @@ func ExampleCloudTrail_UpdateTrail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

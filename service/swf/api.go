@@ -1595,7 +1595,7 @@ type metadataActivityTaskCancelRequestedEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskCancelRequestedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1632,7 +1632,7 @@ type metadataActivityTaskCanceledEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskCanceledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1664,7 +1664,7 @@ type metadataActivityTaskCompletedEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskCompletedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1699,7 +1699,7 @@ type metadataActivityTaskFailedEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1769,7 +1769,7 @@ type metadataActivityTaskScheduledEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskScheduledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1797,7 +1797,7 @@ type metadataActivityTaskStartedEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskStartedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1833,7 +1833,7 @@ type metadataActivityTaskTimedOutEventAttributes struct {
 
 // String returns the string representation
 func (s ActivityTaskTimedOutEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1864,7 +1864,7 @@ type metadataActivityType struct {
 
 // String returns the string representation
 func (s ActivityType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1940,7 +1940,7 @@ type metadataActivityTypeConfiguration struct {
 
 // String returns the string representation
 func (s ActivityTypeConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1974,7 +1974,7 @@ type metadataActivityTypeInfo struct {
 
 // String returns the string representation
 func (s ActivityTypeInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2010,7 +2010,7 @@ type metadataCancelTimerDecisionAttributes struct {
 
 // String returns the string representation
 func (s CancelTimerDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2046,7 +2046,7 @@ type metadataCancelTimerFailedEventAttributes struct {
 
 // String returns the string representation
 func (s CancelTimerFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2082,7 +2082,7 @@ type metadataCancelWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s CancelWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2115,7 +2115,7 @@ type metadataCancelWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s CancelWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2154,7 +2154,7 @@ type metadataChildWorkflowExecutionCanceledEventAttributes struct {
 
 // String returns the string representation
 func (s ChildWorkflowExecutionCanceledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2193,7 +2193,7 @@ type metadataChildWorkflowExecutionCompletedEventAttributes struct {
 
 // String returns the string representation
 func (s ChildWorkflowExecutionCompletedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2235,7 +2235,7 @@ type metadataChildWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s ChildWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2266,7 +2266,7 @@ type metadataChildWorkflowExecutionStartedEventAttributes struct {
 
 // String returns the string representation
 func (s ChildWorkflowExecutionStartedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2302,7 +2302,7 @@ type metadataChildWorkflowExecutionTerminatedEventAttributes struct {
 
 // String returns the string representation
 func (s ChildWorkflowExecutionTerminatedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2342,7 +2342,7 @@ type metadataChildWorkflowExecutionTimedOutEventAttributes struct {
 
 // String returns the string representation
 func (s ChildWorkflowExecutionTimedOutEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2366,7 +2366,7 @@ type metadataCloseStatusFilter struct {
 
 // String returns the string representation
 func (s CloseStatusFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2403,7 +2403,7 @@ type metadataCompleteWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s CompleteWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2436,7 +2436,7 @@ type metadataCompleteWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s CompleteWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2541,7 +2541,7 @@ type metadataContinueAsNewWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s ContinueAsNewWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2574,7 +2574,7 @@ type metadataContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s ContinueAsNewWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2636,7 +2636,7 @@ type metadataCountClosedWorkflowExecutionsInput struct {
 
 // String returns the string representation
 func (s CountClosedWorkflowExecutionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2681,7 +2681,7 @@ type metadataCountOpenWorkflowExecutionsInput struct {
 
 // String returns the string representation
 func (s CountOpenWorkflowExecutionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2705,7 +2705,7 @@ type metadataCountPendingActivityTasksInput struct {
 
 // String returns the string representation
 func (s CountPendingActivityTasksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2729,7 +2729,7 @@ type metadataCountPendingDecisionTasksInput struct {
 
 // String returns the string representation
 func (s CountPendingDecisionTasksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2901,7 +2901,7 @@ type metadataDecision struct {
 
 // String returns the string representation
 func (s Decision) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2933,7 +2933,7 @@ type metadataDecisionTaskCompletedEventAttributes struct {
 
 // String returns the string representation
 func (s DecisionTaskCompletedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2972,7 +2972,7 @@ type metadataDecisionTaskScheduledEventAttributes struct {
 
 // String returns the string representation
 func (s DecisionTaskScheduledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3000,7 +3000,7 @@ type metadataDecisionTaskStartedEventAttributes struct {
 
 // String returns the string representation
 func (s DecisionTaskStartedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3032,7 +3032,7 @@ type metadataDecisionTaskTimedOutEventAttributes struct {
 
 // String returns the string representation
 func (s DecisionTaskTimedOutEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3056,7 +3056,7 @@ type metadataDeprecateActivityTypeInput struct {
 
 // String returns the string representation
 func (s DeprecateActivityTypeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3074,7 +3074,7 @@ type metadataDeprecateActivityTypeOutput struct {
 
 // String returns the string representation
 func (s DeprecateActivityTypeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3095,7 +3095,7 @@ type metadataDeprecateDomainInput struct {
 
 // String returns the string representation
 func (s DeprecateDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3113,7 +3113,7 @@ type metadataDeprecateDomainOutput struct {
 
 // String returns the string representation
 func (s DeprecateDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3137,7 +3137,7 @@ type metadataDeprecateWorkflowTypeInput struct {
 
 // String returns the string representation
 func (s DeprecateWorkflowTypeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3155,7 +3155,7 @@ type metadataDeprecateWorkflowTypeOutput struct {
 
 // String returns the string representation
 func (s DeprecateWorkflowTypeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3180,7 +3180,7 @@ type metadataDescribeActivityTypeInput struct {
 
 // String returns the string representation
 func (s DescribeActivityTypeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3213,7 +3213,7 @@ type metadataDescribeActivityTypeOutput struct {
 
 // String returns the string representation
 func (s DescribeActivityTypeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3234,7 +3234,7 @@ type metadataDescribeDomainInput struct {
 
 // String returns the string representation
 func (s DescribeDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3259,7 +3259,7 @@ type metadataDescribeDomainOutput struct {
 
 // String returns the string representation
 func (s DescribeDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3283,7 +3283,7 @@ type metadataDescribeWorkflowExecutionInput struct {
 
 // String returns the string representation
 func (s DescribeWorkflowExecutionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3323,7 +3323,7 @@ type metadataDescribeWorkflowExecutionOutput struct {
 
 // String returns the string representation
 func (s DescribeWorkflowExecutionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3347,7 +3347,7 @@ type metadataDescribeWorkflowTypeInput struct {
 
 // String returns the string representation
 func (s DescribeWorkflowTypeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3380,7 +3380,7 @@ type metadataDescribeWorkflowTypeOutput struct {
 
 // String returns the string representation
 func (s DescribeWorkflowTypeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3402,7 +3402,7 @@ type metadataDomainConfiguration struct {
 
 // String returns the string representation
 func (s DomainConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3435,7 +3435,7 @@ type metadataDomainInfo struct {
 
 // String returns the string representation
 func (s DomainInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3464,7 +3464,7 @@ type metadataExecutionTimeFilter struct {
 
 // String returns the string representation
 func (s ExecutionTimeFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3492,7 +3492,7 @@ type metadataExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 
 // String returns the string representation
 func (s ExternalWorkflowExecutionCancelRequestedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3520,7 +3520,7 @@ type metadataExternalWorkflowExecutionSignaledEventAttributes struct {
 
 // String returns the string representation
 func (s ExternalWorkflowExecutionSignaledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3559,7 +3559,7 @@ type metadataFailWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s FailWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3592,7 +3592,7 @@ type metadataFailWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s FailWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3637,7 +3637,7 @@ type metadataGetWorkflowExecutionHistoryInput struct {
 
 // String returns the string representation
 func (s GetWorkflowExecutionHistoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3669,7 +3669,7 @@ type metadataGetWorkflowExecutionHistoryOutput struct {
 
 // String returns the string representation
 func (s GetWorkflowExecutionHistoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3981,7 +3981,7 @@ type metadataHistoryEvent struct {
 
 // String returns the string representation
 func (s HistoryEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4029,7 +4029,7 @@ type metadataListActivityTypesInput struct {
 
 // String returns the string representation
 func (s ListActivityTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4059,7 +4059,7 @@ type metadataListActivityTypesOutput struct {
 
 // String returns the string representation
 func (s ListActivityTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4146,7 +4146,7 @@ type metadataListClosedWorkflowExecutionsInput struct {
 
 // String returns the string representation
 func (s ListClosedWorkflowExecutionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4188,7 +4188,7 @@ type metadataListDomainsInput struct {
 
 // String returns the string representation
 func (s ListDomainsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4218,7 +4218,7 @@ type metadataListDomainsOutput struct {
 
 // String returns the string representation
 func (s ListDomainsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4283,7 +4283,7 @@ type metadataListOpenWorkflowExecutionsInput struct {
 
 // String returns the string representation
 func (s ListOpenWorkflowExecutionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4332,7 +4332,7 @@ type metadataListWorkflowTypesInput struct {
 
 // String returns the string representation
 func (s ListWorkflowTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4362,7 +4362,7 @@ type metadataListWorkflowTypesOutput struct {
 
 // String returns the string representation
 func (s ListWorkflowTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4393,7 +4393,7 @@ type metadataMarkerRecordedEventAttributes struct {
 
 // String returns the string representation
 func (s MarkerRecordedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4419,7 +4419,7 @@ type metadataPendingTaskCount struct {
 
 // String returns the string representation
 func (s PendingTaskCount) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4453,7 +4453,7 @@ type metadataPollForActivityTaskInput struct {
 
 // String returns the string representation
 func (s PollForActivityTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4493,7 +4493,7 @@ type metadataPollForActivityTaskOutput struct {
 
 // String returns the string representation
 func (s PollForActivityTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4553,7 +4553,7 @@ type metadataPollForDecisionTaskInput struct {
 
 // String returns the string representation
 func (s PollForDecisionTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4605,7 +4605,7 @@ type metadataPollForDecisionTaskOutput struct {
 
 // String returns the string representation
 func (s PollForDecisionTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4633,7 +4633,7 @@ type metadataRecordActivityTaskHeartbeatInput struct {
 
 // String returns the string representation
 func (s RecordActivityTaskHeartbeatInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4655,7 +4655,7 @@ type metadataRecordActivityTaskHeartbeatOutput struct {
 
 // String returns the string representation
 func (s RecordActivityTaskHeartbeatOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4694,7 +4694,7 @@ type metadataRecordMarkerDecisionAttributes struct {
 
 // String returns the string representation
 func (s RecordMarkerDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4730,7 +4730,7 @@ type metadataRecordMarkerFailedEventAttributes struct {
 
 // String returns the string representation
 func (s RecordMarkerFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4823,7 +4823,7 @@ type metadataRegisterActivityTypeInput struct {
 
 // String returns the string representation
 func (s RegisterActivityTypeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4841,7 +4841,7 @@ type metadataRegisterActivityTypeOutput struct {
 
 // String returns the string representation
 func (s RegisterActivityTypeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4884,7 +4884,7 @@ type metadataRegisterDomainInput struct {
 
 // String returns the string representation
 func (s RegisterDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4902,7 +4902,7 @@ type metadataRegisterDomainOutput struct {
 
 // String returns the string representation
 func (s RegisterDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4995,7 +4995,7 @@ type metadataRegisterWorkflowTypeInput struct {
 
 // String returns the string representation
 func (s RegisterWorkflowTypeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5013,7 +5013,7 @@ type metadataRegisterWorkflowTypeOutput struct {
 
 // String returns the string representation
 func (s RegisterWorkflowTypeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5049,7 +5049,7 @@ type metadataRequestCancelActivityTaskDecisionAttributes struct {
 
 // String returns the string representation
 func (s RequestCancelActivityTaskDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5085,7 +5085,7 @@ type metadataRequestCancelActivityTaskFailedEventAttributes struct {
 
 // String returns the string representation
 func (s RequestCancelActivityTaskFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5128,7 +5128,7 @@ type metadataRequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s RequestCancelExternalWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5176,7 +5176,7 @@ type metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes struct 
 
 // String returns the string representation
 func (s RequestCancelExternalWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5211,7 +5211,7 @@ type metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes stru
 
 // String returns the string representation
 func (s RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5238,7 +5238,7 @@ type metadataRequestCancelWorkflowExecutionInput struct {
 
 // String returns the string representation
 func (s RequestCancelWorkflowExecutionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5256,7 +5256,7 @@ type metadataRequestCancelWorkflowExecutionOutput struct {
 
 // String returns the string representation
 func (s RequestCancelWorkflowExecutionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5284,7 +5284,7 @@ type metadataRespondActivityTaskCanceledInput struct {
 
 // String returns the string representation
 func (s RespondActivityTaskCanceledInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5302,7 +5302,7 @@ type metadataRespondActivityTaskCanceledOutput struct {
 
 // String returns the string representation
 func (s RespondActivityTaskCanceledOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5331,7 +5331,7 @@ type metadataRespondActivityTaskCompletedInput struct {
 
 // String returns the string representation
 func (s RespondActivityTaskCompletedInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5349,7 +5349,7 @@ type metadataRespondActivityTaskCompletedOutput struct {
 
 // String returns the string representation
 func (s RespondActivityTaskCompletedOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5380,7 +5380,7 @@ type metadataRespondActivityTaskFailedInput struct {
 
 // String returns the string representation
 func (s RespondActivityTaskFailedInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5398,7 +5398,7 @@ type metadataRespondActivityTaskFailedOutput struct {
 
 // String returns the string representation
 func (s RespondActivityTaskFailedOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5430,7 +5430,7 @@ type metadataRespondDecisionTaskCompletedInput struct {
 
 // String returns the string representation
 func (s RespondDecisionTaskCompletedInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5448,7 +5448,7 @@ type metadataRespondDecisionTaskCompletedOutput struct {
 
 // String returns the string representation
 func (s RespondDecisionTaskCompletedOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5574,7 +5574,7 @@ type metadataScheduleActivityTaskDecisionAttributes struct {
 
 // String returns the string representation
 func (s ScheduleActivityTaskDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5613,7 +5613,7 @@ type metadataScheduleActivityTaskFailedEventAttributes struct {
 
 // String returns the string representation
 func (s ScheduleActivityTaskFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5664,7 +5664,7 @@ type metadataSignalExternalWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s SignalExternalWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5713,7 +5713,7 @@ type metadataSignalExternalWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s SignalExternalWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5754,7 +5754,7 @@ type metadataSignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 
 // String returns the string representation
 func (s SignalExternalWorkflowExecutionInitiatedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5788,7 +5788,7 @@ type metadataSignalWorkflowExecutionInput struct {
 
 // String returns the string representation
 func (s SignalWorkflowExecutionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5806,7 +5806,7 @@ type metadataSignalWorkflowExecutionOutput struct {
 
 // String returns the string representation
 func (s SignalWorkflowExecutionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5933,7 +5933,7 @@ type metadataStartChildWorkflowExecutionDecisionAttributes struct {
 
 // String returns the string representation
 func (s StartChildWorkflowExecutionDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5981,7 +5981,7 @@ type metadataStartChildWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s StartChildWorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6062,7 +6062,7 @@ type metadataStartChildWorkflowExecutionInitiatedEventAttributes struct {
 
 // String returns the string representation
 func (s StartChildWorkflowExecutionInitiatedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6113,7 +6113,7 @@ type metadataStartTimerDecisionAttributes struct {
 
 // String returns the string representation
 func (s StartTimerDecisionAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6149,7 +6149,7 @@ type metadataStartTimerFailedEventAttributes struct {
 
 // String returns the string representation
 func (s StartTimerFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6267,7 +6267,7 @@ type metadataStartWorkflowExecutionInput struct {
 
 // String returns the string representation
 func (s StartWorkflowExecutionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6290,7 +6290,7 @@ type metadataStartWorkflowExecutionOutput struct {
 
 // String returns the string representation
 func (s StartWorkflowExecutionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6313,7 +6313,7 @@ type metadataTagFilter struct {
 
 // String returns the string representation
 func (s TagFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6335,7 +6335,7 @@ type metadataTaskList struct {
 
 // String returns the string representation
 func (s TaskList) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6386,7 +6386,7 @@ type metadataTerminateWorkflowExecutionInput struct {
 
 // String returns the string representation
 func (s TerminateWorkflowExecutionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6404,7 +6404,7 @@ type metadataTerminateWorkflowExecutionOutput struct {
 
 // String returns the string representation
 func (s TerminateWorkflowExecutionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6437,7 +6437,7 @@ type metadataTimerCanceledEventAttributes struct {
 
 // String returns the string representation
 func (s TimerCanceledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6464,7 +6464,7 @@ type metadataTimerFiredEventAttributes struct {
 
 // String returns the string representation
 func (s TimerFiredEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6502,7 +6502,7 @@ type metadataTimerStartedEventAttributes struct {
 
 // String returns the string representation
 func (s TimerStartedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6527,7 +6527,7 @@ type metadataWorkflowExecution struct {
 
 // String returns the string representation
 func (s WorkflowExecution) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6561,7 +6561,7 @@ type metadataWorkflowExecutionCancelRequestedEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionCancelRequestedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6589,7 +6589,7 @@ type metadataWorkflowExecutionCanceledEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionCanceledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6617,7 +6617,7 @@ type metadataWorkflowExecutionCompletedEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionCompletedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6676,7 +6676,7 @@ type metadataWorkflowExecutionConfiguration struct {
 
 // String returns the string representation
 func (s WorkflowExecutionConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6743,7 +6743,7 @@ type metadataWorkflowExecutionContinuedAsNewEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionContinuedAsNewEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6770,7 +6770,7 @@ type metadataWorkflowExecutionCount struct {
 
 // String returns the string representation
 func (s WorkflowExecutionCount) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6801,7 +6801,7 @@ type metadataWorkflowExecutionFailedEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionFailedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6823,7 +6823,7 @@ type metadataWorkflowExecutionFilter struct {
 
 // String returns the string representation
 func (s WorkflowExecutionFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6882,7 +6882,7 @@ type metadataWorkflowExecutionInfo struct {
 
 // String returns the string representation
 func (s WorkflowExecutionInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6912,7 +6912,7 @@ type metadataWorkflowExecutionInfos struct {
 
 // String returns the string representation
 func (s WorkflowExecutionInfos) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6946,7 +6946,7 @@ type metadataWorkflowExecutionOpenCounts struct {
 
 // String returns the string representation
 func (s WorkflowExecutionOpenCounts) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6985,7 +6985,7 @@ type metadataWorkflowExecutionSignaledEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionSignaledEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7061,7 +7061,7 @@ type metadataWorkflowExecutionStartedEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionStartedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7102,7 +7102,7 @@ type metadataWorkflowExecutionTerminatedEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionTerminatedEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7135,7 +7135,7 @@ type metadataWorkflowExecutionTimedOutEventAttributes struct {
 
 // String returns the string representation
 func (s WorkflowExecutionTimedOutEventAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7166,7 +7166,7 @@ type metadataWorkflowType struct {
 
 // String returns the string representation
 func (s WorkflowType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7240,7 +7240,7 @@ type metadataWorkflowTypeConfiguration struct {
 
 // String returns the string representation
 func (s WorkflowTypeConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7266,7 +7266,7 @@ type metadataWorkflowTypeFilter struct {
 
 // String returns the string representation
 func (s WorkflowTypeFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7301,7 +7301,7 @@ type metadataWorkflowTypeInfo struct {
 
 // String returns the string representation
 func (s WorkflowTypeInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

@@ -40,7 +40,7 @@ func ExampleCloudWatchLogs_CreateLogGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_CreateLogStream() {
@@ -68,7 +68,7 @@ func ExampleCloudWatchLogs_CreateLogStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DeleteLogGroup() {
@@ -95,7 +95,7 @@ func ExampleCloudWatchLogs_DeleteLogGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DeleteLogStream() {
@@ -123,7 +123,7 @@ func ExampleCloudWatchLogs_DeleteLogStream() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DeleteMetricFilter() {
@@ -151,7 +151,7 @@ func ExampleCloudWatchLogs_DeleteMetricFilter() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
@@ -178,7 +178,7 @@ func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DeleteSubscriptionFilter() {
@@ -206,14 +206,14 @@ func ExampleCloudWatchLogs_DeleteSubscriptionFilter() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DescribeLogGroups() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DescribeLogGroupsInput{
-		Limit:              aws.Long(1),
+		Limit:              aws.Int64(1),
 		LogGroupNamePrefix: aws.String("LogGroupName"),
 		NextToken:          aws.String("NextToken"),
 	}
@@ -235,7 +235,7 @@ func ExampleCloudWatchLogs_DescribeLogGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DescribeLogStreams() {
@@ -243,8 +243,8 @@ func ExampleCloudWatchLogs_DescribeLogStreams() {
 
 	params := &cloudwatchlogs.DescribeLogStreamsInput{
 		LogGroupName:        aws.String("LogGroupName"), // Required
-		Descending:          aws.Boolean(true),
-		Limit:               aws.Long(1),
+		Descending:          aws.Bool(true),
+		Limit:               aws.Int64(1),
 		LogStreamNamePrefix: aws.String("LogStreamName"),
 		NextToken:           aws.String("NextToken"),
 		OrderBy:             aws.String("OrderBy"),
@@ -267,7 +267,7 @@ func ExampleCloudWatchLogs_DescribeLogStreams() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DescribeMetricFilters() {
@@ -276,7 +276,7 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 	params := &cloudwatchlogs.DescribeMetricFiltersInput{
 		LogGroupName:     aws.String("LogGroupName"), // Required
 		FilterNamePrefix: aws.String("FilterName"),
-		Limit:            aws.Long(1),
+		Limit:            aws.Int64(1),
 		NextToken:        aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeMetricFilters(params)
@@ -297,7 +297,7 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
@@ -306,7 +306,7 @@ func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
 	params := &cloudwatchlogs.DescribeSubscriptionFiltersInput{
 		LogGroupName:     aws.String("LogGroupName"), // Required
 		FilterNamePrefix: aws.String("FilterName"),
-		Limit:            aws.Long(1),
+		Limit:            aws.Int64(1),
 		NextToken:        aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeSubscriptionFilters(params)
@@ -327,7 +327,7 @@ func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_FilterLogEvents() {
@@ -335,16 +335,16 @@ func ExampleCloudWatchLogs_FilterLogEvents() {
 
 	params := &cloudwatchlogs.FilterLogEventsInput{
 		LogGroupName:  aws.String("LogGroupName"), // Required
-		EndTime:       aws.Long(1),
+		EndTime:       aws.Int64(1),
 		FilterPattern: aws.String("FilterPattern"),
-		Interleaved:   aws.Boolean(true),
-		Limit:         aws.Long(1),
+		Interleaved:   aws.Bool(true),
+		Limit:         aws.Int64(1),
 		LogStreamNames: []*string{
 			aws.String("LogStreamName"), // Required
 			// More values...
 		},
 		NextToken: aws.String("NextToken"),
-		StartTime: aws.Long(1),
+		StartTime: aws.Int64(1),
 	}
 	resp, err := svc.FilterLogEvents(params)
 
@@ -364,7 +364,7 @@ func ExampleCloudWatchLogs_FilterLogEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_GetLogEvents() {
@@ -373,11 +373,11 @@ func ExampleCloudWatchLogs_GetLogEvents() {
 	params := &cloudwatchlogs.GetLogEventsInput{
 		LogGroupName:  aws.String("LogGroupName"),  // Required
 		LogStreamName: aws.String("LogStreamName"), // Required
-		EndTime:       aws.Long(1),
-		Limit:         aws.Long(1),
+		EndTime:       aws.Int64(1),
+		Limit:         aws.Int64(1),
 		NextToken:     aws.String("NextToken"),
-		StartFromHead: aws.Boolean(true),
-		StartTime:     aws.Long(1),
+		StartFromHead: aws.Bool(true),
+		StartTime:     aws.Int64(1),
 	}
 	resp, err := svc.GetLogEvents(params)
 
@@ -397,7 +397,7 @@ func ExampleCloudWatchLogs_GetLogEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_PutLogEvents() {
@@ -407,7 +407,7 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 		LogEvents: []*cloudwatchlogs.InputLogEvent{ // Required
 			{ // Required
 				Message:   aws.String("EventMessage"), // Required
-				Timestamp: aws.Long(1),                // Required
+				Timestamp: aws.Int64(1),               // Required
 			},
 			// More values...
 		},
@@ -433,7 +433,7 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_PutMetricFilter() {
@@ -470,7 +470,7 @@ func ExampleCloudWatchLogs_PutMetricFilter() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_PutRetentionPolicy() {
@@ -478,7 +478,7 @@ func ExampleCloudWatchLogs_PutRetentionPolicy() {
 
 	params := &cloudwatchlogs.PutRetentionPolicyInput{
 		LogGroupName:    aws.String("LogGroupName"), // Required
-		RetentionInDays: aws.Long(1),                // Required
+		RetentionInDays: aws.Int64(1),               // Required
 	}
 	resp, err := svc.PutRetentionPolicy(params)
 
@@ -498,7 +498,7 @@ func ExampleCloudWatchLogs_PutRetentionPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_PutSubscriptionFilter() {
@@ -529,7 +529,7 @@ func ExampleCloudWatchLogs_PutSubscriptionFilter() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudWatchLogs_TestMetricFilter() {
@@ -560,5 +560,5 @@ func ExampleCloudWatchLogs_TestMetricFilter() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

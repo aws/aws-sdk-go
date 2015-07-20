@@ -1127,7 +1127,7 @@ type metadataAliasTarget struct {
 
 // String returns the string representation
 func (s AliasTarget) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1159,7 +1159,7 @@ type metadataAssociateVPCWithHostedZoneInput struct {
 
 // String returns the string representation
 func (s AssociateVPCWithHostedZoneInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1182,7 +1182,7 @@ type metadataAssociateVPCWithHostedZoneOutput struct {
 
 // String returns the string representation
 func (s AssociateVPCWithHostedZoneOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1210,7 +1210,7 @@ type metadataChange struct {
 
 // String returns the string representation
 func (s Change) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1237,7 +1237,7 @@ type metadataChangeBatch struct {
 
 // String returns the string representation
 func (s ChangeBatch) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1283,7 +1283,7 @@ type metadataChangeInfo struct {
 
 // String returns the string representation
 func (s ChangeInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1309,7 +1309,7 @@ type metadataChangeResourceRecordSetsInput struct {
 
 // String returns the string representation
 func (s ChangeResourceRecordSetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1335,7 +1335,7 @@ type metadataChangeResourceRecordSetsOutput struct {
 
 // String returns the string representation
 func (s ChangeResourceRecordSetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1372,7 +1372,7 @@ type metadataChangeTagsForResourceInput struct {
 
 // String returns the string representation
 func (s ChangeTagsForResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1391,7 +1391,7 @@ type metadataChangeTagsForResourceOutput struct {
 
 // String returns the string representation
 func (s ChangeTagsForResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1424,7 +1424,7 @@ type metadataCreateHealthCheckInput struct {
 
 // String returns the string representation
 func (s CreateHealthCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1449,7 +1449,7 @@ type metadataCreateHealthCheckOutput struct {
 
 // String returns the string representation
 func (s CreateHealthCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1501,7 +1501,7 @@ type metadataCreateHostedZoneInput struct {
 
 // String returns the string representation
 func (s CreateHostedZoneInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1536,7 +1536,7 @@ type metadataCreateHostedZoneOutput struct {
 
 // String returns the string representation
 func (s CreateHostedZoneOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1568,7 +1568,7 @@ type metadataCreateReusableDelegationSetInput struct {
 
 // String returns the string representation
 func (s CreateReusableDelegationSetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1592,7 +1592,7 @@ type metadataCreateReusableDelegationSetOutput struct {
 
 // String returns the string representation
 func (s CreateReusableDelegationSetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1620,7 +1620,7 @@ type metadataDelegationSet struct {
 
 // String returns the string representation
 func (s DelegationSet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1642,7 +1642,7 @@ type metadataDeleteHealthCheckInput struct {
 
 // String returns the string representation
 func (s DeleteHealthCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1661,7 +1661,7 @@ type metadataDeleteHealthCheckOutput struct {
 
 // String returns the string representation
 func (s DeleteHealthCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1684,7 +1684,7 @@ type metadataDeleteHostedZoneInput struct {
 
 // String returns the string representation
 func (s DeleteHostedZoneInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1707,7 +1707,7 @@ type metadataDeleteHostedZoneOutput struct {
 
 // String returns the string representation
 func (s DeleteHostedZoneOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1729,7 +1729,7 @@ type metadataDeleteReusableDelegationSetInput struct {
 
 // String returns the string representation
 func (s DeleteReusableDelegationSetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1748,7 +1748,7 @@ type metadataDeleteReusableDelegationSetOutput struct {
 
 // String returns the string representation
 func (s DeleteReusableDelegationSetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1779,7 +1779,7 @@ type metadataDisassociateVPCFromHostedZoneInput struct {
 
 // String returns the string representation
 func (s DisassociateVPCFromHostedZoneInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1802,7 +1802,7 @@ type metadataDisassociateVPCFromHostedZoneOutput struct {
 
 // String returns the string representation
 func (s DisassociateVPCFromHostedZoneOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1844,7 +1844,7 @@ type metadataGeoLocation struct {
 
 // String returns the string representation
 func (s GeoLocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1890,7 +1890,7 @@ type metadataGeoLocationDetails struct {
 
 // String returns the string representation
 func (s GeoLocationDetails) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1914,7 +1914,7 @@ type metadataGetChangeInput struct {
 
 // String returns the string representation
 func (s GetChangeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1938,7 +1938,7 @@ type metadataGetChangeOutput struct {
 
 // String returns the string representation
 func (s GetChangeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1957,7 +1957,7 @@ type metadataGetCheckerIPRangesInput struct {
 
 // String returns the string representation
 func (s GetCheckerIPRangesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1980,7 +1980,7 @@ type metadataGetCheckerIPRangesOutput struct {
 
 // String returns the string representation
 func (s GetCheckerIPRangesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2022,7 +2022,7 @@ type metadataGetGeoLocationInput struct {
 
 // String returns the string representation
 func (s GetGeoLocationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2044,7 +2044,7 @@ type metadataGetGeoLocationOutput struct {
 
 // String returns the string representation
 func (s GetGeoLocationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2064,7 +2064,7 @@ type metadataGetHealthCheckCountInput struct {
 
 // String returns the string representation
 func (s GetHealthCheckCountInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2087,7 +2087,7 @@ type metadataGetHealthCheckCountOutput struct {
 
 // String returns the string representation
 func (s GetHealthCheckCountOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2110,7 +2110,7 @@ type metadataGetHealthCheckInput struct {
 
 // String returns the string representation
 func (s GetHealthCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2134,7 +2134,7 @@ type metadataGetHealthCheckLastFailureReasonInput struct {
 
 // String returns the string representation
 func (s GetHealthCheckLastFailureReasonInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2158,7 +2158,7 @@ type metadataGetHealthCheckLastFailureReasonOutput struct {
 
 // String returns the string representation
 func (s GetHealthCheckLastFailureReasonOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2180,7 +2180,7 @@ type metadataGetHealthCheckOutput struct {
 
 // String returns the string representation
 func (s GetHealthCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2204,7 +2204,7 @@ type metadataGetHealthCheckStatusInput struct {
 
 // String returns the string representation
 func (s GetHealthCheckStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2228,7 +2228,7 @@ type metadataGetHealthCheckStatusOutput struct {
 
 // String returns the string representation
 func (s GetHealthCheckStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2248,7 +2248,7 @@ type metadataGetHostedZoneCountInput struct {
 
 // String returns the string representation
 func (s GetHostedZoneCountInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2271,7 +2271,7 @@ type metadataGetHostedZoneCountOutput struct {
 
 // String returns the string representation
 func (s GetHostedZoneCountOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2294,7 +2294,7 @@ type metadataGetHostedZoneInput struct {
 
 // String returns the string representation
 func (s GetHostedZoneInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2324,7 +2324,7 @@ type metadataGetHostedZoneOutput struct {
 
 // String returns the string representation
 func (s GetHostedZoneOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2347,7 +2347,7 @@ type metadataGetReusableDelegationSetInput struct {
 
 // String returns the string representation
 func (s GetReusableDelegationSetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2371,7 +2371,7 @@ type metadataGetReusableDelegationSetOutput struct {
 
 // String returns the string representation
 func (s GetReusableDelegationSetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2404,7 +2404,7 @@ type metadataHealthCheck struct {
 
 // String returns the string representation
 func (s HealthCheck) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2463,7 +2463,7 @@ type metadataHealthCheckConfig struct {
 
 // String returns the string representation
 func (s HealthCheckConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2490,7 +2490,7 @@ type metadataHealthCheckObservation struct {
 
 // String returns the string representation
 func (s HealthCheckObservation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2531,7 +2531,7 @@ type metadataHostedZone struct {
 
 // String returns the string representation
 func (s HostedZone) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2561,7 +2561,7 @@ type metadataHostedZoneConfig struct {
 
 // String returns the string representation
 func (s HostedZoneConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2607,7 +2607,7 @@ type metadataListGeoLocationsInput struct {
 
 // String returns the string representation
 func (s ListGeoLocationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2659,7 +2659,7 @@ type metadataListGeoLocationsOutput struct {
 
 // String returns the string representation
 func (s ListGeoLocationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2694,7 +2694,7 @@ type metadataListHealthChecksInput struct {
 
 // String returns the string representation
 func (s ListHealthChecksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2741,7 +2741,7 @@ type metadataListHealthChecksOutput struct {
 
 // String returns the string representation
 func (s ListHealthChecksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2787,7 +2787,7 @@ type metadataListHostedZonesByNameInput struct {
 
 // String returns the string representation
 func (s ListHostedZonesByNameInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2845,7 +2845,7 @@ type metadataListHostedZonesByNameOutput struct {
 
 // String returns the string representation
 func (s ListHostedZonesByNameOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2885,7 +2885,7 @@ type metadataListHostedZonesInput struct {
 
 // String returns the string representation
 func (s ListHostedZonesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2932,7 +2932,7 @@ type metadataListHostedZonesOutput struct {
 
 // String returns the string representation
 func (s ListHostedZonesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2982,7 +2982,7 @@ type metadataListResourceRecordSetsInput struct {
 
 // String returns the string representation
 func (s ListResourceRecordSetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3033,7 +3033,7 @@ type metadataListResourceRecordSetsOutput struct {
 
 // String returns the string representation
 func (s ListResourceRecordSetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3070,7 +3070,7 @@ type metadataListReusableDelegationSetsInput struct {
 
 // String returns the string representation
 func (s ListReusableDelegationSetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3119,7 +3119,7 @@ type metadataListReusableDelegationSetsOutput struct {
 
 // String returns the string representation
 func (s ListReusableDelegationSetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3149,7 +3149,7 @@ type metadataListTagsForResourceInput struct {
 
 // String returns the string representation
 func (s ListTagsForResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3171,7 +3171,7 @@ type metadataListTagsForResourceOutput struct {
 
 // String returns the string representation
 func (s ListTagsForResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3202,7 +3202,7 @@ type metadataListTagsForResourcesInput struct {
 
 // String returns the string representation
 func (s ListTagsForResourcesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3224,7 +3224,7 @@ type metadataListTagsForResourcesOutput struct {
 
 // String returns the string representation
 func (s ListTagsForResourcesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3247,7 +3247,7 @@ type metadataResourceRecord struct {
 
 // String returns the string representation
 func (s ResourceRecord) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3328,7 +3328,7 @@ type metadataResourceRecordSet struct {
 
 // String returns the string representation
 func (s ResourceRecordSet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3360,7 +3360,7 @@ type metadataResourceTagSet struct {
 
 // String returns the string representation
 func (s ResourceTagSet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3389,7 +3389,7 @@ type metadataStatusReport struct {
 
 // String returns the string representation
 func (s StatusReport) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3414,7 +3414,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3486,7 +3486,7 @@ type metadataUpdateHealthCheckInput struct {
 
 // String returns the string representation
 func (s UpdateHealthCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3507,7 +3507,7 @@ type metadataUpdateHealthCheckOutput struct {
 
 // String returns the string representation
 func (s UpdateHealthCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3533,7 +3533,7 @@ type metadataUpdateHostedZoneCommentInput struct {
 
 // String returns the string representation
 func (s UpdateHostedZoneCommentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3556,7 +3556,7 @@ type metadataUpdateHostedZoneCommentOutput struct {
 
 // String returns the string representation
 func (s UpdateHostedZoneCommentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3579,7 +3579,7 @@ type metadataVPC struct {
 
 // String returns the string representation
 func (s VPC) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

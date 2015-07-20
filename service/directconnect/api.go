@@ -654,7 +654,7 @@ type metadataAllocateConnectionOnInterconnectInput struct {
 
 // String returns the string representation
 func (s AllocateConnectionOnInterconnectInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -688,7 +688,7 @@ type metadataAllocatePrivateVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s AllocatePrivateVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -722,7 +722,7 @@ type metadataAllocatePublicVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s AllocatePublicVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -748,7 +748,7 @@ type metadataConfirmConnectionInput struct {
 
 // String returns the string representation
 func (s ConfirmConnectionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -779,7 +779,7 @@ type metadataConfirmConnectionOutput struct {
 
 // String returns the string representation
 func (s ConfirmConnectionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -814,7 +814,7 @@ type metadataConfirmPrivateVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s ConfirmPrivateVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -851,7 +851,7 @@ type metadataConfirmPrivateVirtualInterfaceOutput struct {
 
 // String returns the string representation
 func (s ConfirmPrivateVirtualInterfaceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -877,7 +877,7 @@ type metadataConfirmPublicVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s ConfirmPublicVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -914,7 +914,7 @@ type metadataConfirmPublicVirtualInterfaceOutput struct {
 
 // String returns the string representation
 func (s ConfirmPublicVirtualInterfaceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -990,7 +990,7 @@ type metadataConnection struct {
 
 // String returns the string representation
 func (s Connection) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1012,7 +1012,7 @@ type metadataConnections struct {
 
 // String returns the string representation
 func (s Connections) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1052,7 +1052,7 @@ type metadataCreateConnectionInput struct {
 
 // String returns the string representation
 func (s CreateConnectionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1094,7 +1094,7 @@ type metadataCreateInterconnectInput struct {
 
 // String returns the string representation
 func (s CreateInterconnectInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1125,7 +1125,7 @@ type metadataCreatePrivateVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s CreatePrivateVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1156,7 +1156,7 @@ type metadataCreatePublicVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s CreatePublicVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1182,7 +1182,7 @@ type metadataDeleteConnectionInput struct {
 
 // String returns the string representation
 func (s DeleteConnectionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1206,7 +1206,7 @@ type metadataDeleteInterconnectInput struct {
 
 // String returns the string representation
 func (s DeleteInterconnectInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1233,7 +1233,7 @@ type metadataDeleteInterconnectOutput struct {
 
 // String returns the string representation
 func (s DeleteInterconnectOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1259,7 +1259,7 @@ type metadataDeleteVirtualInterfaceInput struct {
 
 // String returns the string representation
 func (s DeleteVirtualInterfaceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1296,7 +1296,7 @@ type metadataDeleteVirtualInterfaceOutput struct {
 
 // String returns the string representation
 func (s DeleteVirtualInterfaceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1322,7 +1322,7 @@ type metadataDescribeConnectionsInput struct {
 
 // String returns the string representation
 func (s DescribeConnectionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1348,7 +1348,7 @@ type metadataDescribeConnectionsOnInterconnectInput struct {
 
 // String returns the string representation
 func (s DescribeConnectionsOnInterconnectInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1372,7 +1372,7 @@ type metadataDescribeInterconnectsInput struct {
 
 // String returns the string representation
 func (s DescribeInterconnectsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1394,7 +1394,7 @@ type metadataDescribeInterconnectsOutput struct {
 
 // String returns the string representation
 func (s DescribeInterconnectsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1412,7 +1412,7 @@ type metadataDescribeLocationsInput struct {
 
 // String returns the string representation
 func (s DescribeLocationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1432,7 +1432,7 @@ type metadataDescribeLocationsOutput struct {
 
 // String returns the string representation
 func (s DescribeLocationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1450,7 +1450,7 @@ type metadataDescribeVirtualGatewaysInput struct {
 
 // String returns the string representation
 func (s DescribeVirtualGatewaysInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1472,7 +1472,7 @@ type metadataDescribeVirtualGatewaysOutput struct {
 
 // String returns the string representation
 func (s DescribeVirtualGatewaysOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1505,7 +1505,7 @@ type metadataDescribeVirtualInterfacesInput struct {
 
 // String returns the string representation
 func (s DescribeVirtualInterfacesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1527,7 +1527,7 @@ type metadataDescribeVirtualInterfacesOutput struct {
 
 // String returns the string representation
 func (s DescribeVirtualInterfacesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1596,7 +1596,7 @@ type metadataInterconnect struct {
 
 // String returns the string representation
 func (s Interconnect) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1623,7 +1623,7 @@ type metadataLocation struct {
 
 // String returns the string representation
 func (s Location) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1678,7 +1678,7 @@ type metadataNewPrivateVirtualInterface struct {
 
 // String returns the string representation
 func (s NewPrivateVirtualInterface) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1728,7 +1728,7 @@ type metadataNewPrivateVirtualInterfaceAllocation struct {
 
 // String returns the string representation
 func (s NewPrivateVirtualInterfaceAllocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1781,7 +1781,7 @@ type metadataNewPublicVirtualInterface struct {
 
 // String returns the string representation
 func (s NewPublicVirtualInterface) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1835,7 +1835,7 @@ type metadataNewPublicVirtualInterfaceAllocation struct {
 
 // String returns the string representation
 func (s NewPublicVirtualInterfaceAllocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1861,7 +1861,7 @@ type metadataRouteFilterPrefix struct {
 
 // String returns the string representation
 func (s RouteFilterPrefix) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1897,7 +1897,7 @@ type metadataVirtualGateway struct {
 
 // String returns the string representation
 func (s VirtualGateway) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2007,7 +2007,7 @@ type metadataVirtualInterface struct {
 
 // String returns the string representation
 func (s VirtualInterface) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

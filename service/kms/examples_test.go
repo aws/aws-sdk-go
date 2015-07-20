@@ -41,7 +41,7 @@ func ExampleKMS_CreateAlias() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_CreateGrant() {
@@ -88,7 +88,7 @@ func ExampleKMS_CreateGrant() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_CreateKey() {
@@ -117,7 +117,7 @@ func ExampleKMS_CreateKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_Decrypt() {
@@ -152,7 +152,7 @@ func ExampleKMS_Decrypt() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_DeleteAlias() {
@@ -179,7 +179,7 @@ func ExampleKMS_DeleteAlias() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_DescribeKey() {
@@ -206,7 +206,7 @@ func ExampleKMS_DescribeKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_DisableKey() {
@@ -233,7 +233,7 @@ func ExampleKMS_DisableKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_DisableKeyRotation() {
@@ -260,7 +260,7 @@ func ExampleKMS_DisableKeyRotation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_EnableKey() {
@@ -287,7 +287,7 @@ func ExampleKMS_EnableKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_EnableKeyRotation() {
@@ -314,7 +314,7 @@ func ExampleKMS_EnableKeyRotation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_Encrypt() {
@@ -350,7 +350,7 @@ func ExampleKMS_Encrypt() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_GenerateDataKey() {
@@ -367,7 +367,7 @@ func ExampleKMS_GenerateDataKey() {
 			// More values...
 		},
 		KeySpec:       aws.String("DataKeySpec"),
-		NumberOfBytes: aws.Long(1),
+		NumberOfBytes: aws.Int64(1),
 	}
 	resp, err := svc.GenerateDataKey(params)
 
@@ -387,7 +387,7 @@ func ExampleKMS_GenerateDataKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_GenerateDataKeyWithoutPlaintext() {
@@ -404,7 +404,7 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext() {
 			// More values...
 		},
 		KeySpec:       aws.String("DataKeySpec"),
-		NumberOfBytes: aws.Long(1),
+		NumberOfBytes: aws.Int64(1),
 	}
 	resp, err := svc.GenerateDataKeyWithoutPlaintext(params)
 
@@ -424,14 +424,14 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_GenerateRandom() {
 	svc := kms.New(nil)
 
 	params := &kms.GenerateRandomInput{
-		NumberOfBytes: aws.Long(1),
+		NumberOfBytes: aws.Int64(1),
 	}
 	resp, err := svc.GenerateRandom(params)
 
@@ -451,7 +451,7 @@ func ExampleKMS_GenerateRandom() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_GetKeyPolicy() {
@@ -479,7 +479,7 @@ func ExampleKMS_GetKeyPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_GetKeyRotationStatus() {
@@ -506,14 +506,14 @@ func ExampleKMS_GetKeyRotationStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_ListAliases() {
 	svc := kms.New(nil)
 
 	params := &kms.ListAliasesInput{
-		Limit:  aws.Long(1),
+		Limit:  aws.Int64(1),
 		Marker: aws.String("MarkerType"),
 	}
 	resp, err := svc.ListAliases(params)
@@ -534,7 +534,7 @@ func ExampleKMS_ListAliases() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_ListGrants() {
@@ -542,7 +542,7 @@ func ExampleKMS_ListGrants() {
 
 	params := &kms.ListGrantsInput{
 		KeyID:  aws.String("KeyIdType"), // Required
-		Limit:  aws.Long(1),
+		Limit:  aws.Int64(1),
 		Marker: aws.String("MarkerType"),
 	}
 	resp, err := svc.ListGrants(params)
@@ -563,7 +563,7 @@ func ExampleKMS_ListGrants() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_ListKeyPolicies() {
@@ -571,7 +571,7 @@ func ExampleKMS_ListKeyPolicies() {
 
 	params := &kms.ListKeyPoliciesInput{
 		KeyID:  aws.String("KeyIdType"), // Required
-		Limit:  aws.Long(1),
+		Limit:  aws.Int64(1),
 		Marker: aws.String("MarkerType"),
 	}
 	resp, err := svc.ListKeyPolicies(params)
@@ -592,14 +592,14 @@ func ExampleKMS_ListKeyPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_ListKeys() {
 	svc := kms.New(nil)
 
 	params := &kms.ListKeysInput{
-		Limit:  aws.Long(1),
+		Limit:  aws.Int64(1),
 		Marker: aws.String("MarkerType"),
 	}
 	resp, err := svc.ListKeys(params)
@@ -620,7 +620,7 @@ func ExampleKMS_ListKeys() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_PutKeyPolicy() {
@@ -649,7 +649,7 @@ func ExampleKMS_PutKeyPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_ReEncrypt() {
@@ -689,7 +689,7 @@ func ExampleKMS_ReEncrypt() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_RetireGrant() {
@@ -718,7 +718,7 @@ func ExampleKMS_RetireGrant() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_RevokeGrant() {
@@ -746,7 +746,7 @@ func ExampleKMS_RevokeGrant() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_UpdateAlias() {
@@ -774,7 +774,7 @@ func ExampleKMS_UpdateAlias() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleKMS_UpdateKeyDescription() {
@@ -802,5 +802,5 @@ func ExampleKMS_UpdateKeyDescription() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

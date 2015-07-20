@@ -406,7 +406,7 @@ type metadataConfigExportDeliveryInfo struct {
 
 // String returns the string representation
 func (s ConfigExportDeliveryInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -442,7 +442,7 @@ type metadataConfigStreamDeliveryInfo struct {
 
 // String returns the string representation
 func (s ConfigStreamDeliveryInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -520,7 +520,7 @@ type metadataConfigurationItem struct {
 
 // String returns the string representation
 func (s ConfigurationItem) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -554,7 +554,7 @@ type metadataConfigurationRecorder struct {
 
 // String returns the string representation
 func (s ConfigurationRecorder) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -597,7 +597,7 @@ type metadataConfigurationRecorderStatus struct {
 
 // String returns the string representation
 func (s ConfigurationRecorderStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -620,7 +620,7 @@ type metadataDeleteDeliveryChannelInput struct {
 
 // String returns the string representation
 func (s DeleteDeliveryChannelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -638,7 +638,7 @@ type metadataDeleteDeliveryChannelOutput struct {
 
 // String returns the string representation
 func (s DeleteDeliveryChannelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -660,7 +660,7 @@ type metadataDeliverConfigSnapshotInput struct {
 
 // String returns the string representation
 func (s DeliverConfigSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -682,7 +682,7 @@ type metadataDeliverConfigSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeliverConfigSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -718,7 +718,7 @@ type metadataDeliveryChannel struct {
 
 // String returns the string representation
 func (s DeliveryChannel) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -754,7 +754,7 @@ type metadataDeliveryChannelStatus struct {
 
 // String returns the string representation
 func (s DeliveryChannelStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -778,7 +778,7 @@ type metadataDescribeConfigurationRecorderStatusInput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecorderStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -800,7 +800,7 @@ type metadataDescribeConfigurationRecorderStatusOutput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecorderStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -822,7 +822,7 @@ type metadataDescribeConfigurationRecordersInput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecordersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -844,7 +844,7 @@ type metadataDescribeConfigurationRecordersOutput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecordersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -866,7 +866,7 @@ type metadataDescribeDeliveryChannelStatusInput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -888,7 +888,7 @@ type metadataDescribeDeliveryChannelStatusOutput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -910,7 +910,7 @@ type metadataDescribeDeliveryChannelsInput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -932,7 +932,7 @@ type metadataDescribeDeliveryChannelsOutput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -977,7 +977,7 @@ type metadataGetResourceConfigHistoryInput struct {
 
 // String returns the string representation
 func (s GetResourceConfigHistoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1002,7 +1002,7 @@ type metadataGetResourceConfigHistoryOutput struct {
 
 // String returns the string representation
 func (s GetResourceConfigHistoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1025,7 +1025,7 @@ type metadataPutConfigurationRecorderInput struct {
 
 // String returns the string representation
 func (s PutConfigurationRecorderInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1043,7 +1043,7 @@ type metadataPutConfigurationRecorderOutput struct {
 
 // String returns the string representation
 func (s PutConfigurationRecorderOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1066,7 +1066,7 @@ type metadataPutDeliveryChannelInput struct {
 
 // String returns the string representation
 func (s PutDeliveryChannelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1084,7 +1084,7 @@ type metadataPutDeliveryChannelOutput struct {
 
 // String returns the string representation
 func (s PutDeliveryChannelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1119,7 +1119,7 @@ type metadataRecordingGroup struct {
 
 // String returns the string representation
 func (s RecordingGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1147,7 +1147,7 @@ type metadataRelationship struct {
 
 // String returns the string representation
 func (s Relationship) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1170,7 +1170,7 @@ type metadataStartConfigurationRecorderInput struct {
 
 // String returns the string representation
 func (s StartConfigurationRecorderInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1188,7 +1188,7 @@ type metadataStartConfigurationRecorderOutput struct {
 
 // String returns the string representation
 func (s StartConfigurationRecorderOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1211,7 +1211,7 @@ type metadataStopConfigurationRecorderInput struct {
 
 // String returns the string representation
 func (s StopConfigurationRecorderInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1229,7 +1229,7 @@ type metadataStopConfigurationRecorderOutput struct {
 
 // String returns the string representation
 func (s StopConfigurationRecorderOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

@@ -40,7 +40,7 @@ func ExampleSES_DeleteIdentity() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_DeleteIdentityPolicy() {
@@ -68,7 +68,7 @@ func ExampleSES_DeleteIdentityPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_DeleteVerifiedEmailAddress() {
@@ -95,7 +95,7 @@ func ExampleSES_DeleteVerifiedEmailAddress() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityDKIMAttributes() {
@@ -125,7 +125,7 @@ func ExampleSES_GetIdentityDKIMAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityNotificationAttributes() {
@@ -155,7 +155,7 @@ func ExampleSES_GetIdentityNotificationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityPolicies() {
@@ -186,7 +186,7 @@ func ExampleSES_GetIdentityPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityVerificationAttributes() {
@@ -216,7 +216,7 @@ func ExampleSES_GetIdentityVerificationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetSendQuota() {
@@ -241,7 +241,7 @@ func ExampleSES_GetSendQuota() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetSendStatistics() {
@@ -266,7 +266,7 @@ func ExampleSES_GetSendStatistics() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_ListIdentities() {
@@ -274,7 +274,7 @@ func ExampleSES_ListIdentities() {
 
 	params := &ses.ListIdentitiesInput{
 		IdentityType: aws.String("IdentityType"),
-		MaxItems:     aws.Long(1),
+		MaxItems:     aws.Int64(1),
 		NextToken:    aws.String("NextToken"),
 	}
 	resp, err := svc.ListIdentities(params)
@@ -295,7 +295,7 @@ func ExampleSES_ListIdentities() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_ListIdentityPolicies() {
@@ -322,7 +322,7 @@ func ExampleSES_ListIdentityPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_ListVerifiedEmailAddresses() {
@@ -347,7 +347,7 @@ func ExampleSES_ListVerifiedEmailAddresses() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_PutIdentityPolicy() {
@@ -376,7 +376,7 @@ func ExampleSES_PutIdentityPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SendEmail() {
@@ -440,7 +440,7 @@ func ExampleSES_SendEmail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SendRawEmail() {
@@ -477,14 +477,14 @@ func ExampleSES_SendRawEmail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SetIdentityDKIMEnabled() {
 	svc := ses.New(nil)
 
 	params := &ses.SetIdentityDKIMEnabledInput{
-		DKIMEnabled: aws.Boolean(true),      // Required
+		DKIMEnabled: aws.Bool(true),         // Required
 		Identity:    aws.String("Identity"), // Required
 	}
 	resp, err := svc.SetIdentityDKIMEnabled(params)
@@ -505,14 +505,14 @@ func ExampleSES_SetIdentityDKIMEnabled() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SetIdentityFeedbackForwardingEnabled() {
 	svc := ses.New(nil)
 
 	params := &ses.SetIdentityFeedbackForwardingEnabledInput{
-		ForwardingEnabled: aws.Boolean(true),      // Required
+		ForwardingEnabled: aws.Bool(true),         // Required
 		Identity:          aws.String("Identity"), // Required
 	}
 	resp, err := svc.SetIdentityFeedbackForwardingEnabled(params)
@@ -533,7 +533,7 @@ func ExampleSES_SetIdentityFeedbackForwardingEnabled() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SetIdentityNotificationTopic() {
@@ -562,7 +562,7 @@ func ExampleSES_SetIdentityNotificationTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyDomainDKIM() {
@@ -589,7 +589,7 @@ func ExampleSES_VerifyDomainDKIM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyDomainIdentity() {
@@ -616,7 +616,7 @@ func ExampleSES_VerifyDomainIdentity() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyEmailAddress() {
@@ -643,7 +643,7 @@ func ExampleSES_VerifyEmailAddress() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyEmailIdentity() {
@@ -670,5 +670,5 @@ func ExampleSES_VerifyEmailIdentity() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

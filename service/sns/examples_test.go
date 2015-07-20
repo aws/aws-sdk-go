@@ -49,7 +49,7 @@ func ExampleSNS_AddPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ConfirmSubscription() {
@@ -78,7 +78,7 @@ func ExampleSNS_ConfirmSubscription() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_CreatePlatformApplication() {
@@ -110,7 +110,7 @@ func ExampleSNS_CreatePlatformApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_CreatePlatformEndpoint() {
@@ -143,7 +143,7 @@ func ExampleSNS_CreatePlatformEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_CreateTopic() {
@@ -170,7 +170,7 @@ func ExampleSNS_CreateTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_DeleteEndpoint() {
@@ -197,7 +197,7 @@ func ExampleSNS_DeleteEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_DeletePlatformApplication() {
@@ -224,7 +224,7 @@ func ExampleSNS_DeletePlatformApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_DeleteTopic() {
@@ -251,7 +251,7 @@ func ExampleSNS_DeleteTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetEndpointAttributes() {
@@ -278,7 +278,7 @@ func ExampleSNS_GetEndpointAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetPlatformApplicationAttributes() {
@@ -305,7 +305,7 @@ func ExampleSNS_GetPlatformApplicationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetSubscriptionAttributes() {
@@ -332,7 +332,7 @@ func ExampleSNS_GetSubscriptionAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetTopicAttributes() {
@@ -359,7 +359,7 @@ func ExampleSNS_GetTopicAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListEndpointsByPlatformApplication() {
@@ -387,7 +387,7 @@ func ExampleSNS_ListEndpointsByPlatformApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListPlatformApplications() {
@@ -414,7 +414,7 @@ func ExampleSNS_ListPlatformApplications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListSubscriptions() {
@@ -441,7 +441,7 @@ func ExampleSNS_ListSubscriptions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListSubscriptionsByTopic() {
@@ -469,7 +469,7 @@ func ExampleSNS_ListSubscriptionsByTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListTopics() {
@@ -496,7 +496,7 @@ func ExampleSNS_ListTopics() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_Publish() {
@@ -535,7 +535,7 @@ func ExampleSNS_Publish() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_RemovePermission() {
@@ -563,7 +563,7 @@ func ExampleSNS_RemovePermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetEndpointAttributes() {
@@ -594,7 +594,7 @@ func ExampleSNS_SetEndpointAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetPlatformApplicationAttributes() {
@@ -625,7 +625,7 @@ func ExampleSNS_SetPlatformApplicationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetSubscriptionAttributes() {
@@ -654,7 +654,7 @@ func ExampleSNS_SetSubscriptionAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetTopicAttributes() {
@@ -683,7 +683,7 @@ func ExampleSNS_SetTopicAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_Subscribe() {
@@ -712,7 +712,7 @@ func ExampleSNS_Subscribe() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_Unsubscribe() {
@@ -739,5 +739,5 @@ func ExampleSNS_Unsubscribe() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

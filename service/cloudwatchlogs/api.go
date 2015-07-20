@@ -652,7 +652,7 @@ type metadataCreateLogGroupInput struct {
 
 // String returns the string representation
 func (s CreateLogGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -670,7 +670,7 @@ type metadataCreateLogGroupOutput struct {
 
 // String returns the string representation
 func (s CreateLogGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -694,7 +694,7 @@ type metadataCreateLogStreamInput struct {
 
 // String returns the string representation
 func (s CreateLogStreamInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -712,7 +712,7 @@ type metadataCreateLogStreamOutput struct {
 
 // String returns the string representation
 func (s CreateLogStreamOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -733,7 +733,7 @@ type metadataDeleteLogGroupInput struct {
 
 // String returns the string representation
 func (s DeleteLogGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -751,7 +751,7 @@ type metadataDeleteLogGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteLogGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -775,7 +775,7 @@ type metadataDeleteLogStreamInput struct {
 
 // String returns the string representation
 func (s DeleteLogStreamInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -793,7 +793,7 @@ type metadataDeleteLogStreamOutput struct {
 
 // String returns the string representation
 func (s DeleteLogStreamOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -817,7 +817,7 @@ type metadataDeleteMetricFilterInput struct {
 
 // String returns the string representation
 func (s DeleteMetricFilterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -835,7 +835,7 @@ type metadataDeleteMetricFilterOutput struct {
 
 // String returns the string representation
 func (s DeleteMetricFilterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -857,7 +857,7 @@ type metadataDeleteRetentionPolicyInput struct {
 
 // String returns the string representation
 func (s DeleteRetentionPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -875,7 +875,7 @@ type metadataDeleteRetentionPolicyOutput struct {
 
 // String returns the string representation
 func (s DeleteRetentionPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -900,7 +900,7 @@ type metadataDeleteSubscriptionFilterInput struct {
 
 // String returns the string representation
 func (s DeleteSubscriptionFilterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -918,7 +918,7 @@ type metadataDeleteSubscriptionFilterOutput struct {
 
 // String returns the string representation
 func (s DeleteSubscriptionFilterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -949,7 +949,7 @@ type metadataDescribeLogGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeLogGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -975,7 +975,7 @@ type metadataDescribeLogGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeLogGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1019,7 +1019,7 @@ type metadataDescribeLogStreamsInput struct {
 
 // String returns the string representation
 func (s DescribeLogStreamsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1045,7 +1045,7 @@ type metadataDescribeLogStreamsOutput struct {
 
 // String returns the string representation
 func (s DescribeLogStreamsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1079,7 +1079,7 @@ type metadataDescribeMetricFiltersInput struct {
 
 // String returns the string representation
 func (s DescribeMetricFiltersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1104,7 +1104,7 @@ type metadataDescribeMetricFiltersOutput struct {
 
 // String returns the string representation
 func (s DescribeMetricFiltersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1137,7 +1137,7 @@ type metadataDescribeSubscriptionFiltersInput struct {
 
 // String returns the string representation
 func (s DescribeSubscriptionFiltersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1162,7 +1162,7 @@ type metadataDescribeSubscriptionFiltersOutput struct {
 
 // String returns the string representation
 func (s DescribeSubscriptionFiltersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1213,7 +1213,7 @@ type metadataFilterLogEventsInput struct {
 
 // String returns the string representation
 func (s FilterLogEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1244,7 +1244,7 @@ type metadataFilterLogEventsOutput struct {
 
 // String returns the string representation
 func (s FilterLogEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1280,7 +1280,7 @@ type metadataFilteredLogEvent struct {
 
 // String returns the string representation
 func (s FilteredLogEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1326,7 +1326,7 @@ type metadataGetLogEventsInput struct {
 
 // String returns the string representation
 func (s GetLogEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1356,7 +1356,7 @@ type metadataGetLogEventsOutput struct {
 
 // String returns the string representation
 func (s GetLogEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1384,7 +1384,7 @@ type metadataInputLogEvent struct {
 
 // String returns the string representation
 func (s InputLogEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1420,7 +1420,7 @@ type metadataLogGroup struct {
 
 // String returns the string representation
 func (s LogGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1466,7 +1466,7 @@ type metadataLogStream struct {
 
 // String returns the string representation
 func (s LogStream) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1502,7 +1502,7 @@ type metadataMetricFilter struct {
 
 // String returns the string representation
 func (s MetricFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1526,7 +1526,7 @@ type metadataMetricFilterMatchRecord struct {
 
 // String returns the string representation
 func (s MetricFilterMatchRecord) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1557,7 +1557,7 @@ type metadataMetricTransformation struct {
 
 // String returns the string representation
 func (s MetricTransformation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1585,7 +1585,7 @@ type metadataOutputLogEvent struct {
 
 // String returns the string representation
 func (s OutputLogEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1616,7 +1616,7 @@ type metadataPutLogEventsInput struct {
 
 // String returns the string representation
 func (s PutLogEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1641,7 +1641,7 @@ type metadataPutLogEventsOutput struct {
 
 // String returns the string representation
 func (s PutLogEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1672,7 +1672,7 @@ type metadataPutMetricFilterInput struct {
 
 // String returns the string representation
 func (s PutMetricFilterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1690,7 +1690,7 @@ type metadataPutMetricFilterOutput struct {
 
 // String returns the string representation
 func (s PutMetricFilterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1716,7 +1716,7 @@ type metadataPutRetentionPolicyInput struct {
 
 // String returns the string representation
 func (s PutRetentionPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1734,7 +1734,7 @@ type metadataPutRetentionPolicyOutput struct {
 
 // String returns the string representation
 func (s PutRetentionPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1769,7 +1769,7 @@ type metadataPutSubscriptionFilterInput struct {
 
 // String returns the string representation
 func (s PutSubscriptionFilterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1787,7 +1787,7 @@ type metadataPutSubscriptionFilterOutput struct {
 
 // String returns the string representation
 func (s PutSubscriptionFilterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1811,7 +1811,7 @@ type metadataRejectedLogEventsInfo struct {
 
 // String returns the string representation
 func (s RejectedLogEventsInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1838,7 +1838,7 @@ type metadataSearchedLogStream struct {
 
 // String returns the string representation
 func (s SearchedLogStream) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1875,7 +1875,7 @@ type metadataSubscriptionFilter struct {
 
 // String returns the string representation
 func (s SubscriptionFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1902,7 +1902,7 @@ type metadataTestMetricFilterInput struct {
 
 // String returns the string representation
 func (s TestMetricFilterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1922,7 +1922,7 @@ type metadataTestMetricFilterOutput struct {
 
 // String returns the string representation
 func (s TestMetricFilterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

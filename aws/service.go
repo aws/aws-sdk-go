@@ -65,23 +65,23 @@ func (s *Service) Initialize() {
 	s.AddDebugHandlers()
 	s.buildEndpoint()
 
-	if !s.Config.DisableParamValidation {
+	if !BoolValue(s.Config.DisableParamValidation) {
 		s.Handlers.Validate.PushBack(ValidateParameters)
 	}
 }
 
 // buildEndpoint builds the endpoint values the service will use to make requests with.
 func (s *Service) buildEndpoint() {
-	if s.Config.Endpoint != "" {
-		s.Endpoint = s.Config.Endpoint
+	if StringValue(s.Config.Endpoint) != "" {
+		s.Endpoint = *s.Config.Endpoint
 	} else {
 		s.Endpoint, s.SigningRegion =
-			endpoints.EndpointForRegion(s.ServiceName, s.Config.Region)
+			endpoints.EndpointForRegion(s.ServiceName, StringValue(s.Config.Region))
 	}
 
 	if s.Endpoint != "" && !schemeRE.MatchString(s.Endpoint) {
 		scheme := "https"
-		if s.Config.DisableSSL {
+		if BoolValue(s.Config.DisableSSL) {
 			scheme = "http"
 		}
 		s.Endpoint = scheme + "://" + s.Endpoint
@@ -92,12 +92,12 @@ func (s *Service) buildEndpoint() {
 // debug information.
 func (s *Service) AddDebugHandlers() {
 	out := s.Config.Logger
-	if s.Config.LogLevel == 0 {
+	if IntValue(s.Config.LogLevel) == 0 {
 		return
 	}
 
 	s.Handlers.Send.PushFront(func(r *Request) {
-		logBody := r.Config.LogHTTPBody
+		logBody := BoolValue(r.Config.LogHTTPBody)
 		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 
 		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
@@ -107,7 +107,7 @@ func (s *Service) AddDebugHandlers() {
 	s.Handlers.Send.PushBack(func(r *Request) {
 		fmt.Fprintf(out, "---[ RESPONSE ]--------------------------------------\n")
 		if r.HTTPResponse != nil {
-			logBody := r.Config.LogHTTPBody
+			logBody := BoolValue(r.Config.LogHTTPBody)
 			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
 			fmt.Fprintf(out, "%s\n", string(dumpedBody))
 		} else if r.Error != nil {
@@ -120,10 +120,10 @@ func (s *Service) AddDebugHandlers() {
 // MaxRetries returns the number of maximum returns the service will use to make
 // an individual API request.
 func (s *Service) MaxRetries() uint {
-	if s.Config.MaxRetries < 0 {
+	if IntValue(s.Config.MaxRetries) < 0 {
 		return s.DefaultMaxRetries
 	}
-	return uint(s.Config.MaxRetries)
+	return uint(IntValue(s.Config.MaxRetries))
 }
 
 // retryRules returns the delay duration before retrying this request again

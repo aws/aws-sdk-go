@@ -653,7 +653,7 @@ type metadataAddPermissionInput struct {
 
 // String returns the string representation
 func (s AddPermissionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -675,7 +675,7 @@ type metadataAddPermissionOutput struct {
 
 // String returns the string representation
 func (s AddPermissionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -724,7 +724,7 @@ type metadataCreateEventSourceMappingInput struct {
 
 // String returns the string representation
 func (s CreateEventSourceMappingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -788,7 +788,7 @@ type metadataCreateFunctionInput struct {
 
 // String returns the string representation
 func (s CreateFunctionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -809,7 +809,7 @@ type metadataDeleteEventSourceMappingInput struct {
 
 // String returns the string representation
 func (s DeleteEventSourceMappingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -837,7 +837,7 @@ type metadataDeleteFunctionInput struct {
 
 // String returns the string representation
 func (s DeleteFunctionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -855,7 +855,7 @@ type metadataDeleteFunctionOutput struct {
 
 // String returns the string representation
 func (s DeleteFunctionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -903,7 +903,7 @@ type metadataEventSourceMappingConfiguration struct {
 
 // String returns the string representation
 func (s EventSourceMappingConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -938,7 +938,7 @@ type metadataFunctionCode struct {
 
 // String returns the string representation
 func (s FunctionCode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -964,7 +964,7 @@ type metadataFunctionCodeLocation struct {
 
 // String returns the string representation
 func (s FunctionCodeLocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1017,7 +1017,7 @@ type metadataFunctionConfiguration struct {
 
 // String returns the string representation
 func (s FunctionConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1038,7 +1038,7 @@ type metadataGetEventSourceMappingInput struct {
 
 // String returns the string representation
 func (s GetEventSourceMappingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1067,7 +1067,7 @@ type metadataGetFunctionConfigurationInput struct {
 
 // String returns the string representation
 func (s GetFunctionConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1095,7 +1095,7 @@ type metadataGetFunctionInput struct {
 
 // String returns the string representation
 func (s GetFunctionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1120,7 +1120,7 @@ type metadataGetFunctionOutput struct {
 
 // String returns the string representation
 func (s GetFunctionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1148,7 +1148,7 @@ type metadataGetPolicyInput struct {
 
 // String returns the string representation
 func (s GetPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1170,7 +1170,7 @@ type metadataGetPolicyOutput struct {
 
 // String returns the string representation
 func (s GetPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1194,7 +1194,7 @@ type metadataInvokeAsyncInput struct {
 
 // String returns the string representation
 func (s InvokeAsyncInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1216,7 +1216,7 @@ type metadataInvokeAsyncOutput struct {
 
 // String returns the string representation
 func (s InvokeAsyncOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1271,7 +1271,7 @@ type metadataInvokeInput struct {
 
 // String returns the string representation
 func (s InvokeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1317,7 +1317,7 @@ type metadataInvokeOutput struct {
 
 // String returns the string representation
 func (s InvokeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1357,7 +1357,7 @@ type metadataListEventSourceMappingsInput struct {
 
 // String returns the string representation
 func (s ListEventSourceMappingsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1382,7 +1382,7 @@ type metadataListEventSourceMappingsOutput struct {
 
 // String returns the string representation
 func (s ListEventSourceMappingsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1408,7 +1408,7 @@ type metadataListFunctionsInput struct {
 
 // String returns the string representation
 func (s ListFunctionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1433,7 +1433,7 @@ type metadataListFunctionsOutput struct {
 
 // String returns the string representation
 func (s ListFunctionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1464,7 +1464,7 @@ type metadataRemovePermissionInput struct {
 
 // String returns the string representation
 func (s RemovePermissionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1482,7 +1482,7 @@ type metadataRemovePermissionOutput struct {
 
 // String returns the string representation
 func (s RemovePermissionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1521,7 +1521,7 @@ type metadataUpdateEventSourceMappingInput struct {
 
 // String returns the string representation
 func (s UpdateEventSourceMappingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1563,7 +1563,7 @@ type metadataUpdateFunctionCodeInput struct {
 
 // String returns the string representation
 func (s UpdateFunctionCodeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1616,7 +1616,7 @@ type metadataUpdateFunctionConfigurationInput struct {
 
 // String returns the string representation
 func (s UpdateFunctionConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

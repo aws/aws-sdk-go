@@ -45,7 +45,7 @@ func ExampleRoute53_AssociateVPCWithHostedZone() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ChangeResourceRecordSets() {
@@ -61,7 +61,7 @@ func ExampleRoute53_ChangeResourceRecordSets() {
 						Type: aws.String("RRType"),  // Required
 						AliasTarget: &route53.AliasTarget{
 							DNSName:              aws.String("DNSName"),    // Required
-							EvaluateTargetHealth: aws.Boolean(true),        // Required
+							EvaluateTargetHealth: aws.Bool(true),           // Required
 							HostedZoneID:         aws.String("ResourceId"), // Required
 						},
 						Failover: aws.String("ResourceRecordSetFailover"),
@@ -79,8 +79,8 @@ func ExampleRoute53_ChangeResourceRecordSets() {
 							// More values...
 						},
 						SetIdentifier: aws.String("ResourceRecordSetIdentifier"),
-						TTL:           aws.Long(1),
-						Weight:        aws.Long(1),
+						TTL:           aws.Int64(1),
+						Weight:        aws.Int64(1),
 					},
 				},
 				// More values...
@@ -107,7 +107,7 @@ func ExampleRoute53_ChangeResourceRecordSets() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ChangeTagsForResource() {
@@ -146,7 +146,7 @@ func ExampleRoute53_ChangeTagsForResource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_CreateHealthCheck() {
@@ -156,11 +156,11 @@ func ExampleRoute53_CreateHealthCheck() {
 		CallerReference: aws.String("HealthCheckNonce"), // Required
 		HealthCheckConfig: &route53.HealthCheckConfig{ // Required
 			Type:                     aws.String("HealthCheckType"), // Required
-			FailureThreshold:         aws.Long(1),
+			FailureThreshold:         aws.Int64(1),
 			FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
 			IPAddress:                aws.String("IPAddress"),
-			Port:                     aws.Long(1),
-			RequestInterval:          aws.Long(1),
+			Port:                     aws.Int64(1),
+			RequestInterval:          aws.Int64(1),
 			ResourcePath:             aws.String("ResourcePath"),
 			SearchString:             aws.String("SearchString"),
 		},
@@ -183,7 +183,7 @@ func ExampleRoute53_CreateHealthCheck() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_CreateHostedZone() {
@@ -195,7 +195,7 @@ func ExampleRoute53_CreateHostedZone() {
 		DelegationSetID: aws.String("ResourceId"),
 		HostedZoneConfig: &route53.HostedZoneConfig{
 			Comment:     aws.String("ResourceDescription"),
-			PrivateZone: aws.Boolean(true),
+			PrivateZone: aws.Bool(true),
 		},
 		VPC: &route53.VPC{
 			VPCID:     aws.String("VPCId"),
@@ -220,7 +220,7 @@ func ExampleRoute53_CreateHostedZone() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_CreateReusableDelegationSet() {
@@ -248,7 +248,7 @@ func ExampleRoute53_CreateReusableDelegationSet() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_DeleteHealthCheck() {
@@ -275,7 +275,7 @@ func ExampleRoute53_DeleteHealthCheck() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_DeleteHostedZone() {
@@ -302,7 +302,7 @@ func ExampleRoute53_DeleteHostedZone() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_DeleteReusableDelegationSet() {
@@ -329,7 +329,7 @@ func ExampleRoute53_DeleteReusableDelegationSet() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_DisassociateVPCFromHostedZone() {
@@ -361,7 +361,7 @@ func ExampleRoute53_DisassociateVPCFromHostedZone() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetChange() {
@@ -388,7 +388,7 @@ func ExampleRoute53_GetChange() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetCheckerIPRanges() {
@@ -413,7 +413,7 @@ func ExampleRoute53_GetCheckerIPRanges() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetGeoLocation() {
@@ -442,7 +442,7 @@ func ExampleRoute53_GetGeoLocation() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetHealthCheck() {
@@ -469,7 +469,7 @@ func ExampleRoute53_GetHealthCheck() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetHealthCheckCount() {
@@ -494,7 +494,7 @@ func ExampleRoute53_GetHealthCheckCount() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetHealthCheckLastFailureReason() {
@@ -521,7 +521,7 @@ func ExampleRoute53_GetHealthCheckLastFailureReason() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetHealthCheckStatus() {
@@ -548,7 +548,7 @@ func ExampleRoute53_GetHealthCheckStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetHostedZone() {
@@ -575,7 +575,7 @@ func ExampleRoute53_GetHostedZone() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetHostedZoneCount() {
@@ -600,7 +600,7 @@ func ExampleRoute53_GetHostedZoneCount() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_GetReusableDelegationSet() {
@@ -627,7 +627,7 @@ func ExampleRoute53_GetReusableDelegationSet() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListGeoLocations() {
@@ -657,7 +657,7 @@ func ExampleRoute53_ListGeoLocations() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListHealthChecks() {
@@ -685,7 +685,7 @@ func ExampleRoute53_ListHealthChecks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListHostedZones() {
@@ -714,7 +714,7 @@ func ExampleRoute53_ListHostedZones() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListHostedZonesByName() {
@@ -743,7 +743,7 @@ func ExampleRoute53_ListHostedZonesByName() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListResourceRecordSets() {
@@ -774,7 +774,7 @@ func ExampleRoute53_ListResourceRecordSets() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListReusableDelegationSets() {
@@ -802,7 +802,7 @@ func ExampleRoute53_ListReusableDelegationSets() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListTagsForResource() {
@@ -830,7 +830,7 @@ func ExampleRoute53_ListTagsForResource() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_ListTagsForResources() {
@@ -861,7 +861,7 @@ func ExampleRoute53_ListTagsForResources() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_UpdateHealthCheck() {
@@ -869,11 +869,11 @@ func ExampleRoute53_UpdateHealthCheck() {
 
 	params := &route53.UpdateHealthCheckInput{
 		HealthCheckID:            aws.String("HealthCheckId"), // Required
-		FailureThreshold:         aws.Long(1),
+		FailureThreshold:         aws.Int64(1),
 		FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
-		HealthCheckVersion:       aws.Long(1),
+		HealthCheckVersion:       aws.Int64(1),
 		IPAddress:                aws.String("IPAddress"),
-		Port:                     aws.Long(1),
+		Port:                     aws.Int64(1),
 		ResourcePath:             aws.String("ResourcePath"),
 		SearchString:             aws.String("SearchString"),
 	}
@@ -895,7 +895,7 @@ func ExampleRoute53_UpdateHealthCheck() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleRoute53_UpdateHostedZoneComment() {
@@ -923,5 +923,5 @@ func ExampleRoute53_UpdateHostedZoneComment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
