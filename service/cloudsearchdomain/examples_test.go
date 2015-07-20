@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudsearchdomain"
@@ -20,19 +20,19 @@ func ExampleCloudSearchDomain_Search() {
 	svc := cloudsearchdomain.New(nil)
 
 	params := &cloudsearchdomain.SearchInput{
-		Query:        aws.String("Query"), // Required
-		Cursor:       aws.String("Cursor"),
-		Expr:         aws.String("Expr"),
-		Facet:        aws.String("Facet"),
-		FilterQuery:  aws.String("FilterQuery"),
-		Highlight:    aws.String("Highlight"),
-		Partial:      aws.Boolean(true),
-		QueryOptions: aws.String("QueryOptions"),
-		QueryParser:  aws.String("QueryParser"),
-		Return:       aws.String("Return"),
-		Size:         aws.Long(1),
-		Sort:         aws.String("Sort"),
-		Start:        aws.Long(1),
+		Query:        awsconv.String("Query"), // Required
+		Cursor:       awsconv.String("Cursor"),
+		Expr:         awsconv.String("Expr"),
+		Facet:        awsconv.String("Facet"),
+		FilterQuery:  awsconv.String("FilterQuery"),
+		Highlight:    awsconv.String("Highlight"),
+		Partial:      awsconv.Bool(true),
+		QueryOptions: awsconv.String("QueryOptions"),
+		QueryParser:  awsconv.String("QueryParser"),
+		Return:       awsconv.String("Return"),
+		Size:         awsconv.Int64(1),
+		Sort:         awsconv.String("Sort"),
+		Start:        awsconv.Int64(1),
 	}
 	resp, err := svc.Search(params)
 
@@ -52,16 +52,16 @@ func ExampleCloudSearchDomain_Search() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudSearchDomain_Suggest() {
 	svc := cloudsearchdomain.New(nil)
 
 	params := &cloudsearchdomain.SuggestInput{
-		Query:     aws.String("Query"),     // Required
-		Suggester: aws.String("Suggester"), // Required
-		Size:      aws.Long(1),
+		Query:     awsconv.String("Query"),     // Required
+		Suggester: awsconv.String("Suggester"), // Required
+		Size:      awsconv.Int64(1),
 	}
 	resp, err := svc.Suggest(params)
 
@@ -81,14 +81,14 @@ func ExampleCloudSearchDomain_Suggest() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudSearchDomain_UploadDocuments() {
 	svc := cloudsearchdomain.New(nil)
 
 	params := &cloudsearchdomain.UploadDocumentsInput{
-		ContentType: aws.String("ContentType"),          // Required
+		ContentType: awsconv.String("ContentType"),      // Required
 		Documents:   bytes.NewReader([]byte("PAYLOAD")), // Required
 	}
 	resp, err := svc.UploadDocuments(params)
@@ -109,5 +109,5 @@ func ExampleCloudSearchDomain_UploadDocuments() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

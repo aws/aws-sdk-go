@@ -140,7 +140,7 @@ func Example{{ .API.StructName }}_{{ .ExportedName }}() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 `))
 
@@ -290,11 +290,11 @@ func (e *example) traverseScalar(s *Shape, required, payload bool) string {
 	str := ""
 	switch s.Type {
 	case "integer", "long":
-		str = `aws.Long(1)`
+		str = `awsconv.Int64(1)`
 	case "float", "double":
-		str = `aws.Double(1.0)`
+		str = `awsconv.Float64(1.0)`
 	case "string", "character":
-		str = `aws.String("` + s.ShapeName + `")`
+		str = `awsconv.String("` + s.ShapeName + `")`
 	case "blob":
 		if payload {
 			str = `bytes.NewReader([]byte("PAYLOAD"))`
@@ -302,9 +302,9 @@ func (e *example) traverseScalar(s *Shape, required, payload bool) string {
 			str = `[]byte("PAYLOAD")`
 		}
 	case "boolean":
-		str = `aws.Boolean(true)`
+		str = `awsconv.Bool(true)`
 	case "timestamp":
-		str = `aws.Time(time.Now())`
+		str = `awsconv.Time(time.Now())`
 	default:
 		panic("unsupported shape " + s.Type)
 	}

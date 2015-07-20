@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
@@ -47,7 +48,7 @@ func validateCRC32(r *aws.Request) {
 	}
 
 	// Checksum validation is off, skip
-	if r.Service.Config.DisableComputeChecksums {
+	if awsconv.BoolValue(r.Service.Config.DisableComputeChecksums) {
 		return
 	}
 
@@ -75,7 +76,7 @@ func validateCRC32(r *aws.Request) {
 
 	if crc != uint32(expected) {
 		// CRC does not match, set a retryable error
-		r.Retryable.Set(true)
+		r.Retryable = awsconv.Bool(true)
 		r.Error = awserr.New("CRC32CheckFailed", "CRC32 integrity check failed", nil)
 	}
 }

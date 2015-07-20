@@ -33,16 +33,16 @@ func fillPresignedURL(r *aws.Request) {
 
 	// Set destination region. Avoids infinite handler loop.
 	// Also needed to sign sub-request.
-	params.DestinationRegion = &r.Service.Config.Region
+	params.DestinationRegion = r.Service.Config.Region
 
 	// Create a new client pointing at source region.
 	// We will use this to presign the CopySnapshot request against
 	// the source region
-	config := r.Service.Config.Copy()
+	config := r.Service.Config.Copy().
+		WithEndpoint("").
+		WithRegion(*params.SourceRegion)
 
-	config.Endpoint = ""
-	config.Region = *params.SourceRegion
-	client := New(&config)
+	client := New(config)
 
 	// Presign a CopySnapshot request with modified params
 	req, _ := client.CopySnapshotRequest(params)

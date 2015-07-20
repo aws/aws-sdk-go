@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/support"
@@ -23,11 +23,11 @@ func ExampleSupport_AddAttachmentsToSet() {
 		Attachments: []*support.Attachment{ // Required
 			{ // Required
 				Data:     []byte("PAYLOAD"),
-				FileName: aws.String("FileName"),
+				FileName: awsconv.String("FileName"),
 			},
 			// More values...
 		},
-		AttachmentSetID: aws.String("AttachmentSetId"),
+		AttachmentSetID: awsconv.String("AttachmentSetId"),
 	}
 	resp, err := svc.AddAttachmentsToSet(params)
 
@@ -47,20 +47,20 @@ func ExampleSupport_AddAttachmentsToSet() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_AddCommunicationToCase() {
 	svc := support.New(nil)
 
 	params := &support.AddCommunicationToCaseInput{
-		CommunicationBody: aws.String("CommunicationBody"), // Required
-		AttachmentSetID:   aws.String("AttachmentSetId"),
+		CommunicationBody: awsconv.String("CommunicationBody"), // Required
+		AttachmentSetID:   awsconv.String("AttachmentSetId"),
 		CCEmailAddresses: []*string{
-			aws.String("CcEmailAddress"), // Required
+			awsconv.String("CcEmailAddress"), // Required
 			// More values...
 		},
-		CaseID: aws.String("CaseId"),
+		CaseID: awsconv.String("CaseId"),
 	}
 	resp, err := svc.AddCommunicationToCase(params)
 
@@ -80,25 +80,25 @@ func ExampleSupport_AddCommunicationToCase() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_CreateCase() {
 	svc := support.New(nil)
 
 	params := &support.CreateCaseInput{
-		CommunicationBody: aws.String("CommunicationBody"), // Required
-		Subject:           aws.String("Subject"),           // Required
-		AttachmentSetID:   aws.String("AttachmentSetId"),
+		CommunicationBody: awsconv.String("CommunicationBody"), // Required
+		Subject:           awsconv.String("Subject"),           // Required
+		AttachmentSetID:   awsconv.String("AttachmentSetId"),
 		CCEmailAddresses: []*string{
-			aws.String("CcEmailAddress"), // Required
+			awsconv.String("CcEmailAddress"), // Required
 			// More values...
 		},
-		CategoryCode: aws.String("CategoryCode"),
-		IssueType:    aws.String("IssueType"),
-		Language:     aws.String("Language"),
-		ServiceCode:  aws.String("ServiceCode"),
-		SeverityCode: aws.String("SeverityCode"),
+		CategoryCode: awsconv.String("CategoryCode"),
+		IssueType:    awsconv.String("IssueType"),
+		Language:     awsconv.String("Language"),
+		ServiceCode:  awsconv.String("ServiceCode"),
+		SeverityCode: awsconv.String("SeverityCode"),
 	}
 	resp, err := svc.CreateCase(params)
 
@@ -118,14 +118,14 @@ func ExampleSupport_CreateCase() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeAttachment() {
 	svc := support.New(nil)
 
 	params := &support.DescribeAttachmentInput{
-		AttachmentID: aws.String("AttachmentId"), // Required
+		AttachmentID: awsconv.String("AttachmentId"), // Required
 	}
 	resp, err := svc.DescribeAttachment(params)
 
@@ -145,25 +145,25 @@ func ExampleSupport_DescribeAttachment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeCases() {
 	svc := support.New(nil)
 
 	params := &support.DescribeCasesInput{
-		AfterTime:  aws.String("AfterTime"),
-		BeforeTime: aws.String("BeforeTime"),
+		AfterTime:  awsconv.String("AfterTime"),
+		BeforeTime: awsconv.String("BeforeTime"),
 		CaseIDList: []*string{
-			aws.String("CaseId"), // Required
+			awsconv.String("CaseId"), // Required
 			// More values...
 		},
-		DisplayID:             aws.String("DisplayId"),
-		IncludeCommunications: aws.Boolean(true),
-		IncludeResolvedCases:  aws.Boolean(true),
-		Language:              aws.String("Language"),
-		MaxResults:            aws.Long(1),
-		NextToken:             aws.String("NextToken"),
+		DisplayID:             awsconv.String("DisplayId"),
+		IncludeCommunications: awsconv.Bool(true),
+		IncludeResolvedCases:  awsconv.Bool(true),
+		Language:              awsconv.String("Language"),
+		MaxResults:            awsconv.Int64(1),
+		NextToken:             awsconv.String("NextToken"),
 	}
 	resp, err := svc.DescribeCases(params)
 
@@ -183,18 +183,18 @@ func ExampleSupport_DescribeCases() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeCommunications() {
 	svc := support.New(nil)
 
 	params := &support.DescribeCommunicationsInput{
-		CaseID:     aws.String("CaseId"), // Required
-		AfterTime:  aws.String("AfterTime"),
-		BeforeTime: aws.String("BeforeTime"),
-		MaxResults: aws.Long(1),
-		NextToken:  aws.String("NextToken"),
+		CaseID:     awsconv.String("CaseId"), // Required
+		AfterTime:  awsconv.String("AfterTime"),
+		BeforeTime: awsconv.String("BeforeTime"),
+		MaxResults: awsconv.Int64(1),
+		NextToken:  awsconv.String("NextToken"),
 	}
 	resp, err := svc.DescribeCommunications(params)
 
@@ -214,16 +214,16 @@ func ExampleSupport_DescribeCommunications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeServices() {
 	svc := support.New(nil)
 
 	params := &support.DescribeServicesInput{
-		Language: aws.String("Language"),
+		Language: awsconv.String("Language"),
 		ServiceCodeList: []*string{
-			aws.String("ServiceCode"), // Required
+			awsconv.String("ServiceCode"), // Required
 			// More values...
 		},
 	}
@@ -245,14 +245,14 @@ func ExampleSupport_DescribeServices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeSeverityLevels() {
 	svc := support.New(nil)
 
 	params := &support.DescribeSeverityLevelsInput{
-		Language: aws.String("Language"),
+		Language: awsconv.String("Language"),
 	}
 	resp, err := svc.DescribeSeverityLevels(params)
 
@@ -272,7 +272,7 @@ func ExampleSupport_DescribeSeverityLevels() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorCheckRefreshStatuses() {
@@ -280,7 +280,7 @@ func ExampleSupport_DescribeTrustedAdvisorCheckRefreshStatuses() {
 
 	params := &support.DescribeTrustedAdvisorCheckRefreshStatusesInput{
 		CheckIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -302,15 +302,15 @@ func ExampleSupport_DescribeTrustedAdvisorCheckRefreshStatuses() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorCheckResult() {
 	svc := support.New(nil)
 
 	params := &support.DescribeTrustedAdvisorCheckResultInput{
-		CheckID:  aws.String("String"), // Required
-		Language: aws.String("String"),
+		CheckID:  awsconv.String("String"), // Required
+		Language: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeTrustedAdvisorCheckResult(params)
 
@@ -330,7 +330,7 @@ func ExampleSupport_DescribeTrustedAdvisorCheckResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorCheckSummaries() {
@@ -338,7 +338,7 @@ func ExampleSupport_DescribeTrustedAdvisorCheckSummaries() {
 
 	params := &support.DescribeTrustedAdvisorCheckSummariesInput{
 		CheckIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -360,14 +360,14 @@ func ExampleSupport_DescribeTrustedAdvisorCheckSummaries() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_DescribeTrustedAdvisorChecks() {
 	svc := support.New(nil)
 
 	params := &support.DescribeTrustedAdvisorChecksInput{
-		Language: aws.String("String"), // Required
+		Language: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DescribeTrustedAdvisorChecks(params)
 
@@ -387,14 +387,14 @@ func ExampleSupport_DescribeTrustedAdvisorChecks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_RefreshTrustedAdvisorCheck() {
 	svc := support.New(nil)
 
 	params := &support.RefreshTrustedAdvisorCheckInput{
-		CheckID: aws.String("String"), // Required
+		CheckID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.RefreshTrustedAdvisorCheck(params)
 
@@ -414,14 +414,14 @@ func ExampleSupport_RefreshTrustedAdvisorCheck() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSupport_ResolveCase() {
 	svc := support.New(nil)
 
 	params := &support.ResolveCaseInput{
-		CaseID: aws.String("CaseId"),
+		CaseID: awsconv.String("CaseId"),
 	}
 	resp, err := svc.ResolveCase(params)
 
@@ -441,5 +441,5 @@ func ExampleSupport_ResolveCase() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/sns"
@@ -21,15 +21,15 @@ func ExampleSNS_AddPermission() {
 
 	params := &sns.AddPermissionInput{
 		AWSAccountID: []*string{ // Required
-			aws.String("delegate"), // Required
+			awsconv.String("delegate"), // Required
 			// More values...
 		},
 		ActionName: []*string{ // Required
-			aws.String("action"), // Required
+			awsconv.String("action"), // Required
 			// More values...
 		},
-		Label:    aws.String("label"),    // Required
-		TopicARN: aws.String("topicARN"), // Required
+		Label:    awsconv.String("label"),    // Required
+		TopicARN: awsconv.String("topicARN"), // Required
 	}
 	resp, err := svc.AddPermission(params)
 
@@ -49,16 +49,16 @@ func ExampleSNS_AddPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ConfirmSubscription() {
 	svc := sns.New(nil)
 
 	params := &sns.ConfirmSubscriptionInput{
-		Token:                     aws.String("token"),    // Required
-		TopicARN:                  aws.String("topicARN"), // Required
-		AuthenticateOnUnsubscribe: aws.String("authenticateOnUnsubscribe"),
+		Token:                     awsconv.String("token"),    // Required
+		TopicARN:                  awsconv.String("topicARN"), // Required
+		AuthenticateOnUnsubscribe: awsconv.String("authenticateOnUnsubscribe"),
 	}
 	resp, err := svc.ConfirmSubscription(params)
 
@@ -78,7 +78,7 @@ func ExampleSNS_ConfirmSubscription() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_CreatePlatformApplication() {
@@ -86,11 +86,11 @@ func ExampleSNS_CreatePlatformApplication() {
 
 	params := &sns.CreatePlatformApplicationInput{
 		Attributes: map[string]*string{ // Required
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		Name:     aws.String("String"), // Required
-		Platform: aws.String("String"), // Required
+		Name:     awsconv.String("String"), // Required
+		Platform: awsconv.String("String"), // Required
 	}
 	resp, err := svc.CreatePlatformApplication(params)
 
@@ -110,20 +110,20 @@ func ExampleSNS_CreatePlatformApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_CreatePlatformEndpoint() {
 	svc := sns.New(nil)
 
 	params := &sns.CreatePlatformEndpointInput{
-		PlatformApplicationARN: aws.String("String"), // Required
-		Token: aws.String("String"), // Required
+		PlatformApplicationARN: awsconv.String("String"), // Required
+		Token: awsconv.String("String"), // Required
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		CustomUserData: aws.String("String"),
+		CustomUserData: awsconv.String("String"),
 	}
 	resp, err := svc.CreatePlatformEndpoint(params)
 
@@ -143,14 +143,14 @@ func ExampleSNS_CreatePlatformEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_CreateTopic() {
 	svc := sns.New(nil)
 
 	params := &sns.CreateTopicInput{
-		Name: aws.String("topicName"), // Required
+		Name: awsconv.String("topicName"), // Required
 	}
 	resp, err := svc.CreateTopic(params)
 
@@ -170,14 +170,14 @@ func ExampleSNS_CreateTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_DeleteEndpoint() {
 	svc := sns.New(nil)
 
 	params := &sns.DeleteEndpointInput{
-		EndpointARN: aws.String("String"), // Required
+		EndpointARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteEndpoint(params)
 
@@ -197,14 +197,14 @@ func ExampleSNS_DeleteEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_DeletePlatformApplication() {
 	svc := sns.New(nil)
 
 	params := &sns.DeletePlatformApplicationInput{
-		PlatformApplicationARN: aws.String("String"), // Required
+		PlatformApplicationARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeletePlatformApplication(params)
 
@@ -224,14 +224,14 @@ func ExampleSNS_DeletePlatformApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_DeleteTopic() {
 	svc := sns.New(nil)
 
 	params := &sns.DeleteTopicInput{
-		TopicARN: aws.String("topicARN"), // Required
+		TopicARN: awsconv.String("topicARN"), // Required
 	}
 	resp, err := svc.DeleteTopic(params)
 
@@ -251,14 +251,14 @@ func ExampleSNS_DeleteTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetEndpointAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.GetEndpointAttributesInput{
-		EndpointARN: aws.String("String"), // Required
+		EndpointARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.GetEndpointAttributes(params)
 
@@ -278,14 +278,14 @@ func ExampleSNS_GetEndpointAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetPlatformApplicationAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.GetPlatformApplicationAttributesInput{
-		PlatformApplicationARN: aws.String("String"), // Required
+		PlatformApplicationARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.GetPlatformApplicationAttributes(params)
 
@@ -305,14 +305,14 @@ func ExampleSNS_GetPlatformApplicationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetSubscriptionAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.GetSubscriptionAttributesInput{
-		SubscriptionARN: aws.String("subscriptionARN"), // Required
+		SubscriptionARN: awsconv.String("subscriptionARN"), // Required
 	}
 	resp, err := svc.GetSubscriptionAttributes(params)
 
@@ -332,14 +332,14 @@ func ExampleSNS_GetSubscriptionAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_GetTopicAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.GetTopicAttributesInput{
-		TopicARN: aws.String("topicARN"), // Required
+		TopicARN: awsconv.String("topicARN"), // Required
 	}
 	resp, err := svc.GetTopicAttributes(params)
 
@@ -359,15 +359,15 @@ func ExampleSNS_GetTopicAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListEndpointsByPlatformApplication() {
 	svc := sns.New(nil)
 
 	params := &sns.ListEndpointsByPlatformApplicationInput{
-		PlatformApplicationARN: aws.String("String"), // Required
-		NextToken:              aws.String("String"),
+		PlatformApplicationARN: awsconv.String("String"), // Required
+		NextToken:              awsconv.String("String"),
 	}
 	resp, err := svc.ListEndpointsByPlatformApplication(params)
 
@@ -387,14 +387,14 @@ func ExampleSNS_ListEndpointsByPlatformApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListPlatformApplications() {
 	svc := sns.New(nil)
 
 	params := &sns.ListPlatformApplicationsInput{
-		NextToken: aws.String("String"),
+		NextToken: awsconv.String("String"),
 	}
 	resp, err := svc.ListPlatformApplications(params)
 
@@ -414,14 +414,14 @@ func ExampleSNS_ListPlatformApplications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListSubscriptions() {
 	svc := sns.New(nil)
 
 	params := &sns.ListSubscriptionsInput{
-		NextToken: aws.String("nextToken"),
+		NextToken: awsconv.String("nextToken"),
 	}
 	resp, err := svc.ListSubscriptions(params)
 
@@ -441,15 +441,15 @@ func ExampleSNS_ListSubscriptions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListSubscriptionsByTopic() {
 	svc := sns.New(nil)
 
 	params := &sns.ListSubscriptionsByTopicInput{
-		TopicARN:  aws.String("topicARN"), // Required
-		NextToken: aws.String("nextToken"),
+		TopicARN:  awsconv.String("topicARN"), // Required
+		NextToken: awsconv.String("nextToken"),
 	}
 	resp, err := svc.ListSubscriptionsByTopic(params)
 
@@ -469,14 +469,14 @@ func ExampleSNS_ListSubscriptionsByTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_ListTopics() {
 	svc := sns.New(nil)
 
 	params := &sns.ListTopicsInput{
-		NextToken: aws.String("nextToken"),
+		NextToken: awsconv.String("nextToken"),
 	}
 	resp, err := svc.ListTopics(params)
 
@@ -496,26 +496,26 @@ func ExampleSNS_ListTopics() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_Publish() {
 	svc := sns.New(nil)
 
 	params := &sns.PublishInput{
-		Message: aws.String("message"), // Required
+		Message: awsconv.String("message"), // Required
 		MessageAttributes: map[string]*sns.MessageAttributeValue{
 			"Key": { // Required
-				DataType:    aws.String("String"), // Required
+				DataType:    awsconv.String("String"), // Required
 				BinaryValue: []byte("PAYLOAD"),
-				StringValue: aws.String("String"),
+				StringValue: awsconv.String("String"),
 			},
 			// More values...
 		},
-		MessageStructure: aws.String("messageStructure"),
-		Subject:          aws.String("subject"),
-		TargetARN:        aws.String("String"),
-		TopicARN:         aws.String("topicARN"),
+		MessageStructure: awsconv.String("messageStructure"),
+		Subject:          awsconv.String("subject"),
+		TargetARN:        awsconv.String("String"),
+		TopicARN:         awsconv.String("topicARN"),
 	}
 	resp, err := svc.Publish(params)
 
@@ -535,15 +535,15 @@ func ExampleSNS_Publish() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_RemovePermission() {
 	svc := sns.New(nil)
 
 	params := &sns.RemovePermissionInput{
-		Label:    aws.String("label"),    // Required
-		TopicARN: aws.String("topicARN"), // Required
+		Label:    awsconv.String("label"),    // Required
+		TopicARN: awsconv.String("topicARN"), // Required
 	}
 	resp, err := svc.RemovePermission(params)
 
@@ -563,7 +563,7 @@ func ExampleSNS_RemovePermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetEndpointAttributes() {
@@ -571,10 +571,10 @@ func ExampleSNS_SetEndpointAttributes() {
 
 	params := &sns.SetEndpointAttributesInput{
 		Attributes: map[string]*string{ // Required
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		EndpointARN: aws.String("String"), // Required
+		EndpointARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.SetEndpointAttributes(params)
 
@@ -594,7 +594,7 @@ func ExampleSNS_SetEndpointAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetPlatformApplicationAttributes() {
@@ -602,10 +602,10 @@ func ExampleSNS_SetPlatformApplicationAttributes() {
 
 	params := &sns.SetPlatformApplicationAttributesInput{
 		Attributes: map[string]*string{ // Required
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		PlatformApplicationARN: aws.String("String"), // Required
+		PlatformApplicationARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.SetPlatformApplicationAttributes(params)
 
@@ -625,16 +625,16 @@ func ExampleSNS_SetPlatformApplicationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetSubscriptionAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.SetSubscriptionAttributesInput{
-		AttributeName:   aws.String("attributeName"),   // Required
-		SubscriptionARN: aws.String("subscriptionARN"), // Required
-		AttributeValue:  aws.String("attributeValue"),
+		AttributeName:   awsconv.String("attributeName"),   // Required
+		SubscriptionARN: awsconv.String("subscriptionARN"), // Required
+		AttributeValue:  awsconv.String("attributeValue"),
 	}
 	resp, err := svc.SetSubscriptionAttributes(params)
 
@@ -654,16 +654,16 @@ func ExampleSNS_SetSubscriptionAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_SetTopicAttributes() {
 	svc := sns.New(nil)
 
 	params := &sns.SetTopicAttributesInput{
-		AttributeName:  aws.String("attributeName"), // Required
-		TopicARN:       aws.String("topicARN"),      // Required
-		AttributeValue: aws.String("attributeValue"),
+		AttributeName:  awsconv.String("attributeName"), // Required
+		TopicARN:       awsconv.String("topicARN"),      // Required
+		AttributeValue: awsconv.String("attributeValue"),
 	}
 	resp, err := svc.SetTopicAttributes(params)
 
@@ -683,16 +683,16 @@ func ExampleSNS_SetTopicAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_Subscribe() {
 	svc := sns.New(nil)
 
 	params := &sns.SubscribeInput{
-		Protocol: aws.String("protocol"), // Required
-		TopicARN: aws.String("topicARN"), // Required
-		Endpoint: aws.String("endpoint"),
+		Protocol: awsconv.String("protocol"), // Required
+		TopicARN: awsconv.String("topicARN"), // Required
+		Endpoint: awsconv.String("endpoint"),
 	}
 	resp, err := svc.Subscribe(params)
 
@@ -712,14 +712,14 @@ func ExampleSNS_Subscribe() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSNS_Unsubscribe() {
 	svc := sns.New(nil)
 
 	params := &sns.UnsubscribeInput{
-		SubscriptionARN: aws.String("subscriptionARN"), // Required
+		SubscriptionARN: awsconv.String("subscriptionARN"), // Required
 	}
 	resp, err := svc.Unsubscribe(params)
 
@@ -739,5 +739,5 @@ func ExampleSNS_Unsubscribe() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

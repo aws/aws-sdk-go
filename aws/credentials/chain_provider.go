@@ -39,8 +39,8 @@ var (
 //             &EC2RoleProvider{},
 //         })
 //
-//     // Usage of ChainCredentials with aws.Config
-//     svc := ec2.New(&aws.Config{Credentials: creds})
+//     // Usage of ChainCredentials with awscfg.Config
+//     svc := ec2.New(&awscfg.Config{Credentials: creds})
 //
 type ChainProvider struct {
 	Providers []Provider

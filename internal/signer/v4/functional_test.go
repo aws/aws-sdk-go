@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
@@ -16,10 +16,10 @@ var _ = unit.Imported
 func TestPresignHandler(t *testing.T) {
 	svc := s3.New(nil)
 	req, _ := svc.PutObjectRequest(&s3.PutObjectInput{
-		Bucket:             aws.String("bucket"),
-		Key:                aws.String("key"),
-		ContentDisposition: aws.String("a+b c$d"),
-		ACL:                aws.String("public-read"),
+		Bucket:             awsconv.String("bucket"),
+		Key:                awsconv.String("key"),
+		ContentDisposition: awsconv.String("a+b c$d"),
+		ACL:                awsconv.String("public-read"),
 	})
 	req.Time = time.Unix(0, 0)
 	urlstr, err := req.Presign(5 * time.Minute)

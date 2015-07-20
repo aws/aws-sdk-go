@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/iam"
@@ -20,8 +20,8 @@ func ExampleIAM_AddClientIDToOpenIDConnectProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.AddClientIDToOpenIDConnectProviderInput{
-		ClientID:                 aws.String("clientIDType"), // Required
-		OpenIDConnectProviderARN: aws.String("arnType"),      // Required
+		ClientID:                 awsconv.String("clientIDType"), // Required
+		OpenIDConnectProviderARN: awsconv.String("arnType"),      // Required
 	}
 	resp, err := svc.AddClientIDToOpenIDConnectProvider(params)
 
@@ -41,15 +41,15 @@ func ExampleIAM_AddClientIDToOpenIDConnectProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_AddRoleToInstanceProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.AddRoleToInstanceProfileInput{
-		InstanceProfileName: aws.String("instanceProfileNameType"), // Required
-		RoleName:            aws.String("roleNameType"),            // Required
+		InstanceProfileName: awsconv.String("instanceProfileNameType"), // Required
+		RoleName:            awsconv.String("roleNameType"),            // Required
 	}
 	resp, err := svc.AddRoleToInstanceProfile(params)
 
@@ -69,15 +69,15 @@ func ExampleIAM_AddRoleToInstanceProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_AddUserToGroup() {
 	svc := iam.New(nil)
 
 	params := &iam.AddUserToGroupInput{
-		GroupName: aws.String("groupNameType"),        // Required
-		UserName:  aws.String("existingUserNameType"), // Required
+		GroupName: awsconv.String("groupNameType"),        // Required
+		UserName:  awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.AddUserToGroup(params)
 
@@ -97,15 +97,15 @@ func ExampleIAM_AddUserToGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_AttachGroupPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.AttachGroupPolicyInput{
-		GroupName: aws.String("groupNameType"), // Required
-		PolicyARN: aws.String("arnType"),       // Required
+		GroupName: awsconv.String("groupNameType"), // Required
+		PolicyARN: awsconv.String("arnType"),       // Required
 	}
 	resp, err := svc.AttachGroupPolicy(params)
 
@@ -125,15 +125,15 @@ func ExampleIAM_AttachGroupPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_AttachRolePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.AttachRolePolicyInput{
-		PolicyARN: aws.String("arnType"),      // Required
-		RoleName:  aws.String("roleNameType"), // Required
+		PolicyARN: awsconv.String("arnType"),      // Required
+		RoleName:  awsconv.String("roleNameType"), // Required
 	}
 	resp, err := svc.AttachRolePolicy(params)
 
@@ -153,15 +153,15 @@ func ExampleIAM_AttachRolePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_AttachUserPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.AttachUserPolicyInput{
-		PolicyARN: aws.String("arnType"),      // Required
-		UserName:  aws.String("userNameType"), // Required
+		PolicyARN: awsconv.String("arnType"),      // Required
+		UserName:  awsconv.String("userNameType"), // Required
 	}
 	resp, err := svc.AttachUserPolicy(params)
 
@@ -181,15 +181,15 @@ func ExampleIAM_AttachUserPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ChangePassword() {
 	svc := iam.New(nil)
 
 	params := &iam.ChangePasswordInput{
-		NewPassword: aws.String("passwordType"), // Required
-		OldPassword: aws.String("passwordType"), // Required
+		NewPassword: awsconv.String("passwordType"), // Required
+		OldPassword: awsconv.String("passwordType"), // Required
 	}
 	resp, err := svc.ChangePassword(params)
 
@@ -209,14 +209,14 @@ func ExampleIAM_ChangePassword() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateAccessKey() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateAccessKeyInput{
-		UserName: aws.String("existingUserNameType"),
+		UserName: awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.CreateAccessKey(params)
 
@@ -236,14 +236,14 @@ func ExampleIAM_CreateAccessKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateAccountAlias() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateAccountAliasInput{
-		AccountAlias: aws.String("accountAliasType"), // Required
+		AccountAlias: awsconv.String("accountAliasType"), // Required
 	}
 	resp, err := svc.CreateAccountAlias(params)
 
@@ -263,15 +263,15 @@ func ExampleIAM_CreateAccountAlias() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateGroup() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateGroupInput{
-		GroupName: aws.String("groupNameType"), // Required
-		Path:      aws.String("pathType"),
+		GroupName: awsconv.String("groupNameType"), // Required
+		Path:      awsconv.String("pathType"),
 	}
 	resp, err := svc.CreateGroup(params)
 
@@ -291,15 +291,15 @@ func ExampleIAM_CreateGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateInstanceProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateInstanceProfileInput{
-		InstanceProfileName: aws.String("instanceProfileNameType"), // Required
-		Path:                aws.String("pathType"),
+		InstanceProfileName: awsconv.String("instanceProfileNameType"), // Required
+		Path:                awsconv.String("pathType"),
 	}
 	resp, err := svc.CreateInstanceProfile(params)
 
@@ -319,16 +319,16 @@ func ExampleIAM_CreateInstanceProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateLoginProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateLoginProfileInput{
-		Password:              aws.String("passwordType"), // Required
-		UserName:              aws.String("userNameType"), // Required
-		PasswordResetRequired: aws.Boolean(true),
+		Password:              awsconv.String("passwordType"), // Required
+		UserName:              awsconv.String("userNameType"), // Required
+		PasswordResetRequired: awsconv.Bool(true),
 	}
 	resp, err := svc.CreateLoginProfile(params)
 
@@ -348,7 +348,7 @@ func ExampleIAM_CreateLoginProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateOpenIDConnectProvider() {
@@ -356,12 +356,12 @@ func ExampleIAM_CreateOpenIDConnectProvider() {
 
 	params := &iam.CreateOpenIDConnectProviderInput{
 		ThumbprintList: []*string{ // Required
-			aws.String("thumbprintType"), // Required
+			awsconv.String("thumbprintType"), // Required
 			// More values...
 		},
-		URL: aws.String("OpenIDConnectProviderUrlType"), // Required
+		URL: awsconv.String("OpenIDConnectProviderUrlType"), // Required
 		ClientIDList: []*string{
-			aws.String("clientIDType"), // Required
+			awsconv.String("clientIDType"), // Required
 			// More values...
 		},
 	}
@@ -383,17 +383,17 @@ func ExampleIAM_CreateOpenIDConnectProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreatePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.CreatePolicyInput{
-		PolicyDocument: aws.String("policyDocumentType"), // Required
-		PolicyName:     aws.String("policyNameType"),     // Required
-		Description:    aws.String("policyDescriptionType"),
-		Path:           aws.String("policyPathType"),
+		PolicyDocument: awsconv.String("policyDocumentType"), // Required
+		PolicyName:     awsconv.String("policyNameType"),     // Required
+		Description:    awsconv.String("policyDescriptionType"),
+		Path:           awsconv.String("policyPathType"),
 	}
 	resp, err := svc.CreatePolicy(params)
 
@@ -413,16 +413,16 @@ func ExampleIAM_CreatePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreatePolicyVersion() {
 	svc := iam.New(nil)
 
 	params := &iam.CreatePolicyVersionInput{
-		PolicyARN:      aws.String("arnType"),            // Required
-		PolicyDocument: aws.String("policyDocumentType"), // Required
-		SetAsDefault:   aws.Boolean(true),
+		PolicyARN:      awsconv.String("arnType"),            // Required
+		PolicyDocument: awsconv.String("policyDocumentType"), // Required
+		SetAsDefault:   awsconv.Bool(true),
 	}
 	resp, err := svc.CreatePolicyVersion(params)
 
@@ -442,16 +442,16 @@ func ExampleIAM_CreatePolicyVersion() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateRole() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateRoleInput{
-		AssumeRolePolicyDocument: aws.String("policyDocumentType"), // Required
-		RoleName:                 aws.String("roleNameType"),       // Required
-		Path:                     aws.String("pathType"),
+		AssumeRolePolicyDocument: awsconv.String("policyDocumentType"), // Required
+		RoleName:                 awsconv.String("roleNameType"),       // Required
+		Path:                     awsconv.String("pathType"),
 	}
 	resp, err := svc.CreateRole(params)
 
@@ -471,15 +471,15 @@ func ExampleIAM_CreateRole() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateSAMLProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateSAMLProviderInput{
-		Name:                 aws.String("SAMLProviderNameType"),     // Required
-		SAMLMetadataDocument: aws.String("SAMLMetadataDocumentType"), // Required
+		Name:                 awsconv.String("SAMLProviderNameType"),     // Required
+		SAMLMetadataDocument: awsconv.String("SAMLMetadataDocumentType"), // Required
 	}
 	resp, err := svc.CreateSAMLProvider(params)
 
@@ -499,15 +499,15 @@ func ExampleIAM_CreateSAMLProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateUser() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateUserInput{
-		UserName: aws.String("userNameType"), // Required
-		Path:     aws.String("pathType"),
+		UserName: awsconv.String("userNameType"), // Required
+		Path:     awsconv.String("pathType"),
 	}
 	resp, err := svc.CreateUser(params)
 
@@ -527,15 +527,15 @@ func ExampleIAM_CreateUser() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_CreateVirtualMFADevice() {
 	svc := iam.New(nil)
 
 	params := &iam.CreateVirtualMFADeviceInput{
-		VirtualMFADeviceName: aws.String("virtualMFADeviceName"), // Required
-		Path:                 aws.String("pathType"),
+		VirtualMFADeviceName: awsconv.String("virtualMFADeviceName"), // Required
+		Path:                 awsconv.String("pathType"),
 	}
 	resp, err := svc.CreateVirtualMFADevice(params)
 
@@ -555,15 +555,15 @@ func ExampleIAM_CreateVirtualMFADevice() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeactivateMFADevice() {
 	svc := iam.New(nil)
 
 	params := &iam.DeactivateMFADeviceInput{
-		SerialNumber: aws.String("serialNumberType"),     // Required
-		UserName:     aws.String("existingUserNameType"), // Required
+		SerialNumber: awsconv.String("serialNumberType"),     // Required
+		UserName:     awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.DeactivateMFADevice(params)
 
@@ -583,15 +583,15 @@ func ExampleIAM_DeactivateMFADevice() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteAccessKey() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteAccessKeyInput{
-		AccessKeyID: aws.String("accessKeyIdType"), // Required
-		UserName:    aws.String("existingUserNameType"),
+		AccessKeyID: awsconv.String("accessKeyIdType"), // Required
+		UserName:    awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.DeleteAccessKey(params)
 
@@ -611,14 +611,14 @@ func ExampleIAM_DeleteAccessKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteAccountAlias() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteAccountAliasInput{
-		AccountAlias: aws.String("accountAliasType"), // Required
+		AccountAlias: awsconv.String("accountAliasType"), // Required
 	}
 	resp, err := svc.DeleteAccountAlias(params)
 
@@ -638,7 +638,7 @@ func ExampleIAM_DeleteAccountAlias() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteAccountPasswordPolicy() {
@@ -663,14 +663,14 @@ func ExampleIAM_DeleteAccountPasswordPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteGroup() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteGroupInput{
-		GroupName: aws.String("groupNameType"), // Required
+		GroupName: awsconv.String("groupNameType"), // Required
 	}
 	resp, err := svc.DeleteGroup(params)
 
@@ -690,15 +690,15 @@ func ExampleIAM_DeleteGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteGroupPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteGroupPolicyInput{
-		GroupName:  aws.String("groupNameType"),  // Required
-		PolicyName: aws.String("policyNameType"), // Required
+		GroupName:  awsconv.String("groupNameType"),  // Required
+		PolicyName: awsconv.String("policyNameType"), // Required
 	}
 	resp, err := svc.DeleteGroupPolicy(params)
 
@@ -718,14 +718,14 @@ func ExampleIAM_DeleteGroupPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteInstanceProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteInstanceProfileInput{
-		InstanceProfileName: aws.String("instanceProfileNameType"), // Required
+		InstanceProfileName: awsconv.String("instanceProfileNameType"), // Required
 	}
 	resp, err := svc.DeleteInstanceProfile(params)
 
@@ -745,14 +745,14 @@ func ExampleIAM_DeleteInstanceProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteLoginProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteLoginProfileInput{
-		UserName: aws.String("userNameType"), // Required
+		UserName: awsconv.String("userNameType"), // Required
 	}
 	resp, err := svc.DeleteLoginProfile(params)
 
@@ -772,14 +772,14 @@ func ExampleIAM_DeleteLoginProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteOpenIDConnectProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteOpenIDConnectProviderInput{
-		OpenIDConnectProviderARN: aws.String("arnType"), // Required
+		OpenIDConnectProviderARN: awsconv.String("arnType"), // Required
 	}
 	resp, err := svc.DeleteOpenIDConnectProvider(params)
 
@@ -799,14 +799,14 @@ func ExampleIAM_DeleteOpenIDConnectProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeletePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DeletePolicyInput{
-		PolicyARN: aws.String("arnType"), // Required
+		PolicyARN: awsconv.String("arnType"), // Required
 	}
 	resp, err := svc.DeletePolicy(params)
 
@@ -826,15 +826,15 @@ func ExampleIAM_DeletePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeletePolicyVersion() {
 	svc := iam.New(nil)
 
 	params := &iam.DeletePolicyVersionInput{
-		PolicyARN: aws.String("arnType"),             // Required
-		VersionID: aws.String("policyVersionIdType"), // Required
+		PolicyARN: awsconv.String("arnType"),             // Required
+		VersionID: awsconv.String("policyVersionIdType"), // Required
 	}
 	resp, err := svc.DeletePolicyVersion(params)
 
@@ -854,14 +854,14 @@ func ExampleIAM_DeletePolicyVersion() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteRole() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteRoleInput{
-		RoleName: aws.String("roleNameType"), // Required
+		RoleName: awsconv.String("roleNameType"), // Required
 	}
 	resp, err := svc.DeleteRole(params)
 
@@ -881,15 +881,15 @@ func ExampleIAM_DeleteRole() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteRolePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteRolePolicyInput{
-		PolicyName: aws.String("policyNameType"), // Required
-		RoleName:   aws.String("roleNameType"),   // Required
+		PolicyName: awsconv.String("policyNameType"), // Required
+		RoleName:   awsconv.String("roleNameType"),   // Required
 	}
 	resp, err := svc.DeleteRolePolicy(params)
 
@@ -909,14 +909,14 @@ func ExampleIAM_DeleteRolePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteSAMLProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteSAMLProviderInput{
-		SAMLProviderARN: aws.String("arnType"), // Required
+		SAMLProviderARN: awsconv.String("arnType"), // Required
 	}
 	resp, err := svc.DeleteSAMLProvider(params)
 
@@ -936,15 +936,15 @@ func ExampleIAM_DeleteSAMLProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteSSHPublicKey() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteSSHPublicKeyInput{
-		SSHPublicKeyID: aws.String("publicKeyIdType"), // Required
-		UserName:       aws.String("userNameType"),    // Required
+		SSHPublicKeyID: awsconv.String("publicKeyIdType"), // Required
+		UserName:       awsconv.String("userNameType"),    // Required
 	}
 	resp, err := svc.DeleteSSHPublicKey(params)
 
@@ -964,14 +964,14 @@ func ExampleIAM_DeleteSSHPublicKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteServerCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteServerCertificateInput{
-		ServerCertificateName: aws.String("serverCertificateNameType"), // Required
+		ServerCertificateName: awsconv.String("serverCertificateNameType"), // Required
 	}
 	resp, err := svc.DeleteServerCertificate(params)
 
@@ -991,15 +991,15 @@ func ExampleIAM_DeleteServerCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteSigningCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteSigningCertificateInput{
-		CertificateID: aws.String("certificateIdType"), // Required
-		UserName:      aws.String("existingUserNameType"),
+		CertificateID: awsconv.String("certificateIdType"), // Required
+		UserName:      awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.DeleteSigningCertificate(params)
 
@@ -1019,14 +1019,14 @@ func ExampleIAM_DeleteSigningCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteUser() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteUserInput{
-		UserName: aws.String("existingUserNameType"), // Required
+		UserName: awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.DeleteUser(params)
 
@@ -1046,15 +1046,15 @@ func ExampleIAM_DeleteUser() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteUserPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteUserPolicyInput{
-		PolicyName: aws.String("policyNameType"),       // Required
-		UserName:   aws.String("existingUserNameType"), // Required
+		PolicyName: awsconv.String("policyNameType"),       // Required
+		UserName:   awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.DeleteUserPolicy(params)
 
@@ -1074,14 +1074,14 @@ func ExampleIAM_DeleteUserPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DeleteVirtualMFADevice() {
 	svc := iam.New(nil)
 
 	params := &iam.DeleteVirtualMFADeviceInput{
-		SerialNumber: aws.String("serialNumberType"), // Required
+		SerialNumber: awsconv.String("serialNumberType"), // Required
 	}
 	resp, err := svc.DeleteVirtualMFADevice(params)
 
@@ -1101,15 +1101,15 @@ func ExampleIAM_DeleteVirtualMFADevice() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DetachGroupPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DetachGroupPolicyInput{
-		GroupName: aws.String("groupNameType"), // Required
-		PolicyARN: aws.String("arnType"),       // Required
+		GroupName: awsconv.String("groupNameType"), // Required
+		PolicyARN: awsconv.String("arnType"),       // Required
 	}
 	resp, err := svc.DetachGroupPolicy(params)
 
@@ -1129,15 +1129,15 @@ func ExampleIAM_DetachGroupPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DetachRolePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DetachRolePolicyInput{
-		PolicyARN: aws.String("arnType"),      // Required
-		RoleName:  aws.String("roleNameType"), // Required
+		PolicyARN: awsconv.String("arnType"),      // Required
+		RoleName:  awsconv.String("roleNameType"), // Required
 	}
 	resp, err := svc.DetachRolePolicy(params)
 
@@ -1157,15 +1157,15 @@ func ExampleIAM_DetachRolePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_DetachUserPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.DetachUserPolicyInput{
-		PolicyARN: aws.String("arnType"),      // Required
-		UserName:  aws.String("userNameType"), // Required
+		PolicyARN: awsconv.String("arnType"),      // Required
+		UserName:  awsconv.String("userNameType"), // Required
 	}
 	resp, err := svc.DetachUserPolicy(params)
 
@@ -1185,17 +1185,17 @@ func ExampleIAM_DetachUserPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_EnableMFADevice() {
 	svc := iam.New(nil)
 
 	params := &iam.EnableMFADeviceInput{
-		AuthenticationCode1: aws.String("authenticationCodeType"), // Required
-		AuthenticationCode2: aws.String("authenticationCodeType"), // Required
-		SerialNumber:        aws.String("serialNumberType"),       // Required
-		UserName:            aws.String("existingUserNameType"),   // Required
+		AuthenticationCode1: awsconv.String("authenticationCodeType"), // Required
+		AuthenticationCode2: awsconv.String("authenticationCodeType"), // Required
+		SerialNumber:        awsconv.String("serialNumberType"),       // Required
+		UserName:            awsconv.String("existingUserNameType"),   // Required
 	}
 	resp, err := svc.EnableMFADevice(params)
 
@@ -1215,7 +1215,7 @@ func ExampleIAM_EnableMFADevice() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GenerateCredentialReport() {
@@ -1240,14 +1240,14 @@ func ExampleIAM_GenerateCredentialReport() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetAccessKeyLastUsed() {
 	svc := iam.New(nil)
 
 	params := &iam.GetAccessKeyLastUsedInput{
-		AccessKeyID: aws.String("accessKeyIdType"), // Required
+		AccessKeyID: awsconv.String("accessKeyIdType"), // Required
 	}
 	resp, err := svc.GetAccessKeyLastUsed(params)
 
@@ -1267,7 +1267,7 @@ func ExampleIAM_GetAccessKeyLastUsed() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetAccountAuthorizationDetails() {
@@ -1275,11 +1275,11 @@ func ExampleIAM_GetAccountAuthorizationDetails() {
 
 	params := &iam.GetAccountAuthorizationDetailsInput{
 		Filter: []*string{
-			aws.String("EntityType"), // Required
+			awsconv.String("EntityType"), // Required
 			// More values...
 		},
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.GetAccountAuthorizationDetails(params)
 
@@ -1299,7 +1299,7 @@ func ExampleIAM_GetAccountAuthorizationDetails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetAccountPasswordPolicy() {
@@ -1324,7 +1324,7 @@ func ExampleIAM_GetAccountPasswordPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetAccountSummary() {
@@ -1349,7 +1349,7 @@ func ExampleIAM_GetAccountSummary() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetCredentialReport() {
@@ -1374,16 +1374,16 @@ func ExampleIAM_GetCredentialReport() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetGroup() {
 	svc := iam.New(nil)
 
 	params := &iam.GetGroupInput{
-		GroupName: aws.String("groupNameType"), // Required
-		Marker:    aws.String("markerType"),
-		MaxItems:  aws.Long(1),
+		GroupName: awsconv.String("groupNameType"), // Required
+		Marker:    awsconv.String("markerType"),
+		MaxItems:  awsconv.Int64(1),
 	}
 	resp, err := svc.GetGroup(params)
 
@@ -1403,15 +1403,15 @@ func ExampleIAM_GetGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetGroupPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.GetGroupPolicyInput{
-		GroupName:  aws.String("groupNameType"),  // Required
-		PolicyName: aws.String("policyNameType"), // Required
+		GroupName:  awsconv.String("groupNameType"),  // Required
+		PolicyName: awsconv.String("policyNameType"), // Required
 	}
 	resp, err := svc.GetGroupPolicy(params)
 
@@ -1431,14 +1431,14 @@ func ExampleIAM_GetGroupPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetInstanceProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.GetInstanceProfileInput{
-		InstanceProfileName: aws.String("instanceProfileNameType"), // Required
+		InstanceProfileName: awsconv.String("instanceProfileNameType"), // Required
 	}
 	resp, err := svc.GetInstanceProfile(params)
 
@@ -1458,14 +1458,14 @@ func ExampleIAM_GetInstanceProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetLoginProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.GetLoginProfileInput{
-		UserName: aws.String("userNameType"), // Required
+		UserName: awsconv.String("userNameType"), // Required
 	}
 	resp, err := svc.GetLoginProfile(params)
 
@@ -1485,14 +1485,14 @@ func ExampleIAM_GetLoginProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetOpenIDConnectProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.GetOpenIDConnectProviderInput{
-		OpenIDConnectProviderARN: aws.String("arnType"), // Required
+		OpenIDConnectProviderARN: awsconv.String("arnType"), // Required
 	}
 	resp, err := svc.GetOpenIDConnectProvider(params)
 
@@ -1512,14 +1512,14 @@ func ExampleIAM_GetOpenIDConnectProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.GetPolicyInput{
-		PolicyARN: aws.String("arnType"), // Required
+		PolicyARN: awsconv.String("arnType"), // Required
 	}
 	resp, err := svc.GetPolicy(params)
 
@@ -1539,15 +1539,15 @@ func ExampleIAM_GetPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetPolicyVersion() {
 	svc := iam.New(nil)
 
 	params := &iam.GetPolicyVersionInput{
-		PolicyARN: aws.String("arnType"),             // Required
-		VersionID: aws.String("policyVersionIdType"), // Required
+		PolicyARN: awsconv.String("arnType"),             // Required
+		VersionID: awsconv.String("policyVersionIdType"), // Required
 	}
 	resp, err := svc.GetPolicyVersion(params)
 
@@ -1567,14 +1567,14 @@ func ExampleIAM_GetPolicyVersion() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetRole() {
 	svc := iam.New(nil)
 
 	params := &iam.GetRoleInput{
-		RoleName: aws.String("roleNameType"), // Required
+		RoleName: awsconv.String("roleNameType"), // Required
 	}
 	resp, err := svc.GetRole(params)
 
@@ -1594,15 +1594,15 @@ func ExampleIAM_GetRole() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetRolePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.GetRolePolicyInput{
-		PolicyName: aws.String("policyNameType"), // Required
-		RoleName:   aws.String("roleNameType"),   // Required
+		PolicyName: awsconv.String("policyNameType"), // Required
+		RoleName:   awsconv.String("roleNameType"),   // Required
 	}
 	resp, err := svc.GetRolePolicy(params)
 
@@ -1622,14 +1622,14 @@ func ExampleIAM_GetRolePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetSAMLProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.GetSAMLProviderInput{
-		SAMLProviderARN: aws.String("arnType"), // Required
+		SAMLProviderARN: awsconv.String("arnType"), // Required
 	}
 	resp, err := svc.GetSAMLProvider(params)
 
@@ -1649,16 +1649,16 @@ func ExampleIAM_GetSAMLProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetSSHPublicKey() {
 	svc := iam.New(nil)
 
 	params := &iam.GetSSHPublicKeyInput{
-		Encoding:       aws.String("encodingType"),    // Required
-		SSHPublicKeyID: aws.String("publicKeyIdType"), // Required
-		UserName:       aws.String("userNameType"),    // Required
+		Encoding:       awsconv.String("encodingType"),    // Required
+		SSHPublicKeyID: awsconv.String("publicKeyIdType"), // Required
+		UserName:       awsconv.String("userNameType"),    // Required
 	}
 	resp, err := svc.GetSSHPublicKey(params)
 
@@ -1678,14 +1678,14 @@ func ExampleIAM_GetSSHPublicKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetServerCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.GetServerCertificateInput{
-		ServerCertificateName: aws.String("serverCertificateNameType"), // Required
+		ServerCertificateName: awsconv.String("serverCertificateNameType"), // Required
 	}
 	resp, err := svc.GetServerCertificate(params)
 
@@ -1705,14 +1705,14 @@ func ExampleIAM_GetServerCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetUser() {
 	svc := iam.New(nil)
 
 	params := &iam.GetUserInput{
-		UserName: aws.String("existingUserNameType"),
+		UserName: awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.GetUser(params)
 
@@ -1732,15 +1732,15 @@ func ExampleIAM_GetUser() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_GetUserPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.GetUserPolicyInput{
-		PolicyName: aws.String("policyNameType"),       // Required
-		UserName:   aws.String("existingUserNameType"), // Required
+		PolicyName: awsconv.String("policyNameType"),       // Required
+		UserName:   awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.GetUserPolicy(params)
 
@@ -1760,16 +1760,16 @@ func ExampleIAM_GetUserPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListAccessKeys() {
 	svc := iam.New(nil)
 
 	params := &iam.ListAccessKeysInput{
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
-		UserName: aws.String("existingUserNameType"),
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
+		UserName: awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.ListAccessKeys(params)
 
@@ -1789,15 +1789,15 @@ func ExampleIAM_ListAccessKeys() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListAccountAliases() {
 	svc := iam.New(nil)
 
 	params := &iam.ListAccountAliasesInput{
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListAccountAliases(params)
 
@@ -1817,17 +1817,17 @@ func ExampleIAM_ListAccountAliases() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListAttachedGroupPolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListAttachedGroupPoliciesInput{
-		GroupName:  aws.String("groupNameType"), // Required
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("policyPathType"),
+		GroupName:  awsconv.String("groupNameType"), // Required
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("policyPathType"),
 	}
 	resp, err := svc.ListAttachedGroupPolicies(params)
 
@@ -1847,17 +1847,17 @@ func ExampleIAM_ListAttachedGroupPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListAttachedRolePolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListAttachedRolePoliciesInput{
-		RoleName:   aws.String("roleNameType"), // Required
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("policyPathType"),
+		RoleName:   awsconv.String("roleNameType"), // Required
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("policyPathType"),
 	}
 	resp, err := svc.ListAttachedRolePolicies(params)
 
@@ -1877,17 +1877,17 @@ func ExampleIAM_ListAttachedRolePolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListAttachedUserPolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListAttachedUserPoliciesInput{
-		UserName:   aws.String("userNameType"), // Required
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("policyPathType"),
+		UserName:   awsconv.String("userNameType"), // Required
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("policyPathType"),
 	}
 	resp, err := svc.ListAttachedUserPolicies(params)
 
@@ -1907,18 +1907,18 @@ func ExampleIAM_ListAttachedUserPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListEntitiesForPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.ListEntitiesForPolicyInput{
-		PolicyARN:    aws.String("arnType"), // Required
-		EntityFilter: aws.String("EntityType"),
-		Marker:       aws.String("markerType"),
-		MaxItems:     aws.Long(1),
-		PathPrefix:   aws.String("pathType"),
+		PolicyARN:    awsconv.String("arnType"), // Required
+		EntityFilter: awsconv.String("EntityType"),
+		Marker:       awsconv.String("markerType"),
+		MaxItems:     awsconv.Int64(1),
+		PathPrefix:   awsconv.String("pathType"),
 	}
 	resp, err := svc.ListEntitiesForPolicy(params)
 
@@ -1938,16 +1938,16 @@ func ExampleIAM_ListEntitiesForPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListGroupPolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListGroupPoliciesInput{
-		GroupName: aws.String("groupNameType"), // Required
-		Marker:    aws.String("markerType"),
-		MaxItems:  aws.Long(1),
+		GroupName: awsconv.String("groupNameType"), // Required
+		Marker:    awsconv.String("markerType"),
+		MaxItems:  awsconv.Int64(1),
 	}
 	resp, err := svc.ListGroupPolicies(params)
 
@@ -1967,16 +1967,16 @@ func ExampleIAM_ListGroupPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListGroups() {
 	svc := iam.New(nil)
 
 	params := &iam.ListGroupsInput{
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("pathPrefixType"),
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("pathPrefixType"),
 	}
 	resp, err := svc.ListGroups(params)
 
@@ -1996,16 +1996,16 @@ func ExampleIAM_ListGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListGroupsForUser() {
 	svc := iam.New(nil)
 
 	params := &iam.ListGroupsForUserInput{
-		UserName: aws.String("existingUserNameType"), // Required
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
+		UserName: awsconv.String("existingUserNameType"), // Required
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListGroupsForUser(params)
 
@@ -2025,16 +2025,16 @@ func ExampleIAM_ListGroupsForUser() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListInstanceProfiles() {
 	svc := iam.New(nil)
 
 	params := &iam.ListInstanceProfilesInput{
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("pathPrefixType"),
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("pathPrefixType"),
 	}
 	resp, err := svc.ListInstanceProfiles(params)
 
@@ -2054,16 +2054,16 @@ func ExampleIAM_ListInstanceProfiles() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListInstanceProfilesForRole() {
 	svc := iam.New(nil)
 
 	params := &iam.ListInstanceProfilesForRoleInput{
-		RoleName: aws.String("roleNameType"), // Required
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
+		RoleName: awsconv.String("roleNameType"), // Required
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListInstanceProfilesForRole(params)
 
@@ -2083,16 +2083,16 @@ func ExampleIAM_ListInstanceProfilesForRole() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListMFADevices() {
 	svc := iam.New(nil)
 
 	params := &iam.ListMFADevicesInput{
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
-		UserName: aws.String("existingUserNameType"),
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
+		UserName: awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.ListMFADevices(params)
 
@@ -2112,7 +2112,7 @@ func ExampleIAM_ListMFADevices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListOpenIDConnectProviders() {
@@ -2137,18 +2137,18 @@ func ExampleIAM_ListOpenIDConnectProviders() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListPolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListPoliciesInput{
-		Marker:       aws.String("markerType"),
-		MaxItems:     aws.Long(1),
-		OnlyAttached: aws.Boolean(true),
-		PathPrefix:   aws.String("policyPathType"),
-		Scope:        aws.String("policyScopeType"),
+		Marker:       awsconv.String("markerType"),
+		MaxItems:     awsconv.Int64(1),
+		OnlyAttached: awsconv.Bool(true),
+		PathPrefix:   awsconv.String("policyPathType"),
+		Scope:        awsconv.String("policyScopeType"),
 	}
 	resp, err := svc.ListPolicies(params)
 
@@ -2168,16 +2168,16 @@ func ExampleIAM_ListPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListPolicyVersions() {
 	svc := iam.New(nil)
 
 	params := &iam.ListPolicyVersionsInput{
-		PolicyARN: aws.String("arnType"), // Required
-		Marker:    aws.String("markerType"),
-		MaxItems:  aws.Long(1),
+		PolicyARN: awsconv.String("arnType"), // Required
+		Marker:    awsconv.String("markerType"),
+		MaxItems:  awsconv.Int64(1),
 	}
 	resp, err := svc.ListPolicyVersions(params)
 
@@ -2197,16 +2197,16 @@ func ExampleIAM_ListPolicyVersions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListRolePolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListRolePoliciesInput{
-		RoleName: aws.String("roleNameType"), // Required
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
+		RoleName: awsconv.String("roleNameType"), // Required
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListRolePolicies(params)
 
@@ -2226,16 +2226,16 @@ func ExampleIAM_ListRolePolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListRoles() {
 	svc := iam.New(nil)
 
 	params := &iam.ListRolesInput{
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("pathPrefixType"),
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("pathPrefixType"),
 	}
 	resp, err := svc.ListRoles(params)
 
@@ -2255,7 +2255,7 @@ func ExampleIAM_ListRoles() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListSAMLProviders() {
@@ -2280,16 +2280,16 @@ func ExampleIAM_ListSAMLProviders() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListSSHPublicKeys() {
 	svc := iam.New(nil)
 
 	params := &iam.ListSSHPublicKeysInput{
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
-		UserName: aws.String("userNameType"),
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
+		UserName: awsconv.String("userNameType"),
 	}
 	resp, err := svc.ListSSHPublicKeys(params)
 
@@ -2309,16 +2309,16 @@ func ExampleIAM_ListSSHPublicKeys() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListServerCertificates() {
 	svc := iam.New(nil)
 
 	params := &iam.ListServerCertificatesInput{
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("pathPrefixType"),
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("pathPrefixType"),
 	}
 	resp, err := svc.ListServerCertificates(params)
 
@@ -2338,16 +2338,16 @@ func ExampleIAM_ListServerCertificates() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListSigningCertificates() {
 	svc := iam.New(nil)
 
 	params := &iam.ListSigningCertificatesInput{
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
-		UserName: aws.String("existingUserNameType"),
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
+		UserName: awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.ListSigningCertificates(params)
 
@@ -2367,16 +2367,16 @@ func ExampleIAM_ListSigningCertificates() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListUserPolicies() {
 	svc := iam.New(nil)
 
 	params := &iam.ListUserPoliciesInput{
-		UserName: aws.String("existingUserNameType"), // Required
-		Marker:   aws.String("markerType"),
-		MaxItems: aws.Long(1),
+		UserName: awsconv.String("existingUserNameType"), // Required
+		Marker:   awsconv.String("markerType"),
+		MaxItems: awsconv.Int64(1),
 	}
 	resp, err := svc.ListUserPolicies(params)
 
@@ -2396,16 +2396,16 @@ func ExampleIAM_ListUserPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListUsers() {
 	svc := iam.New(nil)
 
 	params := &iam.ListUsersInput{
-		Marker:     aws.String("markerType"),
-		MaxItems:   aws.Long(1),
-		PathPrefix: aws.String("pathPrefixType"),
+		Marker:     awsconv.String("markerType"),
+		MaxItems:   awsconv.Int64(1),
+		PathPrefix: awsconv.String("pathPrefixType"),
 	}
 	resp, err := svc.ListUsers(params)
 
@@ -2425,16 +2425,16 @@ func ExampleIAM_ListUsers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ListVirtualMFADevices() {
 	svc := iam.New(nil)
 
 	params := &iam.ListVirtualMFADevicesInput{
-		AssignmentStatus: aws.String("assignmentStatusType"),
-		Marker:           aws.String("markerType"),
-		MaxItems:         aws.Long(1),
+		AssignmentStatus: awsconv.String("assignmentStatusType"),
+		Marker:           awsconv.String("markerType"),
+		MaxItems:         awsconv.Int64(1),
 	}
 	resp, err := svc.ListVirtualMFADevices(params)
 
@@ -2454,16 +2454,16 @@ func ExampleIAM_ListVirtualMFADevices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_PutGroupPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.PutGroupPolicyInput{
-		GroupName:      aws.String("groupNameType"),      // Required
-		PolicyDocument: aws.String("policyDocumentType"), // Required
-		PolicyName:     aws.String("policyNameType"),     // Required
+		GroupName:      awsconv.String("groupNameType"),      // Required
+		PolicyDocument: awsconv.String("policyDocumentType"), // Required
+		PolicyName:     awsconv.String("policyNameType"),     // Required
 	}
 	resp, err := svc.PutGroupPolicy(params)
 
@@ -2483,16 +2483,16 @@ func ExampleIAM_PutGroupPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_PutRolePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.PutRolePolicyInput{
-		PolicyDocument: aws.String("policyDocumentType"), // Required
-		PolicyName:     aws.String("policyNameType"),     // Required
-		RoleName:       aws.String("roleNameType"),       // Required
+		PolicyDocument: awsconv.String("policyDocumentType"), // Required
+		PolicyName:     awsconv.String("policyNameType"),     // Required
+		RoleName:       awsconv.String("roleNameType"),       // Required
 	}
 	resp, err := svc.PutRolePolicy(params)
 
@@ -2512,16 +2512,16 @@ func ExampleIAM_PutRolePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_PutUserPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.PutUserPolicyInput{
-		PolicyDocument: aws.String("policyDocumentType"),   // Required
-		PolicyName:     aws.String("policyNameType"),       // Required
-		UserName:       aws.String("existingUserNameType"), // Required
+		PolicyDocument: awsconv.String("policyDocumentType"),   // Required
+		PolicyName:     awsconv.String("policyNameType"),       // Required
+		UserName:       awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.PutUserPolicy(params)
 
@@ -2541,15 +2541,15 @@ func ExampleIAM_PutUserPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_RemoveClientIDFromOpenIDConnectProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.RemoveClientIDFromOpenIDConnectProviderInput{
-		ClientID:                 aws.String("clientIDType"), // Required
-		OpenIDConnectProviderARN: aws.String("arnType"),      // Required
+		ClientID:                 awsconv.String("clientIDType"), // Required
+		OpenIDConnectProviderARN: awsconv.String("arnType"),      // Required
 	}
 	resp, err := svc.RemoveClientIDFromOpenIDConnectProvider(params)
 
@@ -2569,15 +2569,15 @@ func ExampleIAM_RemoveClientIDFromOpenIDConnectProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_RemoveRoleFromInstanceProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.RemoveRoleFromInstanceProfileInput{
-		InstanceProfileName: aws.String("instanceProfileNameType"), // Required
-		RoleName:            aws.String("roleNameType"),            // Required
+		InstanceProfileName: awsconv.String("instanceProfileNameType"), // Required
+		RoleName:            awsconv.String("roleNameType"),            // Required
 	}
 	resp, err := svc.RemoveRoleFromInstanceProfile(params)
 
@@ -2597,15 +2597,15 @@ func ExampleIAM_RemoveRoleFromInstanceProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_RemoveUserFromGroup() {
 	svc := iam.New(nil)
 
 	params := &iam.RemoveUserFromGroupInput{
-		GroupName: aws.String("groupNameType"),        // Required
-		UserName:  aws.String("existingUserNameType"), // Required
+		GroupName: awsconv.String("groupNameType"),        // Required
+		UserName:  awsconv.String("existingUserNameType"), // Required
 	}
 	resp, err := svc.RemoveUserFromGroup(params)
 
@@ -2625,17 +2625,17 @@ func ExampleIAM_RemoveUserFromGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_ResyncMFADevice() {
 	svc := iam.New(nil)
 
 	params := &iam.ResyncMFADeviceInput{
-		AuthenticationCode1: aws.String("authenticationCodeType"), // Required
-		AuthenticationCode2: aws.String("authenticationCodeType"), // Required
-		SerialNumber:        aws.String("serialNumberType"),       // Required
-		UserName:            aws.String("existingUserNameType"),   // Required
+		AuthenticationCode1: awsconv.String("authenticationCodeType"), // Required
+		AuthenticationCode2: awsconv.String("authenticationCodeType"), // Required
+		SerialNumber:        awsconv.String("serialNumberType"),       // Required
+		UserName:            awsconv.String("existingUserNameType"),   // Required
 	}
 	resp, err := svc.ResyncMFADevice(params)
 
@@ -2655,15 +2655,15 @@ func ExampleIAM_ResyncMFADevice() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_SetDefaultPolicyVersion() {
 	svc := iam.New(nil)
 
 	params := &iam.SetDefaultPolicyVersionInput{
-		PolicyARN: aws.String("arnType"),             // Required
-		VersionID: aws.String("policyVersionIdType"), // Required
+		PolicyARN: awsconv.String("arnType"),             // Required
+		VersionID: awsconv.String("policyVersionIdType"), // Required
 	}
 	resp, err := svc.SetDefaultPolicyVersion(params)
 
@@ -2683,16 +2683,16 @@ func ExampleIAM_SetDefaultPolicyVersion() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateAccessKey() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateAccessKeyInput{
-		AccessKeyID: aws.String("accessKeyIdType"), // Required
-		Status:      aws.String("statusType"),      // Required
-		UserName:    aws.String("existingUserNameType"),
+		AccessKeyID: awsconv.String("accessKeyIdType"), // Required
+		Status:      awsconv.String("statusType"),      // Required
+		UserName:    awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.UpdateAccessKey(params)
 
@@ -2712,22 +2712,22 @@ func ExampleIAM_UpdateAccessKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateAccountPasswordPolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateAccountPasswordPolicyInput{
-		AllowUsersToChangePassword: aws.Boolean(true),
-		HardExpiry:                 aws.Boolean(true),
-		MaxPasswordAge:             aws.Long(1),
-		MinimumPasswordLength:      aws.Long(1),
-		PasswordReusePrevention:    aws.Long(1),
-		RequireLowercaseCharacters: aws.Boolean(true),
-		RequireNumbers:             aws.Boolean(true),
-		RequireSymbols:             aws.Boolean(true),
-		RequireUppercaseCharacters: aws.Boolean(true),
+		AllowUsersToChangePassword: awsconv.Bool(true),
+		HardExpiry:                 awsconv.Bool(true),
+		MaxPasswordAge:             awsconv.Int64(1),
+		MinimumPasswordLength:      awsconv.Int64(1),
+		PasswordReusePrevention:    awsconv.Int64(1),
+		RequireLowercaseCharacters: awsconv.Bool(true),
+		RequireNumbers:             awsconv.Bool(true),
+		RequireSymbols:             awsconv.Bool(true),
+		RequireUppercaseCharacters: awsconv.Bool(true),
 	}
 	resp, err := svc.UpdateAccountPasswordPolicy(params)
 
@@ -2747,15 +2747,15 @@ func ExampleIAM_UpdateAccountPasswordPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateAssumeRolePolicy() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateAssumeRolePolicyInput{
-		PolicyDocument: aws.String("policyDocumentType"), // Required
-		RoleName:       aws.String("roleNameType"),       // Required
+		PolicyDocument: awsconv.String("policyDocumentType"), // Required
+		RoleName:       awsconv.String("roleNameType"),       // Required
 	}
 	resp, err := svc.UpdateAssumeRolePolicy(params)
 
@@ -2775,16 +2775,16 @@ func ExampleIAM_UpdateAssumeRolePolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateGroup() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateGroupInput{
-		GroupName:    aws.String("groupNameType"), // Required
-		NewGroupName: aws.String("groupNameType"),
-		NewPath:      aws.String("pathType"),
+		GroupName:    awsconv.String("groupNameType"), // Required
+		NewGroupName: awsconv.String("groupNameType"),
+		NewPath:      awsconv.String("pathType"),
 	}
 	resp, err := svc.UpdateGroup(params)
 
@@ -2804,16 +2804,16 @@ func ExampleIAM_UpdateGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateLoginProfile() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateLoginProfileInput{
-		UserName:              aws.String("userNameType"), // Required
-		Password:              aws.String("passwordType"),
-		PasswordResetRequired: aws.Boolean(true),
+		UserName:              awsconv.String("userNameType"), // Required
+		Password:              awsconv.String("passwordType"),
+		PasswordResetRequired: awsconv.Bool(true),
 	}
 	resp, err := svc.UpdateLoginProfile(params)
 
@@ -2833,16 +2833,16 @@ func ExampleIAM_UpdateLoginProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateOpenIDConnectProviderThumbprint() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateOpenIDConnectProviderThumbprintInput{
-		OpenIDConnectProviderARN: aws.String("arnType"), // Required
+		OpenIDConnectProviderARN: awsconv.String("arnType"), // Required
 		ThumbprintList: []*string{ // Required
-			aws.String("thumbprintType"), // Required
+			awsconv.String("thumbprintType"), // Required
 			// More values...
 		},
 	}
@@ -2864,15 +2864,15 @@ func ExampleIAM_UpdateOpenIDConnectProviderThumbprint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateSAMLProvider() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateSAMLProviderInput{
-		SAMLMetadataDocument: aws.String("SAMLMetadataDocumentType"), // Required
-		SAMLProviderARN:      aws.String("arnType"),                  // Required
+		SAMLMetadataDocument: awsconv.String("SAMLMetadataDocumentType"), // Required
+		SAMLProviderARN:      awsconv.String("arnType"),                  // Required
 	}
 	resp, err := svc.UpdateSAMLProvider(params)
 
@@ -2892,16 +2892,16 @@ func ExampleIAM_UpdateSAMLProvider() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateSSHPublicKey() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateSSHPublicKeyInput{
-		SSHPublicKeyID: aws.String("publicKeyIdType"), // Required
-		Status:         aws.String("statusType"),      // Required
-		UserName:       aws.String("userNameType"),    // Required
+		SSHPublicKeyID: awsconv.String("publicKeyIdType"), // Required
+		Status:         awsconv.String("statusType"),      // Required
+		UserName:       awsconv.String("userNameType"),    // Required
 	}
 	resp, err := svc.UpdateSSHPublicKey(params)
 
@@ -2921,16 +2921,16 @@ func ExampleIAM_UpdateSSHPublicKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateServerCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateServerCertificateInput{
-		ServerCertificateName:    aws.String("serverCertificateNameType"), // Required
-		NewPath:                  aws.String("pathType"),
-		NewServerCertificateName: aws.String("serverCertificateNameType"),
+		ServerCertificateName:    awsconv.String("serverCertificateNameType"), // Required
+		NewPath:                  awsconv.String("pathType"),
+		NewServerCertificateName: awsconv.String("serverCertificateNameType"),
 	}
 	resp, err := svc.UpdateServerCertificate(params)
 
@@ -2950,16 +2950,16 @@ func ExampleIAM_UpdateServerCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateSigningCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateSigningCertificateInput{
-		CertificateID: aws.String("certificateIdType"), // Required
-		Status:        aws.String("statusType"),        // Required
-		UserName:      aws.String("existingUserNameType"),
+		CertificateID: awsconv.String("certificateIdType"), // Required
+		Status:        awsconv.String("statusType"),        // Required
+		UserName:      awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.UpdateSigningCertificate(params)
 
@@ -2979,16 +2979,16 @@ func ExampleIAM_UpdateSigningCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UpdateUser() {
 	svc := iam.New(nil)
 
 	params := &iam.UpdateUserInput{
-		UserName:    aws.String("existingUserNameType"), // Required
-		NewPath:     aws.String("pathType"),
-		NewUserName: aws.String("userNameType"),
+		UserName:    awsconv.String("existingUserNameType"), // Required
+		NewPath:     awsconv.String("pathType"),
+		NewUserName: awsconv.String("userNameType"),
 	}
 	resp, err := svc.UpdateUser(params)
 
@@ -3008,15 +3008,15 @@ func ExampleIAM_UpdateUser() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UploadSSHPublicKey() {
 	svc := iam.New(nil)
 
 	params := &iam.UploadSSHPublicKeyInput{
-		SSHPublicKeyBody: aws.String("publicKeyMaterialType"), // Required
-		UserName:         aws.String("userNameType"),          // Required
+		SSHPublicKeyBody: awsconv.String("publicKeyMaterialType"), // Required
+		UserName:         awsconv.String("userNameType"),          // Required
 	}
 	resp, err := svc.UploadSSHPublicKey(params)
 
@@ -3036,18 +3036,18 @@ func ExampleIAM_UploadSSHPublicKey() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UploadServerCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.UploadServerCertificateInput{
-		CertificateBody:       aws.String("certificateBodyType"),       // Required
-		PrivateKey:            aws.String("privateKeyType"),            // Required
-		ServerCertificateName: aws.String("serverCertificateNameType"), // Required
-		CertificateChain:      aws.String("certificateChainType"),
-		Path:                  aws.String("pathType"),
+		CertificateBody:       awsconv.String("certificateBodyType"),       // Required
+		PrivateKey:            awsconv.String("privateKeyType"),            // Required
+		ServerCertificateName: awsconv.String("serverCertificateNameType"), // Required
+		CertificateChain:      awsconv.String("certificateChainType"),
+		Path:                  awsconv.String("pathType"),
 	}
 	resp, err := svc.UploadServerCertificate(params)
 
@@ -3067,15 +3067,15 @@ func ExampleIAM_UploadServerCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleIAM_UploadSigningCertificate() {
 	svc := iam.New(nil)
 
 	params := &iam.UploadSigningCertificateInput{
-		CertificateBody: aws.String("certificateBodyType"), // Required
-		UserName:        aws.String("existingUserNameType"),
+		CertificateBody: awsconv.String("certificateBodyType"), // Required
+		UserName:        awsconv.String("existingUserNameType"),
 	}
 	resp, err := svc.UploadSigningCertificate(params)
 
@@ -3095,5 +3095,5 @@ func ExampleIAM_UploadSigningCertificate() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

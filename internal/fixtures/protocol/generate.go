@@ -53,6 +53,7 @@ var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
+var _ = awsconv.String
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -74,6 +75,7 @@ var extraImports = []string{
 	"time",
 	"net/url",
 	"",
+	"github.com/aws/aws-sdk-go/aws/awsconv",
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil",
 	"github.com/aws/aws-sdk-go/internal/util",
 	"github.com/stretchr/testify/assert",
@@ -254,8 +256,8 @@ func generateTestSuite(filename string) string {
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 
-		suite.API.NoInflections = true // don't require inflections
-		suite.API.NoInitMethods = true // don't generate init methods
+		suite.API.NoInflections = true     // don't require inflections
+		suite.API.NoInitMethods = true     // don't generate init methods
 		suite.API.NoStringerMethods = true // don't generate stringer methods
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()

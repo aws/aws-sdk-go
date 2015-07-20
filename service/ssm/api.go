@@ -353,7 +353,7 @@ type metadataAssociation struct {
 
 // String returns the string representation
 func (s Association) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -384,7 +384,7 @@ type metadataAssociationDescription struct {
 
 // String returns the string representation
 func (s AssociationDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -409,7 +409,7 @@ type metadataAssociationFilter struct {
 
 // String returns the string representation
 func (s AssociationFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -440,7 +440,7 @@ type metadataAssociationStatus struct {
 
 // String returns the string representation
 func (s AssociationStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -461,7 +461,7 @@ type metadataCreateAssociationBatchInput struct {
 
 // String returns the string representation
 func (s CreateAssociationBatchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -485,7 +485,7 @@ type metadataCreateAssociationBatchOutput struct {
 
 // String returns the string representation
 func (s CreateAssociationBatchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -510,7 +510,7 @@ type metadataCreateAssociationBatchRequestEntry struct {
 
 // String returns the string representation
 func (s CreateAssociationBatchRequestEntry) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -534,7 +534,7 @@ type metadataCreateAssociationInput struct {
 
 // String returns the string representation
 func (s CreateAssociationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -555,7 +555,7 @@ type metadataCreateAssociationOutput struct {
 
 // String returns the string representation
 func (s CreateAssociationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -580,7 +580,7 @@ type metadataCreateDocumentInput struct {
 
 // String returns the string representation
 func (s CreateDocumentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -601,7 +601,7 @@ type metadataCreateDocumentOutput struct {
 
 // String returns the string representation
 func (s CreateDocumentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -625,7 +625,7 @@ type metadataDeleteAssociationInput struct {
 
 // String returns the string representation
 func (s DeleteAssociationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -643,7 +643,7 @@ type metadataDeleteAssociationOutput struct {
 
 // String returns the string representation
 func (s DeleteAssociationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -664,7 +664,7 @@ type metadataDeleteDocumentInput struct {
 
 // String returns the string representation
 func (s DeleteDocumentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -682,7 +682,7 @@ type metadataDeleteDocumentOutput struct {
 
 // String returns the string representation
 func (s DeleteDocumentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -706,7 +706,7 @@ type metadataDescribeAssociationInput struct {
 
 // String returns the string representation
 func (s DescribeAssociationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -727,7 +727,7 @@ type metadataDescribeAssociationOutput struct {
 
 // String returns the string representation
 func (s DescribeAssociationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -748,7 +748,7 @@ type metadataDescribeDocumentInput struct {
 
 // String returns the string representation
 func (s DescribeDocumentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -769,7 +769,7 @@ type metadataDescribeDocumentOutput struct {
 
 // String returns the string representation
 func (s DescribeDocumentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -800,7 +800,7 @@ type metadataDocumentDescription struct {
 
 // String returns the string representation
 func (s DocumentDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -825,7 +825,7 @@ type metadataDocumentFilter struct {
 
 // String returns the string representation
 func (s DocumentFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -847,7 +847,7 @@ type metadataDocumentIdentifier struct {
 
 // String returns the string representation
 func (s DocumentIdentifier) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -875,7 +875,7 @@ type metadataFailedCreateAssociation struct {
 
 // String returns the string representation
 func (s FailedCreateAssociation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -896,7 +896,7 @@ type metadataGetDocumentInput struct {
 
 // String returns the string representation
 func (s GetDocumentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -920,7 +920,7 @@ type metadataGetDocumentOutput struct {
 
 // String returns the string representation
 func (s GetDocumentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -950,7 +950,7 @@ type metadataListAssociationsInput struct {
 
 // String returns the string representation
 func (s ListAssociationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -975,7 +975,7 @@ type metadataListAssociationsOutput struct {
 
 // String returns the string representation
 func (s ListAssociationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1005,7 +1005,7 @@ type metadataListDocumentsInput struct {
 
 // String returns the string representation
 func (s ListDocumentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1030,7 +1030,7 @@ type metadataListDocumentsOutput struct {
 
 // String returns the string representation
 func (s ListDocumentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1057,7 +1057,7 @@ type metadataUpdateAssociationStatusInput struct {
 
 // String returns the string representation
 func (s UpdateAssociationStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1078,7 +1078,7 @@ type metadataUpdateAssociationStatusOutput struct {
 
 // String returns the string representation
 func (s UpdateAssociationStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

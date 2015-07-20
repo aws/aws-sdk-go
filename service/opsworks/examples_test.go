@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/opsworks"
@@ -20,9 +20,9 @@ func ExampleOpsWorks_AssignInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.AssignInstanceInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 		LayerIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -44,15 +44,15 @@ func ExampleOpsWorks_AssignInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_AssignVolume() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.AssignVolumeInput{
-		VolumeID:   aws.String("String"), // Required
-		InstanceID: aws.String("String"),
+		VolumeID:   awsconv.String("String"), // Required
+		InstanceID: awsconv.String("String"),
 	}
 	resp, err := svc.AssignVolume(params)
 
@@ -72,15 +72,15 @@ func ExampleOpsWorks_AssignVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_AssociateElasticIP() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.AssociateElasticIPInput{
-		ElasticIP:  aws.String("String"), // Required
-		InstanceID: aws.String("String"),
+		ElasticIP:  awsconv.String("String"), // Required
+		InstanceID: awsconv.String("String"),
 	}
 	resp, err := svc.AssociateElasticIP(params)
 
@@ -100,15 +100,15 @@ func ExampleOpsWorks_AssociateElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_AttachElasticLoadBalancer() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.AttachElasticLoadBalancerInput{
-		ElasticLoadBalancerName: aws.String("String"), // Required
-		LayerID:                 aws.String("String"), // Required
+		ElasticLoadBalancerName: awsconv.String("String"), // Required
+		LayerID:                 awsconv.String("String"), // Required
 	}
 	resp, err := svc.AttachElasticLoadBalancer(params)
 
@@ -128,54 +128,54 @@ func ExampleOpsWorks_AttachElasticLoadBalancer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CloneStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.CloneStackInput{
-		ServiceRoleARN: aws.String("String"), // Required
-		SourceStackID:  aws.String("String"), // Required
-		AgentVersion:   aws.String("String"),
+		ServiceRoleARN: awsconv.String("String"), // Required
+		SourceStackID:  awsconv.String("String"), // Required
+		AgentVersion:   awsconv.String("String"),
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
 		ChefConfiguration: &opsworks.ChefConfiguration{
-			BerkshelfVersion: aws.String("String"),
-			ManageBerkshelf:  aws.Boolean(true),
+			BerkshelfVersion: awsconv.String("String"),
+			ManageBerkshelf:  awsconv.Bool(true),
 		},
 		CloneAppIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		ClonePermissions: aws.Boolean(true),
+		ClonePermissions: awsconv.Bool(true),
 		ConfigurationManager: &opsworks.StackConfigurationManager{
-			Name:    aws.String("String"),
-			Version: aws.String("String"),
+			Name:    awsconv.String("String"),
+			Version: awsconv.String("String"),
 		},
 		CustomCookbooksSource: &opsworks.Source{
-			Password: aws.String("String"),
-			Revision: aws.String("String"),
-			SSHKey:   aws.String("String"),
-			Type:     aws.String("SourceType"),
-			URL:      aws.String("String"),
-			Username: aws.String("String"),
+			Password: awsconv.String("String"),
+			Revision: awsconv.String("String"),
+			SSHKey:   awsconv.String("String"),
+			Type:     awsconv.String("SourceType"),
+			URL:      awsconv.String("String"),
+			Username: awsconv.String("String"),
 		},
-		CustomJSON:                aws.String("String"),
-		DefaultAvailabilityZone:   aws.String("String"),
-		DefaultInstanceProfileARN: aws.String("String"),
-		DefaultOs:                 aws.String("String"),
-		DefaultRootDeviceType:     aws.String("RootDeviceType"),
-		DefaultSSHKeyName:         aws.String("String"),
-		DefaultSubnetID:           aws.String("String"),
-		HostnameTheme:             aws.String("String"),
-		Name:                      aws.String("String"),
-		Region:                    aws.String("String"),
-		UseCustomCookbooks:        aws.Boolean(true),
-		UseOpsWorksSecurityGroups: aws.Boolean(true),
-		VPCID: aws.String("String"),
+		CustomJSON:                awsconv.String("String"),
+		DefaultAvailabilityZone:   awsconv.String("String"),
+		DefaultInstanceProfileARN: awsconv.String("String"),
+		DefaultOs:                 awsconv.String("String"),
+		DefaultRootDeviceType:     awsconv.String("RootDeviceType"),
+		DefaultSSHKeyName:         awsconv.String("String"),
+		DefaultSubnetID:           awsconv.String("String"),
+		HostnameTheme:             awsconv.String("String"),
+		Name:                      awsconv.String("String"),
+		Region:                    awsconv.String("String"),
+		UseCustomCookbooks:        awsconv.Bool(true),
+		UseOpsWorksSecurityGroups: awsconv.Bool(true),
+		VPCID: awsconv.String("String"),
 	}
 	resp, err := svc.CloneStack(params)
 
@@ -195,56 +195,56 @@ func ExampleOpsWorks_CloneStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateApp() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.CreateAppInput{
-		Name:    aws.String("String"),  // Required
-		StackID: aws.String("String"),  // Required
-		Type:    aws.String("AppType"), // Required
+		Name:    awsconv.String("String"),  // Required
+		StackID: awsconv.String("String"),  // Required
+		Type:    awsconv.String("AppType"), // Required
 		AppSource: &opsworks.Source{
-			Password: aws.String("String"),
-			Revision: aws.String("String"),
-			SSHKey:   aws.String("String"),
-			Type:     aws.String("SourceType"),
-			URL:      aws.String("String"),
-			Username: aws.String("String"),
+			Password: awsconv.String("String"),
+			Revision: awsconv.String("String"),
+			SSHKey:   awsconv.String("String"),
+			Type:     awsconv.String("SourceType"),
+			URL:      awsconv.String("String"),
+			Username: awsconv.String("String"),
 		},
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
 		DataSources: []*opsworks.DataSource{
 			{ // Required
-				ARN:          aws.String("String"),
-				DatabaseName: aws.String("String"),
-				Type:         aws.String("String"),
+				ARN:          awsconv.String("String"),
+				DatabaseName: awsconv.String("String"),
+				Type:         awsconv.String("String"),
 			},
 			// More values...
 		},
-		Description: aws.String("String"),
+		Description: awsconv.String("String"),
 		Domains: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		EnableSSL: aws.Boolean(true),
+		EnableSSL: awsconv.Bool(true),
 		Environment: []*opsworks.EnvironmentVariable{
 			{ // Required
-				Key:    aws.String("String"), // Required
-				Value:  aws.String("String"), // Required
-				Secure: aws.Boolean(true),
+				Key:    awsconv.String("String"), // Required
+				Value:  awsconv.String("String"), // Required
+				Secure: awsconv.Bool(true),
 			},
 			// More values...
 		},
 		SSLConfiguration: &opsworks.SSLConfiguration{
-			Certificate: aws.String("String"), // Required
-			PrivateKey:  aws.String("String"), // Required
-			Chain:       aws.String("String"),
+			Certificate: awsconv.String("String"), // Required
+			PrivateKey:  awsconv.String("String"), // Required
+			Chain:       awsconv.String("String"),
 		},
-		Shortname: aws.String("String"),
+		Shortname: awsconv.String("String"),
 	}
 	resp, err := svc.CreateApp(params)
 
@@ -264,7 +264,7 @@ func ExampleOpsWorks_CreateApp() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateDeployment() {
@@ -272,21 +272,21 @@ func ExampleOpsWorks_CreateDeployment() {
 
 	params := &opsworks.CreateDeploymentInput{
 		Command: &opsworks.DeploymentCommand{ // Required
-			Name: aws.String("DeploymentCommandName"), // Required
+			Name: awsconv.String("DeploymentCommandName"), // Required
 			Args: map[string][]*string{
 				"Key": { // Required
-					aws.String("String"), // Required
+					awsconv.String("String"), // Required
 					// More values...
 				},
 				// More values...
 			},
 		},
-		StackID:    aws.String("String"), // Required
-		AppID:      aws.String("String"),
-		Comment:    aws.String("String"),
-		CustomJSON: aws.String("String"),
+		StackID:    awsconv.String("String"), // Required
+		AppID:      awsconv.String("String"),
+		Comment:    awsconv.String("String"),
+		CustomJSON: awsconv.String("String"),
 		InstanceIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -308,47 +308,47 @@ func ExampleOpsWorks_CreateDeployment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.CreateInstanceInput{
-		InstanceType: aws.String("String"), // Required
+		InstanceType: awsconv.String("String"), // Required
 		LayerIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID:          aws.String("String"), // Required
-		AMIID:            aws.String("String"),
-		AgentVersion:     aws.String("String"),
-		Architecture:     aws.String("Architecture"),
-		AutoScalingType:  aws.String("AutoScalingType"),
-		AvailabilityZone: aws.String("String"),
+		StackID:          awsconv.String("String"), // Required
+		AMIID:            awsconv.String("String"),
+		AgentVersion:     awsconv.String("String"),
+		Architecture:     awsconv.String("Architecture"),
+		AutoScalingType:  awsconv.String("AutoScalingType"),
+		AvailabilityZone: awsconv.String("String"),
 		BlockDeviceMappings: []*opsworks.BlockDeviceMapping{
 			{ // Required
-				DeviceName: aws.String("String"),
+				DeviceName: awsconv.String("String"),
 				EBS: &opsworks.EBSBlockDevice{
-					DeleteOnTermination: aws.Boolean(true),
-					IOPS:                aws.Long(1),
-					SnapshotID:          aws.String("String"),
-					VolumeSize:          aws.Long(1),
-					VolumeType:          aws.String("VolumeType"),
+					DeleteOnTermination: awsconv.Bool(true),
+					IOPS:                awsconv.Int64(1),
+					SnapshotID:          awsconv.String("String"),
+					VolumeSize:          awsconv.Int64(1),
+					VolumeType:          awsconv.String("VolumeType"),
 				},
-				NoDevice:    aws.String("String"),
-				VirtualName: aws.String("String"),
+				NoDevice:    awsconv.String("String"),
+				VirtualName: awsconv.String("String"),
 			},
 			// More values...
 		},
-		EBSOptimized:         aws.Boolean(true),
-		Hostname:             aws.String("String"),
-		InstallUpdatesOnBoot: aws.Boolean(true),
-		Os:                   aws.String("String"),
-		RootDeviceType:       aws.String("RootDeviceType"),
-		SSHKeyName:           aws.String("String"),
-		SubnetID:             aws.String("String"),
-		VirtualizationType:   aws.String("String"),
+		EBSOptimized:         awsconv.Bool(true),
+		Hostname:             awsconv.String("String"),
+		InstallUpdatesOnBoot: awsconv.Bool(true),
+		Os:                   awsconv.String("String"),
+		RootDeviceType:       awsconv.String("RootDeviceType"),
+		SSHKeyName:           awsconv.String("String"),
+		SubnetID:             awsconv.String("String"),
+		VirtualizationType:   awsconv.String("String"),
 	}
 	resp, err := svc.CreateInstance(params)
 
@@ -368,71 +368,71 @@ func ExampleOpsWorks_CreateInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateLayer() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.CreateLayerInput{
-		Name:      aws.String("String"),    // Required
-		Shortname: aws.String("String"),    // Required
-		StackID:   aws.String("String"),    // Required
-		Type:      aws.String("LayerType"), // Required
+		Name:      awsconv.String("String"),    // Required
+		Shortname: awsconv.String("String"),    // Required
+		StackID:   awsconv.String("String"),    // Required
+		Type:      awsconv.String("LayerType"), // Required
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		AutoAssignElasticIPs:     aws.Boolean(true),
-		AutoAssignPublicIPs:      aws.Boolean(true),
-		CustomInstanceProfileARN: aws.String("String"),
+		AutoAssignElasticIPs:     awsconv.Bool(true),
+		AutoAssignPublicIPs:      awsconv.Bool(true),
+		CustomInstanceProfileARN: awsconv.String("String"),
 		CustomRecipes: &opsworks.Recipes{
 			Configure: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Deploy: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Setup: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Shutdown: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Undeploy: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 		},
 		CustomSecurityGroupIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		EnableAutoHealing:    aws.Boolean(true),
-		InstallUpdatesOnBoot: aws.Boolean(true),
+		EnableAutoHealing:    awsconv.Bool(true),
+		InstallUpdatesOnBoot: awsconv.Bool(true),
 		LifecycleEventConfiguration: &opsworks.LifecycleEventConfiguration{
 			Shutdown: &opsworks.ShutdownEventConfiguration{
-				DelayUntilELBConnectionsDrained: aws.Boolean(true),
-				ExecutionTimeout:                aws.Long(1),
+				DelayUntilELBConnectionsDrained: awsconv.Bool(true),
+				ExecutionTimeout:                awsconv.Int64(1),
 			},
 		},
 		Packages: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		UseEBSOptimizedInstances: aws.Boolean(true),
+		UseEBSOptimizedInstances: awsconv.Bool(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
 			{ // Required
-				MountPoint:    aws.String("String"), // Required
-				NumberOfDisks: aws.Long(1),          // Required
-				Size:          aws.Long(1),          // Required
-				IOPS:          aws.Long(1),
-				RAIDLevel:     aws.Long(1),
-				VolumeType:    aws.String("String"),
+				MountPoint:    awsconv.String("String"), // Required
+				NumberOfDisks: awsconv.Int64(1),         // Required
+				Size:          awsconv.Int64(1),         // Required
+				IOPS:          awsconv.Int64(1),
+				RAIDLevel:     awsconv.Int64(1),
+				VolumeType:    awsconv.String("String"),
 			},
 			// More values...
 		},
@@ -455,48 +455,48 @@ func ExampleOpsWorks_CreateLayer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.CreateStackInput{
-		DefaultInstanceProfileARN: aws.String("String"), // Required
-		Name:           aws.String("String"), // Required
-		Region:         aws.String("String"), // Required
-		ServiceRoleARN: aws.String("String"), // Required
-		AgentVersion:   aws.String("String"),
+		DefaultInstanceProfileARN: awsconv.String("String"), // Required
+		Name:           awsconv.String("String"), // Required
+		Region:         awsconv.String("String"), // Required
+		ServiceRoleARN: awsconv.String("String"), // Required
+		AgentVersion:   awsconv.String("String"),
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
 		ChefConfiguration: &opsworks.ChefConfiguration{
-			BerkshelfVersion: aws.String("String"),
-			ManageBerkshelf:  aws.Boolean(true),
+			BerkshelfVersion: awsconv.String("String"),
+			ManageBerkshelf:  awsconv.Bool(true),
 		},
 		ConfigurationManager: &opsworks.StackConfigurationManager{
-			Name:    aws.String("String"),
-			Version: aws.String("String"),
+			Name:    awsconv.String("String"),
+			Version: awsconv.String("String"),
 		},
 		CustomCookbooksSource: &opsworks.Source{
-			Password: aws.String("String"),
-			Revision: aws.String("String"),
-			SSHKey:   aws.String("String"),
-			Type:     aws.String("SourceType"),
-			URL:      aws.String("String"),
-			Username: aws.String("String"),
+			Password: awsconv.String("String"),
+			Revision: awsconv.String("String"),
+			SSHKey:   awsconv.String("String"),
+			Type:     awsconv.String("SourceType"),
+			URL:      awsconv.String("String"),
+			Username: awsconv.String("String"),
 		},
-		CustomJSON:                aws.String("String"),
-		DefaultAvailabilityZone:   aws.String("String"),
-		DefaultOs:                 aws.String("String"),
-		DefaultRootDeviceType:     aws.String("RootDeviceType"),
-		DefaultSSHKeyName:         aws.String("String"),
-		DefaultSubnetID:           aws.String("String"),
-		HostnameTheme:             aws.String("String"),
-		UseCustomCookbooks:        aws.Boolean(true),
-		UseOpsWorksSecurityGroups: aws.Boolean(true),
-		VPCID: aws.String("String"),
+		CustomJSON:                awsconv.String("String"),
+		DefaultAvailabilityZone:   awsconv.String("String"),
+		DefaultOs:                 awsconv.String("String"),
+		DefaultRootDeviceType:     awsconv.String("RootDeviceType"),
+		DefaultSSHKeyName:         awsconv.String("String"),
+		DefaultSubnetID:           awsconv.String("String"),
+		HostnameTheme:             awsconv.String("String"),
+		UseCustomCookbooks:        awsconv.Bool(true),
+		UseOpsWorksSecurityGroups: awsconv.Bool(true),
+		VPCID: awsconv.String("String"),
 	}
 	resp, err := svc.CreateStack(params)
 
@@ -516,17 +516,17 @@ func ExampleOpsWorks_CreateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_CreateUserProfile() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.CreateUserProfileInput{
-		IAMUserARN:          aws.String("String"), // Required
-		AllowSelfManagement: aws.Boolean(true),
-		SSHPublicKey:        aws.String("String"),
-		SSHUsername:         aws.String("String"),
+		IAMUserARN:          awsconv.String("String"), // Required
+		AllowSelfManagement: awsconv.Bool(true),
+		SSHPublicKey:        awsconv.String("String"),
+		SSHUsername:         awsconv.String("String"),
 	}
 	resp, err := svc.CreateUserProfile(params)
 
@@ -546,14 +546,14 @@ func ExampleOpsWorks_CreateUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteApp() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeleteAppInput{
-		AppID: aws.String("String"), // Required
+		AppID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteApp(params)
 
@@ -573,16 +573,16 @@ func ExampleOpsWorks_DeleteApp() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeleteInstanceInput{
-		InstanceID:      aws.String("String"), // Required
-		DeleteElasticIP: aws.Boolean(true),
-		DeleteVolumes:   aws.Boolean(true),
+		InstanceID:      awsconv.String("String"), // Required
+		DeleteElasticIP: awsconv.Bool(true),
+		DeleteVolumes:   awsconv.Bool(true),
 	}
 	resp, err := svc.DeleteInstance(params)
 
@@ -602,14 +602,14 @@ func ExampleOpsWorks_DeleteInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteLayer() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeleteLayerInput{
-		LayerID: aws.String("String"), // Required
+		LayerID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteLayer(params)
 
@@ -629,14 +629,14 @@ func ExampleOpsWorks_DeleteLayer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeleteStackInput{
-		StackID: aws.String("String"), // Required
+		StackID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteStack(params)
 
@@ -656,14 +656,14 @@ func ExampleOpsWorks_DeleteStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeleteUserProfile() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeleteUserProfileInput{
-		IAMUserARN: aws.String("String"), // Required
+		IAMUserARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteUserProfile(params)
 
@@ -683,14 +683,14 @@ func ExampleOpsWorks_DeleteUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterElasticIP() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeregisterElasticIPInput{
-		ElasticIP: aws.String("String"), // Required
+		ElasticIP: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeregisterElasticIP(params)
 
@@ -710,14 +710,14 @@ func ExampleOpsWorks_DeregisterElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeregisterInstanceInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeregisterInstance(params)
 
@@ -737,14 +737,14 @@ func ExampleOpsWorks_DeregisterInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterRDSDBInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeregisterRDSDBInstanceInput{
-		RDSDBInstanceARN: aws.String("String"), // Required
+		RDSDBInstanceARN: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeregisterRDSDBInstance(params)
 
@@ -764,14 +764,14 @@ func ExampleOpsWorks_DeregisterRDSDBInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DeregisterVolume() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DeregisterVolumeInput{
-		VolumeID: aws.String("String"), // Required
+		VolumeID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeregisterVolume(params)
 
@@ -791,7 +791,7 @@ func ExampleOpsWorks_DeregisterVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeAgentVersions() {
@@ -799,10 +799,10 @@ func ExampleOpsWorks_DescribeAgentVersions() {
 
 	params := &opsworks.DescribeAgentVersionsInput{
 		ConfigurationManager: &opsworks.StackConfigurationManager{
-			Name:    aws.String("String"),
-			Version: aws.String("String"),
+			Name:    awsconv.String("String"),
+			Version: awsconv.String("String"),
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeAgentVersions(params)
 
@@ -822,7 +822,7 @@ func ExampleOpsWorks_DescribeAgentVersions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeApps() {
@@ -830,10 +830,10 @@ func ExampleOpsWorks_DescribeApps() {
 
 	params := &opsworks.DescribeAppsInput{
 		AppIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeApps(params)
 
@@ -853,7 +853,7 @@ func ExampleOpsWorks_DescribeApps() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeCommands() {
@@ -861,11 +861,11 @@ func ExampleOpsWorks_DescribeCommands() {
 
 	params := &opsworks.DescribeCommandsInput{
 		CommandIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		DeploymentID: aws.String("String"),
-		InstanceID:   aws.String("String"),
+		DeploymentID: awsconv.String("String"),
+		InstanceID:   awsconv.String("String"),
 	}
 	resp, err := svc.DescribeCommands(params)
 
@@ -885,19 +885,19 @@ func ExampleOpsWorks_DescribeCommands() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeDeployments() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeDeploymentsInput{
-		AppID: aws.String("String"),
+		AppID: awsconv.String("String"),
 		DeploymentIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeDeployments(params)
 
@@ -917,7 +917,7 @@ func ExampleOpsWorks_DescribeDeployments() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeElasticIPs() {
@@ -925,11 +925,11 @@ func ExampleOpsWorks_DescribeElasticIPs() {
 
 	params := &opsworks.DescribeElasticIPsInput{
 		IPs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		InstanceID: aws.String("String"),
-		StackID:    aws.String("String"),
+		InstanceID: awsconv.String("String"),
+		StackID:    awsconv.String("String"),
 	}
 	resp, err := svc.DescribeElasticIPs(params)
 
@@ -949,7 +949,7 @@ func ExampleOpsWorks_DescribeElasticIPs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeElasticLoadBalancers() {
@@ -957,10 +957,10 @@ func ExampleOpsWorks_DescribeElasticLoadBalancers() {
 
 	params := &opsworks.DescribeElasticLoadBalancersInput{
 		LayerIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeElasticLoadBalancers(params)
 
@@ -980,7 +980,7 @@ func ExampleOpsWorks_DescribeElasticLoadBalancers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeInstances() {
@@ -988,11 +988,11 @@ func ExampleOpsWorks_DescribeInstances() {
 
 	params := &opsworks.DescribeInstancesInput{
 		InstanceIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		LayerID: aws.String("String"),
-		StackID: aws.String("String"),
+		LayerID: awsconv.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeInstances(params)
 
@@ -1012,7 +1012,7 @@ func ExampleOpsWorks_DescribeInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeLayers() {
@@ -1020,10 +1020,10 @@ func ExampleOpsWorks_DescribeLayers() {
 
 	params := &opsworks.DescribeLayersInput{
 		LayerIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeLayers(params)
 
@@ -1043,7 +1043,7 @@ func ExampleOpsWorks_DescribeLayers() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeLoadBasedAutoScaling() {
@@ -1051,7 +1051,7 @@ func ExampleOpsWorks_DescribeLoadBasedAutoScaling() {
 
 	params := &opsworks.DescribeLoadBasedAutoScalingInput{
 		LayerIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -1073,7 +1073,7 @@ func ExampleOpsWorks_DescribeLoadBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeMyUserProfile() {
@@ -1098,15 +1098,15 @@ func ExampleOpsWorks_DescribeMyUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribePermissions() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribePermissionsInput{
-		IAMUserARN: aws.String("String"),
-		StackID:    aws.String("String"),
+		IAMUserARN: awsconv.String("String"),
+		StackID:    awsconv.String("String"),
 	}
 	resp, err := svc.DescribePermissions(params)
 
@@ -1126,19 +1126,19 @@ func ExampleOpsWorks_DescribePermissions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeRAIDArrays() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeRAIDArraysInput{
-		InstanceID: aws.String("String"),
+		InstanceID: awsconv.String("String"),
 		RAIDArrayIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeRAIDArrays(params)
 
@@ -1158,16 +1158,16 @@ func ExampleOpsWorks_DescribeRAIDArrays() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeRDSDBInstances() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeRDSDBInstancesInput{
-		StackID: aws.String("String"), // Required
+		StackID: awsconv.String("String"), // Required
 		RDSDBInstanceARNs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -1189,19 +1189,19 @@ func ExampleOpsWorks_DescribeRDSDBInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeServiceErrors() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeServiceErrorsInput{
-		InstanceID: aws.String("String"),
+		InstanceID: awsconv.String("String"),
 		ServiceErrorIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		StackID: aws.String("String"),
+		StackID: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeServiceErrors(params)
 
@@ -1221,14 +1221,14 @@ func ExampleOpsWorks_DescribeServiceErrors() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeStackProvisioningParameters() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeStackProvisioningParametersInput{
-		StackID: aws.String("String"), // Required
+		StackID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DescribeStackProvisioningParameters(params)
 
@@ -1248,14 +1248,14 @@ func ExampleOpsWorks_DescribeStackProvisioningParameters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeStackSummary() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeStackSummaryInput{
-		StackID: aws.String("String"), // Required
+		StackID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DescribeStackSummary(params)
 
@@ -1275,7 +1275,7 @@ func ExampleOpsWorks_DescribeStackSummary() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeStacks() {
@@ -1283,7 +1283,7 @@ func ExampleOpsWorks_DescribeStacks() {
 
 	params := &opsworks.DescribeStacksInput{
 		StackIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -1305,7 +1305,7 @@ func ExampleOpsWorks_DescribeStacks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeTimeBasedAutoScaling() {
@@ -1313,7 +1313,7 @@ func ExampleOpsWorks_DescribeTimeBasedAutoScaling() {
 
 	params := &opsworks.DescribeTimeBasedAutoScalingInput{
 		InstanceIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -1335,7 +1335,7 @@ func ExampleOpsWorks_DescribeTimeBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeUserProfiles() {
@@ -1343,7 +1343,7 @@ func ExampleOpsWorks_DescribeUserProfiles() {
 
 	params := &opsworks.DescribeUserProfilesInput{
 		IAMUserARNs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -1365,18 +1365,18 @@ func ExampleOpsWorks_DescribeUserProfiles() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DescribeVolumes() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DescribeVolumesInput{
-		InstanceID:  aws.String("String"),
-		RAIDArrayID: aws.String("String"),
-		StackID:     aws.String("String"),
+		InstanceID:  awsconv.String("String"),
+		RAIDArrayID: awsconv.String("String"),
+		StackID:     awsconv.String("String"),
 		VolumeIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -1398,15 +1398,15 @@ func ExampleOpsWorks_DescribeVolumes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DetachElasticLoadBalancer() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DetachElasticLoadBalancerInput{
-		ElasticLoadBalancerName: aws.String("String"), // Required
-		LayerID:                 aws.String("String"), // Required
+		ElasticLoadBalancerName: awsconv.String("String"), // Required
+		LayerID:                 awsconv.String("String"), // Required
 	}
 	resp, err := svc.DetachElasticLoadBalancer(params)
 
@@ -1426,14 +1426,14 @@ func ExampleOpsWorks_DetachElasticLoadBalancer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_DisassociateElasticIP() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.DisassociateElasticIPInput{
-		ElasticIP: aws.String("String"), // Required
+		ElasticIP: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DisassociateElasticIP(params)
 
@@ -1453,14 +1453,14 @@ func ExampleOpsWorks_DisassociateElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_GetHostnameSuggestion() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.GetHostnameSuggestionInput{
-		LayerID: aws.String("String"), // Required
+		LayerID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.GetHostnameSuggestion(params)
 
@@ -1480,15 +1480,15 @@ func ExampleOpsWorks_GetHostnameSuggestion() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_GrantAccess() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.GrantAccessInput{
-		InstanceID:        aws.String("String"), // Required
-		ValidForInMinutes: aws.Long(1),
+		InstanceID:        awsconv.String("String"), // Required
+		ValidForInMinutes: awsconv.Int64(1),
 	}
 	resp, err := svc.GrantAccess(params)
 
@@ -1508,14 +1508,14 @@ func ExampleOpsWorks_GrantAccess() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RebootInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.RebootInstanceInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.RebootInstance(params)
 
@@ -1535,15 +1535,15 @@ func ExampleOpsWorks_RebootInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterElasticIP() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.RegisterElasticIPInput{
-		ElasticIP: aws.String("String"), // Required
-		StackID:   aws.String("String"), // Required
+		ElasticIP: awsconv.String("String"), // Required
+		StackID:   awsconv.String("String"), // Required
 	}
 	resp, err := svc.RegisterElasticIP(params)
 
@@ -1563,23 +1563,23 @@ func ExampleOpsWorks_RegisterElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.RegisterInstanceInput{
-		StackID:  aws.String("String"), // Required
-		Hostname: aws.String("String"),
+		StackID:  awsconv.String("String"), // Required
+		Hostname: awsconv.String("String"),
 		InstanceIdentity: &opsworks.InstanceIdentity{
-			Document:  aws.String("String"),
-			Signature: aws.String("String"),
+			Document:  awsconv.String("String"),
+			Signature: awsconv.String("String"),
 		},
-		PrivateIP:               aws.String("String"),
-		PublicIP:                aws.String("String"),
-		RSAPublicKey:            aws.String("String"),
-		RSAPublicKeyFingerprint: aws.String("String"),
+		PrivateIP:               awsconv.String("String"),
+		PublicIP:                awsconv.String("String"),
+		RSAPublicKey:            awsconv.String("String"),
+		RSAPublicKeyFingerprint: awsconv.String("String"),
 	}
 	resp, err := svc.RegisterInstance(params)
 
@@ -1599,17 +1599,17 @@ func ExampleOpsWorks_RegisterInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterRDSDBInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.RegisterRDSDBInstanceInput{
-		DBPassword:       aws.String("String"), // Required
-		DBUser:           aws.String("String"), // Required
-		RDSDBInstanceARN: aws.String("String"), // Required
-		StackID:          aws.String("String"), // Required
+		DBPassword:       awsconv.String("String"), // Required
+		DBUser:           awsconv.String("String"), // Required
+		RDSDBInstanceARN: awsconv.String("String"), // Required
+		StackID:          awsconv.String("String"), // Required
 	}
 	resp, err := svc.RegisterRDSDBInstance(params)
 
@@ -1629,15 +1629,15 @@ func ExampleOpsWorks_RegisterRDSDBInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_RegisterVolume() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.RegisterVolumeInput{
-		StackID:     aws.String("String"), // Required
-		EC2VolumeID: aws.String("String"),
+		StackID:     awsconv.String("String"), // Required
+		EC2VolumeID: awsconv.String("String"),
 	}
 	resp, err := svc.RegisterVolume(params)
 
@@ -1657,38 +1657,38 @@ func ExampleOpsWorks_RegisterVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.SetLoadBasedAutoScalingInput{
-		LayerID: aws.String("String"), // Required
+		LayerID: awsconv.String("String"), // Required
 		DownScaling: &opsworks.AutoScalingThresholds{
 			Alarms: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
-			CPUThreshold:       aws.Double(1.0),
-			IgnoreMetricsTime:  aws.Long(1),
-			InstanceCount:      aws.Long(1),
-			LoadThreshold:      aws.Double(1.0),
-			MemoryThreshold:    aws.Double(1.0),
-			ThresholdsWaitTime: aws.Long(1),
+			CPUThreshold:       awsconv.Float64(1.0),
+			IgnoreMetricsTime:  awsconv.Int64(1),
+			InstanceCount:      awsconv.Int64(1),
+			LoadThreshold:      awsconv.Float64(1.0),
+			MemoryThreshold:    awsconv.Float64(1.0),
+			ThresholdsWaitTime: awsconv.Int64(1),
 		},
-		Enable: aws.Boolean(true),
+		Enable: awsconv.Bool(true),
 		UpScaling: &opsworks.AutoScalingThresholds{
 			Alarms: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
-			CPUThreshold:       aws.Double(1.0),
-			IgnoreMetricsTime:  aws.Long(1),
-			InstanceCount:      aws.Long(1),
-			LoadThreshold:      aws.Double(1.0),
-			MemoryThreshold:    aws.Double(1.0),
-			ThresholdsWaitTime: aws.Long(1),
+			CPUThreshold:       awsconv.Float64(1.0),
+			IgnoreMetricsTime:  awsconv.Int64(1),
+			InstanceCount:      awsconv.Int64(1),
+			LoadThreshold:      awsconv.Float64(1.0),
+			MemoryThreshold:    awsconv.Float64(1.0),
+			ThresholdsWaitTime: awsconv.Int64(1),
 		},
 	}
 	resp, err := svc.SetLoadBasedAutoScaling(params)
@@ -1709,18 +1709,18 @@ func ExampleOpsWorks_SetLoadBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_SetPermission() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.SetPermissionInput{
-		IAMUserARN: aws.String("String"), // Required
-		StackID:    aws.String("String"), // Required
-		AllowSSH:   aws.Boolean(true),
-		AllowSudo:  aws.Boolean(true),
-		Level:      aws.String("String"),
+		IAMUserARN: awsconv.String("String"), // Required
+		StackID:    awsconv.String("String"), // Required
+		AllowSSH:   awsconv.Bool(true),
+		AllowSudo:  awsconv.Bool(true),
+		Level:      awsconv.String("String"),
 	}
 	resp, err := svc.SetPermission(params)
 
@@ -1740,41 +1740,41 @@ func ExampleOpsWorks_SetPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_SetTimeBasedAutoScaling() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.SetTimeBasedAutoScalingInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 		AutoScalingSchedule: &opsworks.WeeklyAutoScalingSchedule{
 			Friday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 			Monday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 			Saturday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 			Sunday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 			Thursday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 			Tuesday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 			Wednesday: map[string]*string{
-				"Key": aws.String("Switch"), // Required
+				"Key": awsconv.String("Switch"), // Required
 				// More values...
 			},
 		},
@@ -1797,14 +1797,14 @@ func ExampleOpsWorks_SetTimeBasedAutoScaling() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StartInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.StartInstanceInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.StartInstance(params)
 
@@ -1824,14 +1824,14 @@ func ExampleOpsWorks_StartInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StartStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.StartStackInput{
-		StackID: aws.String("String"), // Required
+		StackID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.StartStack(params)
 
@@ -1851,14 +1851,14 @@ func ExampleOpsWorks_StartStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StopInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.StopInstanceInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.StopInstance(params)
 
@@ -1878,14 +1878,14 @@ func ExampleOpsWorks_StopInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_StopStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.StopStackInput{
-		StackID: aws.String("String"), // Required
+		StackID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.StopStack(params)
 
@@ -1905,14 +1905,14 @@ func ExampleOpsWorks_StopStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UnassignInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UnassignInstanceInput{
-		InstanceID: aws.String("String"), // Required
+		InstanceID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.UnassignInstance(params)
 
@@ -1932,14 +1932,14 @@ func ExampleOpsWorks_UnassignInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UnassignVolume() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UnassignVolumeInput{
-		VolumeID: aws.String("String"), // Required
+		VolumeID: awsconv.String("String"), // Required
 	}
 	resp, err := svc.UnassignVolume(params)
 
@@ -1959,55 +1959,55 @@ func ExampleOpsWorks_UnassignVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateApp() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateAppInput{
-		AppID: aws.String("String"), // Required
+		AppID: awsconv.String("String"), // Required
 		AppSource: &opsworks.Source{
-			Password: aws.String("String"),
-			Revision: aws.String("String"),
-			SSHKey:   aws.String("String"),
-			Type:     aws.String("SourceType"),
-			URL:      aws.String("String"),
-			Username: aws.String("String"),
+			Password: awsconv.String("String"),
+			Revision: awsconv.String("String"),
+			SSHKey:   awsconv.String("String"),
+			Type:     awsconv.String("SourceType"),
+			URL:      awsconv.String("String"),
+			Username: awsconv.String("String"),
 		},
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
 		DataSources: []*opsworks.DataSource{
 			{ // Required
-				ARN:          aws.String("String"),
-				DatabaseName: aws.String("String"),
-				Type:         aws.String("String"),
+				ARN:          awsconv.String("String"),
+				DatabaseName: awsconv.String("String"),
+				Type:         awsconv.String("String"),
 			},
 			// More values...
 		},
-		Description: aws.String("String"),
+		Description: awsconv.String("String"),
 		Domains: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		EnableSSL: aws.Boolean(true),
+		EnableSSL: awsconv.Bool(true),
 		Environment: []*opsworks.EnvironmentVariable{
 			{ // Required
-				Key:    aws.String("String"), // Required
-				Value:  aws.String("String"), // Required
-				Secure: aws.Boolean(true),
+				Key:    awsconv.String("String"), // Required
+				Value:  awsconv.String("String"), // Required
+				Secure: awsconv.Bool(true),
 			},
 			// More values...
 		},
-		Name: aws.String("String"),
+		Name: awsconv.String("String"),
 		SSLConfiguration: &opsworks.SSLConfiguration{
-			Certificate: aws.String("String"), // Required
-			PrivateKey:  aws.String("String"), // Required
-			Chain:       aws.String("String"),
+			Certificate: awsconv.String("String"), // Required
+			PrivateKey:  awsconv.String("String"), // Required
+			Chain:       awsconv.String("String"),
 		},
-		Type: aws.String("AppType"),
+		Type: awsconv.String("AppType"),
 	}
 	resp, err := svc.UpdateApp(params)
 
@@ -2027,15 +2027,15 @@ func ExampleOpsWorks_UpdateApp() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateElasticIP() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateElasticIPInput{
-		ElasticIP: aws.String("String"), // Required
-		Name:      aws.String("String"),
+		ElasticIP: awsconv.String("String"), // Required
+		Name:      awsconv.String("String"),
 	}
 	resp, err := svc.UpdateElasticIP(params)
 
@@ -2055,28 +2055,28 @@ func ExampleOpsWorks_UpdateElasticIP() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateInstanceInput{
-		InstanceID:           aws.String("String"), // Required
-		AMIID:                aws.String("String"),
-		AgentVersion:         aws.String("String"),
-		Architecture:         aws.String("Architecture"),
-		AutoScalingType:      aws.String("AutoScalingType"),
-		EBSOptimized:         aws.Boolean(true),
-		Hostname:             aws.String("String"),
-		InstallUpdatesOnBoot: aws.Boolean(true),
-		InstanceType:         aws.String("String"),
+		InstanceID:           awsconv.String("String"), // Required
+		AMIID:                awsconv.String("String"),
+		AgentVersion:         awsconv.String("String"),
+		Architecture:         awsconv.String("Architecture"),
+		AutoScalingType:      awsconv.String("AutoScalingType"),
+		EBSOptimized:         awsconv.Bool(true),
+		Hostname:             awsconv.String("String"),
+		InstallUpdatesOnBoot: awsconv.Bool(true),
+		InstanceType:         awsconv.String("String"),
 		LayerIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		Os:         aws.String("String"),
-		SSHKeyName: aws.String("String"),
+		Os:         awsconv.String("String"),
+		SSHKeyName: awsconv.String("String"),
 	}
 	resp, err := svc.UpdateInstance(params)
 
@@ -2096,70 +2096,70 @@ func ExampleOpsWorks_UpdateInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateLayer() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateLayerInput{
-		LayerID: aws.String("String"), // Required
+		LayerID: awsconv.String("String"), // Required
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		AutoAssignElasticIPs:     aws.Boolean(true),
-		AutoAssignPublicIPs:      aws.Boolean(true),
-		CustomInstanceProfileARN: aws.String("String"),
+		AutoAssignElasticIPs:     awsconv.Bool(true),
+		AutoAssignPublicIPs:      awsconv.Bool(true),
+		CustomInstanceProfileARN: awsconv.String("String"),
 		CustomRecipes: &opsworks.Recipes{
 			Configure: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Deploy: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Setup: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Shutdown: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 			Undeploy: []*string{
-				aws.String("String"), // Required
+				awsconv.String("String"), // Required
 				// More values...
 			},
 		},
 		CustomSecurityGroupIDs: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		EnableAutoHealing:    aws.Boolean(true),
-		InstallUpdatesOnBoot: aws.Boolean(true),
+		EnableAutoHealing:    awsconv.Bool(true),
+		InstallUpdatesOnBoot: awsconv.Bool(true),
 		LifecycleEventConfiguration: &opsworks.LifecycleEventConfiguration{
 			Shutdown: &opsworks.ShutdownEventConfiguration{
-				DelayUntilELBConnectionsDrained: aws.Boolean(true),
-				ExecutionTimeout:                aws.Long(1),
+				DelayUntilELBConnectionsDrained: awsconv.Bool(true),
+				ExecutionTimeout:                awsconv.Int64(1),
 			},
 		},
-		Name: aws.String("String"),
+		Name: awsconv.String("String"),
 		Packages: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		Shortname:                aws.String("String"),
-		UseEBSOptimizedInstances: aws.Boolean(true),
+		Shortname:                awsconv.String("String"),
+		UseEBSOptimizedInstances: awsconv.Bool(true),
 		VolumeConfigurations: []*opsworks.VolumeConfiguration{
 			{ // Required
-				MountPoint:    aws.String("String"), // Required
-				NumberOfDisks: aws.Long(1),          // Required
-				Size:          aws.Long(1),          // Required
-				IOPS:          aws.Long(1),
-				RAIDLevel:     aws.Long(1),
-				VolumeType:    aws.String("String"),
+				MountPoint:    awsconv.String("String"), // Required
+				NumberOfDisks: awsconv.Int64(1),         // Required
+				Size:          awsconv.Int64(1),         // Required
+				IOPS:          awsconv.Int64(1),
+				RAIDLevel:     awsconv.Int64(1),
+				VolumeType:    awsconv.String("String"),
 			},
 			// More values...
 		},
@@ -2182,14 +2182,14 @@ func ExampleOpsWorks_UpdateLayer() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateMyUserProfile() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateMyUserProfileInput{
-		SSHPublicKey: aws.String("String"),
+		SSHPublicKey: awsconv.String("String"),
 	}
 	resp, err := svc.UpdateMyUserProfile(params)
 
@@ -2209,16 +2209,16 @@ func ExampleOpsWorks_UpdateMyUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateRDSDBInstance() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateRDSDBInstanceInput{
-		RDSDBInstanceARN: aws.String("String"), // Required
-		DBPassword:       aws.String("String"),
-		DBUser:           aws.String("String"),
+		RDSDBInstanceARN: awsconv.String("String"), // Required
+		DBPassword:       awsconv.String("String"),
+		DBUser:           awsconv.String("String"),
 	}
 	resp, err := svc.UpdateRDSDBInstance(params)
 
@@ -2238,47 +2238,47 @@ func ExampleOpsWorks_UpdateRDSDBInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateStack() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateStackInput{
-		StackID:      aws.String("String"), // Required
-		AgentVersion: aws.String("String"),
+		StackID:      awsconv.String("String"), // Required
+		AgentVersion: awsconv.String("String"),
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
 		ChefConfiguration: &opsworks.ChefConfiguration{
-			BerkshelfVersion: aws.String("String"),
-			ManageBerkshelf:  aws.Boolean(true),
+			BerkshelfVersion: awsconv.String("String"),
+			ManageBerkshelf:  awsconv.Bool(true),
 		},
 		ConfigurationManager: &opsworks.StackConfigurationManager{
-			Name:    aws.String("String"),
-			Version: aws.String("String"),
+			Name:    awsconv.String("String"),
+			Version: awsconv.String("String"),
 		},
 		CustomCookbooksSource: &opsworks.Source{
-			Password: aws.String("String"),
-			Revision: aws.String("String"),
-			SSHKey:   aws.String("String"),
-			Type:     aws.String("SourceType"),
-			URL:      aws.String("String"),
-			Username: aws.String("String"),
+			Password: awsconv.String("String"),
+			Revision: awsconv.String("String"),
+			SSHKey:   awsconv.String("String"),
+			Type:     awsconv.String("SourceType"),
+			URL:      awsconv.String("String"),
+			Username: awsconv.String("String"),
 		},
-		CustomJSON:                aws.String("String"),
-		DefaultAvailabilityZone:   aws.String("String"),
-		DefaultInstanceProfileARN: aws.String("String"),
-		DefaultOs:                 aws.String("String"),
-		DefaultRootDeviceType:     aws.String("RootDeviceType"),
-		DefaultSSHKeyName:         aws.String("String"),
-		DefaultSubnetID:           aws.String("String"),
-		HostnameTheme:             aws.String("String"),
-		Name:                      aws.String("String"),
-		ServiceRoleARN:            aws.String("String"),
-		UseCustomCookbooks:        aws.Boolean(true),
-		UseOpsWorksSecurityGroups: aws.Boolean(true),
+		CustomJSON:                awsconv.String("String"),
+		DefaultAvailabilityZone:   awsconv.String("String"),
+		DefaultInstanceProfileARN: awsconv.String("String"),
+		DefaultOs:                 awsconv.String("String"),
+		DefaultRootDeviceType:     awsconv.String("RootDeviceType"),
+		DefaultSSHKeyName:         awsconv.String("String"),
+		DefaultSubnetID:           awsconv.String("String"),
+		HostnameTheme:             awsconv.String("String"),
+		Name:                      awsconv.String("String"),
+		ServiceRoleARN:            awsconv.String("String"),
+		UseCustomCookbooks:        awsconv.Bool(true),
+		UseOpsWorksSecurityGroups: awsconv.Bool(true),
 	}
 	resp, err := svc.UpdateStack(params)
 
@@ -2298,17 +2298,17 @@ func ExampleOpsWorks_UpdateStack() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateUserProfile() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateUserProfileInput{
-		IAMUserARN:          aws.String("String"), // Required
-		AllowSelfManagement: aws.Boolean(true),
-		SSHPublicKey:        aws.String("String"),
-		SSHUsername:         aws.String("String"),
+		IAMUserARN:          awsconv.String("String"), // Required
+		AllowSelfManagement: awsconv.Bool(true),
+		SSHPublicKey:        awsconv.String("String"),
+		SSHUsername:         awsconv.String("String"),
 	}
 	resp, err := svc.UpdateUserProfile(params)
 
@@ -2328,16 +2328,16 @@ func ExampleOpsWorks_UpdateUserProfile() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleOpsWorks_UpdateVolume() {
 	svc := opsworks.New(nil)
 
 	params := &opsworks.UpdateVolumeInput{
-		VolumeID:   aws.String("String"), // Required
-		MountPoint: aws.String("String"),
-		Name:       aws.String("String"),
+		VolumeID:   awsconv.String("String"), // Required
+		MountPoint: awsconv.String("String"),
+		Name:       awsconv.String("String"),
 	}
 	resp, err := svc.UpdateVolume(params)
 
@@ -2357,5 +2357,5 @@ func ExampleOpsWorks_UpdateVolume() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

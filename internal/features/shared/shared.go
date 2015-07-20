@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	. "github.com/lsegal/gucumber"
@@ -26,11 +26,13 @@ const Imported = true
 
 func init() {
 	if os.Getenv("DEBUG") != "" {
-		aws.DefaultConfig.LogLevel = 1
+		awscfg.DefaultConfig.LogLevel = awscfg.LogLevel(awscfg.LogDebug)
+	}
+	if os.Getenv("DEBUG_SIGNING") != "" {
+		awscfg.DefaultConfig.LogLevel = awscfg.LogLevel(awscfg.LogDebugWithSigning)
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		aws.DefaultConfig.LogLevel = 1
-		aws.DefaultConfig.LogHTTPBody = true
+		awscfg.DefaultConfig.LogLevel = awscfg.LogLevel(awscfg.LogDebugWithSigning | awscfg.LogDebugWithHTTPBody)
 	}
 
 	When(`^I call the "(.+?)" API$`, func(op string) {

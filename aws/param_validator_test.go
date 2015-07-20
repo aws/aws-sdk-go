@@ -4,13 +4,15 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/stretchr/testify/assert"
 )
 
 var service = func() *aws.Service {
 	s := &aws.Service{
-		Config:      &aws.Config{},
+		Config:      &awscfg.Config{},
 		ServiceName: "mock-service",
 		APIVersion:  "2015-01-01",
 	}
@@ -41,11 +43,11 @@ func TestNoErrors(t *testing.T) {
 	input := &StructShape{
 		RequiredList: []*ConditionalStructShape{},
 		RequiredMap: map[string]*ConditionalStructShape{
-			"key1": {Name: aws.String("Name")},
-			"key2": {Name: aws.String("Name")},
+			"key1": {Name: awsconv.String("Name")},
+			"key2": {Name: awsconv.String("Name")},
 		},
-		RequiredBool:   aws.Boolean(true),
-		OptionalStruct: &ConditionalStructShape{Name: aws.String("Name")},
+		RequiredBool:   awsconv.Bool(true),
+		OptionalStruct: &ConditionalStructShape{Name: awsconv.String("Name")},
 	}
 
 	req := aws.NewRequest(service, &aws.Operation{}, input, nil)
@@ -67,10 +69,10 @@ func TestNestedMissingRequiredParameters(t *testing.T) {
 	input := &StructShape{
 		RequiredList: []*ConditionalStructShape{{}},
 		RequiredMap: map[string]*ConditionalStructShape{
-			"key1": {Name: aws.String("Name")},
+			"key1": {Name: awsconv.String("Name")},
 			"key2": {},
 		},
-		RequiredBool:   aws.Boolean(true),
+		RequiredBool:   awsconv.Bool(true),
 		OptionalStruct: &ConditionalStructShape{},
 	}
 

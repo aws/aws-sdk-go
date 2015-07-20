@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudhsm"
@@ -20,7 +20,7 @@ func ExampleCloudHSM_CreateHAPG() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.CreateHAPGInput{
-		Label: aws.String("Label"), // Required
+		Label: awsconv.String("Label"), // Required
 	}
 	resp, err := svc.CreateHAPG(params)
 
@@ -40,21 +40,21 @@ func ExampleCloudHSM_CreateHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_CreateHSM() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.CreateHSMInput{
-		IAMRoleARN:       aws.String("IamRoleArn"),       // Required
-		SSHKey:           aws.String("SshKey"),           // Required
-		SubnetID:         aws.String("SubnetId"),         // Required
-		SubscriptionType: aws.String("SubscriptionType"), // Required
-		ClientToken:      aws.String("ClientToken"),
-		ENIIP:            aws.String("IpAddress"),
-		ExternalID:       aws.String("ExternalId"),
-		SyslogIP:         aws.String("IpAddress"),
+		IAMRoleARN:       awsconv.String("IamRoleArn"),       // Required
+		SSHKey:           awsconv.String("SshKey"),           // Required
+		SubnetID:         awsconv.String("SubnetId"),         // Required
+		SubscriptionType: awsconv.String("SubscriptionType"), // Required
+		ClientToken:      awsconv.String("ClientToken"),
+		ENIIP:            awsconv.String("IpAddress"),
+		ExternalID:       awsconv.String("ExternalId"),
+		SyslogIP:         awsconv.String("IpAddress"),
 	}
 	resp, err := svc.CreateHSM(params)
 
@@ -74,15 +74,15 @@ func ExampleCloudHSM_CreateHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_CreateLunaClient() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.CreateLunaClientInput{
-		Certificate: aws.String("Certificate"), // Required
-		Label:       aws.String("ClientLabel"),
+		Certificate: awsconv.String("Certificate"), // Required
+		Label:       awsconv.String("ClientLabel"),
 	}
 	resp, err := svc.CreateLunaClient(params)
 
@@ -102,14 +102,14 @@ func ExampleCloudHSM_CreateLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DeleteHAPG() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.DeleteHAPGInput{
-		HAPGARN: aws.String("HapgArn"), // Required
+		HAPGARN: awsconv.String("HapgArn"), // Required
 	}
 	resp, err := svc.DeleteHAPG(params)
 
@@ -129,14 +129,14 @@ func ExampleCloudHSM_DeleteHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DeleteHSM() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.DeleteHSMInput{
-		HSMARN: aws.String("HsmArn"), // Required
+		HSMARN: awsconv.String("HsmArn"), // Required
 	}
 	resp, err := svc.DeleteHSM(params)
 
@@ -156,14 +156,14 @@ func ExampleCloudHSM_DeleteHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DeleteLunaClient() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.DeleteLunaClientInput{
-		ClientARN: aws.String("ClientArn"), // Required
+		ClientARN: awsconv.String("ClientArn"), // Required
 	}
 	resp, err := svc.DeleteLunaClient(params)
 
@@ -183,14 +183,14 @@ func ExampleCloudHSM_DeleteLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DescribeHAPG() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.DescribeHAPGInput{
-		HAPGARN: aws.String("HapgArn"), // Required
+		HAPGARN: awsconv.String("HapgArn"), // Required
 	}
 	resp, err := svc.DescribeHAPG(params)
 
@@ -210,15 +210,15 @@ func ExampleCloudHSM_DescribeHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DescribeHSM() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.DescribeHSMInput{
-		HSMARN:          aws.String("HsmArn"),
-		HSMSerialNumber: aws.String("HsmSerialNumber"),
+		HSMARN:          awsconv.String("HsmArn"),
+		HSMSerialNumber: awsconv.String("HsmSerialNumber"),
 	}
 	resp, err := svc.DescribeHSM(params)
 
@@ -238,15 +238,15 @@ func ExampleCloudHSM_DescribeHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_DescribeLunaClient() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.DescribeLunaClientInput{
-		CertificateFingerprint: aws.String("CertificateFingerprint"),
-		ClientARN:              aws.String("ClientArn"),
+		CertificateFingerprint: awsconv.String("CertificateFingerprint"),
+		ClientARN:              awsconv.String("ClientArn"),
 	}
 	resp, err := svc.DescribeLunaClient(params)
 
@@ -266,17 +266,17 @@ func ExampleCloudHSM_DescribeLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_GetConfig() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.GetConfigInput{
-		ClientARN:     aws.String("ClientArn"),     // Required
-		ClientVersion: aws.String("ClientVersion"), // Required
+		ClientARN:     awsconv.String("ClientArn"),     // Required
+		ClientVersion: awsconv.String("ClientVersion"), // Required
 		HAPGList: []*string{ // Required
-			aws.String("HapgArn"), // Required
+			awsconv.String("HapgArn"), // Required
 			// More values...
 		},
 	}
@@ -298,7 +298,7 @@ func ExampleCloudHSM_GetConfig() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListAvailableZones() {
@@ -323,14 +323,14 @@ func ExampleCloudHSM_ListAvailableZones() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListHSMs() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.ListHSMsInput{
-		NextToken: aws.String("PaginationToken"),
+		NextToken: awsconv.String("PaginationToken"),
 	}
 	resp, err := svc.ListHSMs(params)
 
@@ -350,14 +350,14 @@ func ExampleCloudHSM_ListHSMs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListHapgs() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.ListHapgsInput{
-		NextToken: aws.String("PaginationToken"),
+		NextToken: awsconv.String("PaginationToken"),
 	}
 	resp, err := svc.ListHapgs(params)
 
@@ -377,14 +377,14 @@ func ExampleCloudHSM_ListHapgs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ListLunaClients() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.ListLunaClientsInput{
-		NextToken: aws.String("PaginationToken"),
+		NextToken: awsconv.String("PaginationToken"),
 	}
 	resp, err := svc.ListLunaClients(params)
 
@@ -404,17 +404,17 @@ func ExampleCloudHSM_ListLunaClients() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ModifyHAPG() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.ModifyHAPGInput{
-		HAPGARN: aws.String("HapgArn"), // Required
-		Label:   aws.String("Label"),
+		HAPGARN: awsconv.String("HapgArn"), // Required
+		Label:   awsconv.String("Label"),
 		PartitionSerialList: []*string{
-			aws.String("PartitionSerial"), // Required
+			awsconv.String("PartitionSerial"), // Required
 			// More values...
 		},
 	}
@@ -436,19 +436,19 @@ func ExampleCloudHSM_ModifyHAPG() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ModifyHSM() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.ModifyHSMInput{
-		HSMARN:     aws.String("HsmArn"), // Required
-		ENIIP:      aws.String("IpAddress"),
-		ExternalID: aws.String("ExternalId"),
-		IAMRoleARN: aws.String("IamRoleArn"),
-		SubnetID:   aws.String("SubnetId"),
-		SyslogIP:   aws.String("IpAddress"),
+		HSMARN:     awsconv.String("HsmArn"), // Required
+		ENIIP:      awsconv.String("IpAddress"),
+		ExternalID: awsconv.String("ExternalId"),
+		IAMRoleARN: awsconv.String("IamRoleArn"),
+		SubnetID:   awsconv.String("SubnetId"),
+		SyslogIP:   awsconv.String("IpAddress"),
 	}
 	resp, err := svc.ModifyHSM(params)
 
@@ -468,15 +468,15 @@ func ExampleCloudHSM_ModifyHSM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCloudHSM_ModifyLunaClient() {
 	svc := cloudhsm.New(nil)
 
 	params := &cloudhsm.ModifyLunaClientInput{
-		Certificate: aws.String("Certificate"), // Required
-		ClientARN:   aws.String("ClientArn"),   // Required
+		Certificate: awsconv.String("Certificate"), // Required
+		ClientARN:   awsconv.String("ClientArn"),   // Required
 	}
 	resp, err := svc.ModifyLunaClient(params)
 
@@ -496,5 +496,5 @@ func ExampleCloudHSM_ModifyLunaClient() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

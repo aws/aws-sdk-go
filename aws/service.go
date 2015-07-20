@@ -8,6 +8,8 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awscfg"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/endpoints"
 )
@@ -15,7 +17,7 @@ import (
 // A Service implements the base service request and response handling
 // used by all services.
 type Service struct {
-	Config            *Config
+	Config            *awscfg.Config
 	Handlers          Handlers
 	ServiceName       string
 	APIVersion        string
@@ -32,7 +34,7 @@ type Service struct {
 var schemeRE = regexp.MustCompile("^([^:]+)://")
 
 // NewService will return a pointer to a new Server object initialized.
-func NewService(config *Config) *Service {
+func NewService(config *awscfg.Config) *Service {
 	svc := &Service{Config: config}
 	svc.Initialize()
 	return svc
@@ -41,7 +43,7 @@ func NewService(config *Config) *Service {
 // Initialize initializes the service.
 func (s *Service) Initialize() {
 	if s.Config == nil {
-		s.Config = &Config{}
+		s.Config = &awscfg.Config{}
 	}
 	if s.Config.HTTPClient == nil {
 		s.Config.HTTPClient = http.DefaultClient
@@ -65,23 +67,23 @@ func (s *Service) Initialize() {
 	s.AddDebugHandlers()
 	s.buildEndpoint()
 
-	if !s.Config.DisableParamValidation {
+	if !awsconv.BoolValue(s.Config.DisableParamValidation) {
 		s.Handlers.Validate.PushBack(ValidateParameters)
 	}
 }
 
 // buildEndpoint builds the endpoint values the service will use to make requests with.
 func (s *Service) buildEndpoint() {
-	if s.Config.Endpoint != "" {
-		s.Endpoint = s.Config.Endpoint
+	if awsconv.StringValue(s.Config.Endpoint) != "" {
+		s.Endpoint = *s.Config.Endpoint
 	} else {
 		s.Endpoint, s.SigningRegion =
-			endpoints.EndpointForRegion(s.ServiceName, s.Config.Region)
+			endpoints.EndpointForRegion(s.ServiceName, awsconv.StringValue(s.Config.Region))
 	}
 
 	if s.Endpoint != "" && !schemeRE.MatchString(s.Endpoint) {
 		scheme := "https"
-		if s.Config.DisableSSL {
+		if awsconv.BoolValue(s.Config.DisableSSL) {
 			scheme = "http"
 		}
 		s.Endpoint = scheme + "://" + s.Endpoint
@@ -91,39 +93,50 @@ func (s *Service) buildEndpoint() {
 // AddDebugHandlers injects debug logging handlers into the service to log request
 // debug information.
 func (s *Service) AddDebugHandlers() {
-	out := s.Config.Logger
-	if s.Config.LogLevel == 0 {
+	if !s.Config.LogLevel.AtLeast(awscfg.LogDebug) {
 		return
 	}
 
-	s.Handlers.Send.PushFront(func(r *Request) {
-		logBody := r.Config.LogHTTPBody
-		dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+	s.Handlers.Send.PushFront(logRequest)
+	s.Handlers.Send.PushBack(logResponse)
+}
 
-		fmt.Fprintf(out, "---[ REQUEST POST-SIGN ]-----------------------------\n")
-		fmt.Fprintf(out, "%s\n", string(dumpedBody))
-		fmt.Fprintf(out, "-----------------------------------------------------\n")
-	})
-	s.Handlers.Send.PushBack(func(r *Request) {
-		fmt.Fprintf(out, "---[ RESPONSE ]--------------------------------------\n")
-		if r.HTTPResponse != nil {
-			logBody := r.Config.LogHTTPBody
-			dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
-			fmt.Fprintf(out, "%s\n", string(dumpedBody))
-		} else if r.Error != nil {
-			fmt.Fprintf(out, "%s\n", r.Error)
-		}
-		fmt.Fprintf(out, "-----------------------------------------------------\n")
-	})
+const logReqMsg = `DEBUG: Request %s/%s Details:
+---[ REQUEST POST-SIGN ]-----------------------------
+%s
+-----------------------------------------------------`
+
+func logRequest(r *Request) {
+	logBody := r.Config.LogLevel.Matches(awscfg.LogDebugWithHTTPBody)
+	dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+
+	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ServiceName, r.Operation.Name, string(dumpedBody)))
+}
+
+const logRespMsg = `DEBUG: Response %s/%s Details:
+---[ RESPONSE ]--------------------------------------
+%s
+-----------------------------------------------------`
+
+func logResponse(r *Request) {
+	var msg = "no reponse data"
+	if r.HTTPResponse != nil {
+		logBody := r.Config.LogLevel.Matches(awscfg.LogDebugWithHTTPBody)
+		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
+		msg = string(dumpedBody)
+	} else if r.Error != nil {
+		msg = r.Error.Error()
+	}
+	r.Config.Logger.Log(fmt.Sprintf(logRespMsg, r.ServiceName, r.Operation.Name, msg))
 }
 
 // MaxRetries returns the number of maximum returns the service will use to make
 // an individual API request.
 func (s *Service) MaxRetries() uint {
-	if s.Config.MaxRetries < 0 {
+	if awsconv.IntValue(s.Config.MaxRetries) < 0 {
 		return s.DefaultMaxRetries
 	}
-	return uint(s.Config.MaxRetries)
+	return uint(awsconv.IntValue(s.Config.MaxRetries))
 }
 
 // retryRules returns the delay duration before retrying this request again

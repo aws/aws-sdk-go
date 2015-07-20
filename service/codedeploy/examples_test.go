@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/codedeploy"
@@ -21,13 +21,13 @@ func ExampleCodeDeploy_AddTagsToOnPremisesInstances() {
 
 	params := &codedeploy.AddTagsToOnPremisesInstancesInput{
 		InstanceNames: []*string{ // Required
-			aws.String("InstanceName"), // Required
+			awsconv.String("InstanceName"), // Required
 			// More values...
 		},
 		Tags: []*codedeploy.Tag{ // Required
 			{ // Required
-				Key:   aws.String("Key"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
@@ -50,7 +50,7 @@ func ExampleCodeDeploy_AddTagsToOnPremisesInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_BatchGetApplications() {
@@ -58,7 +58,7 @@ func ExampleCodeDeploy_BatchGetApplications() {
 
 	params := &codedeploy.BatchGetApplicationsInput{
 		ApplicationNames: []*string{
-			aws.String("ApplicationName"), // Required
+			awsconv.String("ApplicationName"), // Required
 			// More values...
 		},
 	}
@@ -80,7 +80,7 @@ func ExampleCodeDeploy_BatchGetApplications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_BatchGetDeployments() {
@@ -88,7 +88,7 @@ func ExampleCodeDeploy_BatchGetDeployments() {
 
 	params := &codedeploy.BatchGetDeploymentsInput{
 		DeploymentIDs: []*string{
-			aws.String("DeploymentId"), // Required
+			awsconv.String("DeploymentId"), // Required
 			// More values...
 		},
 	}
@@ -110,7 +110,7 @@ func ExampleCodeDeploy_BatchGetDeployments() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_BatchGetOnPremisesInstances() {
@@ -118,7 +118,7 @@ func ExampleCodeDeploy_BatchGetOnPremisesInstances() {
 
 	params := &codedeploy.BatchGetOnPremisesInstancesInput{
 		InstanceNames: []*string{
-			aws.String("InstanceName"), // Required
+			awsconv.String("InstanceName"), // Required
 			// More values...
 		},
 	}
@@ -140,14 +140,14 @@ func ExampleCodeDeploy_BatchGetOnPremisesInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_CreateApplication() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.CreateApplicationInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
+		ApplicationName: awsconv.String("ApplicationName"), // Required
 	}
 	resp, err := svc.CreateApplication(params)
 
@@ -167,30 +167,30 @@ func ExampleCodeDeploy_CreateApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_CreateDeployment() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.CreateDeploymentInput{
-		ApplicationName:               aws.String("ApplicationName"), // Required
-		DeploymentConfigName:          aws.String("DeploymentConfigName"),
-		DeploymentGroupName:           aws.String("DeploymentGroupName"),
-		Description:                   aws.String("Description"),
-		IgnoreApplicationStopFailures: aws.Boolean(true),
+		ApplicationName:               awsconv.String("ApplicationName"), // Required
+		DeploymentConfigName:          awsconv.String("DeploymentConfigName"),
+		DeploymentGroupName:           awsconv.String("DeploymentGroupName"),
+		Description:                   awsconv.String("Description"),
+		IgnoreApplicationStopFailures: awsconv.Bool(true),
 		Revision: &codedeploy.RevisionLocation{
 			GitHubLocation: &codedeploy.GitHubLocation{
-				CommitID:   aws.String("CommitId"),
-				Repository: aws.String("Repository"),
+				CommitID:   awsconv.String("CommitId"),
+				Repository: awsconv.String("Repository"),
 			},
-			RevisionType: aws.String("RevisionLocationType"),
+			RevisionType: awsconv.String("RevisionLocationType"),
 			S3Location: &codedeploy.S3Location{
-				Bucket:     aws.String("S3Bucket"),
-				BundleType: aws.String("BundleType"),
-				ETag:       aws.String("ETag"),
-				Key:        aws.String("S3Key"),
-				Version:    aws.String("VersionId"),
+				Bucket:     awsconv.String("S3Bucket"),
+				BundleType: awsconv.String("BundleType"),
+				ETag:       awsconv.String("ETag"),
+				Key:        awsconv.String("S3Key"),
+				Version:    awsconv.String("VersionId"),
 			},
 		},
 	}
@@ -212,17 +212,17 @@ func ExampleCodeDeploy_CreateDeployment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_CreateDeploymentConfig() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.CreateDeploymentConfigInput{
-		DeploymentConfigName: aws.String("DeploymentConfigName"), // Required
+		DeploymentConfigName: awsconv.String("DeploymentConfigName"), // Required
 		MinimumHealthyHosts: &codedeploy.MinimumHealthyHosts{
-			Type:  aws.String("MinimumHealthyHostsType"),
-			Value: aws.Long(1),
+			Type:  awsconv.String("MinimumHealthyHostsType"),
+			Value: awsconv.Int64(1),
 		},
 	}
 	resp, err := svc.CreateDeploymentConfig(params)
@@ -243,34 +243,34 @@ func ExampleCodeDeploy_CreateDeploymentConfig() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_CreateDeploymentGroup() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.CreateDeploymentGroupInput{
-		ApplicationName:     aws.String("ApplicationName"),     // Required
-		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
-		ServiceRoleARN:      aws.String("Role"),                // Required
+		ApplicationName:     awsconv.String("ApplicationName"),     // Required
+		DeploymentGroupName: awsconv.String("DeploymentGroupName"), // Required
+		ServiceRoleARN:      awsconv.String("Role"),                // Required
 		AutoScalingGroups: []*string{
-			aws.String("AutoScalingGroupName"), // Required
+			awsconv.String("AutoScalingGroupName"), // Required
 			// More values...
 		},
-		DeploymentConfigName: aws.String("DeploymentConfigName"),
+		DeploymentConfigName: awsconv.String("DeploymentConfigName"),
 		EC2TagFilters: []*codedeploy.EC2TagFilter{
 			{ // Required
-				Key:   aws.String("Key"),
-				Type:  aws.String("EC2TagFilterType"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Type:  awsconv.String("EC2TagFilterType"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
 		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
 			{ // Required
-				Key:   aws.String("Key"),
-				Type:  aws.String("TagFilterType"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Type:  awsconv.String("TagFilterType"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
@@ -293,14 +293,14 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_DeleteApplication() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.DeleteApplicationInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
+		ApplicationName: awsconv.String("ApplicationName"), // Required
 	}
 	resp, err := svc.DeleteApplication(params)
 
@@ -320,14 +320,14 @@ func ExampleCodeDeploy_DeleteApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_DeleteDeploymentConfig() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.DeleteDeploymentConfigInput{
-		DeploymentConfigName: aws.String("DeploymentConfigName"), // Required
+		DeploymentConfigName: awsconv.String("DeploymentConfigName"), // Required
 	}
 	resp, err := svc.DeleteDeploymentConfig(params)
 
@@ -347,15 +347,15 @@ func ExampleCodeDeploy_DeleteDeploymentConfig() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_DeleteDeploymentGroup() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.DeleteDeploymentGroupInput{
-		ApplicationName:     aws.String("ApplicationName"),     // Required
-		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
+		ApplicationName:     awsconv.String("ApplicationName"),     // Required
+		DeploymentGroupName: awsconv.String("DeploymentGroupName"), // Required
 	}
 	resp, err := svc.DeleteDeploymentGroup(params)
 
@@ -375,14 +375,14 @@ func ExampleCodeDeploy_DeleteDeploymentGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_DeregisterOnPremisesInstance() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.DeregisterOnPremisesInstanceInput{
-		InstanceName: aws.String("InstanceName"), // Required
+		InstanceName: awsconv.String("InstanceName"), // Required
 	}
 	resp, err := svc.DeregisterOnPremisesInstance(params)
 
@@ -402,14 +402,14 @@ func ExampleCodeDeploy_DeregisterOnPremisesInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetApplication() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetApplicationInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
+		ApplicationName: awsconv.String("ApplicationName"), // Required
 	}
 	resp, err := svc.GetApplication(params)
 
@@ -429,26 +429,26 @@ func ExampleCodeDeploy_GetApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetApplicationRevision() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetApplicationRevisionInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
+		ApplicationName: awsconv.String("ApplicationName"), // Required
 		Revision: &codedeploy.RevisionLocation{ // Required
 			GitHubLocation: &codedeploy.GitHubLocation{
-				CommitID:   aws.String("CommitId"),
-				Repository: aws.String("Repository"),
+				CommitID:   awsconv.String("CommitId"),
+				Repository: awsconv.String("Repository"),
 			},
-			RevisionType: aws.String("RevisionLocationType"),
+			RevisionType: awsconv.String("RevisionLocationType"),
 			S3Location: &codedeploy.S3Location{
-				Bucket:     aws.String("S3Bucket"),
-				BundleType: aws.String("BundleType"),
-				ETag:       aws.String("ETag"),
-				Key:        aws.String("S3Key"),
-				Version:    aws.String("VersionId"),
+				Bucket:     awsconv.String("S3Bucket"),
+				BundleType: awsconv.String("BundleType"),
+				ETag:       awsconv.String("ETag"),
+				Key:        awsconv.String("S3Key"),
+				Version:    awsconv.String("VersionId"),
 			},
 		},
 	}
@@ -470,14 +470,14 @@ func ExampleCodeDeploy_GetApplicationRevision() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetDeployment() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetDeploymentInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
+		DeploymentID: awsconv.String("DeploymentId"), // Required
 	}
 	resp, err := svc.GetDeployment(params)
 
@@ -497,14 +497,14 @@ func ExampleCodeDeploy_GetDeployment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetDeploymentConfig() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetDeploymentConfigInput{
-		DeploymentConfigName: aws.String("DeploymentConfigName"), // Required
+		DeploymentConfigName: awsconv.String("DeploymentConfigName"), // Required
 	}
 	resp, err := svc.GetDeploymentConfig(params)
 
@@ -524,15 +524,15 @@ func ExampleCodeDeploy_GetDeploymentConfig() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetDeploymentGroup() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetDeploymentGroupInput{
-		ApplicationName:     aws.String("ApplicationName"),     // Required
-		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
+		ApplicationName:     awsconv.String("ApplicationName"),     // Required
+		DeploymentGroupName: awsconv.String("DeploymentGroupName"), // Required
 	}
 	resp, err := svc.GetDeploymentGroup(params)
 
@@ -552,15 +552,15 @@ func ExampleCodeDeploy_GetDeploymentGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetDeploymentInstance() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetDeploymentInstanceInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
-		InstanceID:   aws.String("InstanceId"),   // Required
+		DeploymentID: awsconv.String("DeploymentId"), // Required
+		InstanceID:   awsconv.String("InstanceId"),   // Required
 	}
 	resp, err := svc.GetDeploymentInstance(params)
 
@@ -580,14 +580,14 @@ func ExampleCodeDeploy_GetDeploymentInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_GetOnPremisesInstance() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetOnPremisesInstanceInput{
-		InstanceName: aws.String("InstanceName"), // Required
+		InstanceName: awsconv.String("InstanceName"), // Required
 	}
 	resp, err := svc.GetOnPremisesInstance(params)
 
@@ -607,20 +607,20 @@ func ExampleCodeDeploy_GetOnPremisesInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListApplicationRevisions() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListApplicationRevisionsInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
-		Deployed:        aws.String("ListStateFilterAction"),
-		NextToken:       aws.String("NextToken"),
-		S3Bucket:        aws.String("S3Bucket"),
-		S3KeyPrefix:     aws.String("S3Key"),
-		SortBy:          aws.String("ApplicationRevisionSortBy"),
-		SortOrder:       aws.String("SortOrder"),
+		ApplicationName: awsconv.String("ApplicationName"), // Required
+		Deployed:        awsconv.String("ListStateFilterAction"),
+		NextToken:       awsconv.String("NextToken"),
+		S3Bucket:        awsconv.String("S3Bucket"),
+		S3KeyPrefix:     awsconv.String("S3Key"),
+		SortBy:          awsconv.String("ApplicationRevisionSortBy"),
+		SortOrder:       awsconv.String("SortOrder"),
 	}
 	resp, err := svc.ListApplicationRevisions(params)
 
@@ -640,14 +640,14 @@ func ExampleCodeDeploy_ListApplicationRevisions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListApplications() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListApplicationsInput{
-		NextToken: aws.String("NextToken"),
+		NextToken: awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListApplications(params)
 
@@ -667,14 +667,14 @@ func ExampleCodeDeploy_ListApplications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListDeploymentConfigs() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListDeploymentConfigsInput{
-		NextToken: aws.String("NextToken"),
+		NextToken: awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListDeploymentConfigs(params)
 
@@ -694,15 +694,15 @@ func ExampleCodeDeploy_ListDeploymentConfigs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListDeploymentGroups() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListDeploymentGroupsInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
-		NextToken:       aws.String("NextToken"),
+		ApplicationName: awsconv.String("ApplicationName"), // Required
+		NextToken:       awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListDeploymentGroups(params)
 
@@ -722,19 +722,19 @@ func ExampleCodeDeploy_ListDeploymentGroups() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListDeploymentInstances() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListDeploymentInstancesInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
+		DeploymentID: awsconv.String("DeploymentId"), // Required
 		InstanceStatusFilter: []*string{
-			aws.String("InstanceStatus"), // Required
+			awsconv.String("InstanceStatus"), // Required
 			// More values...
 		},
-		NextToken: aws.String("NextToken"),
+		NextToken: awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListDeploymentInstances(params)
 
@@ -754,24 +754,24 @@ func ExampleCodeDeploy_ListDeploymentInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListDeployments() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListDeploymentsInput{
-		ApplicationName: aws.String("ApplicationName"),
+		ApplicationName: awsconv.String("ApplicationName"),
 		CreateTimeRange: &codedeploy.TimeRange{
-			End:   aws.Time(time.Now()),
-			Start: aws.Time(time.Now()),
+			End:   awsconv.Time(time.Now()),
+			Start: awsconv.Time(time.Now()),
 		},
-		DeploymentGroupName: aws.String("DeploymentGroupName"),
+		DeploymentGroupName: awsconv.String("DeploymentGroupName"),
 		IncludeOnlyStatuses: []*string{
-			aws.String("DeploymentStatus"), // Required
+			awsconv.String("DeploymentStatus"), // Required
 			// More values...
 		},
-		NextToken: aws.String("NextToken"),
+		NextToken: awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListDeployments(params)
 
@@ -791,20 +791,20 @@ func ExampleCodeDeploy_ListDeployments() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_ListOnPremisesInstances() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListOnPremisesInstancesInput{
-		NextToken:          aws.String("NextToken"),
-		RegistrationStatus: aws.String("RegistrationStatus"),
+		NextToken:          awsconv.String("NextToken"),
+		RegistrationStatus: awsconv.String("RegistrationStatus"),
 		TagFilters: []*codedeploy.TagFilter{
 			{ // Required
-				Key:   aws.String("Key"),
-				Type:  aws.String("TagFilterType"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Type:  awsconv.String("TagFilterType"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
@@ -827,29 +827,29 @@ func ExampleCodeDeploy_ListOnPremisesInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_RegisterApplicationRevision() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.RegisterApplicationRevisionInput{
-		ApplicationName: aws.String("ApplicationName"), // Required
+		ApplicationName: awsconv.String("ApplicationName"), // Required
 		Revision: &codedeploy.RevisionLocation{ // Required
 			GitHubLocation: &codedeploy.GitHubLocation{
-				CommitID:   aws.String("CommitId"),
-				Repository: aws.String("Repository"),
+				CommitID:   awsconv.String("CommitId"),
+				Repository: awsconv.String("Repository"),
 			},
-			RevisionType: aws.String("RevisionLocationType"),
+			RevisionType: awsconv.String("RevisionLocationType"),
 			S3Location: &codedeploy.S3Location{
-				Bucket:     aws.String("S3Bucket"),
-				BundleType: aws.String("BundleType"),
-				ETag:       aws.String("ETag"),
-				Key:        aws.String("S3Key"),
-				Version:    aws.String("VersionId"),
+				Bucket:     awsconv.String("S3Bucket"),
+				BundleType: awsconv.String("BundleType"),
+				ETag:       awsconv.String("ETag"),
+				Key:        awsconv.String("S3Key"),
+				Version:    awsconv.String("VersionId"),
 			},
 		},
-		Description: aws.String("Description"),
+		Description: awsconv.String("Description"),
 	}
 	resp, err := svc.RegisterApplicationRevision(params)
 
@@ -869,15 +869,15 @@ func ExampleCodeDeploy_RegisterApplicationRevision() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_RegisterOnPremisesInstance() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.RegisterOnPremisesInstanceInput{
-		IAMUserARN:   aws.String("IamUserArn"),   // Required
-		InstanceName: aws.String("InstanceName"), // Required
+		IAMUserARN:   awsconv.String("IamUserArn"),   // Required
+		InstanceName: awsconv.String("InstanceName"), // Required
 	}
 	resp, err := svc.RegisterOnPremisesInstance(params)
 
@@ -897,7 +897,7 @@ func ExampleCodeDeploy_RegisterOnPremisesInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_RemoveTagsFromOnPremisesInstances() {
@@ -905,13 +905,13 @@ func ExampleCodeDeploy_RemoveTagsFromOnPremisesInstances() {
 
 	params := &codedeploy.RemoveTagsFromOnPremisesInstancesInput{
 		InstanceNames: []*string{ // Required
-			aws.String("InstanceName"), // Required
+			awsconv.String("InstanceName"), // Required
 			// More values...
 		},
 		Tags: []*codedeploy.Tag{ // Required
 			{ // Required
-				Key:   aws.String("Key"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
@@ -934,14 +934,14 @@ func ExampleCodeDeploy_RemoveTagsFromOnPremisesInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_StopDeployment() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.StopDeploymentInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
+		DeploymentID: awsconv.String("DeploymentId"), // Required
 	}
 	resp, err := svc.StopDeployment(params)
 
@@ -961,15 +961,15 @@ func ExampleCodeDeploy_StopDeployment() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_UpdateApplication() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.UpdateApplicationInput{
-		ApplicationName:    aws.String("ApplicationName"),
-		NewApplicationName: aws.String("ApplicationName"),
+		ApplicationName:    awsconv.String("ApplicationName"),
+		NewApplicationName: awsconv.String("ApplicationName"),
 	}
 	resp, err := svc.UpdateApplication(params)
 
@@ -989,38 +989,38 @@ func ExampleCodeDeploy_UpdateApplication() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodeDeploy_UpdateDeploymentGroup() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.UpdateDeploymentGroupInput{
-		ApplicationName:            aws.String("ApplicationName"),     // Required
-		CurrentDeploymentGroupName: aws.String("DeploymentGroupName"), // Required
+		ApplicationName:            awsconv.String("ApplicationName"),     // Required
+		CurrentDeploymentGroupName: awsconv.String("DeploymentGroupName"), // Required
 		AutoScalingGroups: []*string{
-			aws.String("AutoScalingGroupName"), // Required
+			awsconv.String("AutoScalingGroupName"), // Required
 			// More values...
 		},
-		DeploymentConfigName: aws.String("DeploymentConfigName"),
+		DeploymentConfigName: awsconv.String("DeploymentConfigName"),
 		EC2TagFilters: []*codedeploy.EC2TagFilter{
 			{ // Required
-				Key:   aws.String("Key"),
-				Type:  aws.String("EC2TagFilterType"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Type:  awsconv.String("EC2TagFilterType"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
-		NewDeploymentGroupName: aws.String("DeploymentGroupName"),
+		NewDeploymentGroupName: awsconv.String("DeploymentGroupName"),
 		OnPremisesInstanceTagFilters: []*codedeploy.TagFilter{
 			{ // Required
-				Key:   aws.String("Key"),
-				Type:  aws.String("TagFilterType"),
-				Value: aws.String("Value"),
+				Key:   awsconv.String("Key"),
+				Type:  awsconv.String("TagFilterType"),
+				Value: awsconv.String("Value"),
 			},
 			// More values...
 		},
-		ServiceRoleARN: aws.String("Role"),
+		ServiceRoleARN: awsconv.String("Role"),
 	}
 	resp, err := svc.UpdateDeploymentGroup(params)
 
@@ -1040,5 +1040,5 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

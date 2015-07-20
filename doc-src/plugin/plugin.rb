@@ -122,7 +122,7 @@ eof
   client := #{pkg.name}.New(nil)
 
 @example Constructing a client with custom configuration
-  config := aws.NewConfig().WithRegion("us-west-2")
+  config := awscfg.New().WithRegion("us-west-2")
   client := #{pkg.name}.New(config)
 eof
 

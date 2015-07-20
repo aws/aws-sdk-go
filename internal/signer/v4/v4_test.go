@@ -7,6 +7,8 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/stretchr/testify/assert"
 )
@@ -117,7 +119,7 @@ func TestSignPrecomputedBodyChecksum(t *testing.T) {
 
 func TestAnonymousCredentials(t *testing.T) {
 	r := aws.NewRequest(
-		aws.NewService(&aws.Config{Credentials: credentials.AnonymousCredentials}),
+		aws.NewService(&awscfg.Config{Credentials: credentials.AnonymousCredentials}),
 		&aws.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
@@ -141,9 +143,9 @@ func TestAnonymousCredentials(t *testing.T) {
 
 func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 	r := aws.NewRequest(
-		aws.NewService(&aws.Config{
+		aws.NewService(&awscfg.Config{
 			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-			Region:      "us-west-2",
+			Region:      awsconv.String("us-west-2"),
 		}),
 		&aws.Operation{
 			Name:       "BatchGetItem",
@@ -163,9 +165,9 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 
 func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 	r := aws.NewRequest(
-		aws.NewService(&aws.Config{
+		aws.NewService(&awscfg.Config{
 			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-			Region:      "us-west-2",
+			Region:      awsconv.String("us-west-2"),
 		}),
 		&aws.Operation{
 			Name:       "BatchGetItem",
@@ -187,7 +189,7 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 func TestResignRequestExpiredCreds(t *testing.T) {
 	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
 	r := aws.NewRequest(
-		aws.NewService(&aws.Config{Credentials: creds}),
+		aws.NewService(&awscfg.Config{Credentials: creds}),
 		&aws.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
@@ -209,7 +211,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	provider := &credentials.StaticProvider{credentials.Value{"AKID", "SECRET", "SESSION"}}
 	creds := credentials.NewCredentials(provider)
 	r := aws.NewRequest(
-		aws.NewService(&aws.Config{Credentials: creds}),
+		aws.NewService(&awscfg.Config{Credentials: creds}),
 		&aws.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",

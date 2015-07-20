@@ -163,7 +163,7 @@ type metadataBucket struct {
 
 // String returns the string representation
 func (s Bucket) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -185,7 +185,7 @@ type metadataBucketInfo struct {
 
 // String returns the string representation
 func (s BucketInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -208,7 +208,7 @@ type metadataDocumentServiceWarning struct {
 
 // String returns the string representation
 func (s DocumentServiceWarning) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -239,7 +239,7 @@ type metadataHit struct {
 
 // String returns the string representation
 func (s Hit) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -271,7 +271,7 @@ type metadataHits struct {
 
 // String returns the string representation
 func (s Hits) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -567,7 +567,7 @@ type metadataSearchInput struct {
 
 // String returns the string representation
 func (s SearchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -596,7 +596,7 @@ type metadataSearchOutput struct {
 
 // String returns the string representation
 func (s SearchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -622,7 +622,7 @@ type metadataSearchStatus struct {
 
 // String returns the string representation
 func (s SearchStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -650,7 +650,7 @@ type metadataSuggestInput struct {
 
 // String returns the string representation
 func (s SuggestInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -678,7 +678,7 @@ type metadataSuggestModel struct {
 
 // String returns the string representation
 func (s SuggestModel) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -704,7 +704,7 @@ type metadataSuggestOutput struct {
 
 // String returns the string representation
 func (s SuggestOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -730,7 +730,7 @@ type metadataSuggestStatus struct {
 
 // String returns the string representation
 func (s SuggestStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -758,7 +758,7 @@ type metadataSuggestionMatch struct {
 
 // String returns the string representation
 func (s SuggestionMatch) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -786,7 +786,7 @@ type metadataUploadDocumentsInput struct {
 
 // String returns the string representation
 func (s UploadDocumentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -817,7 +817,7 @@ type metadataUploadDocumentsOutput struct {
 
 // String returns the string representation
 func (s UploadDocumentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

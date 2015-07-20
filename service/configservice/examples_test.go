@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/configservice"
@@ -20,7 +20,7 @@ func ExampleConfigService_DeleteDeliveryChannel() {
 	svc := configservice.New(nil)
 
 	params := &configservice.DeleteDeliveryChannelInput{
-		DeliveryChannelName: aws.String("ChannelName"), // Required
+		DeliveryChannelName: awsconv.String("ChannelName"), // Required
 	}
 	resp, err := svc.DeleteDeliveryChannel(params)
 
@@ -40,14 +40,14 @@ func ExampleConfigService_DeleteDeliveryChannel() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_DeliverConfigSnapshot() {
 	svc := configservice.New(nil)
 
 	params := &configservice.DeliverConfigSnapshotInput{
-		DeliveryChannelName: aws.String("ChannelName"), // Required
+		DeliveryChannelName: awsconv.String("ChannelName"), // Required
 	}
 	resp, err := svc.DeliverConfigSnapshot(params)
 
@@ -67,7 +67,7 @@ func ExampleConfigService_DeliverConfigSnapshot() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_DescribeConfigurationRecorderStatus() {
@@ -75,7 +75,7 @@ func ExampleConfigService_DescribeConfigurationRecorderStatus() {
 
 	params := &configservice.DescribeConfigurationRecorderStatusInput{
 		ConfigurationRecorderNames: []*string{
-			aws.String("RecorderName"), // Required
+			awsconv.String("RecorderName"), // Required
 			// More values...
 		},
 	}
@@ -97,7 +97,7 @@ func ExampleConfigService_DescribeConfigurationRecorderStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_DescribeConfigurationRecorders() {
@@ -105,7 +105,7 @@ func ExampleConfigService_DescribeConfigurationRecorders() {
 
 	params := &configservice.DescribeConfigurationRecordersInput{
 		ConfigurationRecorderNames: []*string{
-			aws.String("RecorderName"), // Required
+			awsconv.String("RecorderName"), // Required
 			// More values...
 		},
 	}
@@ -127,7 +127,7 @@ func ExampleConfigService_DescribeConfigurationRecorders() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_DescribeDeliveryChannelStatus() {
@@ -135,7 +135,7 @@ func ExampleConfigService_DescribeDeliveryChannelStatus() {
 
 	params := &configservice.DescribeDeliveryChannelStatusInput{
 		DeliveryChannelNames: []*string{
-			aws.String("ChannelName"), // Required
+			awsconv.String("ChannelName"), // Required
 			// More values...
 		},
 	}
@@ -157,7 +157,7 @@ func ExampleConfigService_DescribeDeliveryChannelStatus() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_DescribeDeliveryChannels() {
@@ -165,7 +165,7 @@ func ExampleConfigService_DescribeDeliveryChannels() {
 
 	params := &configservice.DescribeDeliveryChannelsInput{
 		DeliveryChannelNames: []*string{
-			aws.String("ChannelName"), // Required
+			awsconv.String("ChannelName"), // Required
 			// More values...
 		},
 	}
@@ -187,20 +187,20 @@ func ExampleConfigService_DescribeDeliveryChannels() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_GetResourceConfigHistory() {
 	svc := configservice.New(nil)
 
 	params := &configservice.GetResourceConfigHistoryInput{
-		ResourceID:         aws.String("ResourceId"),   // Required
-		ResourceType:       aws.String("ResourceType"), // Required
-		ChronologicalOrder: aws.String("ChronologicalOrder"),
-		EarlierTime:        aws.Time(time.Now()),
-		LaterTime:          aws.Time(time.Now()),
-		Limit:              aws.Long(1),
-		NextToken:          aws.String("NextToken"),
+		ResourceID:         awsconv.String("ResourceId"),   // Required
+		ResourceType:       awsconv.String("ResourceType"), // Required
+		ChronologicalOrder: awsconv.String("ChronologicalOrder"),
+		EarlierTime:        awsconv.Time(time.Now()),
+		LaterTime:          awsconv.Time(time.Now()),
+		Limit:              awsconv.Int64(1),
+		NextToken:          awsconv.String("NextToken"),
 	}
 	resp, err := svc.GetResourceConfigHistory(params)
 
@@ -220,7 +220,7 @@ func ExampleConfigService_GetResourceConfigHistory() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_PutConfigurationRecorder() {
@@ -228,15 +228,15 @@ func ExampleConfigService_PutConfigurationRecorder() {
 
 	params := &configservice.PutConfigurationRecorderInput{
 		ConfigurationRecorder: &configservice.ConfigurationRecorder{ // Required
-			Name: aws.String("RecorderName"),
+			Name: awsconv.String("RecorderName"),
 			RecordingGroup: &configservice.RecordingGroup{
-				AllSupported: aws.Boolean(true),
+				AllSupported: awsconv.Bool(true),
 				ResourceTypes: []*string{
-					aws.String("ResourceType"), // Required
+					awsconv.String("ResourceType"), // Required
 					// More values...
 				},
 			},
-			RoleARN: aws.String("String"),
+			RoleARN: awsconv.String("String"),
 		},
 	}
 	resp, err := svc.PutConfigurationRecorder(params)
@@ -257,7 +257,7 @@ func ExampleConfigService_PutConfigurationRecorder() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_PutDeliveryChannel() {
@@ -265,10 +265,10 @@ func ExampleConfigService_PutDeliveryChannel() {
 
 	params := &configservice.PutDeliveryChannelInput{
 		DeliveryChannel: &configservice.DeliveryChannel{ // Required
-			Name:         aws.String("ChannelName"),
-			S3BucketName: aws.String("String"),
-			S3KeyPrefix:  aws.String("String"),
-			SNSTopicARN:  aws.String("String"),
+			Name:         awsconv.String("ChannelName"),
+			S3BucketName: awsconv.String("String"),
+			S3KeyPrefix:  awsconv.String("String"),
+			SNSTopicARN:  awsconv.String("String"),
 		},
 	}
 	resp, err := svc.PutDeliveryChannel(params)
@@ -289,14 +289,14 @@ func ExampleConfigService_PutDeliveryChannel() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_StartConfigurationRecorder() {
 	svc := configservice.New(nil)
 
 	params := &configservice.StartConfigurationRecorderInput{
-		ConfigurationRecorderName: aws.String("RecorderName"), // Required
+		ConfigurationRecorderName: awsconv.String("RecorderName"), // Required
 	}
 	resp, err := svc.StartConfigurationRecorder(params)
 
@@ -316,14 +316,14 @@ func ExampleConfigService_StartConfigurationRecorder() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleConfigService_StopConfigurationRecorder() {
 	svc := configservice.New(nil)
 
 	params := &configservice.StopConfigurationRecorderInput{
-		ConfigurationRecorderName: aws.String("RecorderName"), // Required
+		ConfigurationRecorderName: awsconv.String("RecorderName"), // Required
 	}
 	resp, err := svc.StopConfigurationRecorder(params)
 
@@ -343,5 +343,5 @@ func ExampleConfigService_StopConfigurationRecorder() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

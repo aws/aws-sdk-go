@@ -2,7 +2,7 @@
 package unit
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
@@ -16,7 +16,7 @@ const Imported = true
 
 func init() {
 	// mock region and credentials
-	aws.DefaultConfig.Credentials =
+	awscfg.DefaultConfig.Credentials =
 		credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
-	aws.DefaultConfig.Region = "mock-region"
+	awscfg.DefaultConfig.WithRegion("mock-region")
 }

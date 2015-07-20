@@ -991,7 +991,7 @@ type metadataAccessLog struct {
 
 // String returns the string representation
 func (s AccessLog) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1015,7 +1015,7 @@ type metadataAddTagsInput struct {
 
 // String returns the string representation
 func (s AddTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1033,7 +1033,7 @@ type metadataAddTagsOutput struct {
 
 // String returns the string representation
 func (s AddTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1058,7 +1058,7 @@ type metadataAdditionalAttribute struct {
 
 // String returns the string representation
 func (s AdditionalAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1084,7 +1084,7 @@ type metadataAppCookieStickinessPolicy struct {
 
 // String returns the string representation
 func (s AppCookieStickinessPolicy) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1109,7 +1109,7 @@ type metadataApplySecurityGroupsToLoadBalancerInput struct {
 
 // String returns the string representation
 func (s ApplySecurityGroupsToLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1130,7 +1130,7 @@ type metadataApplySecurityGroupsToLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s ApplySecurityGroupsToLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1155,7 +1155,7 @@ type metadataAttachLoadBalancerToSubnetsInput struct {
 
 // String returns the string representation
 func (s AttachLoadBalancerToSubnetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1176,7 +1176,7 @@ type metadataAttachLoadBalancerToSubnetsOutput struct {
 
 // String returns the string representation
 func (s AttachLoadBalancerToSubnetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1201,7 +1201,7 @@ type metadataBackendServerDescription struct {
 
 // String returns the string representation
 func (s BackendServerDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1225,7 +1225,7 @@ type metadataConfigureHealthCheckInput struct {
 
 // String returns the string representation
 func (s ConfigureHealthCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1246,7 +1246,7 @@ type metadataConfigureHealthCheckOutput struct {
 
 // String returns the string representation
 func (s ConfigureHealthCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1272,7 +1272,7 @@ type metadataConnectionDraining struct {
 
 // String returns the string representation
 func (s ConnectionDraining) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1295,7 +1295,7 @@ type metadataConnectionSettings struct {
 
 // String returns the string representation
 func (s ConnectionSettings) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1323,7 +1323,7 @@ type metadataCreateAppCookieStickinessPolicyInput struct {
 
 // String returns the string representation
 func (s CreateAppCookieStickinessPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1341,7 +1341,7 @@ type metadataCreateAppCookieStickinessPolicyOutput struct {
 
 // String returns the string representation
 func (s CreateAppCookieStickinessPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1371,7 +1371,7 @@ type metadataCreateLBCookieStickinessPolicyInput struct {
 
 // String returns the string representation
 func (s CreateLBCookieStickinessPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1389,7 +1389,7 @@ type metadataCreateLBCookieStickinessPolicyOutput struct {
 
 // String returns the string representation
 func (s CreateLBCookieStickinessPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1454,7 +1454,7 @@ type metadataCreateLoadBalancerInput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1478,7 +1478,7 @@ type metadataCreateLoadBalancerListenersInput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerListenersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1496,7 +1496,7 @@ type metadataCreateLoadBalancerListenersOutput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerListenersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1517,7 +1517,7 @@ type metadataCreateLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1548,7 +1548,7 @@ type metadataCreateLoadBalancerPolicyInput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1566,7 +1566,7 @@ type metadataCreateLoadBalancerPolicyOutput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1588,7 +1588,7 @@ type metadataCrossZoneLoadBalancing struct {
 
 // String returns the string representation
 func (s CrossZoneLoadBalancing) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1609,7 +1609,7 @@ type metadataDeleteLoadBalancerInput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1633,7 +1633,7 @@ type metadataDeleteLoadBalancerListenersInput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerListenersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1651,7 +1651,7 @@ type metadataDeleteLoadBalancerListenersOutput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerListenersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1669,7 +1669,7 @@ type metadataDeleteLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1694,7 +1694,7 @@ type metadataDeleteLoadBalancerPolicyInput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1712,7 +1712,7 @@ type metadataDeleteLoadBalancerPolicyOutput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1736,7 +1736,7 @@ type metadataDeregisterInstancesFromLoadBalancerInput struct {
 
 // String returns the string representation
 func (s DeregisterInstancesFromLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1757,7 +1757,7 @@ type metadataDeregisterInstancesFromLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s DeregisterInstancesFromLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1781,7 +1781,7 @@ type metadataDescribeInstanceHealthInput struct {
 
 // String returns the string representation
 func (s DescribeInstanceHealthInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1802,7 +1802,7 @@ type metadataDescribeInstanceHealthOutput struct {
 
 // String returns the string representation
 func (s DescribeInstanceHealthOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1823,7 +1823,7 @@ type metadataDescribeLoadBalancerAttributesInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1844,7 +1844,7 @@ type metadataDescribeLoadBalancerAttributesOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1868,7 +1868,7 @@ type metadataDescribeLoadBalancerPoliciesInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPoliciesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1889,7 +1889,7 @@ type metadataDescribeLoadBalancerPoliciesOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPoliciesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1911,7 +1911,7 @@ type metadataDescribeLoadBalancerPolicyTypesInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPolicyTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1932,7 +1932,7 @@ type metadataDescribeLoadBalancerPolicyTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPolicyTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1961,7 +1961,7 @@ type metadataDescribeLoadBalancersInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1986,7 +1986,7 @@ type metadataDescribeLoadBalancersOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2007,7 +2007,7 @@ type metadataDescribeTagsInput struct {
 
 // String returns the string representation
 func (s DescribeTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2028,7 +2028,7 @@ type metadataDescribeTagsOutput struct {
 
 // String returns the string representation
 func (s DescribeTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2052,7 +2052,7 @@ type metadataDetachLoadBalancerFromSubnetsInput struct {
 
 // String returns the string representation
 func (s DetachLoadBalancerFromSubnetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2073,7 +2073,7 @@ type metadataDetachLoadBalancerFromSubnetsOutput struct {
 
 // String returns the string representation
 func (s DetachLoadBalancerFromSubnetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2097,7 +2097,7 @@ type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
 
 // String returns the string representation
 func (s DisableAvailabilityZonesForLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2118,7 +2118,7 @@ type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s DisableAvailabilityZonesForLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2142,7 +2142,7 @@ type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
 
 // String returns the string representation
 func (s EnableAvailabilityZonesForLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2163,7 +2163,7 @@ type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s EnableAvailabilityZonesForLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2220,7 +2220,7 @@ type metadataHealthCheck struct {
 
 // String returns the string representation
 func (s HealthCheck) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2242,7 +2242,7 @@ type metadataInstance struct {
 
 // String returns the string representation
 func (s Instance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2306,7 +2306,7 @@ type metadataInstanceState struct {
 
 // String returns the string representation
 func (s InstanceState) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2334,7 +2334,7 @@ type metadataLBCookieStickinessPolicy struct {
 
 // String returns the string representation
 func (s LBCookieStickinessPolicy) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2384,7 +2384,7 @@ type metadataListener struct {
 
 // String returns the string representation
 func (s Listener) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2413,7 +2413,7 @@ type metadataListenerDescription struct {
 
 // String returns the string representation
 func (s ListenerDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2466,7 +2466,7 @@ type metadataLoadBalancerAttributes struct {
 
 // String returns the string representation
 func (s LoadBalancerAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2547,7 +2547,7 @@ type metadataLoadBalancerDescription struct {
 
 // String returns the string representation
 func (s LoadBalancerDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2571,7 +2571,7 @@ type metadataModifyLoadBalancerAttributesInput struct {
 
 // String returns the string representation
 func (s ModifyLoadBalancerAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2595,7 +2595,7 @@ type metadataModifyLoadBalancerAttributesOutput struct {
 
 // String returns the string representation
 func (s ModifyLoadBalancerAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2623,7 +2623,7 @@ type metadataPolicies struct {
 
 // String returns the string representation
 func (s Policies) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2648,7 +2648,7 @@ type metadataPolicyAttribute struct {
 
 // String returns the string representation
 func (s PolicyAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2673,7 +2673,7 @@ type metadataPolicyAttributeDescription struct {
 
 // String returns the string representation
 func (s PolicyAttributeDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2713,7 +2713,7 @@ type metadataPolicyAttributeTypeDescription struct {
 
 // String returns the string representation
 func (s PolicyAttributeTypeDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2741,7 +2741,7 @@ type metadataPolicyDescription struct {
 
 // String returns the string representation
 func (s PolicyDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2770,7 +2770,7 @@ type metadataPolicyTypeDescription struct {
 
 // String returns the string representation
 func (s PolicyTypeDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2794,7 +2794,7 @@ type metadataRegisterInstancesWithLoadBalancerInput struct {
 
 // String returns the string representation
 func (s RegisterInstancesWithLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2815,7 +2815,7 @@ type metadataRegisterInstancesWithLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s RegisterInstancesWithLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2840,7 +2840,7 @@ type metadataRemoveTagsInput struct {
 
 // String returns the string representation
 func (s RemoveTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2858,7 +2858,7 @@ type metadataRemoveTagsOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2885,7 +2885,7 @@ type metadataSetLoadBalancerListenerSSLCertificateInput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerListenerSSLCertificateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2903,7 +2903,7 @@ type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerListenerSSLCertificateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2931,7 +2931,7 @@ type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesForBackendServerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2949,7 +2949,7 @@ type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesForBackendServerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2977,7 +2977,7 @@ type metadataSetLoadBalancerPoliciesOfListenerInput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesOfListenerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2995,7 +2995,7 @@ type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesOfListenerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3020,7 +3020,7 @@ type metadataSourceSecurityGroup struct {
 
 // String returns the string representation
 func (s SourceSecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3045,7 +3045,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3070,7 +3070,7 @@ type metadataTagDescription struct {
 
 // String returns the string representation
 func (s TagDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3092,7 +3092,7 @@ type metadataTagKeyOnly struct {
 
 // String returns the string representation
 func (s TagKeyOnly) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

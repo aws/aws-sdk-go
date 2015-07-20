@@ -523,7 +523,7 @@ type metadataAttribute struct {
 
 // String returns the string representation
 func (s Attribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -552,7 +552,7 @@ type metadataComputer struct {
 
 // String returns the string representation
 func (s Computer) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -590,7 +590,7 @@ type metadataConnectDirectoryInput struct {
 
 // String returns the string representation
 func (s ConnectDirectoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -612,7 +612,7 @@ type metadataConnectDirectoryOutput struct {
 
 // String returns the string representation
 func (s ConnectDirectoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -640,7 +640,7 @@ type metadataCreateAliasInput struct {
 
 // String returns the string representation
 func (s CreateAliasInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -665,7 +665,7 @@ type metadataCreateAliasOutput struct {
 
 // String returns the string representation
 func (s CreateAliasOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -702,7 +702,7 @@ type metadataCreateComputerInput struct {
 
 // String returns the string representation
 func (s CreateComputerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -724,7 +724,7 @@ type metadataCreateComputerOutput struct {
 
 // String returns the string representation
 func (s CreateComputerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -764,7 +764,7 @@ type metadataCreateDirectoryInput struct {
 
 // String returns the string representation
 func (s CreateDirectoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -786,7 +786,7 @@ type metadataCreateDirectoryOutput struct {
 
 // String returns the string representation
 func (s CreateDirectoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -811,7 +811,7 @@ type metadataCreateSnapshotInput struct {
 
 // String returns the string representation
 func (s CreateSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -833,7 +833,7 @@ type metadataCreateSnapshotOutput struct {
 
 // String returns the string representation
 func (s CreateSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -855,7 +855,7 @@ type metadataDeleteDirectoryInput struct {
 
 // String returns the string representation
 func (s DeleteDirectoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -877,7 +877,7 @@ type metadataDeleteDirectoryOutput struct {
 
 // String returns the string representation
 func (s DeleteDirectoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -899,7 +899,7 @@ type metadataDeleteSnapshotInput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -921,7 +921,7 @@ type metadataDeleteSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -955,7 +955,7 @@ type metadataDescribeDirectoriesInput struct {
 
 // String returns the string representation
 func (s DescribeDirectoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -987,7 +987,7 @@ type metadataDescribeDirectoriesOutput struct {
 
 // String returns the string representation
 func (s DescribeDirectoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1021,7 +1021,7 @@ type metadataDescribeSnapshotsInput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1052,7 +1052,7 @@ type metadataDescribeSnapshotsOutput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1089,7 +1089,7 @@ type metadataDirectoryConnectSettings struct {
 
 // String returns the string representation
 func (s DirectoryConnectSettings) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1126,7 +1126,7 @@ type metadataDirectoryConnectSettingsDescription struct {
 
 // String returns the string representation
 func (s DirectoryConnectSettingsDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1209,7 +1209,7 @@ type metadataDirectoryDescription struct {
 
 // String returns the string representation
 func (s DirectoryDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1246,7 +1246,7 @@ type metadataDirectoryLimits struct {
 
 // String returns the string representation
 func (s DirectoryLimits) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1274,7 +1274,7 @@ type metadataDirectoryVPCSettings struct {
 
 // String returns the string representation
 func (s DirectoryVPCSettings) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1305,7 +1305,7 @@ type metadataDirectoryVPCSettingsDescription struct {
 
 // String returns the string representation
 func (s DirectoryVPCSettingsDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1327,7 +1327,7 @@ type metadataDisableRadiusInput struct {
 
 // String returns the string representation
 func (s DisableRadiusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1346,7 +1346,7 @@ type metadataDisableRadiusOutput struct {
 
 // String returns the string representation
 func (s DisableRadiusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1384,7 +1384,7 @@ type metadataDisableSSOInput struct {
 
 // String returns the string representation
 func (s DisableSSOInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1403,7 +1403,7 @@ type metadataDisableSSOOutput struct {
 
 // String returns the string representation
 func (s DisableSSOOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1428,7 +1428,7 @@ type metadataEnableRadiusInput struct {
 
 // String returns the string representation
 func (s EnableRadiusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1447,7 +1447,7 @@ type metadataEnableRadiusOutput struct {
 
 // String returns the string representation
 func (s EnableRadiusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1485,7 +1485,7 @@ type metadataEnableSSOInput struct {
 
 // String returns the string representation
 func (s EnableSSOInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1504,7 +1504,7 @@ type metadataEnableSSOOutput struct {
 
 // String returns the string representation
 func (s EnableSSOOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1523,7 +1523,7 @@ type metadataGetDirectoryLimitsInput struct {
 
 // String returns the string representation
 func (s GetDirectoryLimitsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1546,7 +1546,7 @@ type metadataGetDirectoryLimitsOutput struct {
 
 // String returns the string representation
 func (s GetDirectoryLimitsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1568,7 +1568,7 @@ type metadataGetSnapshotLimitsInput struct {
 
 // String returns the string representation
 func (s GetSnapshotLimitsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1591,7 +1591,7 @@ type metadataGetSnapshotLimitsOutput struct {
 
 // String returns the string representation
 func (s GetSnapshotLimitsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1640,7 +1640,7 @@ type metadataRadiusSettings struct {
 
 // String returns the string representation
 func (s RadiusSettings) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1662,7 +1662,7 @@ type metadataRestoreFromSnapshotInput struct {
 
 // String returns the string representation
 func (s RestoreFromSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1681,7 +1681,7 @@ type metadataRestoreFromSnapshotOutput struct {
 
 // String returns the string representation
 func (s RestoreFromSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1718,7 +1718,7 @@ type metadataSnapshot struct {
 
 // String returns the string representation
 func (s Snapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1746,7 +1746,7 @@ type metadataSnapshotLimits struct {
 
 // String returns the string representation
 func (s SnapshotLimits) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1771,7 +1771,7 @@ type metadataUpdateRadiusInput struct {
 
 // String returns the string representation
 func (s UpdateRadiusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1790,7 +1790,7 @@ type metadataUpdateRadiusOutput struct {
 
 // String returns the string representation
 func (s UpdateRadiusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

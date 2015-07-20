@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/glacier"
@@ -20,9 +20,9 @@ func ExampleGlacier_AbortMultipartUpload() {
 	svc := glacier.New(nil)
 
 	params := &glacier.AbortMultipartUploadInput{
-		AccountID: aws.String("string"), // Required
-		UploadID:  aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		UploadID:  awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.AbortMultipartUpload(params)
 
@@ -42,17 +42,17 @@ func ExampleGlacier_AbortMultipartUpload() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_AddTagsToVault() {
 	svc := glacier.New(nil)
 
 	params := &glacier.AddTagsToVaultInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 		Tags: map[string]*string{
-			"Key": aws.String("TagValue"), // Required
+			"Key": awsconv.String("TagValue"), // Required
 			// More values...
 		},
 	}
@@ -74,18 +74,18 @@ func ExampleGlacier_AddTagsToVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_CompleteMultipartUpload() {
 	svc := glacier.New(nil)
 
 	params := &glacier.CompleteMultipartUploadInput{
-		AccountID:   aws.String("string"), // Required
-		UploadID:    aws.String("string"), // Required
-		VaultName:   aws.String("string"), // Required
-		ArchiveSize: aws.String("string"),
-		Checksum:    aws.String("string"),
+		AccountID:   awsconv.String("string"), // Required
+		UploadID:    awsconv.String("string"), // Required
+		VaultName:   awsconv.String("string"), // Required
+		ArchiveSize: awsconv.String("string"),
+		Checksum:    awsconv.String("string"),
 	}
 	resp, err := svc.CompleteMultipartUpload(params)
 
@@ -105,15 +105,15 @@ func ExampleGlacier_CompleteMultipartUpload() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_CreateVault() {
 	svc := glacier.New(nil)
 
 	params := &glacier.CreateVaultInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.CreateVault(params)
 
@@ -133,16 +133,16 @@ func ExampleGlacier_CreateVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteArchive() {
 	svc := glacier.New(nil)
 
 	params := &glacier.DeleteArchiveInput{
-		AccountID: aws.String("string"), // Required
-		ArchiveID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		ArchiveID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.DeleteArchive(params)
 
@@ -162,15 +162,15 @@ func ExampleGlacier_DeleteArchive() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteVault() {
 	svc := glacier.New(nil)
 
 	params := &glacier.DeleteVaultInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.DeleteVault(params)
 
@@ -190,15 +190,15 @@ func ExampleGlacier_DeleteVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteVaultAccessPolicy() {
 	svc := glacier.New(nil)
 
 	params := &glacier.DeleteVaultAccessPolicyInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.DeleteVaultAccessPolicy(params)
 
@@ -218,15 +218,15 @@ func ExampleGlacier_DeleteVaultAccessPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DeleteVaultNotifications() {
 	svc := glacier.New(nil)
 
 	params := &glacier.DeleteVaultNotificationsInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.DeleteVaultNotifications(params)
 
@@ -246,16 +246,16 @@ func ExampleGlacier_DeleteVaultNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DescribeJob() {
 	svc := glacier.New(nil)
 
 	params := &glacier.DescribeJobInput{
-		AccountID: aws.String("string"), // Required
-		JobID:     aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		JobID:     awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.DescribeJob(params)
 
@@ -275,15 +275,15 @@ func ExampleGlacier_DescribeJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_DescribeVault() {
 	svc := glacier.New(nil)
 
 	params := &glacier.DescribeVaultInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.DescribeVault(params)
 
@@ -303,14 +303,14 @@ func ExampleGlacier_DescribeVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetDataRetrievalPolicy() {
 	svc := glacier.New(nil)
 
 	params := &glacier.GetDataRetrievalPolicyInput{
-		AccountID: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
 	}
 	resp, err := svc.GetDataRetrievalPolicy(params)
 
@@ -330,17 +330,17 @@ func ExampleGlacier_GetDataRetrievalPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetJobOutput() {
 	svc := glacier.New(nil)
 
 	params := &glacier.GetJobOutputInput{
-		AccountID: aws.String("string"), // Required
-		JobID:     aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
-		Range:     aws.String("string"),
+		AccountID: awsconv.String("string"), // Required
+		JobID:     awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
+		Range:     awsconv.String("string"),
 	}
 	resp, err := svc.GetJobOutput(params)
 
@@ -360,15 +360,15 @@ func ExampleGlacier_GetJobOutput() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetVaultAccessPolicy() {
 	svc := glacier.New(nil)
 
 	params := &glacier.GetVaultAccessPolicyInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.GetVaultAccessPolicy(params)
 
@@ -388,15 +388,15 @@ func ExampleGlacier_GetVaultAccessPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_GetVaultNotifications() {
 	svc := glacier.New(nil)
 
 	params := &glacier.GetVaultNotificationsInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.GetVaultNotifications(params)
 
@@ -416,28 +416,28 @@ func ExampleGlacier_GetVaultNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_InitiateJob() {
 	svc := glacier.New(nil)
 
 	params := &glacier.InitiateJobInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 		JobParameters: &glacier.JobParameters{
-			ArchiveID:   aws.String("string"),
-			Description: aws.String("string"),
-			Format:      aws.String("string"),
+			ArchiveID:   awsconv.String("string"),
+			Description: awsconv.String("string"),
+			Format:      awsconv.String("string"),
 			InventoryRetrievalParameters: &glacier.InventoryRetrievalJobInput{
-				EndDate:   aws.String("string"),
-				Limit:     aws.String("string"),
-				Marker:    aws.String("string"),
-				StartDate: aws.String("string"),
+				EndDate:   awsconv.String("string"),
+				Limit:     awsconv.String("string"),
+				Marker:    awsconv.String("string"),
+				StartDate: awsconv.String("string"),
 			},
-			RetrievalByteRange: aws.String("string"),
-			SNSTopic:           aws.String("string"),
-			Type:               aws.String("string"),
+			RetrievalByteRange: awsconv.String("string"),
+			SNSTopic:           awsconv.String("string"),
+			Type:               awsconv.String("string"),
 		},
 	}
 	resp, err := svc.InitiateJob(params)
@@ -458,17 +458,17 @@ func ExampleGlacier_InitiateJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_InitiateMultipartUpload() {
 	svc := glacier.New(nil)
 
 	params := &glacier.InitiateMultipartUploadInput{
-		AccountID:          aws.String("string"), // Required
-		VaultName:          aws.String("string"), // Required
-		ArchiveDescription: aws.String("string"),
-		PartSize:           aws.String("string"),
+		AccountID:          awsconv.String("string"), // Required
+		VaultName:          awsconv.String("string"), // Required
+		ArchiveDescription: awsconv.String("string"),
+		PartSize:           awsconv.String("string"),
 	}
 	resp, err := svc.InitiateMultipartUpload(params)
 
@@ -488,19 +488,19 @@ func ExampleGlacier_InitiateMultipartUpload() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListJobs() {
 	svc := glacier.New(nil)
 
 	params := &glacier.ListJobsInput{
-		AccountID:  aws.String("string"), // Required
-		VaultName:  aws.String("string"), // Required
-		Completed:  aws.String("string"),
-		Limit:      aws.String("string"),
-		Marker:     aws.String("string"),
-		Statuscode: aws.String("string"),
+		AccountID:  awsconv.String("string"), // Required
+		VaultName:  awsconv.String("string"), // Required
+		Completed:  awsconv.String("string"),
+		Limit:      awsconv.String("string"),
+		Marker:     awsconv.String("string"),
+		Statuscode: awsconv.String("string"),
 	}
 	resp, err := svc.ListJobs(params)
 
@@ -520,17 +520,17 @@ func ExampleGlacier_ListJobs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListMultipartUploads() {
 	svc := glacier.New(nil)
 
 	params := &glacier.ListMultipartUploadsInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
-		Limit:     aws.String("string"),
-		Marker:    aws.String("string"),
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
+		Limit:     awsconv.String("string"),
+		Marker:    awsconv.String("string"),
 	}
 	resp, err := svc.ListMultipartUploads(params)
 
@@ -550,18 +550,18 @@ func ExampleGlacier_ListMultipartUploads() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListParts() {
 	svc := glacier.New(nil)
 
 	params := &glacier.ListPartsInput{
-		AccountID: aws.String("string"), // Required
-		UploadID:  aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
-		Limit:     aws.String("string"),
-		Marker:    aws.String("string"),
+		AccountID: awsconv.String("string"), // Required
+		UploadID:  awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
+		Limit:     awsconv.String("string"),
+		Marker:    awsconv.String("string"),
 	}
 	resp, err := svc.ListParts(params)
 
@@ -581,15 +581,15 @@ func ExampleGlacier_ListParts() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListTagsForVault() {
 	svc := glacier.New(nil)
 
 	params := &glacier.ListTagsForVaultInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 	}
 	resp, err := svc.ListTagsForVault(params)
 
@@ -609,16 +609,16 @@ func ExampleGlacier_ListTagsForVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_ListVaults() {
 	svc := glacier.New(nil)
 
 	params := &glacier.ListVaultsInput{
-		AccountID: aws.String("string"), // Required
-		Limit:     aws.String("string"),
-		Marker:    aws.String("string"),
+		AccountID: awsconv.String("string"), // Required
+		Limit:     awsconv.String("string"),
+		Marker:    awsconv.String("string"),
 	}
 	resp, err := svc.ListVaults(params)
 
@@ -638,17 +638,17 @@ func ExampleGlacier_ListVaults() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_RemoveTagsFromVault() {
 	svc := glacier.New(nil)
 
 	params := &glacier.RemoveTagsFromVaultInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 		TagKeys: []*string{
-			aws.String("string"), // Required
+			awsconv.String("string"), // Required
 			// More values...
 		},
 	}
@@ -670,19 +670,19 @@ func ExampleGlacier_RemoveTagsFromVault() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_SetDataRetrievalPolicy() {
 	svc := glacier.New(nil)
 
 	params := &glacier.SetDataRetrievalPolicyInput{
-		AccountID: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
 		Policy: &glacier.DataRetrievalPolicy{
 			Rules: []*glacier.DataRetrievalRule{
 				{ // Required
-					BytesPerHour: aws.Long(1),
-					Strategy:     aws.String("string"),
+					BytesPerHour: awsconv.Int64(1),
+					Strategy:     awsconv.String("string"),
 				},
 				// More values...
 			},
@@ -706,17 +706,17 @@ func ExampleGlacier_SetDataRetrievalPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_SetVaultAccessPolicy() {
 	svc := glacier.New(nil)
 
 	params := &glacier.SetVaultAccessPolicyInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 		Policy: &glacier.VaultAccessPolicy{
-			Policy: aws.String("string"),
+			Policy: awsconv.String("string"),
 		},
 	}
 	resp, err := svc.SetVaultAccessPolicy(params)
@@ -737,21 +737,21 @@ func ExampleGlacier_SetVaultAccessPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_SetVaultNotifications() {
 	svc := glacier.New(nil)
 
 	params := &glacier.SetVaultNotificationsInput{
-		AccountID: aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 		VaultNotificationConfig: &glacier.VaultNotificationConfig{
 			Events: []*string{
-				aws.String("string"), // Required
+				awsconv.String("string"), // Required
 				// More values...
 			},
-			SNSTopic: aws.String("string"),
+			SNSTopic: awsconv.String("string"),
 		},
 	}
 	resp, err := svc.SetVaultNotifications(params)
@@ -772,18 +772,18 @@ func ExampleGlacier_SetVaultNotifications() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_UploadArchive() {
 	svc := glacier.New(nil)
 
 	params := &glacier.UploadArchiveInput{
-		AccountID:          aws.String("string"), // Required
-		VaultName:          aws.String("string"), // Required
-		ArchiveDescription: aws.String("string"),
+		AccountID:          awsconv.String("string"), // Required
+		VaultName:          awsconv.String("string"), // Required
+		ArchiveDescription: awsconv.String("string"),
 		Body:               bytes.NewReader([]byte("PAYLOAD")),
-		Checksum:           aws.String("string"),
+		Checksum:           awsconv.String("string"),
 	}
 	resp, err := svc.UploadArchive(params)
 
@@ -803,19 +803,19 @@ func ExampleGlacier_UploadArchive() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleGlacier_UploadMultipartPart() {
 	svc := glacier.New(nil)
 
 	params := &glacier.UploadMultipartPartInput{
-		AccountID: aws.String("string"), // Required
-		UploadID:  aws.String("string"), // Required
-		VaultName: aws.String("string"), // Required
+		AccountID: awsconv.String("string"), // Required
+		UploadID:  awsconv.String("string"), // Required
+		VaultName: awsconv.String("string"), // Required
 		Body:      bytes.NewReader([]byte("PAYLOAD")),
-		Checksum:  aws.String("string"),
-		Range:     aws.String("string"),
+		Checksum:  awsconv.String("string"),
+		Range:     awsconv.String("string"),
 	}
 	resp, err := svc.UploadMultipartPart(params)
 
@@ -835,5 +835,5 @@ func ExampleGlacier_UploadMultipartPart() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

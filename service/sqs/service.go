@@ -4,6 +4,7 @@ package sqs
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -44,9 +45,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new SQS client.
-func New(config *aws.Config) *SQS {
+func New(config *awscfg.Config) *SQS {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "sqs",
 		APIVersion:  "2012-11-05",
 	}

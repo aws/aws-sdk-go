@@ -12,6 +12,8 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
@@ -29,15 +31,16 @@ var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
+var _ = awsconv.String
 
 type InputService1ProtocolTest struct {
 	*aws.Service
 }
 
 // New returns a new InputService1ProtocolTest client.
-func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
+func NewInputService1ProtocolTest(config *awscfg.Config) *InputService1ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice1protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "1.1",
@@ -111,9 +114,9 @@ type InputService2ProtocolTest struct {
 }
 
 // New returns a new InputService2ProtocolTest client.
-func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
+func NewInputService2ProtocolTest(config *awscfg.Config) *InputService2ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice2protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "1.1",
@@ -186,9 +189,9 @@ type InputService3ProtocolTest struct {
 }
 
 // New returns a new InputService3ProtocolTest client.
-func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
+func NewInputService3ProtocolTest(config *awscfg.Config) *InputService3ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice3protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "1.1",
@@ -295,9 +298,9 @@ type InputService4ProtocolTest struct {
 }
 
 // New returns a new InputService4ProtocolTest client.
-func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
+func NewInputService4ProtocolTest(config *awscfg.Config) *InputService4ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice4protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "1.1",
@@ -371,9 +374,9 @@ type InputService5ProtocolTest struct {
 }
 
 // New returns a new InputService5ProtocolTest client.
-func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
+func NewInputService5ProtocolTest(config *awscfg.Config) *InputService5ProtocolTest {
 	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+		Config:       awscfg.DefaultConfig.Merge(config),
 		ServiceName:  "inputservice5protocoltest",
 		APIVersion:   "",
 		JSONVersion:  "1.1",
@@ -626,7 +629,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService1TestShapeInputShape{
-		Name: aws.String("myname"),
+		Name: awsconv.String("myname"),
 	}
 	req, _ := svc.InputService1TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -654,7 +657,7 @@ func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService2TestShapeInputShape{
-		TimeArg: aws.Time(time.Unix(1422172800, 0)),
+		TimeArg: awsconv.Time(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -773,7 +776,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase1(t *testing.T) {
 
 	input := &InputService5TestShapeInputShape{
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
-			NoRecurse: aws.String("foo"),
+			NoRecurse: awsconv.String("foo"),
 		},
 	}
 	req, _ := svc.InputService5TestCaseOperation1Request(input)
@@ -804,7 +807,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	input := &InputService5TestShapeInputShape{
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService5TestShapeRecursiveStructType{
-				NoRecurse: aws.String("foo"),
+				NoRecurse: awsconv.String("foo"),
 			},
 		},
 	}
@@ -838,7 +841,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase3(t *testing.T) {
 			RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 				RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 					RecursiveStruct: &InputService5TestShapeRecursiveStructType{
-						NoRecurse: aws.String("foo"),
+						NoRecurse: awsconv.String("foo"),
 					},
 				},
 			},
@@ -873,10 +876,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 			RecursiveList: []*InputService5TestShapeRecursiveStructType{
 				{
-					NoRecurse: aws.String("foo"),
+					NoRecurse: awsconv.String("foo"),
 				},
 				{
-					NoRecurse: aws.String("bar"),
+					NoRecurse: awsconv.String("bar"),
 				},
 			},
 		},
@@ -910,11 +913,11 @@ func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 			RecursiveList: []*InputService5TestShapeRecursiveStructType{
 				{
-					NoRecurse: aws.String("foo"),
+					NoRecurse: awsconv.String("foo"),
 				},
 				{
 					RecursiveStruct: &InputService5TestShapeRecursiveStructType{
-						NoRecurse: aws.String("bar"),
+						NoRecurse: awsconv.String("bar"),
 					},
 				},
 			},
@@ -949,10 +952,10 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 		RecursiveStruct: &InputService5TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService5TestShapeRecursiveStructType{
 				"bar": {
-					NoRecurse: aws.String("bar"),
+					NoRecurse: awsconv.String("bar"),
 				},
 				"foo": {
-					NoRecurse: aws.String("foo"),
+					NoRecurse: awsconv.String("foo"),
 				},
 			},
 		},

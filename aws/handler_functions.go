@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
@@ -90,7 +91,7 @@ func SendHandler(r *Request) {
 		}
 		// Catch all other request errors.
 		r.Error = awserr.New("RequestError", "send request failed", err)
-		r.Retryable.Set(true) // network errors are retryable
+		r.Retryable = awsconv.Bool(true) // network errors are retryable
 	}
 }
 
@@ -107,8 +108,8 @@ func ValidateResponseHandler(r *Request) {
 func AfterRetryHandler(r *Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
-	if !r.Retryable.IsSet() {
-		r.Retryable.Set(r.Service.ShouldRetry(r))
+	if r.Retryable == nil {
+		r.Retryable = awsconv.Bool(r.Service.ShouldRetry(r))
 	}
 
 	if r.WillRetry() {
@@ -149,7 +150,7 @@ var (
 // appropriate Region and Endpoint set. Will set r.Error if the endpoint or
 // region is not valid.
 func ValidateEndpointHandler(r *Request) {
-	if r.Service.SigningRegion == "" && r.Service.Config.Region == "" {
+	if r.Service.SigningRegion == "" && awsconv.StringValue(r.Service.Config.Region) == "" {
 		r.Error = ErrMissingRegion
 	} else if r.Service.Endpoint == "" {
 		r.Error = ErrMissingEndpoint

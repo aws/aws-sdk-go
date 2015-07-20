@@ -3,7 +3,8 @@ package s3_test
 import (
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
@@ -51,11 +52,11 @@ func TestHostStyleBucketBuild(t *testing.T) {
 }
 
 func TestHostStyleBucketBuildNoSSL(t *testing.T) {
-	s := s3.New(&aws.Config{DisableSSL: true})
+	s := s3.New(&awscfg.Config{DisableSSL: awsconv.Bool(true)})
 	runTests(t, s, nosslTests)
 }
 
 func TestPathStyleBucketBuild(t *testing.T) {
-	s := s3.New(&aws.Config{S3ForcePathStyle: true})
+	s := s3.New(&awscfg.Config{S3ForcePathStyle: awsconv.Bool(true)})
 	runTests(t, s, forcepathTests)
 }

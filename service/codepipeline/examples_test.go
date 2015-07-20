@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/codepipeline"
@@ -20,8 +20,8 @@ func ExampleCodePipeline_AcknowledgeJob() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.AcknowledgeJobInput{
-		JobID: aws.String("JobId"), // Required
-		Nonce: aws.String("Nonce"), // Required
+		JobID: awsconv.String("JobId"), // Required
+		Nonce: awsconv.String("Nonce"), // Required
 	}
 	resp, err := svc.AcknowledgeJob(params)
 
@@ -41,16 +41,16 @@ func ExampleCodePipeline_AcknowledgeJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_AcknowledgeThirdPartyJob() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.AcknowledgeThirdPartyJobInput{
-		ClientToken: aws.String("ClientToken"),     // Required
-		JobID:       aws.String("ThirdPartyJobId"), // Required
-		Nonce:       aws.String("Nonce"),           // Required
+		ClientToken: awsconv.String("ClientToken"),     // Required
+		JobID:       awsconv.String("ThirdPartyJobId"), // Required
+		Nonce:       awsconv.String("Nonce"),           // Required
 	}
 	resp, err := svc.AcknowledgeThirdPartyJob(params)
 
@@ -70,41 +70,41 @@ func ExampleCodePipeline_AcknowledgeThirdPartyJob() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_CreateCustomActionType() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.CreateCustomActionTypeInput{
-		Category: aws.String("ActionCategory"), // Required
+		Category: awsconv.String("ActionCategory"), // Required
 		InputArtifactDetails: &codepipeline.ArtifactDetails{ // Required
-			MaximumCount: aws.Long(1), // Required
-			MinimumCount: aws.Long(1), // Required
+			MaximumCount: awsconv.Int64(1), // Required
+			MinimumCount: awsconv.Int64(1), // Required
 		},
 		OutputArtifactDetails: &codepipeline.ArtifactDetails{ // Required
-			MaximumCount: aws.Long(1), // Required
-			MinimumCount: aws.Long(1), // Required
+			MaximumCount: awsconv.Int64(1), // Required
+			MinimumCount: awsconv.Int64(1), // Required
 		},
-		Provider: aws.String("ActionProvider"), // Required
-		Version:  aws.String("Version"),        // Required
+		Provider: awsconv.String("ActionProvider"), // Required
+		Version:  awsconv.String("Version"),        // Required
 		ConfigurationProperties: []*codepipeline.ActionConfigurationProperty{
 			{ // Required
-				Key:         aws.Boolean(true),                    // Required
-				Name:        aws.String("ActionConfigurationKey"), // Required
-				Required:    aws.Boolean(true),                    // Required
-				Secret:      aws.Boolean(true),                    // Required
-				Description: aws.String("Description"),
-				Queryable:   aws.Boolean(true),
-				Type:        aws.String("ActionConfigurationPropertyType"),
+				Key:         awsconv.Bool(true),                       // Required
+				Name:        awsconv.String("ActionConfigurationKey"), // Required
+				Required:    awsconv.Bool(true),                       // Required
+				Secret:      awsconv.Bool(true),                       // Required
+				Description: awsconv.String("Description"),
+				Queryable:   awsconv.Bool(true),
+				Type:        awsconv.String("ActionConfigurationPropertyType"),
 			},
 			// More values...
 		},
 		Settings: &codepipeline.ActionTypeSettings{
-			EntityURLTemplate:          aws.String("UrlTemplate"),
-			ExecutionURLTemplate:       aws.String("UrlTemplate"),
-			RevisionURLTemplate:        aws.String("UrlTemplate"),
-			ThirdPartyConfigurationURL: aws.String("Url"),
+			EntityURLTemplate:          awsconv.String("UrlTemplate"),
+			ExecutionURLTemplate:       awsconv.String("UrlTemplate"),
+			RevisionURLTemplate:        awsconv.String("UrlTemplate"),
+			ThirdPartyConfigurationURL: awsconv.String("Url"),
 		},
 	}
 	resp, err := svc.CreateCustomActionType(params)
@@ -125,7 +125,7 @@ func ExampleCodePipeline_CreateCustomActionType() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_CreatePipeline() {
@@ -134,55 +134,55 @@ func ExampleCodePipeline_CreatePipeline() {
 	params := &codepipeline.CreatePipelineInput{
 		Pipeline: &codepipeline.PipelineDeclaration{ // Required
 			ArtifactStore: &codepipeline.ArtifactStore{ // Required
-				Location: aws.String("ArtifactStoreLocation"), // Required
-				Type:     aws.String("ArtifactStoreType"),     // Required
+				Location: awsconv.String("ArtifactStoreLocation"), // Required
+				Type:     awsconv.String("ArtifactStoreType"),     // Required
 			},
-			Name:    aws.String("PipelineName"), // Required
-			RoleARN: aws.String("RoleArn"),      // Required
+			Name:    awsconv.String("PipelineName"), // Required
+			RoleARN: awsconv.String("RoleArn"),      // Required
 			Stages: []*codepipeline.StageDeclaration{ // Required
 				{ // Required
 					Actions: []*codepipeline.ActionDeclaration{ // Required
 						{ // Required
 							ActionTypeID: &codepipeline.ActionTypeID{ // Required
-								Category: aws.String("ActionCategory"), // Required
-								Owner:    aws.String("ActionOwner"),    // Required
-								Provider: aws.String("ActionProvider"), // Required
-								Version:  aws.String("Version"),        // Required
+								Category: awsconv.String("ActionCategory"), // Required
+								Owner:    awsconv.String("ActionOwner"),    // Required
+								Provider: awsconv.String("ActionProvider"), // Required
+								Version:  awsconv.String("Version"),        // Required
 							},
-							Name: aws.String("ActionName"), // Required
+							Name: awsconv.String("ActionName"), // Required
 							Configuration: map[string]*string{
-								"Key": aws.String("ActionConfigurationValue"), // Required
+								"Key": awsconv.String("ActionConfigurationValue"), // Required
 								// More values...
 							},
 							InputArtifacts: []*codepipeline.InputArtifact{
 								{ // Required
-									Name: aws.String("ArtifactName"), // Required
+									Name: awsconv.String("ArtifactName"), // Required
 								},
 								// More values...
 							},
 							OutputArtifacts: []*codepipeline.OutputArtifact{
 								{ // Required
-									Name: aws.String("ArtifactName"), // Required
+									Name: awsconv.String("ArtifactName"), // Required
 								},
 								// More values...
 							},
-							RoleARN:  aws.String("RoleArn"),
-							RunOrder: aws.Long(1),
+							RoleARN:  awsconv.String("RoleArn"),
+							RunOrder: awsconv.Int64(1),
 						},
 						// More values...
 					},
-					Name: aws.String("StageName"), // Required
+					Name: awsconv.String("StageName"), // Required
 					Blockers: []*codepipeline.BlockerDeclaration{
 						{ // Required
-							Name: aws.String("BlockerName"), // Required
-							Type: aws.String("BlockerType"), // Required
+							Name: awsconv.String("BlockerName"), // Required
+							Type: awsconv.String("BlockerType"), // Required
 						},
 						// More values...
 					},
 				},
 				// More values...
 			},
-			Version: aws.Long(1),
+			Version: awsconv.Int64(1),
 		},
 	}
 	resp, err := svc.CreatePipeline(params)
@@ -203,16 +203,16 @@ func ExampleCodePipeline_CreatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_DeleteCustomActionType() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.DeleteCustomActionTypeInput{
-		Category: aws.String("ActionCategory"), // Required
-		Provider: aws.String("ActionProvider"), // Required
-		Version:  aws.String("Version"),        // Required
+		Category: awsconv.String("ActionCategory"), // Required
+		Provider: awsconv.String("ActionProvider"), // Required
+		Version:  awsconv.String("Version"),        // Required
 	}
 	resp, err := svc.DeleteCustomActionType(params)
 
@@ -232,14 +232,14 @@ func ExampleCodePipeline_DeleteCustomActionType() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_DeletePipeline() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.DeletePipelineInput{
-		Name: aws.String("PipelineName"), // Required
+		Name: awsconv.String("PipelineName"), // Required
 	}
 	resp, err := svc.DeletePipeline(params)
 
@@ -259,17 +259,17 @@ func ExampleCodePipeline_DeletePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_DisableStageTransition() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.DisableStageTransitionInput{
-		PipelineName:   aws.String("PipelineName"),        // Required
-		Reason:         aws.String("DisabledReason"),      // Required
-		StageName:      aws.String("StageName"),           // Required
-		TransitionType: aws.String("StageTransitionType"), // Required
+		PipelineName:   awsconv.String("PipelineName"),        // Required
+		Reason:         awsconv.String("DisabledReason"),      // Required
+		StageName:      awsconv.String("StageName"),           // Required
+		TransitionType: awsconv.String("StageTransitionType"), // Required
 	}
 	resp, err := svc.DisableStageTransition(params)
 
@@ -289,16 +289,16 @@ func ExampleCodePipeline_DisableStageTransition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_EnableStageTransition() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.EnableStageTransitionInput{
-		PipelineName:   aws.String("PipelineName"),        // Required
-		StageName:      aws.String("StageName"),           // Required
-		TransitionType: aws.String("StageTransitionType"), // Required
+		PipelineName:   awsconv.String("PipelineName"),        // Required
+		StageName:      awsconv.String("StageName"),           // Required
+		TransitionType: awsconv.String("StageTransitionType"), // Required
 	}
 	resp, err := svc.EnableStageTransition(params)
 
@@ -318,14 +318,14 @@ func ExampleCodePipeline_EnableStageTransition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetJobDetails() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.GetJobDetailsInput{
-		JobID: aws.String("JobId"), // Required
+		JobID: awsconv.String("JobId"), // Required
 	}
 	resp, err := svc.GetJobDetails(params)
 
@@ -345,15 +345,15 @@ func ExampleCodePipeline_GetJobDetails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetPipeline() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.GetPipelineInput{
-		Name:    aws.String("PipelineName"), // Required
-		Version: aws.Long(1),
+		Name:    awsconv.String("PipelineName"), // Required
+		Version: awsconv.Int64(1),
 	}
 	resp, err := svc.GetPipeline(params)
 
@@ -373,14 +373,14 @@ func ExampleCodePipeline_GetPipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetPipelineState() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.GetPipelineStateInput{
-		Name: aws.String("PipelineName"), // Required
+		Name: awsconv.String("PipelineName"), // Required
 	}
 	resp, err := svc.GetPipelineState(params)
 
@@ -400,15 +400,15 @@ func ExampleCodePipeline_GetPipelineState() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_GetThirdPartyJobDetails() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.GetThirdPartyJobDetailsInput{
-		ClientToken: aws.String("ClientToken"),     // Required
-		JobID:       aws.String("ThirdPartyJobId"), // Required
+		ClientToken: awsconv.String("ClientToken"),     // Required
+		JobID:       awsconv.String("ThirdPartyJobId"), // Required
 	}
 	resp, err := svc.GetThirdPartyJobDetails(params)
 
@@ -428,15 +428,15 @@ func ExampleCodePipeline_GetThirdPartyJobDetails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_ListActionTypes() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.ListActionTypesInput{
-		ActionOwnerFilter: aws.String("ActionOwner"),
-		NextToken:         aws.String("NextToken"),
+		ActionOwnerFilter: awsconv.String("ActionOwner"),
+		NextToken:         awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListActionTypes(params)
 
@@ -456,14 +456,14 @@ func ExampleCodePipeline_ListActionTypes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_ListPipelines() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.ListPipelinesInput{
-		NextToken: aws.String("NextToken"),
+		NextToken: awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListPipelines(params)
 
@@ -483,7 +483,7 @@ func ExampleCodePipeline_ListPipelines() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PollForJobs() {
@@ -491,14 +491,14 @@ func ExampleCodePipeline_PollForJobs() {
 
 	params := &codepipeline.PollForJobsInput{
 		ActionTypeID: &codepipeline.ActionTypeID{ // Required
-			Category: aws.String("ActionCategory"), // Required
-			Owner:    aws.String("ActionOwner"),    // Required
-			Provider: aws.String("ActionProvider"), // Required
-			Version:  aws.String("Version"),        // Required
+			Category: awsconv.String("ActionCategory"), // Required
+			Owner:    awsconv.String("ActionOwner"),    // Required
+			Provider: awsconv.String("ActionProvider"), // Required
+			Version:  awsconv.String("Version"),        // Required
 		},
-		MaxBatchSize: aws.Long(1),
+		MaxBatchSize: awsconv.Int64(1),
 		QueryParam: map[string]*string{
-			"Key": aws.String("ActionConfigurationQueryableValue"), // Required
+			"Key": awsconv.String("ActionConfigurationQueryableValue"), // Required
 			// More values...
 		},
 	}
@@ -520,7 +520,7 @@ func ExampleCodePipeline_PollForJobs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PollForThirdPartyJobs() {
@@ -528,12 +528,12 @@ func ExampleCodePipeline_PollForThirdPartyJobs() {
 
 	params := &codepipeline.PollForThirdPartyJobsInput{
 		ActionTypeID: &codepipeline.ActionTypeID{ // Required
-			Category: aws.String("ActionCategory"), // Required
-			Owner:    aws.String("ActionOwner"),    // Required
-			Provider: aws.String("ActionProvider"), // Required
-			Version:  aws.String("Version"),        // Required
+			Category: awsconv.String("ActionCategory"), // Required
+			Owner:    awsconv.String("ActionOwner"),    // Required
+			Provider: awsconv.String("ActionProvider"), // Required
+			Version:  awsconv.String("Version"),        // Required
 		},
-		MaxBatchSize: aws.Long(1),
+		MaxBatchSize: awsconv.Int64(1),
 	}
 	resp, err := svc.PollForThirdPartyJobs(params)
 
@@ -553,21 +553,21 @@ func ExampleCodePipeline_PollForThirdPartyJobs() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutActionRevision() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PutActionRevisionInput{
-		ActionName: aws.String("ActionName"), // Required
+		ActionName: awsconv.String("ActionName"), // Required
 		ActionRevision: &codepipeline.ActionRevision{ // Required
-			Created:          aws.Time(time.Now()),     // Required
-			RevisionID:       aws.String("RevisionId"), // Required
-			RevisionChangeID: aws.String("RevisionChangeId"),
+			Created:          awsconv.Time(time.Now()),     // Required
+			RevisionID:       awsconv.String("RevisionId"), // Required
+			RevisionChangeID: awsconv.String("RevisionChangeId"),
 		},
-		PipelineName: aws.String("PipelineName"), // Required
-		StageName:    aws.String("StageName"),    // Required
+		PipelineName: awsconv.String("PipelineName"), // Required
+		StageName:    awsconv.String("StageName"),    // Required
 	}
 	resp, err := svc.PutActionRevision(params)
 
@@ -587,7 +587,7 @@ func ExampleCodePipeline_PutActionRevision() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutJobFailureResult() {
@@ -595,11 +595,11 @@ func ExampleCodePipeline_PutJobFailureResult() {
 
 	params := &codepipeline.PutJobFailureResultInput{
 		FailureDetails: &codepipeline.FailureDetails{ // Required
-			Type:                aws.String("FailureType"), // Required
-			ExternalExecutionID: aws.String("ExecutionId"),
-			Message:             aws.String("Message"),
+			Type:                awsconv.String("FailureType"), // Required
+			ExternalExecutionID: awsconv.String("ExecutionId"),
+			Message:             awsconv.String("Message"),
 		},
-		JobID: aws.String("JobId"), // Required
+		JobID: awsconv.String("JobId"), // Required
 	}
 	resp, err := svc.PutJobFailureResult(params)
 
@@ -619,23 +619,23 @@ func ExampleCodePipeline_PutJobFailureResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutJobSuccessResult() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PutJobSuccessResultInput{
-		JobID:             aws.String("JobId"), // Required
-		ContinuationToken: aws.String("ContinuationToken"),
+		JobID:             awsconv.String("JobId"), // Required
+		ContinuationToken: awsconv.String("ContinuationToken"),
 		CurrentRevision: &codepipeline.CurrentRevision{
-			ChangeIdentifier: aws.String("RevisionChangeIdentifier"), // Required
-			Revision:         aws.String("Revision"),                 // Required
+			ChangeIdentifier: awsconv.String("RevisionChangeIdentifier"), // Required
+			Revision:         awsconv.String("Revision"),                 // Required
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
-			ExternalExecutionID: aws.String("ExecutionId"),
-			PercentComplete:     aws.Long(1),
-			Summary:             aws.String("ExecutionSummary"),
+			ExternalExecutionID: awsconv.String("ExecutionId"),
+			PercentComplete:     awsconv.Int64(1),
+			Summary:             awsconv.String("ExecutionSummary"),
 		},
 	}
 	resp, err := svc.PutJobSuccessResult(params)
@@ -656,20 +656,20 @@ func ExampleCodePipeline_PutJobSuccessResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutThirdPartyJobFailureResult() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PutThirdPartyJobFailureResultInput{
-		ClientToken: aws.String("ClientToken"), // Required
+		ClientToken: awsconv.String("ClientToken"), // Required
 		FailureDetails: &codepipeline.FailureDetails{ // Required
-			Type:                aws.String("FailureType"), // Required
-			ExternalExecutionID: aws.String("ExecutionId"),
-			Message:             aws.String("Message"),
+			Type:                awsconv.String("FailureType"), // Required
+			ExternalExecutionID: awsconv.String("ExecutionId"),
+			Message:             awsconv.String("Message"),
 		},
-		JobID: aws.String("ThirdPartyJobId"), // Required
+		JobID: awsconv.String("ThirdPartyJobId"), // Required
 	}
 	resp, err := svc.PutThirdPartyJobFailureResult(params)
 
@@ -689,24 +689,24 @@ func ExampleCodePipeline_PutThirdPartyJobFailureResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PutThirdPartyJobSuccessResultInput{
-		ClientToken:       aws.String("ClientToken"),     // Required
-		JobID:             aws.String("ThirdPartyJobId"), // Required
-		ContinuationToken: aws.String("ContinuationToken"),
+		ClientToken:       awsconv.String("ClientToken"),     // Required
+		JobID:             awsconv.String("ThirdPartyJobId"), // Required
+		ContinuationToken: awsconv.String("ContinuationToken"),
 		CurrentRevision: &codepipeline.CurrentRevision{
-			ChangeIdentifier: aws.String("RevisionChangeIdentifier"), // Required
-			Revision:         aws.String("Revision"),                 // Required
+			ChangeIdentifier: awsconv.String("RevisionChangeIdentifier"), // Required
+			Revision:         awsconv.String("Revision"),                 // Required
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
-			ExternalExecutionID: aws.String("ExecutionId"),
-			PercentComplete:     aws.Long(1),
-			Summary:             aws.String("ExecutionSummary"),
+			ExternalExecutionID: awsconv.String("ExecutionId"),
+			PercentComplete:     awsconv.Int64(1),
+			Summary:             awsconv.String("ExecutionSummary"),
 		},
 	}
 	resp, err := svc.PutThirdPartyJobSuccessResult(params)
@@ -727,14 +727,14 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_StartPipelineExecution() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.StartPipelineExecutionInput{
-		Name: aws.String("PipelineName"), // Required
+		Name: awsconv.String("PipelineName"), // Required
 	}
 	resp, err := svc.StartPipelineExecution(params)
 
@@ -754,7 +754,7 @@ func ExampleCodePipeline_StartPipelineExecution() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCodePipeline_UpdatePipeline() {
@@ -763,55 +763,55 @@ func ExampleCodePipeline_UpdatePipeline() {
 	params := &codepipeline.UpdatePipelineInput{
 		Pipeline: &codepipeline.PipelineDeclaration{ // Required
 			ArtifactStore: &codepipeline.ArtifactStore{ // Required
-				Location: aws.String("ArtifactStoreLocation"), // Required
-				Type:     aws.String("ArtifactStoreType"),     // Required
+				Location: awsconv.String("ArtifactStoreLocation"), // Required
+				Type:     awsconv.String("ArtifactStoreType"),     // Required
 			},
-			Name:    aws.String("PipelineName"), // Required
-			RoleARN: aws.String("RoleArn"),      // Required
+			Name:    awsconv.String("PipelineName"), // Required
+			RoleARN: awsconv.String("RoleArn"),      // Required
 			Stages: []*codepipeline.StageDeclaration{ // Required
 				{ // Required
 					Actions: []*codepipeline.ActionDeclaration{ // Required
 						{ // Required
 							ActionTypeID: &codepipeline.ActionTypeID{ // Required
-								Category: aws.String("ActionCategory"), // Required
-								Owner:    aws.String("ActionOwner"),    // Required
-								Provider: aws.String("ActionProvider"), // Required
-								Version:  aws.String("Version"),        // Required
+								Category: awsconv.String("ActionCategory"), // Required
+								Owner:    awsconv.String("ActionOwner"),    // Required
+								Provider: awsconv.String("ActionProvider"), // Required
+								Version:  awsconv.String("Version"),        // Required
 							},
-							Name: aws.String("ActionName"), // Required
+							Name: awsconv.String("ActionName"), // Required
 							Configuration: map[string]*string{
-								"Key": aws.String("ActionConfigurationValue"), // Required
+								"Key": awsconv.String("ActionConfigurationValue"), // Required
 								// More values...
 							},
 							InputArtifacts: []*codepipeline.InputArtifact{
 								{ // Required
-									Name: aws.String("ArtifactName"), // Required
+									Name: awsconv.String("ArtifactName"), // Required
 								},
 								// More values...
 							},
 							OutputArtifacts: []*codepipeline.OutputArtifact{
 								{ // Required
-									Name: aws.String("ArtifactName"), // Required
+									Name: awsconv.String("ArtifactName"), // Required
 								},
 								// More values...
 							},
-							RoleARN:  aws.String("RoleArn"),
-							RunOrder: aws.Long(1),
+							RoleARN:  awsconv.String("RoleArn"),
+							RunOrder: awsconv.Int64(1),
 						},
 						// More values...
 					},
-					Name: aws.String("StageName"), // Required
+					Name: awsconv.String("StageName"), // Required
 					Blockers: []*codepipeline.BlockerDeclaration{
 						{ // Required
-							Name: aws.String("BlockerName"), // Required
-							Type: aws.String("BlockerType"), // Required
+							Name: awsconv.String("BlockerName"), // Required
+							Type: awsconv.String("BlockerType"), // Required
 						},
 						// More values...
 					},
 				},
 				// More values...
 			},
-			Version: aws.Long(1),
+			Version: awsconv.Int64(1),
 		},
 	}
 	resp, err := svc.UpdatePipeline(params)
@@ -832,5 +832,5 @@ func ExampleCodePipeline_UpdatePipeline() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

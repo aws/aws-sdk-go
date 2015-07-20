@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/ecs"
@@ -20,7 +20,7 @@ func ExampleECS_CreateCluster() {
 	svc := ecs.New(nil)
 
 	params := &ecs.CreateClusterInput{
-		ClusterName: aws.String("String"),
+		ClusterName: awsconv.String("String"),
 	}
 	resp, err := svc.CreateCluster(params)
 
@@ -40,27 +40,27 @@ func ExampleECS_CreateCluster() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_CreateService() {
 	svc := ecs.New(nil)
 
 	params := &ecs.CreateServiceInput{
-		DesiredCount:   aws.Long(1),          // Required
-		ServiceName:    aws.String("String"), // Required
-		TaskDefinition: aws.String("String"), // Required
-		ClientToken:    aws.String("String"),
-		Cluster:        aws.String("String"),
+		DesiredCount:   awsconv.Int64(1),         // Required
+		ServiceName:    awsconv.String("String"), // Required
+		TaskDefinition: awsconv.String("String"), // Required
+		ClientToken:    awsconv.String("String"),
+		Cluster:        awsconv.String("String"),
 		LoadBalancers: []*ecs.LoadBalancer{
 			{ // Required
-				ContainerName:    aws.String("String"),
-				ContainerPort:    aws.Long(1),
-				LoadBalancerName: aws.String("String"),
+				ContainerName:    awsconv.String("String"),
+				ContainerPort:    awsconv.Int64(1),
+				LoadBalancerName: awsconv.String("String"),
 			},
 			// More values...
 		},
-		Role: aws.String("String"),
+		Role: awsconv.String("String"),
 	}
 	resp, err := svc.CreateService(params)
 
@@ -80,14 +80,14 @@ func ExampleECS_CreateService() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DeleteCluster() {
 	svc := ecs.New(nil)
 
 	params := &ecs.DeleteClusterInput{
-		Cluster: aws.String("String"), // Required
+		Cluster: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteCluster(params)
 
@@ -107,15 +107,15 @@ func ExampleECS_DeleteCluster() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DeleteService() {
 	svc := ecs.New(nil)
 
 	params := &ecs.DeleteServiceInput{
-		Service: aws.String("String"), // Required
-		Cluster: aws.String("String"),
+		Service: awsconv.String("String"), // Required
+		Cluster: awsconv.String("String"),
 	}
 	resp, err := svc.DeleteService(params)
 
@@ -135,16 +135,16 @@ func ExampleECS_DeleteService() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DeregisterContainerInstance() {
 	svc := ecs.New(nil)
 
 	params := &ecs.DeregisterContainerInstanceInput{
-		ContainerInstance: aws.String("String"), // Required
-		Cluster:           aws.String("String"),
-		Force:             aws.Boolean(true),
+		ContainerInstance: awsconv.String("String"), // Required
+		Cluster:           awsconv.String("String"),
+		Force:             awsconv.Bool(true),
 	}
 	resp, err := svc.DeregisterContainerInstance(params)
 
@@ -164,14 +164,14 @@ func ExampleECS_DeregisterContainerInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DeregisterTaskDefinition() {
 	svc := ecs.New(nil)
 
 	params := &ecs.DeregisterTaskDefinitionInput{
-		TaskDefinition: aws.String("String"), // Required
+		TaskDefinition: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeregisterTaskDefinition(params)
 
@@ -191,7 +191,7 @@ func ExampleECS_DeregisterTaskDefinition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DescribeClusters() {
@@ -199,7 +199,7 @@ func ExampleECS_DescribeClusters() {
 
 	params := &ecs.DescribeClustersInput{
 		Clusters: []*string{
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -221,7 +221,7 @@ func ExampleECS_DescribeClusters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DescribeContainerInstances() {
@@ -229,10 +229,10 @@ func ExampleECS_DescribeContainerInstances() {
 
 	params := &ecs.DescribeContainerInstancesInput{
 		ContainerInstances: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		Cluster: aws.String("String"),
+		Cluster: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeContainerInstances(params)
 
@@ -252,7 +252,7 @@ func ExampleECS_DescribeContainerInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DescribeServices() {
@@ -260,10 +260,10 @@ func ExampleECS_DescribeServices() {
 
 	params := &ecs.DescribeServicesInput{
 		Services: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		Cluster: aws.String("String"),
+		Cluster: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeServices(params)
 
@@ -283,14 +283,14 @@ func ExampleECS_DescribeServices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DescribeTaskDefinition() {
 	svc := ecs.New(nil)
 
 	params := &ecs.DescribeTaskDefinitionInput{
-		TaskDefinition: aws.String("String"), // Required
+		TaskDefinition: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DescribeTaskDefinition(params)
 
@@ -310,7 +310,7 @@ func ExampleECS_DescribeTaskDefinition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DescribeTasks() {
@@ -318,10 +318,10 @@ func ExampleECS_DescribeTasks() {
 
 	params := &ecs.DescribeTasksInput{
 		Tasks: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		Cluster: aws.String("String"),
+		Cluster: awsconv.String("String"),
 	}
 	resp, err := svc.DescribeTasks(params)
 
@@ -341,15 +341,15 @@ func ExampleECS_DescribeTasks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_DiscoverPollEndpoint() {
 	svc := ecs.New(nil)
 
 	params := &ecs.DiscoverPollEndpointInput{
-		Cluster:           aws.String("String"),
-		ContainerInstance: aws.String("String"),
+		Cluster:           awsconv.String("String"),
+		ContainerInstance: awsconv.String("String"),
 	}
 	resp, err := svc.DiscoverPollEndpoint(params)
 
@@ -369,15 +369,15 @@ func ExampleECS_DiscoverPollEndpoint() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_ListClusters() {
 	svc := ecs.New(nil)
 
 	params := &ecs.ListClustersInput{
-		MaxResults: aws.Long(1),
-		NextToken:  aws.String("String"),
+		MaxResults: awsconv.Int64(1),
+		NextToken:  awsconv.String("String"),
 	}
 	resp, err := svc.ListClusters(params)
 
@@ -397,16 +397,16 @@ func ExampleECS_ListClusters() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_ListContainerInstances() {
 	svc := ecs.New(nil)
 
 	params := &ecs.ListContainerInstancesInput{
-		Cluster:    aws.String("String"),
-		MaxResults: aws.Long(1),
-		NextToken:  aws.String("String"),
+		Cluster:    awsconv.String("String"),
+		MaxResults: awsconv.Int64(1),
+		NextToken:  awsconv.String("String"),
 	}
 	resp, err := svc.ListContainerInstances(params)
 
@@ -426,16 +426,16 @@ func ExampleECS_ListContainerInstances() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_ListServices() {
 	svc := ecs.New(nil)
 
 	params := &ecs.ListServicesInput{
-		Cluster:    aws.String("String"),
-		MaxResults: aws.Long(1),
-		NextToken:  aws.String("String"),
+		Cluster:    awsconv.String("String"),
+		MaxResults: awsconv.Int64(1),
+		NextToken:  awsconv.String("String"),
 	}
 	resp, err := svc.ListServices(params)
 
@@ -455,16 +455,16 @@ func ExampleECS_ListServices() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_ListTaskDefinitionFamilies() {
 	svc := ecs.New(nil)
 
 	params := &ecs.ListTaskDefinitionFamiliesInput{
-		FamilyPrefix: aws.String("String"),
-		MaxResults:   aws.Long(1),
-		NextToken:    aws.String("String"),
+		FamilyPrefix: awsconv.String("String"),
+		MaxResults:   awsconv.Int64(1),
+		NextToken:    awsconv.String("String"),
 	}
 	resp, err := svc.ListTaskDefinitionFamilies(params)
 
@@ -484,18 +484,18 @@ func ExampleECS_ListTaskDefinitionFamilies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_ListTaskDefinitions() {
 	svc := ecs.New(nil)
 
 	params := &ecs.ListTaskDefinitionsInput{
-		FamilyPrefix: aws.String("String"),
-		MaxResults:   aws.Long(1),
-		NextToken:    aws.String("String"),
-		Sort:         aws.String("SortOrder"),
-		Status:       aws.String("TaskDefinitionStatus"),
+		FamilyPrefix: awsconv.String("String"),
+		MaxResults:   awsconv.Int64(1),
+		NextToken:    awsconv.String("String"),
+		Sort:         awsconv.String("SortOrder"),
+		Status:       awsconv.String("TaskDefinitionStatus"),
 	}
 	resp, err := svc.ListTaskDefinitions(params)
 
@@ -515,21 +515,21 @@ func ExampleECS_ListTaskDefinitions() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_ListTasks() {
 	svc := ecs.New(nil)
 
 	params := &ecs.ListTasksInput{
-		Cluster:           aws.String("String"),
-		ContainerInstance: aws.String("String"),
-		DesiredStatus:     aws.String("DesiredStatus"),
-		Family:            aws.String("String"),
-		MaxResults:        aws.Long(1),
-		NextToken:         aws.String("String"),
-		ServiceName:       aws.String("String"),
-		StartedBy:         aws.String("String"),
+		Cluster:           awsconv.String("String"),
+		ContainerInstance: awsconv.String("String"),
+		DesiredStatus:     awsconv.String("DesiredStatus"),
+		Family:            awsconv.String("String"),
+		MaxResults:        awsconv.Int64(1),
+		NextToken:         awsconv.String("String"),
+		ServiceName:       awsconv.String("String"),
+		StartedBy:         awsconv.String("String"),
 	}
 	resp, err := svc.ListTasks(params)
 
@@ -549,35 +549,35 @@ func ExampleECS_ListTasks() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_RegisterContainerInstance() {
 	svc := ecs.New(nil)
 
 	params := &ecs.RegisterContainerInstanceInput{
-		Cluster:                           aws.String("String"),
-		ContainerInstanceARN:              aws.String("String"),
-		InstanceIdentityDocument:          aws.String("String"),
-		InstanceIdentityDocumentSignature: aws.String("String"),
+		Cluster:                           awsconv.String("String"),
+		ContainerInstanceARN:              awsconv.String("String"),
+		InstanceIdentityDocument:          awsconv.String("String"),
+		InstanceIdentityDocumentSignature: awsconv.String("String"),
 		TotalResources: []*ecs.Resource{
 			{ // Required
-				DoubleValue:  aws.Double(1.0),
-				IntegerValue: aws.Long(1),
-				LongValue:    aws.Long(1),
-				Name:         aws.String("String"),
+				DoubleValue:  awsconv.Float64(1.0),
+				IntegerValue: awsconv.Int64(1),
+				LongValue:    awsconv.Int64(1),
+				Name:         awsconv.String("String"),
 				StringSetValue: []*string{
-					aws.String("String"), // Required
+					awsconv.String("String"), // Required
 					// More values...
 				},
-				Type: aws.String("String"),
+				Type: awsconv.String("String"),
 			},
 			// More values...
 		},
 		VersionInfo: &ecs.VersionInfo{
-			AgentHash:     aws.String("String"),
-			AgentVersion:  aws.String("String"),
-			DockerVersion: aws.String("String"),
+			AgentHash:     awsconv.String("String"),
+			AgentVersion:  awsconv.String("String"),
+			DockerVersion: awsconv.String("String"),
 		},
 	}
 	resp, err := svc.RegisterContainerInstance(params)
@@ -598,7 +598,7 @@ func ExampleECS_RegisterContainerInstance() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_RegisterTaskDefinition() {
@@ -607,63 +607,63 @@ func ExampleECS_RegisterTaskDefinition() {
 	params := &ecs.RegisterTaskDefinitionInput{
 		ContainerDefinitions: []*ecs.ContainerDefinition{ // Required
 			{ // Required
-				CPU: aws.Long(1),
+				CPU: awsconv.Int64(1),
 				Command: []*string{
-					aws.String("String"), // Required
+					awsconv.String("String"), // Required
 					// More values...
 				},
 				EntryPoint: []*string{
-					aws.String("String"), // Required
+					awsconv.String("String"), // Required
 					// More values...
 				},
 				Environment: []*ecs.KeyValuePair{
 					{ // Required
-						Name:  aws.String("String"),
-						Value: aws.String("String"),
+						Name:  awsconv.String("String"),
+						Value: awsconv.String("String"),
 					},
 					// More values...
 				},
-				Essential: aws.Boolean(true),
-				Image:     aws.String("String"),
+				Essential: awsconv.Bool(true),
+				Image:     awsconv.String("String"),
 				Links: []*string{
-					aws.String("String"), // Required
+					awsconv.String("String"), // Required
 					// More values...
 				},
-				Memory: aws.Long(1),
+				Memory: awsconv.Int64(1),
 				MountPoints: []*ecs.MountPoint{
 					{ // Required
-						ContainerPath: aws.String("String"),
-						ReadOnly:      aws.Boolean(true),
-						SourceVolume:  aws.String("String"),
+						ContainerPath: awsconv.String("String"),
+						ReadOnly:      awsconv.Bool(true),
+						SourceVolume:  awsconv.String("String"),
 					},
 					// More values...
 				},
-				Name: aws.String("String"),
+				Name: awsconv.String("String"),
 				PortMappings: []*ecs.PortMapping{
 					{ // Required
-						ContainerPort: aws.Long(1),
-						HostPort:      aws.Long(1),
-						Protocol:      aws.String("TransportProtocol"),
+						ContainerPort: awsconv.Int64(1),
+						HostPort:      awsconv.Int64(1),
+						Protocol:      awsconv.String("TransportProtocol"),
 					},
 					// More values...
 				},
 				VolumesFrom: []*ecs.VolumeFrom{
 					{ // Required
-						ReadOnly:        aws.Boolean(true),
-						SourceContainer: aws.String("String"),
+						ReadOnly:        awsconv.Bool(true),
+						SourceContainer: awsconv.String("String"),
 					},
 					// More values...
 				},
 			},
 			// More values...
 		},
-		Family: aws.String("String"), // Required
+		Family: awsconv.String("String"), // Required
 		Volumes: []*ecs.Volume{
 			{ // Required
 				Host: &ecs.HostVolumeProperties{
-					SourcePath: aws.String("String"),
+					SourcePath: awsconv.String("String"),
 				},
-				Name: aws.String("String"),
+				Name: awsconv.String("String"),
 			},
 			// More values...
 		},
@@ -686,36 +686,36 @@ func ExampleECS_RegisterTaskDefinition() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_RunTask() {
 	svc := ecs.New(nil)
 
 	params := &ecs.RunTaskInput{
-		TaskDefinition: aws.String("String"), // Required
-		Cluster:        aws.String("String"),
-		Count:          aws.Long(1),
+		TaskDefinition: awsconv.String("String"), // Required
+		Cluster:        awsconv.String("String"),
+		Count:          awsconv.Int64(1),
 		Overrides: &ecs.TaskOverride{
 			ContainerOverrides: []*ecs.ContainerOverride{
 				{ // Required
 					Command: []*string{
-						aws.String("String"), // Required
+						awsconv.String("String"), // Required
 						// More values...
 					},
 					Environment: []*ecs.KeyValuePair{
 						{ // Required
-							Name:  aws.String("String"),
-							Value: aws.String("String"),
+							Name:  awsconv.String("String"),
+							Value: awsconv.String("String"),
 						},
 						// More values...
 					},
-					Name: aws.String("String"),
+					Name: awsconv.String("String"),
 				},
 				// More values...
 			},
 		},
-		StartedBy: aws.String("String"),
+		StartedBy: awsconv.String("String"),
 	}
 	resp, err := svc.RunTask(params)
 
@@ -735,7 +735,7 @@ func ExampleECS_RunTask() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_StartTask() {
@@ -743,31 +743,31 @@ func ExampleECS_StartTask() {
 
 	params := &ecs.StartTaskInput{
 		ContainerInstances: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		TaskDefinition: aws.String("String"), // Required
-		Cluster:        aws.String("String"),
+		TaskDefinition: awsconv.String("String"), // Required
+		Cluster:        awsconv.String("String"),
 		Overrides: &ecs.TaskOverride{
 			ContainerOverrides: []*ecs.ContainerOverride{
 				{ // Required
 					Command: []*string{
-						aws.String("String"), // Required
+						awsconv.String("String"), // Required
 						// More values...
 					},
 					Environment: []*ecs.KeyValuePair{
 						{ // Required
-							Name:  aws.String("String"),
-							Value: aws.String("String"),
+							Name:  awsconv.String("String"),
+							Value: awsconv.String("String"),
 						},
 						// More values...
 					},
-					Name: aws.String("String"),
+					Name: awsconv.String("String"),
 				},
 				// More values...
 			},
 		},
-		StartedBy: aws.String("String"),
+		StartedBy: awsconv.String("String"),
 	}
 	resp, err := svc.StartTask(params)
 
@@ -787,15 +787,15 @@ func ExampleECS_StartTask() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_StopTask() {
 	svc := ecs.New(nil)
 
 	params := &ecs.StopTaskInput{
-		Task:    aws.String("String"), // Required
-		Cluster: aws.String("String"),
+		Task:    awsconv.String("String"), // Required
+		Cluster: awsconv.String("String"),
 	}
 	resp, err := svc.StopTask(params)
 
@@ -815,28 +815,28 @@ func ExampleECS_StopTask() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_SubmitContainerStateChange() {
 	svc := ecs.New(nil)
 
 	params := &ecs.SubmitContainerStateChangeInput{
-		Cluster:       aws.String("String"),
-		ContainerName: aws.String("String"),
-		ExitCode:      aws.Long(1),
+		Cluster:       awsconv.String("String"),
+		ContainerName: awsconv.String("String"),
+		ExitCode:      awsconv.Int64(1),
 		NetworkBindings: []*ecs.NetworkBinding{
 			{ // Required
-				BindIP:        aws.String("String"),
-				ContainerPort: aws.Long(1),
-				HostPort:      aws.Long(1),
-				Protocol:      aws.String("TransportProtocol"),
+				BindIP:        awsconv.String("String"),
+				ContainerPort: awsconv.Int64(1),
+				HostPort:      awsconv.Int64(1),
+				Protocol:      awsconv.String("TransportProtocol"),
 			},
 			// More values...
 		},
-		Reason: aws.String("String"),
-		Status: aws.String("String"),
-		Task:   aws.String("String"),
+		Reason: awsconv.String("String"),
+		Status: awsconv.String("String"),
+		Task:   awsconv.String("String"),
 	}
 	resp, err := svc.SubmitContainerStateChange(params)
 
@@ -856,17 +856,17 @@ func ExampleECS_SubmitContainerStateChange() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_SubmitTaskStateChange() {
 	svc := ecs.New(nil)
 
 	params := &ecs.SubmitTaskStateChangeInput{
-		Cluster: aws.String("String"),
-		Reason:  aws.String("String"),
-		Status:  aws.String("String"),
-		Task:    aws.String("String"),
+		Cluster: awsconv.String("String"),
+		Reason:  awsconv.String("String"),
+		Status:  awsconv.String("String"),
+		Task:    awsconv.String("String"),
 	}
 	resp, err := svc.SubmitTaskStateChange(params)
 
@@ -886,15 +886,15 @@ func ExampleECS_SubmitTaskStateChange() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_UpdateContainerAgent() {
 	svc := ecs.New(nil)
 
 	params := &ecs.UpdateContainerAgentInput{
-		ContainerInstance: aws.String("String"), // Required
-		Cluster:           aws.String("String"),
+		ContainerInstance: awsconv.String("String"), // Required
+		Cluster:           awsconv.String("String"),
 	}
 	resp, err := svc.UpdateContainerAgent(params)
 
@@ -914,17 +914,17 @@ func ExampleECS_UpdateContainerAgent() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleECS_UpdateService() {
 	svc := ecs.New(nil)
 
 	params := &ecs.UpdateServiceInput{
-		Service:        aws.String("String"), // Required
-		Cluster:        aws.String("String"),
-		DesiredCount:   aws.Long(1),
-		TaskDefinition: aws.String("String"),
+		Service:        awsconv.String("String"), // Required
+		Cluster:        awsconv.String("String"),
+		DesiredCount:   awsconv.Int64(1),
+		TaskDefinition: awsconv.String("String"),
 	}
 	resp, err := svc.UpdateService(params)
 
@@ -944,5 +944,5 @@ func ExampleECS_UpdateService() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

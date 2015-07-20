@@ -6,7 +6,7 @@ package stscreds
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/service/sts"
 	"time"
@@ -23,7 +23,7 @@ type AssumeRoler interface {
 //
 // Example how to configure a service to use this provider:
 //
-//		config := &aws.Config{
+//		config := &awscfg.Config{
 //			Credentials: stscreds.NewCredentials(nil, "arn-of-the-role-to-assume", 10*time.Second),
 //		})
 //		// Use config for creating your AWS service.
@@ -100,9 +100,9 @@ func (p *AssumeRoleProvider) Retrieve() (credentials.Value, error) {
 	}
 
 	roleOutput, err := p.Client.AssumeRole(&sts.AssumeRoleInput{
-		DurationSeconds: aws.Long(int64(p.Duration / time.Second)),
-		RoleARN:         aws.String(p.RoleARN),
-		RoleSessionName: aws.String(p.RoleSessionName),
+		DurationSeconds: awsconv.Int64(int64(p.Duration / time.Second)),
+		RoleARN:         awsconv.String(p.RoleARN),
+		RoleSessionName: awsconv.String(p.RoleSessionName),
 	})
 
 	if err != nil {

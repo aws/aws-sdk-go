@@ -572,7 +572,7 @@ type metadataBulkPublishInput struct {
 
 // String returns the string representation
 func (s BulkPublishInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -595,7 +595,7 @@ type metadataBulkPublishOutput struct {
 
 // String returns the string representation
 func (s BulkPublishOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -630,7 +630,7 @@ type metadataCognitoStreams struct {
 
 // String returns the string representation
 func (s CognitoStreams) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -676,7 +676,7 @@ type metadataDataset struct {
 
 // String returns the string representation
 func (s Dataset) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -707,7 +707,7 @@ type metadataDeleteDatasetInput struct {
 
 // String returns the string representation
 func (s DeleteDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -733,7 +733,7 @@ type metadataDeleteDatasetOutput struct {
 
 // String returns the string representation
 func (s DeleteDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -765,7 +765,7 @@ type metadataDescribeDatasetInput struct {
 
 // String returns the string representation
 func (s DescribeDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -791,7 +791,7 @@ type metadataDescribeDatasetOutput struct {
 
 // String returns the string representation
 func (s DescribeDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -814,7 +814,7 @@ type metadataDescribeIdentityPoolUsageInput struct {
 
 // String returns the string representation
 func (s DescribeIdentityPoolUsageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -836,7 +836,7 @@ type metadataDescribeIdentityPoolUsageOutput struct {
 
 // String returns the string representation
 func (s DescribeIdentityPoolUsageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -863,7 +863,7 @@ type metadataDescribeIdentityUsageInput struct {
 
 // String returns the string representation
 func (s DescribeIdentityUsageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -885,7 +885,7 @@ type metadataDescribeIdentityUsageOutput struct {
 
 // String returns the string representation
 func (s DescribeIdentityUsageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -908,7 +908,7 @@ type metadataGetBulkPublishDetailsInput struct {
 
 // String returns the string representation
 func (s GetBulkPublishDetailsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -954,7 +954,7 @@ type metadataGetBulkPublishDetailsOutput struct {
 
 // String returns the string representation
 func (s GetBulkPublishDetailsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -976,7 +976,7 @@ type metadataGetCognitoEventsInput struct {
 
 // String returns the string representation
 func (s GetCognitoEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -998,7 +998,7 @@ type metadataGetCognitoEventsOutput struct {
 
 // String returns the string representation
 func (s GetCognitoEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1022,7 +1022,7 @@ type metadataGetIdentityPoolConfigurationInput struct {
 
 // String returns the string representation
 func (s GetIdentityPoolConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1051,7 +1051,7 @@ type metadataGetIdentityPoolConfigurationOutput struct {
 
 // String returns the string representation
 func (s GetIdentityPoolConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1083,7 +1083,7 @@ type metadataIdentityPoolUsage struct {
 
 // String returns the string representation
 func (s IdentityPoolUsage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1119,7 +1119,7 @@ type metadataIdentityUsage struct {
 
 // String returns the string representation
 func (s IdentityUsage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1152,7 +1152,7 @@ type metadataListDatasetsInput struct {
 
 // String returns the string representation
 func (s ListDatasetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1180,7 +1180,7 @@ type metadataListDatasetsOutput struct {
 
 // String returns the string representation
 func (s ListDatasetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1205,7 +1205,7 @@ type metadataListIdentityPoolUsageInput struct {
 
 // String returns the string representation
 func (s ListIdentityPoolUsageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1236,7 +1236,7 @@ type metadataListIdentityPoolUsageOutput struct {
 
 // String returns the string representation
 func (s ListIdentityPoolUsageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1279,7 +1279,7 @@ type metadataListRecordsInput struct {
 
 // String returns the string representation
 func (s ListRecordsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1325,7 +1325,7 @@ type metadataListRecordsOutput struct {
 
 // String returns the string representation
 func (s ListRecordsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1350,7 +1350,7 @@ type metadataPushSync struct {
 
 // String returns the string representation
 func (s PushSync) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1387,7 +1387,7 @@ type metadataRecord struct {
 
 // String returns the string representation
 func (s Record) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1421,7 +1421,7 @@ type metadataRecordPatch struct {
 
 // String returns the string representation
 func (s RecordPatch) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1454,7 +1454,7 @@ type metadataRegisterDeviceInput struct {
 
 // String returns the string representation
 func (s RegisterDeviceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1476,7 +1476,7 @@ type metadataRegisterDeviceOutput struct {
 
 // String returns the string representation
 func (s RegisterDeviceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1503,7 +1503,7 @@ type metadataSetCognitoEventsInput struct {
 
 // String returns the string representation
 func (s SetCognitoEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1521,7 +1521,7 @@ type metadataSetCognitoEventsOutput struct {
 
 // String returns the string representation
 func (s SetCognitoEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1550,7 +1550,7 @@ type metadataSetIdentityPoolConfigurationInput struct {
 
 // String returns the string representation
 func (s SetIdentityPoolConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1579,7 +1579,7 @@ type metadataSetIdentityPoolConfigurationOutput struct {
 
 // String returns the string representation
 func (s SetIdentityPoolConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1611,7 +1611,7 @@ type metadataSubscribeToDatasetInput struct {
 
 // String returns the string representation
 func (s SubscribeToDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1630,7 +1630,7 @@ type metadataSubscribeToDatasetOutput struct {
 
 // String returns the string representation
 func (s SubscribeToDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1662,7 +1662,7 @@ type metadataUnsubscribeFromDatasetInput struct {
 
 // String returns the string representation
 func (s UnsubscribeFromDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1681,7 +1681,7 @@ type metadataUnsubscribeFromDatasetOutput struct {
 
 // String returns the string representation
 func (s UnsubscribeFromDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1727,7 +1727,7 @@ type metadataUpdateRecordsInput struct {
 
 // String returns the string representation
 func (s UpdateRecordsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1749,7 +1749,7 @@ type metadataUpdateRecordsOutput struct {
 
 // String returns the string representation
 func (s UpdateRecordsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/glacier"
@@ -29,7 +29,7 @@ var (
 
 func TestCustomizations(t *testing.T) {
 	req, _ := svc.UploadArchiveRequest(&glacier.UploadArchiveInput{
-		VaultName: aws.String("vault"),
+		VaultName: awsconv.String("vault"),
 		Body:      payloadBuf,
 	})
 	err := req.Build()
@@ -51,9 +51,9 @@ func TestCustomizations(t *testing.T) {
 
 func TestShortcircuitTreehash(t *testing.T) {
 	req, _ := svc.UploadArchiveRequest(&glacier.UploadArchiveInput{
-		VaultName: aws.String("vault"),
+		VaultName: awsconv.String("vault"),
 		Body:      payloadBuf,
-		Checksum:  aws.String("000"),
+		Checksum:  awsconv.String("000"),
 	})
 	err := req.Build()
 	assert.NoError(t, err)

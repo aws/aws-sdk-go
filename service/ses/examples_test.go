@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/ses"
@@ -20,7 +20,7 @@ func ExampleSES_DeleteIdentity() {
 	svc := ses.New(nil)
 
 	params := &ses.DeleteIdentityInput{
-		Identity: aws.String("Identity"), // Required
+		Identity: awsconv.String("Identity"), // Required
 	}
 	resp, err := svc.DeleteIdentity(params)
 
@@ -40,15 +40,15 @@ func ExampleSES_DeleteIdentity() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_DeleteIdentityPolicy() {
 	svc := ses.New(nil)
 
 	params := &ses.DeleteIdentityPolicyInput{
-		Identity:   aws.String("Identity"),   // Required
-		PolicyName: aws.String("PolicyName"), // Required
+		Identity:   awsconv.String("Identity"),   // Required
+		PolicyName: awsconv.String("PolicyName"), // Required
 	}
 	resp, err := svc.DeleteIdentityPolicy(params)
 
@@ -68,14 +68,14 @@ func ExampleSES_DeleteIdentityPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_DeleteVerifiedEmailAddress() {
 	svc := ses.New(nil)
 
 	params := &ses.DeleteVerifiedEmailAddressInput{
-		EmailAddress: aws.String("Address"), // Required
+		EmailAddress: awsconv.String("Address"), // Required
 	}
 	resp, err := svc.DeleteVerifiedEmailAddress(params)
 
@@ -95,7 +95,7 @@ func ExampleSES_DeleteVerifiedEmailAddress() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityDKIMAttributes() {
@@ -103,7 +103,7 @@ func ExampleSES_GetIdentityDKIMAttributes() {
 
 	params := &ses.GetIdentityDKIMAttributesInput{
 		Identities: []*string{ // Required
-			aws.String("Identity"), // Required
+			awsconv.String("Identity"), // Required
 			// More values...
 		},
 	}
@@ -125,7 +125,7 @@ func ExampleSES_GetIdentityDKIMAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityNotificationAttributes() {
@@ -133,7 +133,7 @@ func ExampleSES_GetIdentityNotificationAttributes() {
 
 	params := &ses.GetIdentityNotificationAttributesInput{
 		Identities: []*string{ // Required
-			aws.String("Identity"), // Required
+			awsconv.String("Identity"), // Required
 			// More values...
 		},
 	}
@@ -155,16 +155,16 @@ func ExampleSES_GetIdentityNotificationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityPolicies() {
 	svc := ses.New(nil)
 
 	params := &ses.GetIdentityPoliciesInput{
-		Identity: aws.String("Identity"), // Required
+		Identity: awsconv.String("Identity"), // Required
 		PolicyNames: []*string{ // Required
-			aws.String("PolicyName"), // Required
+			awsconv.String("PolicyName"), // Required
 			// More values...
 		},
 	}
@@ -186,7 +186,7 @@ func ExampleSES_GetIdentityPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetIdentityVerificationAttributes() {
@@ -194,7 +194,7 @@ func ExampleSES_GetIdentityVerificationAttributes() {
 
 	params := &ses.GetIdentityVerificationAttributesInput{
 		Identities: []*string{ // Required
-			aws.String("Identity"), // Required
+			awsconv.String("Identity"), // Required
 			// More values...
 		},
 	}
@@ -216,7 +216,7 @@ func ExampleSES_GetIdentityVerificationAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetSendQuota() {
@@ -241,7 +241,7 @@ func ExampleSES_GetSendQuota() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_GetSendStatistics() {
@@ -266,16 +266,16 @@ func ExampleSES_GetSendStatistics() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_ListIdentities() {
 	svc := ses.New(nil)
 
 	params := &ses.ListIdentitiesInput{
-		IdentityType: aws.String("IdentityType"),
-		MaxItems:     aws.Long(1),
-		NextToken:    aws.String("NextToken"),
+		IdentityType: awsconv.String("IdentityType"),
+		MaxItems:     awsconv.Int64(1),
+		NextToken:    awsconv.String("NextToken"),
 	}
 	resp, err := svc.ListIdentities(params)
 
@@ -295,14 +295,14 @@ func ExampleSES_ListIdentities() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_ListIdentityPolicies() {
 	svc := ses.New(nil)
 
 	params := &ses.ListIdentityPoliciesInput{
-		Identity: aws.String("Identity"), // Required
+		Identity: awsconv.String("Identity"), // Required
 	}
 	resp, err := svc.ListIdentityPolicies(params)
 
@@ -322,7 +322,7 @@ func ExampleSES_ListIdentityPolicies() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_ListVerifiedEmailAddresses() {
@@ -347,16 +347,16 @@ func ExampleSES_ListVerifiedEmailAddresses() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_PutIdentityPolicy() {
 	svc := ses.New(nil)
 
 	params := &ses.PutIdentityPolicyInput{
-		Identity:   aws.String("Identity"),   // Required
-		Policy:     aws.String("Policy"),     // Required
-		PolicyName: aws.String("PolicyName"), // Required
+		Identity:   awsconv.String("Identity"),   // Required
+		Policy:     awsconv.String("Policy"),     // Required
+		PolicyName: awsconv.String("PolicyName"), // Required
 	}
 	resp, err := svc.PutIdentityPolicy(params)
 
@@ -376,7 +376,7 @@ func ExampleSES_PutIdentityPolicy() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SendEmail() {
@@ -385,42 +385,42 @@ func ExampleSES_SendEmail() {
 	params := &ses.SendEmailInput{
 		Destination: &ses.Destination{ // Required
 			BCCAddresses: []*string{
-				aws.String("Address"), // Required
+				awsconv.String("Address"), // Required
 				// More values...
 			},
 			CCAddresses: []*string{
-				aws.String("Address"), // Required
+				awsconv.String("Address"), // Required
 				// More values...
 			},
 			ToAddresses: []*string{
-				aws.String("Address"), // Required
+				awsconv.String("Address"), // Required
 				// More values...
 			},
 		},
 		Message: &ses.Message{ // Required
 			Body: &ses.Body{ // Required
 				HTML: &ses.Content{
-					Data:    aws.String("MessageData"), // Required
-					Charset: aws.String("Charset"),
+					Data:    awsconv.String("MessageData"), // Required
+					Charset: awsconv.String("Charset"),
 				},
 				Text: &ses.Content{
-					Data:    aws.String("MessageData"), // Required
-					Charset: aws.String("Charset"),
+					Data:    awsconv.String("MessageData"), // Required
+					Charset: awsconv.String("Charset"),
 				},
 			},
 			Subject: &ses.Content{ // Required
-				Data:    aws.String("MessageData"), // Required
-				Charset: aws.String("Charset"),
+				Data:    awsconv.String("MessageData"), // Required
+				Charset: awsconv.String("Charset"),
 			},
 		},
-		Source: aws.String("Address"), // Required
+		Source: awsconv.String("Address"), // Required
 		ReplyToAddresses: []*string{
-			aws.String("Address"), // Required
+			awsconv.String("Address"), // Required
 			// More values...
 		},
-		ReturnPath:    aws.String("Address"),
-		ReturnPathARN: aws.String("AmazonResourceName"),
-		SourceARN:     aws.String("AmazonResourceName"),
+		ReturnPath:    awsconv.String("Address"),
+		ReturnPathARN: awsconv.String("AmazonResourceName"),
+		SourceARN:     awsconv.String("AmazonResourceName"),
 	}
 	resp, err := svc.SendEmail(params)
 
@@ -440,7 +440,7 @@ func ExampleSES_SendEmail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SendRawEmail() {
@@ -451,13 +451,13 @@ func ExampleSES_SendRawEmail() {
 			Data: []byte("PAYLOAD"), // Required
 		},
 		Destinations: []*string{
-			aws.String("Address"), // Required
+			awsconv.String("Address"), // Required
 			// More values...
 		},
-		FromARN:       aws.String("AmazonResourceName"),
-		ReturnPathARN: aws.String("AmazonResourceName"),
-		Source:        aws.String("Address"),
-		SourceARN:     aws.String("AmazonResourceName"),
+		FromARN:       awsconv.String("AmazonResourceName"),
+		ReturnPathARN: awsconv.String("AmazonResourceName"),
+		Source:        awsconv.String("Address"),
+		SourceARN:     awsconv.String("AmazonResourceName"),
 	}
 	resp, err := svc.SendRawEmail(params)
 
@@ -477,15 +477,15 @@ func ExampleSES_SendRawEmail() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SetIdentityDKIMEnabled() {
 	svc := ses.New(nil)
 
 	params := &ses.SetIdentityDKIMEnabledInput{
-		DKIMEnabled: aws.Boolean(true),      // Required
-		Identity:    aws.String("Identity"), // Required
+		DKIMEnabled: awsconv.Bool(true),         // Required
+		Identity:    awsconv.String("Identity"), // Required
 	}
 	resp, err := svc.SetIdentityDKIMEnabled(params)
 
@@ -505,15 +505,15 @@ func ExampleSES_SetIdentityDKIMEnabled() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SetIdentityFeedbackForwardingEnabled() {
 	svc := ses.New(nil)
 
 	params := &ses.SetIdentityFeedbackForwardingEnabledInput{
-		ForwardingEnabled: aws.Boolean(true),      // Required
-		Identity:          aws.String("Identity"), // Required
+		ForwardingEnabled: awsconv.Bool(true),         // Required
+		Identity:          awsconv.String("Identity"), // Required
 	}
 	resp, err := svc.SetIdentityFeedbackForwardingEnabled(params)
 
@@ -533,16 +533,16 @@ func ExampleSES_SetIdentityFeedbackForwardingEnabled() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_SetIdentityNotificationTopic() {
 	svc := ses.New(nil)
 
 	params := &ses.SetIdentityNotificationTopicInput{
-		Identity:         aws.String("Identity"),         // Required
-		NotificationType: aws.String("NotificationType"), // Required
-		SNSTopic:         aws.String("NotificationTopic"),
+		Identity:         awsconv.String("Identity"),         // Required
+		NotificationType: awsconv.String("NotificationType"), // Required
+		SNSTopic:         awsconv.String("NotificationTopic"),
 	}
 	resp, err := svc.SetIdentityNotificationTopic(params)
 
@@ -562,14 +562,14 @@ func ExampleSES_SetIdentityNotificationTopic() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyDomainDKIM() {
 	svc := ses.New(nil)
 
 	params := &ses.VerifyDomainDKIMInput{
-		Domain: aws.String("Domain"), // Required
+		Domain: awsconv.String("Domain"), // Required
 	}
 	resp, err := svc.VerifyDomainDKIM(params)
 
@@ -589,14 +589,14 @@ func ExampleSES_VerifyDomainDKIM() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyDomainIdentity() {
 	svc := ses.New(nil)
 
 	params := &ses.VerifyDomainIdentityInput{
-		Domain: aws.String("Domain"), // Required
+		Domain: awsconv.String("Domain"), // Required
 	}
 	resp, err := svc.VerifyDomainIdentity(params)
 
@@ -616,14 +616,14 @@ func ExampleSES_VerifyDomainIdentity() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyEmailAddress() {
 	svc := ses.New(nil)
 
 	params := &ses.VerifyEmailAddressInput{
-		EmailAddress: aws.String("Address"), // Required
+		EmailAddress: awsconv.String("Address"), // Required
 	}
 	resp, err := svc.VerifyEmailAddress(params)
 
@@ -643,14 +643,14 @@ func ExampleSES_VerifyEmailAddress() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSES_VerifyEmailIdentity() {
 	svc := ses.New(nil)
 
 	params := &ses.VerifyEmailIdentityInput{
-		EmailAddress: aws.String("Address"), // Required
+		EmailAddress: awsconv.String("Address"), // Required
 	}
 	resp, err := svc.VerifyEmailIdentity(params)
 
@@ -670,5 +670,5 @@ func ExampleSES_VerifyEmailIdentity() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

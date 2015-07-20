@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 )
 
@@ -23,7 +24,7 @@ func dnsCompatibleBucketName(bucket string) bool {
 // the host. This is false if S3ForcePathStyle is explicitly set or if the
 // bucket is not DNS compatible.
 func hostStyleBucketName(r *aws.Request, bucket string) bool {
-	if r.Config.S3ForcePathStyle {
+	if awsconv.BoolValue(r.Config.S3ForcePathStyle) {
 		return false
 	}
 

@@ -4,6 +4,7 @@ package rds
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -43,9 +44,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new RDS client.
-func New(config *aws.Config) *RDS {
+func New(config *awscfg.Config) *RDS {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "rds",
 		APIVersion:  "2014-10-31",
 	}

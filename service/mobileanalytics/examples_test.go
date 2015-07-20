@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/mobileanalytics"
@@ -20,36 +20,36 @@ func ExampleMobileAnalytics_PutEvents() {
 	svc := mobileanalytics.New(nil)
 
 	params := &mobileanalytics.PutEventsInput{
-		ClientContext: aws.String("String"), // Required
+		ClientContext: awsconv.String("String"), // Required
 		Events: []*mobileanalytics.Event{ // Required
 			{ // Required
-				EventType: aws.String("String50Chars"),    // Required
-				Timestamp: aws.String("ISO8601Timestamp"), // Required
+				EventType: awsconv.String("String50Chars"),    // Required
+				Timestamp: awsconv.String("ISO8601Timestamp"), // Required
 				Attributes: map[string]*string{
-					"Key": aws.String("String0to1000Chars"), // Required
+					"Key": awsconv.String("String0to1000Chars"), // Required
 					// More values...
 				},
 				Metrics: map[string]*float64{
-					"Key": aws.Double(1.0), // Required
+					"Key": awsconv.Float64(1.0), // Required
 					// More values...
 				},
 				Session: &mobileanalytics.Session{
-					Duration:       aws.Long(1),
-					ID:             aws.String("String50Chars"),
-					StartTimestamp: aws.String("ISO8601Timestamp"),
-					StopTimestamp:  aws.String("ISO8601Timestamp"),
+					Duration:       awsconv.Int64(1),
+					ID:             awsconv.String("String50Chars"),
+					StartTimestamp: awsconv.String("ISO8601Timestamp"),
+					StopTimestamp:  awsconv.String("ISO8601Timestamp"),
 				},
-				Version: aws.String("String10Chars"),
+				Version: awsconv.String("String10Chars"),
 			},
 			// More values...
 		},
-		ClientContextEncoding: aws.String("String"),
+		ClientContextEncoding: awsconv.String("String"),
 	}
 	resp, err := svc.PutEvents(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred
@@ -63,5 +63,5 @@ func ExampleMobileAnalytics_PutEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

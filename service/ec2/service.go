@@ -4,6 +4,7 @@ package ec2
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/ec2query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -23,9 +24,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new EC2 client.
-func New(config *aws.Config) *EC2 {
+func New(config *awscfg.Config) *EC2 {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "ec2",
 		APIVersion:  "2015-04-15",
 	}

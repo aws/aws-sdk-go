@@ -352,7 +352,7 @@ type metadataBatchGetRepositoriesInput struct {
 
 // String returns the string representation
 func (s BatchGetRepositoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -377,7 +377,7 @@ type metadataBatchGetRepositoriesOutput struct {
 
 // String returns the string representation
 func (s BatchGetRepositoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -402,7 +402,7 @@ type metadataBranchInfo struct {
 
 // String returns the string representation
 func (s BranchInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -433,7 +433,7 @@ type metadataCreateBranchInput struct {
 
 // String returns the string representation
 func (s CreateBranchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -451,7 +451,7 @@ type metadataCreateBranchOutput struct {
 
 // String returns the string representation
 func (s CreateBranchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -480,7 +480,7 @@ type metadataCreateRepositoryInput struct {
 
 // String returns the string representation
 func (s CreateRepositoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -502,7 +502,7 @@ type metadataCreateRepositoryOutput struct {
 
 // String returns the string representation
 func (s CreateRepositoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -524,7 +524,7 @@ type metadataDeleteRepositoryInput struct {
 
 // String returns the string representation
 func (s DeleteRepositoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -546,7 +546,7 @@ type metadataDeleteRepositoryOutput struct {
 
 // String returns the string representation
 func (s DeleteRepositoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -573,7 +573,7 @@ type metadataGetBranchInput struct {
 
 // String returns the string representation
 func (s GetBranchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -595,7 +595,7 @@ type metadataGetBranchOutput struct {
 
 // String returns the string representation
 func (s GetBranchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -617,7 +617,7 @@ type metadataGetRepositoryInput struct {
 
 // String returns the string representation
 func (s GetRepositoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -639,7 +639,7 @@ type metadataGetRepositoryOutput struct {
 
 // String returns the string representation
 func (s GetRepositoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -664,7 +664,7 @@ type metadataListBranchesInput struct {
 
 // String returns the string representation
 func (s ListBranchesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -689,7 +689,7 @@ type metadataListBranchesOutput struct {
 
 // String returns the string representation
 func (s ListBranchesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -720,7 +720,7 @@ type metadataListRepositoriesInput struct {
 
 // String returns the string representation
 func (s ListRepositoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -748,7 +748,7 @@ type metadataListRepositoriesOutput struct {
 
 // String returns the string representation
 func (s ListRepositoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -797,7 +797,7 @@ type metadataRepositoryMetadata struct {
 
 // String returns the string representation
 func (s RepositoryMetadata) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -824,7 +824,7 @@ type metadataRepositoryNameIDPair struct {
 
 // String returns the string representation
 func (s RepositoryNameIDPair) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -849,7 +849,7 @@ type metadataUpdateDefaultBranchInput struct {
 
 // String returns the string representation
 func (s UpdateDefaultBranchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -867,7 +867,7 @@ type metadataUpdateDefaultBranchOutput struct {
 
 // String returns the string representation
 func (s UpdateDefaultBranchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -892,7 +892,7 @@ type metadataUpdateRepositoryDescriptionInput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryDescriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -910,7 +910,7 @@ type metadataUpdateRepositoryDescriptionOutput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryDescriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -939,7 +939,7 @@ type metadataUpdateRepositoryNameInput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryNameInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -957,7 +957,7 @@ type metadataUpdateRepositoryNameOutput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryNameOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

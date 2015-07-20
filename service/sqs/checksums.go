@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
@@ -16,7 +17,7 @@ var (
 )
 
 func setupChecksumValidation(r *aws.Request) {
-	if r.Config.DisableComputeChecksums {
+	if awsconv.BoolValue(r.Config.DisableComputeChecksums) {
 		return
 	}
 
@@ -99,6 +100,6 @@ func checksumsMatch(body, expectedMD5 *string) error {
 }
 
 func setChecksumError(r *aws.Request, format string, args ...interface{}) {
-	r.Retryable.Set(true)
+	r.Retryable = awsconv.Bool(true)
 	r.Error = awserr.New("InvalidChecksum", fmt.Sprintf(format, args...), nil)
 }

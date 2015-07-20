@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/integration"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -35,7 +36,7 @@ func TestMain(m *testing.M) {
 func setup() {
 	// Create a bucket for testing
 	svc := s3.New(nil)
-	bucketName = aws.String(
+	bucketName = awsconv.String(
 		fmt.Sprintf("aws-sdk-go-integration-%d-%s", time.Now().Unix(), integration.UniqueID()))
 
 	for i := 0; i < 10; i++ {

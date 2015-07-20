@@ -12,6 +12,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -87,8 +88,8 @@ func TestDownloadOrder(t *testing.T) {
 	d := s3manager.NewDownloader(opts)
 	w := newDLWriter(len(buf12MB))
 	n, err := d.Download(w, &s3.GetObjectInput{
-		Bucket: aws.String("bucket"),
-		Key:    aws.String("key"),
+		Bucket: awsconv.String("bucket"),
+		Key:    awsconv.String("key"),
 	})
 
 	assert.Nil(t, err)
@@ -110,8 +111,8 @@ func TestDownloadZero(t *testing.T) {
 	d := s3manager.NewDownloader(opts)
 	w := newDLWriter(0)
 	n, err := d.Download(w, &s3.GetObjectInput{
-		Bucket: aws.String("bucket"),
-		Key:    aws.String("key"),
+		Bucket: awsconv.String("bucket"),
+		Key:    awsconv.String("key"),
 	})
 
 	assert.Nil(t, err)
@@ -127,8 +128,8 @@ func TestDownloadSetPartSize(t *testing.T) {
 	d := s3manager.NewDownloader(opts)
 	w := newDLWriter(3)
 	n, err := d.Download(w, &s3.GetObjectInput{
-		Bucket: aws.String("bucket"),
-		Key:    aws.String("key"),
+		Bucket: awsconv.String("bucket"),
+		Key:    awsconv.String("key"),
 	})
 
 	assert.Nil(t, err)
@@ -154,8 +155,8 @@ func TestDownloadError(t *testing.T) {
 	d := s3manager.NewDownloader(opts)
 	w := newDLWriter(3)
 	n, err := d.Download(w, &s3.GetObjectInput{
-		Bucket: aws.String("bucket"),
-		Key:    aws.String("key"),
+		Bucket: awsconv.String("bucket"),
+		Key:    awsconv.String("key"),
 	})
 
 	assert.NotNil(t, err)

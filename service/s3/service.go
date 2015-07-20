@@ -4,6 +4,7 @@ package s3
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -20,9 +21,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new S3 client.
-func New(config *aws.Config) *S3 {
+func New(config *awscfg.Config) *S3 {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "s3",
 		APIVersion:  "2006-03-01",
 	}

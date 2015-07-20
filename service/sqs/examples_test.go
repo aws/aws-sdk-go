@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/sqs"
@@ -21,15 +21,15 @@ func ExampleSQS_AddPermission() {
 
 	params := &sqs.AddPermissionInput{
 		AWSAccountIDs: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
 		Actions: []*string{ // Required
-			aws.String("String"), // Required
+			awsconv.String("String"), // Required
 			// More values...
 		},
-		Label:    aws.String("String"), // Required
-		QueueURL: aws.String("String"), // Required
+		Label:    awsconv.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.AddPermission(params)
 
@@ -49,16 +49,16 @@ func ExampleSQS_AddPermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ChangeMessageVisibility() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ChangeMessageVisibilityInput{
-		QueueURL:          aws.String("String"), // Required
-		ReceiptHandle:     aws.String("String"), // Required
-		VisibilityTimeout: aws.Long(1),          // Required
+		QueueURL:          awsconv.String("String"), // Required
+		ReceiptHandle:     awsconv.String("String"), // Required
+		VisibilityTimeout: awsconv.Int64(1),         // Required
 	}
 	resp, err := svc.ChangeMessageVisibility(params)
 
@@ -78,7 +78,7 @@ func ExampleSQS_ChangeMessageVisibility() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ChangeMessageVisibilityBatch() {
@@ -87,13 +87,13 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 	params := &sqs.ChangeMessageVisibilityBatchInput{
 		Entries: []*sqs.ChangeMessageVisibilityBatchRequestEntry{ // Required
 			{ // Required
-				ID:                aws.String("String"), // Required
-				ReceiptHandle:     aws.String("String"), // Required
-				VisibilityTimeout: aws.Long(1),
+				ID:                awsconv.String("String"), // Required
+				ReceiptHandle:     awsconv.String("String"), // Required
+				VisibilityTimeout: awsconv.Int64(1),
 			},
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.ChangeMessageVisibilityBatch(params)
 
@@ -113,16 +113,16 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_CreateQueue() {
 	svc := sqs.New(nil)
 
 	params := &sqs.CreateQueueInput{
-		QueueName: aws.String("String"), // Required
+		QueueName: awsconv.String("String"), // Required
 		Attributes: map[string]*string{
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
 	}
@@ -144,15 +144,15 @@ func ExampleSQS_CreateQueue() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_DeleteMessage() {
 	svc := sqs.New(nil)
 
 	params := &sqs.DeleteMessageInput{
-		QueueURL:      aws.String("String"), // Required
-		ReceiptHandle: aws.String("String"), // Required
+		QueueURL:      awsconv.String("String"), // Required
+		ReceiptHandle: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteMessage(params)
 
@@ -172,7 +172,7 @@ func ExampleSQS_DeleteMessage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_DeleteMessageBatch() {
@@ -181,12 +181,12 @@ func ExampleSQS_DeleteMessageBatch() {
 	params := &sqs.DeleteMessageBatchInput{
 		Entries: []*sqs.DeleteMessageBatchRequestEntry{ // Required
 			{ // Required
-				ID:            aws.String("String"), // Required
-				ReceiptHandle: aws.String("String"), // Required
+				ID:            awsconv.String("String"), // Required
+				ReceiptHandle: awsconv.String("String"), // Required
 			},
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteMessageBatch(params)
 
@@ -206,14 +206,14 @@ func ExampleSQS_DeleteMessageBatch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_DeleteQueue() {
 	svc := sqs.New(nil)
 
 	params := &sqs.DeleteQueueInput{
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.DeleteQueue(params)
 
@@ -233,16 +233,16 @@ func ExampleSQS_DeleteQueue() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_GetQueueAttributes() {
 	svc := sqs.New(nil)
 
 	params := &sqs.GetQueueAttributesInput{
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 		AttributeNames: []*string{
-			aws.String("QueueAttributeName"), // Required
+			awsconv.String("QueueAttributeName"), // Required
 			// More values...
 		},
 	}
@@ -264,15 +264,15 @@ func ExampleSQS_GetQueueAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_GetQueueURL() {
 	svc := sqs.New(nil)
 
 	params := &sqs.GetQueueURLInput{
-		QueueName:              aws.String("String"), // Required
-		QueueOwnerAWSAccountID: aws.String("String"),
+		QueueName:              awsconv.String("String"), // Required
+		QueueOwnerAWSAccountID: awsconv.String("String"),
 	}
 	resp, err := svc.GetQueueURL(params)
 
@@ -292,14 +292,14 @@ func ExampleSQS_GetQueueURL() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ListDeadLetterSourceQueues() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ListDeadLetterSourceQueuesInput{
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.ListDeadLetterSourceQueues(params)
 
@@ -319,14 +319,14 @@ func ExampleSQS_ListDeadLetterSourceQueues() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ListQueues() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ListQueuesInput{
-		QueueNamePrefix: aws.String("String"),
+		QueueNamePrefix: awsconv.String("String"),
 	}
 	resp, err := svc.ListQueues(params)
 
@@ -346,14 +346,14 @@ func ExampleSQS_ListQueues() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_PurgeQueue() {
 	svc := sqs.New(nil)
 
 	params := &sqs.PurgeQueueInput{
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.PurgeQueue(params)
 
@@ -373,25 +373,25 @@ func ExampleSQS_PurgeQueue() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_ReceiveMessage() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ReceiveMessageInput{
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 		AttributeNames: []*string{
-			aws.String("QueueAttributeName"), // Required
+			awsconv.String("QueueAttributeName"), // Required
 			// More values...
 		},
-		MaxNumberOfMessages: aws.Long(1),
+		MaxNumberOfMessages: awsconv.Int64(1),
 		MessageAttributeNames: []*string{
-			aws.String("MessageAttributeName"), // Required
+			awsconv.String("MessageAttributeName"), // Required
 			// More values...
 		},
-		VisibilityTimeout: aws.Long(1),
-		WaitTimeSeconds:   aws.Long(1),
+		VisibilityTimeout: awsconv.Int64(1),
+		WaitTimeSeconds:   awsconv.Int64(1),
 	}
 	resp, err := svc.ReceiveMessage(params)
 
@@ -411,15 +411,15 @@ func ExampleSQS_ReceiveMessage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_RemovePermission() {
 	svc := sqs.New(nil)
 
 	params := &sqs.RemovePermissionInput{
-		Label:    aws.String("String"), // Required
-		QueueURL: aws.String("String"), // Required
+		Label:    awsconv.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.RemovePermission(params)
 
@@ -439,29 +439,29 @@ func ExampleSQS_RemovePermission() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_SendMessage() {
 	svc := sqs.New(nil)
 
 	params := &sqs.SendMessageInput{
-		MessageBody:  aws.String("String"), // Required
-		QueueURL:     aws.String("String"), // Required
-		DelaySeconds: aws.Long(1),
+		MessageBody:  awsconv.String("String"), // Required
+		QueueURL:     awsconv.String("String"), // Required
+		DelaySeconds: awsconv.Int64(1),
 		MessageAttributes: map[string]*sqs.MessageAttributeValue{
 			"Key": { // Required
-				DataType: aws.String("String"), // Required
+				DataType: awsconv.String("String"), // Required
 				BinaryListValues: [][]byte{
 					[]byte("PAYLOAD"), // Required
 					// More values...
 				},
 				BinaryValue: []byte("PAYLOAD"),
 				StringListValues: []*string{
-					aws.String("String"), // Required
+					awsconv.String("String"), // Required
 					// More values...
 				},
-				StringValue: aws.String("String"),
+				StringValue: awsconv.String("String"),
 			},
 			// More values...
 		},
@@ -484,7 +484,7 @@ func ExampleSQS_SendMessage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_SendMessageBatch() {
@@ -493,29 +493,29 @@ func ExampleSQS_SendMessageBatch() {
 	params := &sqs.SendMessageBatchInput{
 		Entries: []*sqs.SendMessageBatchRequestEntry{ // Required
 			{ // Required
-				ID:           aws.String("String"), // Required
-				MessageBody:  aws.String("String"), // Required
-				DelaySeconds: aws.Long(1),
+				ID:           awsconv.String("String"), // Required
+				MessageBody:  awsconv.String("String"), // Required
+				DelaySeconds: awsconv.Int64(1),
 				MessageAttributes: map[string]*sqs.MessageAttributeValue{
 					"Key": { // Required
-						DataType: aws.String("String"), // Required
+						DataType: awsconv.String("String"), // Required
 						BinaryListValues: [][]byte{
 							[]byte("PAYLOAD"), // Required
 							// More values...
 						},
 						BinaryValue: []byte("PAYLOAD"),
 						StringListValues: []*string{
-							aws.String("String"), // Required
+							awsconv.String("String"), // Required
 							// More values...
 						},
-						StringValue: aws.String("String"),
+						StringValue: awsconv.String("String"),
 					},
 					// More values...
 				},
 			},
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.SendMessageBatch(params)
 
@@ -535,7 +535,7 @@ func ExampleSQS_SendMessageBatch() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleSQS_SetQueueAttributes() {
@@ -543,10 +543,10 @@ func ExampleSQS_SetQueueAttributes() {
 
 	params := &sqs.SetQueueAttributesInput{
 		Attributes: map[string]*string{ // Required
-			"Key": aws.String("String"), // Required
+			"Key": awsconv.String("String"), // Required
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueURL: awsconv.String("String"), // Required
 	}
 	resp, err := svc.SetQueueAttributes(params)
 
@@ -566,5 +566,5 @@ func ExampleSQS_SetQueueAttributes() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

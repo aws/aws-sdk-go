@@ -4,11 +4,13 @@ package mobileanalytics
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// MobileAnalytics is a client for Amazon Mobile Analytics.
+// Amazon Mobile Analytics is a service for collecting, visualizing, and understanding
+// app usage data at scale.
 type MobileAnalytics struct {
 	*aws.Service
 }
@@ -20,9 +22,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new MobileAnalytics client.
-func New(config *aws.Config) *MobileAnalytics {
+func New(config *awscfg.Config) *MobileAnalytics {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "mobileanalytics",
 		APIVersion:  "2014-06-05",
 	}

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsconv"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cognitosync"
@@ -20,7 +20,7 @@ func ExampleCognitoSync_BulkPublish() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.BulkPublishInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.BulkPublish(params)
 
@@ -40,16 +40,16 @@ func ExampleCognitoSync_BulkPublish() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_DeleteDataset() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.DeleteDatasetInput{
-		DatasetName:    aws.String("DatasetName"),    // Required
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		DatasetName:    awsconv.String("DatasetName"),    // Required
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DeleteDataset(params)
 
@@ -69,16 +69,16 @@ func ExampleCognitoSync_DeleteDataset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_DescribeDataset() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.DescribeDatasetInput{
-		DatasetName:    aws.String("DatasetName"),    // Required
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		DatasetName:    awsconv.String("DatasetName"),    // Required
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DescribeDataset(params)
 
@@ -98,14 +98,14 @@ func ExampleCognitoSync_DescribeDataset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_DescribeIdentityPoolUsage() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.DescribeIdentityPoolUsageInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DescribeIdentityPoolUsage(params)
 
@@ -125,15 +125,15 @@ func ExampleCognitoSync_DescribeIdentityPoolUsage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_DescribeIdentityUsage() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.DescribeIdentityUsageInput{
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DescribeIdentityUsage(params)
 
@@ -153,14 +153,14 @@ func ExampleCognitoSync_DescribeIdentityUsage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_GetBulkPublishDetails() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.GetBulkPublishDetailsInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.GetBulkPublishDetails(params)
 
@@ -180,14 +180,14 @@ func ExampleCognitoSync_GetBulkPublishDetails() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_GetCognitoEvents() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.GetCognitoEventsInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.GetCognitoEvents(params)
 
@@ -207,14 +207,14 @@ func ExampleCognitoSync_GetCognitoEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_GetIdentityPoolConfiguration() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.GetIdentityPoolConfigurationInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.GetIdentityPoolConfiguration(params)
 
@@ -234,17 +234,17 @@ func ExampleCognitoSync_GetIdentityPoolConfiguration() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_ListDatasets() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.ListDatasetsInput{
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		MaxResults:     aws.Long(1),
-		NextToken:      aws.String("String"),
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
+		MaxResults:     awsconv.Int64(1),
+		NextToken:      awsconv.String("String"),
 	}
 	resp, err := svc.ListDatasets(params)
 
@@ -264,15 +264,15 @@ func ExampleCognitoSync_ListDatasets() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_ListIdentityPoolUsage() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.ListIdentityPoolUsageInput{
-		MaxResults: aws.Long(1),
-		NextToken:  aws.String("String"),
+		MaxResults: awsconv.Int64(1),
+		NextToken:  awsconv.String("String"),
 	}
 	resp, err := svc.ListIdentityPoolUsage(params)
 
@@ -292,20 +292,20 @@ func ExampleCognitoSync_ListIdentityPoolUsage() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_ListRecords() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.ListRecordsInput{
-		DatasetName:      aws.String("DatasetName"),    // Required
-		IdentityID:       aws.String("IdentityId"),     // Required
-		IdentityPoolID:   aws.String("IdentityPoolId"), // Required
-		LastSyncCount:    aws.Long(1),
-		MaxResults:       aws.Long(1),
-		NextToken:        aws.String("String"),
-		SyncSessionToken: aws.String("SyncSessionToken"),
+		DatasetName:      awsconv.String("DatasetName"),    // Required
+		IdentityID:       awsconv.String("IdentityId"),     // Required
+		IdentityPoolID:   awsconv.String("IdentityPoolId"), // Required
+		LastSyncCount:    awsconv.Int64(1),
+		MaxResults:       awsconv.Int64(1),
+		NextToken:        awsconv.String("String"),
+		SyncSessionToken: awsconv.String("SyncSessionToken"),
 	}
 	resp, err := svc.ListRecords(params)
 
@@ -325,17 +325,17 @@ func ExampleCognitoSync_ListRecords() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_RegisterDevice() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.RegisterDeviceInput{
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		Platform:       aws.String("Platform"),       // Required
-		Token:          aws.String("PushToken"),      // Required
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
+		Platform:       awsconv.String("Platform"),       // Required
+		Token:          awsconv.String("PushToken"),      // Required
 	}
 	resp, err := svc.RegisterDevice(params)
 
@@ -355,7 +355,7 @@ func ExampleCognitoSync_RegisterDevice() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_SetCognitoEvents() {
@@ -363,10 +363,10 @@ func ExampleCognitoSync_SetCognitoEvents() {
 
 	params := &cognitosync.SetCognitoEventsInput{
 		Events: map[string]*string{ // Required
-			"Key": aws.String("LambdaFunctionArn"), // Required
+			"Key": awsconv.String("LambdaFunctionArn"), // Required
 			// More values...
 		},
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.SetCognitoEvents(params)
 
@@ -386,25 +386,25 @@ func ExampleCognitoSync_SetCognitoEvents() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_SetIdentityPoolConfiguration() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.SetIdentityPoolConfigurationInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 		CognitoStreams: &cognitosync.CognitoStreams{
-			RoleARN:         aws.String("AssumeRoleArn"),
-			StreamName:      aws.String("StreamName"),
-			StreamingStatus: aws.String("StreamingStatus"),
+			RoleARN:         awsconv.String("AssumeRoleArn"),
+			StreamName:      awsconv.String("StreamName"),
+			StreamingStatus: awsconv.String("StreamingStatus"),
 		},
 		PushSync: &cognitosync.PushSync{
 			ApplicationARNs: []*string{
-				aws.String("ApplicationArn"), // Required
+				awsconv.String("ApplicationArn"), // Required
 				// More values...
 			},
-			RoleARN: aws.String("AssumeRoleArn"),
+			RoleARN: awsconv.String("AssumeRoleArn"),
 		},
 	}
 	resp, err := svc.SetIdentityPoolConfiguration(params)
@@ -425,17 +425,17 @@ func ExampleCognitoSync_SetIdentityPoolConfiguration() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_SubscribeToDataset() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.SubscribeToDatasetInput{
-		DatasetName:    aws.String("DatasetName"),    // Required
-		DeviceID:       aws.String("DeviceId"),       // Required
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		DatasetName:    awsconv.String("DatasetName"),    // Required
+		DeviceID:       awsconv.String("DeviceId"),       // Required
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.SubscribeToDataset(params)
 
@@ -455,17 +455,17 @@ func ExampleCognitoSync_SubscribeToDataset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_UnsubscribeFromDataset() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.UnsubscribeFromDatasetInput{
-		DatasetName:    aws.String("DatasetName"),    // Required
-		DeviceID:       aws.String("DeviceId"),       // Required
-		IdentityID:     aws.String("IdentityId"),     // Required
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		DatasetName:    awsconv.String("DatasetName"),    // Required
+		DeviceID:       awsconv.String("DeviceId"),       // Required
+		IdentityID:     awsconv.String("IdentityId"),     // Required
+		IdentityPoolID: awsconv.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.UnsubscribeFromDataset(params)
 
@@ -485,26 +485,26 @@ func ExampleCognitoSync_UnsubscribeFromDataset() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }
 
 func ExampleCognitoSync_UpdateRecords() {
 	svc := cognitosync.New(nil)
 
 	params := &cognitosync.UpdateRecordsInput{
-		DatasetName:      aws.String("DatasetName"),      // Required
-		IdentityID:       aws.String("IdentityId"),       // Required
-		IdentityPoolID:   aws.String("IdentityPoolId"),   // Required
-		SyncSessionToken: aws.String("SyncSessionToken"), // Required
-		ClientContext:    aws.String("ClientContext"),
-		DeviceID:         aws.String("DeviceId"),
+		DatasetName:      awsconv.String("DatasetName"),      // Required
+		IdentityID:       awsconv.String("IdentityId"),       // Required
+		IdentityPoolID:   awsconv.String("IdentityPoolId"),   // Required
+		SyncSessionToken: awsconv.String("SyncSessionToken"), // Required
+		ClientContext:    awsconv.String("ClientContext"),
+		DeviceID:         awsconv.String("DeviceId"),
 		RecordPatches: []*cognitosync.RecordPatch{
 			{ // Required
-				Key:                    aws.String("RecordKey"), // Required
-				Op:                     aws.String("Operation"), // Required
-				SyncCount:              aws.Long(1),             // Required
-				DeviceLastModifiedDate: aws.Time(time.Now()),
-				Value: aws.String("RecordValue"),
+				Key:                    awsconv.String("RecordKey"), // Required
+				Op:                     awsconv.String("Operation"), // Required
+				SyncCount:              awsconv.Int64(1),            // Required
+				DeviceLastModifiedDate: awsconv.Time(time.Now()),
+				Value: awsconv.String("RecordValue"),
 			},
 			// More values...
 		},
@@ -527,5 +527,5 @@ func ExampleCognitoSync_UpdateRecords() {
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(awsutil.Prettify(resp))
 }

@@ -4,6 +4,7 @@ package elasticbeanstalk
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awscfg"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -40,9 +41,9 @@ var initService func(*aws.Service)
 var initRequest func(*aws.Request)
 
 // New returns a new ElasticBeanstalk client.
-func New(config *aws.Config) *ElasticBeanstalk {
+func New(config *awscfg.Config) *ElasticBeanstalk {
 	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+		Config:      awscfg.DefaultConfig.Merge(config),
 		ServiceName: "elasticbeanstalk",
 		APIVersion:  "2010-12-01",
 	}
