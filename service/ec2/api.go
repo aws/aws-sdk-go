@@ -829,7 +829,7 @@ func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, o
 // Copies of encrypted EBS snapshots remain encrypted. Copies of unencrypted
 // snapshots remain unencrypted, unless the Encrypted flag is specified during
 // the snapshot copy operation. By default, encrypted snapshot copies use the
-// default AWS Key Management Service (KMS) Customer Master Key (CMK); however,
+// default AWS Key Management Service (AWS KMS) customer master key (CMK); however,
 // you can specify a non-default CMK with the KmsKeyId parameter.
 //
 // For more information, see Copying an Amazon EBS Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)
@@ -5448,8 +5448,10 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request,
 }
 
 // Registers an AMI. When you're creating an AMI, this is the final step you
-// must complete before you can launch an instance from the AMI. For more information
-// about creating AMIs, see Creating Your Own AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html)
+// must complete before you can launch an instance from the AMI. This step is
+// required if you're creating an instance store-backed Linux or Windows AMI.
+// For more information, see Creating an Instance Store-Backed Linux AMI (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)
+// and Creating an Instance Store-Backed Windows AMI (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // For Amazon EBS-backed instances, CreateImage creates and registers the AMI
@@ -5457,8 +5459,10 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request,
 //
 // You can also use RegisterImage to create an Amazon EBS-backed AMI from a
 // snapshot of a root device volume. For more information, see Launching an
-// Instance from a Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html)
-// in the Amazon Elastic Compute Cloud User Guide.
+// Instance from a Backup (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html)
+// in the Amazon Elastic Compute Cloud User Guide. Note that although you can
+// create a Windows AMI from a snapshot, you can't launch an instance from the
+// AMI - use the CreateImage command instead.
 //
 // If needed, you can deregister an AMI at any time. Any modifications you
 // make to an AMI backed by an instance store volume invalidates its registration.
@@ -7024,12 +7028,14 @@ type AuthorizeSecurityGroupEgressInput struct {
 	// Use -1 to specify all.
 	IPProtocol *string `locationName:"ipProtocol" type:"string"`
 
-	// [EC2-Classic, default VPC] The name of the destination security group. You
-	// can't specify a destination security group and a CIDR IP address range.
+	// The name of a destination security group. To authorize outbound access to
+	// a destination security group, we recommend that you use a set of IP permissions
+	// instead.
 	SourceSecurityGroupName *string `locationName:"sourceSecurityGroupName" type:"string"`
 
-	// The ID of the destination security group. You can't specify a destination
-	// security group and a CIDR IP address range.
+	// The AWS account number for a destination security group. To authorize outbound
+	// access to a destination security group, we recommend that you use a set of
+	// IP permissions instead.
 	SourceSecurityGroupOwnerID *string `locationName:"sourceSecurityGroupOwnerId" type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -7102,13 +7108,18 @@ type AuthorizeSecurityGroupIngressInput struct {
 
 	// [EC2-Classic, default VPC] The name of the source security group. You can't
 	// specify this parameter in combination with the following parameters: the
-	// CIDR IP address range, the start of the port range, and the end of the port
-	// range.
+	// CIDR IP address range, the start of the port range, the IP protocol, and
+	// the end of the port range. For EC2-VPC, the source security group must be
+	// in the same VPC.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// The ID of the source security group. You can't specify this parameter in
-	// combination with the following parameters: the CIDR IP address range, the
-	// start of the port range, and the end of the port range.
+	// [EC2-Classic, default VPC] The AWS account number for the source security
+	// group. For EC2-VPC, the source security group must be in the same VPC. You
+	// can't specify this parameter in combination with the following parameters:
+	// the CIDR IP address range, the IP protocol, the start of the port range,
+	// and the end of the port range. Creates rules that grant full ICMP, UDP, and
+	// TCP access. To create a rule with a specific IP protocol and port range,
+	// use a set of IP permissions instead.
 	SourceSecurityGroupOwnerID *string `locationName:"SourceSecurityGroupOwnerId" type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -8083,17 +8094,17 @@ type CopySnapshotInput struct {
 	// no way to create an unencrypted snapshot copy from an encrypted snapshot;
 	// however, you can encrypt a copy of an unencrypted snapshot with this flag.
 	// The default CMK for EBS is used unless a non-default AWS Key Management Service
-	// (KMS) CMK is specified with KmsKeyId. For more information, see Amazon EBS
-	// Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
+	// (AWS KMS) CMK is specified with KmsKeyId. For more information, see Amazon
+	// EBS Encryption (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// The full ARN of the AWS Key Management Service (KMS) CMK to use when creating
-	// the snapshot copy. This parameter is only required if you want to use a non-default
-	// CMK; if this parameter is not specified, the default CMK for EBS is used.
-	// The ARN contains the arn:aws:kms namespace, followed by the region of the
-	// CMK, the AWS account ID of the CMK owner, the key namespace, and then the
-	// CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
+	// The full ARN of the AWS Key Management Service (AWS KMS) CMK to use when
+	// creating the snapshot copy. This parameter is only required if you want to
+	// use a non-default CMK; if this parameter is not specified, the default CMK
+	// for EBS is used. The ARN contains the arn:aws:kms namespace, followed by
+	// the region of the CMK, the AWS account ID of the CMK owner, the key namespace,
+	// and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
 	// The specified CMK must exist in the region that the snapshot is being copied
 	// to. If a KmsKeyId is specified, the Encrypted flag must also be set.
 	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
@@ -8850,10 +8861,6 @@ func (s CreateReservedInstancesListingOutput) GoString() string {
 }
 
 type CreateRouteInput struct {
-	// Unique, case-sensitive identifier you provide to ensure the idempotency of
-	// the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html).
-	ClientToken *string `locationName:"clientToken" type:"string"`
-
 	// The CIDR address block used for the destination match. Routing decisions
 	// are based on the most specific match.
 	DestinationCIDRBlock *string `locationName:"destinationCidrBlock" type:"string" required:"true"`
@@ -8899,10 +8906,6 @@ func (s CreateRouteInput) GoString() string {
 }
 
 type CreateRouteOutput struct {
-	// Unique, case-sensitive identifier you provide to ensure the idempotency of
-	// the request.
-	ClientToken *string `locationName:"clientToken" type:"string"`
-
 	// Returns true if the request succeeds; otherwise, it returns an error.
 	Return *bool `locationName:"return" type:"boolean"`
 
@@ -9245,8 +9248,8 @@ type CreateVPCEndpointInput struct {
 	// One or more route table IDs.
 	RouteTableIDs []*string `locationName:"RouteTableId" locationNameList:"item" type:"list"`
 
-	// The AWS service name, in the form com.amazonaws.<region>.<service>. To get
-	// a list of available services, use the DescribeVpcEndpointServices request.
+	// The AWS service name, in the form com.amazonaws.region.service. To get a
+	// list of available services, use the DescribeVpcEndpointServices request.
 	ServiceName *string `type:"string" required:"true"`
 
 	// The ID of the VPC in which the endpoint will be used.
@@ -9588,9 +9591,9 @@ type CreateVolumeInput struct {
 	// Constraint: Range is 100 to 20000 for Provisioned IOPS (SSD) volumes
 	IOPS *int64 `locationName:"Iops" type:"integer"`
 
-	// The full ARN of the AWS Key Management Service (KMS) Customer Master Key
-	// (CMK) to use when creating the encrypted volume. This parameter is only required
-	// if you want to use a non-default CMK; if this parameter is not specified,
+	// The full ARN of the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) to use when creating the encrypted volume. This parameter is only
+	// required if you want to use a non-default CMK; if this parameter is not specified,
 	// the default CMK for EBS is used. The ARN contains the arn:aws:kms namespace,
 	// followed by the region of the CMK, the AWS account ID of the CMK owner, the
 	// key namespace, and then the CMK ID. For example, arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef.
@@ -16173,8 +16176,10 @@ type EventInformation struct {
 	// either to launch or terminate an instance.
 	//
 	//   spotFleetRequestConfigurationInvalid - The configuration is not valid.
-	// For more information, see the description.   spotInstanceCountLimitExceeded
-	// - You've reached the limit on the number of Spot Instances that you can launch.
+	// For more information, see the description.
+	//
+	//   spotInstanceCountLimitExceeded - You've reached the limit on the number
+	// of Spot Instances that you can launch.
 	//
 	//   The following are the fleetRequestChange events.
 	//
@@ -18656,6 +18661,8 @@ func (s ModifyReservedInstancesOutput) GoString() string {
 
 type ModifySnapshotAttributeInput struct {
 	// The snapshot attribute to modify.
+	//
+	//  Only volume creation permissions may be modified at the customer level.
 	Attribute *string `type:"string"`
 
 	// A JSON representation of the snapshot attribute modification.
@@ -21232,12 +21239,14 @@ type RevokeSecurityGroupEgressInput struct {
 	// Use -1 to specify all.
 	IPProtocol *string `locationName:"ipProtocol" type:"string"`
 
-	// [EC2-Classic, default VPC] The name of the destination security group. You
-	// can't specify a destination security group and a CIDR IP address range.
+	// The name of a destination security group. To revoke outbound access to a
+	// destination security group, we recommend that you use a set of IP permissions
+	// instead.
 	SourceSecurityGroupName *string `locationName:"sourceSecurityGroupName" type:"string"`
 
-	// The ID of the destination security group. You can't specify a destination
-	// security group and a CIDR IP address range.
+	// The AWS account number for a destination security group. To revoke outbound
+	// access to a destination security group, we recommend that you use a set of
+	// IP permissions instead.
 	SourceSecurityGroupOwnerID *string `locationName:"sourceSecurityGroupOwnerId" type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -21294,7 +21303,8 @@ type RevokeSecurityGroupIngressInput struct {
 	// For the ICMP type number, use -1 to specify all ICMP types.
 	FromPort *int64 `type:"integer"`
 
-	// The ID of the security group.
+	// The ID of the security group. Required for a security group in a nondefault
+	// VPC.
 	GroupID *string `locationName:"GroupId" type:"string"`
 
 	// [EC2-Classic, default VPC] The name of the security group.
@@ -21310,13 +21320,17 @@ type RevokeSecurityGroupIngressInput struct {
 
 	// [EC2-Classic, default VPC] The name of the source security group. You can't
 	// specify this parameter in combination with the following parameters: the
-	// CIDR IP address range, the start of the port range, and the end of the port
-	// range.
+	// CIDR IP address range, the start of the port range, the IP protocol, and
+	// the end of the port range. For EC2-VPC, the source security group must be
+	// in the same VPC.
 	SourceSecurityGroupName *string `type:"string"`
 
-	// The ID of the source security group. You can't specify this parameter in
-	// combination with the following parameters: the CIDR IP address range, the
-	// start of the port range, and the end of the port range.
+	// [EC2-Classic, default VPC] The AWS account ID of the source security group.
+	// For EC2-VPC, the source security group must be in the same VPC. You can't
+	// specify this parameter in combination with the following parameters: the
+	// CIDR IP address range, the IP protocol, the start of the port range, and
+	// the end of the port range. To revoke a specific rule for an IP protocol and
+	// port range, use a set of IP permissions instead.
 	SourceSecurityGroupOwnerID *string `locationName:"SourceSecurityGroupOwnerId" type:"string"`
 
 	// The end of port range for the TCP and UDP protocols, or an ICMP code number.
@@ -21743,8 +21757,9 @@ type Snapshot struct {
 	// Indicates whether the snapshot is encrypted.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
-	// The full ARN of the AWS Key Management Service (KMS) Customer Master Key
-	// (CMK) that was used to protect the volume encryption key for the parent volume.
+	// The full ARN of the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) that was used to protect the volume encryption key for the parent
+	// volume.
 	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
 
 	// The AWS account alias (for example, amazon, self) or AWS account ID that
@@ -21955,6 +21970,103 @@ func (s SpotDatafeedSubscription) GoString() string {
 	return s.String()
 }
 
+// Describes the launch specification for an instance.
+type SpotFleetLaunchSpecification struct {
+	// Deprecated.
+	AddressingType *string `locationName:"addressingType" type:"string"`
+
+	// One or more block device mapping entries.
+	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
+
+	// Indicates whether the instance is optimized for EBS I/O. This optimization
+	// provides dedicated throughput to Amazon EBS and an optimized configuration
+	// stack to provide optimal EBS I/O performance. This optimization isn't available
+	// with all instance types. Additional usage charges apply when using an EBS
+	// Optimized instance.
+	//
+	// Default: false
+	EBSOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
+
+	// Describes an IAM instance profile.
+	IAMInstanceProfile *IAMInstanceProfileSpecification `locationName:"iamInstanceProfile" type:"structure"`
+
+	// The ID of the AMI.
+	ImageID *string `locationName:"imageId" type:"string"`
+
+	// The instance type.
+	InstanceType *string `locationName:"instanceType" type:"string"`
+
+	// The ID of the kernel.
+	KernelID *string `locationName:"kernelId" type:"string"`
+
+	// The name of the key pair.
+	KeyName *string `locationName:"keyName" type:"string"`
+
+	// Enable or disable monitoring for the instance.
+	Monitoring *SpotFleetMonitoring `locationName:"monitoring" type:"structure"`
+
+	// One or more network interfaces.
+	NetworkInterfaces []*InstanceNetworkInterfaceSpecification `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
+
+	// Describes Spot Instance placement.
+	Placement *SpotPlacement `locationName:"placement" type:"structure"`
+
+	// The ID of the RAM disk.
+	RAMDiskID *string `locationName:"ramdiskId" type:"string"`
+
+	// One or more security groups. To request an instance in a nondefault VPC,
+	// you must specify the ID of the security group. To request an instance in
+	// EC2-Classic or a default VPC, you can specify the name or the ID of the security
+	// group.
+	SecurityGroups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
+
+	// The ID of the subnet in which to launch the instance.
+	SubnetID *string `locationName:"subnetId" type:"string"`
+
+	// The Base64-encoded MIME user data to make available to the instances.
+	UserData *string `locationName:"userData" type:"string"`
+
+	metadataSpotFleetLaunchSpecification `json:"-" xml:"-"`
+}
+
+type metadataSpotFleetLaunchSpecification struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SpotFleetLaunchSpecification) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotFleetLaunchSpecification) GoString() string {
+	return s.String()
+}
+
+// Describes whether monitoring is enabled.
+type SpotFleetMonitoring struct {
+	// Enables monitoring for the instance.
+	//
+	// Default: false
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+
+	metadataSpotFleetMonitoring `json:"-" xml:"-"`
+}
+
+type metadataSpotFleetMonitoring struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SpotFleetMonitoring) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s SpotFleetMonitoring) GoString() string {
+	return s.String()
+}
+
 // Describes a Spot fleet request.
 type SpotFleetRequestConfig struct {
 	// Information about the configuration of the Spot fleet request.
@@ -21996,7 +22108,7 @@ type SpotFleetRequestConfigData struct {
 	IAMFleetRole *string `locationName:"iamFleetRole" type:"string" required:"true"`
 
 	// Information about the launch specifications for the instances.
-	LaunchSpecifications []*LaunchSpecification `locationName:"launchSpecifications" locationNameList:"item" type:"list" required:"true"`
+	LaunchSpecifications []*SpotFleetLaunchSpecification `locationName:"launchSpecifications" locationNameList:"item" type:"list" required:"true"`
 
 	// The maximum hourly price (bid) for any Spot Instance launched to fulfill
 	// the request.
@@ -23260,8 +23372,8 @@ type Volume struct {
 	// it is not used in requests to create standard or gp2 volumes.
 	IOPS *int64 `locationName:"iops" type:"integer"`
 
-	// The full ARN of the AWS Key Management Service (KMS) Customer Master Key
-	// (CMK) that was used to protect the volume encryption key for the volume.
+	// The full ARN of the AWS Key Management Service (AWS KMS) customer master
+	// key (CMK) that was used to protect the volume encryption key for the volume.
 	KMSKeyID *string `locationName:"kmsKeyId" type:"string"`
 
 	// The size of the volume, in GiBs.

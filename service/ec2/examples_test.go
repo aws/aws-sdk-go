@@ -1229,7 +1229,6 @@ func ExampleEC2_CreateRoute() {
 	params := &ec2.CreateRouteInput{
 		DestinationCIDRBlock:   aws.String("String"), // Required
 		RouteTableID:           aws.String("String"), // Required
-		ClientToken:            aws.String("String"),
 		DryRun:                 aws.Boolean(true),
 		GatewayID:              aws.String("String"),
 		InstanceID:             aws.String("String"),
@@ -5294,7 +5293,7 @@ func ExampleEC2_ModifySnapshotAttribute() {
 
 	params := &ec2.ModifySnapshotAttributeInput{
 		SnapshotID: aws.String("String"), // Required
-		Attribute:  aws.String("ModifySnapshotAttributeName"),
+		Attribute:  aws.String("SnapshotAttributeName"),
 		CreateVolumePermission: &ec2.CreateVolumePermissionModifications{
 			Add: []*ec2.CreateVolumePermission{
 				{ // Required
@@ -5884,7 +5883,7 @@ func ExampleEC2_RequestSpotFleet() {
 	params := &ec2.RequestSpotFleetInput{
 		SpotFleetRequestConfig: &ec2.SpotFleetRequestConfigData{ // Required
 			IAMFleetRole: aws.String("String"), // Required
-			LaunchSpecifications: []*ec2.LaunchSpecification{ // Required
+			LaunchSpecifications: []*ec2.SpotFleetLaunchSpecification{ // Required
 				{ // Required
 					AddressingType: aws.String("String"),
 					BlockDeviceMappings: []*ec2.BlockDeviceMapping{
@@ -5912,8 +5911,8 @@ func ExampleEC2_RequestSpotFleet() {
 					InstanceType: aws.String("InstanceType"),
 					KernelID:     aws.String("String"),
 					KeyName:      aws.String("String"),
-					Monitoring: &ec2.RunInstancesMonitoringEnabled{
-						Enabled: aws.Boolean(true), // Required
+					Monitoring: &ec2.SpotFleetMonitoring{
+						Enabled: aws.Boolean(true),
 					},
 					NetworkInterfaces: []*ec2.InstanceNetworkInterfaceSpecification{
 						{ // Required
@@ -6182,8 +6181,8 @@ func ExampleEC2_ResetSnapshotAttribute() {
 	svc := ec2.New(nil)
 
 	params := &ec2.ResetSnapshotAttributeInput{
-		Attribute:  aws.String("ModifySnapshotAttributeName"), // Required
-		SnapshotID: aws.String("String"),                      // Required
+		Attribute:  aws.String("SnapshotAttributeName"), // Required
+		SnapshotID: aws.String("String"),                // Required
 		DryRun:     aws.Boolean(true),
 	}
 	resp, err := svc.ResetSnapshotAttribute(params)
