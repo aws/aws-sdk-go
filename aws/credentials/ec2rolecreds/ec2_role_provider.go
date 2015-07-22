@@ -1,4 +1,4 @@
-package credentials
+package ec2rolecreds
 
 import (
 	"bufio"
@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 )
 
 const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
@@ -18,7 +19,7 @@ const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam
 // Example how to configure the EC2RoleProvider with custom http Client, Endpoint
 // or ExpiryWindow
 //
-//     p := &credentials.EC2RoleProvider{
+//     p := &ec2rolecreds.EC2RoleProvider{
 //         // Pass in a custom timeout to be used when requesting
 //         // IAM EC2 Role credentials.
 //         Client: &http.Client{
@@ -32,7 +33,7 @@ const metadataCredentialsEndpoint = "http://169.254.169.254/latest/meta-data/iam
 //         ExpiryWindow: 0,
 //     }
 type EC2RoleProvider struct {
-	Expiry
+	credentials.Expiry
 
 	// Endpoint must be fully quantified URL
 	Endpoint string
@@ -52,7 +53,7 @@ type EC2RoleProvider struct {
 	ExpiryWindow time.Duration
 }
 
-// NewEC2RoleCredentials returns a pointer to a new Credentials object
+// NewCredentials returns a pointer to a new Credentials object
 // wrapping the EC2RoleProvider.
 //
 // Takes a custom http.Client which can be configured for custom handling of
@@ -64,8 +65,8 @@ type EC2RoleProvider struct {
 // Window is the expiry window that will be subtracted from the expiry returned
 // by the role credential request. This is done so that the credentials will
 // expire sooner than their actual lifespan.
-func NewEC2RoleCredentials(client *http.Client, endpoint string, window time.Duration) *Credentials {
-	return NewCredentials(&EC2RoleProvider{
+func NewCredentials(client *http.Client, endpoint string, window time.Duration) *credentials.Credentials {
+	return credentials.NewCredentials(&EC2RoleProvider{
 		Endpoint:     endpoint,
 		Client:       client,
 		ExpiryWindow: window,
@@ -75,7 +76,7 @@ func NewEC2RoleCredentials(client *http.Client, endpoint string, window time.Dur
 // Retrieve retrieves credentials from the EC2 service.
 // Error will be returned if the request fails, or unable to extract
 // the desired credentials.
-func (m *EC2RoleProvider) Retrieve() (Value, error) {
+func (m *EC2RoleProvider) Retrieve() (credentials.Value, error) {
 	if m.Client == nil {
 		m.Client = http.DefaultClient
 	}
@@ -85,22 +86,22 @@ func (m *EC2RoleProvider) Retrieve() (Value, error) {
 
 	credsList, err := requestCredList(m.Client, m.Endpoint)
 	if err != nil {
-		return Value{}, err
+		return credentials.Value{}, err
 	}
 
 	if len(credsList) == 0 {
-		return Value{}, awserr.New("EmptyEC2RoleList", "empty EC2 Role list", nil)
+		return credentials.Value{}, awserr.New("EmptyEC2RoleList", "empty EC2 Role list", nil)
 	}
 	credsName := credsList[0]
 
 	roleCreds, err := requestCred(m.Client, m.Endpoint, credsName)
 	if err != nil {
-		return Value{}, err
+		return credentials.Value{}, err
 	}
 
 	m.SetExpiration(roleCreds.Expiration, m.ExpiryWindow)
 
-	return Value{
+	return credentials.Value{
 		AccessKeyID:     roleCreds.AccessKeyID,
 		SecretAccessKey: roleCreds.SecretAccessKey,
 		SessionToken:    roleCreds.Token,

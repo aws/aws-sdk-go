@@ -1,4 +1,4 @@
-package credentials
+package ec2rolecreds_test
 
 import (
 	"fmt"
@@ -7,6 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 )
 
 func initTestServer(expireOn string) *httptest.Server {
@@ -30,7 +32,7 @@ func TestEC2RoleProvider(t *testing.T) {
 	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
-	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
+	p := &ec2rolecreds.EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
 
 	creds, err := p.Retrieve()
 	assert.Nil(t, err, "Expect no error")
@@ -44,7 +46,7 @@ func TestEC2RoleProviderIsExpired(t *testing.T) {
 	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
-	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
+	p := &ec2rolecreds.EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
 	p.CurrentTime = func() time.Time {
 		return time.Date(2014, 12, 15, 21, 26, 0, 0, time.UTC)
 	}
@@ -67,7 +69,7 @@ func TestEC2RoleProviderExpiryWindowIsExpired(t *testing.T) {
 	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
-	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL, ExpiryWindow: time.Hour * 1}
+	p := &ec2rolecreds.EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL, ExpiryWindow: time.Hour * 1}
 	p.CurrentTime = func() time.Time {
 		return time.Date(2014, 12, 15, 0, 51, 37, 0, time.UTC)
 	}
@@ -90,7 +92,7 @@ func BenchmarkEC2RoleProvider(b *testing.B) {
 	server := initTestServer("2014-12-16T01:51:37Z")
 	defer server.Close()
 
-	p := &EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
+	p := &ec2rolecreds.EC2RoleProvider{Client: http.DefaultClient, Endpoint: server.URL}
 	_, err := p.Retrieve()
 	if err != nil {
 		b.Fatal(err)

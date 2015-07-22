@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 )
 
 var testCredentials = credentials.NewChainCredentials([]credentials.Provider{
@@ -14,7 +15,7 @@ var testCredentials = credentials.NewChainCredentials([]credentials.Provider{
 	&credentials.SharedCredentialsProvider{
 		Filename: "TestFilename",
 		Profile:  "TestProfile"},
-	&credentials.EC2RoleProvider{ExpiryWindow: 5 * time.Minute},
+	&ec2rolecreds.EC2RoleProvider{ExpiryWindow: 5 * time.Minute},
 })
 
 var copyTestConfig = Config{
