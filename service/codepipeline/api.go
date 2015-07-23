@@ -6,15 +6,15 @@ package codepipeline
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAcknowledgeJob = "AcknowledgeJob"
 
 // AcknowledgeJobRequest generates a request for the AcknowledgeJob operation.
-func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *aws.Request, output *AcknowledgeJobOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) AcknowledgeJobRequest(input *AcknowledgeJobInput) (req *service.Request, output *AcknowledgeJobOutput) {
+	op := &service.Operation{
 		Name:       opAcknowledgeJob,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -41,8 +41,8 @@ func (c *CodePipeline) AcknowledgeJob(input *AcknowledgeJobInput) (*AcknowledgeJ
 const opAcknowledgeThirdPartyJob = "AcknowledgeThirdPartyJob"
 
 // AcknowledgeThirdPartyJobRequest generates a request for the AcknowledgeThirdPartyJob operation.
-func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPartyJobInput) (req *aws.Request, output *AcknowledgeThirdPartyJobOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) AcknowledgeThirdPartyJobRequest(input *AcknowledgeThirdPartyJobInput) (req *service.Request, output *AcknowledgeThirdPartyJobOutput) {
+	op := &service.Operation{
 		Name:       opAcknowledgeThirdPartyJob,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -69,8 +69,8 @@ func (c *CodePipeline) AcknowledgeThirdPartyJob(input *AcknowledgeThirdPartyJobI
 const opCreateCustomActionType = "CreateCustomActionType"
 
 // CreateCustomActionTypeRequest generates a request for the CreateCustomActionType operation.
-func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTypeInput) (req *aws.Request, output *CreateCustomActionTypeOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) CreateCustomActionTypeRequest(input *CreateCustomActionTypeInput) (req *service.Request, output *CreateCustomActionTypeOutput) {
+	op := &service.Operation{
 		Name:       opCreateCustomActionType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -97,8 +97,8 @@ func (c *CodePipeline) CreateCustomActionType(input *CreateCustomActionTypeInput
 const opCreatePipeline = "CreatePipeline"
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
-func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *service.Request, output *CreatePipelineOutput) {
+	op := &service.Operation{
 		Name:       opCreatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -124,8 +124,8 @@ func (c *CodePipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipeli
 const opDeleteCustomActionType = "DeleteCustomActionType"
 
 // DeleteCustomActionTypeRequest generates a request for the DeleteCustomActionType operation.
-func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTypeInput) (req *aws.Request, output *DeleteCustomActionTypeOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) DeleteCustomActionTypeRequest(input *DeleteCustomActionTypeInput) (req *service.Request, output *DeleteCustomActionTypeOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCustomActionType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -155,8 +155,8 @@ func (c *CodePipeline) DeleteCustomActionType(input *DeleteCustomActionTypeInput
 const opDeletePipeline = "DeletePipeline"
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
-func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *service.Request, output *DeletePipelineOutput) {
+	op := &service.Operation{
 		Name:       opDeletePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -182,8 +182,8 @@ func (c *CodePipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipeli
 const opDisableStageTransition = "DisableStageTransition"
 
 // DisableStageTransitionRequest generates a request for the DisableStageTransition operation.
-func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransitionInput) (req *aws.Request, output *DisableStageTransitionOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) DisableStageTransitionRequest(input *DisableStageTransitionInput) (req *service.Request, output *DisableStageTransitionOutput) {
+	op := &service.Operation{
 		Name:       opDisableStageTransition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -210,8 +210,8 @@ func (c *CodePipeline) DisableStageTransition(input *DisableStageTransitionInput
 const opEnableStageTransition = "EnableStageTransition"
 
 // EnableStageTransitionRequest generates a request for the EnableStageTransition operation.
-func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransitionInput) (req *aws.Request, output *EnableStageTransitionOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) EnableStageTransitionRequest(input *EnableStageTransitionInput) (req *service.Request, output *EnableStageTransitionOutput) {
+	op := &service.Operation{
 		Name:       opEnableStageTransition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -237,8 +237,8 @@ func (c *CodePipeline) EnableStageTransition(input *EnableStageTransitionInput) 
 const opGetJobDetails = "GetJobDetails"
 
 // GetJobDetailsRequest generates a request for the GetJobDetails operation.
-func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *aws.Request, output *GetJobDetailsOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) GetJobDetailsRequest(input *GetJobDetailsInput) (req *service.Request, output *GetJobDetailsOutput) {
+	op := &service.Operation{
 		Name:       opGetJobDetails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -269,8 +269,8 @@ func (c *CodePipeline) GetJobDetails(input *GetJobDetailsInput) (*GetJobDetailsO
 const opGetPipeline = "GetPipeline"
 
 // GetPipelineRequest generates a request for the GetPipeline operation.
-func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *aws.Request, output *GetPipelineOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) GetPipelineRequest(input *GetPipelineInput) (req *service.Request, output *GetPipelineOutput) {
+	op := &service.Operation{
 		Name:       opGetPipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -298,8 +298,8 @@ func (c *CodePipeline) GetPipeline(input *GetPipelineInput) (*GetPipelineOutput,
 const opGetPipelineState = "GetPipelineState"
 
 // GetPipelineStateRequest generates a request for the GetPipelineState operation.
-func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (req *aws.Request, output *GetPipelineStateOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) GetPipelineStateRequest(input *GetPipelineStateInput) (req *service.Request, output *GetPipelineStateOutput) {
+	op := &service.Operation{
 		Name:       opGetPipelineState,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -326,8 +326,8 @@ func (c *CodePipeline) GetPipelineState(input *GetPipelineStateInput) (*GetPipel
 const opGetThirdPartyJobDetails = "GetThirdPartyJobDetails"
 
 // GetThirdPartyJobDetailsRequest generates a request for the GetThirdPartyJobDetails operation.
-func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDetailsInput) (req *aws.Request, output *GetThirdPartyJobDetailsOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) GetThirdPartyJobDetailsRequest(input *GetThirdPartyJobDetailsInput) (req *service.Request, output *GetThirdPartyJobDetailsOutput) {
+	op := &service.Operation{
 		Name:       opGetThirdPartyJobDetails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -359,8 +359,8 @@ func (c *CodePipeline) GetThirdPartyJobDetails(input *GetThirdPartyJobDetailsInp
 const opListActionTypes = "ListActionTypes"
 
 // ListActionTypesRequest generates a request for the ListActionTypes operation.
-func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req *aws.Request, output *ListActionTypesOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) ListActionTypesRequest(input *ListActionTypesInput) (req *service.Request, output *ListActionTypesOutput) {
+	op := &service.Operation{
 		Name:       opListActionTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -387,8 +387,8 @@ func (c *CodePipeline) ListActionTypes(input *ListActionTypesInput) (*ListAction
 const opListPipelines = "ListPipelines"
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
-func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *service.Request, output *ListPipelinesOutput) {
+	op := &service.Operation{
 		Name:       opListPipelines,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -414,8 +414,8 @@ func (c *CodePipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 const opPollForJobs = "PollForJobs"
 
 // PollForJobsRequest generates a request for the PollForJobs operation.
-func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *aws.Request, output *PollForJobsOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PollForJobsRequest(input *PollForJobsInput) (req *service.Request, output *PollForJobsOutput) {
+	op := &service.Operation{
 		Name:       opPollForJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -446,8 +446,8 @@ func (c *CodePipeline) PollForJobs(input *PollForJobsInput) (*PollForJobsOutput,
 const opPollForThirdPartyJobs = "PollForThirdPartyJobs"
 
 // PollForThirdPartyJobsRequest generates a request for the PollForThirdPartyJobs operation.
-func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobsInput) (req *aws.Request, output *PollForThirdPartyJobsOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PollForThirdPartyJobsRequest(input *PollForThirdPartyJobsInput) (req *service.Request, output *PollForThirdPartyJobsOutput) {
+	op := &service.Operation{
 		Name:       opPollForThirdPartyJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -478,8 +478,8 @@ func (c *CodePipeline) PollForThirdPartyJobs(input *PollForThirdPartyJobsInput) 
 const opPutActionRevision = "PutActionRevision"
 
 // PutActionRevisionRequest generates a request for the PutActionRevision operation.
-func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (req *aws.Request, output *PutActionRevisionOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PutActionRevisionRequest(input *PutActionRevisionInput) (req *service.Request, output *PutActionRevisionOutput) {
+	op := &service.Operation{
 		Name:       opPutActionRevision,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -505,8 +505,8 @@ func (c *CodePipeline) PutActionRevision(input *PutActionRevisionInput) (*PutAct
 const opPutJobFailureResult = "PutJobFailureResult"
 
 // PutJobFailureResultRequest generates a request for the PutJobFailureResult operation.
-func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInput) (req *aws.Request, output *PutJobFailureResultOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PutJobFailureResultRequest(input *PutJobFailureResultInput) (req *service.Request, output *PutJobFailureResultOutput) {
+	op := &service.Operation{
 		Name:       opPutJobFailureResult,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -533,8 +533,8 @@ func (c *CodePipeline) PutJobFailureResult(input *PutJobFailureResultInput) (*Pu
 const opPutJobSuccessResult = "PutJobSuccessResult"
 
 // PutJobSuccessResultRequest generates a request for the PutJobSuccessResult operation.
-func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInput) (req *aws.Request, output *PutJobSuccessResultOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PutJobSuccessResultRequest(input *PutJobSuccessResultInput) (req *service.Request, output *PutJobSuccessResultOutput) {
+	op := &service.Operation{
 		Name:       opPutJobSuccessResult,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -561,8 +561,8 @@ func (c *CodePipeline) PutJobSuccessResult(input *PutJobSuccessResultInput) (*Pu
 const opPutThirdPartyJobFailureResult = "PutThirdPartyJobFailureResult"
 
 // PutThirdPartyJobFailureResultRequest generates a request for the PutThirdPartyJobFailureResult operation.
-func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdPartyJobFailureResultInput) (req *aws.Request, output *PutThirdPartyJobFailureResultOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PutThirdPartyJobFailureResultRequest(input *PutThirdPartyJobFailureResultInput) (req *service.Request, output *PutThirdPartyJobFailureResultOutput) {
+	op := &service.Operation{
 		Name:       opPutThirdPartyJobFailureResult,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -589,8 +589,8 @@ func (c *CodePipeline) PutThirdPartyJobFailureResult(input *PutThirdPartyJobFail
 const opPutThirdPartyJobSuccessResult = "PutThirdPartyJobSuccessResult"
 
 // PutThirdPartyJobSuccessResultRequest generates a request for the PutThirdPartyJobSuccessResult operation.
-func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdPartyJobSuccessResultInput) (req *aws.Request, output *PutThirdPartyJobSuccessResultOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) PutThirdPartyJobSuccessResultRequest(input *PutThirdPartyJobSuccessResultInput) (req *service.Request, output *PutThirdPartyJobSuccessResultOutput) {
+	op := &service.Operation{
 		Name:       opPutThirdPartyJobSuccessResult,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -617,8 +617,8 @@ func (c *CodePipeline) PutThirdPartyJobSuccessResult(input *PutThirdPartyJobSucc
 const opStartPipelineExecution = "StartPipelineExecution"
 
 // StartPipelineExecutionRequest generates a request for the StartPipelineExecution operation.
-func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecutionInput) (req *aws.Request, output *StartPipelineExecutionOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecutionInput) (req *service.Request, output *StartPipelineExecutionOutput) {
+	op := &service.Operation{
 		Name:       opStartPipelineExecution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -645,8 +645,8 @@ func (c *CodePipeline) StartPipelineExecution(input *StartPipelineExecutionInput
 const opUpdatePipeline = "UpdatePipeline"
 
 // UpdatePipelineRequest generates a request for the UpdatePipeline operation.
-func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *aws.Request, output *UpdatePipelineOutput) {
-	op := &aws.Operation{
+func (c *CodePipeline) UpdatePipelineRequest(input *UpdatePipelineInput) (req *service.Request, output *UpdatePipelineOutput) {
+	op := &service.Operation{
 		Name:       opUpdatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

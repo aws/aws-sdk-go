@@ -4,131 +4,131 @@
 package devicefarmiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/devicefarm"
 )
 
 // DeviceFarmAPI is the interface type for devicefarm.DeviceFarm.
 type DeviceFarmAPI interface {
-	CreateDevicePoolRequest(*devicefarm.CreateDevicePoolInput) (*aws.Request, *devicefarm.CreateDevicePoolOutput)
+	CreateDevicePoolRequest(*devicefarm.CreateDevicePoolInput) (*service.Request, *devicefarm.CreateDevicePoolOutput)
 
 	CreateDevicePool(*devicefarm.CreateDevicePoolInput) (*devicefarm.CreateDevicePoolOutput, error)
 
-	CreateProjectRequest(*devicefarm.CreateProjectInput) (*aws.Request, *devicefarm.CreateProjectOutput)
+	CreateProjectRequest(*devicefarm.CreateProjectInput) (*service.Request, *devicefarm.CreateProjectOutput)
 
 	CreateProject(*devicefarm.CreateProjectInput) (*devicefarm.CreateProjectOutput, error)
 
-	CreateUploadRequest(*devicefarm.CreateUploadInput) (*aws.Request, *devicefarm.CreateUploadOutput)
+	CreateUploadRequest(*devicefarm.CreateUploadInput) (*service.Request, *devicefarm.CreateUploadOutput)
 
 	CreateUpload(*devicefarm.CreateUploadInput) (*devicefarm.CreateUploadOutput, error)
 
-	GetAccountSettingsRequest(*devicefarm.GetAccountSettingsInput) (*aws.Request, *devicefarm.GetAccountSettingsOutput)
+	GetAccountSettingsRequest(*devicefarm.GetAccountSettingsInput) (*service.Request, *devicefarm.GetAccountSettingsOutput)
 
 	GetAccountSettings(*devicefarm.GetAccountSettingsInput) (*devicefarm.GetAccountSettingsOutput, error)
 
-	GetDeviceRequest(*devicefarm.GetDeviceInput) (*aws.Request, *devicefarm.GetDeviceOutput)
+	GetDeviceRequest(*devicefarm.GetDeviceInput) (*service.Request, *devicefarm.GetDeviceOutput)
 
 	GetDevice(*devicefarm.GetDeviceInput) (*devicefarm.GetDeviceOutput, error)
 
-	GetDevicePoolRequest(*devicefarm.GetDevicePoolInput) (*aws.Request, *devicefarm.GetDevicePoolOutput)
+	GetDevicePoolRequest(*devicefarm.GetDevicePoolInput) (*service.Request, *devicefarm.GetDevicePoolOutput)
 
 	GetDevicePool(*devicefarm.GetDevicePoolInput) (*devicefarm.GetDevicePoolOutput, error)
 
-	GetDevicePoolCompatibilityRequest(*devicefarm.GetDevicePoolCompatibilityInput) (*aws.Request, *devicefarm.GetDevicePoolCompatibilityOutput)
+	GetDevicePoolCompatibilityRequest(*devicefarm.GetDevicePoolCompatibilityInput) (*service.Request, *devicefarm.GetDevicePoolCompatibilityOutput)
 
 	GetDevicePoolCompatibility(*devicefarm.GetDevicePoolCompatibilityInput) (*devicefarm.GetDevicePoolCompatibilityOutput, error)
 
-	GetJobRequest(*devicefarm.GetJobInput) (*aws.Request, *devicefarm.GetJobOutput)
+	GetJobRequest(*devicefarm.GetJobInput) (*service.Request, *devicefarm.GetJobOutput)
 
 	GetJob(*devicefarm.GetJobInput) (*devicefarm.GetJobOutput, error)
 
-	GetProjectRequest(*devicefarm.GetProjectInput) (*aws.Request, *devicefarm.GetProjectOutput)
+	GetProjectRequest(*devicefarm.GetProjectInput) (*service.Request, *devicefarm.GetProjectOutput)
 
 	GetProject(*devicefarm.GetProjectInput) (*devicefarm.GetProjectOutput, error)
 
-	GetRunRequest(*devicefarm.GetRunInput) (*aws.Request, *devicefarm.GetRunOutput)
+	GetRunRequest(*devicefarm.GetRunInput) (*service.Request, *devicefarm.GetRunOutput)
 
 	GetRun(*devicefarm.GetRunInput) (*devicefarm.GetRunOutput, error)
 
-	GetSuiteRequest(*devicefarm.GetSuiteInput) (*aws.Request, *devicefarm.GetSuiteOutput)
+	GetSuiteRequest(*devicefarm.GetSuiteInput) (*service.Request, *devicefarm.GetSuiteOutput)
 
 	GetSuite(*devicefarm.GetSuiteInput) (*devicefarm.GetSuiteOutput, error)
 
-	GetTestRequest(*devicefarm.GetTestInput) (*aws.Request, *devicefarm.GetTestOutput)
+	GetTestRequest(*devicefarm.GetTestInput) (*service.Request, *devicefarm.GetTestOutput)
 
 	GetTest(*devicefarm.GetTestInput) (*devicefarm.GetTestOutput, error)
 
-	GetUploadRequest(*devicefarm.GetUploadInput) (*aws.Request, *devicefarm.GetUploadOutput)
+	GetUploadRequest(*devicefarm.GetUploadInput) (*service.Request, *devicefarm.GetUploadOutput)
 
 	GetUpload(*devicefarm.GetUploadInput) (*devicefarm.GetUploadOutput, error)
 
-	ListArtifactsRequest(*devicefarm.ListArtifactsInput) (*aws.Request, *devicefarm.ListArtifactsOutput)
+	ListArtifactsRequest(*devicefarm.ListArtifactsInput) (*service.Request, *devicefarm.ListArtifactsOutput)
 
 	ListArtifacts(*devicefarm.ListArtifactsInput) (*devicefarm.ListArtifactsOutput, error)
 
 	ListArtifactsPages(*devicefarm.ListArtifactsInput, func(*devicefarm.ListArtifactsOutput, bool) bool) error
 
-	ListDevicePoolsRequest(*devicefarm.ListDevicePoolsInput) (*aws.Request, *devicefarm.ListDevicePoolsOutput)
+	ListDevicePoolsRequest(*devicefarm.ListDevicePoolsInput) (*service.Request, *devicefarm.ListDevicePoolsOutput)
 
 	ListDevicePools(*devicefarm.ListDevicePoolsInput) (*devicefarm.ListDevicePoolsOutput, error)
 
 	ListDevicePoolsPages(*devicefarm.ListDevicePoolsInput, func(*devicefarm.ListDevicePoolsOutput, bool) bool) error
 
-	ListDevicesRequest(*devicefarm.ListDevicesInput) (*aws.Request, *devicefarm.ListDevicesOutput)
+	ListDevicesRequest(*devicefarm.ListDevicesInput) (*service.Request, *devicefarm.ListDevicesOutput)
 
 	ListDevices(*devicefarm.ListDevicesInput) (*devicefarm.ListDevicesOutput, error)
 
 	ListDevicesPages(*devicefarm.ListDevicesInput, func(*devicefarm.ListDevicesOutput, bool) bool) error
 
-	ListJobsRequest(*devicefarm.ListJobsInput) (*aws.Request, *devicefarm.ListJobsOutput)
+	ListJobsRequest(*devicefarm.ListJobsInput) (*service.Request, *devicefarm.ListJobsOutput)
 
 	ListJobs(*devicefarm.ListJobsInput) (*devicefarm.ListJobsOutput, error)
 
 	ListJobsPages(*devicefarm.ListJobsInput, func(*devicefarm.ListJobsOutput, bool) bool) error
 
-	ListProjectsRequest(*devicefarm.ListProjectsInput) (*aws.Request, *devicefarm.ListProjectsOutput)
+	ListProjectsRequest(*devicefarm.ListProjectsInput) (*service.Request, *devicefarm.ListProjectsOutput)
 
 	ListProjects(*devicefarm.ListProjectsInput) (*devicefarm.ListProjectsOutput, error)
 
 	ListProjectsPages(*devicefarm.ListProjectsInput, func(*devicefarm.ListProjectsOutput, bool) bool) error
 
-	ListRunsRequest(*devicefarm.ListRunsInput) (*aws.Request, *devicefarm.ListRunsOutput)
+	ListRunsRequest(*devicefarm.ListRunsInput) (*service.Request, *devicefarm.ListRunsOutput)
 
 	ListRuns(*devicefarm.ListRunsInput) (*devicefarm.ListRunsOutput, error)
 
 	ListRunsPages(*devicefarm.ListRunsInput, func(*devicefarm.ListRunsOutput, bool) bool) error
 
-	ListSamplesRequest(*devicefarm.ListSamplesInput) (*aws.Request, *devicefarm.ListSamplesOutput)
+	ListSamplesRequest(*devicefarm.ListSamplesInput) (*service.Request, *devicefarm.ListSamplesOutput)
 
 	ListSamples(*devicefarm.ListSamplesInput) (*devicefarm.ListSamplesOutput, error)
 
 	ListSamplesPages(*devicefarm.ListSamplesInput, func(*devicefarm.ListSamplesOutput, bool) bool) error
 
-	ListSuitesRequest(*devicefarm.ListSuitesInput) (*aws.Request, *devicefarm.ListSuitesOutput)
+	ListSuitesRequest(*devicefarm.ListSuitesInput) (*service.Request, *devicefarm.ListSuitesOutput)
 
 	ListSuites(*devicefarm.ListSuitesInput) (*devicefarm.ListSuitesOutput, error)
 
 	ListSuitesPages(*devicefarm.ListSuitesInput, func(*devicefarm.ListSuitesOutput, bool) bool) error
 
-	ListTestsRequest(*devicefarm.ListTestsInput) (*aws.Request, *devicefarm.ListTestsOutput)
+	ListTestsRequest(*devicefarm.ListTestsInput) (*service.Request, *devicefarm.ListTestsOutput)
 
 	ListTests(*devicefarm.ListTestsInput) (*devicefarm.ListTestsOutput, error)
 
 	ListTestsPages(*devicefarm.ListTestsInput, func(*devicefarm.ListTestsOutput, bool) bool) error
 
-	ListUniqueProblemsRequest(*devicefarm.ListUniqueProblemsInput) (*aws.Request, *devicefarm.ListUniqueProblemsOutput)
+	ListUniqueProblemsRequest(*devicefarm.ListUniqueProblemsInput) (*service.Request, *devicefarm.ListUniqueProblemsOutput)
 
 	ListUniqueProblems(*devicefarm.ListUniqueProblemsInput) (*devicefarm.ListUniqueProblemsOutput, error)
 
 	ListUniqueProblemsPages(*devicefarm.ListUniqueProblemsInput, func(*devicefarm.ListUniqueProblemsOutput, bool) bool) error
 
-	ListUploadsRequest(*devicefarm.ListUploadsInput) (*aws.Request, *devicefarm.ListUploadsOutput)
+	ListUploadsRequest(*devicefarm.ListUploadsInput) (*service.Request, *devicefarm.ListUploadsOutput)
 
 	ListUploads(*devicefarm.ListUploadsInput) (*devicefarm.ListUploadsOutput, error)
 
 	ListUploadsPages(*devicefarm.ListUploadsInput, func(*devicefarm.ListUploadsOutput, bool) bool) error
 
-	ScheduleRunRequest(*devicefarm.ScheduleRunInput) (*aws.Request, *devicefarm.ScheduleRunOutput)
+	ScheduleRunRequest(*devicefarm.ScheduleRunInput) (*service.Request, *devicefarm.ScheduleRunOutput)
 
 	ScheduleRun(*devicefarm.ScheduleRunInput) (*devicefarm.ScheduleRunOutput, error)
 }

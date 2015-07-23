@@ -1,4 +1,4 @@
-package aws
+package service
 
 // A Handlers provides a collection of request handlers for various
 // stages of handling requests.

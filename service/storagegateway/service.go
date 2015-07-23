@@ -4,6 +4,8 @@ package storagegateway
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -30,19 +32,19 @@ import (
 // Provides a list of each of the regions and endpoints available for use with
 // AWS Storage Gateway.
 type StorageGateway struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new StorageGateway client.
 func New(config *aws.Config) *StorageGateway {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:       defaults.DefaultConfig.Merge(config),
 		ServiceName:  "storagegateway",
 		APIVersion:   "2013-06-30",
 		JSONVersion:  "1.1",
@@ -67,8 +69,8 @@ func New(config *aws.Config) *StorageGateway {
 
 // newRequest creates a new request for a StorageGateway operation and runs any
 // custom request initialization.
-func (c *StorageGateway) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *StorageGateway) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

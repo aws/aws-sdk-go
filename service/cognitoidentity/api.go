@@ -6,15 +6,15 @@ package cognitoidentity
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opCreateIdentityPool = "CreateIdentityPool"
 
 // CreateIdentityPoolRequest generates a request for the CreateIdentityPool operation.
-func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInput) (req *aws.Request, output *IdentityPool) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) CreateIdentityPoolRequest(input *CreateIdentityPoolInput) (req *service.Request, output *IdentityPool) {
+	op := &service.Operation{
 		Name:       opCreateIdentityPool,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -42,8 +42,8 @@ func (c *CognitoIdentity) CreateIdentityPool(input *CreateIdentityPoolInput) (*I
 const opDeleteIdentities = "DeleteIdentities"
 
 // DeleteIdentitiesRequest generates a request for the DeleteIdentities operation.
-func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) (req *aws.Request, output *DeleteIdentitiesOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) DeleteIdentitiesRequest(input *DeleteIdentitiesInput) (req *service.Request, output *DeleteIdentitiesOutput) {
+	op := &service.Operation{
 		Name:       opDeleteIdentities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -72,8 +72,8 @@ func (c *CognitoIdentity) DeleteIdentities(input *DeleteIdentitiesInput) (*Delet
 const opDeleteIdentityPool = "DeleteIdentityPool"
 
 // DeleteIdentityPoolRequest generates a request for the DeleteIdentityPool operation.
-func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *aws.Request, output *DeleteIdentityPoolOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) DeleteIdentityPoolRequest(input *DeleteIdentityPoolInput) (req *service.Request, output *DeleteIdentityPoolOutput) {
+	op := &service.Operation{
 		Name:       opDeleteIdentityPool,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -102,8 +102,8 @@ func (c *CognitoIdentity) DeleteIdentityPool(input *DeleteIdentityPoolInput) (*D
 const opDescribeIdentity = "DescribeIdentity"
 
 // DescribeIdentityRequest generates a request for the DescribeIdentity operation.
-func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) (req *aws.Request, output *IdentityDescription) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) DescribeIdentityRequest(input *DescribeIdentityInput) (req *service.Request, output *IdentityDescription) {
+	op := &service.Operation{
 		Name:       opDescribeIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -132,8 +132,8 @@ func (c *CognitoIdentity) DescribeIdentity(input *DescribeIdentityInput) (*Ident
 const opDescribeIdentityPool = "DescribeIdentityPool"
 
 // DescribeIdentityPoolRequest generates a request for the DescribeIdentityPool operation.
-func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoolInput) (req *aws.Request, output *IdentityPool) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) DescribeIdentityPoolRequest(input *DescribeIdentityPoolInput) (req *service.Request, output *IdentityPool) {
+	op := &service.Operation{
 		Name:       opDescribeIdentityPool,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -162,8 +162,8 @@ func (c *CognitoIdentity) DescribeIdentityPool(input *DescribeIdentityPoolInput)
 const opGetCredentialsForIdentity = "GetCredentialsForIdentity"
 
 // GetCredentialsForIdentityRequest generates a request for the GetCredentialsForIdentity operation.
-func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentialsForIdentityInput) (req *aws.Request, output *GetCredentialsForIdentityOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) GetCredentialsForIdentityRequest(input *GetCredentialsForIdentityInput) (req *service.Request, output *GetCredentialsForIdentityOutput) {
+	op := &service.Operation{
 		Name:       opGetCredentialsForIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -194,8 +194,8 @@ func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIden
 const opGetID = "GetId"
 
 // GetIDRequest generates a request for the GetID operation.
-func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *aws.Request, output *GetIDOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *service.Request, output *GetIDOutput) {
+	op := &service.Operation{
 		Name:       opGetID,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -226,8 +226,8 @@ func (c *CognitoIdentity) GetID(input *GetIDInput) (*GetIDOutput, error) {
 const opGetIdentityPoolRoles = "GetIdentityPoolRoles"
 
 // GetIdentityPoolRolesRequest generates a request for the GetIdentityPoolRoles operation.
-func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRolesInput) (req *aws.Request, output *GetIdentityPoolRolesOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) GetIdentityPoolRolesRequest(input *GetIdentityPoolRolesInput) (req *service.Request, output *GetIdentityPoolRolesOutput) {
+	op := &service.Operation{
 		Name:       opGetIdentityPoolRoles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -255,8 +255,8 @@ func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput)
 const opGetOpenIDToken = "GetOpenIdToken"
 
 // GetOpenIDTokenRequest generates a request for the GetOpenIDToken operation.
-func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req *aws.Request, output *GetOpenIDTokenOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req *service.Request, output *GetOpenIDTokenOutput) {
+	op := &service.Operation{
 		Name:       opGetOpenIDToken,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -288,8 +288,8 @@ func (c *CognitoIdentity) GetOpenIDToken(input *GetOpenIDTokenInput) (*GetOpenID
 const opGetOpenIDTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity"
 
 // GetOpenIDTokenForDeveloperIdentityRequest generates a request for the GetOpenIDTokenForDeveloperIdentity operation.
-func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOpenIDTokenForDeveloperIdentityInput) (req *aws.Request, output *GetOpenIDTokenForDeveloperIdentityOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOpenIDTokenForDeveloperIdentityInput) (req *service.Request, output *GetOpenIDTokenForDeveloperIdentityOutput) {
+	op := &service.Operation{
 		Name:       opGetOpenIDTokenForDeveloperIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -330,8 +330,8 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(input *GetOpenIDTok
 const opListIdentities = "ListIdentities"
 
 // ListIdentitiesRequest generates a request for the ListIdentities operation.
-func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Request, output *ListIdentitiesOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) ListIdentitiesRequest(input *ListIdentitiesInput) (req *service.Request, output *ListIdentitiesOutput) {
+	op := &service.Operation{
 		Name:       opListIdentities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -359,8 +359,8 @@ func (c *CognitoIdentity) ListIdentities(input *ListIdentitiesInput) (*ListIdent
 const opListIdentityPools = "ListIdentityPools"
 
 // ListIdentityPoolsRequest generates a request for the ListIdentityPools operation.
-func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput) (req *aws.Request, output *ListIdentityPoolsOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) ListIdentityPoolsRequest(input *ListIdentityPoolsInput) (req *service.Request, output *ListIdentityPoolsOutput) {
+	op := &service.Operation{
 		Name:       opListIdentityPools,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -388,8 +388,8 @@ func (c *CognitoIdentity) ListIdentityPools(input *ListIdentityPoolsInput) (*Lis
 const opLookupDeveloperIdentity = "LookupDeveloperIdentity"
 
 // LookupDeveloperIdentityRequest generates a request for the LookupDeveloperIdentity operation.
-func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperIdentityInput) (req *aws.Request, output *LookupDeveloperIdentityOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) LookupDeveloperIdentityRequest(input *LookupDeveloperIdentityInput) (req *service.Request, output *LookupDeveloperIdentityOutput) {
+	op := &service.Operation{
 		Name:       opLookupDeveloperIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -424,8 +424,8 @@ func (c *CognitoIdentity) LookupDeveloperIdentity(input *LookupDeveloperIdentity
 const opMergeDeveloperIdentities = "MergeDeveloperIdentities"
 
 // MergeDeveloperIdentitiesRequest generates a request for the MergeDeveloperIdentities operation.
-func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperIdentitiesInput) (req *aws.Request, output *MergeDeveloperIdentitiesOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) MergeDeveloperIdentitiesRequest(input *MergeDeveloperIdentitiesInput) (req *service.Request, output *MergeDeveloperIdentitiesOutput) {
+	op := &service.Operation{
 		Name:       opMergeDeveloperIdentities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -459,8 +459,8 @@ func (c *CognitoIdentity) MergeDeveloperIdentities(input *MergeDeveloperIdentiti
 const opSetIdentityPoolRoles = "SetIdentityPoolRoles"
 
 // SetIdentityPoolRolesRequest generates a request for the SetIdentityPoolRoles operation.
-func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *aws.Request, output *SetIdentityPoolRolesOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) SetIdentityPoolRolesRequest(input *SetIdentityPoolRolesInput) (req *service.Request, output *SetIdentityPoolRolesOutput) {
+	op := &service.Operation{
 		Name:       opSetIdentityPoolRoles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -489,8 +489,8 @@ func (c *CognitoIdentity) SetIdentityPoolRoles(input *SetIdentityPoolRolesInput)
 const opUnlinkDeveloperIdentity = "UnlinkDeveloperIdentity"
 
 // UnlinkDeveloperIdentityRequest generates a request for the UnlinkDeveloperIdentity operation.
-func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *aws.Request, output *UnlinkDeveloperIdentityOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) UnlinkDeveloperIdentityRequest(input *UnlinkDeveloperIdentityInput) (req *service.Request, output *UnlinkDeveloperIdentityOutput) {
+	op := &service.Operation{
 		Name:       opUnlinkDeveloperIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -521,8 +521,8 @@ func (c *CognitoIdentity) UnlinkDeveloperIdentity(input *UnlinkDeveloperIdentity
 const opUnlinkIdentity = "UnlinkIdentity"
 
 // UnlinkIdentityRequest generates a request for the UnlinkIdentity operation.
-func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *aws.Request, output *UnlinkIdentityOutput) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) UnlinkIdentityRequest(input *UnlinkIdentityInput) (req *service.Request, output *UnlinkIdentityOutput) {
+	op := &service.Operation{
 		Name:       opUnlinkIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -552,8 +552,8 @@ func (c *CognitoIdentity) UnlinkIdentity(input *UnlinkIdentityInput) (*UnlinkIde
 const opUpdateIdentityPool = "UpdateIdentityPool"
 
 // UpdateIdentityPoolRequest generates a request for the UpdateIdentityPool operation.
-func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *aws.Request, output *IdentityPool) {
-	op := &aws.Operation{
+func (c *CognitoIdentity) UpdateIdentityPoolRequest(input *IdentityPool) (req *service.Request, output *IdentityPool) {
+	op := &service.Operation{
 		Name:       opUpdateIdentityPool,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

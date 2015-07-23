@@ -6,15 +6,15 @@ package ses
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opDeleteIdentity = "DeleteIdentity"
 
 // DeleteIdentityRequest generates a request for the DeleteIdentity operation.
-func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *aws.Request, output *DeleteIdentityOutput) {
-	op := &aws.Operation{
+func (c *SES) DeleteIdentityRequest(input *DeleteIdentityInput) (req *service.Request, output *DeleteIdentityOutput) {
+	op := &service.Operation{
 		Name:       opDeleteIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -43,8 +43,8 @@ func (c *SES) DeleteIdentity(input *DeleteIdentityInput) (*DeleteIdentityOutput,
 const opDeleteIdentityPolicy = "DeleteIdentityPolicy"
 
 // DeleteIdentityPolicyRequest generates a request for the DeleteIdentityPolicy operation.
-func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req *aws.Request, output *DeleteIdentityPolicyOutput) {
-	op := &aws.Operation{
+func (c *SES) DeleteIdentityPolicyRequest(input *DeleteIdentityPolicyInput) (req *service.Request, output *DeleteIdentityPolicyOutput) {
+	op := &service.Operation{
 		Name:       opDeleteIdentityPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -79,8 +79,8 @@ func (c *SES) DeleteIdentityPolicy(input *DeleteIdentityPolicyInput) (*DeleteIde
 const opDeleteVerifiedEmailAddress = "DeleteVerifiedEmailAddress"
 
 // DeleteVerifiedEmailAddressRequest generates a request for the DeleteVerifiedEmailAddress operation.
-func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *aws.Request, output *DeleteVerifiedEmailAddressOutput) {
-	op := &aws.Operation{
+func (c *SES) DeleteVerifiedEmailAddressRequest(input *DeleteVerifiedEmailAddressInput) (req *service.Request, output *DeleteVerifiedEmailAddressOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVerifiedEmailAddress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -110,8 +110,8 @@ func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput)
 const opGetIdentityDKIMAttributes = "GetIdentityDkimAttributes"
 
 // GetIdentityDKIMAttributesRequest generates a request for the GetIdentityDKIMAttributes operation.
-func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesInput) (req *aws.Request, output *GetIdentityDKIMAttributesOutput) {
-	op := &aws.Operation{
+func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesInput) (req *service.Request, output *GetIdentityDKIMAttributesOutput) {
+	op := &service.Operation{
 		Name:       opGetIdentityDKIMAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -154,8 +154,8 @@ func (c *SES) GetIdentityDKIMAttributes(input *GetIdentityDKIMAttributesInput) (
 const opGetIdentityNotificationAttributes = "GetIdentityNotificationAttributes"
 
 // GetIdentityNotificationAttributesRequest generates a request for the GetIdentityNotificationAttributes operation.
-func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *aws.Request, output *GetIdentityNotificationAttributesOutput) {
-	op := &aws.Operation{
+func (c *SES) GetIdentityNotificationAttributesRequest(input *GetIdentityNotificationAttributesInput) (req *service.Request, output *GetIdentityNotificationAttributesOutput) {
+	op := &service.Operation{
 		Name:       opGetIdentityNotificationAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -188,8 +188,8 @@ func (c *SES) GetIdentityNotificationAttributes(input *GetIdentityNotificationAt
 const opGetIdentityPolicies = "GetIdentityPolicies"
 
 // GetIdentityPoliciesRequest generates a request for the GetIdentityPolicies operation.
-func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *aws.Request, output *GetIdentityPoliciesOutput) {
-	op := &aws.Operation{
+func (c *SES) GetIdentityPoliciesRequest(input *GetIdentityPoliciesInput) (req *service.Request, output *GetIdentityPoliciesOutput) {
+	op := &service.Operation{
 		Name:       opGetIdentityPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -224,8 +224,8 @@ func (c *SES) GetIdentityPolicies(input *GetIdentityPoliciesInput) (*GetIdentity
 const opGetIdentityVerificationAttributes = "GetIdentityVerificationAttributes"
 
 // GetIdentityVerificationAttributesRequest generates a request for the GetIdentityVerificationAttributes operation.
-func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *aws.Request, output *GetIdentityVerificationAttributesOutput) {
-	op := &aws.Operation{
+func (c *SES) GetIdentityVerificationAttributesRequest(input *GetIdentityVerificationAttributesInput) (req *service.Request, output *GetIdentityVerificationAttributesOutput) {
+	op := &service.Operation{
 		Name:       opGetIdentityVerificationAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -256,8 +256,8 @@ func (c *SES) GetIdentityVerificationAttributes(input *GetIdentityVerificationAt
 const opGetSendQuota = "GetSendQuota"
 
 // GetSendQuotaRequest generates a request for the GetSendQuota operation.
-func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *aws.Request, output *GetSendQuotaOutput) {
-	op := &aws.Operation{
+func (c *SES) GetSendQuotaRequest(input *GetSendQuotaInput) (req *service.Request, output *GetSendQuotaOutput) {
+	op := &service.Operation{
 		Name:       opGetSendQuota,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -285,8 +285,8 @@ func (c *SES) GetSendQuota(input *GetSendQuotaInput) (*GetSendQuotaOutput, error
 const opGetSendStatistics = "GetSendStatistics"
 
 // GetSendStatisticsRequest generates a request for the GetSendStatistics operation.
-func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *aws.Request, output *GetSendStatisticsOutput) {
-	op := &aws.Operation{
+func (c *SES) GetSendStatisticsRequest(input *GetSendStatisticsInput) (req *service.Request, output *GetSendStatisticsOutput) {
+	op := &service.Operation{
 		Name:       opGetSendStatistics,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -317,12 +317,12 @@ func (c *SES) GetSendStatistics(input *GetSendStatisticsInput) (*GetSendStatisti
 const opListIdentities = "ListIdentities"
 
 // ListIdentitiesRequest generates a request for the ListIdentities operation.
-func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *aws.Request, output *ListIdentitiesOutput) {
-	op := &aws.Operation{
+func (c *SES) ListIdentitiesRequest(input *ListIdentitiesInput) (req *service.Request, output *ListIdentitiesOutput) {
+	op := &service.Operation{
 		Name:       opListIdentities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxItems",
@@ -360,8 +360,8 @@ func (c *SES) ListIdentitiesPages(input *ListIdentitiesInput, fn func(p *ListIde
 const opListIdentityPolicies = "ListIdentityPolicies"
 
 // ListIdentityPoliciesRequest generates a request for the ListIdentityPolicies operation.
-func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req *aws.Request, output *ListIdentityPoliciesOutput) {
-	op := &aws.Operation{
+func (c *SES) ListIdentityPoliciesRequest(input *ListIdentityPoliciesInput) (req *service.Request, output *ListIdentityPoliciesOutput) {
+	op := &service.Operation{
 		Name:       opListIdentityPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -396,8 +396,8 @@ func (c *SES) ListIdentityPolicies(input *ListIdentityPoliciesInput) (*ListIdent
 const opListVerifiedEmailAddresses = "ListVerifiedEmailAddresses"
 
 // ListVerifiedEmailAddressesRequest generates a request for the ListVerifiedEmailAddresses operation.
-func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *aws.Request, output *ListVerifiedEmailAddressesOutput) {
-	op := &aws.Operation{
+func (c *SES) ListVerifiedEmailAddressesRequest(input *ListVerifiedEmailAddressesInput) (req *service.Request, output *ListVerifiedEmailAddressesOutput) {
+	op := &service.Operation{
 		Name:       opListVerifiedEmailAddresses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -427,8 +427,8 @@ func (c *SES) ListVerifiedEmailAddresses(input *ListVerifiedEmailAddressesInput)
 const opPutIdentityPolicy = "PutIdentityPolicy"
 
 // PutIdentityPolicyRequest generates a request for the PutIdentityPolicy operation.
-func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *aws.Request, output *PutIdentityPolicyOutput) {
-	op := &aws.Operation{
+func (c *SES) PutIdentityPolicyRequest(input *PutIdentityPolicyInput) (req *service.Request, output *PutIdentityPolicyOutput) {
+	op := &service.Operation{
 		Name:       opPutIdentityPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -462,8 +462,8 @@ func (c *SES) PutIdentityPolicy(input *PutIdentityPolicyInput) (*PutIdentityPoli
 const opSendEmail = "SendEmail"
 
 // SendEmailRequest generates a request for the SendEmail operation.
-func (c *SES) SendEmailRequest(input *SendEmailInput) (req *aws.Request, output *SendEmailOutput) {
-	op := &aws.Operation{
+func (c *SES) SendEmailRequest(input *SendEmailInput) (req *service.Request, output *SendEmailOutput) {
+	op := &service.Operation{
 		Name:       opSendEmail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -508,8 +508,8 @@ func (c *SES) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
 const opSendRawEmail = "SendRawEmail"
 
 // SendRawEmailRequest generates a request for the SendRawEmail operation.
-func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *aws.Request, output *SendRawEmailOutput) {
-	op := &aws.Operation{
+func (c *SES) SendRawEmailRequest(input *SendRawEmailInput) (req *service.Request, output *SendRawEmailOutput) {
+	op := &service.Operation{
 		Name:       opSendRawEmail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -572,8 +572,8 @@ func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error
 const opSetIdentityDKIMEnabled = "SetIdentityDkimEnabled"
 
 // SetIdentityDKIMEnabledRequest generates a request for the SetIdentityDKIMEnabled operation.
-func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) (req *aws.Request, output *SetIdentityDKIMEnabledOutput) {
-	op := &aws.Operation{
+func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) (req *service.Request, output *SetIdentityDKIMEnabledOutput) {
+	op := &service.Operation{
 		Name:       opSetIdentityDKIMEnabled,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -612,8 +612,8 @@ func (c *SES) SetIdentityDKIMEnabled(input *SetIdentityDKIMEnabledInput) (*SetId
 const opSetIdentityFeedbackForwardingEnabled = "SetIdentityFeedbackForwardingEnabled"
 
 // SetIdentityFeedbackForwardingEnabledRequest generates a request for the SetIdentityFeedbackForwardingEnabled operation.
-func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *aws.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
-	op := &aws.Operation{
+func (c *SES) SetIdentityFeedbackForwardingEnabledRequest(input *SetIdentityFeedbackForwardingEnabledInput) (req *service.Request, output *SetIdentityFeedbackForwardingEnabledOutput) {
+	op := &service.Operation{
 		Name:       opSetIdentityFeedbackForwardingEnabled,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -649,8 +649,8 @@ func (c *SES) SetIdentityFeedbackForwardingEnabled(input *SetIdentityFeedbackFor
 const opSetIdentityNotificationTopic = "SetIdentityNotificationTopic"
 
 // SetIdentityNotificationTopicRequest generates a request for the SetIdentityNotificationTopic operation.
-func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *aws.Request, output *SetIdentityNotificationTopicOutput) {
-	op := &aws.Operation{
+func (c *SES) SetIdentityNotificationTopicRequest(input *SetIdentityNotificationTopicInput) (req *service.Request, output *SetIdentityNotificationTopicOutput) {
+	op := &service.Operation{
 		Name:       opSetIdentityNotificationTopic,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -685,8 +685,8 @@ func (c *SES) SetIdentityNotificationTopic(input *SetIdentityNotificationTopicIn
 const opVerifyDomainDKIM = "VerifyDomainDkim"
 
 // VerifyDomainDKIMRequest generates a request for the VerifyDomainDKIM operation.
-func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *aws.Request, output *VerifyDomainDKIMOutput) {
-	op := &aws.Operation{
+func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *service.Request, output *VerifyDomainDKIMOutput) {
+	op := &service.Operation{
 		Name:       opVerifyDomainDKIM,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -726,8 +726,8 @@ func (c *SES) VerifyDomainDKIM(input *VerifyDomainDKIMInput) (*VerifyDomainDKIMO
 const opVerifyDomainIdentity = "VerifyDomainIdentity"
 
 // VerifyDomainIdentityRequest generates a request for the VerifyDomainIdentity operation.
-func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *aws.Request, output *VerifyDomainIdentityOutput) {
-	op := &aws.Operation{
+func (c *SES) VerifyDomainIdentityRequest(input *VerifyDomainIdentityInput) (req *service.Request, output *VerifyDomainIdentityOutput) {
+	op := &service.Operation{
 		Name:       opVerifyDomainIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -755,8 +755,8 @@ func (c *SES) VerifyDomainIdentity(input *VerifyDomainIdentityInput) (*VerifyDom
 const opVerifyEmailAddress = "VerifyEmailAddress"
 
 // VerifyEmailAddressRequest generates a request for the VerifyEmailAddress operation.
-func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *aws.Request, output *VerifyEmailAddressOutput) {
-	op := &aws.Operation{
+func (c *SES) VerifyEmailAddressRequest(input *VerifyEmailAddressInput) (req *service.Request, output *VerifyEmailAddressOutput) {
+	op := &service.Operation{
 		Name:       opVerifyEmailAddress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -787,8 +787,8 @@ func (c *SES) VerifyEmailAddress(input *VerifyEmailAddressInput) (*VerifyEmailAd
 const opVerifyEmailIdentity = "VerifyEmailIdentity"
 
 // VerifyEmailIdentityRequest generates a request for the VerifyEmailIdentity operation.
-func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *aws.Request, output *VerifyEmailIdentityOutput) {
-	op := &aws.Operation{
+func (c *SES) VerifyEmailIdentityRequest(input *VerifyEmailIdentityInput) (req *service.Request, output *VerifyEmailIdentityOutput) {
+	op := &service.Operation{
 		Name:       opVerifyEmailIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

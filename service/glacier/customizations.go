@@ -4,8 +4,8 @@ import (
 	"encoding/hex"
 	"reflect"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 var (
@@ -13,7 +13,7 @@ var (
 )
 
 func init() {
-	initRequest = func(r *aws.Request) {
+	initRequest = func(r *service.Request) {
 		r.Handlers.Validate.PushFront(addAccountID)
 		r.Handlers.Validate.PushFront(copyParams) // this happens first
 		r.Handlers.Build.PushBack(addChecksum)
@@ -21,11 +21,11 @@ func init() {
 	}
 }
 
-func copyParams(r *aws.Request) {
+func copyParams(r *service.Request) {
 	r.Params = awsutil.CopyOf(r.Params)
 }
 
-func addAccountID(r *aws.Request) {
+func addAccountID(r *service.Request) {
 	if !r.ParamsFilled() {
 		return
 	}
@@ -36,7 +36,7 @@ func addAccountID(r *aws.Request) {
 	}
 }
 
-func addChecksum(r *aws.Request) {
+func addChecksum(r *service.Request) {
 	if r.Body == nil {
 		return
 	}
@@ -53,6 +53,6 @@ func addChecksum(r *aws.Request) {
 	}
 }
 
-func addAPIVersion(r *aws.Request) {
+func addAPIVersion(r *service.Request) {
 	r.HTTPRequest.Header.Set("X-Amz-Glacier-Version", r.Service.APIVersion)
 }

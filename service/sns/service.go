@@ -4,6 +4,8 @@ package sns
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -22,19 +24,19 @@ import (
 // requests, and handling error responses. For a list of available SDKs, go
 // to Tools for Amazon Web Services (http://aws.amazon.com/tools/).
 type SNS struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new SNS client.
 func New(config *aws.Config) *SNS {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:      defaults.DefaultConfig.Merge(config),
 		ServiceName: "sns",
 		APIVersion:  "2010-03-31",
 	}
@@ -57,8 +59,8 @@ func New(config *aws.Config) *SNS {
 
 // newRequest creates a new request for a SNS operation and runs any
 // custom request initialization.
-func (c *SNS) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *SNS) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

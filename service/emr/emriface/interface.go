@@ -4,87 +4,87 @@
 package emriface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/emr"
 )
 
 // EMRAPI is the interface type for emr.EMR.
 type EMRAPI interface {
-	AddInstanceGroupsRequest(*emr.AddInstanceGroupsInput) (*aws.Request, *emr.AddInstanceGroupsOutput)
+	AddInstanceGroupsRequest(*emr.AddInstanceGroupsInput) (*service.Request, *emr.AddInstanceGroupsOutput)
 
 	AddInstanceGroups(*emr.AddInstanceGroupsInput) (*emr.AddInstanceGroupsOutput, error)
 
-	AddJobFlowStepsRequest(*emr.AddJobFlowStepsInput) (*aws.Request, *emr.AddJobFlowStepsOutput)
+	AddJobFlowStepsRequest(*emr.AddJobFlowStepsInput) (*service.Request, *emr.AddJobFlowStepsOutput)
 
 	AddJobFlowSteps(*emr.AddJobFlowStepsInput) (*emr.AddJobFlowStepsOutput, error)
 
-	AddTagsRequest(*emr.AddTagsInput) (*aws.Request, *emr.AddTagsOutput)
+	AddTagsRequest(*emr.AddTagsInput) (*service.Request, *emr.AddTagsOutput)
 
 	AddTags(*emr.AddTagsInput) (*emr.AddTagsOutput, error)
 
-	DescribeClusterRequest(*emr.DescribeClusterInput) (*aws.Request, *emr.DescribeClusterOutput)
+	DescribeClusterRequest(*emr.DescribeClusterInput) (*service.Request, *emr.DescribeClusterOutput)
 
 	DescribeCluster(*emr.DescribeClusterInput) (*emr.DescribeClusterOutput, error)
 
-	DescribeJobFlowsRequest(*emr.DescribeJobFlowsInput) (*aws.Request, *emr.DescribeJobFlowsOutput)
+	DescribeJobFlowsRequest(*emr.DescribeJobFlowsInput) (*service.Request, *emr.DescribeJobFlowsOutput)
 
 	DescribeJobFlows(*emr.DescribeJobFlowsInput) (*emr.DescribeJobFlowsOutput, error)
 
-	DescribeStepRequest(*emr.DescribeStepInput) (*aws.Request, *emr.DescribeStepOutput)
+	DescribeStepRequest(*emr.DescribeStepInput) (*service.Request, *emr.DescribeStepOutput)
 
 	DescribeStep(*emr.DescribeStepInput) (*emr.DescribeStepOutput, error)
 
-	ListBootstrapActionsRequest(*emr.ListBootstrapActionsInput) (*aws.Request, *emr.ListBootstrapActionsOutput)
+	ListBootstrapActionsRequest(*emr.ListBootstrapActionsInput) (*service.Request, *emr.ListBootstrapActionsOutput)
 
 	ListBootstrapActions(*emr.ListBootstrapActionsInput) (*emr.ListBootstrapActionsOutput, error)
 
 	ListBootstrapActionsPages(*emr.ListBootstrapActionsInput, func(*emr.ListBootstrapActionsOutput, bool) bool) error
 
-	ListClustersRequest(*emr.ListClustersInput) (*aws.Request, *emr.ListClustersOutput)
+	ListClustersRequest(*emr.ListClustersInput) (*service.Request, *emr.ListClustersOutput)
 
 	ListClusters(*emr.ListClustersInput) (*emr.ListClustersOutput, error)
 
 	ListClustersPages(*emr.ListClustersInput, func(*emr.ListClustersOutput, bool) bool) error
 
-	ListInstanceGroupsRequest(*emr.ListInstanceGroupsInput) (*aws.Request, *emr.ListInstanceGroupsOutput)
+	ListInstanceGroupsRequest(*emr.ListInstanceGroupsInput) (*service.Request, *emr.ListInstanceGroupsOutput)
 
 	ListInstanceGroups(*emr.ListInstanceGroupsInput) (*emr.ListInstanceGroupsOutput, error)
 
 	ListInstanceGroupsPages(*emr.ListInstanceGroupsInput, func(*emr.ListInstanceGroupsOutput, bool) bool) error
 
-	ListInstancesRequest(*emr.ListInstancesInput) (*aws.Request, *emr.ListInstancesOutput)
+	ListInstancesRequest(*emr.ListInstancesInput) (*service.Request, *emr.ListInstancesOutput)
 
 	ListInstances(*emr.ListInstancesInput) (*emr.ListInstancesOutput, error)
 
 	ListInstancesPages(*emr.ListInstancesInput, func(*emr.ListInstancesOutput, bool) bool) error
 
-	ListStepsRequest(*emr.ListStepsInput) (*aws.Request, *emr.ListStepsOutput)
+	ListStepsRequest(*emr.ListStepsInput) (*service.Request, *emr.ListStepsOutput)
 
 	ListSteps(*emr.ListStepsInput) (*emr.ListStepsOutput, error)
 
 	ListStepsPages(*emr.ListStepsInput, func(*emr.ListStepsOutput, bool) bool) error
 
-	ModifyInstanceGroupsRequest(*emr.ModifyInstanceGroupsInput) (*aws.Request, *emr.ModifyInstanceGroupsOutput)
+	ModifyInstanceGroupsRequest(*emr.ModifyInstanceGroupsInput) (*service.Request, *emr.ModifyInstanceGroupsOutput)
 
 	ModifyInstanceGroups(*emr.ModifyInstanceGroupsInput) (*emr.ModifyInstanceGroupsOutput, error)
 
-	RemoveTagsRequest(*emr.RemoveTagsInput) (*aws.Request, *emr.RemoveTagsOutput)
+	RemoveTagsRequest(*emr.RemoveTagsInput) (*service.Request, *emr.RemoveTagsOutput)
 
 	RemoveTags(*emr.RemoveTagsInput) (*emr.RemoveTagsOutput, error)
 
-	RunJobFlowRequest(*emr.RunJobFlowInput) (*aws.Request, *emr.RunJobFlowOutput)
+	RunJobFlowRequest(*emr.RunJobFlowInput) (*service.Request, *emr.RunJobFlowOutput)
 
 	RunJobFlow(*emr.RunJobFlowInput) (*emr.RunJobFlowOutput, error)
 
-	SetTerminationProtectionRequest(*emr.SetTerminationProtectionInput) (*aws.Request, *emr.SetTerminationProtectionOutput)
+	SetTerminationProtectionRequest(*emr.SetTerminationProtectionInput) (*service.Request, *emr.SetTerminationProtectionOutput)
 
 	SetTerminationProtection(*emr.SetTerminationProtectionInput) (*emr.SetTerminationProtectionOutput, error)
 
-	SetVisibleToAllUsersRequest(*emr.SetVisibleToAllUsersInput) (*aws.Request, *emr.SetVisibleToAllUsersOutput)
+	SetVisibleToAllUsersRequest(*emr.SetVisibleToAllUsersInput) (*service.Request, *emr.SetVisibleToAllUsersOutput)
 
 	SetVisibleToAllUsers(*emr.SetVisibleToAllUsersInput) (*emr.SetVisibleToAllUsersOutput, error)
 
-	TerminateJobFlowsRequest(*emr.TerminateJobFlowsInput) (*aws.Request, *emr.TerminateJobFlowsOutput)
+	TerminateJobFlowsRequest(*emr.TerminateJobFlowsInput) (*service.Request, *emr.TerminateJobFlowsOutput)
 
 	TerminateJobFlows(*emr.TerminateJobFlowsInput) (*emr.TerminateJobFlowsOutput, error)
 }

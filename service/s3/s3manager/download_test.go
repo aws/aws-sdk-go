@@ -12,6 +12,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -27,7 +28,7 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 
 	svc := s3.New(nil)
 	svc.Handlers.Send.Clear()
-	svc.Handlers.Send.PushBack(func(r *aws.Request) {
+	svc.Handlers.Send.PushBack(func(r *service.Request) {
 		m.Lock()
 		defer m.Unlock()
 
@@ -143,7 +144,7 @@ func TestDownloadError(t *testing.T) {
 	opts := &s3manager.DownloadOptions{S3: s, PartSize: 1, Concurrency: 1}
 
 	num := 0
-	s.Handlers.Send.PushBack(func(r *aws.Request) {
+	s.Handlers.Send.PushBack(func(r *service.Request) {
 		num++
 		if num > 1 {
 			r.HTTPResponse.StatusCode = 400

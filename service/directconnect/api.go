@@ -4,15 +4,15 @@
 package directconnect
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 
 // AllocateConnectionOnInterconnectRequest generates a request for the AllocateConnectionOnInterconnect operation.
-func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *aws.Request, output *Connection) {
-	op := &aws.Operation{
+func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *service.Request, output *Connection) {
+	op := &service.Operation{
 		Name:       opAllocateConnectionOnInterconnect,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -41,8 +41,8 @@ func (c *DirectConnect) AllocateConnectionOnInterconnect(input *AllocateConnecti
 const opAllocatePrivateVirtualInterface = "AllocatePrivateVirtualInterface"
 
 // AllocatePrivateVirtualInterfaceRequest generates a request for the AllocatePrivateVirtualInterface operation.
-func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePrivateVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	op := &aws.Operation{
+func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePrivateVirtualInterfaceInput) (req *service.Request, output *VirtualInterface) {
+	op := &service.Operation{
 		Name:       opAllocatePrivateVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -76,8 +76,8 @@ func (c *DirectConnect) AllocatePrivateVirtualInterface(input *AllocatePrivateVi
 const opAllocatePublicVirtualInterface = "AllocatePublicVirtualInterface"
 
 // AllocatePublicVirtualInterfaceRequest generates a request for the AllocatePublicVirtualInterface operation.
-func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePublicVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	op := &aws.Operation{
+func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePublicVirtualInterfaceInput) (req *service.Request, output *VirtualInterface) {
+	op := &service.Operation{
 		Name:       opAllocatePublicVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -111,8 +111,8 @@ func (c *DirectConnect) AllocatePublicVirtualInterface(input *AllocatePublicVirt
 const opConfirmConnection = "ConfirmConnection"
 
 // ConfirmConnectionRequest generates a request for the ConfirmConnection operation.
-func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) (req *aws.Request, output *ConfirmConnectionOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) ConfirmConnectionRequest(input *ConfirmConnectionInput) (req *service.Request, output *ConfirmConnectionOutput) {
+	op := &service.Operation{
 		Name:       opConfirmConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -142,8 +142,8 @@ func (c *DirectConnect) ConfirmConnection(input *ConfirmConnectionInput) (*Confi
 const opConfirmPrivateVirtualInterface = "ConfirmPrivateVirtualInterface"
 
 // ConfirmPrivateVirtualInterfaceRequest generates a request for the ConfirmPrivateVirtualInterface operation.
-func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPrivateVirtualInterfaceInput) (req *aws.Request, output *ConfirmPrivateVirtualInterfaceOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPrivateVirtualInterfaceInput) (req *service.Request, output *ConfirmPrivateVirtualInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opConfirmPrivateVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -173,8 +173,8 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterface(input *ConfirmPrivateVirt
 const opConfirmPublicVirtualInterface = "ConfirmPublicVirtualInterface"
 
 // ConfirmPublicVirtualInterfaceRequest generates a request for the ConfirmPublicVirtualInterface operation.
-func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPublicVirtualInterfaceInput) (req *aws.Request, output *ConfirmPublicVirtualInterfaceOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPublicVirtualInterfaceInput) (req *service.Request, output *ConfirmPublicVirtualInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opConfirmPublicVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -203,8 +203,8 @@ func (c *DirectConnect) ConfirmPublicVirtualInterface(input *ConfirmPublicVirtua
 const opCreateConnection = "CreateConnection"
 
 // CreateConnectionRequest generates a request for the CreateConnection operation.
-func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (req *aws.Request, output *Connection) {
-	op := &aws.Operation{
+func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (req *service.Request, output *Connection) {
+	op := &service.Operation{
 		Name:       opCreateConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -239,8 +239,8 @@ func (c *DirectConnect) CreateConnection(input *CreateConnectionInput) (*Connect
 const opCreateInterconnect = "CreateInterconnect"
 
 // CreateInterconnectRequest generates a request for the CreateInterconnect operation.
-func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput) (req *aws.Request, output *Interconnect) {
-	op := &aws.Operation{
+func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput) (req *service.Request, output *Interconnect) {
+	op := &service.Operation{
 		Name:       opCreateInterconnect,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -281,8 +281,8 @@ func (c *DirectConnect) CreateInterconnect(input *CreateInterconnectInput) (*Int
 const opCreatePrivateVirtualInterface = "CreatePrivateVirtualInterface"
 
 // CreatePrivateVirtualInterfaceRequest generates a request for the CreatePrivateVirtualInterface operation.
-func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivateVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	op := &aws.Operation{
+func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivateVirtualInterfaceInput) (req *service.Request, output *VirtualInterface) {
+	op := &service.Operation{
 		Name:       opCreatePrivateVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -310,8 +310,8 @@ func (c *DirectConnect) CreatePrivateVirtualInterface(input *CreatePrivateVirtua
 const opCreatePublicVirtualInterface = "CreatePublicVirtualInterface"
 
 // CreatePublicVirtualInterfaceRequest generates a request for the CreatePublicVirtualInterface operation.
-func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicVirtualInterfaceInput) (req *aws.Request, output *VirtualInterface) {
-	op := &aws.Operation{
+func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicVirtualInterfaceInput) (req *service.Request, output *VirtualInterface) {
+	op := &service.Operation{
 		Name:       opCreatePublicVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -340,8 +340,8 @@ func (c *DirectConnect) CreatePublicVirtualInterface(input *CreatePublicVirtualI
 const opDeleteConnection = "DeleteConnection"
 
 // DeleteConnectionRequest generates a request for the DeleteConnection operation.
-func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (req *aws.Request, output *Connection) {
-	op := &aws.Operation{
+func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (req *service.Request, output *Connection) {
+	op := &service.Operation{
 		Name:       opDeleteConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -372,8 +372,8 @@ func (c *DirectConnect) DeleteConnection(input *DeleteConnectionInput) (*Connect
 const opDeleteInterconnect = "DeleteInterconnect"
 
 // DeleteInterconnectRequest generates a request for the DeleteInterconnect operation.
-func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput) (req *aws.Request, output *DeleteInterconnectOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput) (req *service.Request, output *DeleteInterconnectOutput) {
+	op := &service.Operation{
 		Name:       opDeleteInterconnect,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -399,8 +399,8 @@ func (c *DirectConnect) DeleteInterconnect(input *DeleteInterconnectInput) (*Del
 const opDeleteVirtualInterface = "DeleteVirtualInterface"
 
 // DeleteVirtualInterfaceRequest generates a request for the DeleteVirtualInterface operation.
-func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterfaceInput) (req *aws.Request, output *DeleteVirtualInterfaceOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) DeleteVirtualInterfaceRequest(input *DeleteVirtualInterfaceInput) (req *service.Request, output *DeleteVirtualInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVirtualInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -426,8 +426,8 @@ func (c *DirectConnect) DeleteVirtualInterface(input *DeleteVirtualInterfaceInpu
 const opDescribeConnections = "DescribeConnections"
 
 // DescribeConnectionsRequest generates a request for the DescribeConnections operation.
-func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *aws.Request, output *Connections) {
-	op := &aws.Operation{
+func (c *DirectConnect) DescribeConnectionsRequest(input *DescribeConnectionsInput) (req *service.Request, output *Connections) {
+	op := &service.Operation{
 		Name:       opDescribeConnections,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -455,8 +455,8 @@ func (c *DirectConnect) DescribeConnections(input *DescribeConnectionsInput) (*C
 const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 
 // DescribeConnectionsOnInterconnectRequest generates a request for the DescribeConnectionsOnInterconnect operation.
-func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *aws.Request, output *Connections) {
-	op := &aws.Operation{
+func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *service.Request, output *Connections) {
+	op := &service.Operation{
 		Name:       opDescribeConnectionsOnInterconnect,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -482,8 +482,8 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnect(input *DescribeConnect
 const opDescribeInterconnects = "DescribeInterconnects"
 
 // DescribeInterconnectsRequest generates a request for the DescribeInterconnects operation.
-func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *aws.Request, output *DescribeInterconnectsOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnectsInput) (req *service.Request, output *DescribeInterconnectsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeInterconnects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -511,8 +511,8 @@ func (c *DirectConnect) DescribeInterconnects(input *DescribeInterconnectsInput)
 const opDescribeLocations = "DescribeLocations"
 
 // DescribeLocationsRequest generates a request for the DescribeLocations operation.
-func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *aws.Request, output *DescribeLocationsOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) (req *service.Request, output *DescribeLocationsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeLocations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -540,8 +540,8 @@ func (c *DirectConnect) DescribeLocations(input *DescribeLocationsInput) (*Descr
 const opDescribeVirtualGateways = "DescribeVirtualGateways"
 
 // DescribeVirtualGatewaysRequest generates a request for the DescribeVirtualGateways operation.
-func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *aws.Request, output *DescribeVirtualGatewaysOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGatewaysInput) (req *service.Request, output *DescribeVirtualGatewaysOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVirtualGateways,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -573,8 +573,8 @@ func (c *DirectConnect) DescribeVirtualGateways(input *DescribeVirtualGatewaysIn
 const opDescribeVirtualInterfaces = "DescribeVirtualInterfaces"
 
 // DescribeVirtualInterfacesRequest generates a request for the DescribeVirtualInterfaces operation.
-func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *aws.Request, output *DescribeVirtualInterfacesOutput) {
-	op := &aws.Operation{
+func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualInterfacesInput) (req *service.Request, output *DescribeVirtualInterfacesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVirtualInterfaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

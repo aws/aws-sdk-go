@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/machinelearning"
 	"github.com/stretchr/testify/assert"
@@ -17,7 +18,7 @@ var _ = unit.Imported
 func TestPredictEndpoint(t *testing.T) {
 	ml := machinelearning.New(nil)
 	ml.Handlers.Send.Clear()
-	ml.Handlers.Send.PushBack(func(r *aws.Request) {
+	ml.Handlers.Send.PushBack(func(r *service.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
 			Header:     http.Header{},

@@ -11,12 +11,13 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 func init() {
-	initService = func(s *aws.Service) {
+	initService = func(s *service.Service) {
 		s.DefaultMaxRetries = 10
-		s.RetryRules = func(r *aws.Request) time.Duration {
+		s.RetryRules = func(r *service.Request) time.Duration {
 			delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 50
 			return delay * time.Millisecond
 		}
@@ -37,11 +38,11 @@ func drainBody(b io.ReadCloser) (out *bytes.Buffer, err error) {
 	return &buf, nil
 }
 
-func disableCompression(r *aws.Request) {
+func disableCompression(r *service.Request) {
 	r.HTTPRequest.Header.Set("Accept-Encoding", "identity")
 }
 
-func validateCRC32(r *aws.Request) {
+func validateCRC32(r *service.Request) {
 	if r.Error != nil {
 		return // already have an error, no need to verify CRC
 	}

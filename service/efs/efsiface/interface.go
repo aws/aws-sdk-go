@@ -4,53 +4,53 @@
 package efsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/efs"
 )
 
 // EFSAPI is the interface type for efs.EFS.
 type EFSAPI interface {
-	CreateFileSystemRequest(*efs.CreateFileSystemInput) (*aws.Request, *efs.FileSystemDescription)
+	CreateFileSystemRequest(*efs.CreateFileSystemInput) (*service.Request, *efs.FileSystemDescription)
 
 	CreateFileSystem(*efs.CreateFileSystemInput) (*efs.FileSystemDescription, error)
 
-	CreateMountTargetRequest(*efs.CreateMountTargetInput) (*aws.Request, *efs.MountTargetDescription)
+	CreateMountTargetRequest(*efs.CreateMountTargetInput) (*service.Request, *efs.MountTargetDescription)
 
 	CreateMountTarget(*efs.CreateMountTargetInput) (*efs.MountTargetDescription, error)
 
-	CreateTagsRequest(*efs.CreateTagsInput) (*aws.Request, *efs.CreateTagsOutput)
+	CreateTagsRequest(*efs.CreateTagsInput) (*service.Request, *efs.CreateTagsOutput)
 
 	CreateTags(*efs.CreateTagsInput) (*efs.CreateTagsOutput, error)
 
-	DeleteFileSystemRequest(*efs.DeleteFileSystemInput) (*aws.Request, *efs.DeleteFileSystemOutput)
+	DeleteFileSystemRequest(*efs.DeleteFileSystemInput) (*service.Request, *efs.DeleteFileSystemOutput)
 
 	DeleteFileSystem(*efs.DeleteFileSystemInput) (*efs.DeleteFileSystemOutput, error)
 
-	DeleteMountTargetRequest(*efs.DeleteMountTargetInput) (*aws.Request, *efs.DeleteMountTargetOutput)
+	DeleteMountTargetRequest(*efs.DeleteMountTargetInput) (*service.Request, *efs.DeleteMountTargetOutput)
 
 	DeleteMountTarget(*efs.DeleteMountTargetInput) (*efs.DeleteMountTargetOutput, error)
 
-	DeleteTagsRequest(*efs.DeleteTagsInput) (*aws.Request, *efs.DeleteTagsOutput)
+	DeleteTagsRequest(*efs.DeleteTagsInput) (*service.Request, *efs.DeleteTagsOutput)
 
 	DeleteTags(*efs.DeleteTagsInput) (*efs.DeleteTagsOutput, error)
 
-	DescribeFileSystemsRequest(*efs.DescribeFileSystemsInput) (*aws.Request, *efs.DescribeFileSystemsOutput)
+	DescribeFileSystemsRequest(*efs.DescribeFileSystemsInput) (*service.Request, *efs.DescribeFileSystemsOutput)
 
 	DescribeFileSystems(*efs.DescribeFileSystemsInput) (*efs.DescribeFileSystemsOutput, error)
 
-	DescribeMountTargetSecurityGroupsRequest(*efs.DescribeMountTargetSecurityGroupsInput) (*aws.Request, *efs.DescribeMountTargetSecurityGroupsOutput)
+	DescribeMountTargetSecurityGroupsRequest(*efs.DescribeMountTargetSecurityGroupsInput) (*service.Request, *efs.DescribeMountTargetSecurityGroupsOutput)
 
 	DescribeMountTargetSecurityGroups(*efs.DescribeMountTargetSecurityGroupsInput) (*efs.DescribeMountTargetSecurityGroupsOutput, error)
 
-	DescribeMountTargetsRequest(*efs.DescribeMountTargetsInput) (*aws.Request, *efs.DescribeMountTargetsOutput)
+	DescribeMountTargetsRequest(*efs.DescribeMountTargetsInput) (*service.Request, *efs.DescribeMountTargetsOutput)
 
 	DescribeMountTargets(*efs.DescribeMountTargetsInput) (*efs.DescribeMountTargetsOutput, error)
 
-	DescribeTagsRequest(*efs.DescribeTagsInput) (*aws.Request, *efs.DescribeTagsOutput)
+	DescribeTagsRequest(*efs.DescribeTagsInput) (*service.Request, *efs.DescribeTagsOutput)
 
 	DescribeTags(*efs.DescribeTagsInput) (*efs.DescribeTagsOutput, error)
 
-	ModifyMountTargetSecurityGroupsRequest(*efs.ModifyMountTargetSecurityGroupsInput) (*aws.Request, *efs.ModifyMountTargetSecurityGroupsOutput)
+	ModifyMountTargetSecurityGroupsRequest(*efs.ModifyMountTargetSecurityGroupsInput) (*service.Request, *efs.ModifyMountTargetSecurityGroupsOutput)
 
 	ModifyMountTargetSecurityGroups(*efs.ModifyMountTargetSecurityGroupsInput) (*efs.ModifyMountTargetSecurityGroupsOutput, error)
 }

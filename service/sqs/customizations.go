@@ -1,9 +1,9 @@
 package sqs
 
-import "github.com/aws/aws-sdk-go/aws"
+import "github.com/aws/aws-sdk-go/aws/service"
 
 func init() {
-	initRequest = func(r *aws.Request) {
+	initRequest = func(r *service.Request) {
 		setupChecksumValidation(r)
 	}
 }

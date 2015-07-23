@@ -6,15 +6,15 @@ package elasticache
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAddTagsToResource = "AddTagsToResource"
 
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
-func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *TagListMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *service.Request, output *TagListMessage) {
+	op := &service.Operation{
 		Name:       opAddTagsToResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -50,8 +50,8 @@ func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagList
 const opAuthorizeCacheSecurityGroupIngress = "AuthorizeCacheSecurityGroupIngress"
 
 // AuthorizeCacheSecurityGroupIngressRequest generates a request for the AuthorizeCacheSecurityGroupIngress operation.
-func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *service.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
+	op := &service.Operation{
 		Name:       opAuthorizeCacheSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -82,8 +82,8 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSe
 const opCopySnapshot = "CopySnapshot"
 
 // CopySnapshotRequest generates a request for the CopySnapshot operation.
-func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *service.Request, output *CopySnapshotOutput) {
+	op := &service.Operation{
 		Name:       opCopySnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -109,8 +109,8 @@ func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutpu
 const opCreateCacheCluster = "CreateCacheCluster"
 
 // CreateCacheClusterRequest generates a request for the CreateCacheCluster operation.
-func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *aws.Request, output *CreateCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *service.Request, output *CreateCacheClusterOutput) {
+	op := &service.Operation{
 		Name:       opCreateCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -138,8 +138,8 @@ func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*Creat
 const opCreateCacheParameterGroup = "CreateCacheParameterGroup"
 
 // CreateCacheParameterGroupRequest generates a request for the CreateCacheParameterGroup operation.
-func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *aws.Request, output *CreateCacheParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *service.Request, output *CreateCacheParameterGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -167,8 +167,8 @@ func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroup
 const opCreateCacheSecurityGroup = "CreateCacheSecurityGroup"
 
 // CreateCacheSecurityGroupRequest generates a request for the CreateCacheSecurityGroup operation.
-func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *aws.Request, output *CreateCacheSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *service.Request, output *CreateCacheSecurityGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateCacheSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -200,8 +200,8 @@ func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupIn
 const opCreateCacheSubnetGroup = "CreateCacheSubnetGroup"
 
 // CreateCacheSubnetGroupRequest generates a request for the CreateCacheSubnetGroup operation.
-func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *aws.Request, output *CreateCacheSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *service.Request, output *CreateCacheSubnetGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateCacheSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -230,8 +230,8 @@ func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput)
 const opCreateReplicationGroup = "CreateReplicationGroup"
 
 // CreateReplicationGroupRequest generates a request for the CreateReplicationGroup operation.
-func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *aws.Request, output *CreateReplicationGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *service.Request, output *CreateReplicationGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateReplicationGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -267,8 +267,8 @@ func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput)
 const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
-func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *service.Request, output *CreateSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opCreateSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -295,8 +295,8 @@ func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapsho
 const opDeleteCacheCluster = "DeleteCacheCluster"
 
 // DeleteCacheClusterRequest generates a request for the DeleteCacheCluster operation.
-func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *aws.Request, output *DeleteCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *service.Request, output *DeleteCacheClusterOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -329,8 +329,8 @@ func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*Delet
 const opDeleteCacheParameterGroup = "DeleteCacheParameterGroup"
 
 // DeleteCacheParameterGroupRequest generates a request for the DeleteCacheParameterGroup operation.
-func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *aws.Request, output *DeleteCacheParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *service.Request, output *DeleteCacheParameterGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -358,8 +358,8 @@ func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroup
 const opDeleteCacheSecurityGroup = "DeleteCacheSecurityGroup"
 
 // DeleteCacheSecurityGroupRequest generates a request for the DeleteCacheSecurityGroup operation.
-func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *aws.Request, output *DeleteCacheSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *service.Request, output *DeleteCacheSecurityGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCacheSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -388,8 +388,8 @@ func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupIn
 const opDeleteCacheSubnetGroup = "DeleteCacheSubnetGroup"
 
 // DeleteCacheSubnetGroupRequest generates a request for the DeleteCacheSubnetGroup operation.
-func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *aws.Request, output *DeleteCacheSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *service.Request, output *DeleteCacheSubnetGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCacheSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -418,8 +418,8 @@ func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput)
 const opDeleteReplicationGroup = "DeleteReplicationGroup"
 
 // DeleteReplicationGroupRequest generates a request for the DeleteReplicationGroup operation.
-func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *aws.Request, output *DeleteReplicationGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *service.Request, output *DeleteReplicationGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteReplicationGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -452,8 +452,8 @@ func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput)
 const opDeleteSnapshot = "DeleteSnapshot"
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
-func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *service.Request, output *DeleteSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -481,12 +481,12 @@ func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapsho
 const opDescribeCacheClusters = "DescribeCacheClusters"
 
 // DescribeCacheClustersRequest generates a request for the DescribeCacheClusters operation.
-func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *aws.Request, output *DescribeCacheClustersOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *service.Request, output *DescribeCacheClustersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCacheClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -542,12 +542,12 @@ func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInp
 const opDescribeCacheEngineVersions = "DescribeCacheEngineVersions"
 
 // DescribeCacheEngineVersionsRequest generates a request for the DescribeCacheEngineVersions operation.
-func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *aws.Request, output *DescribeCacheEngineVersionsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *service.Request, output *DescribeCacheEngineVersionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCacheEngineVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -583,12 +583,12 @@ func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngin
 const opDescribeCacheParameterGroups = "DescribeCacheParameterGroups"
 
 // DescribeCacheParameterGroupsRequest generates a request for the DescribeCacheParameterGroups operation.
-func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *aws.Request, output *DescribeCacheParameterGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *service.Request, output *DescribeCacheParameterGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCacheParameterGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -625,12 +625,12 @@ func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCachePara
 const opDescribeCacheParameters = "DescribeCacheParameters"
 
 // DescribeCacheParametersRequest generates a request for the DescribeCacheParameters operation.
-func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *aws.Request, output *DescribeCacheParametersOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *service.Request, output *DescribeCacheParametersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCacheParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -666,12 +666,12 @@ func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParameter
 const opDescribeCacheSecurityGroups = "DescribeCacheSecurityGroups"
 
 // DescribeCacheSecurityGroupsRequest generates a request for the DescribeCacheSecurityGroups operation.
-func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *aws.Request, output *DescribeCacheSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *service.Request, output *DescribeCacheSecurityGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCacheSecurityGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -708,12 +708,12 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecur
 const opDescribeCacheSubnetGroups = "DescribeCacheSubnetGroups"
 
 // DescribeCacheSubnetGroupsRequest generates a request for the DescribeCacheSubnetGroups operation.
-func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *aws.Request, output *DescribeCacheSubnetGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *service.Request, output *DescribeCacheSubnetGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCacheSubnetGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -750,12 +750,12 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetG
 const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
-func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *service.Request, output *DescribeEngineDefaultParametersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeEngineDefaultParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"EngineDefaults.Marker"},
 			LimitToken:      "MaxRecords",
@@ -791,12 +791,12 @@ func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngine
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *service.Request, output *DescribeEventsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -837,12 +837,12 @@ func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(p 
 const opDescribeReplicationGroups = "DescribeReplicationGroups"
 
 // DescribeReplicationGroupsRequest generates a request for the DescribeReplicationGroups operation.
-func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *aws.Request, output *DescribeReplicationGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *service.Request, output *DescribeReplicationGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReplicationGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -879,12 +879,12 @@ func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationG
 const opDescribeReservedCacheNodes = "DescribeReservedCacheNodes"
 
 // DescribeReservedCacheNodesRequest generates a request for the DescribeReservedCacheNodes operation.
-func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *aws.Request, output *DescribeReservedCacheNodesOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *service.Request, output *DescribeReservedCacheNodesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedCacheNodes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -920,12 +920,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCac
 const opDescribeReservedCacheNodesOfferings = "DescribeReservedCacheNodesOfferings"
 
 // DescribeReservedCacheNodesOfferingsRequest generates a request for the DescribeReservedCacheNodesOfferings operation.
-func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *aws.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *service.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedCacheNodesOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -961,12 +961,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeRe
 const opDescribeSnapshots = "DescribeSnapshots"
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
-func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *service.Request, output *DescribeSnapshotsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1004,8 +1004,8 @@ func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn f
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
-func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *TagListMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *service.Request, output *TagListMessage) {
+	op := &service.Operation{
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1038,8 +1038,8 @@ func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*Tag
 const opModifyCacheCluster = "ModifyCacheCluster"
 
 // ModifyCacheClusterRequest generates a request for the ModifyCacheCluster operation.
-func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *aws.Request, output *ModifyCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *service.Request, output *ModifyCacheClusterOutput) {
+	op := &service.Operation{
 		Name:       opModifyCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1067,8 +1067,8 @@ func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*Modif
 const opModifyCacheParameterGroup = "ModifyCacheParameterGroup"
 
 // ModifyCacheParameterGroupRequest generates a request for the ModifyCacheParameterGroup operation.
-func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *service.Request, output *CacheParameterGroupNameMessage) {
+	op := &service.Operation{
 		Name:       opModifyCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1096,8 +1096,8 @@ func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroup
 const opModifyCacheSubnetGroup = "ModifyCacheSubnetGroup"
 
 // ModifyCacheSubnetGroupRequest generates a request for the ModifyCacheSubnetGroup operation.
-func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *aws.Request, output *ModifyCacheSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *service.Request, output *ModifyCacheSubnetGroupOutput) {
+	op := &service.Operation{
 		Name:       opModifyCacheSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1123,8 +1123,8 @@ func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput)
 const opModifyReplicationGroup = "ModifyReplicationGroup"
 
 // ModifyReplicationGroupRequest generates a request for the ModifyReplicationGroup operation.
-func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *aws.Request, output *ModifyReplicationGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *service.Request, output *ModifyReplicationGroupOutput) {
+	op := &service.Operation{
 		Name:       opModifyReplicationGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1151,8 +1151,8 @@ func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput)
 const opPurchaseReservedCacheNodesOffering = "PurchaseReservedCacheNodesOffering"
 
 // PurchaseReservedCacheNodesOfferingRequest generates a request for the PurchaseReservedCacheNodesOffering operation.
-func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *aws.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *service.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
+	op := &service.Operation{
 		Name:       opPurchaseReservedCacheNodesOffering,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1179,8 +1179,8 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReserved
 const opRebootCacheCluster = "RebootCacheCluster"
 
 // RebootCacheClusterRequest generates a request for the RebootCacheCluster operation.
-func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *aws.Request, output *RebootCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *service.Request, output *RebootCacheClusterOutput) {
+	op := &service.Operation{
 		Name:       opRebootCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1215,8 +1215,8 @@ func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*Reboo
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
-func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *TagListMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *service.Request, output *TagListMessage) {
+	op := &service.Operation{
 		Name:       opRemoveTagsFromResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1243,8 +1243,8 @@ func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput)
 const opResetCacheParameterGroup = "ResetCacheParameterGroup"
 
 // ResetCacheParameterGroupRequest generates a request for the ResetCacheParameterGroup operation.
-func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *service.Request, output *CacheParameterGroupNameMessage) {
+	op := &service.Operation{
 		Name:       opResetCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1273,8 +1273,8 @@ func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupIn
 const opRevokeCacheSecurityGroupIngress = "RevokeCacheSecurityGroupIngress"
 
 // RevokeCacheSecurityGroupIngressRequest generates a request for the RevokeCacheSecurityGroupIngress operation.
-func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *aws.Request, output *RevokeCacheSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *service.Request, output *RevokeCacheSecurityGroupIngressOutput) {
+	op := &service.Operation{
 		Name:       opRevokeCacheSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

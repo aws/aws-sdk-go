@@ -3,11 +3,11 @@ package machinelearning
 import (
 	"net/url"
 
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 func init() {
-	initRequest = func(r *aws.Request) {
+	initRequest = func(r *service.Request) {
 		switch r.Operation.Name {
 		case opPredict:
 			r.Handlers.Build.PushBack(updatePredictEndpoint)
@@ -17,7 +17,7 @@ func init() {
 
 // updatePredictEndpoint rewrites the request endpoint to use the
 // "PredictEndpoint" parameter of the Predict operation.
-func updatePredictEndpoint(r *aws.Request) {
+func updatePredictEndpoint(r *service.Request) {
 	if !r.ParamsFilled() {
 		return
 	}

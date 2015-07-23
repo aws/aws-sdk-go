@@ -8,6 +8,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/sqs"
 	"github.com/stretchr/testify/assert"
@@ -27,7 +28,7 @@ func TestSendMessageChecksum(t *testing.T) {
 	req, _ := svc.SendMessageRequest(&sqs.SendMessageInput{
 		MessageBody: aws.String("test"),
 	})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageOutput{
@@ -43,7 +44,7 @@ func TestSendMessageChecksumInvalid(t *testing.T) {
 	req, _ := svc.SendMessageRequest(&sqs.SendMessageInput{
 		MessageBody: aws.String("test"),
 	})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageOutput{
@@ -68,7 +69,7 @@ func TestSendMessageChecksumInvalidNoValidation(t *testing.T) {
 	req, _ := s.SendMessageRequest(&sqs.SendMessageInput{
 		MessageBody: aws.String("test"),
 	})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageOutput{
@@ -82,7 +83,7 @@ func TestSendMessageChecksumInvalidNoValidation(t *testing.T) {
 
 func TestSendMessageChecksumNoInput(t *testing.T) {
 	req, _ := svc.SendMessageRequest(&sqs.SendMessageInput{})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageOutput{}
@@ -98,7 +99,7 @@ func TestSendMessageChecksumNoOutput(t *testing.T) {
 	req, _ := svc.SendMessageRequest(&sqs.SendMessageInput{
 		MessageBody: aws.String("test"),
 	})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
 		r.Data = &sqs.SendMessageOutput{}
@@ -112,7 +113,7 @@ func TestSendMessageChecksumNoOutput(t *testing.T) {
 
 func TestRecieveMessageChecksum(t *testing.T) {
 	req, _ := svc.ReceiveMessageRequest(&sqs.ReceiveMessageInput{})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		md5 := "098f6bcd4621d373cade4e832627b4f6"
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
@@ -131,7 +132,7 @@ func TestRecieveMessageChecksum(t *testing.T) {
 
 func TestRecieveMessageChecksumInvalid(t *testing.T) {
 	req, _ := svc.ReceiveMessageRequest(&sqs.ReceiveMessageInput{})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		md5 := "098f6bcd4621d373cade4e832627b4f6"
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
@@ -160,7 +161,7 @@ func TestSendMessageBatchChecksum(t *testing.T) {
 			{ID: aws.String("4"), MessageBody: aws.String("test")},
 		},
 	})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		md5 := "098f6bcd4621d373cade4e832627b4f6"
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}
@@ -186,7 +187,7 @@ func TestSendMessageBatchChecksumInvalid(t *testing.T) {
 			{ID: aws.String("4"), MessageBody: aws.String("test")},
 		},
 	})
-	req.Handlers.Send.PushBack(func(r *aws.Request) {
+	req.Handlers.Send.PushBack(func(r *service.Request) {
 		md5 := "098f6bcd4621d373cade4e832627b4f6"
 		body := ioutil.NopCloser(bytes.NewReader([]byte("")))
 		r.HTTPResponse = &http.Response{StatusCode: 200, Body: body}

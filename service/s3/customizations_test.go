@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
@@ -14,7 +15,7 @@ import (
 
 var _ = unit.Imported
 
-func assertMD5(t *testing.T, req *aws.Request) {
+func assertMD5(t *testing.T, req *service.Request) {
 	err := req.Build()
 	assert.NoError(t, err)
 

@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/cloudsearchdomain"
 	"github.com/stretchr/testify/assert"
 )
@@ -18,7 +19,7 @@ func TestRequireEndpointIfRegionProvided(t *testing.T) {
 
 	assert.Equal(t, "", svc.Endpoint)
 	assert.Error(t, err)
-	assert.Equal(t, aws.ErrMissingEndpoint, err)
+	assert.Equal(t, service.ErrMissingEndpoint, err)
 }
 
 func TestRequireEndpointIfNoRegionProvided(t *testing.T) {
@@ -31,7 +32,7 @@ func TestRequireEndpointIfNoRegionProvided(t *testing.T) {
 
 	assert.Equal(t, "", svc.Endpoint)
 	assert.Error(t, err)
-	assert.Equal(t, aws.ErrMissingEndpoint, err)
+	assert.Equal(t, service.ErrMissingEndpoint, err)
 }
 
 func TestRequireEndpointUsed(t *testing.T) {

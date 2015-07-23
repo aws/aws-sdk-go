@@ -6,15 +6,15 @@ package cloudsearchdomain
 import (
 	"io"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opSearch = "Search"
 
 // SearchRequest generates a request for the Search operation.
-func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *aws.Request, output *SearchOutput) {
-	op := &aws.Operation{
+func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *service.Request, output *SearchOutput) {
+	op := &service.Operation{
 		Name:       opSearch,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-01-01/search?format=sdk&pretty=true",
@@ -58,8 +58,8 @@ func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
 const opSuggest = "Suggest"
 
 // SuggestRequest generates a request for the Suggest operation.
-func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *aws.Request, output *SuggestOutput) {
-	op := &aws.Operation{
+func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *service.Request, output *SuggestOutput) {
+	op := &service.Operation{
 		Name:       opSuggest,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-01-01/suggest?format=sdk&pretty=true",
@@ -101,8 +101,8 @@ func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error)
 const opUploadDocuments = "UploadDocuments"
 
 // UploadDocumentsRequest generates a request for the UploadDocuments operation.
-func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *aws.Request, output *UploadDocumentsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *service.Request, output *UploadDocumentsOutput) {
+	op := &service.Operation{
 		Name:       opUploadDocuments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-01-01/documents/batch?format=sdk",

@@ -4,19 +4,11 @@ import (
 	"net/http"
 	"reflect"
 	"testing"
-	"time"
 
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 )
 
-var testCredentials = credentials.NewChainCredentials([]credentials.Provider{
-	&credentials.EnvProvider{},
-	&credentials.SharedCredentialsProvider{
-		Filename: "TestFilename",
-		Profile:  "TestProfile"},
-	&ec2rolecreds.EC2RoleProvider{ExpiryWindow: 5 * time.Minute},
-})
+var testCredentials = credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
 
 var copyTestConfig = Config{
 	Credentials:             testCredentials,

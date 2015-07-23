@@ -10,14 +10,14 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/protocol/rest"
 )
 
 // Build builds a request for the REST JSON protocol.
-func Build(r *aws.Request) {
+func Build(r *service.Request) {
 	rest.Build(r)
 
 	if t := rest.PayloadType(r.Params); t == "structure" || t == "" {
@@ -26,19 +26,19 @@ func Build(r *aws.Request) {
 }
 
 // Unmarshal unmarshals a response body for the REST JSON protocol.
-func Unmarshal(r *aws.Request) {
+func Unmarshal(r *service.Request) {
 	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		jsonrpc.Unmarshal(r)
 	}
 }
 
 // UnmarshalMeta unmarshals response headers for the REST JSON protocol.
-func UnmarshalMeta(r *aws.Request) {
+func UnmarshalMeta(r *service.Request) {
 	rest.Unmarshal(r)
 }
 
 // UnmarshalError unmarshals a response error for the REST JSON protocol.
-func UnmarshalError(r *aws.Request) {
+func UnmarshalError(r *service.Request) {
 	code := r.HTTPResponse.Header.Get("X-Amzn-Errortype")
 	bodyBytes, err := ioutil.ReadAll(r.HTTPResponse.Body)
 	if err != nil {
