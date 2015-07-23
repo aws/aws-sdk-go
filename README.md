@@ -99,7 +99,7 @@ func main() {
 ```
 
 You can find more information and operations in our
-[API documentation](http://godoc.org/github.com/aws/aws-sdk-go).
+[API documentation](http://docs.aws.amazon.com/sdk-for-go/api/).
 
 ## License
 
