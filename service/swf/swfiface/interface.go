@@ -4,70 +4,147 @@
 package swfiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/swf"
 )
 
 // SWFAPI is the interface type for swf.SWF.
 type SWFAPI interface {
+	CountClosedWorkflowExecutionsRequest(*swf.CountClosedWorkflowExecutionsInput) (*aws.Request, *swf.WorkflowExecutionCount)
+
 	CountClosedWorkflowExecutions(*swf.CountClosedWorkflowExecutionsInput) (*swf.WorkflowExecutionCount, error)
+
+	CountOpenWorkflowExecutionsRequest(*swf.CountOpenWorkflowExecutionsInput) (*aws.Request, *swf.WorkflowExecutionCount)
 
 	CountOpenWorkflowExecutions(*swf.CountOpenWorkflowExecutionsInput) (*swf.WorkflowExecutionCount, error)
 
+	CountPendingActivityTasksRequest(*swf.CountPendingActivityTasksInput) (*aws.Request, *swf.PendingTaskCount)
+
 	CountPendingActivityTasks(*swf.CountPendingActivityTasksInput) (*swf.PendingTaskCount, error)
+
+	CountPendingDecisionTasksRequest(*swf.CountPendingDecisionTasksInput) (*aws.Request, *swf.PendingTaskCount)
 
 	CountPendingDecisionTasks(*swf.CountPendingDecisionTasksInput) (*swf.PendingTaskCount, error)
 
+	DeprecateActivityTypeRequest(*swf.DeprecateActivityTypeInput) (*aws.Request, *swf.DeprecateActivityTypeOutput)
+
 	DeprecateActivityType(*swf.DeprecateActivityTypeInput) (*swf.DeprecateActivityTypeOutput, error)
+
+	DeprecateDomainRequest(*swf.DeprecateDomainInput) (*aws.Request, *swf.DeprecateDomainOutput)
 
 	DeprecateDomain(*swf.DeprecateDomainInput) (*swf.DeprecateDomainOutput, error)
 
+	DeprecateWorkflowTypeRequest(*swf.DeprecateWorkflowTypeInput) (*aws.Request, *swf.DeprecateWorkflowTypeOutput)
+
 	DeprecateWorkflowType(*swf.DeprecateWorkflowTypeInput) (*swf.DeprecateWorkflowTypeOutput, error)
+
+	DescribeActivityTypeRequest(*swf.DescribeActivityTypeInput) (*aws.Request, *swf.DescribeActivityTypeOutput)
 
 	DescribeActivityType(*swf.DescribeActivityTypeInput) (*swf.DescribeActivityTypeOutput, error)
 
+	DescribeDomainRequest(*swf.DescribeDomainInput) (*aws.Request, *swf.DescribeDomainOutput)
+
 	DescribeDomain(*swf.DescribeDomainInput) (*swf.DescribeDomainOutput, error)
+
+	DescribeWorkflowExecutionRequest(*swf.DescribeWorkflowExecutionInput) (*aws.Request, *swf.DescribeWorkflowExecutionOutput)
 
 	DescribeWorkflowExecution(*swf.DescribeWorkflowExecutionInput) (*swf.DescribeWorkflowExecutionOutput, error)
 
+	DescribeWorkflowTypeRequest(*swf.DescribeWorkflowTypeInput) (*aws.Request, *swf.DescribeWorkflowTypeOutput)
+
 	DescribeWorkflowType(*swf.DescribeWorkflowTypeInput) (*swf.DescribeWorkflowTypeOutput, error)
+
+	GetWorkflowExecutionHistoryRequest(*swf.GetWorkflowExecutionHistoryInput) (*aws.Request, *swf.GetWorkflowExecutionHistoryOutput)
 
 	GetWorkflowExecutionHistory(*swf.GetWorkflowExecutionHistoryInput) (*swf.GetWorkflowExecutionHistoryOutput, error)
 
+	GetWorkflowExecutionHistoryPages(*swf.GetWorkflowExecutionHistoryInput, func(*swf.GetWorkflowExecutionHistoryOutput, bool) bool) error
+
+	ListActivityTypesRequest(*swf.ListActivityTypesInput) (*aws.Request, *swf.ListActivityTypesOutput)
+
 	ListActivityTypes(*swf.ListActivityTypesInput) (*swf.ListActivityTypesOutput, error)
+
+	ListActivityTypesPages(*swf.ListActivityTypesInput, func(*swf.ListActivityTypesOutput, bool) bool) error
+
+	ListClosedWorkflowExecutionsRequest(*swf.ListClosedWorkflowExecutionsInput) (*aws.Request, *swf.WorkflowExecutionInfos)
 
 	ListClosedWorkflowExecutions(*swf.ListClosedWorkflowExecutionsInput) (*swf.WorkflowExecutionInfos, error)
 
+	ListClosedWorkflowExecutionsPages(*swf.ListClosedWorkflowExecutionsInput, func(*swf.WorkflowExecutionInfos, bool) bool) error
+
+	ListDomainsRequest(*swf.ListDomainsInput) (*aws.Request, *swf.ListDomainsOutput)
+
 	ListDomains(*swf.ListDomainsInput) (*swf.ListDomainsOutput, error)
+
+	ListDomainsPages(*swf.ListDomainsInput, func(*swf.ListDomainsOutput, bool) bool) error
+
+	ListOpenWorkflowExecutionsRequest(*swf.ListOpenWorkflowExecutionsInput) (*aws.Request, *swf.WorkflowExecutionInfos)
 
 	ListOpenWorkflowExecutions(*swf.ListOpenWorkflowExecutionsInput) (*swf.WorkflowExecutionInfos, error)
 
+	ListOpenWorkflowExecutionsPages(*swf.ListOpenWorkflowExecutionsInput, func(*swf.WorkflowExecutionInfos, bool) bool) error
+
+	ListWorkflowTypesRequest(*swf.ListWorkflowTypesInput) (*aws.Request, *swf.ListWorkflowTypesOutput)
+
 	ListWorkflowTypes(*swf.ListWorkflowTypesInput) (*swf.ListWorkflowTypesOutput, error)
+
+	ListWorkflowTypesPages(*swf.ListWorkflowTypesInput, func(*swf.ListWorkflowTypesOutput, bool) bool) error
+
+	PollForActivityTaskRequest(*swf.PollForActivityTaskInput) (*aws.Request, *swf.PollForActivityTaskOutput)
 
 	PollForActivityTask(*swf.PollForActivityTaskInput) (*swf.PollForActivityTaskOutput, error)
 
+	PollForDecisionTaskRequest(*swf.PollForDecisionTaskInput) (*aws.Request, *swf.PollForDecisionTaskOutput)
+
 	PollForDecisionTask(*swf.PollForDecisionTaskInput) (*swf.PollForDecisionTaskOutput, error)
+
+	PollForDecisionTaskPages(*swf.PollForDecisionTaskInput, func(*swf.PollForDecisionTaskOutput, bool) bool) error
+
+	RecordActivityTaskHeartbeatRequest(*swf.RecordActivityTaskHeartbeatInput) (*aws.Request, *swf.RecordActivityTaskHeartbeatOutput)
 
 	RecordActivityTaskHeartbeat(*swf.RecordActivityTaskHeartbeatInput) (*swf.RecordActivityTaskHeartbeatOutput, error)
 
+	RegisterActivityTypeRequest(*swf.RegisterActivityTypeInput) (*aws.Request, *swf.RegisterActivityTypeOutput)
+
 	RegisterActivityType(*swf.RegisterActivityTypeInput) (*swf.RegisterActivityTypeOutput, error)
+
+	RegisterDomainRequest(*swf.RegisterDomainInput) (*aws.Request, *swf.RegisterDomainOutput)
 
 	RegisterDomain(*swf.RegisterDomainInput) (*swf.RegisterDomainOutput, error)
 
+	RegisterWorkflowTypeRequest(*swf.RegisterWorkflowTypeInput) (*aws.Request, *swf.RegisterWorkflowTypeOutput)
+
 	RegisterWorkflowType(*swf.RegisterWorkflowTypeInput) (*swf.RegisterWorkflowTypeOutput, error)
+
+	RequestCancelWorkflowExecutionRequest(*swf.RequestCancelWorkflowExecutionInput) (*aws.Request, *swf.RequestCancelWorkflowExecutionOutput)
 
 	RequestCancelWorkflowExecution(*swf.RequestCancelWorkflowExecutionInput) (*swf.RequestCancelWorkflowExecutionOutput, error)
 
+	RespondActivityTaskCanceledRequest(*swf.RespondActivityTaskCanceledInput) (*aws.Request, *swf.RespondActivityTaskCanceledOutput)
+
 	RespondActivityTaskCanceled(*swf.RespondActivityTaskCanceledInput) (*swf.RespondActivityTaskCanceledOutput, error)
+
+	RespondActivityTaskCompletedRequest(*swf.RespondActivityTaskCompletedInput) (*aws.Request, *swf.RespondActivityTaskCompletedOutput)
 
 	RespondActivityTaskCompleted(*swf.RespondActivityTaskCompletedInput) (*swf.RespondActivityTaskCompletedOutput, error)
 
+	RespondActivityTaskFailedRequest(*swf.RespondActivityTaskFailedInput) (*aws.Request, *swf.RespondActivityTaskFailedOutput)
+
 	RespondActivityTaskFailed(*swf.RespondActivityTaskFailedInput) (*swf.RespondActivityTaskFailedOutput, error)
+
+	RespondDecisionTaskCompletedRequest(*swf.RespondDecisionTaskCompletedInput) (*aws.Request, *swf.RespondDecisionTaskCompletedOutput)
 
 	RespondDecisionTaskCompleted(*swf.RespondDecisionTaskCompletedInput) (*swf.RespondDecisionTaskCompletedOutput, error)
 
+	SignalWorkflowExecutionRequest(*swf.SignalWorkflowExecutionInput) (*aws.Request, *swf.SignalWorkflowExecutionOutput)
+
 	SignalWorkflowExecution(*swf.SignalWorkflowExecutionInput) (*swf.SignalWorkflowExecutionOutput, error)
 
+	StartWorkflowExecutionRequest(*swf.StartWorkflowExecutionInput) (*aws.Request, *swf.StartWorkflowExecutionOutput)
+
 	StartWorkflowExecution(*swf.StartWorkflowExecutionInput) (*swf.StartWorkflowExecutionOutput, error)
+
+	TerminateWorkflowExecutionRequest(*swf.TerminateWorkflowExecutionInput) (*aws.Request, *swf.TerminateWorkflowExecutionOutput)
 
 	TerminateWorkflowExecution(*swf.TerminateWorkflowExecutionInput) (*swf.TerminateWorkflowExecutionOutput, error)
 }

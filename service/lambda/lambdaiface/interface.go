@@ -4,42 +4,81 @@
 package lambdaiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/lambda"
 )
 
 // LambdaAPI is the interface type for lambda.Lambda.
 type LambdaAPI interface {
+	AddPermissionRequest(*lambda.AddPermissionInput) (*aws.Request, *lambda.AddPermissionOutput)
+
 	AddPermission(*lambda.AddPermissionInput) (*lambda.AddPermissionOutput, error)
+
+	CreateEventSourceMappingRequest(*lambda.CreateEventSourceMappingInput) (*aws.Request, *lambda.EventSourceMappingConfiguration)
 
 	CreateEventSourceMapping(*lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
+	CreateFunctionRequest(*lambda.CreateFunctionInput) (*aws.Request, *lambda.FunctionConfiguration)
+
 	CreateFunction(*lambda.CreateFunctionInput) (*lambda.FunctionConfiguration, error)
+
+	DeleteEventSourceMappingRequest(*lambda.DeleteEventSourceMappingInput) (*aws.Request, *lambda.EventSourceMappingConfiguration)
 
 	DeleteEventSourceMapping(*lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
+	DeleteFunctionRequest(*lambda.DeleteFunctionInput) (*aws.Request, *lambda.DeleteFunctionOutput)
+
 	DeleteFunction(*lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, error)
+
+	GetEventSourceMappingRequest(*lambda.GetEventSourceMappingInput) (*aws.Request, *lambda.EventSourceMappingConfiguration)
 
 	GetEventSourceMapping(*lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
+	GetFunctionRequest(*lambda.GetFunctionInput) (*aws.Request, *lambda.GetFunctionOutput)
+
 	GetFunction(*lambda.GetFunctionInput) (*lambda.GetFunctionOutput, error)
+
+	GetFunctionConfigurationRequest(*lambda.GetFunctionConfigurationInput) (*aws.Request, *lambda.FunctionConfiguration)
 
 	GetFunctionConfiguration(*lambda.GetFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 
+	GetPolicyRequest(*lambda.GetPolicyInput) (*aws.Request, *lambda.GetPolicyOutput)
+
 	GetPolicy(*lambda.GetPolicyInput) (*lambda.GetPolicyOutput, error)
+
+	InvokeRequest(*lambda.InvokeInput) (*aws.Request, *lambda.InvokeOutput)
 
 	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, error)
 
+	InvokeAsyncRequest(*lambda.InvokeAsyncInput) (*aws.Request, *lambda.InvokeAsyncOutput)
+
 	InvokeAsync(*lambda.InvokeAsyncInput) (*lambda.InvokeAsyncOutput, error)
+
+	ListEventSourceMappingsRequest(*lambda.ListEventSourceMappingsInput) (*aws.Request, *lambda.ListEventSourceMappingsOutput)
 
 	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error)
 
+	ListEventSourceMappingsPages(*lambda.ListEventSourceMappingsInput, func(*lambda.ListEventSourceMappingsOutput, bool) bool) error
+
+	ListFunctionsRequest(*lambda.ListFunctionsInput) (*aws.Request, *lambda.ListFunctionsOutput)
+
 	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error)
+
+	ListFunctionsPages(*lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool) error
+
+	RemovePermissionRequest(*lambda.RemovePermissionInput) (*aws.Request, *lambda.RemovePermissionOutput)
 
 	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error)
 
+	UpdateEventSourceMappingRequest(*lambda.UpdateEventSourceMappingInput) (*aws.Request, *lambda.EventSourceMappingConfiguration)
+
 	UpdateEventSourceMapping(*lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
+	UpdateFunctionCodeRequest(*lambda.UpdateFunctionCodeInput) (*aws.Request, *lambda.FunctionConfiguration)
+
 	UpdateFunctionCode(*lambda.UpdateFunctionCodeInput) (*lambda.FunctionConfiguration, error)
+
+	UpdateFunctionConfigurationRequest(*lambda.UpdateFunctionConfigurationInput) (*aws.Request, *lambda.FunctionConfiguration)
 
 	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 }

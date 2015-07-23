@@ -4,30 +4,55 @@
 package configserviceiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/configservice"
 )
 
 // ConfigServiceAPI is the interface type for configservice.ConfigService.
 type ConfigServiceAPI interface {
+	DeleteDeliveryChannelRequest(*configservice.DeleteDeliveryChannelInput) (*aws.Request, *configservice.DeleteDeliveryChannelOutput)
+
 	DeleteDeliveryChannel(*configservice.DeleteDeliveryChannelInput) (*configservice.DeleteDeliveryChannelOutput, error)
+
+	DeliverConfigSnapshotRequest(*configservice.DeliverConfigSnapshotInput) (*aws.Request, *configservice.DeliverConfigSnapshotOutput)
 
 	DeliverConfigSnapshot(*configservice.DeliverConfigSnapshotInput) (*configservice.DeliverConfigSnapshotOutput, error)
 
+	DescribeConfigurationRecorderStatusRequest(*configservice.DescribeConfigurationRecorderStatusInput) (*aws.Request, *configservice.DescribeConfigurationRecorderStatusOutput)
+
 	DescribeConfigurationRecorderStatus(*configservice.DescribeConfigurationRecorderStatusInput) (*configservice.DescribeConfigurationRecorderStatusOutput, error)
+
+	DescribeConfigurationRecordersRequest(*configservice.DescribeConfigurationRecordersInput) (*aws.Request, *configservice.DescribeConfigurationRecordersOutput)
 
 	DescribeConfigurationRecorders(*configservice.DescribeConfigurationRecordersInput) (*configservice.DescribeConfigurationRecordersOutput, error)
 
+	DescribeDeliveryChannelStatusRequest(*configservice.DescribeDeliveryChannelStatusInput) (*aws.Request, *configservice.DescribeDeliveryChannelStatusOutput)
+
 	DescribeDeliveryChannelStatus(*configservice.DescribeDeliveryChannelStatusInput) (*configservice.DescribeDeliveryChannelStatusOutput, error)
+
+	DescribeDeliveryChannelsRequest(*configservice.DescribeDeliveryChannelsInput) (*aws.Request, *configservice.DescribeDeliveryChannelsOutput)
 
 	DescribeDeliveryChannels(*configservice.DescribeDeliveryChannelsInput) (*configservice.DescribeDeliveryChannelsOutput, error)
 
+	GetResourceConfigHistoryRequest(*configservice.GetResourceConfigHistoryInput) (*aws.Request, *configservice.GetResourceConfigHistoryOutput)
+
 	GetResourceConfigHistory(*configservice.GetResourceConfigHistoryInput) (*configservice.GetResourceConfigHistoryOutput, error)
+
+	GetResourceConfigHistoryPages(*configservice.GetResourceConfigHistoryInput, func(*configservice.GetResourceConfigHistoryOutput, bool) bool) error
+
+	PutConfigurationRecorderRequest(*configservice.PutConfigurationRecorderInput) (*aws.Request, *configservice.PutConfigurationRecorderOutput)
 
 	PutConfigurationRecorder(*configservice.PutConfigurationRecorderInput) (*configservice.PutConfigurationRecorderOutput, error)
 
+	PutDeliveryChannelRequest(*configservice.PutDeliveryChannelInput) (*aws.Request, *configservice.PutDeliveryChannelOutput)
+
 	PutDeliveryChannel(*configservice.PutDeliveryChannelInput) (*configservice.PutDeliveryChannelOutput, error)
 
+	StartConfigurationRecorderRequest(*configservice.StartConfigurationRecorderInput) (*aws.Request, *configservice.StartConfigurationRecorderOutput)
+
 	StartConfigurationRecorder(*configservice.StartConfigurationRecorderInput) (*configservice.StartConfigurationRecorderOutput, error)
+
+	StopConfigurationRecorderRequest(*configservice.StopConfigurationRecorderInput) (*aws.Request, *configservice.StopConfigurationRecorderOutput)
 
 	StopConfigurationRecorder(*configservice.StopConfigurationRecorderInput) (*configservice.StopConfigurationRecorderOutput, error)
 }

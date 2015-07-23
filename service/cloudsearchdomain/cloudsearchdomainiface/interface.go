@@ -4,14 +4,21 @@
 package cloudsearchdomainiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/cloudsearchdomain"
 )
 
 // CloudSearchDomainAPI is the interface type for cloudsearchdomain.CloudSearchDomain.
 type CloudSearchDomainAPI interface {
+	SearchRequest(*cloudsearchdomain.SearchInput) (*aws.Request, *cloudsearchdomain.SearchOutput)
+
 	Search(*cloudsearchdomain.SearchInput) (*cloudsearchdomain.SearchOutput, error)
 
+	SuggestRequest(*cloudsearchdomain.SuggestInput) (*aws.Request, *cloudsearchdomain.SuggestOutput)
+
 	Suggest(*cloudsearchdomain.SuggestInput) (*cloudsearchdomain.SuggestOutput, error)
+
+	UploadDocumentsRequest(*cloudsearchdomain.UploadDocumentsInput) (*aws.Request, *cloudsearchdomain.UploadDocumentsOutput)
 
 	UploadDocuments(*cloudsearchdomain.UploadDocumentsInput) (*cloudsearchdomain.UploadDocumentsOutput, error)
 }

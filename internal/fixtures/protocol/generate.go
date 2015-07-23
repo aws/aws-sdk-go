@@ -103,7 +103,7 @@ func (t *testSuite) TestSuite() string {
 		c.TestSuite = t
 		buf.WriteString(c.TestCase(idx) + "\n")
 	}
-	return util.GoFmt(buf.String())
+	return buf.String()
 }
 
 var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
@@ -217,7 +217,7 @@ func (i *testCase) TestCase(idx int) string {
 		}
 	}
 
-	return util.GoFmt(buf.String())
+	return buf.String()
 }
 
 // generateTestSuite generates a protocol test suite for a given configuration
@@ -290,7 +290,7 @@ func generateTestSuite(filename string) string {
 		innerBuf.WriteString(suite.TestSuite() + "\n")
 	}
 
-	return util.GoFmt(buf.String() + innerBuf.String())
+	return buf.String() + innerBuf.String()
 }
 
 func main() {

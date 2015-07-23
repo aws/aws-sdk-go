@@ -7,8 +7,6 @@ import (
 	"sort"
 	"strings"
 	"text/template"
-
-	"github.com/aws/aws-sdk-go/internal/util"
 )
 
 // An Operation defines a specific API Operation.
@@ -96,12 +94,16 @@ func (o *Operation) GoCode() string {
 		panic(err)
 	}
 
-	return strings.TrimSpace(util.GoFmt(buf.String()))
+	return strings.TrimSpace(buf.String())
 }
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
 var tplInfSig = template.Must(template.New("opsig").Parse(`
+{{ .ExportedName }}Request({{ .InputRef.GoTypeWithPkgName }}) (*aws.Request, {{ .OutputRef.GoTypeWithPkgName }})
+
 {{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
+{{ if .Paginator }}
+{{ .ExportedName }}Pages({{ .InputRef.GoTypeWithPkgName }}, func({{ .OutputRef.GoTypeWithPkgName }}, bool) bool) error{{ end }}
 `))
 
 // InterfaceSignature returns a string representing the Operation's interface{}
@@ -113,7 +115,7 @@ func (o *Operation) InterfaceSignature() string {
 		panic(err)
 	}
 
-	return strings.TrimSpace(util.GoFmt(buf.String()))
+	return strings.TrimSpace(buf.String())
 }
 
 // tplExample defines the template for rendering an Operation example
@@ -152,7 +154,7 @@ func (o *Operation) Example() string {
 		panic(err)
 	}
 
-	return strings.TrimSpace(util.GoFmt(buf.String()))
+	return strings.TrimSpace(buf.String())
 }
 
 // ExampleInput return a string of the rendered Go code for an example's input parameters

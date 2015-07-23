@@ -4,24 +4,41 @@
 package cloudtrailiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/cloudtrail"
 )
 
 // CloudTrailAPI is the interface type for cloudtrail.CloudTrail.
 type CloudTrailAPI interface {
+	CreateTrailRequest(*cloudtrail.CreateTrailInput) (*aws.Request, *cloudtrail.CreateTrailOutput)
+
 	CreateTrail(*cloudtrail.CreateTrailInput) (*cloudtrail.CreateTrailOutput, error)
+
+	DeleteTrailRequest(*cloudtrail.DeleteTrailInput) (*aws.Request, *cloudtrail.DeleteTrailOutput)
 
 	DeleteTrail(*cloudtrail.DeleteTrailInput) (*cloudtrail.DeleteTrailOutput, error)
 
+	DescribeTrailsRequest(*cloudtrail.DescribeTrailsInput) (*aws.Request, *cloudtrail.DescribeTrailsOutput)
+
 	DescribeTrails(*cloudtrail.DescribeTrailsInput) (*cloudtrail.DescribeTrailsOutput, error)
+
+	GetTrailStatusRequest(*cloudtrail.GetTrailStatusInput) (*aws.Request, *cloudtrail.GetTrailStatusOutput)
 
 	GetTrailStatus(*cloudtrail.GetTrailStatusInput) (*cloudtrail.GetTrailStatusOutput, error)
 
+	LookupEventsRequest(*cloudtrail.LookupEventsInput) (*aws.Request, *cloudtrail.LookupEventsOutput)
+
 	LookupEvents(*cloudtrail.LookupEventsInput) (*cloudtrail.LookupEventsOutput, error)
+
+	StartLoggingRequest(*cloudtrail.StartLoggingInput) (*aws.Request, *cloudtrail.StartLoggingOutput)
 
 	StartLogging(*cloudtrail.StartLoggingInput) (*cloudtrail.StartLoggingOutput, error)
 
+	StopLoggingRequest(*cloudtrail.StopLoggingInput) (*aws.Request, *cloudtrail.StopLoggingOutput)
+
 	StopLogging(*cloudtrail.StopLoggingInput) (*cloudtrail.StopLoggingOutput, error)
+
+	UpdateTrailRequest(*cloudtrail.UpdateTrailInput) (*aws.Request, *cloudtrail.UpdateTrailOutput)
 
 	UpdateTrail(*cloudtrail.UpdateTrailInput) (*cloudtrail.UpdateTrailOutput, error)
 }

@@ -8,8 +8,6 @@ import (
 	"sort"
 	"strings"
 	"text/template"
-
-	"github.com/aws/aws-sdk-go/internal/util"
 )
 
 // An API defines a service API's definition. and logic to serialize the definition.
@@ -177,7 +175,9 @@ func (a *API) importsGoCode() string {
 	for _, i := range corePkgs {
 		code += fmt.Sprintf("\t%q\n", i)
 	}
-	code += "\n"
+	if len(corePkgs) > 0 {
+		code += "\n"
+	}
 	for _, i := range extPkgs {
 		code += fmt.Sprintf("\t%q\n", i)
 	}
@@ -209,7 +209,7 @@ func (a *API) APIGoCode() string {
 	}
 
 	code := a.importsGoCode() + strings.TrimSpace(buf.String())
-	return util.GoFmt(code)
+	return code
 }
 
 // A tplService defines the template for the service generated code.
@@ -282,7 +282,7 @@ func (a *API) ServiceGoCode() string {
 	}
 
 	code := a.importsGoCode() + buf.String()
-	return util.GoFmt(code)
+	return code
 }
 
 // ExampleGoCode renders service example code. Returning it as a string.
@@ -303,7 +303,7 @@ func (a *API) ExampleGoCode() string {
 		"github.com/aws/aws-sdk-go/service/"+a.PackageName(),
 		strings.Join(exs, "\n\n"),
 	)
-	return util.GoFmt(code)
+	return code
 }
 
 // A tplInterface defines the template for the service interface type.
@@ -322,6 +322,7 @@ type {{ .StructName }}API interface {
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
+		"github.com/aws/aws-sdk-go/aws":                        true,
 		"github.com/aws/aws-sdk-go/service/" + a.PackageName(): true,
 	}
 
@@ -333,7 +334,7 @@ func (a *API) InterfaceGoCode() string {
 	}
 
 	code := a.importsGoCode() + strings.TrimSpace(buf.String())
-	return util.GoFmt(code)
+	return code
 }
 
 var tplInterfaceTest = template.Must(template.New("interfacetest").Parse(`
@@ -360,7 +361,7 @@ func (a *API) InterfaceTestGoCode() string {
 	}
 
 	code := a.importsGoCode() + strings.TrimSpace(buf.String())
-	return util.GoFmt(code)
+	return code
 }
 
 // NewAPIGoCodeWithPkgName returns a string of instantiating the API prefixed

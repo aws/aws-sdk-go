@@ -4,124 +4,275 @@
 package rdsiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/rds"
 )
 
 // RDSAPI is the interface type for rds.RDS.
 type RDSAPI interface {
+	AddSourceIdentifierToSubscriptionRequest(*rds.AddSourceIdentifierToSubscriptionInput) (*aws.Request, *rds.AddSourceIdentifierToSubscriptionOutput)
+
 	AddSourceIdentifierToSubscription(*rds.AddSourceIdentifierToSubscriptionInput) (*rds.AddSourceIdentifierToSubscriptionOutput, error)
+
+	AddTagsToResourceRequest(*rds.AddTagsToResourceInput) (*aws.Request, *rds.AddTagsToResourceOutput)
 
 	AddTagsToResource(*rds.AddTagsToResourceInput) (*rds.AddTagsToResourceOutput, error)
 
+	ApplyPendingMaintenanceActionRequest(*rds.ApplyPendingMaintenanceActionInput) (*aws.Request, *rds.ApplyPendingMaintenanceActionOutput)
+
 	ApplyPendingMaintenanceAction(*rds.ApplyPendingMaintenanceActionInput) (*rds.ApplyPendingMaintenanceActionOutput, error)
+
+	AuthorizeDBSecurityGroupIngressRequest(*rds.AuthorizeDBSecurityGroupIngressInput) (*aws.Request, *rds.AuthorizeDBSecurityGroupIngressOutput)
 
 	AuthorizeDBSecurityGroupIngress(*rds.AuthorizeDBSecurityGroupIngressInput) (*rds.AuthorizeDBSecurityGroupIngressOutput, error)
 
+	CopyDBParameterGroupRequest(*rds.CopyDBParameterGroupInput) (*aws.Request, *rds.CopyDBParameterGroupOutput)
+
 	CopyDBParameterGroup(*rds.CopyDBParameterGroupInput) (*rds.CopyDBParameterGroupOutput, error)
+
+	CopyDBSnapshotRequest(*rds.CopyDBSnapshotInput) (*aws.Request, *rds.CopyDBSnapshotOutput)
 
 	CopyDBSnapshot(*rds.CopyDBSnapshotInput) (*rds.CopyDBSnapshotOutput, error)
 
+	CopyOptionGroupRequest(*rds.CopyOptionGroupInput) (*aws.Request, *rds.CopyOptionGroupOutput)
+
 	CopyOptionGroup(*rds.CopyOptionGroupInput) (*rds.CopyOptionGroupOutput, error)
+
+	CreateDBInstanceRequest(*rds.CreateDBInstanceInput) (*aws.Request, *rds.CreateDBInstanceOutput)
 
 	CreateDBInstance(*rds.CreateDBInstanceInput) (*rds.CreateDBInstanceOutput, error)
 
+	CreateDBInstanceReadReplicaRequest(*rds.CreateDBInstanceReadReplicaInput) (*aws.Request, *rds.CreateDBInstanceReadReplicaOutput)
+
 	CreateDBInstanceReadReplica(*rds.CreateDBInstanceReadReplicaInput) (*rds.CreateDBInstanceReadReplicaOutput, error)
+
+	CreateDBParameterGroupRequest(*rds.CreateDBParameterGroupInput) (*aws.Request, *rds.CreateDBParameterGroupOutput)
 
 	CreateDBParameterGroup(*rds.CreateDBParameterGroupInput) (*rds.CreateDBParameterGroupOutput, error)
 
+	CreateDBSecurityGroupRequest(*rds.CreateDBSecurityGroupInput) (*aws.Request, *rds.CreateDBSecurityGroupOutput)
+
 	CreateDBSecurityGroup(*rds.CreateDBSecurityGroupInput) (*rds.CreateDBSecurityGroupOutput, error)
+
+	CreateDBSnapshotRequest(*rds.CreateDBSnapshotInput) (*aws.Request, *rds.CreateDBSnapshotOutput)
 
 	CreateDBSnapshot(*rds.CreateDBSnapshotInput) (*rds.CreateDBSnapshotOutput, error)
 
+	CreateDBSubnetGroupRequest(*rds.CreateDBSubnetGroupInput) (*aws.Request, *rds.CreateDBSubnetGroupOutput)
+
 	CreateDBSubnetGroup(*rds.CreateDBSubnetGroupInput) (*rds.CreateDBSubnetGroupOutput, error)
+
+	CreateEventSubscriptionRequest(*rds.CreateEventSubscriptionInput) (*aws.Request, *rds.CreateEventSubscriptionOutput)
 
 	CreateEventSubscription(*rds.CreateEventSubscriptionInput) (*rds.CreateEventSubscriptionOutput, error)
 
+	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*aws.Request, *rds.CreateOptionGroupOutput)
+
 	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, error)
+
+	DeleteDBInstanceRequest(*rds.DeleteDBInstanceInput) (*aws.Request, *rds.DeleteDBInstanceOutput)
 
 	DeleteDBInstance(*rds.DeleteDBInstanceInput) (*rds.DeleteDBInstanceOutput, error)
 
+	DeleteDBParameterGroupRequest(*rds.DeleteDBParameterGroupInput) (*aws.Request, *rds.DeleteDBParameterGroupOutput)
+
 	DeleteDBParameterGroup(*rds.DeleteDBParameterGroupInput) (*rds.DeleteDBParameterGroupOutput, error)
+
+	DeleteDBSecurityGroupRequest(*rds.DeleteDBSecurityGroupInput) (*aws.Request, *rds.DeleteDBSecurityGroupOutput)
 
 	DeleteDBSecurityGroup(*rds.DeleteDBSecurityGroupInput) (*rds.DeleteDBSecurityGroupOutput, error)
 
+	DeleteDBSnapshotRequest(*rds.DeleteDBSnapshotInput) (*aws.Request, *rds.DeleteDBSnapshotOutput)
+
 	DeleteDBSnapshot(*rds.DeleteDBSnapshotInput) (*rds.DeleteDBSnapshotOutput, error)
+
+	DeleteDBSubnetGroupRequest(*rds.DeleteDBSubnetGroupInput) (*aws.Request, *rds.DeleteDBSubnetGroupOutput)
 
 	DeleteDBSubnetGroup(*rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error)
 
+	DeleteEventSubscriptionRequest(*rds.DeleteEventSubscriptionInput) (*aws.Request, *rds.DeleteEventSubscriptionOutput)
+
 	DeleteEventSubscription(*rds.DeleteEventSubscriptionInput) (*rds.DeleteEventSubscriptionOutput, error)
+
+	DeleteOptionGroupRequest(*rds.DeleteOptionGroupInput) (*aws.Request, *rds.DeleteOptionGroupOutput)
 
 	DeleteOptionGroup(*rds.DeleteOptionGroupInput) (*rds.DeleteOptionGroupOutput, error)
 
+	DescribeAccountAttributesRequest(*rds.DescribeAccountAttributesInput) (*aws.Request, *rds.DescribeAccountAttributesOutput)
+
 	DescribeAccountAttributes(*rds.DescribeAccountAttributesInput) (*rds.DescribeAccountAttributesOutput, error)
+
+	DescribeCertificatesRequest(*rds.DescribeCertificatesInput) (*aws.Request, *rds.DescribeCertificatesOutput)
 
 	DescribeCertificates(*rds.DescribeCertificatesInput) (*rds.DescribeCertificatesOutput, error)
 
+	DescribeDBEngineVersionsRequest(*rds.DescribeDBEngineVersionsInput) (*aws.Request, *rds.DescribeDBEngineVersionsOutput)
+
 	DescribeDBEngineVersions(*rds.DescribeDBEngineVersionsInput) (*rds.DescribeDBEngineVersionsOutput, error)
+
+	DescribeDBEngineVersionsPages(*rds.DescribeDBEngineVersionsInput, func(*rds.DescribeDBEngineVersionsOutput, bool) bool) error
+
+	DescribeDBInstancesRequest(*rds.DescribeDBInstancesInput) (*aws.Request, *rds.DescribeDBInstancesOutput)
 
 	DescribeDBInstances(*rds.DescribeDBInstancesInput) (*rds.DescribeDBInstancesOutput, error)
 
+	DescribeDBInstancesPages(*rds.DescribeDBInstancesInput, func(*rds.DescribeDBInstancesOutput, bool) bool) error
+
+	DescribeDBLogFilesRequest(*rds.DescribeDBLogFilesInput) (*aws.Request, *rds.DescribeDBLogFilesOutput)
+
 	DescribeDBLogFiles(*rds.DescribeDBLogFilesInput) (*rds.DescribeDBLogFilesOutput, error)
+
+	DescribeDBLogFilesPages(*rds.DescribeDBLogFilesInput, func(*rds.DescribeDBLogFilesOutput, bool) bool) error
+
+	DescribeDBParameterGroupsRequest(*rds.DescribeDBParameterGroupsInput) (*aws.Request, *rds.DescribeDBParameterGroupsOutput)
 
 	DescribeDBParameterGroups(*rds.DescribeDBParameterGroupsInput) (*rds.DescribeDBParameterGroupsOutput, error)
 
+	DescribeDBParameterGroupsPages(*rds.DescribeDBParameterGroupsInput, func(*rds.DescribeDBParameterGroupsOutput, bool) bool) error
+
+	DescribeDBParametersRequest(*rds.DescribeDBParametersInput) (*aws.Request, *rds.DescribeDBParametersOutput)
+
 	DescribeDBParameters(*rds.DescribeDBParametersInput) (*rds.DescribeDBParametersOutput, error)
+
+	DescribeDBParametersPages(*rds.DescribeDBParametersInput, func(*rds.DescribeDBParametersOutput, bool) bool) error
+
+	DescribeDBSecurityGroupsRequest(*rds.DescribeDBSecurityGroupsInput) (*aws.Request, *rds.DescribeDBSecurityGroupsOutput)
 
 	DescribeDBSecurityGroups(*rds.DescribeDBSecurityGroupsInput) (*rds.DescribeDBSecurityGroupsOutput, error)
 
+	DescribeDBSecurityGroupsPages(*rds.DescribeDBSecurityGroupsInput, func(*rds.DescribeDBSecurityGroupsOutput, bool) bool) error
+
+	DescribeDBSnapshotsRequest(*rds.DescribeDBSnapshotsInput) (*aws.Request, *rds.DescribeDBSnapshotsOutput)
+
 	DescribeDBSnapshots(*rds.DescribeDBSnapshotsInput) (*rds.DescribeDBSnapshotsOutput, error)
+
+	DescribeDBSnapshotsPages(*rds.DescribeDBSnapshotsInput, func(*rds.DescribeDBSnapshotsOutput, bool) bool) error
+
+	DescribeDBSubnetGroupsRequest(*rds.DescribeDBSubnetGroupsInput) (*aws.Request, *rds.DescribeDBSubnetGroupsOutput)
 
 	DescribeDBSubnetGroups(*rds.DescribeDBSubnetGroupsInput) (*rds.DescribeDBSubnetGroupsOutput, error)
 
+	DescribeDBSubnetGroupsPages(*rds.DescribeDBSubnetGroupsInput, func(*rds.DescribeDBSubnetGroupsOutput, bool) bool) error
+
+	DescribeEngineDefaultParametersRequest(*rds.DescribeEngineDefaultParametersInput) (*aws.Request, *rds.DescribeEngineDefaultParametersOutput)
+
 	DescribeEngineDefaultParameters(*rds.DescribeEngineDefaultParametersInput) (*rds.DescribeEngineDefaultParametersOutput, error)
+
+	DescribeEngineDefaultParametersPages(*rds.DescribeEngineDefaultParametersInput, func(*rds.DescribeEngineDefaultParametersOutput, bool) bool) error
+
+	DescribeEventCategoriesRequest(*rds.DescribeEventCategoriesInput) (*aws.Request, *rds.DescribeEventCategoriesOutput)
 
 	DescribeEventCategories(*rds.DescribeEventCategoriesInput) (*rds.DescribeEventCategoriesOutput, error)
 
+	DescribeEventSubscriptionsRequest(*rds.DescribeEventSubscriptionsInput) (*aws.Request, *rds.DescribeEventSubscriptionsOutput)
+
 	DescribeEventSubscriptions(*rds.DescribeEventSubscriptionsInput) (*rds.DescribeEventSubscriptionsOutput, error)
+
+	DescribeEventSubscriptionsPages(*rds.DescribeEventSubscriptionsInput, func(*rds.DescribeEventSubscriptionsOutput, bool) bool) error
+
+	DescribeEventsRequest(*rds.DescribeEventsInput) (*aws.Request, *rds.DescribeEventsOutput)
 
 	DescribeEvents(*rds.DescribeEventsInput) (*rds.DescribeEventsOutput, error)
 
+	DescribeEventsPages(*rds.DescribeEventsInput, func(*rds.DescribeEventsOutput, bool) bool) error
+
+	DescribeOptionGroupOptionsRequest(*rds.DescribeOptionGroupOptionsInput) (*aws.Request, *rds.DescribeOptionGroupOptionsOutput)
+
 	DescribeOptionGroupOptions(*rds.DescribeOptionGroupOptionsInput) (*rds.DescribeOptionGroupOptionsOutput, error)
+
+	DescribeOptionGroupOptionsPages(*rds.DescribeOptionGroupOptionsInput, func(*rds.DescribeOptionGroupOptionsOutput, bool) bool) error
+
+	DescribeOptionGroupsRequest(*rds.DescribeOptionGroupsInput) (*aws.Request, *rds.DescribeOptionGroupsOutput)
 
 	DescribeOptionGroups(*rds.DescribeOptionGroupsInput) (*rds.DescribeOptionGroupsOutput, error)
 
+	DescribeOptionGroupsPages(*rds.DescribeOptionGroupsInput, func(*rds.DescribeOptionGroupsOutput, bool) bool) error
+
+	DescribeOrderableDBInstanceOptionsRequest(*rds.DescribeOrderableDBInstanceOptionsInput) (*aws.Request, *rds.DescribeOrderableDBInstanceOptionsOutput)
+
 	DescribeOrderableDBInstanceOptions(*rds.DescribeOrderableDBInstanceOptionsInput) (*rds.DescribeOrderableDBInstanceOptionsOutput, error)
+
+	DescribeOrderableDBInstanceOptionsPages(*rds.DescribeOrderableDBInstanceOptionsInput, func(*rds.DescribeOrderableDBInstanceOptionsOutput, bool) bool) error
+
+	DescribePendingMaintenanceActionsRequest(*rds.DescribePendingMaintenanceActionsInput) (*aws.Request, *rds.DescribePendingMaintenanceActionsOutput)
 
 	DescribePendingMaintenanceActions(*rds.DescribePendingMaintenanceActionsInput) (*rds.DescribePendingMaintenanceActionsOutput, error)
 
+	DescribeReservedDBInstancesRequest(*rds.DescribeReservedDBInstancesInput) (*aws.Request, *rds.DescribeReservedDBInstancesOutput)
+
 	DescribeReservedDBInstances(*rds.DescribeReservedDBInstancesInput) (*rds.DescribeReservedDBInstancesOutput, error)
+
+	DescribeReservedDBInstancesPages(*rds.DescribeReservedDBInstancesInput, func(*rds.DescribeReservedDBInstancesOutput, bool) bool) error
+
+	DescribeReservedDBInstancesOfferingsRequest(*rds.DescribeReservedDBInstancesOfferingsInput) (*aws.Request, *rds.DescribeReservedDBInstancesOfferingsOutput)
 
 	DescribeReservedDBInstancesOfferings(*rds.DescribeReservedDBInstancesOfferingsInput) (*rds.DescribeReservedDBInstancesOfferingsOutput, error)
 
+	DescribeReservedDBInstancesOfferingsPages(*rds.DescribeReservedDBInstancesOfferingsInput, func(*rds.DescribeReservedDBInstancesOfferingsOutput, bool) bool) error
+
+	DownloadDBLogFilePortionRequest(*rds.DownloadDBLogFilePortionInput) (*aws.Request, *rds.DownloadDBLogFilePortionOutput)
+
 	DownloadDBLogFilePortion(*rds.DownloadDBLogFilePortionInput) (*rds.DownloadDBLogFilePortionOutput, error)
+
+	DownloadDBLogFilePortionPages(*rds.DownloadDBLogFilePortionInput, func(*rds.DownloadDBLogFilePortionOutput, bool) bool) error
+
+	ListTagsForResourceRequest(*rds.ListTagsForResourceInput) (*aws.Request, *rds.ListTagsForResourceOutput)
 
 	ListTagsForResource(*rds.ListTagsForResourceInput) (*rds.ListTagsForResourceOutput, error)
 
+	ModifyDBInstanceRequest(*rds.ModifyDBInstanceInput) (*aws.Request, *rds.ModifyDBInstanceOutput)
+
 	ModifyDBInstance(*rds.ModifyDBInstanceInput) (*rds.ModifyDBInstanceOutput, error)
+
+	ModifyDBParameterGroupRequest(*rds.ModifyDBParameterGroupInput) (*aws.Request, *rds.DBParameterGroupNameMessage)
 
 	ModifyDBParameterGroup(*rds.ModifyDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, error)
 
+	ModifyDBSubnetGroupRequest(*rds.ModifyDBSubnetGroupInput) (*aws.Request, *rds.ModifyDBSubnetGroupOutput)
+
 	ModifyDBSubnetGroup(*rds.ModifyDBSubnetGroupInput) (*rds.ModifyDBSubnetGroupOutput, error)
+
+	ModifyEventSubscriptionRequest(*rds.ModifyEventSubscriptionInput) (*aws.Request, *rds.ModifyEventSubscriptionOutput)
 
 	ModifyEventSubscription(*rds.ModifyEventSubscriptionInput) (*rds.ModifyEventSubscriptionOutput, error)
 
+	ModifyOptionGroupRequest(*rds.ModifyOptionGroupInput) (*aws.Request, *rds.ModifyOptionGroupOutput)
+
 	ModifyOptionGroup(*rds.ModifyOptionGroupInput) (*rds.ModifyOptionGroupOutput, error)
+
+	PromoteReadReplicaRequest(*rds.PromoteReadReplicaInput) (*aws.Request, *rds.PromoteReadReplicaOutput)
 
 	PromoteReadReplica(*rds.PromoteReadReplicaInput) (*rds.PromoteReadReplicaOutput, error)
 
+	PurchaseReservedDBInstancesOfferingRequest(*rds.PurchaseReservedDBInstancesOfferingInput) (*aws.Request, *rds.PurchaseReservedDBInstancesOfferingOutput)
+
 	PurchaseReservedDBInstancesOffering(*rds.PurchaseReservedDBInstancesOfferingInput) (*rds.PurchaseReservedDBInstancesOfferingOutput, error)
+
+	RebootDBInstanceRequest(*rds.RebootDBInstanceInput) (*aws.Request, *rds.RebootDBInstanceOutput)
 
 	RebootDBInstance(*rds.RebootDBInstanceInput) (*rds.RebootDBInstanceOutput, error)
 
+	RemoveSourceIdentifierFromSubscriptionRequest(*rds.RemoveSourceIdentifierFromSubscriptionInput) (*aws.Request, *rds.RemoveSourceIdentifierFromSubscriptionOutput)
+
 	RemoveSourceIdentifierFromSubscription(*rds.RemoveSourceIdentifierFromSubscriptionInput) (*rds.RemoveSourceIdentifierFromSubscriptionOutput, error)
+
+	RemoveTagsFromResourceRequest(*rds.RemoveTagsFromResourceInput) (*aws.Request, *rds.RemoveTagsFromResourceOutput)
 
 	RemoveTagsFromResource(*rds.RemoveTagsFromResourceInput) (*rds.RemoveTagsFromResourceOutput, error)
 
+	ResetDBParameterGroupRequest(*rds.ResetDBParameterGroupInput) (*aws.Request, *rds.DBParameterGroupNameMessage)
+
 	ResetDBParameterGroup(*rds.ResetDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, error)
+
+	RestoreDBInstanceFromDBSnapshotRequest(*rds.RestoreDBInstanceFromDBSnapshotInput) (*aws.Request, *rds.RestoreDBInstanceFromDBSnapshotOutput)
 
 	RestoreDBInstanceFromDBSnapshot(*rds.RestoreDBInstanceFromDBSnapshotInput) (*rds.RestoreDBInstanceFromDBSnapshotOutput, error)
 
+	RestoreDBInstanceToPointInTimeRequest(*rds.RestoreDBInstanceToPointInTimeInput) (*aws.Request, *rds.RestoreDBInstanceToPointInTimeOutput)
+
 	RestoreDBInstanceToPointInTime(*rds.RestoreDBInstanceToPointInTimeInput) (*rds.RestoreDBInstanceToPointInTimeOutput, error)
+
+	RevokeDBSecurityGroupIngressRequest(*rds.RevokeDBSecurityGroupIngressInput) (*aws.Request, *rds.RevokeDBSecurityGroupIngressOutput)
 
 	RevokeDBSecurityGroupIngress(*rds.RevokeDBSecurityGroupIngressInput) (*rds.RevokeDBSecurityGroupIngressOutput, error)
 }

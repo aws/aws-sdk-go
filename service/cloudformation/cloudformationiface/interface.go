@@ -4,42 +4,85 @@
 package cloudformationiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/cloudformation"
 )
 
 // CloudFormationAPI is the interface type for cloudformation.CloudFormation.
 type CloudFormationAPI interface {
+	CancelUpdateStackRequest(*cloudformation.CancelUpdateStackInput) (*aws.Request, *cloudformation.CancelUpdateStackOutput)
+
 	CancelUpdateStack(*cloudformation.CancelUpdateStackInput) (*cloudformation.CancelUpdateStackOutput, error)
+
+	CreateStackRequest(*cloudformation.CreateStackInput) (*aws.Request, *cloudformation.CreateStackOutput)
 
 	CreateStack(*cloudformation.CreateStackInput) (*cloudformation.CreateStackOutput, error)
 
+	DeleteStackRequest(*cloudformation.DeleteStackInput) (*aws.Request, *cloudformation.DeleteStackOutput)
+
 	DeleteStack(*cloudformation.DeleteStackInput) (*cloudformation.DeleteStackOutput, error)
+
+	DescribeStackEventsRequest(*cloudformation.DescribeStackEventsInput) (*aws.Request, *cloudformation.DescribeStackEventsOutput)
 
 	DescribeStackEvents(*cloudformation.DescribeStackEventsInput) (*cloudformation.DescribeStackEventsOutput, error)
 
+	DescribeStackEventsPages(*cloudformation.DescribeStackEventsInput, func(*cloudformation.DescribeStackEventsOutput, bool) bool) error
+
+	DescribeStackResourceRequest(*cloudformation.DescribeStackResourceInput) (*aws.Request, *cloudformation.DescribeStackResourceOutput)
+
 	DescribeStackResource(*cloudformation.DescribeStackResourceInput) (*cloudformation.DescribeStackResourceOutput, error)
+
+	DescribeStackResourcesRequest(*cloudformation.DescribeStackResourcesInput) (*aws.Request, *cloudformation.DescribeStackResourcesOutput)
 
 	DescribeStackResources(*cloudformation.DescribeStackResourcesInput) (*cloudformation.DescribeStackResourcesOutput, error)
 
+	DescribeStacksRequest(*cloudformation.DescribeStacksInput) (*aws.Request, *cloudformation.DescribeStacksOutput)
+
 	DescribeStacks(*cloudformation.DescribeStacksInput) (*cloudformation.DescribeStacksOutput, error)
+
+	DescribeStacksPages(*cloudformation.DescribeStacksInput, func(*cloudformation.DescribeStacksOutput, bool) bool) error
+
+	EstimateTemplateCostRequest(*cloudformation.EstimateTemplateCostInput) (*aws.Request, *cloudformation.EstimateTemplateCostOutput)
 
 	EstimateTemplateCost(*cloudformation.EstimateTemplateCostInput) (*cloudformation.EstimateTemplateCostOutput, error)
 
+	GetStackPolicyRequest(*cloudformation.GetStackPolicyInput) (*aws.Request, *cloudformation.GetStackPolicyOutput)
+
 	GetStackPolicy(*cloudformation.GetStackPolicyInput) (*cloudformation.GetStackPolicyOutput, error)
+
+	GetTemplateRequest(*cloudformation.GetTemplateInput) (*aws.Request, *cloudformation.GetTemplateOutput)
 
 	GetTemplate(*cloudformation.GetTemplateInput) (*cloudformation.GetTemplateOutput, error)
 
+	GetTemplateSummaryRequest(*cloudformation.GetTemplateSummaryInput) (*aws.Request, *cloudformation.GetTemplateSummaryOutput)
+
 	GetTemplateSummary(*cloudformation.GetTemplateSummaryInput) (*cloudformation.GetTemplateSummaryOutput, error)
+
+	ListStackResourcesRequest(*cloudformation.ListStackResourcesInput) (*aws.Request, *cloudformation.ListStackResourcesOutput)
 
 	ListStackResources(*cloudformation.ListStackResourcesInput) (*cloudformation.ListStackResourcesOutput, error)
 
+	ListStackResourcesPages(*cloudformation.ListStackResourcesInput, func(*cloudformation.ListStackResourcesOutput, bool) bool) error
+
+	ListStacksRequest(*cloudformation.ListStacksInput) (*aws.Request, *cloudformation.ListStacksOutput)
+
 	ListStacks(*cloudformation.ListStacksInput) (*cloudformation.ListStacksOutput, error)
+
+	ListStacksPages(*cloudformation.ListStacksInput, func(*cloudformation.ListStacksOutput, bool) bool) error
+
+	SetStackPolicyRequest(*cloudformation.SetStackPolicyInput) (*aws.Request, *cloudformation.SetStackPolicyOutput)
 
 	SetStackPolicy(*cloudformation.SetStackPolicyInput) (*cloudformation.SetStackPolicyOutput, error)
 
+	SignalResourceRequest(*cloudformation.SignalResourceInput) (*aws.Request, *cloudformation.SignalResourceOutput)
+
 	SignalResource(*cloudformation.SignalResourceInput) (*cloudformation.SignalResourceOutput, error)
 
+	UpdateStackRequest(*cloudformation.UpdateStackInput) (*aws.Request, *cloudformation.UpdateStackOutput)
+
 	UpdateStack(*cloudformation.UpdateStackInput) (*cloudformation.UpdateStackOutput, error)
+
+	ValidateTemplateRequest(*cloudformation.ValidateTemplateInput) (*aws.Request, *cloudformation.ValidateTemplateOutput)
 
 	ValidateTemplate(*cloudformation.ValidateTemplateInput) (*cloudformation.ValidateTemplateOutput, error)
 }

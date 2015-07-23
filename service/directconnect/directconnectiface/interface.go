@@ -4,46 +4,85 @@
 package directconnectiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/directconnect"
 )
 
 // DirectConnectAPI is the interface type for directconnect.DirectConnect.
 type DirectConnectAPI interface {
+	AllocateConnectionOnInterconnectRequest(*directconnect.AllocateConnectionOnInterconnectInput) (*aws.Request, *directconnect.Connection)
+
 	AllocateConnectionOnInterconnect(*directconnect.AllocateConnectionOnInterconnectInput) (*directconnect.Connection, error)
+
+	AllocatePrivateVirtualInterfaceRequest(*directconnect.AllocatePrivateVirtualInterfaceInput) (*aws.Request, *directconnect.VirtualInterface)
 
 	AllocatePrivateVirtualInterface(*directconnect.AllocatePrivateVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 
+	AllocatePublicVirtualInterfaceRequest(*directconnect.AllocatePublicVirtualInterfaceInput) (*aws.Request, *directconnect.VirtualInterface)
+
 	AllocatePublicVirtualInterface(*directconnect.AllocatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
+
+	ConfirmConnectionRequest(*directconnect.ConfirmConnectionInput) (*aws.Request, *directconnect.ConfirmConnectionOutput)
 
 	ConfirmConnection(*directconnect.ConfirmConnectionInput) (*directconnect.ConfirmConnectionOutput, error)
 
+	ConfirmPrivateVirtualInterfaceRequest(*directconnect.ConfirmPrivateVirtualInterfaceInput) (*aws.Request, *directconnect.ConfirmPrivateVirtualInterfaceOutput)
+
 	ConfirmPrivateVirtualInterface(*directconnect.ConfirmPrivateVirtualInterfaceInput) (*directconnect.ConfirmPrivateVirtualInterfaceOutput, error)
+
+	ConfirmPublicVirtualInterfaceRequest(*directconnect.ConfirmPublicVirtualInterfaceInput) (*aws.Request, *directconnect.ConfirmPublicVirtualInterfaceOutput)
 
 	ConfirmPublicVirtualInterface(*directconnect.ConfirmPublicVirtualInterfaceInput) (*directconnect.ConfirmPublicVirtualInterfaceOutput, error)
 
+	CreateConnectionRequest(*directconnect.CreateConnectionInput) (*aws.Request, *directconnect.Connection)
+
 	CreateConnection(*directconnect.CreateConnectionInput) (*directconnect.Connection, error)
+
+	CreateInterconnectRequest(*directconnect.CreateInterconnectInput) (*aws.Request, *directconnect.Interconnect)
 
 	CreateInterconnect(*directconnect.CreateInterconnectInput) (*directconnect.Interconnect, error)
 
+	CreatePrivateVirtualInterfaceRequest(*directconnect.CreatePrivateVirtualInterfaceInput) (*aws.Request, *directconnect.VirtualInterface)
+
 	CreatePrivateVirtualInterface(*directconnect.CreatePrivateVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
+
+	CreatePublicVirtualInterfaceRequest(*directconnect.CreatePublicVirtualInterfaceInput) (*aws.Request, *directconnect.VirtualInterface)
 
 	CreatePublicVirtualInterface(*directconnect.CreatePublicVirtualInterfaceInput) (*directconnect.VirtualInterface, error)
 
+	DeleteConnectionRequest(*directconnect.DeleteConnectionInput) (*aws.Request, *directconnect.Connection)
+
 	DeleteConnection(*directconnect.DeleteConnectionInput) (*directconnect.Connection, error)
+
+	DeleteInterconnectRequest(*directconnect.DeleteInterconnectInput) (*aws.Request, *directconnect.DeleteInterconnectOutput)
 
 	DeleteInterconnect(*directconnect.DeleteInterconnectInput) (*directconnect.DeleteInterconnectOutput, error)
 
+	DeleteVirtualInterfaceRequest(*directconnect.DeleteVirtualInterfaceInput) (*aws.Request, *directconnect.DeleteVirtualInterfaceOutput)
+
 	DeleteVirtualInterface(*directconnect.DeleteVirtualInterfaceInput) (*directconnect.DeleteVirtualInterfaceOutput, error)
+
+	DescribeConnectionsRequest(*directconnect.DescribeConnectionsInput) (*aws.Request, *directconnect.Connections)
 
 	DescribeConnections(*directconnect.DescribeConnectionsInput) (*directconnect.Connections, error)
 
+	DescribeConnectionsOnInterconnectRequest(*directconnect.DescribeConnectionsOnInterconnectInput) (*aws.Request, *directconnect.Connections)
+
 	DescribeConnectionsOnInterconnect(*directconnect.DescribeConnectionsOnInterconnectInput) (*directconnect.Connections, error)
+
+	DescribeInterconnectsRequest(*directconnect.DescribeInterconnectsInput) (*aws.Request, *directconnect.DescribeInterconnectsOutput)
 
 	DescribeInterconnects(*directconnect.DescribeInterconnectsInput) (*directconnect.DescribeInterconnectsOutput, error)
 
+	DescribeLocationsRequest(*directconnect.DescribeLocationsInput) (*aws.Request, *directconnect.DescribeLocationsOutput)
+
 	DescribeLocations(*directconnect.DescribeLocationsInput) (*directconnect.DescribeLocationsOutput, error)
 
+	DescribeVirtualGatewaysRequest(*directconnect.DescribeVirtualGatewaysInput) (*aws.Request, *directconnect.DescribeVirtualGatewaysOutput)
+
 	DescribeVirtualGateways(*directconnect.DescribeVirtualGatewaysInput) (*directconnect.DescribeVirtualGatewaysOutput, error)
+
+	DescribeVirtualInterfacesRequest(*directconnect.DescribeVirtualInterfacesInput) (*aws.Request, *directconnect.DescribeVirtualInterfacesOutput)
 
 	DescribeVirtualInterfaces(*directconnect.DescribeVirtualInterfacesInput) (*directconnect.DescribeVirtualInterfacesOutput, error)
 }

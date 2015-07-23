@@ -4,30 +4,53 @@
 package ssmiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
 // SSMAPI is the interface type for ssm.SSM.
 type SSMAPI interface {
+	CreateAssociationRequest(*ssm.CreateAssociationInput) (*aws.Request, *ssm.CreateAssociationOutput)
+
 	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, error)
+
+	CreateAssociationBatchRequest(*ssm.CreateAssociationBatchInput) (*aws.Request, *ssm.CreateAssociationBatchOutput)
 
 	CreateAssociationBatch(*ssm.CreateAssociationBatchInput) (*ssm.CreateAssociationBatchOutput, error)
 
+	CreateDocumentRequest(*ssm.CreateDocumentInput) (*aws.Request, *ssm.CreateDocumentOutput)
+
 	CreateDocument(*ssm.CreateDocumentInput) (*ssm.CreateDocumentOutput, error)
+
+	DeleteAssociationRequest(*ssm.DeleteAssociationInput) (*aws.Request, *ssm.DeleteAssociationOutput)
 
 	DeleteAssociation(*ssm.DeleteAssociationInput) (*ssm.DeleteAssociationOutput, error)
 
+	DeleteDocumentRequest(*ssm.DeleteDocumentInput) (*aws.Request, *ssm.DeleteDocumentOutput)
+
 	DeleteDocument(*ssm.DeleteDocumentInput) (*ssm.DeleteDocumentOutput, error)
+
+	DescribeAssociationRequest(*ssm.DescribeAssociationInput) (*aws.Request, *ssm.DescribeAssociationOutput)
 
 	DescribeAssociation(*ssm.DescribeAssociationInput) (*ssm.DescribeAssociationOutput, error)
 
+	DescribeDocumentRequest(*ssm.DescribeDocumentInput) (*aws.Request, *ssm.DescribeDocumentOutput)
+
 	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, error)
+
+	GetDocumentRequest(*ssm.GetDocumentInput) (*aws.Request, *ssm.GetDocumentOutput)
 
 	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, error)
 
+	ListAssociationsRequest(*ssm.ListAssociationsInput) (*aws.Request, *ssm.ListAssociationsOutput)
+
 	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, error)
 
+	ListDocumentsRequest(*ssm.ListDocumentsInput) (*aws.Request, *ssm.ListDocumentsOutput)
+
 	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, error)
+
+	UpdateAssociationStatusRequest(*ssm.UpdateAssociationStatusInput) (*aws.Request, *ssm.UpdateAssociationStatusOutput)
 
 	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, error)
 }

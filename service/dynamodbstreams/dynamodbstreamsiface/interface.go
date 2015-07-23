@@ -4,16 +4,25 @@
 package dynamodbstreamsiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodbstreams"
 )
 
 // DynamoDBStreamsAPI is the interface type for dynamodbstreams.DynamoDBStreams.
 type DynamoDBStreamsAPI interface {
+	DescribeStreamRequest(*dynamodbstreams.DescribeStreamInput) (*aws.Request, *dynamodbstreams.DescribeStreamOutput)
+
 	DescribeStream(*dynamodbstreams.DescribeStreamInput) (*dynamodbstreams.DescribeStreamOutput, error)
+
+	GetRecordsRequest(*dynamodbstreams.GetRecordsInput) (*aws.Request, *dynamodbstreams.GetRecordsOutput)
 
 	GetRecords(*dynamodbstreams.GetRecordsInput) (*dynamodbstreams.GetRecordsOutput, error)
 
+	GetShardIteratorRequest(*dynamodbstreams.GetShardIteratorInput) (*aws.Request, *dynamodbstreams.GetShardIteratorOutput)
+
 	GetShardIterator(*dynamodbstreams.GetShardIteratorInput) (*dynamodbstreams.GetShardIteratorOutput, error)
+
+	ListStreamsRequest(*dynamodbstreams.ListStreamsInput) (*aws.Request, *dynamodbstreams.ListStreamsOutput)
 
 	ListStreams(*dynamodbstreams.ListStreamsInput) (*dynamodbstreams.ListStreamsOutput, error)
 }

@@ -4,20 +4,33 @@
 package stsiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
 // STSAPI is the interface type for sts.STS.
 type STSAPI interface {
+	AssumeRoleRequest(*sts.AssumeRoleInput) (*aws.Request, *sts.AssumeRoleOutput)
+
 	AssumeRole(*sts.AssumeRoleInput) (*sts.AssumeRoleOutput, error)
+
+	AssumeRoleWithSAMLRequest(*sts.AssumeRoleWithSAMLInput) (*aws.Request, *sts.AssumeRoleWithSAMLOutput)
 
 	AssumeRoleWithSAML(*sts.AssumeRoleWithSAMLInput) (*sts.AssumeRoleWithSAMLOutput, error)
 
+	AssumeRoleWithWebIdentityRequest(*sts.AssumeRoleWithWebIdentityInput) (*aws.Request, *sts.AssumeRoleWithWebIdentityOutput)
+
 	AssumeRoleWithWebIdentity(*sts.AssumeRoleWithWebIdentityInput) (*sts.AssumeRoleWithWebIdentityOutput, error)
+
+	DecodeAuthorizationMessageRequest(*sts.DecodeAuthorizationMessageInput) (*aws.Request, *sts.DecodeAuthorizationMessageOutput)
 
 	DecodeAuthorizationMessage(*sts.DecodeAuthorizationMessageInput) (*sts.DecodeAuthorizationMessageOutput, error)
 
+	GetFederationTokenRequest(*sts.GetFederationTokenInput) (*aws.Request, *sts.GetFederationTokenOutput)
+
 	GetFederationToken(*sts.GetFederationTokenInput) (*sts.GetFederationTokenOutput, error)
+
+	GetSessionTokenRequest(*sts.GetSessionTokenInput) (*aws.Request, *sts.GetSessionTokenOutput)
 
 	GetSessionToken(*sts.GetSessionTokenInput) (*sts.GetSessionTokenOutput, error)
 }

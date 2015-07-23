@@ -4,42 +4,85 @@
 package elastictranscoderiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
 )
 
 // ElasticTranscoderAPI is the interface type for elastictranscoder.ElasticTranscoder.
 type ElasticTranscoderAPI interface {
+	CancelJobRequest(*elastictranscoder.CancelJobInput) (*aws.Request, *elastictranscoder.CancelJobOutput)
+
 	CancelJob(*elastictranscoder.CancelJobInput) (*elastictranscoder.CancelJobOutput, error)
+
+	CreateJobRequest(*elastictranscoder.CreateJobInput) (*aws.Request, *elastictranscoder.CreateJobResponse)
 
 	CreateJob(*elastictranscoder.CreateJobInput) (*elastictranscoder.CreateJobResponse, error)
 
+	CreatePipelineRequest(*elastictranscoder.CreatePipelineInput) (*aws.Request, *elastictranscoder.CreatePipelineOutput)
+
 	CreatePipeline(*elastictranscoder.CreatePipelineInput) (*elastictranscoder.CreatePipelineOutput, error)
+
+	CreatePresetRequest(*elastictranscoder.CreatePresetInput) (*aws.Request, *elastictranscoder.CreatePresetOutput)
 
 	CreatePreset(*elastictranscoder.CreatePresetInput) (*elastictranscoder.CreatePresetOutput, error)
 
+	DeletePipelineRequest(*elastictranscoder.DeletePipelineInput) (*aws.Request, *elastictranscoder.DeletePipelineOutput)
+
 	DeletePipeline(*elastictranscoder.DeletePipelineInput) (*elastictranscoder.DeletePipelineOutput, error)
+
+	DeletePresetRequest(*elastictranscoder.DeletePresetInput) (*aws.Request, *elastictranscoder.DeletePresetOutput)
 
 	DeletePreset(*elastictranscoder.DeletePresetInput) (*elastictranscoder.DeletePresetOutput, error)
 
+	ListJobsByPipelineRequest(*elastictranscoder.ListJobsByPipelineInput) (*aws.Request, *elastictranscoder.ListJobsByPipelineOutput)
+
 	ListJobsByPipeline(*elastictranscoder.ListJobsByPipelineInput) (*elastictranscoder.ListJobsByPipelineOutput, error)
+
+	ListJobsByPipelinePages(*elastictranscoder.ListJobsByPipelineInput, func(*elastictranscoder.ListJobsByPipelineOutput, bool) bool) error
+
+	ListJobsByStatusRequest(*elastictranscoder.ListJobsByStatusInput) (*aws.Request, *elastictranscoder.ListJobsByStatusOutput)
 
 	ListJobsByStatus(*elastictranscoder.ListJobsByStatusInput) (*elastictranscoder.ListJobsByStatusOutput, error)
 
+	ListJobsByStatusPages(*elastictranscoder.ListJobsByStatusInput, func(*elastictranscoder.ListJobsByStatusOutput, bool) bool) error
+
+	ListPipelinesRequest(*elastictranscoder.ListPipelinesInput) (*aws.Request, *elastictranscoder.ListPipelinesOutput)
+
 	ListPipelines(*elastictranscoder.ListPipelinesInput) (*elastictranscoder.ListPipelinesOutput, error)
+
+	ListPipelinesPages(*elastictranscoder.ListPipelinesInput, func(*elastictranscoder.ListPipelinesOutput, bool) bool) error
+
+	ListPresetsRequest(*elastictranscoder.ListPresetsInput) (*aws.Request, *elastictranscoder.ListPresetsOutput)
 
 	ListPresets(*elastictranscoder.ListPresetsInput) (*elastictranscoder.ListPresetsOutput, error)
 
+	ListPresetsPages(*elastictranscoder.ListPresetsInput, func(*elastictranscoder.ListPresetsOutput, bool) bool) error
+
+	ReadJobRequest(*elastictranscoder.ReadJobInput) (*aws.Request, *elastictranscoder.ReadJobOutput)
+
 	ReadJob(*elastictranscoder.ReadJobInput) (*elastictranscoder.ReadJobOutput, error)
+
+	ReadPipelineRequest(*elastictranscoder.ReadPipelineInput) (*aws.Request, *elastictranscoder.ReadPipelineOutput)
 
 	ReadPipeline(*elastictranscoder.ReadPipelineInput) (*elastictranscoder.ReadPipelineOutput, error)
 
+	ReadPresetRequest(*elastictranscoder.ReadPresetInput) (*aws.Request, *elastictranscoder.ReadPresetOutput)
+
 	ReadPreset(*elastictranscoder.ReadPresetInput) (*elastictranscoder.ReadPresetOutput, error)
+
+	TestRoleRequest(*elastictranscoder.TestRoleInput) (*aws.Request, *elastictranscoder.TestRoleOutput)
 
 	TestRole(*elastictranscoder.TestRoleInput) (*elastictranscoder.TestRoleOutput, error)
 
+	UpdatePipelineRequest(*elastictranscoder.UpdatePipelineInput) (*aws.Request, *elastictranscoder.UpdatePipelineOutput)
+
 	UpdatePipeline(*elastictranscoder.UpdatePipelineInput) (*elastictranscoder.UpdatePipelineOutput, error)
 
+	UpdatePipelineNotificationsRequest(*elastictranscoder.UpdatePipelineNotificationsInput) (*aws.Request, *elastictranscoder.UpdatePipelineNotificationsOutput)
+
 	UpdatePipelineNotifications(*elastictranscoder.UpdatePipelineNotificationsInput) (*elastictranscoder.UpdatePipelineNotificationsOutput, error)
+
+	UpdatePipelineStatusRequest(*elastictranscoder.UpdatePipelineStatusInput) (*aws.Request, *elastictranscoder.UpdatePipelineStatusOutput)
 
 	UpdatePipelineStatus(*elastictranscoder.UpdatePipelineStatusInput) (*elastictranscoder.UpdatePipelineStatusOutput, error)
 }

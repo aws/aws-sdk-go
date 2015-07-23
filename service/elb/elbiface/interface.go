@@ -4,64 +4,123 @@
 package elbiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/elb"
 )
 
 // ELBAPI is the interface type for elb.ELB.
 type ELBAPI interface {
+	AddTagsRequest(*elb.AddTagsInput) (*aws.Request, *elb.AddTagsOutput)
+
 	AddTags(*elb.AddTagsInput) (*elb.AddTagsOutput, error)
+
+	ApplySecurityGroupsToLoadBalancerRequest(*elb.ApplySecurityGroupsToLoadBalancerInput) (*aws.Request, *elb.ApplySecurityGroupsToLoadBalancerOutput)
 
 	ApplySecurityGroupsToLoadBalancer(*elb.ApplySecurityGroupsToLoadBalancerInput) (*elb.ApplySecurityGroupsToLoadBalancerOutput, error)
 
+	AttachLoadBalancerToSubnetsRequest(*elb.AttachLoadBalancerToSubnetsInput) (*aws.Request, *elb.AttachLoadBalancerToSubnetsOutput)
+
 	AttachLoadBalancerToSubnets(*elb.AttachLoadBalancerToSubnetsInput) (*elb.AttachLoadBalancerToSubnetsOutput, error)
+
+	ConfigureHealthCheckRequest(*elb.ConfigureHealthCheckInput) (*aws.Request, *elb.ConfigureHealthCheckOutput)
 
 	ConfigureHealthCheck(*elb.ConfigureHealthCheckInput) (*elb.ConfigureHealthCheckOutput, error)
 
+	CreateAppCookieStickinessPolicyRequest(*elb.CreateAppCookieStickinessPolicyInput) (*aws.Request, *elb.CreateAppCookieStickinessPolicyOutput)
+
 	CreateAppCookieStickinessPolicy(*elb.CreateAppCookieStickinessPolicyInput) (*elb.CreateAppCookieStickinessPolicyOutput, error)
+
+	CreateLBCookieStickinessPolicyRequest(*elb.CreateLBCookieStickinessPolicyInput) (*aws.Request, *elb.CreateLBCookieStickinessPolicyOutput)
 
 	CreateLBCookieStickinessPolicy(*elb.CreateLBCookieStickinessPolicyInput) (*elb.CreateLBCookieStickinessPolicyOutput, error)
 
+	CreateLoadBalancerRequest(*elb.CreateLoadBalancerInput) (*aws.Request, *elb.CreateLoadBalancerOutput)
+
 	CreateLoadBalancer(*elb.CreateLoadBalancerInput) (*elb.CreateLoadBalancerOutput, error)
+
+	CreateLoadBalancerListenersRequest(*elb.CreateLoadBalancerListenersInput) (*aws.Request, *elb.CreateLoadBalancerListenersOutput)
 
 	CreateLoadBalancerListeners(*elb.CreateLoadBalancerListenersInput) (*elb.CreateLoadBalancerListenersOutput, error)
 
+	CreateLoadBalancerPolicyRequest(*elb.CreateLoadBalancerPolicyInput) (*aws.Request, *elb.CreateLoadBalancerPolicyOutput)
+
 	CreateLoadBalancerPolicy(*elb.CreateLoadBalancerPolicyInput) (*elb.CreateLoadBalancerPolicyOutput, error)
+
+	DeleteLoadBalancerRequest(*elb.DeleteLoadBalancerInput) (*aws.Request, *elb.DeleteLoadBalancerOutput)
 
 	DeleteLoadBalancer(*elb.DeleteLoadBalancerInput) (*elb.DeleteLoadBalancerOutput, error)
 
+	DeleteLoadBalancerListenersRequest(*elb.DeleteLoadBalancerListenersInput) (*aws.Request, *elb.DeleteLoadBalancerListenersOutput)
+
 	DeleteLoadBalancerListeners(*elb.DeleteLoadBalancerListenersInput) (*elb.DeleteLoadBalancerListenersOutput, error)
+
+	DeleteLoadBalancerPolicyRequest(*elb.DeleteLoadBalancerPolicyInput) (*aws.Request, *elb.DeleteLoadBalancerPolicyOutput)
 
 	DeleteLoadBalancerPolicy(*elb.DeleteLoadBalancerPolicyInput) (*elb.DeleteLoadBalancerPolicyOutput, error)
 
+	DeregisterInstancesFromLoadBalancerRequest(*elb.DeregisterInstancesFromLoadBalancerInput) (*aws.Request, *elb.DeregisterInstancesFromLoadBalancerOutput)
+
 	DeregisterInstancesFromLoadBalancer(*elb.DeregisterInstancesFromLoadBalancerInput) (*elb.DeregisterInstancesFromLoadBalancerOutput, error)
+
+	DescribeInstanceHealthRequest(*elb.DescribeInstanceHealthInput) (*aws.Request, *elb.DescribeInstanceHealthOutput)
 
 	DescribeInstanceHealth(*elb.DescribeInstanceHealthInput) (*elb.DescribeInstanceHealthOutput, error)
 
+	DescribeLoadBalancerAttributesRequest(*elb.DescribeLoadBalancerAttributesInput) (*aws.Request, *elb.DescribeLoadBalancerAttributesOutput)
+
 	DescribeLoadBalancerAttributes(*elb.DescribeLoadBalancerAttributesInput) (*elb.DescribeLoadBalancerAttributesOutput, error)
+
+	DescribeLoadBalancerPoliciesRequest(*elb.DescribeLoadBalancerPoliciesInput) (*aws.Request, *elb.DescribeLoadBalancerPoliciesOutput)
 
 	DescribeLoadBalancerPolicies(*elb.DescribeLoadBalancerPoliciesInput) (*elb.DescribeLoadBalancerPoliciesOutput, error)
 
+	DescribeLoadBalancerPolicyTypesRequest(*elb.DescribeLoadBalancerPolicyTypesInput) (*aws.Request, *elb.DescribeLoadBalancerPolicyTypesOutput)
+
 	DescribeLoadBalancerPolicyTypes(*elb.DescribeLoadBalancerPolicyTypesInput) (*elb.DescribeLoadBalancerPolicyTypesOutput, error)
+
+	DescribeLoadBalancersRequest(*elb.DescribeLoadBalancersInput) (*aws.Request, *elb.DescribeLoadBalancersOutput)
 
 	DescribeLoadBalancers(*elb.DescribeLoadBalancersInput) (*elb.DescribeLoadBalancersOutput, error)
 
+	DescribeLoadBalancersPages(*elb.DescribeLoadBalancersInput, func(*elb.DescribeLoadBalancersOutput, bool) bool) error
+
+	DescribeTagsRequest(*elb.DescribeTagsInput) (*aws.Request, *elb.DescribeTagsOutput)
+
 	DescribeTags(*elb.DescribeTagsInput) (*elb.DescribeTagsOutput, error)
+
+	DetachLoadBalancerFromSubnetsRequest(*elb.DetachLoadBalancerFromSubnetsInput) (*aws.Request, *elb.DetachLoadBalancerFromSubnetsOutput)
 
 	DetachLoadBalancerFromSubnets(*elb.DetachLoadBalancerFromSubnetsInput) (*elb.DetachLoadBalancerFromSubnetsOutput, error)
 
+	DisableAvailabilityZonesForLoadBalancerRequest(*elb.DisableAvailabilityZonesForLoadBalancerInput) (*aws.Request, *elb.DisableAvailabilityZonesForLoadBalancerOutput)
+
 	DisableAvailabilityZonesForLoadBalancer(*elb.DisableAvailabilityZonesForLoadBalancerInput) (*elb.DisableAvailabilityZonesForLoadBalancerOutput, error)
+
+	EnableAvailabilityZonesForLoadBalancerRequest(*elb.EnableAvailabilityZonesForLoadBalancerInput) (*aws.Request, *elb.EnableAvailabilityZonesForLoadBalancerOutput)
 
 	EnableAvailabilityZonesForLoadBalancer(*elb.EnableAvailabilityZonesForLoadBalancerInput) (*elb.EnableAvailabilityZonesForLoadBalancerOutput, error)
 
+	ModifyLoadBalancerAttributesRequest(*elb.ModifyLoadBalancerAttributesInput) (*aws.Request, *elb.ModifyLoadBalancerAttributesOutput)
+
 	ModifyLoadBalancerAttributes(*elb.ModifyLoadBalancerAttributesInput) (*elb.ModifyLoadBalancerAttributesOutput, error)
+
+	RegisterInstancesWithLoadBalancerRequest(*elb.RegisterInstancesWithLoadBalancerInput) (*aws.Request, *elb.RegisterInstancesWithLoadBalancerOutput)
 
 	RegisterInstancesWithLoadBalancer(*elb.RegisterInstancesWithLoadBalancerInput) (*elb.RegisterInstancesWithLoadBalancerOutput, error)
 
+	RemoveTagsRequest(*elb.RemoveTagsInput) (*aws.Request, *elb.RemoveTagsOutput)
+
 	RemoveTags(*elb.RemoveTagsInput) (*elb.RemoveTagsOutput, error)
+
+	SetLoadBalancerListenerSSLCertificateRequest(*elb.SetLoadBalancerListenerSSLCertificateInput) (*aws.Request, *elb.SetLoadBalancerListenerSSLCertificateOutput)
 
 	SetLoadBalancerListenerSSLCertificate(*elb.SetLoadBalancerListenerSSLCertificateInput) (*elb.SetLoadBalancerListenerSSLCertificateOutput, error)
 
+	SetLoadBalancerPoliciesForBackendServerRequest(*elb.SetLoadBalancerPoliciesForBackendServerInput) (*aws.Request, *elb.SetLoadBalancerPoliciesForBackendServerOutput)
+
 	SetLoadBalancerPoliciesForBackendServer(*elb.SetLoadBalancerPoliciesForBackendServerInput) (*elb.SetLoadBalancerPoliciesForBackendServerOutput, error)
+
+	SetLoadBalancerPoliciesOfListenerRequest(*elb.SetLoadBalancerPoliciesOfListenerInput) (*aws.Request, *elb.SetLoadBalancerPoliciesOfListenerOutput)
 
 	SetLoadBalancerPoliciesOfListener(*elb.SetLoadBalancerPoliciesOfListenerInput) (*elb.SetLoadBalancerPoliciesOfListenerOutput, error)
 }
