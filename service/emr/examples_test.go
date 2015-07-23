@@ -26,8 +26,21 @@ func ExampleEMR_AddInstanceGroups() {
 				InstanceRole:  aws.String("InstanceRoleType"), // Required
 				InstanceType:  aws.String("InstanceType"),     // Required
 				BidPrice:      aws.String("XmlStringMaxLen256"),
-				Market:        aws.String("MarketType"),
-				Name:          aws.String("XmlStringMaxLen256"),
+				Configurations: []*emr.Configuration{
+					{ // Required
+						Classification: aws.String("String"),
+						Configurations: []*emr.Configuration{
+						// Recursive values...
+						},
+						Properties: map[string]*string{
+							"Key": aws.String("String"), // Required
+							// More values...
+						},
+					},
+					// More values...
+				},
+				Market: aws.String("MarketType"),
+				Name:   aws.String("XmlStringMaxLen256"),
 			},
 			// More values...
 		},
@@ -479,8 +492,21 @@ func ExampleEMR_RunJobFlow() {
 					InstanceRole:  aws.String("InstanceRoleType"), // Required
 					InstanceType:  aws.String("InstanceType"),     // Required
 					BidPrice:      aws.String("XmlStringMaxLen256"),
-					Market:        aws.String("MarketType"),
-					Name:          aws.String("XmlStringMaxLen256"),
+					Configurations: []*emr.Configuration{
+						{ // Required
+							Classification: aws.String("String"),
+							Configurations: []*emr.Configuration{
+							// Recursive values...
+							},
+							Properties: map[string]*string{
+								"Key": aws.String("String"), // Required
+								// More values...
+							},
+						},
+						// More values...
+					},
+					Market: aws.String("MarketType"),
+					Name:   aws.String("XmlStringMaxLen256"),
 				},
 				// More values...
 			},
@@ -495,6 +521,21 @@ func ExampleEMR_RunJobFlow() {
 		Name:           aws.String("XmlStringMaxLen256"), // Required
 		AMIVersion:     aws.String("XmlStringMaxLen256"),
 		AdditionalInfo: aws.String("XmlString"),
+		Applications: []*emr.Application{
+			{ // Required
+				AdditionalInfo: map[string]*string{
+					"Key": aws.String("String"), // Required
+					// More values...
+				},
+				Args: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+				Name:    aws.String("String"),
+				Version: aws.String("String"),
+			},
+			// More values...
+		},
 		BootstrapActions: []*emr.BootstrapActionConfig{
 			{ // Required
 				Name: aws.String("XmlStringMaxLen256"), // Required
@@ -504,6 +545,19 @@ func ExampleEMR_RunJobFlow() {
 						aws.String("XmlString"), // Required
 						// More values...
 					},
+				},
+			},
+			// More values...
+		},
+		Configurations: []*emr.Configuration{
+			{ // Required
+				Classification: aws.String("String"),
+				Configurations: []*emr.Configuration{
+				// Recursive values...
+				},
+				Properties: map[string]*string{
+					"Key": aws.String("String"), // Required
+					// More values...
 				},
 			},
 			// More values...
@@ -520,7 +574,8 @@ func ExampleEMR_RunJobFlow() {
 			},
 			// More values...
 		},
-		ServiceRole: aws.String("XmlString"),
+		ReleaseLabel: aws.String("XmlStringMaxLen256"),
+		ServiceRole:  aws.String("XmlString"),
 		Steps: []*emr.StepConfig{
 			{ // Required
 				HadoopJARStep: &emr.HadoopJARStepConfig{ // Required

@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2009-03-31",
     "endpointPrefix":"elasticmapreduce",
@@ -451,6 +452,7 @@
         "LogUri":{"shape":"String"},
         "RequestedAmiVersion":{"shape":"String"},
         "RunningAmiVersion":{"shape":"String"},
+        "ReleaseLabel":{"shape":"String"},
         "AutoTerminate":{"shape":"Boolean"},
         "TerminationProtected":{"shape":"Boolean"},
         "VisibleToAllUsers":{"shape":"Boolean"},
@@ -458,7 +460,8 @@
         "Tags":{"shape":"TagList"},
         "ServiceRole":{"shape":"String"},
         "NormalizedInstanceHours":{"shape":"Integer"},
-        "MasterPublicDnsName":{"shape":"String"}
+        "MasterPublicDnsName":{"shape":"String"},
+        "Configurations":{"shape":"ConfigurationList"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -537,6 +540,18 @@
     "CommandList":{
       "type":"list",
       "member":{"shape":"Command"}
+    },
+    "Configuration":{
+      "type":"structure",
+      "members":{
+        "Classification":{"shape":"String"},
+        "Configurations":{"shape":"ConfigurationList"},
+        "Properties":{"shape":"StringMap"}
+      }
+    },
+    "ConfigurationList":{
+      "type":"list",
+      "member":{"shape":"Configuration"}
     },
     "Date":{"type":"timestamp"},
     "DescribeClusterInput":{
@@ -649,7 +664,8 @@
         "InstanceType":{"shape":"InstanceType"},
         "RequestedInstanceCount":{"shape":"Integer"},
         "RunningInstanceCount":{"shape":"Integer"},
-        "Status":{"shape":"InstanceGroupStatus"}
+        "Status":{"shape":"InstanceGroupStatus"},
+        "Configurations":{"shape":"ConfigurationList"}
       }
     },
     "InstanceGroupConfig":{
@@ -665,7 +681,8 @@
         "InstanceRole":{"shape":"InstanceRoleType"},
         "BidPrice":{"shape":"XmlStringMaxLen256"},
         "InstanceType":{"shape":"InstanceType"},
-        "InstanceCount":{"shape":"Integer"}
+        "InstanceCount":{"shape":"Integer"},
+        "Configurations":{"shape":"ConfigurationList"}
       }
     },
     "InstanceGroupConfigList":{
@@ -1119,11 +1136,14 @@
         "LogUri":{"shape":"XmlString"},
         "AdditionalInfo":{"shape":"XmlString"},
         "AmiVersion":{"shape":"XmlStringMaxLen256"},
+        "ReleaseLabel":{"shape":"XmlStringMaxLen256"},
         "Instances":{"shape":"JobFlowInstancesConfig"},
         "Steps":{"shape":"StepConfigList"},
         "BootstrapActions":{"shape":"BootstrapActionConfigList"},
         "SupportedProducts":{"shape":"SupportedProductsList"},
         "NewSupportedProducts":{"shape":"NewSupportedProductsList"},
+        "Applications":{"shape":"ApplicationList"},
+        "Configurations":{"shape":"ConfigurationList"},
         "VisibleToAllUsers":{"shape":"Boolean"},
         "JobFlowRole":{"shape":"XmlString"},
         "ServiceRole":{"shape":"XmlString"},

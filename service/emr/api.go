@@ -802,7 +802,9 @@ func (s AddTagsOutput) GoString() string {
 //  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
 // the job flow using MapR M5 Edition. "mapr" with the user arguments specifying
 // "--edition,m3" or "--edition,m5" - launch the job flow using MapR M3 or M5
-// Edition, respectively.
+// Edition, respectively.  In Amazon EMR releases 4.0 and greater, the only
+// accepted parameter is the application name. To pass arguments to applications,
+// you supply a configuration for each application.
 type Application struct {
 	// This option is for advanced users only. This is meta information about third-party
 	// applications that third-party vendors use for testing purposes.
@@ -889,6 +891,11 @@ type Cluster struct {
 	// Specifies whether the cluster should terminate after completing all steps.
 	AutoTerminate *bool `type:"boolean"`
 
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of Configurations supplied to the EMR cluster.
+	Configurations []*Configuration `type:"list"`
+
 	// Provides information about the EC2 instances in a cluster grouped by category.
 	// For example, key name, subnet ID, IAM instance profile, and so on.
 	EC2InstanceAttributes *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure"`
@@ -899,7 +906,7 @@ type Cluster struct {
 	// The path to the Amazon S3 location where logs for this cluster are stored.
 	LogURI *string `locationName:"LogUri" type:"string"`
 
-	// The public DNS name of the master Ec2 instance.
+	// The public DNS name of the master EC2 instance.
 	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
 
 	// The name of the cluster.
@@ -913,11 +920,14 @@ type Cluster struct {
 	// the actual billing rate.
 	NormalizedInstanceHours *int64 `type:"integer"`
 
+	// The release label for the Amazon EMR release. For Amazon EMR 3.x and 2.x
+	// AMIs, use amiVersion instead instead of ReleaseLabel.
+	ReleaseLabel *string `type:"string"`
+
 	// The AMI version requested for this cluster.
 	RequestedAMIVersion *string `locationName:"RequestedAmiVersion" type:"string"`
 
-	// The AMI version running on this cluster. This differs from the requested
-	// version only if the requested version is a meta version, such as "latest".
+	// The AMI version running on this cluster.
 	RunningAMIVersion *string `locationName:"RunningAmiVersion" type:"string"`
 
 	// The IAM role that will be assumed by the Amazon EMR service to access AWS
@@ -1103,6 +1113,41 @@ func (s Command) String() string {
 
 // GoString returns the string representation
 func (s Command) GoString() string {
+	return s.String()
+}
+
+// Amazon EMR releases 4.x or later.
+//
+// Specifies a hardware and software configuration of the EMR cluster. This
+// includes configurations for applications and software bundled with Amazon
+// EMR. The Configuration object is a JSON object which is defined by a classification
+// and a set of properties. Configurations can be nested, so a configuration
+// may have its own Configuration objects listed.
+type Configuration struct {
+	// The classification of a configuration. For more information see, Amazon EMR
+	// Configurations (http://docs.aws.amazon.com/ElasticMapReduce/latest/API/EmrConfigurations.html).
+	Classification *string `type:"string"`
+
+	// A list of configurations you apply to this configuration object.
+	Configurations []*Configuration `type:"list"`
+
+	// A set of properties supplied to the Configuration object.
+	Properties map[string]*string `type:"map"`
+
+	metadataConfiguration `json:"-" xml:"-"`
+}
+
+type metadataConfiguration struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Configuration) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s Configuration) GoString() string {
 	return s.String()
 }
 
@@ -1424,6 +1469,13 @@ type InstanceGroup struct {
 	// nodes as Spot Instances, expressed in USD.
 	BidPrice *string `type:"string"`
 
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of configurations supplied for an EMR cluster instance group. You
+	// can specify a separate configuration for each instance group (master, core,
+	// and task).
+	Configurations []*Configuration `type:"list"`
+
 	// The identifier of the instance group.
 	ID *string `locationName:"Id" type:"string"`
 
@@ -1471,6 +1523,13 @@ type InstanceGroupConfig struct {
 	// Bid price for each Amazon EC2 instance in the instance group when launching
 	// nodes as Spot Instances, expressed in USD.
 	BidPrice *string `type:"string"`
+
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of configurations supplied for an EMR cluster instance group. You
+	// can specify a separate configuration for each instance group (master, core,
+	// and task).
+	Configurations []*Configuration `type:"list"`
 
 	// Target number of instances for the instance group.
 	InstanceCount *int64 `type:"integer" required:"true"`
@@ -1764,7 +1823,7 @@ type JobFlowDetail struct {
 	// The version of the AMI used to initialize Amazon EC2 instances in the job
 	// flow. For a list of AMI versions currently supported by Amazon ElasticMapReduce,
 	// go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
-	// in the Amazon Elastic MapReduce Developer's Guide.
+	// in the Amazon Elastic MapReduce Developer Guide.
 	AMIVersion *string `locationName:"AmiVersion" type:"string"`
 
 	// A list of the bootstrap actions run by the job flow.
@@ -1897,10 +1956,11 @@ type JobFlowInstancesConfig struct {
 	// for the slave nodes.
 	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
 
-	// The Hadoop version for the job flow. Valid inputs are "0.18", "0.20", "0.20.205",
-	// "1.0.3", "2.2.0", or "2.4.0". If you do not set this value, the default of
-	// 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call,
-	// in which case the default version of Hadoop for that AMI version is used.
+	// The Hadoop version for the job flow. Valid inputs are "0.18" (deprecated),
+	// "0.20" (deprecated), "0.20.205" (deprecated), "1.0.3", "2.2.0", or "2.4.0".
+	// If you do not set this value, the default of 0.18 is used, unless the AmiVersion
+	// parameter is set in the RunJobFlow call, in which case the default version
+	// of Hadoop for that AMI version is used.
 	HadoopVersion *string `type:"string"`
 
 	// The number of Amazon EC2 instances used to execute the job flow.
@@ -1909,7 +1969,8 @@ type JobFlowInstancesConfig struct {
 	// Configuration for the job flow's instance groups.
 	InstanceGroups []*InstanceGroupConfig `type:"list"`
 
-	// Specifies whether the job flow should terminate after completing all steps.
+	// Specifies whether the job flow should be kept alive after completing all
+	// steps.
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 
 	// The EC2 instance type of the master node.
@@ -2416,14 +2477,16 @@ func (s RemoveTagsOutput) GoString() string {
 
 // Input to the RunJobFlow operation.
 type RunJobFlowInput struct {
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
+	// use ReleaseLabel.
+	//
 	// The version of the Amazon Machine Image (AMI) to use when launching Amazon
 	// EC2 instances in the job flow. The following values are valid:
 	//
-	//  "latest" (uses the latest AMI) The version number of the AMI to use, for
-	// example, "2.0"  If the AMI supports multiple versions of Hadoop (for example,
-	// AMI 1.0 supports both Hadoop 0.18 and 0.20) you can use the JobFlowInstancesConfig
-	// HadoopVersion parameter to modify the version of Hadoop from the defaults
-	// shown above.
+	//  The version number of the AMI to use, for example, "2.0."  If the AMI supports
+	// multiple versions of Hadoop (for example, AMI 1.0 supports both Hadoop 0.18
+	// and 0.20) you can use the JobFlowInstancesConfig HadoopVersion parameter
+	// to modify the version of Hadoop from the defaults shown above.
 	//
 	// For details about the AMI versions currently supported by Amazon Elastic
 	// MapReduce, go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
@@ -2433,9 +2496,20 @@ type RunJobFlowInput struct {
 	// A JSON string for selecting additional features.
 	AdditionalInfo *string `type:"string"`
 
+	// Amazon EMR releases 4.x or later.
+	//
+	// A list of applications for the cluster. Valid values are: "Hadoop", "Hive",
+	// "Mahout", "Pig", and "Spark." They are case insensitive.
+	Applications []*Application `type:"list"`
+
 	// A list of bootstrap actions that will be run before Hadoop is started on
 	// the cluster nodes.
 	BootstrapActions []*BootstrapActionConfig `type:"list"`
+
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of configurations supplied for the EMR cluster you are creating.
+	Configurations []*Configuration `type:"list"`
 
 	// A specification of the number and type of Amazon EC2 instances on which to
 	// run the job flow.
@@ -2453,6 +2527,9 @@ type RunJobFlowInput struct {
 	// The name of the job flow.
 	Name *string `type:"string" required:"true"`
 
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
+	// use Applications.
+	//
 	// A list of strings that indicates third-party software to use with the job
 	// flow that accepts a user argument list. EMR accepts and forwards the argument
 	// list to the corresponding installation script as bootstrap action arguments.
@@ -2460,11 +2537,21 @@ type RunJobFlowInput struct {
 	// Hadoop (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html).
 	// Currently supported values are:
 	//
-	//  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
-	// the job flow using MapR M5 Edition. "mapr" with the user arguments specifying
+	//  "mapr-m3" - launch the cluster using MapR M3 Edition. "mapr-m5" - launch
+	// the cluster using MapR M5 Edition. "mapr" with the user arguments specifying
 	// "--edition,m3" or "--edition,m5" - launch the job flow using MapR M3 or M5
-	// Edition respectively.
+	// Edition respectively. "mapr-m7" - launch the cluster using MapR M7 Edition.
+	// "hunk" - launch the cluster with the Hunk Big Data Analtics Platform. "hue"-
+	// launch the cluster with Hue installed. "spark" - launch the cluster with
+	// Apache Spark installed. "ganglia" - launch the cluster with the Ganglia Monitoring
+	// System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
+
+	// Amazon EMR releases 4.x or later.
+	//
+	// The release label for the Amazon EMR release. For Amazon EMR 3.x and 2.x
+	// AMIs, use amiVersion instead instead of ReleaseLabel.
+	ReleaseLabel *string `type:"string"`
 
 	// The IAM role that will be assumed by the Amazon EMR service to access AWS
 	// resources on your behalf.
@@ -2473,6 +2560,9 @@ type RunJobFlowInput struct {
 	// A list of steps to be executed by the job flow.
 	Steps []*StepConfig `type:"list"`
 
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
+	// use Applications.
+	//
 	// A list of strings that indicates third-party software to use with the job
 	// flow. For more information, go to Use Third Party Applications with Amazon
 	// EMR (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-supported-products.html).
@@ -2775,7 +2865,8 @@ func (s StepExecutionStatusDetail) GoString() string {
 
 // The details of the step state change reason.
 type StepStateChangeReason struct {
-	// The programmable code for the state change reason.
+	// The programmable code for the state change reason. Note: Currently, the service
+	// provides no code for the state change.
 	Code *string `type:"string"`
 
 	// The descriptive message for the state change reason.
