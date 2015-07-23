@@ -11,9 +11,13 @@ import (
 type GlacierAPI interface {
 	AbortMultipartUpload(*glacier.AbortMultipartUploadInput) (*glacier.AbortMultipartUploadOutput, error)
 
+	AbortVaultLock(*glacier.AbortVaultLockInput) (*glacier.AbortVaultLockOutput, error)
+
 	AddTagsToVault(*glacier.AddTagsToVaultInput) (*glacier.AddTagsToVaultOutput, error)
 
 	CompleteMultipartUpload(*glacier.CompleteMultipartUploadInput) (*glacier.ArchiveCreationOutput, error)
+
+	CompleteVaultLock(*glacier.CompleteVaultLockInput) (*glacier.CompleteVaultLockOutput, error)
 
 	CreateVault(*glacier.CreateVaultInput) (*glacier.CreateVaultOutput, error)
 
@@ -35,11 +39,15 @@ type GlacierAPI interface {
 
 	GetVaultAccessPolicy(*glacier.GetVaultAccessPolicyInput) (*glacier.GetVaultAccessPolicyOutput, error)
 
+	GetVaultLock(*glacier.GetVaultLockInput) (*glacier.GetVaultLockOutput, error)
+
 	GetVaultNotifications(*glacier.GetVaultNotificationsInput) (*glacier.GetVaultNotificationsOutput, error)
 
 	InitiateJob(*glacier.InitiateJobInput) (*glacier.InitiateJobOutput, error)
 
 	InitiateMultipartUpload(*glacier.InitiateMultipartUploadInput) (*glacier.InitiateMultipartUploadOutput, error)
+
+	InitiateVaultLock(*glacier.InitiateVaultLockInput) (*glacier.InitiateVaultLockOutput, error)
 
 	ListJobs(*glacier.ListJobsInput) (*glacier.ListJobsOutput, error)
 

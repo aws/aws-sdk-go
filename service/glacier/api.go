@@ -56,6 +56,48 @@ func (c *Glacier) AbortMultipartUpload(input *AbortMultipartUploadInput) (*Abort
 	return out, err
 }
 
+const opAbortVaultLock = "AbortVaultLock"
+
+// AbortVaultLockRequest generates a request for the AbortVaultLock operation.
+func (c *Glacier) AbortVaultLockRequest(input *AbortVaultLockInput) (req *aws.Request, output *AbortVaultLockOutput) {
+	op := &aws.Operation{
+		Name:       opAbortVaultLock,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy",
+	}
+
+	if input == nil {
+		input = &AbortVaultLockInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AbortVaultLockOutput{}
+	req.Data = output
+	return
+}
+
+// This operation aborts the vault locking process if the vault lock is not
+// in the Locked state. If the vault lock is in the Locked state when this operation
+// is requested, the operation returns an AccessDeniedException error. Aborting
+// the vault locking process removes the vault lock policy from the specified
+// vault.
+//
+// A vault lock is put into the InProgress state by calling InitiateVaultLock.
+// A vault lock is put into the Locked state by calling CompleteVaultLock. You
+// can get the state of a vault lock by calling GetVaultLock. For more information
+// about the vault locking process, see Amazon Glacier Vault Lock (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html).
+// For more information about vault lock policies, see Amazon Glacier Access
+// Control with Vault Lock Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html).
+//
+// This operation is idempotent. You can successfully invoke this operation
+// multiple times, if the vault lock is in the InProgress state or if there
+// is no policy associated with the vault.
+func (c *Glacier) AbortVaultLock(input *AbortVaultLockInput) (*AbortVaultLockOutput, error) {
+	req, out := c.AbortVaultLockRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opAddTagsToVault = "AddTagsToVault"
 
 // AddTagsToVaultRequest generates a request for the AddTagsToVault operation.
@@ -154,6 +196,47 @@ func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadI
 // in the Amazon Glacier Developer Guide.
 func (c *Glacier) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (*ArchiveCreationOutput, error) {
 	req, out := c.CompleteMultipartUploadRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCompleteVaultLock = "CompleteVaultLock"
+
+// CompleteVaultLockRequest generates a request for the CompleteVaultLock operation.
+func (c *Glacier) CompleteVaultLockRequest(input *CompleteVaultLockInput) (req *aws.Request, output *CompleteVaultLockOutput) {
+	op := &aws.Operation{
+		Name:       opCompleteVaultLock,
+		HTTPMethod: "POST",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}",
+	}
+
+	if input == nil {
+		input = &CompleteVaultLockInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CompleteVaultLockOutput{}
+	req.Data = output
+	return
+}
+
+// This operation completes the vault locking process by transitioning the vault
+// lock from the InProgress state to the Locked state, which causes the vault
+// lock policy to become unchangeable. A vault lock is put into the InProgress
+// state by calling InitiateVaultLock. You can obtain the state of the vault
+// lock by calling GetVaultLock. For more information about the vault locking
+// process, Amazon Glacier Vault Lock (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html).
+//
+// This operation is idempotent. This request is always successful if the vault
+// lock is in the Locked state and the provided lock ID matches the lock ID
+// originally used to lock the vault.
+//
+// If an invalid lock ID is passed in the request when the vault lock is in
+// the Locked state, the operation returns an AccessDeniedException error. If
+// an invalid lock ID is passed in the request when the vault lock is in the
+// InProgress state, the operation throws an InvalidParameter error.
+func (c *Glacier) CompleteVaultLock(input *CompleteVaultLockInput) (*CompleteVaultLockOutput, error) {
+	req, out := c.CompleteVaultLockRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -606,6 +689,50 @@ func (c *Glacier) GetVaultAccessPolicy(input *GetVaultAccessPolicyInput) (*GetVa
 	return out, err
 }
 
+const opGetVaultLock = "GetVaultLock"
+
+// GetVaultLockRequest generates a request for the GetVaultLock operation.
+func (c *Glacier) GetVaultLockRequest(input *GetVaultLockInput) (req *aws.Request, output *GetVaultLockOutput) {
+	op := &aws.Operation{
+		Name:       opGetVaultLock,
+		HTTPMethod: "GET",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy",
+	}
+
+	if input == nil {
+		input = &GetVaultLockInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetVaultLockOutput{}
+	req.Data = output
+	return
+}
+
+// This operation retrieves the following attributes from the lock-policy subresource
+// set on the specified vault:   The vault lock policy set on the vault.
+//
+//   The state of the vault lock, which is either InProgess or Locked.
+//
+//   When the lock ID expires. The lock ID is used to complete the vault locking
+// process.
+//
+//   When the vault lock was initiated and put into the InProgress state.
+//
+//    A vault lock is put into the InProgress state by calling InitiateVaultLock.
+// A vault lock is put into the Locked state by calling CompleteVaultLock. You
+// can abort the vault locking process by calling AbortVaultLock. For more information
+// about the vault locking process, Amazon Glacier Vault Lock (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html).
+//
+// If there is no vault lock policy set on the vault, the operation returns
+// a 404 Not found error. For more information about vault lock policies, Amazon
+// Glacier Access Control with Vault Lock Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html).
+func (c *Glacier) GetVaultLock(input *GetVaultLockInput) (*GetVaultLockOutput, error) {
+	req, out := c.GetVaultLockRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetVaultNotifications = "GetVaultNotifications"
 
 // GetVaultNotificationsRequest generates a request for the GetVaultNotifications operation.
@@ -850,6 +977,60 @@ func (c *Glacier) InitiateMultipartUploadRequest(input *InitiateMultipartUploadI
 // in the Amazon Glacier Developer Guide.
 func (c *Glacier) InitiateMultipartUpload(input *InitiateMultipartUploadInput) (*InitiateMultipartUploadOutput, error) {
 	req, out := c.InitiateMultipartUploadRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opInitiateVaultLock = "InitiateVaultLock"
+
+// InitiateVaultLockRequest generates a request for the InitiateVaultLock operation.
+func (c *Glacier) InitiateVaultLockRequest(input *InitiateVaultLockInput) (req *aws.Request, output *InitiateVaultLockOutput) {
+	op := &aws.Operation{
+		Name:       opInitiateVaultLock,
+		HTTPMethod: "POST",
+		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy",
+	}
+
+	if input == nil {
+		input = &InitiateVaultLockInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &InitiateVaultLockOutput{}
+	req.Data = output
+	return
+}
+
+// This operation initiates the vault locking process by doing the following:
+//   Installing a vault lock policy on the specified vault.
+//
+//   Setting the lock state of vault lock to InProgress.
+//
+//   Returning a lock ID, which is used to complete the vault locking process.
+//
+//    You can set one vault lock policy for each vault and this policy can
+// be up to 20 KB in size. For more information about vault lock policies, see
+// Amazon Glacier Access Control with Vault Lock Policies (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock-policy.html).
+//
+// You must complete the vault locking process within 24 hours after the vault
+// lock enters the InProgress state. After the 24 hour window ends, the lock
+// ID expires, the vault automatically exits the InProgress state, and the vault
+// lock policy is removed from the vault. You call CompleteVaultLock to complete
+// the vault locking process by setting the state of the vault lock to Locked.
+//
+// After a vault lock is in the Locked state, you cannot initiate a new vault
+// lock for the vault.
+//
+// You can abort the vault locking process by calling AbortVaultLock. You can
+// get the state of the vault lock by calling GetVaultLock. For more information
+// about the vault locking process, Amazon Glacier Vault Lock (http://docs.aws.amazon.com/amazonglacier/latest/dev/vault-lock.html).
+//
+// If this operation is called when the vault lock is in the InProgress state,
+// the operation returns an AccessDeniedException error. When the vault lock
+// is in the InProgress state you must call AbortVaultLock before you can initiate
+// a new vault lock policy.
+func (c *Glacier) InitiateVaultLock(input *InitiateVaultLockInput) (*InitiateVaultLockOutput, error) {
+	req, out := c.InitiateVaultLockRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1493,7 +1674,55 @@ func (s AbortMultipartUploadOutput) GoString() string {
 	return s.String()
 }
 
-// The input value for AddTagsToVault.
+// The input values for AbortVaultLock.
+type AbortVaultLockInput struct {
+	// The AccountId value is the AWS account ID. This value must match the AWS
+	// account ID associated with the credentials used to sign the request. You
+	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
+	// in which case Amazon Glacier uses the AWS account ID associated with the
+	// credentials used to sign the request. If you specify your account ID, do
+	// not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataAbortVaultLockInput `json:"-" xml:"-"`
+}
+
+type metadataAbortVaultLockInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AbortVaultLockInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AbortVaultLockInput) GoString() string {
+	return s.String()
+}
+
+type AbortVaultLockOutput struct {
+	metadataAbortVaultLockOutput `json:"-" xml:"-"`
+}
+
+type metadataAbortVaultLockOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AbortVaultLockOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s AbortVaultLockOutput) GoString() string {
+	return s.String()
+}
+
+// The input values for AddTagsToVault.
 type AddTagsToVaultInput struct {
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single apos-apos
@@ -1622,13 +1851,64 @@ func (s CompleteMultipartUploadInput) GoString() string {
 	return s.String()
 }
 
+// The input values for CompleteVaultLock.
+type CompleteVaultLockInput struct {
+	// The AccountId value is the AWS account ID. This value must match the AWS
+	// account ID associated with the credentials used to sign the request. You
+	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
+	// in which case Amazon Glacier uses the AWS account ID associated with the
+	// credentials used to sign the request. If you specify your account ID, do
+	// not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The lockId value is the lock ID obtained from a InitiateVaultLock request.
+	LockID *string `location:"uri" locationName:"lockId" type:"string" required:"true"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataCompleteVaultLockInput `json:"-" xml:"-"`
+}
+
+type metadataCompleteVaultLockInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CompleteVaultLockInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteVaultLockInput) GoString() string {
+	return s.String()
+}
+
+type CompleteVaultLockOutput struct {
+	metadataCompleteVaultLockOutput `json:"-" xml:"-"`
+}
+
+type metadataCompleteVaultLockOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CompleteVaultLockOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s CompleteVaultLockOutput) GoString() string {
+	return s.String()
+}
+
 // Provides options to create a vault.
 type CreateVaultInput struct {
 	// The AccountId value is the AWS account ID. This value must match the AWS
 	// account ID associated with the credentials used to sign the request. You
 	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
 	// in which case Amazon Glacier uses the AWS account ID associated with the
-	// credentials used to sign the request. If you specify your Account ID, do
+	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
 	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
@@ -2030,7 +2310,7 @@ type GetDataRetrievalPolicyInput struct {
 	// account ID associated with the credentials used to sign the request. You
 	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
 	// in which case Amazon Glacier uses the AWS account ID associated with the
-	// credentials used to sign the request. If you specify your Account ID, do
+	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
 	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
@@ -2218,6 +2498,68 @@ func (s GetVaultAccessPolicyOutput) GoString() string {
 	return s.String()
 }
 
+// The input values for GetVaultLock.
+type GetVaultLockInput struct {
+	// The AccountId value is the AWS account ID of the account that owns the vault.
+	// You can either specify an AWS account ID or optionally a single apos-apos
+	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
+	// with the credentials used to sign the request. If you use an account ID,
+	// do not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataGetVaultLockInput `json:"-" xml:"-"`
+}
+
+type metadataGetVaultLockInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetVaultLockInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetVaultLockInput) GoString() string {
+	return s.String()
+}
+
+// Contains the Amazon Glacier response to your request.
+type GetVaultLockOutput struct {
+	// The UTC date and time at which the vault lock was put into the InProgress
+	// state.
+	CreationDate *string `type:"string"`
+
+	// The UTC date and time at which the lock ID expires. This value can be null
+	// if the vault lock is in a Locked state.
+	ExpirationDate *string `type:"string"`
+
+	// The vault lock policy as a JSON string, which uses "\" as an escape character.
+	Policy *string `type:"string"`
+
+	// The state of the vault lock. InProgress or Locked.
+	State *string `type:"string"`
+
+	metadataGetVaultLockOutput `json:"-" xml:"-"`
+}
+
+type metadataGetVaultLockOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetVaultLockOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s GetVaultLockOutput) GoString() string {
+	return s.String()
+}
+
 // Provides options for retrieving the notification configuration set on an
 // Amazon Glacier vault.
 type GetVaultNotificationsInput struct {
@@ -2391,6 +2733,61 @@ func (s InitiateMultipartUploadOutput) String() string {
 
 // GoString returns the string representation
 func (s InitiateMultipartUploadOutput) GoString() string {
+	return s.String()
+}
+
+// The input values for InitiateVaultLock.
+type InitiateVaultLockInput struct {
+	// The AccountId value is the AWS account ID. This value must match the AWS
+	// account ID associated with the credentials used to sign the request. You
+	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
+	// in which case Amazon Glacier uses the AWS account ID associated with the
+	// credentials used to sign the request. If you specify your account ID, do
+	// not include any hyphens (apos-apos) in the ID.
+	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+
+	// The vault lock policy as a JSON string, which uses "\" as an escape character.
+	Policy *VaultLockPolicy `locationName:"policy" type:"structure"`
+
+	// The name of the vault.
+	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
+
+	metadataInitiateVaultLockInput `json:"-" xml:"-"`
+}
+
+type metadataInitiateVaultLockInput struct {
+	SDKShapeTraits bool `type:"structure" payload:"Policy"`
+}
+
+// String returns the string representation
+func (s InitiateVaultLockInput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InitiateVaultLockInput) GoString() string {
+	return s.String()
+}
+
+// Contains the Amazon Glacier response to your request.
+type InitiateVaultLockOutput struct {
+	// The lock ID, which is used to complete the vault locking process.
+	LockID *string `location:"header" locationName:"x-amz-lock-id" type:"string"`
+
+	metadataInitiateVaultLockOutput `json:"-" xml:"-"`
+}
+
+type metadataInitiateVaultLockOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InitiateVaultLockOutput) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s InitiateVaultLockOutput) GoString() string {
 	return s.String()
 }
 
@@ -2922,7 +3319,7 @@ type ListVaultsInput struct {
 	// account ID associated with the credentials used to sign the request. You
 	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
 	// in which case Amazon Glacier uses the AWS account ID associated with the
-	// credentials used to sign the request. If you specify your Account ID, do
+	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
 	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
@@ -3059,7 +3456,7 @@ type SetDataRetrievalPolicyInput struct {
 	// account ID associated with the credentials used to sign the request. You
 	// can either specify an AWS account ID or optionally a single apos-apos (hyphen),
 	// in which case Amazon Glacier uses the AWS account ID associated with the
-	// credentials used to sign the request. If you specify your Account ID, do
+	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
 	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
@@ -3362,6 +3759,28 @@ func (s VaultAccessPolicy) String() string {
 
 // GoString returns the string representation
 func (s VaultAccessPolicy) GoString() string {
+	return s.String()
+}
+
+// Contains the vault lock policy.
+type VaultLockPolicy struct {
+	// The vault lock policy.
+	Policy *string `type:"string"`
+
+	metadataVaultLockPolicy `json:"-" xml:"-"`
+}
+
+type metadataVaultLockPolicy struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VaultLockPolicy) String() string {
+	return awsutil.StringValue(s)
+}
+
+// GoString returns the string representation
+func (s VaultLockPolicy) GoString() string {
 	return s.String()
 }
 

@@ -45,6 +45,34 @@ func ExampleGlacier_AbortMultipartUpload() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleGlacier_AbortVaultLock() {
+	svc := glacier.New(nil)
+
+	params := &glacier.AbortVaultLockInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+	}
+	resp, err := svc.AbortVaultLock(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleGlacier_AddTagsToVault() {
 	svc := glacier.New(nil)
 
@@ -88,6 +116,35 @@ func ExampleGlacier_CompleteMultipartUpload() {
 		Checksum:    aws.String("string"),
 	}
 	resp, err := svc.CompleteMultipartUpload(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleGlacier_CompleteVaultLock() {
+	svc := glacier.New(nil)
+
+	params := &glacier.CompleteVaultLockInput{
+		AccountID: aws.String("string"), // Required
+		LockID:    aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+	}
+	resp, err := svc.CompleteVaultLock(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -391,6 +448,34 @@ func ExampleGlacier_GetVaultAccessPolicy() {
 	fmt.Println(awsutil.StringValue(resp))
 }
 
+func ExampleGlacier_GetVaultLock() {
+	svc := glacier.New(nil)
+
+	params := &glacier.GetVaultLockInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+	}
+	resp, err := svc.GetVaultLock(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
 func ExampleGlacier_GetVaultNotifications() {
 	svc := glacier.New(nil)
 
@@ -471,6 +556,37 @@ func ExampleGlacier_InitiateMultipartUpload() {
 		PartSize:           aws.String("string"),
 	}
 	resp, err := svc.InitiateMultipartUpload(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.StringValue(resp))
+}
+
+func ExampleGlacier_InitiateVaultLock() {
+	svc := glacier.New(nil)
+
+	params := &glacier.InitiateVaultLockInput{
+		AccountID: aws.String("string"), // Required
+		VaultName: aws.String("string"), // Required
+		Policy: &glacier.VaultLockPolicy{
+			Policy: aws.String("string"),
+		},
+	}
+	resp, err := svc.InitiateVaultLock(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
