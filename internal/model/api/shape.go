@@ -378,3 +378,20 @@ func (s *Shape) IsRequired(member string) bool {
 func (s *Shape) IsInternal() bool {
 	return s.resolvePkg == ""
 }
+
+// removeRef removes a shape reference from the list of references this
+// shape is used in.
+func (s *Shape) removeRef(ref *ShapeRef) {
+	r := s.refs
+	for i := 0; i < len(r); i++ {
+		if r[i] == ref {
+			j:= i+1
+			copy(r[i:], r[j:])
+			for k, n := len(r)-j+i, len(r); k < n; k ++ {
+				r[k] = nil // free up the end of the list
+			} // for k
+			s.refs = r[:len(r)-j+i]
+			break
+		}
+	}
+}
