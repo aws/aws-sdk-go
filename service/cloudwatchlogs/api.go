@@ -74,6 +74,35 @@ func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (*CreateLo
 	return out, err
 }
 
+const opDeleteDestination = "DeleteDestination"
+
+// DeleteDestinationRequest generates a request for the DeleteDestination operation.
+func (c *CloudWatchLogs) DeleteDestinationRequest(input *DeleteDestinationInput) (req *aws.Request, output *DeleteDestinationOutput) {
+	op := &aws.Operation{
+		Name:       opDeleteDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDestinationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteDestinationOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the destination with the specified name and eventually disables all
+// the subscription filters that publish to it. This will not delete the physical
+// resource encapsulated by the destination.
+func (c *CloudWatchLogs) DeleteDestination(input *DeleteDestinationInput) (*DeleteDestinationOutput, error) {
+	req, out := c.DeleteDestinationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteLogGroup = "DeleteLogGroup"
 
 // DeleteLogGroupRequest generates a request for the DeleteLogGroup operation.
@@ -208,6 +237,40 @@ func (c *CloudWatchLogs) DeleteSubscriptionFilterRequest(input *DeleteSubscripti
 // Deletes a subscription filter associated with the specified log group.
 func (c *CloudWatchLogs) DeleteSubscriptionFilter(input *DeleteSubscriptionFilterInput) (*DeleteSubscriptionFilterOutput, error) {
 	req, out := c.DeleteSubscriptionFilterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeDestinations = "DescribeDestinations"
+
+// DescribeDestinationsRequest generates a request for the DescribeDestinations operation.
+func (c *CloudWatchLogs) DescribeDestinationsRequest(input *DescribeDestinationsInput) (req *aws.Request, output *DescribeDestinationsOutput) {
+	op := &aws.Operation{
+		Name:       opDescribeDestinations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDestinationsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDestinationsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns all the destinations that are associated with the AWS account making
+// the request. The list returned in the response is ASCII-sorted by destination
+// name.
+//
+//  By default, this operation returns up to 50 destinations. If there are
+// more destinations to list, the response would contain a nextToken value in
+// the response body. You can also limit the number of destinations returned
+// in the response by specifying the limit parameter in the request.
+func (c *CloudWatchLogs) DescribeDestinations(input *DescribeDestinationsInput) (*DescribeDestinationsOutput, error) {
+	req, out := c.DescribeDestinationsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -476,6 +539,73 @@ func (c *CloudWatchLogs) GetLogEventsPages(input *GetLogEventsInput, fn func(p *
 	})
 }
 
+const opPutDestination = "PutDestination"
+
+// PutDestinationRequest generates a request for the PutDestination operation.
+func (c *CloudWatchLogs) PutDestinationRequest(input *PutDestinationInput) (req *aws.Request, output *PutDestinationOutput) {
+	op := &aws.Operation{
+		Name:       opPutDestination,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutDestinationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutDestinationOutput{}
+	req.Data = output
+	return
+}
+
+// Creates or updates a Destination. A destination encapsulates a physical resource
+// (such as a Kinesis stream) and allows you to subscribe to a real-time stream
+// of log events of a different account, ingested through PutLogEvents requests.
+// Currently, the only supported physical resource is a Amazon Kinesis stream
+// belonging to the same account as the destination.
+//
+//  A destination controls what is written to its Amazon Kinesis stream through
+// an access policy. By default, PutDestination does not set any access policy
+// with the destination, which means a cross-account user will not be able to
+// call PutSubscriptionFilter against this destination. To enable that, the
+// destination owner must call PutDestinationPolicy after PutDestination.
+func (c *CloudWatchLogs) PutDestination(input *PutDestinationInput) (*PutDestinationOutput, error) {
+	req, out := c.PutDestinationRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opPutDestinationPolicy = "PutDestinationPolicy"
+
+// PutDestinationPolicyRequest generates a request for the PutDestinationPolicy operation.
+func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicyInput) (req *aws.Request, output *PutDestinationPolicyOutput) {
+	op := &aws.Operation{
+		Name:       opPutDestinationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutDestinationPolicyInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutDestinationPolicyOutput{}
+	req.Data = output
+	return
+}
+
+// Creates or updates an access policy associated with an existing Destination.
+// An access policy is an IAM policy document (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies_overview.html)
+// that is used to authorize claims to register a subscription filter against
+// a given destination.
+func (c *CloudWatchLogs) PutDestinationPolicy(input *PutDestinationPolicyInput) (*PutDestinationPolicyOutput, error) {
+	req, out := c.PutDestinationPolicyRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPutLogEvents = "PutLogEvents"
 
 // PutLogEventsRequest generates a request for the PutLogEvents operation.
@@ -599,8 +729,10 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 // Creates or updates a subscription filter and associates it with the specified
 // log group. Subscription filters allow you to subscribe to a real-time stream
 // of log events ingested through PutLogEvents requests and have them delivered
-// to a specific destination. Currently the only supported destination is an
-// Amazon Kinesis stream belonging to the same account as the subscription filter.
+// to a specific destination. Currently, the supported destinations are:   A
+// Amazon Kinesis stream belonging to the same account as the subscription filter,
+// for same-account delivery.   A logical destination (used via an ARN of Destination)
+// belonging to a different account, for cross-account delivery.
 //
 //  Currently there can only be one subscription filter associated with a log
 // group.
@@ -717,6 +849,45 @@ func (s CreateLogStreamOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateLogStreamOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDestinationInput struct {
+	// The name of destination to delete.
+	DestinationName *string `locationName:"destinationName" type:"string" required:"true"`
+
+	metadataDeleteDestinationInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDestinationInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDestinationInput) GoString() string {
+	return s.String()
+}
+
+type DeleteDestinationOutput struct {
+	metadataDeleteDestinationOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDestinationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDestinationOutput) GoString() string {
 	return s.String()
 }
 
@@ -923,6 +1094,61 @@ func (s DeleteSubscriptionFilterOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteSubscriptionFilterOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeDestinationsInput struct {
+	// Will only return destinations that match the provided destinationNamePrefix.
+	// If you don't specify a value, no prefix is applied.
+	DestinationNamePrefix *string `type:"string"`
+
+	// The maximum number of results to return.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataDescribeDestinationsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDestinationsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDestinationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDestinationsInput) GoString() string {
+	return s.String()
+}
+
+type DescribeDestinationsOutput struct {
+	Destinations []*Destination `locationName:"destinations" type:"list"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	metadataDescribeDestinationsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDestinationsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDestinationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDestinationsOutput) GoString() string {
 	return s.String()
 }
 
@@ -1167,6 +1393,38 @@ func (s DescribeSubscriptionFiltersOutput) String() string {
 
 // GoString returns the string representation
 func (s DescribeSubscriptionFiltersOutput) GoString() string {
+	return s.String()
+}
+
+type Destination struct {
+	ARN *string `locationName:"arn" type:"string"`
+
+	AccessPolicy *string `locationName:"accessPolicy" type:"string"`
+
+	// A point in time expressed as the number of milliseconds since Jan 1, 1970
+	// 00:00:00 UTC.
+	CreationTime *int64 `locationName:"creationTime" type:"long"`
+
+	DestinationName *string `locationName:"destinationName" type:"string"`
+
+	RoleARN *string `locationName:"roleArn" type:"string"`
+
+	TargetARN *string `locationName:"targetArn" type:"string"`
+
+	metadataDestination `json:"-" xml:"-"`
+}
+
+type metadataDestination struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Destination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Destination) GoString() string {
 	return s.String()
 }
 
@@ -1593,6 +1851,97 @@ func (s OutputLogEvent) GoString() string {
 	return s.String()
 }
 
+type PutDestinationInput struct {
+	// A name for the destination.
+	DestinationName *string `locationName:"destinationName" type:"string" required:"true"`
+
+	// The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to
+	// do Amazon Kinesis PutRecord requests on the desitnation stream.
+	RoleARN *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The ARN of an Amazon Kinesis stream to deliver matching log events to.
+	TargetARN *string `locationName:"targetArn" type:"string" required:"true"`
+
+	metadataPutDestinationInput `json:"-" xml:"-"`
+}
+
+type metadataPutDestinationInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutDestinationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDestinationInput) GoString() string {
+	return s.String()
+}
+
+type PutDestinationOutput struct {
+	Destination *Destination `locationName:"destination" type:"structure"`
+
+	metadataPutDestinationOutput `json:"-" xml:"-"`
+}
+
+type metadataPutDestinationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutDestinationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDestinationOutput) GoString() string {
+	return s.String()
+}
+
+type PutDestinationPolicyInput struct {
+	// An IAM policy document that authorizes cross-account users to deliver their
+	// log events to associated destination.
+	AccessPolicy *string `locationName:"accessPolicy" type:"string" required:"true"`
+
+	// A name for an existing destination.
+	DestinationName *string `locationName:"destinationName" type:"string" required:"true"`
+
+	metadataPutDestinationPolicyInput `json:"-" xml:"-"`
+}
+
+type metadataPutDestinationPolicyInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutDestinationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDestinationPolicyInput) GoString() string {
+	return s.String()
+}
+
+type PutDestinationPolicyOutput struct {
+	metadataPutDestinationPolicyOutput `json:"-" xml:"-"`
+}
+
+type metadataPutDestinationPolicyOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutDestinationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutDestinationPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type PutLogEventsInput struct {
 	// A list of log events belonging to a log stream.
 	LogEvents []*InputLogEvent `locationName:"logEvents" type:"list" required:"true"`
@@ -1743,7 +2092,11 @@ func (s PutRetentionPolicyOutput) GoString() string {
 }
 
 type PutSubscriptionFilterInput struct {
-	// The ARN of an Amazon Kinesis stream to deliver matching log events to.
+	// The ARN of the destination to deliver matching log events to. Currently,
+	// the supported destinations are:   A Amazon Kinesis stream belonging to the
+	// same account as the subscription filter, for same-account delivery.   A logical
+	// destination (used via an ARN of Destination) belonging to a different account,
+	// for cross-account delivery.
 	DestinationARN *string `locationName:"destinationArn" type:"string" required:"true"`
 
 	// A name for the subscription filter.
@@ -1757,8 +2110,10 @@ type PutSubscriptionFilterInput struct {
 	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
 
 	// The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to
-	// do Amazon Kinesis PutRecord requests on the desitnation stream.
-	RoleARN *string `locationName:"roleArn" type:"string" required:"true"`
+	// deliver ingested log events to the destination stream. You don't need to
+	// provide the ARN when you are working with a logical destination (used via
+	// an ARN of Destination) for cross-account delivery.
+	RoleARN *string `locationName:"roleArn" type:"string"`
 
 	metadataPutSubscriptionFilterInput `json:"-" xml:"-"`
 }

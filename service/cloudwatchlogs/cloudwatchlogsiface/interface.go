@@ -18,6 +18,10 @@ type CloudWatchLogsAPI interface {
 
 	CreateLogStream(*cloudwatchlogs.CreateLogStreamInput) (*cloudwatchlogs.CreateLogStreamOutput, error)
 
+	DeleteDestinationRequest(*cloudwatchlogs.DeleteDestinationInput) (*aws.Request, *cloudwatchlogs.DeleteDestinationOutput)
+
+	DeleteDestination(*cloudwatchlogs.DeleteDestinationInput) (*cloudwatchlogs.DeleteDestinationOutput, error)
+
 	DeleteLogGroupRequest(*cloudwatchlogs.DeleteLogGroupInput) (*aws.Request, *cloudwatchlogs.DeleteLogGroupOutput)
 
 	DeleteLogGroup(*cloudwatchlogs.DeleteLogGroupInput) (*cloudwatchlogs.DeleteLogGroupOutput, error)
@@ -37,6 +41,10 @@ type CloudWatchLogsAPI interface {
 	DeleteSubscriptionFilterRequest(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*aws.Request, *cloudwatchlogs.DeleteSubscriptionFilterOutput)
 
 	DeleteSubscriptionFilter(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*cloudwatchlogs.DeleteSubscriptionFilterOutput, error)
+
+	DescribeDestinationsRequest(*cloudwatchlogs.DescribeDestinationsInput) (*aws.Request, *cloudwatchlogs.DescribeDestinationsOutput)
+
+	DescribeDestinations(*cloudwatchlogs.DescribeDestinationsInput) (*cloudwatchlogs.DescribeDestinationsOutput, error)
 
 	DescribeLogGroupsRequest(*cloudwatchlogs.DescribeLogGroupsInput) (*aws.Request, *cloudwatchlogs.DescribeLogGroupsOutput)
 
@@ -69,6 +77,14 @@ type CloudWatchLogsAPI interface {
 	GetLogEvents(*cloudwatchlogs.GetLogEventsInput) (*cloudwatchlogs.GetLogEventsOutput, error)
 
 	GetLogEventsPages(*cloudwatchlogs.GetLogEventsInput, func(*cloudwatchlogs.GetLogEventsOutput, bool) bool) error
+
+	PutDestinationRequest(*cloudwatchlogs.PutDestinationInput) (*aws.Request, *cloudwatchlogs.PutDestinationOutput)
+
+	PutDestination(*cloudwatchlogs.PutDestinationInput) (*cloudwatchlogs.PutDestinationOutput, error)
+
+	PutDestinationPolicyRequest(*cloudwatchlogs.PutDestinationPolicyInput) (*aws.Request, *cloudwatchlogs.PutDestinationPolicyOutput)
+
+	PutDestinationPolicy(*cloudwatchlogs.PutDestinationPolicyInput) (*cloudwatchlogs.PutDestinationPolicyOutput, error)
 
 	PutLogEventsRequest(*cloudwatchlogs.PutLogEventsInput) (*aws.Request, *cloudwatchlogs.PutLogEventsOutput)
 

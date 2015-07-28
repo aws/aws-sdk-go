@@ -68,6 +68,33 @@
         }
       ]
     },
+    "DeleteDestination":{
+      "name":"DeleteDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDestinationRequest"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
     "DeleteLogGroup":{
       "name":"DeleteLogGroup",
       "http":{
@@ -194,6 +221,26 @@
         },
         {
           "shape":"OperationAbortedException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DescribeDestinations":{
+      "name":"DescribeDestinations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDestinationsRequest"},
+      "output":{"shape":"DescribeDestinationsResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
           "exception":true
         },
         {
@@ -334,6 +381,53 @@
         },
         {
           "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "PutDestination":{
+      "name":"PutDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDestinationRequest"},
+      "output":{"shape":"PutDestinationResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "PutDestinationPolicy":{
+      "name":"PutDestinationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDestinationPolicyRequest"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
           "exception":true
         },
         {
@@ -490,6 +584,10 @@
     }
   },
   "shapes":{
+    "AccessPolicy":{
+      "type":"string",
+      "min":1
+    },
     "Arn":{"type":"string"},
     "CreateLogGroupRequest":{
       "type":"structure",
@@ -517,6 +615,13 @@
       "exception":true
     },
     "Days":{"type":"integer"},
+    "DeleteDestinationRequest":{
+      "type":"structure",
+      "required":["destinationName"],
+      "members":{
+        "destinationName":{"shape":"DestinationName"}
+      }
+    },
     "DeleteLogGroupRequest":{
       "type":"structure",
       "required":["logGroupName"],
@@ -565,6 +670,21 @@
       }
     },
     "Descending":{"type":"boolean"},
+    "DescribeDestinationsRequest":{
+      "type":"structure",
+      "members":{
+        "DestinationNamePrefix":{"shape":"DestinationName"},
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "destinations":{"shape":"Destinations"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeLimit":{
       "type":"integer",
       "min":1,
@@ -638,9 +758,30 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "Destination":{
+      "type":"structure",
+      "members":{
+        "destinationName":{"shape":"DestinationName"},
+        "targetArn":{"shape":"TargetArn"},
+        "roleArn":{"shape":"RoleArn"},
+        "accessPolicy":{"shape":"AccessPolicy"},
+        "arn":{"shape":"Arn"},
+        "creationTime":{"shape":"Timestamp"}
+      }
+    },
     "DestinationArn":{
       "type":"string",
       "min":1
+    },
+    "DestinationName":{
+      "type":"string",
+      "min":1,
+      "max":512,
+      "pattern":"[^:*]*"
+    },
+    "Destinations":{
+      "type":"list",
+      "member":{"shape":"Destination"}
     },
     "EventId":{"type":"string"},
     "EventMessage":{
@@ -906,6 +1047,36 @@
       "type":"list",
       "member":{"shape":"OutputLogEvent"}
     },
+    "PutDestinationPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "destinationName",
+        "accessPolicy"
+      ],
+      "members":{
+        "destinationName":{"shape":"DestinationName"},
+        "accessPolicy":{"shape":"AccessPolicy"}
+      }
+    },
+    "PutDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "destinationName",
+        "targetArn",
+        "roleArn"
+      ],
+      "members":{
+        "destinationName":{"shape":"DestinationName"},
+        "targetArn":{"shape":"TargetArn"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "PutDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "destination":{"shape":"Destination"}
+      }
+    },
     "PutLogEventsRequest":{
       "type":"structure",
       "required":[
@@ -959,8 +1130,7 @@
         "logGroupName",
         "filterName",
         "filterPattern",
-        "destinationArn",
-        "roleArn"
+        "destinationArn"
       ],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
@@ -1035,6 +1205,10 @@
     "SubscriptionFilters":{
       "type":"list",
       "member":{"shape":"SubscriptionFilter"}
+    },
+    "TargetArn":{
+      "type":"string",
+      "min":1
     },
     "TestEventMessages":{
       "type":"list",
