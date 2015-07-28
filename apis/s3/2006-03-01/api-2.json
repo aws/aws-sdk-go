@@ -1629,7 +1629,10 @@
         "s3:ObjectCreated:Put",
         "s3:ObjectCreated:Post",
         "s3:ObjectCreated:Copy",
-        "s3:ObjectCreated:CompleteMultipartUpload"
+        "s3:ObjectCreated:CompleteMultipartUpload",
+        "s3:ObjectRemoved:*",
+        "s3:ObjectRemoved:Delete",
+        "s3:ObjectRemoved:DeleteMarkerCreated"
       ]
     },
     "EventList":{
@@ -2031,6 +2034,11 @@
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
         },
+        "StorageClass":{
+          "shape":"StorageClass",
+          "location":"header",
+          "locationName":"x-amz-storage-class"
+        },
         "RequestCharged":{
           "shape":"RequestCharged",
           "location":"header",
@@ -2338,6 +2346,11 @@
           "shape":"SSEKMSKeyId",
           "location":"header",
           "locationName":"x-amz-server-side-encryption-aws-kms-key-id"
+        },
+        "StorageClass":{
+          "shape":"StorageClass",
+          "location":"header",
+          "locationName":"x-amz-storage-class"
         },
         "RequestCharged":{
           "shape":"RequestCharged",
@@ -3798,14 +3811,18 @@
     },
     "ServerSideEncryption":{
       "type":"string",
-      "enum":["AES256"]
+      "enum":[
+        "AES256",
+        "aws:kms"
+      ]
     },
     "Size":{"type":"integer"},
     "StorageClass":{
       "type":"string",
       "enum":[
         "STANDARD",
-        "REDUCED_REDUNDANCY"
+        "REDUCED_REDUNDANCY",
+        "LT"
       ]
     },
     "Suffix":{"type":"string"},

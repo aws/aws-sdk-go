@@ -3646,6 +3646,8 @@ type GetObjectOutput struct {
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
+
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
 
@@ -3962,6 +3964,8 @@ type HeadObjectOutput struct {
 	// The Server-side encryption algorithm used when storing this object in S3
 	// (e.g., AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
+
+	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// Version of the object.
 	VersionID *string `location:"header" locationName:"x-amz-version-id" type:"string"`
@@ -6476,6 +6480,12 @@ const (
 	EventS3ObjectCreatedCopy = "s3:ObjectCreated:Copy"
 	// @enum Event
 	EventS3ObjectCreatedCompleteMultipartUpload = "s3:ObjectCreated:CompleteMultipartUpload"
+	// @enum Event
+	EventS3ObjectRemoved = "s3:ObjectRemoved:*"
+	// @enum Event
+	EventS3ObjectRemovedDelete = "s3:ObjectRemoved:Delete"
+	// @enum Event
+	EventS3ObjectRemovedDeleteMarkerCreated = "s3:ObjectRemoved:DeleteMarkerCreated"
 )
 
 const (
@@ -6599,6 +6609,8 @@ const (
 const (
 	// @enum ServerSideEncryption
 	ServerSideEncryptionAes256 = "AES256"
+	// @enum ServerSideEncryption
+	ServerSideEncryptionAwsKms = "aws:kms"
 )
 
 const (
@@ -6606,6 +6618,8 @@ const (
 	StorageClassStandard = "STANDARD"
 	// @enum StorageClass
 	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	// @enum StorageClass
+	StorageClassLt = "LT"
 )
 
 const (

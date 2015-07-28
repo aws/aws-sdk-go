@@ -2049,6 +2049,8 @@
       "refs": {
         "CopyObjectRequest$StorageClass": "The type of storage to use for the object. Defaults to 'STANDARD'.",
         "CreateMultipartUploadRequest$StorageClass": "The type of storage to use for the object. Defaults to 'STANDARD'.",
+        "GetObjectOutput$StorageClass": null,
+        "HeadObjectOutput$StorageClass": null,
         "ListPartsOutput$StorageClass": "The class of storage used to store the object.",
         "MultipartUpload$StorageClass": "The class of storage used to store the object.",
         "PutObjectRequest$StorageClass": "The type of storage to use for the object. Defaults to 'STANDARD'."
