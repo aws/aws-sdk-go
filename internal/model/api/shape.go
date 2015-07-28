@@ -385,9 +385,9 @@ func (s *Shape) removeRef(ref *ShapeRef) {
 	r := s.refs
 	for i := 0; i < len(r); i++ {
 		if r[i] == ref {
-			j:= i+1
+			j := i + 1
 			copy(r[i:], r[j:])
-			for k, n := len(r)-j+i, len(r); k < n; k ++ {
+			for k, n := len(r)-j+i, len(r); k < n; k++ {
 				r[k] = nil // free up the end of the list
 			} // for k
 			s.refs = r[:len(r)-j+i]

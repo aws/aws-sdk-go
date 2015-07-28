@@ -9,8 +9,8 @@ import (
 )
 
 var testCasesStringSlice = [][]string{
-	[]string{"a", "b", "c", "d", "e"},
-	[]string{"a", "b", "", "", "e"},
+	{"a", "b", "c", "d", "e"},
+	{"a", "b", "", "", "e"},
 }
 
 func TestStringSlice(t *testing.T) {
@@ -31,7 +31,7 @@ func TestStringSlice(t *testing.T) {
 }
 
 var testCasesStringValueSlice = [][]*string{
-	[]*string{aws.String("a"), aws.String("b"), nil, aws.String("c")},
+	{aws.String("a"), aws.String("b"), nil, aws.String("c")},
 }
 
 func TestStringValueSlice(t *testing.T) {
@@ -62,7 +62,7 @@ func TestStringValueSlice(t *testing.T) {
 }
 
 var testCasesStringMap = []map[string]string{
-	map[string]string{"a": "1", "b": "2", "c": "3"},
+	{"a": "1", "b": "2", "c": "3"},
 }
 
 func TestStringMap(t *testing.T) {
@@ -83,7 +83,7 @@ func TestStringMap(t *testing.T) {
 }
 
 var testCasesBoolSlice = [][]bool{
-	[]bool{true, true, false, false},
+	{true, true, false, false},
 }
 
 func TestBoolSlice(t *testing.T) {
@@ -133,7 +133,7 @@ func TestBoolValueSlice(t *testing.T) {
 }
 
 var testCasesBoolMap = []map[string]bool{
-	map[string]bool{"a": true, "b": false, "c": true},
+	{"a": true, "b": false, "c": true},
 }
 
 func TestBoolMap(t *testing.T) {
@@ -154,7 +154,7 @@ func TestBoolMap(t *testing.T) {
 }
 
 var testCasesIntSlice = [][]int{
-	[]int{1, 2, 3, 4},
+	{1, 2, 3, 4},
 }
 
 func TestIntSlice(t *testing.T) {
@@ -204,7 +204,7 @@ func TestIntValueSlice(t *testing.T) {
 }
 
 var testCasesIntMap = []map[string]int{
-	map[string]int{"a": 3, "b": 2, "c": 1},
+	{"a": 3, "b": 2, "c": 1},
 }
 
 func TestIntMap(t *testing.T) {
@@ -225,7 +225,7 @@ func TestIntMap(t *testing.T) {
 }
 
 var testCasesInt64Slice = [][]int64{
-	[]int64{1, 2, 3, 4},
+	{1, 2, 3, 4},
 }
 
 func TestInt64Slice(t *testing.T) {
@@ -275,7 +275,7 @@ func TestInt64ValueSlice(t *testing.T) {
 }
 
 var testCasesInt64Map = []map[string]int64{
-	map[string]int64{"a": 3, "b": 2, "c": 1},
+	{"a": 3, "b": 2, "c": 1},
 }
 
 func TestInt64Map(t *testing.T) {
@@ -296,7 +296,7 @@ func TestInt64Map(t *testing.T) {
 }
 
 var testCasesFloat64Slice = [][]float64{
-	[]float64{1, 2, 3, 4},
+	{1, 2, 3, 4},
 }
 
 func TestFloat64Slice(t *testing.T) {
@@ -346,7 +346,7 @@ func TestFloat64ValueSlice(t *testing.T) {
 }
 
 var testCasesFloat64Map = []map[string]float64{
-	map[string]float64{"a": 3, "b": 2, "c": 1},
+	{"a": 3, "b": 2, "c": 1},
 }
 
 func TestFloat64Map(t *testing.T) {
@@ -367,7 +367,7 @@ func TestFloat64Map(t *testing.T) {
 }
 
 var testCasesTimeSlice = [][]time.Time{
-	[]time.Time{time.Now(), time.Now().AddDate(100, 0, 0)},
+	{time.Now(), time.Now().AddDate(100, 0, 0)},
 }
 
 func TestTimeSlice(t *testing.T) {
@@ -417,7 +417,7 @@ func TestTimeValueSlice(t *testing.T) {
 }
 
 var testCasesTimeMap = []map[string]time.Time{
-	map[string]time.Time{"a": time.Now().AddDate(-100, 0, 0), "b": time.Now()},
+	{"a": time.Now().AddDate(-100, 0, 0), "b": time.Now()},
 }
 
 func TestTimeMap(t *testing.T) {

@@ -41,26 +41,26 @@ func (l *LogLevelType) AtLeast(v LogLevelType) bool {
 }
 
 const (
-// LogOff states that no logging should be performed by the SDK. This is the
-// default state of the SDK, and should be use to disable all logging.
+	// LogOff states that no logging should be performed by the SDK. This is the
+	// default state of the SDK, and should be use to disable all logging.
 	LogOff LogLevelType = iota * 0x1000
 
-// LogDebug state that debug output should be logged by the SDK. This should
-// be used to inspect request made and responses received.
+	// LogDebug state that debug output should be logged by the SDK. This should
+	// be used to inspect request made and responses received.
 	LogDebug
 )
 
 // Debug Logging Sub Levels
 const (
-// LogDebugWithSigning states that the SDK should log request signing and
-// presigning events. This should be used to log the signing details of
-// requests for debugging. Will also enable LogDebug.
+	// LogDebugWithSigning states that the SDK should log request signing and
+	// presigning events. This should be used to log the signing details of
+	// requests for debugging. Will also enable LogDebug.
 	LogDebugWithSigning LogLevelType = LogDebug | (1 << iota)
 
-// LogDebugWithHTTPBody states the SDK should log HTTP request and response
-// HTTP bodys in addition to the headers and path. This should be used to
-// see the body content of requests and responses made while using the SDK
-// Will also enable LogDebug.
+	// LogDebugWithHTTPBody states the SDK should log HTTP request and response
+	// HTTP bodys in addition to the headers and path. This should be used to
+	// see the body content of requests and responses made while using the SDK
+	// Will also enable LogDebug.
 	LogDebugWithHTTPBody
 )
 
