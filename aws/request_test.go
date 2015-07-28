@@ -7,7 +7,6 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
-	"reflect"
 	"testing"
 	"time"
 
@@ -173,7 +172,14 @@ func TestRequestExhaustRetries(t *testing.T) {
 	assert.Equal(t, "UnknownError", err.(awserr.Error).Code())
 	assert.Equal(t, "An error occurred.", err.(awserr.Error).Message())
 	assert.Equal(t, 3, int(r.RetryCount))
-	assert.True(t, reflect.DeepEqual([]time.Duration{30 * time.Millisecond, 60 * time.Millisecond, 120 * time.Millisecond}, delays))
+
+	expectDelays := []struct{ min, max time.Duration }{{30, 59}, {60, 118}, {120, 236}}
+	for i, v := range delays {
+		min := expectDelays[i].min * time.Millisecond
+		max := expectDelays[i].max * time.Millisecond
+		assert.True(t, min <= v && v <= max,
+			"Expect delay to be within range, i:%d, v:%s, min:%s, max:%s", i, v, min, max)
+	}
 }
 
 // test that the request is retried after the credentials are expired.

@@ -3,6 +3,7 @@ package aws
 import (
 	"fmt"
 	"math"
+	"math/rand"
 	"net/http"
 	"net/http/httputil"
 	"regexp"
@@ -126,10 +127,13 @@ func (s *Service) MaxRetries() uint {
 	return uint(s.Config.MaxRetries)
 }
 
+var seededRand = rand.New(rand.NewSource(time.Now().UnixNano()))
+
 // retryRules returns the delay duration before retrying this request again
 func retryRules(r *Request) time.Duration {
-	delay := time.Duration(math.Pow(2, float64(r.RetryCount))) * 30
-	return delay * time.Millisecond
+
+	delay := int(math.Pow(2, float64(r.RetryCount))) * (seededRand.Intn(30) + 30)
+	return time.Duration(delay) * time.Millisecond
 }
 
 // retryableCodes is a collection of service response codes which are retry-able
