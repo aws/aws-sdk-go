@@ -386,6 +386,7 @@ func ExampleOpsWorks_CreateLayer() {
 		AutoAssignElasticIPs:     aws.Bool(true),
 		AutoAssignPublicIPs:      aws.Bool(true),
 		CustomInstanceProfileARN: aws.String("String"),
+		CustomJSON:               aws.String("String"),
 		CustomRecipes: &opsworks.Recipes{
 			Configure: []*string{
 				aws.String("String"), // Required
@@ -686,6 +687,33 @@ func ExampleOpsWorks_DeleteUserProfile() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleOpsWorks_DeregisterEcsCluster() {
+	svc := opsworks.New(nil)
+
+	params := &opsworks.DeregisterEcsClusterInput{
+		EcsClusterARN: aws.String("String"), // Required
+	}
+	resp, err := svc.DeregisterEcsCluster(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleOpsWorks_DeregisterElasticIP() {
 	svc := opsworks.New(nil)
 
@@ -900,6 +928,39 @@ func ExampleOpsWorks_DescribeDeployments() {
 		StackID: aws.String("String"),
 	}
 	resp, err := svc.DescribeDeployments(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleOpsWorks_DescribeEcsClusters() {
+	svc := opsworks.New(nil)
+
+	params := &opsworks.DescribeEcsClustersInput{
+		EcsClusterARNs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("String"),
+		StackID:    aws.String("String"),
+	}
+	resp, err := svc.DescribeEcsClusters(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1538,6 +1599,34 @@ func ExampleOpsWorks_RebootInstance() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleOpsWorks_RegisterEcsCluster() {
+	svc := opsworks.New(nil)
+
+	params := &opsworks.RegisterEcsClusterInput{
+		EcsClusterARN: aws.String("String"), // Required
+		StackID:       aws.String("String"), // Required
+	}
+	resp, err := svc.RegisterEcsCluster(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleOpsWorks_RegisterElasticIP() {
 	svc := opsworks.New(nil)
 
@@ -2111,6 +2200,7 @@ func ExampleOpsWorks_UpdateLayer() {
 		AutoAssignElasticIPs:     aws.Bool(true),
 		AutoAssignPublicIPs:      aws.Bool(true),
 		CustomInstanceProfileARN: aws.String("String"),
+		CustomJSON:               aws.String("String"),
 		CustomRecipes: &opsworks.Recipes{
 			Configure: []*string{
 				aws.String("String"), // Required

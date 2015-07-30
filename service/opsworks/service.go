@@ -39,14 +39,14 @@ import (
 //  Chef Versions
 //
 // When you call CreateStack, CloneStack, or UpdateStack we recommend you use
-// the ConfigurationManager parameter to specify the Chef version, 0.9, 11.4,
-// or 11.10. The default value is currently 11.10. For more information, see
-// Chef Versions (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html).
+// the ConfigurationManager parameter to specify the Chef version. The recommended
+// value for Linux stacks, which is also the default value, is currently 11.10.
+// Windows stacks use Chef 12.2. For more information, see Chef Versions (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11.html).
 //
-// You can still specify Chef 0.9 for your stack, but new features are not
-// available for Chef 0.9 stacks, and support is scheduled to end on July 24,
-// 2014. We do not recommend using Chef 0.9 for new stacks, and we recommend
-// migrating your existing Chef 0.9 stacks to Chef 11.10 as soon as possible.
+// You can also specify Chef 11.4 or Chef 0.9 for your Linux stack. However,
+// Chef 0.9 has been deprecated. We do not recommend using Chef 0.9 for new
+// stacks, and we recommend migrating your existing Chef 0.9 stacks to Chef
+// 11.10 as soon as possible.
 type OpsWorks struct {
 	*aws.Service
 }

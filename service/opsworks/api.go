@@ -33,9 +33,10 @@ func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *aws.R
 //  You can assign registered on-premises instances to any layer type. You
 // can assign registered Amazon EC2 instances only to custom layers. You cannot
 // use this action with instances that were created with AWS OpsWorks.  Required
-// Permissions: To use this action, an IAM user must have a Manage permissions
-// level for the stack or an attached policy that explicitly grants permissions.
-// For more information on user permissions, see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+// Permissions: To use this action, an AWS Identity and Access Management (IAM)
+// user must have a Manage permissions level for the stack or an attached policy
+// that explicitly grants permissions. For more information on user permissions,
+// see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (*AssignInstanceOutput, error) {
 	req, out := c.AssignInstanceRequest(input)
 	err := req.Send()
@@ -549,6 +550,38 @@ func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (*DeleteUser
 	return out, err
 }
 
+const opDeregisterEcsCluster = "DeregisterEcsCluster"
+
+// DeregisterEcsClusterRequest generates a request for the DeregisterEcsCluster operation.
+func (c *OpsWorks) DeregisterEcsClusterRequest(input *DeregisterEcsClusterInput) (req *aws.Request, output *DeregisterEcsClusterOutput) {
+	op := &aws.Operation{
+		Name:       opDeregisterEcsCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeregisterEcsClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeregisterEcsClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Deregisters a specified Amazon ECS cluster from a stack. For more information,
+// see  Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-ecscluster.html#workinglayers-ecscluster-delete).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see .
+func (c *OpsWorks) DeregisterEcsCluster(input *DeregisterEcsClusterInput) (*DeregisterEcsClusterOutput, error) {
+	req, out := c.DeregisterEcsClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeregisterElasticIP = "DeregisterElasticIp"
 
 // DeregisterElasticIPRequest generates a request for the DeregisterElasticIP operation.
@@ -808,6 +841,41 @@ func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (
 // see Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) DescribeDeployments(input *DescribeDeploymentsInput) (*DescribeDeploymentsOutput, error) {
 	req, out := c.DescribeDeploymentsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeEcsClusters = "DescribeEcsClusters"
+
+// DescribeEcsClustersRequest generates a request for the DescribeEcsClusters operation.
+func (c *OpsWorks) DescribeEcsClustersRequest(input *DescribeEcsClustersInput) (req *aws.Request, output *DescribeEcsClustersOutput) {
+	op := &aws.Operation{
+		Name:       opDescribeEcsClusters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEcsClustersInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeEcsClustersOutput{}
+	req.Data = output
+	return
+}
+
+// Describes Amazon ECS clusters that are registered with a stack. If you specify
+// only a stack ID, you can use the MaxResults and NextToken parameters to paginate
+// the response. However, AWS OpsWorks currently supports only one cluster per
+// layer, so the result set has a maximum of one element.
+//
+// Required Permissions: To use this action, an IAM user must have a Show,
+// Deploy, or Manage permissions level for the stack or an attached policy that
+// explicitly grants permission. For more information on user permissions, see
+// Managing User Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+func (c *OpsWorks) DescribeEcsClusters(input *DescribeEcsClustersInput) (*DescribeEcsClustersOutput, error) {
+	req, out := c.DescribeEcsClustersRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1495,6 +1563,40 @@ func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *aws.R
 // Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
 func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (*RebootInstanceOutput, error) {
 	req, out := c.RebootInstanceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRegisterEcsCluster = "RegisterEcsCluster"
+
+// RegisterEcsClusterRequest generates a request for the RegisterEcsCluster operation.
+func (c *OpsWorks) RegisterEcsClusterRequest(input *RegisterEcsClusterInput) (req *aws.Request, output *RegisterEcsClusterOutput) {
+	op := &aws.Operation{
+		Name:       opRegisterEcsCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RegisterEcsClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RegisterEcsClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Registers a specified Amazon ECS cluster with a stack. You can register only
+// one cluster with a stack. A cluster can be registered with only one stack.
+// For more information, see  Resource Management (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-ecscluster.html).
+//
+// Required Permissions: To use this action, an IAM user must have a Manage
+// permissions level for the stack or an attached policy that explicitly grants
+// permissions. For more information on user permissions, see  Managing User
+// Permissions (http://docs.aws.amazon.com/opsworks/latest/userguide/opsworks-security-users.html).
+func (c *OpsWorks) RegisterEcsCluster(input *RegisterEcsClusterInput) (*RegisterEcsClusterOutput, error) {
+	req, out := c.RegisterEcsClusterRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -2676,18 +2778,18 @@ type CloneStackInput struct {
 	// same zone. For more information, see the VpcId parameter description.
 	DefaultAvailabilityZone *string `type:"string"`
 
-	// The ARN of an IAM profile that is the default profile for all of the stack's
-	// EC2 instances. For more information about IAM ARNs, see Using Identifiers
-	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	// The Amazon Resource Name (ARN) of an IAM profile that is the default profile
+	// for all of the stack's EC2 instances. For more information about IAM ARNs,
+	// see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	DefaultInstanceProfileARN *string `locationName:"DefaultInstanceProfileArn" type:"string"`
 
 	// The stack's operating system, which must be set to one of the following.
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
-	// Server 2012 R2 Base. A custom AMI: Custom. You specify the custom AMI you
-	// want to use when you create instances. For more information on how to use
-	// custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
+	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
+	// the custom AMI you want to use when you create instances. For more information
+	// on how to use custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//  The default option is the parent stack's operating system. For more information
 	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
@@ -2765,11 +2867,12 @@ type CloneStackInput struct {
 	// group with each layer (default setting). You can associate additional security
 	// groups with a layer after you create it but you cannot delete the built-in
 	// security group.  False - AWS OpsWorks does not associate built-in security
-	// groups with layers. You must create appropriate EC2 security groups and associate
-	// a security group with each layer that you create. However, you can still
-	// manually associate a built-in security group with a layer on creation; custom
-	// security groups are required only for those layers that need custom settings.
-	//   For more information, see Create a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
+	// groups with layers. You must create appropriate Amazon Elastic Compute Cloud
+	// (Amazon EC2) security groups and associate a security group with each layer
+	// that you create. However, you can still manually associate a built-in security
+	// group with a layer on creation; custom security groups are required only
+	// for those layers that need custom settings.   For more information, see Create
+	// a New Stack (http://docs.aws.amazon.com/opsworks/latest/userguide/workingstacks-creating.html).
 	UseOpsWorksSecurityGroups *bool `locationName:"UseOpsworksSecurityGroups" type:"boolean"`
 
 	// The ID of the VPC that the cloned stack is to be launched into. It must be
@@ -3116,9 +3219,10 @@ type CreateInstanceInput struct {
 	// The instance's operating system, which must be set to one of the following.
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
-	// Server 2012 R2 Base. A custom AMI: Custom.  For more information on the supported
-	// operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
+	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
+	// information on the supported operating systems, see AWS OpsWorks Operating
+	// Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this
 	// parameter to Custom, you must use the CreateInstance action's AmiId parameter
@@ -3186,7 +3290,10 @@ func (s CreateInstanceOutput) GoString() string {
 }
 
 type CreateLayerInput struct {
-	// One or more user-defined key/value pairs to be added to the stack attributes.
+	// One or more user-defined key-value pairs to be added to the stack attributes.
+	//
+	// To create a cluster layer, set the EcsClusterArn attribute to the cluster's
+	// ARN.
 	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
@@ -3198,9 +3305,14 @@ type CreateLayerInput struct {
 	// a Layer (http://docs.aws.amazon.com/opsworks/latest/userguide/workinglayers-basics-edit.html).
 	AutoAssignPublicIPs *bool `locationName:"AutoAssignPublicIps" type:"boolean"`
 
-	// The ARN of an IAM profile that to be used for the layer's EC2 instances.
-	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
+	// The ARN of an IAM profile to be used for the layer's EC2 instances. For more
+	// information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	CustomInstanceProfileARN *string `locationName:"CustomInstanceProfileArn" type:"string"`
+
+	// A JSON-formatted string containing custom stack configuration and deployment
+	// attributes to be installed on the layer's instances. For more information,
+	// see  Using Custom JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-json-override.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// A LayerCustomRecipes object that specifies the layer custom recipes.
 	CustomRecipes *Recipes `type:"structure"`
@@ -3214,11 +3326,11 @@ type CreateLayerInput struct {
 	// Whether to install operating system and package updates when the instance
 	// boots. The default value is true. To control when updates are installed,
 	// set this value to false. You must then update your instances manually by
-	// using CreateDeployment to run the update_dependencies stack command or manually
-	// running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
+	// using CreateDeployment to run the update_dependencies stack command or by
+	// manually running yum (Amazon Linux) or apt-get (Ubuntu) on the instances.
 	//
-	//  We strongly recommend using the default value of true, to ensure that your
-	// instances have the latest security updates.
+	//  To ensure that your instances have the latest security updates, we strongly
+	// recommend using the default value of true.
 	InstallUpdatesOnBoot *bool `type:"boolean"`
 
 	// A LifeCycleEventConfiguration object that you can use to configure the Shutdown
@@ -3229,7 +3341,7 @@ type CreateLayerInput struct {
 	// The layer name, which is used by the console.
 	Name *string `type:"string" required:"true"`
 
-	// An array of Package objects that describe the layer packages.
+	// An array of Package objects that describes the layer packages.
 	Packages []*string `type:"list"`
 
 	// For custom layers only, use this parameter to specify the layer's short name,
@@ -3239,7 +3351,7 @@ type CreateLayerInput struct {
 	// characters, '-', '_', and '.'.
 	//
 	// The built-in layers' short names are defined by AWS OpsWorks. For more information,
-	// see the Layer Reference (http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html)
+	// see the Layer Reference (http://docs.aws.amazon.com/opsworks/latest/userguide/layers.html).
 	Shortname *string `type:"string" required:"true"`
 
 	// The layer stack ID.
@@ -3355,10 +3467,10 @@ type CreateStackInput struct {
 	// You can specify one of the following.
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
-	// Server 2012 R2 Base. A custom AMI: Custom. You specify the custom AMI you
-	// want to use when you create instances. For more information, see  Using Custom
-	// AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
+	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
+	// the custom AMI you want to use when you create instances. For more information,
+	// see  Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//  The default option is the current Amazon Linux version. For more information
 	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
@@ -3909,6 +4021,45 @@ func (s DeploymentCommand) GoString() string {
 	return s.String()
 }
 
+type DeregisterEcsClusterInput struct {
+	// The cluster's ARN.
+	EcsClusterARN *string `locationName:"EcsClusterArn" type:"string" required:"true"`
+
+	metadataDeregisterEcsClusterInput `json:"-" xml:"-"`
+}
+
+type metadataDeregisterEcsClusterInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterEcsClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterEcsClusterInput) GoString() string {
+	return s.String()
+}
+
+type DeregisterEcsClusterOutput struct {
+	metadataDeregisterEcsClusterOutput `json:"-" xml:"-"`
+}
+
+type metadataDeregisterEcsClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterEcsClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterEcsClusterOutput) GoString() string {
+	return s.String()
+}
+
 type DeregisterElasticIPInput struct {
 	// The Elastic IP address.
 	ElasticIP *string `locationName:"ElasticIp" type:"string" required:"true"`
@@ -4267,6 +4418,73 @@ func (s DescribeDeploymentsOutput) String() string {
 
 // GoString returns the string representation
 func (s DescribeDeploymentsOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeEcsClustersInput struct {
+	// A list of ARNs, one for each cluster to be described.
+	EcsClusterARNs []*string `locationName:"EcsClusterArns" type:"list"`
+
+	// To receive a paginated response, use this parameter to specify the maximum
+	// number of results to be returned with a single call. If the number of available
+	// results exceeds this maximum, the response includes a NextToken value that
+	// you can assign to the NextToken request parameter to get the next set of
+	// results.
+	MaxResults *int64 `type:"integer"`
+
+	// If the previous paginated request did not return all of the remaining results,
+	// the response object'sNextToken parameter value is set to a token. To retrieve
+	// the next set of results, call DescribeEcsClusters again and assign that token
+	// to the request object's NextToken parameter. If there are no remaining results,
+	// the previous response object's NextToken parameter is set to null.
+	NextToken *string `type:"string"`
+
+	// A stack ID. DescribeEcsClusters returns a description of the cluster that
+	// is registered with the stack.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	metadataDescribeEcsClustersInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeEcsClustersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEcsClustersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEcsClustersInput) GoString() string {
+	return s.String()
+}
+
+// Contains the response to a DescribeEcsClusters request.
+type DescribeEcsClustersOutput struct {
+	// A list of EcsCluster objects containing the cluster descriptions.
+	EcsClusters []*EcsCluster `type:"list"`
+
+	// If a paginated request does not return all of the remaining results, this
+	// parameter is set to a token that you can assign to the request object's NextToken
+	// parameter to retrieve the next set of results. If the previous paginated
+	// request returned all of the remaining results, this parameter is set to null.
+	NextToken *string `type:"string"`
+
+	metadataDescribeEcsClustersOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeEcsClustersOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEcsClustersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEcsClustersOutput) GoString() string {
 	return s.String()
 }
 
@@ -5158,6 +5376,37 @@ func (s EBSBlockDevice) GoString() string {
 	return s.String()
 }
 
+// Describes a registered Amazon ECS cluster.
+type EcsCluster struct {
+	// The cluster's ARN.
+	EcsClusterARN *string `locationName:"EcsClusterArn" type:"string"`
+
+	// The cluster name.
+	EcsClusterName *string `type:"string"`
+
+	// The time and date that the cluster was registered with the stack.
+	RegisteredAt *string `type:"string"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string"`
+
+	metadataEcsCluster `json:"-" xml:"-"`
+}
+
+type metadataEcsCluster struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EcsCluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EcsCluster) GoString() string {
+	return s.String()
+}
+
 // Describes an Elastic IP address.
 type ElasticIP struct {
 	// The domain.
@@ -5404,6 +5653,12 @@ type Instance struct {
 	// The ID of the associated Amazon EC2 instance.
 	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
 
+	// For container instances, the Amazon ECS cluster's ARN.
+	EcsClusterARN *string `locationName:"EcsClusterArn" type:"string"`
+
+	// For container instances, the instance's ARN.
+	EcsContainerInstanceARN *string `locationName:"EcsContainerInstanceArn" type:"string"`
+
 	// The instance Elastic IP address  (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html).
 	ElasticIP *string `locationName:"ElasticIp" type:"string"`
 
@@ -5626,6 +5881,9 @@ type Layer struct {
 	//
 	// For the HaproxyStatsPassword, MysqlRootPassword, and GangliaPassword attributes,
 	// AWS OpsWorks returns *****FILTERED***** instead of the actual value
+	//
+	// For an ECS Cluster layer, AWS OpsWorks the EcsClusterArn attribute is set
+	// to the cluster's ARN.
 	Attributes map[string]*string `type:"map"`
 
 	// Whether to automatically assign an Elastic IP address (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
@@ -5643,6 +5901,10 @@ type Layer struct {
 	// The ARN of the default IAM profile to be used for the layer's EC2 instances.
 	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	CustomInstanceProfileARN *string `locationName:"CustomInstanceProfileArn" type:"string"`
+
+	// A JSON formatted string containing the layer's custom stack configuration
+	// and deployment attributes.
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// A LayerCustomRecipes object that specifies the layer's custom recipes.
 	CustomRecipes *Recipes `type:"structure"`
@@ -6003,6 +6265,52 @@ func (s Recipes) String() string {
 
 // GoString returns the string representation
 func (s Recipes) GoString() string {
+	return s.String()
+}
+
+type RegisterEcsClusterInput struct {
+	// The cluster's ARN.
+	EcsClusterARN *string `locationName:"EcsClusterArn" type:"string" required:"true"`
+
+	// The stack ID.
+	StackID *string `locationName:"StackId" type:"string" required:"true"`
+
+	metadataRegisterEcsClusterInput `json:"-" xml:"-"`
+}
+
+type metadataRegisterEcsClusterInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterEcsClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterEcsClusterInput) GoString() string {
+	return s.String()
+}
+
+// Contains the response to a RegisterEcsCluster request.
+type RegisterEcsClusterOutput struct {
+	// The cluster's ARN.
+	EcsClusterARN *string `locationName:"EcsClusterArn" type:"string"`
+
+	metadataRegisterEcsClusterOutput `json:"-" xml:"-"`
+}
+
+type metadataRegisterEcsClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterEcsClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterEcsClusterOutput) GoString() string {
 	return s.String()
 }
 
@@ -7215,9 +7523,10 @@ type UpdateInstanceInput struct {
 	// The instance's operating system, which must be set to one of the following.
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
-	// Server 2012 R2 Base. A custom AMI: Custom.  For more information on the supported
-	// operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
+	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
+	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom.  For more
+	// information on the supported operating systems, see AWS OpsWorks Operating
+	// Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	//
 	// The default option is the current Amazon Linux version. If you set this
 	// parameter to Custom, you must use the AmiId parameter to specify the custom
@@ -7284,6 +7593,11 @@ type UpdateLayerInput struct {
 	// The ARN of an IAM profile to be used for all of the layer's EC2 instances.
 	// For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
 	CustomInstanceProfileARN *string `locationName:"CustomInstanceProfileArn" type:"string"`
+
+	// A JSON-formatted string containing custom stack configuration and deployment
+	// attributes to be installed on the layer's instances. For more information,
+	// see  Using Custom JSON (http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-json-override.html).
+	CustomJSON *string `locationName:"CustomJson" type:"string"`
 
 	// A LayerCustomRecipes object that specifies the layer's custom recipes.
 	CustomRecipes *Recipes `type:"structure"`
@@ -7509,10 +7823,10 @@ type UpdateStackInput struct {
 	// The stack's operating system, which must be set to one of the following:
 	//
 	//  A supported Linux operating system: An Amazon Linux version, such as Amazon
-	// Linux 2015.03, Ubuntu 12.04 LTS, or Ubuntu 14.04 LTS.  Microsoft Windows
-	// Server 2012 R2 Base. A custom AMI: Custom. You specify the custom AMI you
-	// want to use when you create instances. For more information on how to use
-	// custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
+	// Linux 2015.03, Red Hat Enterprise Linux 7, Ubuntu 12.04 LTS, or Ubuntu 14.04
+	// LTS.  Microsoft Windows Server 2012 R2 Base. A custom AMI: Custom. You specify
+	// the custom AMI you want to use when you create instances. For more information
+	// on how to use custom AMIs with OpsWorks, see Using Custom AMIs (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-custom-ami.html).
 	//  The default option is the stack's current operating system. For more information
 	// on the supported operating systems, see AWS OpsWorks Operating Systems (http://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-os.html).
 	DefaultOs *string `type:"string"`
@@ -7553,13 +7867,7 @@ type UpdateStackInput struct {
 	// The stack's new name.
 	Name *string `type:"string"`
 
-	// The stack IAM role, which allows AWS OpsWorks to work with AWS resources
-	// on your behalf. You must set this parameter to the ARN for an existing IAM
-	// role. For more information about IAM ARNs, see Using Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html).
-	//
-	//  There is no default value. You must set this parameter to a valid service
-	// role ARN or the action will fail. You can specify the stack's current service
-	// role ARN, if you prefer, but you must do so explicitly.
+	// Do not use this parameter. You cannot update a stack's service role.
 	ServiceRoleARN *string `locationName:"ServiceRoleArn" type:"string"`
 
 	// The stack ID.
@@ -7915,9 +8223,13 @@ const (
 	AppAttributesKeysRailsEnv = "RailsEnv"
 	// @enum AppAttributesKeys
 	AppAttributesKeysAutoBundleOnDeploy = "AutoBundleOnDeploy"
+	// @enum AppAttributesKeys
+	AppAttributesKeysAwsFlowRubySettings = "AwsFlowRubySettings"
 )
 
 const (
+	// @enum AppType
+	AppTypeAwsFlowRuby = "aws-flow-ruby"
 	// @enum AppType
 	AppTypeJava = "java"
 	// @enum AppType
@@ -7975,6 +8287,8 @@ const (
 
 const (
 	// @enum LayerAttributesKeys
+	LayerAttributesKeysEcsClusterArn = "EcsClusterArn"
+	// @enum LayerAttributesKeys
 	LayerAttributesKeysEnableHaproxyStats = "EnableHaproxyStats"
 	// @enum LayerAttributesKeys
 	LayerAttributesKeysHaproxyStatsUrl = "HaproxyStatsUrl"
@@ -8025,6 +8339,10 @@ const (
 )
 
 const (
+	// @enum LayerType
+	LayerTypeAwsFlowRuby = "aws-flow-ruby"
+	// @enum LayerType
+	LayerTypeEcsCluster = "ecs-cluster"
 	// @enum LayerType
 	LayerTypeJavaApp = "java-app"
 	// @enum LayerType

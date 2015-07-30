@@ -74,6 +74,10 @@ type OpsWorksAPI interface {
 
 	DeleteUserProfile(*opsworks.DeleteUserProfileInput) (*opsworks.DeleteUserProfileOutput, error)
 
+	DeregisterEcsClusterRequest(*opsworks.DeregisterEcsClusterInput) (*aws.Request, *opsworks.DeregisterEcsClusterOutput)
+
+	DeregisterEcsCluster(*opsworks.DeregisterEcsClusterInput) (*opsworks.DeregisterEcsClusterOutput, error)
+
 	DeregisterElasticIPRequest(*opsworks.DeregisterElasticIPInput) (*aws.Request, *opsworks.DeregisterElasticIPOutput)
 
 	DeregisterElasticIP(*opsworks.DeregisterElasticIPInput) (*opsworks.DeregisterElasticIPOutput, error)
@@ -105,6 +109,10 @@ type OpsWorksAPI interface {
 	DescribeDeploymentsRequest(*opsworks.DescribeDeploymentsInput) (*aws.Request, *opsworks.DescribeDeploymentsOutput)
 
 	DescribeDeployments(*opsworks.DescribeDeploymentsInput) (*opsworks.DescribeDeploymentsOutput, error)
+
+	DescribeEcsClustersRequest(*opsworks.DescribeEcsClustersInput) (*aws.Request, *opsworks.DescribeEcsClustersOutput)
+
+	DescribeEcsClusters(*opsworks.DescribeEcsClustersInput) (*opsworks.DescribeEcsClustersOutput, error)
 
 	DescribeElasticIPsRequest(*opsworks.DescribeElasticIPsInput) (*aws.Request, *opsworks.DescribeElasticIPsOutput)
 
@@ -189,6 +197,10 @@ type OpsWorksAPI interface {
 	RebootInstanceRequest(*opsworks.RebootInstanceInput) (*aws.Request, *opsworks.RebootInstanceOutput)
 
 	RebootInstance(*opsworks.RebootInstanceInput) (*opsworks.RebootInstanceOutput, error)
+
+	RegisterEcsClusterRequest(*opsworks.RegisterEcsClusterInput) (*aws.Request, *opsworks.RegisterEcsClusterOutput)
+
+	RegisterEcsCluster(*opsworks.RegisterEcsClusterInput) (*opsworks.RegisterEcsClusterOutput, error)
 
 	RegisterElasticIPRequest(*opsworks.RegisterElasticIPInput) (*aws.Request, *opsworks.RegisterElasticIPOutput)
 
