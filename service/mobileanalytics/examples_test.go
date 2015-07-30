@@ -30,7 +30,8 @@ func ExampleMobileAnalytics_PutEvents() {
 					// More values...
 				},
 				Metrics: map[string]*float64{
-					"Key": aws.Float64(1.0),
+					"Key": aws.Float64(1.0), // Required
+					// More values...
 				},
 				Session: &mobileanalytics.Session{
 					Duration:       aws.Int64(1),
@@ -48,7 +49,7 @@ func ExampleMobileAnalytics_PutEvents() {
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
+			// Generic AWS error with Code, Message, and original error (if any)
 			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
 			if reqErr, ok := err.(awserr.RequestFailure); ok {
 				// A service error occurred

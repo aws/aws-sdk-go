@@ -4,10 +4,13 @@
 package mobileanalyticsiface
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/mobileanalytics"
 )
 
 // MobileAnalyticsAPI is the interface type for mobileanalytics.MobileAnalytics.
 type MobileAnalyticsAPI interface {
+	PutEventsRequest(*mobileanalytics.PutEventsInput) (*aws.Request, *mobileanalytics.PutEventsOutput)
+
 	PutEvents(*mobileanalytics.PutEventsInput) (*mobileanalytics.PutEventsOutput, error)
 }
