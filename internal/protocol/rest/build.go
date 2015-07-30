@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"net/url"
-	"path"
 	"reflect"
 	"strconv"
 	"strings"
@@ -155,9 +154,6 @@ func buildQueryString(r *aws.Request, v reflect.Value, name string, query url.Va
 
 func updatePath(url *url.URL, urlPath string) {
 	scheme, query := url.Scheme, url.RawQuery
-
-	// clean up path
-	urlPath = path.Clean(urlPath)
 
 	// get formatted URL minus scheme so we can build this into Opaque
 	url.Scheme, url.Path, url.RawQuery = "", "", ""
