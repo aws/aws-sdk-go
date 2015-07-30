@@ -138,6 +138,41 @@ func ExampleRDS_AuthorizeDBSecurityGroupIngress() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleRDS_CopyDBClusterSnapshot() {
+	svc := rds.New(nil)
+
+	params := &rds.CopyDBClusterSnapshotInput{
+		SourceDBClusterSnapshotIdentifier: aws.String("String"), // Required
+		TargetDBClusterSnapshotIdentifier: aws.String("String"), // Required
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.CopyDBClusterSnapshot(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleRDS_CopyDBParameterGroup() {
 	svc := rds.New(nil)
 
@@ -245,34 +280,161 @@ func ExampleRDS_CopyOptionGroup() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleRDS_CreateDBCluster() {
+	svc := rds.New(nil)
+
+	params := &rds.CreateDBClusterInput{
+		AvailabilityZones: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		BackupRetentionPeriod:       aws.Int64(1),
+		CharacterSetName:            aws.String("String"),
+		DBClusterIdentifier:         aws.String("String"),
+		DBClusterParameterGroupName: aws.String("String"),
+		DBSubnetGroupName:           aws.String("String"),
+		DatabaseName:                aws.String("String"),
+		Engine:                      aws.String("String"),
+		EngineVersion:               aws.String("String"),
+		MasterUserPassword:          aws.String("String"),
+		MasterUsername:              aws.String("String"),
+		OptionGroupName:             aws.String("String"),
+		Port:                        aws.Int64(1),
+		PreferredBackupWindow:      aws.String("String"),
+		PreferredMaintenanceWindow: aws.String("String"),
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+		VPCSecurityGroupIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.CreateDBCluster(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_CreateDBClusterParameterGroup() {
+	svc := rds.New(nil)
+
+	params := &rds.CreateDBClusterParameterGroupInput{
+		DBClusterParameterGroupName: aws.String("String"), // Required
+		DBParameterGroupFamily:      aws.String("String"), // Required
+		Description:                 aws.String("String"), // Required
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.CreateDBClusterParameterGroup(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_CreateDBClusterSnapshot() {
+	svc := rds.New(nil)
+
+	params := &rds.CreateDBClusterSnapshotInput{
+		DBClusterIdentifier:         aws.String("String"), // Required
+		DBClusterSnapshotIdentifier: aws.String("String"), // Required
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.CreateDBClusterSnapshot(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleRDS_CreateDBInstance() {
 	svc := rds.New(nil)
 
 	params := &rds.CreateDBInstanceInput{
-		AllocatedStorage:        aws.Int64(1),         // Required
 		DBInstanceClass:         aws.String("String"), // Required
 		DBInstanceIdentifier:    aws.String("String"), // Required
 		Engine:                  aws.String("String"), // Required
-		MasterUserPassword:      aws.String("String"), // Required
-		MasterUsername:          aws.String("String"), // Required
+		AllocatedStorage:        aws.Int64(1),
 		AutoMinorVersionUpgrade: aws.Bool(true),
 		AvailabilityZone:        aws.String("String"),
 		BackupRetentionPeriod:   aws.Int64(1),
 		CharacterSetName:        aws.String("String"),
+		DBClusterIdentifier:     aws.String("String"),
 		DBName:                  aws.String("String"),
 		DBParameterGroupName:    aws.String("String"),
 		DBSecurityGroups: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
-		DBSubnetGroupName: aws.String("String"),
-		EngineVersion:     aws.String("String"),
-		IOPS:              aws.Int64(1),
-		KMSKeyID:          aws.String("String"),
-		LicenseModel:      aws.String("String"),
-		MultiAZ:           aws.Bool(true),
-		OptionGroupName:   aws.String("String"),
-		Port:              aws.Int64(1),
+		DBSubnetGroupName:  aws.String("String"),
+		EngineVersion:      aws.String("String"),
+		IOPS:               aws.Int64(1),
+		KMSKeyID:           aws.String("String"),
+		LicenseModel:       aws.String("String"),
+		MasterUserPassword: aws.String("String"),
+		MasterUsername:     aws.String("String"),
+		MultiAZ:            aws.Bool(true),
+		OptionGroupName:    aws.String("String"),
+		Port:               aws.Int64(1),
 		PreferredBackupWindow:      aws.String("String"),
 		PreferredMaintenanceWindow: aws.String("String"),
 		PubliclyAccessible:         aws.Bool(true),
@@ -584,6 +746,89 @@ func ExampleRDS_CreateOptionGroup() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleRDS_DeleteDBCluster() {
+	svc := rds.New(nil)
+
+	params := &rds.DeleteDBClusterInput{
+		DBClusterIdentifier:       aws.String("String"),
+		FinalDBSnapshotIdentifier: aws.String("String"),
+		SkipFinalSnapshot:         aws.Bool(true),
+	}
+	resp, err := svc.DeleteDBCluster(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DeleteDBClusterParameterGroup() {
+	svc := rds.New(nil)
+
+	params := &rds.DeleteDBClusterParameterGroupInput{
+		DBClusterParameterGroupName: aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteDBClusterParameterGroup(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DeleteDBClusterSnapshot() {
+	svc := rds.New(nil)
+
+	params := &rds.DeleteDBClusterSnapshotInput{
+		DBClusterSnapshotIdentifier: aws.String("String"), // Required
+	}
+	resp, err := svc.DeleteDBClusterSnapshot(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleRDS_DeleteDBInstance() {
 	svc := rds.New(nil)
 
@@ -819,6 +1064,165 @@ func ExampleRDS_DescribeCertificates() {
 		MaxRecords: aws.Int64(1),
 	}
 	resp, err := svc.DescribeCertificates(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DescribeDBClusterParameterGroups() {
+	svc := rds.New(nil)
+
+	params := &rds.DescribeDBClusterParameterGroupsInput{
+		DBClusterParameterGroupName: aws.String("String"),
+		Filters: []*rds.Filter{
+			{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:     aws.String("String"),
+		MaxRecords: aws.Int64(1),
+	}
+	resp, err := svc.DescribeDBClusterParameterGroups(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DescribeDBClusterParameters() {
+	svc := rds.New(nil)
+
+	params := &rds.DescribeDBClusterParametersInput{
+		DBClusterParameterGroupName: aws.String("String"), // Required
+		Filters: []*rds.Filter{
+			{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:     aws.String("String"),
+		MaxRecords: aws.Int64(1),
+		Source:     aws.String("String"),
+	}
+	resp, err := svc.DescribeDBClusterParameters(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DescribeDBClusterSnapshots() {
+	svc := rds.New(nil)
+
+	params := &rds.DescribeDBClusterSnapshotsInput{
+		DBClusterIdentifier:         aws.String("String"),
+		DBClusterSnapshotIdentifier: aws.String("String"),
+		Filters: []*rds.Filter{
+			{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:       aws.String("String"),
+		MaxRecords:   aws.Int64(1),
+		SnapshotType: aws.String("String"),
+	}
+	resp, err := svc.DescribeDBClusterSnapshots(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DescribeDBClusters() {
+	svc := rds.New(nil)
+
+	params := &rds.DescribeDBClustersInput{
+		DBClusterIdentifier: aws.String("String"),
+		Filters: []*rds.Filter{
+			{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:     aws.String("String"),
+		MaxRecords: aws.Int64(1),
+	}
+	resp, err := svc.DescribeDBClusters(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1141,6 +1545,45 @@ func ExampleRDS_DescribeDBSubnetGroups() {
 		MaxRecords: aws.Int64(1),
 	}
 	resp, err := svc.DescribeDBSubnetGroups(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_DescribeEngineDefaultClusterParameters() {
+	svc := rds.New(nil)
+
+	params := &rds.DescribeEngineDefaultClusterParametersInput{
+		DBParameterGroupFamily: aws.String("String"), // Required
+		Filters: []*rds.Filter{
+			{ // Required
+				Name: aws.String("String"), // Required
+				Values: []*string{ // Required
+					aws.String("String"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:     aws.String("String"),
+		MaxRecords: aws.Int64(1),
+	}
+	resp, err := svc.DescribeEngineDefaultClusterParameters(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1605,6 +2048,33 @@ func ExampleRDS_DownloadDBLogFilePortion() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleRDS_FailoverDBCluster() {
+	svc := rds.New(nil)
+
+	params := &rds.FailoverDBClusterInput{
+		DBClusterIdentifier: aws.String("String"),
+	}
+	resp, err := svc.FailoverDBCluster(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleRDS_ListTagsForResource() {
 	svc := rds.New(nil)
 
@@ -1622,6 +2092,88 @@ func ExampleRDS_ListTagsForResource() {
 		},
 	}
 	resp, err := svc.ListTagsForResource(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_ModifyDBCluster() {
+	svc := rds.New(nil)
+
+	params := &rds.ModifyDBClusterInput{
+		ApplyImmediately:            aws.Bool(true),
+		BackupRetentionPeriod:       aws.Int64(1),
+		DBClusterIdentifier:         aws.String("String"),
+		DBClusterParameterGroupName: aws.String("String"),
+		MasterUserPassword:          aws.String("String"),
+		NewDBClusterIdentifier:      aws.String("String"),
+		OptionGroupName:             aws.String("String"),
+		Port:                        aws.Int64(1),
+		PreferredBackupWindow:      aws.String("String"),
+		PreferredMaintenanceWindow: aws.String("String"),
+		VPCSecurityGroupIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ModifyDBCluster(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_ModifyDBClusterParameterGroup() {
+	svc := rds.New(nil)
+
+	params := &rds.ModifyDBClusterParameterGroupInput{
+		DBClusterParameterGroupName: aws.String("String"), // Required
+		Parameters: []*rds.Parameter{ // Required
+			{ // Required
+				AllowedValues:        aws.String("String"),
+				ApplyMethod:          aws.String("ApplyMethod"),
+				ApplyType:            aws.String("String"),
+				DataType:             aws.String("String"),
+				Description:          aws.String("String"),
+				IsModifiable:         aws.Bool(true),
+				MinimumEngineVersion: aws.String("String"),
+				ParameterName:        aws.String("String"),
+				ParameterValue:       aws.String("String"),
+				Source:               aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.ModifyDBClusterParameterGroup(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -2017,6 +2569,49 @@ func ExampleRDS_RemoveTagsFromResource() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleRDS_ResetDBClusterParameterGroup() {
+	svc := rds.New(nil)
+
+	params := &rds.ResetDBClusterParameterGroupInput{
+		DBClusterParameterGroupName: aws.String("String"), // Required
+		Parameters: []*rds.Parameter{
+			{ // Required
+				AllowedValues:        aws.String("String"),
+				ApplyMethod:          aws.String("ApplyMethod"),
+				ApplyType:            aws.String("String"),
+				DataType:             aws.String("String"),
+				Description:          aws.String("String"),
+				IsModifiable:         aws.Bool(true),
+				MinimumEngineVersion: aws.String("String"),
+				ParameterName:        aws.String("String"),
+				ParameterValue:       aws.String("String"),
+				Source:               aws.String("String"),
+			},
+			// More values...
+		},
+		ResetAllParameters: aws.Bool(true),
+	}
+	resp, err := svc.ResetDBClusterParameterGroup(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleRDS_ResetDBParameterGroup() {
 	svc := rds.New(nil)
 
@@ -2040,6 +2635,99 @@ func ExampleRDS_ResetDBParameterGroup() {
 		ResetAllParameters: aws.Bool(true),
 	}
 	resp, err := svc.ResetDBParameterGroup(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_RestoreDBClusterFromSnapshot() {
+	svc := rds.New(nil)
+
+	params := &rds.RestoreDBClusterFromSnapshotInput{
+		DBClusterIdentifier: aws.String("String"), // Required
+		Engine:              aws.String("String"), // Required
+		SnapshotIdentifier:  aws.String("String"), // Required
+		AvailabilityZones: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		DBSubnetGroupName: aws.String("String"),
+		DatabaseName:      aws.String("String"),
+		EngineVersion:     aws.String("String"),
+		OptionGroupName:   aws.String("String"),
+		Port:              aws.Int64(1),
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+		VPCSecurityGroupIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.RestoreDBClusterFromSnapshot(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleRDS_RestoreDBClusterToPointInTime() {
+	svc := rds.New(nil)
+
+	params := &rds.RestoreDBClusterToPointInTimeInput{
+		DBClusterIdentifier:       aws.String("String"), // Required
+		SourceDBClusterIdentifier: aws.String("String"), // Required
+		DBSubnetGroupName:         aws.String("String"),
+		OptionGroupName:           aws.String("String"),
+		Port:                      aws.Int64(1),
+		RestoreToTime:             aws.Time(time.Now()),
+		Tags: []*rds.Tag{
+			{ // Required
+				Key:   aws.String("String"),
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+		UseLatestRestorableTime: aws.Bool(true),
+		VPCSecurityGroupIDs: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.RestoreDBClusterToPointInTime(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

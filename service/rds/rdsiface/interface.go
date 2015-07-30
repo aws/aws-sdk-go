@@ -26,6 +26,10 @@ type RDSAPI interface {
 
 	AuthorizeDBSecurityGroupIngress(*rds.AuthorizeDBSecurityGroupIngressInput) (*rds.AuthorizeDBSecurityGroupIngressOutput, error)
 
+	CopyDBClusterSnapshotRequest(*rds.CopyDBClusterSnapshotInput) (*aws.Request, *rds.CopyDBClusterSnapshotOutput)
+
+	CopyDBClusterSnapshot(*rds.CopyDBClusterSnapshotInput) (*rds.CopyDBClusterSnapshotOutput, error)
+
 	CopyDBParameterGroupRequest(*rds.CopyDBParameterGroupInput) (*aws.Request, *rds.CopyDBParameterGroupOutput)
 
 	CopyDBParameterGroup(*rds.CopyDBParameterGroupInput) (*rds.CopyDBParameterGroupOutput, error)
@@ -37,6 +41,18 @@ type RDSAPI interface {
 	CopyOptionGroupRequest(*rds.CopyOptionGroupInput) (*aws.Request, *rds.CopyOptionGroupOutput)
 
 	CopyOptionGroup(*rds.CopyOptionGroupInput) (*rds.CopyOptionGroupOutput, error)
+
+	CreateDBClusterRequest(*rds.CreateDBClusterInput) (*aws.Request, *rds.CreateDBClusterOutput)
+
+	CreateDBCluster(*rds.CreateDBClusterInput) (*rds.CreateDBClusterOutput, error)
+
+	CreateDBClusterParameterGroupRequest(*rds.CreateDBClusterParameterGroupInput) (*aws.Request, *rds.CreateDBClusterParameterGroupOutput)
+
+	CreateDBClusterParameterGroup(*rds.CreateDBClusterParameterGroupInput) (*rds.CreateDBClusterParameterGroupOutput, error)
+
+	CreateDBClusterSnapshotRequest(*rds.CreateDBClusterSnapshotInput) (*aws.Request, *rds.CreateDBClusterSnapshotOutput)
+
+	CreateDBClusterSnapshot(*rds.CreateDBClusterSnapshotInput) (*rds.CreateDBClusterSnapshotOutput, error)
 
 	CreateDBInstanceRequest(*rds.CreateDBInstanceInput) (*aws.Request, *rds.CreateDBInstanceOutput)
 
@@ -69,6 +85,18 @@ type RDSAPI interface {
 	CreateOptionGroupRequest(*rds.CreateOptionGroupInput) (*aws.Request, *rds.CreateOptionGroupOutput)
 
 	CreateOptionGroup(*rds.CreateOptionGroupInput) (*rds.CreateOptionGroupOutput, error)
+
+	DeleteDBClusterRequest(*rds.DeleteDBClusterInput) (*aws.Request, *rds.DeleteDBClusterOutput)
+
+	DeleteDBCluster(*rds.DeleteDBClusterInput) (*rds.DeleteDBClusterOutput, error)
+
+	DeleteDBClusterParameterGroupRequest(*rds.DeleteDBClusterParameterGroupInput) (*aws.Request, *rds.DeleteDBClusterParameterGroupOutput)
+
+	DeleteDBClusterParameterGroup(*rds.DeleteDBClusterParameterGroupInput) (*rds.DeleteDBClusterParameterGroupOutput, error)
+
+	DeleteDBClusterSnapshotRequest(*rds.DeleteDBClusterSnapshotInput) (*aws.Request, *rds.DeleteDBClusterSnapshotOutput)
+
+	DeleteDBClusterSnapshot(*rds.DeleteDBClusterSnapshotInput) (*rds.DeleteDBClusterSnapshotOutput, error)
 
 	DeleteDBInstanceRequest(*rds.DeleteDBInstanceInput) (*aws.Request, *rds.DeleteDBInstanceOutput)
 
@@ -105,6 +133,22 @@ type RDSAPI interface {
 	DescribeCertificatesRequest(*rds.DescribeCertificatesInput) (*aws.Request, *rds.DescribeCertificatesOutput)
 
 	DescribeCertificates(*rds.DescribeCertificatesInput) (*rds.DescribeCertificatesOutput, error)
+
+	DescribeDBClusterParameterGroupsRequest(*rds.DescribeDBClusterParameterGroupsInput) (*aws.Request, *rds.DescribeDBClusterParameterGroupsOutput)
+
+	DescribeDBClusterParameterGroups(*rds.DescribeDBClusterParameterGroupsInput) (*rds.DescribeDBClusterParameterGroupsOutput, error)
+
+	DescribeDBClusterParametersRequest(*rds.DescribeDBClusterParametersInput) (*aws.Request, *rds.DescribeDBClusterParametersOutput)
+
+	DescribeDBClusterParameters(*rds.DescribeDBClusterParametersInput) (*rds.DescribeDBClusterParametersOutput, error)
+
+	DescribeDBClusterSnapshotsRequest(*rds.DescribeDBClusterSnapshotsInput) (*aws.Request, *rds.DescribeDBClusterSnapshotsOutput)
+
+	DescribeDBClusterSnapshots(*rds.DescribeDBClusterSnapshotsInput) (*rds.DescribeDBClusterSnapshotsOutput, error)
+
+	DescribeDBClustersRequest(*rds.DescribeDBClustersInput) (*aws.Request, *rds.DescribeDBClustersOutput)
+
+	DescribeDBClusters(*rds.DescribeDBClustersInput) (*rds.DescribeDBClustersOutput, error)
 
 	DescribeDBEngineVersionsRequest(*rds.DescribeDBEngineVersionsInput) (*aws.Request, *rds.DescribeDBEngineVersionsOutput)
 
@@ -153,6 +197,10 @@ type RDSAPI interface {
 	DescribeDBSubnetGroups(*rds.DescribeDBSubnetGroupsInput) (*rds.DescribeDBSubnetGroupsOutput, error)
 
 	DescribeDBSubnetGroupsPages(*rds.DescribeDBSubnetGroupsInput, func(*rds.DescribeDBSubnetGroupsOutput, bool) bool) error
+
+	DescribeEngineDefaultClusterParametersRequest(*rds.DescribeEngineDefaultClusterParametersInput) (*aws.Request, *rds.DescribeEngineDefaultClusterParametersOutput)
+
+	DescribeEngineDefaultClusterParameters(*rds.DescribeEngineDefaultClusterParametersInput) (*rds.DescribeEngineDefaultClusterParametersOutput, error)
 
 	DescribeEngineDefaultParametersRequest(*rds.DescribeEngineDefaultParametersInput) (*aws.Request, *rds.DescribeEngineDefaultParametersOutput)
 
@@ -216,9 +264,21 @@ type RDSAPI interface {
 
 	DownloadDBLogFilePortionPages(*rds.DownloadDBLogFilePortionInput, func(*rds.DownloadDBLogFilePortionOutput, bool) bool) error
 
+	FailoverDBClusterRequest(*rds.FailoverDBClusterInput) (*aws.Request, *rds.FailoverDBClusterOutput)
+
+	FailoverDBCluster(*rds.FailoverDBClusterInput) (*rds.FailoverDBClusterOutput, error)
+
 	ListTagsForResourceRequest(*rds.ListTagsForResourceInput) (*aws.Request, *rds.ListTagsForResourceOutput)
 
 	ListTagsForResource(*rds.ListTagsForResourceInput) (*rds.ListTagsForResourceOutput, error)
+
+	ModifyDBClusterRequest(*rds.ModifyDBClusterInput) (*aws.Request, *rds.ModifyDBClusterOutput)
+
+	ModifyDBCluster(*rds.ModifyDBClusterInput) (*rds.ModifyDBClusterOutput, error)
+
+	ModifyDBClusterParameterGroupRequest(*rds.ModifyDBClusterParameterGroupInput) (*aws.Request, *rds.DBClusterParameterGroupNameMessage)
+
+	ModifyDBClusterParameterGroup(*rds.ModifyDBClusterParameterGroupInput) (*rds.DBClusterParameterGroupNameMessage, error)
 
 	ModifyDBInstanceRequest(*rds.ModifyDBInstanceInput) (*aws.Request, *rds.ModifyDBInstanceOutput)
 
@@ -260,9 +320,21 @@ type RDSAPI interface {
 
 	RemoveTagsFromResource(*rds.RemoveTagsFromResourceInput) (*rds.RemoveTagsFromResourceOutput, error)
 
+	ResetDBClusterParameterGroupRequest(*rds.ResetDBClusterParameterGroupInput) (*aws.Request, *rds.DBClusterParameterGroupNameMessage)
+
+	ResetDBClusterParameterGroup(*rds.ResetDBClusterParameterGroupInput) (*rds.DBClusterParameterGroupNameMessage, error)
+
 	ResetDBParameterGroupRequest(*rds.ResetDBParameterGroupInput) (*aws.Request, *rds.DBParameterGroupNameMessage)
 
 	ResetDBParameterGroup(*rds.ResetDBParameterGroupInput) (*rds.DBParameterGroupNameMessage, error)
+
+	RestoreDBClusterFromSnapshotRequest(*rds.RestoreDBClusterFromSnapshotInput) (*aws.Request, *rds.RestoreDBClusterFromSnapshotOutput)
+
+	RestoreDBClusterFromSnapshot(*rds.RestoreDBClusterFromSnapshotInput) (*rds.RestoreDBClusterFromSnapshotOutput, error)
+
+	RestoreDBClusterToPointInTimeRequest(*rds.RestoreDBClusterToPointInTimeInput) (*aws.Request, *rds.RestoreDBClusterToPointInTimeOutput)
+
+	RestoreDBClusterToPointInTime(*rds.RestoreDBClusterToPointInTimeInput) (*rds.RestoreDBClusterToPointInTimeOutput, error)
 
 	RestoreDBInstanceFromDBSnapshotRequest(*rds.RestoreDBInstanceFromDBSnapshotInput) (*aws.Request, *rds.RestoreDBInstanceFromDBSnapshotOutput)
 
