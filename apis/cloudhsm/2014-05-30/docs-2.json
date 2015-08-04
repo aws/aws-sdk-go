@@ -1,10 +1,11 @@
 {
+  "version": "2.0",
   "operations": {
     "CreateHapg": "<p>Creates a high-availability partition group. A high-availability partition group is a group of partitions that spans multiple physical HSMs.</p>",
-    "CreateHsm": "<p>Creates an uninitialized HSM instance. Running this command provisions an HSM appliance and will result in charges to your AWS account for the HSM.</p>",
+    "CreateHsm": "<p>Creates an uninitialized HSM instance. </p> <p>There is an upfront fee charged for each HSM instance that you create with the <a>CreateHsm</a> operation. If you accidentally provision an HSM and want to request a refund, delete the instance using the <a>DeleteHsm</a> operation, go to the <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, create a new case, and select <b>Account and Billing Support</b>.</p> <important> <p> <p>It can take up to 20 minutes to create and provision an HSM. You can monitor the status of the HSM with the <a>DescribeHsm</a> operation. The HSM is ready to be initialized when the status changes to <code>RUNNING</code>.</p> </p> </important>",
     "CreateLunaClient": "<p>Creates an HSM client.</p>",
     "DeleteHapg": "<p>Deletes a high-availability partition group.</p>",
-    "DeleteHsm": "<p>Deletes an HSM. Once complete, this operation cannot be undone and your key material cannot be recovered.</p>",
+    "DeleteHsm": "<p>Deletes an HSM. After completion, this operation cannot be undone and your key material cannot be recovered.</p>",
     "DeleteLunaClient": "<p>Deletes a client.</p>",
     "DescribeHapg": "<p>Retrieves information about a high-availability partition group.</p>",
     "DescribeHsm": "<p>Retrieves information about an HSM. You can identify the HSM by its ARN or its serial number.</p>",
@@ -15,7 +16,7 @@
     "ListHsms": "<p>Retrieves the identifiers of all of the HSMs provisioned for the current customer.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListHsms</a> to retrieve the next set of items.</p>",
     "ListLunaClients": "<p>Lists all of the clients.</p> <p>This operation supports pagination with the use of the <i>NextToken</i> member. If more results are available, the <i>NextToken</i> member of the response contains a token that you pass in the next call to <a>ListLunaClients</a> to retrieve the next set of items.</p>",
     "ModifyHapg": "<p>Modifies an existing high-availability partition group.</p>",
-    "ModifyHsm": "<p>Modifies an HSM.</p>",
+    "ModifyHsm": "<p>Modifies an HSM.</p> <important> <p> <p>This operation can result in the HSM being offline for up to 15 minutes while the AWS CloudHSM service is reconfigured. If you are modifying a production HSM, you should ensure that your AWS CloudHSM service is configured for high availability, and consider executing this operation during a maintenance window.</p> </p> </important>",
     "ModifyLunaClient": "<p>Modifies the certificate used by the client.</p> <p>This action can potentially start a workflow to install the new certificate on the client's HSMs.</p>"
   },
   "service": "<fullname>AWS CloudHSM Service</fullname>",
@@ -82,7 +83,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
-        "CreateHsmRequest$ClientToken": "<p>A user-defined token to ensure idempotence. Subsequent calls to this action with the same token will be ignored.</p>"
+        "CreateHsmRequest$ClientToken": "<p>A user-defined token to ensure idempotence. Subsequent calls to this operation with the same token will be ignored.</p>"
       }
     },
     "ClientVersion": {
@@ -118,12 +119,12 @@
       }
     },
     "CreateHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>CreateHsm</a> action. </p>",
+      "base": "<p>Contains the inputs for the <a>CreateHsm</a> operation. </p>",
       "refs": {
       }
     },
     "CreateHsmResponse": {
-      "base": "<p>Contains the output of the <a>CreateHsm</a> action.</p>",
+      "base": "<p>Contains the output of the <a>CreateHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -148,12 +149,12 @@
       }
     },
     "DeleteHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>DeleteHsm</a> action. </p>",
+      "base": "<p>Contains the inputs for the <a>DeleteHsm</a> operation. </p>",
       "refs": {
       }
     },
     "DeleteHsmResponse": {
-      "base": "<p>Contains the output of the <a>DeleteHsm</a> action.</p>",
+      "base": "<p>Contains the output of the <a>DeleteHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -178,12 +179,12 @@
       }
     },
     "DescribeHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>DescribeHsm</a> action. </p>",
+      "base": "<p>Contains the inputs for the <a>DescribeHsm</a> operation. </p>",
       "refs": {
       }
     },
     "DescribeHsmResponse": {
-      "base": "<p>Contains the output of the <a>DescribeHsm</a> action.</p>",
+      "base": "<p>Contains the output of the <a>DescribeHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -289,11 +290,11 @@
     "IpAddress": {
       "base": null,
       "refs": {
-        "CreateHsmRequest$EniIp": "<p>The IP address to assign to the HSM's ENI.</p>",
-        "CreateHsmRequest$SyslogIp": "<p>The IP address for the syslog monitoring server.</p>",
+        "CreateHsmRequest$EniIp": "<p>The IP address to assign to the HSM's ENI.</p> <p>If an IP address is not specified, an IP address will be randomly chosen from the CIDR range of the subnet.</p>",
+        "CreateHsmRequest$SyslogIp": "<p>The IP address for the syslog monitoring server. The AWS CloudHSM service only supports one syslog monitoring server.</p>",
         "DescribeHsmResponse$EniIp": "<p>The IP address assigned to the HSM's ENI.</p>",
-        "ModifyHsmRequest$EniIp": "<p>The new IP address for the elastic network interface attached to the HSM.</p>",
-        "ModifyHsmRequest$SyslogIp": "<p>The new IP address for the syslog monitoring server.</p>"
+        "ModifyHsmRequest$EniIp": "<p>The new IP address for the elastic network interface (ENI) attached to the HSM.</p> <p>If the HSM is moved to a different subnet, and an IP address is not specified, an IP address will be randomly chosen from the CIDR range of the new subnet.</p>",
+        "ModifyHsmRequest$SyslogIp": "<p>The new IP address for the syslog monitoring server. The AWS CloudHSM service only supports one syslog monitoring server.</p>"
       }
     },
     "Label": {
@@ -331,7 +332,7 @@
       }
     },
     "ListHsmsResponse": {
-      "base": "<p>Contains the output of the <a>ListHsms</a> action.</p>",
+      "base": "<p>Contains the output of the <a>ListHsms</a> operation.</p>",
       "refs": {
       }
     },
@@ -356,12 +357,12 @@
       }
     },
     "ModifyHsmRequest": {
-      "base": "<p>Contains the inputs for the <a>ModifyHsm</a> action. </p>",
+      "base": "<p>Contains the inputs for the <a>ModifyHsm</a> operation. </p>",
       "refs": {
       }
     },
     "ModifyHsmResponse": {
-      "base": "<p>Contains the output of the <a>ModifyHsm</a> action.</p>",
+      "base": "<p>Contains the output of the <a>ModifyHsm</a> operation.</p>",
       "refs": {
       }
     },
@@ -423,7 +424,7 @@
       "refs": {
         "CloudHsmServiceException$message": "<p>Additional information about the error.</p>",
         "DeleteHapgResponse$Status": "<p>The status of the action.</p>",
-        "DeleteHsmResponse$Status": "<p>The status of the action.</p>",
+        "DeleteHsmResponse$Status": "<p>The status of the operation.</p>",
         "DeleteLunaClientResponse$Status": "<p>The status of the action.</p>",
         "DescribeHapgResponse$HapgSerial": "<p>The serial number of the high-availability partition group.</p>",
         "DescribeHsmResponse$StatusDetails": "<p>Contains additional information about the status of the HSM.</p>",
@@ -440,15 +441,15 @@
       "base": null,
       "refs": {
         "CreateHsmRequest$SubnetId": "<p>The identifier of the subnet in your VPC in which to place the HSM.</p>",
-        "DescribeHsmResponse$SubnetId": "<p>The identifier of the subnet the HSM is in.</p>",
-        "ModifyHsmRequest$SubnetId": "<p>The new identifier of the subnet that the HSM is in.</p>"
+        "DescribeHsmResponse$SubnetId": "<p>The identifier of the subnet that the HSM is in.</p>",
+        "ModifyHsmRequest$SubnetId": "<p>The new identifier of the subnet that the HSM is in. The new subnet must be in the same Availability Zone as the current subnet.</p>"
       }
     },
     "SubscriptionType": {
-      "base": null,
+      "base": "<p>Specifies the type of subscription for the HSM.</p> <ul> <li> <b>PRODUCTION</b> - The HSM is being used in a production environment.</li> <li> <b>TRIAL</b> - The HSM is being used in a product trial.</li> </ul>",
       "refs": {
-        "CreateHsmRequest$SubscriptionType": "<p>The subscription type.</p>",
-        "DescribeHsmResponse$SubscriptionType": "<p>The subscription type.</p>"
+        "CreateHsmRequest$SubscriptionType": null,
+        "DescribeHsmResponse$SubscriptionType": null
       }
     },
     "Timestamp": {
@@ -457,8 +458,8 @@
         "DescribeHapgResponse$LastModifiedTimestamp": "<p>The date and time the high-availability partition group was last modified.</p>",
         "DescribeHsmResponse$SubscriptionStartDate": "<p>The subscription start date.</p>",
         "DescribeHsmResponse$SubscriptionEndDate": "<p>The subscription end date.</p>",
-        "DescribeHsmResponse$SshKeyLastUpdated": "<p>The date and time the SSH key was last updated.</p>",
-        "DescribeHsmResponse$ServerCertLastUpdated": "<p>The date and time the server certificate was last updated.</p>",
+        "DescribeHsmResponse$SshKeyLastUpdated": "<p>The date and time that the SSH key was last updated.</p>",
+        "DescribeHsmResponse$ServerCertLastUpdated": "<p>The date and time that the server certificate was last updated.</p>",
         "DescribeLunaClientResponse$LastModifiedTimestamp": "<p>The date and time the client was last modified.</p>"
       }
     },
