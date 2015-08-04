@@ -1,14 +1,14 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2014-05-30",
     "endpointPrefix":"cloudhsm",
+    "jsonVersion":"1.1",
     "serviceAbbreviation":"CloudHSM",
     "serviceFullName":"Amazon CloudHSM",
     "signatureVersion":"v4",
-    "targetPrefix":"cloudhsm",
-    "protocol":"json",
-    "jsonVersion":"1.1",
-    "targetPrefix":"CloudHsmFrontendService"
+    "targetPrefix":"CloudHsmFrontendService",
+    "protocol":"json"
   },
   "operations":{
     "CreateHapg":{
@@ -540,7 +540,8 @@
           "shape":"IpAddress",
           "locationName":"SyslogIp"
         }
-      }
+      },
+      "locationName":"CreateHsmRequest"
     },
     "CreateHsmResponse":{
       "type":"structure",
@@ -584,7 +585,8 @@
           "shape":"HsmArn",
           "locationName":"HsmArn"
         }
-      }
+      },
+      "locationName":"DeleteHsmRequest"
     },
     "DeleteHsmResponse":{
       "type":"structure",
@@ -852,7 +854,8 @@
           "shape":"IpAddress",
           "locationName":"SyslogIp"
         }
-      }
+      },
+      "locationName":"ModifyHsmRequest"
     },
     "ModifyHsmResponse":{
       "type":"structure",
