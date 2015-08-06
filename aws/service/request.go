@@ -12,6 +12,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"fmt"
 )
 
 // A Request is the service request to be made.
@@ -135,6 +136,19 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 	return r.HTTPRequest.URL.String(), nil
 }
 
+func debugLogReqError(r *Request, stage string, retrying bool, err error) {
+	if !r.Config.LogLevel.Matches(aws.LogDebugWithRequestErrors) {
+		return
+	}
+
+	retryStr := "not retrying"
+	if retrying {
+		retryStr = "will retry"
+	}
+	r.Config.Logger.Log(fmt.Sprintf("DEBUG: %s %s/%s failed, %s, error %s",
+		stage, r.ServiceName, r.Operation.Name, retryStr, r.Error.Error()))
+}
+
 // Build will build the request's object so it can be signed and sent
 // to the service. Build will also validate all the request's parameters.
 // Anny additional build Handlers set on this request will be run
@@ -150,6 +164,7 @@ func (r *Request) Build() error {
 		r.Error = nil
 		r.Handlers.Validate.Run(r)
 		if r.Error != nil {
+			debugLogReqError(r, "Validate Request", false, r.Error)
 			return r.Error
 		}
 		r.Handlers.Build.Run(r)
@@ -166,6 +181,7 @@ func (r *Request) Build() error {
 func (r *Request) Sign() error {
 	r.Build()
 	if r.Error != nil {
+		debugLogReqError(r, "Build Request", false, r.Error)
 		return r.Error
 	}
 
@@ -185,6 +201,11 @@ func (r *Request) Send() error {
 		}
 
 		if aws.BoolValue(r.Retryable) {
+			if r.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
+				r.Config.Logger.Log(fmt.Sprintf("DEBUG: Retrying Request %s/%s, attempt %d",
+					r.ServiceName, r.Operation.Name, r.RetryCount))
+			}
+
 			// Re-seek the body back to the original point in for a retry so that
 			// send will send the body's contents again in the upcoming request.
 			r.Body.Seek(r.bodyStart, 0)
@@ -193,33 +214,42 @@ func (r *Request) Send() error {
 
 		r.Handlers.Send.Run(r)
 		if r.Error != nil {
+			err := r.Error
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
+				debugLogReqError(r, "Send Request", false, r.Error)
 				return r.Error
 			}
+			debugLogReqError(r, "Send Request", true, err)
 			continue
 		}
 
 		r.Handlers.UnmarshalMeta.Run(r)
 		r.Handlers.ValidateResponse.Run(r)
 		if r.Error != nil {
+			err := r.Error
 			r.Handlers.UnmarshalError.Run(r)
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
+				debugLogReqError(r, "Validate Response", false, r.Error)
 				return r.Error
 			}
+			debugLogReqError(r, "Validate Response", true, err)
 			continue
 		}
 
 		r.Handlers.Unmarshal.Run(r)
 		if r.Error != nil {
+			err := r.Error
 			r.Handlers.Retry.Run(r)
 			r.Handlers.AfterRetry.Run(r)
 			if r.Error != nil {
+				debugLogReqError(r, "Unmarshal Response", false, r.Error)
 				return r.Error
 			}
+			debugLogReqError(r, "Unmarshal Response", true, err)
 			continue
 		}
 
