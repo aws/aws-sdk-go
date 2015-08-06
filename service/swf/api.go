@@ -484,7 +484,7 @@ func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req
 
 // Returns information about the specified workflow type. This includes configuration
 // settings specified when the type was registered and other information such
-// as creation date, current status, etc.
+// as creation date, current status, and so on.
 //
 // Access Control
 //
@@ -947,7 +947,7 @@ func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *
 // an empty result is returned. An empty result, in this context, means that
 // a DecisionTask is returned, but that the value of taskToken is an empty string.
 //
-// Deciders should set their client side socket timeout to at least 70 seconds
+// Deciders should set their client-side socket timeout to at least 70 seconds
 // (10 seconds higher than the timeout). Because the number of workflow history
 // events for a single workflow execution might be very large, the result returned
 // might be split up across a number of pages. To retrieve subsequent pages,
@@ -1580,7 +1580,7 @@ type ActivityTaskCancelRequestedEventAttributes struct {
 	// The unique ID of the task.
 	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelActivityTask decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
@@ -1608,17 +1608,17 @@ type ActivityTaskCanceledEventAttributes struct {
 	// Details of the cancellation (if any).
 	Details *string `locationName:"details" type:"string"`
 
-	// If set, contains the Id of the last ActivityTaskCancelRequested event recorded
+	// If set, contains the ID of the last ActivityTaskCancelRequested event recorded
 	// for this activity task. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	LatestCancelRequestedEventID *int64 `locationName:"latestCancelRequestedEventId" type:"long"`
 
-	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -1645,12 +1645,12 @@ type ActivityTaskCompletedEventAttributes struct {
 	// The results of the activity task (if any).
 	Result *string `locationName:"result" type:"string"`
 
-	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -1680,12 +1680,12 @@ type ActivityTaskFailedEventAttributes struct {
 	// The reason provided for the failure (if any).
 	Reason *string `locationName:"reason" type:"string"`
 
-	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -1709,7 +1709,7 @@ func (s ActivityTaskFailedEventAttributes) GoString() string {
 
 // Provides details of the ActivityTaskScheduled event.
 type ActivityTaskScheduledEventAttributes struct {
-	// The unique id of the activity task.
+	// The unique ID of the activity task.
 	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
 
 	// The type of the activity task.
@@ -1719,7 +1719,7 @@ type ActivityTaskScheduledEventAttributes struct {
 	// workflow tasks. This data is not sent to the activity.
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision that
+	// The ID of the DecisionTaskCompleted event corresponding to the decision that
 	// resulted in the scheduling of this activity task. This information can be
 	// useful for diagnosing problems by tracing back the chain of events leading
 	// up to this event.
@@ -1747,10 +1747,9 @@ type ActivityTaskScheduledEventAttributes struct {
 	// The task list in which the activity task has been scheduled.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
 
-	// Optional. The priority to assign to the scheduled activity task. This will
-	// override any default priority that was assigned when the activity type was
-	// registered. If not set, then the priority set on the activity type is used
-	// as the task priority.
+	// Optional. The priority to assign to the scheduled activity task. If set,
+	// this will override any default priority value that was assigned when the
+	// activity type was registered.
 	//
 	// Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648)
 	// to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.
@@ -1783,7 +1782,7 @@ type ActivityTaskStartedEventAttributes struct {
 	// when problems arise. The form of this identity is user defined.
 	Identity *string `locationName:"identity" type:"string"`
 
-	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
@@ -1811,12 +1810,12 @@ type ActivityTaskTimedOutEventAttributes struct {
 	// activity to RecordActivityTaskHeartbeat.
 	Details *string `locationName:"details" type:"string"`
 
-	// The id of the ActivityTaskScheduled event that was recorded when this activity
+	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	// The Id of the ActivityTaskStarted event recorded when this activity task
+	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -1879,7 +1878,7 @@ type ActivityTypeConfiguration struct {
 	//
 	// You can specify this value only when registering an activity type. The registered
 	// default value can be overridden when you schedule a task through the ScheduleActivityTask
-	// Decision. If the activity worker subsequently attempts to record a heartbeat
+	// decision. If the activity worker subsequently attempts to record a heartbeat
 	// or returns a result, the activity worker receives an UnknownResource fault.
 	// In this case, Amazon SWF no longer considers the activity task to be valid;
 	// the activity worker should clean up the activity task.
@@ -1890,8 +1889,8 @@ type ActivityTypeConfiguration struct {
 
 	// Optional. The default task list specified for this activity type at registration.
 	// This default is used if a task list is not provided when a task is scheduled
-	// through the ScheduleActivityTask Decision. You can override the default registered
-	// task list when scheduling a task through the ScheduleActivityTask Decision.
+	// through the ScheduleActivityTask decision. You can override the default registered
+	// task list when scheduling a task through the ScheduleActivityTask decision.
 	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
 
 	// Optional. The default task priority for tasks of this activity type, specified
@@ -1908,7 +1907,7 @@ type ActivityTypeConfiguration struct {
 
 	// Optional. The default maximum duration, specified when registering the activity
 	// type, for tasks of this activity type. You can override this default when
-	// scheduling a task through the ScheduleActivityTask Decision.
+	// scheduling a task through the ScheduleActivityTask decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -1917,7 +1916,7 @@ type ActivityTypeConfiguration struct {
 	// Optional. The default maximum duration, specified when registering the activity
 	// type, that a task of an activity type can wait before being assigned to a
 	// worker. You can override this default when scheduling a task through the
-	// ScheduleActivityTask Decision.
+	// ScheduleActivityTask decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -1925,7 +1924,7 @@ type ActivityTypeConfiguration struct {
 
 	// Optional. The default maximum duration for tasks of an activity type specified
 	// when registering the activity type. You can override this default when scheduling
-	// a task through the ScheduleActivityTask Decision.
+	// a task through the ScheduleActivityTask decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -1998,7 +1997,7 @@ func (s ActivityTypeInfo) GoString() string {
 // For details and example IAM policies, see Using IAM to Manage Access to Amazon
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelTimerDecisionAttributes struct {
-	// Required. The unique Id of the timer to cancel.
+	// Required. The unique ID of the timer to cancel.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerDecisionAttributes `json:"-" xml:"-"`
@@ -2028,7 +2027,7 @@ type CancelTimerFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"CancelTimerFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelTimer decision to cancel this timer. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
@@ -2100,7 +2099,7 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"CancelWorkflowExecutionFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelWorkflowExecution decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
@@ -2128,13 +2127,13 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 	// Details of the cancellation (if provided).
 	Details *string `locationName:"details" type:"string"`
 
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
-	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -2164,8 +2163,8 @@ func (s ChildWorkflowExecutionCanceledEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionCompleted event.
 type ChildWorkflowExecutionCompletedEventAttributes struct {
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
@@ -2173,7 +2172,7 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	// The result of the child workflow execution (if any).
 	Result *string `locationName:"result" type:"string"`
 
-	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -2206,8 +2205,8 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	// The details of the failure (if provided).
 	Details *string `locationName:"details" type:"string"`
 
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
@@ -2215,7 +2214,7 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	// The reason for the failure (if provided).
 	Reason *string `locationName:"reason" type:"string"`
 
-	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -2245,8 +2244,8 @@ func (s ChildWorkflowExecutionFailedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionStarted event.
 type ChildWorkflowExecutionStartedEventAttributes struct {
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
@@ -2276,13 +2275,13 @@ func (s ChildWorkflowExecutionStartedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionTerminated event.
 type ChildWorkflowExecutionTerminatedEventAttributes struct {
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
-	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -2312,13 +2311,13 @@ func (s ChildWorkflowExecutionTerminatedEventAttributes) GoString() string {
 
 // Provides details of the ChildWorkflowExecutionTimedOut event.
 type ChildWorkflowExecutionTimedOutEventAttributes struct {
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
-	// The Id of the ChildWorkflowExecutionStarted event recorded when this child
+	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -2421,7 +2420,7 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"CompleteWorkflowExecutionFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CompleteWorkflowExecution decision to complete this
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
@@ -2497,6 +2496,13 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	// The input provided to the new workflow execution.
 	Input *string `locationName:"input" type:"string"`
 
+	// The ARN of an IAM role that authorizes Amazon SWF to invoke AWS Lambda functions.
+	//
+	// In order for this workflow execution to invoke AWS Lambda functions, an
+	// appropriate IAM role must be specified either as a default for the workflow
+	// type or through this field.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+
 	// The list of tags to associate with the new workflow execution. A maximum
 	// of 5 tags can be specified. You can list workflow executions with a specific
 	// tag by calling ListOpenWorkflowExecutions or ListClosedWorkflowExecutions
@@ -2559,7 +2565,7 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"ContinueAsNewWorkflowExecutionFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the ContinueAsNewWorkflowExecution decision that started
 	// this execution. This information can be useful for diagnosing problems by
 	// tracing back the chain of events leading up to this event.
@@ -2746,7 +2752,7 @@ func (s CountPendingDecisionTasksInput) GoString() string {
 // closes the workflow execution and records a WorkflowExecutionCompleted event
 // in the history .  ContinueAsNewWorkflowExecution: closes the workflow execution
 // and starts a new workflow execution of the same type using the same workflow
-// id and a unique run Id. A WorkflowExecutionContinuedAsNew event is recorded
+// ID and a unique run ID. A WorkflowExecutionContinuedAsNew event is recorded
 // in the history.  FailWorkflowExecution: closes the workflow execution and
 // records a WorkflowExecutionFailed event in the history.  RecordMarker: records
 // a MarkerRecorded event in the history. Markers can be used for adding custom
@@ -2759,9 +2765,10 @@ func (s CountPendingDecisionTasksInput) GoString() string {
 // to RecordActivityTaskHeartbeat.  RequestCancelExternalWorkflowExecution:
 // requests that a request be made to cancel the specified external workflow
 // execution and records a RequestCancelExternalWorkflowExecutionInitiated event
-// in the history.  ScheduleActivityTask: schedules an activity task.  SignalExternalWorkflowExecution:
-// requests a signal to be delivered to the specified external workflow execution
-// and records a SignalExternalWorkflowExecutionInitiated event in the history.
+// in the history.  ScheduleActivityTask: schedules an activity task.  ScheduleLambdaFunction:
+// schedules a AWS Lambda function.  SignalExternalWorkflowExecution: requests
+// a signal to be delivered to the specified external workflow execution and
+// records a SignalExternalWorkflowExecutionInitiated event in the history.
 //  StartChildWorkflowExecution: requests that a child workflow execution be
 // started and records a StartChildWorkflowExecutionInitiated event in the history.
 // The child workflow execution is a separate workflow execution with its own
@@ -2791,8 +2798,11 @@ func (s CountPendingDecisionTasksInput) GoString() string {
 //
 //   ScheduleActivityTaskFailed: a ScheduleActivityTask decision failed. This
 // could happen if the activity type specified in the decision is not registered,
-// is in a deprecated state, or the decision is not properly configured.  RequestCancelActivityTaskFailed:
-// a RequestCancelActivityTask decision failed. This could happen if there is
+// is in a deprecated state, or the decision is not properly configured.  ScheduleLambdaFunctionFailed:
+// a ScheduleLambdaFunctionFailed decision failed. This could happen if the
+// AWS Lambda function specified in the decision does not exist, or the AWS
+// Lambda service's limits are exceeded.  RequestCancelActivityTaskFailed: a
+// RequestCancelActivityTask decision failed. This could happen if there is
 // no open activity task with the specified activityId.  StartTimerFailed: a
 // StartTimer decision failed. This could happen if there is another open timer
 // with the same timerId.  CancelTimerFailed: a CancelTimer decision failed.
@@ -2828,18 +2838,18 @@ func (s CountPendingDecisionTasksInput) GoString() string {
 // RespondDecisionTaskCompleted without any decisions. This would result in
 // another decision task with these new events included in the history. The
 // decider should handle the new events and may decide to close the workflow
-// execution. How to Code a Decision
+// execution. How to code a decision
 //
 // You code a decision by first setting the decision type field to one of the
 // above decision values, and then set the corresponding attributes field shown
 // below:
 //
-//   ScheduleActivityTaskDecisionAttributes   RequestCancelActivityTaskDecisionAttributes
-//   CompleteWorkflowExecutionDecisionAttributes   FailWorkflowExecutionDecisionAttributes
-//   CancelWorkflowExecutionDecisionAttributes   ContinueAsNewWorkflowExecutionDecisionAttributes
-//   RecordMarkerDecisionAttributes   StartTimerDecisionAttributes   CancelTimerDecisionAttributes
-//   SignalExternalWorkflowExecutionDecisionAttributes   RequestCancelExternalWorkflowExecutionDecisionAttributes
-//   StartChildWorkflowExecutionDecisionAttributes
+//   ScheduleActivityTaskDecisionAttributes   ScheduleLambdaFunctionDecisionAttributes
+//   RequestCancelActivityTaskDecisionAttributes   CompleteWorkflowExecutionDecisionAttributes
+//   FailWorkflowExecutionDecisionAttributes   CancelWorkflowExecutionDecisionAttributes
+//   ContinueAsNewWorkflowExecutionDecisionAttributes   RecordMarkerDecisionAttributes
+//   StartTimerDecisionAttributes   CancelTimerDecisionAttributes   SignalExternalWorkflowExecutionDecisionAttributes
+//   RequestCancelExternalWorkflowExecutionDecisionAttributes   StartChildWorkflowExecutionDecisionAttributes
 type Decision struct {
 	// Provides details of the CancelTimer decision. It is not set for other decision
 	// types.
@@ -2880,6 +2890,26 @@ type Decision struct {
 	// other decision types.
 	ScheduleActivityTaskDecisionAttributes *ScheduleActivityTaskDecisionAttributes `locationName:"scheduleActivityTaskDecisionAttributes" type:"structure"`
 
+	// Provides details of the ScheduleLambdaFunction decision.
+	//
+	// Access Control
+	//
+	// You can use IAM policies to control this decision's access to Amazon SWF
+	// resources as follows:
+	//
+	//  Use a Resource element with the domain name to limit the action to only
+	// specified domains. Use an Action element to allow or deny permission to call
+	// this action. Constrain the following parameters by using a Condition element
+	// with the appropriate keys.  activityType.name: String constraint. The key
+	// is swf:activityType.name. activityType.version: String constraint. The key
+	// is swf:activityType.version. taskList: String constraint. The key is swf:taskList.name.
+	//    If the caller does not have sufficient permissions to invoke the action,
+	// or the parameter values fall outside the specified constraints, the action
+	// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+	// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+	// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	ScheduleLambdaFunctionDecisionAttributes *ScheduleLambdaFunctionDecisionAttributes `locationName:"scheduleLambdaFunctionDecisionAttributes" type:"structure"`
+
 	// Provides details of the SignalExternalWorkflowExecution decision. It is not
 	// set for other decision types.
 	SignalExternalWorkflowExecutionDecisionAttributes *SignalExternalWorkflowExecutionDecisionAttributes `locationName:"signalExternalWorkflowExecutionDecisionAttributes" type:"structure"`
@@ -2914,12 +2944,12 @@ type DecisionTaskCompletedEventAttributes struct {
 	// User defined context for the workflow execution.
 	ExecutionContext *string `locationName:"executionContext" type:"string"`
 
-	// The id of the DecisionTaskScheduled event that was recorded when this decision
+	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	// The Id of the DecisionTaskStarted event recorded when this decision task
+	// The ID of the DecisionTaskStarted event recorded when this decision task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -2986,7 +3016,7 @@ type DecisionTaskStartedEventAttributes struct {
 	// when problems arise. The form of this identity is user defined.
 	Identity *string `locationName:"identity" type:"string"`
 
-	// The id of the DecisionTaskScheduled event that was recorded when this decision
+	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
@@ -3010,12 +3040,12 @@ func (s DecisionTaskStartedEventAttributes) GoString() string {
 
 // Provides details of the DecisionTaskTimedOut event.
 type DecisionTaskTimedOutEventAttributes struct {
-	// The id of the DecisionTaskScheduled event that was recorded when this decision
+	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
 	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
-	// The Id of the DecisionTaskStarted event recorded when this decision task
+	// The ID of the DecisionTaskStarted event recorded when this decision task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
@@ -3474,7 +3504,7 @@ func (s ExecutionTimeFilter) GoString() string {
 
 // Provides details of the ExternalWorkflowExecutionCancelRequested event.
 type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
-	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
+	// The ID of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
 	// workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
@@ -3502,7 +3532,7 @@ func (s ExternalWorkflowExecutionCancelRequestedEventAttributes) GoString() stri
 
 // Provides details of the ExternalWorkflowExecutionSignaled event.
 type ExternalWorkflowExecutionSignaledEventAttributes struct {
-	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
+	// The ID of the SignalExternalWorkflowExecutionInitiated event corresponding
 	// to the SignalExternalWorkflowExecution decision to request this signal. This
 	// information can be useful for diagnosing problems by tracing back the chain
 	// of events leading up to this event.
@@ -3577,7 +3607,7 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"FailWorkflowExecutionFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the FailWorkflowExecution decision to fail this execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
@@ -3608,9 +3638,9 @@ type GetWorkflowExecutionHistoryInput struct {
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -3709,12 +3739,12 @@ func (s GetWorkflowExecutionHistoryOutput) GoString() string {
 //  TimerStarted: A timer was started for the workflow execution due to a StartTimer
 // decision.  StartTimerFailed: Failed to process StartTimer decision. This
 // happens when the decision is not configured properly, for example a timer
-// already exists with the specified timer Id.  TimerFired: A timer, previously
+// already exists with the specified timer ID.  TimerFired: A timer, previously
 // started for this workflow execution, fired.  TimerCanceled: A timer, previously
 // started for this workflow execution, was successfully canceled.  CancelTimerFailed:
 // Failed to process CancelTimer decision. This happens when the decision is
 // not configured properly, for example no timer exists with the specified timer
-// Id.  StartChildWorkflowExecutionInitiated: A request was made to start a
+// ID.  StartChildWorkflowExecutionInitiated: A request was made to start a
 // child workflow execution.  StartChildWorkflowExecutionFailed: Failed to process
 // StartChildWorkflowExecution decision. This happens when the decision is not
 // configured properly, for example the workflow type specified is not registered.
@@ -3735,7 +3765,17 @@ func (s GetWorkflowExecutionHistoryOutput) GoString() string {
 // A request was made to request the cancellation of an external workflow execution.
 //  ExternalWorkflowExecutionCancelRequested: Request to cancel an external
 // workflow execution was successfully delivered to the target execution.  RequestCancelExternalWorkflowExecutionFailed:
-// Request to cancel an external workflow execution failed.
+// Request to cancel an external workflow execution failed.  LambdaFunctionScheduled:
+// An AWS Lambda function was scheduled for execution.  LambdaFunctionStarted:
+// The scheduled function was invoked in the AWS Lambda service.  LambdaFunctionCompleted:
+// The AWS Lambda function successfully completed.  LambdaFunctionFailed: The
+// AWS Lambda function execution failed.  LambdaFunctionTimedOut: The AWS Lambda
+// function execution timed out.  ScheduleLambdaFunctionFailed: Failed to process
+// ScheduleLambdaFunction decision. This happens when the workflow execution
+// does not have the proper IAM role attached to invoke AWS Lambda functions.
+//  StartLambdaFunctionFailed: Failed to invoke the scheduled function in the
+// AWS Lambda service. This happens when the AWS Lambda service is not available
+// in the current region, or received too many requests.
 type HistoryEvent struct {
 	// If the event is of type ActivityTaskcancelRequested then this member is set
 	// and provides detailed information about the event. It is not set for other
@@ -3838,7 +3878,7 @@ type HistoryEvent struct {
 	// types.
 	DecisionTaskTimedOutEventAttributes *DecisionTaskTimedOutEventAttributes `locationName:"decisionTaskTimedOutEventAttributes" type:"structure"`
 
-	// The system generated id of the event. This id uniquely identifies the event
+	// The system generated ID of the event. This ID uniquely identifies the event
 	// with in the workflow execution history.
 	EventID *int64 `locationName:"eventId" type:"long" required:"true"`
 
@@ -3862,6 +3902,21 @@ type HistoryEvent struct {
 	// and provides detailed information about the event. It is not set for other
 	// event types.
 	FailWorkflowExecutionFailedEventAttributes *FailWorkflowExecutionFailedEventAttributes `locationName:"failWorkflowExecutionFailedEventAttributes" type:"structure"`
+
+	// Provides details for the LambdaFunctionCompleted event.
+	LambdaFunctionCompletedEventAttributes *LambdaFunctionCompletedEventAttributes `locationName:"lambdaFunctionCompletedEventAttributes" type:"structure"`
+
+	// Provides details for the LambdaFunctionFailed event.
+	LambdaFunctionFailedEventAttributes *LambdaFunctionFailedEventAttributes `locationName:"lambdaFunctionFailedEventAttributes" type:"structure"`
+
+	// Provides details for the LambdaFunctionScheduled event.
+	LambdaFunctionScheduledEventAttributes *LambdaFunctionScheduledEventAttributes `locationName:"lambdaFunctionScheduledEventAttributes" type:"structure"`
+
+	// Provides details for the LambdaFunctionStarted event.
+	LambdaFunctionStartedEventAttributes *LambdaFunctionStartedEventAttributes `locationName:"lambdaFunctionStartedEventAttributes" type:"structure"`
+
+	// Provides details for the LambdaFunctionTimedOut event.
+	LambdaFunctionTimedOutEventAttributes *LambdaFunctionTimedOutEventAttributes `locationName:"lambdaFunctionTimedOutEventAttributes" type:"structure"`
 
 	// If the event is of type MarkerRecorded then this member is set and provides
 	// detailed information about the event. It is not set for other event types.
@@ -3891,6 +3946,9 @@ type HistoryEvent struct {
 	// event types.
 	ScheduleActivityTaskFailedEventAttributes *ScheduleActivityTaskFailedEventAttributes `locationName:"scheduleActivityTaskFailedEventAttributes" type:"structure"`
 
+	// Provides details for the ScheduleLambdaFunctionFailed event.
+	ScheduleLambdaFunctionFailedEventAttributes *ScheduleLambdaFunctionFailedEventAttributes `locationName:"scheduleLambdaFunctionFailedEventAttributes" type:"structure"`
+
 	// If the event is of type SignalExternalWorkflowExecutionFailed then this member
 	// is set and provides detailed information about the event. It is not set for
 	// other event types.
@@ -3910,6 +3968,9 @@ type HistoryEvent struct {
 	// is set and provides detailed information about the event. It is not set for
 	// other event types.
 	StartChildWorkflowExecutionInitiatedEventAttributes *StartChildWorkflowExecutionInitiatedEventAttributes `locationName:"startChildWorkflowExecutionInitiatedEventAttributes" type:"structure"`
+
+	// Provides details for the StartLambdaFunctionFailed event.
+	StartLambdaFunctionFailedEventAttributes *StartLambdaFunctionFailedEventAttributes `locationName:"startLambdaFunctionFailedEventAttributes" type:"structure"`
 
 	// If the event is of type StartTimerFailed then this member is set and provides
 	// detailed information about the event. It is not set for other event types.
@@ -3989,14 +4050,169 @@ func (s HistoryEvent) GoString() string {
 	return s.String()
 }
 
+// Provides details for the LambdaFunctionCompleted event.
+type LambdaFunctionCompletedEventAttributes struct {
+	// The result of the function execution (if any).
+	Result *string `locationName:"result" type:"string"`
+
+	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
+	// Lambda function was scheduled. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The ID of the LambdaFunctionStarted event recorded in the history.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	metadataLambdaFunctionCompletedEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataLambdaFunctionCompletedEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionCompletedEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionCompletedEventAttributes) GoString() string {
+	return s.String()
+}
+
+// Provides details for the LambdaFunctionFailed event.
+type LambdaFunctionFailedEventAttributes struct {
+	// The details of the failure (if any).
+	Details *string `locationName:"details" type:"string"`
+
+	// The reason provided for the failure (if any).
+	Reason *string `locationName:"reason" type:"string"`
+
+	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
+	// Lambda function was scheduled. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The ID of the LambdaFunctionStarted event recorded in the history.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	metadataLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataLambdaFunctionFailedEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionFailedEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
+// Provides details for the LambdaFunctionScheduled event.
+type LambdaFunctionScheduledEventAttributes struct {
+	// The ID of the DecisionTaskCompleted event for the decision that resulted
+	// in the scheduling of this AWS Lambda function. This information can be useful
+	// for diagnosing problems by tracing back the chain of events leading up to
+	// this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The unique Amazon SWF ID for the AWS Lambda task.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// Input provided to the AWS Lambda function.
+	Input *string `locationName:"input" type:"string"`
+
+	// The name of the scheduled AWS Lambda function.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The maximum time, in seconds, that the AWS Lambda function can take to execute
+	// from start to close before it is marked as failed.
+	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
+
+	metadataLambdaFunctionScheduledEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataLambdaFunctionScheduledEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionScheduledEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionScheduledEventAttributes) GoString() string {
+	return s.String()
+}
+
+// Provides details for the LambdaFunctionStarted event.
+type LambdaFunctionStartedEventAttributes struct {
+	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
+	// Lambda function was scheduled. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	metadataLambdaFunctionStartedEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataLambdaFunctionStartedEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionStartedEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionStartedEventAttributes) GoString() string {
+	return s.String()
+}
+
+// Provides details for the LambdaFunctionTimedOut event.
+type LambdaFunctionTimedOutEventAttributes struct {
+	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
+	// Lambda function was scheduled. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+
+	// The ID of the LambdaFunctionStarted event recorded in the history.
+	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+
+	// The type of the timeout that caused this event.
+	TimeoutType *string `locationName:"timeoutType" type:"string" enum:"LambdaFunctionTimeoutType"`
+
+	metadataLambdaFunctionTimedOutEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataLambdaFunctionTimedOutEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LambdaFunctionTimedOutEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaFunctionTimedOutEventAttributes) GoString() string {
+	return s.String()
+}
+
 type ListActivityTypesInput struct {
 	// The name of the domain in which the activity types have been registered.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -4088,7 +4304,7 @@ type ListClosedWorkflowExecutionsInput struct {
 	// The name of the domain that contains the workflow executions to list.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
-	// If specified, only workflow executions matching the workflow id specified
+	// If specified, only workflow executions matching the workflow ID specified
 	// in the filter are returned.
 	//
 	// closeStatusFilter, executionFilter, typeFilter and tagFilter are mutually
@@ -4096,9 +4312,9 @@ type ListClosedWorkflowExecutionsInput struct {
 	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -4156,9 +4372,9 @@ func (s ListClosedWorkflowExecutionsInput) GoString() string {
 
 type ListDomainsInput struct {
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -4230,7 +4446,7 @@ type ListOpenWorkflowExecutionsInput struct {
 	// The name of the domain that contains the workflow executions to list.
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
-	// If specified, only workflow executions matching the workflow id specified
+	// If specified, only workflow executions matching the workflow ID specified
 	// in the filter are returned.
 	//
 	// executionFilter, typeFilter and tagFilter are mutually exclusive. You can
@@ -4238,9 +4454,9 @@ type ListOpenWorkflowExecutionsInput struct {
 	ExecutionFilter *WorkflowExecutionFilter `locationName:"executionFilter" type:"structure"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -4296,9 +4512,9 @@ type ListWorkflowTypesInput struct {
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -4372,7 +4588,7 @@ func (s ListWorkflowTypesOutput) GoString() string {
 
 // Provides details of the MarkerRecorded event.
 type MarkerRecordedEventAttributes struct {
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RecordMarker decision that requested this marker. This
 	// information can be useful for diagnosing problems by tracing back the chain
 	// of events leading up to this event.
@@ -4473,7 +4689,7 @@ type PollForActivityTaskOutput struct {
 	// input is user defined and should be meaningful to the activity implementation.
 	Input *string `locationName:"input" type:"string"`
 
-	// The id of the ActivityTaskStarted event recorded in the history.
+	// The ID of the ActivityTaskStarted event recorded in the history.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The opaque string used as a handle on the task. This token is used by workers
@@ -4511,9 +4727,9 @@ type PollForDecisionTaskInput struct {
 	Identity *string `locationName:"identity" type:"string"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
-	// can be used to obtain futher pages of results. The default is 100, which
+	// can be used to obtain futher pages of results. The default is 1000, which
 	// is the maximum allowed page size. You can, however, specify a page size smaller
-	// than 100.
+	// than the maximum.
 	//
 	// This is an upper limit only; the actual number of results returned per call
 	// may be fewer than the specified maximum.
@@ -4576,13 +4792,13 @@ type PollForDecisionTaskOutput struct {
 	// in a single call.
 	NextPageToken *string `locationName:"nextPageToken" type:"string"`
 
-	// The id of the DecisionTaskStarted event of the previous decision task of
+	// The ID of the DecisionTaskStarted event of the previous decision task of
 	// this workflow execution that was processed by the decider. This can be used
 	// to determine the events in the history new since the last decision task received
 	// by the decider.
 	PreviousStartedEventID *int64 `locationName:"previousStartedEventId" type:"long"`
 
-	// The id of the DecisionTaskStarted event recorded in the history.
+	// The ID of the DecisionTaskStarted event recorded in the history.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The opaque string used as a handle on the task. This token is used by workers
@@ -4712,7 +4928,7 @@ type RecordMarkerFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"RecordMarkerFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RecordMarkerFailed decision for this cancellation request.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
@@ -4743,7 +4959,7 @@ type RegisterActivityTypeInput struct {
 	// a task of this type must report progress by calling RecordActivityTaskHeartbeat.
 	// If the timeout is exceeded, the activity task is automatically timed out.
 	// This default can be overridden when scheduling an activity task using the
-	// ScheduleActivityTask Decision. If the activity worker subsequently attempts
+	// ScheduleActivityTask decision. If the activity worker subsequently attempts
 	// to record a heartbeat or returns a result, the activity worker receives an
 	// UnknownResource fault. In this case, Amazon SWF no longer considers the activity
 	// task to be valid; the activity worker should clean up the activity task.
@@ -4754,7 +4970,7 @@ type RegisterActivityTypeInput struct {
 
 	// If set, specifies the default task list to use for scheduling tasks of this
 	// activity type. This default task list is used if a task list is not provided
-	// when a task is scheduled through the ScheduleActivityTask Decision.
+	// when a task is scheduled through the ScheduleActivityTask decision.
 	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
 
 	// The default task priority to assign to the activity type. If not assigned,
@@ -4769,7 +4985,7 @@ type RegisterActivityTypeInput struct {
 
 	// If set, specifies the default maximum duration for a task of this activity
 	// type. This default can be overridden when scheduling an activity task using
-	// the ScheduleActivityTask Decision.
+	// the ScheduleActivityTask decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -4777,7 +4993,7 @@ type RegisterActivityTypeInput struct {
 
 	// If set, specifies the default maximum duration that a task of this activity
 	// type can wait before being assigned to a worker. This default can be overridden
-	// when scheduling an activity task using the ScheduleActivityTask Decision.
+	// when scheduling an activity task using the ScheduleActivityTask decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -4785,7 +5001,7 @@ type RegisterActivityTypeInput struct {
 
 	// If set, specifies the default maximum duration that a worker can take to
 	// process tasks of this activity type. This default can be overridden when
-	// scheduling an activity task using the ScheduleActivityTask Decision.
+	// scheduling an activity task using the ScheduleActivityTask decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -4915,7 +5131,7 @@ type RegisterWorkflowTypeInput struct {
 	// when a workflow execution of this type is terminated, by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This default can be overridden
 	// when starting a workflow execution using the StartWorkflowExecution action
-	// or the StartChildWorkflowExecution Decision.
+	// or the StartChildWorkflowExecution decision.
 	//
 	// The supported child policies are:
 	//
@@ -4928,7 +5144,7 @@ type RegisterWorkflowTypeInput struct {
 
 	// If set, specifies the default maximum duration for executions of this workflow
 	// type. You can override this default when starting an execution through the
-	// StartWorkflowExecution Action or StartChildWorkflowExecution Decision.
+	// StartWorkflowExecution action or StartChildWorkflowExecution decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. Unlike some of the other timeout parameters in Amazon SWF, you cannot
@@ -4937,10 +5153,18 @@ type RegisterWorkflowTypeInput struct {
 	// this limit will always cause the workflow execution to time out.
 	DefaultExecutionStartToCloseTimeout *string `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
 
+	// The ARN of the default IAM role to use when a workflow execution of this
+	// type invokes AWS Lambda functions.
+	//
+	// This default can be overridden when starting a workflow execution using
+	// the StartWorkflowExecution action or the StartChildWorkflowExecution and
+	// ContinueAsNewWorkflowExecution decision.
+	DefaultLambdaRole *string `locationName:"defaultLambdaRole" type:"string"`
+
 	// If set, specifies the default task list to use for scheduling decision tasks
 	// for executions of this workflow type. This default is used only if a task
 	// list is not provided when starting the execution through the StartWorkflowExecution
-	// Action or StartChildWorkflowExecution Decision.
+	// action or StartChildWorkflowExecution decision.
 	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
 
 	// The default task priority to assign to the workflow type. If not assigned,
@@ -4956,7 +5180,7 @@ type RegisterWorkflowTypeInput struct {
 	// If set, specifies the default maximum duration of decision tasks for this
 	// workflow type. This default can be overridden when starting a workflow execution
 	// using the StartWorkflowExecution action or the StartChildWorkflowExecution
-	// Decision.
+	// decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -5070,7 +5294,7 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"RequestCancelActivityTaskFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelActivityTask decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
@@ -5148,13 +5372,13 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelExternalWorkflowExecution decision for
 	// this cancellation request. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
+	// The ID of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
 	// workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
@@ -5190,7 +5414,7 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// workflow tasks.
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelExternalWorkflowExecution decision for
 	// this cancellation request. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
@@ -5408,7 +5632,7 @@ func (s RespondActivityTaskFailedOutput) GoString() string {
 
 type RespondDecisionTaskCompletedInput struct {
 	// The list of decisions (possibly empty) made by the decider while processing
-	// this decision task. See the docs for the Decision structure for details.
+	// this decision task. See the docs for the decision structure for details.
 	Decisions []*Decision `locationName:"decisions" type:"list"`
 
 	// User defined context to add to workflow execution.
@@ -5598,7 +5822,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"ScheduleActivityTaskFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision that
+	// The ID of the DecisionTaskCompleted event corresponding to the decision that
 	// resulted in the scheduling of this activity task. This information can be
 	// useful for diagnosing problems by tracing back the chain of events leading
 	// up to this event.
@@ -5618,6 +5842,98 @@ func (s ScheduleActivityTaskFailedEventAttributes) String() string {
 
 // GoString returns the string representation
 func (s ScheduleActivityTaskFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
+// Provides details of the ScheduleLambdaFunction decision.
+//
+// Access Control
+//
+// You can use IAM policies to control this decision's access to Amazon SWF
+// resources as follows:
+//
+//  Use a Resource element with the domain name to limit the action to only
+// specified domains. Use an Action element to allow or deny permission to call
+// this action. Constrain the following parameters by using a Condition element
+// with the appropriate keys.  activityType.name: String constraint. The key
+// is swf:activityType.name. activityType.version: String constraint. The key
+// is swf:activityType.version. taskList: String constraint. The key is swf:taskList.name.
+//    If the caller does not have sufficient permissions to invoke the action,
+// or the parameter values fall outside the specified constraints, the action
+// fails. The associated event attribute's cause parameter will be set to OPERATION_NOT_PERMITTED.
+// For details and example IAM policies, see Using IAM to Manage Access to Amazon
+// SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+type ScheduleLambdaFunctionDecisionAttributes struct {
+	// Required. The SWF id of the AWS Lambda task.
+	//
+	// The specified string must not start or end with whitespace. It must not
+	// contain a : (colon), / (slash), | (vertical bar), or any control characters
+	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
+	// string quotarnquot.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// The input provided to the AWS Lambda function.
+	Input *string `locationName:"input" type:"string"`
+
+	// Required. The name of the AWS Lambda function to invoke.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// If set, specifies the maximum duration the function may take to execute.
+	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
+
+	metadataScheduleLambdaFunctionDecisionAttributes `json:"-" xml:"-"`
+}
+
+type metadataScheduleLambdaFunctionDecisionAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScheduleLambdaFunctionDecisionAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleLambdaFunctionDecisionAttributes) GoString() string {
+	return s.String()
+}
+
+// Provides details for the ScheduleLambdaFunctionFailed event.
+type ScheduleLambdaFunctionFailedEventAttributes struct {
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" required:"true" enum:"ScheduleLambdaFunctionFailedCause"`
+
+	// The ID of the DecisionTaskCompleted event corresponding to the decision that
+	// resulted in the scheduling of this AWS Lambda function. This information
+	// can be useful for diagnosing problems by tracing back the chain of events
+	// leading up to this event.
+	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+
+	// The unique Amazon SWF ID of the AWS Lambda task.
+	ID *string `locationName:"id" type:"string" required:"true"`
+
+	// The name of the scheduled AWS Lambda function.
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	metadataScheduleLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataScheduleLambdaFunctionFailedEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScheduleLambdaFunctionFailedEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleLambdaFunctionFailedEventAttributes) GoString() string {
 	return s.String()
 }
 
@@ -5684,13 +6000,13 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the SignalExternalWorkflowExecution decision for this signal.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
+	// The ID of the SignalExternalWorkflowExecutionInitiated event corresponding
 	// to the SignalExternalWorkflowExecution decision to request this signal. This
 	// information can be useful for diagnosing problems by tracing back the chain
 	// of events leading up to this event.
@@ -5727,7 +6043,7 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// decision tasks.
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the SignalExternalWorkflowExecution decision for this signal.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
@@ -5871,6 +6187,13 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// The input to be provided to the workflow execution.
 	Input *string `locationName:"input" type:"string"`
 
+	// The ARN of an IAM role that authorizes Amazon SWF to invoke AWS Lambda functions.
+	//
+	// In order for this workflow execution to invoke AWS Lambda functions, an
+	// appropriate IAM role must be specified either as a default for the workflow
+	// type or through this field.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+
 	// The list of tags to associate with the child workflow execution. A maximum
 	// of 5 tags can be specified. You can list workflow executions with a specific
 	// tag by calling ListOpenWorkflowExecutions or ListClosedWorkflowExecutions
@@ -5953,14 +6276,14 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
-	// that resulted in the StartChildWorkflowExecution Decision to request this
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the StartChildWorkflowExecution decision to request this
 	// child workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the cause of events.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this child workflow execution.
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
@@ -5968,7 +6291,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// The workflowId of the child workflow execution.
 	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
 
-	// The workflow type provided in the StartChildWorkflowExecution Decision that
+	// The workflow type provided in the StartChildWorkflowExecution decision that
 	// failed.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
 
@@ -6008,8 +6331,8 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	// decision tasks. This data is not sent to the activity.
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
-	// that resulted in the StartChildWorkflowExecution Decision to request this
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
+	// that resulted in the StartChildWorkflowExecution decision to request this
 	// child workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the cause of events.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
@@ -6023,6 +6346,10 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 
 	// The inputs provided to the child workflow execution (if any).
 	Input *string `locationName:"input" type:"string"`
+
+	// The IAM role attached to this workflow execution to use when invoking AWS
+	// Lambda functions.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
 
 	// The list of tags to associated with the child workflow execution.
 	TagList []*string `locationName:"tagList" type:"list"`
@@ -6070,6 +6397,41 @@ func (s StartChildWorkflowExecutionInitiatedEventAttributes) GoString() string {
 	return s.String()
 }
 
+// Provides details for the StartLambdaFunctionFailed event.
+type StartLambdaFunctionFailedEventAttributes struct {
+	// The cause of the failure. This information is generated by the system and
+	// can be useful for diagnostic purposes.
+	//
+	// If cause is set to OPERATION_NOT_PERMITTED, the decision failed because
+	// it lacked sufficient permissions. For details and example IAM policies, see
+	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
+	Cause *string `locationName:"cause" type:"string" enum:"StartLambdaFunctionFailedCause"`
+
+	// The error message (if any).
+	Message *string `locationName:"message" type:"string"`
+
+	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
+	// Lambda function was scheduled. This information can be useful for diagnosing
+	// problems by tracing back the chain of events leading up to this event.
+	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long"`
+
+	metadataStartLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
+}
+
+type metadataStartLambdaFunctionFailedEventAttributes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartLambdaFunctionFailedEventAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartLambdaFunctionFailedEventAttributes) GoString() string {
+	return s.String()
+}
+
 // Provides details of the StartTimer decision.
 //
 // Access Control
@@ -6096,7 +6458,7 @@ type StartTimerDecisionAttributes struct {
 	// 0.
 	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
 
-	// Required. The unique Id of the timer.
+	// Required. The unique ID of the timer.
 	//
 	// The specified string must not start or end with whitespace. It must not
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
@@ -6131,7 +6493,7 @@ type StartTimerFailedEventAttributes struct {
 	// Using IAM to Manage Access to Amazon SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 	Cause *string `locationName:"cause" type:"string" required:"true" enum:"StartTimerFailedCause"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the StartTimer decision for this activity task. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
@@ -6198,6 +6560,13 @@ type StartWorkflowExecutionInput struct {
 	// be meaningful to the workflow you are starting. This input is made available
 	// to the new workflow execution in the WorkflowExecutionStarted history event.
 	Input *string `locationName:"input" type:"string"`
+
+	// The ARN of an IAM role that authorizes Amazon SWF to invoke AWS Lambda functions.
+	//
+	// In order for this workflow execution to invoke AWS Lambda functions, an
+	// appropriate IAM role must be specified either as a default for the workflow
+	// type or through this field.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
 
 	// The list of tags to associate with the workflow execution. You can specify
 	// a maximum of 5 tags. You can list workflow executions with a specific tag
@@ -6277,7 +6646,7 @@ func (s StartWorkflowExecutionInput) GoString() string {
 
 // Specifies the runId of a workflow execution.
 type StartWorkflowExecutionOutput struct {
-	// The runId of a workflow execution. This Id is generated by the service and
+	// The runId of a workflow execution. This ID is generated by the service and
 	// can be used to uniquely identify the workflow execution within a domain.
 	RunID *string `locationName:"runId" type:"string"`
 
@@ -6414,18 +6783,18 @@ func (s TerminateWorkflowExecutionOutput) GoString() string {
 
 // Provides details of the TimerCanceled event.
 type TimerCanceledEventAttributes struct {
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelTimer decision to cancel this timer. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
 	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
-	// The id of the TimerStarted event that was recorded when this timer was started.
+	// The ID of the TimerStarted event that was recorded when this timer was started.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	// The unique Id of the timer that was canceled.
+	// The unique ID of the timer that was canceled.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerCanceledEventAttributes `json:"-" xml:"-"`
@@ -6447,12 +6816,12 @@ func (s TimerCanceledEventAttributes) GoString() string {
 
 // Provides details of the TimerFired event.
 type TimerFiredEventAttributes struct {
-	// The id of the TimerStarted event that was recorded when this timer was started.
+	// The ID of the TimerStarted event that was recorded when this timer was started.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
 	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
-	// The unique Id of the timer that fired.
+	// The unique ID of the timer that fired.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerFiredEventAttributes `json:"-" xml:"-"`
@@ -6478,7 +6847,7 @@ type TimerStartedEventAttributes struct {
 	// workflow tasks.
 	Control *string `locationName:"control" type:"string"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the StartTimer decision for this activity task. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
@@ -6490,7 +6859,7 @@ type TimerStartedEventAttributes struct {
 	// 0.
 	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
 
-	// The unique Id of the timer that was started.
+	// The unique ID of the timer that was started.
 	TimerID *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerStartedEventAttributes `json:"-" xml:"-"`
@@ -6542,9 +6911,9 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 	// times out or is terminated, and the child policy is set to cancel child executions.
 	Cause *string `locationName:"cause" type:"string" enum:"WorkflowExecutionCancelRequestedCause"`
 
-	// The id of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
+	// The ID of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this workflow
-	// execution.The source event with this Id can be found in the history of the
+	// execution.The source event with this ID can be found in the history of the
 	// source workflow execution. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
 	ExternalInitiatedEventID *int64 `locationName:"externalInitiatedEventId" type:"long"`
@@ -6571,7 +6940,7 @@ func (s WorkflowExecutionCancelRequestedEventAttributes) GoString() string {
 
 // Provides details of the WorkflowExecutionCanceled event.
 type WorkflowExecutionCanceledEventAttributes struct {
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CancelWorkflowExecution decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
@@ -6599,7 +6968,7 @@ func (s WorkflowExecutionCanceledEventAttributes) GoString() string {
 
 // Provides details of the WorkflowExecutionCompleted event.
 type WorkflowExecutionCompletedEventAttributes struct {
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the CompleteWorkflowExecution decision to complete this
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
@@ -6648,6 +7017,9 @@ type WorkflowExecutionConfiguration struct {
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string" required:"true"`
+
+	// The IAM role used by this workflow execution when invoking AWS Lambda functions.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
 
 	// The task list used for the decision tasks generated for this workflow execution.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
@@ -6699,7 +7071,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	// will be taken. The child executions will continue to run.
 	ChildPolicy *string `locationName:"childPolicy" type:"string" required:"true" enum:"ChildPolicy"`
 
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the ContinueAsNewWorkflowExecution decision that started
 	// this execution. This information can be useful for diagnosing problems by
 	// tracing back the chain of events leading up to this event.
@@ -6713,6 +7085,10 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 
 	// The input provided to the new workflow execution.
 	Input *string `locationName:"input" type:"string"`
+
+	// The IAM role attached to this workflow execution to use when invoking AWS
+	// Lambda functions.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
 
 	// The runId of the new workflow execution.
 	NewExecutionRunID *string `locationName:"newExecutionRunId" type:"string" required:"true"`
@@ -6780,7 +7156,7 @@ func (s WorkflowExecutionCount) GoString() string {
 
 // Provides details of the WorkflowExecutionFailed event.
 type WorkflowExecutionFailedEventAttributes struct {
-	// The id of the DecisionTaskCompleted event corresponding to the decision task
+	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the FailWorkflowExecution decision to fail this execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
@@ -6933,6 +7309,9 @@ type WorkflowExecutionOpenCounts struct {
 	// have at most one open decision task.
 	OpenDecisionTasks *int64 `locationName:"openDecisionTasks" type:"integer" required:"true"`
 
+	// The count of AWS Lambda functions that are currently executing.
+	OpenLambdaFunctions *int64 `locationName:"openLambdaFunctions" type:"integer"`
+
 	// The count of timers started by this workflow execution that have not fired
 	// yet.
 	OpenTimers *int64 `locationName:"openTimers" type:"integer" required:"true"`
@@ -6956,9 +7335,9 @@ func (s WorkflowExecutionOpenCounts) GoString() string {
 
 // Provides details of the WorkflowExecutionSignaled event.
 type WorkflowExecutionSignaledEventAttributes struct {
-	// The id of the SignalExternalWorkflowExecutionInitiated event corresponding
+	// The ID of the SignalExternalWorkflowExecutionInitiated event corresponding
 	// to the SignalExternalWorkflow decision to signal this workflow execution.The
-	// source event with this Id can be found in the history of the source workflow
+	// source event with this ID can be found in the history of the source workflow
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event. This field is set only
 	// if the signal was initiated by another workflow execution.
@@ -7022,9 +7401,13 @@ type WorkflowExecutionStartedEventAttributes struct {
 	// The input provided to the workflow execution (if any).
 	Input *string `locationName:"input" type:"string"`
 
-	// The id of the StartChildWorkflowExecutionInitiated event corresponding to
-	// the StartChildWorkflowExecution Decision to start this workflow execution.
-	// The source event with this Id can be found in the history of the source workflow
+	// The IAM role attached to this workflow execution to use when invoking AWS
+	// Lambda functions.
+	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+
+	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
+	// the StartChildWorkflowExecution decision to start this workflow execution.
+	// The source event with this ID can be found in the history of the source workflow
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
 	ParentInitiatedEventID *int64 `locationName:"parentInitiatedEventId" type:"long"`
@@ -7180,7 +7563,7 @@ type WorkflowTypeConfiguration struct {
 	// a workflow execution of this type is terminated, by calling the TerminateWorkflowExecution
 	// action explicitly or due to an expired timeout. This default can be overridden
 	// when starting a workflow execution using the StartWorkflowExecution action
-	// or the StartChildWorkflowExecution Decision.
+	// or the StartChildWorkflowExecution decision.
 	//
 	// The supported child policies are:
 	//
@@ -7194,16 +7577,20 @@ type WorkflowTypeConfiguration struct {
 	// Optional. The default maximum duration, specified when registering the workflow
 	// type, for executions of this workflow type. This default can be overridden
 	// when starting a workflow execution using the StartWorkflowExecution action
-	// or the StartChildWorkflowExecution Decision.
+	// or the StartChildWorkflowExecution decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
 	DefaultExecutionStartToCloseTimeout *string `locationName:"defaultExecutionStartToCloseTimeout" type:"string"`
 
+	// The default IAM role to use when a workflow execution invokes a AWS Lambda
+	// function.
+	DefaultLambdaRole *string `locationName:"defaultLambdaRole" type:"string"`
+
 	// Optional. The default task list, specified when registering the workflow
 	// type, for decisions tasks scheduled for workflow executions of this type.
 	// This default can be overridden when starting a workflow execution using the
-	// StartWorkflowExecution action or the StartChildWorkflowExecution Decision.
+	// StartWorkflowExecution action or the StartChildWorkflowExecution decision.
 	DefaultTaskList *TaskList `locationName:"defaultTaskList" type:"structure"`
 
 	// Optional. The default task priority, specified when registering the workflow
@@ -7225,7 +7612,7 @@ type WorkflowTypeConfiguration struct {
 	// specified time then the task is automatically timed out and rescheduled.
 	// If the decider eventually reports a completion or failure, it is ignored.
 	// This default can be overridden when starting a workflow execution using the
-	// StartWorkflowExecution action or the StartChildWorkflowExecution Decision.
+	// StartWorkflowExecution action or the StartChildWorkflowExecution decision.
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
@@ -7416,6 +7803,8 @@ const (
 	DecisionTypeRequestCancelExternalWorkflowExecution = "RequestCancelExternalWorkflowExecution"
 	// @enum DecisionType
 	DecisionTypeStartChildWorkflowExecution = "StartChildWorkflowExecution"
+	// @enum DecisionType
+	DecisionTypeScheduleLambdaFunction = "ScheduleLambdaFunction"
 )
 
 const (
@@ -7513,6 +7902,20 @@ const (
 	EventTypeRequestCancelExternalWorkflowExecutionFailed = "RequestCancelExternalWorkflowExecutionFailed"
 	// @enum EventType
 	EventTypeExternalWorkflowExecutionCancelRequested = "ExternalWorkflowExecutionCancelRequested"
+	// @enum EventType
+	EventTypeLambdaFunctionScheduled = "LambdaFunctionScheduled"
+	// @enum EventType
+	EventTypeLambdaFunctionStarted = "LambdaFunctionStarted"
+	// @enum EventType
+	EventTypeLambdaFunctionCompleted = "LambdaFunctionCompleted"
+	// @enum EventType
+	EventTypeLambdaFunctionFailed = "LambdaFunctionFailed"
+	// @enum EventType
+	EventTypeLambdaFunctionTimedOut = "LambdaFunctionTimedOut"
+	// @enum EventType
+	EventTypeScheduleLambdaFunctionFailed = "ScheduleLambdaFunctionFailed"
+	// @enum EventType
+	EventTypeStartLambdaFunctionFailed = "StartLambdaFunctionFailed"
 )
 
 const (
@@ -7527,6 +7930,11 @@ const (
 	FailWorkflowExecutionFailedCauseUnhandledDecision = "UNHANDLED_DECISION"
 	// @enum FailWorkflowExecutionFailedCause
 	FailWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum LambdaFunctionTimeoutType
+	LambdaFunctionTimeoutTypeStartToClose = "START_TO_CLOSE"
 )
 
 const (
@@ -7583,6 +7991,17 @@ const (
 )
 
 const (
+	// @enum ScheduleLambdaFunctionFailedCause
+	ScheduleLambdaFunctionFailedCauseIdAlreadyInUse = "ID_ALREADY_IN_USE"
+	// @enum ScheduleLambdaFunctionFailedCause
+	ScheduleLambdaFunctionFailedCauseOpenLambdaFunctionsLimitExceeded = "OPEN_LAMBDA_FUNCTIONS_LIMIT_EXCEEDED"
+	// @enum ScheduleLambdaFunctionFailedCause
+	ScheduleLambdaFunctionFailedCauseLambdaFunctionCreationRateExceeded = "LAMBDA_FUNCTION_CREATION_RATE_EXCEEDED"
+	// @enum ScheduleLambdaFunctionFailedCause
+	ScheduleLambdaFunctionFailedCauseLambdaServiceNotAvailableInRegion = "LAMBDA_SERVICE_NOT_AVAILABLE_IN_REGION"
+)
+
+const (
 	// @enum SignalExternalWorkflowExecutionFailedCause
 	SignalExternalWorkflowExecutionFailedCauseUnknownExternalWorkflowExecution = "UNKNOWN_EXTERNAL_WORKFLOW_EXECUTION"
 	// @enum SignalExternalWorkflowExecutionFailedCause
@@ -7614,6 +8033,11 @@ const (
 	StartChildWorkflowExecutionFailedCauseDefaultChildPolicyUndefined = "DEFAULT_CHILD_POLICY_UNDEFINED"
 	// @enum StartChildWorkflowExecutionFailedCause
 	StartChildWorkflowExecutionFailedCauseOperationNotPermitted = "OPERATION_NOT_PERMITTED"
+)
+
+const (
+	// @enum StartLambdaFunctionFailedCause
+	StartLambdaFunctionFailedCauseAssumeRoleFailed = "ASSUME_ROLE_FAILED"
 )
 
 const (

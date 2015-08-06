@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2012-01-25",
     "endpointPrefix":"swf",
@@ -833,6 +834,11 @@
         "nextPageToken":{"shape":"PageToken"}
       }
     },
+    "Arn":{
+      "type":"string",
+      "min":1,
+      "max":1224
+    },
     "CancelTimerDecisionAttributes":{
       "type":"structure",
       "required":["timerId"],
@@ -885,6 +891,10 @@
       }
     },
     "Canceled":{"type":"boolean"},
+    "CauseMessage":{
+      "type":"string",
+      "max":1728
+    },
     "ChildPolicy":{
       "type":"string",
       "enum":[
@@ -1039,7 +1049,8 @@
         "taskStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
         "childPolicy":{"shape":"ChildPolicy"},
         "tagList":{"shape":"TagList"},
-        "workflowTypeVersion":{"shape":"Version"}
+        "workflowTypeVersion":{"shape":"Version"},
+        "lambdaRole":{"shape":"Arn"}
       }
     },
     "ContinueAsNewWorkflowExecutionFailedCause":{
@@ -1140,7 +1151,8 @@
         "cancelTimerDecisionAttributes":{"shape":"CancelTimerDecisionAttributes"},
         "signalExternalWorkflowExecutionDecisionAttributes":{"shape":"SignalExternalWorkflowExecutionDecisionAttributes"},
         "requestCancelExternalWorkflowExecutionDecisionAttributes":{"shape":"RequestCancelExternalWorkflowExecutionDecisionAttributes"},
-        "startChildWorkflowExecutionDecisionAttributes":{"shape":"StartChildWorkflowExecutionDecisionAttributes"}
+        "startChildWorkflowExecutionDecisionAttributes":{"shape":"StartChildWorkflowExecutionDecisionAttributes"},
+        "scheduleLambdaFunctionDecisionAttributes":{"shape":"ScheduleLambdaFunctionDecisionAttributes"}
       }
     },
     "DecisionList":{
@@ -1226,7 +1238,8 @@
         "CancelTimer",
         "SignalExternalWorkflowExecution",
         "RequestCancelExternalWorkflowExecution",
-        "StartChildWorkflowExecution"
+        "StartChildWorkflowExecution",
+        "ScheduleLambdaFunction"
       ]
     },
     "DefaultUndefinedFault":{
@@ -1435,7 +1448,14 @@
         "ExternalWorkflowExecutionSignaled",
         "RequestCancelExternalWorkflowExecutionInitiated",
         "RequestCancelExternalWorkflowExecutionFailed",
-        "ExternalWorkflowExecutionCancelRequested"
+        "ExternalWorkflowExecutionCancelRequested",
+        "LambdaFunctionScheduled",
+        "LambdaFunctionStarted",
+        "LambdaFunctionCompleted",
+        "LambdaFunctionFailed",
+        "LambdaFunctionTimedOut",
+        "ScheduleLambdaFunctionFailed",
+        "StartLambdaFunctionFailed"
       ]
     },
     "ExecutionStatus":{
@@ -1503,6 +1523,21 @@
     "FailureReason":{
       "type":"string",
       "max":256
+    },
+    "FunctionId":{
+      "type":"string",
+      "min":1,
+      "max":256
+    },
+    "FunctionInput":{
+      "type":"string",
+      "min":1,
+      "max":32768
+    },
+    "FunctionName":{
+      "type":"string",
+      "min":1,
+      "max":64
     },
     "GetWorkflowExecutionHistoryInput":{
       "type":"structure",
@@ -1583,7 +1618,14 @@
         "requestCancelActivityTaskFailedEventAttributes":{"shape":"RequestCancelActivityTaskFailedEventAttributes"},
         "startTimerFailedEventAttributes":{"shape":"StartTimerFailedEventAttributes"},
         "cancelTimerFailedEventAttributes":{"shape":"CancelTimerFailedEventAttributes"},
-        "startChildWorkflowExecutionFailedEventAttributes":{"shape":"StartChildWorkflowExecutionFailedEventAttributes"}
+        "startChildWorkflowExecutionFailedEventAttributes":{"shape":"StartChildWorkflowExecutionFailedEventAttributes"},
+        "lambdaFunctionScheduledEventAttributes":{"shape":"LambdaFunctionScheduledEventAttributes"},
+        "lambdaFunctionStartedEventAttributes":{"shape":"LambdaFunctionStartedEventAttributes"},
+        "lambdaFunctionCompletedEventAttributes":{"shape":"LambdaFunctionCompletedEventAttributes"},
+        "lambdaFunctionFailedEventAttributes":{"shape":"LambdaFunctionFailedEventAttributes"},
+        "lambdaFunctionTimedOutEventAttributes":{"shape":"LambdaFunctionTimedOutEventAttributes"},
+        "scheduleLambdaFunctionFailedEventAttributes":{"shape":"ScheduleLambdaFunctionFailedEventAttributes"},
+        "startLambdaFunctionFailedEventAttributes":{"shape":"StartLambdaFunctionFailedEventAttributes"}
       }
     },
     "HistoryEventList":{
@@ -1593,6 +1635,69 @@
     "Identity":{
       "type":"string",
       "max":256
+    },
+    "LambdaFunctionCompletedEventAttributes":{
+      "type":"structure",
+      "required":[
+        "scheduledEventId",
+        "startedEventId"
+      ],
+      "members":{
+        "scheduledEventId":{"shape":"EventId"},
+        "startedEventId":{"shape":"EventId"},
+        "result":{"shape":"Data"}
+      }
+    },
+    "LambdaFunctionFailedEventAttributes":{
+      "type":"structure",
+      "required":[
+        "scheduledEventId",
+        "startedEventId"
+      ],
+      "members":{
+        "scheduledEventId":{"shape":"EventId"},
+        "startedEventId":{"shape":"EventId"},
+        "reason":{"shape":"FailureReason"},
+        "details":{"shape":"Data"}
+      }
+    },
+    "LambdaFunctionScheduledEventAttributes":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name",
+        "decisionTaskCompletedEventId"
+      ],
+      "members":{
+        "id":{"shape":"FunctionId"},
+        "name":{"shape":"FunctionName"},
+        "input":{"shape":"FunctionInput"},
+        "startToCloseTimeout":{"shape":"DurationInSecondsOptional"},
+        "decisionTaskCompletedEventId":{"shape":"EventId"}
+      }
+    },
+    "LambdaFunctionStartedEventAttributes":{
+      "type":"structure",
+      "required":["scheduledEventId"],
+      "members":{
+        "scheduledEventId":{"shape":"EventId"}
+      }
+    },
+    "LambdaFunctionTimedOutEventAttributes":{
+      "type":"structure",
+      "required":[
+        "scheduledEventId",
+        "startedEventId"
+      ],
+      "members":{
+        "scheduledEventId":{"shape":"EventId"},
+        "startedEventId":{"shape":"EventId"},
+        "timeoutType":{"shape":"LambdaFunctionTimeoutType"}
+      }
+    },
+    "LambdaFunctionTimeoutType":{
+      "type":"string",
+      "enum":["START_TO_CLOSE"]
     },
     "LimitExceededFault":{
       "type":"structure",
@@ -1837,7 +1942,8 @@
         "defaultExecutionStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
         "defaultTaskList":{"shape":"TaskList"},
         "defaultTaskPriority":{"shape":"TaskPriority"},
-        "defaultChildPolicy":{"shape":"ChildPolicy"}
+        "defaultChildPolicy":{"shape":"ChildPolicy"},
+        "defaultLambdaRole":{"shape":"Arn"}
       }
     },
     "RegistrationStatus":{
@@ -2033,6 +2139,43 @@
         "decisionTaskCompletedEventId":{"shape":"EventId"}
       }
     },
+    "ScheduleLambdaFunctionDecisionAttributes":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name"
+      ],
+      "members":{
+        "id":{"shape":"FunctionId"},
+        "name":{"shape":"FunctionName"},
+        "input":{"shape":"FunctionInput"},
+        "startToCloseTimeout":{"shape":"DurationInSecondsOptional"}
+      }
+    },
+    "ScheduleLambdaFunctionFailedCause":{
+      "type":"string",
+      "enum":[
+        "ID_ALREADY_IN_USE",
+        "OPEN_LAMBDA_FUNCTIONS_LIMIT_EXCEEDED",
+        "LAMBDA_FUNCTION_CREATION_RATE_EXCEEDED",
+        "LAMBDA_SERVICE_NOT_AVAILABLE_IN_REGION"
+      ]
+    },
+    "ScheduleLambdaFunctionFailedEventAttributes":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name",
+        "cause",
+        "decisionTaskCompletedEventId"
+      ],
+      "members":{
+        "id":{"shape":"FunctionId"},
+        "name":{"shape":"FunctionName"},
+        "cause":{"shape":"ScheduleLambdaFunctionFailedCause"},
+        "decisionTaskCompletedEventId":{"shape":"EventId"}
+      }
+    },
     "SignalExternalWorkflowExecutionDecisionAttributes":{
       "type":"structure",
       "required":[
@@ -2124,7 +2267,8 @@
         "taskPriority":{"shape":"TaskPriority"},
         "taskStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
         "childPolicy":{"shape":"ChildPolicy"},
-        "tagList":{"shape":"TagList"}
+        "tagList":{"shape":"TagList"},
+        "lambdaRole":{"shape":"Arn"}
       }
     },
     "StartChildWorkflowExecutionFailedCause":{
@@ -2181,7 +2325,20 @@
         "decisionTaskCompletedEventId":{"shape":"EventId"},
         "childPolicy":{"shape":"ChildPolicy"},
         "taskStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
-        "tagList":{"shape":"TagList"}
+        "tagList":{"shape":"TagList"},
+        "lambdaRole":{"shape":"Arn"}
+      }
+    },
+    "StartLambdaFunctionFailedCause":{
+      "type":"string",
+      "enum":["ASSUME_ROLE_FAILED"]
+    },
+    "StartLambdaFunctionFailedEventAttributes":{
+      "type":"structure",
+      "members":{
+        "scheduledEventId":{"shape":"EventId"},
+        "cause":{"shape":"StartLambdaFunctionFailedCause"},
+        "message":{"shape":"CauseMessage"}
       }
     },
     "StartTimerDecisionAttributes":{
@@ -2235,7 +2392,8 @@
         "executionStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
         "tagList":{"shape":"TagList"},
         "taskStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
-        "childPolicy":{"shape":"ChildPolicy"}
+        "childPolicy":{"shape":"ChildPolicy"},
+        "lambdaRole":{"shape":"Arn"}
       }
     },
     "Tag":{
@@ -2424,7 +2582,8 @@
         "executionStartToCloseTimeout":{"shape":"DurationInSeconds"},
         "taskList":{"shape":"TaskList"},
         "taskPriority":{"shape":"TaskPriority"},
-        "childPolicy":{"shape":"ChildPolicy"}
+        "childPolicy":{"shape":"ChildPolicy"},
+        "lambdaRole":{"shape":"Arn"}
       }
     },
     "WorkflowExecutionContinuedAsNewEventAttributes":{
@@ -2446,7 +2605,8 @@
         "taskStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
         "childPolicy":{"shape":"ChildPolicy"},
         "tagList":{"shape":"TagList"},
-        "workflowType":{"shape":"WorkflowType"}
+        "workflowType":{"shape":"WorkflowType"},
+        "lambdaRole":{"shape":"Arn"}
       }
     },
     "WorkflowExecutionCount":{
@@ -2532,7 +2692,8 @@
         "openActivityTasks":{"shape":"Count"},
         "openDecisionTasks":{"shape":"OpenDecisionTasksCount"},
         "openTimers":{"shape":"Count"},
-        "openChildWorkflowExecutions":{"shape":"Count"}
+        "openChildWorkflowExecutions":{"shape":"Count"},
+        "openLambdaFunctions":{"shape":"Count"}
       }
     },
     "WorkflowExecutionSignaledEventAttributes":{
@@ -2563,7 +2724,8 @@
         "taskPriority":{"shape":"TaskPriority"},
         "continuedExecutionRunId":{"shape":"RunIdOptional"},
         "parentWorkflowExecution":{"shape":"WorkflowExecution"},
-        "parentInitiatedEventId":{"shape":"EventId"}
+        "parentInitiatedEventId":{"shape":"EventId"},
+        "lambdaRole":{"shape":"Arn"}
       }
     },
     "WorkflowExecutionTerminatedCause":{
@@ -2622,7 +2784,8 @@
         "defaultExecutionStartToCloseTimeout":{"shape":"DurationInSecondsOptional"},
         "defaultTaskList":{"shape":"TaskList"},
         "defaultTaskPriority":{"shape":"TaskPriority"},
-        "defaultChildPolicy":{"shape":"ChildPolicy"}
+        "defaultChildPolicy":{"shape":"ChildPolicy"},
+        "defaultLambdaRole":{"shape":"Arn"}
       }
     },
     "WorkflowTypeDetail":{

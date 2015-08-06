@@ -766,6 +766,7 @@ func ExampleSWF_RegisterWorkflowType() {
 		Version:                             aws.String("Version"),    // Required
 		DefaultChildPolicy:                  aws.String("ChildPolicy"),
 		DefaultExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
+		DefaultLambdaRole:                   aws.String("Arn"),
 		DefaultTaskList: &swf.TaskList{
 			Name: aws.String("Name"), // Required
 		},
@@ -928,7 +929,8 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 				ContinueAsNewWorkflowExecutionDecisionAttributes: &swf.ContinueAsNewWorkflowExecutionDecisionAttributes{
 					ChildPolicy:                  aws.String("ChildPolicy"),
 					ExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
-					Input: aws.String("Data"),
+					Input:      aws.String("Data"),
+					LambdaRole: aws.String("Arn"),
 					TagList: []*string{
 						aws.String("Tag"), // Required
 						// More values...
@@ -973,6 +975,12 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 					},
 					TaskPriority: aws.String("TaskPriority"),
 				},
+				ScheduleLambdaFunctionDecisionAttributes: &swf.ScheduleLambdaFunctionDecisionAttributes{
+					ID:                  aws.String("FunctionId"),   // Required
+					Name:                aws.String("FunctionName"), // Required
+					Input:               aws.String("FunctionInput"),
+					StartToCloseTimeout: aws.String("DurationInSecondsOptional"),
+				},
 				SignalExternalWorkflowExecutionDecisionAttributes: &swf.SignalExternalWorkflowExecutionDecisionAttributes{
 					SignalName: aws.String("SignalName"), // Required
 					WorkflowID: aws.String("WorkflowId"), // Required
@@ -989,7 +997,8 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 					ChildPolicy: aws.String("ChildPolicy"),
 					Control:     aws.String("Data"),
 					ExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
-					Input: aws.String("Data"),
+					Input:      aws.String("Data"),
+					LambdaRole: aws.String("Arn"),
 					TagList: []*string{
 						aws.String("Tag"), // Required
 						// More values...
@@ -1074,7 +1083,8 @@ func ExampleSWF_StartWorkflowExecution() {
 		},
 		ChildPolicy:                  aws.String("ChildPolicy"),
 		ExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
-		Input: aws.String("Data"),
+		Input:      aws.String("Data"),
+		LambdaRole: aws.String("Arn"),
 		TagList: []*string{
 			aws.String("Tag"), // Required
 			// More values...
