@@ -79,7 +79,7 @@ func SendHandler(r *Request) {
 				return
 			}
 		}
-		if r.HTTPRequest == nil {
+		if r.HTTPResponse == nil {
 			// Add a dummy request response object to ensure the HTTPResponse
 			// value is consistent.
 			r.HTTPResponse = &http.Response{

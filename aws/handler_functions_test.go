@@ -1,6 +1,7 @@
 package aws
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"testing"
@@ -78,4 +79,26 @@ func TestAfterRetryRefreshCreds(t *testing.T) {
 	_, err := svc.Config.Credentials.Get()
 	assert.NoError(t, err)
 	assert.True(t, credProvider.retrieveCalled)
+}
+
+type testSendHandlerTransport struct{}
+
+func (t *testSendHandlerTransport) RoundTrip(r *http.Request) (*http.Response, error) {
+	return nil, fmt.Errorf("mock error")
+}
+
+func TestSendHandlerError(t *testing.T) {
+	svc := NewService(&Config{
+		HTTPClient: &http.Client{
+			Transport: &testSendHandlerTransport{},
+		},
+	})
+	svc.Handlers.Clear()
+	svc.Handlers.Send.PushBack(SendHandler)
+	r := NewRequest(svc, &Operation{Name: "Operation"}, nil, nil)
+
+	r.Send()
+
+	assert.Error(t, r.Error)
+	assert.NotNil(t, r.HTTPResponse)
 }
