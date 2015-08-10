@@ -6,15 +6,15 @@ package route53
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAssociateVPCWithHostedZone = "AssociateVPCWithHostedZone"
 
 // AssociateVPCWithHostedZoneRequest generates a request for the AssociateVPCWithHostedZone operation.
-func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHostedZoneInput) (req *aws.Request, output *AssociateVPCWithHostedZoneOutput) {
-	op := &aws.Operation{
+func (c *Route53) AssociateVPCWithHostedZoneRequest(input *AssociateVPCWithHostedZoneInput) (req *service.Request, output *AssociateVPCWithHostedZoneOutput) {
+	op := &service.Operation{
 		Name:       opAssociateVPCWithHostedZone,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}/associatevpc",
@@ -47,8 +47,8 @@ func (c *Route53) AssociateVPCWithHostedZone(input *AssociateVPCWithHostedZoneIn
 const opChangeResourceRecordSets = "ChangeResourceRecordSets"
 
 // ChangeResourceRecordSetsRequest generates a request for the ChangeResourceRecordSets operation.
-func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSetsInput) (req *aws.Request, output *ChangeResourceRecordSetsOutput) {
-	op := &aws.Operation{
+func (c *Route53) ChangeResourceRecordSetsRequest(input *ChangeResourceRecordSetsInput) (req *service.Request, output *ChangeResourceRecordSetsOutput) {
+	op := &service.Operation{
 		Name:       opChangeResourceRecordSets,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset/",
@@ -101,8 +101,8 @@ func (c *Route53) ChangeResourceRecordSets(input *ChangeResourceRecordSetsInput)
 const opChangeTagsForResource = "ChangeTagsForResource"
 
 // ChangeTagsForResourceRequest generates a request for the ChangeTagsForResource operation.
-func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput) (req *aws.Request, output *ChangeTagsForResourceOutput) {
-	op := &aws.Operation{
+func (c *Route53) ChangeTagsForResourceRequest(input *ChangeTagsForResourceInput) (req *service.Request, output *ChangeTagsForResourceOutput) {
+	op := &service.Operation{
 		Name:       opChangeTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/tags/{ResourceType}/{ResourceId}",
@@ -127,8 +127,8 @@ func (c *Route53) ChangeTagsForResource(input *ChangeTagsForResourceInput) (*Cha
 const opCreateHealthCheck = "CreateHealthCheck"
 
 // CreateHealthCheckRequest generates a request for the CreateHealthCheck operation.
-func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *aws.Request, output *CreateHealthCheckOutput) {
-	op := &aws.Operation{
+func (c *Route53) CreateHealthCheckRequest(input *CreateHealthCheckInput) (req *service.Request, output *CreateHealthCheckOutput) {
+	op := &service.Operation{
 		Name:       opCreateHealthCheck,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/healthcheck",
@@ -159,8 +159,8 @@ func (c *Route53) CreateHealthCheck(input *CreateHealthCheckInput) (*CreateHealt
 const opCreateHostedZone = "CreateHostedZone"
 
 // CreateHostedZoneRequest generates a request for the CreateHostedZone operation.
-func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *aws.Request, output *CreateHostedZoneOutput) {
-	op := &aws.Operation{
+func (c *Route53) CreateHostedZoneRequest(input *CreateHostedZoneInput) (req *service.Request, output *CreateHostedZoneOutput) {
+	op := &service.Operation{
 		Name:       opCreateHostedZone,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/hostedzone",
@@ -206,8 +206,8 @@ func (c *Route53) CreateHostedZone(input *CreateHostedZoneInput) (*CreateHostedZ
 const opCreateReusableDelegationSet = "CreateReusableDelegationSet"
 
 // CreateReusableDelegationSetRequest generates a request for the CreateReusableDelegationSet operation.
-func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelegationSetInput) (req *aws.Request, output *CreateReusableDelegationSetOutput) {
-	op := &aws.Operation{
+func (c *Route53) CreateReusableDelegationSetRequest(input *CreateReusableDelegationSetInput) (req *service.Request, output *CreateReusableDelegationSetOutput) {
+	op := &service.Operation{
 		Name:       opCreateReusableDelegationSet,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/delegationset",
@@ -241,8 +241,8 @@ func (c *Route53) CreateReusableDelegationSet(input *CreateReusableDelegationSet
 const opDeleteHealthCheck = "DeleteHealthCheck"
 
 // DeleteHealthCheckRequest generates a request for the DeleteHealthCheck operation.
-func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *aws.Request, output *DeleteHealthCheckOutput) {
-	op := &aws.Operation{
+func (c *Route53) DeleteHealthCheckRequest(input *DeleteHealthCheckInput) (req *service.Request, output *DeleteHealthCheckOutput) {
+	op := &service.Operation{
 		Name:       opDeleteHealthCheck,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
@@ -277,8 +277,8 @@ func (c *Route53) DeleteHealthCheck(input *DeleteHealthCheckInput) (*DeleteHealt
 const opDeleteHostedZone = "DeleteHostedZone"
 
 // DeleteHostedZoneRequest generates a request for the DeleteHostedZone operation.
-func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *aws.Request, output *DeleteHostedZoneOutput) {
-	op := &aws.Operation{
+func (c *Route53) DeleteHostedZoneRequest(input *DeleteHostedZoneInput) (req *service.Request, output *DeleteHostedZoneOutput) {
+	op := &service.Operation{
 		Name:       opDeleteHostedZone,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}",
@@ -317,8 +317,8 @@ func (c *Route53) DeleteHostedZone(input *DeleteHostedZoneInput) (*DeleteHostedZ
 const opDeleteReusableDelegationSet = "DeleteReusableDelegationSet"
 
 // DeleteReusableDelegationSetRequest generates a request for the DeleteReusableDelegationSet operation.
-func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelegationSetInput) (req *aws.Request, output *DeleteReusableDelegationSetOutput) {
-	op := &aws.Operation{
+func (c *Route53) DeleteReusableDelegationSetRequest(input *DeleteReusableDelegationSetInput) (req *service.Request, output *DeleteReusableDelegationSetOutput) {
+	op := &service.Operation{
 		Name:       opDeleteReusableDelegationSet,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2013-04-01/delegationset/{Id}",
@@ -352,8 +352,8 @@ func (c *Route53) DeleteReusableDelegationSet(input *DeleteReusableDelegationSet
 const opDisassociateVPCFromHostedZone = "DisassociateVPCFromHostedZone"
 
 // DisassociateVPCFromHostedZoneRequest generates a request for the DisassociateVPCFromHostedZone operation.
-func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFromHostedZoneInput) (req *aws.Request, output *DisassociateVPCFromHostedZoneOutput) {
-	op := &aws.Operation{
+func (c *Route53) DisassociateVPCFromHostedZoneRequest(input *DisassociateVPCFromHostedZoneInput) (req *service.Request, output *DisassociateVPCFromHostedZoneOutput) {
+	op := &service.Operation{
 		Name:       opDisassociateVPCFromHostedZone,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}/disassociatevpc",
@@ -386,8 +386,8 @@ func (c *Route53) DisassociateVPCFromHostedZone(input *DisassociateVPCFromHosted
 const opGetChange = "GetChange"
 
 // GetChangeRequest generates a request for the GetChange operation.
-func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *aws.Request, output *GetChangeOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetChangeRequest(input *GetChangeInput) (req *service.Request, output *GetChangeOutput) {
+	op := &service.Operation{
 		Name:       opGetChange,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/change/{Id}",
@@ -421,8 +421,8 @@ func (c *Route53) GetChange(input *GetChangeInput) (*GetChangeOutput, error) {
 const opGetCheckerIPRanges = "GetCheckerIpRanges"
 
 // GetCheckerIPRangesRequest generates a request for the GetCheckerIPRanges operation.
-func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req *aws.Request, output *GetCheckerIPRangesOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req *service.Request, output *GetCheckerIPRangesOutput) {
+	op := &service.Operation{
 		Name:       opGetCheckerIPRanges,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/checkeripranges",
@@ -451,8 +451,8 @@ func (c *Route53) GetCheckerIPRanges(input *GetCheckerIPRangesInput) (*GetChecke
 const opGetGeoLocation = "GetGeoLocation"
 
 // GetGeoLocationRequest generates a request for the GetGeoLocation operation.
-func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *aws.Request, output *GetGeoLocationOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetGeoLocationRequest(input *GetGeoLocationInput) (req *service.Request, output *GetGeoLocationOutput) {
+	op := &service.Operation{
 		Name:       opGetGeoLocation,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/geolocation",
@@ -480,8 +480,8 @@ func (c *Route53) GetGeoLocation(input *GetGeoLocationInput) (*GetGeoLocationOut
 const opGetHealthCheck = "GetHealthCheck"
 
 // GetHealthCheckRequest generates a request for the GetHealthCheck operation.
-func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *aws.Request, output *GetHealthCheckOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetHealthCheckRequest(input *GetHealthCheckInput) (req *service.Request, output *GetHealthCheckOutput) {
+	op := &service.Operation{
 		Name:       opGetHealthCheck,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
@@ -508,8 +508,8 @@ func (c *Route53) GetHealthCheck(input *GetHealthCheckInput) (*GetHealthCheckOut
 const opGetHealthCheckCount = "GetHealthCheckCount"
 
 // GetHealthCheckCountRequest generates a request for the GetHealthCheckCount operation.
-func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (req *aws.Request, output *GetHealthCheckCountOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetHealthCheckCountRequest(input *GetHealthCheckCountInput) (req *service.Request, output *GetHealthCheckCountOutput) {
+	op := &service.Operation{
 		Name:       opGetHealthCheckCount,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/healthcheckcount",
@@ -536,8 +536,8 @@ func (c *Route53) GetHealthCheckCount(input *GetHealthCheckCountInput) (*GetHeal
 const opGetHealthCheckLastFailureReason = "GetHealthCheckLastFailureReason"
 
 // GetHealthCheckLastFailureReasonRequest generates a request for the GetHealthCheckLastFailureReason operation.
-func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLastFailureReasonInput) (req *aws.Request, output *GetHealthCheckLastFailureReasonOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetHealthCheckLastFailureReasonRequest(input *GetHealthCheckLastFailureReasonInput) (req *service.Request, output *GetHealthCheckLastFailureReasonOutput) {
+	op := &service.Operation{
 		Name:       opGetHealthCheckLastFailureReason,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/lastfailurereason",
@@ -566,8 +566,8 @@ func (c *Route53) GetHealthCheckLastFailureReason(input *GetHealthCheckLastFailu
 const opGetHealthCheckStatus = "GetHealthCheckStatus"
 
 // GetHealthCheckStatusRequest generates a request for the GetHealthCheckStatus operation.
-func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) (req *aws.Request, output *GetHealthCheckStatusOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetHealthCheckStatusRequest(input *GetHealthCheckStatusInput) (req *service.Request, output *GetHealthCheckStatusOutput) {
+	op := &service.Operation{
 		Name:       opGetHealthCheckStatus,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}/status",
@@ -595,8 +595,8 @@ func (c *Route53) GetHealthCheckStatus(input *GetHealthCheckStatusInput) (*GetHe
 const opGetHostedZone = "GetHostedZone"
 
 // GetHostedZoneRequest generates a request for the GetHostedZone operation.
-func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *aws.Request, output *GetHostedZoneOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetHostedZoneRequest(input *GetHostedZoneInput) (req *service.Request, output *GetHostedZoneOutput) {
+	op := &service.Operation{
 		Name:       opGetHostedZone,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}",
@@ -625,8 +625,8 @@ func (c *Route53) GetHostedZone(input *GetHostedZoneInput) (*GetHostedZoneOutput
 const opGetHostedZoneCount = "GetHostedZoneCount"
 
 // GetHostedZoneCountRequest generates a request for the GetHostedZoneCount operation.
-func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req *aws.Request, output *GetHostedZoneCountOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetHostedZoneCountRequest(input *GetHostedZoneCountInput) (req *service.Request, output *GetHostedZoneCountOutput) {
+	op := &service.Operation{
 		Name:       opGetHostedZoneCount,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/hostedzonecount",
@@ -653,8 +653,8 @@ func (c *Route53) GetHostedZoneCount(input *GetHostedZoneCountInput) (*GetHosted
 const opGetReusableDelegationSet = "GetReusableDelegationSet"
 
 // GetReusableDelegationSetRequest generates a request for the GetReusableDelegationSet operation.
-func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSetInput) (req *aws.Request, output *GetReusableDelegationSetOutput) {
-	op := &aws.Operation{
+func (c *Route53) GetReusableDelegationSetRequest(input *GetReusableDelegationSetInput) (req *service.Request, output *GetReusableDelegationSetOutput) {
+	op := &service.Operation{
 		Name:       opGetReusableDelegationSet,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/delegationset/{Id}",
@@ -681,8 +681,8 @@ func (c *Route53) GetReusableDelegationSet(input *GetReusableDelegationSetInput)
 const opListGeoLocations = "ListGeoLocations"
 
 // ListGeoLocationsRequest generates a request for the ListGeoLocations operation.
-func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *aws.Request, output *ListGeoLocationsOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListGeoLocationsRequest(input *ListGeoLocationsInput) (req *service.Request, output *ListGeoLocationsOutput) {
+	op := &service.Operation{
 		Name:       opListGeoLocations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/geolocations",
@@ -720,12 +720,12 @@ func (c *Route53) ListGeoLocations(input *ListGeoLocationsInput) (*ListGeoLocati
 const opListHealthChecks = "ListHealthChecks"
 
 // ListHealthChecksRequest generates a request for the ListHealthChecks operation.
-func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *aws.Request, output *ListHealthChecksOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListHealthChecksRequest(input *ListHealthChecksInput) (req *service.Request, output *ListHealthChecksOutput) {
+	op := &service.Operation{
 		Name:       opListHealthChecks,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/healthcheck",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "MaxItems",
@@ -768,12 +768,12 @@ func (c *Route53) ListHealthChecksPages(input *ListHealthChecksInput, fn func(p 
 const opListHostedZones = "ListHostedZones"
 
 // ListHostedZonesRequest generates a request for the ListHostedZones operation.
-func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *aws.Request, output *ListHostedZonesOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListHostedZonesRequest(input *ListHostedZonesInput) (req *service.Request, output *ListHostedZonesOutput) {
+	op := &service.Operation{
 		Name:       opListHostedZones,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/hostedzone",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "MaxItems",
@@ -816,8 +816,8 @@ func (c *Route53) ListHostedZonesPages(input *ListHostedZonesInput, fn func(p *L
 const opListHostedZonesByName = "ListHostedZonesByName"
 
 // ListHostedZonesByNameRequest generates a request for the ListHostedZonesByName operation.
-func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput) (req *aws.Request, output *ListHostedZonesByNameOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListHostedZonesByNameRequest(input *ListHostedZonesByNameInput) (req *service.Request, output *ListHostedZonesByNameOutput) {
+	op := &service.Operation{
 		Name:       opListHostedZonesByName,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/hostedzonesbyname",
@@ -853,12 +853,12 @@ func (c *Route53) ListHostedZonesByName(input *ListHostedZonesByNameInput) (*Lis
 const opListResourceRecordSets = "ListResourceRecordSets"
 
 // ListResourceRecordSetsRequest generates a request for the ListResourceRecordSets operation.
-func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInput) (req *aws.Request, output *ListResourceRecordSetsOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListResourceRecordSetsRequest(input *ListResourceRecordSetsInput) (req *service.Request, output *ListResourceRecordSetsOutput) {
+	op := &service.Operation{
 		Name:       opListResourceRecordSets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}/rrset",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"StartRecordName", "StartRecordType", "StartRecordIdentifier"},
 			OutputTokens:    []string{"NextRecordName", "NextRecordType", "NextRecordIdentifier"},
 			LimitToken:      "MaxItems",
@@ -930,8 +930,8 @@ func (c *Route53) ListResourceRecordSetsPages(input *ListResourceRecordSetsInput
 const opListReusableDelegationSets = "ListReusableDelegationSets"
 
 // ListReusableDelegationSetsRequest generates a request for the ListReusableDelegationSets operation.
-func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegationSetsInput) (req *aws.Request, output *ListReusableDelegationSetsOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListReusableDelegationSetsRequest(input *ListReusableDelegationSetsInput) (req *service.Request, output *ListReusableDelegationSetsOutput) {
+	op := &service.Operation{
 		Name:       opListReusableDelegationSets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/delegationset",
@@ -966,8 +966,8 @@ func (c *Route53) ListReusableDelegationSets(input *ListReusableDelegationSetsIn
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
-func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *service.Request, output *ListTagsForResourceOutput) {
+	op := &service.Operation{
 		Name:       opListTagsForResource,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/tags/{ResourceType}/{ResourceId}",
@@ -992,8 +992,8 @@ func (c *Route53) ListTagsForResource(input *ListTagsForResourceInput) (*ListTag
 const opListTagsForResources = "ListTagsForResources"
 
 // ListTagsForResourcesRequest generates a request for the ListTagsForResources operation.
-func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) (req *aws.Request, output *ListTagsForResourcesOutput) {
-	op := &aws.Operation{
+func (c *Route53) ListTagsForResourcesRequest(input *ListTagsForResourcesInput) (req *service.Request, output *ListTagsForResourcesOutput) {
+	op := &service.Operation{
 		Name:       opListTagsForResources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/tags/{ResourceType}",
@@ -1018,8 +1018,8 @@ func (c *Route53) ListTagsForResources(input *ListTagsForResourcesInput) (*ListT
 const opUpdateHealthCheck = "UpdateHealthCheck"
 
 // UpdateHealthCheckRequest generates a request for the UpdateHealthCheck operation.
-func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *aws.Request, output *UpdateHealthCheckOutput) {
-	op := &aws.Operation{
+func (c *Route53) UpdateHealthCheckRequest(input *UpdateHealthCheckInput) (req *service.Request, output *UpdateHealthCheckOutput) {
+	op := &service.Operation{
 		Name:       opUpdateHealthCheck,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/healthcheck/{HealthCheckId}",
@@ -1050,8 +1050,8 @@ func (c *Route53) UpdateHealthCheck(input *UpdateHealthCheckInput) (*UpdateHealt
 const opUpdateHostedZoneComment = "UpdateHostedZoneComment"
 
 // UpdateHostedZoneCommentRequest generates a request for the UpdateHostedZoneComment operation.
-func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentInput) (req *aws.Request, output *UpdateHostedZoneCommentOutput) {
-	op := &aws.Operation{
+func (c *Route53) UpdateHostedZoneCommentRequest(input *UpdateHostedZoneCommentInput) (req *service.Request, output *UpdateHostedZoneCommentOutput) {
+	op := &service.Operation{
 		Name:       opUpdateHostedZoneComment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-04-01/hostedzone/{Id}",

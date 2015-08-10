@@ -6,15 +6,15 @@ package ecs
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
-func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
-	op := &aws.Operation{
+func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *service.Request, output *CreateClusterOutput) {
+	op := &service.Operation{
 		Name:       opCreateCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -42,8 +42,8 @@ func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, er
 const opCreateService = "CreateService"
 
 // CreateServiceRequest generates a request for the CreateService operation.
-func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *aws.Request, output *CreateServiceOutput) {
-	op := &aws.Operation{
+func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *service.Request, output *CreateServiceOutput) {
+	op := &service.Operation{
 		Name:       opCreateService,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -71,8 +71,8 @@ func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, er
 const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
-func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *service.Request, output *DeleteClusterOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -100,8 +100,8 @@ func (c *ECS) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, er
 const opDeleteService = "DeleteService"
 
 // DeleteServiceRequest generates a request for the DeleteService operation.
-func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *aws.Request, output *DeleteServiceOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *service.Request, output *DeleteServiceOutput) {
+	op := &service.Operation{
 		Name:       opDeleteService,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -127,8 +127,8 @@ func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, er
 const opDeregisterContainerInstance = "DeregisterContainerInstance"
 
 // DeregisterContainerInstanceRequest generates a request for the DeregisterContainerInstance operation.
-func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *aws.Request, output *DeregisterContainerInstanceOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *service.Request, output *DeregisterContainerInstanceOutput) {
+	op := &service.Operation{
 		Name:       opDeregisterContainerInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -167,8 +167,8 @@ func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInpu
 const opDeregisterTaskDefinition = "DeregisterTaskDefinition"
 
 // DeregisterTaskDefinitionRequest generates a request for the DeregisterTaskDefinition operation.
-func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *aws.Request, output *DeregisterTaskDefinitionOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *service.Request, output *DeregisterTaskDefinitionOutput) {
+	op := &service.Operation{
 		Name:       opDeregisterTaskDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -203,8 +203,8 @@ func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (*D
 const opDescribeClusters = "DescribeClusters"
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
-func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *service.Request, output *DescribeClustersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -230,8 +230,8 @@ func (c *ECS) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersO
 const opDescribeContainerInstances = "DescribeContainerInstances"
 
 // DescribeContainerInstancesRequest generates a request for the DescribeContainerInstances operation.
-func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *aws.Request, output *DescribeContainerInstancesOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *service.Request, output *DescribeContainerInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeContainerInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -258,8 +258,8 @@ func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput)
 const opDescribeServices = "DescribeServices"
 
 // DescribeServicesRequest generates a request for the DescribeServices operation.
-func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *aws.Request, output *DescribeServicesOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *service.Request, output *DescribeServicesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeServices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -285,8 +285,8 @@ func (c *ECS) DescribeServices(input *DescribeServicesInput) (*DescribeServicesO
 const opDescribeTaskDefinition = "DescribeTaskDefinition"
 
 // DescribeTaskDefinitionRequest generates a request for the DescribeTaskDefinition operation.
-func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *aws.Request, output *DescribeTaskDefinitionOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *service.Request, output *DescribeTaskDefinitionOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTaskDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -317,8 +317,8 @@ func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (*Descr
 const opDescribeTasks = "DescribeTasks"
 
 // DescribeTasksRequest generates a request for the DescribeTasks operation.
-func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request, output *DescribeTasksOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *service.Request, output *DescribeTasksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -344,8 +344,8 @@ func (c *ECS) DescribeTasks(input *DescribeTasksInput) (*DescribeTasksOutput, er
 const opDiscoverPollEndpoint = "DiscoverPollEndpoint"
 
 // DiscoverPollEndpointRequest generates a request for the DiscoverPollEndpoint operation.
-func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *aws.Request, output *DiscoverPollEndpointOutput) {
-	op := &aws.Operation{
+func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *service.Request, output *DiscoverPollEndpointOutput) {
+	op := &service.Operation{
 		Name:       opDiscoverPollEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -375,12 +375,12 @@ func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverP
 const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a request for the ListClusters operation.
-func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *service.Request, output *ListClustersOutput) {
+	op := &service.Operation{
 		Name:       opListClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -415,12 +415,12 @@ func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 const opListContainerInstances = "ListContainerInstances"
 
 // ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
-func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *aws.Request, output *ListContainerInstancesOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *service.Request, output *ListContainerInstancesOutput) {
+	op := &service.Operation{
 		Name:       opListContainerInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -455,12 +455,12 @@ func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn
 const opListServices = "ListServices"
 
 // ListServicesRequest generates a request for the ListServices operation.
-func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *aws.Request, output *ListServicesOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *service.Request, output *ListServicesOutput) {
+	op := &service.Operation{
 		Name:       opListServices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -495,12 +495,12 @@ func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListService
 const opListTaskDefinitionFamilies = "ListTaskDefinitionFamilies"
 
 // ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
-func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *aws.Request, output *ListTaskDefinitionFamiliesOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *service.Request, output *ListTaskDefinitionFamiliesOutput) {
+	op := &service.Operation{
 		Name:       opListTaskDefinitionFamilies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -537,12 +537,12 @@ func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesI
 const opListTaskDefinitions = "ListTaskDefinitions"
 
 // ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
-func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *aws.Request, output *ListTaskDefinitionsOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *service.Request, output *ListTaskDefinitionsOutput) {
+	op := &service.Operation{
 		Name:       opListTaskDefinitions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -579,12 +579,12 @@ func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(
 const opListTasks = "ListTasks"
 
 // ListTasksRequest generates a request for the ListTasks operation.
-func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output *ListTasksOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *service.Request, output *ListTasksOutput) {
+	op := &service.Operation{
 		Name:       opListTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -621,8 +621,8 @@ func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, 
 const opRegisterContainerInstance = "RegisterContainerInstance"
 
 // RegisterContainerInstanceRequest generates a request for the RegisterContainerInstance operation.
-func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *aws.Request, output *RegisterContainerInstanceOutput) {
-	op := &aws.Operation{
+func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *service.Request, output *RegisterContainerInstanceOutput) {
+	op := &service.Operation{
 		Name:       opRegisterContainerInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -652,8 +652,8 @@ func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (
 const opRegisterTaskDefinition = "RegisterTaskDefinition"
 
 // RegisterTaskDefinitionRequest generates a request for the RegisterTaskDefinition operation.
-func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *aws.Request, output *RegisterTaskDefinitionOutput) {
-	op := &aws.Operation{
+func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *service.Request, output *RegisterTaskDefinitionOutput) {
+	op := &service.Operation{
 		Name:       opRegisterTaskDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -683,8 +683,8 @@ func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*Regis
 const opRunTask = "RunTask"
 
 // RunTaskRequest generates a request for the RunTask operation.
-func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *RunTaskOutput) {
-	op := &aws.Operation{
+func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *service.Request, output *RunTaskOutput) {
+	op := &service.Operation{
 		Name:       opRunTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -714,8 +714,8 @@ func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
 const opStartTask = "StartTask"
 
 // StartTaskRequest generates a request for the StartTask operation.
-func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output *StartTaskOutput) {
-	op := &aws.Operation{
+func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *service.Request, output *StartTaskOutput) {
+	op := &service.Operation{
 		Name:       opStartTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -745,8 +745,8 @@ func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
 const opStopTask = "StopTask"
 
 // StopTaskRequest generates a request for the StopTask operation.
-func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *StopTaskOutput) {
-	op := &aws.Operation{
+func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *service.Request, output *StopTaskOutput) {
+	op := &service.Operation{
 		Name:       opStopTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -772,8 +772,8 @@ func (c *ECS) StopTask(input *StopTaskInput) (*StopTaskOutput, error) {
 const opSubmitContainerStateChange = "SubmitContainerStateChange"
 
 // SubmitContainerStateChangeRequest generates a request for the SubmitContainerStateChange operation.
-func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *aws.Request, output *SubmitContainerStateChangeOutput) {
-	op := &aws.Operation{
+func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *service.Request, output *SubmitContainerStateChangeOutput) {
+	op := &service.Operation{
 		Name:       opSubmitContainerStateChange,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -802,8 +802,8 @@ func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput)
 const opSubmitTaskStateChange = "SubmitTaskStateChange"
 
 // SubmitTaskStateChangeRequest generates a request for the SubmitTaskStateChange operation.
-func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *aws.Request, output *SubmitTaskStateChangeOutput) {
-	op := &aws.Operation{
+func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *service.Request, output *SubmitTaskStateChangeOutput) {
+	op := &service.Operation{
 		Name:       opSubmitTaskStateChange,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -832,8 +832,8 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitT
 const opUpdateContainerAgent = "UpdateContainerAgent"
 
 // UpdateContainerAgentRequest generates a request for the UpdateContainerAgent operation.
-func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *aws.Request, output *UpdateContainerAgentOutput) {
-	op := &aws.Operation{
+func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *service.Request, output *UpdateContainerAgentOutput) {
+	op := &service.Operation{
 		Name:       opUpdateContainerAgent,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -869,8 +869,8 @@ func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateCon
 const opUpdateService = "UpdateService"
 
 // UpdateServiceRequest generates a request for the UpdateService operation.
-func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *aws.Request, output *UpdateServiceOutput) {
-	op := &aws.Operation{
+func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *service.Request, output *UpdateServiceOutput) {
+	op := &service.Operation{
 		Name:       opUpdateService,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

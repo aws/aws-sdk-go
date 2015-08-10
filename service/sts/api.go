@@ -6,15 +6,15 @@ package sts
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAssumeRole = "AssumeRole"
 
 // AssumeRoleRequest generates a request for the AssumeRole operation.
-func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *aws.Request, output *AssumeRoleOutput) {
-	op := &aws.Operation{
+func (c *STS) AssumeRoleRequest(input *AssumeRoleInput) (req *service.Request, output *AssumeRoleOutput) {
+	op := &service.Operation{
 		Name:       opAssumeRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -111,8 +111,8 @@ func (c *STS) AssumeRole(input *AssumeRoleInput) (*AssumeRoleOutput, error) {
 const opAssumeRoleWithSAML = "AssumeRoleWithSAML"
 
 // AssumeRoleWithSAMLRequest generates a request for the AssumeRoleWithSAML operation.
-func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *aws.Request, output *AssumeRoleWithSAMLOutput) {
-	op := &aws.Operation{
+func (c *STS) AssumeRoleWithSAMLRequest(input *AssumeRoleWithSAMLInput) (req *service.Request, output *AssumeRoleWithSAMLOutput) {
+	op := &service.Operation{
 		Name:       opAssumeRoleWithSAML,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -182,8 +182,8 @@ func (c *STS) AssumeRoleWithSAML(input *AssumeRoleWithSAMLInput) (*AssumeRoleWit
 const opAssumeRoleWithWebIdentity = "AssumeRoleWithWebIdentity"
 
 // AssumeRoleWithWebIdentityRequest generates a request for the AssumeRoleWithWebIdentity operation.
-func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *aws.Request, output *AssumeRoleWithWebIdentityOutput) {
-	op := &aws.Operation{
+func (c *STS) AssumeRoleWithWebIdentityRequest(input *AssumeRoleWithWebIdentityInput) (req *service.Request, output *AssumeRoleWithWebIdentityOutput) {
+	op := &service.Operation{
 		Name:       opAssumeRoleWithWebIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -273,8 +273,8 @@ func (c *STS) AssumeRoleWithWebIdentity(input *AssumeRoleWithWebIdentityInput) (
 const opDecodeAuthorizationMessage = "DecodeAuthorizationMessage"
 
 // DecodeAuthorizationMessageRequest generates a request for the DecodeAuthorizationMessage operation.
-func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *aws.Request, output *DecodeAuthorizationMessageOutput) {
-	op := &aws.Operation{
+func (c *STS) DecodeAuthorizationMessageRequest(input *DecodeAuthorizationMessageInput) (req *service.Request, output *DecodeAuthorizationMessageOutput) {
+	op := &service.Operation{
 		Name:       opDecodeAuthorizationMessage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -323,8 +323,8 @@ func (c *STS) DecodeAuthorizationMessage(input *DecodeAuthorizationMessageInput)
 const opGetFederationToken = "GetFederationToken"
 
 // GetFederationTokenRequest generates a request for the GetFederationToken operation.
-func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *aws.Request, output *GetFederationTokenOutput) {
-	op := &aws.Operation{
+func (c *STS) GetFederationTokenRequest(input *GetFederationTokenInput) (req *service.Request, output *GetFederationTokenOutput) {
+	op := &service.Operation{
 		Name:       opGetFederationToken,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -413,8 +413,8 @@ func (c *STS) GetFederationToken(input *GetFederationTokenInput) (*GetFederation
 const opGetSessionToken = "GetSessionToken"
 
 // GetSessionTokenRequest generates a request for the GetSessionToken operation.
-func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *aws.Request, output *GetSessionTokenOutput) {
-	op := &aws.Operation{
+func (c *STS) GetSessionTokenRequest(input *GetSessionTokenInput) (req *service.Request, output *GetSessionTokenOutput) {
+	op := &service.Operation{
 		Name:       opGetSessionToken,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -4,6 +4,8 @@ package codedeploy
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -58,19 +60,19 @@ import (
 // You can use the AWS CodeDeploy APIs to get, list, and register application
 // revisions.
 type CodeDeploy struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new CodeDeploy client.
 func New(config *aws.Config) *CodeDeploy {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:       defaults.DefaultConfig.Merge(config),
 		ServiceName:  "codedeploy",
 		APIVersion:   "2014-10-06",
 		JSONVersion:  "1.1",
@@ -95,8 +97,8 @@ func New(config *aws.Config) *CodeDeploy {
 
 // newRequest creates a new request for a CodeDeploy operation and runs any
 // custom request initialization.
-func (c *CodeDeploy) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *CodeDeploy) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

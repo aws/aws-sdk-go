@@ -1,4 +1,4 @@
-package aws
+package service
 
 import (
 	"bytes"
@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
@@ -54,7 +55,7 @@ func BuildContentLength(r *Request) {
 
 // UserAgentHandler is a request handler for injecting User agent into requests.
 func UserAgentHandler(r *Request) {
-	r.HTTPRequest.Header.Set("User-Agent", SDKName+"/"+SDKVersion)
+	r.HTTPRequest.Header.Set("User-Agent", aws.SDKName+"/"+aws.SDKVersion)
 }
 
 var reStatusCode = regexp.MustCompile(`^(\d+)`)
@@ -90,7 +91,7 @@ func SendHandler(r *Request) {
 		}
 		// Catch all other request errors.
 		r.Error = awserr.New("RequestError", "send request failed", err)
-		r.Retryable = Bool(true) // network errors are retryable
+		r.Retryable = aws.Bool(true) // network errors are retryable
 	}
 }
 
@@ -108,7 +109,7 @@ func AfterRetryHandler(r *Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
 	if r.Retryable == nil {
-		r.Retryable = Bool(r.Service.ShouldRetry(r))
+		r.Retryable = aws.Bool(r.Service.ShouldRetry(r))
 	}
 
 	if r.WillRetry() {
@@ -149,7 +150,7 @@ var (
 // appropriate Region and Endpoint set. Will set r.Error if the endpoint or
 // region is not valid.
 func ValidateEndpointHandler(r *Request) {
-	if r.Service.SigningRegion == "" && StringValue(r.Service.Config.Region) == "" {
+	if r.Service.SigningRegion == "" && aws.StringValue(r.Service.Config.Region) == "" {
 		r.Error = ErrMissingRegion
 	} else if r.Service.Endpoint == "" {
 		r.Error = ErrMissingEndpoint

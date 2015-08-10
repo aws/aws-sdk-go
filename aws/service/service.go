@@ -1,4 +1,4 @@
-package aws
+package service
 
 import (
 	"fmt"
@@ -9,6 +9,7 @@ import (
 	"regexp"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/internal/endpoints"
 )
@@ -16,7 +17,7 @@ import (
 // A Service implements the base service request and response handling
 // used by all services.
 type Service struct {
-	Config            *Config
+	Config            *aws.Config
 	Handlers          Handlers
 	ServiceName       string
 	APIVersion        string
@@ -33,7 +34,7 @@ type Service struct {
 var schemeRE = regexp.MustCompile("^([^:]+)://")
 
 // NewService will return a pointer to a new Server object initialized.
-func NewService(config *Config) *Service {
+func NewService(config *aws.Config) *Service {
 	svc := &Service{Config: config}
 	svc.Initialize()
 	return svc
@@ -42,7 +43,7 @@ func NewService(config *Config) *Service {
 // Initialize initializes the service.
 func (s *Service) Initialize() {
 	if s.Config == nil {
-		s.Config = &Config{}
+		s.Config = &aws.Config{}
 	}
 	if s.Config.HTTPClient == nil {
 		s.Config.HTTPClient = http.DefaultClient
@@ -66,23 +67,23 @@ func (s *Service) Initialize() {
 	s.AddDebugHandlers()
 	s.buildEndpoint()
 
-	if !BoolValue(s.Config.DisableParamValidation) {
+	if !aws.BoolValue(s.Config.DisableParamValidation) {
 		s.Handlers.Validate.PushBack(ValidateParameters)
 	}
 }
 
 // buildEndpoint builds the endpoint values the service will use to make requests with.
 func (s *Service) buildEndpoint() {
-	if StringValue(s.Config.Endpoint) != "" {
+	if aws.StringValue(s.Config.Endpoint) != "" {
 		s.Endpoint = *s.Config.Endpoint
 	} else {
 		s.Endpoint, s.SigningRegion =
-			endpoints.EndpointForRegion(s.ServiceName, StringValue(s.Config.Region))
+			endpoints.EndpointForRegion(s.ServiceName, aws.StringValue(s.Config.Region))
 	}
 
 	if s.Endpoint != "" && !schemeRE.MatchString(s.Endpoint) {
 		scheme := "https"
-		if BoolValue(s.Config.DisableSSL) {
+		if aws.BoolValue(s.Config.DisableSSL) {
 			scheme = "http"
 		}
 		s.Endpoint = scheme + "://" + s.Endpoint
@@ -92,7 +93,7 @@ func (s *Service) buildEndpoint() {
 // AddDebugHandlers injects debug logging handlers into the service to log request
 // debug information.
 func (s *Service) AddDebugHandlers() {
-	if !s.Config.LogLevel.AtLeast(LogDebug) {
+	if !s.Config.LogLevel.AtLeast(aws.LogDebug) {
 		return
 	}
 
@@ -106,7 +107,7 @@ const logReqMsg = `DEBUG: Request %s/%s Details:
 -----------------------------------------------------`
 
 func logRequest(r *Request) {
-	logBody := r.Config.LogLevel.Matches(LogDebugWithHTTPBody)
+	logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 	dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 
 	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ServiceName, r.Operation.Name, string(dumpedBody)))
@@ -120,7 +121,7 @@ const logRespMsg = `DEBUG: Response %s/%s Details:
 func logResponse(r *Request) {
 	var msg = "no reponse data"
 	if r.HTTPResponse != nil {
-		logBody := r.Config.LogLevel.Matches(LogDebugWithHTTPBody)
+		logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 		dumpedBody, _ := httputil.DumpResponse(r.HTTPResponse, logBody)
 		msg = string(dumpedBody)
 	} else if r.Error != nil {
@@ -132,10 +133,10 @@ func logResponse(r *Request) {
 // MaxRetries returns the number of maximum returns the service will use to make
 // an individual API request.
 func (s *Service) MaxRetries() uint {
-	if IntValue(s.Config.MaxRetries) < 0 {
+	if aws.IntValue(s.Config.MaxRetries) < 0 {
 		return s.DefaultMaxRetries
 	}
-	return uint(IntValue(s.Config.MaxRetries))
+	return uint(aws.IntValue(s.Config.MaxRetries))
 }
 
 var seededRand = rand.New(rand.NewSource(time.Now().UnixNano()))

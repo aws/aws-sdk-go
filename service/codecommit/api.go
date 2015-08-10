@@ -6,15 +6,15 @@ package codecommit
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opBatchGetRepositories = "BatchGetRepositories"
 
 // BatchGetRepositoriesRequest generates a request for the BatchGetRepositories operation.
-func (c *CodeCommit) BatchGetRepositoriesRequest(input *BatchGetRepositoriesInput) (req *aws.Request, output *BatchGetRepositoriesOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) BatchGetRepositoriesRequest(input *BatchGetRepositoriesInput) (req *service.Request, output *BatchGetRepositoriesOutput) {
+	op := &service.Operation{
 		Name:       opBatchGetRepositories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -46,8 +46,8 @@ func (c *CodeCommit) BatchGetRepositories(input *BatchGetRepositoriesInput) (*Ba
 const opCreateBranch = "CreateBranch"
 
 // CreateBranchRequest generates a request for the CreateBranch operation.
-func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *aws.Request, output *CreateBranchOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *service.Request, output *CreateBranchOutput) {
+	op := &service.Operation{
 		Name:       opCreateBranch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -76,8 +76,8 @@ func (c *CodeCommit) CreateBranch(input *CreateBranchInput) (*CreateBranchOutput
 const opCreateRepository = "CreateRepository"
 
 // CreateRepositoryRequest generates a request for the CreateRepository operation.
-func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req *aws.Request, output *CreateRepositoryOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req *service.Request, output *CreateRepositoryOutput) {
+	op := &service.Operation{
 		Name:       opCreateRepository,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -103,8 +103,8 @@ func (c *CodeCommit) CreateRepository(input *CreateRepositoryInput) (*CreateRepo
 const opDeleteRepository = "DeleteRepository"
 
 // DeleteRepositoryRequest generates a request for the DeleteRepository operation.
-func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *aws.Request, output *DeleteRepositoryOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *service.Request, output *DeleteRepositoryOutput) {
+	op := &service.Operation{
 		Name:       opDeleteRepository,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -135,8 +135,8 @@ func (c *CodeCommit) DeleteRepository(input *DeleteRepositoryInput) (*DeleteRepo
 const opGetBranch = "GetBranch"
 
 // GetBranchRequest generates a request for the GetBranch operation.
-func (c *CodeCommit) GetBranchRequest(input *GetBranchInput) (req *aws.Request, output *GetBranchOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) GetBranchRequest(input *GetBranchInput) (req *service.Request, output *GetBranchOutput) {
+	op := &service.Operation{
 		Name:       opGetBranch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -163,8 +163,8 @@ func (c *CodeCommit) GetBranch(input *GetBranchInput) (*GetBranchOutput, error) 
 const opGetRepository = "GetRepository"
 
 // GetRepositoryRequest generates a request for the GetRepository operation.
-func (c *CodeCommit) GetRepositoryRequest(input *GetRepositoryInput) (req *aws.Request, output *GetRepositoryOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) GetRepositoryRequest(input *GetRepositoryInput) (req *service.Request, output *GetRepositoryOutput) {
+	op := &service.Operation{
 		Name:       opGetRepository,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -196,8 +196,8 @@ func (c *CodeCommit) GetRepository(input *GetRepositoryInput) (*GetRepositoryOut
 const opListBranches = "ListBranches"
 
 // ListBranchesRequest generates a request for the ListBranches operation.
-func (c *CodeCommit) ListBranchesRequest(input *ListBranchesInput) (req *aws.Request, output *ListBranchesOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) ListBranchesRequest(input *ListBranchesInput) (req *service.Request, output *ListBranchesOutput) {
+	op := &service.Operation{
 		Name:       opListBranches,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -223,8 +223,8 @@ func (c *CodeCommit) ListBranches(input *ListBranchesInput) (*ListBranchesOutput
 const opListRepositories = "ListRepositories"
 
 // ListRepositoriesRequest generates a request for the ListRepositories operation.
-func (c *CodeCommit) ListRepositoriesRequest(input *ListRepositoriesInput) (req *aws.Request, output *ListRepositoriesOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) ListRepositoriesRequest(input *ListRepositoriesInput) (req *service.Request, output *ListRepositoriesOutput) {
+	op := &service.Operation{
 		Name:       opListRepositories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -250,8 +250,8 @@ func (c *CodeCommit) ListRepositories(input *ListRepositoriesInput) (*ListReposi
 const opUpdateDefaultBranch = "UpdateDefaultBranch"
 
 // UpdateDefaultBranchRequest generates a request for the UpdateDefaultBranch operation.
-func (c *CodeCommit) UpdateDefaultBranchRequest(input *UpdateDefaultBranchInput) (req *aws.Request, output *UpdateDefaultBranchOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) UpdateDefaultBranchRequest(input *UpdateDefaultBranchInput) (req *service.Request, output *UpdateDefaultBranchOutput) {
+	op := &service.Operation{
 		Name:       opUpdateDefaultBranch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -281,8 +281,8 @@ func (c *CodeCommit) UpdateDefaultBranch(input *UpdateDefaultBranchInput) (*Upda
 const opUpdateRepositoryDescription = "UpdateRepositoryDescription"
 
 // UpdateRepositoryDescriptionRequest generates a request for the UpdateRepositoryDescription operation.
-func (c *CodeCommit) UpdateRepositoryDescriptionRequest(input *UpdateRepositoryDescriptionInput) (req *aws.Request, output *UpdateRepositoryDescriptionOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) UpdateRepositoryDescriptionRequest(input *UpdateRepositoryDescriptionInput) (req *service.Request, output *UpdateRepositoryDescriptionOutput) {
+	op := &service.Operation{
 		Name:       opUpdateRepositoryDescription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -314,8 +314,8 @@ func (c *CodeCommit) UpdateRepositoryDescription(input *UpdateRepositoryDescript
 const opUpdateRepositoryName = "UpdateRepositoryName"
 
 // UpdateRepositoryNameRequest generates a request for the UpdateRepositoryName operation.
-func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInput) (req *aws.Request, output *UpdateRepositoryNameOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInput) (req *service.Request, output *UpdateRepositoryNameOutput) {
+	op := &service.Operation{
 		Name:       opUpdateRepositoryName,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

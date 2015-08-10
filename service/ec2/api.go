@@ -6,15 +6,15 @@ package ec2
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAcceptVPCPeeringConnection = "AcceptVpcPeeringConnection"
 
 // AcceptVPCPeeringConnectionRequest generates a request for the AcceptVPCPeeringConnection operation.
-func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectionInput) (req *aws.Request, output *AcceptVPCPeeringConnectionOutput) {
-	op := &aws.Operation{
+func (c *EC2) AcceptVPCPeeringConnectionRequest(input *AcceptVPCPeeringConnectionInput) (req *service.Request, output *AcceptVPCPeeringConnectionOutput) {
+	op := &service.Operation{
 		Name:       opAcceptVPCPeeringConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -43,8 +43,8 @@ func (c *EC2) AcceptVPCPeeringConnection(input *AcceptVPCPeeringConnectionInput)
 const opAllocateAddress = "AllocateAddress"
 
 // AllocateAddressRequest generates a request for the AllocateAddress operation.
-func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *aws.Request, output *AllocateAddressOutput) {
-	op := &aws.Operation{
+func (c *EC2) AllocateAddressRequest(input *AllocateAddressInput) (req *service.Request, output *AllocateAddressOutput) {
+	op := &service.Operation{
 		Name:       opAllocateAddress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -74,8 +74,8 @@ func (c *EC2) AllocateAddress(input *AllocateAddressInput) (*AllocateAddressOutp
 const opAssignPrivateIPAddresses = "AssignPrivateIpAddresses"
 
 // AssignPrivateIPAddressesRequest generates a request for the AssignPrivateIPAddresses operation.
-func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInput) (req *aws.Request, output *AssignPrivateIPAddressesOutput) {
-	op := &aws.Operation{
+func (c *EC2) AssignPrivateIPAddressesRequest(input *AssignPrivateIPAddressesInput) (req *service.Request, output *AssignPrivateIPAddressesOutput) {
+	op := &service.Operation{
 		Name:       opAssignPrivateIPAddresses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -111,8 +111,8 @@ func (c *EC2) AssignPrivateIPAddresses(input *AssignPrivateIPAddressesInput) (*A
 const opAssociateAddress = "AssociateAddress"
 
 // AssociateAddressRequest generates a request for the AssociateAddress operation.
-func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *aws.Request, output *AssociateAddressOutput) {
-	op := &aws.Operation{
+func (c *EC2) AssociateAddressRequest(input *AssociateAddressInput) (req *service.Request, output *AssociateAddressOutput) {
+	op := &service.Operation{
 		Name:       opAssociateAddress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -154,8 +154,8 @@ func (c *EC2) AssociateAddress(input *AssociateAddressInput) (*AssociateAddressO
 const opAssociateDHCPOptions = "AssociateDhcpOptions"
 
 // AssociateDHCPOptionsRequest generates a request for the AssociateDHCPOptions operation.
-func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req *aws.Request, output *AssociateDHCPOptionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) AssociateDHCPOptionsRequest(input *AssociateDHCPOptionsInput) (req *service.Request, output *AssociateDHCPOptionsOutput) {
+	op := &service.Operation{
 		Name:       opAssociateDHCPOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -192,8 +192,8 @@ func (c *EC2) AssociateDHCPOptions(input *AssociateDHCPOptionsInput) (*Associate
 const opAssociateRouteTable = "AssociateRouteTable"
 
 // AssociateRouteTableRequest generates a request for the AssociateRouteTable operation.
-func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *aws.Request, output *AssociateRouteTableOutput) {
-	op := &aws.Operation{
+func (c *EC2) AssociateRouteTableRequest(input *AssociateRouteTableInput) (req *service.Request, output *AssociateRouteTableOutput) {
+	op := &service.Operation{
 		Name:       opAssociateRouteTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -226,8 +226,8 @@ func (c *EC2) AssociateRouteTable(input *AssociateRouteTableInput) (*AssociateRo
 const opAttachClassicLinkVPC = "AttachClassicLinkVpc"
 
 // AttachClassicLinkVPCRequest generates a request for the AttachClassicLinkVPC operation.
-func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req *aws.Request, output *AttachClassicLinkVPCOutput) {
-	op := &aws.Operation{
+func (c *EC2) AttachClassicLinkVPCRequest(input *AttachClassicLinkVPCInput) (req *service.Request, output *AttachClassicLinkVPCOutput) {
+	op := &service.Operation{
 		Name:       opAttachClassicLinkVPC,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -264,8 +264,8 @@ func (c *EC2) AttachClassicLinkVPC(input *AttachClassicLinkVPCInput) (*AttachCla
 const opAttachInternetGateway = "AttachInternetGateway"
 
 // AttachInternetGatewayRequest generates a request for the AttachInternetGateway operation.
-func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (req *aws.Request, output *AttachInternetGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) AttachInternetGatewayRequest(input *AttachInternetGatewayInput) (req *service.Request, output *AttachInternetGatewayOutput) {
+	op := &service.Operation{
 		Name:       opAttachInternetGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -293,8 +293,8 @@ func (c *EC2) AttachInternetGateway(input *AttachInternetGatewayInput) (*AttachI
 const opAttachNetworkInterface = "AttachNetworkInterface"
 
 // AttachNetworkInterfaceRequest generates a request for the AttachNetworkInterface operation.
-func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) (req *aws.Request, output *AttachNetworkInterfaceOutput) {
-	op := &aws.Operation{
+func (c *EC2) AttachNetworkInterfaceRequest(input *AttachNetworkInterfaceInput) (req *service.Request, output *AttachNetworkInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opAttachNetworkInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -320,8 +320,8 @@ func (c *EC2) AttachNetworkInterface(input *AttachNetworkInterfaceInput) (*Attac
 const opAttachVPNGateway = "AttachVpnGateway"
 
 // AttachVPNGatewayRequest generates a request for the AttachVPNGateway operation.
-func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *aws.Request, output *AttachVPNGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) AttachVPNGatewayRequest(input *AttachVPNGatewayInput) (req *service.Request, output *AttachVPNGatewayOutput) {
+	op := &service.Operation{
 		Name:       opAttachVPNGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -349,8 +349,8 @@ func (c *EC2) AttachVPNGateway(input *AttachVPNGatewayInput) (*AttachVPNGatewayO
 const opAttachVolume = "AttachVolume"
 
 // AttachVolumeRequest generates a request for the AttachVolume operation.
-func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *aws.Request, output *VolumeAttachment) {
-	op := &aws.Operation{
+func (c *EC2) AttachVolumeRequest(input *AttachVolumeInput) (req *service.Request, output *VolumeAttachment) {
+	op := &service.Operation{
 		Name:       opAttachVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -400,8 +400,8 @@ func (c *EC2) AttachVolume(input *AttachVolumeInput) (*VolumeAttachment, error) 
 const opAuthorizeSecurityGroupEgress = "AuthorizeSecurityGroupEgress"
 
 // AuthorizeSecurityGroupEgressRequest generates a request for the AuthorizeSecurityGroupEgress operation.
-func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupEgressInput) (req *aws.Request, output *AuthorizeSecurityGroupEgressOutput) {
-	op := &aws.Operation{
+func (c *EC2) AuthorizeSecurityGroupEgressRequest(input *AuthorizeSecurityGroupEgressInput) (req *service.Request, output *AuthorizeSecurityGroupEgressOutput) {
+	op := &service.Operation{
 		Name:       opAuthorizeSecurityGroupEgress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -447,8 +447,8 @@ func (c *EC2) AuthorizeSecurityGroupEgress(input *AuthorizeSecurityGroupEgressIn
 const opAuthorizeSecurityGroupIngress = "AuthorizeSecurityGroupIngress"
 
 // AuthorizeSecurityGroupIngressRequest generates a request for the AuthorizeSecurityGroupIngress operation.
-func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *EC2) AuthorizeSecurityGroupIngressRequest(input *AuthorizeSecurityGroupIngressInput) (req *service.Request, output *AuthorizeSecurityGroupIngressOutput) {
+	op := &service.Operation{
 		Name:       opAuthorizeSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -492,8 +492,8 @@ func (c *EC2) AuthorizeSecurityGroupIngress(input *AuthorizeSecurityGroupIngress
 const opBundleInstance = "BundleInstance"
 
 // BundleInstanceRequest generates a request for the BundleInstance operation.
-func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *aws.Request, output *BundleInstanceOutput) {
-	op := &aws.Operation{
+func (c *EC2) BundleInstanceRequest(input *BundleInstanceInput) (req *service.Request, output *BundleInstanceOutput) {
+	op := &service.Operation{
 		Name:       opBundleInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -528,8 +528,8 @@ func (c *EC2) BundleInstance(input *BundleInstanceInput) (*BundleInstanceOutput,
 const opCancelBundleTask = "CancelBundleTask"
 
 // CancelBundleTaskRequest generates a request for the CancelBundleTask operation.
-func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *aws.Request, output *CancelBundleTaskOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelBundleTaskRequest(input *CancelBundleTaskInput) (req *service.Request, output *CancelBundleTaskOutput) {
+	op := &service.Operation{
 		Name:       opCancelBundleTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -555,8 +555,8 @@ func (c *EC2) CancelBundleTask(input *CancelBundleTaskInput) (*CancelBundleTaskO
 const opCancelConversionTask = "CancelConversionTask"
 
 // CancelConversionTaskRequest generates a request for the CancelConversionTask operation.
-func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req *aws.Request, output *CancelConversionTaskOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelConversionTaskRequest(input *CancelConversionTaskInput) (req *service.Request, output *CancelConversionTaskOutput) {
+	op := &service.Operation{
 		Name:       opCancelConversionTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -590,8 +590,8 @@ func (c *EC2) CancelConversionTask(input *CancelConversionTaskInput) (*CancelCon
 const opCancelExportTask = "CancelExportTask"
 
 // CancelExportTaskRequest generates a request for the CancelExportTask operation.
-func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *aws.Request, output *CancelExportTaskOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelExportTaskRequest(input *CancelExportTaskInput) (req *service.Request, output *CancelExportTaskOutput) {
+	op := &service.Operation{
 		Name:       opCancelExportTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -620,8 +620,8 @@ func (c *EC2) CancelExportTask(input *CancelExportTaskInput) (*CancelExportTaskO
 const opCancelImportTask = "CancelImportTask"
 
 // CancelImportTaskRequest generates a request for the CancelImportTask operation.
-func (c *EC2) CancelImportTaskRequest(input *CancelImportTaskInput) (req *aws.Request, output *CancelImportTaskOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelImportTaskRequest(input *CancelImportTaskInput) (req *service.Request, output *CancelImportTaskOutput) {
+	op := &service.Operation{
 		Name:       opCancelImportTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -647,8 +647,8 @@ func (c *EC2) CancelImportTask(input *CancelImportTaskInput) (*CancelImportTaskO
 const opCancelReservedInstancesListing = "CancelReservedInstancesListing"
 
 // CancelReservedInstancesListingRequest generates a request for the CancelReservedInstancesListing operation.
-func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstancesListingInput) (req *aws.Request, output *CancelReservedInstancesListingOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelReservedInstancesListingRequest(input *CancelReservedInstancesListingInput) (req *service.Request, output *CancelReservedInstancesListingOutput) {
+	op := &service.Operation{
 		Name:       opCancelReservedInstancesListing,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -678,8 +678,8 @@ func (c *EC2) CancelReservedInstancesListing(input *CancelReservedInstancesListi
 const opCancelSpotFleetRequests = "CancelSpotFleetRequests"
 
 // CancelSpotFleetRequestsRequest generates a request for the CancelSpotFleetRequests operation.
-func (c *EC2) CancelSpotFleetRequestsRequest(input *CancelSpotFleetRequestsInput) (req *aws.Request, output *CancelSpotFleetRequestsOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelSpotFleetRequestsRequest(input *CancelSpotFleetRequestsInput) (req *service.Request, output *CancelSpotFleetRequestsOutput) {
+	op := &service.Operation{
 		Name:       opCancelSpotFleetRequests,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -705,8 +705,8 @@ func (c *EC2) CancelSpotFleetRequests(input *CancelSpotFleetRequestsInput) (*Can
 const opCancelSpotInstanceRequests = "CancelSpotInstanceRequests"
 
 // CancelSpotInstanceRequestsRequest generates a request for the CancelSpotInstanceRequests operation.
-func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequestsInput) (req *aws.Request, output *CancelSpotInstanceRequestsOutput) {
-	op := &aws.Operation{
+func (c *EC2) CancelSpotInstanceRequestsRequest(input *CancelSpotInstanceRequestsInput) (req *service.Request, output *CancelSpotInstanceRequestsOutput) {
+	op := &service.Operation{
 		Name:       opCancelSpotInstanceRequests,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -740,8 +740,8 @@ func (c *EC2) CancelSpotInstanceRequests(input *CancelSpotInstanceRequestsInput)
 const opConfirmProductInstance = "ConfirmProductInstance"
 
 // ConfirmProductInstanceRequest generates a request for the ConfirmProductInstance operation.
-func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) (req *aws.Request, output *ConfirmProductInstanceOutput) {
-	op := &aws.Operation{
+func (c *EC2) ConfirmProductInstanceRequest(input *ConfirmProductInstanceInput) (req *service.Request, output *ConfirmProductInstanceOutput) {
+	op := &service.Operation{
 		Name:       opConfirmProductInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -770,8 +770,8 @@ func (c *EC2) ConfirmProductInstance(input *ConfirmProductInstanceInput) (*Confi
 const opCopyImage = "CopyImage"
 
 // CopyImageRequest generates a request for the CopyImage operation.
-func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *aws.Request, output *CopyImageOutput) {
-	op := &aws.Operation{
+func (c *EC2) CopyImageRequest(input *CopyImageInput) (req *service.Request, output *CopyImageOutput) {
+	op := &service.Operation{
 		Name:       opCopyImage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -803,8 +803,8 @@ func (c *EC2) CopyImage(input *CopyImageInput) (*CopyImageOutput, error) {
 const opCopySnapshot = "CopySnapshot"
 
 // CopySnapshotRequest generates a request for the CopySnapshot operation.
-func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
-	op := &aws.Operation{
+func (c *EC2) CopySnapshotRequest(input *CopySnapshotInput) (req *service.Request, output *CopySnapshotOutput) {
+	op := &service.Operation{
 		Name:       opCopySnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -843,8 +843,8 @@ func (c *EC2) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutput, error
 const opCreateCustomerGateway = "CreateCustomerGateway"
 
 // CreateCustomerGatewayRequest generates a request for the CreateCustomerGateway operation.
-func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (req *aws.Request, output *CreateCustomerGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateCustomerGatewayRequest(input *CreateCustomerGatewayInput) (req *service.Request, output *CreateCustomerGatewayOutput) {
+	op := &service.Operation{
 		Name:       opCreateCustomerGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -894,8 +894,8 @@ func (c *EC2) CreateCustomerGateway(input *CreateCustomerGatewayInput) (*CreateC
 const opCreateDHCPOptions = "CreateDhcpOptions"
 
 // CreateDHCPOptionsRequest generates a request for the CreateDHCPOptions operation.
-func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *aws.Request, output *CreateDHCPOptionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateDHCPOptionsRequest(input *CreateDHCPOptionsInput) (req *service.Request, output *CreateDHCPOptionsOutput) {
+	op := &service.Operation{
 		Name:       opCreateDHCPOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -949,8 +949,8 @@ func (c *EC2) CreateDHCPOptions(input *CreateDHCPOptionsInput) (*CreateDHCPOptio
 const opCreateFlowLogs = "CreateFlowLogs"
 
 // CreateFlowLogsRequest generates a request for the CreateFlowLogs operation.
-func (c *EC2) CreateFlowLogsRequest(input *CreateFlowLogsInput) (req *aws.Request, output *CreateFlowLogsOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateFlowLogsRequest(input *CreateFlowLogsInput) (req *service.Request, output *CreateFlowLogsOutput) {
+	op := &service.Operation{
 		Name:       opCreateFlowLogs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -985,8 +985,8 @@ func (c *EC2) CreateFlowLogs(input *CreateFlowLogsInput) (*CreateFlowLogsOutput,
 const opCreateImage = "CreateImage"
 
 // CreateImageRequest generates a request for the CreateImage operation.
-func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *aws.Request, output *CreateImageOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateImageRequest(input *CreateImageInput) (req *service.Request, output *CreateImageOutput) {
+	op := &service.Operation{
 		Name:       opCreateImage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1021,8 +1021,8 @@ func (c *EC2) CreateImage(input *CreateImageInput) (*CreateImageOutput, error) {
 const opCreateInstanceExportTask = "CreateInstanceExportTask"
 
 // CreateInstanceExportTaskRequest generates a request for the CreateInstanceExportTask operation.
-func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInput) (req *aws.Request, output *CreateInstanceExportTaskOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateInstanceExportTaskRequest(input *CreateInstanceExportTaskInput) (req *service.Request, output *CreateInstanceExportTaskOutput) {
+	op := &service.Operation{
 		Name:       opCreateInstanceExportTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1053,8 +1053,8 @@ func (c *EC2) CreateInstanceExportTask(input *CreateInstanceExportTaskInput) (*C
 const opCreateInternetGateway = "CreateInternetGateway"
 
 // CreateInternetGatewayRequest generates a request for the CreateInternetGateway operation.
-func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (req *aws.Request, output *CreateInternetGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateInternetGatewayRequest(input *CreateInternetGatewayInput) (req *service.Request, output *CreateInternetGatewayOutput) {
+	op := &service.Operation{
 		Name:       opCreateInternetGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1084,8 +1084,8 @@ func (c *EC2) CreateInternetGateway(input *CreateInternetGatewayInput) (*CreateI
 const opCreateKeyPair = "CreateKeyPair"
 
 // CreateKeyPairRequest generates a request for the CreateKeyPair operation.
-func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *aws.Request, output *CreateKeyPairOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateKeyPairRequest(input *CreateKeyPairInput) (req *service.Request, output *CreateKeyPairOutput) {
+	op := &service.Operation{
 		Name:       opCreateKeyPair,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1122,8 +1122,8 @@ func (c *EC2) CreateKeyPair(input *CreateKeyPairInput) (*CreateKeyPairOutput, er
 const opCreateNetworkACL = "CreateNetworkAcl"
 
 // CreateNetworkACLRequest generates a request for the CreateNetworkACL operation.
-func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *aws.Request, output *CreateNetworkACLOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateNetworkACLRequest(input *CreateNetworkACLInput) (req *service.Request, output *CreateNetworkACLOutput) {
+	op := &service.Operation{
 		Name:       opCreateNetworkACL,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1153,8 +1153,8 @@ func (c *EC2) CreateNetworkACL(input *CreateNetworkACLInput) (*CreateNetworkACLO
 const opCreateNetworkACLEntry = "CreateNetworkAclEntry"
 
 // CreateNetworkACLEntryRequest generates a request for the CreateNetworkACLEntry operation.
-func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (req *aws.Request, output *CreateNetworkACLEntryOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateNetworkACLEntryRequest(input *CreateNetworkACLEntryInput) (req *service.Request, output *CreateNetworkACLEntryOutput) {
+	op := &service.Operation{
 		Name:       opCreateNetworkACLEntry,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1196,8 +1196,8 @@ func (c *EC2) CreateNetworkACLEntry(input *CreateNetworkACLEntryInput) (*CreateN
 const opCreateNetworkInterface = "CreateNetworkInterface"
 
 // CreateNetworkInterfaceRequest generates a request for the CreateNetworkInterface operation.
-func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) (req *aws.Request, output *CreateNetworkInterfaceOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateNetworkInterfaceRequest(input *CreateNetworkInterfaceInput) (req *service.Request, output *CreateNetworkInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opCreateNetworkInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1227,8 +1227,8 @@ func (c *EC2) CreateNetworkInterface(input *CreateNetworkInterfaceInput) (*Creat
 const opCreatePlacementGroup = "CreatePlacementGroup"
 
 // CreatePlacementGroupRequest generates a request for the CreatePlacementGroup operation.
-func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req *aws.Request, output *CreatePlacementGroupOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreatePlacementGroupRequest(input *CreatePlacementGroupInput) (req *service.Request, output *CreatePlacementGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreatePlacementGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1259,8 +1259,8 @@ func (c *EC2) CreatePlacementGroup(input *CreatePlacementGroupInput) (*CreatePla
 const opCreateReservedInstancesListing = "CreateReservedInstancesListing"
 
 // CreateReservedInstancesListingRequest generates a request for the CreateReservedInstancesListing operation.
-func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstancesListingInput) (req *aws.Request, output *CreateReservedInstancesListingOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateReservedInstancesListingRequest(input *CreateReservedInstancesListingInput) (req *service.Request, output *CreateReservedInstancesListingOutput) {
+	op := &service.Operation{
 		Name:       opCreateReservedInstancesListing,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1305,8 +1305,8 @@ func (c *EC2) CreateReservedInstancesListing(input *CreateReservedInstancesListi
 const opCreateRoute = "CreateRoute"
 
 // CreateRouteRequest generates a request for the CreateRoute operation.
-func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *aws.Request, output *CreateRouteOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateRouteRequest(input *CreateRouteInput) (req *service.Request, output *CreateRouteOutput) {
+	op := &service.Operation{
 		Name:       opCreateRoute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1350,8 +1350,8 @@ func (c *EC2) CreateRoute(input *CreateRouteInput) (*CreateRouteOutput, error) {
 const opCreateRouteTable = "CreateRouteTable"
 
 // CreateRouteTableRequest generates a request for the CreateRouteTable operation.
-func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *aws.Request, output *CreateRouteTableOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateRouteTableRequest(input *CreateRouteTableInput) (req *service.Request, output *CreateRouteTableOutput) {
+	op := &service.Operation{
 		Name:       opCreateRouteTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1381,8 +1381,8 @@ func (c *EC2) CreateRouteTable(input *CreateRouteTableInput) (*CreateRouteTableO
 const opCreateSecurityGroup = "CreateSecurityGroup"
 
 // CreateSecurityGroupRequest generates a request for the CreateSecurityGroup operation.
-func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *aws.Request, output *CreateSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateSecurityGroupRequest(input *CreateSecurityGroupInput) (req *service.Request, output *CreateSecurityGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1434,8 +1434,8 @@ func (c *EC2) CreateSecurityGroup(input *CreateSecurityGroupInput) (*CreateSecur
 const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
-func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *Snapshot) {
-	op := &aws.Operation{
+func (c *EC2) CreateSnapshotRequest(input *CreateSnapshotInput) (req *service.Request, output *Snapshot) {
+	op := &service.Operation{
 		Name:       opCreateSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1488,8 +1488,8 @@ func (c *EC2) CreateSnapshot(input *CreateSnapshotInput) (*Snapshot, error) {
 const opCreateSpotDatafeedSubscription = "CreateSpotDatafeedSubscription"
 
 // CreateSpotDatafeedSubscriptionRequest generates a request for the CreateSpotDatafeedSubscription operation.
-func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSubscriptionInput) (req *aws.Request, output *CreateSpotDatafeedSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateSpotDatafeedSubscriptionRequest(input *CreateSpotDatafeedSubscriptionInput) (req *service.Request, output *CreateSpotDatafeedSubscriptionOutput) {
+	op := &service.Operation{
 		Name:       opCreateSpotDatafeedSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1518,8 +1518,8 @@ func (c *EC2) CreateSpotDatafeedSubscription(input *CreateSpotDatafeedSubscripti
 const opCreateSubnet = "CreateSubnet"
 
 // CreateSubnetRequest generates a request for the CreateSubnet operation.
-func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *aws.Request, output *CreateSubnetOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateSubnetRequest(input *CreateSubnetInput) (req *service.Request, output *CreateSubnetOutput) {
+	op := &service.Operation{
 		Name:       opCreateSubnet,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1569,8 +1569,8 @@ func (c *EC2) CreateSubnet(input *CreateSubnetInput) (*CreateSubnetOutput, error
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a request for the CreateTags operation.
-func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateTagsRequest(input *CreateTagsInput) (req *service.Request, output *CreateTagsOutput) {
+	op := &service.Operation{
 		Name:       opCreateTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1601,8 +1601,8 @@ func (c *EC2) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 const opCreateVPC = "CreateVpc"
 
 // CreateVPCRequest generates a request for the CreateVPC operation.
-func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *aws.Request, output *CreateVPCOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateVPCRequest(input *CreateVPCInput) (req *service.Request, output *CreateVPCOutput) {
+	op := &service.Operation{
 		Name:       opCreateVPC,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1638,8 +1638,8 @@ func (c *EC2) CreateVPC(input *CreateVPCInput) (*CreateVPCOutput, error) {
 const opCreateVPCEndpoint = "CreateVpcEndpoint"
 
 // CreateVPCEndpointRequest generates a request for the CreateVPCEndpoint operation.
-func (c *EC2) CreateVPCEndpointRequest(input *CreateVPCEndpointInput) (req *aws.Request, output *CreateVPCEndpointOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateVPCEndpointRequest(input *CreateVPCEndpointInput) (req *service.Request, output *CreateVPCEndpointOutput) {
+	op := &service.Operation{
 		Name:       opCreateVPCEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1671,8 +1671,8 @@ func (c *EC2) CreateVPCEndpoint(input *CreateVPCEndpointInput) (*CreateVPCEndpoi
 const opCreateVPCPeeringConnection = "CreateVpcPeeringConnection"
 
 // CreateVPCPeeringConnectionRequest generates a request for the CreateVPCPeeringConnection operation.
-func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectionInput) (req *aws.Request, output *CreateVPCPeeringConnectionOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateVPCPeeringConnectionRequest(input *CreateVPCPeeringConnectionInput) (req *service.Request, output *CreateVPCPeeringConnectionOutput) {
+	op := &service.Operation{
 		Name:       opCreateVPCPeeringConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1708,8 +1708,8 @@ func (c *EC2) CreateVPCPeeringConnection(input *CreateVPCPeeringConnectionInput)
 const opCreateVPNConnection = "CreateVpnConnection"
 
 // CreateVPNConnectionRequest generates a request for the CreateVPNConnection operation.
-func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *aws.Request, output *CreateVPNConnectionOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateVPNConnectionRequest(input *CreateVPNConnectionInput) (req *service.Request, output *CreateVPNConnectionOutput) {
+	op := &service.Operation{
 		Name:       opCreateVPNConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1751,8 +1751,8 @@ func (c *EC2) CreateVPNConnection(input *CreateVPNConnectionInput) (*CreateVPNCo
 const opCreateVPNConnectionRoute = "CreateVpnConnectionRoute"
 
 // CreateVPNConnectionRouteRequest generates a request for the CreateVPNConnectionRoute operation.
-func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInput) (req *aws.Request, output *CreateVPNConnectionRouteOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateVPNConnectionRouteRequest(input *CreateVPNConnectionRouteInput) (req *service.Request, output *CreateVPNConnectionRouteOutput) {
+	op := &service.Operation{
 		Name:       opCreateVPNConnectionRoute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1785,8 +1785,8 @@ func (c *EC2) CreateVPNConnectionRoute(input *CreateVPNConnectionRouteInput) (*C
 const opCreateVPNGateway = "CreateVpnGateway"
 
 // CreateVPNGatewayRequest generates a request for the CreateVPNGateway operation.
-func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *aws.Request, output *CreateVPNGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) CreateVPNGatewayRequest(input *CreateVPNGatewayInput) (req *service.Request, output *CreateVPNGatewayOutput) {
+	op := &service.Operation{
 		Name:       opCreateVPNGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1818,8 +1818,8 @@ func (c *EC2) CreateVPNGateway(input *CreateVPNGatewayInput) (*CreateVPNGatewayO
 const opCreateVolume = "CreateVolume"
 
 // CreateVolumeRequest generates a request for the CreateVolume operation.
-func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *aws.Request, output *Volume) {
-	op := &aws.Operation{
+func (c *EC2) CreateVolumeRequest(input *CreateVolumeInput) (req *service.Request, output *Volume) {
+	op := &service.Operation{
 		Name:       opCreateVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1860,8 +1860,8 @@ func (c *EC2) CreateVolume(input *CreateVolumeInput) (*Volume, error) {
 const opDeleteCustomerGateway = "DeleteCustomerGateway"
 
 // DeleteCustomerGatewayRequest generates a request for the DeleteCustomerGateway operation.
-func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (req *aws.Request, output *DeleteCustomerGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteCustomerGatewayRequest(input *DeleteCustomerGatewayInput) (req *service.Request, output *DeleteCustomerGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCustomerGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1888,8 +1888,8 @@ func (c *EC2) DeleteCustomerGateway(input *DeleteCustomerGatewayInput) (*DeleteC
 const opDeleteDHCPOptions = "DeleteDhcpOptions"
 
 // DeleteDHCPOptionsRequest generates a request for the DeleteDHCPOptions operation.
-func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *aws.Request, output *DeleteDHCPOptionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteDHCPOptionsRequest(input *DeleteDHCPOptionsInput) (req *service.Request, output *DeleteDHCPOptionsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteDHCPOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1918,8 +1918,8 @@ func (c *EC2) DeleteDHCPOptions(input *DeleteDHCPOptionsInput) (*DeleteDHCPOptio
 const opDeleteFlowLogs = "DeleteFlowLogs"
 
 // DeleteFlowLogsRequest generates a request for the DeleteFlowLogs operation.
-func (c *EC2) DeleteFlowLogsRequest(input *DeleteFlowLogsInput) (req *aws.Request, output *DeleteFlowLogsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteFlowLogsRequest(input *DeleteFlowLogsInput) (req *service.Request, output *DeleteFlowLogsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteFlowLogs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1945,8 +1945,8 @@ func (c *EC2) DeleteFlowLogs(input *DeleteFlowLogsInput) (*DeleteFlowLogsOutput,
 const opDeleteInternetGateway = "DeleteInternetGateway"
 
 // DeleteInternetGatewayRequest generates a request for the DeleteInternetGateway operation.
-func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (req *aws.Request, output *DeleteInternetGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteInternetGatewayRequest(input *DeleteInternetGatewayInput) (req *service.Request, output *DeleteInternetGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDeleteInternetGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1973,8 +1973,8 @@ func (c *EC2) DeleteInternetGateway(input *DeleteInternetGatewayInput) (*DeleteI
 const opDeleteKeyPair = "DeleteKeyPair"
 
 // DeleteKeyPairRequest generates a request for the DeleteKeyPair operation.
-func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *aws.Request, output *DeleteKeyPairOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteKeyPairRequest(input *DeleteKeyPairInput) (req *service.Request, output *DeleteKeyPairOutput) {
+	op := &service.Operation{
 		Name:       opDeleteKeyPair,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2000,8 +2000,8 @@ func (c *EC2) DeleteKeyPair(input *DeleteKeyPairInput) (*DeleteKeyPairOutput, er
 const opDeleteNetworkACL = "DeleteNetworkAcl"
 
 // DeleteNetworkACLRequest generates a request for the DeleteNetworkACL operation.
-func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *aws.Request, output *DeleteNetworkACLOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteNetworkACLRequest(input *DeleteNetworkACLInput) (req *service.Request, output *DeleteNetworkACLOutput) {
+	op := &service.Operation{
 		Name:       opDeleteNetworkACL,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2028,8 +2028,8 @@ func (c *EC2) DeleteNetworkACL(input *DeleteNetworkACLInput) (*DeleteNetworkACLO
 const opDeleteNetworkACLEntry = "DeleteNetworkAclEntry"
 
 // DeleteNetworkACLEntryRequest generates a request for the DeleteNetworkACLEntry operation.
-func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (req *aws.Request, output *DeleteNetworkACLEntryOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteNetworkACLEntryRequest(input *DeleteNetworkACLEntryInput) (req *service.Request, output *DeleteNetworkACLEntryOutput) {
+	op := &service.Operation{
 		Name:       opDeleteNetworkACLEntry,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2056,8 +2056,8 @@ func (c *EC2) DeleteNetworkACLEntry(input *DeleteNetworkACLEntryInput) (*DeleteN
 const opDeleteNetworkInterface = "DeleteNetworkInterface"
 
 // DeleteNetworkInterfaceRequest generates a request for the DeleteNetworkInterface operation.
-func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) (req *aws.Request, output *DeleteNetworkInterfaceOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteNetworkInterfaceRequest(input *DeleteNetworkInterfaceInput) (req *service.Request, output *DeleteNetworkInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opDeleteNetworkInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2084,8 +2084,8 @@ func (c *EC2) DeleteNetworkInterface(input *DeleteNetworkInterfaceInput) (*Delet
 const opDeletePlacementGroup = "DeletePlacementGroup"
 
 // DeletePlacementGroupRequest generates a request for the DeletePlacementGroup operation.
-func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req *aws.Request, output *DeletePlacementGroupOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeletePlacementGroupRequest(input *DeletePlacementGroupInput) (req *service.Request, output *DeletePlacementGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeletePlacementGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2114,8 +2114,8 @@ func (c *EC2) DeletePlacementGroup(input *DeletePlacementGroupInput) (*DeletePla
 const opDeleteRoute = "DeleteRoute"
 
 // DeleteRouteRequest generates a request for the DeleteRoute operation.
-func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *aws.Request, output *DeleteRouteOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteRouteRequest(input *DeleteRouteInput) (req *service.Request, output *DeleteRouteOutput) {
+	op := &service.Operation{
 		Name:       opDeleteRoute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2141,8 +2141,8 @@ func (c *EC2) DeleteRoute(input *DeleteRouteInput) (*DeleteRouteOutput, error) {
 const opDeleteRouteTable = "DeleteRouteTable"
 
 // DeleteRouteTableRequest generates a request for the DeleteRouteTable operation.
-func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *aws.Request, output *DeleteRouteTableOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteRouteTableRequest(input *DeleteRouteTableInput) (req *service.Request, output *DeleteRouteTableOutput) {
+	op := &service.Operation{
 		Name:       opDeleteRouteTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2170,8 +2170,8 @@ func (c *EC2) DeleteRouteTable(input *DeleteRouteTableInput) (*DeleteRouteTableO
 const opDeleteSecurityGroup = "DeleteSecurityGroup"
 
 // DeleteSecurityGroupRequest generates a request for the DeleteSecurityGroup operation.
-func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *aws.Request, output *DeleteSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteSecurityGroupRequest(input *DeleteSecurityGroupInput) (req *service.Request, output *DeleteSecurityGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2201,8 +2201,8 @@ func (c *EC2) DeleteSecurityGroup(input *DeleteSecurityGroupInput) (*DeleteSecur
 const opDeleteSnapshot = "DeleteSnapshot"
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
-func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *service.Request, output *DeleteSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2242,8 +2242,8 @@ func (c *EC2) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput,
 const opDeleteSpotDatafeedSubscription = "DeleteSpotDatafeedSubscription"
 
 // DeleteSpotDatafeedSubscriptionRequest generates a request for the DeleteSpotDatafeedSubscription operation.
-func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSubscriptionInput) (req *aws.Request, output *DeleteSpotDatafeedSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteSpotDatafeedSubscriptionRequest(input *DeleteSpotDatafeedSubscriptionInput) (req *service.Request, output *DeleteSpotDatafeedSubscriptionOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSpotDatafeedSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2271,8 +2271,8 @@ func (c *EC2) DeleteSpotDatafeedSubscription(input *DeleteSpotDatafeedSubscripti
 const opDeleteSubnet = "DeleteSubnet"
 
 // DeleteSubnetRequest generates a request for the DeleteSubnet operation.
-func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *aws.Request, output *DeleteSubnetOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteSubnetRequest(input *DeleteSubnetInput) (req *service.Request, output *DeleteSubnetOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSubnet,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2299,8 +2299,8 @@ func (c *EC2) DeleteSubnet(input *DeleteSubnetInput) (*DeleteSubnetOutput, error
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteTagsRequest(input *DeleteTagsInput) (req *service.Request, output *DeleteTagsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2330,8 +2330,8 @@ func (c *EC2) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 const opDeleteVPC = "DeleteVpc"
 
 // DeleteVPCRequest generates a request for the DeleteVPC operation.
-func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *aws.Request, output *DeleteVPCOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVPCRequest(input *DeleteVPCInput) (req *service.Request, output *DeleteVPCOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVPC,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2361,8 +2361,8 @@ func (c *EC2) DeleteVPC(input *DeleteVPCInput) (*DeleteVPCOutput, error) {
 const opDeleteVPCEndpoints = "DeleteVpcEndpoints"
 
 // DeleteVPCEndpointsRequest generates a request for the DeleteVPCEndpoints operation.
-func (c *EC2) DeleteVPCEndpointsRequest(input *DeleteVPCEndpointsInput) (req *aws.Request, output *DeleteVPCEndpointsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVPCEndpointsRequest(input *DeleteVPCEndpointsInput) (req *service.Request, output *DeleteVPCEndpointsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVPCEndpoints,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2389,8 +2389,8 @@ func (c *EC2) DeleteVPCEndpoints(input *DeleteVPCEndpointsInput) (*DeleteVPCEndp
 const opDeleteVPCPeeringConnection = "DeleteVpcPeeringConnection"
 
 // DeleteVPCPeeringConnectionRequest generates a request for the DeleteVPCPeeringConnection operation.
-func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectionInput) (req *aws.Request, output *DeleteVPCPeeringConnectionOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVPCPeeringConnectionRequest(input *DeleteVPCPeeringConnectionInput) (req *service.Request, output *DeleteVPCPeeringConnectionOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVPCPeeringConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2419,8 +2419,8 @@ func (c *EC2) DeleteVPCPeeringConnection(input *DeleteVPCPeeringConnectionInput)
 const opDeleteVPNConnection = "DeleteVpnConnection"
 
 // DeleteVPNConnectionRequest generates a request for the DeleteVPNConnection operation.
-func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *aws.Request, output *DeleteVPNConnectionOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVPNConnectionRequest(input *DeleteVPNConnectionInput) (req *service.Request, output *DeleteVPNConnectionOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVPNConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2455,8 +2455,8 @@ func (c *EC2) DeleteVPNConnection(input *DeleteVPNConnectionInput) (*DeleteVPNCo
 const opDeleteVPNConnectionRoute = "DeleteVpnConnectionRoute"
 
 // DeleteVPNConnectionRouteRequest generates a request for the DeleteVPNConnectionRoute operation.
-func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInput) (req *aws.Request, output *DeleteVPNConnectionRouteOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVPNConnectionRouteRequest(input *DeleteVPNConnectionRouteInput) (req *service.Request, output *DeleteVPNConnectionRouteOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVPNConnectionRoute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2485,8 +2485,8 @@ func (c *EC2) DeleteVPNConnectionRoute(input *DeleteVPNConnectionRouteInput) (*D
 const opDeleteVPNGateway = "DeleteVpnGateway"
 
 // DeleteVPNGatewayRequest generates a request for the DeleteVPNGateway operation.
-func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *aws.Request, output *DeleteVPNGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVPNGatewayRequest(input *DeleteVPNGatewayInput) (req *service.Request, output *DeleteVPNGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVPNGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2516,8 +2516,8 @@ func (c *EC2) DeleteVPNGateway(input *DeleteVPNGatewayInput) (*DeleteVPNGatewayO
 const opDeleteVolume = "DeleteVolume"
 
 // DeleteVolumeRequest generates a request for the DeleteVolume operation.
-func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, output *DeleteVolumeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeleteVolumeRequest(input *DeleteVolumeInput) (req *service.Request, output *DeleteVolumeOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2549,8 +2549,8 @@ func (c *EC2) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error
 const opDeregisterImage = "DeregisterImage"
 
 // DeregisterImageRequest generates a request for the DeregisterImage operation.
-func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *aws.Request, output *DeregisterImageOutput) {
-	op := &aws.Operation{
+func (c *EC2) DeregisterImageRequest(input *DeregisterImageInput) (req *service.Request, output *DeregisterImageOutput) {
+	op := &service.Operation{
 		Name:       opDeregisterImage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2579,8 +2579,8 @@ func (c *EC2) DeregisterImage(input *DeregisterImageInput) (*DeregisterImageOutp
 const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
 // DescribeAccountAttributesRequest generates a request for the DescribeAccountAttributes operation.
-func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *aws.Request, output *DescribeAccountAttributesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *service.Request, output *DescribeAccountAttributesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAccountAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2624,8 +2624,8 @@ func (c *EC2) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 const opDescribeAddresses = "DescribeAddresses"
 
 // DescribeAddressesRequest generates a request for the DescribeAddresses operation.
-func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *aws.Request, output *DescribeAddressesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeAddressesRequest(input *DescribeAddressesInput) (req *service.Request, output *DescribeAddressesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAddresses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2655,8 +2655,8 @@ func (c *EC2) DescribeAddresses(input *DescribeAddressesInput) (*DescribeAddress
 const opDescribeAvailabilityZones = "DescribeAvailabilityZones"
 
 // DescribeAvailabilityZonesRequest generates a request for the DescribeAvailabilityZones operation.
-func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesInput) (req *aws.Request, output *DescribeAvailabilityZonesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeAvailabilityZonesRequest(input *DescribeAvailabilityZonesInput) (req *service.Request, output *DescribeAvailabilityZonesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAvailabilityZones,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2688,8 +2688,8 @@ func (c *EC2) DescribeAvailabilityZones(input *DescribeAvailabilityZonesInput) (
 const opDescribeBundleTasks = "DescribeBundleTasks"
 
 // DescribeBundleTasksRequest generates a request for the DescribeBundleTasks operation.
-func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *aws.Request, output *DescribeBundleTasksOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeBundleTasksRequest(input *DescribeBundleTasksInput) (req *service.Request, output *DescribeBundleTasksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeBundleTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2720,8 +2720,8 @@ func (c *EC2) DescribeBundleTasks(input *DescribeBundleTasksInput) (*DescribeBun
 const opDescribeClassicLinkInstances = "DescribeClassicLinkInstances"
 
 // DescribeClassicLinkInstancesRequest generates a request for the DescribeClassicLinkInstances operation.
-func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInstancesInput) (req *aws.Request, output *DescribeClassicLinkInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeClassicLinkInstancesRequest(input *DescribeClassicLinkInstancesInput) (req *service.Request, output *DescribeClassicLinkInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClassicLinkInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2750,8 +2750,8 @@ func (c *EC2) DescribeClassicLinkInstances(input *DescribeClassicLinkInstancesIn
 const opDescribeConversionTasks = "DescribeConversionTasks"
 
 // DescribeConversionTasksRequest generates a request for the DescribeConversionTasks operation.
-func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput) (req *aws.Request, output *DescribeConversionTasksOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeConversionTasksRequest(input *DescribeConversionTasksInput) (req *service.Request, output *DescribeConversionTasksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeConversionTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2780,8 +2780,8 @@ func (c *EC2) DescribeConversionTasks(input *DescribeConversionTasksInput) (*Des
 const opDescribeCustomerGateways = "DescribeCustomerGateways"
 
 // DescribeCustomerGatewaysRequest generates a request for the DescribeCustomerGateways operation.
-func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInput) (req *aws.Request, output *DescribeCustomerGatewaysOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeCustomerGatewaysRequest(input *DescribeCustomerGatewaysInput) (req *service.Request, output *DescribeCustomerGatewaysOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCustomerGateways,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2811,8 +2811,8 @@ func (c *EC2) DescribeCustomerGateways(input *DescribeCustomerGatewaysInput) (*D
 const opDescribeDHCPOptions = "DescribeDhcpOptions"
 
 // DescribeDHCPOptionsRequest generates a request for the DescribeDHCPOptions operation.
-func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *aws.Request, output *DescribeDHCPOptionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeDHCPOptionsRequest(input *DescribeDHCPOptionsInput) (req *service.Request, output *DescribeDHCPOptionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeDHCPOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2841,8 +2841,8 @@ func (c *EC2) DescribeDHCPOptions(input *DescribeDHCPOptionsInput) (*DescribeDHC
 const opDescribeExportTasks = "DescribeExportTasks"
 
 // DescribeExportTasksRequest generates a request for the DescribeExportTasks operation.
-func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *aws.Request, output *DescribeExportTasksOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *service.Request, output *DescribeExportTasksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeExportTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2868,8 +2868,8 @@ func (c *EC2) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExp
 const opDescribeFlowLogs = "DescribeFlowLogs"
 
 // DescribeFlowLogsRequest generates a request for the DescribeFlowLogs operation.
-func (c *EC2) DescribeFlowLogsRequest(input *DescribeFlowLogsInput) (req *aws.Request, output *DescribeFlowLogsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeFlowLogsRequest(input *DescribeFlowLogsInput) (req *service.Request, output *DescribeFlowLogsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeFlowLogs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2897,8 +2897,8 @@ func (c *EC2) DescribeFlowLogs(input *DescribeFlowLogsInput) (*DescribeFlowLogsO
 const opDescribeImageAttribute = "DescribeImageAttribute"
 
 // DescribeImageAttributeRequest generates a request for the DescribeImageAttribute operation.
-func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) (req *aws.Request, output *DescribeImageAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeImageAttributeRequest(input *DescribeImageAttributeInput) (req *service.Request, output *DescribeImageAttributeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeImageAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2925,8 +2925,8 @@ func (c *EC2) DescribeImageAttribute(input *DescribeImageAttributeInput) (*Descr
 const opDescribeImages = "DescribeImages"
 
 // DescribeImagesRequest generates a request for the DescribeImages operation.
-func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *aws.Request, output *DescribeImagesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeImagesRequest(input *DescribeImagesInput) (req *service.Request, output *DescribeImagesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeImages,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2958,8 +2958,8 @@ func (c *EC2) DescribeImages(input *DescribeImagesInput) (*DescribeImagesOutput,
 const opDescribeImportImageTasks = "DescribeImportImageTasks"
 
 // DescribeImportImageTasksRequest generates a request for the DescribeImportImageTasks operation.
-func (c *EC2) DescribeImportImageTasksRequest(input *DescribeImportImageTasksInput) (req *aws.Request, output *DescribeImportImageTasksOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeImportImageTasksRequest(input *DescribeImportImageTasksInput) (req *service.Request, output *DescribeImportImageTasksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeImportImageTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2986,8 +2986,8 @@ func (c *EC2) DescribeImportImageTasks(input *DescribeImportImageTasksInput) (*D
 const opDescribeImportSnapshotTasks = "DescribeImportSnapshotTasks"
 
 // DescribeImportSnapshotTasksRequest generates a request for the DescribeImportSnapshotTasks operation.
-func (c *EC2) DescribeImportSnapshotTasksRequest(input *DescribeImportSnapshotTasksInput) (req *aws.Request, output *DescribeImportSnapshotTasksOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeImportSnapshotTasksRequest(input *DescribeImportSnapshotTasksInput) (req *service.Request, output *DescribeImportSnapshotTasksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeImportSnapshotTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3013,8 +3013,8 @@ func (c *EC2) DescribeImportSnapshotTasks(input *DescribeImportSnapshotTasksInpu
 const opDescribeInstanceAttribute = "DescribeInstanceAttribute"
 
 // DescribeInstanceAttributeRequest generates a request for the DescribeInstanceAttribute operation.
-func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *aws.Request, output *DescribeInstanceAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeInstanceAttributeRequest(input *DescribeInstanceAttributeInput) (req *service.Request, output *DescribeInstanceAttributeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeInstanceAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3044,12 +3044,12 @@ func (c *EC2) DescribeInstanceAttribute(input *DescribeInstanceAttributeInput) (
 const opDescribeInstanceStatus = "DescribeInstanceStatus"
 
 // DescribeInstanceStatusRequest generates a request for the DescribeInstanceStatus operation.
-func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) (req *aws.Request, output *DescribeInstanceStatusOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeInstanceStatusRequest(input *DescribeInstanceStatusInput) (req *service.Request, output *DescribeInstanceStatusOutput) {
+	op := &service.Operation{
 		Name:       opDescribeInstanceStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxResults",
@@ -3103,12 +3103,12 @@ func (c *EC2) DescribeInstanceStatusPages(input *DescribeInstanceStatusInput, fn
 const opDescribeInstances = "DescribeInstances"
 
 // DescribeInstancesRequest generates a request for the DescribeInstances operation.
-func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *aws.Request, output *DescribeInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeInstancesRequest(input *DescribeInstancesInput) (req *service.Request, output *DescribeInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxResults",
@@ -3152,8 +3152,8 @@ func (c *EC2) DescribeInstancesPages(input *DescribeInstancesInput, fn func(p *D
 const opDescribeInternetGateways = "DescribeInternetGateways"
 
 // DescribeInternetGatewaysRequest generates a request for the DescribeInternetGateways operation.
-func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInput) (req *aws.Request, output *DescribeInternetGatewaysOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeInternetGatewaysRequest(input *DescribeInternetGatewaysInput) (req *service.Request, output *DescribeInternetGatewaysOutput) {
+	op := &service.Operation{
 		Name:       opDescribeInternetGateways,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3179,8 +3179,8 @@ func (c *EC2) DescribeInternetGateways(input *DescribeInternetGatewaysInput) (*D
 const opDescribeKeyPairs = "DescribeKeyPairs"
 
 // DescribeKeyPairsRequest generates a request for the DescribeKeyPairs operation.
-func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *aws.Request, output *DescribeKeyPairsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeKeyPairsRequest(input *DescribeKeyPairsInput) (req *service.Request, output *DescribeKeyPairsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeKeyPairs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3209,8 +3209,8 @@ func (c *EC2) DescribeKeyPairs(input *DescribeKeyPairsInput) (*DescribeKeyPairsO
 const opDescribeMovingAddresses = "DescribeMovingAddresses"
 
 // DescribeMovingAddressesRequest generates a request for the DescribeMovingAddresses operation.
-func (c *EC2) DescribeMovingAddressesRequest(input *DescribeMovingAddressesInput) (req *aws.Request, output *DescribeMovingAddressesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeMovingAddressesRequest(input *DescribeMovingAddressesInput) (req *service.Request, output *DescribeMovingAddressesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeMovingAddresses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3238,8 +3238,8 @@ func (c *EC2) DescribeMovingAddresses(input *DescribeMovingAddressesInput) (*Des
 const opDescribeNetworkACLs = "DescribeNetworkAcls"
 
 // DescribeNetworkACLsRequest generates a request for the DescribeNetworkACLs operation.
-func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *aws.Request, output *DescribeNetworkACLsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeNetworkACLsRequest(input *DescribeNetworkACLsInput) (req *service.Request, output *DescribeNetworkACLsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeNetworkACLs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3268,8 +3268,8 @@ func (c *EC2) DescribeNetworkACLs(input *DescribeNetworkACLsInput) (*DescribeNet
 const opDescribeNetworkInterfaceAttribute = "DescribeNetworkInterfaceAttribute"
 
 // DescribeNetworkInterfaceAttributeRequest generates a request for the DescribeNetworkInterfaceAttribute operation.
-func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInterfaceAttributeInput) (req *aws.Request, output *DescribeNetworkInterfaceAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeNetworkInterfaceAttributeRequest(input *DescribeNetworkInterfaceAttributeInput) (req *service.Request, output *DescribeNetworkInterfaceAttributeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeNetworkInterfaceAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3296,8 +3296,8 @@ func (c *EC2) DescribeNetworkInterfaceAttribute(input *DescribeNetworkInterfaceA
 const opDescribeNetworkInterfaces = "DescribeNetworkInterfaces"
 
 // DescribeNetworkInterfacesRequest generates a request for the DescribeNetworkInterfaces operation.
-func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesInput) (req *aws.Request, output *DescribeNetworkInterfacesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeNetworkInterfacesRequest(input *DescribeNetworkInterfacesInput) (req *service.Request, output *DescribeNetworkInterfacesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeNetworkInterfaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3323,8 +3323,8 @@ func (c *EC2) DescribeNetworkInterfaces(input *DescribeNetworkInterfacesInput) (
 const opDescribePlacementGroups = "DescribePlacementGroups"
 
 // DescribePlacementGroupsRequest generates a request for the DescribePlacementGroups operation.
-func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput) (req *aws.Request, output *DescribePlacementGroupsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribePlacementGroupsRequest(input *DescribePlacementGroupsInput) (req *service.Request, output *DescribePlacementGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribePlacementGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3352,8 +3352,8 @@ func (c *EC2) DescribePlacementGroups(input *DescribePlacementGroupsInput) (*Des
 const opDescribePrefixLists = "DescribePrefixLists"
 
 // DescribePrefixListsRequest generates a request for the DescribePrefixLists operation.
-func (c *EC2) DescribePrefixListsRequest(input *DescribePrefixListsInput) (req *aws.Request, output *DescribePrefixListsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribePrefixListsRequest(input *DescribePrefixListsInput) (req *service.Request, output *DescribePrefixListsOutput) {
+	op := &service.Operation{
 		Name:       opDescribePrefixLists,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3383,8 +3383,8 @@ func (c *EC2) DescribePrefixLists(input *DescribePrefixListsInput) (*DescribePre
 const opDescribeRegions = "DescribeRegions"
 
 // DescribeRegionsRequest generates a request for the DescribeRegions operation.
-func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *aws.Request, output *DescribeRegionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeRegionsRequest(input *DescribeRegionsInput) (req *service.Request, output *DescribeRegionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeRegions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3413,8 +3413,8 @@ func (c *EC2) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutp
 const opDescribeReservedInstances = "DescribeReservedInstances"
 
 // DescribeReservedInstancesRequest generates a request for the DescribeReservedInstances operation.
-func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesInput) (req *aws.Request, output *DescribeReservedInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeReservedInstancesRequest(input *DescribeReservedInstancesInput) (req *service.Request, output *DescribeReservedInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3443,8 +3443,8 @@ func (c *EC2) DescribeReservedInstances(input *DescribeReservedInstancesInput) (
 const opDescribeReservedInstancesListings = "DescribeReservedInstancesListings"
 
 // DescribeReservedInstancesListingsRequest generates a request for the DescribeReservedInstancesListings operation.
-func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedInstancesListingsInput) (req *aws.Request, output *DescribeReservedInstancesListingsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeReservedInstancesListingsRequest(input *DescribeReservedInstancesListingsInput) (req *service.Request, output *DescribeReservedInstancesListingsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedInstancesListings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3491,12 +3491,12 @@ func (c *EC2) DescribeReservedInstancesListings(input *DescribeReservedInstances
 const opDescribeReservedInstancesModifications = "DescribeReservedInstancesModifications"
 
 // DescribeReservedInstancesModificationsRequest generates a request for the DescribeReservedInstancesModifications operation.
-func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReservedInstancesModificationsInput) (req *aws.Request, output *DescribeReservedInstancesModificationsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeReservedInstancesModificationsRequest(input *DescribeReservedInstancesModificationsInput) (req *service.Request, output *DescribeReservedInstancesModificationsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedInstancesModifications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -3537,12 +3537,12 @@ func (c *EC2) DescribeReservedInstancesModificationsPages(input *DescribeReserve
 const opDescribeReservedInstancesOfferings = "DescribeReservedInstancesOfferings"
 
 // DescribeReservedInstancesOfferingsRequest generates a request for the DescribeReservedInstancesOfferings operation.
-func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedInstancesOfferingsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeReservedInstancesOfferingsRequest(input *DescribeReservedInstancesOfferingsInput) (req *service.Request, output *DescribeReservedInstancesOfferingsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedInstancesOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxResults",
@@ -3584,8 +3584,8 @@ func (c *EC2) DescribeReservedInstancesOfferingsPages(input *DescribeReservedIns
 const opDescribeRouteTables = "DescribeRouteTables"
 
 // DescribeRouteTablesRequest generates a request for the DescribeRouteTables operation.
-func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *aws.Request, output *DescribeRouteTablesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeRouteTablesRequest(input *DescribeRouteTablesInput) (req *service.Request, output *DescribeRouteTablesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeRouteTables,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3619,8 +3619,8 @@ func (c *EC2) DescribeRouteTables(input *DescribeRouteTablesInput) (*DescribeRou
 const opDescribeSecurityGroups = "DescribeSecurityGroups"
 
 // DescribeSecurityGroupsRequest generates a request for the DescribeSecurityGroups operation.
-func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) (req *aws.Request, output *DescribeSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSecurityGroupsRequest(input *DescribeSecurityGroupsInput) (req *service.Request, output *DescribeSecurityGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSecurityGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3653,8 +3653,8 @@ func (c *EC2) DescribeSecurityGroups(input *DescribeSecurityGroupsInput) (*Descr
 const opDescribeSnapshotAttribute = "DescribeSnapshotAttribute"
 
 // DescribeSnapshotAttributeRequest generates a request for the DescribeSnapshotAttribute operation.
-func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeInput) (req *aws.Request, output *DescribeSnapshotAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSnapshotAttributeRequest(input *DescribeSnapshotAttributeInput) (req *service.Request, output *DescribeSnapshotAttributeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSnapshotAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3684,12 +3684,12 @@ func (c *EC2) DescribeSnapshotAttribute(input *DescribeSnapshotAttributeInput) (
 const opDescribeSnapshots = "DescribeSnapshots"
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
-func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *service.Request, output *DescribeSnapshotsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -3763,8 +3763,8 @@ func (c *EC2) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(p *D
 const opDescribeSpotDatafeedSubscription = "DescribeSpotDatafeedSubscription"
 
 // DescribeSpotDatafeedSubscriptionRequest generates a request for the DescribeSpotDatafeedSubscription operation.
-func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafeedSubscriptionInput) (req *aws.Request, output *DescribeSpotDatafeedSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSpotDatafeedSubscriptionRequest(input *DescribeSpotDatafeedSubscriptionInput) (req *service.Request, output *DescribeSpotDatafeedSubscriptionOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSpotDatafeedSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3792,8 +3792,8 @@ func (c *EC2) DescribeSpotDatafeedSubscription(input *DescribeSpotDatafeedSubscr
 const opDescribeSpotFleetInstances = "DescribeSpotFleetInstances"
 
 // DescribeSpotFleetInstancesRequest generates a request for the DescribeSpotFleetInstances operation.
-func (c *EC2) DescribeSpotFleetInstancesRequest(input *DescribeSpotFleetInstancesInput) (req *aws.Request, output *DescribeSpotFleetInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSpotFleetInstancesRequest(input *DescribeSpotFleetInstancesInput) (req *service.Request, output *DescribeSpotFleetInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSpotFleetInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3819,8 +3819,8 @@ func (c *EC2) DescribeSpotFleetInstances(input *DescribeSpotFleetInstancesInput)
 const opDescribeSpotFleetRequestHistory = "DescribeSpotFleetRequestHistory"
 
 // DescribeSpotFleetRequestHistoryRequest generates a request for the DescribeSpotFleetRequestHistory operation.
-func (c *EC2) DescribeSpotFleetRequestHistoryRequest(input *DescribeSpotFleetRequestHistoryInput) (req *aws.Request, output *DescribeSpotFleetRequestHistoryOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSpotFleetRequestHistoryRequest(input *DescribeSpotFleetRequestHistoryInput) (req *service.Request, output *DescribeSpotFleetRequestHistoryOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSpotFleetRequestHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3851,8 +3851,8 @@ func (c *EC2) DescribeSpotFleetRequestHistory(input *DescribeSpotFleetRequestHis
 const opDescribeSpotFleetRequests = "DescribeSpotFleetRequests"
 
 // DescribeSpotFleetRequestsRequest generates a request for the DescribeSpotFleetRequests operation.
-func (c *EC2) DescribeSpotFleetRequestsRequest(input *DescribeSpotFleetRequestsInput) (req *aws.Request, output *DescribeSpotFleetRequestsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSpotFleetRequestsRequest(input *DescribeSpotFleetRequestsInput) (req *service.Request, output *DescribeSpotFleetRequestsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSpotFleetRequests,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3878,8 +3878,8 @@ func (c *EC2) DescribeSpotFleetRequests(input *DescribeSpotFleetRequestsInput) (
 const opDescribeSpotInstanceRequests = "DescribeSpotInstanceRequests"
 
 // DescribeSpotInstanceRequestsRequest generates a request for the DescribeSpotInstanceRequests operation.
-func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceRequestsInput) (req *aws.Request, output *DescribeSpotInstanceRequestsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSpotInstanceRequestsRequest(input *DescribeSpotInstanceRequestsInput) (req *service.Request, output *DescribeSpotInstanceRequestsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSpotInstanceRequests,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3916,12 +3916,12 @@ func (c *EC2) DescribeSpotInstanceRequests(input *DescribeSpotInstanceRequestsIn
 const opDescribeSpotPriceHistory = "DescribeSpotPriceHistory"
 
 // DescribeSpotPriceHistoryRequest generates a request for the DescribeSpotPriceHistory operation.
-func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInput) (req *aws.Request, output *DescribeSpotPriceHistoryOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSpotPriceHistoryRequest(input *DescribeSpotPriceHistoryInput) (req *service.Request, output *DescribeSpotPriceHistoryOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSpotPriceHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxResults",
@@ -3964,8 +3964,8 @@ func (c *EC2) DescribeSpotPriceHistoryPages(input *DescribeSpotPriceHistoryInput
 const opDescribeSubnets = "DescribeSubnets"
 
 // DescribeSubnetsRequest generates a request for the DescribeSubnets operation.
-func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *aws.Request, output *DescribeSubnetsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeSubnetsRequest(input *DescribeSubnetsInput) (req *service.Request, output *DescribeSubnetsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSubnets,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3994,8 +3994,8 @@ func (c *EC2) DescribeSubnets(input *DescribeSubnetsInput) (*DescribeSubnetsOutp
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeTagsRequest(input *DescribeTagsInput) (req *service.Request, output *DescribeTagsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4024,8 +4024,8 @@ func (c *EC2) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 const opDescribeVPCAttribute = "DescribeVpcAttribute"
 
 // DescribeVPCAttributeRequest generates a request for the DescribeVPCAttribute operation.
-func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req *aws.Request, output *DescribeVPCAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPCAttributeRequest(input *DescribeVPCAttributeInput) (req *service.Request, output *DescribeVPCAttributeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPCAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4052,8 +4052,8 @@ func (c *EC2) DescribeVPCAttribute(input *DescribeVPCAttributeInput) (*DescribeV
 const opDescribeVPCClassicLink = "DescribeVpcClassicLink"
 
 // DescribeVPCClassicLinkRequest generates a request for the DescribeVPCClassicLink operation.
-func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) (req *aws.Request, output *DescribeVPCClassicLinkOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPCClassicLinkRequest(input *DescribeVPCClassicLinkInput) (req *service.Request, output *DescribeVPCClassicLinkOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPCClassicLink,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4079,8 +4079,8 @@ func (c *EC2) DescribeVPCClassicLink(input *DescribeVPCClassicLinkInput) (*Descr
 const opDescribeVPCEndpointServices = "DescribeVpcEndpointServices"
 
 // DescribeVPCEndpointServicesRequest generates a request for the DescribeVPCEndpointServices operation.
-func (c *EC2) DescribeVPCEndpointServicesRequest(input *DescribeVPCEndpointServicesInput) (req *aws.Request, output *DescribeVPCEndpointServicesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPCEndpointServicesRequest(input *DescribeVPCEndpointServicesInput) (req *service.Request, output *DescribeVPCEndpointServicesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPCEndpointServices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4107,8 +4107,8 @@ func (c *EC2) DescribeVPCEndpointServices(input *DescribeVPCEndpointServicesInpu
 const opDescribeVPCEndpoints = "DescribeVpcEndpoints"
 
 // DescribeVPCEndpointsRequest generates a request for the DescribeVPCEndpoints operation.
-func (c *EC2) DescribeVPCEndpointsRequest(input *DescribeVPCEndpointsInput) (req *aws.Request, output *DescribeVPCEndpointsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPCEndpointsRequest(input *DescribeVPCEndpointsInput) (req *service.Request, output *DescribeVPCEndpointsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPCEndpoints,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4134,8 +4134,8 @@ func (c *EC2) DescribeVPCEndpoints(input *DescribeVPCEndpointsInput) (*DescribeV
 const opDescribeVPCPeeringConnections = "DescribeVpcPeeringConnections"
 
 // DescribeVPCPeeringConnectionsRequest generates a request for the DescribeVPCPeeringConnections operation.
-func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConnectionsInput) (req *aws.Request, output *DescribeVPCPeeringConnectionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPCPeeringConnectionsRequest(input *DescribeVPCPeeringConnectionsInput) (req *service.Request, output *DescribeVPCPeeringConnectionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPCPeeringConnections,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4161,8 +4161,8 @@ func (c *EC2) DescribeVPCPeeringConnections(input *DescribeVPCPeeringConnections
 const opDescribeVPCs = "DescribeVpcs"
 
 // DescribeVPCsRequest generates a request for the DescribeVPCs operation.
-func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *aws.Request, output *DescribeVPCsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPCsRequest(input *DescribeVPCsInput) (req *service.Request, output *DescribeVPCsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPCs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4188,8 +4188,8 @@ func (c *EC2) DescribeVPCs(input *DescribeVPCsInput) (*DescribeVPCsOutput, error
 const opDescribeVPNConnections = "DescribeVpnConnections"
 
 // DescribeVPNConnectionsRequest generates a request for the DescribeVPNConnections operation.
-func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) (req *aws.Request, output *DescribeVPNConnectionsOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPNConnectionsRequest(input *DescribeVPNConnectionsInput) (req *service.Request, output *DescribeVPNConnectionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPNConnections,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4219,8 +4219,8 @@ func (c *EC2) DescribeVPNConnections(input *DescribeVPNConnectionsInput) (*Descr
 const opDescribeVPNGateways = "DescribeVpnGateways"
 
 // DescribeVPNGatewaysRequest generates a request for the DescribeVPNGateways operation.
-func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *aws.Request, output *DescribeVPNGatewaysOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVPNGatewaysRequest(input *DescribeVPNGatewaysInput) (req *service.Request, output *DescribeVPNGatewaysOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVPNGateways,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4250,8 +4250,8 @@ func (c *EC2) DescribeVPNGateways(input *DescribeVPNGatewaysInput) (*DescribeVPN
 const opDescribeVolumeAttribute = "DescribeVolumeAttribute"
 
 // DescribeVolumeAttributeRequest generates a request for the DescribeVolumeAttribute operation.
-func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput) (req *aws.Request, output *DescribeVolumeAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVolumeAttributeRequest(input *DescribeVolumeAttributeInput) (req *service.Request, output *DescribeVolumeAttributeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVolumeAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4281,12 +4281,12 @@ func (c *EC2) DescribeVolumeAttribute(input *DescribeVolumeAttributeInput) (*Des
 const opDescribeVolumeStatus = "DescribeVolumeStatus"
 
 // DescribeVolumeStatusRequest generates a request for the DescribeVolumeStatus operation.
-func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req *aws.Request, output *DescribeVolumeStatusOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVolumeStatusRequest(input *DescribeVolumeStatusInput) (req *service.Request, output *DescribeVolumeStatusOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVolumeStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxResults",
@@ -4355,12 +4355,12 @@ func (c *EC2) DescribeVolumeStatusPages(input *DescribeVolumeStatusInput, fn fun
 const opDescribeVolumes = "DescribeVolumes"
 
 // DescribeVolumesRequest generates a request for the DescribeVolumes operation.
-func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *aws.Request, output *DescribeVolumesOutput) {
-	op := &aws.Operation{
+func (c *EC2) DescribeVolumesRequest(input *DescribeVolumesInput) (req *service.Request, output *DescribeVolumesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVolumes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxResults",
@@ -4405,8 +4405,8 @@ func (c *EC2) DescribeVolumesPages(input *DescribeVolumesInput, fn func(p *Descr
 const opDetachClassicLinkVPC = "DetachClassicLinkVpc"
 
 // DetachClassicLinkVPCRequest generates a request for the DetachClassicLinkVPC operation.
-func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req *aws.Request, output *DetachClassicLinkVPCOutput) {
-	op := &aws.Operation{
+func (c *EC2) DetachClassicLinkVPCRequest(input *DetachClassicLinkVPCInput) (req *service.Request, output *DetachClassicLinkVPCOutput) {
+	op := &service.Operation{
 		Name:       opDetachClassicLinkVPC,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4434,8 +4434,8 @@ func (c *EC2) DetachClassicLinkVPC(input *DetachClassicLinkVPCInput) (*DetachCla
 const opDetachInternetGateway = "DetachInternetGateway"
 
 // DetachInternetGatewayRequest generates a request for the DetachInternetGateway operation.
-func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (req *aws.Request, output *DetachInternetGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) DetachInternetGatewayRequest(input *DetachInternetGatewayInput) (req *service.Request, output *DetachInternetGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDetachInternetGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4463,8 +4463,8 @@ func (c *EC2) DetachInternetGateway(input *DetachInternetGatewayInput) (*DetachI
 const opDetachNetworkInterface = "DetachNetworkInterface"
 
 // DetachNetworkInterfaceRequest generates a request for the DetachNetworkInterface operation.
-func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) (req *aws.Request, output *DetachNetworkInterfaceOutput) {
-	op := &aws.Operation{
+func (c *EC2) DetachNetworkInterfaceRequest(input *DetachNetworkInterfaceInput) (req *service.Request, output *DetachNetworkInterfaceOutput) {
+	op := &service.Operation{
 		Name:       opDetachNetworkInterface,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4490,8 +4490,8 @@ func (c *EC2) DetachNetworkInterface(input *DetachNetworkInterfaceInput) (*Detac
 const opDetachVPNGateway = "DetachVpnGateway"
 
 // DetachVPNGatewayRequest generates a request for the DetachVPNGateway operation.
-func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *aws.Request, output *DetachVPNGatewayOutput) {
-	op := &aws.Operation{
+func (c *EC2) DetachVPNGatewayRequest(input *DetachVPNGatewayInput) (req *service.Request, output *DetachVPNGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDetachVPNGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4524,8 +4524,8 @@ func (c *EC2) DetachVPNGateway(input *DetachVPNGatewayInput) (*DetachVPNGatewayO
 const opDetachVolume = "DetachVolume"
 
 // DetachVolumeRequest generates a request for the DetachVolume operation.
-func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *aws.Request, output *VolumeAttachment) {
-	op := &aws.Operation{
+func (c *EC2) DetachVolumeRequest(input *DetachVolumeInput) (req *service.Request, output *VolumeAttachment) {
+	op := &service.Operation{
 		Name:       opDetachVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4563,8 +4563,8 @@ func (c *EC2) DetachVolume(input *DetachVolumeInput) (*VolumeAttachment, error) 
 const opDisableVGWRoutePropagation = "DisableVgwRoutePropagation"
 
 // DisableVGWRoutePropagationRequest generates a request for the DisableVGWRoutePropagation operation.
-func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagationInput) (req *aws.Request, output *DisableVGWRoutePropagationOutput) {
-	op := &aws.Operation{
+func (c *EC2) DisableVGWRoutePropagationRequest(input *DisableVGWRoutePropagationInput) (req *service.Request, output *DisableVGWRoutePropagationOutput) {
+	op := &service.Operation{
 		Name:       opDisableVGWRoutePropagation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4591,8 +4591,8 @@ func (c *EC2) DisableVGWRoutePropagation(input *DisableVGWRoutePropagationInput)
 const opDisableVPCClassicLink = "DisableVpcClassicLink"
 
 // DisableVPCClassicLinkRequest generates a request for the DisableVPCClassicLink operation.
-func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (req *aws.Request, output *DisableVPCClassicLinkOutput) {
-	op := &aws.Operation{
+func (c *EC2) DisableVPCClassicLinkRequest(input *DisableVPCClassicLinkInput) (req *service.Request, output *DisableVPCClassicLinkOutput) {
+	op := &service.Operation{
 		Name:       opDisableVPCClassicLink,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4619,8 +4619,8 @@ func (c *EC2) DisableVPCClassicLink(input *DisableVPCClassicLinkInput) (*Disable
 const opDisassociateAddress = "DisassociateAddress"
 
 // DisassociateAddressRequest generates a request for the DisassociateAddress operation.
-func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *aws.Request, output *DisassociateAddressOutput) {
-	op := &aws.Operation{
+func (c *EC2) DisassociateAddressRequest(input *DisassociateAddressInput) (req *service.Request, output *DisassociateAddressOutput) {
+	op := &service.Operation{
 		Name:       opDisassociateAddress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4654,8 +4654,8 @@ func (c *EC2) DisassociateAddress(input *DisassociateAddressInput) (*Disassociat
 const opDisassociateRouteTable = "DisassociateRouteTable"
 
 // DisassociateRouteTableRequest generates a request for the DisassociateRouteTable operation.
-func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) (req *aws.Request, output *DisassociateRouteTableOutput) {
-	op := &aws.Operation{
+func (c *EC2) DisassociateRouteTableRequest(input *DisassociateRouteTableInput) (req *service.Request, output *DisassociateRouteTableOutput) {
+	op := &service.Operation{
 		Name:       opDisassociateRouteTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4686,8 +4686,8 @@ func (c *EC2) DisassociateRouteTable(input *DisassociateRouteTableInput) (*Disas
 const opEnableVGWRoutePropagation = "EnableVgwRoutePropagation"
 
 // EnableVGWRoutePropagationRequest generates a request for the EnableVGWRoutePropagation operation.
-func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationInput) (req *aws.Request, output *EnableVGWRoutePropagationOutput) {
-	op := &aws.Operation{
+func (c *EC2) EnableVGWRoutePropagationRequest(input *EnableVGWRoutePropagationInput) (req *service.Request, output *EnableVGWRoutePropagationOutput) {
+	op := &service.Operation{
 		Name:       opEnableVGWRoutePropagation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4714,8 +4714,8 @@ func (c *EC2) EnableVGWRoutePropagation(input *EnableVGWRoutePropagationInput) (
 const opEnableVPCClassicLink = "EnableVpcClassicLink"
 
 // EnableVPCClassicLinkRequest generates a request for the EnableVPCClassicLink operation.
-func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req *aws.Request, output *EnableVPCClassicLinkOutput) {
-	op := &aws.Operation{
+func (c *EC2) EnableVPCClassicLinkRequest(input *EnableVPCClassicLinkInput) (req *service.Request, output *EnableVPCClassicLinkOutput) {
+	op := &service.Operation{
 		Name:       opEnableVPCClassicLink,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4747,8 +4747,8 @@ func (c *EC2) EnableVPCClassicLink(input *EnableVPCClassicLinkInput) (*EnableVPC
 const opEnableVolumeIO = "EnableVolumeIO"
 
 // EnableVolumeIORequest generates a request for the EnableVolumeIO operation.
-func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *aws.Request, output *EnableVolumeIOOutput) {
-	op := &aws.Operation{
+func (c *EC2) EnableVolumeIORequest(input *EnableVolumeIOInput) (req *service.Request, output *EnableVolumeIOOutput) {
+	op := &service.Operation{
 		Name:       opEnableVolumeIO,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4775,8 +4775,8 @@ func (c *EC2) EnableVolumeIO(input *EnableVolumeIOInput) (*EnableVolumeIOOutput,
 const opGetConsoleOutput = "GetConsoleOutput"
 
 // GetConsoleOutputRequest generates a request for the GetConsoleOutput operation.
-func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *aws.Request, output *GetConsoleOutputOutput) {
-	op := &aws.Operation{
+func (c *EC2) GetConsoleOutputRequest(input *GetConsoleOutputInput) (req *service.Request, output *GetConsoleOutputOutput) {
+	op := &service.Operation{
 		Name:       opGetConsoleOutput,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4819,8 +4819,8 @@ func (c *EC2) GetConsoleOutput(input *GetConsoleOutputInput) (*GetConsoleOutputO
 const opGetPasswordData = "GetPasswordData"
 
 // GetPasswordDataRequest generates a request for the GetPasswordData operation.
-func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *aws.Request, output *GetPasswordDataOutput) {
-	op := &aws.Operation{
+func (c *EC2) GetPasswordDataRequest(input *GetPasswordDataInput) (req *service.Request, output *GetPasswordDataOutput) {
+	op := &service.Operation{
 		Name:       opGetPasswordData,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4859,8 +4859,8 @@ func (c *EC2) GetPasswordData(input *GetPasswordDataInput) (*GetPasswordDataOutp
 const opImportImage = "ImportImage"
 
 // ImportImageRequest generates a request for the ImportImage operation.
-func (c *EC2) ImportImageRequest(input *ImportImageInput) (req *aws.Request, output *ImportImageOutput) {
-	op := &aws.Operation{
+func (c *EC2) ImportImageRequest(input *ImportImageInput) (req *service.Request, output *ImportImageOutput) {
+	op := &service.Operation{
 		Name:       opImportImage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4887,8 +4887,8 @@ func (c *EC2) ImportImage(input *ImportImageInput) (*ImportImageOutput, error) {
 const opImportInstance = "ImportInstance"
 
 // ImportInstanceRequest generates a request for the ImportInstance operation.
-func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *aws.Request, output *ImportInstanceOutput) {
-	op := &aws.Operation{
+func (c *EC2) ImportInstanceRequest(input *ImportInstanceInput) (req *service.Request, output *ImportInstanceOutput) {
+	op := &service.Operation{
 		Name:       opImportInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4920,8 +4920,8 @@ func (c *EC2) ImportInstance(input *ImportInstanceInput) (*ImportInstanceOutput,
 const opImportKeyPair = "ImportKeyPair"
 
 // ImportKeyPairRequest generates a request for the ImportKeyPair operation.
-func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *aws.Request, output *ImportKeyPairOutput) {
-	op := &aws.Operation{
+func (c *EC2) ImportKeyPairRequest(input *ImportKeyPairInput) (req *service.Request, output *ImportKeyPairOutput) {
+	op := &service.Operation{
 		Name:       opImportKeyPair,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4954,8 +4954,8 @@ func (c *EC2) ImportKeyPair(input *ImportKeyPairInput) (*ImportKeyPairOutput, er
 const opImportSnapshot = "ImportSnapshot"
 
 // ImportSnapshotRequest generates a request for the ImportSnapshot operation.
-func (c *EC2) ImportSnapshotRequest(input *ImportSnapshotInput) (req *aws.Request, output *ImportSnapshotOutput) {
-	op := &aws.Operation{
+func (c *EC2) ImportSnapshotRequest(input *ImportSnapshotInput) (req *service.Request, output *ImportSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opImportSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -4981,8 +4981,8 @@ func (c *EC2) ImportSnapshot(input *ImportSnapshotInput) (*ImportSnapshotOutput,
 const opImportVolume = "ImportVolume"
 
 // ImportVolumeRequest generates a request for the ImportVolume operation.
-func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *aws.Request, output *ImportVolumeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ImportVolumeRequest(input *ImportVolumeInput) (req *service.Request, output *ImportVolumeOutput) {
+	op := &service.Operation{
 		Name:       opImportVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5013,8 +5013,8 @@ func (c *EC2) ImportVolume(input *ImportVolumeInput) (*ImportVolumeOutput, error
 const opModifyImageAttribute = "ModifyImageAttribute"
 
 // ModifyImageAttributeRequest generates a request for the ModifyImageAttribute operation.
-func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req *aws.Request, output *ModifyImageAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyImageAttributeRequest(input *ModifyImageAttributeInput) (req *service.Request, output *ModifyImageAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifyImageAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5044,8 +5044,8 @@ func (c *EC2) ModifyImageAttribute(input *ModifyImageAttributeInput) (*ModifyIma
 const opModifyInstanceAttribute = "ModifyInstanceAttribute"
 
 // ModifyInstanceAttributeRequest generates a request for the ModifyInstanceAttribute operation.
-func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput) (req *aws.Request, output *ModifyInstanceAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyInstanceAttributeRequest(input *ModifyInstanceAttributeInput) (req *service.Request, output *ModifyInstanceAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifyInstanceAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5076,8 +5076,8 @@ func (c *EC2) ModifyInstanceAttribute(input *ModifyInstanceAttributeInput) (*Mod
 const opModifyNetworkInterfaceAttribute = "ModifyNetworkInterfaceAttribute"
 
 // ModifyNetworkInterfaceAttributeRequest generates a request for the ModifyNetworkInterfaceAttribute operation.
-func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfaceAttributeInput) (req *aws.Request, output *ModifyNetworkInterfaceAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyNetworkInterfaceAttributeRequest(input *ModifyNetworkInterfaceAttributeInput) (req *service.Request, output *ModifyNetworkInterfaceAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifyNetworkInterfaceAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5104,8 +5104,8 @@ func (c *EC2) ModifyNetworkInterfaceAttribute(input *ModifyNetworkInterfaceAttri
 const opModifyReservedInstances = "ModifyReservedInstances"
 
 // ModifyReservedInstancesRequest generates a request for the ModifyReservedInstances operation.
-func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput) (req *aws.Request, output *ModifyReservedInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyReservedInstancesRequest(input *ModifyReservedInstancesInput) (req *service.Request, output *ModifyReservedInstancesOutput) {
+	op := &service.Operation{
 		Name:       opModifyReservedInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5137,8 +5137,8 @@ func (c *EC2) ModifyReservedInstances(input *ModifyReservedInstancesInput) (*Mod
 const opModifySnapshotAttribute = "ModifySnapshotAttribute"
 
 // ModifySnapshotAttributeRequest generates a request for the ModifySnapshotAttribute operation.
-func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput) (req *aws.Request, output *ModifySnapshotAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifySnapshotAttributeRequest(input *ModifySnapshotAttributeInput) (req *service.Request, output *ModifySnapshotAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifySnapshotAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5174,8 +5174,8 @@ func (c *EC2) ModifySnapshotAttribute(input *ModifySnapshotAttributeInput) (*Mod
 const opModifySubnetAttribute = "ModifySubnetAttribute"
 
 // ModifySubnetAttributeRequest generates a request for the ModifySubnetAttribute operation.
-func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (req *aws.Request, output *ModifySubnetAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifySubnetAttributeRequest(input *ModifySubnetAttributeInput) (req *service.Request, output *ModifySubnetAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifySubnetAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5201,8 +5201,8 @@ func (c *EC2) ModifySubnetAttribute(input *ModifySubnetAttributeInput) (*ModifyS
 const opModifyVPCAttribute = "ModifyVpcAttribute"
 
 // ModifyVPCAttributeRequest generates a request for the ModifyVPCAttribute operation.
-func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *aws.Request, output *ModifyVPCAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyVPCAttributeRequest(input *ModifyVPCAttributeInput) (req *service.Request, output *ModifyVPCAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifyVPCAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5228,8 +5228,8 @@ func (c *EC2) ModifyVPCAttribute(input *ModifyVPCAttributeInput) (*ModifyVPCAttr
 const opModifyVPCEndpoint = "ModifyVpcEndpoint"
 
 // ModifyVPCEndpointRequest generates a request for the ModifyVPCEndpoint operation.
-func (c *EC2) ModifyVPCEndpointRequest(input *ModifyVPCEndpointInput) (req *aws.Request, output *ModifyVPCEndpointOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyVPCEndpointRequest(input *ModifyVPCEndpointInput) (req *service.Request, output *ModifyVPCEndpointOutput) {
+	op := &service.Operation{
 		Name:       opModifyVPCEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5257,8 +5257,8 @@ func (c *EC2) ModifyVPCEndpoint(input *ModifyVPCEndpointInput) (*ModifyVPCEndpoi
 const opModifyVolumeAttribute = "ModifyVolumeAttribute"
 
 // ModifyVolumeAttributeRequest generates a request for the ModifyVolumeAttribute operation.
-func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (req *aws.Request, output *ModifyVolumeAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ModifyVolumeAttributeRequest(input *ModifyVolumeAttributeInput) (req *service.Request, output *ModifyVolumeAttributeOutput) {
+	op := &service.Operation{
 		Name:       opModifyVolumeAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5293,8 +5293,8 @@ func (c *EC2) ModifyVolumeAttribute(input *ModifyVolumeAttributeInput) (*ModifyV
 const opMonitorInstances = "MonitorInstances"
 
 // MonitorInstancesRequest generates a request for the MonitorInstances operation.
-func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *aws.Request, output *MonitorInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) MonitorInstancesRequest(input *MonitorInstancesInput) (req *service.Request, output *MonitorInstancesOutput) {
+	op := &service.Operation{
 		Name:       opMonitorInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5322,8 +5322,8 @@ func (c *EC2) MonitorInstances(input *MonitorInstancesInput) (*MonitorInstancesO
 const opMoveAddressToVPC = "MoveAddressToVpc"
 
 // MoveAddressToVPCRequest generates a request for the MoveAddressToVPC operation.
-func (c *EC2) MoveAddressToVPCRequest(input *MoveAddressToVPCInput) (req *aws.Request, output *MoveAddressToVPCOutput) {
-	op := &aws.Operation{
+func (c *EC2) MoveAddressToVPCRequest(input *MoveAddressToVPCInput) (req *service.Request, output *MoveAddressToVPCOutput) {
+	op := &service.Operation{
 		Name:       opMoveAddressToVPC,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5355,8 +5355,8 @@ func (c *EC2) MoveAddressToVPC(input *MoveAddressToVPCInput) (*MoveAddressToVPCO
 const opPurchaseReservedInstancesOffering = "PurchaseReservedInstancesOffering"
 
 // PurchaseReservedInstancesOfferingRequest generates a request for the PurchaseReservedInstancesOffering operation.
-func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedInstancesOfferingOutput) {
-	op := &aws.Operation{
+func (c *EC2) PurchaseReservedInstancesOfferingRequest(input *PurchaseReservedInstancesOfferingInput) (req *service.Request, output *PurchaseReservedInstancesOfferingOutput) {
+	op := &service.Operation{
 		Name:       opPurchaseReservedInstancesOffering,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5393,8 +5393,8 @@ func (c *EC2) PurchaseReservedInstancesOffering(input *PurchaseReservedInstances
 const opRebootInstances = "RebootInstances"
 
 // RebootInstancesRequest generates a request for the RebootInstances operation.
-func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *aws.Request, output *RebootInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) RebootInstancesRequest(input *RebootInstancesInput) (req *service.Request, output *RebootInstancesOutput) {
+	op := &service.Operation{
 		Name:       opRebootInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5430,8 +5430,8 @@ func (c *EC2) RebootInstances(input *RebootInstancesInput) (*RebootInstancesOutp
 const opRegisterImage = "RegisterImage"
 
 // RegisterImageRequest generates a request for the RegisterImage operation.
-func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *aws.Request, output *RegisterImageOutput) {
-	op := &aws.Operation{
+func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *service.Request, output *RegisterImageOutput) {
+	op := &service.Operation{
 		Name:       opRegisterImage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5480,8 +5480,8 @@ func (c *EC2) RegisterImage(input *RegisterImageInput) (*RegisterImageOutput, er
 const opRejectVPCPeeringConnection = "RejectVpcPeeringConnection"
 
 // RejectVPCPeeringConnectionRequest generates a request for the RejectVPCPeeringConnection operation.
-func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectionInput) (req *aws.Request, output *RejectVPCPeeringConnectionOutput) {
-	op := &aws.Operation{
+func (c *EC2) RejectVPCPeeringConnectionRequest(input *RejectVPCPeeringConnectionInput) (req *service.Request, output *RejectVPCPeeringConnectionOutput) {
+	op := &service.Operation{
 		Name:       opRejectVPCPeeringConnection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5511,8 +5511,8 @@ func (c *EC2) RejectVPCPeeringConnection(input *RejectVPCPeeringConnectionInput)
 const opReleaseAddress = "ReleaseAddress"
 
 // ReleaseAddressRequest generates a request for the ReleaseAddress operation.
-func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *aws.Request, output *ReleaseAddressOutput) {
-	op := &aws.Operation{
+func (c *EC2) ReleaseAddressRequest(input *ReleaseAddressInput) (req *service.Request, output *ReleaseAddressOutput) {
+	op := &service.Operation{
 		Name:       opReleaseAddress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5552,8 +5552,8 @@ func (c *EC2) ReleaseAddress(input *ReleaseAddressInput) (*ReleaseAddressOutput,
 const opReplaceNetworkACLAssociation = "ReplaceNetworkAclAssociation"
 
 // ReplaceNetworkACLAssociationRequest generates a request for the ReplaceNetworkACLAssociation operation.
-func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssociationInput) (req *aws.Request, output *ReplaceNetworkACLAssociationOutput) {
-	op := &aws.Operation{
+func (c *EC2) ReplaceNetworkACLAssociationRequest(input *ReplaceNetworkACLAssociationInput) (req *service.Request, output *ReplaceNetworkACLAssociationOutput) {
+	op := &service.Operation{
 		Name:       opReplaceNetworkACLAssociation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5582,8 +5582,8 @@ func (c *EC2) ReplaceNetworkACLAssociation(input *ReplaceNetworkACLAssociationIn
 const opReplaceNetworkACLEntry = "ReplaceNetworkAclEntry"
 
 // ReplaceNetworkACLEntryRequest generates a request for the ReplaceNetworkACLEntry operation.
-func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) (req *aws.Request, output *ReplaceNetworkACLEntryOutput) {
-	op := &aws.Operation{
+func (c *EC2) ReplaceNetworkACLEntryRequest(input *ReplaceNetworkACLEntryInput) (req *service.Request, output *ReplaceNetworkACLEntryOutput) {
+	op := &service.Operation{
 		Name:       opReplaceNetworkACLEntry,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5611,8 +5611,8 @@ func (c *EC2) ReplaceNetworkACLEntry(input *ReplaceNetworkACLEntryInput) (*Repla
 const opReplaceRoute = "ReplaceRoute"
 
 // ReplaceRouteRequest generates a request for the ReplaceRoute operation.
-func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *aws.Request, output *ReplaceRouteOutput) {
-	op := &aws.Operation{
+func (c *EC2) ReplaceRouteRequest(input *ReplaceRouteInput) (req *service.Request, output *ReplaceRouteOutput) {
+	op := &service.Operation{
 		Name:       opReplaceRoute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5643,8 +5643,8 @@ func (c *EC2) ReplaceRoute(input *ReplaceRouteInput) (*ReplaceRouteOutput, error
 const opReplaceRouteTableAssociation = "ReplaceRouteTableAssociation"
 
 // ReplaceRouteTableAssociationRequest generates a request for the ReplaceRouteTableAssociation operation.
-func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssociationInput) (req *aws.Request, output *ReplaceRouteTableAssociationOutput) {
-	op := &aws.Operation{
+func (c *EC2) ReplaceRouteTableAssociationRequest(input *ReplaceRouteTableAssociationInput) (req *service.Request, output *ReplaceRouteTableAssociationOutput) {
+	op := &service.Operation{
 		Name:       opReplaceRouteTableAssociation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5678,8 +5678,8 @@ func (c *EC2) ReplaceRouteTableAssociation(input *ReplaceRouteTableAssociationIn
 const opReportInstanceStatus = "ReportInstanceStatus"
 
 // ReportInstanceStatusRequest generates a request for the ReportInstanceStatus operation.
-func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req *aws.Request, output *ReportInstanceStatusOutput) {
-	op := &aws.Operation{
+func (c *EC2) ReportInstanceStatusRequest(input *ReportInstanceStatusInput) (req *service.Request, output *ReportInstanceStatusOutput) {
+	op := &service.Operation{
 		Name:       opReportInstanceStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5711,8 +5711,8 @@ func (c *EC2) ReportInstanceStatus(input *ReportInstanceStatusInput) (*ReportIns
 const opRequestSpotFleet = "RequestSpotFleet"
 
 // RequestSpotFleetRequest generates a request for the RequestSpotFleet operation.
-func (c *EC2) RequestSpotFleetRequest(input *RequestSpotFleetInput) (req *aws.Request, output *RequestSpotFleetOutput) {
-	op := &aws.Operation{
+func (c *EC2) RequestSpotFleetRequest(input *RequestSpotFleetInput) (req *service.Request, output *RequestSpotFleetOutput) {
+	op := &service.Operation{
 		Name:       opRequestSpotFleet,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5741,8 +5741,8 @@ func (c *EC2) RequestSpotFleet(input *RequestSpotFleetInput) (*RequestSpotFleetO
 const opRequestSpotInstances = "RequestSpotInstances"
 
 // RequestSpotInstancesRequest generates a request for the RequestSpotInstances operation.
-func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req *aws.Request, output *RequestSpotInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) RequestSpotInstancesRequest(input *RequestSpotInstancesInput) (req *service.Request, output *RequestSpotInstancesOutput) {
+	op := &service.Operation{
 		Name:       opRequestSpotInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5773,8 +5773,8 @@ func (c *EC2) RequestSpotInstances(input *RequestSpotInstancesInput) (*RequestSp
 const opResetImageAttribute = "ResetImageAttribute"
 
 // ResetImageAttributeRequest generates a request for the ResetImageAttribute operation.
-func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *aws.Request, output *ResetImageAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ResetImageAttributeRequest(input *ResetImageAttributeInput) (req *service.Request, output *ResetImageAttributeOutput) {
+	op := &service.Operation{
 		Name:       opResetImageAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5802,8 +5802,8 @@ func (c *EC2) ResetImageAttribute(input *ResetImageAttributeInput) (*ResetImageA
 const opResetInstanceAttribute = "ResetInstanceAttribute"
 
 // ResetInstanceAttributeRequest generates a request for the ResetInstanceAttribute operation.
-func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) (req *aws.Request, output *ResetInstanceAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ResetInstanceAttributeRequest(input *ResetInstanceAttributeInput) (req *service.Request, output *ResetInstanceAttributeOutput) {
+	op := &service.Operation{
 		Name:       opResetInstanceAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5837,8 +5837,8 @@ func (c *EC2) ResetInstanceAttribute(input *ResetInstanceAttributeInput) (*Reset
 const opResetNetworkInterfaceAttribute = "ResetNetworkInterfaceAttribute"
 
 // ResetNetworkInterfaceAttributeRequest generates a request for the ResetNetworkInterfaceAttribute operation.
-func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterfaceAttributeInput) (req *aws.Request, output *ResetNetworkInterfaceAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ResetNetworkInterfaceAttributeRequest(input *ResetNetworkInterfaceAttributeInput) (req *service.Request, output *ResetNetworkInterfaceAttributeOutput) {
+	op := &service.Operation{
 		Name:       opResetNetworkInterfaceAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5865,8 +5865,8 @@ func (c *EC2) ResetNetworkInterfaceAttribute(input *ResetNetworkInterfaceAttribu
 const opResetSnapshotAttribute = "ResetSnapshotAttribute"
 
 // ResetSnapshotAttributeRequest generates a request for the ResetSnapshotAttribute operation.
-func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) (req *aws.Request, output *ResetSnapshotAttributeOutput) {
-	op := &aws.Operation{
+func (c *EC2) ResetSnapshotAttributeRequest(input *ResetSnapshotAttributeInput) (req *service.Request, output *ResetSnapshotAttributeOutput) {
+	op := &service.Operation{
 		Name:       opResetSnapshotAttribute,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5896,8 +5896,8 @@ func (c *EC2) ResetSnapshotAttribute(input *ResetSnapshotAttributeInput) (*Reset
 const opRestoreAddressToClassic = "RestoreAddressToClassic"
 
 // RestoreAddressToClassicRequest generates a request for the RestoreAddressToClassic operation.
-func (c *EC2) RestoreAddressToClassicRequest(input *RestoreAddressToClassicInput) (req *aws.Request, output *RestoreAddressToClassicOutput) {
-	op := &aws.Operation{
+func (c *EC2) RestoreAddressToClassicRequest(input *RestoreAddressToClassicInput) (req *service.Request, output *RestoreAddressToClassicOutput) {
+	op := &service.Operation{
 		Name:       opRestoreAddressToClassic,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5926,8 +5926,8 @@ func (c *EC2) RestoreAddressToClassic(input *RestoreAddressToClassicInput) (*Res
 const opRevokeSecurityGroupEgress = "RevokeSecurityGroupEgress"
 
 // RevokeSecurityGroupEgressRequest generates a request for the RevokeSecurityGroupEgress operation.
-func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressInput) (req *aws.Request, output *RevokeSecurityGroupEgressOutput) {
-	op := &aws.Operation{
+func (c *EC2) RevokeSecurityGroupEgressRequest(input *RevokeSecurityGroupEgressInput) (req *service.Request, output *RevokeSecurityGroupEgressOutput) {
+	op := &service.Operation{
 		Name:       opRevokeSecurityGroupEgress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -5963,8 +5963,8 @@ func (c *EC2) RevokeSecurityGroupEgress(input *RevokeSecurityGroupEgressInput) (
 const opRevokeSecurityGroupIngress = "RevokeSecurityGroupIngress"
 
 // RevokeSecurityGroupIngressRequest generates a request for the RevokeSecurityGroupIngress operation.
-func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngressInput) (req *aws.Request, output *RevokeSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *EC2) RevokeSecurityGroupIngressRequest(input *RevokeSecurityGroupIngressInput) (req *service.Request, output *RevokeSecurityGroupIngressOutput) {
+	op := &service.Operation{
 		Name:       opRevokeSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -6000,8 +6000,8 @@ func (c *EC2) RevokeSecurityGroupIngress(input *RevokeSecurityGroupIngressInput)
 const opRunInstances = "RunInstances"
 
 // RunInstancesRequest generates a request for the RunInstances operation.
-func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *aws.Request, output *Reservation) {
-	op := &aws.Operation{
+func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *service.Request, output *Reservation) {
+	op := &service.Operation{
 		Name:       opRunInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -6059,8 +6059,8 @@ func (c *EC2) RunInstances(input *RunInstancesInput) (*Reservation, error) {
 const opStartInstances = "StartInstances"
 
 // StartInstancesRequest generates a request for the StartInstances operation.
-func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *aws.Request, output *StartInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) StartInstancesRequest(input *StartInstancesInput) (req *service.Request, output *StartInstancesOutput) {
+	op := &service.Operation{
 		Name:       opStartInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -6104,8 +6104,8 @@ func (c *EC2) StartInstances(input *StartInstancesInput) (*StartInstancesOutput,
 const opStopInstances = "StopInstances"
 
 // StopInstancesRequest generates a request for the StopInstances operation.
-func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *aws.Request, output *StopInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) StopInstancesRequest(input *StopInstancesInput) (req *service.Request, output *StopInstancesOutput) {
+	op := &service.Operation{
 		Name:       opStopInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -6161,8 +6161,8 @@ func (c *EC2) StopInstances(input *StopInstancesInput) (*StopInstancesOutput, er
 const opTerminateInstances = "TerminateInstances"
 
 // TerminateInstancesRequest generates a request for the TerminateInstances operation.
-func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *aws.Request, output *TerminateInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *service.Request, output *TerminateInstancesOutput) {
+	op := &service.Operation{
 		Name:       opTerminateInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -6208,8 +6208,8 @@ func (c *EC2) TerminateInstances(input *TerminateInstancesInput) (*TerminateInst
 const opUnassignPrivateIPAddresses = "UnassignPrivateIpAddresses"
 
 // UnassignPrivateIPAddressesRequest generates a request for the UnassignPrivateIPAddresses operation.
-func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddressesInput) (req *aws.Request, output *UnassignPrivateIPAddressesOutput) {
-	op := &aws.Operation{
+func (c *EC2) UnassignPrivateIPAddressesRequest(input *UnassignPrivateIPAddressesInput) (req *service.Request, output *UnassignPrivateIPAddressesOutput) {
+	op := &service.Operation{
 		Name:       opUnassignPrivateIPAddresses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -6235,8 +6235,8 @@ func (c *EC2) UnassignPrivateIPAddresses(input *UnassignPrivateIPAddressesInput)
 const opUnmonitorInstances = "UnmonitorInstances"
 
 // UnmonitorInstancesRequest generates a request for the UnmonitorInstances operation.
-func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *aws.Request, output *UnmonitorInstancesOutput) {
-	op := &aws.Operation{
+func (c *EC2) UnmonitorInstancesRequest(input *UnmonitorInstancesInput) (req *service.Request, output *UnmonitorInstancesOutput) {
+	op := &service.Operation{
 		Name:       opUnmonitorInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -4,6 +4,8 @@ package cloudsearch
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -18,19 +20,19 @@ import (
 // regions and endpoints, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#cloudsearch_region"
 // target="_blank).
 type CloudSearch struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new CloudSearch client.
 func New(config *aws.Config) *CloudSearch {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:      defaults.DefaultConfig.Merge(config),
 		ServiceName: "cloudsearch",
 		APIVersion:  "2013-01-01",
 	}
@@ -53,8 +55,8 @@ func New(config *aws.Config) *CloudSearch {
 
 // newRequest creates a new request for a CloudSearch operation and runs any
 // custom request initialization.
-func (c *CloudSearch) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *CloudSearch) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

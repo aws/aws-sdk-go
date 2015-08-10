@@ -6,15 +6,15 @@ package storagegateway
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opActivateGateway = "ActivateGateway"
 
 // ActivateGatewayRequest generates a request for the ActivateGateway operation.
-func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (req *aws.Request, output *ActivateGatewayOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ActivateGatewayRequest(input *ActivateGatewayInput) (req *service.Request, output *ActivateGatewayOutput) {
+	op := &service.Operation{
 		Name:       opActivateGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -48,8 +48,8 @@ func (c *StorageGateway) ActivateGateway(input *ActivateGatewayInput) (*Activate
 const opAddCache = "AddCache"
 
 // AddCacheRequest generates a request for the AddCache operation.
-func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *aws.Request, output *AddCacheOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) AddCacheRequest(input *AddCacheInput) (req *service.Request, output *AddCacheOutput) {
+	op := &service.Operation{
 		Name:       opAddCache,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -81,8 +81,8 @@ func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, error)
 const opAddUploadBuffer = "AddUploadBuffer"
 
 // AddUploadBufferRequest generates a request for the AddUploadBuffer operation.
-func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (req *aws.Request, output *AddUploadBufferOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (req *service.Request, output *AddUploadBufferOutput) {
+	op := &service.Operation{
 		Name:       opAddUploadBuffer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -114,8 +114,8 @@ func (c *StorageGateway) AddUploadBuffer(input *AddUploadBufferInput) (*AddUploa
 const opAddWorkingStorage = "AddWorkingStorage"
 
 // AddWorkingStorageRequest generates a request for the AddWorkingStorage operation.
-func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput) (req *aws.Request, output *AddWorkingStorageOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) AddWorkingStorageRequest(input *AddWorkingStorageInput) (req *service.Request, output *AddWorkingStorageOutput) {
+	op := &service.Operation{
 		Name:       opAddWorkingStorage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -151,8 +151,8 @@ func (c *StorageGateway) AddWorkingStorage(input *AddWorkingStorageInput) (*AddW
 const opCancelArchival = "CancelArchival"
 
 // CancelArchivalRequest generates a request for the CancelArchival operation.
-func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req *aws.Request, output *CancelArchivalOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CancelArchivalRequest(input *CancelArchivalInput) (req *service.Request, output *CancelArchivalOutput) {
+	op := &service.Operation{
 		Name:       opCancelArchival,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -179,8 +179,8 @@ func (c *StorageGateway) CancelArchival(input *CancelArchivalInput) (*CancelArch
 const opCancelRetrieval = "CancelRetrieval"
 
 // CancelRetrievalRequest generates a request for the CancelRetrieval operation.
-func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (req *aws.Request, output *CancelRetrievalOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CancelRetrievalRequest(input *CancelRetrievalInput) (req *service.Request, output *CancelRetrievalOutput) {
+	op := &service.Operation{
 		Name:       opCancelRetrieval,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -208,8 +208,8 @@ func (c *StorageGateway) CancelRetrieval(input *CancelRetrievalInput) (*CancelRe
 const opCreateCachediSCSIVolume = "CreateCachediSCSIVolume"
 
 // CreateCachediSCSIVolumeRequest generates a request for the CreateCachediSCSIVolume operation.
-func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSIVolumeInput) (req *aws.Request, output *CreateCachediSCSIVolumeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CreateCachediSCSIVolumeRequest(input *CreateCachediSCSIVolumeInput) (req *service.Request, output *CreateCachediSCSIVolumeOutput) {
+	op := &service.Operation{
 		Name:       opCreateCachediSCSIVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -245,8 +245,8 @@ func (c *StorageGateway) CreateCachediSCSIVolume(input *CreateCachediSCSIVolumeI
 const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
-func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req *service.Request, output *CreateSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opCreateSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -292,8 +292,8 @@ func (c *StorageGateway) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnap
 const opCreateSnapshotFromVolumeRecoveryPoint = "CreateSnapshotFromVolumeRecoveryPoint"
 
 // CreateSnapshotFromVolumeRecoveryPointRequest generates a request for the CreateSnapshotFromVolumeRecoveryPoint operation.
-func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *CreateSnapshotFromVolumeRecoveryPointInput) (req *aws.Request, output *CreateSnapshotFromVolumeRecoveryPointOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPointRequest(input *CreateSnapshotFromVolumeRecoveryPointInput) (req *service.Request, output *CreateSnapshotFromVolumeRecoveryPointOutput) {
+	op := &service.Operation{
 		Name:       opCreateSnapshotFromVolumeRecoveryPoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -336,8 +336,8 @@ func (c *StorageGateway) CreateSnapshotFromVolumeRecoveryPoint(input *CreateSnap
 const opCreateStorediSCSIVolume = "CreateStorediSCSIVolume"
 
 // CreateStorediSCSIVolumeRequest generates a request for the CreateStorediSCSIVolume operation.
-func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSIVolumeInput) (req *aws.Request, output *CreateStorediSCSIVolumeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CreateStorediSCSIVolumeRequest(input *CreateStorediSCSIVolumeInput) (req *service.Request, output *CreateStorediSCSIVolumeOutput) {
+	op := &service.Operation{
 		Name:       opCreateStorediSCSIVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -375,8 +375,8 @@ func (c *StorageGateway) CreateStorediSCSIVolume(input *CreateStorediSCSIVolumeI
 const opCreateTapes = "CreateTapes"
 
 // CreateTapesRequest generates a request for the CreateTapes operation.
-func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *aws.Request, output *CreateTapesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) CreateTapesRequest(input *CreateTapesInput) (req *service.Request, output *CreateTapesOutput) {
+	op := &service.Operation{
 		Name:       opCreateTapes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -406,8 +406,8 @@ func (c *StorageGateway) CreateTapes(input *CreateTapesInput) (*CreateTapesOutpu
 const opDeleteBandwidthRateLimit = "DeleteBandwidthRateLimit"
 
 // DeleteBandwidthRateLimitRequest generates a request for the DeleteBandwidthRateLimit operation.
-func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthRateLimitInput) (req *aws.Request, output *DeleteBandwidthRateLimitOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteBandwidthRateLimitRequest(input *DeleteBandwidthRateLimitInput) (req *service.Request, output *DeleteBandwidthRateLimitOutput) {
+	op := &service.Operation{
 		Name:       opDeleteBandwidthRateLimit,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -437,8 +437,8 @@ func (c *StorageGateway) DeleteBandwidthRateLimit(input *DeleteBandwidthRateLimi
 const opDeleteChapCredentials = "DeleteChapCredentials"
 
 // DeleteChapCredentialsRequest generates a request for the DeleteChapCredentials operation.
-func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentialsInput) (req *aws.Request, output *DeleteChapCredentialsOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteChapCredentialsRequest(input *DeleteChapCredentialsInput) (req *service.Request, output *DeleteChapCredentialsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteChapCredentials,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -465,8 +465,8 @@ func (c *StorageGateway) DeleteChapCredentials(input *DeleteChapCredentialsInput
 const opDeleteGateway = "DeleteGateway"
 
 // DeleteGatewayRequest generates a request for the DeleteGateway operation.
-func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *aws.Request, output *DeleteGatewayOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteGatewayRequest(input *DeleteGatewayInput) (req *service.Request, output *DeleteGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDeleteGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -507,8 +507,8 @@ func (c *StorageGateway) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewa
 const opDeleteSnapshotSchedule = "DeleteSnapshotSchedule"
 
 // DeleteSnapshotScheduleRequest generates a request for the DeleteSnapshotSchedule operation.
-func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotScheduleInput) (req *aws.Request, output *DeleteSnapshotScheduleOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteSnapshotScheduleRequest(input *DeleteSnapshotScheduleInput) (req *service.Request, output *DeleteSnapshotScheduleOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSnapshotSchedule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -543,8 +543,8 @@ func (c *StorageGateway) DeleteSnapshotSchedule(input *DeleteSnapshotScheduleInp
 const opDeleteTape = "DeleteTape"
 
 // DeleteTapeRequest generates a request for the DeleteTape operation.
-func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *aws.Request, output *DeleteTapeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteTapeRequest(input *DeleteTapeInput) (req *service.Request, output *DeleteTapeOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTape,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -570,8 +570,8 @@ func (c *StorageGateway) DeleteTape(input *DeleteTapeInput) (*DeleteTapeOutput, 
 const opDeleteTapeArchive = "DeleteTapeArchive"
 
 // DeleteTapeArchiveRequest generates a request for the DeleteTapeArchive operation.
-func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput) (req *aws.Request, output *DeleteTapeArchiveOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteTapeArchiveRequest(input *DeleteTapeArchiveInput) (req *service.Request, output *DeleteTapeArchiveOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTapeArchive,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -597,8 +597,8 @@ func (c *StorageGateway) DeleteTapeArchive(input *DeleteTapeArchiveInput) (*Dele
 const opDeleteVolume = "DeleteVolume"
 
 // DeleteVolumeRequest generates a request for the DeleteVolume operation.
-func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *aws.Request, output *DeleteVolumeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *service.Request, output *DeleteVolumeOutput) {
+	op := &service.Operation{
 		Name:       opDeleteVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -637,8 +637,8 @@ func (c *StorageGateway) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOu
 const opDescribeBandwidthRateLimit = "DescribeBandwidthRateLimit"
 
 // DescribeBandwidthRateLimitRequest generates a request for the DescribeBandwidthRateLimit operation.
-func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwidthRateLimitInput) (req *aws.Request, output *DescribeBandwidthRateLimitOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeBandwidthRateLimitRequest(input *DescribeBandwidthRateLimitInput) (req *service.Request, output *DescribeBandwidthRateLimitOutput) {
+	op := &service.Operation{
 		Name:       opDescribeBandwidthRateLimit,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -670,8 +670,8 @@ func (c *StorageGateway) DescribeBandwidthRateLimit(input *DescribeBandwidthRate
 const opDescribeCache = "DescribeCache"
 
 // DescribeCacheRequest generates a request for the DescribeCache operation.
-func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *aws.Request, output *DescribeCacheOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeCacheRequest(input *DescribeCacheInput) (req *service.Request, output *DescribeCacheOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCache,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -701,8 +701,8 @@ func (c *StorageGateway) DescribeCache(input *DescribeCacheInput) (*DescribeCach
 const opDescribeCachediSCSIVolumes = "DescribeCachediSCSIVolumes"
 
 // DescribeCachediSCSIVolumesRequest generates a request for the DescribeCachediSCSIVolumes operation.
-func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCachediSCSIVolumesInput) (req *aws.Request, output *DescribeCachediSCSIVolumesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeCachediSCSIVolumesRequest(input *DescribeCachediSCSIVolumesInput) (req *service.Request, output *DescribeCachediSCSIVolumesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCachediSCSIVolumes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -734,8 +734,8 @@ func (c *StorageGateway) DescribeCachediSCSIVolumes(input *DescribeCachediSCSIVo
 const opDescribeChapCredentials = "DescribeChapCredentials"
 
 // DescribeChapCredentialsRequest generates a request for the DescribeChapCredentials operation.
-func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCredentialsInput) (req *aws.Request, output *DescribeChapCredentialsOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeChapCredentialsRequest(input *DescribeChapCredentialsInput) (req *service.Request, output *DescribeChapCredentialsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeChapCredentials,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -763,8 +763,8 @@ func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsI
 const opDescribeGatewayInformation = "DescribeGatewayInformation"
 
 // DescribeGatewayInformationRequest generates a request for the DescribeGatewayInformation operation.
-func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewayInformationInput) (req *aws.Request, output *DescribeGatewayInformationOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeGatewayInformationRequest(input *DescribeGatewayInformationInput) (req *service.Request, output *DescribeGatewayInformationOutput) {
+	op := &service.Operation{
 		Name:       opDescribeGatewayInformation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -793,8 +793,8 @@ func (c *StorageGateway) DescribeGatewayInformation(input *DescribeGatewayInform
 const opDescribeMaintenanceStartTime = "DescribeMaintenanceStartTime"
 
 // DescribeMaintenanceStartTimeRequest generates a request for the DescribeMaintenanceStartTime operation.
-func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMaintenanceStartTimeInput) (req *aws.Request, output *DescribeMaintenanceStartTimeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeMaintenanceStartTimeRequest(input *DescribeMaintenanceStartTimeInput) (req *service.Request, output *DescribeMaintenanceStartTimeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeMaintenanceStartTime,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -822,8 +822,8 @@ func (c *StorageGateway) DescribeMaintenanceStartTime(input *DescribeMaintenance
 const opDescribeSnapshotSchedule = "DescribeSnapshotSchedule"
 
 // DescribeSnapshotScheduleRequest generates a request for the DescribeSnapshotSchedule operation.
-func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshotScheduleInput) (req *aws.Request, output *DescribeSnapshotScheduleOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeSnapshotScheduleRequest(input *DescribeSnapshotScheduleInput) (req *service.Request, output *DescribeSnapshotScheduleOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSnapshotSchedule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -851,8 +851,8 @@ func (c *StorageGateway) DescribeSnapshotSchedule(input *DescribeSnapshotSchedul
 const opDescribeStorediSCSIVolumes = "DescribeStorediSCSIVolumes"
 
 // DescribeStorediSCSIVolumesRequest generates a request for the DescribeStorediSCSIVolumes operation.
-func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStorediSCSIVolumesInput) (req *aws.Request, output *DescribeStorediSCSIVolumesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeStorediSCSIVolumesRequest(input *DescribeStorediSCSIVolumesInput) (req *service.Request, output *DescribeStorediSCSIVolumesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeStorediSCSIVolumes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -881,12 +881,12 @@ func (c *StorageGateway) DescribeStorediSCSIVolumes(input *DescribeStorediSCSIVo
 const opDescribeTapeArchives = "DescribeTapeArchives"
 
 // DescribeTapeArchivesRequest generates a request for the DescribeTapeArchives operation.
-func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchivesInput) (req *aws.Request, output *DescribeTapeArchivesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeTapeArchivesRequest(input *DescribeTapeArchivesInput) (req *service.Request, output *DescribeTapeArchivesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTapeArchives,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "Limit",
@@ -925,12 +925,12 @@ func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesIn
 const opDescribeTapeRecoveryPoints = "DescribeTapeRecoveryPoints"
 
 // DescribeTapeRecoveryPointsRequest generates a request for the DescribeTapeRecoveryPoints operation.
-func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRecoveryPointsInput) (req *aws.Request, output *DescribeTapeRecoveryPointsOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeTapeRecoveryPointsRequest(input *DescribeTapeRecoveryPointsInput) (req *service.Request, output *DescribeTapeRecoveryPointsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTapeRecoveryPoints,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "Limit",
@@ -970,12 +970,12 @@ func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeReco
 const opDescribeTapes = "DescribeTapes"
 
 // DescribeTapesRequest generates a request for the DescribeTapes operation.
-func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *aws.Request, output *DescribeTapesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeTapesRequest(input *DescribeTapesInput) (req *service.Request, output *DescribeTapesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTapes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "Limit",
@@ -1012,8 +1012,8 @@ func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p
 const opDescribeUploadBuffer = "DescribeUploadBuffer"
 
 // DescribeUploadBufferRequest generates a request for the DescribeUploadBuffer operation.
-func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBufferInput) (req *aws.Request, output *DescribeUploadBufferOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeUploadBufferRequest(input *DescribeUploadBufferInput) (req *service.Request, output *DescribeUploadBufferOutput) {
+	op := &service.Operation{
 		Name:       opDescribeUploadBuffer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1044,12 +1044,12 @@ func (c *StorageGateway) DescribeUploadBuffer(input *DescribeUploadBufferInput) 
 const opDescribeVTLDevices = "DescribeVTLDevices"
 
 // DescribeVTLDevicesRequest generates a request for the DescribeVTLDevices operation.
-func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInput) (req *aws.Request, output *DescribeVTLDevicesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeVTLDevicesRequest(input *DescribeVTLDevicesInput) (req *service.Request, output *DescribeVTLDevicesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeVTLDevices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "Limit",
@@ -1087,8 +1087,8 @@ func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput,
 const opDescribeWorkingStorage = "DescribeWorkingStorage"
 
 // DescribeWorkingStorageRequest generates a request for the DescribeWorkingStorage operation.
-func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingStorageInput) (req *aws.Request, output *DescribeWorkingStorageOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DescribeWorkingStorageRequest(input *DescribeWorkingStorageInput) (req *service.Request, output *DescribeWorkingStorageOutput) {
+	op := &service.Operation{
 		Name:       opDescribeWorkingStorage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1123,8 +1123,8 @@ func (c *StorageGateway) DescribeWorkingStorage(input *DescribeWorkingStorageInp
 const opDisableGateway = "DisableGateway"
 
 // DisableGatewayRequest generates a request for the DisableGateway operation.
-func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req *aws.Request, output *DisableGatewayOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) DisableGatewayRequest(input *DisableGatewayInput) (req *service.Request, output *DisableGatewayOutput) {
+	op := &service.Operation{
 		Name:       opDisableGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1156,12 +1156,12 @@ func (c *StorageGateway) DisableGateway(input *DisableGatewayInput) (*DisableGat
 const opListGateways = "ListGateways"
 
 // ListGatewaysRequest generates a request for the ListGateways operation.
-func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *aws.Request, output *ListGatewaysOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ListGatewaysRequest(input *ListGatewaysInput) (req *service.Request, output *ListGatewaysOutput) {
+	op := &service.Operation{
 		Name:       opListGateways,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "Limit",
@@ -1206,8 +1206,8 @@ func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *
 const opListLocalDisks = "ListLocalDisks"
 
 // ListLocalDisksRequest generates a request for the ListLocalDisks operation.
-func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req *aws.Request, output *ListLocalDisksOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ListLocalDisksRequest(input *ListLocalDisksInput) (req *service.Request, output *ListLocalDisksOutput) {
+	op := &service.Operation{
 		Name:       opListLocalDisks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1242,8 +1242,8 @@ func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalD
 const opListVolumeInitiators = "ListVolumeInitiators"
 
 // ListVolumeInitiatorsRequest generates a request for the ListVolumeInitiators operation.
-func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiatorsInput) (req *aws.Request, output *ListVolumeInitiatorsOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ListVolumeInitiatorsRequest(input *ListVolumeInitiatorsInput) (req *service.Request, output *ListVolumeInitiatorsOutput) {
+	op := &service.Operation{
 		Name:       opListVolumeInitiators,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1270,8 +1270,8 @@ func (c *StorageGateway) ListVolumeInitiators(input *ListVolumeInitiatorsInput) 
 const opListVolumeRecoveryPoints = "ListVolumeRecoveryPoints"
 
 // ListVolumeRecoveryPointsRequest generates a request for the ListVolumeRecoveryPoints operation.
-func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecoveryPointsInput) (req *aws.Request, output *ListVolumeRecoveryPointsOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ListVolumeRecoveryPointsRequest(input *ListVolumeRecoveryPointsInput) (req *service.Request, output *ListVolumeRecoveryPointsOutput) {
+	op := &service.Operation{
 		Name:       opListVolumeRecoveryPoints,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1303,12 +1303,12 @@ func (c *StorageGateway) ListVolumeRecoveryPoints(input *ListVolumeRecoveryPoint
 const opListVolumes = "ListVolumes"
 
 // ListVolumesRequest generates a request for the ListVolumes operation.
-func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *aws.Request, output *ListVolumesOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ListVolumesRequest(input *ListVolumesInput) (req *service.Request, output *ListVolumesOutput) {
+	op := &service.Operation{
 		Name:       opListVolumes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "Limit",
@@ -1352,8 +1352,8 @@ func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *Li
 const opResetCache = "ResetCache"
 
 // ResetCacheRequest generates a request for the ResetCache operation.
-func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *aws.Request, output *ResetCacheOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ResetCacheRequest(input *ResetCacheInput) (req *service.Request, output *ResetCacheOutput) {
+	op := &service.Operation{
 		Name:       opResetCache,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1389,8 +1389,8 @@ func (c *StorageGateway) ResetCache(input *ResetCacheInput) (*ResetCacheOutput, 
 const opRetrieveTapeArchive = "RetrieveTapeArchive"
 
 // RetrieveTapeArchiveRequest generates a request for the RetrieveTapeArchive operation.
-func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveInput) (req *aws.Request, output *RetrieveTapeArchiveOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) RetrieveTapeArchiveRequest(input *RetrieveTapeArchiveInput) (req *service.Request, output *RetrieveTapeArchiveOutput) {
+	op := &service.Operation{
 		Name:       opRetrieveTapeArchive,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1423,8 +1423,8 @@ func (c *StorageGateway) RetrieveTapeArchive(input *RetrieveTapeArchiveInput) (*
 const opRetrieveTapeRecoveryPoint = "RetrieveTapeRecoveryPoint"
 
 // RetrieveTapeRecoveryPointRequest generates a request for the RetrieveTapeRecoveryPoint operation.
-func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRecoveryPointInput) (req *aws.Request, output *RetrieveTapeRecoveryPointOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) RetrieveTapeRecoveryPointRequest(input *RetrieveTapeRecoveryPointInput) (req *service.Request, output *RetrieveTapeRecoveryPointOutput) {
+	op := &service.Operation{
 		Name:       opRetrieveTapeRecoveryPoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1458,8 +1458,8 @@ func (c *StorageGateway) RetrieveTapeRecoveryPoint(input *RetrieveTapeRecoveryPo
 const opShutdownGateway = "ShutdownGateway"
 
 // ShutdownGatewayRequest generates a request for the ShutdownGateway operation.
-func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (req *aws.Request, output *ShutdownGatewayOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) ShutdownGatewayRequest(input *ShutdownGatewayInput) (req *service.Request, output *ShutdownGatewayOutput) {
+	op := &service.Operation{
 		Name:       opShutdownGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1503,8 +1503,8 @@ func (c *StorageGateway) ShutdownGateway(input *ShutdownGatewayInput) (*Shutdown
 const opStartGateway = "StartGateway"
 
 // StartGatewayRequest generates a request for the StartGateway operation.
-func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *aws.Request, output *StartGatewayOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) StartGatewayRequest(input *StartGatewayInput) (req *service.Request, output *StartGatewayOutput) {
+	op := &service.Operation{
 		Name:       opStartGateway,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1539,8 +1539,8 @@ func (c *StorageGateway) StartGateway(input *StartGatewayInput) (*StartGatewayOu
 const opUpdateBandwidthRateLimit = "UpdateBandwidthRateLimit"
 
 // UpdateBandwidthRateLimitRequest generates a request for the UpdateBandwidthRateLimit operation.
-func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthRateLimitInput) (req *aws.Request, output *UpdateBandwidthRateLimitOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateBandwidthRateLimitRequest(input *UpdateBandwidthRateLimitInput) (req *service.Request, output *UpdateBandwidthRateLimitOutput) {
+	op := &service.Operation{
 		Name:       opUpdateBandwidthRateLimit,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1576,8 +1576,8 @@ func (c *StorageGateway) UpdateBandwidthRateLimit(input *UpdateBandwidthRateLimi
 const opUpdateChapCredentials = "UpdateChapCredentials"
 
 // UpdateChapCredentialsRequest generates a request for the UpdateChapCredentials operation.
-func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentialsInput) (req *aws.Request, output *UpdateChapCredentialsOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateChapCredentialsRequest(input *UpdateChapCredentialsInput) (req *service.Request, output *UpdateChapCredentialsOutput) {
+	op := &service.Operation{
 		Name:       opUpdateChapCredentials,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1608,8 +1608,8 @@ func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput
 const opUpdateGatewayInformation = "UpdateGatewayInformation"
 
 // UpdateGatewayInformationRequest generates a request for the UpdateGatewayInformation operation.
-func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInformationInput) (req *aws.Request, output *UpdateGatewayInformationOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateGatewayInformationRequest(input *UpdateGatewayInformationInput) (req *service.Request, output *UpdateGatewayInformationOutput) {
+	op := &service.Operation{
 		Name:       opUpdateGatewayInformation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1637,8 +1637,8 @@ func (c *StorageGateway) UpdateGatewayInformation(input *UpdateGatewayInformatio
 const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
 
 // UpdateGatewaySoftwareNowRequest generates a request for the UpdateGatewaySoftwareNow operation.
-func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoftwareNowInput) (req *aws.Request, output *UpdateGatewaySoftwareNowOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateGatewaySoftwareNowRequest(input *UpdateGatewaySoftwareNowInput) (req *service.Request, output *UpdateGatewaySoftwareNowOutput) {
+	op := &service.Operation{
 		Name:       opUpdateGatewaySoftwareNow,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1676,8 +1676,8 @@ func (c *StorageGateway) UpdateGatewaySoftwareNow(input *UpdateGatewaySoftwareNo
 const opUpdateMaintenanceStartTime = "UpdateMaintenanceStartTime"
 
 // UpdateMaintenanceStartTimeRequest generates a request for the UpdateMaintenanceStartTime operation.
-func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintenanceStartTimeInput) (req *aws.Request, output *UpdateMaintenanceStartTimeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateMaintenanceStartTimeRequest(input *UpdateMaintenanceStartTimeInput) (req *service.Request, output *UpdateMaintenanceStartTimeOutput) {
+	op := &service.Operation{
 		Name:       opUpdateMaintenanceStartTime,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1705,8 +1705,8 @@ func (c *StorageGateway) UpdateMaintenanceStartTime(input *UpdateMaintenanceStar
 const opUpdateSnapshotSchedule = "UpdateSnapshotSchedule"
 
 // UpdateSnapshotScheduleRequest generates a request for the UpdateSnapshotSchedule operation.
-func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotScheduleInput) (req *aws.Request, output *UpdateSnapshotScheduleOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateSnapshotScheduleRequest(input *UpdateSnapshotScheduleInput) (req *service.Request, output *UpdateSnapshotScheduleOutput) {
+	op := &service.Operation{
 		Name:       opUpdateSnapshotSchedule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1740,8 +1740,8 @@ func (c *StorageGateway) UpdateSnapshotSchedule(input *UpdateSnapshotScheduleInp
 const opUpdateVTLDeviceType = "UpdateVTLDeviceType"
 
 // UpdateVTLDeviceTypeRequest generates a request for the UpdateVTLDeviceType operation.
-func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeInput) (req *aws.Request, output *UpdateVTLDeviceTypeOutput) {
-	op := &aws.Operation{
+func (c *StorageGateway) UpdateVTLDeviceTypeRequest(input *UpdateVTLDeviceTypeInput) (req *service.Request, output *UpdateVTLDeviceTypeOutput) {
+	op := &service.Operation{
 		Name:       opUpdateVTLDeviceType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

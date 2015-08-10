@@ -6,15 +6,15 @@ package autoscaling
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAttachInstances = "AttachInstances"
 
 // AttachInstancesRequest generates a request for the AttachInstances operation.
-func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *aws.Request, output *AttachInstancesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *service.Request, output *AttachInstancesOutput) {
+	op := &service.Operation{
 		Name:       opAttachInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -44,8 +44,8 @@ func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (*AttachInsta
 const opAttachLoadBalancers = "AttachLoadBalancers"
 
 // AttachLoadBalancersRequest generates a request for the AttachLoadBalancers operation.
-func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput) (req *aws.Request, output *AttachLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput) (req *service.Request, output *AttachLoadBalancersOutput) {
+	op := &service.Operation{
 		Name:       opAttachLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -78,8 +78,8 @@ func (c *AutoScaling) AttachLoadBalancers(input *AttachLoadBalancersInput) (*Att
 const opCompleteLifecycleAction = "CompleteLifecycleAction"
 
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
-func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *service.Request, output *CompleteLifecycleActionOutput) {
+	op := &service.Operation{
 		Name:       opCompleteLifecycleAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -119,8 +119,8 @@ func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionInpu
 const opCreateAutoScalingGroup = "CreateAutoScalingGroup"
 
 // CreateAutoScalingGroupRequest generates a request for the CreateAutoScalingGroup operation.
-func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *service.Request, output *CreateAutoScalingGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -153,8 +153,8 @@ func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupInput)
 const opCreateLaunchConfiguration = "CreateLaunchConfiguration"
 
 // CreateLaunchConfigurationRequest generates a request for the CreateLaunchConfiguration operation.
-func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *service.Request, output *CreateLaunchConfigurationOutput) {
+	op := &service.Operation{
 		Name:       opCreateLaunchConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -187,8 +187,8 @@ func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfiguration
 const opCreateOrUpdateTags = "CreateOrUpdateTags"
 
 // CreateOrUpdateTagsRequest generates a request for the CreateOrUpdateTags operation.
-func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *service.Request, output *CreateOrUpdateTagsOutput) {
+	op := &service.Operation{
 		Name:       opCreateOrUpdateTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -227,8 +227,8 @@ func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsInput) (*Creat
 const opDeleteAutoScalingGroup = "DeleteAutoScalingGroup"
 
 // DeleteAutoScalingGroupRequest generates a request for the DeleteAutoScalingGroup operation.
-func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *service.Request, output *DeleteAutoScalingGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -259,8 +259,8 @@ func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput)
 const opDeleteLaunchConfiguration = "DeleteLaunchConfiguration"
 
 // DeleteLaunchConfigurationRequest generates a request for the DeleteLaunchConfiguration operation.
-func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *service.Request, output *DeleteLaunchConfigurationOutput) {
+	op := &service.Operation{
 		Name:       opDeleteLaunchConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -290,8 +290,8 @@ func (c *AutoScaling) DeleteLaunchConfiguration(input *DeleteLaunchConfiguration
 const opDeleteLifecycleHook = "DeleteLifecycleHook"
 
 // DeleteLifecycleHookRequest generates a request for the DeleteLifecycleHook operation.
-func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *service.Request, output *DeleteLifecycleHookOutput) {
+	op := &service.Operation{
 		Name:       opDeleteLifecycleHook,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -320,8 +320,8 @@ func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookInput) (*Del
 const opDeleteNotificationConfiguration = "DeleteNotificationConfiguration"
 
 // DeleteNotificationConfigurationRequest generates a request for the DeleteNotificationConfiguration operation.
-func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *service.Request, output *DeleteNotificationConfigurationOutput) {
+	op := &service.Operation{
 		Name:       opDeleteNotificationConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -347,8 +347,8 @@ func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationC
 const opDeletePolicy = "DeletePolicy"
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
-func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *service.Request, output *DeletePolicyOutput) {
+	op := &service.Operation{
 		Name:       opDeletePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -374,8 +374,8 @@ func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutpu
 const opDeleteScheduledAction = "DeleteScheduledAction"
 
 // DeleteScheduledActionRequest generates a request for the DeleteScheduledAction operation.
-func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *aws.Request, output *DeleteScheduledActionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *service.Request, output *DeleteScheduledActionOutput) {
+	op := &service.Operation{
 		Name:       opDeleteScheduledAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -401,8 +401,8 @@ func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *service.Request, output *DeleteTagsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -428,8 +428,8 @@ func (c *AutoScaling) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, err
 const opDescribeAccountLimits = "DescribeAccountLimits"
 
 // DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
-func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *service.Request, output *DescribeAccountLimitsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAccountLimits,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -459,8 +459,8 @@ func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (
 const opDescribeAdjustmentTypes = "DescribeAdjustmentTypes"
 
 // DescribeAdjustmentTypesRequest generates a request for the DescribeAdjustmentTypes operation.
-func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *service.Request, output *DescribeAdjustmentTypesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAdjustmentTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -486,12 +486,12 @@ func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInpu
 const opDescribeAutoScalingGroups = "DescribeAutoScalingGroups"
 
 // DescribeAutoScalingGroupsRequest generates a request for the DescribeAutoScalingGroups operation.
-func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *service.Request, output *DescribeAutoScalingGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAutoScalingGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -527,12 +527,12 @@ func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingG
 const opDescribeAutoScalingInstances = "DescribeAutoScalingInstances"
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
-func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *service.Request, output *DescribeAutoScalingInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAutoScalingInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -568,8 +568,8 @@ func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScali
 const opDescribeAutoScalingNotificationTypes = "DescribeAutoScalingNotificationTypes"
 
 // DescribeAutoScalingNotificationTypesRequest generates a request for the DescribeAutoScalingNotificationTypes operation.
-func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *service.Request, output *DescribeAutoScalingNotificationTypesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAutoScalingNotificationTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -595,12 +595,12 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoSc
 const opDescribeLaunchConfigurations = "DescribeLaunchConfigurations"
 
 // DescribeLaunchConfigurationsRequest generates a request for the DescribeLaunchConfigurations operation.
-func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *service.Request, output *DescribeLaunchConfigurationsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeLaunchConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -636,8 +636,8 @@ func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchCon
 const opDescribeLifecycleHookTypes = "DescribeLifecycleHookTypes"
 
 // DescribeLifecycleHookTypesRequest generates a request for the DescribeLifecycleHookTypes operation.
-func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *service.Request, output *DescribeLifecycleHookTypesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeLifecycleHookTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -663,8 +663,8 @@ func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTyp
 const opDescribeLifecycleHooks = "DescribeLifecycleHooks"
 
 // DescribeLifecycleHooksRequest generates a request for the DescribeLifecycleHooks operation.
-func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *service.Request, output *DescribeLifecycleHooksOutput) {
+	op := &service.Operation{
 		Name:       opDescribeLifecycleHooks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -690,8 +690,8 @@ func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput)
 const opDescribeLoadBalancers = "DescribeLoadBalancers"
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
-func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *service.Request, output *DescribeLoadBalancersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -717,8 +717,8 @@ func (c *AutoScaling) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (
 const opDescribeMetricCollectionTypes = "DescribeMetricCollectionTypes"
 
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
-func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *service.Request, output *DescribeMetricCollectionTypesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeMetricCollectionTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -747,12 +747,12 @@ func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollect
 const opDescribeNotificationConfigurations = "DescribeNotificationConfigurations"
 
 // DescribeNotificationConfigurationsRequest generates a request for the DescribeNotificationConfigurations operation.
-func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *service.Request, output *DescribeNotificationConfigurationsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeNotificationConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -788,12 +788,12 @@ func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNot
 const opDescribePolicies = "DescribePolicies"
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
-func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *service.Request, output *DescribePoliciesOutput) {
+	op := &service.Operation{
 		Name:       opDescribePolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -828,12 +828,12 @@ func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn fun
 const opDescribeScalingActivities = "DescribeScalingActivities"
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
-func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *service.Request, output *DescribeScalingActivitiesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeScalingActivities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -871,8 +871,8 @@ func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActiv
 const opDescribeScalingProcessTypes = "DescribeScalingProcessTypes"
 
 // DescribeScalingProcessTypesRequest generates a request for the DescribeScalingProcessTypes operation.
-func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *service.Request, output *DescribeScalingProcessTypesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeScalingProcessTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -898,12 +898,12 @@ func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessT
 const opDescribeScheduledActions = "DescribeScheduledActions"
 
 // DescribeScheduledActionsRequest generates a request for the DescribeScheduledActions operation.
-func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *service.Request, output *DescribeScheduledActionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeScheduledActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -939,12 +939,12 @@ func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActi
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *service.Request, output *DescribeTagsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -988,8 +988,8 @@ func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(p *Des
 const opDescribeTerminationPolicyTypes = "DescribeTerminationPolicyTypes"
 
 // DescribeTerminationPolicyTypesRequest generates a request for the DescribeTerminationPolicyTypes operation.
-func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *service.Request, output *DescribeTerminationPolicyTypesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTerminationPolicyTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1015,8 +1015,8 @@ func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationP
 const opDetachInstances = "DetachInstances"
 
 // DetachInstancesRequest generates a request for the DetachInstances operation.
-func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *service.Request, output *DetachInstancesOutput) {
+	op := &service.Operation{
 		Name:       opDetachInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1048,8 +1048,8 @@ func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (*DetachInsta
 const opDetachLoadBalancers = "DetachLoadBalancers"
 
 // DetachLoadBalancersRequest generates a request for the DetachLoadBalancers operation.
-func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput) (req *aws.Request, output *DetachLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput) (req *service.Request, output *DetachLoadBalancersOutput) {
+	op := &service.Operation{
 		Name:       opDetachLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1080,8 +1080,8 @@ func (c *AutoScaling) DetachLoadBalancers(input *DetachLoadBalancersInput) (*Det
 const opDisableMetricsCollection = "DisableMetricsCollection"
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
-func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *service.Request, output *DisableMetricsCollectionOutput) {
+	op := &service.Operation{
 		Name:       opDisableMetricsCollection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1108,8 +1108,8 @@ func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionIn
 const opEnableMetricsCollection = "EnableMetricsCollection"
 
 // EnableMetricsCollectionRequest generates a request for the EnableMetricsCollection operation.
-func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *aws.Request, output *EnableMetricsCollectionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *service.Request, output *EnableMetricsCollectionOutput) {
+	op := &service.Operation{
 		Name:       opEnableMetricsCollection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1139,8 +1139,8 @@ func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionInpu
 const opEnterStandby = "EnterStandby"
 
 // EnterStandbyRequest generates a request for the EnterStandby operation.
-func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *service.Request, output *EnterStandbyOutput) {
+	op := &service.Operation{
 		Name:       opEnterStandby,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1169,8 +1169,8 @@ func (c *AutoScaling) EnterStandby(input *EnterStandbyInput) (*EnterStandbyOutpu
 const opExecutePolicy = "ExecutePolicy"
 
 // ExecutePolicyRequest generates a request for the ExecutePolicy operation.
-func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.Request, output *ExecutePolicyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *service.Request, output *ExecutePolicyOutput) {
+	op := &service.Operation{
 		Name:       opExecutePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1196,8 +1196,8 @@ func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyInput) (*ExecutePolicyOu
 const opExitStandby = "ExitStandby"
 
 // ExitStandbyRequest generates a request for the ExitStandby operation.
-func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *service.Request, output *ExitStandbyOutput) {
+	op := &service.Operation{
 		Name:       opExitStandby,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1226,8 +1226,8 @@ func (c *AutoScaling) ExitStandby(input *ExitStandbyInput) (*ExitStandbyOutput, 
 const opPutLifecycleHook = "PutLifecycleHook"
 
 // PutLifecycleHookRequest generates a request for the PutLifecycleHook operation.
-func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *service.Request, output *PutLifecycleHookOutput) {
+	op := &service.Operation{
 		Name:       opPutLifecycleHook,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1275,8 +1275,8 @@ func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (*PutLifecy
 const opPutNotificationConfiguration = "PutNotificationConfiguration"
 
 // PutNotificationConfigurationRequest generates a request for the PutNotificationConfiguration operation.
-func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *aws.Request, output *PutNotificationConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *service.Request, output *PutNotificationConfigurationOutput) {
+	op := &service.Operation{
 		Name:       opPutNotificationConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1310,8 +1310,8 @@ func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigu
 const opPutScalingPolicy = "PutScalingPolicy"
 
 // PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
-func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *service.Request, output *PutScalingPolicyOutput) {
+	op := &service.Operation{
 		Name:       opPutScalingPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1345,8 +1345,8 @@ func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalin
 const opPutScheduledUpdateGroupAction = "PutScheduledUpdateGroupAction"
 
 // PutScheduledUpdateGroupActionRequest generates a request for the PutScheduledUpdateGroupAction operation.
-func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *service.Request, output *PutScheduledUpdateGroupActionOutput) {
+	op := &service.Operation{
 		Name:       opPutScheduledUpdateGroupAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1377,8 +1377,8 @@ func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGro
 const opRecordLifecycleActionHeartbeat = "RecordLifecycleActionHeartbeat"
 
 // RecordLifecycleActionHeartbeatRequest generates a request for the RecordLifecycleActionHeartbeat operation.
-func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *service.Request, output *RecordLifecycleActionHeartbeatOutput) {
+	op := &service.Operation{
 		Name:       opRecordLifecycleActionHeartbeat,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1419,8 +1419,8 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActio
 const opResumeProcesses = "ResumeProcesses"
 
 // ResumeProcessesRequest generates a request for the ResumeProcesses operation.
-func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *ResumeProcessesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *service.Request, output *ResumeProcessesOutput) {
+	op := &service.Operation{
 		Name:       opResumeProcesses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1450,8 +1450,8 @@ func (c *AutoScaling) ResumeProcesses(input *ScalingProcessQuery) (*ResumeProces
 const opSetDesiredCapacity = "SetDesiredCapacity"
 
 // SetDesiredCapacityRequest generates a request for the SetDesiredCapacity operation.
-func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *aws.Request, output *SetDesiredCapacityOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *service.Request, output *SetDesiredCapacityOutput) {
+	op := &service.Operation{
 		Name:       opSetDesiredCapacity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1480,8 +1480,8 @@ func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityInput) (*SetDe
 const opSetInstanceHealth = "SetInstanceHealth"
 
 // SetInstanceHealthRequest generates a request for the SetInstanceHealth operation.
-func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *aws.Request, output *SetInstanceHealthOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *service.Request, output *SetInstanceHealthOutput) {
+	op := &service.Operation{
 		Name:       opSetInstanceHealth,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1510,8 +1510,8 @@ func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (*SetInst
 const opSuspendProcesses = "SuspendProcesses"
 
 // SuspendProcessesRequest generates a request for the SuspendProcesses operation.
-func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *SuspendProcessesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *service.Request, output *SuspendProcessesOutput) {
+	op := &service.Operation{
 		Name:       opSuspendProcesses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1547,8 +1547,8 @@ func (c *AutoScaling) SuspendProcesses(input *ScalingProcessQuery) (*SuspendProc
 const opTerminateInstanceInAutoScalingGroup = "TerminateInstanceInAutoScalingGroup"
 
 // TerminateInstanceInAutoScalingGroupRequest generates a request for the TerminateInstanceInAutoScalingGroup operation.
-func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *service.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
+	op := &service.Operation{
 		Name:       opTerminateInstanceInAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1578,8 +1578,8 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstan
 const opUpdateAutoScalingGroup = "UpdateAutoScalingGroup"
 
 // UpdateAutoScalingGroupRequest generates a request for the UpdateAutoScalingGroup operation.
-func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *service.Request, output *UpdateAutoScalingGroupOutput) {
+	op := &service.Operation{
 		Name:       opUpdateAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -6,15 +6,15 @@ package cloudsearch
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opBuildSuggesters = "BuildSuggesters"
 
 // BuildSuggestersRequest generates a request for the BuildSuggesters operation.
-func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *aws.Request, output *BuildSuggestersOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *service.Request, output *BuildSuggestersOutput) {
+	op := &service.Operation{
 		Name:       opBuildSuggesters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -42,8 +42,8 @@ func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (*BuildSugges
 const opCreateDomain = "CreateDomain"
 
 // CreateDomainRequest generates a request for the CreateDomain operation.
-func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *aws.Request, output *CreateDomainOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *service.Request, output *CreateDomainOutput) {
+	op := &service.Operation{
 		Name:       opCreateDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -71,8 +71,8 @@ func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (*CreateDomainOutpu
 const opDefineAnalysisScheme = "DefineAnalysisScheme"
 
 // DefineAnalysisSchemeRequest generates a request for the DefineAnalysisScheme operation.
-func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *aws.Request, output *DefineAnalysisSchemeOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInput) (req *service.Request, output *DefineAnalysisSchemeOutput) {
+	op := &service.Operation{
 		Name:       opDefineAnalysisScheme,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -101,8 +101,8 @@ func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (*D
 const opDefineExpression = "DefineExpression"
 
 // DefineExpressionRequest generates a request for the DefineExpression operation.
-func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *aws.Request, output *DefineExpressionOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req *service.Request, output *DefineExpressionOutput) {
+	op := &service.Operation{
 		Name:       opDefineExpression,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -131,8 +131,8 @@ func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (*DefineExp
 const opDefineIndexField = "DefineIndexField"
 
 // DefineIndexFieldRequest generates a request for the DefineIndexField operation.
-func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *aws.Request, output *DefineIndexFieldOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req *service.Request, output *DefineIndexFieldOutput) {
+	op := &service.Operation{
 		Name:       opDefineIndexField,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -165,8 +165,8 @@ func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (*DefineInd
 const opDefineSuggester = "DefineSuggester"
 
 // DefineSuggesterRequest generates a request for the DefineSuggester operation.
-func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *aws.Request, output *DefineSuggesterOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *service.Request, output *DefineSuggesterOutput) {
+	op := &service.Operation{
 		Name:       opDefineSuggester,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -197,8 +197,8 @@ func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (*DefineSugge
 const opDeleteAnalysisScheme = "DeleteAnalysisScheme"
 
 // DeleteAnalysisSchemeRequest generates a request for the DeleteAnalysisScheme operation.
-func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *aws.Request, output *DeleteAnalysisSchemeOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInput) (req *service.Request, output *DeleteAnalysisSchemeOutput) {
+	op := &service.Operation{
 		Name:       opDeleteAnalysisScheme,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -226,8 +226,8 @@ func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (*D
 const opDeleteDomain = "DeleteDomain"
 
 // DeleteDomainRequest generates a request for the DeleteDomain operation.
-func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Request, output *DeleteDomainOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DeleteDomainRequest(input *DeleteDomainInput) (req *service.Request, output *DeleteDomainOutput) {
+	op := &service.Operation{
 		Name:       opDeleteDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -256,8 +256,8 @@ func (c *CloudSearch) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutpu
 const opDeleteExpression = "DeleteExpression"
 
 // DeleteExpressionRequest generates a request for the DeleteExpression operation.
-func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *aws.Request, output *DeleteExpressionOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req *service.Request, output *DeleteExpressionOutput) {
+	op := &service.Operation{
 		Name:       opDeleteExpression,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -285,8 +285,8 @@ func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (*DeleteExp
 const opDeleteIndexField = "DeleteIndexField"
 
 // DeleteIndexFieldRequest generates a request for the DeleteIndexField operation.
-func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *aws.Request, output *DeleteIndexFieldOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req *service.Request, output *DeleteIndexFieldOutput) {
+	op := &service.Operation{
 		Name:       opDeleteIndexField,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -314,8 +314,8 @@ func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (*DeleteInd
 const opDeleteSuggester = "DeleteSuggester"
 
 // DeleteSuggesterRequest generates a request for the DeleteSuggester operation.
-func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *aws.Request, output *DeleteSuggesterOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *service.Request, output *DeleteSuggesterOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSuggester,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -343,8 +343,8 @@ func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (*DeleteSugge
 const opDescribeAnalysisSchemes = "DescribeAnalysisSchemes"
 
 // DescribeAnalysisSchemesRequest generates a request for the DescribeAnalysisSchemes operation.
-func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *aws.Request, output *DescribeAnalysisSchemesOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeAnalysisSchemesRequest(input *DescribeAnalysisSchemesInput) (req *service.Request, output *DescribeAnalysisSchemesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAnalysisSchemes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -376,8 +376,8 @@ func (c *CloudSearch) DescribeAnalysisSchemes(input *DescribeAnalysisSchemesInpu
 const opDescribeAvailabilityOptions = "DescribeAvailabilityOptions"
 
 // DescribeAvailabilityOptionsRequest generates a request for the DescribeAvailabilityOptions operation.
-func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *aws.Request, output *DescribeAvailabilityOptionsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeAvailabilityOptionsRequest(input *DescribeAvailabilityOptionsInput) (req *service.Request, output *DescribeAvailabilityOptionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeAvailabilityOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -407,8 +407,8 @@ func (c *CloudSearch) DescribeAvailabilityOptions(input *DescribeAvailabilityOpt
 const opDescribeDomains = "DescribeDomains"
 
 // DescribeDomainsRequest generates a request for the DescribeDomains operation.
-func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *aws.Request, output *DescribeDomainsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeDomainsRequest(input *DescribeDomainsInput) (req *service.Request, output *DescribeDomainsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeDomains,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -439,8 +439,8 @@ func (c *CloudSearch) DescribeDomains(input *DescribeDomainsInput) (*DescribeDom
 const opDescribeExpressions = "DescribeExpressions"
 
 // DescribeExpressionsRequest generates a request for the DescribeExpressions operation.
-func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *aws.Request, output *DescribeExpressionsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeExpressionsRequest(input *DescribeExpressionsInput) (req *service.Request, output *DescribeExpressionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeExpressions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -471,8 +471,8 @@ func (c *CloudSearch) DescribeExpressions(input *DescribeExpressionsInput) (*Des
 const opDescribeIndexFields = "DescribeIndexFields"
 
 // DescribeIndexFieldsRequest generates a request for the DescribeIndexFields operation.
-func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *aws.Request, output *DescribeIndexFieldsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeIndexFieldsRequest(input *DescribeIndexFieldsInput) (req *service.Request, output *DescribeIndexFieldsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeIndexFields,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -503,8 +503,8 @@ func (c *CloudSearch) DescribeIndexFields(input *DescribeIndexFieldsInput) (*Des
 const opDescribeScalingParameters = "DescribeScalingParameters"
 
 // DescribeScalingParametersRequest generates a request for the DescribeScalingParameters operation.
-func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *aws.Request, output *DescribeScalingParametersOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeScalingParametersRequest(input *DescribeScalingParametersInput) (req *service.Request, output *DescribeScalingParametersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeScalingParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -533,8 +533,8 @@ func (c *CloudSearch) DescribeScalingParameters(input *DescribeScalingParameters
 const opDescribeServiceAccessPolicies = "DescribeServiceAccessPolicies"
 
 // DescribeServiceAccessPoliciesRequest generates a request for the DescribeServiceAccessPolicies operation.
-func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *aws.Request, output *DescribeServiceAccessPoliciesOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeServiceAccessPoliciesRequest(input *DescribeServiceAccessPoliciesInput) (req *service.Request, output *DescribeServiceAccessPoliciesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeServiceAccessPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -565,8 +565,8 @@ func (c *CloudSearch) DescribeServiceAccessPolicies(input *DescribeServiceAccess
 const opDescribeSuggesters = "DescribeSuggesters"
 
 // DescribeSuggestersRequest generates a request for the DescribeSuggesters operation.
-func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *aws.Request, output *DescribeSuggestersOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) DescribeSuggestersRequest(input *DescribeSuggestersInput) (req *service.Request, output *DescribeSuggestersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSuggesters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -598,8 +598,8 @@ func (c *CloudSearch) DescribeSuggesters(input *DescribeSuggestersInput) (*Descr
 const opIndexDocuments = "IndexDocuments"
 
 // IndexDocumentsRequest generates a request for the IndexDocuments operation.
-func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *aws.Request, output *IndexDocumentsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *service.Request, output *IndexDocumentsOutput) {
+	op := &service.Operation{
 		Name:       opIndexDocuments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -627,8 +627,8 @@ func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (*IndexDocument
 const opListDomainNames = "ListDomainNames"
 
 // ListDomainNamesRequest generates a request for the ListDomainNames operation.
-func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *aws.Request, output *ListDomainNamesOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) ListDomainNamesRequest(input *ListDomainNamesInput) (req *service.Request, output *ListDomainNamesOutput) {
+	op := &service.Operation{
 		Name:       opListDomainNames,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -654,8 +654,8 @@ func (c *CloudSearch) ListDomainNames(input *ListDomainNamesInput) (*ListDomainN
 const opUpdateAvailabilityOptions = "UpdateAvailabilityOptions"
 
 // UpdateAvailabilityOptionsRequest generates a request for the UpdateAvailabilityOptions operation.
-func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *aws.Request, output *UpdateAvailabilityOptionsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) UpdateAvailabilityOptionsRequest(input *UpdateAvailabilityOptionsInput) (req *service.Request, output *UpdateAvailabilityOptionsOutput) {
+	op := &service.Operation{
 		Name:       opUpdateAvailabilityOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -686,8 +686,8 @@ func (c *CloudSearch) UpdateAvailabilityOptions(input *UpdateAvailabilityOptions
 const opUpdateScalingParameters = "UpdateScalingParameters"
 
 // UpdateScalingParametersRequest generates a request for the UpdateScalingParameters operation.
-func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *aws.Request, output *UpdateScalingParametersOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParametersInput) (req *service.Request, output *UpdateScalingParametersOutput) {
+	op := &service.Operation{
 		Name:       opUpdateScalingParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -720,8 +720,8 @@ func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInpu
 const opUpdateServiceAccessPolicies = "UpdateServiceAccessPolicies"
 
 // UpdateServiceAccessPoliciesRequest generates a request for the UpdateServiceAccessPolicies operation.
-func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *aws.Request, output *UpdateServiceAccessPoliciesOutput) {
-	op := &aws.Operation{
+func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAccessPoliciesInput) (req *service.Request, output *UpdateServiceAccessPoliciesOutput) {
+	op := &service.Operation{
 		Name:       opUpdateServiceAccessPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

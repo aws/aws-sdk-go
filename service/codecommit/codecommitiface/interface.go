@@ -4,53 +4,53 @@
 package codecommitiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/codecommit"
 )
 
 // CodeCommitAPI is the interface type for codecommit.CodeCommit.
 type CodeCommitAPI interface {
-	BatchGetRepositoriesRequest(*codecommit.BatchGetRepositoriesInput) (*aws.Request, *codecommit.BatchGetRepositoriesOutput)
+	BatchGetRepositoriesRequest(*codecommit.BatchGetRepositoriesInput) (*service.Request, *codecommit.BatchGetRepositoriesOutput)
 
 	BatchGetRepositories(*codecommit.BatchGetRepositoriesInput) (*codecommit.BatchGetRepositoriesOutput, error)
 
-	CreateBranchRequest(*codecommit.CreateBranchInput) (*aws.Request, *codecommit.CreateBranchOutput)
+	CreateBranchRequest(*codecommit.CreateBranchInput) (*service.Request, *codecommit.CreateBranchOutput)
 
 	CreateBranch(*codecommit.CreateBranchInput) (*codecommit.CreateBranchOutput, error)
 
-	CreateRepositoryRequest(*codecommit.CreateRepositoryInput) (*aws.Request, *codecommit.CreateRepositoryOutput)
+	CreateRepositoryRequest(*codecommit.CreateRepositoryInput) (*service.Request, *codecommit.CreateRepositoryOutput)
 
 	CreateRepository(*codecommit.CreateRepositoryInput) (*codecommit.CreateRepositoryOutput, error)
 
-	DeleteRepositoryRequest(*codecommit.DeleteRepositoryInput) (*aws.Request, *codecommit.DeleteRepositoryOutput)
+	DeleteRepositoryRequest(*codecommit.DeleteRepositoryInput) (*service.Request, *codecommit.DeleteRepositoryOutput)
 
 	DeleteRepository(*codecommit.DeleteRepositoryInput) (*codecommit.DeleteRepositoryOutput, error)
 
-	GetBranchRequest(*codecommit.GetBranchInput) (*aws.Request, *codecommit.GetBranchOutput)
+	GetBranchRequest(*codecommit.GetBranchInput) (*service.Request, *codecommit.GetBranchOutput)
 
 	GetBranch(*codecommit.GetBranchInput) (*codecommit.GetBranchOutput, error)
 
-	GetRepositoryRequest(*codecommit.GetRepositoryInput) (*aws.Request, *codecommit.GetRepositoryOutput)
+	GetRepositoryRequest(*codecommit.GetRepositoryInput) (*service.Request, *codecommit.GetRepositoryOutput)
 
 	GetRepository(*codecommit.GetRepositoryInput) (*codecommit.GetRepositoryOutput, error)
 
-	ListBranchesRequest(*codecommit.ListBranchesInput) (*aws.Request, *codecommit.ListBranchesOutput)
+	ListBranchesRequest(*codecommit.ListBranchesInput) (*service.Request, *codecommit.ListBranchesOutput)
 
 	ListBranches(*codecommit.ListBranchesInput) (*codecommit.ListBranchesOutput, error)
 
-	ListRepositoriesRequest(*codecommit.ListRepositoriesInput) (*aws.Request, *codecommit.ListRepositoriesOutput)
+	ListRepositoriesRequest(*codecommit.ListRepositoriesInput) (*service.Request, *codecommit.ListRepositoriesOutput)
 
 	ListRepositories(*codecommit.ListRepositoriesInput) (*codecommit.ListRepositoriesOutput, error)
 
-	UpdateDefaultBranchRequest(*codecommit.UpdateDefaultBranchInput) (*aws.Request, *codecommit.UpdateDefaultBranchOutput)
+	UpdateDefaultBranchRequest(*codecommit.UpdateDefaultBranchInput) (*service.Request, *codecommit.UpdateDefaultBranchOutput)
 
 	UpdateDefaultBranch(*codecommit.UpdateDefaultBranchInput) (*codecommit.UpdateDefaultBranchOutput, error)
 
-	UpdateRepositoryDescriptionRequest(*codecommit.UpdateRepositoryDescriptionInput) (*aws.Request, *codecommit.UpdateRepositoryDescriptionOutput)
+	UpdateRepositoryDescriptionRequest(*codecommit.UpdateRepositoryDescriptionInput) (*service.Request, *codecommit.UpdateRepositoryDescriptionOutput)
 
 	UpdateRepositoryDescription(*codecommit.UpdateRepositoryDescriptionInput) (*codecommit.UpdateRepositoryDescriptionOutput, error)
 
-	UpdateRepositoryNameRequest(*codecommit.UpdateRepositoryNameInput) (*aws.Request, *codecommit.UpdateRepositoryNameOutput)
+	UpdateRepositoryNameRequest(*codecommit.UpdateRepositoryNameInput) (*service.Request, *codecommit.UpdateRepositoryNameOutput)
 
 	UpdateRepositoryName(*codecommit.UpdateRepositoryNameInput) (*codecommit.UpdateRepositoryNameOutput, error)
 }

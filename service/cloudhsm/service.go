@@ -4,24 +4,26 @@ package cloudhsm
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 type CloudHSM struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new CloudHSM client.
 func New(config *aws.Config) *CloudHSM {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:       defaults.DefaultConfig.Merge(config),
 		ServiceName:  "cloudhsm",
 		APIVersion:   "2014-05-30",
 		JSONVersion:  "1.1",
@@ -46,8 +48,8 @@ func New(config *aws.Config) *CloudHSM {
 
 // newRequest creates a new request for a CloudHSM operation and runs any
 // custom request initialization.
-func (c *CloudHSM) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *CloudHSM) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

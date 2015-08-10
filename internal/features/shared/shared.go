@@ -12,6 +12,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/defaults"
 	. "github.com/lsegal/gucumber"
 	"github.com/stretchr/testify/assert"
 )
@@ -26,13 +27,13 @@ const Imported = true
 
 func init() {
 	if os.Getenv("DEBUG") != "" {
-		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebug)
+		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebug)
 	}
 	if os.Getenv("DEBUG_SIGNING") != "" {
-		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning)
+		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning)
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		aws.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
+		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
 	}
 
 	When(`^I call the "(.+?)" API$`, func(op string) {

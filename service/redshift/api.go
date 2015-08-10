@@ -6,15 +6,15 @@ package redshift
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAuthorizeClusterSecurityGroupIngress = "AuthorizeClusterSecurityGroupIngress"
 
 // AuthorizeClusterSecurityGroupIngressRequest generates a request for the AuthorizeClusterSecurityGroupIngress operation.
-func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeClusterSecurityGroupIngressInput) (req *service.Request, output *AuthorizeClusterSecurityGroupIngressOutput) {
+	op := &service.Operation{
 		Name:       opAuthorizeClusterSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -54,8 +54,8 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterS
 const opAuthorizeSnapshotAccess = "AuthorizeSnapshotAccess"
 
 // AuthorizeSnapshotAccessRequest generates a request for the AuthorizeSnapshotAccess operation.
-func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *aws.Request, output *AuthorizeSnapshotAccessOutput) {
-	op := &aws.Operation{
+func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccessInput) (req *service.Request, output *AuthorizeSnapshotAccessOutput) {
+	op := &service.Operation{
 		Name:       opAuthorizeSnapshotAccess,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -85,8 +85,8 @@ func (c *Redshift) AuthorizeSnapshotAccess(input *AuthorizeSnapshotAccessInput) 
 const opCopyClusterSnapshot = "CopyClusterSnapshot"
 
 // CopyClusterSnapshotRequest generates a request for the CopyClusterSnapshot operation.
-func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *aws.Request, output *CopyClusterSnapshotOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CopyClusterSnapshotRequest(input *CopyClusterSnapshotInput) (req *service.Request, output *CopyClusterSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opCopyClusterSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -124,8 +124,8 @@ func (c *Redshift) CopyClusterSnapshot(input *CopyClusterSnapshotInput) (*CopyCl
 const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
-func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateClusterRequest(input *CreateClusterInput) (req *service.Request, output *CreateClusterOutput) {
+	op := &service.Operation{
 		Name:       opCreateCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -157,8 +157,8 @@ func (c *Redshift) CreateCluster(input *CreateClusterInput) (*CreateClusterOutpu
 const opCreateClusterParameterGroup = "CreateClusterParameterGroup"
 
 // CreateClusterParameterGroupRequest generates a request for the CreateClusterParameterGroup operation.
-func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *aws.Request, output *CreateClusterParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateClusterParameterGroupRequest(input *CreateClusterParameterGroupInput) (req *service.Request, output *CreateClusterParameterGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateClusterParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -194,8 +194,8 @@ func (c *Redshift) CreateClusterParameterGroup(input *CreateClusterParameterGrou
 const opCreateClusterSecurityGroup = "CreateClusterSecurityGroup"
 
 // CreateClusterSecurityGroupRequest generates a request for the CreateClusterSecurityGroup operation.
-func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *aws.Request, output *CreateClusterSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateClusterSecurityGroupRequest(input *CreateClusterSecurityGroupInput) (req *service.Request, output *CreateClusterSecurityGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateClusterSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -226,8 +226,8 @@ func (c *Redshift) CreateClusterSecurityGroup(input *CreateClusterSecurityGroupI
 const opCreateClusterSnapshot = "CreateClusterSnapshot"
 
 // CreateClusterSnapshotRequest generates a request for the CreateClusterSnapshot operation.
-func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *aws.Request, output *CreateClusterSnapshotOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateClusterSnapshotRequest(input *CreateClusterSnapshotInput) (req *service.Request, output *CreateClusterSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opCreateClusterSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -258,8 +258,8 @@ func (c *Redshift) CreateClusterSnapshot(input *CreateClusterSnapshotInput) (*Cr
 const opCreateClusterSubnetGroup = "CreateClusterSubnetGroup"
 
 // CreateClusterSubnetGroupRequest generates a request for the CreateClusterSubnetGroup operation.
-func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *aws.Request, output *CreateClusterSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateClusterSubnetGroupRequest(input *CreateClusterSubnetGroupInput) (req *service.Request, output *CreateClusterSubnetGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateClusterSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -291,8 +291,8 @@ func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput
 const opCreateEventSubscription = "CreateEventSubscription"
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
-func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *service.Request, output *CreateEventSubscriptionOutput) {
+	op := &service.Operation{
 		Name:       opCreateEventSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -339,8 +339,8 @@ func (c *Redshift) CreateEventSubscription(input *CreateEventSubscriptionInput) 
 const opCreateHSMClientCertificate = "CreateHsmClientCertificate"
 
 // CreateHSMClientCertificateRequest generates a request for the CreateHSMClientCertificate operation.
-func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *aws.Request, output *CreateHSMClientCertificateOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateHSMClientCertificateRequest(input *CreateHSMClientCertificateInput) (req *service.Request, output *CreateHSMClientCertificateOutput) {
+	op := &service.Operation{
 		Name:       opCreateHSMClientCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -374,8 +374,8 @@ func (c *Redshift) CreateHSMClientCertificate(input *CreateHSMClientCertificateI
 const opCreateHSMConfiguration = "CreateHsmConfiguration"
 
 // CreateHSMConfigurationRequest generates a request for the CreateHSMConfiguration operation.
-func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *aws.Request, output *CreateHSMConfigurationOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateHSMConfigurationRequest(input *CreateHSMConfigurationInput) (req *service.Request, output *CreateHSMConfigurationOutput) {
+	op := &service.Operation{
 		Name:       opCreateHSMConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -410,8 +410,8 @@ func (c *Redshift) CreateHSMConfiguration(input *CreateHSMConfigurationInput) (*
 const opCreateSnapshotCopyGrant = "CreateSnapshotCopyGrant"
 
 // CreateSnapshotCopyGrantRequest generates a request for the CreateSnapshotCopyGrant operation.
-func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrantInput) (req *aws.Request, output *CreateSnapshotCopyGrantOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrantInput) (req *service.Request, output *CreateSnapshotCopyGrantOutput) {
+	op := &service.Operation{
 		Name:       opCreateSnapshotCopyGrant,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -443,8 +443,8 @@ func (c *Redshift) CreateSnapshotCopyGrant(input *CreateSnapshotCopyGrantInput) 
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a request for the CreateTags operation.
-func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) CreateTagsRequest(input *CreateTagsInput) (req *service.Request, output *CreateTagsOutput) {
+	op := &service.Operation{
 		Name:       opCreateTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -476,8 +476,8 @@ func (c *Redshift) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error)
 const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
-func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteClusterRequest(input *DeleteClusterInput) (req *service.Request, output *DeleteClusterOutput) {
+	op := &service.Operation{
 		Name:       opDeleteCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -519,8 +519,8 @@ func (c *Redshift) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutpu
 const opDeleteClusterParameterGroup = "DeleteClusterParameterGroup"
 
 // DeleteClusterParameterGroupRequest generates a request for the DeleteClusterParameterGroup operation.
-func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupInput) (req *aws.Request, output *DeleteClusterParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteClusterParameterGroupRequest(input *DeleteClusterParameterGroupInput) (req *service.Request, output *DeleteClusterParameterGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteClusterParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -547,8 +547,8 @@ func (c *Redshift) DeleteClusterParameterGroup(input *DeleteClusterParameterGrou
 const opDeleteClusterSecurityGroup = "DeleteClusterSecurityGroup"
 
 // DeleteClusterSecurityGroupRequest generates a request for the DeleteClusterSecurityGroup operation.
-func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupInput) (req *aws.Request, output *DeleteClusterSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteClusterSecurityGroupRequest(input *DeleteClusterSecurityGroupInput) (req *service.Request, output *DeleteClusterSecurityGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteClusterSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -579,8 +579,8 @@ func (c *Redshift) DeleteClusterSecurityGroup(input *DeleteClusterSecurityGroupI
 const opDeleteClusterSnapshot = "DeleteClusterSnapshot"
 
 // DeleteClusterSnapshotRequest generates a request for the DeleteClusterSnapshot operation.
-func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *aws.Request, output *DeleteClusterSnapshotOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteClusterSnapshotRequest(input *DeleteClusterSnapshotInput) (req *service.Request, output *DeleteClusterSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opDeleteClusterSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -613,8 +613,8 @@ func (c *Redshift) DeleteClusterSnapshot(input *DeleteClusterSnapshotInput) (*De
 const opDeleteClusterSubnetGroup = "DeleteClusterSubnetGroup"
 
 // DeleteClusterSubnetGroupRequest generates a request for the DeleteClusterSubnetGroup operation.
-func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupInput) (req *aws.Request, output *DeleteClusterSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteClusterSubnetGroupRequest(input *DeleteClusterSubnetGroupInput) (req *service.Request, output *DeleteClusterSubnetGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteClusterSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -640,8 +640,8 @@ func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput
 const opDeleteEventSubscription = "DeleteEventSubscription"
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
-func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *service.Request, output *DeleteEventSubscriptionOutput) {
+	op := &service.Operation{
 		Name:       opDeleteEventSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -667,8 +667,8 @@ func (c *Redshift) DeleteEventSubscription(input *DeleteEventSubscriptionInput) 
 const opDeleteHSMClientCertificate = "DeleteHsmClientCertificate"
 
 // DeleteHSMClientCertificateRequest generates a request for the DeleteHSMClientCertificate operation.
-func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateInput) (req *aws.Request, output *DeleteHSMClientCertificateOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteHSMClientCertificateRequest(input *DeleteHSMClientCertificateInput) (req *service.Request, output *DeleteHSMClientCertificateOutput) {
+	op := &service.Operation{
 		Name:       opDeleteHSMClientCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -694,8 +694,8 @@ func (c *Redshift) DeleteHSMClientCertificate(input *DeleteHSMClientCertificateI
 const opDeleteHSMConfiguration = "DeleteHsmConfiguration"
 
 // DeleteHSMConfigurationRequest generates a request for the DeleteHSMConfiguration operation.
-func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationInput) (req *aws.Request, output *DeleteHSMConfigurationOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteHSMConfigurationRequest(input *DeleteHSMConfigurationInput) (req *service.Request, output *DeleteHSMConfigurationOutput) {
+	op := &service.Operation{
 		Name:       opDeleteHSMConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -721,8 +721,8 @@ func (c *Redshift) DeleteHSMConfiguration(input *DeleteHSMConfigurationInput) (*
 const opDeleteSnapshotCopyGrant = "DeleteSnapshotCopyGrant"
 
 // DeleteSnapshotCopyGrantRequest generates a request for the DeleteSnapshotCopyGrant operation.
-func (c *Redshift) DeleteSnapshotCopyGrantRequest(input *DeleteSnapshotCopyGrantInput) (req *aws.Request, output *DeleteSnapshotCopyGrantOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteSnapshotCopyGrantRequest(input *DeleteSnapshotCopyGrantInput) (req *service.Request, output *DeleteSnapshotCopyGrantOutput) {
+	op := &service.Operation{
 		Name:       opDeleteSnapshotCopyGrant,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -748,8 +748,8 @@ func (c *Redshift) DeleteSnapshotCopyGrant(input *DeleteSnapshotCopyGrantInput) 
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DeleteTagsRequest(input *DeleteTagsInput) (req *service.Request, output *DeleteTagsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -776,12 +776,12 @@ func (c *Redshift) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error)
 const opDescribeClusterParameterGroups = "DescribeClusterParameterGroups"
 
 // DescribeClusterParameterGroupsRequest generates a request for the DescribeClusterParameterGroups operation.
-func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *aws.Request, output *DescribeClusterParameterGroupsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClusterParameterGroupsRequest(input *DescribeClusterParameterGroupsInput) (req *service.Request, output *DescribeClusterParameterGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusterParameterGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -834,12 +834,12 @@ func (c *Redshift) DescribeClusterParameterGroupsPages(input *DescribeClusterPar
 const opDescribeClusterParameters = "DescribeClusterParameters"
 
 // DescribeClusterParametersRequest generates a request for the DescribeClusterParameters operation.
-func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *aws.Request, output *DescribeClusterParametersOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClusterParametersRequest(input *DescribeClusterParametersInput) (req *service.Request, output *DescribeClusterParametersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusterParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -885,12 +885,12 @@ func (c *Redshift) DescribeClusterParametersPages(input *DescribeClusterParamete
 const opDescribeClusterSecurityGroups = "DescribeClusterSecurityGroups"
 
 // DescribeClusterSecurityGroupsRequest generates a request for the DescribeClusterSecurityGroups operation.
-func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *aws.Request, output *DescribeClusterSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClusterSecurityGroupsRequest(input *DescribeClusterSecurityGroupsInput) (req *service.Request, output *DescribeClusterSecurityGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusterSecurityGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -941,12 +941,12 @@ func (c *Redshift) DescribeClusterSecurityGroupsPages(input *DescribeClusterSecu
 const opDescribeClusterSnapshots = "DescribeClusterSnapshots"
 
 // DescribeClusterSnapshotsRequest generates a request for the DescribeClusterSnapshots operation.
-func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *aws.Request, output *DescribeClusterSnapshotsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapshotsInput) (req *service.Request, output *DescribeClusterSnapshotsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusterSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -996,12 +996,12 @@ func (c *Redshift) DescribeClusterSnapshotsPages(input *DescribeClusterSnapshots
 const opDescribeClusterSubnetGroups = "DescribeClusterSubnetGroups"
 
 // DescribeClusterSubnetGroupsRequest generates a request for the DescribeClusterSubnetGroups operation.
-func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *aws.Request, output *DescribeClusterSubnetGroupsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubnetGroupsInput) (req *service.Request, output *DescribeClusterSubnetGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusterSubnetGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1048,12 +1048,12 @@ func (c *Redshift) DescribeClusterSubnetGroupsPages(input *DescribeClusterSubnet
 const opDescribeClusterVersions = "DescribeClusterVersions"
 
 // DescribeClusterVersionsRequest generates a request for the DescribeClusterVersions operation.
-func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *aws.Request, output *DescribeClusterVersionsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClusterVersionsRequest(input *DescribeClusterVersionsInput) (req *service.Request, output *DescribeClusterVersionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusterVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1092,12 +1092,12 @@ func (c *Redshift) DescribeClusterVersionsPages(input *DescribeClusterVersionsIn
 const opDescribeClusters = "DescribeClusters"
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
-func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeClustersRequest(input *DescribeClustersInput) (req *service.Request, output *DescribeClustersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1145,12 +1145,12 @@ func (c *Redshift) DescribeClustersPages(input *DescribeClustersInput, fn func(p
 const opDescribeDefaultClusterParameters = "DescribeDefaultClusterParameters"
 
 // DescribeDefaultClusterParametersRequest generates a request for the DescribeDefaultClusterParameters operation.
-func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *aws.Request, output *DescribeDefaultClusterParametersOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeDefaultClusterParametersRequest(input *DescribeDefaultClusterParametersInput) (req *service.Request, output *DescribeDefaultClusterParametersOutput) {
+	op := &service.Operation{
 		Name:       opDescribeDefaultClusterParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"DefaultClusterParameters.Marker"},
 			LimitToken:      "MaxRecords",
@@ -1189,8 +1189,8 @@ func (c *Redshift) DescribeDefaultClusterParametersPages(input *DescribeDefaultC
 const opDescribeEventCategories = "DescribeEventCategories"
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
-func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *service.Request, output *DescribeEventCategoriesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeEventCategories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1218,12 +1218,12 @@ func (c *Redshift) DescribeEventCategories(input *DescribeEventCategoriesInput) 
 const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
-func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *service.Request, output *DescribeEventSubscriptionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeEventSubscriptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1260,12 +1260,12 @@ func (c *Redshift) DescribeEventSubscriptionsPages(input *DescribeEventSubscript
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeEventsRequest(input *DescribeEventsInput) (req *service.Request, output *DescribeEventsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1303,12 +1303,12 @@ func (c *Redshift) DescribeEventsPages(input *DescribeEventsInput, fn func(p *De
 const opDescribeHSMClientCertificates = "DescribeHsmClientCertificates"
 
 // DescribeHSMClientCertificatesRequest generates a request for the DescribeHSMClientCertificates operation.
-func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *aws.Request, output *DescribeHSMClientCertificatesOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeHSMClientCertificatesRequest(input *DescribeHSMClientCertificatesInput) (req *service.Request, output *DescribeHSMClientCertificatesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeHSMClientCertificates,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1355,12 +1355,12 @@ func (c *Redshift) DescribeHSMClientCertificatesPages(input *DescribeHSMClientCe
 const opDescribeHSMConfigurations = "DescribeHsmConfigurations"
 
 // DescribeHSMConfigurationsRequest generates a request for the DescribeHSMConfigurations operation.
-func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *aws.Request, output *DescribeHSMConfigurationsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeHSMConfigurationsRequest(input *DescribeHSMConfigurationsInput) (req *service.Request, output *DescribeHSMConfigurationsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeHSMConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1407,8 +1407,8 @@ func (c *Redshift) DescribeHSMConfigurationsPages(input *DescribeHSMConfiguratio
 const opDescribeLoggingStatus = "DescribeLoggingStatus"
 
 // DescribeLoggingStatusRequest generates a request for the DescribeLoggingStatus operation.
-func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *aws.Request, output *LoggingStatus) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeLoggingStatusRequest(input *DescribeLoggingStatusInput) (req *service.Request, output *LoggingStatus) {
+	op := &service.Operation{
 		Name:       opDescribeLoggingStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1435,12 +1435,12 @@ func (c *Redshift) DescribeLoggingStatus(input *DescribeLoggingStatusInput) (*Lo
 const opDescribeOrderableClusterOptions = "DescribeOrderableClusterOptions"
 
 // DescribeOrderableClusterOptionsRequest generates a request for the DescribeOrderableClusterOptions operation.
-func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *aws.Request, output *DescribeOrderableClusterOptionsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderableClusterOptionsInput) (req *service.Request, output *DescribeOrderableClusterOptionsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeOrderableClusterOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1483,12 +1483,12 @@ func (c *Redshift) DescribeOrderableClusterOptionsPages(input *DescribeOrderable
 const opDescribeReservedNodeOfferings = "DescribeReservedNodeOfferings"
 
 // DescribeReservedNodeOfferingsRequest generates a request for the DescribeReservedNodeOfferings operation.
-func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *aws.Request, output *DescribeReservedNodeOfferingsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeReservedNodeOfferingsRequest(input *DescribeReservedNodeOfferingsInput) (req *service.Request, output *DescribeReservedNodeOfferingsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedNodeOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1532,12 +1532,12 @@ func (c *Redshift) DescribeReservedNodeOfferingsPages(input *DescribeReservedNod
 const opDescribeReservedNodes = "DescribeReservedNodes"
 
 // DescribeReservedNodesRequest generates a request for the DescribeReservedNodes operation.
-func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *aws.Request, output *DescribeReservedNodesOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeReservedNodesRequest(input *DescribeReservedNodesInput) (req *service.Request, output *DescribeReservedNodesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeReservedNodes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1572,8 +1572,8 @@ func (c *Redshift) DescribeReservedNodesPages(input *DescribeReservedNodesInput,
 const opDescribeResize = "DescribeResize"
 
 // DescribeResizeRequest generates a request for the DescribeResize operation.
-func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *aws.Request, output *DescribeResizeOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeResizeRequest(input *DescribeResizeInput) (req *service.Request, output *DescribeResizeOutput) {
+	op := &service.Operation{
 		Name:       opDescribeResize,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1605,8 +1605,8 @@ func (c *Redshift) DescribeResize(input *DescribeResizeInput) (*DescribeResizeOu
 const opDescribeSnapshotCopyGrants = "DescribeSnapshotCopyGrants"
 
 // DescribeSnapshotCopyGrantsRequest generates a request for the DescribeSnapshotCopyGrants operation.
-func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopyGrantsInput) (req *aws.Request, output *DescribeSnapshotCopyGrantsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopyGrantsInput) (req *service.Request, output *DescribeSnapshotCopyGrantsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeSnapshotCopyGrants,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1637,8 +1637,8 @@ func (c *Redshift) DescribeSnapshotCopyGrants(input *DescribeSnapshotCopyGrantsI
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *service.Request, output *DescribeTagsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1682,8 +1682,8 @@ func (c *Redshift) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, 
 const opDisableLogging = "DisableLogging"
 
 // DisableLoggingRequest generates a request for the DisableLogging operation.
-func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *aws.Request, output *LoggingStatus) {
-	op := &aws.Operation{
+func (c *Redshift) DisableLoggingRequest(input *DisableLoggingInput) (req *service.Request, output *LoggingStatus) {
+	op := &service.Operation{
 		Name:       opDisableLogging,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1710,8 +1710,8 @@ func (c *Redshift) DisableLogging(input *DisableLoggingInput) (*LoggingStatus, e
 const opDisableSnapshotCopy = "DisableSnapshotCopy"
 
 // DisableSnapshotCopyRequest generates a request for the DisableSnapshotCopy operation.
-func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *aws.Request, output *DisableSnapshotCopyOutput) {
-	op := &aws.Operation{
+func (c *Redshift) DisableSnapshotCopyRequest(input *DisableSnapshotCopyInput) (req *service.Request, output *DisableSnapshotCopyOutput) {
+	op := &service.Operation{
 		Name:       opDisableSnapshotCopy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1742,8 +1742,8 @@ func (c *Redshift) DisableSnapshotCopy(input *DisableSnapshotCopyInput) (*Disabl
 const opEnableLogging = "EnableLogging"
 
 // EnableLoggingRequest generates a request for the EnableLogging operation.
-func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *aws.Request, output *LoggingStatus) {
-	op := &aws.Operation{
+func (c *Redshift) EnableLoggingRequest(input *EnableLoggingInput) (req *service.Request, output *LoggingStatus) {
+	op := &service.Operation{
 		Name:       opEnableLogging,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1770,8 +1770,8 @@ func (c *Redshift) EnableLogging(input *EnableLoggingInput) (*LoggingStatus, err
 const opEnableSnapshotCopy = "EnableSnapshotCopy"
 
 // EnableSnapshotCopyRequest generates a request for the EnableSnapshotCopy operation.
-func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *aws.Request, output *EnableSnapshotCopyOutput) {
-	op := &aws.Operation{
+func (c *Redshift) EnableSnapshotCopyRequest(input *EnableSnapshotCopyInput) (req *service.Request, output *EnableSnapshotCopyOutput) {
+	op := &service.Operation{
 		Name:       opEnableSnapshotCopy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1798,8 +1798,8 @@ func (c *Redshift) EnableSnapshotCopy(input *EnableSnapshotCopyInput) (*EnableSn
 const opModifyCluster = "ModifyCluster"
 
 // ModifyClusterRequest generates a request for the ModifyCluster operation.
-func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *aws.Request, output *ModifyClusterOutput) {
-	op := &aws.Operation{
+func (c *Redshift) ModifyClusterRequest(input *ModifyClusterInput) (req *service.Request, output *ModifyClusterOutput) {
+	op := &service.Operation{
 		Name:       opModifyCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1835,8 +1835,8 @@ func (c *Redshift) ModifyCluster(input *ModifyClusterInput) (*ModifyClusterOutpu
 const opModifyClusterParameterGroup = "ModifyClusterParameterGroup"
 
 // ModifyClusterParameterGroupRequest generates a request for the ModifyClusterParameterGroup operation.
-func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParameterGroupInput) (req *service.Request, output *ClusterParameterGroupNameMessage) {
+	op := &service.Operation{
 		Name:       opModifyClusterParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1866,8 +1866,8 @@ func (c *Redshift) ModifyClusterParameterGroup(input *ModifyClusterParameterGrou
 const opModifyClusterSubnetGroup = "ModifyClusterSubnetGroup"
 
 // ModifyClusterSubnetGroupRequest generates a request for the ModifyClusterSubnetGroup operation.
-func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *aws.Request, output *ModifyClusterSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *Redshift) ModifyClusterSubnetGroupRequest(input *ModifyClusterSubnetGroupInput) (req *service.Request, output *ModifyClusterSubnetGroupOutput) {
+	op := &service.Operation{
 		Name:       opModifyClusterSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1895,8 +1895,8 @@ func (c *Redshift) ModifyClusterSubnetGroup(input *ModifyClusterSubnetGroupInput
 const opModifyEventSubscription = "ModifyEventSubscription"
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
-func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *Redshift) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *service.Request, output *ModifyEventSubscriptionOutput) {
+	op := &service.Operation{
 		Name:       opModifyEventSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1922,8 +1922,8 @@ func (c *Redshift) ModifyEventSubscription(input *ModifyEventSubscriptionInput) 
 const opModifySnapshotCopyRetentionPeriod = "ModifySnapshotCopyRetentionPeriod"
 
 // ModifySnapshotCopyRetentionPeriodRequest generates a request for the ModifySnapshotCopyRetentionPeriod operation.
-func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *aws.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
-	op := &aws.Operation{
+func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapshotCopyRetentionPeriodInput) (req *service.Request, output *ModifySnapshotCopyRetentionPeriodOutput) {
+	op := &service.Operation{
 		Name:       opModifySnapshotCopyRetentionPeriod,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1950,8 +1950,8 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriod(input *ModifySnapshotCopyRe
 const opPurchaseReservedNodeOffering = "PurchaseReservedNodeOffering"
 
 // PurchaseReservedNodeOfferingRequest generates a request for the PurchaseReservedNodeOffering operation.
-func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *aws.Request, output *PurchaseReservedNodeOfferingOutput) {
-	op := &aws.Operation{
+func (c *Redshift) PurchaseReservedNodeOfferingRequest(input *PurchaseReservedNodeOfferingInput) (req *service.Request, output *PurchaseReservedNodeOfferingOutput) {
+	op := &service.Operation{
 		Name:       opPurchaseReservedNodeOffering,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1985,8 +1985,8 @@ func (c *Redshift) PurchaseReservedNodeOffering(input *PurchaseReservedNodeOffer
 const opRebootCluster = "RebootCluster"
 
 // RebootClusterRequest generates a request for the RebootCluster operation.
-func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *aws.Request, output *RebootClusterOutput) {
-	op := &aws.Operation{
+func (c *Redshift) RebootClusterRequest(input *RebootClusterInput) (req *service.Request, output *RebootClusterOutput) {
+	op := &service.Operation{
 		Name:       opRebootCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2018,8 +2018,8 @@ func (c *Redshift) RebootCluster(input *RebootClusterInput) (*RebootClusterOutpu
 const opResetClusterParameterGroup = "ResetClusterParameterGroup"
 
 // ResetClusterParameterGroupRequest generates a request for the ResetClusterParameterGroup operation.
-func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *aws.Request, output *ClusterParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *Redshift) ResetClusterParameterGroupRequest(input *ResetClusterParameterGroupInput) (req *service.Request, output *ClusterParameterGroupNameMessage) {
+	op := &service.Operation{
 		Name:       opResetClusterParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2048,8 +2048,8 @@ func (c *Redshift) ResetClusterParameterGroup(input *ResetClusterParameterGroupI
 const opRestoreFromClusterSnapshot = "RestoreFromClusterSnapshot"
 
 // RestoreFromClusterSnapshotRequest generates a request for the RestoreFromClusterSnapshot operation.
-func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *aws.Request, output *RestoreFromClusterSnapshotOutput) {
-	op := &aws.Operation{
+func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSnapshotInput) (req *service.Request, output *RestoreFromClusterSnapshotOutput) {
+	op := &service.Operation{
 		Name:       opRestoreFromClusterSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2089,8 +2089,8 @@ func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotI
 const opRevokeClusterSecurityGroupIngress = "RevokeClusterSecurityGroupIngress"
 
 // RevokeClusterSecurityGroupIngressRequest generates a request for the RevokeClusterSecurityGroupIngress operation.
-func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *aws.Request, output *RevokeClusterSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *Redshift) RevokeClusterSecurityGroupIngressRequest(input *RevokeClusterSecurityGroupIngressInput) (req *service.Request, output *RevokeClusterSecurityGroupIngressOutput) {
+	op := &service.Operation{
 		Name:       opRevokeClusterSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2120,8 +2120,8 @@ func (c *Redshift) RevokeClusterSecurityGroupIngress(input *RevokeClusterSecurit
 const opRevokeSnapshotAccess = "RevokeSnapshotAccess"
 
 // RevokeSnapshotAccessRequest generates a request for the RevokeSnapshotAccess operation.
-func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *aws.Request, output *RevokeSnapshotAccessOutput) {
-	op := &aws.Operation{
+func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput) (req *service.Request, output *RevokeSnapshotAccessOutput) {
+	op := &service.Operation{
 		Name:       opRevokeSnapshotAccess,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2153,8 +2153,8 @@ func (c *Redshift) RevokeSnapshotAccess(input *RevokeSnapshotAccessInput) (*Revo
 const opRotateEncryptionKey = "RotateEncryptionKey"
 
 // RotateEncryptionKeyRequest generates a request for the RotateEncryptionKey operation.
-func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *aws.Request, output *RotateEncryptionKeyOutput) {
-	op := &aws.Operation{
+func (c *Redshift) RotateEncryptionKeyRequest(input *RotateEncryptionKeyInput) (req *service.Request, output *RotateEncryptionKeyOutput) {
+	op := &service.Operation{
 		Name:       opRotateEncryptionKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

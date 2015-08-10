@@ -4,25 +4,27 @@ package route53domains
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
 // Route53Domains is a client for Amazon Route 53 Domains.
 type Route53Domains struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new Route53Domains client.
 func New(config *aws.Config) *Route53Domains {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:       defaults.DefaultConfig.Merge(config),
 		ServiceName:  "route53domains",
 		APIVersion:   "2014-05-15",
 		JSONVersion:  "1.1",
@@ -47,8 +49,8 @@ func New(config *aws.Config) *Route53Domains {
 
 // newRequest creates a new request for a Route53Domains operation and runs any
 // custom request initialization.
-func (c *Route53Domains) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *Route53Domains) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

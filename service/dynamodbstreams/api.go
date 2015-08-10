@@ -6,16 +6,16 @@ package dynamodbstreams
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 const opDescribeStream = "DescribeStream"
 
 // DescribeStreamRequest generates a request for the DescribeStream operation.
-func (c *DynamoDBStreams) DescribeStreamRequest(input *DescribeStreamInput) (req *aws.Request, output *DescribeStreamOutput) {
-	op := &aws.Operation{
+func (c *DynamoDBStreams) DescribeStreamRequest(input *DescribeStreamInput) (req *service.Request, output *DescribeStreamOutput) {
+	op := &service.Operation{
 		Name:       opDescribeStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -51,8 +51,8 @@ func (c *DynamoDBStreams) DescribeStream(input *DescribeStreamInput) (*DescribeS
 const opGetRecords = "GetRecords"
 
 // GetRecordsRequest generates a request for the GetRecords operation.
-func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *aws.Request, output *GetRecordsOutput) {
-	op := &aws.Operation{
+func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *service.Request, output *GetRecordsOutput) {
+	op := &service.Operation{
 		Name:       opGetRecords,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -88,8 +88,8 @@ func (c *DynamoDBStreams) GetRecords(input *GetRecordsInput) (*GetRecordsOutput,
 const opGetShardIterator = "GetShardIterator"
 
 // GetShardIteratorRequest generates a request for the GetShardIterator operation.
-func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) (req *aws.Request, output *GetShardIteratorOutput) {
-	op := &aws.Operation{
+func (c *DynamoDBStreams) GetShardIteratorRequest(input *GetShardIteratorInput) (req *service.Request, output *GetShardIteratorOutput) {
+	op := &service.Operation{
 		Name:       opGetShardIterator,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -119,8 +119,8 @@ func (c *DynamoDBStreams) GetShardIterator(input *GetShardIteratorInput) (*GetSh
 const opListStreams = "ListStreams"
 
 // ListStreamsRequest generates a request for the ListStreams operation.
-func (c *DynamoDBStreams) ListStreamsRequest(input *ListStreamsInput) (req *aws.Request, output *ListStreamsOutput) {
-	op := &aws.Operation{
+func (c *DynamoDBStreams) ListStreamsRequest(input *ListStreamsInput) (req *service.Request, output *ListStreamsOutput) {
+	op := &service.Operation{
 		Name:       opListStreams,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

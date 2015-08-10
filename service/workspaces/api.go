@@ -4,15 +4,15 @@
 package workspaces
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opCreateWorkspaces = "CreateWorkspaces"
 
 // CreateWorkspacesRequest generates a request for the CreateWorkspaces operation.
-func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req *aws.Request, output *CreateWorkspacesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) CreateWorkspacesRequest(input *CreateWorkspacesInput) (req *service.Request, output *CreateWorkspacesOutput) {
+	op := &service.Operation{
 		Name:       opCreateWorkspaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,12 +40,12 @@ func (c *WorkSpaces) CreateWorkspaces(input *CreateWorkspacesInput) (*CreateWork
 const opDescribeWorkspaceBundles = "DescribeWorkspaceBundles"
 
 // DescribeWorkspaceBundlesRequest generates a request for the DescribeWorkspaceBundles operation.
-func (c *WorkSpaces) DescribeWorkspaceBundlesRequest(input *DescribeWorkspaceBundlesInput) (req *aws.Request, output *DescribeWorkspaceBundlesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) DescribeWorkspaceBundlesRequest(input *DescribeWorkspaceBundlesInput) (req *service.Request, output *DescribeWorkspaceBundlesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeWorkspaceBundles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -89,12 +89,12 @@ func (c *WorkSpaces) DescribeWorkspaceBundlesPages(input *DescribeWorkspaceBundl
 const opDescribeWorkspaceDirectories = "DescribeWorkspaceDirectories"
 
 // DescribeWorkspaceDirectoriesRequest generates a request for the DescribeWorkspaceDirectories operation.
-func (c *WorkSpaces) DescribeWorkspaceDirectoriesRequest(input *DescribeWorkspaceDirectoriesInput) (req *aws.Request, output *DescribeWorkspaceDirectoriesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) DescribeWorkspaceDirectoriesRequest(input *DescribeWorkspaceDirectoriesInput) (req *service.Request, output *DescribeWorkspaceDirectoriesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeWorkspaceDirectories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -136,12 +136,12 @@ func (c *WorkSpaces) DescribeWorkspaceDirectoriesPages(input *DescribeWorkspaceD
 const opDescribeWorkspaces = "DescribeWorkspaces"
 
 // DescribeWorkspacesRequest generates a request for the DescribeWorkspaces operation.
-func (c *WorkSpaces) DescribeWorkspacesRequest(input *DescribeWorkspacesInput) (req *aws.Request, output *DescribeWorkspacesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) DescribeWorkspacesRequest(input *DescribeWorkspacesInput) (req *service.Request, output *DescribeWorkspacesOutput) {
+	op := &service.Operation{
 		Name:       opDescribeWorkspaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "Limit",
@@ -184,8 +184,8 @@ func (c *WorkSpaces) DescribeWorkspacesPages(input *DescribeWorkspacesInput, fn 
 const opRebootWorkspaces = "RebootWorkspaces"
 
 // RebootWorkspacesRequest generates a request for the RebootWorkspaces operation.
-func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req *aws.Request, output *RebootWorkspacesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) RebootWorkspacesRequest(input *RebootWorkspacesInput) (req *service.Request, output *RebootWorkspacesOutput) {
+	op := &service.Operation{
 		Name:       opRebootWorkspaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -217,8 +217,8 @@ func (c *WorkSpaces) RebootWorkspaces(input *RebootWorkspacesInput) (*RebootWork
 const opRebuildWorkspaces = "RebuildWorkspaces"
 
 // RebuildWorkspacesRequest generates a request for the RebuildWorkspaces operation.
-func (c *WorkSpaces) RebuildWorkspacesRequest(input *RebuildWorkspacesInput) (req *aws.Request, output *RebuildWorkspacesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) RebuildWorkspacesRequest(input *RebuildWorkspacesInput) (req *service.Request, output *RebuildWorkspacesOutput) {
+	op := &service.Operation{
 		Name:       opRebuildWorkspaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -259,8 +259,8 @@ func (c *WorkSpaces) RebuildWorkspaces(input *RebuildWorkspacesInput) (*RebuildW
 const opTerminateWorkspaces = "TerminateWorkspaces"
 
 // TerminateWorkspacesRequest generates a request for the TerminateWorkspaces operation.
-func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput) (req *aws.Request, output *TerminateWorkspacesOutput) {
-	op := &aws.Operation{
+func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput) (req *service.Request, output *TerminateWorkspacesOutput) {
+	op := &service.Operation{
 		Name:       opTerminateWorkspaces,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

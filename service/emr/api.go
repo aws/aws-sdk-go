@@ -6,15 +6,15 @@ package emr
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAddInstanceGroups = "AddInstanceGroups"
 
 // AddInstanceGroupsRequest generates a request for the AddInstanceGroups operation.
-func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.Request, output *AddInstanceGroupsOutput) {
-	op := &aws.Operation{
+func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *service.Request, output *AddInstanceGroupsOutput) {
+	op := &service.Operation{
 		Name:       opAddInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGrou
 const opAddJobFlowSteps = "AddJobFlowSteps"
 
 // AddJobFlowStepsRequest generates a request for the AddJobFlowSteps operation.
-func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Request, output *AddJobFlowStepsOutput) {
-	op := &aws.Operation{
+func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *service.Request, output *AddJobFlowStepsOutput) {
+	op := &service.Operation{
 		Name:       opAddJobFlowSteps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -90,8 +90,8 @@ func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutp
 const opAddTags = "AddTags"
 
 // AddTagsRequest generates a request for the AddTags operation.
-func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
-	op := &aws.Operation{
+func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *service.Request, output *AddTagsOutput) {
+	op := &service.Operation{
 		Name:       opAddTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -120,8 +120,8 @@ func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 const opDescribeCluster = "DescribeCluster"
 
 // DescribeClusterRequest generates a request for the DescribeCluster operation.
-func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Request, output *DescribeClusterOutput) {
-	op := &aws.Operation{
+func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *service.Request, output *DescribeClusterOutput) {
+	op := &service.Operation{
 		Name:       opDescribeCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -148,8 +148,8 @@ func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutp
 const opDescribeJobFlows = "DescribeJobFlows"
 
 // DescribeJobFlowsRequest generates a request for the DescribeJobFlows operation.
-func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Request, output *DescribeJobFlowsOutput) {
-	op := &aws.Operation{
+func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *service.Request, output *DescribeJobFlowsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeJobFlows,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -192,8 +192,8 @@ func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsO
 const opDescribeStep = "DescribeStep"
 
 // DescribeStepRequest generates a request for the DescribeStep operation.
-func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, output *DescribeStepOutput) {
-	op := &aws.Operation{
+func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *service.Request, output *DescribeStepOutput) {
+	op := &service.Operation{
 		Name:       opDescribeStep,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -219,12 +219,12 @@ func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error
 const opListBootstrapActions = "ListBootstrapActions"
 
 // ListBootstrapActionsRequest generates a request for the ListBootstrapActions operation.
-func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *aws.Request, output *ListBootstrapActionsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *service.Request, output *ListBootstrapActionsOutput) {
+	op := &service.Operation{
 		Name:       opListBootstrapActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -259,12 +259,12 @@ func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn fun
 const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a request for the ListClusters operation.
-func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *service.Request, output *ListClustersOutput) {
+	op := &service.Operation{
 		Name:       opListClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -303,12 +303,12 @@ func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 const opListInstanceGroups = "ListInstanceGroups"
 
 // ListInstanceGroupsRequest generates a request for the ListInstanceGroups operation.
-func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aws.Request, output *ListInstanceGroupsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *service.Request, output *ListInstanceGroupsOutput) {
+	op := &service.Operation{
 		Name:       opListInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -343,12 +343,12 @@ func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p 
 const opListInstances = "ListInstances"
 
 // ListInstancesRequest generates a request for the ListInstances operation.
-func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request, output *ListInstancesOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *service.Request, output *ListInstancesOutput) {
+	op := &service.Operation{
 		Name:       opListInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -387,12 +387,12 @@ func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInsta
 const opListSteps = "ListSteps"
 
 // ListStepsRequest generates a request for the ListSteps operation.
-func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output *ListStepsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *service.Request, output *ListStepsOutput) {
+	op := &service.Operation{
 		Name:       opListSteps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -427,8 +427,8 @@ func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, 
 const opModifyInstanceGroups = "ModifyInstanceGroups"
 
 // ModifyInstanceGroupsRequest generates a request for the ModifyInstanceGroups operation.
-func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *aws.Request, output *ModifyInstanceGroupsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *service.Request, output *ModifyInstanceGroupsOutput) {
+	op := &service.Operation{
 		Name:       opModifyInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -457,8 +457,8 @@ func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyIns
 const opRemoveTags = "RemoveTags"
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
-func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
-	op := &aws.Operation{
+func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *service.Request, output *RemoveTagsOutput) {
+	op := &service.Operation{
 		Name:       opRemoveTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -489,8 +489,8 @@ func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 const opRunJobFlow = "RunJobFlow"
 
 // RunJobFlowRequest generates a request for the RunJobFlow operation.
-func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, output *RunJobFlowOutput) {
-	op := &aws.Operation{
+func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *service.Request, output *RunJobFlowOutput) {
+	op := &service.Operation{
 		Name:       opRunJobFlow,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -538,8 +538,8 @@ func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
 const opSetTerminationProtection = "SetTerminationProtection"
 
 // SetTerminationProtectionRequest generates a request for the SetTerminationProtection operation.
-func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *aws.Request, output *SetTerminationProtectionOutput) {
-	op := &aws.Operation{
+func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *service.Request, output *SetTerminationProtectionOutput) {
+	op := &service.Operation{
 		Name:       opSetTerminationProtection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -581,8 +581,8 @@ func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*S
 const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 
 // SetVisibleToAllUsersRequest generates a request for the SetVisibleToAllUsers operation.
-func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *aws.Request, output *SetVisibleToAllUsersOutput) {
-	op := &aws.Operation{
+func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *service.Request, output *SetVisibleToAllUsersOutput) {
+	op := &service.Operation{
 		Name:       opSetVisibleToAllUsers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -613,8 +613,8 @@ func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibl
 const opTerminateJobFlows = "TerminateJobFlows"
 
 // TerminateJobFlowsRequest generates a request for the TerminateJobFlows operation.
-func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.Request, output *TerminateJobFlowsOutput) {
-	op := &aws.Operation{
+func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *service.Request, output *TerminateJobFlowsOutput) {
+	op := &service.Operation{
 		Name:       opTerminateJobFlows,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

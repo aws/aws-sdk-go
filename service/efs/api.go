@@ -6,15 +6,15 @@ package efs
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opCreateFileSystem = "CreateFileSystem"
 
 // CreateFileSystemRequest generates a request for the CreateFileSystem operation.
-func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *aws.Request, output *FileSystemDescription) {
-	op := &aws.Operation{
+func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *service.Request, output *FileSystemDescription) {
+	op := &service.Operation{
 		Name:       opCreateFileSystem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-02-01/file-systems",
@@ -70,8 +70,8 @@ func (c *EFS) CreateFileSystem(input *CreateFileSystemInput) (*FileSystemDescrip
 const opCreateMountTarget = "CreateMountTarget"
 
 // CreateMountTargetRequest generates a request for the CreateMountTarget operation.
-func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *aws.Request, output *MountTargetDescription) {
-	op := &aws.Operation{
+func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *service.Request, output *MountTargetDescription) {
+	op := &service.Operation{
 		Name:       opCreateMountTarget,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-02-01/mount-targets",
@@ -172,8 +172,8 @@ func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDesc
 const opCreateTags = "CreateTags"
 
 // CreateTagsRequest generates a request for the CreateTags operation.
-func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *aws.Request, output *CreateTagsOutput) {
-	op := &aws.Operation{
+func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *service.Request, output *CreateTagsOutput) {
+	op := &service.Operation{
 		Name:       opCreateTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-02-01/create-tags/{FileSystemId}",
@@ -206,8 +206,8 @@ func (c *EFS) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, error) {
 const opDeleteFileSystem = "DeleteFileSystem"
 
 // DeleteFileSystemRequest generates a request for the DeleteFileSystem operation.
-func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *aws.Request, output *DeleteFileSystemOutput) {
-	op := &aws.Operation{
+func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *service.Request, output *DeleteFileSystemOutput) {
+	op := &service.Operation{
 		Name:       opDeleteFileSystem,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-02-01/file-systems/{FileSystemId}",
@@ -246,8 +246,8 @@ func (c *EFS) DeleteFileSystem(input *DeleteFileSystemInput) (*DeleteFileSystemO
 const opDeleteMountTarget = "DeleteMountTarget"
 
 // DeleteMountTargetRequest generates a request for the DeleteMountTarget operation.
-func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *aws.Request, output *DeleteMountTargetOutput) {
-	op := &aws.Operation{
+func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *service.Request, output *DeleteMountTargetOutput) {
+	op := &service.Operation{
 		Name:       opDeleteMountTarget,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-02-01/mount-targets/{MountTargetId}",
@@ -294,8 +294,8 @@ func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTarg
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	op := &aws.Operation{
+func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *service.Request, output *DeleteTagsOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-02-01/delete-tags/{FileSystemId}",
@@ -328,8 +328,8 @@ func (c *EFS) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, error) {
 const opDescribeFileSystems = "DescribeFileSystems"
 
 // DescribeFileSystemsRequest generates a request for the DescribeFileSystems operation.
-func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *aws.Request, output *DescribeFileSystemsOutput) {
-	op := &aws.Operation{
+func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *service.Request, output *DescribeFileSystemsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeFileSystems,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/file-systems",
@@ -380,8 +380,8 @@ func (c *EFS) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFil
 const opDescribeMountTargetSecurityGroups = "DescribeMountTargetSecurityGroups"
 
 // DescribeMountTargetSecurityGroupsRequest generates a request for the DescribeMountTargetSecurityGroups operation.
-func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTargetSecurityGroupsInput) (req *aws.Request, output *DescribeMountTargetSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTargetSecurityGroupsInput) (req *service.Request, output *DescribeMountTargetSecurityGroupsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeMountTargetSecurityGroups,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/mount-targets/{MountTargetId}/security-groups",
@@ -415,8 +415,8 @@ func (c *EFS) DescribeMountTargetSecurityGroups(input *DescribeMountTargetSecuri
 const opDescribeMountTargets = "DescribeMountTargets"
 
 // DescribeMountTargetsRequest generates a request for the DescribeMountTargets operation.
-func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req *aws.Request, output *DescribeMountTargetsOutput) {
-	op := &aws.Operation{
+func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req *service.Request, output *DescribeMountTargetsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeMountTargets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/mount-targets",
@@ -446,8 +446,8 @@ func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeM
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	op := &aws.Operation{
+func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *service.Request, output *DescribeTagsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-02-01/tags/{FileSystemId}/",
@@ -479,8 +479,8 @@ func (c *EFS) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 const opModifyMountTargetSecurityGroups = "ModifyMountTargetSecurityGroups"
 
 // ModifyMountTargetSecurityGroupsRequest generates a request for the ModifyMountTargetSecurityGroups operation.
-func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSecurityGroupsInput) (req *aws.Request, output *ModifyMountTargetSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSecurityGroupsInput) (req *service.Request, output *ModifyMountTargetSecurityGroupsOutput) {
+	op := &service.Operation{
 		Name:       opModifyMountTargetSecurityGroups,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-02-01/mount-targets/{MountTargetId}/security-groups",

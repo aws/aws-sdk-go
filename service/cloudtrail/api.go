@@ -6,15 +6,15 @@ package cloudtrail
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opCreateTrail = "CreateTrail"
 
 // CreateTrailRequest generates a request for the CreateTrail operation.
-func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Request, output *CreateTrailOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *service.Request, output *CreateTrailOutput) {
+	op := &service.Operation{
 		Name:       opCreateTrail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -43,8 +43,8 @@ func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, e
 const opDeleteTrail = "DeleteTrail"
 
 // DeleteTrailRequest generates a request for the DeleteTrail operation.
-func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Request, output *DeleteTrailOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *service.Request, output *DeleteTrailOutput) {
+	op := &service.Operation{
 		Name:       opDeleteTrail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -70,8 +70,8 @@ func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, e
 const opDescribeTrails = "DescribeTrails"
 
 // DescribeTrailsRequest generates a request for the DescribeTrails operation.
-func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws.Request, output *DescribeTrailsOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *service.Request, output *DescribeTrailsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeTrails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -98,8 +98,8 @@ func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrails
 const opGetTrailStatus = "GetTrailStatus"
 
 // GetTrailStatusRequest generates a request for the GetTrailStatus operation.
-func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws.Request, output *GetTrailStatusOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *service.Request, output *GetTrailStatusOutput) {
+	op := &service.Operation{
 		Name:       opGetTrailStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -127,8 +127,8 @@ func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatus
 const opLookupEvents = "LookupEvents"
 
 // LookupEventsRequest generates a request for the LookupEvents operation.
-func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Request, output *LookupEventsOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *service.Request, output *LookupEventsOutput) {
+	op := &service.Operation{
 		Name:       opLookupEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -167,8 +167,8 @@ func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput
 const opStartLogging = "StartLogging"
 
 // StartLoggingRequest generates a request for the StartLogging operation.
-func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Request, output *StartLoggingOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *service.Request, output *StartLoggingOutput) {
+	op := &service.Operation{
 		Name:       opStartLogging,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -194,8 +194,8 @@ func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput
 const opStopLogging = "StopLogging"
 
 // StopLoggingRequest generates a request for the StopLogging operation.
-func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Request, output *StopLoggingOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *service.Request, output *StopLoggingOutput) {
+	op := &service.Operation{
 		Name:       opStopLogging,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -224,8 +224,8 @@ func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, e
 const opUpdateTrail = "UpdateTrail"
 
 // UpdateTrailRequest generates a request for the UpdateTrail operation.
-func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Request, output *UpdateTrailOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *service.Request, output *UpdateTrailOutput) {
+	op := &service.Operation{
 		Name:       opUpdateTrail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

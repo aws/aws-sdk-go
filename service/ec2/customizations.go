@@ -3,19 +3,19 @@ package ec2
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 func init() {
-	initRequest = func(r *aws.Request) {
+	initRequest = func(r *service.Request) {
 		if r.Operation.Name == opCopySnapshot { // fill the PresignedURL parameter
 			r.Handlers.Build.PushFront(fillPresignedURL)
 		}
 	}
 }
 
-func fillPresignedURL(r *aws.Request) {
+func fillPresignedURL(r *service.Request) {
 	if !r.ParamsFilled() {
 		return
 	}

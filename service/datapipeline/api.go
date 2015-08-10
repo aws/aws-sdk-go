@@ -6,15 +6,15 @@ package datapipeline
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opActivatePipeline = "ActivatePipeline"
 
 // ActivatePipelineRequest generates a request for the ActivatePipeline operation.
-func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (req *aws.Request, output *ActivatePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (req *service.Request, output *ActivatePipelineOutput) {
+	op := &service.Operation{
 		Name:       opActivatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -47,8 +47,8 @@ func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (*Activate
 const opAddTags = "AddTags"
 
 // AddTagsRequest generates a request for the AddTags operation.
-func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *service.Request, output *AddTagsOutput) {
+	op := &service.Operation{
 		Name:       opAddTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -74,8 +74,8 @@ func (c *DataPipeline) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 const opCreatePipeline = "CreatePipeline"
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
-func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *service.Request, output *CreatePipelineOutput) {
+	op := &service.Operation{
 		Name:       opCreatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -102,8 +102,8 @@ func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipeli
 const opDeactivatePipeline = "DeactivatePipeline"
 
 // DeactivatePipelineRequest generates a request for the DeactivatePipeline operation.
-func (c *DataPipeline) DeactivatePipelineRequest(input *DeactivatePipelineInput) (req *aws.Request, output *DeactivatePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DeactivatePipelineRequest(input *DeactivatePipelineInput) (req *service.Request, output *DeactivatePipelineOutput) {
+	op := &service.Operation{
 		Name:       opDeactivatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -134,8 +134,8 @@ func (c *DataPipeline) DeactivatePipeline(input *DeactivatePipelineInput) (*Deac
 const opDeletePipeline = "DeletePipeline"
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
-func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *service.Request, output *DeletePipelineOutput) {
+	op := &service.Operation{
 		Name:       opDeletePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -168,12 +168,12 @@ func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipeli
 const opDescribeObjects = "DescribeObjects"
 
 // DescribeObjectsRequest generates a request for the DescribeObjects operation.
-func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req *aws.Request, output *DescribeObjectsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req *service.Request, output *DescribeObjectsOutput) {
+	op := &service.Operation{
 		Name:       opDescribeObjects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"marker"},
 			LimitToken:      "",
@@ -210,8 +210,8 @@ func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func
 const opDescribePipelines = "DescribePipelines"
 
 // DescribePipelinesRequest generates a request for the DescribePipelines operation.
-func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (req *aws.Request, output *DescribePipelinesOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (req *service.Request, output *DescribePipelinesOutput) {
+	op := &service.Operation{
 		Name:       opDescribePipelines,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -245,8 +245,8 @@ func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*Descri
 const opEvaluateExpression = "EvaluateExpression"
 
 // EvaluateExpressionRequest generates a request for the EvaluateExpression operation.
-func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput) (req *aws.Request, output *EvaluateExpressionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput) (req *service.Request, output *EvaluateExpressionOutput) {
+	op := &service.Operation{
 		Name:       opEvaluateExpression,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -274,8 +274,8 @@ func (c *DataPipeline) EvaluateExpression(input *EvaluateExpressionInput) (*Eval
 const opGetPipelineDefinition = "GetPipelineDefinition"
 
 // GetPipelineDefinitionRequest generates a request for the GetPipelineDefinition operation.
-func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinitionInput) (req *aws.Request, output *GetPipelineDefinitionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinitionInput) (req *service.Request, output *GetPipelineDefinitionOutput) {
+	op := &service.Operation{
 		Name:       opGetPipelineDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -302,12 +302,12 @@ func (c *DataPipeline) GetPipelineDefinition(input *GetPipelineDefinitionInput) 
 const opListPipelines = "ListPipelines"
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
-func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *service.Request, output *ListPipelinesOutput) {
+	op := &service.Operation{
 		Name:       opListPipelines,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"marker"},
 			LimitToken:      "",
@@ -343,8 +343,8 @@ func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(p *
 const opPollForTask = "PollForTask"
 
 // PollForTaskRequest generates a request for the PollForTask operation.
-func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Request, output *PollForTaskOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *service.Request, output *PollForTaskOutput) {
+	op := &service.Operation{
 		Name:       opPollForTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -383,8 +383,8 @@ func (c *DataPipeline) PollForTask(input *PollForTaskInput) (*PollForTaskOutput,
 const opPutPipelineDefinition = "PutPipelineDefinition"
 
 // PutPipelineDefinitionRequest generates a request for the PutPipelineDefinition operation.
-func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinitionInput) (req *aws.Request, output *PutPipelineDefinitionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinitionInput) (req *service.Request, output *PutPipelineDefinitionOutput) {
+	op := &service.Operation{
 		Name:       opPutPipelineDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -421,12 +421,12 @@ func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) 
 const opQueryObjects = "QueryObjects"
 
 // QueryObjectsRequest generates a request for the QueryObjects operation.
-func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.Request, output *QueryObjectsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *service.Request, output *QueryObjectsOutput) {
+	op := &service.Operation{
 		Name:       opQueryObjects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"marker"},
 			LimitToken:      "limit",
@@ -462,8 +462,8 @@ func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(p *Qu
 const opRemoveTags = "RemoveTags"
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
-func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *service.Request, output *RemoveTagsOutput) {
+	op := &service.Operation{
 		Name:       opRemoveTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -489,8 +489,8 @@ func (c *DataPipeline) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, er
 const opReportTaskProgress = "ReportTaskProgress"
 
 // ReportTaskProgressRequest generates a request for the ReportTaskProgress operation.
-func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput) (req *aws.Request, output *ReportTaskProgressOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput) (req *service.Request, output *ReportTaskProgressOutput) {
+	op := &service.Operation{
 		Name:       opReportTaskProgress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -527,8 +527,8 @@ func (c *DataPipeline) ReportTaskProgress(input *ReportTaskProgressInput) (*Repo
 const opReportTaskRunnerHeartbeat = "ReportTaskRunnerHeartbeat"
 
 // ReportTaskRunnerHeartbeatRequest generates a request for the ReportTaskRunnerHeartbeat operation.
-func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerHeartbeatInput) (req *aws.Request, output *ReportTaskRunnerHeartbeatOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerHeartbeatInput) (req *service.Request, output *ReportTaskRunnerHeartbeatOutput) {
+	op := &service.Operation{
 		Name:       opReportTaskRunnerHeartbeat,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -558,8 +558,8 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbea
 const opSetStatus = "SetStatus"
 
 // SetStatusRequest generates a request for the SetStatus operation.
-func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request, output *SetStatusOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *service.Request, output *SetStatusOutput) {
+	op := &service.Operation{
 		Name:       opSetStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -589,8 +589,8 @@ func (c *DataPipeline) SetStatus(input *SetStatusInput) (*SetStatusOutput, error
 const opSetTaskStatus = "SetTaskStatus"
 
 // SetTaskStatusRequest generates a request for the SetTaskStatus operation.
-func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws.Request, output *SetTaskStatusOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *service.Request, output *SetTaskStatusOutput) {
+	op := &service.Operation{
 		Name:       opSetTaskStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -620,8 +620,8 @@ func (c *DataPipeline) SetTaskStatus(input *SetTaskStatusInput) (*SetTaskStatusO
 const opValidatePipelineDefinition = "ValidatePipelineDefinition"
 
 // ValidatePipelineDefinitionRequest generates a request for the ValidatePipelineDefinition operation.
-func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipelineDefinitionInput) (req *aws.Request, output *ValidatePipelineDefinitionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipelineDefinitionInput) (req *service.Request, output *ValidatePipelineDefinitionOutput) {
+	op := &service.Operation{
 		Name:       opValidatePipelineDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -4,149 +4,149 @@
 package codedeployiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/codedeploy"
 )
 
 // CodeDeployAPI is the interface type for codedeploy.CodeDeploy.
 type CodeDeployAPI interface {
-	AddTagsToOnPremisesInstancesRequest(*codedeploy.AddTagsToOnPremisesInstancesInput) (*aws.Request, *codedeploy.AddTagsToOnPremisesInstancesOutput)
+	AddTagsToOnPremisesInstancesRequest(*codedeploy.AddTagsToOnPremisesInstancesInput) (*service.Request, *codedeploy.AddTagsToOnPremisesInstancesOutput)
 
 	AddTagsToOnPremisesInstances(*codedeploy.AddTagsToOnPremisesInstancesInput) (*codedeploy.AddTagsToOnPremisesInstancesOutput, error)
 
-	BatchGetApplicationsRequest(*codedeploy.BatchGetApplicationsInput) (*aws.Request, *codedeploy.BatchGetApplicationsOutput)
+	BatchGetApplicationsRequest(*codedeploy.BatchGetApplicationsInput) (*service.Request, *codedeploy.BatchGetApplicationsOutput)
 
 	BatchGetApplications(*codedeploy.BatchGetApplicationsInput) (*codedeploy.BatchGetApplicationsOutput, error)
 
-	BatchGetDeploymentsRequest(*codedeploy.BatchGetDeploymentsInput) (*aws.Request, *codedeploy.BatchGetDeploymentsOutput)
+	BatchGetDeploymentsRequest(*codedeploy.BatchGetDeploymentsInput) (*service.Request, *codedeploy.BatchGetDeploymentsOutput)
 
 	BatchGetDeployments(*codedeploy.BatchGetDeploymentsInput) (*codedeploy.BatchGetDeploymentsOutput, error)
 
-	BatchGetOnPremisesInstancesRequest(*codedeploy.BatchGetOnPremisesInstancesInput) (*aws.Request, *codedeploy.BatchGetOnPremisesInstancesOutput)
+	BatchGetOnPremisesInstancesRequest(*codedeploy.BatchGetOnPremisesInstancesInput) (*service.Request, *codedeploy.BatchGetOnPremisesInstancesOutput)
 
 	BatchGetOnPremisesInstances(*codedeploy.BatchGetOnPremisesInstancesInput) (*codedeploy.BatchGetOnPremisesInstancesOutput, error)
 
-	CreateApplicationRequest(*codedeploy.CreateApplicationInput) (*aws.Request, *codedeploy.CreateApplicationOutput)
+	CreateApplicationRequest(*codedeploy.CreateApplicationInput) (*service.Request, *codedeploy.CreateApplicationOutput)
 
 	CreateApplication(*codedeploy.CreateApplicationInput) (*codedeploy.CreateApplicationOutput, error)
 
-	CreateDeploymentRequest(*codedeploy.CreateDeploymentInput) (*aws.Request, *codedeploy.CreateDeploymentOutput)
+	CreateDeploymentRequest(*codedeploy.CreateDeploymentInput) (*service.Request, *codedeploy.CreateDeploymentOutput)
 
 	CreateDeployment(*codedeploy.CreateDeploymentInput) (*codedeploy.CreateDeploymentOutput, error)
 
-	CreateDeploymentConfigRequest(*codedeploy.CreateDeploymentConfigInput) (*aws.Request, *codedeploy.CreateDeploymentConfigOutput)
+	CreateDeploymentConfigRequest(*codedeploy.CreateDeploymentConfigInput) (*service.Request, *codedeploy.CreateDeploymentConfigOutput)
 
 	CreateDeploymentConfig(*codedeploy.CreateDeploymentConfigInput) (*codedeploy.CreateDeploymentConfigOutput, error)
 
-	CreateDeploymentGroupRequest(*codedeploy.CreateDeploymentGroupInput) (*aws.Request, *codedeploy.CreateDeploymentGroupOutput)
+	CreateDeploymentGroupRequest(*codedeploy.CreateDeploymentGroupInput) (*service.Request, *codedeploy.CreateDeploymentGroupOutput)
 
 	CreateDeploymentGroup(*codedeploy.CreateDeploymentGroupInput) (*codedeploy.CreateDeploymentGroupOutput, error)
 
-	DeleteApplicationRequest(*codedeploy.DeleteApplicationInput) (*aws.Request, *codedeploy.DeleteApplicationOutput)
+	DeleteApplicationRequest(*codedeploy.DeleteApplicationInput) (*service.Request, *codedeploy.DeleteApplicationOutput)
 
 	DeleteApplication(*codedeploy.DeleteApplicationInput) (*codedeploy.DeleteApplicationOutput, error)
 
-	DeleteDeploymentConfigRequest(*codedeploy.DeleteDeploymentConfigInput) (*aws.Request, *codedeploy.DeleteDeploymentConfigOutput)
+	DeleteDeploymentConfigRequest(*codedeploy.DeleteDeploymentConfigInput) (*service.Request, *codedeploy.DeleteDeploymentConfigOutput)
 
 	DeleteDeploymentConfig(*codedeploy.DeleteDeploymentConfigInput) (*codedeploy.DeleteDeploymentConfigOutput, error)
 
-	DeleteDeploymentGroupRequest(*codedeploy.DeleteDeploymentGroupInput) (*aws.Request, *codedeploy.DeleteDeploymentGroupOutput)
+	DeleteDeploymentGroupRequest(*codedeploy.DeleteDeploymentGroupInput) (*service.Request, *codedeploy.DeleteDeploymentGroupOutput)
 
 	DeleteDeploymentGroup(*codedeploy.DeleteDeploymentGroupInput) (*codedeploy.DeleteDeploymentGroupOutput, error)
 
-	DeregisterOnPremisesInstanceRequest(*codedeploy.DeregisterOnPremisesInstanceInput) (*aws.Request, *codedeploy.DeregisterOnPremisesInstanceOutput)
+	DeregisterOnPremisesInstanceRequest(*codedeploy.DeregisterOnPremisesInstanceInput) (*service.Request, *codedeploy.DeregisterOnPremisesInstanceOutput)
 
 	DeregisterOnPremisesInstance(*codedeploy.DeregisterOnPremisesInstanceInput) (*codedeploy.DeregisterOnPremisesInstanceOutput, error)
 
-	GetApplicationRequest(*codedeploy.GetApplicationInput) (*aws.Request, *codedeploy.GetApplicationOutput)
+	GetApplicationRequest(*codedeploy.GetApplicationInput) (*service.Request, *codedeploy.GetApplicationOutput)
 
 	GetApplication(*codedeploy.GetApplicationInput) (*codedeploy.GetApplicationOutput, error)
 
-	GetApplicationRevisionRequest(*codedeploy.GetApplicationRevisionInput) (*aws.Request, *codedeploy.GetApplicationRevisionOutput)
+	GetApplicationRevisionRequest(*codedeploy.GetApplicationRevisionInput) (*service.Request, *codedeploy.GetApplicationRevisionOutput)
 
 	GetApplicationRevision(*codedeploy.GetApplicationRevisionInput) (*codedeploy.GetApplicationRevisionOutput, error)
 
-	GetDeploymentRequest(*codedeploy.GetDeploymentInput) (*aws.Request, *codedeploy.GetDeploymentOutput)
+	GetDeploymentRequest(*codedeploy.GetDeploymentInput) (*service.Request, *codedeploy.GetDeploymentOutput)
 
 	GetDeployment(*codedeploy.GetDeploymentInput) (*codedeploy.GetDeploymentOutput, error)
 
-	GetDeploymentConfigRequest(*codedeploy.GetDeploymentConfigInput) (*aws.Request, *codedeploy.GetDeploymentConfigOutput)
+	GetDeploymentConfigRequest(*codedeploy.GetDeploymentConfigInput) (*service.Request, *codedeploy.GetDeploymentConfigOutput)
 
 	GetDeploymentConfig(*codedeploy.GetDeploymentConfigInput) (*codedeploy.GetDeploymentConfigOutput, error)
 
-	GetDeploymentGroupRequest(*codedeploy.GetDeploymentGroupInput) (*aws.Request, *codedeploy.GetDeploymentGroupOutput)
+	GetDeploymentGroupRequest(*codedeploy.GetDeploymentGroupInput) (*service.Request, *codedeploy.GetDeploymentGroupOutput)
 
 	GetDeploymentGroup(*codedeploy.GetDeploymentGroupInput) (*codedeploy.GetDeploymentGroupOutput, error)
 
-	GetDeploymentInstanceRequest(*codedeploy.GetDeploymentInstanceInput) (*aws.Request, *codedeploy.GetDeploymentInstanceOutput)
+	GetDeploymentInstanceRequest(*codedeploy.GetDeploymentInstanceInput) (*service.Request, *codedeploy.GetDeploymentInstanceOutput)
 
 	GetDeploymentInstance(*codedeploy.GetDeploymentInstanceInput) (*codedeploy.GetDeploymentInstanceOutput, error)
 
-	GetOnPremisesInstanceRequest(*codedeploy.GetOnPremisesInstanceInput) (*aws.Request, *codedeploy.GetOnPremisesInstanceOutput)
+	GetOnPremisesInstanceRequest(*codedeploy.GetOnPremisesInstanceInput) (*service.Request, *codedeploy.GetOnPremisesInstanceOutput)
 
 	GetOnPremisesInstance(*codedeploy.GetOnPremisesInstanceInput) (*codedeploy.GetOnPremisesInstanceOutput, error)
 
-	ListApplicationRevisionsRequest(*codedeploy.ListApplicationRevisionsInput) (*aws.Request, *codedeploy.ListApplicationRevisionsOutput)
+	ListApplicationRevisionsRequest(*codedeploy.ListApplicationRevisionsInput) (*service.Request, *codedeploy.ListApplicationRevisionsOutput)
 
 	ListApplicationRevisions(*codedeploy.ListApplicationRevisionsInput) (*codedeploy.ListApplicationRevisionsOutput, error)
 
 	ListApplicationRevisionsPages(*codedeploy.ListApplicationRevisionsInput, func(*codedeploy.ListApplicationRevisionsOutput, bool) bool) error
 
-	ListApplicationsRequest(*codedeploy.ListApplicationsInput) (*aws.Request, *codedeploy.ListApplicationsOutput)
+	ListApplicationsRequest(*codedeploy.ListApplicationsInput) (*service.Request, *codedeploy.ListApplicationsOutput)
 
 	ListApplications(*codedeploy.ListApplicationsInput) (*codedeploy.ListApplicationsOutput, error)
 
 	ListApplicationsPages(*codedeploy.ListApplicationsInput, func(*codedeploy.ListApplicationsOutput, bool) bool) error
 
-	ListDeploymentConfigsRequest(*codedeploy.ListDeploymentConfigsInput) (*aws.Request, *codedeploy.ListDeploymentConfigsOutput)
+	ListDeploymentConfigsRequest(*codedeploy.ListDeploymentConfigsInput) (*service.Request, *codedeploy.ListDeploymentConfigsOutput)
 
 	ListDeploymentConfigs(*codedeploy.ListDeploymentConfigsInput) (*codedeploy.ListDeploymentConfigsOutput, error)
 
 	ListDeploymentConfigsPages(*codedeploy.ListDeploymentConfigsInput, func(*codedeploy.ListDeploymentConfigsOutput, bool) bool) error
 
-	ListDeploymentGroupsRequest(*codedeploy.ListDeploymentGroupsInput) (*aws.Request, *codedeploy.ListDeploymentGroupsOutput)
+	ListDeploymentGroupsRequest(*codedeploy.ListDeploymentGroupsInput) (*service.Request, *codedeploy.ListDeploymentGroupsOutput)
 
 	ListDeploymentGroups(*codedeploy.ListDeploymentGroupsInput) (*codedeploy.ListDeploymentGroupsOutput, error)
 
 	ListDeploymentGroupsPages(*codedeploy.ListDeploymentGroupsInput, func(*codedeploy.ListDeploymentGroupsOutput, bool) bool) error
 
-	ListDeploymentInstancesRequest(*codedeploy.ListDeploymentInstancesInput) (*aws.Request, *codedeploy.ListDeploymentInstancesOutput)
+	ListDeploymentInstancesRequest(*codedeploy.ListDeploymentInstancesInput) (*service.Request, *codedeploy.ListDeploymentInstancesOutput)
 
 	ListDeploymentInstances(*codedeploy.ListDeploymentInstancesInput) (*codedeploy.ListDeploymentInstancesOutput, error)
 
 	ListDeploymentInstancesPages(*codedeploy.ListDeploymentInstancesInput, func(*codedeploy.ListDeploymentInstancesOutput, bool) bool) error
 
-	ListDeploymentsRequest(*codedeploy.ListDeploymentsInput) (*aws.Request, *codedeploy.ListDeploymentsOutput)
+	ListDeploymentsRequest(*codedeploy.ListDeploymentsInput) (*service.Request, *codedeploy.ListDeploymentsOutput)
 
 	ListDeployments(*codedeploy.ListDeploymentsInput) (*codedeploy.ListDeploymentsOutput, error)
 
 	ListDeploymentsPages(*codedeploy.ListDeploymentsInput, func(*codedeploy.ListDeploymentsOutput, bool) bool) error
 
-	ListOnPremisesInstancesRequest(*codedeploy.ListOnPremisesInstancesInput) (*aws.Request, *codedeploy.ListOnPremisesInstancesOutput)
+	ListOnPremisesInstancesRequest(*codedeploy.ListOnPremisesInstancesInput) (*service.Request, *codedeploy.ListOnPremisesInstancesOutput)
 
 	ListOnPremisesInstances(*codedeploy.ListOnPremisesInstancesInput) (*codedeploy.ListOnPremisesInstancesOutput, error)
 
-	RegisterApplicationRevisionRequest(*codedeploy.RegisterApplicationRevisionInput) (*aws.Request, *codedeploy.RegisterApplicationRevisionOutput)
+	RegisterApplicationRevisionRequest(*codedeploy.RegisterApplicationRevisionInput) (*service.Request, *codedeploy.RegisterApplicationRevisionOutput)
 
 	RegisterApplicationRevision(*codedeploy.RegisterApplicationRevisionInput) (*codedeploy.RegisterApplicationRevisionOutput, error)
 
-	RegisterOnPremisesInstanceRequest(*codedeploy.RegisterOnPremisesInstanceInput) (*aws.Request, *codedeploy.RegisterOnPremisesInstanceOutput)
+	RegisterOnPremisesInstanceRequest(*codedeploy.RegisterOnPremisesInstanceInput) (*service.Request, *codedeploy.RegisterOnPremisesInstanceOutput)
 
 	RegisterOnPremisesInstance(*codedeploy.RegisterOnPremisesInstanceInput) (*codedeploy.RegisterOnPremisesInstanceOutput, error)
 
-	RemoveTagsFromOnPremisesInstancesRequest(*codedeploy.RemoveTagsFromOnPremisesInstancesInput) (*aws.Request, *codedeploy.RemoveTagsFromOnPremisesInstancesOutput)
+	RemoveTagsFromOnPremisesInstancesRequest(*codedeploy.RemoveTagsFromOnPremisesInstancesInput) (*service.Request, *codedeploy.RemoveTagsFromOnPremisesInstancesOutput)
 
 	RemoveTagsFromOnPremisesInstances(*codedeploy.RemoveTagsFromOnPremisesInstancesInput) (*codedeploy.RemoveTagsFromOnPremisesInstancesOutput, error)
 
-	StopDeploymentRequest(*codedeploy.StopDeploymentInput) (*aws.Request, *codedeploy.StopDeploymentOutput)
+	StopDeploymentRequest(*codedeploy.StopDeploymentInput) (*service.Request, *codedeploy.StopDeploymentOutput)
 
 	StopDeployment(*codedeploy.StopDeploymentInput) (*codedeploy.StopDeploymentOutput, error)
 
-	UpdateApplicationRequest(*codedeploy.UpdateApplicationInput) (*aws.Request, *codedeploy.UpdateApplicationOutput)
+	UpdateApplicationRequest(*codedeploy.UpdateApplicationInput) (*service.Request, *codedeploy.UpdateApplicationOutput)
 
 	UpdateApplication(*codedeploy.UpdateApplicationInput) (*codedeploy.UpdateApplicationOutput, error)
 
-	UpdateDeploymentGroupRequest(*codedeploy.UpdateDeploymentGroupInput) (*aws.Request, *codedeploy.UpdateDeploymentGroupOutput)
+	UpdateDeploymentGroupRequest(*codedeploy.UpdateDeploymentGroupInput) (*service.Request, *codedeploy.UpdateDeploymentGroupOutput)
 
 	UpdateDeploymentGroup(*codedeploy.UpdateDeploymentGroupInput) (*codedeploy.UpdateDeploymentGroupOutput, error)
 }

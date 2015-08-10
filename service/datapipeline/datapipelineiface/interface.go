@@ -4,91 +4,91 @@
 package datapipelineiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/datapipeline"
 )
 
 // DataPipelineAPI is the interface type for datapipeline.DataPipeline.
 type DataPipelineAPI interface {
-	ActivatePipelineRequest(*datapipeline.ActivatePipelineInput) (*aws.Request, *datapipeline.ActivatePipelineOutput)
+	ActivatePipelineRequest(*datapipeline.ActivatePipelineInput) (*service.Request, *datapipeline.ActivatePipelineOutput)
 
 	ActivatePipeline(*datapipeline.ActivatePipelineInput) (*datapipeline.ActivatePipelineOutput, error)
 
-	AddTagsRequest(*datapipeline.AddTagsInput) (*aws.Request, *datapipeline.AddTagsOutput)
+	AddTagsRequest(*datapipeline.AddTagsInput) (*service.Request, *datapipeline.AddTagsOutput)
 
 	AddTags(*datapipeline.AddTagsInput) (*datapipeline.AddTagsOutput, error)
 
-	CreatePipelineRequest(*datapipeline.CreatePipelineInput) (*aws.Request, *datapipeline.CreatePipelineOutput)
+	CreatePipelineRequest(*datapipeline.CreatePipelineInput) (*service.Request, *datapipeline.CreatePipelineOutput)
 
 	CreatePipeline(*datapipeline.CreatePipelineInput) (*datapipeline.CreatePipelineOutput, error)
 
-	DeactivatePipelineRequest(*datapipeline.DeactivatePipelineInput) (*aws.Request, *datapipeline.DeactivatePipelineOutput)
+	DeactivatePipelineRequest(*datapipeline.DeactivatePipelineInput) (*service.Request, *datapipeline.DeactivatePipelineOutput)
 
 	DeactivatePipeline(*datapipeline.DeactivatePipelineInput) (*datapipeline.DeactivatePipelineOutput, error)
 
-	DeletePipelineRequest(*datapipeline.DeletePipelineInput) (*aws.Request, *datapipeline.DeletePipelineOutput)
+	DeletePipelineRequest(*datapipeline.DeletePipelineInput) (*service.Request, *datapipeline.DeletePipelineOutput)
 
 	DeletePipeline(*datapipeline.DeletePipelineInput) (*datapipeline.DeletePipelineOutput, error)
 
-	DescribeObjectsRequest(*datapipeline.DescribeObjectsInput) (*aws.Request, *datapipeline.DescribeObjectsOutput)
+	DescribeObjectsRequest(*datapipeline.DescribeObjectsInput) (*service.Request, *datapipeline.DescribeObjectsOutput)
 
 	DescribeObjects(*datapipeline.DescribeObjectsInput) (*datapipeline.DescribeObjectsOutput, error)
 
 	DescribeObjectsPages(*datapipeline.DescribeObjectsInput, func(*datapipeline.DescribeObjectsOutput, bool) bool) error
 
-	DescribePipelinesRequest(*datapipeline.DescribePipelinesInput) (*aws.Request, *datapipeline.DescribePipelinesOutput)
+	DescribePipelinesRequest(*datapipeline.DescribePipelinesInput) (*service.Request, *datapipeline.DescribePipelinesOutput)
 
 	DescribePipelines(*datapipeline.DescribePipelinesInput) (*datapipeline.DescribePipelinesOutput, error)
 
-	EvaluateExpressionRequest(*datapipeline.EvaluateExpressionInput) (*aws.Request, *datapipeline.EvaluateExpressionOutput)
+	EvaluateExpressionRequest(*datapipeline.EvaluateExpressionInput) (*service.Request, *datapipeline.EvaluateExpressionOutput)
 
 	EvaluateExpression(*datapipeline.EvaluateExpressionInput) (*datapipeline.EvaluateExpressionOutput, error)
 
-	GetPipelineDefinitionRequest(*datapipeline.GetPipelineDefinitionInput) (*aws.Request, *datapipeline.GetPipelineDefinitionOutput)
+	GetPipelineDefinitionRequest(*datapipeline.GetPipelineDefinitionInput) (*service.Request, *datapipeline.GetPipelineDefinitionOutput)
 
 	GetPipelineDefinition(*datapipeline.GetPipelineDefinitionInput) (*datapipeline.GetPipelineDefinitionOutput, error)
 
-	ListPipelinesRequest(*datapipeline.ListPipelinesInput) (*aws.Request, *datapipeline.ListPipelinesOutput)
+	ListPipelinesRequest(*datapipeline.ListPipelinesInput) (*service.Request, *datapipeline.ListPipelinesOutput)
 
 	ListPipelines(*datapipeline.ListPipelinesInput) (*datapipeline.ListPipelinesOutput, error)
 
 	ListPipelinesPages(*datapipeline.ListPipelinesInput, func(*datapipeline.ListPipelinesOutput, bool) bool) error
 
-	PollForTaskRequest(*datapipeline.PollForTaskInput) (*aws.Request, *datapipeline.PollForTaskOutput)
+	PollForTaskRequest(*datapipeline.PollForTaskInput) (*service.Request, *datapipeline.PollForTaskOutput)
 
 	PollForTask(*datapipeline.PollForTaskInput) (*datapipeline.PollForTaskOutput, error)
 
-	PutPipelineDefinitionRequest(*datapipeline.PutPipelineDefinitionInput) (*aws.Request, *datapipeline.PutPipelineDefinitionOutput)
+	PutPipelineDefinitionRequest(*datapipeline.PutPipelineDefinitionInput) (*service.Request, *datapipeline.PutPipelineDefinitionOutput)
 
 	PutPipelineDefinition(*datapipeline.PutPipelineDefinitionInput) (*datapipeline.PutPipelineDefinitionOutput, error)
 
-	QueryObjectsRequest(*datapipeline.QueryObjectsInput) (*aws.Request, *datapipeline.QueryObjectsOutput)
+	QueryObjectsRequest(*datapipeline.QueryObjectsInput) (*service.Request, *datapipeline.QueryObjectsOutput)
 
 	QueryObjects(*datapipeline.QueryObjectsInput) (*datapipeline.QueryObjectsOutput, error)
 
 	QueryObjectsPages(*datapipeline.QueryObjectsInput, func(*datapipeline.QueryObjectsOutput, bool) bool) error
 
-	RemoveTagsRequest(*datapipeline.RemoveTagsInput) (*aws.Request, *datapipeline.RemoveTagsOutput)
+	RemoveTagsRequest(*datapipeline.RemoveTagsInput) (*service.Request, *datapipeline.RemoveTagsOutput)
 
 	RemoveTags(*datapipeline.RemoveTagsInput) (*datapipeline.RemoveTagsOutput, error)
 
-	ReportTaskProgressRequest(*datapipeline.ReportTaskProgressInput) (*aws.Request, *datapipeline.ReportTaskProgressOutput)
+	ReportTaskProgressRequest(*datapipeline.ReportTaskProgressInput) (*service.Request, *datapipeline.ReportTaskProgressOutput)
 
 	ReportTaskProgress(*datapipeline.ReportTaskProgressInput) (*datapipeline.ReportTaskProgressOutput, error)
 
-	ReportTaskRunnerHeartbeatRequest(*datapipeline.ReportTaskRunnerHeartbeatInput) (*aws.Request, *datapipeline.ReportTaskRunnerHeartbeatOutput)
+	ReportTaskRunnerHeartbeatRequest(*datapipeline.ReportTaskRunnerHeartbeatInput) (*service.Request, *datapipeline.ReportTaskRunnerHeartbeatOutput)
 
 	ReportTaskRunnerHeartbeat(*datapipeline.ReportTaskRunnerHeartbeatInput) (*datapipeline.ReportTaskRunnerHeartbeatOutput, error)
 
-	SetStatusRequest(*datapipeline.SetStatusInput) (*aws.Request, *datapipeline.SetStatusOutput)
+	SetStatusRequest(*datapipeline.SetStatusInput) (*service.Request, *datapipeline.SetStatusOutput)
 
 	SetStatus(*datapipeline.SetStatusInput) (*datapipeline.SetStatusOutput, error)
 
-	SetTaskStatusRequest(*datapipeline.SetTaskStatusInput) (*aws.Request, *datapipeline.SetTaskStatusOutput)
+	SetTaskStatusRequest(*datapipeline.SetTaskStatusInput) (*service.Request, *datapipeline.SetTaskStatusOutput)
 
 	SetTaskStatus(*datapipeline.SetTaskStatusInput) (*datapipeline.SetTaskStatusOutput, error)
 
-	ValidatePipelineDefinitionRequest(*datapipeline.ValidatePipelineDefinitionInput) (*aws.Request, *datapipeline.ValidatePipelineDefinitionOutput)
+	ValidatePipelineDefinitionRequest(*datapipeline.ValidatePipelineDefinitionInput) (*service.Request, *datapipeline.ValidatePipelineDefinitionOutput)
 
 	ValidatePipelineDefinition(*datapipeline.ValidatePipelineDefinitionInput) (*datapipeline.ValidatePipelineDefinitionOutput, error)
 }

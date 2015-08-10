@@ -6,15 +6,15 @@ package codedeploy
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 const opAddTagsToOnPremisesInstances = "AddTagsToOnPremisesInstances"
 
 // AddTagsToOnPremisesInstancesRequest generates a request for the AddTagsToOnPremisesInstances operation.
-func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremisesInstancesInput) (req *aws.Request, output *AddTagsToOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremisesInstancesInput) (req *service.Request, output *AddTagsToOnPremisesInstancesOutput) {
+	op := &service.Operation{
 		Name:       opAddTagsToOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *CodeDeploy) AddTagsToOnPremisesInstances(input *AddTagsToOnPremisesInst
 const opBatchGetApplications = "BatchGetApplications"
 
 // BatchGetApplicationsRequest generates a request for the BatchGetApplications operation.
-func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *aws.Request, output *BatchGetApplicationsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *service.Request, output *BatchGetApplicationsOutput) {
+	op := &service.Operation{
 		Name:       opBatchGetApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -67,8 +67,8 @@ func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (*Ba
 const opBatchGetDeployments = "BatchGetDeployments"
 
 // BatchGetDeploymentsRequest generates a request for the BatchGetDeployments operation.
-func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput) (req *aws.Request, output *BatchGetDeploymentsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput) (req *service.Request, output *BatchGetDeploymentsOutput) {
+	op := &service.Operation{
 		Name:       opBatchGetDeployments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -94,8 +94,8 @@ func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (*Batc
 const opBatchGetOnPremisesInstances = "BatchGetOnPremisesInstances"
 
 // BatchGetOnPremisesInstancesRequest generates a request for the BatchGetOnPremisesInstances operation.
-func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremisesInstancesInput) (req *aws.Request, output *BatchGetOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremisesInstancesInput) (req *service.Request, output *BatchGetOnPremisesInstancesOutput) {
+	op := &service.Operation{
 		Name:       opBatchGetOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -121,8 +121,8 @@ func (c *CodeDeploy) BatchGetOnPremisesInstances(input *BatchGetOnPremisesInstan
 const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
-func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *CreateApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *service.Request, output *CreateApplicationOutput) {
+	op := &service.Operation{
 		Name:       opCreateApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -148,8 +148,8 @@ func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (*CreateAp
 const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a request for the CreateDeployment operation.
-func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req *aws.Request, output *CreateDeploymentOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req *service.Request, output *CreateDeploymentOutput) {
+	op := &service.Operation{
 		Name:       opCreateDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -175,8 +175,8 @@ func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (*CreateDepl
 const opCreateDeploymentConfig = "CreateDeploymentConfig"
 
 // CreateDeploymentConfigRequest generates a request for the CreateDeploymentConfig operation.
-func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfigInput) (req *aws.Request, output *CreateDeploymentConfigOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfigInput) (req *service.Request, output *CreateDeploymentConfigOutput) {
+	op := &service.Operation{
 		Name:       opCreateDeploymentConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -202,8 +202,8 @@ func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) 
 const opCreateDeploymentGroup = "CreateDeploymentGroup"
 
 // CreateDeploymentGroupRequest generates a request for the CreateDeploymentGroup operation.
-func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupInput) (req *aws.Request, output *CreateDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupInput) (req *service.Request, output *CreateDeploymentGroupOutput) {
+	op := &service.Operation{
 		Name:       opCreateDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -229,8 +229,8 @@ func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (*
 const opDeleteApplication = "DeleteApplication"
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
-func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *service.Request, output *DeleteApplicationOutput) {
+	op := &service.Operation{
 		Name:       opDeleteApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -256,8 +256,8 @@ func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (*DeleteAp
 const opDeleteDeploymentConfig = "DeleteDeploymentConfig"
 
 // DeleteDeploymentConfigRequest generates a request for the DeleteDeploymentConfig operation.
-func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *aws.Request, output *DeleteDeploymentConfigOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *service.Request, output *DeleteDeploymentConfigOutput) {
+	op := &service.Operation{
 		Name:       opDeleteDeploymentConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -286,8 +286,8 @@ func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) 
 const opDeleteDeploymentGroup = "DeleteDeploymentGroup"
 
 // DeleteDeploymentGroupRequest generates a request for the DeleteDeploymentGroup operation.
-func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupInput) (req *aws.Request, output *DeleteDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupInput) (req *service.Request, output *DeleteDeploymentGroupOutput) {
+	op := &service.Operation{
 		Name:       opDeleteDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -313,8 +313,8 @@ func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (*
 const opDeregisterOnPremisesInstance = "DeregisterOnPremisesInstance"
 
 // DeregisterOnPremisesInstanceRequest generates a request for the DeregisterOnPremisesInstance operation.
-func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPremisesInstanceInput) (req *aws.Request, output *DeregisterOnPremisesInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPremisesInstanceInput) (req *service.Request, output *DeregisterOnPremisesInstanceOutput) {
+	op := &service.Operation{
 		Name:       opDeregisterOnPremisesInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -340,8 +340,8 @@ func (c *CodeDeploy) DeregisterOnPremisesInstance(input *DeregisterOnPremisesIns
 const opGetApplication = "GetApplication"
 
 // GetApplicationRequest generates a request for the GetApplication operation.
-func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws.Request, output *GetApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *service.Request, output *GetApplicationOutput) {
+	op := &service.Operation{
 		Name:       opGetApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -367,8 +367,8 @@ func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (*GetApplication
 const opGetApplicationRevision = "GetApplicationRevision"
 
 // GetApplicationRevisionRequest generates a request for the GetApplicationRevision operation.
-func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevisionInput) (req *aws.Request, output *GetApplicationRevisionOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevisionInput) (req *service.Request, output *GetApplicationRevisionOutput) {
+	op := &service.Operation{
 		Name:       opGetApplicationRevision,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -394,8 +394,8 @@ func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) 
 const opGetDeployment = "GetDeployment"
 
 // GetDeploymentRequest generates a request for the GetDeployment operation.
-func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.Request, output *GetDeploymentOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *service.Request, output *GetDeploymentOutput) {
+	op := &service.Operation{
 		Name:       opGetDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -421,8 +421,8 @@ func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOut
 const opGetDeploymentConfig = "GetDeploymentConfig"
 
 // GetDeploymentConfigRequest generates a request for the GetDeploymentConfig operation.
-func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput) (req *aws.Request, output *GetDeploymentConfigOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput) (req *service.Request, output *GetDeploymentConfigOutput) {
+	op := &service.Operation{
 		Name:       opGetDeploymentConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -448,8 +448,8 @@ func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (*GetD
 const opGetDeploymentGroup = "GetDeploymentGroup"
 
 // GetDeploymentGroupRequest generates a request for the GetDeploymentGroup operation.
-func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (req *aws.Request, output *GetDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (req *service.Request, output *GetDeploymentGroupOutput) {
+	op := &service.Operation{
 		Name:       opGetDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -475,8 +475,8 @@ func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (*GetDep
 const opGetDeploymentInstance = "GetDeploymentInstance"
 
 // GetDeploymentInstanceRequest generates a request for the GetDeploymentInstance operation.
-func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceInput) (req *aws.Request, output *GetDeploymentInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceInput) (req *service.Request, output *GetDeploymentInstanceOutput) {
+	op := &service.Operation{
 		Name:       opGetDeploymentInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -502,8 +502,8 @@ func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*
 const opGetOnPremisesInstance = "GetOnPremisesInstance"
 
 // GetOnPremisesInstanceRequest generates a request for the GetOnPremisesInstance operation.
-func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceInput) (req *aws.Request, output *GetOnPremisesInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceInput) (req *service.Request, output *GetOnPremisesInstanceOutput) {
+	op := &service.Operation{
 		Name:       opGetOnPremisesInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -529,12 +529,12 @@ func (c *CodeDeploy) GetOnPremisesInstance(input *GetOnPremisesInstanceInput) (*
 const opListApplicationRevisions = "ListApplicationRevisions"
 
 // ListApplicationRevisionsRequest generates a request for the ListApplicationRevisions operation.
-func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *aws.Request, output *ListApplicationRevisionsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *service.Request, output *ListApplicationRevisionsOutput) {
+	op := &service.Operation{
 		Name:       opListApplicationRevisions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -569,12 +569,12 @@ func (c *CodeDeploy) ListApplicationRevisionsPages(input *ListApplicationRevisio
 const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a request for the ListApplications operation.
-func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req *aws.Request, output *ListApplicationsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req *service.Request, output *ListApplicationsOutput) {
+	op := &service.Operation{
 		Name:       opListApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -609,12 +609,12 @@ func (c *CodeDeploy) ListApplicationsPages(input *ListApplicationsInput, fn func
 const opListDeploymentConfigs = "ListDeploymentConfigs"
 
 // ListDeploymentConfigsRequest generates a request for the ListDeploymentConfigs operation.
-func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsInput) (req *aws.Request, output *ListDeploymentConfigsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsInput) (req *service.Request, output *ListDeploymentConfigsOutput) {
+	op := &service.Operation{
 		Name:       opListDeploymentConfigs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -649,12 +649,12 @@ func (c *CodeDeploy) ListDeploymentConfigsPages(input *ListDeploymentConfigsInpu
 const opListDeploymentGroups = "ListDeploymentGroups"
 
 // ListDeploymentGroupsRequest generates a request for the ListDeploymentGroups operation.
-func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInput) (req *aws.Request, output *ListDeploymentGroupsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInput) (req *service.Request, output *ListDeploymentGroupsOutput) {
+	op := &service.Operation{
 		Name:       opListDeploymentGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -690,12 +690,12 @@ func (c *CodeDeploy) ListDeploymentGroupsPages(input *ListDeploymentGroupsInput,
 const opListDeploymentInstances = "ListDeploymentInstances"
 
 // ListDeploymentInstancesRequest generates a request for the ListDeploymentInstances operation.
-func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstancesInput) (req *aws.Request, output *ListDeploymentInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstancesInput) (req *service.Request, output *ListDeploymentInstancesOutput) {
+	op := &service.Operation{
 		Name:       opListDeploymentInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -731,12 +731,12 @@ func (c *CodeDeploy) ListDeploymentInstancesPages(input *ListDeploymentInstances
 const opListDeployments = "ListDeployments"
 
 // ListDeploymentsRequest generates a request for the ListDeployments operation.
-func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *aws.Request, output *ListDeploymentsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *service.Request, output *ListDeploymentsOutput) {
+	op := &service.Operation{
 		Name:       opListDeployments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &service.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -772,8 +772,8 @@ func (c *CodeDeploy) ListDeploymentsPages(input *ListDeploymentsInput, fn func(p
 const opListOnPremisesInstances = "ListOnPremisesInstances"
 
 // ListOnPremisesInstancesRequest generates a request for the ListOnPremisesInstances operation.
-func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstancesInput) (req *aws.Request, output *ListOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstancesInput) (req *service.Request, output *ListOnPremisesInstancesOutput) {
+	op := &service.Operation{
 		Name:       opListOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -803,8 +803,8 @@ func (c *CodeDeploy) ListOnPremisesInstances(input *ListOnPremisesInstancesInput
 const opRegisterApplicationRevision = "RegisterApplicationRevision"
 
 // RegisterApplicationRevisionRequest generates a request for the RegisterApplicationRevision operation.
-func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request, output *RegisterApplicationRevisionOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *service.Request, output *RegisterApplicationRevisionOutput) {
+	op := &service.Operation{
 		Name:       opRegisterApplicationRevision,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -830,8 +830,8 @@ func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevis
 const opRegisterOnPremisesInstance = "RegisterOnPremisesInstance"
 
 // RegisterOnPremisesInstanceRequest generates a request for the RegisterOnPremisesInstance operation.
-func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremisesInstanceInput) (req *aws.Request, output *RegisterOnPremisesInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremisesInstanceInput) (req *service.Request, output *RegisterOnPremisesInstanceOutput) {
+	op := &service.Operation{
 		Name:       opRegisterOnPremisesInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -857,8 +857,8 @@ func (c *CodeDeploy) RegisterOnPremisesInstance(input *RegisterOnPremisesInstanc
 const opRemoveTagsFromOnPremisesInstances = "RemoveTagsFromOnPremisesInstances"
 
 // RemoveTagsFromOnPremisesInstancesRequest generates a request for the RemoveTagsFromOnPremisesInstances operation.
-func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsFromOnPremisesInstancesInput) (req *aws.Request, output *RemoveTagsFromOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsFromOnPremisesInstancesInput) (req *service.Request, output *RemoveTagsFromOnPremisesInstancesOutput) {
+	op := &service.Operation{
 		Name:       opRemoveTagsFromOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -884,8 +884,8 @@ func (c *CodeDeploy) RemoveTagsFromOnPremisesInstances(input *RemoveTagsFromOnPr
 const opStopDeployment = "StopDeployment"
 
 // StopDeploymentRequest generates a request for the StopDeployment operation.
-func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws.Request, output *StopDeploymentOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *service.Request, output *StopDeploymentOutput) {
+	op := &service.Operation{
 		Name:       opStopDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -911,8 +911,8 @@ func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (*StopDeployment
 const opUpdateApplication = "UpdateApplication"
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
-func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *UpdateApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *service.Request, output *UpdateApplicationOutput) {
+	op := &service.Operation{
 		Name:       opUpdateApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -938,8 +938,8 @@ func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (*UpdateAp
 const opUpdateDeploymentGroup = "UpdateDeploymentGroup"
 
 // UpdateDeploymentGroupRequest generates a request for the UpdateDeploymentGroup operation.
-func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupInput) (req *aws.Request, output *UpdateDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupInput) (req *service.Request, output *UpdateDeploymentGroupOutput) {
+	op := &service.Operation{
 		Name:       opUpdateDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

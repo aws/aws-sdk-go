@@ -4,6 +4,8 @@ package codecommit
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -16,19 +18,19 @@ import (
 //  Repositories Branches Commits  For information about how to use AWS CodeCommit,
 // see the AWS CodeCommit User Guide.
 type CodeCommit struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new CodeCommit client.
 func New(config *aws.Config) *CodeCommit {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:       defaults.DefaultConfig.Merge(config),
 		ServiceName:  "codecommit",
 		APIVersion:   "2015-04-13",
 		JSONVersion:  "1.1",
@@ -53,8 +55,8 @@ func New(config *aws.Config) *CodeCommit {
 
 // newRequest creates a new request for a CodeCommit operation and runs any
 // custom request initialization.
-func (c *CodeCommit) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *CodeCommit) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

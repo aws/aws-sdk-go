@@ -4,105 +4,105 @@
 package cloudwatchlogsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 )
 
 // CloudWatchLogsAPI is the interface type for cloudwatchlogs.CloudWatchLogs.
 type CloudWatchLogsAPI interface {
-	CreateLogGroupRequest(*cloudwatchlogs.CreateLogGroupInput) (*aws.Request, *cloudwatchlogs.CreateLogGroupOutput)
+	CreateLogGroupRequest(*cloudwatchlogs.CreateLogGroupInput) (*service.Request, *cloudwatchlogs.CreateLogGroupOutput)
 
 	CreateLogGroup(*cloudwatchlogs.CreateLogGroupInput) (*cloudwatchlogs.CreateLogGroupOutput, error)
 
-	CreateLogStreamRequest(*cloudwatchlogs.CreateLogStreamInput) (*aws.Request, *cloudwatchlogs.CreateLogStreamOutput)
+	CreateLogStreamRequest(*cloudwatchlogs.CreateLogStreamInput) (*service.Request, *cloudwatchlogs.CreateLogStreamOutput)
 
 	CreateLogStream(*cloudwatchlogs.CreateLogStreamInput) (*cloudwatchlogs.CreateLogStreamOutput, error)
 
-	DeleteDestinationRequest(*cloudwatchlogs.DeleteDestinationInput) (*aws.Request, *cloudwatchlogs.DeleteDestinationOutput)
+	DeleteDestinationRequest(*cloudwatchlogs.DeleteDestinationInput) (*service.Request, *cloudwatchlogs.DeleteDestinationOutput)
 
 	DeleteDestination(*cloudwatchlogs.DeleteDestinationInput) (*cloudwatchlogs.DeleteDestinationOutput, error)
 
-	DeleteLogGroupRequest(*cloudwatchlogs.DeleteLogGroupInput) (*aws.Request, *cloudwatchlogs.DeleteLogGroupOutput)
+	DeleteLogGroupRequest(*cloudwatchlogs.DeleteLogGroupInput) (*service.Request, *cloudwatchlogs.DeleteLogGroupOutput)
 
 	DeleteLogGroup(*cloudwatchlogs.DeleteLogGroupInput) (*cloudwatchlogs.DeleteLogGroupOutput, error)
 
-	DeleteLogStreamRequest(*cloudwatchlogs.DeleteLogStreamInput) (*aws.Request, *cloudwatchlogs.DeleteLogStreamOutput)
+	DeleteLogStreamRequest(*cloudwatchlogs.DeleteLogStreamInput) (*service.Request, *cloudwatchlogs.DeleteLogStreamOutput)
 
 	DeleteLogStream(*cloudwatchlogs.DeleteLogStreamInput) (*cloudwatchlogs.DeleteLogStreamOutput, error)
 
-	DeleteMetricFilterRequest(*cloudwatchlogs.DeleteMetricFilterInput) (*aws.Request, *cloudwatchlogs.DeleteMetricFilterOutput)
+	DeleteMetricFilterRequest(*cloudwatchlogs.DeleteMetricFilterInput) (*service.Request, *cloudwatchlogs.DeleteMetricFilterOutput)
 
 	DeleteMetricFilter(*cloudwatchlogs.DeleteMetricFilterInput) (*cloudwatchlogs.DeleteMetricFilterOutput, error)
 
-	DeleteRetentionPolicyRequest(*cloudwatchlogs.DeleteRetentionPolicyInput) (*aws.Request, *cloudwatchlogs.DeleteRetentionPolicyOutput)
+	DeleteRetentionPolicyRequest(*cloudwatchlogs.DeleteRetentionPolicyInput) (*service.Request, *cloudwatchlogs.DeleteRetentionPolicyOutput)
 
 	DeleteRetentionPolicy(*cloudwatchlogs.DeleteRetentionPolicyInput) (*cloudwatchlogs.DeleteRetentionPolicyOutput, error)
 
-	DeleteSubscriptionFilterRequest(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*aws.Request, *cloudwatchlogs.DeleteSubscriptionFilterOutput)
+	DeleteSubscriptionFilterRequest(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*service.Request, *cloudwatchlogs.DeleteSubscriptionFilterOutput)
 
 	DeleteSubscriptionFilter(*cloudwatchlogs.DeleteSubscriptionFilterInput) (*cloudwatchlogs.DeleteSubscriptionFilterOutput, error)
 
-	DescribeDestinationsRequest(*cloudwatchlogs.DescribeDestinationsInput) (*aws.Request, *cloudwatchlogs.DescribeDestinationsOutput)
+	DescribeDestinationsRequest(*cloudwatchlogs.DescribeDestinationsInput) (*service.Request, *cloudwatchlogs.DescribeDestinationsOutput)
 
 	DescribeDestinations(*cloudwatchlogs.DescribeDestinationsInput) (*cloudwatchlogs.DescribeDestinationsOutput, error)
 
-	DescribeLogGroupsRequest(*cloudwatchlogs.DescribeLogGroupsInput) (*aws.Request, *cloudwatchlogs.DescribeLogGroupsOutput)
+	DescribeLogGroupsRequest(*cloudwatchlogs.DescribeLogGroupsInput) (*service.Request, *cloudwatchlogs.DescribeLogGroupsOutput)
 
 	DescribeLogGroups(*cloudwatchlogs.DescribeLogGroupsInput) (*cloudwatchlogs.DescribeLogGroupsOutput, error)
 
 	DescribeLogGroupsPages(*cloudwatchlogs.DescribeLogGroupsInput, func(*cloudwatchlogs.DescribeLogGroupsOutput, bool) bool) error
 
-	DescribeLogStreamsRequest(*cloudwatchlogs.DescribeLogStreamsInput) (*aws.Request, *cloudwatchlogs.DescribeLogStreamsOutput)
+	DescribeLogStreamsRequest(*cloudwatchlogs.DescribeLogStreamsInput) (*service.Request, *cloudwatchlogs.DescribeLogStreamsOutput)
 
 	DescribeLogStreams(*cloudwatchlogs.DescribeLogStreamsInput) (*cloudwatchlogs.DescribeLogStreamsOutput, error)
 
 	DescribeLogStreamsPages(*cloudwatchlogs.DescribeLogStreamsInput, func(*cloudwatchlogs.DescribeLogStreamsOutput, bool) bool) error
 
-	DescribeMetricFiltersRequest(*cloudwatchlogs.DescribeMetricFiltersInput) (*aws.Request, *cloudwatchlogs.DescribeMetricFiltersOutput)
+	DescribeMetricFiltersRequest(*cloudwatchlogs.DescribeMetricFiltersInput) (*service.Request, *cloudwatchlogs.DescribeMetricFiltersOutput)
 
 	DescribeMetricFilters(*cloudwatchlogs.DescribeMetricFiltersInput) (*cloudwatchlogs.DescribeMetricFiltersOutput, error)
 
 	DescribeMetricFiltersPages(*cloudwatchlogs.DescribeMetricFiltersInput, func(*cloudwatchlogs.DescribeMetricFiltersOutput, bool) bool) error
 
-	DescribeSubscriptionFiltersRequest(*cloudwatchlogs.DescribeSubscriptionFiltersInput) (*aws.Request, *cloudwatchlogs.DescribeSubscriptionFiltersOutput)
+	DescribeSubscriptionFiltersRequest(*cloudwatchlogs.DescribeSubscriptionFiltersInput) (*service.Request, *cloudwatchlogs.DescribeSubscriptionFiltersOutput)
 
 	DescribeSubscriptionFilters(*cloudwatchlogs.DescribeSubscriptionFiltersInput) (*cloudwatchlogs.DescribeSubscriptionFiltersOutput, error)
 
-	FilterLogEventsRequest(*cloudwatchlogs.FilterLogEventsInput) (*aws.Request, *cloudwatchlogs.FilterLogEventsOutput)
+	FilterLogEventsRequest(*cloudwatchlogs.FilterLogEventsInput) (*service.Request, *cloudwatchlogs.FilterLogEventsOutput)
 
 	FilterLogEvents(*cloudwatchlogs.FilterLogEventsInput) (*cloudwatchlogs.FilterLogEventsOutput, error)
 
-	GetLogEventsRequest(*cloudwatchlogs.GetLogEventsInput) (*aws.Request, *cloudwatchlogs.GetLogEventsOutput)
+	GetLogEventsRequest(*cloudwatchlogs.GetLogEventsInput) (*service.Request, *cloudwatchlogs.GetLogEventsOutput)
 
 	GetLogEvents(*cloudwatchlogs.GetLogEventsInput) (*cloudwatchlogs.GetLogEventsOutput, error)
 
 	GetLogEventsPages(*cloudwatchlogs.GetLogEventsInput, func(*cloudwatchlogs.GetLogEventsOutput, bool) bool) error
 
-	PutDestinationRequest(*cloudwatchlogs.PutDestinationInput) (*aws.Request, *cloudwatchlogs.PutDestinationOutput)
+	PutDestinationRequest(*cloudwatchlogs.PutDestinationInput) (*service.Request, *cloudwatchlogs.PutDestinationOutput)
 
 	PutDestination(*cloudwatchlogs.PutDestinationInput) (*cloudwatchlogs.PutDestinationOutput, error)
 
-	PutDestinationPolicyRequest(*cloudwatchlogs.PutDestinationPolicyInput) (*aws.Request, *cloudwatchlogs.PutDestinationPolicyOutput)
+	PutDestinationPolicyRequest(*cloudwatchlogs.PutDestinationPolicyInput) (*service.Request, *cloudwatchlogs.PutDestinationPolicyOutput)
 
 	PutDestinationPolicy(*cloudwatchlogs.PutDestinationPolicyInput) (*cloudwatchlogs.PutDestinationPolicyOutput, error)
 
-	PutLogEventsRequest(*cloudwatchlogs.PutLogEventsInput) (*aws.Request, *cloudwatchlogs.PutLogEventsOutput)
+	PutLogEventsRequest(*cloudwatchlogs.PutLogEventsInput) (*service.Request, *cloudwatchlogs.PutLogEventsOutput)
 
 	PutLogEvents(*cloudwatchlogs.PutLogEventsInput) (*cloudwatchlogs.PutLogEventsOutput, error)
 
-	PutMetricFilterRequest(*cloudwatchlogs.PutMetricFilterInput) (*aws.Request, *cloudwatchlogs.PutMetricFilterOutput)
+	PutMetricFilterRequest(*cloudwatchlogs.PutMetricFilterInput) (*service.Request, *cloudwatchlogs.PutMetricFilterOutput)
 
 	PutMetricFilter(*cloudwatchlogs.PutMetricFilterInput) (*cloudwatchlogs.PutMetricFilterOutput, error)
 
-	PutRetentionPolicyRequest(*cloudwatchlogs.PutRetentionPolicyInput) (*aws.Request, *cloudwatchlogs.PutRetentionPolicyOutput)
+	PutRetentionPolicyRequest(*cloudwatchlogs.PutRetentionPolicyInput) (*service.Request, *cloudwatchlogs.PutRetentionPolicyOutput)
 
 	PutRetentionPolicy(*cloudwatchlogs.PutRetentionPolicyInput) (*cloudwatchlogs.PutRetentionPolicyOutput, error)
 
-	PutSubscriptionFilterRequest(*cloudwatchlogs.PutSubscriptionFilterInput) (*aws.Request, *cloudwatchlogs.PutSubscriptionFilterOutput)
+	PutSubscriptionFilterRequest(*cloudwatchlogs.PutSubscriptionFilterInput) (*service.Request, *cloudwatchlogs.PutSubscriptionFilterOutput)
 
 	PutSubscriptionFilter(*cloudwatchlogs.PutSubscriptionFilterInput) (*cloudwatchlogs.PutSubscriptionFilterOutput, error)
 
-	TestMetricFilterRequest(*cloudwatchlogs.TestMetricFilterInput) (*aws.Request, *cloudwatchlogs.TestMetricFilterOutput)
+	TestMetricFilterRequest(*cloudwatchlogs.TestMetricFilterInput) (*service.Request, *cloudwatchlogs.TestMetricFilterOutput)
 
 	TestMetricFilter(*cloudwatchlogs.TestMetricFilterInput) (*cloudwatchlogs.TestMetricFilterOutput, error)
 }

@@ -4,6 +4,8 @@ package cognitoidentity
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -41,19 +43,19 @@ import (
 // you will probably want to make API calls via the AWS Mobile SDK. To learn
 // more, see the AWS Mobile SDK Developer Guide (http://docs.aws.amazon.com/mobile/index.html).
 type CognitoIdentity struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*service.Request)
 
 // New returns a new CognitoIdentity client.
 func New(config *aws.Config) *CognitoIdentity {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
+	service := &service.Service{
+		Config:       defaults.DefaultConfig.Merge(config),
 		ServiceName:  "cognito-identity",
 		APIVersion:   "2014-06-30",
 		JSONVersion:  "1.1",
@@ -78,8 +80,8 @@ func New(config *aws.Config) *CognitoIdentity {
 
 // newRequest creates a new request for a CognitoIdentity operation and runs any
 // custom request initialization.
-func (c *CognitoIdentity) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *CognitoIdentity) newRequest(op *service.Operation, params, data interface{}) *service.Request {
+	req := service.NewRequest(c.Service, op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

@@ -4,43 +4,43 @@
 package workspacesiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/service/workspaces"
 )
 
 // WorkSpacesAPI is the interface type for workspaces.WorkSpaces.
 type WorkSpacesAPI interface {
-	CreateWorkspacesRequest(*workspaces.CreateWorkspacesInput) (*aws.Request, *workspaces.CreateWorkspacesOutput)
+	CreateWorkspacesRequest(*workspaces.CreateWorkspacesInput) (*service.Request, *workspaces.CreateWorkspacesOutput)
 
 	CreateWorkspaces(*workspaces.CreateWorkspacesInput) (*workspaces.CreateWorkspacesOutput, error)
 
-	DescribeWorkspaceBundlesRequest(*workspaces.DescribeWorkspaceBundlesInput) (*aws.Request, *workspaces.DescribeWorkspaceBundlesOutput)
+	DescribeWorkspaceBundlesRequest(*workspaces.DescribeWorkspaceBundlesInput) (*service.Request, *workspaces.DescribeWorkspaceBundlesOutput)
 
 	DescribeWorkspaceBundles(*workspaces.DescribeWorkspaceBundlesInput) (*workspaces.DescribeWorkspaceBundlesOutput, error)
 
 	DescribeWorkspaceBundlesPages(*workspaces.DescribeWorkspaceBundlesInput, func(*workspaces.DescribeWorkspaceBundlesOutput, bool) bool) error
 
-	DescribeWorkspaceDirectoriesRequest(*workspaces.DescribeWorkspaceDirectoriesInput) (*aws.Request, *workspaces.DescribeWorkspaceDirectoriesOutput)
+	DescribeWorkspaceDirectoriesRequest(*workspaces.DescribeWorkspaceDirectoriesInput) (*service.Request, *workspaces.DescribeWorkspaceDirectoriesOutput)
 
 	DescribeWorkspaceDirectories(*workspaces.DescribeWorkspaceDirectoriesInput) (*workspaces.DescribeWorkspaceDirectoriesOutput, error)
 
 	DescribeWorkspaceDirectoriesPages(*workspaces.DescribeWorkspaceDirectoriesInput, func(*workspaces.DescribeWorkspaceDirectoriesOutput, bool) bool) error
 
-	DescribeWorkspacesRequest(*workspaces.DescribeWorkspacesInput) (*aws.Request, *workspaces.DescribeWorkspacesOutput)
+	DescribeWorkspacesRequest(*workspaces.DescribeWorkspacesInput) (*service.Request, *workspaces.DescribeWorkspacesOutput)
 
 	DescribeWorkspaces(*workspaces.DescribeWorkspacesInput) (*workspaces.DescribeWorkspacesOutput, error)
 
 	DescribeWorkspacesPages(*workspaces.DescribeWorkspacesInput, func(*workspaces.DescribeWorkspacesOutput, bool) bool) error
 
-	RebootWorkspacesRequest(*workspaces.RebootWorkspacesInput) (*aws.Request, *workspaces.RebootWorkspacesOutput)
+	RebootWorkspacesRequest(*workspaces.RebootWorkspacesInput) (*service.Request, *workspaces.RebootWorkspacesOutput)
 
 	RebootWorkspaces(*workspaces.RebootWorkspacesInput) (*workspaces.RebootWorkspacesOutput, error)
 
-	RebuildWorkspacesRequest(*workspaces.RebuildWorkspacesInput) (*aws.Request, *workspaces.RebuildWorkspacesOutput)
+	RebuildWorkspacesRequest(*workspaces.RebuildWorkspacesInput) (*service.Request, *workspaces.RebuildWorkspacesOutput)
 
 	RebuildWorkspaces(*workspaces.RebuildWorkspacesInput) (*workspaces.RebuildWorkspacesOutput, error)
 
-	TerminateWorkspacesRequest(*workspaces.TerminateWorkspacesInput) (*aws.Request, *workspaces.TerminateWorkspacesOutput)
+	TerminateWorkspacesRequest(*workspaces.TerminateWorkspacesInput) (*service.Request, *workspaces.TerminateWorkspacesOutput)
 
 	TerminateWorkspaces(*workspaces.TerminateWorkspacesInput) (*workspaces.TerminateWorkspacesOutput, error)
 }
