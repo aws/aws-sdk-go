@@ -2,6 +2,20 @@
 //
 // More information about signed URLs and their structure can be found at:
 // http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-canned-policy.html
+//
+// To sign a URL create a URLSigner with your private key and credential pair key ID.
+// Once you have a URLSigner instance you can call Sign or SignWithPolicy to
+// sign the URLs.
+//
+// Example:
+//
+//    // Sign URL to be valid for 1 hour from now.
+//    signer := sign.NewURLSigner(keyID, privKey)
+//    signedURL, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
+//    if err != nil {
+//        exitErr("Failed to sign url, err: %s", err.Error())
+//    }
+//
 package sign
 
 import (
