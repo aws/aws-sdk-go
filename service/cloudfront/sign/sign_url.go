@@ -13,7 +13,7 @@
 //    signer := sign.NewURLSigner(keyID, privKey)
 //    signedURL, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
 //    if err != nil {
-//        exitErr("Failed to sign url, err: %s", err.Error())
+//        log.Fatalf("Failed to sign url, err: %s\n", err.Error())
 //    }
 //
 package sign
@@ -58,7 +58,7 @@ func NewURLSigner(keyID string, privKey *rsa.PrivateKey) *URLSigner {
 //    signer := sign.NewURLSigner(keyID, privKey)
 //    signedURL, err := signer.Sign(rawURL, time.Now().Add(1*time.Hour))
 //    if err != nil {
-//        exitErr("Failed to sign url, err: %s", err.Error())
+//        log.Fatalf("Failed to sign url, err: %s\n", err.Error())
 //    }
 //
 func (s URLSigner) Sign(url string, expires time.Time) (string, error) {
@@ -108,7 +108,7 @@ func (s URLSigner) Sign(url string, expires time.Time) (string, error) {
 //     signer := sign.NewURLSigner(keyID, privKey)
 //     signedURL, err := signer.SignWithPolicy(rawURL, policy)
 //     if err != nil {
-//         exitErr("Failed to sign url, err: %s", err.Error())
+//         log.Fatalf("Failed to sign url, err: %s\n", err.Error())
 //     }
 //
 func (s URLSigner) SignWithPolicy(url string, p *Policy) (string, error) {
