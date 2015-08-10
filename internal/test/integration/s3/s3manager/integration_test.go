@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/test/integration"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -130,7 +131,7 @@ func TestUploadFailCleanup(t *testing.T) {
 
 	// Break checksum on 2nd part so it fails
 	part := 0
-	svc.Handlers.Build.PushBack(func(r *aws.Request) {
+	svc.Handlers.Build.PushBack(func(r *service.Request) {
 		if r.Operation.Name == "UploadPart" {
 			if part == 1 {
 				r.HTTPRequest.Header.Set("X-Amz-Content-Sha256", "000")
