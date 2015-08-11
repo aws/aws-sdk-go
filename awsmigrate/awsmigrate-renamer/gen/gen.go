@@ -87,10 +87,20 @@ func (p *pkg) buildRenames() {
 	if exportMap[pkgName] == nil {
 		exportMap[pkgName] = &packageRenames{map[string]string{}, map[string]string{}, map[string]string{}}
 	}
+	ifacename := "github.com/aws/aws-sdk-go/service/" + p.oldAPI.PackageName() + "/" +
+		p.oldAPI.InterfacePackageName()
+	if exportMap[ifacename] == nil {
+		exportMap[ifacename] = &packageRenames{map[string]string{}, map[string]string{}, map[string]string{}}
+	}
 
 	for _, entry := range p.operations {
 		if entry.oldName != entry.newName {
-			exportMap[pkgName].Operations[entry.oldName] = entry.newName
+			pkgNames := []string{pkgName, ifacename}
+			for _, p := range pkgNames {
+				exportMap[p].Operations[entry.oldName] = entry.newName
+				exportMap[p].Operations[entry.oldName+"Request"] = entry.newName + "Request"
+				exportMap[p].Operations[entry.oldName+"Pages"] = entry.newName + "Pages"
+			}
 		}
 	}
 
