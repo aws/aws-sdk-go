@@ -76,7 +76,7 @@ func (s *Service) Initialize() {
 func (s *Service) buildEndpoint() {
 	if aws.StringValue(s.Config.Endpoint) != "" {
 		s.Endpoint = *s.Config.Endpoint
-	} else {
+	} else if s.Endpoint == "" {
 		s.Endpoint, s.SigningRegion =
 			endpoints.EndpointForRegion(s.ServiceName, aws.StringValue(s.Config.Region))
 	}
