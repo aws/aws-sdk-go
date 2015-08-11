@@ -2,6 +2,7 @@ package service
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -12,7 +13,6 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"fmt"
 )
 
 // A Request is the service request to be made.
@@ -145,8 +145,9 @@ func debugLogReqError(r *Request, stage string, retrying bool, err error) {
 	if retrying {
 		retryStr = "will retry"
 	}
-	r.Config.Logger.Log(fmt.Sprintf("DEBUG: %s %s/%s failed, %s, error %s",
-		stage, r.ServiceName, r.Operation.Name, retryStr, r.Error.Error()))
+
+	r.Config.Logger.Log(fmt.Sprintf("DEBUG: %s %s/%s failed, %s, error %v",
+		stage, r.ServiceName, r.Operation.Name, retryStr, err))
 }
 
 // Build will build the request's object so it can be signed and sent
@@ -209,6 +210,7 @@ func (r *Request) Send() error {
 			// Re-seek the body back to the original point in for a retry so that
 			// send will send the body's contents again in the upcoming request.
 			r.Body.Seek(r.bodyStart, 0)
+			r.HTTPRequest.Body = ioutil.NopCloser(r.Body)
 		}
 		r.Retryable = nil
 

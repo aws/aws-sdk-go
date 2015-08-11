@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"io/ioutil"
 	"math"
 	"math/rand"
 	"net/http"
@@ -109,6 +110,14 @@ const logReqMsg = `DEBUG: Request %s/%s Details:
 func logRequest(r *Request) {
 	logBody := r.Config.LogLevel.Matches(aws.LogDebugWithHTTPBody)
 	dumpedBody, _ := httputil.DumpRequestOut(r.HTTPRequest, logBody)
+
+	if logBody {
+		// Reset the request body because dumpRequest will re-wrap the r.HTTPRequest's
+		// Body as a NoOpCloser and will not be reset after read by the HTTP
+		// client reader.
+		r.Body.Seek(r.bodyStart, 0)
+		r.HTTPRequest.Body = ioutil.NopCloser(r.Body)
+	}
 
 	r.Config.Logger.Log(fmt.Sprintf(logReqMsg, r.ServiceName, r.Operation.Name, string(dumpedBody)))
 }
