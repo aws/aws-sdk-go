@@ -23,7 +23,7 @@ func fillPresignedURL(r *service.Request) {
 	params := r.Params.(*CopySnapshotInput)
 
 	// Stop if PresignedURL/DestinationRegion is set
-	if params.PresignedURL != nil || params.DestinationRegion != nil {
+	if params.PresignedUrl != nil || params.DestinationRegion != nil {
 		return
 	}
 
@@ -53,5 +53,5 @@ func fillPresignedURL(r *service.Request) {
 	}
 
 	// We have our URL, set it on params
-	params.PresignedURL = &url
+	params.PresignedUrl = &url
 }

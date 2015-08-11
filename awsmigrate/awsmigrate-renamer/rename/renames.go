@@ -1240,6 +1240,13 @@ var renamedPackages = map[string]*packageRenames{
 			"VersionIDMarker":             "VersionIdMarker",
 		},
 	},
+	"github.com/aws/aws-sdk-go/service/s3/s3manager": &packageRenames{
+		operations: map[string]string{},
+		shapes:     map[string]string{},
+		fields: map[string]string{
+			"UploadID": "UploadId",
+		},
+	},
 	"github.com/aws/aws-sdk-go/service/ses": &packageRenames{
 		operations: map[string]string{
 			"GetIdentityDKIMAttributes": "GetIdentityDkimAttributes",

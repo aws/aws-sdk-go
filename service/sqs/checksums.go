@@ -49,15 +49,15 @@ func verifySendMessageBatch(r *service.Request) {
 
 		out := r.Data.(*SendMessageBatchOutput)
 		for _, entry := range out.Successful {
-			entries[*entry.ID] = entry
+			entries[*entry.Id] = entry
 		}
 
 		in := r.Params.(*SendMessageBatchInput)
 		for _, entry := range in.Entries {
-			if e := entries[*entry.ID]; e != nil {
+			if e := entries[*entry.Id]; e != nil {
 				err := checksumsMatch(entry.MessageBody, e.MD5OfMessageBody)
 				if err != nil {
-					ids = append(ids, *e.MessageID)
+					ids = append(ids, *e.MessageId)
 				}
 			}
 		}
@@ -74,7 +74,7 @@ func verifyReceiveMessage(r *service.Request) {
 		for _, msg := range out.Messages {
 			err := checksumsMatch(msg.Body, msg.MD5OfBody)
 			if err != nil {
-				ids = append(ids, *msg.MessageID)
+				ids = append(ids, *msg.MessageId)
 			}
 		}
 		if len(ids) > 0 {

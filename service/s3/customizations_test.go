@@ -25,9 +25,9 @@ func assertMD5(t *testing.T, req *service.Request) {
 	assert.Equal(t, base64.StdEncoding.EncodeToString(out[:]), req.HTTPRequest.Header.Get("Content-MD5"))
 }
 
-func TestMD5InPutBucketCORS(t *testing.T) {
+func TestMD5InPutBucketCors(t *testing.T) {
 	svc := s3.New(nil)
-	req, _ := svc.PutBucketCORSRequest(&s3.PutBucketCORSInput{
+	req, _ := svc.PutBucketCorsRequest(&s3.PutBucketCorsInput{
 		Bucket: aws.String("bucketname"),
 		CORSConfiguration: &s3.CORSConfiguration{
 			CORSRules: []*s3.CORSRule{

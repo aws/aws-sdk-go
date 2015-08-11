@@ -43,7 +43,7 @@ func TestStatusCodeError(t *testing.T) {
 				Body:          body,
 			}
 		})
-		_, err := s.PutBucketACL(&s3.PutBucketACLInput{
+		_, err := s.PutBucketAcl(&s3.PutBucketAclInput{
 			Bucket: aws.String("bucket"), ACL: aws.String("public-read"),
 		})
 
