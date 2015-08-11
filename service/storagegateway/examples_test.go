@@ -53,7 +53,7 @@ func ExampleStorageGateway_AddCache() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.AddCacheInput{
-		DiskIDs: []*string{ // Required
+		DiskIds: []*string{ // Required
 			aws.String("DiskId"), // Required
 			// More values...
 		},
@@ -84,7 +84,7 @@ func ExampleStorageGateway_AddUploadBuffer() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.AddUploadBufferInput{
-		DiskIDs: []*string{ // Required
+		DiskIds: []*string{ // Required
 			aws.String("DiskId"), // Required
 			// More values...
 		},
@@ -115,7 +115,7 @@ func ExampleStorageGateway_AddWorkingStorage() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.AddWorkingStorageInput{
-		DiskIDs: []*string{ // Required
+		DiskIds: []*string{ // Required
 			aws.String("DiskId"), // Required
 			// More values...
 		},
@@ -204,10 +204,10 @@ func ExampleStorageGateway_CreateCachediSCSIVolume() {
 	params := &storagegateway.CreateCachediSCSIVolumeInput{
 		ClientToken:        aws.String("ClientToken"),        // Required
 		GatewayARN:         aws.String("GatewayARN"),         // Required
-		NetworkInterfaceID: aws.String("NetworkInterfaceId"), // Required
+		NetworkInterfaceId: aws.String("NetworkInterfaceId"), // Required
 		TargetName:         aws.String("TargetName"),         // Required
 		VolumeSizeInBytes:  aws.Int64(1),                     // Required
-		SnapshotID:         aws.String("SnapshotId"),
+		SnapshotId:         aws.String("SnapshotId"),
 	}
 	resp, err := svc.CreateCachediSCSIVolume(params)
 
@@ -290,12 +290,12 @@ func ExampleStorageGateway_CreateStorediSCSIVolume() {
 	svc := storagegateway.New(nil)
 
 	params := &storagegateway.CreateStorediSCSIVolumeInput{
-		DiskID:               aws.String("DiskId"),             // Required
+		DiskId:               aws.String("DiskId"),             // Required
 		GatewayARN:           aws.String("GatewayARN"),         // Required
-		NetworkInterfaceID:   aws.String("NetworkInterfaceId"), // Required
+		NetworkInterfaceId:   aws.String("NetworkInterfaceId"), // Required
 		PreserveExistingData: aws.Bool(true),                   // Required
 		TargetName:           aws.String("TargetName"),         // Required
-		SnapshotID:           aws.String("SnapshotId"),
+		SnapshotId:           aws.String("SnapshotId"),
 	}
 	resp, err := svc.CreateStorediSCSIVolume(params)
 

@@ -34,9 +34,9 @@ type S3API interface {
 
 	DeleteBucket(*s3.DeleteBucketInput) (*s3.DeleteBucketOutput, error)
 
-	DeleteBucketCORSRequest(*s3.DeleteBucketCORSInput) (*service.Request, *s3.DeleteBucketCORSOutput)
+	DeleteBucketCorsRequest(*s3.DeleteBucketCorsInput) (*service.Request, *s3.DeleteBucketCorsOutput)
 
-	DeleteBucketCORS(*s3.DeleteBucketCORSInput) (*s3.DeleteBucketCORSOutput, error)
+	DeleteBucketCors(*s3.DeleteBucketCorsInput) (*s3.DeleteBucketCorsOutput, error)
 
 	DeleteBucketLifecycleRequest(*s3.DeleteBucketLifecycleInput) (*service.Request, *s3.DeleteBucketLifecycleOutput)
 
@@ -66,13 +66,13 @@ type S3API interface {
 
 	DeleteObjects(*s3.DeleteObjectsInput) (*s3.DeleteObjectsOutput, error)
 
-	GetBucketACLRequest(*s3.GetBucketACLInput) (*service.Request, *s3.GetBucketACLOutput)
+	GetBucketAclRequest(*s3.GetBucketAclInput) (*service.Request, *s3.GetBucketAclOutput)
 
-	GetBucketACL(*s3.GetBucketACLInput) (*s3.GetBucketACLOutput, error)
+	GetBucketAcl(*s3.GetBucketAclInput) (*s3.GetBucketAclOutput, error)
 
-	GetBucketCORSRequest(*s3.GetBucketCORSInput) (*service.Request, *s3.GetBucketCORSOutput)
+	GetBucketCorsRequest(*s3.GetBucketCorsInput) (*service.Request, *s3.GetBucketCorsOutput)
 
-	GetBucketCORS(*s3.GetBucketCORSInput) (*s3.GetBucketCORSOutput, error)
+	GetBucketCors(*s3.GetBucketCorsInput) (*s3.GetBucketCorsOutput, error)
 
 	GetBucketLifecycleRequest(*s3.GetBucketLifecycleInput) (*service.Request, *s3.GetBucketLifecycleOutput)
 
@@ -122,9 +122,9 @@ type S3API interface {
 
 	GetObject(*s3.GetObjectInput) (*s3.GetObjectOutput, error)
 
-	GetObjectACLRequest(*s3.GetObjectACLInput) (*service.Request, *s3.GetObjectACLOutput)
+	GetObjectAclRequest(*s3.GetObjectAclInput) (*service.Request, *s3.GetObjectAclOutput)
 
-	GetObjectACL(*s3.GetObjectACLInput) (*s3.GetObjectACLOutput, error)
+	GetObjectAcl(*s3.GetObjectAclInput) (*s3.GetObjectAclOutput, error)
 
 	GetObjectTorrentRequest(*s3.GetObjectTorrentInput) (*service.Request, *s3.GetObjectTorrentOutput)
 
@@ -166,13 +166,13 @@ type S3API interface {
 
 	ListPartsPages(*s3.ListPartsInput, func(*s3.ListPartsOutput, bool) bool) error
 
-	PutBucketACLRequest(*s3.PutBucketACLInput) (*service.Request, *s3.PutBucketACLOutput)
+	PutBucketAclRequest(*s3.PutBucketAclInput) (*service.Request, *s3.PutBucketAclOutput)
 
-	PutBucketACL(*s3.PutBucketACLInput) (*s3.PutBucketACLOutput, error)
+	PutBucketAcl(*s3.PutBucketAclInput) (*s3.PutBucketAclOutput, error)
 
-	PutBucketCORSRequest(*s3.PutBucketCORSInput) (*service.Request, *s3.PutBucketCORSOutput)
+	PutBucketCorsRequest(*s3.PutBucketCorsInput) (*service.Request, *s3.PutBucketCorsOutput)
 
-	PutBucketCORS(*s3.PutBucketCORSInput) (*s3.PutBucketCORSOutput, error)
+	PutBucketCors(*s3.PutBucketCorsInput) (*s3.PutBucketCorsOutput, error)
 
 	PutBucketLifecycleRequest(*s3.PutBucketLifecycleInput) (*service.Request, *s3.PutBucketLifecycleOutput)
 
@@ -218,9 +218,9 @@ type S3API interface {
 
 	PutObject(*s3.PutObjectInput) (*s3.PutObjectOutput, error)
 
-	PutObjectACLRequest(*s3.PutObjectACLInput) (*service.Request, *s3.PutObjectACLOutput)
+	PutObjectAclRequest(*s3.PutObjectAclInput) (*service.Request, *s3.PutObjectAclOutput)
 
-	PutObjectACL(*s3.PutObjectACLInput) (*s3.PutObjectACLOutput, error)
+	PutObjectAcl(*s3.PutObjectAclInput) (*s3.PutObjectAclOutput, error)
 
 	RestoreObjectRequest(*s3.RestoreObjectInput) (*service.Request, *s3.RestoreObjectOutput)
 

@@ -920,7 +920,7 @@ type Cluster struct {
 	// the arn:aws:ecs namespace, followed by the region of the cluster, the AWS
 	// account ID of the cluster owner, the cluster namespace, and then the cluster
 	// name. For example, arn:aws:ecs:region:012345678910:cluster/test.
-	ClusterARN *string `locationName:"clusterArn" type:"string"`
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// A user-generated string that you can use to identify your cluster.
 	ClusterName *string `locationName:"clusterName" type:"string"`
@@ -959,7 +959,7 @@ func (s Cluster) GoString() string {
 // A docker container that is part of a task.
 type Container struct {
 	// The Amazon Resource Name (ARN) of the container.
-	ContainerARN *string `locationName:"containerArn" type:"string"`
+	ContainerArn *string `locationName:"containerArn" type:"string"`
 
 	// The exit code returned from the container.
 	ExitCode *int64 `locationName:"exitCode" type:"integer"`
@@ -978,7 +978,7 @@ type Container struct {
 	Reason *string `locationName:"reason" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
-	TaskARN *string `locationName:"taskArn" type:"string"`
+	TaskArn *string `locationName:"taskArn" type:"string"`
 
 	metadataContainer `json:"-" xml:"-"`
 }
@@ -1000,6 +1000,10 @@ func (s Container) GoString() string {
 // Container definitions are used in task definitions to describe the different
 // containers that are launched as part of a task.
 type ContainerDefinition struct {
+	// The CMD that is passed to the container. For more information on the Docker
+	// CMD parameter, see https://docs.docker.com/reference/builder/#cmd (https://docs.docker.com/reference/builder/#cmd).
+	Command []*string `locationName:"command" type:"list"`
+
 	// The number of cpu units reserved for the container. A container instance
 	// has 1,024 cpu units for every CPU core. This parameter specifies the minimum
 	// amount of CPU to reserve for a container, and containers share unallocated
@@ -1029,11 +1033,7 @@ type ContainerDefinition struct {
 	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
 	// 2 CPU shares.  Agent versions greater than or equal to 1.2.0: Null, zero,
 	// and CPU values of 1 are passed to Docker as 2.
-	CPU *int64 `locationName:"cpu" type:"integer"`
-
-	// The CMD that is passed to the container. For more information on the Docker
-	// CMD parameter, see https://docs.docker.com/reference/builder/#cmd (https://docs.docker.com/reference/builder/#cmd).
-	Command []*string `locationName:"command" type:"list"`
+	Cpu *int64 `locationName:"cpu" type:"integer"`
 
 	// Early versions of the Amazon ECS container agent do not properly handle entryPoint
 	// parameters. If you have problems using entryPoint, update your container
@@ -1124,10 +1124,10 @@ type ContainerInstance struct {
 	// the arn:aws:ecs namespace, followed by the region of the container instance,
 	// the AWS account ID of the container instance owner, the container-instance
 	// namespace, and then the container instance UUID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_UUID.
-	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The Amazon EC2 instance ID of the container instance.
-	EC2InstanceID *string `locationName:"ec2InstanceId" type:"string"`
+	Ec2InstanceId *string `locationName:"ec2InstanceId" type:"string"`
 
 	// The number of tasks on the container instance that are in the PENDING status.
 	PendingTasksCount *int64 `locationName:"pendingTasksCount" type:"integer"`
@@ -1415,7 +1415,7 @@ type Deployment struct {
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
 
 	// The ID of the deployment.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The number of tasks in the deployment that are in the PENDING status.
 	PendingCount *int64 `locationName:"pendingCount" type:"integer"`
@@ -1848,7 +1848,7 @@ func (s DiscoverPollEndpointOutput) GoString() string {
 // A failed resource.
 type Failure struct {
 	// The Amazon Resource Name (ARN) of the failed resource.
-	ARN *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" type:"string"`
 
 	// The reason for the failure.
 	Reason *string `locationName:"reason" type:"string"`
@@ -1957,7 +1957,7 @@ func (s ListClustersInput) GoString() string {
 type ListClustersOutput struct {
 	// The list of full Amazon Resource Name (ARN) entries for each cluster associated
 	// with your account.
-	ClusterARNs []*string `locationName:"clusterArns" type:"list"`
+	ClusterArns []*string `locationName:"clusterArns" type:"list"`
 
 	// The nextToken value to include in a future ListClusters request. When the
 	// results of a ListClusters request exceed maxResults, this value can be used
@@ -2025,7 +2025,7 @@ func (s ListContainerInstancesInput) GoString() string {
 type ListContainerInstancesOutput struct {
 	// The list of container instance full Amazon Resource Name (ARN) entries for
 	// each container instance associated with the specified cluster.
-	ContainerInstanceARNs []*string `locationName:"containerInstanceArns" type:"list"`
+	ContainerInstanceArns []*string `locationName:"containerInstanceArns" type:"list"`
 
 	// The nextToken value to include in a future ListContainerInstances request.
 	// When the results of a ListContainerInstances request exceed maxResults, this
@@ -2097,7 +2097,7 @@ type ListServicesOutput struct {
 
 	// The list of full Amazon Resource Name (ARN) entries for each service associated
 	// with the specified cluster.
-	ServiceARNs []*string `locationName:"serviceArns" type:"list"`
+	ServiceArns []*string `locationName:"serviceArns" type:"list"`
 
 	metadataListServicesOutput `json:"-" xml:"-"`
 }
@@ -2248,7 +2248,7 @@ type ListTaskDefinitionsOutput struct {
 
 	// The list of task definition Amazon Resource Name (ARN) entries for the ListTaskDefintions
 	// request.
-	TaskDefinitionARNs []*string `locationName:"taskDefinitionArns" type:"list"`
+	TaskDefinitionArns []*string `locationName:"taskDefinitionArns" type:"list"`
 
 	metadataListTaskDefinitionsOutput `json:"-" xml:"-"`
 }
@@ -2339,7 +2339,7 @@ type ListTasksOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The list of task Amazon Resource Name (ARN) entries for the ListTasks request.
-	TaskARNs []*string `locationName:"taskArns" type:"list"`
+	TaskArns []*string `locationName:"taskArns" type:"list"`
 
 	metadataListTasksOutput `json:"-" xml:"-"`
 }
@@ -2513,7 +2513,7 @@ type RegisterContainerInstanceInput struct {
 
 	// The Amazon Resource Name (ARN) of the container instance (if it was previously
 	// registered).
-	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The instance identity document for the Amazon EC2 instance to register. This
 	// document can be found by running the following command from the instance:
@@ -2748,7 +2748,7 @@ func (s RunTaskOutput) GoString() string {
 // Details on a service within a cluster
 type Service struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the service.
-	ClusterARN *string `locationName:"clusterArn" type:"string"`
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// The current state of deployments for the service.
 	Deployments []*Deployment `locationName:"deployments" type:"list"`
@@ -2773,7 +2773,7 @@ type Service struct {
 	// The Amazon Resource Name (ARN) of the IAM role associated with the service
 	// that allows the Amazon ECS container agent to register container instances
 	// with a load balancer.
-	RoleARN *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The number of tasks in the cluster that are in the RUNNING state.
 	RunningCount *int64 `locationName:"runningCount" type:"integer"`
@@ -2782,7 +2782,7 @@ type Service struct {
 	// the arn:aws:ecs namespace, followed by the region of the service, the AWS
 	// account ID of the service owner, the service namespace, and then the service
 	// name. For example, arn:aws:ecs:region:012345678910:service/my-service.
-	ServiceARN *string `locationName:"serviceArn" type:"string"`
+	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
 	// A user-generated string that you can use to identify your service.
 	ServiceName *string `locationName:"serviceName" type:"string"`
@@ -2818,7 +2818,7 @@ type ServiceEvent struct {
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The ID string of the event.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The event message.
 	Message *string `locationName:"message" type:"string"`
@@ -3087,10 +3087,10 @@ func (s SubmitTaskStateChangeOutput) GoString() string {
 // Details on a task in a cluster.
 type Task struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the task.
-	ClusterARN *string `locationName:"clusterArn" type:"string"`
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the container instances that host the task.
-	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The containers associated with the task.
 	Containers []*Container `locationName:"containers" type:"list"`
@@ -3110,11 +3110,11 @@ type Task struct {
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
-	TaskARN *string `locationName:"taskArn" type:"string"`
+	TaskArn *string `locationName:"taskArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the of the task definition that creates
 	// the task.
-	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
+	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 
 	metadataTask `json:"-" xml:"-"`
 }
@@ -3157,7 +3157,7 @@ type TaskDefinition struct {
 	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
 	// The full Amazon Resource Name (ARN) of the of the task definition.
-	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
+	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 
 	// The list of volumes in a task. For more information on volume definition
 	// parameters and defaults, see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)

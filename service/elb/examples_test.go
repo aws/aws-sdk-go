@@ -217,7 +217,7 @@ func ExampleELB_CreateLoadBalancer() {
 				LoadBalancerPort: aws.Int64(1),           // Required
 				Protocol:         aws.String("Protocol"), // Required
 				InstanceProtocol: aws.String("Protocol"),
-				SSLCertificateID: aws.String("SSLCertificateId"),
+				SSLCertificateId: aws.String("SSLCertificateId"),
 			},
 			// More values...
 		},
@@ -274,7 +274,7 @@ func ExampleELB_CreateLoadBalancerListeners() {
 				LoadBalancerPort: aws.Int64(1),           // Required
 				Protocol:         aws.String("Protocol"), // Required
 				InstanceProtocol: aws.String("Protocol"),
-				SSLCertificateID: aws.String("SSLCertificateId"),
+				SSLCertificateId: aws.String("SSLCertificateId"),
 			},
 			// More values...
 		},
@@ -429,7 +429,7 @@ func ExampleELB_DeregisterInstancesFromLoadBalancer() {
 	params := &elb.DeregisterInstancesFromLoadBalancerInput{
 		Instances: []*elb.Instance{ // Required
 			{ // Required
-				InstanceID: aws.String("InstanceId"),
+				InstanceId: aws.String("InstanceId"),
 			},
 			// More values...
 		},
@@ -463,7 +463,7 @@ func ExampleELB_DescribeInstanceHealth() {
 		LoadBalancerName: aws.String("AccessPointName"), // Required
 		Instances: []*elb.Instance{
 			{ // Required
-				InstanceID: aws.String("InstanceId"),
+				InstanceId: aws.String("InstanceId"),
 			},
 			// More values...
 		},
@@ -790,7 +790,7 @@ func ExampleELB_RegisterInstancesWithLoadBalancer() {
 	params := &elb.RegisterInstancesWithLoadBalancerInput{
 		Instances: []*elb.Instance{ // Required
 			{ // Required
-				InstanceID: aws.String("InstanceId"),
+				InstanceId: aws.String("InstanceId"),
 			},
 			// More values...
 		},
@@ -859,7 +859,7 @@ func ExampleELB_SetLoadBalancerListenerSSLCertificate() {
 	params := &elb.SetLoadBalancerListenerSSLCertificateInput{
 		LoadBalancerName: aws.String("AccessPointName"),  // Required
 		LoadBalancerPort: aws.Int64(1),                   // Required
-		SSLCertificateID: aws.String("SSLCertificateId"), // Required
+		SSLCertificateId: aws.String("SSLCertificateId"), // Required
 	}
 	resp, err := svc.SetLoadBalancerListenerSSLCertificate(params)
 

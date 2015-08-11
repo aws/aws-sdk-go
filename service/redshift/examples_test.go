@@ -23,7 +23,7 @@ func ExampleRedshift_AuthorizeClusterSecurityGroupIngress() {
 		ClusterSecurityGroupName: aws.String("String"), // Required
 		CIDRIP:                  aws.String("String"),
 		EC2SecurityGroupName:    aws.String("String"),
-		EC2SecurityGroupOwnerID: aws.String("String"),
+		EC2SecurityGroupOwnerId: aws.String("String"),
 	}
 	resp, err := svc.AuthorizeClusterSecurityGroupIngress(params)
 
@@ -124,11 +124,11 @@ func ExampleRedshift_CreateCluster() {
 		ClusterType:                    aws.String("String"),
 		ClusterVersion:                 aws.String("String"),
 		DBName:                         aws.String("String"),
-		ElasticIP:                      aws.String("String"),
+		ElasticIp:                      aws.String("String"),
 		Encrypted:                      aws.Bool(true),
-		HSMClientCertificateIdentifier: aws.String("String"),
-		HSMConfigurationIdentifier:     aws.String("String"),
-		KMSKeyID:                       aws.String("String"),
+		HsmClientCertificateIdentifier: aws.String("String"),
+		HsmConfigurationIdentifier:     aws.String("String"),
+		KmsKeyId:                       aws.String("String"),
 		NumberOfNodes:                  aws.Int64(1),
 		Port:                           aws.Int64(1),
 		PreferredMaintenanceWindow: aws.String("String"),
@@ -140,7 +140,7 @@ func ExampleRedshift_CreateCluster() {
 			},
 			// More values...
 		},
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -278,7 +278,7 @@ func ExampleRedshift_CreateClusterSubnetGroup() {
 	params := &redshift.CreateClusterSubnetGroupInput{
 		ClusterSubnetGroupName: aws.String("String"), // Required
 		Description:            aws.String("String"), // Required
-		SubnetIDs: []*string{ // Required
+		SubnetIds: []*string{ // Required
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -315,7 +315,7 @@ func ExampleRedshift_CreateEventSubscription() {
 	svc := redshift.New(nil)
 
 	params := &redshift.CreateEventSubscriptionInput{
-		SNSTopicARN:      aws.String("String"), // Required
+		SnsTopicArn:      aws.String("String"), // Required
 		SubscriptionName: aws.String("String"), // Required
 		Enabled:          aws.Bool(true),
 		EventCategories: []*string{
@@ -323,7 +323,7 @@ func ExampleRedshift_CreateEventSubscription() {
 			// More values...
 		},
 		Severity: aws.String("String"),
-		SourceIDs: []*string{
+		SourceIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -357,11 +357,11 @@ func ExampleRedshift_CreateEventSubscription() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleRedshift_CreateHSMClientCertificate() {
+func ExampleRedshift_CreateHsmClientCertificate() {
 	svc := redshift.New(nil)
 
-	params := &redshift.CreateHSMClientCertificateInput{
-		HSMClientCertificateIdentifier: aws.String("String"), // Required
+	params := &redshift.CreateHsmClientCertificateInput{
+		HsmClientCertificateIdentifier: aws.String("String"), // Required
 		Tags: []*redshift.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -370,7 +370,7 @@ func ExampleRedshift_CreateHSMClientCertificate() {
 			// More values...
 		},
 	}
-	resp, err := svc.CreateHSMClientCertificate(params)
+	resp, err := svc.CreateHsmClientCertificate(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -391,16 +391,16 @@ func ExampleRedshift_CreateHSMClientCertificate() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleRedshift_CreateHSMConfiguration() {
+func ExampleRedshift_CreateHsmConfiguration() {
 	svc := redshift.New(nil)
 
-	params := &redshift.CreateHSMConfigurationInput{
+	params := &redshift.CreateHsmConfigurationInput{
 		Description:                aws.String("String"), // Required
-		HSMConfigurationIdentifier: aws.String("String"), // Required
-		HSMIPAddress:               aws.String("String"), // Required
-		HSMPartitionName:           aws.String("String"), // Required
-		HSMPartitionPassword:       aws.String("String"), // Required
-		HSMServerPublicCertificate: aws.String("String"), // Required
+		HsmConfigurationIdentifier: aws.String("String"), // Required
+		HsmIpAddress:               aws.String("String"), // Required
+		HsmPartitionName:           aws.String("String"), // Required
+		HsmPartitionPassword:       aws.String("String"), // Required
+		HsmServerPublicCertificate: aws.String("String"), // Required
 		Tags: []*redshift.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -409,7 +409,7 @@ func ExampleRedshift_CreateHSMConfiguration() {
 			// More values...
 		},
 	}
-	resp, err := svc.CreateHSMConfiguration(params)
+	resp, err := svc.CreateHsmConfiguration(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -435,7 +435,7 @@ func ExampleRedshift_CreateSnapshotCopyGrant() {
 
 	params := &redshift.CreateSnapshotCopyGrantInput{
 		SnapshotCopyGrantName: aws.String("String"), // Required
-		KMSKeyID:              aws.String("String"),
+		KmsKeyId:              aws.String("String"),
 		Tags: []*redshift.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -664,13 +664,13 @@ func ExampleRedshift_DeleteEventSubscription() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleRedshift_DeleteHSMClientCertificate() {
+func ExampleRedshift_DeleteHsmClientCertificate() {
 	svc := redshift.New(nil)
 
-	params := &redshift.DeleteHSMClientCertificateInput{
-		HSMClientCertificateIdentifier: aws.String("String"), // Required
+	params := &redshift.DeleteHsmClientCertificateInput{
+		HsmClientCertificateIdentifier: aws.String("String"), // Required
 	}
-	resp, err := svc.DeleteHSMClientCertificate(params)
+	resp, err := svc.DeleteHsmClientCertificate(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -691,13 +691,13 @@ func ExampleRedshift_DeleteHSMClientCertificate() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleRedshift_DeleteHSMConfiguration() {
+func ExampleRedshift_DeleteHsmConfiguration() {
 	svc := redshift.New(nil)
 
-	params := &redshift.DeleteHSMConfigurationInput{
-		HSMConfigurationIdentifier: aws.String("String"), // Required
+	params := &redshift.DeleteHsmConfigurationInput{
+		HsmConfigurationIdentifier: aws.String("String"), // Required
 	}
-	resp, err := svc.DeleteHSMConfiguration(params)
+	resp, err := svc.DeleteHsmConfiguration(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1144,11 +1144,11 @@ func ExampleRedshift_DescribeEvents() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleRedshift_DescribeHSMClientCertificates() {
+func ExampleRedshift_DescribeHsmClientCertificates() {
 	svc := redshift.New(nil)
 
-	params := &redshift.DescribeHSMClientCertificatesInput{
-		HSMClientCertificateIdentifier: aws.String("String"),
+	params := &redshift.DescribeHsmClientCertificatesInput{
+		HsmClientCertificateIdentifier: aws.String("String"),
 		Marker:     aws.String("String"),
 		MaxRecords: aws.Int64(1),
 		TagKeys: []*string{
@@ -1160,7 +1160,7 @@ func ExampleRedshift_DescribeHSMClientCertificates() {
 			// More values...
 		},
 	}
-	resp, err := svc.DescribeHSMClientCertificates(params)
+	resp, err := svc.DescribeHsmClientCertificates(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1181,11 +1181,11 @@ func ExampleRedshift_DescribeHSMClientCertificates() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleRedshift_DescribeHSMConfigurations() {
+func ExampleRedshift_DescribeHsmConfigurations() {
 	svc := redshift.New(nil)
 
-	params := &redshift.DescribeHSMConfigurationsInput{
-		HSMConfigurationIdentifier: aws.String("String"),
+	params := &redshift.DescribeHsmConfigurationsInput{
+		HsmConfigurationIdentifier: aws.String("String"),
 		Marker:     aws.String("String"),
 		MaxRecords: aws.Int64(1),
 		TagKeys: []*string{
@@ -1197,7 +1197,7 @@ func ExampleRedshift_DescribeHSMConfigurations() {
 			// More values...
 		},
 	}
-	resp, err := svc.DescribeHSMConfigurations(params)
+	resp, err := svc.DescribeHsmConfigurations(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -1281,7 +1281,7 @@ func ExampleRedshift_DescribeReservedNodeOfferings() {
 	params := &redshift.DescribeReservedNodeOfferingsInput{
 		Marker:                 aws.String("String"),
 		MaxRecords:             aws.Int64(1),
-		ReservedNodeOfferingID: aws.String("String"),
+		ReservedNodeOfferingId: aws.String("String"),
 	}
 	resp, err := svc.DescribeReservedNodeOfferings(params)
 
@@ -1310,7 +1310,7 @@ func ExampleRedshift_DescribeReservedNodes() {
 	params := &redshift.DescribeReservedNodesInput{
 		Marker:         aws.String("String"),
 		MaxRecords:     aws.Int64(1),
-		ReservedNodeID: aws.String("String"),
+		ReservedNodeId: aws.String("String"),
 	}
 	resp, err := svc.DescribeReservedNodes(params)
 
@@ -1562,14 +1562,14 @@ func ExampleRedshift_ModifyCluster() {
 		},
 		ClusterType:                    aws.String("String"),
 		ClusterVersion:                 aws.String("String"),
-		HSMClientCertificateIdentifier: aws.String("String"),
-		HSMConfigurationIdentifier:     aws.String("String"),
+		HsmClientCertificateIdentifier: aws.String("String"),
+		HsmConfigurationIdentifier:     aws.String("String"),
 		MasterUserPassword:             aws.String("String"),
 		NewClusterIdentifier:           aws.String("String"),
 		NodeType:                       aws.String("String"),
 		NumberOfNodes:                  aws.Int64(1),
 		PreferredMaintenanceWindow:     aws.String("String"),
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -1641,7 +1641,7 @@ func ExampleRedshift_ModifyClusterSubnetGroup() {
 
 	params := &redshift.ModifyClusterSubnetGroupInput{
 		ClusterSubnetGroupName: aws.String("String"), // Required
-		SubnetIDs: []*string{ // Required
+		SubnetIds: []*string{ // Required
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -1678,9 +1678,9 @@ func ExampleRedshift_ModifyEventSubscription() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		SNSTopicARN: aws.String("String"),
 		Severity:    aws.String("String"),
-		SourceIDs: []*string{
+		SnsTopicArn: aws.String("String"),
+		SourceIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -1739,7 +1739,7 @@ func ExampleRedshift_PurchaseReservedNodeOffering() {
 	svc := redshift.New(nil)
 
 	params := &redshift.PurchaseReservedNodeOfferingInput{
-		ReservedNodeOfferingID: aws.String("String"), // Required
+		ReservedNodeOfferingId: aws.String("String"), // Required
 		NodeCount:              aws.Int64(1),
 	}
 	resp, err := svc.PurchaseReservedNodeOffering(params)
@@ -1847,17 +1847,17 @@ func ExampleRedshift_RestoreFromClusterSnapshot() {
 			// More values...
 		},
 		ClusterSubnetGroupName:         aws.String("String"),
-		ElasticIP:                      aws.String("String"),
-		HSMClientCertificateIdentifier: aws.String("String"),
-		HSMConfigurationIdentifier:     aws.String("String"),
-		KMSKeyID:                       aws.String("String"),
+		ElasticIp:                      aws.String("String"),
+		HsmClientCertificateIdentifier: aws.String("String"),
+		HsmConfigurationIdentifier:     aws.String("String"),
+		KmsKeyId:                       aws.String("String"),
 		NodeType:                       aws.String("String"),
 		OwnerAccount:                   aws.String("String"),
 		Port:                           aws.Int64(1),
 		PreferredMaintenanceWindow: aws.String("String"),
 		PubliclyAccessible:         aws.Bool(true),
 		SnapshotClusterIdentifier:  aws.String("String"),
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -1890,7 +1890,7 @@ func ExampleRedshift_RevokeClusterSecurityGroupIngress() {
 		ClusterSecurityGroupName: aws.String("String"), // Required
 		CIDRIP:                  aws.String("String"),
 		EC2SecurityGroupName:    aws.String("String"),
-		EC2SecurityGroupOwnerID: aws.String("String"),
+		EC2SecurityGroupOwnerId: aws.String("String"),
 	}
 	resp, err := svc.RevokeClusterSecurityGroupIngress(params)
 

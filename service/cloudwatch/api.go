@@ -1013,14 +1013,14 @@ type MetricAlarm struct {
 	// state.
 	ActionsEnabled *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of the alarm.
-	AlarmARN *string `locationName:"AlarmArn" type:"string"`
-
 	// The list of actions to execute when this alarm transitions into an ALARM
 	// state from any other state. Each action is specified as an Amazon Resource
 	// Number (ARN). Currently the only actions supported are publishing to an Amazon
 	// SNS topic and triggering an Auto Scaling policy.
 	AlarmActions []*string `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the alarm.
+	AlarmArn *string `type:"string"`
 
 	// The time stamp of the last update to the alarm configuration. Amazon CloudWatch
 	// uses Coordinated Universal Time (UTC) when returning time stamps, which do

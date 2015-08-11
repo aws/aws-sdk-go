@@ -369,11 +369,11 @@ func (s CreateWorkspacesOutput) GoString() string {
 type DefaultWorkspaceCreationProperties struct {
 	// The identifier of any custom security groups that are applied to the WorkSpaces
 	// when they are created.
-	CustomSecurityGroupID *string `locationName:"CustomSecurityGroupId" type:"string"`
+	CustomSecurityGroupId *string `type:"string"`
 
 	// The organizational unit (OU) in the directory that the WorkSpace machine
 	// accounts are placed in.
-	DefaultOU *string `locationName:"DefaultOu" type:"string"`
+	DefaultOu *string `type:"string"`
 
 	// A public IP address will be attached to all WorkSpaces that are created or
 	// rebuilt.
@@ -406,7 +406,7 @@ func (s DefaultWorkspaceCreationProperties) GoString() string {
 type DescribeWorkspaceBundlesInput struct {
 	// An array of strings that contains the identifiers of the bundles to retrieve.
 	// This parameter cannot be combined with any other filter parameter.
-	BundleIDs []*string `locationName:"BundleIds" type:"list"`
+	BundleIds []*string `type:"list"`
 
 	// The NextToken value from a previous call to this operation. Pass null if
 	// this is the first call.
@@ -469,7 +469,7 @@ func (s DescribeWorkspaceBundlesOutput) GoString() string {
 type DescribeWorkspaceDirectoriesInput struct {
 	// An array of strings that contains the directory identifiers to retrieve information
 	// for. If this member is null, all directories are retrieved.
-	DirectoryIDs []*string `locationName:"DirectoryIds" type:"list"`
+	DirectoryIds []*string `type:"list"`
 
 	// The NextToken value from a previous call to this operation. Pass null if
 	// this is the first call.
@@ -524,12 +524,12 @@ type DescribeWorkspacesInput struct {
 	// The identifier of a bundle to obtain the WorkSpaces for. All WorkSpaces that
 	// are created from this bundle will be retrieved. This parameter cannot be
 	// combined with any other filter parameter.
-	BundleID *string `locationName:"BundleId" type:"string"`
+	BundleId *string `type:"string"`
 
 	// Specifies the directory identifier to which to limit the WorkSpaces. Optionally,
 	// you can specify a specific directory user with the UserName parameter. This
 	// parameter cannot be combined with any other filter parameter.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	// The maximum number of items to return.
 	Limit *int64 `type:"integer"`
@@ -549,7 +549,7 @@ type DescribeWorkspacesInput struct {
 	// Because the CreateWorkspaces operation is asynchronous, the identifier returned
 	// by CreateWorkspaces is not immediately available. If you immediately call
 	// DescribeWorkspaces with this identifier, no information will be returned.
-	WorkspaceIDs []*string `locationName:"WorkspaceIds" type:"list"`
+	WorkspaceIds []*string `type:"list"`
 
 	metadataDescribeWorkspacesInput `json:"-" xml:"-"`
 }
@@ -637,7 +637,7 @@ type FailedWorkspaceChangeRequest struct {
 	ErrorMessage *string `type:"string"`
 
 	// The identifier of the WorkSpace.
-	WorkspaceID *string `locationName:"WorkspaceId" type:"string"`
+	WorkspaceId *string `type:"string"`
 
 	metadataFailedWorkspaceChangeRequest `json:"-" xml:"-"`
 }
@@ -660,7 +660,7 @@ func (s FailedWorkspaceChangeRequest) GoString() string {
 // WorkSpace.
 type RebootRequest struct {
 	// The identifier of the WorkSpace to reboot.
-	WorkspaceID *string `locationName:"WorkspaceId" type:"string" required:"true"`
+	WorkspaceId *string `type:"string" required:"true"`
 
 	metadataRebootRequest `json:"-" xml:"-"`
 }
@@ -727,7 +727,7 @@ func (s RebootWorkspacesOutput) GoString() string {
 // a WorkSpace.
 type RebuildRequest struct {
 	// The identifier of the WorkSpace to rebuild.
-	WorkspaceID *string `locationName:"WorkspaceId" type:"string" required:"true"`
+	WorkspaceId *string `type:"string" required:"true"`
 
 	metadataRebuildRequest `json:"-" xml:"-"`
 }
@@ -794,7 +794,7 @@ func (s RebuildWorkspacesOutput) GoString() string {
 // a WorkSpace.
 type TerminateRequest struct {
 	// The identifier of the WorkSpace to terminate.
-	WorkspaceID *string `locationName:"WorkspaceId" type:"string" required:"true"`
+	WorkspaceId *string `type:"string" required:"true"`
 
 	metadataTerminateRequest `json:"-" xml:"-"`
 }
@@ -882,11 +882,11 @@ func (s UserStorage) GoString() string {
 // Contains information about a WorkSpace.
 type Workspace struct {
 	// The identifier of the bundle that the WorkSpace was created from.
-	BundleID *string `locationName:"BundleId" type:"string"`
+	BundleId *string `type:"string"`
 
 	// The identifier of the AWS Directory Service directory that the WorkSpace
 	// belongs to.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	// If the WorkSpace could not be created, this contains the error code.
 	ErrorCode *string `type:"string"`
@@ -896,19 +896,19 @@ type Workspace struct {
 	ErrorMessage *string `type:"string"`
 
 	// The IP address of the WorkSpace.
-	IPAddress *string `locationName:"IpAddress" type:"string"`
+	IpAddress *string `type:"string"`
 
 	// The operational state of the WorkSpace.
 	State *string `type:"string" enum:"WorkspaceState"`
 
 	// The identifier of the subnet that the WorkSpace is in.
-	SubnetID *string `locationName:"SubnetId" type:"string"`
+	SubnetId *string `type:"string"`
 
 	// The user that the WorkSpace is assigned to.
 	UserName *string `type:"string"`
 
 	// The identifier of the WorkSpace.
-	WorkspaceID *string `locationName:"WorkspaceId" type:"string"`
+	WorkspaceId *string `type:"string"`
 
 	metadataWorkspace `json:"-" xml:"-"`
 }
@@ -930,7 +930,7 @@ func (s Workspace) GoString() string {
 // Contains information about a WorkSpace bundle.
 type WorkspaceBundle struct {
 	// The bundle identifier.
-	BundleID *string `locationName:"BundleId" type:"string"`
+	BundleId *string `type:"string"`
 
 	// A ComputeType object that specifies the compute type for the bundle.
 	ComputeType *ComputeType `type:"structure"`
@@ -975,12 +975,8 @@ type WorkspaceDirectory struct {
 	// The user name for the service account.
 	CustomerUserName *string `type:"string"`
 
-	// An array of strings that contains the IP addresses of the DNS servers for
-	// the directory.
-	DNSIPAddresses []*string `locationName:"DnsIpAddresses" type:"list"`
-
 	// The directory identifier.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	// The name of the directory.
 	DirectoryName *string `type:"string"`
@@ -988,9 +984,13 @@ type WorkspaceDirectory struct {
 	// The directory type.
 	DirectoryType *string `type:"string" enum:"WorkspaceDirectoryType"`
 
+	// An array of strings that contains the IP addresses of the DNS servers for
+	// the directory.
+	DnsIpAddresses []*string `type:"list"`
+
 	// The identifier of the IAM role. This is the role that allows Amazon WorkSpaces
 	// to make calls to other services, such as Amazon EC2, on your behalf.
-	IAMRoleID *string `locationName:"IamRoleId" type:"string"`
+	IamRoleId *string `type:"string"`
 
 	// The registration code for the directory. This is the code that users enter
 	// in their Amazon WorkSpaces client application to connect to the directory.
@@ -1001,14 +1001,14 @@ type WorkspaceDirectory struct {
 
 	// An array of strings that contains the identifiers of the subnets used with
 	// the directory.
-	SubnetIDs []*string `locationName:"SubnetIds" type:"list"`
+	SubnetIds []*string `type:"list"`
 
 	// A structure that specifies the default creation properties for all WorkSpaces
 	// in the directory.
 	WorkspaceCreationProperties *DefaultWorkspaceCreationProperties `type:"structure"`
 
 	// The identifier of the security group that is assigned to new WorkSpaces.
-	WorkspaceSecurityGroupID *string `locationName:"WorkspaceSecurityGroupId" type:"string"`
+	WorkspaceSecurityGroupId *string `type:"string"`
 
 	metadataWorkspaceDirectory `json:"-" xml:"-"`
 }
@@ -1032,12 +1032,12 @@ type WorkspaceRequest struct {
 	// The identifier of the bundle to create the WorkSpace from. You can use the
 	// DescribeWorkspaceBundles operation to obtain a list of the bundles that are
 	// available.
-	BundleID *string `locationName:"BundleId" type:"string" required:"true"`
+	BundleId *string `type:"string" required:"true"`
 
 	// The identifier of the AWS Directory Service directory to create the WorkSpace
 	// in. You can use the DescribeWorkspaceDirectories operation to obtain a list
 	// of the directories that are available.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// The username that the WorkSpace is assigned to. This username must exist
 	// in the AWS Directory Service directory specified by the DirectoryId member.

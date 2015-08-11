@@ -10,33 +10,33 @@ import (
 
 // EC2API is the interface type for ec2.EC2.
 type EC2API interface {
-	AcceptVPCPeeringConnectionRequest(*ec2.AcceptVPCPeeringConnectionInput) (*service.Request, *ec2.AcceptVPCPeeringConnectionOutput)
+	AcceptVpcPeeringConnectionRequest(*ec2.AcceptVpcPeeringConnectionInput) (*service.Request, *ec2.AcceptVpcPeeringConnectionOutput)
 
-	AcceptVPCPeeringConnection(*ec2.AcceptVPCPeeringConnectionInput) (*ec2.AcceptVPCPeeringConnectionOutput, error)
+	AcceptVpcPeeringConnection(*ec2.AcceptVpcPeeringConnectionInput) (*ec2.AcceptVpcPeeringConnectionOutput, error)
 
 	AllocateAddressRequest(*ec2.AllocateAddressInput) (*service.Request, *ec2.AllocateAddressOutput)
 
 	AllocateAddress(*ec2.AllocateAddressInput) (*ec2.AllocateAddressOutput, error)
 
-	AssignPrivateIPAddressesRequest(*ec2.AssignPrivateIPAddressesInput) (*service.Request, *ec2.AssignPrivateIPAddressesOutput)
+	AssignPrivateIpAddressesRequest(*ec2.AssignPrivateIpAddressesInput) (*service.Request, *ec2.AssignPrivateIpAddressesOutput)
 
-	AssignPrivateIPAddresses(*ec2.AssignPrivateIPAddressesInput) (*ec2.AssignPrivateIPAddressesOutput, error)
+	AssignPrivateIpAddresses(*ec2.AssignPrivateIpAddressesInput) (*ec2.AssignPrivateIpAddressesOutput, error)
 
 	AssociateAddressRequest(*ec2.AssociateAddressInput) (*service.Request, *ec2.AssociateAddressOutput)
 
 	AssociateAddress(*ec2.AssociateAddressInput) (*ec2.AssociateAddressOutput, error)
 
-	AssociateDHCPOptionsRequest(*ec2.AssociateDHCPOptionsInput) (*service.Request, *ec2.AssociateDHCPOptionsOutput)
+	AssociateDhcpOptionsRequest(*ec2.AssociateDhcpOptionsInput) (*service.Request, *ec2.AssociateDhcpOptionsOutput)
 
-	AssociateDHCPOptions(*ec2.AssociateDHCPOptionsInput) (*ec2.AssociateDHCPOptionsOutput, error)
+	AssociateDhcpOptions(*ec2.AssociateDhcpOptionsInput) (*ec2.AssociateDhcpOptionsOutput, error)
 
 	AssociateRouteTableRequest(*ec2.AssociateRouteTableInput) (*service.Request, *ec2.AssociateRouteTableOutput)
 
 	AssociateRouteTable(*ec2.AssociateRouteTableInput) (*ec2.AssociateRouteTableOutput, error)
 
-	AttachClassicLinkVPCRequest(*ec2.AttachClassicLinkVPCInput) (*service.Request, *ec2.AttachClassicLinkVPCOutput)
+	AttachClassicLinkVpcRequest(*ec2.AttachClassicLinkVpcInput) (*service.Request, *ec2.AttachClassicLinkVpcOutput)
 
-	AttachClassicLinkVPC(*ec2.AttachClassicLinkVPCInput) (*ec2.AttachClassicLinkVPCOutput, error)
+	AttachClassicLinkVpc(*ec2.AttachClassicLinkVpcInput) (*ec2.AttachClassicLinkVpcOutput, error)
 
 	AttachInternetGatewayRequest(*ec2.AttachInternetGatewayInput) (*service.Request, *ec2.AttachInternetGatewayOutput)
 
@@ -46,13 +46,13 @@ type EC2API interface {
 
 	AttachNetworkInterface(*ec2.AttachNetworkInterfaceInput) (*ec2.AttachNetworkInterfaceOutput, error)
 
-	AttachVPNGatewayRequest(*ec2.AttachVPNGatewayInput) (*service.Request, *ec2.AttachVPNGatewayOutput)
-
-	AttachVPNGateway(*ec2.AttachVPNGatewayInput) (*ec2.AttachVPNGatewayOutput, error)
-
 	AttachVolumeRequest(*ec2.AttachVolumeInput) (*service.Request, *ec2.VolumeAttachment)
 
 	AttachVolume(*ec2.AttachVolumeInput) (*ec2.VolumeAttachment, error)
+
+	AttachVpnGatewayRequest(*ec2.AttachVpnGatewayInput) (*service.Request, *ec2.AttachVpnGatewayOutput)
+
+	AttachVpnGateway(*ec2.AttachVpnGatewayInput) (*ec2.AttachVpnGatewayOutput, error)
 
 	AuthorizeSecurityGroupEgressRequest(*ec2.AuthorizeSecurityGroupEgressInput) (*service.Request, *ec2.AuthorizeSecurityGroupEgressOutput)
 
@@ -110,9 +110,9 @@ type EC2API interface {
 
 	CreateCustomerGateway(*ec2.CreateCustomerGatewayInput) (*ec2.CreateCustomerGatewayOutput, error)
 
-	CreateDHCPOptionsRequest(*ec2.CreateDHCPOptionsInput) (*service.Request, *ec2.CreateDHCPOptionsOutput)
+	CreateDhcpOptionsRequest(*ec2.CreateDhcpOptionsInput) (*service.Request, *ec2.CreateDhcpOptionsOutput)
 
-	CreateDHCPOptions(*ec2.CreateDHCPOptionsInput) (*ec2.CreateDHCPOptionsOutput, error)
+	CreateDhcpOptions(*ec2.CreateDhcpOptionsInput) (*ec2.CreateDhcpOptionsOutput, error)
 
 	CreateFlowLogsRequest(*ec2.CreateFlowLogsInput) (*service.Request, *ec2.CreateFlowLogsOutput)
 
@@ -134,13 +134,13 @@ type EC2API interface {
 
 	CreateKeyPair(*ec2.CreateKeyPairInput) (*ec2.CreateKeyPairOutput, error)
 
-	CreateNetworkACLRequest(*ec2.CreateNetworkACLInput) (*service.Request, *ec2.CreateNetworkACLOutput)
+	CreateNetworkAclRequest(*ec2.CreateNetworkAclInput) (*service.Request, *ec2.CreateNetworkAclOutput)
 
-	CreateNetworkACL(*ec2.CreateNetworkACLInput) (*ec2.CreateNetworkACLOutput, error)
+	CreateNetworkAcl(*ec2.CreateNetworkAclInput) (*ec2.CreateNetworkAclOutput, error)
 
-	CreateNetworkACLEntryRequest(*ec2.CreateNetworkACLEntryInput) (*service.Request, *ec2.CreateNetworkACLEntryOutput)
+	CreateNetworkAclEntryRequest(*ec2.CreateNetworkAclEntryInput) (*service.Request, *ec2.CreateNetworkAclEntryOutput)
 
-	CreateNetworkACLEntry(*ec2.CreateNetworkACLEntryInput) (*ec2.CreateNetworkACLEntryOutput, error)
+	CreateNetworkAclEntry(*ec2.CreateNetworkAclEntryInput) (*ec2.CreateNetworkAclEntryOutput, error)
 
 	CreateNetworkInterfaceRequest(*ec2.CreateNetworkInterfaceInput) (*service.Request, *ec2.CreateNetworkInterfaceOutput)
 
@@ -182,41 +182,41 @@ type EC2API interface {
 
 	CreateTags(*ec2.CreateTagsInput) (*ec2.CreateTagsOutput, error)
 
-	CreateVPCRequest(*ec2.CreateVPCInput) (*service.Request, *ec2.CreateVPCOutput)
-
-	CreateVPC(*ec2.CreateVPCInput) (*ec2.CreateVPCOutput, error)
-
-	CreateVPCEndpointRequest(*ec2.CreateVPCEndpointInput) (*service.Request, *ec2.CreateVPCEndpointOutput)
-
-	CreateVPCEndpoint(*ec2.CreateVPCEndpointInput) (*ec2.CreateVPCEndpointOutput, error)
-
-	CreateVPCPeeringConnectionRequest(*ec2.CreateVPCPeeringConnectionInput) (*service.Request, *ec2.CreateVPCPeeringConnectionOutput)
-
-	CreateVPCPeeringConnection(*ec2.CreateVPCPeeringConnectionInput) (*ec2.CreateVPCPeeringConnectionOutput, error)
-
-	CreateVPNConnectionRequest(*ec2.CreateVPNConnectionInput) (*service.Request, *ec2.CreateVPNConnectionOutput)
-
-	CreateVPNConnection(*ec2.CreateVPNConnectionInput) (*ec2.CreateVPNConnectionOutput, error)
-
-	CreateVPNConnectionRouteRequest(*ec2.CreateVPNConnectionRouteInput) (*service.Request, *ec2.CreateVPNConnectionRouteOutput)
-
-	CreateVPNConnectionRoute(*ec2.CreateVPNConnectionRouteInput) (*ec2.CreateVPNConnectionRouteOutput, error)
-
-	CreateVPNGatewayRequest(*ec2.CreateVPNGatewayInput) (*service.Request, *ec2.CreateVPNGatewayOutput)
-
-	CreateVPNGateway(*ec2.CreateVPNGatewayInput) (*ec2.CreateVPNGatewayOutput, error)
-
 	CreateVolumeRequest(*ec2.CreateVolumeInput) (*service.Request, *ec2.Volume)
 
 	CreateVolume(*ec2.CreateVolumeInput) (*ec2.Volume, error)
+
+	CreateVpcRequest(*ec2.CreateVpcInput) (*service.Request, *ec2.CreateVpcOutput)
+
+	CreateVpc(*ec2.CreateVpcInput) (*ec2.CreateVpcOutput, error)
+
+	CreateVpcEndpointRequest(*ec2.CreateVpcEndpointInput) (*service.Request, *ec2.CreateVpcEndpointOutput)
+
+	CreateVpcEndpoint(*ec2.CreateVpcEndpointInput) (*ec2.CreateVpcEndpointOutput, error)
+
+	CreateVpcPeeringConnectionRequest(*ec2.CreateVpcPeeringConnectionInput) (*service.Request, *ec2.CreateVpcPeeringConnectionOutput)
+
+	CreateVpcPeeringConnection(*ec2.CreateVpcPeeringConnectionInput) (*ec2.CreateVpcPeeringConnectionOutput, error)
+
+	CreateVpnConnectionRequest(*ec2.CreateVpnConnectionInput) (*service.Request, *ec2.CreateVpnConnectionOutput)
+
+	CreateVpnConnection(*ec2.CreateVpnConnectionInput) (*ec2.CreateVpnConnectionOutput, error)
+
+	CreateVpnConnectionRouteRequest(*ec2.CreateVpnConnectionRouteInput) (*service.Request, *ec2.CreateVpnConnectionRouteOutput)
+
+	CreateVpnConnectionRoute(*ec2.CreateVpnConnectionRouteInput) (*ec2.CreateVpnConnectionRouteOutput, error)
+
+	CreateVpnGatewayRequest(*ec2.CreateVpnGatewayInput) (*service.Request, *ec2.CreateVpnGatewayOutput)
+
+	CreateVpnGateway(*ec2.CreateVpnGatewayInput) (*ec2.CreateVpnGatewayOutput, error)
 
 	DeleteCustomerGatewayRequest(*ec2.DeleteCustomerGatewayInput) (*service.Request, *ec2.DeleteCustomerGatewayOutput)
 
 	DeleteCustomerGateway(*ec2.DeleteCustomerGatewayInput) (*ec2.DeleteCustomerGatewayOutput, error)
 
-	DeleteDHCPOptionsRequest(*ec2.DeleteDHCPOptionsInput) (*service.Request, *ec2.DeleteDHCPOptionsOutput)
+	DeleteDhcpOptionsRequest(*ec2.DeleteDhcpOptionsInput) (*service.Request, *ec2.DeleteDhcpOptionsOutput)
 
-	DeleteDHCPOptions(*ec2.DeleteDHCPOptionsInput) (*ec2.DeleteDHCPOptionsOutput, error)
+	DeleteDhcpOptions(*ec2.DeleteDhcpOptionsInput) (*ec2.DeleteDhcpOptionsOutput, error)
 
 	DeleteFlowLogsRequest(*ec2.DeleteFlowLogsInput) (*service.Request, *ec2.DeleteFlowLogsOutput)
 
@@ -230,13 +230,13 @@ type EC2API interface {
 
 	DeleteKeyPair(*ec2.DeleteKeyPairInput) (*ec2.DeleteKeyPairOutput, error)
 
-	DeleteNetworkACLRequest(*ec2.DeleteNetworkACLInput) (*service.Request, *ec2.DeleteNetworkACLOutput)
+	DeleteNetworkAclRequest(*ec2.DeleteNetworkAclInput) (*service.Request, *ec2.DeleteNetworkAclOutput)
 
-	DeleteNetworkACL(*ec2.DeleteNetworkACLInput) (*ec2.DeleteNetworkACLOutput, error)
+	DeleteNetworkAcl(*ec2.DeleteNetworkAclInput) (*ec2.DeleteNetworkAclOutput, error)
 
-	DeleteNetworkACLEntryRequest(*ec2.DeleteNetworkACLEntryInput) (*service.Request, *ec2.DeleteNetworkACLEntryOutput)
+	DeleteNetworkAclEntryRequest(*ec2.DeleteNetworkAclEntryInput) (*service.Request, *ec2.DeleteNetworkAclEntryOutput)
 
-	DeleteNetworkACLEntry(*ec2.DeleteNetworkACLEntryInput) (*ec2.DeleteNetworkACLEntryOutput, error)
+	DeleteNetworkAclEntry(*ec2.DeleteNetworkAclEntryInput) (*ec2.DeleteNetworkAclEntryOutput, error)
 
 	DeleteNetworkInterfaceRequest(*ec2.DeleteNetworkInterfaceInput) (*service.Request, *ec2.DeleteNetworkInterfaceOutput)
 
@@ -274,33 +274,33 @@ type EC2API interface {
 
 	DeleteTags(*ec2.DeleteTagsInput) (*ec2.DeleteTagsOutput, error)
 
-	DeleteVPCRequest(*ec2.DeleteVPCInput) (*service.Request, *ec2.DeleteVPCOutput)
-
-	DeleteVPC(*ec2.DeleteVPCInput) (*ec2.DeleteVPCOutput, error)
-
-	DeleteVPCEndpointsRequest(*ec2.DeleteVPCEndpointsInput) (*service.Request, *ec2.DeleteVPCEndpointsOutput)
-
-	DeleteVPCEndpoints(*ec2.DeleteVPCEndpointsInput) (*ec2.DeleteVPCEndpointsOutput, error)
-
-	DeleteVPCPeeringConnectionRequest(*ec2.DeleteVPCPeeringConnectionInput) (*service.Request, *ec2.DeleteVPCPeeringConnectionOutput)
-
-	DeleteVPCPeeringConnection(*ec2.DeleteVPCPeeringConnectionInput) (*ec2.DeleteVPCPeeringConnectionOutput, error)
-
-	DeleteVPNConnectionRequest(*ec2.DeleteVPNConnectionInput) (*service.Request, *ec2.DeleteVPNConnectionOutput)
-
-	DeleteVPNConnection(*ec2.DeleteVPNConnectionInput) (*ec2.DeleteVPNConnectionOutput, error)
-
-	DeleteVPNConnectionRouteRequest(*ec2.DeleteVPNConnectionRouteInput) (*service.Request, *ec2.DeleteVPNConnectionRouteOutput)
-
-	DeleteVPNConnectionRoute(*ec2.DeleteVPNConnectionRouteInput) (*ec2.DeleteVPNConnectionRouteOutput, error)
-
-	DeleteVPNGatewayRequest(*ec2.DeleteVPNGatewayInput) (*service.Request, *ec2.DeleteVPNGatewayOutput)
-
-	DeleteVPNGateway(*ec2.DeleteVPNGatewayInput) (*ec2.DeleteVPNGatewayOutput, error)
-
 	DeleteVolumeRequest(*ec2.DeleteVolumeInput) (*service.Request, *ec2.DeleteVolumeOutput)
 
 	DeleteVolume(*ec2.DeleteVolumeInput) (*ec2.DeleteVolumeOutput, error)
+
+	DeleteVpcRequest(*ec2.DeleteVpcInput) (*service.Request, *ec2.DeleteVpcOutput)
+
+	DeleteVpc(*ec2.DeleteVpcInput) (*ec2.DeleteVpcOutput, error)
+
+	DeleteVpcEndpointsRequest(*ec2.DeleteVpcEndpointsInput) (*service.Request, *ec2.DeleteVpcEndpointsOutput)
+
+	DeleteVpcEndpoints(*ec2.DeleteVpcEndpointsInput) (*ec2.DeleteVpcEndpointsOutput, error)
+
+	DeleteVpcPeeringConnectionRequest(*ec2.DeleteVpcPeeringConnectionInput) (*service.Request, *ec2.DeleteVpcPeeringConnectionOutput)
+
+	DeleteVpcPeeringConnection(*ec2.DeleteVpcPeeringConnectionInput) (*ec2.DeleteVpcPeeringConnectionOutput, error)
+
+	DeleteVpnConnectionRequest(*ec2.DeleteVpnConnectionInput) (*service.Request, *ec2.DeleteVpnConnectionOutput)
+
+	DeleteVpnConnection(*ec2.DeleteVpnConnectionInput) (*ec2.DeleteVpnConnectionOutput, error)
+
+	DeleteVpnConnectionRouteRequest(*ec2.DeleteVpnConnectionRouteInput) (*service.Request, *ec2.DeleteVpnConnectionRouteOutput)
+
+	DeleteVpnConnectionRoute(*ec2.DeleteVpnConnectionRouteInput) (*ec2.DeleteVpnConnectionRouteOutput, error)
+
+	DeleteVpnGatewayRequest(*ec2.DeleteVpnGatewayInput) (*service.Request, *ec2.DeleteVpnGatewayOutput)
+
+	DeleteVpnGateway(*ec2.DeleteVpnGatewayInput) (*ec2.DeleteVpnGatewayOutput, error)
 
 	DeregisterImageRequest(*ec2.DeregisterImageInput) (*service.Request, *ec2.DeregisterImageOutput)
 
@@ -334,9 +334,9 @@ type EC2API interface {
 
 	DescribeCustomerGateways(*ec2.DescribeCustomerGatewaysInput) (*ec2.DescribeCustomerGatewaysOutput, error)
 
-	DescribeDHCPOptionsRequest(*ec2.DescribeDHCPOptionsInput) (*service.Request, *ec2.DescribeDHCPOptionsOutput)
+	DescribeDhcpOptionsRequest(*ec2.DescribeDhcpOptionsInput) (*service.Request, *ec2.DescribeDhcpOptionsOutput)
 
-	DescribeDHCPOptions(*ec2.DescribeDHCPOptionsInput) (*ec2.DescribeDHCPOptionsOutput, error)
+	DescribeDhcpOptions(*ec2.DescribeDhcpOptionsInput) (*ec2.DescribeDhcpOptionsOutput, error)
 
 	DescribeExportTasksRequest(*ec2.DescribeExportTasksInput) (*service.Request, *ec2.DescribeExportTasksOutput)
 
@@ -390,9 +390,9 @@ type EC2API interface {
 
 	DescribeMovingAddresses(*ec2.DescribeMovingAddressesInput) (*ec2.DescribeMovingAddressesOutput, error)
 
-	DescribeNetworkACLsRequest(*ec2.DescribeNetworkACLsInput) (*service.Request, *ec2.DescribeNetworkACLsOutput)
+	DescribeNetworkAclsRequest(*ec2.DescribeNetworkAclsInput) (*service.Request, *ec2.DescribeNetworkAclsOutput)
 
-	DescribeNetworkACLs(*ec2.DescribeNetworkACLsInput) (*ec2.DescribeNetworkACLsOutput, error)
+	DescribeNetworkAcls(*ec2.DescribeNetworkAclsInput) (*ec2.DescribeNetworkAclsOutput, error)
 
 	DescribeNetworkInterfaceAttributeRequest(*ec2.DescribeNetworkInterfaceAttributeInput) (*service.Request, *ec2.DescribeNetworkInterfaceAttributeOutput)
 
@@ -486,38 +486,6 @@ type EC2API interface {
 
 	DescribeTags(*ec2.DescribeTagsInput) (*ec2.DescribeTagsOutput, error)
 
-	DescribeVPCAttributeRequest(*ec2.DescribeVPCAttributeInput) (*service.Request, *ec2.DescribeVPCAttributeOutput)
-
-	DescribeVPCAttribute(*ec2.DescribeVPCAttributeInput) (*ec2.DescribeVPCAttributeOutput, error)
-
-	DescribeVPCClassicLinkRequest(*ec2.DescribeVPCClassicLinkInput) (*service.Request, *ec2.DescribeVPCClassicLinkOutput)
-
-	DescribeVPCClassicLink(*ec2.DescribeVPCClassicLinkInput) (*ec2.DescribeVPCClassicLinkOutput, error)
-
-	DescribeVPCEndpointServicesRequest(*ec2.DescribeVPCEndpointServicesInput) (*service.Request, *ec2.DescribeVPCEndpointServicesOutput)
-
-	DescribeVPCEndpointServices(*ec2.DescribeVPCEndpointServicesInput) (*ec2.DescribeVPCEndpointServicesOutput, error)
-
-	DescribeVPCEndpointsRequest(*ec2.DescribeVPCEndpointsInput) (*service.Request, *ec2.DescribeVPCEndpointsOutput)
-
-	DescribeVPCEndpoints(*ec2.DescribeVPCEndpointsInput) (*ec2.DescribeVPCEndpointsOutput, error)
-
-	DescribeVPCPeeringConnectionsRequest(*ec2.DescribeVPCPeeringConnectionsInput) (*service.Request, *ec2.DescribeVPCPeeringConnectionsOutput)
-
-	DescribeVPCPeeringConnections(*ec2.DescribeVPCPeeringConnectionsInput) (*ec2.DescribeVPCPeeringConnectionsOutput, error)
-
-	DescribeVPCsRequest(*ec2.DescribeVPCsInput) (*service.Request, *ec2.DescribeVPCsOutput)
-
-	DescribeVPCs(*ec2.DescribeVPCsInput) (*ec2.DescribeVPCsOutput, error)
-
-	DescribeVPNConnectionsRequest(*ec2.DescribeVPNConnectionsInput) (*service.Request, *ec2.DescribeVPNConnectionsOutput)
-
-	DescribeVPNConnections(*ec2.DescribeVPNConnectionsInput) (*ec2.DescribeVPNConnectionsOutput, error)
-
-	DescribeVPNGatewaysRequest(*ec2.DescribeVPNGatewaysInput) (*service.Request, *ec2.DescribeVPNGatewaysOutput)
-
-	DescribeVPNGateways(*ec2.DescribeVPNGatewaysInput) (*ec2.DescribeVPNGatewaysOutput, error)
-
 	DescribeVolumeAttributeRequest(*ec2.DescribeVolumeAttributeInput) (*service.Request, *ec2.DescribeVolumeAttributeOutput)
 
 	DescribeVolumeAttribute(*ec2.DescribeVolumeAttributeInput) (*ec2.DescribeVolumeAttributeOutput, error)
@@ -534,9 +502,41 @@ type EC2API interface {
 
 	DescribeVolumesPages(*ec2.DescribeVolumesInput, func(*ec2.DescribeVolumesOutput, bool) bool) error
 
-	DetachClassicLinkVPCRequest(*ec2.DetachClassicLinkVPCInput) (*service.Request, *ec2.DetachClassicLinkVPCOutput)
+	DescribeVpcAttributeRequest(*ec2.DescribeVpcAttributeInput) (*service.Request, *ec2.DescribeVpcAttributeOutput)
 
-	DetachClassicLinkVPC(*ec2.DetachClassicLinkVPCInput) (*ec2.DetachClassicLinkVPCOutput, error)
+	DescribeVpcAttribute(*ec2.DescribeVpcAttributeInput) (*ec2.DescribeVpcAttributeOutput, error)
+
+	DescribeVpcClassicLinkRequest(*ec2.DescribeVpcClassicLinkInput) (*service.Request, *ec2.DescribeVpcClassicLinkOutput)
+
+	DescribeVpcClassicLink(*ec2.DescribeVpcClassicLinkInput) (*ec2.DescribeVpcClassicLinkOutput, error)
+
+	DescribeVpcEndpointServicesRequest(*ec2.DescribeVpcEndpointServicesInput) (*service.Request, *ec2.DescribeVpcEndpointServicesOutput)
+
+	DescribeVpcEndpointServices(*ec2.DescribeVpcEndpointServicesInput) (*ec2.DescribeVpcEndpointServicesOutput, error)
+
+	DescribeVpcEndpointsRequest(*ec2.DescribeVpcEndpointsInput) (*service.Request, *ec2.DescribeVpcEndpointsOutput)
+
+	DescribeVpcEndpoints(*ec2.DescribeVpcEndpointsInput) (*ec2.DescribeVpcEndpointsOutput, error)
+
+	DescribeVpcPeeringConnectionsRequest(*ec2.DescribeVpcPeeringConnectionsInput) (*service.Request, *ec2.DescribeVpcPeeringConnectionsOutput)
+
+	DescribeVpcPeeringConnections(*ec2.DescribeVpcPeeringConnectionsInput) (*ec2.DescribeVpcPeeringConnectionsOutput, error)
+
+	DescribeVpcsRequest(*ec2.DescribeVpcsInput) (*service.Request, *ec2.DescribeVpcsOutput)
+
+	DescribeVpcs(*ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error)
+
+	DescribeVpnConnectionsRequest(*ec2.DescribeVpnConnectionsInput) (*service.Request, *ec2.DescribeVpnConnectionsOutput)
+
+	DescribeVpnConnections(*ec2.DescribeVpnConnectionsInput) (*ec2.DescribeVpnConnectionsOutput, error)
+
+	DescribeVpnGatewaysRequest(*ec2.DescribeVpnGatewaysInput) (*service.Request, *ec2.DescribeVpnGatewaysOutput)
+
+	DescribeVpnGateways(*ec2.DescribeVpnGatewaysInput) (*ec2.DescribeVpnGatewaysOutput, error)
+
+	DetachClassicLinkVpcRequest(*ec2.DetachClassicLinkVpcInput) (*service.Request, *ec2.DetachClassicLinkVpcOutput)
+
+	DetachClassicLinkVpc(*ec2.DetachClassicLinkVpcInput) (*ec2.DetachClassicLinkVpcOutput, error)
 
 	DetachInternetGatewayRequest(*ec2.DetachInternetGatewayInput) (*service.Request, *ec2.DetachInternetGatewayOutput)
 
@@ -546,21 +546,21 @@ type EC2API interface {
 
 	DetachNetworkInterface(*ec2.DetachNetworkInterfaceInput) (*ec2.DetachNetworkInterfaceOutput, error)
 
-	DetachVPNGatewayRequest(*ec2.DetachVPNGatewayInput) (*service.Request, *ec2.DetachVPNGatewayOutput)
-
-	DetachVPNGateway(*ec2.DetachVPNGatewayInput) (*ec2.DetachVPNGatewayOutput, error)
-
 	DetachVolumeRequest(*ec2.DetachVolumeInput) (*service.Request, *ec2.VolumeAttachment)
 
 	DetachVolume(*ec2.DetachVolumeInput) (*ec2.VolumeAttachment, error)
 
-	DisableVGWRoutePropagationRequest(*ec2.DisableVGWRoutePropagationInput) (*service.Request, *ec2.DisableVGWRoutePropagationOutput)
+	DetachVpnGatewayRequest(*ec2.DetachVpnGatewayInput) (*service.Request, *ec2.DetachVpnGatewayOutput)
 
-	DisableVGWRoutePropagation(*ec2.DisableVGWRoutePropagationInput) (*ec2.DisableVGWRoutePropagationOutput, error)
+	DetachVpnGateway(*ec2.DetachVpnGatewayInput) (*ec2.DetachVpnGatewayOutput, error)
 
-	DisableVPCClassicLinkRequest(*ec2.DisableVPCClassicLinkInput) (*service.Request, *ec2.DisableVPCClassicLinkOutput)
+	DisableVgwRoutePropagationRequest(*ec2.DisableVgwRoutePropagationInput) (*service.Request, *ec2.DisableVgwRoutePropagationOutput)
 
-	DisableVPCClassicLink(*ec2.DisableVPCClassicLinkInput) (*ec2.DisableVPCClassicLinkOutput, error)
+	DisableVgwRoutePropagation(*ec2.DisableVgwRoutePropagationInput) (*ec2.DisableVgwRoutePropagationOutput, error)
+
+	DisableVpcClassicLinkRequest(*ec2.DisableVpcClassicLinkInput) (*service.Request, *ec2.DisableVpcClassicLinkOutput)
+
+	DisableVpcClassicLink(*ec2.DisableVpcClassicLinkInput) (*ec2.DisableVpcClassicLinkOutput, error)
 
 	DisassociateAddressRequest(*ec2.DisassociateAddressInput) (*service.Request, *ec2.DisassociateAddressOutput)
 
@@ -570,17 +570,17 @@ type EC2API interface {
 
 	DisassociateRouteTable(*ec2.DisassociateRouteTableInput) (*ec2.DisassociateRouteTableOutput, error)
 
-	EnableVGWRoutePropagationRequest(*ec2.EnableVGWRoutePropagationInput) (*service.Request, *ec2.EnableVGWRoutePropagationOutput)
+	EnableVgwRoutePropagationRequest(*ec2.EnableVgwRoutePropagationInput) (*service.Request, *ec2.EnableVgwRoutePropagationOutput)
 
-	EnableVGWRoutePropagation(*ec2.EnableVGWRoutePropagationInput) (*ec2.EnableVGWRoutePropagationOutput, error)
-
-	EnableVPCClassicLinkRequest(*ec2.EnableVPCClassicLinkInput) (*service.Request, *ec2.EnableVPCClassicLinkOutput)
-
-	EnableVPCClassicLink(*ec2.EnableVPCClassicLinkInput) (*ec2.EnableVPCClassicLinkOutput, error)
+	EnableVgwRoutePropagation(*ec2.EnableVgwRoutePropagationInput) (*ec2.EnableVgwRoutePropagationOutput, error)
 
 	EnableVolumeIORequest(*ec2.EnableVolumeIOInput) (*service.Request, *ec2.EnableVolumeIOOutput)
 
 	EnableVolumeIO(*ec2.EnableVolumeIOInput) (*ec2.EnableVolumeIOOutput, error)
+
+	EnableVpcClassicLinkRequest(*ec2.EnableVpcClassicLinkInput) (*service.Request, *ec2.EnableVpcClassicLinkOutput)
+
+	EnableVpcClassicLink(*ec2.EnableVpcClassicLinkInput) (*ec2.EnableVpcClassicLinkOutput, error)
 
 	GetConsoleOutputRequest(*ec2.GetConsoleOutputInput) (*service.Request, *ec2.GetConsoleOutputOutput)
 
@@ -634,25 +634,25 @@ type EC2API interface {
 
 	ModifySubnetAttribute(*ec2.ModifySubnetAttributeInput) (*ec2.ModifySubnetAttributeOutput, error)
 
-	ModifyVPCAttributeRequest(*ec2.ModifyVPCAttributeInput) (*service.Request, *ec2.ModifyVPCAttributeOutput)
-
-	ModifyVPCAttribute(*ec2.ModifyVPCAttributeInput) (*ec2.ModifyVPCAttributeOutput, error)
-
-	ModifyVPCEndpointRequest(*ec2.ModifyVPCEndpointInput) (*service.Request, *ec2.ModifyVPCEndpointOutput)
-
-	ModifyVPCEndpoint(*ec2.ModifyVPCEndpointInput) (*ec2.ModifyVPCEndpointOutput, error)
-
 	ModifyVolumeAttributeRequest(*ec2.ModifyVolumeAttributeInput) (*service.Request, *ec2.ModifyVolumeAttributeOutput)
 
 	ModifyVolumeAttribute(*ec2.ModifyVolumeAttributeInput) (*ec2.ModifyVolumeAttributeOutput, error)
+
+	ModifyVpcAttributeRequest(*ec2.ModifyVpcAttributeInput) (*service.Request, *ec2.ModifyVpcAttributeOutput)
+
+	ModifyVpcAttribute(*ec2.ModifyVpcAttributeInput) (*ec2.ModifyVpcAttributeOutput, error)
+
+	ModifyVpcEndpointRequest(*ec2.ModifyVpcEndpointInput) (*service.Request, *ec2.ModifyVpcEndpointOutput)
+
+	ModifyVpcEndpoint(*ec2.ModifyVpcEndpointInput) (*ec2.ModifyVpcEndpointOutput, error)
 
 	MonitorInstancesRequest(*ec2.MonitorInstancesInput) (*service.Request, *ec2.MonitorInstancesOutput)
 
 	MonitorInstances(*ec2.MonitorInstancesInput) (*ec2.MonitorInstancesOutput, error)
 
-	MoveAddressToVPCRequest(*ec2.MoveAddressToVPCInput) (*service.Request, *ec2.MoveAddressToVPCOutput)
+	MoveAddressToVpcRequest(*ec2.MoveAddressToVpcInput) (*service.Request, *ec2.MoveAddressToVpcOutput)
 
-	MoveAddressToVPC(*ec2.MoveAddressToVPCInput) (*ec2.MoveAddressToVPCOutput, error)
+	MoveAddressToVpc(*ec2.MoveAddressToVpcInput) (*ec2.MoveAddressToVpcOutput, error)
 
 	PurchaseReservedInstancesOfferingRequest(*ec2.PurchaseReservedInstancesOfferingInput) (*service.Request, *ec2.PurchaseReservedInstancesOfferingOutput)
 
@@ -666,21 +666,21 @@ type EC2API interface {
 
 	RegisterImage(*ec2.RegisterImageInput) (*ec2.RegisterImageOutput, error)
 
-	RejectVPCPeeringConnectionRequest(*ec2.RejectVPCPeeringConnectionInput) (*service.Request, *ec2.RejectVPCPeeringConnectionOutput)
+	RejectVpcPeeringConnectionRequest(*ec2.RejectVpcPeeringConnectionInput) (*service.Request, *ec2.RejectVpcPeeringConnectionOutput)
 
-	RejectVPCPeeringConnection(*ec2.RejectVPCPeeringConnectionInput) (*ec2.RejectVPCPeeringConnectionOutput, error)
+	RejectVpcPeeringConnection(*ec2.RejectVpcPeeringConnectionInput) (*ec2.RejectVpcPeeringConnectionOutput, error)
 
 	ReleaseAddressRequest(*ec2.ReleaseAddressInput) (*service.Request, *ec2.ReleaseAddressOutput)
 
 	ReleaseAddress(*ec2.ReleaseAddressInput) (*ec2.ReleaseAddressOutput, error)
 
-	ReplaceNetworkACLAssociationRequest(*ec2.ReplaceNetworkACLAssociationInput) (*service.Request, *ec2.ReplaceNetworkACLAssociationOutput)
+	ReplaceNetworkAclAssociationRequest(*ec2.ReplaceNetworkAclAssociationInput) (*service.Request, *ec2.ReplaceNetworkAclAssociationOutput)
 
-	ReplaceNetworkACLAssociation(*ec2.ReplaceNetworkACLAssociationInput) (*ec2.ReplaceNetworkACLAssociationOutput, error)
+	ReplaceNetworkAclAssociation(*ec2.ReplaceNetworkAclAssociationInput) (*ec2.ReplaceNetworkAclAssociationOutput, error)
 
-	ReplaceNetworkACLEntryRequest(*ec2.ReplaceNetworkACLEntryInput) (*service.Request, *ec2.ReplaceNetworkACLEntryOutput)
+	ReplaceNetworkAclEntryRequest(*ec2.ReplaceNetworkAclEntryInput) (*service.Request, *ec2.ReplaceNetworkAclEntryOutput)
 
-	ReplaceNetworkACLEntry(*ec2.ReplaceNetworkACLEntryInput) (*ec2.ReplaceNetworkACLEntryOutput, error)
+	ReplaceNetworkAclEntry(*ec2.ReplaceNetworkAclEntryInput) (*ec2.ReplaceNetworkAclEntryOutput, error)
 
 	ReplaceRouteRequest(*ec2.ReplaceRouteInput) (*service.Request, *ec2.ReplaceRouteOutput)
 
@@ -746,9 +746,9 @@ type EC2API interface {
 
 	TerminateInstances(*ec2.TerminateInstancesInput) (*ec2.TerminateInstancesOutput, error)
 
-	UnassignPrivateIPAddressesRequest(*ec2.UnassignPrivateIPAddressesInput) (*service.Request, *ec2.UnassignPrivateIPAddressesOutput)
+	UnassignPrivateIpAddressesRequest(*ec2.UnassignPrivateIpAddressesInput) (*service.Request, *ec2.UnassignPrivateIpAddressesOutput)
 
-	UnassignPrivateIPAddresses(*ec2.UnassignPrivateIPAddressesInput) (*ec2.UnassignPrivateIPAddressesOutput, error)
+	UnassignPrivateIpAddresses(*ec2.UnassignPrivateIpAddressesInput) (*ec2.UnassignPrivateIpAddressesOutput, error)
 
 	UnmonitorInstancesRequest(*ec2.UnmonitorInstancesInput) (*service.Request, *ec2.UnmonitorInstancesOutput)
 

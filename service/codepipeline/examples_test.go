@@ -20,7 +20,7 @@ func ExampleCodePipeline_AcknowledgeJob() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.AcknowledgeJobInput{
-		JobID: aws.String("JobId"), // Required
+		JobId: aws.String("JobId"), // Required
 		Nonce: aws.String("Nonce"), // Required
 	}
 	resp, err := svc.AcknowledgeJob(params)
@@ -49,7 +49,7 @@ func ExampleCodePipeline_AcknowledgeThirdPartyJob() {
 
 	params := &codepipeline.AcknowledgeThirdPartyJobInput{
 		ClientToken: aws.String("ClientToken"),     // Required
-		JobID:       aws.String("ThirdPartyJobId"), // Required
+		JobId:       aws.String("ThirdPartyJobId"), // Required
 		Nonce:       aws.String("Nonce"),           // Required
 	}
 	resp, err := svc.AcknowledgeThirdPartyJob(params)
@@ -101,10 +101,10 @@ func ExampleCodePipeline_CreateCustomActionType() {
 			// More values...
 		},
 		Settings: &codepipeline.ActionTypeSettings{
-			EntityURLTemplate:          aws.String("UrlTemplate"),
-			ExecutionURLTemplate:       aws.String("UrlTemplate"),
-			RevisionURLTemplate:        aws.String("UrlTemplate"),
-			ThirdPartyConfigurationURL: aws.String("Url"),
+			EntityUrlTemplate:          aws.String("UrlTemplate"),
+			ExecutionUrlTemplate:       aws.String("UrlTemplate"),
+			RevisionUrlTemplate:        aws.String("UrlTemplate"),
+			ThirdPartyConfigurationUrl: aws.String("Url"),
 		},
 	}
 	resp, err := svc.CreateCustomActionType(params)
@@ -138,12 +138,12 @@ func ExampleCodePipeline_CreatePipeline() {
 				Type:     aws.String("ArtifactStoreType"),     // Required
 			},
 			Name:    aws.String("PipelineName"), // Required
-			RoleARN: aws.String("RoleArn"),      // Required
+			RoleArn: aws.String("RoleArn"),      // Required
 			Stages: []*codepipeline.StageDeclaration{ // Required
 				{ // Required
 					Actions: []*codepipeline.ActionDeclaration{ // Required
 						{ // Required
-							ActionTypeID: &codepipeline.ActionTypeID{ // Required
+							ActionTypeId: &codepipeline.ActionTypeId{ // Required
 								Category: aws.String("ActionCategory"), // Required
 								Owner:    aws.String("ActionOwner"),    // Required
 								Provider: aws.String("ActionProvider"), // Required
@@ -166,7 +166,7 @@ func ExampleCodePipeline_CreatePipeline() {
 								},
 								// More values...
 							},
-							RoleARN:  aws.String("RoleArn"),
+							RoleArn:  aws.String("RoleArn"),
 							RunOrder: aws.Int64(1),
 						},
 						// More values...
@@ -325,7 +325,7 @@ func ExampleCodePipeline_GetJobDetails() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.GetJobDetailsInput{
-		JobID: aws.String("JobId"), // Required
+		JobId: aws.String("JobId"), // Required
 	}
 	resp, err := svc.GetJobDetails(params)
 
@@ -408,7 +408,7 @@ func ExampleCodePipeline_GetThirdPartyJobDetails() {
 
 	params := &codepipeline.GetThirdPartyJobDetailsInput{
 		ClientToken: aws.String("ClientToken"),     // Required
-		JobID:       aws.String("ThirdPartyJobId"), // Required
+		JobId:       aws.String("ThirdPartyJobId"), // Required
 	}
 	resp, err := svc.GetThirdPartyJobDetails(params)
 
@@ -490,7 +490,7 @@ func ExampleCodePipeline_PollForJobs() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PollForJobsInput{
-		ActionTypeID: &codepipeline.ActionTypeID{ // Required
+		ActionTypeId: &codepipeline.ActionTypeId{ // Required
 			Category: aws.String("ActionCategory"), // Required
 			Owner:    aws.String("ActionOwner"),    // Required
 			Provider: aws.String("ActionProvider"), // Required
@@ -527,7 +527,7 @@ func ExampleCodePipeline_PollForThirdPartyJobs() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PollForThirdPartyJobsInput{
-		ActionTypeID: &codepipeline.ActionTypeID{ // Required
+		ActionTypeId: &codepipeline.ActionTypeId{ // Required
 			Category: aws.String("ActionCategory"), // Required
 			Owner:    aws.String("ActionOwner"),    // Required
 			Provider: aws.String("ActionProvider"), // Required
@@ -563,8 +563,8 @@ func ExampleCodePipeline_PutActionRevision() {
 		ActionName: aws.String("ActionName"), // Required
 		ActionRevision: &codepipeline.ActionRevision{ // Required
 			Created:          aws.Time(time.Now()),     // Required
-			RevisionID:       aws.String("RevisionId"), // Required
-			RevisionChangeID: aws.String("RevisionChangeId"),
+			RevisionId:       aws.String("RevisionId"), // Required
+			RevisionChangeId: aws.String("RevisionChangeId"),
 		},
 		PipelineName: aws.String("PipelineName"), // Required
 		StageName:    aws.String("StageName"),    // Required
@@ -596,10 +596,10 @@ func ExampleCodePipeline_PutJobFailureResult() {
 	params := &codepipeline.PutJobFailureResultInput{
 		FailureDetails: &codepipeline.FailureDetails{ // Required
 			Type:                aws.String("FailureType"), // Required
-			ExternalExecutionID: aws.String("ExecutionId"),
+			ExternalExecutionId: aws.String("ExecutionId"),
 			Message:             aws.String("Message"),
 		},
-		JobID: aws.String("JobId"), // Required
+		JobId: aws.String("JobId"), // Required
 	}
 	resp, err := svc.PutJobFailureResult(params)
 
@@ -626,14 +626,14 @@ func ExampleCodePipeline_PutJobSuccessResult() {
 	svc := codepipeline.New(nil)
 
 	params := &codepipeline.PutJobSuccessResultInput{
-		JobID:             aws.String("JobId"), // Required
+		JobId:             aws.String("JobId"), // Required
 		ContinuationToken: aws.String("ContinuationToken"),
 		CurrentRevision: &codepipeline.CurrentRevision{
 			ChangeIdentifier: aws.String("RevisionChangeIdentifier"), // Required
 			Revision:         aws.String("Revision"),                 // Required
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
-			ExternalExecutionID: aws.String("ExecutionId"),
+			ExternalExecutionId: aws.String("ExecutionId"),
 			PercentComplete:     aws.Int64(1),
 			Summary:             aws.String("ExecutionSummary"),
 		},
@@ -666,10 +666,10 @@ func ExampleCodePipeline_PutThirdPartyJobFailureResult() {
 		ClientToken: aws.String("ClientToken"), // Required
 		FailureDetails: &codepipeline.FailureDetails{ // Required
 			Type:                aws.String("FailureType"), // Required
-			ExternalExecutionID: aws.String("ExecutionId"),
+			ExternalExecutionId: aws.String("ExecutionId"),
 			Message:             aws.String("Message"),
 		},
-		JobID: aws.String("ThirdPartyJobId"), // Required
+		JobId: aws.String("ThirdPartyJobId"), // Required
 	}
 	resp, err := svc.PutThirdPartyJobFailureResult(params)
 
@@ -697,14 +697,14 @@ func ExampleCodePipeline_PutThirdPartyJobSuccessResult() {
 
 	params := &codepipeline.PutThirdPartyJobSuccessResultInput{
 		ClientToken:       aws.String("ClientToken"),     // Required
-		JobID:             aws.String("ThirdPartyJobId"), // Required
+		JobId:             aws.String("ThirdPartyJobId"), // Required
 		ContinuationToken: aws.String("ContinuationToken"),
 		CurrentRevision: &codepipeline.CurrentRevision{
 			ChangeIdentifier: aws.String("RevisionChangeIdentifier"), // Required
 			Revision:         aws.String("Revision"),                 // Required
 		},
 		ExecutionDetails: &codepipeline.ExecutionDetails{
-			ExternalExecutionID: aws.String("ExecutionId"),
+			ExternalExecutionId: aws.String("ExecutionId"),
 			PercentComplete:     aws.Int64(1),
 			Summary:             aws.String("ExecutionSummary"),
 		},
@@ -767,12 +767,12 @@ func ExampleCodePipeline_UpdatePipeline() {
 				Type:     aws.String("ArtifactStoreType"),     // Required
 			},
 			Name:    aws.String("PipelineName"), // Required
-			RoleARN: aws.String("RoleArn"),      // Required
+			RoleArn: aws.String("RoleArn"),      // Required
 			Stages: []*codepipeline.StageDeclaration{ // Required
 				{ // Required
 					Actions: []*codepipeline.ActionDeclaration{ // Required
 						{ // Required
-							ActionTypeID: &codepipeline.ActionTypeID{ // Required
+							ActionTypeId: &codepipeline.ActionTypeId{ // Required
 								Category: aws.String("ActionCategory"), // Required
 								Owner:    aws.String("ActionOwner"),    // Required
 								Provider: aws.String("ActionProvider"), // Required
@@ -795,7 +795,7 @@ func ExampleCodePipeline_UpdatePipeline() {
 								},
 								// More values...
 							},
-							RoleARN:  aws.String("RoleArn"),
+							RoleArn:  aws.String("RoleArn"),
 							RunOrder: aws.Int64(1),
 						},
 						// More values...

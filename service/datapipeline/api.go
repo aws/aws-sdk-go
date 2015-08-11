@@ -651,7 +651,7 @@ type ActivatePipelineInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The date and time to resume the pipeline. By default, the pipeline resumes
 	// from the last completed execution.
@@ -696,7 +696,7 @@ func (s ActivatePipelineOutput) GoString() string {
 // Contains the parameters for AddTags.
 type AddTagsInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The tags to add, as key/value pairs.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
@@ -764,7 +764,7 @@ type CreatePipelineInput struct {
 	// Instead, you'll receive the pipeline identifier from the previous attempt.
 	// The uniqueness of the name and unique identifier combination is scoped to
 	// the AWS account or IAM user credentials.
-	UniqueID *string `locationName:"uniqueId" type:"string" required:"true"`
+	UniqueId *string `locationName:"uniqueId" type:"string" required:"true"`
 
 	metadataCreatePipelineInput `json:"-" xml:"-"`
 }
@@ -787,7 +787,7 @@ func (s CreatePipelineInput) GoString() string {
 type CreatePipelineOutput struct {
 	// The ID that AWS Data Pipeline assigns the newly created pipeline. For example,
 	// df-06372391ZG65EXAMPLE.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataCreatePipelineOutput `json:"-" xml:"-"`
 }
@@ -814,7 +814,7 @@ type DeactivatePipelineInput struct {
 	CancelActive *bool `locationName:"cancelActive" type:"boolean"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDeactivatePipelineInput `json:"-" xml:"-"`
 }
@@ -855,7 +855,7 @@ func (s DeactivatePipelineOutput) GoString() string {
 // Contains the parameters for DeletePipeline.
 type DeletePipelineInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
@@ -906,10 +906,10 @@ type DescribeObjectsInput struct {
 
 	// The IDs of the pipeline objects that contain the definitions to be described.
 	// You can pass as many as 25 identifiers in a single call to DescribeObjects.
-	ObjectIDs []*string `locationName:"objectIds" type:"list" required:"true"`
+	ObjectIds []*string `locationName:"objectIds" type:"list" required:"true"`
 
 	// The ID of the pipeline that contains the object definitions.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataDescribeObjectsInput `json:"-" xml:"-"`
 }
@@ -962,7 +962,7 @@ func (s DescribeObjectsOutput) GoString() string {
 type DescribePipelinesInput struct {
 	// The IDs of the pipelines to describe. You can pass as many as 25 identifiers
 	// in a single call. To obtain pipeline IDs, call ListPipelines.
-	PipelineIDs []*string `locationName:"pipelineIds" type:"list" required:"true"`
+	PipelineIds []*string `locationName:"pipelineIds" type:"list" required:"true"`
 
 	metadataDescribePipelinesInput `json:"-" xml:"-"`
 }
@@ -1009,10 +1009,10 @@ type EvaluateExpressionInput struct {
 	Expression *string `locationName:"expression" type:"string" required:"true"`
 
 	// The ID of the object.
-	ObjectID *string `locationName:"objectId" type:"string" required:"true"`
+	ObjectId *string `locationName:"objectId" type:"string" required:"true"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	metadataEvaluateExpressionInput `json:"-" xml:"-"`
 }
@@ -1086,7 +1086,7 @@ func (s Field) GoString() string {
 // Contains the parameters for GetPipelineDefinition.
 type GetPipelineDefinitionInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The version of the pipeline definition to retrieve. Set this parameter to
 	// latest (default) to use the last definition saved to the pipeline or active
@@ -1209,7 +1209,7 @@ type ListPipelinesOutput struct {
 
 	// The pipeline identifiers. If you require additional information about the
 	// pipelines, you can use these identifiers to call DescribePipelines and GetPipelineDefinition.
-	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" required:"true"`
+	PipelineIdList []*PipelineIdName `locationName:"pipelineIdList" type:"list" required:"true"`
 
 	metadataListPipelinesOutput `json:"-" xml:"-"`
 }
@@ -1302,7 +1302,7 @@ type ParameterObject struct {
 	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" required:"true"`
 
 	// The ID of the parameter object.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	metadataParameterObject `json:"-" xml:"-"`
 }
@@ -1324,7 +1324,7 @@ func (s ParameterObject) GoString() string {
 // A value or list of parameter values.
 type ParameterValue struct {
 	// The ID of the parameter value.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
@@ -1360,7 +1360,7 @@ type PipelineDescription struct {
 
 	// The pipeline identifier that was assigned by AWS Data Pipeline. This is a
 	// string of the form df-297EG78HU43EEXAMPLE.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// A list of tags to associated with a pipeline. Tags let you control access
 	// to pipelines. For more information, see Controlling User Access to Pipelines
@@ -1386,28 +1386,28 @@ func (s PipelineDescription) GoString() string {
 }
 
 // Contains the name and identifier of a pipeline.
-type PipelineIDName struct {
+type PipelineIdName struct {
 	// The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
 	// string of the form df-297EG78HU43EEXAMPLE.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The name of the pipeline.
 	Name *string `locationName:"name" type:"string"`
 
-	metadataPipelineIDName `json:"-" xml:"-"`
+	metadataPipelineIdName `json:"-" xml:"-"`
 }
 
-type metadataPipelineIDName struct {
+type metadataPipelineIdName struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s PipelineIDName) String() string {
+func (s PipelineIdName) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s PipelineIDName) GoString() string {
+func (s PipelineIdName) GoString() string {
 	return s.String()
 }
 
@@ -1419,7 +1419,7 @@ type PipelineObject struct {
 	Fields []*Field `locationName:"fields" type:"list" required:"true"`
 
 	// The ID of the object.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The name of the object.
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -1512,7 +1512,7 @@ type PutPipelineDefinitionInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The objects that define the pipeline. These objects overwrite the existing
 	// pipeline definition.
@@ -1601,7 +1601,7 @@ type QueryObjectsInput struct {
 	Marker *string `locationName:"marker" type:"string"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The query that defines the objects to be returned. The Query object can contain
 	// a maximum of ten selectors. The conditions in the query are limited to top-level
@@ -1637,7 +1637,7 @@ type QueryObjectsOutput struct {
 	HasMoreResults *bool `locationName:"hasMoreResults" type:"boolean"`
 
 	// The identifiers that match the query selectors.
-	IDs []*string `locationName:"ids" type:"list"`
+	Ids []*string `locationName:"ids" type:"list"`
 
 	// The starting point for the next page of results. To view the next page of
 	// results, call QueryObjects again with this marker value. If the value is
@@ -1664,7 +1664,7 @@ func (s QueryObjectsOutput) GoString() string {
 // Contains the parameters for RemoveTags.
 type RemoveTagsInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The keys of the tags to remove.
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
@@ -1713,7 +1713,7 @@ type ReportTaskProgressInput struct {
 
 	// The ID of the task assigned to the task runner. This value is provided in
 	// the response for PollForTask.
-	TaskID *string `locationName:"taskId" type:"string" required:"true"`
+	TaskId *string `locationName:"taskId" type:"string" required:"true"`
 
 	metadataReportTaskProgressInput `json:"-" xml:"-"`
 }
@@ -1765,7 +1765,7 @@ type ReportTaskRunnerHeartbeatInput struct {
 	// by AWS Data Pipeline, the web service provides a unique identifier when it
 	// launches the application. If you have written a custom task runner, you should
 	// assign a unique identifier for the task runner.
-	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" required:"true"`
+	TaskrunnerId *string `locationName:"taskrunnerId" type:"string" required:"true"`
 
 	// The type of task the task runner is configured to accept and process. The
 	// worker group is set as a field on objects in the pipeline when they are created.
@@ -1847,10 +1847,10 @@ func (s Selector) GoString() string {
 type SetStatusInput struct {
 	// The IDs of the objects. The corresponding objects can be either physical
 	// or components, but not a mix of both types.
-	ObjectIDs []*string `locationName:"objectIds" type:"list" required:"true"`
+	ObjectIds []*string `locationName:"objectIds" type:"list" required:"true"`
 
 	// The ID of the pipeline that contains the objects.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The status to be set on all the objects specified in objectIds. For components,
 	// use PAUSE or RESUME. For instances, use TRY_CANCEL, RERUN, or MARK_FINISHED.
@@ -1897,7 +1897,7 @@ type SetTaskStatusInput struct {
 	// This value is set on the physical attempt object. It is used to display error
 	// information to the user. It should not start with string "Service_" which
 	// is reserved by the system.
-	ErrorID *string `locationName:"errorId" type:"string"`
+	ErrorId *string `locationName:"errorId" type:"string"`
 
 	// If an error occurred during the task, this value specifies a text description
 	// of the error. This value is set on the physical attempt object. It is used
@@ -1913,7 +1913,7 @@ type SetTaskStatusInput struct {
 
 	// The ID of the task assigned to the task runner. This value is provided in
 	// the response for PollForTask.
-	TaskID *string `locationName:"taskId" type:"string" required:"true"`
+	TaskId *string `locationName:"taskId" type:"string" required:"true"`
 
 	// If FINISHED, the task successfully completed. If FAILED, the task ended unsuccessfully.
 	// Preconditions use false.
@@ -1992,18 +1992,18 @@ func (s Tag) GoString() string {
 type TaskObject struct {
 	// The ID of the pipeline task attempt object. AWS Data Pipeline uses this value
 	// to track how many times a task is attempted.
-	AttemptID *string `locationName:"attemptId" type:"string"`
+	AttemptId *string `locationName:"attemptId" type:"string"`
 
 	// Connection information for the location where the task runner will publish
 	// the output of the task.
 	Objects map[string]*PipelineObject `locationName:"objects" type:"map"`
 
 	// The ID of the pipeline that provided the task.
-	PipelineID *string `locationName:"pipelineId" type:"string"`
+	PipelineId *string `locationName:"pipelineId" type:"string"`
 
 	// An internal identifier for the task. This ID is passed to the SetTaskStatus
 	// and ReportTaskProgress actions.
-	TaskID *string `locationName:"taskId" type:"string"`
+	TaskId *string `locationName:"taskId" type:"string"`
 
 	metadataTaskObject `json:"-" xml:"-"`
 }
@@ -2031,7 +2031,7 @@ type ValidatePipelineDefinitionInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" type:"string" required:"true"`
 
 	// The objects that define the pipeline changes to validate against the pipeline.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
@@ -2089,7 +2089,7 @@ type ValidationError struct {
 	Errors []*string `locationName:"errors" type:"list"`
 
 	// The identifier of the object that contains the validation error.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	metadataValidationError `json:"-" xml:"-"`
 }
@@ -2113,7 +2113,7 @@ func (s ValidationError) GoString() string {
 // by AWS Data Pipeline.
 type ValidationWarning struct {
 	// The identifier of the object that contains the validation warning.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// A description of the validation warning.
 	Warnings []*string `locationName:"warnings" type:"list"`

@@ -622,16 +622,6 @@ type AddPermissionInput struct {
 	// to AWS Lambda by invoking your function.
 	Principal *string `type:"string" required:"true"`
 
-	// This is optional; however, when granting Amazon S3 permission to invoke your
-	// function, you should specify this field with the bucket Amazon Resource Name
-	// (ARN) as its value. This ensures that only events generated from the specified
-	// bucket can invoke the function.
-	//
-	// If you add a permission for the Amazon S3 principal without providing the
-	// source ARN, any AWS account that creates a mapping to your function ARN can
-	// send events to invoke your Lambda function from Amazon S3.
-	SourceARN *string `locationName:"SourceArn" type:"string"`
-
 	// The AWS account ID (without a hyphen) of the source owner. For example, if
 	// the SourceArn identifies a bucket, then this is the bucket owner's account
 	// ID. You can use this additional condition to ensure the bucket you specify
@@ -641,8 +631,18 @@ type AddPermissionInput struct {
 	// owned by a specific account.
 	SourceAccount *string `type:"string"`
 
+	// This is optional; however, when granting Amazon S3 permission to invoke your
+	// function, you should specify this field with the bucket Amazon Resource Name
+	// (ARN) as its value. This ensures that only events generated from the specified
+	// bucket can invoke the function.
+	//
+	// If you add a permission for the Amazon S3 principal without providing the
+	// source ARN, any AWS account that creates a mapping to your function ARN can
+	// send events to invoke your Lambda function from Amazon S3.
+	SourceArn *string `type:"string"`
+
 	// A unique statement identifier.
-	StatementID *string `locationName:"StatementId" type:"string" required:"true"`
+	StatementId *string `type:"string" required:"true"`
 
 	metadataAddPermissionInput `json:"-" xml:"-"`
 }
@@ -698,7 +698,7 @@ type CreateEventSourceMappingInput struct {
 	// AWS Lambda to invoke your Lambda function, it depends on the BatchSize. AWS
 	// Lambda POSTs the Amazon Kinesis event, containing records, to your Lambda
 	// function as JSON.
-	EventSourceARN *string `locationName:"EventSourceArn" type:"string" required:"true"`
+	EventSourceArn *string `type:"string" required:"true"`
 
 	// The Lambda function to invoke when AWS Lambda detects an event on the stream.
 	//
@@ -872,10 +872,10 @@ type EventSourceMappingConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the source
 	// of events.
-	EventSourceARN *string `locationName:"EventSourceArn" type:"string"`
+	EventSourceArn *string `type:"string"`
 
 	// The Lambda function to invoke when AWS Lambda detects an event on the stream.
-	FunctionARN *string `locationName:"FunctionArn" type:"string"`
+	FunctionArn *string `type:"string"`
 
 	// The UTC time string indicating the last time the event mapping was updated.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -981,7 +981,7 @@ type FunctionConfiguration struct {
 	Description *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) assigned to the function.
-	FunctionARN *string `locationName:"FunctionArn" type:"string"`
+	FunctionArn *string `type:"string"`
 
 	// The name of the function.
 	FunctionName *string `type:"string"`
@@ -1327,7 +1327,7 @@ func (s InvokeOutput) GoString() string {
 
 type ListEventSourceMappingsInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream.
-	EventSourceARN *string `location:"querystring" locationName:"EventSourceArn" type:"string"`
+	EventSourceArn *string `location:"querystring" locationName:"EventSourceArn" type:"string"`
 
 	// The name of the Lambda function.
 	//
@@ -1453,7 +1453,7 @@ type RemovePermissionInput struct {
 	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
 
 	// Statement ID of the permission to remove.
-	StatementID *string `location:"uri" locationName:"StatementId" type:"string" required:"true"`
+	StatementId *string `location:"uri" locationName:"StatementId" type:"string" required:"true"`
 
 	metadataRemovePermissionInput `json:"-" xml:"-"`
 }

@@ -2813,7 +2813,7 @@ type AuthorizeDBSecurityGroupIngressInput struct {
 	// Id of the EC2 security group to authorize. For VPC DB security groups, EC2SecurityGroupId
 	// must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName
 	// or EC2SecurityGroupId must be provided.
-	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+	EC2SecurityGroupId *string `type:"string"`
 
 	// Name of the EC2 security group to authorize. For VPC DB security groups,
 	// EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and
@@ -2825,7 +2825,7 @@ type AuthorizeDBSecurityGroupIngressInput struct {
 	// value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise,
 	// EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId
 	// must be provided.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	metadataAuthorizeDBSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -3340,7 +3340,7 @@ type CreateDBClusterInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A list of EC2 VPC security groups to associate with this DB cluster.
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataCreateDBClusterInput `json:"-" xml:"-"`
 }
@@ -3819,7 +3819,7 @@ type CreateDBInstanceInput struct {
 	// initially allocated for the DB instance.
 	//
 	//  Constraints: To use PIOPS, this value must be an integer greater than 1000.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The KMS key identifier for an encrypted DB instance.
 	//
@@ -3832,7 +3832,7 @@ type CreateDBInstanceInput struct {
 	// for the KmsKeyId parameter, then Amazon RDS will use your default encryption
 	// key. AWS KMS creates the default encryption key for your AWS account. Your
 	// AWS account has a different default encryption key for each AWS region.
-	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+	KmsKeyId *string `type:"string"`
 
 	// License model information for this DB instance.
 	//
@@ -3995,20 +3995,20 @@ type CreateDBInstanceInput struct {
 	//  Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the Key Store in order to access the
 	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
-
-	// A list of tags.
-	Tags []*Tag `locationNameList:"Tag" type:"list"`
+	TdeCredentialPassword *string `type:"string"`
 
 	// A list of EC2 VPC security groups to associate with this DB instance.
 	//
 	//  Default: The default EC2 VPC security group for the DB subnet group's VPC.
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataCreateDBInstanceInput `json:"-" xml:"-"`
 }
@@ -4097,7 +4097,7 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for the DB instance.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The option group the DB instance will be associated with. If omitted, the
 	// default option group for the engine specified will be used.
@@ -4391,7 +4391,7 @@ type CreateDBSubnetGroupInput struct {
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 Subnet IDs for the DB subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -4453,7 +4453,7 @@ type CreateEventSubscriptionInput struct {
 	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
 	// The ARN is created by Amazon SNS when you create a topic and subscribe to
 	// it.
-	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string" required:"true"`
+	SnsTopicArn *string `type:"string" required:"true"`
 
 	// The list of identifiers of the event sources for which events will be returned.
 	// If not specified, then all sources are included in the response. An identifier
@@ -4468,7 +4468,7 @@ type CreateEventSubscriptionInput struct {
 	// If the source type is a DB parameter group, a DBParameterGroupName must be
 	// supplied. If the source type is a DB snapshot, a DBSnapshotIdentifier must
 	// be supplied.
-	SourceIDs []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
+	SourceIds []*string `locationNameList:"SourceId" type:"list"`
 
 	// The type of source that will be generating the events. For example, if you
 	// want to be notified of events generated by a DB instance, you would set this
@@ -4666,7 +4666,7 @@ type DBCluster struct {
 	Status *string `type:"string"`
 
 	// Provides a list of VPC security groups that the DB cluster belongs to.
-	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBCluster `json:"-" xml:"-"`
 }
@@ -4855,7 +4855,7 @@ type DBClusterSnapshot struct {
 	Status *string `type:"string"`
 
 	// Provides the VPC ID associated with the DB cluster snapshot.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDBClusterSnapshot `json:"-" xml:"-"`
 }
@@ -4944,21 +4944,12 @@ type DBInstance struct {
 	// DB cluster that the DB instance is a member of.
 	DBClusterIdentifier *string `type:"string"`
 
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
-
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
 	// Contains a user-supplied database identifier. This identifier is the unique
 	// key that identifies a DB instance.
 	DBInstanceIdentifier *string `type:"string"`
-
-	// Specifies the port that the DB instance listens on. If the DB instance is
-	// part of a DB cluster, this can be a different port than the DB cluster port.
-	DBInstancePort *int64 `locationName:"DbInstancePort" type:"integer"`
 
 	// Specifies the current state of this database.
 	DBInstanceStatus *string `type:"string"`
@@ -4993,6 +4984,15 @@ type DBInstance struct {
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
+	// Specifies the port that the DB instance listens on. If the DB instance is
+	// part of a DB cluster, this can be a different port than the DB cluster port.
+	DbInstancePort *int64 `type:"integer"`
+
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DbiResourceId *string `type:"string"`
+
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`
 
@@ -5002,15 +5002,15 @@ type DBInstance struct {
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
-	// Specifies the Provisioned IOPS (I/O operations per second) value.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
-
 	// Provides the date and time the DB instance was created.
 	InstanceCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Specifies the Provisioned IOPS (I/O operations per second) value.
+	Iops *int64 `type:"integer"`
+
 	// If StorageEncrypted is true, the KMS key identifier for the encrypted DB
 	// instance.
-	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
 	// restore.
@@ -5079,11 +5079,11 @@ type DBInstance struct {
 
 	// The ARN from the Key Store with which the instance is associated for TDE
 	// encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// Provides List of VPC security group elements that the DB instance belongs
 	// to.
-	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBInstance `json:"-" xml:"-"`
 }
@@ -5241,10 +5241,10 @@ type DBSecurityGroup struct {
 	IPRanges []*IPRange `locationNameList:"IPRange" type:"list"`
 
 	// Provides the AWS ID of the owner of a specific DB security group.
-	OwnerID *string `locationName:"OwnerId" type:"string"`
+	OwnerId *string `type:"string"`
 
 	// Provides the VpcId of the DB security group.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDBSecurityGroup `json:"-" xml:"-"`
 }
@@ -5319,16 +5319,16 @@ type DBSnapshot struct {
 	// Specifies the version of the database engine.
 	EngineVersion *string `type:"string"`
 
-	// Specifies the Provisioned IOPS (I/O operations per second) value of the DB
-	// instance at the time of the snapshot.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
-
 	// Specifies the time when the snapshot was taken, in Universal Coordinated
 	// Time (UTC).
 	InstanceCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Specifies the Provisioned IOPS (I/O operations per second) value of the DB
+	// instance at the time of the snapshot.
+	Iops *int64 `type:"integer"`
+
 	// If Encrypted is true, the KMS key identifier for the encrypted DB snapshot.
-	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+	KmsKeyId *string `type:"string"`
 
 	// License model information for the restored DB instance.
 	LicenseModel *string `type:"string"`
@@ -5367,10 +5367,10 @@ type DBSnapshot struct {
 	StorageType *string `type:"string"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// Provides the VPC ID associated with the DB snapshot.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDBSnapshot `json:"-" xml:"-"`
 }
@@ -5408,7 +5408,7 @@ type DBSubnetGroup struct {
 	Subnets []*Subnet `locationNameList:"Subnet" type:"list"`
 
 	// Provides the VpcId of the DB subnet group.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDBSubnetGroup `json:"-" xml:"-"`
 }
@@ -7500,7 +7500,7 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 
 	// The VPC filter value. Specify this parameter to show only the available VPC
 	// or non-VPC offerings.
-	VPC *bool `locationName:"Vpc" type:"boolean"`
+	Vpc *bool `type:"boolean"`
 
 	metadataDescribeOrderableDBInstanceOptionsInput `json:"-" xml:"-"`
 }
@@ -7664,11 +7664,11 @@ type DescribeReservedDBInstancesInput struct {
 
 	// The reserved DB instance identifier filter value. Specify this parameter
 	// to show only the reservation that matches the specified reservation ID.
-	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+	ReservedDBInstanceId *string `type:"string"`
 
 	// The offering identifier filter value. Specify this parameter to show only
 	// purchased reservations matching the specified offering identifier.
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedDBInstancesInput `json:"-" xml:"-"`
 }
@@ -7733,7 +7733,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	// the available offering that matches the specified reservation identifier.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedDBInstancesOfferingsInput `json:"-" xml:"-"`
 }
@@ -7898,14 +7898,14 @@ func (s DownloadDBLogFilePortionOutput) GoString() string {
 //   AuthorizeDBSecurityGroupIngress   DescribeDBSecurityGroups   RevokeDBSecurityGroupIngress
 type EC2SecurityGroup struct {
 	// Specifies the id of the EC2 security group.
-	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+	EC2SecurityGroupId *string `type:"string"`
 
 	// Specifies the name of the EC2 security group.
 	EC2SecurityGroupName *string `type:"string"`
 
 	// Specifies the AWS ID of the owner of the EC2 security group specified in
 	// the EC2SecurityGroupName field.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	// Provides the status of the EC2 security group. Status can be "authorizing",
 	// "authorized", "revoking", and "revoked".
@@ -8051,10 +8051,10 @@ func (s EventCategoriesMap) GoString() string {
 // action.
 type EventSubscription struct {
 	// The RDS event notification subscription Id.
-	CustSubscriptionID *string `locationName:"CustSubscriptionId" type:"string"`
+	CustSubscriptionId *string `type:"string"`
 
 	// The AWS customer account associated with the RDS event notification subscription.
-	CustomerAWSID *string `locationName:"CustomerAwsId" type:"string"`
+	CustomerAwsId *string `type:"string"`
 
 	// A Boolean value indicating if the subscription is enabled. True indicates
 	// the subscription is enabled.
@@ -8064,10 +8064,10 @@ type EventSubscription struct {
 	EventCategoriesList []*string `locationNameList:"EventCategory" type:"list"`
 
 	// The topic ARN of the RDS event notification subscription.
-	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string"`
+	SnsTopicArn *string `type:"string"`
 
 	// A list of source IDs for the RDS event notification subscription.
-	SourceIDsList []*string `locationName:"SourceIdsList" locationNameList:"SourceId" type:"list"`
+	SourceIdsList []*string `locationNameList:"SourceId" type:"list"`
 
 	// The source type for the RDS event notification subscription.
 	SourceType *string `type:"string"`
@@ -8354,7 +8354,7 @@ type ModifyDBClusterInput struct {
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// A lst of VPC security groups that the DB cluster will belong to.
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataModifyDBClusterInput `json:"-" xml:"-"`
 }
@@ -8629,7 +8629,7 @@ type ModifyDBInstanceInput struct {
 	// instance, including modifying the instance, rebooting the instance, deleting
 	// the instance, creating a Read Replica for the instance, and creating a DB
 	// snapshot of the instance.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The new password for the DB instance master user. Can be any printable ASCII
 	// character except "/", """, or "@".
@@ -8724,11 +8724,11 @@ type ModifyDBInstanceInput struct {
 	StorageType *string `type:"string"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the Key Store in order to access the
 	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
+	TdeCredentialPassword *string `type:"string"`
 
 	// A list of EC2 VPC security groups to authorize on this DB instance. This
 	// change is asynchronously applied as soon as possible.
@@ -8737,7 +8737,7 @@ type ModifyDBInstanceInput struct {
 	//
 	//  Must be 1 to 255 alphanumeric characters First character must be a letter
 	// Cannot end with a hyphen or contain two consecutive hyphens
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataModifyDBInstanceInput `json:"-" xml:"-"`
 }
@@ -8832,7 +8832,7 @@ type ModifyDBSubnetGroupInput struct {
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the DB subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataModifyDBSubnetGroupInput `json:"-" xml:"-"`
 }
@@ -8890,7 +8890,7 @@ type ModifyEventSubscriptionInput struct {
 	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
 	// The ARN is created by Amazon SNS when you create a topic and subscribe to
 	// it.
-	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string"`
+	SnsTopicArn *string `type:"string"`
 
 	// The type of source that will be generating the events. For example, if you
 	// want to be notified of events generated by a DB instance, you would set this
@@ -9024,7 +9024,7 @@ type Option struct {
 
 	// If the option requires access to a port, then this VPC security group allows
 	// access to the port.
-	VPCSecurityGroupMemberships []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+	VpcSecurityGroupMemberships []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataOption `json:"-" xml:"-"`
 }
@@ -9058,7 +9058,7 @@ type OptionConfiguration struct {
 	Port *int64 `type:"integer"`
 
 	// A list of VpcSecurityGroupMemebrship name strings used for this option.
-	VPCSecurityGroupMemberships []*string `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupMemberships []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataOptionConfiguration `json:"-" xml:"-"`
 }
@@ -9081,7 +9081,7 @@ type OptionGroup struct {
 	// Indicates whether this option group can be applied to both VPC and non-VPC
 	// instances. The value true indicates the option group can be applied to both
 	// VPC and non-VPC instances.
-	AllowsVPCAndNonVPCInstanceMemberships *bool `locationName:"AllowsVpcAndNonVpcInstanceMemberships" type:"boolean"`
+	AllowsVpcAndNonVpcInstanceMemberships *bool `type:"boolean"`
 
 	// Indicates the name of the engine that this option group can be applied to.
 	EngineName *string `type:"string"`
@@ -9103,7 +9103,7 @@ type OptionGroup struct {
 	// this option group can be applied to both VPC and non-VPC instances. If this
 	// field contains a value, then this option group can only be applied to instances
 	// that are in the VPC indicated by this field.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataOptionGroup `json:"-" xml:"-"`
 }
@@ -9326,13 +9326,13 @@ type OrderableDBInstanceOption struct {
 	StorageType *string `type:"string"`
 
 	// Indicates whether this orderable DB instance supports provisioned IOPS.
-	SupportsIOPS *bool `locationName:"SupportsIops" type:"boolean"`
+	SupportsIops *bool `type:"boolean"`
 
 	// Indicates whether this orderable DB instance supports encrypted storage.
 	SupportsStorageEncryption *bool `type:"boolean"`
 
 	// Indicates whether this is a VPC orderable DB instance.
-	VPC *bool `locationName:"Vpc" type:"boolean"`
+	Vpc *bool `type:"boolean"`
 
 	metadataOrderableDBInstanceOption `json:"-" xml:"-"`
 }
@@ -9478,7 +9478,7 @@ type PendingModifiedValues struct {
 
 	// Specifies the new Provisioned IOPS value for the DB instance that will be
 	// applied or is being applied.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// Contains the pending or in-progress change of the master credentials for
 	// the DB instance.
@@ -9597,12 +9597,12 @@ type PurchaseReservedDBInstancesOfferingInput struct {
 	// Customer-specified identifier to track this reservation.
 	//
 	// Example: myreservationID
-	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+	ReservedDBInstanceId *string `type:"string"`
 
 	// The ID of the Reserved DB instance offering to purchase.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string" required:"true"`
+	ReservedDBInstancesOfferingId *string `type:"string" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -9851,10 +9851,10 @@ type ReservedDBInstance struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// The unique identifier for the reservation.
-	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+	ReservedDBInstanceId *string `type:"string"`
 
 	// The offering identifier.
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	// The time the reservation started.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -9910,7 +9910,7 @@ type ReservedDBInstancesOffering struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// The offering identifier.
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
@@ -10092,7 +10092,7 @@ type RestoreDBClusterFromSnapshotInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A list of VPC security groups that the new DB cluster will belong to.
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataRestoreDBClusterFromSnapshotInput `json:"-" xml:"-"`
 }
@@ -10189,7 +10189,7 @@ type RestoreDBClusterToPointInTimeInput struct {
 	UseLatestRestorableTime *bool `type:"boolean"`
 
 	// A lst of VPC security groups that the new DB cluster belongs to.
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataRestoreDBClusterToPointInTimeInput `json:"-" xml:"-"`
 }
@@ -10304,7 +10304,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// License model information for the restored DB instance.
 	//
@@ -10357,15 +10357,15 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//  Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the Key Store in order to access the
 	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
-
-	// A list of tags.
-	Tags []*Tag `locationNameList:"Tag" type:"list"`
+	TdeCredentialPassword *string `type:"string"`
 
 	metadataRestoreDBInstanceFromDBSnapshotInput `json:"-" xml:"-"`
 }
@@ -10459,7 +10459,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// License model information for the restored DB instance.
 	//
@@ -10531,13 +10531,6 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//  Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
-	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
-
-	// The password for the given ARN from the Key Store in order to access the
-	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
-
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -10548,6 +10541,13 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	TargetDBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TdeCredentialArn *string `type:"string"`
+
+	// The password for the given ARN from the Key Store in order to access the
+	// device.
+	TdeCredentialPassword *string `type:"string"`
 
 	// Specifies whether (true) or not (false) the DB instance is restored from
 	// the latest backup time.
@@ -10610,7 +10610,7 @@ type RevokeDBSecurityGroupIngressInput struct {
 	// The id of the EC2 security group to revoke access from. For VPC DB security
 	// groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId
 	// and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.
-	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+	EC2SecurityGroupId *string `type:"string"`
 
 	// The name of the EC2 security group to revoke access from. For VPC DB security
 	// groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId
@@ -10622,7 +10622,7 @@ type RevokeDBSecurityGroupIngressInput struct {
 	// value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise,
 	// EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId
 	// must be provided.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	metadataRevokeDBSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -10730,27 +10730,27 @@ func (s Tag) GoString() string {
 
 // This data type is used as a response element for queries on VPC security
 // group membership.
-type VPCSecurityGroupMembership struct {
+type VpcSecurityGroupMembership struct {
 	// The status of the VPC security group.
 	Status *string `type:"string"`
 
 	// The name of the VPC security group.
-	VPCSecurityGroupID *string `locationName:"VpcSecurityGroupId" type:"string"`
+	VpcSecurityGroupId *string `type:"string"`
 
-	metadataVPCSecurityGroupMembership `json:"-" xml:"-"`
+	metadataVpcSecurityGroupMembership `json:"-" xml:"-"`
 }
 
-type metadataVPCSecurityGroupMembership struct {
+type metadataVpcSecurityGroupMembership struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s VPCSecurityGroupMembership) String() string {
+func (s VpcSecurityGroupMembership) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s VPCSecurityGroupMembership) GoString() string {
+func (s VpcSecurityGroupMembership) GoString() string {
 	return s.String()
 }
 

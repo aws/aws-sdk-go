@@ -20,7 +20,7 @@ func ExampleSSM_CreateAssociation() {
 	svc := ssm.New(nil)
 
 	params := &ssm.CreateAssociationInput{
-		InstanceID: aws.String("InstanceId"),   // Required
+		InstanceId: aws.String("InstanceId"),   // Required
 		Name:       aws.String("DocumentName"), // Required
 	}
 	resp, err := svc.CreateAssociation(params)
@@ -50,7 +50,7 @@ func ExampleSSM_CreateAssociationBatch() {
 	params := &ssm.CreateAssociationBatchInput{
 		Entries: []*ssm.CreateAssociationBatchRequestEntry{ // Required
 			{ // Required
-				InstanceID: aws.String("InstanceId"),
+				InstanceId: aws.String("InstanceId"),
 				Name:       aws.String("DocumentName"),
 			},
 			// More values...
@@ -109,7 +109,7 @@ func ExampleSSM_DeleteAssociation() {
 	svc := ssm.New(nil)
 
 	params := &ssm.DeleteAssociationInput{
-		InstanceID: aws.String("InstanceId"),   // Required
+		InstanceId: aws.String("InstanceId"),   // Required
 		Name:       aws.String("DocumentName"), // Required
 	}
 	resp, err := svc.DeleteAssociation(params)
@@ -164,7 +164,7 @@ func ExampleSSM_DescribeAssociation() {
 	svc := ssm.New(nil)
 
 	params := &ssm.DescribeAssociationInput{
-		InstanceID: aws.String("InstanceId"),   // Required
+		InstanceId: aws.String("InstanceId"),   // Required
 		Name:       aws.String("DocumentName"), // Required
 	}
 	resp, err := svc.DescribeAssociation(params)
@@ -322,7 +322,7 @@ func ExampleSSM_UpdateAssociationStatus() {
 			Name:           aws.String("AssociationStatusName"), // Required
 			AdditionalInfo: aws.String("StatusAdditionalInfo"),
 		},
-		InstanceID: aws.String("InstanceId"),   // Required
+		InstanceId: aws.String("InstanceId"),   // Required
 		Name:       aws.String("DocumentName"), // Required
 	}
 	resp, err := svc.UpdateAssociationStatus(params)

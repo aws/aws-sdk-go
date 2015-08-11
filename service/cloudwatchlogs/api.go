@@ -1397,9 +1397,9 @@ func (s DescribeSubscriptionFiltersOutput) GoString() string {
 }
 
 type Destination struct {
-	ARN *string `locationName:"arn" type:"string"`
-
 	AccessPolicy *string `locationName:"accessPolicy" type:"string"`
+
+	Arn *string `locationName:"arn" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1407,9 +1407,9 @@ type Destination struct {
 
 	DestinationName *string `locationName:"destinationName" type:"string"`
 
-	RoleARN *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
-	TargetARN *string `locationName:"targetArn" type:"string"`
+	TargetArn *string `locationName:"targetArn" type:"string"`
 
 	metadataDestination `json:"-" xml:"-"`
 }
@@ -1513,7 +1513,7 @@ func (s FilterLogEventsOutput) GoString() string {
 // Represents a matched event from a FilterLogEvents request.
 type FilteredLogEvent struct {
 	// A unique identifier for this event.
-	EventID *string `locationName:"eventId" type:"string"`
+	EventId *string `locationName:"eventId" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1651,7 +1651,7 @@ func (s InputLogEvent) GoString() string {
 }
 
 type LogGroup struct {
-	ARN *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1688,7 +1688,7 @@ func (s LogGroup) GoString() string {
 
 // A log stream is sequence of log events from a single emitter of logs.
 type LogStream struct {
-	ARN *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1857,10 +1857,10 @@ type PutDestinationInput struct {
 
 	// The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to
 	// do Amazon Kinesis PutRecord requests on the desitnation stream.
-	RoleARN *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The ARN of an Amazon Kinesis stream to deliver matching log events to.
-	TargetARN *string `locationName:"targetArn" type:"string" required:"true"`
+	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
 
 	metadataPutDestinationInput `json:"-" xml:"-"`
 }
@@ -2097,7 +2097,7 @@ type PutSubscriptionFilterInput struct {
 	// same account as the subscription filter, for same-account delivery.   A logical
 	// destination (used via an ARN of Destination) belonging to a different account,
 	// for cross-account delivery.
-	DestinationARN *string `locationName:"destinationArn" type:"string" required:"true"`
+	DestinationArn *string `locationName:"destinationArn" type:"string" required:"true"`
 
 	// A name for the subscription filter.
 	FilterName *string `locationName:"filterName" type:"string" required:"true"`
@@ -2113,7 +2113,7 @@ type PutSubscriptionFilterInput struct {
 	// deliver ingested log events to the destination stream. You don't need to
 	// provide the ARN when you are working with a logical destination (used via
 	// an ARN of Destination) for cross-account delivery.
-	RoleARN *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	metadataPutSubscriptionFilterInput `json:"-" xml:"-"`
 }
@@ -2206,7 +2206,7 @@ type SubscriptionFilter struct {
 	// 00:00:00 UTC.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
 
-	DestinationARN *string `locationName:"destinationArn" type:"string"`
+	DestinationArn *string `locationName:"destinationArn" type:"string"`
 
 	// A name for a metric or subscription filter.
 	FilterName *string `locationName:"filterName" type:"string"`
@@ -2219,7 +2219,7 @@ type SubscriptionFilter struct {
 
 	LogGroupName *string `locationName:"logGroupName" type:"string"`
 
-	RoleARN *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	metadataSubscriptionFilter `json:"-" xml:"-"`
 }

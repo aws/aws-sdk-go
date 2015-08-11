@@ -34,21 +34,21 @@ type CognitoIdentityAPI interface {
 
 	GetCredentialsForIdentity(*cognitoidentity.GetCredentialsForIdentityInput) (*cognitoidentity.GetCredentialsForIdentityOutput, error)
 
-	GetIDRequest(*cognitoidentity.GetIDInput) (*service.Request, *cognitoidentity.GetIDOutput)
+	GetIdRequest(*cognitoidentity.GetIdInput) (*service.Request, *cognitoidentity.GetIdOutput)
 
-	GetID(*cognitoidentity.GetIDInput) (*cognitoidentity.GetIDOutput, error)
+	GetId(*cognitoidentity.GetIdInput) (*cognitoidentity.GetIdOutput, error)
 
 	GetIdentityPoolRolesRequest(*cognitoidentity.GetIdentityPoolRolesInput) (*service.Request, *cognitoidentity.GetIdentityPoolRolesOutput)
 
 	GetIdentityPoolRoles(*cognitoidentity.GetIdentityPoolRolesInput) (*cognitoidentity.GetIdentityPoolRolesOutput, error)
 
-	GetOpenIDTokenRequest(*cognitoidentity.GetOpenIDTokenInput) (*service.Request, *cognitoidentity.GetOpenIDTokenOutput)
+	GetOpenIdTokenRequest(*cognitoidentity.GetOpenIdTokenInput) (*service.Request, *cognitoidentity.GetOpenIdTokenOutput)
 
-	GetOpenIDToken(*cognitoidentity.GetOpenIDTokenInput) (*cognitoidentity.GetOpenIDTokenOutput, error)
+	GetOpenIdToken(*cognitoidentity.GetOpenIdTokenInput) (*cognitoidentity.GetOpenIdTokenOutput, error)
 
-	GetOpenIDTokenForDeveloperIdentityRequest(*cognitoidentity.GetOpenIDTokenForDeveloperIdentityInput) (*service.Request, *cognitoidentity.GetOpenIDTokenForDeveloperIdentityOutput)
+	GetOpenIdTokenForDeveloperIdentityRequest(*cognitoidentity.GetOpenIdTokenForDeveloperIdentityInput) (*service.Request, *cognitoidentity.GetOpenIdTokenForDeveloperIdentityOutput)
 
-	GetOpenIDTokenForDeveloperIdentity(*cognitoidentity.GetOpenIDTokenForDeveloperIdentityInput) (*cognitoidentity.GetOpenIDTokenForDeveloperIdentityOutput, error)
+	GetOpenIdTokenForDeveloperIdentity(*cognitoidentity.GetOpenIdTokenForDeveloperIdentityInput) (*cognitoidentity.GetOpenIdTokenForDeveloperIdentityOutput, error)
 
 	ListIdentitiesRequest(*cognitoidentity.ListIdentitiesInput) (*service.Request, *cognitoidentity.ListIdentitiesOutput)
 

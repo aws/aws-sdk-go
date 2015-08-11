@@ -191,22 +191,22 @@ func (c *CognitoIdentity) GetCredentialsForIdentity(input *GetCredentialsForIden
 	return out, err
 }
 
-const opGetID = "GetId"
+const opGetId = "GetId"
 
-// GetIDRequest generates a request for the GetID operation.
-func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *service.Request, output *GetIDOutput) {
+// GetIdRequest generates a request for the GetId operation.
+func (c *CognitoIdentity) GetIdRequest(input *GetIdInput) (req *service.Request, output *GetIdOutput) {
 	op := &service.Operation{
-		Name:       opGetID,
+		Name:       opGetId,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &GetIDInput{}
+		input = &GetIdInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &GetIDOutput{}
+	output = &GetIdOutput{}
 	req.Data = output
 	return
 }
@@ -217,8 +217,8 @@ func (c *CognitoIdentity) GetIDRequest(input *GetIDInput) (req *service.Request,
 // token+";"+tokenSecret.
 //
 // This is a public API. You do not need any credentials to call this API.
-func (c *CognitoIdentity) GetID(input *GetIDInput) (*GetIDOutput, error) {
-	req, out := c.GetIDRequest(input)
+func (c *CognitoIdentity) GetId(input *GetIdInput) (*GetIdOutput, error) {
+	req, out := c.GetIdRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -252,22 +252,22 @@ func (c *CognitoIdentity) GetIdentityPoolRoles(input *GetIdentityPoolRolesInput)
 	return out, err
 }
 
-const opGetOpenIDToken = "GetOpenIdToken"
+const opGetOpenIdToken = "GetOpenIdToken"
 
-// GetOpenIDTokenRequest generates a request for the GetOpenIDToken operation.
-func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req *service.Request, output *GetOpenIDTokenOutput) {
+// GetOpenIdTokenRequest generates a request for the GetOpenIdToken operation.
+func (c *CognitoIdentity) GetOpenIdTokenRequest(input *GetOpenIdTokenInput) (req *service.Request, output *GetOpenIdTokenOutput) {
 	op := &service.Operation{
-		Name:       opGetOpenIDToken,
+		Name:       opGetOpenIdToken,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &GetOpenIDTokenInput{}
+		input = &GetOpenIdTokenInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &GetOpenIDTokenOutput{}
+	output = &GetOpenIdTokenOutput{}
 	req.Data = output
 	return
 }
@@ -279,28 +279,28 @@ func (c *CognitoIdentity) GetOpenIDTokenRequest(input *GetOpenIDTokenInput) (req
 // The OpenId token is valid for 15 minutes.
 //
 // This is a public API. You do not need any credentials to call this API.
-func (c *CognitoIdentity) GetOpenIDToken(input *GetOpenIDTokenInput) (*GetOpenIDTokenOutput, error) {
-	req, out := c.GetOpenIDTokenRequest(input)
+func (c *CognitoIdentity) GetOpenIdToken(input *GetOpenIdTokenInput) (*GetOpenIdTokenOutput, error) {
+	req, out := c.GetOpenIdTokenRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-const opGetOpenIDTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity"
+const opGetOpenIdTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity"
 
-// GetOpenIDTokenForDeveloperIdentityRequest generates a request for the GetOpenIDTokenForDeveloperIdentity operation.
-func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOpenIDTokenForDeveloperIdentityInput) (req *service.Request, output *GetOpenIDTokenForDeveloperIdentityOutput) {
+// GetOpenIdTokenForDeveloperIdentityRequest generates a request for the GetOpenIdTokenForDeveloperIdentity operation.
+func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentityRequest(input *GetOpenIdTokenForDeveloperIdentityInput) (req *service.Request, output *GetOpenIdTokenForDeveloperIdentityOutput) {
 	op := &service.Operation{
-		Name:       opGetOpenIDTokenForDeveloperIdentity,
+		Name:       opGetOpenIdTokenForDeveloperIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &GetOpenIDTokenForDeveloperIdentityInput{}
+		input = &GetOpenIdTokenForDeveloperIdentityInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &GetOpenIDTokenForDeveloperIdentityOutput{}
+	output = &GetOpenIdTokenForDeveloperIdentityOutput{}
 	req.Data = output
 	return
 }
@@ -321,8 +321,8 @@ func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentityRequest(input *GetOp
 // in the specified IdentityPoolId.
 //
 // You must use AWS Developer credentials to call this API.
-func (c *CognitoIdentity) GetOpenIDTokenForDeveloperIdentity(input *GetOpenIDTokenForDeveloperIdentityInput) (*GetOpenIDTokenForDeveloperIdentityOutput, error) {
-	req, out := c.GetOpenIDTokenForDeveloperIdentityRequest(input)
+func (c *CognitoIdentity) GetOpenIdTokenForDeveloperIdentity(input *GetOpenIdTokenForDeveloperIdentityInput) (*GetOpenIdTokenForDeveloperIdentityOutput, error) {
+	req, out := c.GetOpenIdTokenForDeveloperIdentityRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -596,7 +596,7 @@ type CreateIdentityPoolInput struct {
 	IdentityPoolName *string `type:"string" required:"true"`
 
 	// A list of OpendID Connect provider ARNs.
-	OpenIDConnectProviderARNs []*string `locationName:"OpenIdConnectProviderARNs" type:"list"`
+	OpenIdConnectProviderARNs []*string `type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
@@ -621,7 +621,7 @@ func (s CreateIdentityPoolInput) GoString() string {
 // Credentials for the the provided identity ID.
 type Credentials struct {
 	// The Access Key portion of the credentials.
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string"`
+	AccessKeyId *string `type:"string"`
 
 	// The date at which these credentials will expire.
 	Expiration *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -652,7 +652,7 @@ func (s Credentials) GoString() string {
 // Input to the DeleteIdentities action.
 type DeleteIdentitiesInput struct {
 	// A list of 1-60 identities that you want to delete.
-	IdentityIDsToDelete []*string `locationName:"IdentityIdsToDelete" type:"list" required:"true"`
+	IdentityIdsToDelete []*string `type:"list" required:"true"`
 
 	metadataDeleteIdentitiesInput `json:"-" xml:"-"`
 }
@@ -675,7 +675,7 @@ func (s DeleteIdentitiesInput) GoString() string {
 type DeleteIdentitiesOutput struct {
 	// An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
 	// and IdentityId.
-	UnprocessedIdentityIDs []*UnprocessedIdentityID `locationName:"UnprocessedIdentityIds" type:"list"`
+	UnprocessedIdentityIds []*UnprocessedIdentityId `type:"list"`
 
 	metadataDeleteIdentitiesOutput `json:"-" xml:"-"`
 }
@@ -697,7 +697,7 @@ func (s DeleteIdentitiesOutput) GoString() string {
 // Input to the DeleteIdentityPool action.
 type DeleteIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	metadataDeleteIdentityPoolInput `json:"-" xml:"-"`
 }
@@ -737,7 +737,7 @@ func (s DeleteIdentityPoolOutput) GoString() string {
 // Input to the DescribeIdentity action.
 type DescribeIdentityInput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `type:"string" required:"true"`
 
 	metadataDescribeIdentityInput `json:"-" xml:"-"`
 }
@@ -759,7 +759,7 @@ func (s DescribeIdentityInput) GoString() string {
 // Input to the DescribeIdentityPool action.
 type DescribeIdentityPoolInput struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	metadataDescribeIdentityPoolInput `json:"-" xml:"-"`
 }
@@ -781,7 +781,7 @@ func (s DescribeIdentityPoolInput) GoString() string {
 // Input to the GetCredentialsForIdentity action.
 type GetCredentialsForIdentityInput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins map[string]*string `type:"map"`
@@ -809,7 +809,7 @@ type GetCredentialsForIdentityOutput struct {
 	Credentials *Credentials `type:"structure"`
 
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	metadataGetCredentialsForIdentityOutput `json:"-" xml:"-"`
 }
@@ -829,12 +829,12 @@ func (s GetCredentialsForIdentityOutput) GoString() string {
 }
 
 // Input to the GetId action.
-type GetIDInput struct {
+type GetIdInput struct {
 	// A standard AWS account ID (9+ digits).
-	AccountID *string `locationName:"AccountId" type:"string"`
+	AccountId *string `type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	//
@@ -843,49 +843,49 @@ type GetIDInput struct {
 	//  Digits: www.digits.com
 	Logins map[string]*string `type:"map"`
 
-	metadataGetIDInput `json:"-" xml:"-"`
+	metadataGetIdInput `json:"-" xml:"-"`
 }
 
-type metadataGetIDInput struct {
+type metadataGetIdInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetIDInput) String() string {
+func (s GetIdInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetIDInput) GoString() string {
+func (s GetIdInput) GoString() string {
 	return s.String()
 }
 
 // Returned in response to a GetId request.
-type GetIDOutput struct {
+type GetIdOutput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
-	metadataGetIDOutput `json:"-" xml:"-"`
+	metadataGetIdOutput `json:"-" xml:"-"`
 }
 
-type metadataGetIDOutput struct {
+type metadataGetIdOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetIDOutput) String() string {
+func (s GetIdOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetIDOutput) GoString() string {
+func (s GetIdOutput) GoString() string {
 	return s.String()
 }
 
 // Input to the GetIdentityPoolRoles action.
 type GetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	metadataGetIdentityPoolRolesInput `json:"-" xml:"-"`
 }
@@ -907,7 +907,7 @@ func (s GetIdentityPoolRolesInput) GoString() string {
 // Returned in response to a successful GetIdentityPoolRoles operation.
 type GetIdentityPoolRolesOutput struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `type:"string"`
 
 	// The map of roles associated with this pool. Currently only authenticated
 	// and unauthenticated roles are supported.
@@ -931,12 +931,12 @@ func (s GetIdentityPoolRolesOutput) GoString() string {
 }
 
 // Input to the GetOpenIdTokenForDeveloperIdentity action.
-type GetOpenIDTokenForDeveloperIdentityInput struct {
+type GetOpenIdTokenForDeveloperIdentityInput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// Each name-value pair represents a user from a public provider or developer
@@ -959,52 +959,52 @@ type GetOpenIDTokenForDeveloperIdentityInput struct {
 	// AWS resources for the token's duration.
 	TokenDuration *int64 `type:"long"`
 
-	metadataGetOpenIDTokenForDeveloperIdentityInput `json:"-" xml:"-"`
+	metadataGetOpenIdTokenForDeveloperIdentityInput `json:"-" xml:"-"`
 }
 
-type metadataGetOpenIDTokenForDeveloperIdentityInput struct {
+type metadataGetOpenIdTokenForDeveloperIdentityInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetOpenIDTokenForDeveloperIdentityInput) String() string {
+func (s GetOpenIdTokenForDeveloperIdentityInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetOpenIDTokenForDeveloperIdentityInput) GoString() string {
+func (s GetOpenIdTokenForDeveloperIdentityInput) GoString() string {
 	return s.String()
 }
 
 // Returned in response to a successful GetOpenIdTokenForDeveloperIdentity request.
-type GetOpenIDTokenForDeveloperIdentityOutput struct {
+type GetOpenIdTokenForDeveloperIdentityOutput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	// An OpenID token.
 	Token *string `type:"string"`
 
-	metadataGetOpenIDTokenForDeveloperIdentityOutput `json:"-" xml:"-"`
+	metadataGetOpenIdTokenForDeveloperIdentityOutput `json:"-" xml:"-"`
 }
 
-type metadataGetOpenIDTokenForDeveloperIdentityOutput struct {
+type metadataGetOpenIdTokenForDeveloperIdentityOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetOpenIDTokenForDeveloperIdentityOutput) String() string {
+func (s GetOpenIdTokenForDeveloperIdentityOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetOpenIDTokenForDeveloperIdentityOutput) GoString() string {
+func (s GetOpenIdTokenForDeveloperIdentityOutput) GoString() string {
 	return s.String()
 }
 
 // Input to the GetOpenIdToken action.
-type GetOpenIDTokenInput struct {
+type GetOpenIdTokenInput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	// When using graph.facebook.com and www.amazon.com, supply the access_token
@@ -1012,46 +1012,46 @@ type GetOpenIDTokenInput struct {
 	// OpenId Connect provider, always include the id_token.
 	Logins map[string]*string `type:"map"`
 
-	metadataGetOpenIDTokenInput `json:"-" xml:"-"`
+	metadataGetOpenIdTokenInput `json:"-" xml:"-"`
 }
 
-type metadataGetOpenIDTokenInput struct {
+type metadataGetOpenIdTokenInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetOpenIDTokenInput) String() string {
+func (s GetOpenIdTokenInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetOpenIDTokenInput) GoString() string {
+func (s GetOpenIdTokenInput) GoString() string {
 	return s.String()
 }
 
 // Returned in response to a successful GetOpenIdToken request.
-type GetOpenIDTokenOutput struct {
+type GetOpenIdTokenOutput struct {
 	// A unique identifier in the format REGION:GUID. Note that the IdentityId returned
 	// may not match the one passed on input.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	// An OpenID token, valid for 15 minutes.
 	Token *string `type:"string"`
 
-	metadataGetOpenIDTokenOutput `json:"-" xml:"-"`
+	metadataGetOpenIdTokenOutput `json:"-" xml:"-"`
 }
 
-type metadataGetOpenIDTokenOutput struct {
+type metadataGetOpenIdTokenOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetOpenIDTokenOutput) String() string {
+func (s GetOpenIdTokenOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetOpenIDTokenOutput) GoString() string {
+func (s GetOpenIdTokenOutput) GoString() string {
 	return s.String()
 }
 
@@ -1061,7 +1061,7 @@ type IdentityDescription struct {
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1095,13 +1095,13 @@ type IdentityPool struct {
 	DeveloperProviderName *string `type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// A string that you provide.
 	IdentityPoolName *string `type:"string" required:"true"`
 
 	// A list of OpendID Connect provider ARNs.
-	OpenIDConnectProviderARNs []*string `locationName:"OpenIdConnectProviderARNs" type:"list"`
+	OpenIdConnectProviderARNs []*string `type:"list"`
 
 	// Optional key:value pairs mapping provider names to provider app IDs.
 	SupportedLoginProviders map[string]*string `type:"map"`
@@ -1126,7 +1126,7 @@ func (s IdentityPool) GoString() string {
 // A description of the identity pool.
 type IdentityPoolShortDescription struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `type:"string"`
 
 	// A string that you provide.
 	IdentityPoolName *string `type:"string"`
@@ -1156,7 +1156,7 @@ type ListIdentitiesInput struct {
 	HideDisabled *bool `type:"boolean"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// The maximum number of identities to return.
 	MaxResults *int64 `type:"integer" required:"true"`
@@ -1187,7 +1187,7 @@ type ListIdentitiesOutput struct {
 	Identities []*IdentityDescription `type:"list"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `type:"string"`
 
 	// A pagination token.
 	NextToken *string `type:"string"`
@@ -1267,10 +1267,10 @@ type LookupDeveloperIdentityInput struct {
 	DeveloperUserIdentifier *string `type:"string"`
 
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// The maximum number of identities to return.
 	MaxResults *int64 `type:"integer"`
@@ -1308,7 +1308,7 @@ type LookupDeveloperIdentityOutput struct {
 	DeveloperUserIdentifierList []*string `type:"list"`
 
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	// A pagination token. The first call you make will have NextToken set to null.
 	// After that the service will return NextToken values as needed. For example,
@@ -1348,7 +1348,7 @@ type MergeDeveloperIdentitiesInput struct {
 	DeveloperProviderName *string `type:"string" required:"true"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// User identifier for the source user. The value should be a DeveloperUserIdentifier.
 	SourceUserIdentifier *string `type:"string" required:"true"`
@@ -1373,7 +1373,7 @@ func (s MergeDeveloperIdentitiesInput) GoString() string {
 // Returned in response to a successful MergeDeveloperIdentities action.
 type MergeDeveloperIdentitiesOutput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
 	metadataMergeDeveloperIdentitiesOutput `json:"-" xml:"-"`
 }
@@ -1395,7 +1395,7 @@ func (s MergeDeveloperIdentitiesOutput) GoString() string {
 // Input to the SetIdentityPoolRoles action.
 type SetIdentityPoolRolesInput struct {
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	// The map of roles associated with this pool. For a given role, the key will
 	// be either "authenticated" or "unauthenticated" and the value will be the
@@ -1446,10 +1446,10 @@ type UnlinkDeveloperIdentityInput struct {
 	DeveloperUserIdentifier *string `type:"string" required:"true"`
 
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `type:"string" required:"true"`
 
 	// An identity pool ID in the format REGION:GUID.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `type:"string" required:"true"`
 
 	metadataUnlinkDeveloperIdentityInput `json:"-" xml:"-"`
 }
@@ -1489,7 +1489,7 @@ func (s UnlinkDeveloperIdentityOutput) GoString() string {
 // Input to the UnlinkIdentity action.
 type UnlinkIdentityInput struct {
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `type:"string" required:"true"`
 
 	// A set of optional name-value pairs that map provider names to provider tokens.
 	Logins map[string]*string `type:"map" required:"true"`
@@ -1534,27 +1534,27 @@ func (s UnlinkIdentityOutput) GoString() string {
 
 // An array of UnprocessedIdentityId objects, each of which contains an ErrorCode
 // and IdentityId.
-type UnprocessedIdentityID struct {
+type UnprocessedIdentityId struct {
 	// The error code indicating the type of error that occurred.
 	ErrorCode *string `type:"string" enum:"ErrorCode"`
 
 	// A unique identifier in the format REGION:GUID.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `type:"string"`
 
-	metadataUnprocessedIdentityID `json:"-" xml:"-"`
+	metadataUnprocessedIdentityId `json:"-" xml:"-"`
 }
 
-type metadataUnprocessedIdentityID struct {
+type metadataUnprocessedIdentityId struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s UnprocessedIdentityID) String() string {
+func (s UnprocessedIdentityId) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s UnprocessedIdentityID) GoString() string {
+func (s UnprocessedIdentityId) GoString() string {
 	return s.String()
 }
 

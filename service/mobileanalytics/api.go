@@ -135,7 +135,7 @@ type Session struct {
 	Duration *int64 `locationName:"duration" type:"long"`
 
 	// A unique identifier for the session
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The time the event started in ISO 8601 standard date time format. For example,
 	// 2014-06-30T19:07:47.885Z

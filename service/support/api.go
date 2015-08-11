@@ -527,7 +527,7 @@ type AddAttachmentsToSetInput struct {
 	// attachment set is created, and the ID of the set is returned in the response.
 	// If an AttachmentSetId is specified, the attachments are added to the specified
 	// set, if it exists.
-	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
+	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
 	// One or more attachments to add to the set. The limit is 3 attachments per
 	// set, and the size limit is 5 MB per attachment.
@@ -557,7 +557,7 @@ type AddAttachmentsToSetOutput struct {
 	// new attachment set is created, and the ID of the set is returned in the response.
 	// If an AttachmentSetId was specified, the attachments are added to the specified
 	// set, if it exists.
-	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
+	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
 	// The time and date when the attachment set expires.
 	ExpiryTime *string `locationName:"expiryTime" type:"string"`
@@ -583,15 +583,15 @@ func (s AddAttachmentsToSetOutput) GoString() string {
 type AddCommunicationToCaseInput struct {
 	// The ID of a set of one or more attachments for the communication to add to
 	// the case. Create the set by calling AddAttachmentsToSet
-	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
-
-	// The email addresses in the CC line of an email to be added to the support
-	// case.
-	CCEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
+	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
-	CaseID *string `locationName:"caseId" type:"string"`
+	CaseId *string `locationName:"caseId" type:"string"`
+
+	// The email addresses in the CC line of an email to be added to the support
+	// case.
+	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
 
 	// The body of an email communication to add to the support case.
 	CommunicationBody *string `locationName:"communicationBody" type:"string" required:"true"`
@@ -665,7 +665,7 @@ func (s Attachment) GoString() string {
 // the ID to retrieve the attachment with the DescribeAttachment operation.
 type AttachmentDetails struct {
 	// The ID of the attachment.
-	AttachmentID *string `locationName:"attachmentId" type:"string"`
+	AttachmentId *string `locationName:"attachmentId" type:"string"`
 
 	// The file name of the attachment.
 	FileName *string `locationName:"fileName" type:"string"`
@@ -709,19 +709,19 @@ func (s AttachmentDetails) GoString() string {
 // The email address of the account that submitted the case.  TimeCreated. The
 // time the case was created, in ISO-8601 format.
 type CaseDetails struct {
-	// The email addresses that receive copies of communication about the case.
-	CCEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
-
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
-	CaseID *string `locationName:"caseId" type:"string"`
+	CaseId *string `locationName:"caseId" type:"string"`
 
 	// The category of problem for the AWS Support case.
 	CategoryCode *string `locationName:"categoryCode" type:"string"`
 
+	// The email addresses that receive copies of communication about the case.
+	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
+
 	// The ID displayed for the case in the AWS Support Center. This is a numeric
 	// string.
-	DisplayID *string `locationName:"displayId" type:"string"`
+	DisplayId *string `locationName:"displayId" type:"string"`
 
 	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
 	// currently supports English ("en") and Japanese ("ja"). Language parameters
@@ -807,7 +807,7 @@ type Communication struct {
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
-	CaseID *string `locationName:"caseId" type:"string"`
+	CaseId *string `locationName:"caseId" type:"string"`
 
 	// The email address of the account that submitted the AWS Support case.
 	SubmittedBy *string `locationName:"submittedBy" type:"string"`
@@ -835,13 +835,13 @@ func (s Communication) GoString() string {
 type CreateCaseInput struct {
 	// The ID of a set of one or more attachments for the case. Create the set by
 	// using AddAttachmentsToSet.
-	AttachmentSetID *string `locationName:"attachmentSetId" type:"string"`
-
-	// A list of email addresses that AWS Support copies on case correspondence.
-	CCEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
+	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
 	// The category of problem for the AWS Support case.
 	CategoryCode *string `locationName:"categoryCode" type:"string"`
+
+	// A list of email addresses that AWS Support copies on case correspondence.
+	CcEmailAddresses []*string `locationName:"ccEmailAddresses" type:"list"`
 
 	// The communication body text when you create an AWS Support case by calling
 	// CreateCase.
@@ -891,7 +891,7 @@ func (s CreateCaseInput) GoString() string {
 type CreateCaseOutput struct {
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
-	CaseID *string `locationName:"caseId" type:"string"`
+	CaseId *string `locationName:"caseId" type:"string"`
 
 	metadataCreateCaseOutput `json:"-" xml:"-"`
 }
@@ -913,7 +913,7 @@ func (s CreateCaseOutput) GoString() string {
 type DescribeAttachmentInput struct {
 	// The ID of the attachment to return. Attachment IDs are returned by the DescribeCommunications
 	// operation.
-	AttachmentID *string `locationName:"attachmentId" type:"string" required:"true"`
+	AttachmentId *string `locationName:"attachmentId" type:"string" required:"true"`
 
 	metadataDescribeAttachmentInput `json:"-" xml:"-"`
 }
@@ -966,10 +966,10 @@ type DescribeCasesInput struct {
 
 	// A list of ID numbers of the support cases you want returned. The maximum
 	// number of cases is 100.
-	CaseIDList []*string `locationName:"caseIdList" type:"list"`
+	CaseIdList []*string `locationName:"caseIdList" type:"list"`
 
 	// The ID displayed for a case in the AWS Support Center user interface.
-	DisplayID *string `locationName:"displayId" type:"string"`
+	DisplayId *string `locationName:"displayId" type:"string"`
 
 	// Specifies whether communications should be included in the DescribeCases
 	// results. The default is true.
@@ -1044,7 +1044,7 @@ type DescribeCommunicationsInput struct {
 
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
-	CaseID *string `locationName:"caseId" type:"string" required:"true"`
+	CaseId *string `locationName:"caseId" type:"string" required:"true"`
 
 	// The maximum number of results to return before paginating.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
@@ -1190,7 +1190,7 @@ func (s DescribeSeverityLevelsOutput) GoString() string {
 
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	// The IDs of the Trusted Advisor checks.
-	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
+	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorCheckRefreshStatusesInput `json:"-" xml:"-"`
 }
@@ -1234,7 +1234,7 @@ func (s DescribeTrustedAdvisorCheckRefreshStatusesOutput) GoString() string {
 
 type DescribeTrustedAdvisorCheckResultInput struct {
 	// The unique identifier for the Trusted Advisor check.
-	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// The ISO 639-1 code for the language in which AWS provides support. AWS Support
 	// currently supports English ("en") and Japanese ("ja"). Language parameters
@@ -1283,7 +1283,7 @@ func (s DescribeTrustedAdvisorCheckResultOutput) GoString() string {
 
 type DescribeTrustedAdvisorCheckSummariesInput struct {
 	// The IDs of the Trusted Advisor checks.
-	CheckIDs []*string `locationName:"checkIds" type:"list" required:"true"`
+	CheckIds []*string `locationName:"checkIds" type:"list" required:"true"`
 
 	metadataDescribeTrustedAdvisorCheckSummariesInput `json:"-" xml:"-"`
 }
@@ -1398,7 +1398,7 @@ func (s RecentCaseCommunications) GoString() string {
 
 type RefreshTrustedAdvisorCheckInput struct {
 	// The unique identifier for the Trusted Advisor check.
-	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	metadataRefreshTrustedAdvisorCheckInput `json:"-" xml:"-"`
 }
@@ -1443,7 +1443,7 @@ func (s RefreshTrustedAdvisorCheckOutput) GoString() string {
 type ResolveCaseInput struct {
 	// The AWS Support case ID requested or returned in the call. The case ID is
 	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
-	CaseID *string `locationName:"caseId" type:"string"`
+	CaseId *string `locationName:"caseId" type:"string"`
 
 	metadataResolveCaseInput `json:"-" xml:"-"`
 }
@@ -1580,7 +1580,7 @@ type TrustedAdvisorCheckDescription struct {
 	Description *string `locationName:"description" type:"string" required:"true"`
 
 	// The unique identifier for the Trusted Advisor check.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The column headings for the data returned by the Trusted Advisor check. The
 	// order of the headings corresponds to the order of the data in the Metadata
@@ -1612,7 +1612,7 @@ func (s TrustedAdvisorCheckDescription) GoString() string {
 // The refresh status of a Trusted Advisor check.
 type TrustedAdvisorCheckRefreshStatus struct {
 	// The unique identifier for the Trusted Advisor check.
-	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// The amount of time, in milliseconds, until the Trusted Advisor check is eligible
 	// for refresh.
@@ -1646,7 +1646,7 @@ type TrustedAdvisorCheckResult struct {
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"`
 
 	// The unique identifier for the Trusted Advisor check.
-	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// The details about each resource listed in the check result.
 	FlaggedResources []*TrustedAdvisorResourceDetail `locationName:"flaggedResources" type:"list" required:"true"`
@@ -1687,7 +1687,7 @@ type TrustedAdvisorCheckSummary struct {
 	CategorySpecificSummary *TrustedAdvisorCategorySpecificSummary `locationName:"categorySpecificSummary" type:"structure" required:"true"`
 
 	// The unique identifier for the Trusted Advisor check.
-	CheckID *string `locationName:"checkId" type:"string" required:"true"`
+	CheckId *string `locationName:"checkId" type:"string" required:"true"`
 
 	// Specifies whether the Trusted Advisor check has flagged resources.
 	HasFlaggedResources *bool `locationName:"hasFlaggedResources" type:"boolean"`
@@ -1765,7 +1765,7 @@ type TrustedAdvisorResourceDetail struct {
 	Region *string `locationName:"region" type:"string" required:"true"`
 
 	// The unique identifier for the identified resource.
-	ResourceID *string `locationName:"resourceId" type:"string" required:"true"`
+	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
 
 	// The status code for the resource identified in the Trusted Advisor check.
 	Status *string `locationName:"status" type:"string" required:"true"`

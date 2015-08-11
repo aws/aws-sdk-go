@@ -2594,7 +2594,7 @@ type GlobalSecondaryIndexDescription struct {
 	Backfilling *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the index.
-	IndexARN *string `locationName:"IndexArn" type:"string"`
+	IndexArn *string `type:"string"`
 
 	// The name of the global secondary index.
 	IndexName *string `type:"string"`
@@ -2949,7 +2949,7 @@ func (s LocalSecondaryIndex) GoString() string {
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndexDescription struct {
 	// The Amazon Resource Name (ARN) that uniquely identifies the index.
-	IndexARN *string `locationName:"IndexArn" type:"string"`
+	IndexArn *string `type:"string"`
 
 	// Represents the name of the local secondary index.
 	IndexName *string `type:"string"`
@@ -4620,7 +4620,7 @@ type TableDescription struct {
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the latest stream
 	// for this table.
-	LatestStreamARN *string `locationName:"LatestStreamArn" type:"string"`
+	LatestStreamArn *string `type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//
@@ -4688,7 +4688,7 @@ type TableDescription struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the table.
-	TableARN *string `locationName:"TableArn" type:"string"`
+	TableArn *string `type:"string"`
 
 	// The name of the table.
 	TableName *string `type:"string"`

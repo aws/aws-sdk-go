@@ -21,7 +21,7 @@ func ExampleKMS_CreateAlias() {
 
 	params := &kms.CreateAliasInput{
 		AliasName:   aws.String("AliasNameType"), // Required
-		TargetKeyID: aws.String("KeyIdType"),     // Required
+		TargetKeyId: aws.String("KeyIdType"),     // Required
 	}
 	resp, err := svc.CreateAlias(params)
 
@@ -49,7 +49,7 @@ func ExampleKMS_CreateGrant() {
 
 	params := &kms.CreateGrantInput{
 		GranteePrincipal: aws.String("PrincipalIdType"), // Required
-		KeyID:            aws.String("KeyIdType"),       // Required
+		KeyId:            aws.String("KeyIdType"),       // Required
 		Constraints: &kms.GrantConstraints{
 			EncryptionContextEquals: map[string]*string{
 				"Key": aws.String("EncryptionContextValue"), // Required
@@ -186,7 +186,7 @@ func ExampleKMS_DescribeKey() {
 	svc := kms.New(nil)
 
 	params := &kms.DescribeKeyInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.DescribeKey(params)
 
@@ -213,7 +213,7 @@ func ExampleKMS_DisableKey() {
 	svc := kms.New(nil)
 
 	params := &kms.DisableKeyInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.DisableKey(params)
 
@@ -240,7 +240,7 @@ func ExampleKMS_DisableKeyRotation() {
 	svc := kms.New(nil)
 
 	params := &kms.DisableKeyRotationInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.DisableKeyRotation(params)
 
@@ -267,7 +267,7 @@ func ExampleKMS_EnableKey() {
 	svc := kms.New(nil)
 
 	params := &kms.EnableKeyInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.EnableKey(params)
 
@@ -294,7 +294,7 @@ func ExampleKMS_EnableKeyRotation() {
 	svc := kms.New(nil)
 
 	params := &kms.EnableKeyRotationInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.EnableKeyRotation(params)
 
@@ -321,7 +321,7 @@ func ExampleKMS_Encrypt() {
 	svc := kms.New(nil)
 
 	params := &kms.EncryptInput{
-		KeyID:     aws.String("KeyIdType"), // Required
+		KeyId:     aws.String("KeyIdType"), // Required
 		Plaintext: []byte("PAYLOAD"),       // Required
 		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
@@ -357,7 +357,7 @@ func ExampleKMS_GenerateDataKey() {
 	svc := kms.New(nil)
 
 	params := &kms.GenerateDataKeyInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
@@ -394,7 +394,7 @@ func ExampleKMS_GenerateDataKeyWithoutPlaintext() {
 	svc := kms.New(nil)
 
 	params := &kms.GenerateDataKeyWithoutPlaintextInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 		EncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
@@ -458,7 +458,7 @@ func ExampleKMS_GetKeyPolicy() {
 	svc := kms.New(nil)
 
 	params := &kms.GetKeyPolicyInput{
-		KeyID:      aws.String("KeyIdType"),      // Required
+		KeyId:      aws.String("KeyIdType"),      // Required
 		PolicyName: aws.String("PolicyNameType"), // Required
 	}
 	resp, err := svc.GetKeyPolicy(params)
@@ -486,7 +486,7 @@ func ExampleKMS_GetKeyRotationStatus() {
 	svc := kms.New(nil)
 
 	params := &kms.GetKeyRotationStatusInput{
-		KeyID: aws.String("KeyIdType"), // Required
+		KeyId: aws.String("KeyIdType"), // Required
 	}
 	resp, err := svc.GetKeyRotationStatus(params)
 
@@ -541,7 +541,7 @@ func ExampleKMS_ListGrants() {
 	svc := kms.New(nil)
 
 	params := &kms.ListGrantsInput{
-		KeyID:  aws.String("KeyIdType"), // Required
+		KeyId:  aws.String("KeyIdType"), // Required
 		Limit:  aws.Int64(1),
 		Marker: aws.String("MarkerType"),
 	}
@@ -570,7 +570,7 @@ func ExampleKMS_ListKeyPolicies() {
 	svc := kms.New(nil)
 
 	params := &kms.ListKeyPoliciesInput{
-		KeyID:  aws.String("KeyIdType"), // Required
+		KeyId:  aws.String("KeyIdType"), // Required
 		Limit:  aws.Int64(1),
 		Marker: aws.String("MarkerType"),
 	}
@@ -627,7 +627,7 @@ func ExampleKMS_PutKeyPolicy() {
 	svc := kms.New(nil)
 
 	params := &kms.PutKeyPolicyInput{
-		KeyID:      aws.String("KeyIdType"),      // Required
+		KeyId:      aws.String("KeyIdType"),      // Required
 		Policy:     aws.String("PolicyType"),     // Required
 		PolicyName: aws.String("PolicyNameType"), // Required
 	}
@@ -657,7 +657,7 @@ func ExampleKMS_ReEncrypt() {
 
 	params := &kms.ReEncryptInput{
 		CiphertextBlob:   []byte("PAYLOAD"),       // Required
-		DestinationKeyID: aws.String("KeyIdType"), // Required
+		DestinationKeyId: aws.String("KeyIdType"), // Required
 		DestinationEncryptionContext: map[string]*string{
 			"Key": aws.String("EncryptionContextValue"), // Required
 			// More values...
@@ -696,9 +696,9 @@ func ExampleKMS_RetireGrant() {
 	svc := kms.New(nil)
 
 	params := &kms.RetireGrantInput{
-		GrantID:    aws.String("GrantIdType"),
+		GrantId:    aws.String("GrantIdType"),
 		GrantToken: aws.String("GrantTokenType"),
-		KeyID:      aws.String("KeyIdType"),
+		KeyId:      aws.String("KeyIdType"),
 	}
 	resp, err := svc.RetireGrant(params)
 
@@ -725,8 +725,8 @@ func ExampleKMS_RevokeGrant() {
 	svc := kms.New(nil)
 
 	params := &kms.RevokeGrantInput{
-		GrantID: aws.String("GrantIdType"), // Required
-		KeyID:   aws.String("KeyIdType"),   // Required
+		GrantId: aws.String("GrantIdType"), // Required
+		KeyId:   aws.String("KeyIdType"),   // Required
 	}
 	resp, err := svc.RevokeGrant(params)
 
@@ -754,7 +754,7 @@ func ExampleKMS_UpdateAlias() {
 
 	params := &kms.UpdateAliasInput{
 		AliasName:   aws.String("AliasNameType"), // Required
-		TargetKeyID: aws.String("KeyIdType"),     // Required
+		TargetKeyId: aws.String("KeyIdType"),     // Required
 	}
 	resp, err := svc.UpdateAlias(params)
 
@@ -782,7 +782,7 @@ func ExampleKMS_UpdateKeyDescription() {
 
 	params := &kms.UpdateKeyDescriptionInput{
 		Description: aws.String("DescriptionType"), // Required
-		KeyID:       aws.String("KeyIdType"),       // Required
+		KeyId:       aws.String("KeyIdType"),       // Required
 	}
 	resp, err := svc.UpdateKeyDescription(params)
 

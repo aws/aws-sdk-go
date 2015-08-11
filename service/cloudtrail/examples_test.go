@@ -22,11 +22,11 @@ func ExampleCloudTrail_CreateTrail() {
 	params := &cloudtrail.CreateTrailInput{
 		Name:                       aws.String("String"), // Required
 		S3BucketName:               aws.String("String"), // Required
-		CloudWatchLogsLogGroupARN:  aws.String("String"),
-		CloudWatchLogsRoleARN:      aws.String("String"),
+		CloudWatchLogsLogGroupArn:  aws.String("String"),
+		CloudWatchLogsRoleArn:      aws.String("String"),
 		IncludeGlobalServiceEvents: aws.Bool(true),
 		S3KeyPrefix:                aws.String("String"),
-		SNSTopicName:               aws.String("String"),
+		SnsTopicName:               aws.String("String"),
 	}
 	resp, err := svc.CreateTrail(params)
 
@@ -229,12 +229,12 @@ func ExampleCloudTrail_UpdateTrail() {
 
 	params := &cloudtrail.UpdateTrailInput{
 		Name: aws.String("String"), // Required
-		CloudWatchLogsLogGroupARN:  aws.String("String"),
-		CloudWatchLogsRoleARN:      aws.String("String"),
+		CloudWatchLogsLogGroupArn:  aws.String("String"),
+		CloudWatchLogsRoleArn:      aws.String("String"),
 		IncludeGlobalServiceEvents: aws.Bool(true),
 		S3BucketName:               aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
-		SNSTopicName:               aws.String("String"),
+		SnsTopicName:               aws.String("String"),
 	}
 	resp, err := svc.UpdateTrail(params)
 

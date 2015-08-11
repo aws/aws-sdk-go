@@ -1011,7 +1011,7 @@ func (s AddTagsToOnPremisesInstancesOutput) GoString() string {
 // Information about an application.
 type ApplicationInfo struct {
 	// The application ID.
-	ApplicationID *string `locationName:"applicationId" type:"string"`
+	ApplicationId *string `locationName:"applicationId" type:"string"`
 
 	// The application name.
 	ApplicationName *string `locationName:"applicationName" type:"string"`
@@ -1113,7 +1113,7 @@ func (s BatchGetApplicationsOutput) GoString() string {
 // Represents the input of a batch get deployments operation.
 type BatchGetDeploymentsInput struct {
 	// A list of deployment IDs, with multiple deployment IDs separated by spaces.
-	DeploymentIDs []*string `locationName:"deploymentIds" type:"list"`
+	DeploymentIds []*string `locationName:"deploymentIds" type:"list"`
 
 	metadataBatchGetDeploymentsInput `json:"-" xml:"-"`
 }
@@ -1224,7 +1224,7 @@ func (s CreateApplicationInput) GoString() string {
 // Represents the output of a create application operation.
 type CreateApplicationOutput struct {
 	// A unique application ID.
-	ApplicationID *string `locationName:"applicationId" type:"string"`
+	ApplicationId *string `locationName:"applicationId" type:"string"`
 
 	metadataCreateApplicationOutput `json:"-" xml:"-"`
 }
@@ -1286,7 +1286,7 @@ func (s CreateDeploymentConfigInput) GoString() string {
 // Represents the output of a create deployment configuration operation.
 type CreateDeploymentConfigOutput struct {
 	// A unique deployment configuration ID.
-	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
+	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
 
 	metadataCreateDeploymentConfigOutput `json:"-" xml:"-"`
 }
@@ -1349,14 +1349,14 @@ type CreateDeploymentGroupInput struct {
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
 
 	// The Amazon EC2 tags to filter on.
-	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The on-premises instance tags to filter on.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
 	// when interacting with AWS services.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string" required:"true"`
+	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string" required:"true"`
 
 	metadataCreateDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -1378,7 +1378,7 @@ func (s CreateDeploymentGroupInput) GoString() string {
 // Represents the output of a create deployment group operation.
 type CreateDeploymentGroupOutput struct {
 	// A unique deployment group ID.
-	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
+	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
 
 	metadataCreateDeploymentGroupOutput `json:"-" xml:"-"`
 }
@@ -1452,7 +1452,7 @@ func (s CreateDeploymentInput) GoString() string {
 // Represents the output of a create deployment operation.
 type CreateDeploymentOutput struct {
 	// A unique deployment ID.
-	DeploymentID *string `locationName:"deploymentId" type:"string"`
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	metadataCreateDeploymentOutput `json:"-" xml:"-"`
 }
@@ -1612,7 +1612,7 @@ type DeploymentConfigInfo struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The deployment configuration ID.
-	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
+	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
 
 	// The deployment configuration name.
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
@@ -1649,19 +1649,19 @@ type DeploymentGroupInfo struct {
 	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
 
 	// The deployment group ID.
-	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
+	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
 
 	// The deployment group name.
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
 
 	// The Amazon EC2 tags to filter on.
-	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The on-premises instance tags to filter on.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A service role ARN.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
+	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
 	// Information about the deployment group's target revision, including the revision's
 	// type and its location.
@@ -1708,7 +1708,7 @@ type DeploymentInfo struct {
 	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
 
 	// The deployment ID.
-	DeploymentID *string `locationName:"deploymentId" type:"string"`
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	// A summary of the deployment status of the instances in the deployment.
 	DeploymentOverview *DeploymentOverview `locationName:"deploymentOverview" type:"structure"`
@@ -2180,7 +2180,7 @@ func (s GetDeploymentGroupOutput) GoString() string {
 type GetDeploymentInput struct {
 	// An existing deployment ID associated with the applicable IAM user or AWS
 	// account.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataGetDeploymentInput `json:"-" xml:"-"`
 }
@@ -2202,10 +2202,10 @@ func (s GetDeploymentInput) GoString() string {
 // Represents the input of a get deployment instance operation.
 type GetDeploymentInstanceInput struct {
 	// The unique ID of a deployment.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique ID of an instance in the deployment's deployment group.
-	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataGetDeploymentInstanceInput `json:"-" xml:"-"`
 }
@@ -2317,7 +2317,7 @@ func (s GetOnPremisesInstanceOutput) GoString() string {
 type GitHubLocation struct {
 	// The SHA1 commit ID of the GitHub commit that references the that represents
 	// the bundled artifacts for the application revision.
-	CommitID *string `locationName:"commitId" type:"string"`
+	CommitId *string `locationName:"commitId" type:"string"`
 
 	// The GitHub account and repository pair that stores a reference to the commit
 	// that represents the bundled artifacts for the application revision.
@@ -2349,10 +2349,10 @@ type InstanceInfo struct {
 	DeregisterTime *time.Time `locationName:"deregisterTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The IAM user ARN associated with the on-premises instance.
-	IAMUserARN *string `locationName:"iamUserArn" type:"string"`
+	IamUserArn *string `locationName:"iamUserArn" type:"string"`
 
 	// The ARN of the on-premises instance.
-	InstanceARN *string `locationName:"instanceArn" type:"string"`
+	InstanceArn *string `locationName:"instanceArn" type:"string"`
 
 	// The name of the on-premises instance.
 	InstanceName *string `locationName:"instanceName" type:"string"`
@@ -2383,10 +2383,10 @@ func (s InstanceInfo) GoString() string {
 // Information about an instance in a deployment.
 type InstanceSummary struct {
 	// The deployment ID.
-	DeploymentID *string `locationName:"deploymentId" type:"string"`
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	// The instance ID.
-	InstanceID *string `locationName:"instanceId" type:"string"`
+	InstanceId *string `locationName:"instanceId" type:"string"`
 
 	// A timestamp indicating when the instance information was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"unix"`
@@ -2717,7 +2717,7 @@ func (s ListDeploymentGroupsOutput) GoString() string {
 // Represents the input of a list deployment instances operation.
 type ListDeploymentInstancesInput struct {
 	// The unique ID of a deployment.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// A subset of instances to list, by status:
 	//
@@ -3004,7 +3004,7 @@ func (s RegisterApplicationRevisionOutput) GoString() string {
 // Represents the input of register on-premises instance operation.
 type RegisterOnPremisesInstanceInput struct {
 	// The ARN of the IAM user to associate with the on-premises instance.
-	IAMUserARN *string `locationName:"iamUserArn" type:"string" required:"true"`
+	IamUserArn *string `locationName:"iamUserArn" type:"string" required:"true"`
 
 	// The name of the on-premises instance to register.
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
@@ -3170,7 +3170,7 @@ func (s S3Location) GoString() string {
 // Represents the input of a stop deployment operation.
 type StopDeploymentInput struct {
 	// The unique ID of a deployment.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataStopDeploymentInput `json:"-" xml:"-"`
 }
@@ -3361,7 +3361,7 @@ type UpdateDeploymentGroupInput struct {
 
 	// The replacement set of Amazon EC2 tags to filter on, if you want to change
 	// them.
-	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The new name of the deployment group, if you want to change it.
 	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" type:"string"`
@@ -3371,7 +3371,7 @@ type UpdateDeploymentGroupInput struct {
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A replacement service role's ARN, if you want to change it.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
+	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
 	metadataUpdateDeploymentGroupInput `json:"-" xml:"-"`
 }

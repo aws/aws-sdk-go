@@ -3980,7 +3980,7 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*U
 // key, you must create a new access key.
 type AccessKey struct {
 	// The ID for this access key.
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
+	AccessKeyId *string `type:"string" required:"true"`
 
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4075,7 +4075,7 @@ func (s AccessKeyLastUsed) GoString() string {
 // This data type is used as a response element in the ListAccessKeys action.
 type AccessKeyMetadata struct {
 	// The ID for this access key.
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string"`
+	AccessKeyId *string `type:"string"`
 
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4111,7 +4111,7 @@ type AddClientIDToOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to add the client ID to. You can get a list of OIDC provider ARNs by using
 	// the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `type:"string" required:"true"`
 
 	metadataAddClientIDToOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -4241,7 +4241,7 @@ type AttachGroupPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	metadataAttachGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -4284,7 +4284,7 @@ type AttachRolePolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the role to attach the policy to.
 	RoleName *string `type:"string" required:"true"`
@@ -4330,7 +4330,7 @@ type AttachUserPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the user to attach the policy to.
 	UserName *string `type:"string" required:"true"`
@@ -4386,7 +4386,7 @@ type AttachedPolicy struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string"`
+	PolicyArn *string `type:"string"`
 
 	// The friendly name of the attached policy.
 	PolicyName *string `type:"string"`
@@ -4728,7 +4728,7 @@ type CreateOpenIDConnectProviderInput struct {
 	// You cannot register the same provider multiple times in a single AWS account.
 	// If you try to submit a URL that has already been used for an OpenID Connect
 	// provider in the AWS account, you will get an error.
-	URL *string `locationName:"Url" type:"string" required:"true"`
+	Url *string `type:"string" required:"true"`
 
 	metadataCreateOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -4751,7 +4751,7 @@ func (s CreateOpenIDConnectProviderInput) GoString() string {
 type CreateOpenIDConnectProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect provider that was
 	// created. For more information, see OpenIDConnectProviderListEntry.
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string"`
+	OpenIDConnectProviderArn *string `type:"string"`
 
 	metadataCreateOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
@@ -4840,7 +4840,7 @@ type CreatePolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The policy document.
 	PolicyDocument *string `type:"string" required:"true"`
@@ -4984,7 +4984,7 @@ func (s CreateSAMLProviderInput) GoString() string {
 // Contains the response to a successful CreateSAMLProvider request.
 type CreateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
+	SAMLProviderArn *string `type:"string"`
 
 	metadataCreateSAMLProviderOutput `json:"-" xml:"-"`
 }
@@ -5152,7 +5152,7 @@ func (s DeactivateMFADeviceOutput) GoString() string {
 type DeleteAccessKeyInput struct {
 	// The access key ID for the access key ID and secret access key you want to
 	// delete.
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
+	AccessKeyId *string `type:"string" required:"true"`
 
 	// The name of the user whose key you want to delete.
 	UserName *string `type:"string"`
@@ -5431,7 +5431,7 @@ type DeleteOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect provider to delete.
 	// You can get a list of OpenID Connect provider ARNs by using the ListOpenIDConnectProviders
 	// action.
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `type:"string" required:"true"`
 
 	metadataDeleteOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -5474,7 +5474,7 @@ type DeletePolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	metadataDeletePolicyInput `json:"-" xml:"-"`
 }
@@ -5517,14 +5517,14 @@ type DeletePolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The policy version to delete.
 	//
 	// For more information about managed policy versions, see Versioning for Managed
 	// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 	// in the Using IAM guide.
-	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
+	VersionId *string `type:"string" required:"true"`
 
 	metadataDeletePolicyVersionInput `json:"-" xml:"-"`
 }
@@ -5645,7 +5645,7 @@ func (s DeleteRolePolicyOutput) GoString() string {
 
 type DeleteSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to delete.
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
+	SAMLProviderArn *string `type:"string" required:"true"`
 
 	metadataDeleteSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -5684,7 +5684,7 @@ func (s DeleteSAMLProviderOutput) GoString() string {
 
 type DeleteSSHPublicKeyInput struct {
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+	SSHPublicKeyId *string `type:"string" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `type:"string" required:"true"`
@@ -5765,7 +5765,7 @@ func (s DeleteServerCertificateOutput) GoString() string {
 
 type DeleteSigningCertificateInput struct {
 	// The ID of the signing certificate to delete.
-	CertificateID *string `locationName:"CertificateId" type:"string" required:"true"`
+	CertificateId *string `type:"string" required:"true"`
 
 	// The name of the user the signing certificate belongs to.
 	UserName *string `type:"string"`
@@ -5936,7 +5936,7 @@ type DetachGroupPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	metadataDetachGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -5979,7 +5979,7 @@ type DetachRolePolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the role to detach the policy from.
 	RoleName *string `type:"string" required:"true"`
@@ -6025,7 +6025,7 @@ type DetachUserPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the user to detach the policy from.
 	UserName *string `type:"string" required:"true"`
@@ -6159,7 +6159,7 @@ func (s GenerateCredentialReportOutput) GoString() string {
 
 type GetAccessKeyLastUsedInput struct {
 	// The identifier of an access key.
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
+	AccessKeyId *string `type:"string" required:"true"`
 
 	metadataGetAccessKeyLastUsedInput `json:"-" xml:"-"`
 }
@@ -6760,7 +6760,7 @@ type GetOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to get information for. You can get a list of OIDC provider ARNs by using
 	// the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `type:"string" required:"true"`
 
 	metadataGetOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -6795,7 +6795,7 @@ type GetOpenIDConnectProviderOutput struct {
 
 	// The URL that the IAM OpenID Connect provider is associated with. For more
 	// information, see CreateOpenIDConnectProvider.
-	URL *string `locationName:"Url" type:"string"`
+	Url *string `type:"string"`
 
 	metadataGetOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
@@ -6820,7 +6820,7 @@ type GetPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	metadataGetPolicyInput `json:"-" xml:"-"`
 }
@@ -6867,10 +6867,10 @@ type GetPolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// Identifies the policy version to retrieve.
-	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
+	VersionId *string `type:"string" required:"true"`
 
 	metadataGetPolicyVersionInput `json:"-" xml:"-"`
 }
@@ -7012,7 +7012,7 @@ func (s GetRolePolicyOutput) GoString() string {
 
 type GetSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to get information about.
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
+	SAMLProviderArn *string `type:"string" required:"true"`
 
 	metadataGetSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -7066,7 +7066,7 @@ type GetSSHPublicKeyInput struct {
 	Encoding *string `type:"string" required:"true" enum:"encodingType"`
 
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+	SSHPublicKeyId *string `type:"string" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
 	UserName *string `type:"string" required:"true"`
@@ -7260,7 +7260,7 @@ type Group struct {
 	// The Amazon Resource Name (ARN) specifying the group. For more information
 	// about ARNs and how to use them in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ARN *string `locationName:"Arn" type:"string" required:"true"`
+	Arn *string `type:"string" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the group was created.
@@ -7269,7 +7269,7 @@ type Group struct {
 	// The stable and unique string identifying the group. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	GroupID *string `locationName:"GroupId" type:"string" required:"true"`
+	GroupId *string `type:"string" required:"true"`
 
 	// The friendly name that identifies the group.
 	GroupName *string `type:"string" required:"true"`
@@ -7306,7 +7306,7 @@ type GroupDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// A list of the managed policies attached to the group.
 	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
@@ -7318,7 +7318,7 @@ type GroupDetail struct {
 	// The stable and unique string identifying the group. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	GroupID *string `locationName:"GroupId" type:"string"`
+	GroupId *string `type:"string"`
 
 	// The friendly name that identifies the group.
 	GroupName *string `type:"string"`
@@ -7364,7 +7364,7 @@ type InstanceProfile struct {
 	// information about ARNs and how to use them in policies, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ARN *string `locationName:"Arn" type:"string" required:"true"`
+	Arn *string `type:"string" required:"true"`
 
 	// The date when the instance profile was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -7372,7 +7372,7 @@ type InstanceProfile struct {
 	// The stable and unique string identifying the instance profile. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	InstanceProfileID *string `locationName:"InstanceProfileId" type:"string" required:"true"`
+	InstanceProfileId *string `type:"string" required:"true"`
 
 	// The name identifying the instance profile.
 	InstanceProfileName *string `type:"string" required:"true"`
@@ -7761,7 +7761,7 @@ type ListEntitiesForPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	metadataListEntitiesForPolicyInput `json:"-" xml:"-"`
 }
@@ -8348,7 +8348,7 @@ type ListPolicyVersionsInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	metadataListPolicyVersionsInput `json:"-" xml:"-"`
 }
@@ -9050,7 +9050,7 @@ type ManagedPolicyDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The number of principal entities (users, groups, and roles) that the policy
 	// is attached to.
@@ -9066,7 +9066,7 @@ type ManagedPolicyDetail struct {
 	// For more information about policy versions, see Versioning for Managed Policies
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 	// in the Using IAM guide.
-	DefaultVersionID *string `locationName:"DefaultVersionId" type:"string"`
+	DefaultVersionId *string `type:"string"`
 
 	// A friendly description of the policy.
 	Description *string `type:"string"`
@@ -9084,7 +9084,7 @@ type ManagedPolicyDetail struct {
 	//
 	// For more information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	PolicyID *string `locationName:"PolicyId" type:"string"`
+	PolicyId *string `type:"string"`
 
 	// The friendly name (not ARN) identifying the policy.
 	PolicyName *string `type:"string"`
@@ -9125,7 +9125,7 @@ type OpenIDConnectProviderListEntry struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	metadataOpenIDConnectProviderListEntry `json:"-" xml:"-"`
 }
@@ -9213,7 +9213,7 @@ type Policy struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The number of entities (users, groups, and roles) that the policy is attached
 	// to.
@@ -9224,7 +9224,7 @@ type Policy struct {
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The identifier for the version of the policy that is set as the default version.
-	DefaultVersionID *string `locationName:"DefaultVersionId" type:"string"`
+	DefaultVersionId *string `type:"string"`
 
 	// A friendly description of the policy.
 	//
@@ -9245,7 +9245,7 @@ type Policy struct {
 	//
 	// For more information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	PolicyID *string `locationName:"PolicyId" type:"string"`
+	PolicyId *string `type:"string"`
 
 	// The friendly name (not ARN) identifying the policy.
 	PolicyName *string `type:"string"`
@@ -9419,7 +9419,7 @@ type PolicyVersion struct {
 	//
 	// Policy version identifiers always begin with v (always lowercase). When
 	// a policy is created, the first policy version is v1.
-	VersionID *string `locationName:"VersionId" type:"string"`
+	VersionId *string `type:"string"`
 
 	metadataPolicyVersion `json:"-" xml:"-"`
 }
@@ -9581,7 +9581,7 @@ type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to remove the client ID from. You can get a list of OIDC provider ARNs by
 	// using the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `type:"string" required:"true"`
 
 	metadataRemoveClientIDFromOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -9763,7 +9763,7 @@ type Role struct {
 	// The Amazon Resource Name (ARN) specifying the role. For more information
 	// about ARNs and how to use them in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ARN *string `locationName:"Arn" type:"string" required:"true"`
+	Arn *string `type:"string" required:"true"`
 
 	// The policy that grants an entity permission to assume the role.
 	AssumeRolePolicyDocument *string `type:"string"`
@@ -9780,7 +9780,7 @@ type Role struct {
 	// The stable and unique string identifying the role. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	RoleID *string `locationName:"RoleId" type:"string" required:"true"`
+	RoleId *string `type:"string" required:"true"`
 
 	// The friendly name that identifies the role.
 	RoleName *string `type:"string" required:"true"`
@@ -9812,7 +9812,7 @@ type RoleDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The trust policy that grants permission to assume the role.
 	AssumeRolePolicyDocument *string `type:"string"`
@@ -9836,7 +9836,7 @@ type RoleDetail struct {
 	// The stable and unique string identifying the role. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	RoleID *string `locationName:"RoleId" type:"string"`
+	RoleId *string `type:"string"`
 
 	// The friendly name that identifies the role.
 	RoleName *string `type:"string"`
@@ -9865,7 +9865,7 @@ func (s RoleDetail) GoString() string {
 // Contains the list of SAML providers for this account.
 type SAMLProviderListEntry struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The date and time when the SAML provider was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -9902,7 +9902,7 @@ type SSHPublicKey struct {
 	SSHPublicKeyBody *string `type:"string" required:"true"`
 
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+	SSHPublicKeyId *string `type:"string" required:"true"`
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
@@ -9937,7 +9937,7 @@ func (s SSHPublicKey) GoString() string {
 // This data type is used as a response element in the ListSSHPublicKeys action.
 type SSHPublicKeyMetadata struct {
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+	SSHPublicKeyId *string `type:"string" required:"true"`
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
@@ -10009,7 +10009,7 @@ type ServerCertificateMetadata struct {
 	// information about ARNs and how to use them in policies, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ARN *string `locationName:"Arn" type:"string" required:"true"`
+	Arn *string `type:"string" required:"true"`
 
 	// The date on which the certificate is set to expire.
 	Expiration *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -10022,7 +10022,7 @@ type ServerCertificateMetadata struct {
 	// The stable and unique string identifying the server certificate. For more
 	// information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ServerCertificateID *string `locationName:"ServerCertificateId" type:"string" required:"true"`
+	ServerCertificateId *string `type:"string" required:"true"`
 
 	// The name that identifies the server certificate.
 	ServerCertificateName *string `type:"string" required:"true"`
@@ -10053,14 +10053,14 @@ type SetDefaultPolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyARN *string `locationName:"PolicyArn" type:"string" required:"true"`
+	PolicyArn *string `type:"string" required:"true"`
 
 	// The version of the policy to set as the default (operative) version.
 	//
 	// For more information about managed policy versions, see Versioning for Managed
 	// Policies (http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-versions.html)
 	// in the Using IAM guide.
-	VersionID *string `locationName:"VersionId" type:"string" required:"true"`
+	VersionId *string `type:"string" required:"true"`
 
 	metadataSetDefaultPolicyVersionInput `json:"-" xml:"-"`
 }
@@ -10106,7 +10106,7 @@ type SigningCertificate struct {
 	CertificateBody *string `type:"string" required:"true"`
 
 	// The ID for the signing certificate.
-	CertificateID *string `locationName:"CertificateId" type:"string" required:"true"`
+	CertificateId *string `type:"string" required:"true"`
 
 	// The status of the signing certificate. Active means the key is valid for
 	// API calls, while Inactive means it is not.
@@ -10137,7 +10137,7 @@ func (s SigningCertificate) GoString() string {
 
 type UpdateAccessKeyInput struct {
 	// The access key ID of the secret access key you want to update.
-	AccessKeyID *string `locationName:"AccessKeyId" type:"string" required:"true"`
+	AccessKeyId *string `type:"string" required:"true"`
 
 	// The status you want to assign to the secret access key. Active means the
 	// key can be used for API calls to AWS, while Inactive means the key cannot
@@ -10412,7 +10412,7 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to update the thumbprint for. You can get a list of OIDC provider ARNs by
 	// using the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderARN *string `locationName:"OpenIDConnectProviderArn" type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `type:"string" required:"true"`
 
 	// A list of certificate thumbprints that are associated with the specified
 	// IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.
@@ -10462,7 +10462,7 @@ type UpdateSAMLProviderInput struct {
 	SAMLMetadataDocument *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider to update.
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string" required:"true"`
+	SAMLProviderArn *string `type:"string" required:"true"`
 
 	metadataUpdateSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -10484,7 +10484,7 @@ func (s UpdateSAMLProviderInput) GoString() string {
 // Contains the response to a successful UpdateSAMLProvider request.
 type UpdateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider that was updated.
-	SAMLProviderARN *string `locationName:"SAMLProviderArn" type:"string"`
+	SAMLProviderArn *string `type:"string"`
 
 	metadataUpdateSAMLProviderOutput `json:"-" xml:"-"`
 }
@@ -10505,7 +10505,7 @@ func (s UpdateSAMLProviderOutput) GoString() string {
 
 type UpdateSSHPublicKeyInput struct {
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyID *string `locationName:"SSHPublicKeyId" type:"string" required:"true"`
+	SSHPublicKeyId *string `type:"string" required:"true"`
 
 	// The status to assign to the SSH public key. Active means the key can be used
 	// for authentication with an AWS CodeCommit repository. Inactive means the
@@ -10600,7 +10600,7 @@ func (s UpdateServerCertificateOutput) GoString() string {
 
 type UpdateSigningCertificateInput struct {
 	// The ID of the signing certificate you want to update.
-	CertificateID *string `locationName:"CertificateId" type:"string" required:"true"`
+	CertificateId *string `type:"string" required:"true"`
 
 	// The status you want to assign to the certificate. Active means the certificate
 	// can be used for API calls to AWS, while Inactive means the certificate cannot
@@ -10867,7 +10867,7 @@ type User struct {
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
 	// about ARNs and how to use ARNs in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ARN *string `locationName:"Arn" type:"string" required:"true"`
+	Arn *string `type:"string" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the user was created.
@@ -10899,7 +10899,7 @@ type User struct {
 	// The stable and unique string identifying the user. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	UserID *string `locationName:"UserId" type:"string" required:"true"`
+	UserId *string `type:"string" required:"true"`
 
 	// The friendly name identifying the user.
 	UserName *string `type:"string" required:"true"`
@@ -10932,7 +10932,7 @@ type UserDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// A list of the managed policies attached to the user.
 	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
@@ -10952,7 +10952,7 @@ type UserDetail struct {
 	// The stable and unique string identifying the user. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	UserID *string `locationName:"UserId" type:"string"`
+	UserId *string `type:"string"`
 
 	// The friendly name identifying the user.
 	UserName *string `type:"string"`

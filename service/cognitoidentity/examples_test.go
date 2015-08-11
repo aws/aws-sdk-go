@@ -23,7 +23,7 @@ func ExampleCognitoIdentity_CreateIdentityPool() {
 		AllowUnauthenticatedIdentities: aws.Bool(true),                 // Required
 		IdentityPoolName:               aws.String("IdentityPoolName"), // Required
 		DeveloperProviderName:          aws.String("DeveloperProviderName"),
-		OpenIDConnectProviderARNs: []*string{
+		OpenIdConnectProviderARNs: []*string{
 			aws.String("ARNString"), // Required
 			// More values...
 		},
@@ -57,7 +57,7 @@ func ExampleCognitoIdentity_DeleteIdentities() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DeleteIdentitiesInput{
-		IdentityIDsToDelete: []*string{ // Required
+		IdentityIdsToDelete: []*string{ // Required
 			aws.String("IdentityId"), // Required
 			// More values...
 		},
@@ -87,7 +87,7 @@ func ExampleCognitoIdentity_DeleteIdentityPool() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DeleteIdentityPoolInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DeleteIdentityPool(params)
 
@@ -114,7 +114,7 @@ func ExampleCognitoIdentity_DescribeIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DescribeIdentityInput{
-		IdentityID: aws.String("IdentityId"), // Required
+		IdentityId: aws.String("IdentityId"), // Required
 	}
 	resp, err := svc.DescribeIdentity(params)
 
@@ -141,7 +141,7 @@ func ExampleCognitoIdentity_DescribeIdentityPool() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DescribeIdentityPoolInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DescribeIdentityPool(params)
 
@@ -168,7 +168,7 @@ func ExampleCognitoIdentity_GetCredentialsForIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.GetCredentialsForIdentityInput{
-		IdentityID: aws.String("IdentityId"), // Required
+		IdentityId: aws.String("IdentityId"), // Required
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
@@ -195,18 +195,18 @@ func ExampleCognitoIdentity_GetCredentialsForIdentity() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleCognitoIdentity_GetID() {
+func ExampleCognitoIdentity_GetId() {
 	svc := cognitoidentity.New(nil)
 
-	params := &cognitoidentity.GetIDInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		AccountID:      aws.String("AccountId"),
+	params := &cognitoidentity.GetIdInput{
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
+		AccountId:      aws.String("AccountId"),
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
 	}
-	resp, err := svc.GetID(params)
+	resp, err := svc.GetId(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -231,7 +231,7 @@ func ExampleCognitoIdentity_GetIdentityPoolRoles() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.GetIdentityPoolRolesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.GetIdentityPoolRoles(params)
 
@@ -254,17 +254,17 @@ func ExampleCognitoIdentity_GetIdentityPoolRoles() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleCognitoIdentity_GetOpenIDToken() {
+func ExampleCognitoIdentity_GetOpenIdToken() {
 	svc := cognitoidentity.New(nil)
 
-	params := &cognitoidentity.GetOpenIDTokenInput{
-		IdentityID: aws.String("IdentityId"), // Required
+	params := &cognitoidentity.GetOpenIdTokenInput{
+		IdentityId: aws.String("IdentityId"), // Required
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
 	}
-	resp, err := svc.GetOpenIDToken(params)
+	resp, err := svc.GetOpenIdToken(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -285,19 +285,19 @@ func ExampleCognitoIdentity_GetOpenIDToken() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleCognitoIdentity_GetOpenIDTokenForDeveloperIdentity() {
+func ExampleCognitoIdentity_GetOpenIdTokenForDeveloperIdentity() {
 	svc := cognitoidentity.New(nil)
 
-	params := &cognitoidentity.GetOpenIDTokenForDeveloperIdentityInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+	params := &cognitoidentity.GetOpenIdTokenForDeveloperIdentityInput{
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 		Logins: map[string]*string{ // Required
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
-		IdentityID:    aws.String("IdentityId"),
+		IdentityId:    aws.String("IdentityId"),
 		TokenDuration: aws.Int64(1),
 	}
-	resp, err := svc.GetOpenIDTokenForDeveloperIdentity(params)
+	resp, err := svc.GetOpenIdTokenForDeveloperIdentity(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -322,7 +322,7 @@ func ExampleCognitoIdentity_ListIdentities() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.ListIdentitiesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 		MaxResults:     aws.Int64(1),                 // Required
 		HideDisabled:   aws.Bool(true),
 		NextToken:      aws.String("PaginationKey"),
@@ -380,9 +380,9 @@ func ExampleCognitoIdentity_LookupDeveloperIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.LookupDeveloperIdentityInput{
-		IdentityPoolID:          aws.String("IdentityPoolId"), // Required
+		IdentityPoolId:          aws.String("IdentityPoolId"), // Required
 		DeveloperUserIdentifier: aws.String("DeveloperUserIdentifier"),
-		IdentityID:              aws.String("IdentityId"),
+		IdentityId:              aws.String("IdentityId"),
 		MaxResults:              aws.Int64(1),
 		NextToken:               aws.String("PaginationKey"),
 	}
@@ -413,7 +413,7 @@ func ExampleCognitoIdentity_MergeDeveloperIdentities() {
 	params := &cognitoidentity.MergeDeveloperIdentitiesInput{
 		DestinationUserIdentifier: aws.String("DeveloperUserIdentifier"), // Required
 		DeveloperProviderName:     aws.String("DeveloperProviderName"),   // Required
-		IdentityPoolID:            aws.String("IdentityPoolId"),          // Required
+		IdentityPoolId:            aws.String("IdentityPoolId"),          // Required
 		SourceUserIdentifier:      aws.String("DeveloperUserIdentifier"), // Required
 	}
 	resp, err := svc.MergeDeveloperIdentities(params)
@@ -441,7 +441,7 @@ func ExampleCognitoIdentity_SetIdentityPoolRoles() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.SetIdentityPoolRolesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 		Roles: map[string]*string{ // Required
 			"Key": aws.String("ARNString"), // Required
 			// More values...
@@ -474,8 +474,8 @@ func ExampleCognitoIdentity_UnlinkDeveloperIdentity() {
 	params := &cognitoidentity.UnlinkDeveloperIdentityInput{
 		DeveloperProviderName:   aws.String("DeveloperProviderName"),   // Required
 		DeveloperUserIdentifier: aws.String("DeveloperUserIdentifier"), // Required
-		IdentityID:              aws.String("IdentityId"),              // Required
-		IdentityPoolID:          aws.String("IdentityPoolId"),          // Required
+		IdentityId:              aws.String("IdentityId"),              // Required
+		IdentityPoolId:          aws.String("IdentityPoolId"),          // Required
 	}
 	resp, err := svc.UnlinkDeveloperIdentity(params)
 
@@ -502,7 +502,7 @@ func ExampleCognitoIdentity_UnlinkIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.UnlinkIdentityInput{
-		IdentityID: aws.String("IdentityId"), // Required
+		IdentityId: aws.String("IdentityId"), // Required
 		Logins: map[string]*string{ // Required
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
@@ -538,10 +538,10 @@ func ExampleCognitoIdentity_UpdateIdentityPool() {
 
 	params := &cognitoidentity.IdentityPool{
 		AllowUnauthenticatedIdentities: aws.Bool(true),                 // Required
-		IdentityPoolID:                 aws.String("IdentityPoolId"),   // Required
+		IdentityPoolId:                 aws.String("IdentityPoolId"),   // Required
 		IdentityPoolName:               aws.String("IdentityPoolName"), // Required
 		DeveloperProviderName:          aws.String("DeveloperProviderName"),
-		OpenIDConnectProviderARNs: []*string{
+		OpenIdConnectProviderARNs: []*string{
 			aws.String("ARNString"), // Required
 			// More values...
 		},

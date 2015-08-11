@@ -75,7 +75,7 @@ func ExampleCloudFront_CreateDistribution() {
 					},
 				},
 				MinTTL:         aws.Int64(1),         // Required
-				TargetOriginID: aws.String("string"), // Required
+				TargetOriginId: aws.String("string"), // Required
 				TrustedSigners: &cloudfront.TrustedSigners{ // Required
 					Enabled:  aws.Bool(true), // Required
 					Quantity: aws.Int64(1),   // Required
@@ -109,7 +109,7 @@ func ExampleCloudFront_CreateDistribution() {
 				Items: []*cloudfront.Origin{
 					{ // Required
 						DomainName: aws.String("string"), // Required
-						ID:         aws.String("string"), // Required
+						Id:         aws.String("string"), // Required
 						CustomOriginConfig: &cloudfront.CustomOriginConfig{
 							HTTPPort:             aws.Int64(1),                       // Required
 							HTTPSPort:            aws.Int64(1),                       // Required
@@ -156,7 +156,7 @@ func ExampleCloudFront_CreateDistribution() {
 						},
 						MinTTL:         aws.Int64(1),         // Required
 						PathPattern:    aws.String("string"), // Required
-						TargetOriginID: aws.String("string"), // Required
+						TargetOriginId: aws.String("string"), // Required
 						TrustedSigners: &cloudfront.TrustedSigners{ // Required
 							Enabled:  aws.Bool(true), // Required
 							Quantity: aws.Int64(1),   // Required
@@ -219,7 +219,7 @@ func ExampleCloudFront_CreateDistribution() {
 			},
 			ViewerCertificate: &cloudfront.ViewerCertificate{
 				CloudFrontDefaultCertificate: aws.Bool(true),
-				IAMCertificateID:             aws.String("string"),
+				IAMCertificateId:             aws.String("string"),
 				MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
 				SSLSupportMethod:             aws.String("SSLSupportMethod"),
 			},
@@ -250,7 +250,7 @@ func ExampleCloudFront_CreateInvalidation() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.CreateInvalidationInput{
-		DistributionID: aws.String("string"), // Required
+		DistributionId: aws.String("string"), // Required
 		InvalidationBatch: &cloudfront.InvalidationBatch{ // Required
 			CallerReference: aws.String("string"), // Required
 			Paths: &cloudfront.Paths{ // Required
@@ -343,7 +343,7 @@ func ExampleCloudFront_DeleteCloudFrontOriginAccessIdentity() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.DeleteCloudFrontOriginAccessIdentityInput{
-		ID:      aws.String("string"), // Required
+		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
 	}
 	resp, err := svc.DeleteCloudFrontOriginAccessIdentity(params)
@@ -371,7 +371,7 @@ func ExampleCloudFront_DeleteDistribution() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.DeleteDistributionInput{
-		ID:      aws.String("string"), // Required
+		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
 	}
 	resp, err := svc.DeleteDistribution(params)
@@ -399,7 +399,7 @@ func ExampleCloudFront_DeleteStreamingDistribution() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.DeleteStreamingDistributionInput{
-		ID:      aws.String("string"), // Required
+		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
 	}
 	resp, err := svc.DeleteStreamingDistribution(params)
@@ -427,7 +427,7 @@ func ExampleCloudFront_GetCloudFrontOriginAccessIdentity() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetCloudFrontOriginAccessIdentityInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 	}
 	resp, err := svc.GetCloudFrontOriginAccessIdentity(params)
 
@@ -454,7 +454,7 @@ func ExampleCloudFront_GetCloudFrontOriginAccessIdentityConfig() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetCloudFrontOriginAccessIdentityConfigInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 	}
 	resp, err := svc.GetCloudFrontOriginAccessIdentityConfig(params)
 
@@ -481,7 +481,7 @@ func ExampleCloudFront_GetDistribution() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetDistributionInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 	}
 	resp, err := svc.GetDistribution(params)
 
@@ -508,7 +508,7 @@ func ExampleCloudFront_GetDistributionConfig() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetDistributionConfigInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 	}
 	resp, err := svc.GetDistributionConfig(params)
 
@@ -535,8 +535,8 @@ func ExampleCloudFront_GetInvalidation() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetInvalidationInput{
-		DistributionID: aws.String("string"), // Required
-		ID:             aws.String("string"), // Required
+		DistributionId: aws.String("string"), // Required
+		Id:             aws.String("string"), // Required
 	}
 	resp, err := svc.GetInvalidation(params)
 
@@ -563,7 +563,7 @@ func ExampleCloudFront_GetStreamingDistribution() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetStreamingDistributionInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 	}
 	resp, err := svc.GetStreamingDistribution(params)
 
@@ -590,7 +590,7 @@ func ExampleCloudFront_GetStreamingDistributionConfig() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.GetStreamingDistributionConfigInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 	}
 	resp, err := svc.GetStreamingDistributionConfig(params)
 
@@ -673,7 +673,7 @@ func ExampleCloudFront_ListInvalidations() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.ListInvalidationsInput{
-		DistributionID: aws.String("string"), // Required
+		DistributionId: aws.String("string"), // Required
 		Marker:         aws.String("string"),
 		MaxItems:       aws.Int64(1),
 	}
@@ -734,7 +734,7 @@ func ExampleCloudFront_UpdateCloudFrontOriginAccessIdentity() {
 			CallerReference: aws.String("string"), // Required
 			Comment:         aws.String("string"), // Required
 		},
-		ID:      aws.String("string"), // Required
+		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
 	}
 	resp, err := svc.UpdateCloudFrontOriginAccessIdentity(params)
@@ -787,7 +787,7 @@ func ExampleCloudFront_UpdateDistribution() {
 					},
 				},
 				MinTTL:         aws.Int64(1),         // Required
-				TargetOriginID: aws.String("string"), // Required
+				TargetOriginId: aws.String("string"), // Required
 				TrustedSigners: &cloudfront.TrustedSigners{ // Required
 					Enabled:  aws.Bool(true), // Required
 					Quantity: aws.Int64(1),   // Required
@@ -821,7 +821,7 @@ func ExampleCloudFront_UpdateDistribution() {
 				Items: []*cloudfront.Origin{
 					{ // Required
 						DomainName: aws.String("string"), // Required
-						ID:         aws.String("string"), // Required
+						Id:         aws.String("string"), // Required
 						CustomOriginConfig: &cloudfront.CustomOriginConfig{
 							HTTPPort:             aws.Int64(1),                       // Required
 							HTTPSPort:            aws.Int64(1),                       // Required
@@ -868,7 +868,7 @@ func ExampleCloudFront_UpdateDistribution() {
 						},
 						MinTTL:         aws.Int64(1),         // Required
 						PathPattern:    aws.String("string"), // Required
-						TargetOriginID: aws.String("string"), // Required
+						TargetOriginId: aws.String("string"), // Required
 						TrustedSigners: &cloudfront.TrustedSigners{ // Required
 							Enabled:  aws.Bool(true), // Required
 							Quantity: aws.Int64(1),   // Required
@@ -931,12 +931,12 @@ func ExampleCloudFront_UpdateDistribution() {
 			},
 			ViewerCertificate: &cloudfront.ViewerCertificate{
 				CloudFrontDefaultCertificate: aws.Bool(true),
-				IAMCertificateID:             aws.String("string"),
+				IAMCertificateId:             aws.String("string"),
 				MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
 				SSLSupportMethod:             aws.String("SSLSupportMethod"),
 			},
 		},
-		ID:      aws.String("string"), // Required
+		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
 	}
 	resp, err := svc.UpdateDistribution(params)
@@ -964,7 +964,7 @@ func ExampleCloudFront_UpdateStreamingDistribution() {
 	svc := cloudfront.New(nil)
 
 	params := &cloudfront.UpdateStreamingDistributionInput{
-		ID: aws.String("string"), // Required
+		Id: aws.String("string"), // Required
 		StreamingDistributionConfig: &cloudfront.StreamingDistributionConfig{ // Required
 			CallerReference: aws.String("string"), // Required
 			Comment:         aws.String("string"), // Required

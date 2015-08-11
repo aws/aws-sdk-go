@@ -1578,13 +1578,13 @@ func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput)
 // Provides details of the ActivityTaskCancelRequested event.
 type ActivityTaskCancelRequestedEventAttributes struct {
 	// The unique ID of the task.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelActivityTask decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCancelRequestedEventAttributes `json:"-" xml:"-"`
 }
@@ -1611,17 +1611,17 @@ type ActivityTaskCanceledEventAttributes struct {
 	// If set, contains the ID of the last ActivityTaskCancelRequested event recorded
 	// for this activity task. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	LatestCancelRequestedEventID *int64 `locationName:"latestCancelRequestedEventId" type:"long"`
+	LatestCancelRequestedEventId *int64 `locationName:"latestCancelRequestedEventId" type:"long"`
 
 	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCanceledEventAttributes `json:"-" xml:"-"`
 }
@@ -1648,12 +1648,12 @@ type ActivityTaskCompletedEventAttributes struct {
 	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskCompletedEventAttributes `json:"-" xml:"-"`
 }
@@ -1683,12 +1683,12 @@ type ActivityTaskFailedEventAttributes struct {
 	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataActivityTaskFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -1710,7 +1710,7 @@ func (s ActivityTaskFailedEventAttributes) GoString() string {
 // Provides details of the ActivityTaskScheduled event.
 type ActivityTaskScheduledEventAttributes struct {
 	// The unique ID of the activity task.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	// The type of the activity task.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -1723,7 +1723,7 @@ type ActivityTaskScheduledEventAttributes struct {
 	// resulted in the scheduling of this activity task. This information can be
 	// useful for diagnosing problems by tracing back the chain of events leading
 	// up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The maximum time before which the worker processing this task must report
 	// progress by calling RecordActivityTaskHeartbeat. If the timeout is exceeded,
@@ -1785,7 +1785,7 @@ type ActivityTaskStartedEventAttributes struct {
 	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataActivityTaskStartedEventAttributes `json:"-" xml:"-"`
 }
@@ -1813,12 +1813,12 @@ type ActivityTaskTimedOutEventAttributes struct {
 	// The ID of the ActivityTaskScheduled event that was recorded when this activity
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the ActivityTaskStarted event recorded when this activity task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"ActivityTaskTimeoutType"`
@@ -1998,7 +1998,7 @@ func (s ActivityTypeInfo) GoString() string {
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelTimerDecisionAttributes struct {
 	// Required. The unique ID of the timer to cancel.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerDecisionAttributes `json:"-" xml:"-"`
 }
@@ -2031,10 +2031,10 @@ type CancelTimerFailedEventAttributes struct {
 	// that resulted in the CancelTimer decision to cancel this timer. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The timerId provided in the CancelTimer decision that failed.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataCancelTimerFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -2103,7 +2103,7 @@ type CancelWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the CancelWorkflowExecution decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataCancelWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -2131,12 +2131,12 @@ type ChildWorkflowExecutionCanceledEventAttributes struct {
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The child workflow execution that was canceled.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -2167,7 +2167,7 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The result of the child workflow execution (if any).
 	Result *string `locationName:"result" type:"string"`
@@ -2175,7 +2175,7 @@ type ChildWorkflowExecutionCompletedEventAttributes struct {
 	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The child workflow execution that was completed.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -2209,7 +2209,7 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The reason for the failure (if provided).
 	Reason *string `locationName:"reason" type:"string"`
@@ -2217,7 +2217,7 @@ type ChildWorkflowExecutionFailedEventAttributes struct {
 	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The child workflow execution that failed.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -2248,7 +2248,7 @@ type ChildWorkflowExecutionStartedEventAttributes struct {
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The child workflow execution that was started.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -2279,12 +2279,12 @@ type ChildWorkflowExecutionTerminatedEventAttributes struct {
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The child workflow execution that was terminated.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -2315,12 +2315,12 @@ type ChildWorkflowExecutionTimedOutEventAttributes struct {
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The ID of the ChildWorkflowExecutionStarted event recorded when this child
 	// workflow execution was started. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The type of the timeout that caused the child workflow execution to time
 	// out.
@@ -2424,7 +2424,7 @@ type CompleteWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the CompleteWorkflowExecution decision to complete this
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataCompleteWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -2569,7 +2569,7 @@ type ContinueAsNewWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the ContinueAsNewWorkflowExecution decision that started
 	// this execution. This information can be useful for diagnosing problems by
 	// tracing back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataContinueAsNewWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -2947,12 +2947,12 @@ type DecisionTaskCompletedEventAttributes struct {
 	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the DecisionTaskStarted event recorded when this decision task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataDecisionTaskCompletedEventAttributes `json:"-" xml:"-"`
 }
@@ -3019,7 +3019,7 @@ type DecisionTaskStartedEventAttributes struct {
 	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataDecisionTaskStartedEventAttributes `json:"-" xml:"-"`
 }
@@ -3043,12 +3043,12 @@ type DecisionTaskTimedOutEventAttributes struct {
 	// The ID of the DecisionTaskScheduled event that was recorded when this decision
 	// task was scheduled. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the DecisionTaskStarted event recorded when this decision task
 	// was started. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The type of timeout that expired before the decision task could be completed.
 	TimeoutType *string `locationName:"timeoutType" type:"string" required:"true" enum:"DecisionTaskTimeoutType"`
@@ -3508,7 +3508,7 @@ type ExternalWorkflowExecutionCancelRequestedEventAttributes struct {
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
 	// workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The external workflow execution to which the cancellation request was delivered.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -3536,7 +3536,7 @@ type ExternalWorkflowExecutionSignaledEventAttributes struct {
 	// to the SignalExternalWorkflowExecution decision to request this signal. This
 	// information can be useful for diagnosing problems by tracing back the chain
 	// of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The external workflow execution that the signal was delivered to.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -3611,7 +3611,7 @@ type FailWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the FailWorkflowExecution decision to fail this execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataFailWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -3880,7 +3880,7 @@ type HistoryEvent struct {
 
 	// The system generated ID of the event. This ID uniquely identifies the event
 	// with in the workflow execution history.
-	EventID *int64 `locationName:"eventId" type:"long" required:"true"`
+	EventId *int64 `locationName:"eventId" type:"long" required:"true"`
 
 	// The date and time when the event occurred.
 	EventTimestamp *time.Time `locationName:"eventTimestamp" type:"timestamp" timestampFormat:"unix" required:"true"`
@@ -4058,10 +4058,10 @@ type LambdaFunctionCompletedEventAttributes struct {
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the LambdaFunctionStarted event recorded in the history.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataLambdaFunctionCompletedEventAttributes `json:"-" xml:"-"`
 }
@@ -4091,10 +4091,10 @@ type LambdaFunctionFailedEventAttributes struct {
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the LambdaFunctionStarted event recorded in the history.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	metadataLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -4119,10 +4119,10 @@ type LambdaFunctionScheduledEventAttributes struct {
 	// in the scheduling of this AWS Lambda function. This information can be useful
 	// for diagnosing problems by tracing back the chain of events leading up to
 	// this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The unique Amazon SWF ID for the AWS Lambda task.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// Input provided to the AWS Lambda function.
 	Input *string `locationName:"input" type:"string"`
@@ -4156,7 +4156,7 @@ type LambdaFunctionStartedEventAttributes struct {
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	metadataLambdaFunctionStartedEventAttributes `json:"-" xml:"-"`
 }
@@ -4180,10 +4180,10 @@ type LambdaFunctionTimedOutEventAttributes struct {
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long" required:"true"`
 
 	// The ID of the LambdaFunctionStarted event recorded in the history.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The type of the timeout that caused this event.
 	TimeoutType *string `locationName:"timeoutType" type:"string" enum:"LambdaFunctionTimeoutType"`
@@ -4592,7 +4592,7 @@ type MarkerRecordedEventAttributes struct {
 	// that resulted in the RecordMarker decision that requested this marker. This
 	// information can be useful for diagnosing problems by tracing back the chain
 	// of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// Details of the marker (if any).
 	Details *string `locationName:"details" type:"string"`
@@ -4680,7 +4680,7 @@ func (s PollForActivityTaskInput) GoString() string {
 // Unit of work sent to an activity worker.
 type PollForActivityTaskOutput struct {
 	// The unique ID of the task.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	// The type of this activity task.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -4690,7 +4690,7 @@ type PollForActivityTaskOutput struct {
 	Input *string `locationName:"input" type:"string"`
 
 	// The ID of the ActivityTaskStarted event recorded in the history.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The opaque string used as a handle on the task. This token is used by workers
 	// to communicate progress and response information back to the system about
@@ -4796,10 +4796,10 @@ type PollForDecisionTaskOutput struct {
 	// this workflow execution that was processed by the decider. This can be used
 	// to determine the events in the history new since the last decision task received
 	// by the decider.
-	PreviousStartedEventID *int64 `locationName:"previousStartedEventId" type:"long"`
+	PreviousStartedEventId *int64 `locationName:"previousStartedEventId" type:"long"`
 
 	// The ID of the DecisionTaskStarted event recorded in the history.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The opaque string used as a handle on the task. This token is used by workers
 	// to communicate progress and response information back to the system about
@@ -4932,7 +4932,7 @@ type RecordMarkerFailedEventAttributes struct {
 	// that resulted in the RecordMarkerFailed decision for this cancellation request.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The marker's name.
 	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
@@ -5262,7 +5262,7 @@ func (s RegisterWorkflowTypeOutput) GoString() string {
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RequestCancelActivityTaskDecisionAttributes struct {
 	// The activityId of the activity task to be canceled.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	metadataRequestCancelActivityTaskDecisionAttributes `json:"-" xml:"-"`
 }
@@ -5284,7 +5284,7 @@ func (s RequestCancelActivityTaskDecisionAttributes) GoString() string {
 // Provides details of the RequestCancelActivityTaskFailed event.
 type RequestCancelActivityTaskFailedEventAttributes struct {
 	// The activityId provided in the RequestCancelActivityTask decision that failed.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
@@ -5298,7 +5298,7 @@ type RequestCancelActivityTaskFailedEventAttributes struct {
 	// that resulted in the RequestCancelActivityTask decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataRequestCancelActivityTaskFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -5338,10 +5338,10 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	Control *string `locationName:"control" type:"string"`
 
 	// The runId of the external workflow execution to cancel.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// Required. The workflowId of the external workflow execution to cancel.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
@@ -5376,20 +5376,20 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the RequestCancelExternalWorkflowExecution decision for
 	// this cancellation request. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The ID of the RequestCancelExternalWorkflowExecutionInitiated event corresponding
 	// to the RequestCancelExternalWorkflowExecution decision to cancel this external
 	// workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The runId of the external workflow execution.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the external workflow to which the cancel request was to
 	// be delivered.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -5418,13 +5418,13 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// that resulted in the RequestCancelExternalWorkflowExecution decision for
 	// this cancellation request. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The runId of the external workflow execution to be canceled.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the external workflow execution to be canceled.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
@@ -5448,10 +5448,10 @@ type RequestCancelWorkflowExecutionInput struct {
 	Domain *string `locationName:"domain" type:"string" required:"true"`
 
 	// The runId of the workflow execution to cancel.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the workflow execution to cancel.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataRequestCancelWorkflowExecutionInput `json:"-" xml:"-"`
 }
@@ -5705,7 +5705,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	// Required. The type of the activity task to schedule.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -5809,7 +5809,7 @@ func (s ScheduleActivityTaskDecisionAttributes) GoString() string {
 // Provides details of the ScheduleActivityTaskFailed event.
 type ScheduleActivityTaskFailedEventAttributes struct {
 	// The activityId provided in the ScheduleActivityTask decision that failed.
-	ActivityID *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
 
 	// The activity type provided in the ScheduleActivityTask decision that failed.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -5826,7 +5826,7 @@ type ScheduleActivityTaskFailedEventAttributes struct {
 	// resulted in the scheduling of this activity task. This information can be
 	// useful for diagnosing problems by tracing back the chain of events leading
 	// up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	metadataScheduleActivityTaskFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -5870,7 +5870,7 @@ type ScheduleLambdaFunctionDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The input provided to the AWS Lambda function.
 	Input *string `locationName:"input" type:"string"`
@@ -5912,10 +5912,10 @@ type ScheduleLambdaFunctionFailedEventAttributes struct {
 	// resulted in the scheduling of this AWS Lambda function. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The unique Amazon SWF ID of the AWS Lambda task.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The name of the scheduled AWS Lambda function.
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -5962,14 +5962,14 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 	Input *string `locationName:"input" type:"string"`
 
 	// The runId of the workflow execution to be signaled.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// Required. The name of the signal.The target workflow execution will use the
 	// signal name and input to process the signal.
 	SignalName *string `locationName:"signalName" type:"string" required:"true"`
 
 	// Required. The workflowId of the workflow execution to be signaled.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
@@ -6004,21 +6004,21 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the SignalExternalWorkflowExecution decision for this signal.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The ID of the SignalExternalWorkflowExecutionInitiated event corresponding
 	// to the SignalExternalWorkflowExecution decision to request this signal. This
 	// information can be useful for diagnosing problems by tracing back the chain
 	// of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The runId of the external workflow execution that the signal was being delivered
 	// to.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the external workflow execution that the signal was being
 	// delivered to.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -6047,19 +6047,19 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	// that resulted in the SignalExternalWorkflowExecution decision for this signal.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// Input provided to the signal (if any).
 	Input *string `locationName:"input" type:"string"`
 
 	// The runId of the external workflow execution to send the signal to.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The name of the signal.
 	SignalName *string `locationName:"signalName" type:"string" required:"true"`
 
 	// The workflowId of the external workflow execution.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
@@ -6087,13 +6087,13 @@ type SignalWorkflowExecutionInput struct {
 	Input *string `locationName:"input" type:"string"`
 
 	// The runId of the workflow execution to signal.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The name of the signal. This name must be meaningful to the target workflow.
 	SignalName *string `locationName:"signalName" type:"string" required:"true"`
 
 	// The workflowId of the workflow execution to signal.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataSignalWorkflowExecutionInput `json:"-" xml:"-"`
 }
@@ -6242,7 +6242,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	// Required. The type of the workflow execution to be started.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -6280,16 +6280,16 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the StartChildWorkflowExecution decision to request this
 	// child workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the cause of events.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
 	// the StartChildWorkflowExecution decision to start this child workflow execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	InitiatedEventID *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
+	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The workflowId of the child workflow execution.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	// The workflow type provided in the StartChildWorkflowExecution decision that
 	// failed.
@@ -6335,7 +6335,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	// that resulted in the StartChildWorkflowExecution decision to request this
 	// child workflow execution. This information can be useful for diagnosing problems
 	// by tracing back the cause of events.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The maximum duration for the child workflow execution. If the workflow execution
 	// is not closed within this duration, it will be timed out and force terminated.
@@ -6375,7 +6375,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
 
 	// The workflowId of the child workflow execution.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -6413,7 +6413,7 @@ type StartLambdaFunctionFailedEventAttributes struct {
 	// The ID of the LambdaFunctionScheduled event that was recorded when this AWS
 	// Lambda function was scheduled. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	ScheduledEventID *int64 `locationName:"scheduledEventId" type:"long"`
+	ScheduledEventId *int64 `locationName:"scheduledEventId" type:"long"`
 
 	metadataStartLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -6464,7 +6464,7 @@ type StartTimerDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataStartTimerDecisionAttributes `json:"-" xml:"-"`
 }
@@ -6497,10 +6497,10 @@ type StartTimerFailedEventAttributes struct {
 	// that resulted in the StartTimer decision for this activity task. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The timerId provided in the StartTimer decision that failed.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataStartTimerFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -6622,7 +6622,7 @@ type StartWorkflowExecutionInput struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	// The type of the workflow to start.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -6648,7 +6648,7 @@ func (s StartWorkflowExecutionInput) GoString() string {
 type StartWorkflowExecutionOutput struct {
 	// The runId of a workflow execution. This ID is generated by the service and
 	// can be used to uniquely identify the workflow execution within a domain.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	metadataStartWorkflowExecutionOutput `json:"-" xml:"-"`
 }
@@ -6741,10 +6741,10 @@ type TerminateWorkflowExecutionInput struct {
 	Reason *string `locationName:"reason" type:"string"`
 
 	// The runId of the workflow execution to terminate.
-	RunID *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the workflow execution to terminate.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataTerminateWorkflowExecutionInput `json:"-" xml:"-"`
 }
@@ -6787,15 +6787,15 @@ type TimerCanceledEventAttributes struct {
 	// that resulted in the CancelTimer decision to cancel this timer. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The ID of the TimerStarted event that was recorded when this timer was started.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The unique ID of the timer that was canceled.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerCanceledEventAttributes `json:"-" xml:"-"`
 }
@@ -6819,10 +6819,10 @@ type TimerFiredEventAttributes struct {
 	// The ID of the TimerStarted event that was recorded when this timer was started.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	StartedEventID *int64 `locationName:"startedEventId" type:"long" required:"true"`
+	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The unique ID of the timer that fired.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerFiredEventAttributes `json:"-" xml:"-"`
 }
@@ -6851,7 +6851,7 @@ type TimerStartedEventAttributes struct {
 	// that resulted in the StartTimer decision for this activity task. This information
 	// can be useful for diagnosing problems by tracing back the chain of events
 	// leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The duration of time after which the timer will fire.
 	//
@@ -6860,7 +6860,7 @@ type TimerStartedEventAttributes struct {
 	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
 
 	// The unique ID of the timer that was started.
-	TimerID *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" type:"string" required:"true"`
 
 	metadataTimerStartedEventAttributes `json:"-" xml:"-"`
 }
@@ -6882,10 +6882,10 @@ func (s TimerStartedEventAttributes) GoString() string {
 // Represents a workflow execution.
 type WorkflowExecution struct {
 	// A system-generated unique identifier for the workflow execution.
-	RunID *string `locationName:"runId" type:"string" required:"true"`
+	RunId *string `locationName:"runId" type:"string" required:"true"`
 
 	// The user defined identifier associated with the workflow execution.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataWorkflowExecution `json:"-" xml:"-"`
 }
@@ -6916,7 +6916,7 @@ type WorkflowExecutionCancelRequestedEventAttributes struct {
 	// execution.The source event with this ID can be found in the history of the
 	// source workflow execution. This information can be useful for diagnosing
 	// problems by tracing back the chain of events leading up to this event.
-	ExternalInitiatedEventID *int64 `locationName:"externalInitiatedEventId" type:"long"`
+	ExternalInitiatedEventId *int64 `locationName:"externalInitiatedEventId" type:"long"`
 
 	// The external workflow execution for which the cancellation was requested.
 	ExternalWorkflowExecution *WorkflowExecution `locationName:"externalWorkflowExecution" type:"structure"`
@@ -6944,7 +6944,7 @@ type WorkflowExecutionCanceledEventAttributes struct {
 	// that resulted in the CancelWorkflowExecution decision for this cancellation
 	// request. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// Details for the cancellation (if any).
 	Details *string `locationName:"details" type:"string"`
@@ -6972,7 +6972,7 @@ type WorkflowExecutionCompletedEventAttributes struct {
 	// that resulted in the CompleteWorkflowExecution decision to complete this
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The result produced by the workflow execution upon successful completion.
 	Result *string `locationName:"result" type:"string"`
@@ -7075,7 +7075,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	// that resulted in the ContinueAsNewWorkflowExecution decision that started
 	// this execution. This information can be useful for diagnosing problems by
 	// tracing back the chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The total duration allowed for the new workflow execution.
 	//
@@ -7091,7 +7091,7 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 	LambdaRole *string `locationName:"lambdaRole" type:"string"`
 
 	// The runId of the new workflow execution.
-	NewExecutionRunID *string `locationName:"newExecutionRunId" type:"string" required:"true"`
+	NewExecutionRunId *string `locationName:"newExecutionRunId" type:"string" required:"true"`
 
 	// The list of tags associated with the new workflow execution.
 	TagList []*string `locationName:"tagList" type:"list"`
@@ -7160,7 +7160,7 @@ type WorkflowExecutionFailedEventAttributes struct {
 	// that resulted in the FailWorkflowExecution decision to fail this execution.
 	// This information can be useful for diagnosing problems by tracing back the
 	// chain of events leading up to this event.
-	DecisionTaskCompletedEventID *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
+	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The details of the failure (if any).
 	Details *string `locationName:"details" type:"string"`
@@ -7188,7 +7188,7 @@ func (s WorkflowExecutionFailedEventAttributes) GoString() string {
 // Used to filter the workflow executions in visibility APIs by their workflowId.
 type WorkflowExecutionFilter struct {
 	// The workflowId to pass of match the criteria of this filter.
-	WorkflowID *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
 
 	metadataWorkflowExecutionFilter `json:"-" xml:"-"`
 }
@@ -7341,7 +7341,7 @@ type WorkflowExecutionSignaledEventAttributes struct {
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event. This field is set only
 	// if the signal was initiated by another workflow execution.
-	ExternalInitiatedEventID *int64 `locationName:"externalInitiatedEventId" type:"long"`
+	ExternalInitiatedEventId *int64 `locationName:"externalInitiatedEventId" type:"long"`
 
 	// The workflow execution that sent the signal. This is set only of the signal
 	// was sent by another workflow execution.
@@ -7390,7 +7390,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	// If this workflow execution was started due to a ContinueAsNewWorkflowExecution
 	// decision, then it contains the runId of the previous workflow execution that
 	// was closed and continued as this execution.
-	ContinuedExecutionRunID *string `locationName:"continuedExecutionRunId" type:"string"`
+	ContinuedExecutionRunId *string `locationName:"continuedExecutionRunId" type:"string"`
 
 	// The maximum duration for this workflow execution.
 	//
@@ -7410,7 +7410,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 	// The source event with this ID can be found in the history of the source workflow
 	// execution. This information can be useful for diagnosing problems by tracing
 	// back the chain of events leading up to this event.
-	ParentInitiatedEventID *int64 `locationName:"parentInitiatedEventId" type:"long"`
+	ParentInitiatedEventId *int64 `locationName:"parentInitiatedEventId" type:"long"`
 
 	// The source workflow execution that started this workflow execution. The member
 	// is not set if the workflow execution was not started by a workflow.

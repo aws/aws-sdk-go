@@ -461,8 +461,8 @@ func ExampleCloudWatchLogs_PutDestination() {
 
 	params := &cloudwatchlogs.PutDestinationInput{
 		DestinationName: aws.String("DestinationName"), // Required
-		RoleARN:         aws.String("RoleArn"),         // Required
-		TargetARN:       aws.String("TargetArn"),       // Required
+		RoleArn:         aws.String("RoleArn"),         // Required
+		TargetArn:       aws.String("TargetArn"),       // Required
 	}
 	resp, err := svc.PutDestination(params)
 
@@ -618,11 +618,11 @@ func ExampleCloudWatchLogs_PutSubscriptionFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.PutSubscriptionFilterInput{
-		DestinationARN: aws.String("DestinationArn"), // Required
+		DestinationArn: aws.String("DestinationArn"), // Required
 		FilterName:     aws.String("FilterName"),     // Required
 		FilterPattern:  aws.String("FilterPattern"),  // Required
 		LogGroupName:   aws.String("LogGroupName"),   // Required
-		RoleARN:        aws.String("RoleArn"),
+		RoleArn:        aws.String("RoleArn"),
 	}
 	resp, err := svc.PutSubscriptionFilter(params)
 

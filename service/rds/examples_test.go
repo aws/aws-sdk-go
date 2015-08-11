@@ -113,9 +113,9 @@ func ExampleRDS_AuthorizeDBSecurityGroupIngress() {
 	params := &rds.AuthorizeDBSecurityGroupIngressInput{
 		DBSecurityGroupName:     aws.String("String"), // Required
 		CIDRIP:                  aws.String("String"),
-		EC2SecurityGroupID:      aws.String("String"),
+		EC2SecurityGroupId:      aws.String("String"),
 		EC2SecurityGroupName:    aws.String("String"),
-		EC2SecurityGroupOwnerID: aws.String("String"),
+		EC2SecurityGroupOwnerId: aws.String("String"),
 	}
 	resp, err := svc.AuthorizeDBSecurityGroupIngress(params)
 
@@ -309,7 +309,7 @@ func ExampleRDS_CreateDBCluster() {
 			},
 			// More values...
 		},
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -427,8 +427,8 @@ func ExampleRDS_CreateDBInstance() {
 		},
 		DBSubnetGroupName:  aws.String("String"),
 		EngineVersion:      aws.String("String"),
-		IOPS:               aws.Int64(1),
-		KMSKeyID:           aws.String("String"),
+		Iops:               aws.Int64(1),
+		KmsKeyId:           aws.String("String"),
 		LicenseModel:       aws.String("String"),
 		MasterUserPassword: aws.String("String"),
 		MasterUsername:     aws.String("String"),
@@ -440,8 +440,6 @@ func ExampleRDS_CreateDBInstance() {
 		PubliclyAccessible:         aws.Bool(true),
 		StorageEncrypted:           aws.Bool(true),
 		StorageType:                aws.String("String"),
-		TDECredentialARN:           aws.String("String"),
-		TDECredentialPassword:      aws.String("String"),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -449,7 +447,9 @@ func ExampleRDS_CreateDBInstance() {
 			},
 			// More values...
 		},
-		VPCSecurityGroupIDs: []*string{
+		TdeCredentialArn:      aws.String("String"),
+		TdeCredentialPassword: aws.String("String"),
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -485,7 +485,7 @@ func ExampleRDS_CreateDBInstanceReadReplica() {
 		AvailabilityZone:           aws.String("String"),
 		DBInstanceClass:            aws.String("String"),
 		DBSubnetGroupName:          aws.String("String"),
-		IOPS:                       aws.Int64(1),
+		Iops:                       aws.Int64(1),
 		OptionGroupName:            aws.String("String"),
 		Port:                       aws.Int64(1),
 		PubliclyAccessible:         aws.Bool(true),
@@ -631,7 +631,7 @@ func ExampleRDS_CreateDBSubnetGroup() {
 	params := &rds.CreateDBSubnetGroupInput{
 		DBSubnetGroupDescription: aws.String("String"), // Required
 		DBSubnetGroupName:        aws.String("String"), // Required
-		SubnetIDs: []*string{ // Required
+		SubnetIds: []*string{ // Required
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -668,14 +668,14 @@ func ExampleRDS_CreateEventSubscription() {
 	svc := rds.New(nil)
 
 	params := &rds.CreateEventSubscriptionInput{
-		SNSTopicARN:      aws.String("String"), // Required
+		SnsTopicArn:      aws.String("String"), // Required
 		SubscriptionName: aws.String("String"), // Required
 		Enabled:          aws.Bool(true),
 		EventCategories: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
-		SourceIDs: []*string{
+		SourceIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -1867,7 +1867,7 @@ func ExampleRDS_DescribeOrderableDBInstanceOptions() {
 		LicenseModel: aws.String("String"),
 		Marker:       aws.String("String"),
 		MaxRecords:   aws.Int64(1),
-		VPC:          aws.Bool(true),
+		Vpc:          aws.Bool(true),
 	}
 	resp, err := svc.DescribeOrderableDBInstanceOptions(params)
 
@@ -1950,8 +1950,8 @@ func ExampleRDS_DescribeReservedDBInstances() {
 		MultiAZ:                       aws.Bool(true),
 		OfferingType:                  aws.String("String"),
 		ProductDescription:            aws.String("String"),
-		ReservedDBInstanceID:          aws.String("String"),
-		ReservedDBInstancesOfferingID: aws.String("String"),
+		ReservedDBInstanceId:          aws.String("String"),
+		ReservedDBInstancesOfferingId: aws.String("String"),
 	}
 	resp, err := svc.DescribeReservedDBInstances(params)
 
@@ -1995,7 +1995,7 @@ func ExampleRDS_DescribeReservedDBInstancesOfferings() {
 		MultiAZ:                       aws.Bool(true),
 		OfferingType:                  aws.String("String"),
 		ProductDescription:            aws.String("String"),
-		ReservedDBInstancesOfferingID: aws.String("String"),
+		ReservedDBInstancesOfferingId: aws.String("String"),
 	}
 	resp, err := svc.DescribeReservedDBInstancesOfferings(params)
 
@@ -2126,7 +2126,7 @@ func ExampleRDS_ModifyDBCluster() {
 		Port:                        aws.Int64(1),
 		PreferredBackupWindow:      aws.String("String"),
 		PreferredMaintenanceWindow: aws.String("String"),
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -2212,7 +2212,7 @@ func ExampleRDS_ModifyDBInstance() {
 			// More values...
 		},
 		EngineVersion:              aws.String("String"),
-		IOPS:                       aws.Int64(1),
+		Iops:                       aws.Int64(1),
 		MasterUserPassword:         aws.String("String"),
 		MultiAZ:                    aws.Bool(true),
 		NewDBInstanceIdentifier:    aws.String("String"),
@@ -2220,9 +2220,9 @@ func ExampleRDS_ModifyDBInstance() {
 		PreferredBackupWindow:      aws.String("String"),
 		PreferredMaintenanceWindow: aws.String("String"),
 		StorageType:                aws.String("String"),
-		TDECredentialARN:           aws.String("String"),
-		TDECredentialPassword:      aws.String("String"),
-		VPCSecurityGroupIDs: []*string{
+		TdeCredentialArn:           aws.String("String"),
+		TdeCredentialPassword:      aws.String("String"),
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -2295,7 +2295,7 @@ func ExampleRDS_ModifyDBSubnetGroup() {
 
 	params := &rds.ModifyDBSubnetGroupInput{
 		DBSubnetGroupName: aws.String("String"), // Required
-		SubnetIDs: []*string{ // Required
+		SubnetIds: []*string{ // Required
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -2332,7 +2332,7 @@ func ExampleRDS_ModifyEventSubscription() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		SNSTopicARN: aws.String("String"),
+		SnsTopicArn: aws.String("String"),
 		SourceType:  aws.String("String"),
 	}
 	resp, err := svc.ModifyEventSubscription(params)
@@ -2384,7 +2384,7 @@ func ExampleRDS_ModifyOptionGroup() {
 					// More values...
 				},
 				Port: aws.Int64(1),
-				VPCSecurityGroupMemberships: []*string{
+				VpcSecurityGroupMemberships: []*string{
 					aws.String("String"), // Required
 					// More values...
 				},
@@ -2450,9 +2450,9 @@ func ExampleRDS_PurchaseReservedDBInstancesOffering() {
 	svc := rds.New(nil)
 
 	params := &rds.PurchaseReservedDBInstancesOfferingInput{
-		ReservedDBInstancesOfferingID: aws.String("String"), // Required
+		ReservedDBInstancesOfferingId: aws.String("String"), // Required
 		DBInstanceCount:               aws.Int64(1),
-		ReservedDBInstanceID:          aws.String("String"),
+		ReservedDBInstanceId:          aws.String("String"),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -2678,7 +2678,7 @@ func ExampleRDS_RestoreDBClusterFromSnapshot() {
 			},
 			// More values...
 		},
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -2722,7 +2722,7 @@ func ExampleRDS_RestoreDBClusterToPointInTime() {
 			// More values...
 		},
 		UseLatestRestorableTime: aws.Bool(true),
-		VPCSecurityGroupIDs: []*string{
+		VpcSecurityGroupIds: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -2760,15 +2760,13 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot() {
 		DBName:                  aws.String("String"),
 		DBSubnetGroupName:       aws.String("String"),
 		Engine:                  aws.String("String"),
-		IOPS:                    aws.Int64(1),
+		Iops:                    aws.Int64(1),
 		LicenseModel:            aws.String("String"),
 		MultiAZ:                 aws.Bool(true),
 		OptionGroupName:         aws.String("String"),
 		Port:                    aws.Int64(1),
 		PubliclyAccessible:      aws.Bool(true),
 		StorageType:             aws.String("String"),
-		TDECredentialARN:        aws.String("String"),
-		TDECredentialPassword:   aws.String("String"),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -2776,6 +2774,8 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot() {
 			},
 			// More values...
 		},
+		TdeCredentialArn:      aws.String("String"),
+		TdeCredentialPassword: aws.String("String"),
 	}
 	resp, err := svc.RestoreDBInstanceFromDBSnapshot(params)
 
@@ -2810,7 +2810,7 @@ func ExampleRDS_RestoreDBInstanceToPointInTime() {
 		DBName:                     aws.String("String"),
 		DBSubnetGroupName:          aws.String("String"),
 		Engine:                     aws.String("String"),
-		IOPS:                       aws.Int64(1),
+		Iops:                       aws.Int64(1),
 		LicenseModel:               aws.String("String"),
 		MultiAZ:                    aws.Bool(true),
 		OptionGroupName:            aws.String("String"),
@@ -2818,8 +2818,6 @@ func ExampleRDS_RestoreDBInstanceToPointInTime() {
 		PubliclyAccessible:         aws.Bool(true),
 		RestoreTime:                aws.Time(time.Now()),
 		StorageType:                aws.String("String"),
-		TDECredentialARN:           aws.String("String"),
-		TDECredentialPassword:      aws.String("String"),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -2827,6 +2825,8 @@ func ExampleRDS_RestoreDBInstanceToPointInTime() {
 			},
 			// More values...
 		},
+		TdeCredentialArn:        aws.String("String"),
+		TdeCredentialPassword:   aws.String("String"),
 		UseLatestRestorableTime: aws.Bool(true),
 	}
 	resp, err := svc.RestoreDBInstanceToPointInTime(params)
@@ -2856,9 +2856,9 @@ func ExampleRDS_RevokeDBSecurityGroupIngress() {
 	params := &rds.RevokeDBSecurityGroupIngressInput{
 		DBSecurityGroupName:     aws.String("String"), // Required
 		CIDRIP:                  aws.String("String"),
-		EC2SecurityGroupID:      aws.String("String"),
+		EC2SecurityGroupId:      aws.String("String"),
 		EC2SecurityGroupName:    aws.String("String"),
-		EC2SecurityGroupOwnerID: aws.String("String"),
+		EC2SecurityGroupOwnerId: aws.String("String"),
 	}
 	resp, err := svc.RevokeDBSecurityGroupIngress(params)
 

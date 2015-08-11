@@ -98,16 +98,16 @@ func ExampleSES_DeleteVerifiedEmailAddress() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleSES_GetIdentityDKIMAttributes() {
+func ExampleSES_GetIdentityDkimAttributes() {
 	svc := ses.New(nil)
 
-	params := &ses.GetIdentityDKIMAttributesInput{
+	params := &ses.GetIdentityDkimAttributesInput{
 		Identities: []*string{ // Required
 			aws.String("Identity"), // Required
 			// More values...
 		},
 	}
-	resp, err := svc.GetIdentityDKIMAttributes(params)
+	resp, err := svc.GetIdentityDkimAttributes(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -384,11 +384,11 @@ func ExampleSES_SendEmail() {
 
 	params := &ses.SendEmailInput{
 		Destination: &ses.Destination{ // Required
-			BCCAddresses: []*string{
+			BccAddresses: []*string{
 				aws.String("Address"), // Required
 				// More values...
 			},
-			CCAddresses: []*string{
+			CcAddresses: []*string{
 				aws.String("Address"), // Required
 				// More values...
 			},
@@ -399,7 +399,7 @@ func ExampleSES_SendEmail() {
 		},
 		Message: &ses.Message{ // Required
 			Body: &ses.Body{ // Required
-				HTML: &ses.Content{
+				Html: &ses.Content{
 					Data:    aws.String("MessageData"), // Required
 					Charset: aws.String("Charset"),
 				},
@@ -419,8 +419,8 @@ func ExampleSES_SendEmail() {
 			// More values...
 		},
 		ReturnPath:    aws.String("Address"),
-		ReturnPathARN: aws.String("AmazonResourceName"),
-		SourceARN:     aws.String("AmazonResourceName"),
+		ReturnPathArn: aws.String("AmazonResourceName"),
+		SourceArn:     aws.String("AmazonResourceName"),
 	}
 	resp, err := svc.SendEmail(params)
 
@@ -454,10 +454,10 @@ func ExampleSES_SendRawEmail() {
 			aws.String("Address"), // Required
 			// More values...
 		},
-		FromARN:       aws.String("AmazonResourceName"),
-		ReturnPathARN: aws.String("AmazonResourceName"),
+		FromArn:       aws.String("AmazonResourceName"),
+		ReturnPathArn: aws.String("AmazonResourceName"),
 		Source:        aws.String("Address"),
-		SourceARN:     aws.String("AmazonResourceName"),
+		SourceArn:     aws.String("AmazonResourceName"),
 	}
 	resp, err := svc.SendRawEmail(params)
 
@@ -480,14 +480,14 @@ func ExampleSES_SendRawEmail() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleSES_SetIdentityDKIMEnabled() {
+func ExampleSES_SetIdentityDkimEnabled() {
 	svc := ses.New(nil)
 
-	params := &ses.SetIdentityDKIMEnabledInput{
-		DKIMEnabled: aws.Bool(true),         // Required
+	params := &ses.SetIdentityDkimEnabledInput{
+		DkimEnabled: aws.Bool(true),         // Required
 		Identity:    aws.String("Identity"), // Required
 	}
-	resp, err := svc.SetIdentityDKIMEnabled(params)
+	resp, err := svc.SetIdentityDkimEnabled(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
@@ -542,7 +542,7 @@ func ExampleSES_SetIdentityNotificationTopic() {
 	params := &ses.SetIdentityNotificationTopicInput{
 		Identity:         aws.String("Identity"),         // Required
 		NotificationType: aws.String("NotificationType"), // Required
-		SNSTopic:         aws.String("NotificationTopic"),
+		SnsTopic:         aws.String("NotificationTopic"),
 	}
 	resp, err := svc.SetIdentityNotificationTopic(params)
 
@@ -565,13 +565,13 @@ func ExampleSES_SetIdentityNotificationTopic() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
-func ExampleSES_VerifyDomainDKIM() {
+func ExampleSES_VerifyDomainDkim() {
 	svc := ses.New(nil)
 
-	params := &ses.VerifyDomainDKIMInput{
+	params := &ses.VerifyDomainDkimInput{
 		Domain: aws.String("Domain"), // Required
 	}
-	resp, err := svc.VerifyDomainDKIM(params)
+	resp, err := svc.VerifyDomainDkim(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {
