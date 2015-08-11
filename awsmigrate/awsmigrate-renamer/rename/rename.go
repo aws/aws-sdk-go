@@ -91,19 +91,19 @@ func (r *renamer) parseUses(pkg *loader.PackageInfo) {
 				switch t := v.(type) {
 				case *types.Func:
 					if newName, ok := renames.operations[t.Name()]; ok && newName != name {
-						r.print("%s Renaming operation %s to %s\n", r.dryInfo(), name, newName)
+						r.print("%s Rename [OPERATION]: %q -> %q\n", r.dryInfo(), name, newName)
 						r.files[r.Fset.File(k.Pos())] = true
 						k.Name = newName
 					}
 				case *types.TypeName:
 					if newName, ok := renames.shapes[name]; ok && newName != name {
-						r.print("%s Renaming shape %s to %s\n", r.dryInfo(), t.Name(), newName)
+						r.print("%s Rename [SHAPE]: %q -> %q\n", r.dryInfo(), t.Name(), newName)
 						r.files[r.Fset.File(k.Pos())] = true
 						k.Name = newName
 					}
 				case *types.Var:
 					if newName, ok := renames.fields[name]; ok && newName != name {
-						r.print("%s Renaming field %s to %s\n", r.dryInfo(), t.Name(), newName)
+						r.print("%s Rename [FIELD]: %q -> %q\n", r.dryInfo(), t.Name(), newName)
 						r.files[r.Fset.File(k.Pos())] = true
 						k.Name = newName
 					}
