@@ -16,9 +16,11 @@
     "DescribeApplications": "<p>Returns the descriptions of existing applications.</p>",
     "DescribeConfigurationOptions": "<p> Describes the configuration options that are used in a particular configuration template or environment, or that a specified solution stack defines. The description includes the values the options, their default values, and an indication of the required action on a running environment if an option value is changed. </p>",
     "DescribeConfigurationSettings": "<p> Returns a description of the settings for the specified configuration set, that is, either a configuration template or the configuration set associated with a running environment. </p> <p> When describing the settings for the configuration set associated with a running environment, it is possible to receive two sets of setting descriptions. One is the deployed configuration set, and the other is a draft configuration of an environment that is either in the process of deployment or that failed to deploy. </p> <p>Related Topics</p> <ul> <li> <a>DeleteEnvironmentConfiguration</a> </li> </ul>",
+    "DescribeEnvironmentHealth": "<p>Returns information about the overall health of the specified environment. The <b>DescribeEnvironmentHealth</b> operation is only available with AWS Elastic Beanstalk Enhanced Health.</p>",
     "DescribeEnvironmentResources": "<p>Returns AWS resources for this environment.</p>",
     "DescribeEnvironments": "<p>Returns descriptions for existing environments.</p>",
     "DescribeEvents": "<p>Returns list of event descriptions matching criteria up to the last 6 weeks.</p> <note> This action returns the most recent 1,000 events from the specified <code>NextToken</code>. </note>",
+    "DescribeInstancesHealth": "<p>Returns more detailed information about the health of the specified instances (for example, CPU utilization, load average, and causes). The <b>DescribeInstancesHealth</b> operation is only available with AWS Elastic Beanstalk Enhanced Health.</p>",
     "ListAvailableSolutionStacks": "<p> Returns a list of the available solution stack names. </p>",
     "RebuildEnvironment": "<p> Deletes and recreates all of the AWS resources (for example: the Auto Scaling group, load balancer, etc.) for a specified environment and forces a restart. </p>",
     "RequestEnvironmentInfo": "<p> Initiates a request to compile the specified type of information of the deployed environment. </p> <p> Setting the <code>InfoType</code> to <code>tail</code> compiles the last lines from the application server log files of every Amazon EC2 instance in your environment. </p> <p> Setting the <code>InfoType</code> to <code>bundle</code> compresses the application server log files for every Amazon EC2 instance into a <code>.zip</code> file. Legacy and .NET containers do not support bundle logs. </p> <p> Use <a>RetrieveEnvironmentInfo</a> to obtain the set of logs. </p> <p>Related Topics</p> <ul> <li> <a>RetrieveEnvironmentInfo</a> </li> </ul>",
@@ -66,6 +68,13 @@
     "ApplicationDescriptionsMessage": {
       "base": "<p>Result message containing a list of application descriptions.</p>",
       "refs": {
+      }
+    },
+    "ApplicationMetrics": {
+      "base": "<p>Represents the application metrics for a specified environment.</p>",
+      "refs": {
+        "DescribeEnvironmentHealthResult$ApplicationMetrics": null,
+        "SingleInstanceHealth$ApplicationMetrics": null
       }
     },
     "ApplicationName": {
@@ -154,6 +163,25 @@
       "base": null,
       "refs": {
         "ListAvailableSolutionStacksResultMessage$SolutionStacks": "<p> A list of available solution stacks. </p>"
+      }
+    },
+    "CPUUtilization": {
+      "base": "<p>Represents CPU utilization information from the specified instance that belongs to the AWS Elastic Beanstalk environment. Use the <code>instanceId</code> property to specify the application instance for which you'd like to return data.</p>",
+      "refs": {
+        "SystemStatus$CPUUtilization": null
+      }
+    },
+    "Cause": {
+      "base": null,
+      "refs": {
+        "Causes$member": null
+      }
+    },
+    "Causes": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentHealthResult$Causes": "<p>Returns potential causes for the reported status.</p>",
+        "SingleInstanceHealth$Causes": "<p>Represents the causes, which provide more information about the current health status.</p>"
       }
     },
     "CheckDNSAvailabilityMessage": {
@@ -249,7 +277,7 @@
     "ConfigurationOptionValueType": {
       "base": null,
       "refs": {
-        "ConfigurationOptionDescription$ValueType": "<p> An indication of which type of values this option has and whether it is allowable to select one or more than one of the possible values: </p> <enumValues> <value name=\"Scalar\"> <p> <code>Scalar</code> : Values for this option are a single selection from the possible values, or a unformatted string or numeric value governed by the MIN/MAX/Regex constraints: </p> </value> <value name=\"List\"> <p> <code>List</code> : Values for this option are multiple selections of the possible values. </p> </value> <value name=\"Boolean\"> <p> <code>Boolean</code> : Values for this option are either <code>true</code> or <code>false</code> . </p> </value> </enumValues> <p> <ul> <li> <code>Scalar</code> : Values for this option are a single selection from the possible values, or an unformatted string, or numeric value governed by the <code>MIN/MAX/Regex</code> constraints. </li> <li> <code>List</code> : Values for this option are multiple selections from the possible values. </li> <li> <code>Boolean</code> : Values for this option are either <code>true</code> or <code>false</code> . </li> </ul> </p>"
+        "ConfigurationOptionDescription$ValueType": "<p> An indication of which type of values this option has and whether it is allowable to select one or more than one of the possible values: </p> <enumValues> <value name=\"Scalar\"> <p> <code>Scalar</code> : Values for this option are a single selection from the possible values, or a unformatted string or numeric value governed by the MIN/MAX/Regex constraints: </p> </value> <value name=\"List\"> <p> <code>List</code> : Values for this option are multiple selections of the possible values. </p> </value> <value name=\"Boolean\"> <p> <code>Boolean</code> : Values for this option are either <code>true</code> or <code>false</code> . </p> </value> <value name=\"Json\"> <p> <code>Json</code> : Values for this option are a JSON representation of a <code>ConfigDocument</code>.</p> </value> </enumValues> <p> <ul> <li> <code>Scalar</code> : Values for this option are a single selection from the possible values, or an unformatted string, or numeric value governed by the <code>MIN/MAX/Regex</code> constraints. </li> <li> <code>List</code> : Values for this option are multiple selections from the possible values. </li> <li> <code>Boolean</code> : Values for this option are either <code>true</code> or <code>false</code> . </li> <li> <code>Json</code> : Values for this option are a JSON representation of a <code>ConfigDocument</code>. </li> </ul> </p>"
       }
     },
     "ConfigurationOptionsDescription": {
@@ -398,6 +426,16 @@
       "refs": {
       }
     },
+    "DescribeEnvironmentHealthRequest": {
+      "base": "<p>See the example below to learn how to create a request body.</p>",
+      "refs": {
+      }
+    },
+    "DescribeEnvironmentHealthResult": {
+      "base": "<p>See the example below for a sample response.</p>",
+      "refs": {
+      }
+    },
     "DescribeEnvironmentResourcesMessage": {
       "base": "<p>This documentation target is not reported in the API reference.</p>",
       "refs": {
@@ -410,6 +448,16 @@
     },
     "DescribeEventsMessage": {
       "base": "<p>This documentation target is not reported in the API reference.</p>",
+      "refs": {
+      }
+    },
+    "DescribeInstancesHealthRequest": {
+      "base": "<p>See the example below to learn how to create a request body.</p>",
+      "refs": {
+      }
+    },
+    "DescribeInstancesHealthResult": {
+      "base": "<p>See the example below for a sample response.</p>",
       "refs": {
       }
     },
@@ -434,6 +482,11 @@
       "base": null,
       "refs": {
         "EnvironmentInfoDescription$Ec2InstanceId": "<p>The Amazon EC2 Instance ID for this information.</p>"
+      }
+    },
+    "ElasticBeanstalkServiceException": {
+      "base": null,
+      "refs": {
       }
     },
     "EndpointURL": {
@@ -462,7 +515,26 @@
     "EnvironmentHealth": {
       "base": null,
       "refs": {
+        "DescribeEnvironmentHealthResult$Status": "<p>Returns the health status value of the environment. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
         "EnvironmentDescription$Health": "<p> Describes the health status of the environment. AWS Elastic Beanstalk indicates the failure levels for a running environment: </p> <enumValues> <value name=\"Red\"> <p> <code>Red</code> : Indicates the environment is not working. </p> </value> <value name=\"Yellow\"> <p> <code>Yellow</code>: Indicates that something is wrong, the application might not be available, but the instances appear running. </p> </value> <value name=\"Green\"> <p> <code>Green</code>: Indicates the environment is healthy and fully functional. </p> </value> </enumValues> <ul> <li> <code>Red</code>: Indicates the environment is not responsive. Occurs when three or more consecutive failures occur for an environment. </li> <li> <code>Yellow</code>: Indicates that something is wrong. Occurs when two consecutive failures occur for an environment. </li> <li> <code>Green</code>: Indicates the environment is healthy and fully functional. </li> <li> <code>Grey</code>: Default health for a new environment. The environment is not fully launched and health checks have not started or health checks are suspended during an <code>UpdateEnvironment</code> or <code>RestartEnvironement</code> request. </li> </ul> <p> Default: <code>Grey</code> </p>"
+      }
+    },
+    "EnvironmentHealthAttribute": {
+      "base": null,
+      "refs": {
+        "EnvironmentHealthAttributes$member": null
+      }
+    },
+    "EnvironmentHealthAttributes": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentHealthRequest$AttributeNames": "<p>Specifies the response elements you wish to receive. If no attribute names are specified, AWS Elastic Beanstalk returns all response elements.</p>"
+      }
+    },
+    "EnvironmentHealthStatus": {
+      "base": null,
+      "refs": {
+        "EnvironmentDescription$HealthStatus": "<p>Returns the health status of the application running in your environment. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>"
       }
     },
     "EnvironmentId": {
@@ -470,8 +542,10 @@
       "refs": {
         "AbortEnvironmentUpdateMessage$EnvironmentId": "<p>This specifies the ID of the environment with the in-progress update that you want to cancel.</p>",
         "CreateConfigurationTemplateMessage$EnvironmentId": "<p> The ID of the environment used with this configuration template. </p>",
+        "DescribeEnvironmentHealthRequest$EnvironmentId": "<p>Specifies the AWS Elastic Beanstalk environment ID.</p>",
         "DescribeEnvironmentResourcesMessage$EnvironmentId": "<p> The ID of the environment to retrieve AWS resource usage data. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEventsMessage$EnvironmentId": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment. </p>",
+        "DescribeInstancesHealthRequest$EnvironmentId": "<p>Specifies the AWS Elastic Beanstalk environment ID.</p>",
         "EnvironmentDescription$EnvironmentId": "<p> The ID of this environment. </p>",
         "EnvironmentIdList$member": null,
         "RebuildEnvironmentMessage$EnvironmentId": "<p> The ID of the environment to rebuild. </p> <p> Condition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
@@ -519,8 +593,11 @@
         "DeleteEnvironmentConfigurationMessage$EnvironmentName": "<p> The name of the environment to delete the draft configuration from. </p>",
         "DescribeConfigurationOptionsMessage$EnvironmentName": "<p> The name of the environment whose configuration options you want to describe. </p>",
         "DescribeConfigurationSettingsMessage$EnvironmentName": "<p> The name of the environment to describe. </p> <p> Condition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
+        "DescribeEnvironmentHealthRequest$EnvironmentName": "<p>Specifies the AWS Elastic Beanstalk environment name.</p>",
+        "DescribeEnvironmentHealthResult$EnvironmentName": "<p>The AWS Elastic Beanstalk environment name.</p>",
         "DescribeEnvironmentResourcesMessage$EnvironmentName": "<p> The name of the environment to retrieve AWS resource usage data. </p> <p> Condition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns <code>MissingRequiredParameter</code> error. </p>",
         "DescribeEventsMessage$EnvironmentName": "<p> If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment. </p>",
+        "DescribeInstancesHealthRequest$EnvironmentName": "<p>Specifies the AWS Elastic Beanstalk environment name.</p>",
         "EnvironmentDescription$EnvironmentName": "<p>The name of this environment.</p>",
         "EnvironmentNamesList$member": null,
         "EnvironmentResourceDescription$EnvironmentName": "<p>The name of the environment.</p>",
@@ -609,6 +686,12 @@
         "EventDescription$Severity": "<p>The severity level of this event. </p>"
       }
     },
+    "ExceptionMessage": {
+      "base": null,
+      "refs": {
+        "ElasticBeanstalkServiceException$message": null
+      }
+    },
     "FileTypeExtension": {
       "base": null,
       "refs": {
@@ -633,10 +716,40 @@
         "InstanceList$member": null
       }
     },
+    "InstanceHealthList": {
+      "base": null,
+      "refs": {
+        "DescribeInstancesHealthResult$InstanceHealthList": "<p>Contains the response body with information about the health of the instance.</p>"
+      }
+    },
+    "InstanceHealthSummary": {
+      "base": "<p>Represents summary information about the health of an instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
+      "refs": {
+        "DescribeEnvironmentHealthResult$InstancesHealth": null
+      }
+    },
+    "InstanceId": {
+      "base": null,
+      "refs": {
+        "SingleInstanceHealth$InstanceId": "<p>The ID of the Amazon EC2 instance.</p>"
+      }
+    },
     "InstanceList": {
       "base": null,
       "refs": {
         "EnvironmentResourceDescription$Instances": "<p>The Amazon EC2 instances used by this environment.</p>"
+      }
+    },
+    "InstancesHealthAttribute": {
+      "base": null,
+      "refs": {
+        "InstancesHealthAttributes$member": null
+      }
+    },
+    "InstancesHealthAttributes": {
+      "base": null,
+      "refs": {
+        "DescribeInstancesHealthRequest$AttributeNames": "<p>Specifies the response elements you wish to receive. If no attribute names are specified, AWS Elastic Beanstalk returns all response elements.</p>"
       }
     },
     "InsufficientPrivilegesException": {
@@ -648,6 +761,17 @@
       "base": null,
       "refs": {
         "Listener$Port": "<p>The port that is used by the Listener.</p>"
+      }
+    },
+    "InvalidRequestException": {
+      "base": "<p>The request is invalid, please check parameters and their values</p>",
+      "refs": {
+      }
+    },
+    "Latency": {
+      "base": "<p>Represents the average latency for the slowest X percent of requests over the last 10 seconds.</p>",
+      "refs": {
+        "ApplicationMetrics$Latency": "<p>Represents the average latency for the slowest X percent of requests over the last 10 seconds. Latencies are in seconds with one milisecond resolution.</p>"
       }
     },
     "LaunchConfiguration": {
@@ -662,6 +786,12 @@
         "EnvironmentResourceDescription$LaunchConfigurations": "<p>The Auto Scaling launch configurations in use by this environment.</p>"
       }
     },
+    "LaunchedAt": {
+      "base": null,
+      "refs": {
+        "SingleInstanceHealth$LaunchedAt": "<p>The time at which the EC2 instance was launched.</p>"
+      }
+    },
     "ListAvailableSolutionStacksResultMessage": {
       "base": "<p>A list of available AWS Elastic Beanstalk solution stacks. </p>",
       "refs": {
@@ -671,6 +801,18 @@
       "base": "<p>Describes the properties of a Listener for the LoadBalancer.</p>",
       "refs": {
         "LoadBalancerListenersDescription$member": null
+      }
+    },
+    "LoadAverage": {
+      "base": null,
+      "refs": {
+        "SystemStatus$LoadAverage": "<p>Load average in the last 1-minute and 5-minute periods. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-metrics.html#health-enhanced-metrics-os\">Operating System Metrics</a>.</p>"
+      }
+    },
+    "LoadAverageValue": {
+      "base": null,
+      "refs": {
+        "LoadAverage$member": null
       }
     },
     "LoadBalancer": {
@@ -709,8 +851,53 @@
         "EnvironmentInfoDescription$Message": "<p>The retrieved information.</p>"
       }
     },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "DescribeInstancesHealthRequest$NextToken": "<p>Specifies the next token of the request.</p>",
+        "DescribeInstancesHealthResult$NextToken": "<p>The next token.</p>"
+      }
+    },
+    "NullableDouble": {
+      "base": null,
+      "refs": {
+        "CPUUtilization$User": "<p>Percentage of time that the CPU has spent in the <code>User</code> state over the last 10 seconds.</p>",
+        "CPUUtilization$Nice": "<p>Percentage of time that the CPU has spent in the <code>Nice</code> state over the last 10 seconds.</p>",
+        "CPUUtilization$System": "<p>Percentage of time that the CPU has spent in the <code>System</code> state over the last 10 seconds.</p>",
+        "CPUUtilization$Idle": "<p>Percentage of time that the CPU has spent in the <code>Idle</code> state over the last 10 seconds.</p>",
+        "CPUUtilization$IOWait": "<p>Percentage of time that the CPU has spent in the <code>I/O Wait</code> state over the last 10 seconds.</p>",
+        "CPUUtilization$IRQ": "<p>Percentage of time that the CPU has spent in the <code>IRQ</code> state over the last 10 seconds.</p>",
+        "CPUUtilization$SoftIRQ": "<p>Percentage of time that the CPU has spent in the <code>SoftIRQ</code> state over the last 10 seconds.</p>",
+        "Latency$P999": "<p>The average latency for the slowest 0.1 percent of requests over the last 10 seconds.</p>",
+        "Latency$P99": "<p>The average latency for the slowest 1 percent of requests over the last 10 seconds.</p>",
+        "Latency$P95": "<p>The average latency for the slowest 5 percent of requests over the last 10 seconds.</p>",
+        "Latency$P90": "<p>The average latency for the slowest 10 percent of requests over the last 10 seconds.</p>",
+        "Latency$P85": "<p>The average latency for the slowest 15 percent of requests over the last 10 seconds.</p>",
+        "Latency$P75": "<p>The average latency for the slowest 25 percent of requests over the last 10 seconds.</p>",
+        "Latency$P50": "<p>The average latency for the slowest 50 percent of requests over the last 10 seconds.</p>",
+        "Latency$P10": "<p>The average latency for the slowest 90 percent of requests over the last 10 seconds.</p>"
+      }
+    },
+    "NullableInteger": {
+      "base": null,
+      "refs": {
+        "ApplicationMetrics$Duration": "<p>The amount of time that the metrics cover (usually 10 seconds). For example, you might have 5 requests (<code>request_count</code>) within the most recent time slice of 10 seconds (<code>duration</code>).</p>",
+        "InstanceHealthSummary$NoData": "<p><b>Grey.</b> AWS Elastic Beanstalk and the health agent are reporting no data on an instance.</p>",
+        "InstanceHealthSummary$Unknown": "<p><b>Grey.</b> AWS Elastic Beanstalk and the health agent are reporting an insufficient amount of data on an instance.</p>",
+        "InstanceHealthSummary$Pending": "<p><b>Grey.</b> An operation is in progress on an instance within the command timeout.</p>",
+        "InstanceHealthSummary$Ok": "<p><b>Green.</b> An instance is passing health checks and the health agent is not reporting any problems.</p>",
+        "InstanceHealthSummary$Info": "<p><b>Green.</b> An operation is in progress on an instance.</p>",
+        "InstanceHealthSummary$Warning": "<p><b>Yellow.</b> The health agent is reporting a moderate number of request failures or other issues for an instance or environment.</p>",
+        "InstanceHealthSummary$Degraded": "<p><b>Red.</b> The health agent is reporting a high number of request failures or other issues for an instance or environment.</p>",
+        "InstanceHealthSummary$Severe": "<p><b>Red.</b> The health agent is reporting a very high number of request failures or other issues for an instance or environment.</p>",
+        "StatusCodes$Status2xx": "<p>The percentage of requests over the last 10 seconds that resulted in a 2xx (200, 201, etc.) status code.</p>",
+        "StatusCodes$Status3xx": "<p>The percentage of requests over the last 10 seconds that resulted in a 3xx (300, 301, etc.) status code.</p>",
+        "StatusCodes$Status4xx": "<p>The percentage of requests over the last 10 seconds that resulted in a 4xx (400, 401, etc.) status code.</p>",
+        "StatusCodes$Status5xx": "<p>The percentage of requests over the last 10 seconds that resulted in a 5xx (500, 501, etc.) status code.</p>"
+      }
+    },
     "OperationInProgressException": {
-      "base": "<p>Unable to perform the specified operation because another operation is already in progress affecting an an element in this activity.</p>",
+      "base": "<p>Unable to perform the specified operation because another operation is already in progress affecting an element in this activity.</p>",
       "refs": {
       }
     },
@@ -779,6 +966,13 @@
       "refs": {
       }
     },
+    "RefreshedAt": {
+      "base": null,
+      "refs": {
+        "DescribeEnvironmentHealthResult$RefreshedAt": "<p>The date and time the information was last refreshed.</p>",
+        "DescribeInstancesHealthResult$RefreshedAt": "<p>The date and time the information was last refreshed.</p>"
+      }
+    },
     "RegexLabel": {
       "base": null,
       "refs": {
@@ -789,6 +983,12 @@
       "base": null,
       "refs": {
         "OptionRestrictionRegex$Pattern": "<p> The regular expression pattern that a string configuration option value with this restriction must match. </p>"
+      }
+    },
+    "RequestCount": {
+      "base": null,
+      "refs": {
+        "ApplicationMetrics$RequestCount": "<p>Average number of requests handled by the web server per second over the last 10 seconds.</p>"
       }
     },
     "RequestEnvironmentInfoMessage": {
@@ -871,6 +1071,12 @@
         "EnvironmentInfoDescription$SampleTimestamp": "<p>The time stamp when this information was retrieved.</p>"
       }
     },
+    "SingleInstanceHealth": {
+      "base": "<p>Represents health information from the specified instance that belongs to the AWS Elastic Beanstalk environment. Use the <code>InstanceId</code> property to specify the application instance for which you'd like to return data.</p>",
+      "refs": {
+        "InstanceHealthList$member": null
+      }
+    },
     "SolutionStackDescription": {
       "base": "<p> Describes the solution stack. </p>",
       "refs": {
@@ -908,9 +1114,17 @@
         "CreateConfigurationTemplateMessage$SourceConfiguration": "<p> If specified, AWS Elastic Beanstalk uses the configuration values from the specified configuration template to create a new configuration. </p> <p> Values specified in the <code>OptionSettings</code> parameter of this call overrides any values obtained from the <code>SourceConfiguration</code>. </p> <p> If no configuration template is found, returns an <code>InvalidParameterValue</code> error. </p> <p> Constraint: If both the solution stack name parameter and the source configuration parameters are specified, the solution stack of the source configuration template must match the specified solution stack name or else AWS Elastic Beanstalk returns an <code>InvalidParameterCombination</code> error. </p>"
       }
     },
+    "StatusCodes": {
+      "base": "<p>Represents the percentage of requests over the last 10 seconds that resulted in each type of status code response. For more information, see <a href=\"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html\">Status Code Definitions</a>.</p>",
+      "refs": {
+        "ApplicationMetrics$StatusCodes": "<p>Represents the percentage of requests over the last 10 seconds that resulted in each type of status code response.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
+        "DescribeEnvironmentHealthResult$HealthStatus": "<p>Contains the response body with information about the health of the environment.</p>",
+        "DescribeEnvironmentHealthResult$Color": "<p>Returns the color indicator that tells you information about the health of the environment. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>",
         "EnvironmentTier$Name": "<p>The name of this environment tier.</p>",
         "EnvironmentTier$Type": "<p>The type of this environment tier.</p>",
         "EnvironmentTier$Version": "<p>The version of this environment tier.</p>",
@@ -918,12 +1132,20 @@
         "LoadBalancerDescription$LoadBalancerName": "<p>The name of the LoadBalancer.</p>",
         "LoadBalancerDescription$Domain": "<p>The domain name of the LoadBalancer.</p>",
         "Queue$Name": "<p>The name of the queue.</p>",
-        "Queue$URL": "<p>The URL of the queue.</p>"
+        "Queue$URL": "<p>The URL of the queue.</p>",
+        "SingleInstanceHealth$HealthStatus": "<p>Returns the health status of the specified instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\"></a>.</p>",
+        "SingleInstanceHealth$Color": "<p>Represents the color indicator that gives you information about the health of the EC2 instance. For more information, see <a href=\"http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html\">Health Colors and Statuses</a>.</p>"
       }
     },
     "SwapEnvironmentCNAMEsMessage": {
       "base": "<p>Swaps the CNAMEs of two environments.</p>",
       "refs": {
+      }
+    },
+    "SystemStatus": {
+      "base": "<p>Represents CPU utilization and load average information for applications running in the specified environment.</p>",
+      "refs": {
+        "SingleInstanceHealth$System": null
       }
     },
     "Tag": {

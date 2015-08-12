@@ -505,6 +505,38 @@ func ExampleElasticBeanstalk_DescribeConfigurationSettings() {
 	fmt.Println(awsutil.Prettify(resp))
 }
 
+func ExampleElasticBeanstalk_DescribeEnvironmentHealth() {
+	svc := elasticbeanstalk.New(nil)
+
+	params := &elasticbeanstalk.DescribeEnvironmentHealthInput{
+		AttributeNames: []*string{
+			aws.String("EnvironmentHealthAttribute"), // Required
+			// More values...
+		},
+		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentName: aws.String("EnvironmentName"),
+	}
+	resp, err := svc.DescribeEnvironmentHealth(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
 func ExampleElasticBeanstalk_DescribeEnvironmentResources() {
 	svc := elasticbeanstalk.New(nil)
 
@@ -588,6 +620,39 @@ func ExampleElasticBeanstalk_DescribeEvents() {
 		VersionLabel:    aws.String("VersionLabel"),
 	}
 	resp, err := svc.DescribeEvents(params)
+
+	if err != nil {
+		if awsErr, ok := err.(awserr.Error); ok {
+			// Generic AWS error with Code, Message, and original error (if any)
+			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
+			if reqErr, ok := err.(awserr.RequestFailure); ok {
+				// A service error occurred
+				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
+			}
+		} else {
+			// This case should never be hit, the SDK should always return an
+			// error which satisfies the awserr.Error interface.
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(awsutil.Prettify(resp))
+}
+
+func ExampleElasticBeanstalk_DescribeInstancesHealth() {
+	svc := elasticbeanstalk.New(nil)
+
+	params := &elasticbeanstalk.DescribeInstancesHealthInput{
+		AttributeNames: []*string{
+			aws.String("InstancesHealthAttribute"), // Required
+			// More values...
+		},
+		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentName: aws.String("EnvironmentName"),
+		NextToken:       aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeInstancesHealth(params)
 
 	if err != nil {
 		if awsErr, ok := err.(awserr.Error); ok {

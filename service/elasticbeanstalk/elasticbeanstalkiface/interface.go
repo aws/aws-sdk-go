@@ -70,6 +70,10 @@ type ElasticBeanstalkAPI interface {
 
 	DescribeConfigurationSettings(*elasticbeanstalk.DescribeConfigurationSettingsInput) (*elasticbeanstalk.DescribeConfigurationSettingsOutput, error)
 
+	DescribeEnvironmentHealthRequest(*elasticbeanstalk.DescribeEnvironmentHealthInput) (*service.Request, *elasticbeanstalk.DescribeEnvironmentHealthOutput)
+
+	DescribeEnvironmentHealth(*elasticbeanstalk.DescribeEnvironmentHealthInput) (*elasticbeanstalk.DescribeEnvironmentHealthOutput, error)
+
 	DescribeEnvironmentResourcesRequest(*elasticbeanstalk.DescribeEnvironmentResourcesInput) (*service.Request, *elasticbeanstalk.DescribeEnvironmentResourcesOutput)
 
 	DescribeEnvironmentResources(*elasticbeanstalk.DescribeEnvironmentResourcesInput) (*elasticbeanstalk.DescribeEnvironmentResourcesOutput, error)
@@ -83,6 +87,10 @@ type ElasticBeanstalkAPI interface {
 	DescribeEvents(*elasticbeanstalk.DescribeEventsInput) (*elasticbeanstalk.DescribeEventsOutput, error)
 
 	DescribeEventsPages(*elasticbeanstalk.DescribeEventsInput, func(*elasticbeanstalk.DescribeEventsOutput, bool) bool) error
+
+	DescribeInstancesHealthRequest(*elasticbeanstalk.DescribeInstancesHealthInput) (*service.Request, *elasticbeanstalk.DescribeInstancesHealthOutput)
+
+	DescribeInstancesHealth(*elasticbeanstalk.DescribeInstancesHealthInput) (*elasticbeanstalk.DescribeInstancesHealthOutput, error)
 
 	ListAvailableSolutionStacksRequest(*elasticbeanstalk.ListAvailableSolutionStacksInput) (*service.Request, *elasticbeanstalk.ListAvailableSolutionStacksOutput)
 

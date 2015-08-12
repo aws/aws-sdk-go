@@ -465,6 +465,35 @@ func (c *ElasticBeanstalk) DescribeConfigurationSettings(input *DescribeConfigur
 	return out, err
 }
 
+const opDescribeEnvironmentHealth = "DescribeEnvironmentHealth"
+
+// DescribeEnvironmentHealthRequest generates a request for the DescribeEnvironmentHealth operation.
+func (c *ElasticBeanstalk) DescribeEnvironmentHealthRequest(input *DescribeEnvironmentHealthInput) (req *service.Request, output *DescribeEnvironmentHealthOutput) {
+	op := &service.Operation{
+		Name:       opDescribeEnvironmentHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEnvironmentHealthInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeEnvironmentHealthOutput{}
+	req.Data = output
+	return
+}
+
+// Returns information about the overall health of the specified environment.
+// The DescribeEnvironmentHealth operation is only available with AWS Elastic
+// Beanstalk Enhanced Health.
+func (c *ElasticBeanstalk) DescribeEnvironmentHealth(input *DescribeEnvironmentHealthInput) (*DescribeEnvironmentHealthOutput, error) {
+	req, out := c.DescribeEnvironmentHealthRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeEnvironmentResources = "DescribeEnvironmentResources"
 
 // DescribeEnvironmentResourcesRequest generates a request for the DescribeEnvironmentResources operation.
@@ -559,6 +588,35 @@ func (c *ElasticBeanstalk) DescribeEventsPages(input *DescribeEventsInput, fn fu
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEventsOutput), lastPage)
 	})
+}
+
+const opDescribeInstancesHealth = "DescribeInstancesHealth"
+
+// DescribeInstancesHealthRequest generates a request for the DescribeInstancesHealth operation.
+func (c *ElasticBeanstalk) DescribeInstancesHealthRequest(input *DescribeInstancesHealthInput) (req *service.Request, output *DescribeInstancesHealthOutput) {
+	op := &service.Operation{
+		Name:       opDescribeInstancesHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeInstancesHealthInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeInstancesHealthOutput{}
+	req.Data = output
+	return
+}
+
+// Returns more detailed information about the health of the specified instances
+// (for example, CPU utilization, load average, and causes). The DescribeInstancesHealth
+// operation is only available with AWS Elastic Beanstalk Enhanced Health.
+func (c *ElasticBeanstalk) DescribeInstancesHealth(input *DescribeInstancesHealthInput) (*DescribeInstancesHealthOutput, error) {
+	req, out := c.DescribeInstancesHealthRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opListAvailableSolutionStacks = "ListAvailableSolutionStacks"
@@ -1035,6 +1093,42 @@ func (s ApplicationDescriptionMessage) GoString() string {
 	return s.String()
 }
 
+// Represents the application metrics for a specified environment.
+type ApplicationMetrics struct {
+	// The amount of time that the metrics cover (usually 10 seconds). For example,
+	// you might have 5 requests (request_count) within the most recent time slice
+	// of 10 seconds (duration).
+	Duration *int64 `type:"integer"`
+
+	// Represents the average latency for the slowest X percent of requests over
+	// the last 10 seconds. Latencies are in seconds with one milisecond resolution.
+	Latency *Latency `type:"structure"`
+
+	// Average number of requests handled by the web server per second over the
+	// last 10 seconds.
+	RequestCount *int64 `type:"integer"`
+
+	// Represents the percentage of requests over the last 10 seconds that resulted
+	// in each type of status code response.
+	StatusCodes *StatusCodes `type:"structure"`
+
+	metadataApplicationMetrics `json:"-" xml:"-"`
+}
+
+type metadataApplicationMetrics struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ApplicationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationMetrics) GoString() string {
+	return s.String()
+}
+
 // Describes the properties of an application version.
 type ApplicationVersionDescription struct {
 	// The name of the application associated with this release.
@@ -1113,6 +1207,55 @@ func (s AutoScalingGroup) String() string {
 
 // GoString returns the string representation
 func (s AutoScalingGroup) GoString() string {
+	return s.String()
+}
+
+// Represents CPU utilization information from the specified instance that belongs
+// to the AWS Elastic Beanstalk environment. Use the instanceId property to
+// specify the application instance for which you'd like to return data.
+type CPUUtilization struct {
+	// Percentage of time that the CPU has spent in the I/O Wait state over the
+	// last 10 seconds.
+	IOWait *float64 `type:"double"`
+
+	// Percentage of time that the CPU has spent in the IRQ state over the last
+	// 10 seconds.
+	IRQ *float64 `type:"double"`
+
+	// Percentage of time that the CPU has spent in the Idle state over the last
+	// 10 seconds.
+	Idle *float64 `type:"double"`
+
+	// Percentage of time that the CPU has spent in the Nice state over the last
+	// 10 seconds.
+	Nice *float64 `type:"double"`
+
+	// Percentage of time that the CPU has spent in the SoftIRQ state over the last
+	// 10 seconds.
+	SoftIRQ *float64 `type:"double"`
+
+	// Percentage of time that the CPU has spent in the System state over the last
+	// 10 seconds.
+	System *float64 `type:"double"`
+
+	// Percentage of time that the CPU has spent in the User state over the last
+	// 10 seconds.
+	User *float64 `type:"double"`
+
+	metadataCPUUtilization `json:"-" xml:"-"`
+}
+
+type metadataCPUUtilization struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CPUUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CPUUtilization) GoString() string {
 	return s.String()
 }
 
@@ -1253,11 +1396,13 @@ type ConfigurationOptionDescription struct {
 	//
 	//    Boolean : Values for this option are either true or false .
 	//
+	//    Json : Values for this option are a JSON representation of a ConfigDocument.
+	//
 	//      Scalar : Values for this option are a single selection from the possible
 	// values, or an unformatted string, or numeric value governed by the MIN/MAX/Regex
 	// constraints.   List : Values for this option are multiple selections from
 	// the possible values.   Boolean : Values for this option are either true or
-	// false .
+	// false .   Json : Values for this option are a JSON representation of a ConfigDocument.
 	ValueType *string `type:"string" enum:"ConfigurationOptionValueType"`
 
 	metadataConfigurationOptionDescription `json:"-" xml:"-"`
@@ -2065,6 +2210,81 @@ func (s DescribeConfigurationSettingsOutput) GoString() string {
 	return s.String()
 }
 
+// See the example below to learn how to create a request body.
+type DescribeEnvironmentHealthInput struct {
+	// Specifies the response elements you wish to receive. If no attribute names
+	// are specified, AWS Elastic Beanstalk returns all response elements.
+	AttributeNames []*string `type:"list"`
+
+	// Specifies the AWS Elastic Beanstalk environment ID.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// Specifies the AWS Elastic Beanstalk environment name.
+	EnvironmentName *string `type:"string"`
+
+	metadataDescribeEnvironmentHealthInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeEnvironmentHealthInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEnvironmentHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEnvironmentHealthInput) GoString() string {
+	return s.String()
+}
+
+// See the example below for a sample response.
+type DescribeEnvironmentHealthOutput struct {
+	// Represents the application metrics for a specified environment.
+	ApplicationMetrics *ApplicationMetrics `type:"structure"`
+
+	// Returns potential causes for the reported status.
+	Causes []*string `type:"list"`
+
+	// Returns the color indicator that tells you information about the health of
+	// the environment. For more information, see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
+	Color *string `type:"string"`
+
+	// The AWS Elastic Beanstalk environment name.
+	EnvironmentName *string `type:"string"`
+
+	// Contains the response body with information about the health of the environment.
+	HealthStatus *string `type:"string"`
+
+	// Represents summary information about the health of an instance. For more
+	// information, see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
+	InstancesHealth *InstanceHealthSummary `type:"structure"`
+
+	// The date and time the information was last refreshed.
+	RefreshedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Returns the health status value of the environment. For more information,
+	// see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
+	Status *string `type:"string" enum:"EnvironmentHealth"`
+
+	metadataDescribeEnvironmentHealthOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeEnvironmentHealthOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEnvironmentHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEnvironmentHealthOutput) GoString() string {
+	return s.String()
+}
+
 // This documentation target is not reported in the API reference.
 type DescribeEnvironmentResourcesInput struct {
 	// The ID of the environment to retrieve AWS resource usage data.
@@ -2277,6 +2497,66 @@ func (s DescribeEventsOutput) GoString() string {
 	return s.String()
 }
 
+// See the example below to learn how to create a request body.
+type DescribeInstancesHealthInput struct {
+	// Specifies the response elements you wish to receive. If no attribute names
+	// are specified, AWS Elastic Beanstalk returns all response elements.
+	AttributeNames []*string `type:"list"`
+
+	// Specifies the AWS Elastic Beanstalk environment ID.
+	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+
+	// Specifies the AWS Elastic Beanstalk environment name.
+	EnvironmentName *string `type:"string"`
+
+	// Specifies the next token of the request.
+	NextToken *string `type:"string"`
+
+	metadataDescribeInstancesHealthInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeInstancesHealthInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstancesHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstancesHealthInput) GoString() string {
+	return s.String()
+}
+
+// See the example below for a sample response.
+type DescribeInstancesHealthOutput struct {
+	// Contains the response body with information about the health of the instance.
+	InstanceHealthList []*SingleInstanceHealth `type:"list"`
+
+	// The next token.
+	NextToken *string `type:"string"`
+
+	// The date and time the information was last refreshed.
+	RefreshedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	metadataDescribeInstancesHealthOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeInstancesHealthOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeInstancesHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeInstancesHealthOutput) GoString() string {
+	return s.String()
+}
+
 // Describes the properties of an environment.
 type EnvironmentDescription struct {
 	// Indicates if there is an in-progress environment configuration update or
@@ -2330,6 +2610,10 @@ type EnvironmentDescription struct {
 	// launched and health checks have not started or health checks are suspended
 	// during an UpdateEnvironment or RestartEnvironement request.    Default: Grey
 	Health *string `type:"string" enum:"EnvironmentHealth"`
+
+	// Returns the health status of the application running in your environment.
+	// For more information, see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
+	HealthStatus *string `type:"string" enum:"EnvironmentHealthStatus"`
 
 	// The description of the AWS resources used by this environment.
 	Resources *EnvironmentResourcesDescription `type:"structure"`
@@ -2556,6 +2840,108 @@ func (s Instance) String() string {
 
 // GoString returns the string representation
 func (s Instance) GoString() string {
+	return s.String()
+}
+
+// Represents summary information about the health of an instance. For more
+// information, see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
+type InstanceHealthSummary struct {
+	// Red. The health agent is reporting a high number of request failures or other
+	// issues for an instance or environment.
+	Degraded *int64 `type:"integer"`
+
+	// Green. An operation is in progress on an instance.
+	Info *int64 `type:"integer"`
+
+	// Grey. AWS Elastic Beanstalk and the health agent are reporting no data on
+	// an instance.
+	NoData *int64 `type:"integer"`
+
+	// Green. An instance is passing health checks and the health agent is not reporting
+	// any problems.
+	OK *int64 `locationName:"Ok" type:"integer"`
+
+	// Grey. An operation is in progress on an instance within the command timeout.
+	Pending *int64 `type:"integer"`
+
+	// Red. The health agent is reporting a very high number of request failures
+	// or other issues for an instance or environment.
+	Severe *int64 `type:"integer"`
+
+	// Grey. AWS Elastic Beanstalk and the health agent are reporting an insufficient
+	// amount of data on an instance.
+	Unknown *int64 `type:"integer"`
+
+	// Yellow. The health agent is reporting a moderate number of request failures
+	// or other issues for an instance or environment.
+	Warning *int64 `type:"integer"`
+
+	metadataInstanceHealthSummary `json:"-" xml:"-"`
+}
+
+type metadataInstanceHealthSummary struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s InstanceHealthSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceHealthSummary) GoString() string {
+	return s.String()
+}
+
+// Represents the average latency for the slowest X percent of requests over
+// the last 10 seconds.
+type Latency struct {
+	// The average latency for the slowest 90 percent of requests over the last
+	// 10 seconds.
+	P10 *float64 `type:"double"`
+
+	// The average latency for the slowest 50 percent of requests over the last
+	// 10 seconds.
+	P50 *float64 `type:"double"`
+
+	// The average latency for the slowest 25 percent of requests over the last
+	// 10 seconds.
+	P75 *float64 `type:"double"`
+
+	// The average latency for the slowest 15 percent of requests over the last
+	// 10 seconds.
+	P85 *float64 `type:"double"`
+
+	// The average latency for the slowest 10 percent of requests over the last
+	// 10 seconds.
+	P90 *float64 `type:"double"`
+
+	// The average latency for the slowest 5 percent of requests over the last 10
+	// seconds.
+	P95 *float64 `type:"double"`
+
+	// The average latency for the slowest 1 percent of requests over the last 10
+	// seconds.
+	P99 *float64 `type:"double"`
+
+	// The average latency for the slowest 0.1 percent of requests over the last
+	// 10 seconds.
+	P999 *float64 `type:"double"`
+
+	metadataLatency `json:"-" xml:"-"`
+}
+
+type metadataLatency struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Latency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Latency) GoString() string {
 	return s.String()
 }
 
@@ -3026,6 +3412,53 @@ func (s S3Location) GoString() string {
 	return s.String()
 }
 
+// Represents health information from the specified instance that belongs to
+// the AWS Elastic Beanstalk environment. Use the InstanceId property to specify
+// the application instance for which you'd like to return data.
+type SingleInstanceHealth struct {
+	// Represents the application metrics for a specified environment.
+	ApplicationMetrics *ApplicationMetrics `type:"structure"`
+
+	// Represents the causes, which provide more information about the current health
+	// status.
+	Causes []*string `type:"list"`
+
+	// Represents the color indicator that gives you information about the health
+	// of the EC2 instance. For more information, see Health Colors and Statuses
+	// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
+	Color *string `type:"string"`
+
+	// Returns the health status of the specified instance. For more information,
+	// see .
+	HealthStatus *string `type:"string"`
+
+	// The ID of the Amazon EC2 instance.
+	InstanceID *string `locationName:"InstanceId" type:"string"`
+
+	// The time at which the EC2 instance was launched.
+	LaunchedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Represents CPU utilization and load average information for applications
+	// running in the specified environment.
+	System *SystemStatus `type:"structure"`
+
+	metadataSingleInstanceHealth `json:"-" xml:"-"`
+}
+
+type metadataSingleInstanceHealth struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SingleInstanceHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SingleInstanceHealth) GoString() string {
+	return s.String()
+}
+
 // Describes the solution stack.
 type SolutionStackDescription struct {
 	// The permitted file types allowed for a solution stack.
@@ -3073,6 +3506,43 @@ func (s SourceConfiguration) String() string {
 
 // GoString returns the string representation
 func (s SourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Represents the percentage of requests over the last 10 seconds that resulted
+// in each type of status code response. For more information, see Status Code
+// Definitions (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+type StatusCodes struct {
+	// The percentage of requests over the last 10 seconds that resulted in a 2xx
+	// (200, 201, etc.) status code.
+	Status2xx *int64 `type:"integer"`
+
+	// The percentage of requests over the last 10 seconds that resulted in a 3xx
+	// (300, 301, etc.) status code.
+	Status3xx *int64 `type:"integer"`
+
+	// The percentage of requests over the last 10 seconds that resulted in a 4xx
+	// (400, 401, etc.) status code.
+	Status4xx *int64 `type:"integer"`
+
+	// The percentage of requests over the last 10 seconds that resulted in a 5xx
+	// (500, 501, etc.) status code.
+	Status5xx *int64 `type:"integer"`
+
+	metadataStatusCodes `json:"-" xml:"-"`
+}
+
+type metadataStatusCodes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s StatusCodes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatusCodes) GoString() string {
 	return s.String()
 }
 
@@ -3138,6 +3608,35 @@ func (s SwapEnvironmentCNAMEsOutput) String() string {
 
 // GoString returns the string representation
 func (s SwapEnvironmentCNAMEsOutput) GoString() string {
+	return s.String()
+}
+
+// Represents CPU utilization and load average information for applications
+// running in the specified environment.
+type SystemStatus struct {
+	// Represents CPU utilization information from the specified instance that belongs
+	// to the AWS Elastic Beanstalk environment. Use the instanceId property to
+	// specify the application instance for which you'd like to return data.
+	CPUUtilization *CPUUtilization `type:"structure"`
+
+	// Load average in the last 1-minute and 5-minute periods. For more information,
+	// see Operating System Metrics (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-metrics.html#health-enhanced-metrics-os).
+	LoadAverage []*float64 `type:"list"`
+
+	metadataSystemStatus `json:"-" xml:"-"`
+}
+
+type metadataSystemStatus struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SystemStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SystemStatus) GoString() string {
 	return s.String()
 }
 
@@ -3540,6 +4039,44 @@ const (
 )
 
 const (
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeStatus = "Status"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeColor = "Color"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeCauses = "Causes"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeApplicationMetrics = "ApplicationMetrics"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeInstancesHealth = "InstancesHealth"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeAll = "All"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeHealthStatus = "HealthStatus"
+	// @enum EnvironmentHealthAttribute
+	EnvironmentHealthAttributeRefreshedAt = "RefreshedAt"
+)
+
+const (
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusNoData = "NoData"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusUnknown = "Unknown"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusPending = "Pending"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusOk = "Ok"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusInfo = "Info"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusWarning = "Warning"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusDegraded = "Degraded"
+	// @enum EnvironmentHealthStatus
+	EnvironmentHealthStatusSevere = "Severe"
+)
+
+const (
 	// @enum EnvironmentInfoType
 	EnvironmentInfoTypeTail = "tail"
 	// @enum EnvironmentInfoType
@@ -3572,6 +4109,25 @@ const (
 	EventSeverityError = "ERROR"
 	// @enum EventSeverity
 	EventSeverityFatal = "FATAL"
+)
+
+const (
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeHealthStatus = "HealthStatus"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeColor = "Color"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeCauses = "Causes"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeApplicationMetrics = "ApplicationMetrics"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeRefreshedAt = "RefreshedAt"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeLaunchedAt = "LaunchedAt"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeSystem = "System"
+	// @enum InstancesHealthAttribute
+	InstancesHealthAttributeAll = "All"
 )
 
 const (
