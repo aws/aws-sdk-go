@@ -104,10 +104,15 @@ func (m *EC2RoleProvider) Retrieve() (credentials.Value, error) {
 // A ec2RoleCredRespBody provides the shape for deserializing credential
 // request responses.
 type ec2RoleCredRespBody struct {
+	// Success State
 	Expiration      time.Time
 	AccessKeyID     string
 	SecretAccessKey string
 	Token           string
+
+	// Error state
+	Code    string
+	Message string
 }
 
 const iamSecurityCredsPath = "/iam/security-credentials"
@@ -152,6 +157,11 @@ func requestCred(client *ec2metadata.Client, credsName string) (ec2RoleCredRespB
 			awserr.New("SerializationError",
 				fmt.Sprintf("failed to decode %s EC2 Role credentials", credsName),
 				err)
+	}
+
+	if respCreds.Code != "" {
+		// If an error code was returned something failed requesting the role.
+		return ec2RoleCredRespBody{}, awserr.New(respCreds.Code, respCreds.Message, nil)
 	}
 
 	return respCreds, nil

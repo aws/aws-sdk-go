@@ -10,6 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials/ec2rolecreds"
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 )
@@ -21,12 +22,21 @@ const credsRespTmpl = `{
   "Expiration" : "%s"
 }`
 
-func initTestServer(expireOn string) *httptest.Server {
+const credsFailRespTmpl = `{
+  "Code": "ErrorCode",
+  "Message": "ErrorMsg"
+}`
+
+func initTestServer(expireOn string, failAssume bool) *httptest.Server {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/latest/meta-data/iam/security-credentials" {
 			fmt.Fprintln(w, "RoleName")
 		} else if r.URL.Path == "/latest/meta-data/iam/security-credentials/RoleName" {
-			fmt.Fprintf(w, credsRespTmpl, expireOn)
+			if failAssume {
+				fmt.Fprintf(w, credsFailRespTmpl)
+			} else {
+				fmt.Fprintf(w, credsRespTmpl, expireOn)
+			}
 		} else {
 			http.Error(w, "bad request", http.StatusBadRequest)
 		}
@@ -36,7 +46,7 @@ func initTestServer(expireOn string) *httptest.Server {
 }
 
 func TestEC2RoleProvider(t *testing.T) {
-	server := initTestServer("2014-12-16T01:51:37Z")
+	server := initTestServer("2014-12-16T01:51:37Z", false)
 	defer server.Close()
 
 	p := &ec2rolecreds.EC2RoleProvider{
@@ -51,8 +61,29 @@ func TestEC2RoleProvider(t *testing.T) {
 	assert.Equal(t, "token", creds.SessionToken, "Expect session token to match")
 }
 
+func TestEC2RoleProviderFailAssume(t *testing.T) {
+	server := initTestServer("2014-12-16T01:51:37Z", true)
+	defer server.Close()
+
+	p := &ec2rolecreds.EC2RoleProvider{
+		Client: ec2metadata.New(&ec2metadata.Config{Endpoint: aws.String(server.URL + "/latest")}),
+	}
+
+	creds, err := p.Retrieve()
+	assert.Error(t, err, "Expect error")
+
+	e := err.(awserr.Error)
+	assert.Equal(t, "ErrorCode", e.Code())
+	assert.Equal(t, "ErrorMsg", e.Message())
+	assert.Nil(t, e.OrigErr())
+
+	assert.Equal(t, "", creds.AccessKeyID, "Expect access key ID to match")
+	assert.Equal(t, "", creds.SecretAccessKey, "Expect secret access key to match")
+	assert.Equal(t, "", creds.SessionToken, "Expect session token to match")
+}
+
 func TestEC2RoleProviderIsExpired(t *testing.T) {
-	server := initTestServer("2014-12-16T01:51:37Z")
+	server := initTestServer("2014-12-16T01:51:37Z", false)
 	defer server.Close()
 
 	p := &ec2rolecreds.EC2RoleProvider{
@@ -77,7 +108,7 @@ func TestEC2RoleProviderIsExpired(t *testing.T) {
 }
 
 func TestEC2RoleProviderExpiryWindowIsExpired(t *testing.T) {
-	server := initTestServer("2014-12-16T01:51:37Z")
+	server := initTestServer("2014-12-16T01:51:37Z", false)
 	defer server.Close()
 
 	p := &ec2rolecreds.EC2RoleProvider{
@@ -103,7 +134,7 @@ func TestEC2RoleProviderExpiryWindowIsExpired(t *testing.T) {
 }
 
 func BenchmarkEC2RoleProvider(b *testing.B) {
-	server := initTestServer("2014-12-16T01:51:37Z")
+	server := initTestServer("2014-12-16T01:51:37Z", false)
 	defer server.Close()
 
 	p := &ec2rolecreds.EC2RoleProvider{
