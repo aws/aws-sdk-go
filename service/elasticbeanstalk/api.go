@@ -2217,7 +2217,7 @@ type DescribeEnvironmentHealthInput struct {
 	AttributeNames []*string `type:"list"`
 
 	// Specifies the AWS Elastic Beanstalk environment ID.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// Specifies the AWS Elastic Beanstalk environment name.
 	EnvironmentName *string `type:"string"`
@@ -2504,7 +2504,7 @@ type DescribeInstancesHealthInput struct {
 	AttributeNames []*string `type:"list"`
 
 	// Specifies the AWS Elastic Beanstalk environment ID.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// Specifies the AWS Elastic Beanstalk environment name.
 	EnvironmentName *string `type:"string"`
@@ -2859,7 +2859,7 @@ type InstanceHealthSummary struct {
 
 	// Green. An instance is passing health checks and the health agent is not reporting
 	// any problems.
-	OK *int64 `locationName:"Ok" type:"integer"`
+	Ok *int64 `type:"integer"`
 
 	// Grey. An operation is in progress on an instance within the command timeout.
 	Pending *int64 `type:"integer"`
@@ -3433,7 +3433,7 @@ type SingleInstanceHealth struct {
 	HealthStatus *string `type:"string"`
 
 	// The ID of the Amazon EC2 instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The time at which the EC2 instance was launched.
 	LaunchedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`

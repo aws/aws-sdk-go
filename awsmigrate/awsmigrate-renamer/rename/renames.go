@@ -1195,6 +1195,7 @@ var renamedPackages = map[string]*packageRenames{
 			"EnvironmentID":            "EnvironmentId",
 			"EnvironmentIDs":           "EnvironmentIds",
 			"ID":                       "Id",
+			"OK":                       "Ok",
 			"RequestID":                "RequestId",
 			"SourceEnvironmentID":      "SourceEnvironmentId",
 		},

@@ -513,7 +513,7 @@ func ExampleElasticBeanstalk_DescribeEnvironmentHealth() {
 			aws.String("EnvironmentHealthAttribute"), // Required
 			// More values...
 		},
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.DescribeEnvironmentHealth(params)
@@ -648,7 +648,7 @@ func ExampleElasticBeanstalk_DescribeInstancesHealth() {
 			aws.String("InstancesHealthAttribute"), // Required
 			// More values...
 		},
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 		NextToken:       aws.String("NextToken"),
 	}
