@@ -4,7 +4,7 @@
 // These are most useful to serialize concrete types to dynamodb.AttributeValue for
 // requests or unmarshalling the dynamodb.AttributeValue into a well known typed form.
 //
-// Convert concrete type to dynamodb.AttributeValue:
+// Convert concrete type to dynamodb.AttributeValue: See (ExampleConvertTo)
 //
 //     type Record struct {
 //         MyField string
@@ -15,18 +15,31 @@
 //     ...
 //
 //     r := Record{
-//         MyField: "dynmamodbattributes.ConvertToX example",
+//         MyField: "dynamodbattribute.ConvertToX example",
 //         Letters: []string{"a", "b", "c", "d"},
 //         A2Num:   map[string]int{"a": 1, "b": 2, "c": 3},
 //     }
 //     av, err := dynamodbattribute.ConvertTo(r)
 //     fmt.Println(av, err)
 //
-// Convert dynamodb.AttributeValue to Concrete type:
+// Convert dynamodb.AttributeValue to Concrete type: See (ExampleConvertFrom)
 //
 //    r2 := Record{}
 //    err = dynamodbattribute.ConvertFrom(av, &r2)
 //    fmt.Println(err, reflect.DeepEqual(r, r2))
+//
+// Use Conversion utilities with DynamoDB.PutItem: See ()
+//
+//    svc := dynamodb.New(nil)
+//    item, err := dynamodbattribute.ConvertToMap(r)
+//    if err != nil {
+//        fmt.Println("Failed to convert", err)
+//        return
+//    }
+//    result, err := svc.PutItem(&dynamodb.PutItemInput{
+//        Item:      item,
+//        TableName: aws.String("exampleTable"),
+//    })
 package dynamodbattribute
 
 import (
