@@ -16,15 +16,19 @@ import (
 )
 
 const credsRespTmpl = `{
+  "Code": "Success",
+  "Type": "AWS-HMAC",
   "AccessKeyId" : "accessKey",
   "SecretAccessKey" : "secret",
   "Token" : "token",
-  "Expiration" : "%s"
+  "Expiration" : "%s",
+  "LastUpdated" : "2009-11-23T0:00:00Z"
 }`
 
 const credsFailRespTmpl = `{
   "Code": "ErrorCode",
-  "Message": "ErrorMsg"
+  "Message": "ErrorMsg",
+  "LastUpdated": "2009-11-23T0:00:00Z"
 }`
 
 func initTestServer(expireOn string, failAssume bool) *httptest.Server {

@@ -159,7 +159,7 @@ func requestCred(client *ec2metadata.Client, credsName string) (ec2RoleCredRespB
 				err)
 	}
 
-	if respCreds.Code != "" {
+	if respCreds.Code != "Success" {
 		// If an error code was returned something failed requesting the role.
 		return ec2RoleCredRespBody{}, awserr.New(respCreds.Code, respCreds.Message, nil)
 	}
