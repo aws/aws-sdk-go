@@ -1,3 +1,32 @@
+// Package dynamodbattribute provides conversion utilities from dynamodb.AttributeValue
+// to concrete Go types and structures. These conversion utilities allow you to
+// convert a Struct, Slice, Map, or Scalar value to or from dynamodb.AttributeValue.
+// These are most useful to serialize concrete types to dynamodb.AttributeValue for
+// requests or unmarshalling the dynamodb.AttributeValue into a well known typed form.
+//
+// Convert concrete type to dynamodb.AttributeValue:
+//
+//     type Record struct {
+//         MyField string
+//         Letters []string
+//         A2Num   map[string]int
+//     }
+//
+//     ...
+//
+//     r := Record{
+//         MyField: "dynmamodbattributes.ConvertToX example",
+//         Letters: []string{"a", "b", "c", "d"},
+//         A2Num:   map[string]int{"a": 1, "b": 2, "c": 3},
+//     }
+//     av, err := dynamodbattribute.ConvertTo(r)
+//     fmt.Println(av, err)
+//
+// Convert dynamodb.AttributeValue to Concrete type:
+//
+//    r2 := Record{}
+//    err = dynamodbattribute.ConvertFrom(av, &r2)
+//    fmt.Println(err, reflect.DeepEqual(r, r2))
 package dynamodbattribute
 
 import (
