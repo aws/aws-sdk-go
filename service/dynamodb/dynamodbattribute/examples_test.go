@@ -19,41 +19,41 @@ func ExampleConvertTo() {
 		Numbers: []int{1, 2, 3},
 	}
 	av, err := dynamodbattribute.ConvertTo(r)
-	fmt.Println(av, err)
+	fmt.Println("err", err)
+	fmt.Println("MyField", av.M["MyField"])
+	fmt.Println("Letters", av.M["Letters"])
+	fmt.Println("Numbers", av.M["Numbers"])
 
 	// Output:
-	// {
-	//   M: {
-	//     MyField: {
-	//       S: "MyFieldValue"
+	// err <nil>
+	// MyField {
+	//   S: "MyFieldValue"
+	// }
+	// Letters {
+	//   L: [
+	//     {
+	//       S: "a"
 	//     },
-	//     Letters: {
-	//       L: [
-	//         {
-	//           S: "a"
-	//         },
-	//         {
-	//           S: "b"
-	//         },
-	//         {
-	//           S: "c"
-	//         },
-	//         {
-	//           S: "d"
-	//         }
-	//       ]
+	//     {
+	//       S: "b"
 	//     },
-	//     Numbers: {
-	//       L: [{
-	//           N: "1"
-	//         },{
-	//           N: "2"
-	//         },{
-	//           N: "3"
-	//         }]
+	//     {
+	//       S: "c"
+	//     },
+	//     {
+	//       S: "d"
 	//     }
-	//   }
-	// } <nil>
+	//   ]
+	// }
+	// Numbers {
+	//   L: [{
+	//       N: "1"
+	//     },{
+	//       N: "2"
+	//     },{
+	//       N: "3"
+	//     }]
+	// }
 }
 
 func ExampleConvertFrom() {
