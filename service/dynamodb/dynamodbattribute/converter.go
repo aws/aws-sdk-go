@@ -1,45 +1,3 @@
-// Package dynamodbattribute provides conversion utilities from dynamodb.AttributeValue
-// to concrete Go types and structures. These conversion utilities allow you to
-// convert a Struct, Slice, Map, or Scalar value to or from dynamodb.AttributeValue.
-// These are most useful to serialize concrete types to dynamodb.AttributeValue for
-// requests or unmarshalling the dynamodb.AttributeValue into a well known typed form.
-//
-// Convert concrete type to dynamodb.AttributeValue: See (ExampleConvertTo)
-//
-//     type Record struct {
-//         MyField string
-//         Letters []string
-//         A2Num   map[string]int
-//     }
-//
-//     ...
-//
-//     r := Record{
-//         MyField: "dynamodbattribute.ConvertToX example",
-//         Letters: []string{"a", "b", "c", "d"},
-//         A2Num:   map[string]int{"a": 1, "b": 2, "c": 3},
-//     }
-//     av, err := dynamodbattribute.ConvertTo(r)
-//     fmt.Println(av, err)
-//
-// Convert dynamodb.AttributeValue to Concrete type: See (ExampleConvertFrom)
-//
-//    r2 := Record{}
-//    err = dynamodbattribute.ConvertFrom(av, &r2)
-//    fmt.Println(err, reflect.DeepEqual(r, r2))
-//
-// Use Conversion utilities with DynamoDB.PutItem: See ()
-//
-//    svc := dynamodb.New(nil)
-//    item, err := dynamodbattribute.ConvertToMap(r)
-//    if err != nil {
-//        fmt.Println("Failed to convert", err)
-//        return
-//    }
-//    result, err := svc.PutItem(&dynamodb.PutItemInput{
-//        Item:      item,
-//        TableName: aws.String("exampleTable"),
-//    })
 package dynamodbattribute
 
 import (
@@ -52,6 +10,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/aws"
 )
 
 // ConvertToMap accepts a map[string]interface{} or struct and converts it to a
@@ -384,6 +343,22 @@ func convertTo(in interface{}) *dynamodb.AttributeValue {
 		return a
 	}
 
+	if l, ok := in.([]*string); ok {
+		a.SS = make([]*string, len(l))
+		for index, v := range l {
+			a.SS[index] = v
+		}
+		return a
+	}
+
+	if l, ok := in.([]*int64); ok {
+		a.NS = make([]*string, len(l))
+		for index, v := range l {
+			a.NS[index] = aws.String(strconv.FormatInt(*v, 10))
+		}
+		return a
+	}
+
 	// Only primitive types should remain.
 	v := reflect.ValueOf(in)
 	switch v.Kind() {
@@ -455,6 +430,26 @@ func convertFrom(a *dynamodb.AttributeValue) interface{} {
 		l := make([]interface{}, len(a.L))
 		for index, v := range a.L {
 			l[index] = convertFrom(v)
+		}
+		return l
+	}
+
+	if a.SS != nil {
+		l := make([]*string, len(a.SS))
+		for index, v := range a.SS {
+			l[index] = v
+		}
+		return l
+	}
+
+	if a.NS != nil {
+		l := make([]*int64, len(a.NS))
+		for index, v := range a.NS {
+			intVal, err := strconv.ParseInt(*v, 10, 64)
+			if err != nil {
+				panic(err)
+			}
+			l[index] = aws.Int64(intVal)
 		}
 		return l
 	}
