@@ -50,6 +50,7 @@ import (
 	"runtime"
 	"strconv"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
@@ -368,6 +369,22 @@ func convertTo(in interface{}) *dynamodb.AttributeValue {
 		return a
 	}
 
+	if l, ok := in.([]*string); ok {
+		a.SS = make([]*string, len(l))
+		for index, v := range l {
+			a.SS[index] = v
+		}
+		return a
+	}
+
+	if l, ok := in.([]*int64); ok {
+		a.NS = make([]*string, len(l))
+		for index, v := range l {
+			a.NS[index] = aws.String(strconv.FormatInt(*v, 10))
+		}
+		return a
+	}
+
 	if m, ok := in.(map[string]interface{}); ok {
 		a.M = make(map[string]*dynamodb.AttributeValue)
 		for k, v := range m {
@@ -441,6 +458,26 @@ func convertFrom(a *dynamodb.AttributeValue) interface{} {
 
 	if a.NULL != nil {
 		return nil
+	}
+
+	if a.SS != nil {
+		l := make([]*string, len(a.SS))
+		for index, v := range a.SS {
+			l[index] = v
+		}
+		return l
+	}
+
+	if a.NS != nil {
+		l := make([]*int64, len(a.NS))
+		for index, v := range a.NS {
+			intVal, err := strconv.ParseInt(*v, 10, 64)
+			if err != nil {
+				panic(err)
+			}
+			l[index] = aws.Int64(intVal)
+		}
+		return l
 	}
 
 	if a.M != nil {
