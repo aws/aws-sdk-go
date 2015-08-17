@@ -107,7 +107,7 @@ func ExampleKinesis_DescribeStream() {
 
 	params := &kinesis.DescribeStreamInput{
 		StreamName:            aws.String("StreamName"), // Required
-		ExclusiveStartShardID: aws.String("ShardId"),
+		ExclusiveStartShardId: aws.String("ShardId"),
 		Limit: aws.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
@@ -163,7 +163,7 @@ func ExampleKinesis_GetShardIterator() {
 	svc := kinesis.New(nil)
 
 	params := &kinesis.GetShardIteratorInput{
-		ShardID:                aws.String("ShardId"),           // Required
+		ShardId:                aws.String("ShardId"),           // Required
 		ShardIteratorType:      aws.String("ShardIteratorType"), // Required
 		StreamName:             aws.String("StreamName"),        // Required
 		StartingSequenceNumber: aws.String("SequenceNumber"),

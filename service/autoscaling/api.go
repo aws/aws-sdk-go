@@ -1630,7 +1630,7 @@ func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput)
 // an instance.
 type Activity struct {
 	// The ID of the activity.
-	ActivityID *string `locationName:"ActivityId" type:"string" required:"true"`
+	ActivityId *string `type:"string" required:"true"`
 
 	// The name of the Auto Scaling group.
 	AutoScalingGroupName *string `type:"string" required:"true"`
@@ -1732,7 +1732,7 @@ type AttachInstancesInput struct {
 	AutoScalingGroupName *string `type:"string" required:"true"`
 
 	// One or more EC2 instance IDs.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	metadataAttachInstancesInput `json:"-" xml:"-"`
 }
@@ -1817,7 +1817,7 @@ type BlockDeviceMapping struct {
 	DeviceName *string `type:"string" required:"true"`
 
 	// The information about the Amazon EBS volume.
-	EBS *EBS `locationName:"Ebs" type:"structure"`
+	Ebs *Ebs `type:"structure"`
 
 	// Suppresses a device mapping.
 	//
@@ -1951,7 +1951,7 @@ type CreateAutoScalingGroupInput struct {
 	// For more information, see Create an Auto Scaling Group from an EC2 Instance
 	// (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-asg-from-instance.html)
 	// in the Auto Scaling Developer Guide.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the launch configuration. Alternatively, use the InstanceId parameter
 	// to specify an EC2 instance instead of a launch configuration.
@@ -2049,7 +2049,7 @@ type CreateLaunchConfigurationInput struct {
 	// is true. If the instance is launched into a nondefault subnet, the default
 	// is false. For more information, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	AssociatePublicIPAddress *bool `locationName:"AssociatePublicIpAddress" type:"boolean"`
+	AssociatePublicIpAddress *bool `type:"boolean"`
 
 	// One or more mappings that specify how block devices are exposed to the instance.
 	// For more information, see Block Device Mapping (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html)
@@ -2060,7 +2060,7 @@ type CreateLaunchConfigurationInput struct {
 	// This parameter is supported only if you are launching EC2-Classic instances.
 	// For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	ClassicLinkVPCID *string `locationName:"ClassicLinkVPCId" type:"string"`
+	ClassicLinkVPCId *string `type:"string"`
 
 	// The IDs of one or more security groups for the VPC specified in ClassicLinkVPCId.
 	// This parameter is required if ClassicLinkVPCId is specified, and is not supported
@@ -2075,7 +2075,7 @@ type CreateLaunchConfigurationInput struct {
 	// types. Additional usage charges apply. For more information, see Amazon EBS-Optimized
 	// Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+	EbsOptimized *bool `type:"boolean"`
 
 	// The name or the Amazon Resource Name (ARN) of the instance profile associated
 	// with the IAM role for the instance.
@@ -2086,12 +2086,12 @@ type CreateLaunchConfigurationInput struct {
 	// AWS resources. For more information, see Launch Auto Scaling Instances with
 	// an IAM Role (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html)
 	// in the Auto Scaling Developer Guide.
-	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
+	IamInstanceProfile *string `type:"string"`
 
 	// The ID of the Amazon Machine Image (AMI) to use to launch your EC2 instances.
 	// For more information, see Finding an AMI (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	ImageID *string `locationName:"ImageId" type:"string"`
+	ImageId *string `type:"string"`
 
 	// The ID of the EC2 instance to use to create the launch configuration.
 	//
@@ -2104,7 +2104,7 @@ type CreateLaunchConfigurationInput struct {
 	// For more information, see Create a Launch Configuration Using an EC2 Instance
 	// (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html)
 	// in the Auto Scaling Developer Guide.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// Enables detailed monitoring if it is disabled. Detailed monitoring is enabled
 	// by default.
@@ -2122,7 +2122,7 @@ type CreateLaunchConfigurationInput struct {
 	InstanceType *string `type:"string"`
 
 	// The ID of the kernel associated with the AMI.
-	KernelID *string `locationName:"KernelId" type:"string"`
+	KernelId *string `type:"string"`
 
 	// The name of the key pair. For more information, see Amazon EC2 Key Pairs
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in
@@ -2151,7 +2151,7 @@ type CreateLaunchConfigurationInput struct {
 	PlacementTenancy *string `type:"string"`
 
 	// The ID of the RAM disk associated with the AMI.
-	RAMDiskID *string `locationName:"RamdiskId" type:"string"`
+	RamdiskId *string `type:"string"`
 
 	// One or more security groups with which to associate the instances.
 	//
@@ -2688,7 +2688,7 @@ type DescribeAutoScalingInstancesInput struct {
 	// One or more Auto Scaling instances to describe, up to 50 instances. If you
 	// omit this parameter, all Auto Scaling instances are described. If you specify
 	// an ID that does not exist, it is ignored with no error.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	// The maximum number of items to return with this call.
 	MaxRecords *int64 `type:"integer"`
@@ -3145,7 +3145,7 @@ type DescribeScalingActivitiesInput struct {
 	// the results are limited to that group. The list of requested activities cannot
 	// contain more than 50 items. If unknown activities are requested, they are
 	// ignored with no error.
-	ActivityIDs []*string `locationName:"ActivityIds" type:"list"`
+	ActivityIds []*string `type:"list"`
 
 	// The name of the group.
 	AutoScalingGroupName *string `type:"string"`
@@ -3406,7 +3406,7 @@ type DetachInstancesInput struct {
 	AutoScalingGroupName *string `type:"string" required:"true"`
 
 	// One or more instance IDs.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	// If True, the Auto Scaling group decrements the desired capacity value by
 	// the number of instances detached.
@@ -3551,7 +3551,7 @@ func (s DisableMetricsCollectionOutput) GoString() string {
 }
 
 // Describes an Amazon EBS volume.
-type EBS struct {
+type Ebs struct {
 	// Indicates whether to delete the volume on instance termination.
 	//
 	// Default: true
@@ -3563,10 +3563,10 @@ type EBS struct {
 	// Valid values: Range is 100 to 4000.
 	//
 	// Default: None
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The ID of the snapshot.
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	// The volume size, in gigabytes.
 	//
@@ -3587,20 +3587,20 @@ type EBS struct {
 	// Default: standard
 	VolumeType *string `type:"string"`
 
-	metadataEBS `json:"-" xml:"-"`
+	metadataEbs `json:"-" xml:"-"`
 }
 
-type metadataEBS struct {
+type metadataEbs struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s EBS) String() string {
+func (s Ebs) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s EBS) GoString() string {
+func (s Ebs) GoString() string {
 	return s.String()
 }
 
@@ -3716,7 +3716,7 @@ type EnterStandbyInput struct {
 
 	// One or more instances to move into Standby mode. You must specify at least
 	// one instance ID.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	// Specifies whether the instances moved to Standby mode count as part of the
 	// Auto Scaling group's desired capacity. If set, the desired capacity for the
@@ -3838,7 +3838,7 @@ type ExitStandbyInput struct {
 	AutoScalingGroupName *string `type:"string" required:"true"`
 
 	// One or more instance IDs. You must specify at least one instance ID.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	metadataExitStandbyInput `json:"-" xml:"-"`
 }
@@ -3999,7 +3999,7 @@ type Instance struct {
 	HealthStatus *string `type:"string" required:"true"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The launch configuration associated with the instance.
 	LaunchConfigurationName *string `type:"string" required:"true"`
@@ -4039,7 +4039,7 @@ type InstanceDetails struct {
 	HealthStatus *string `type:"string" required:"true"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The launch configuration associated with the instance.
 	LaunchConfigurationName *string `type:"string" required:"true"`
@@ -4092,7 +4092,7 @@ func (s InstanceMonitoring) GoString() string {
 type LaunchConfiguration struct {
 	// Specifies whether the instances are associated with a public IP address (true)
 	// or not (false).
-	AssociatePublicIPAddress *bool `locationName:"AssociatePublicIpAddress" type:"boolean"`
+	AssociatePublicIpAddress *bool `type:"boolean"`
 
 	// A block device mapping, which specifies the block devices for the instance.
 	BlockDeviceMappings []*BlockDeviceMapping `type:"list"`
@@ -4101,7 +4101,7 @@ type LaunchConfiguration struct {
 	// This parameter can only be used if you are launching EC2-Classic instances.
 	// For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	ClassicLinkVPCID *string `locationName:"ClassicLinkVPCId" type:"string"`
+	ClassicLinkVPCId *string `type:"string"`
 
 	// The IDs of one or more security groups for the VPC specified in ClassicLinkVPCId.
 	// This parameter is required if ClassicLinkVPCId is specified, and cannot be
@@ -4113,14 +4113,14 @@ type LaunchConfiguration struct {
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Controls whether the instance is optimized for EBS I/O (true) or not (false).
-	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+	EbsOptimized *bool `type:"boolean"`
 
 	// The name or Amazon Resource Name (ARN) of the instance profile associated
 	// with the IAM role for the instance.
-	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
+	IamInstanceProfile *string `type:"string"`
 
 	// The ID of the Amazon Machine Image (AMI).
-	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
+	ImageId *string `type:"string" required:"true"`
 
 	// Controls whether instances in this group are launched with detailed monitoring.
 	InstanceMonitoring *InstanceMonitoring `type:"structure"`
@@ -4129,7 +4129,7 @@ type LaunchConfiguration struct {
 	InstanceType *string `type:"string" required:"true"`
 
 	// The ID of the kernel associated with the AMI.
-	KernelID *string `locationName:"KernelId" type:"string"`
+	KernelId *string `type:"string"`
 
 	// The name of the key pair.
 	KeyName *string `type:"string"`
@@ -4146,7 +4146,7 @@ type LaunchConfiguration struct {
 	PlacementTenancy *string `type:"string"`
 
 	// The ID of the RAM disk associated with the AMI.
-	RAMDiskID *string `locationName:"RamdiskId" type:"string"`
+	RamdiskId *string `type:"string"`
 
 	// The security groups to associate with the instances.
 	SecurityGroups []*string `type:"list"`
@@ -5025,7 +5025,7 @@ type SetInstanceHealthInput struct {
 	HealthStatus *string `type:"string" required:"true"`
 
 	// The ID of the EC2 instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// If the Auto Scaling group of the specified instance has a HealthCheckGracePeriod
 	// specified for the group, by default, this call will respect the grace period.
@@ -5193,7 +5193,7 @@ type Tag struct {
 	PropagateAtLaunch *bool `type:"boolean"`
 
 	// The name of the group.
-	ResourceID *string `locationName:"ResourceId" type:"string"`
+	ResourceId *string `type:"string"`
 
 	// The type of resource. The only supported value is auto-scaling-group.
 	ResourceType *string `type:"string"`
@@ -5228,7 +5228,7 @@ type TagDescription struct {
 	PropagateAtLaunch *bool `type:"boolean"`
 
 	// The name of the group.
-	ResourceID *string `locationName:"ResourceId" type:"string"`
+	ResourceId *string `type:"string"`
 
 	// The type of resource. The only supported value is auto-scaling-group.
 	ResourceType *string `type:"string"`
@@ -5255,7 +5255,7 @@ func (s TagDescription) GoString() string {
 
 type TerminateInstanceInAutoScalingGroupInput struct {
 	// The ID of the EC2 instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// If true, terminating this instance also decrements the size of the Auto Scaling
 	// group.

@@ -22,8 +22,8 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 	params := &workspaces.CreateWorkspacesInput{
 		Workspaces: []*workspaces.WorkspaceRequest{ // Required
 			{ // Required
-				BundleID:    aws.String("BundleId"),    // Required
-				DirectoryID: aws.String("DirectoryId"), // Required
+				BundleId:    aws.String("BundleId"),    // Required
+				DirectoryId: aws.String("DirectoryId"), // Required
 				UserName:    aws.String("UserName"),    // Required
 			},
 			// More values...
@@ -54,7 +54,7 @@ func ExampleWorkSpaces_DescribeWorkspaceBundles() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspaceBundlesInput{
-		BundleIDs: []*string{
+		BundleIds: []*string{
 			aws.String("BundleId"), // Required
 			// More values...
 		},
@@ -86,7 +86,7 @@ func ExampleWorkSpaces_DescribeWorkspaceDirectories() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspaceDirectoriesInput{
-		DirectoryIDs: []*string{
+		DirectoryIds: []*string{
 			aws.String("DirectoryId"), // Required
 			// More values...
 		},
@@ -117,12 +117,12 @@ func ExampleWorkSpaces_DescribeWorkspaces() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspacesInput{
-		BundleID:    aws.String("BundleId"),
-		DirectoryID: aws.String("DirectoryId"),
+		BundleId:    aws.String("BundleId"),
+		DirectoryId: aws.String("DirectoryId"),
 		Limit:       aws.Int64(1),
 		NextToken:   aws.String("PaginationToken"),
 		UserName:    aws.String("UserName"),
-		WorkspaceIDs: []*string{
+		WorkspaceIds: []*string{
 			aws.String("WorkspaceId"), // Required
 			// More values...
 		},
@@ -154,7 +154,7 @@ func ExampleWorkSpaces_RebootWorkspaces() {
 	params := &workspaces.RebootWorkspacesInput{
 		RebootWorkspaceRequests: []*workspaces.RebootRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceId: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -186,7 +186,7 @@ func ExampleWorkSpaces_RebuildWorkspaces() {
 	params := &workspaces.RebuildWorkspacesInput{
 		RebuildWorkspaceRequests: []*workspaces.RebuildRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceId: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -218,7 +218,7 @@ func ExampleWorkSpaces_TerminateWorkspaces() {
 	params := &workspaces.TerminateWorkspacesInput{
 		TerminateWorkspaceRequests: []*workspaces.TerminateRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceId: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},

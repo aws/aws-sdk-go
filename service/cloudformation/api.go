@@ -743,7 +743,7 @@ func (s CreateStackInput) GoString() string {
 // The output for a CreateStack action.
 type CreateStackOutput struct {
 	// Unique identifier of the stack.
-	StackID *string `locationName:"StackId" type:"string"`
+	StackId *string `type:"string"`
 
 	metadataCreateStackOutput `json:"-" xml:"-"`
 }
@@ -866,7 +866,7 @@ type DescribeStackResourceInput struct {
 	// The logical name of the resource as specified in the template.
 	//
 	// Default: There is no default value.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
@@ -921,7 +921,7 @@ type DescribeStackResourcesInput struct {
 	// The logical name of the resource as specified in the template.
 	//
 	// Default: There is no default value.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
+	LogicalResourceId *string `type:"string"`
 
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of a resource supported by AWS CloudFormation.
@@ -935,7 +935,7 @@ type DescribeStackResourcesInput struct {
 	// specify StackName.
 	//
 	// Default: There is no default value.
-	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+	PhysicalResourceId *string `type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
@@ -1087,7 +1087,7 @@ func (s EstimateTemplateCostInput) GoString() string {
 type EstimateTemplateCostOutput struct {
 	// An AWS Simple Monthly Calculator URL with a query string that describes the
 	// resources required to run the template.
-	URL *string `locationName:"Url" type:"string"`
+	Url *string `type:"string"`
 
 	metadataEstimateTemplateCostOutput `json:"-" xml:"-"`
 }
@@ -1588,7 +1588,7 @@ func (s SetStackPolicyOutput) GoString() string {
 type SignalResourceInput struct {
 	// The logical ID of the resource that you want to signal. The logical ID is
 	// the name of the resource that given in the template.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The stack name or unique stack ID that includes the resource that you want
 	// to signal.
@@ -1602,7 +1602,7 @@ type SignalResourceInput struct {
 	// groups, specify the instance ID that you are signaling as the unique ID.
 	// If you send multiple signals to a single resource (such as signaling a wait
 	// condition), each signal requires a different unique ID.
-	UniqueID *string `locationName:"UniqueId" type:"string" required:"true"`
+	UniqueId *string `type:"string" required:"true"`
 
 	metadataSignalResourceInput `json:"-" xml:"-"`
 }
@@ -1669,7 +1669,7 @@ type Stack struct {
 	Parameters []*Parameter `type:"list"`
 
 	// Unique identifier of the stack.
-	StackID *string `locationName:"StackId" type:"string"`
+	StackId *string `type:"string"`
 
 	// The name associated with the stack.
 	StackName *string `type:"string" required:"true"`
@@ -1706,14 +1706,14 @@ func (s Stack) GoString() string {
 // The StackEvent data type.
 type StackEvent struct {
 	// The unique ID of this event.
-	EventID *string `locationName:"EventId" type:"string" required:"true"`
+	EventId *string `type:"string" required:"true"`
 
 	// The logical name of the resource specified in the template.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string"`
+	LogicalResourceId *string `type:"string"`
 
 	// The name or unique identifier associated with the physical instance of the
 	// resource.
-	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+	PhysicalResourceId *string `type:"string"`
 
 	// BLOB of the properties used to create the resource.
 	ResourceProperties *string `type:"string"`
@@ -1730,7 +1730,7 @@ type StackEvent struct {
 	ResourceType *string `type:"string"`
 
 	// The unique ID name of the instance of the stack.
-	StackID *string `locationName:"StackId" type:"string" required:"true"`
+	StackId *string `type:"string" required:"true"`
 
 	// The name associated with a stack.
 	StackName *string `type:"string" required:"true"`
@@ -1761,11 +1761,11 @@ type StackResource struct {
 	Description *string `type:"string"`
 
 	// The logical name of the resource specified in the template.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of a resource supported by AWS CloudFormation.
-	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+	PhysicalResourceId *string `type:"string"`
 
 	// Current status of the resource.
 	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
@@ -1779,7 +1779,7 @@ type StackResource struct {
 	ResourceType *string `type:"string" required:"true"`
 
 	// Unique identifier of the stack.
-	StackID *string `locationName:"StackId" type:"string"`
+	StackId *string `type:"string"`
 
 	// The name associated with the stack.
 	StackName *string `type:"string"`
@@ -1813,7 +1813,7 @@ type StackResourceDetail struct {
 	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The logical name of the resource specified in the template.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The JSON format content of the Metadata attribute declared for the resource.
 	// For more information, see Metadata Attribute (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-metadata.html)
@@ -1822,7 +1822,7 @@ type StackResourceDetail struct {
 
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of a resource supported by AWS CloudFormation.
-	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+	PhysicalResourceId *string `type:"string"`
 
 	// Current status of the resource.
 	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
@@ -1836,7 +1836,7 @@ type StackResourceDetail struct {
 	ResourceType *string `type:"string" required:"true"`
 
 	// Unique identifier of the stack.
-	StackID *string `locationName:"StackId" type:"string"`
+	StackId *string `type:"string"`
 
 	// The name associated with the stack.
 	StackName *string `type:"string"`
@@ -1864,11 +1864,11 @@ type StackResourceSummary struct {
 	LastUpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The logical name of the resource specified in the template.
-	LogicalResourceID *string `locationName:"LogicalResourceId" type:"string" required:"true"`
+	LogicalResourceId *string `type:"string" required:"true"`
 
 	// The name or unique identifier that corresponds to a physical instance ID
 	// of the resource.
-	PhysicalResourceID *string `locationName:"PhysicalResourceId" type:"string"`
+	PhysicalResourceId *string `type:"string"`
 
 	// Current status of the resource.
 	ResourceStatus *string `type:"string" required:"true" enum:"ResourceStatus"`
@@ -1911,7 +1911,7 @@ type StackSummary struct {
 	LastUpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// Unique stack identifier.
-	StackID *string `locationName:"StackId" type:"string"`
+	StackId *string `type:"string"`
 
 	// The name associated with the stack.
 	StackName *string `type:"string" required:"true"`
@@ -2113,7 +2113,7 @@ func (s UpdateStackInput) GoString() string {
 // The output for a UpdateStack action.
 type UpdateStackOutput struct {
 	// Unique identifier of the stack.
-	StackID *string `locationName:"StackId" type:"string"`
+	StackId *string `type:"string"`
 
 	metadataUpdateStackOutput `json:"-" xml:"-"`
 }

@@ -10,37 +10,37 @@ import (
 
 // CloudHSMAPI is the interface type for cloudhsm.CloudHSM.
 type CloudHSMAPI interface {
-	CreateHAPGRequest(*cloudhsm.CreateHAPGInput) (*service.Request, *cloudhsm.CreateHAPGOutput)
+	CreateHapgRequest(*cloudhsm.CreateHapgInput) (*service.Request, *cloudhsm.CreateHapgOutput)
 
-	CreateHAPG(*cloudhsm.CreateHAPGInput) (*cloudhsm.CreateHAPGOutput, error)
+	CreateHapg(*cloudhsm.CreateHapgInput) (*cloudhsm.CreateHapgOutput, error)
 
-	CreateHSMRequest(*cloudhsm.CreateHSMInput) (*service.Request, *cloudhsm.CreateHSMOutput)
+	CreateHsmRequest(*cloudhsm.CreateHsmInput) (*service.Request, *cloudhsm.CreateHsmOutput)
 
-	CreateHSM(*cloudhsm.CreateHSMInput) (*cloudhsm.CreateHSMOutput, error)
+	CreateHsm(*cloudhsm.CreateHsmInput) (*cloudhsm.CreateHsmOutput, error)
 
 	CreateLunaClientRequest(*cloudhsm.CreateLunaClientInput) (*service.Request, *cloudhsm.CreateLunaClientOutput)
 
 	CreateLunaClient(*cloudhsm.CreateLunaClientInput) (*cloudhsm.CreateLunaClientOutput, error)
 
-	DeleteHAPGRequest(*cloudhsm.DeleteHAPGInput) (*service.Request, *cloudhsm.DeleteHAPGOutput)
+	DeleteHapgRequest(*cloudhsm.DeleteHapgInput) (*service.Request, *cloudhsm.DeleteHapgOutput)
 
-	DeleteHAPG(*cloudhsm.DeleteHAPGInput) (*cloudhsm.DeleteHAPGOutput, error)
+	DeleteHapg(*cloudhsm.DeleteHapgInput) (*cloudhsm.DeleteHapgOutput, error)
 
-	DeleteHSMRequest(*cloudhsm.DeleteHSMInput) (*service.Request, *cloudhsm.DeleteHSMOutput)
+	DeleteHsmRequest(*cloudhsm.DeleteHsmInput) (*service.Request, *cloudhsm.DeleteHsmOutput)
 
-	DeleteHSM(*cloudhsm.DeleteHSMInput) (*cloudhsm.DeleteHSMOutput, error)
+	DeleteHsm(*cloudhsm.DeleteHsmInput) (*cloudhsm.DeleteHsmOutput, error)
 
 	DeleteLunaClientRequest(*cloudhsm.DeleteLunaClientInput) (*service.Request, *cloudhsm.DeleteLunaClientOutput)
 
 	DeleteLunaClient(*cloudhsm.DeleteLunaClientInput) (*cloudhsm.DeleteLunaClientOutput, error)
 
-	DescribeHAPGRequest(*cloudhsm.DescribeHAPGInput) (*service.Request, *cloudhsm.DescribeHAPGOutput)
+	DescribeHapgRequest(*cloudhsm.DescribeHapgInput) (*service.Request, *cloudhsm.DescribeHapgOutput)
 
-	DescribeHAPG(*cloudhsm.DescribeHAPGInput) (*cloudhsm.DescribeHAPGOutput, error)
+	DescribeHapg(*cloudhsm.DescribeHapgInput) (*cloudhsm.DescribeHapgOutput, error)
 
-	DescribeHSMRequest(*cloudhsm.DescribeHSMInput) (*service.Request, *cloudhsm.DescribeHSMOutput)
+	DescribeHsmRequest(*cloudhsm.DescribeHsmInput) (*service.Request, *cloudhsm.DescribeHsmOutput)
 
-	DescribeHSM(*cloudhsm.DescribeHSMInput) (*cloudhsm.DescribeHSMOutput, error)
+	DescribeHsm(*cloudhsm.DescribeHsmInput) (*cloudhsm.DescribeHsmOutput, error)
 
 	DescribeLunaClientRequest(*cloudhsm.DescribeLunaClientInput) (*service.Request, *cloudhsm.DescribeLunaClientOutput)
 
@@ -54,25 +54,25 @@ type CloudHSMAPI interface {
 
 	ListAvailableZones(*cloudhsm.ListAvailableZonesInput) (*cloudhsm.ListAvailableZonesOutput, error)
 
-	ListHSMsRequest(*cloudhsm.ListHSMsInput) (*service.Request, *cloudhsm.ListHSMsOutput)
-
-	ListHSMs(*cloudhsm.ListHSMsInput) (*cloudhsm.ListHSMsOutput, error)
-
 	ListHapgsRequest(*cloudhsm.ListHapgsInput) (*service.Request, *cloudhsm.ListHapgsOutput)
 
 	ListHapgs(*cloudhsm.ListHapgsInput) (*cloudhsm.ListHapgsOutput, error)
+
+	ListHsmsRequest(*cloudhsm.ListHsmsInput) (*service.Request, *cloudhsm.ListHsmsOutput)
+
+	ListHsms(*cloudhsm.ListHsmsInput) (*cloudhsm.ListHsmsOutput, error)
 
 	ListLunaClientsRequest(*cloudhsm.ListLunaClientsInput) (*service.Request, *cloudhsm.ListLunaClientsOutput)
 
 	ListLunaClients(*cloudhsm.ListLunaClientsInput) (*cloudhsm.ListLunaClientsOutput, error)
 
-	ModifyHAPGRequest(*cloudhsm.ModifyHAPGInput) (*service.Request, *cloudhsm.ModifyHAPGOutput)
+	ModifyHapgRequest(*cloudhsm.ModifyHapgInput) (*service.Request, *cloudhsm.ModifyHapgOutput)
 
-	ModifyHAPG(*cloudhsm.ModifyHAPGInput) (*cloudhsm.ModifyHAPGOutput, error)
+	ModifyHapg(*cloudhsm.ModifyHapgInput) (*cloudhsm.ModifyHapgOutput, error)
 
-	ModifyHSMRequest(*cloudhsm.ModifyHSMInput) (*service.Request, *cloudhsm.ModifyHSMOutput)
+	ModifyHsmRequest(*cloudhsm.ModifyHsmInput) (*service.Request, *cloudhsm.ModifyHsmOutput)
 
-	ModifyHSM(*cloudhsm.ModifyHSMInput) (*cloudhsm.ModifyHSMOutput, error)
+	ModifyHsm(*cloudhsm.ModifyHsmInput) (*cloudhsm.ModifyHsmOutput, error)
 
 	ModifyLunaClientRequest(*cloudhsm.ModifyLunaClientInput) (*service.Request, *cloudhsm.ModifyLunaClientOutput)
 

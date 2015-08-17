@@ -31,7 +31,7 @@ func addAccountID(r *service.Request) {
 	}
 
 	v := reflect.Indirect(reflect.ValueOf(r.Params))
-	if f := v.FieldByName("AccountID"); f.IsNil() {
+	if f := v.FieldByName("AccountId"); f.IsNil() {
 		f.Set(reflect.ValueOf(&defaultAccountID))
 	}
 }

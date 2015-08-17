@@ -107,22 +107,22 @@ func (c *SES) DeleteVerifiedEmailAddress(input *DeleteVerifiedEmailAddressInput)
 	return out, err
 }
 
-const opGetIdentityDKIMAttributes = "GetIdentityDkimAttributes"
+const opGetIdentityDkimAttributes = "GetIdentityDkimAttributes"
 
-// GetIdentityDKIMAttributesRequest generates a request for the GetIdentityDKIMAttributes operation.
-func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesInput) (req *service.Request, output *GetIdentityDKIMAttributesOutput) {
+// GetIdentityDkimAttributesRequest generates a request for the GetIdentityDkimAttributes operation.
+func (c *SES) GetIdentityDkimAttributesRequest(input *GetIdentityDkimAttributesInput) (req *service.Request, output *GetIdentityDkimAttributesOutput) {
 	op := &service.Operation{
-		Name:       opGetIdentityDKIMAttributes,
+		Name:       opGetIdentityDkimAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &GetIdentityDKIMAttributesInput{}
+		input = &GetIdentityDkimAttributesInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &GetIdentityDKIMAttributesOutput{}
+	output = &GetIdentityDkimAttributesOutput{}
 	req.Data = output
 	return
 }
@@ -145,8 +145,8 @@ func (c *SES) GetIdentityDKIMAttributesRequest(input *GetIdentityDKIMAttributesI
 //
 // For more information about creating DNS records using DKIM tokens, go to
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
-func (c *SES) GetIdentityDKIMAttributes(input *GetIdentityDKIMAttributesInput) (*GetIdentityDKIMAttributesOutput, error) {
-	req, out := c.GetIdentityDKIMAttributesRequest(input)
+func (c *SES) GetIdentityDkimAttributes(input *GetIdentityDkimAttributesInput) (*GetIdentityDkimAttributesOutput, error) {
+	req, out := c.GetIdentityDkimAttributesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -569,22 +569,22 @@ func (c *SES) SendRawEmail(input *SendRawEmailInput) (*SendRawEmailOutput, error
 	return out, err
 }
 
-const opSetIdentityDKIMEnabled = "SetIdentityDkimEnabled"
+const opSetIdentityDkimEnabled = "SetIdentityDkimEnabled"
 
-// SetIdentityDKIMEnabledRequest generates a request for the SetIdentityDKIMEnabled operation.
-func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) (req *service.Request, output *SetIdentityDKIMEnabledOutput) {
+// SetIdentityDkimEnabledRequest generates a request for the SetIdentityDkimEnabled operation.
+func (c *SES) SetIdentityDkimEnabledRequest(input *SetIdentityDkimEnabledInput) (req *service.Request, output *SetIdentityDkimEnabledOutput) {
 	op := &service.Operation{
-		Name:       opSetIdentityDKIMEnabled,
+		Name:       opSetIdentityDkimEnabled,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &SetIdentityDKIMEnabledInput{}
+		input = &SetIdentityDkimEnabledInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &SetIdentityDKIMEnabledOutput{}
+	output = &SetIdentityDkimEnabledOutput{}
 	req.Data = output
 	return
 }
@@ -603,8 +603,8 @@ func (c *SES) SetIdentityDKIMEnabledRequest(input *SetIdentityDKIMEnabledInput) 
 //
 // For more information about Easy DKIM signing, go to the Amazon SES Developer
 // Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
-func (c *SES) SetIdentityDKIMEnabled(input *SetIdentityDKIMEnabledInput) (*SetIdentityDKIMEnabledOutput, error) {
-	req, out := c.SetIdentityDKIMEnabledRequest(input)
+func (c *SES) SetIdentityDkimEnabled(input *SetIdentityDkimEnabledInput) (*SetIdentityDkimEnabledOutput, error) {
+	req, out := c.SetIdentityDkimEnabledRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -682,22 +682,22 @@ func (c *SES) SetIdentityNotificationTopic(input *SetIdentityNotificationTopicIn
 	return out, err
 }
 
-const opVerifyDomainDKIM = "VerifyDomainDkim"
+const opVerifyDomainDkim = "VerifyDomainDkim"
 
-// VerifyDomainDKIMRequest generates a request for the VerifyDomainDKIM operation.
-func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *service.Request, output *VerifyDomainDKIMOutput) {
+// VerifyDomainDkimRequest generates a request for the VerifyDomainDkim operation.
+func (c *SES) VerifyDomainDkimRequest(input *VerifyDomainDkimInput) (req *service.Request, output *VerifyDomainDkimOutput) {
 	op := &service.Operation{
-		Name:       opVerifyDomainDKIM,
+		Name:       opVerifyDomainDkim,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &VerifyDomainDKIMInput{}
+		input = &VerifyDomainDkimInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &VerifyDomainDKIMOutput{}
+	output = &VerifyDomainDkimOutput{}
 	req.Data = output
 	return
 }
@@ -717,8 +717,8 @@ func (c *SES) VerifyDomainDKIMRequest(input *VerifyDomainDKIMInput) (req *servic
 //
 // For more information about creating DNS records using DKIM tokens, go to
 // the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
-func (c *SES) VerifyDomainDKIM(input *VerifyDomainDKIMInput) (*VerifyDomainDKIMOutput, error) {
-	req, out := c.VerifyDomainDKIMRequest(input)
+func (c *SES) VerifyDomainDkim(input *VerifyDomainDkimInput) (*VerifyDomainDkimOutput, error) {
+	req, out := c.VerifyDomainDkimRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -821,7 +821,7 @@ type Body struct {
 	// The content of the message, in HTML format. Use this for email clients that
 	// can process HTML. You can include clickable links, formatted text, and much
 	// more in an HTML message.
-	HTML *Content `locationName:"Html" type:"structure"`
+	Html *Content `type:"structure"`
 
 	// The content of the message, in text format. Use this for text-based email
 	// clients, or clients on high-latency networks (such as mobile devices).
@@ -1018,10 +1018,10 @@ func (s DeleteVerifiedEmailAddressOutput) GoString() string {
 // For more information, see RFC 2047 (http://tools.ietf.org/html/rfc2047).
 type Destination struct {
 	// The BCC: field(s) of the message.
-	BCCAddresses []*string `locationName:"BccAddresses" type:"list"`
+	BccAddresses []*string `type:"list"`
 
 	// The CC: field(s) of the message.
-	CCAddresses []*string `locationName:"CcAddresses" type:"list"`
+	CcAddresses []*string `type:"list"`
 
 	// The To: field(s) of the message.
 	ToAddresses []*string `type:"list"`
@@ -1049,47 +1049,47 @@ func (s Destination) GoString() string {
 // of a domain name identity includes whether DKIM signing is enabled, as well
 // as the DNS records (tokens) that must remain published in the domain name's
 // DNS.
-type GetIdentityDKIMAttributesInput struct {
+type GetIdentityDkimAttributesInput struct {
 	// A list of one or more verified identities - email addresses, domains, or
 	// both.
 	Identities []*string `type:"list" required:"true"`
 
-	metadataGetIdentityDKIMAttributesInput `json:"-" xml:"-"`
+	metadataGetIdentityDkimAttributesInput `json:"-" xml:"-"`
 }
 
-type metadataGetIdentityDKIMAttributesInput struct {
+type metadataGetIdentityDkimAttributesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetIdentityDKIMAttributesInput) String() string {
+func (s GetIdentityDkimAttributesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetIdentityDKIMAttributesInput) GoString() string {
+func (s GetIdentityDkimAttributesInput) GoString() string {
 	return s.String()
 }
 
 // Represents a list of all the DKIM attributes for the specified identity.
-type GetIdentityDKIMAttributesOutput struct {
+type GetIdentityDkimAttributesOutput struct {
 	// The DKIM attributes for an email address or a domain.
-	DKIMAttributes map[string]*IdentityDKIMAttributes `locationName:"DkimAttributes" type:"map" required:"true"`
+	DkimAttributes map[string]*IdentityDkimAttributes `type:"map" required:"true"`
 
-	metadataGetIdentityDKIMAttributesOutput `json:"-" xml:"-"`
+	metadataGetIdentityDkimAttributesOutput `json:"-" xml:"-"`
 }
 
-type metadataGetIdentityDKIMAttributesOutput struct {
+type metadataGetIdentityDkimAttributesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetIdentityDKIMAttributesOutput) String() string {
+func (s GetIdentityDkimAttributesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetIdentityDKIMAttributesOutput) GoString() string {
+func (s GetIdentityDkimAttributesOutput) GoString() string {
 	return s.String()
 }
 
@@ -1336,9 +1336,9 @@ func (s GetSendStatisticsOutput) GoString() string {
 }
 
 // Represents the DKIM attributes of a verified email address or a domain.
-type IdentityDKIMAttributes struct {
+type IdentityDkimAttributes struct {
 	// True if DKIM signing is enabled for email sent from the identity; false otherwise.
-	DKIMEnabled *bool `locationName:"DkimEnabled" type:"boolean" required:"true"`
+	DkimEnabled *bool `type:"boolean" required:"true"`
 
 	// A set of character strings that represent the domain's identity. Using these
 	// tokens, you will need to create DNS CNAME records that point to DKIM public
@@ -1350,27 +1350,27 @@ type IdentityDKIMAttributes struct {
 	//
 	// For more information about creating DNS records using DKIM tokens, go to
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
-	DKIMTokens []*string `locationName:"DkimTokens" type:"list"`
+	DkimTokens []*string `type:"list"`
 
 	// Describes whether Amazon SES has successfully verified the DKIM DNS records
 	// (tokens) published in the domain name's DNS. (This only applies to domain
 	// identities, not email address identities.)
-	DKIMVerificationStatus *string `locationName:"DkimVerificationStatus" type:"string" required:"true" enum:"VerificationStatus"`
+	DkimVerificationStatus *string `type:"string" required:"true" enum:"VerificationStatus"`
 
-	metadataIdentityDKIMAttributes `json:"-" xml:"-"`
+	metadataIdentityDkimAttributes `json:"-" xml:"-"`
 }
 
-type metadataIdentityDKIMAttributes struct {
+type metadataIdentityDkimAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s IdentityDKIMAttributes) String() string {
+func (s IdentityDkimAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s IdentityDKIMAttributes) GoString() string {
+func (s IdentityDkimAttributes) GoString() string {
 	return s.String()
 }
 
@@ -1775,7 +1775,7 @@ type SendEmailInput struct {
 	//
 	// For more information about sending authorization, see the Amazon SES Developer
 	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
-	ReturnPathARN *string `locationName:"ReturnPathArn" type:"string"`
+	ReturnPathArn *string `type:"string"`
 
 	// The email address that is sending the email. This email address must be either
 	// individually verified with Amazon SES, or from a domain that has been verified
@@ -1805,7 +1805,7 @@ type SendEmailInput struct {
 	//
 	// For more information about sending authorization, see the Amazon SES Developer
 	// Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
-	SourceARN *string `locationName:"SourceArn" type:"string"`
+	SourceArn *string `type:"string"`
 
 	metadataSendEmailInput `json:"-" xml:"-"`
 }
@@ -1827,7 +1827,7 @@ func (s SendEmailInput) GoString() string {
 // Represents a unique message ID returned from a successful SendEmail request.
 type SendEmailOutput struct {
 	// The unique message identifier returned from the SendEmail action.
-	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
+	MessageId *string `type:"string" required:"true"`
 
 	metadataSendEmailOutput `json:"-" xml:"-"`
 }
@@ -1866,7 +1866,7 @@ type SendRawEmailInput struct {
 	//
 	// For information about when to use this parameter, see the description of
 	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
-	FromARN *string `locationName:"FromArn" type:"string"`
+	FromArn *string `type:"string"`
 
 	// The raw text of the message. The client is responsible for ensuring the following:
 	//
@@ -1894,7 +1894,7 @@ type SendRawEmailInput struct {
 	//
 	// For information about when to use this parameter, see the description of
 	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
-	ReturnPathARN *string `locationName:"ReturnPathArn" type:"string"`
+	ReturnPathArn *string `type:"string"`
 
 	// The identity's email address. If you do not provide a value for this parameter,
 	// you must specify a "From" address in the raw text of the message. (You can
@@ -1927,7 +1927,7 @@ type SendRawEmailInput struct {
 	//
 	// For information about when to use this parameter, see the description of
 	// SendRawEmail in this guide, or see the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-delegate-sender-tasks-email.html).
-	SourceARN *string `locationName:"SourceArn" type:"string"`
+	SourceArn *string `type:"string"`
 
 	metadataSendRawEmailInput `json:"-" xml:"-"`
 }
@@ -1949,7 +1949,7 @@ func (s SendRawEmailInput) GoString() string {
 // Represents a unique message ID returned from a successful SendRawEmail request.
 type SendRawEmailOutput struct {
 	// The unique message identifier returned from the SendRawEmail action.
-	MessageID *string `locationName:"MessageId" type:"string" required:"true"`
+	MessageId *string `type:"string" required:"true"`
 
 	metadataSendRawEmailOutput `json:"-" xml:"-"`
 }
@@ -1970,48 +1970,48 @@ func (s SendRawEmailOutput) GoString() string {
 
 // Represents a request instructing the service to enable or disable DKIM signing
 // for an identity.
-type SetIdentityDKIMEnabledInput struct {
+type SetIdentityDkimEnabledInput struct {
 	// Sets whether DKIM signing is enabled for an identity. Set to true to enable
 	// DKIM signing for this identity; false to disable it.
-	DKIMEnabled *bool `locationName:"DkimEnabled" type:"boolean" required:"true"`
+	DkimEnabled *bool `type:"boolean" required:"true"`
 
 	// The identity for which DKIM signing should be enabled or disabled.
 	Identity *string `type:"string" required:"true"`
 
-	metadataSetIdentityDKIMEnabledInput `json:"-" xml:"-"`
+	metadataSetIdentityDkimEnabledInput `json:"-" xml:"-"`
 }
 
-type metadataSetIdentityDKIMEnabledInput struct {
+type metadataSetIdentityDkimEnabledInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s SetIdentityDKIMEnabledInput) String() string {
+func (s SetIdentityDkimEnabledInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s SetIdentityDKIMEnabledInput) GoString() string {
+func (s SetIdentityDkimEnabledInput) GoString() string {
 	return s.String()
 }
 
 // An empty element. Receiving this element indicates that the request completed
 // successfully.
-type SetIdentityDKIMEnabledOutput struct {
-	metadataSetIdentityDKIMEnabledOutput `json:"-" xml:"-"`
+type SetIdentityDkimEnabledOutput struct {
+	metadataSetIdentityDkimEnabledOutput `json:"-" xml:"-"`
 }
 
-type metadataSetIdentityDKIMEnabledOutput struct {
+type metadataSetIdentityDkimEnabledOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s SetIdentityDKIMEnabledOutput) String() string {
+func (s SetIdentityDkimEnabledOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s SetIdentityDKIMEnabledOutput) GoString() string {
+func (s SetIdentityDkimEnabledOutput) GoString() string {
 	return s.String()
 }
 
@@ -2079,7 +2079,7 @@ type SetIdentityNotificationTopicInput struct {
 	// The Amazon Resource Name (ARN) of the Amazon SNS topic. If the parameter
 	// is omitted from the request or a null value is passed, SnsTopic is cleared
 	// and publishing is disabled.
-	SNSTopic *string `locationName:"SnsTopic" type:"string"`
+	SnsTopic *string `type:"string"`
 
 	metadataSetIdentityNotificationTopicInput `json:"-" xml:"-"`
 }
@@ -2120,30 +2120,30 @@ func (s SetIdentityNotificationTopicOutput) GoString() string {
 
 // Represents a request instructing the service to begin DKIM verification for
 // a domain.
-type VerifyDomainDKIMInput struct {
+type VerifyDomainDkimInput struct {
 	// The name of the domain to be verified for Easy DKIM signing.
 	Domain *string `type:"string" required:"true"`
 
-	metadataVerifyDomainDKIMInput `json:"-" xml:"-"`
+	metadataVerifyDomainDkimInput `json:"-" xml:"-"`
 }
 
-type metadataVerifyDomainDKIMInput struct {
+type metadataVerifyDomainDkimInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s VerifyDomainDKIMInput) String() string {
+func (s VerifyDomainDkimInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s VerifyDomainDKIMInput) GoString() string {
+func (s VerifyDomainDkimInput) GoString() string {
 	return s.String()
 }
 
 // Represents the DNS records that must be published in the domain name's DNS
 // to complete DKIM setup.
-type VerifyDomainDKIMOutput struct {
+type VerifyDomainDkimOutput struct {
 	// A set of character strings that represent the domain's identity. If the identity
 	// is an email address, the tokens represent the domain of that address.
 	//
@@ -2155,22 +2155,22 @@ type VerifyDomainDKIMOutput struct {
 	//
 	// For more information about creating DNS records using DKIM tokens, go to
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html).
-	DKIMTokens []*string `locationName:"DkimTokens" type:"list" required:"true"`
+	DkimTokens []*string `type:"list" required:"true"`
 
-	metadataVerifyDomainDKIMOutput `json:"-" xml:"-"`
+	metadataVerifyDomainDkimOutput `json:"-" xml:"-"`
 }
 
-type metadataVerifyDomainDKIMOutput struct {
+type metadataVerifyDomainDkimOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s VerifyDomainDKIMOutput) String() string {
+func (s VerifyDomainDkimOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s VerifyDomainDKIMOutput) GoString() string {
+func (s VerifyDomainDkimOutput) GoString() string {
 	return s.String()
 }
 

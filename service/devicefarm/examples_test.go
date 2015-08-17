@@ -21,7 +21,7 @@ func ExampleDeviceFarm_CreateDevicePool() {
 
 	params := &devicefarm.CreateDevicePoolInput{
 		Name:       aws.String("Name"),               // Required
-		ProjectARN: aws.String("AmazonResourceName"), // Required
+		ProjectArn: aws.String("AmazonResourceName"), // Required
 		Rules: []*devicefarm.Rule{ // Required
 			{ // Required
 				Attribute: aws.String("DeviceAttribute"),
@@ -85,7 +85,7 @@ func ExampleDeviceFarm_CreateUpload() {
 
 	params := &devicefarm.CreateUploadInput{
 		Name:        aws.String("Name"),               // Required
-		ProjectARN:  aws.String("AmazonResourceName"), // Required
+		ProjectArn:  aws.String("AmazonResourceName"), // Required
 		Type:        aws.String("UploadType"),         // Required
 		ContentType: aws.String("ContentType"),
 	}
@@ -139,7 +139,7 @@ func ExampleDeviceFarm_GetDevice() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetDeviceInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetDevice(params)
 
@@ -166,7 +166,7 @@ func ExampleDeviceFarm_GetDevicePool() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetDevicePoolInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetDevicePool(params)
 
@@ -193,8 +193,8 @@ func ExampleDeviceFarm_GetDevicePoolCompatibility() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetDevicePoolCompatibilityInput{
-		AppARN:        aws.String("AmazonResourceName"), // Required
-		DevicePoolARN: aws.String("AmazonResourceName"), // Required
+		AppArn:        aws.String("AmazonResourceName"), // Required
+		DevicePoolArn: aws.String("AmazonResourceName"), // Required
 		TestType:      aws.String("TestType"),
 	}
 	resp, err := svc.GetDevicePoolCompatibility(params)
@@ -222,7 +222,7 @@ func ExampleDeviceFarm_GetJob() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetJobInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetJob(params)
 
@@ -249,7 +249,7 @@ func ExampleDeviceFarm_GetProject() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetProjectInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetProject(params)
 
@@ -276,7 +276,7 @@ func ExampleDeviceFarm_GetRun() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetRunInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetRun(params)
 
@@ -303,7 +303,7 @@ func ExampleDeviceFarm_GetSuite() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetSuiteInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetSuite(params)
 
@@ -330,7 +330,7 @@ func ExampleDeviceFarm_GetTest() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetTestInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetTest(params)
 
@@ -357,7 +357,7 @@ func ExampleDeviceFarm_GetUpload() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.GetUploadInput{
-		ARN: aws.String("AmazonResourceName"), // Required
+		Arn: aws.String("AmazonResourceName"), // Required
 	}
 	resp, err := svc.GetUpload(params)
 
@@ -384,7 +384,7 @@ func ExampleDeviceFarm_ListArtifacts() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListArtifactsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		Type:      aws.String("ArtifactCategory"),   // Required
 		NextToken: aws.String("PaginationToken"),
 	}
@@ -413,7 +413,7 @@ func ExampleDeviceFarm_ListDevicePools() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListDevicePoolsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 		Type:      aws.String("DevicePoolType"),
 	}
@@ -442,7 +442,7 @@ func ExampleDeviceFarm_ListDevices() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListDevicesInput{
-		ARN:       aws.String("AmazonResourceName"),
+		Arn:       aws.String("AmazonResourceName"),
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListDevices(params)
@@ -470,7 +470,7 @@ func ExampleDeviceFarm_ListJobs() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListJobsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListJobs(params)
@@ -498,7 +498,7 @@ func ExampleDeviceFarm_ListProjects() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListProjectsInput{
-		ARN:       aws.String("AmazonResourceName"),
+		Arn:       aws.String("AmazonResourceName"),
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListProjects(params)
@@ -526,7 +526,7 @@ func ExampleDeviceFarm_ListRuns() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListRunsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListRuns(params)
@@ -554,7 +554,7 @@ func ExampleDeviceFarm_ListSamples() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListSamplesInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListSamples(params)
@@ -582,7 +582,7 @@ func ExampleDeviceFarm_ListSuites() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListSuitesInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListSuites(params)
@@ -610,7 +610,7 @@ func ExampleDeviceFarm_ListTests() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListTestsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListTests(params)
@@ -638,7 +638,7 @@ func ExampleDeviceFarm_ListUniqueProblems() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListUniqueProblemsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListUniqueProblems(params)
@@ -666,7 +666,7 @@ func ExampleDeviceFarm_ListUploads() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ListUploadsInput{
-		ARN:       aws.String("AmazonResourceName"), // Required
+		Arn:       aws.String("AmazonResourceName"), // Required
 		NextToken: aws.String("PaginationToken"),
 	}
 	resp, err := svc.ListUploads(params)
@@ -694,9 +694,9 @@ func ExampleDeviceFarm_ScheduleRun() {
 	svc := devicefarm.New(nil)
 
 	params := &devicefarm.ScheduleRunInput{
-		AppARN:        aws.String("AmazonResourceName"), // Required
-		DevicePoolARN: aws.String("AmazonResourceName"), // Required
-		ProjectARN:    aws.String("AmazonResourceName"), // Required
+		AppArn:        aws.String("AmazonResourceName"), // Required
+		DevicePoolArn: aws.String("AmazonResourceName"), // Required
+		ProjectArn:    aws.String("AmazonResourceName"), // Required
 		Test: &devicefarm.ScheduleRunTest{ // Required
 			Type:   aws.String("TestType"), // Required
 			Filter: aws.String("Filter"),
@@ -704,7 +704,7 @@ func ExampleDeviceFarm_ScheduleRun() {
 				"Key": aws.String("String"), // Required
 				// More values...
 			},
-			TestPackageARN: aws.String("AmazonResourceName"),
+			TestPackageArn: aws.String("AmazonResourceName"),
 		},
 		Configuration: &devicefarm.ScheduleRunConfiguration{
 			AuxiliaryApps: []*string{
@@ -712,13 +712,13 @@ func ExampleDeviceFarm_ScheduleRun() {
 				// More values...
 			},
 			BillingMethod:       aws.String("BillingMethod"),
-			ExtraDataPackageARN: aws.String("AmazonResourceName"),
+			ExtraDataPackageArn: aws.String("AmazonResourceName"),
 			Locale:              aws.String("String"),
 			Location: &devicefarm.Location{
 				Latitude:  aws.Float64(1.0), // Required
 				Longitude: aws.Float64(1.0), // Required
 			},
-			NetworkProfileARN: aws.String("AmazonResourceName"),
+			NetworkProfileArn: aws.String("AmazonResourceName"),
 			Radios: &devicefarm.Radios{
 				Bluetooth: aws.Bool(true),
 				Gps:       aws.Bool(true),

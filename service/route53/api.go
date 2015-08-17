@@ -418,22 +418,22 @@ func (c *Route53) GetChange(input *GetChangeInput) (*GetChangeOutput, error) {
 	return out, err
 }
 
-const opGetCheckerIPRanges = "GetCheckerIpRanges"
+const opGetCheckerIpRanges = "GetCheckerIpRanges"
 
-// GetCheckerIPRangesRequest generates a request for the GetCheckerIPRanges operation.
-func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req *service.Request, output *GetCheckerIPRangesOutput) {
+// GetCheckerIpRangesRequest generates a request for the GetCheckerIpRanges operation.
+func (c *Route53) GetCheckerIpRangesRequest(input *GetCheckerIpRangesInput) (req *service.Request, output *GetCheckerIpRangesOutput) {
 	op := &service.Operation{
-		Name:       opGetCheckerIPRanges,
+		Name:       opGetCheckerIpRanges,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-04-01/checkeripranges",
 	}
 
 	if input == nil {
-		input = &GetCheckerIPRangesInput{}
+		input = &GetCheckerIpRangesInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &GetCheckerIPRangesOutput{}
+	output = &GetCheckerIpRangesOutput{}
 	req.Data = output
 	return
 }
@@ -442,8 +442,8 @@ func (c *Route53) GetCheckerIPRangesRequest(input *GetCheckerIPRangesInput) (req
 // to check the health of your resources, send a GET request to the 2013-04-01/checkeripranges
 // resource. You can use these IP addresses to configure router and firewall
 // rules to allow health checkers to check the health of your resources.
-func (c *Route53) GetCheckerIPRanges(input *GetCheckerIPRangesInput) (*GetCheckerIPRangesOutput, error) {
-	req, out := c.GetCheckerIPRangesRequest(input)
+func (c *Route53) GetCheckerIpRanges(input *GetCheckerIpRangesInput) (*GetCheckerIpRangesOutput, error) {
+	req, out := c.GetCheckerIpRangesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1116,7 +1116,7 @@ type AliasTarget struct {
 	// in the Amazon Route 53 Developer Guide
 	//
 	// .
-	HostedZoneID *string `locationName:"HostedZoneId" type:"string" required:"true"`
+	HostedZoneId *string `type:"string" required:"true"`
 
 	metadataAliasTarget `json:"-" xml:"-"`
 }
@@ -1145,7 +1145,7 @@ type AssociateVPCWithHostedZoneInput struct {
 	//
 	// Note that you cannot associate a VPC with a hosted zone that doesn't have
 	// an existing VPC association.
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The VPC that you want your hosted zone to be associated with.
 	VPC *VPC `type:"structure" required:"true"`
@@ -1260,7 +1260,7 @@ type ChangeInfo struct {
 
 	// The ID of the request. Use this ID to track when the change has completed
 	// across all Amazon Route 53 DNS servers.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The current state of the request. PENDING indicates that this request has
 	// not yet been applied to all Amazon Route 53 DNS servers.
@@ -1298,7 +1298,7 @@ type ChangeResourceRecordSetsInput struct {
 
 	// The ID of the hosted zone that contains the resource record sets that you
 	// want to change.
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataChangeResourceRecordSetsInput `json:"-" xml:"-"`
 }
@@ -1354,7 +1354,7 @@ type ChangeTagsForResourceInput struct {
 	RemoveTagKeys []*string `locationNameList:"Key" type:"list"`
 
 	// The ID of the resource for which you want to add, change, or delete tags.
-	ResourceID *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
+	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 
 	// The type of the resource.
 	//
@@ -1472,7 +1472,7 @@ type CreateHostedZoneInput struct {
 
 	// The delegation set id of the reusable delgation set whose NS records you
 	// want to assign to the new hosted zone.
-	DelegationSetID *string `locationName:"DelegationSetId" type:"string"`
+	DelegationSetId *string `type:"string"`
 
 	// A complex type that contains an optional comment about your hosted zone.
 	HostedZoneConfig *HostedZoneConfig `type:"structure"`
@@ -1557,7 +1557,7 @@ type CreateReusableDelegationSetInput struct {
 
 	// The ID of the hosted zone whose delegation set you want to mark as reusable.
 	// It is an optional parameter.
-	HostedZoneID *string `locationName:"HostedZoneId" type:"string"`
+	HostedZoneId *string `type:"string"`
 
 	metadataCreateReusableDelegationSetInput `json:"-" xml:"-"`
 }
@@ -1604,7 +1604,7 @@ func (s CreateReusableDelegationSetOutput) GoString() string {
 type DelegationSet struct {
 	CallerReference *string `type:"string"`
 
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// A complex type that contains the authoritative name servers for the hosted
 	// zone. Use the method provided by your domain registrar to add an NS record
@@ -1631,7 +1631,7 @@ func (s DelegationSet) GoString() string {
 // A complex type containing the request information for delete health check.
 type DeleteHealthCheckInput struct {
 	// The ID of the health check to delete.
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
+	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataDeleteHealthCheckInput `json:"-" xml:"-"`
 }
@@ -1673,7 +1673,7 @@ func (s DeleteHealthCheckOutput) GoString() string {
 // to delete.
 type DeleteHostedZoneInput struct {
 	// The ID of the hosted zone you want to delete.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeleteHostedZoneInput `json:"-" xml:"-"`
 }
@@ -1718,7 +1718,7 @@ func (s DeleteHostedZoneOutput) GoString() string {
 // A complex type containing the information for the delete request.
 type DeleteReusableDelegationSetInput struct {
 	// The ID of the reusable delegation set you want to delete.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeleteReusableDelegationSetInput `json:"-" xml:"-"`
 }
@@ -1765,7 +1765,7 @@ type DisassociateVPCFromHostedZoneInput struct {
 	// The ID of the hosted zone you want to disassociate your VPC from.
 	//
 	// Note that you cannot disassociate the last VPC from a hosted zone.
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The VPC that you want your hosted zone to be disassociated from.
 	VPC *VPC `type:"structure" required:"true"`
@@ -1903,7 +1903,7 @@ type GetChangeInput struct {
 	// The ID of the change batch request. The value that you specify here is the
 	// value that ChangeResourceRecordSets returned in the Id element when you submitted
 	// the request.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetChangeInput `json:"-" xml:"-"`
 }
@@ -1947,44 +1947,44 @@ func (s GetChangeOutput) GoString() string {
 }
 
 // Empty request.
-type GetCheckerIPRangesInput struct {
-	metadataGetCheckerIPRangesInput `json:"-" xml:"-"`
+type GetCheckerIpRangesInput struct {
+	metadataGetCheckerIpRangesInput `json:"-" xml:"-"`
 }
 
-type metadataGetCheckerIPRangesInput struct {
+type metadataGetCheckerIpRangesInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetCheckerIPRangesInput) String() string {
+func (s GetCheckerIpRangesInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetCheckerIPRangesInput) GoString() string {
+func (s GetCheckerIpRangesInput) GoString() string {
 	return s.String()
 }
 
 // A complex type that contains the CheckerIpRanges element.
-type GetCheckerIPRangesOutput struct {
+type GetCheckerIpRangesOutput struct {
 	// A complex type that contains sorted list of IP ranges in CIDR format for
 	// Amazon Route 53 health checkers.
-	CheckerIPRanges []*string `locationName:"CheckerIpRanges" type:"list" required:"true"`
+	CheckerIpRanges []*string `type:"list" required:"true"`
 
-	metadataGetCheckerIPRangesOutput `json:"-" xml:"-"`
+	metadataGetCheckerIpRangesOutput `json:"-" xml:"-"`
 }
 
-type metadataGetCheckerIPRangesOutput struct {
+type metadataGetCheckerIpRangesOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s GetCheckerIPRangesOutput) String() string {
+func (s GetCheckerIpRangesOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s GetCheckerIPRangesOutput) GoString() string {
+func (s GetCheckerIpRangesOutput) GoString() string {
 	return s.String()
 }
 
@@ -2099,7 +2099,7 @@ func (s GetHealthCheckCountOutput) GoString() string {
 // check.
 type GetHealthCheckInput struct {
 	// The ID of the health check to retrieve.
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
+	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataGetHealthCheckInput `json:"-" xml:"-"`
 }
@@ -2123,7 +2123,7 @@ func (s GetHealthCheckInput) GoString() string {
 type GetHealthCheckLastFailureReasonInput struct {
 	// The ID of the health check for which you want to retrieve the reason for
 	// the most recent failure.
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
+	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataGetHealthCheckLastFailureReasonInput `json:"-" xml:"-"`
 }
@@ -2193,7 +2193,7 @@ func (s GetHealthCheckOutput) GoString() string {
 type GetHealthCheckStatusInput struct {
 	// The ID of the health check for which you want to retrieve the most recent
 	// status.
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
+	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	metadataGetHealthCheckStatusInput `json:"-" xml:"-"`
 }
@@ -2283,7 +2283,7 @@ func (s GetHostedZoneCountOutput) GoString() string {
 type GetHostedZoneInput struct {
 	// The ID of the hosted zone for which you want to get a list of the name servers
 	// in the delegation set.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetHostedZoneInput `json:"-" xml:"-"`
 }
@@ -2336,7 +2336,7 @@ func (s GetHostedZoneOutput) GoString() string {
 type GetReusableDelegationSetInput struct {
 	// The ID of the reusable delegation set for which you want to get a list of
 	// the name server.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetReusableDelegationSetInput `json:"-" xml:"-"`
 }
@@ -2393,7 +2393,7 @@ type HealthCheck struct {
 	HealthCheckVersion *int64 `type:"long" required:"true"`
 
 	// The ID of the specified health check.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	metadataHealthCheck `json:"-" xml:"-"`
 }
@@ -2507,7 +2507,7 @@ type HostedZone struct {
 	Config *HostedZoneConfig `type:"structure"`
 
 	// The ID of the specified hosted zone.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The name of the domain. This must be a fully-specified domain, for example,
 	// www.example.com. The trailing dot is optional; Route 53 assumes that the
@@ -2773,7 +2773,7 @@ type ListHostedZonesByNameInput struct {
 	// If the request returned more than one page of results, submit another request
 	// and specify the value of NextDNSName and NextHostedZoneId from the last response
 	// in the DNSName and HostedZoneId parameters to get the next page of results.
-	HostedZoneID *string `location:"querystring" locationName:"hostedzoneid" type:"string"`
+	HostedZoneId *string `location:"querystring" locationName:"hostedzoneid" type:"string"`
 
 	// Specify the maximum number of hosted zones to return per page of results.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
@@ -2801,7 +2801,7 @@ type ListHostedZonesByNameOutput struct {
 	DNSName *string `type:"string"`
 
 	// The HostedZoneId value sent in the request.
-	HostedZoneID *string `locationName:"HostedZoneId" type:"string"`
+	HostedZoneId *string `type:"string"`
 
 	// A complex type that contains information about the hosted zones associated
 	// with the current AWS account.
@@ -2834,7 +2834,7 @@ type ListHostedZonesByNameOutput struct {
 	// make another request to ListHostedZonesByName. Specify the value of ListHostedZonesByNameResponse$NextDNSName
 	// in the ListHostedZonesByNameRequest$DNSName element and ListHostedZonesByNameResponse$NextHostedZoneId
 	// in the ListHostedZonesByNameRequest$HostedZoneId element.
-	NextHostedZoneID *string `locationName:"NextHostedZoneId" type:"string"`
+	NextHostedZoneId *string `type:"string"`
 
 	metadataListHostedZonesByNameOutput `json:"-" xml:"-"`
 }
@@ -2866,7 +2866,7 @@ func (s ListHostedZonesByNameOutput) GoString() string {
 //  Route 53 returns a maximum of 100 items. If you set MaxItems to a value
 // greater than 100, Route 53 returns only the first 100.
 type ListHostedZonesInput struct {
-	DelegationSetID *string `location:"querystring" locationName:"delegationsetid" type:"string"`
+	DelegationSetId *string `location:"querystring" locationName:"delegationsetid" type:"string"`
 
 	// If the request returned more than one page of results, submit another request
 	// and specify the value of NextMarker from the last response in the marker
@@ -2944,7 +2944,7 @@ func (s ListHostedZonesOutput) GoString() string {
 type ListResourceRecordSetsInput struct {
 	// The ID of the hosted zone that contains the resource record sets that you
 	// want to get.
-	HostedZoneID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	HostedZoneId *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The maximum number of records you want in the response body.
 	MaxItems *string `location:"querystring" locationName:"maxitems" type:"string"`
@@ -3131,7 +3131,7 @@ func (s ListReusableDelegationSetsOutput) GoString() string {
 // that are associated with an individual resource.
 type ListTagsForResourceInput struct {
 	// The ID of the resource for which you want to retrieve tags.
-	ResourceID *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
+	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 
 	// The type of the resource.
 	//
@@ -3184,7 +3184,7 @@ func (s ListTagsForResourceOutput) GoString() string {
 type ListTagsForResourcesInput struct {
 	// A complex type that contains the ResourceId element for each resource for
 	// which you want to get a list of tags.
-	ResourceIDs []*string `locationName:"ResourceIds" locationNameList:"ResourceId" type:"list" required:"true"`
+	ResourceIds []*string `locationNameList:"ResourceId" type:"list" required:"true"`
 
 	// The type of the resources.
 	//
@@ -3288,7 +3288,7 @@ type ResourceRecordSet struct {
 	// Health Check resource record sets only, not required for alias resource record
 	// sets: An identifier that is used to identify health check associated with
 	// the resource record set.
-	HealthCheckID *string `locationName:"HealthCheckId" type:"string"`
+	HealthCheckId *string `type:"string"`
 
 	// The domain name of the current resource record set.
 	Name *string `type:"string" required:"true"`
@@ -3339,7 +3339,7 @@ func (s ResourceRecordSet) GoString() string {
 // A complex type containing a resource and its associated tags.
 type ResourceTagSet struct {
 	// The ID for the specified resource.
-	ResourceID *string `locationName:"ResourceId" type:"string"`
+	ResourceId *string `type:"string"`
 
 	// The type of the resource.
 	//
@@ -3442,7 +3442,7 @@ type UpdateHealthCheckInput struct {
 	FullyQualifiedDomainName *string `type:"string"`
 
 	// The ID of the health check to update.
-	HealthCheckID *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
+	HealthCheckId *string `location:"uri" locationName:"HealthCheckId" type:"string" required:"true"`
 
 	// Optional. When you specify a health check version, Route 53 compares this
 	// value with the current value in the health check, which prevents you from
@@ -3522,7 +3522,7 @@ type UpdateHostedZoneCommentInput struct {
 	Comment *string `type:"string"`
 
 	// The ID of the hosted zone you want to update.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataUpdateHostedZoneCommentInput `json:"-" xml:"-"`
 }
@@ -3566,7 +3566,7 @@ func (s UpdateHostedZoneCommentOutput) GoString() string {
 
 type VPC struct {
 	// A VPC ID
-	VPCID *string `locationName:"VPCId" type:"string"`
+	VPCId *string `type:"string"`
 
 	VPCRegion *string `type:"string" enum:"VPCRegion"`
 

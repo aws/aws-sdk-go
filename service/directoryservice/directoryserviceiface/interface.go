@@ -50,17 +50,17 @@ type DirectoryServiceAPI interface {
 
 	DisableRadius(*directoryservice.DisableRadiusInput) (*directoryservice.DisableRadiusOutput, error)
 
-	DisableSSORequest(*directoryservice.DisableSSOInput) (*service.Request, *directoryservice.DisableSSOOutput)
+	DisableSsoRequest(*directoryservice.DisableSsoInput) (*service.Request, *directoryservice.DisableSsoOutput)
 
-	DisableSSO(*directoryservice.DisableSSOInput) (*directoryservice.DisableSSOOutput, error)
+	DisableSso(*directoryservice.DisableSsoInput) (*directoryservice.DisableSsoOutput, error)
 
 	EnableRadiusRequest(*directoryservice.EnableRadiusInput) (*service.Request, *directoryservice.EnableRadiusOutput)
 
 	EnableRadius(*directoryservice.EnableRadiusInput) (*directoryservice.EnableRadiusOutput, error)
 
-	EnableSSORequest(*directoryservice.EnableSSOInput) (*service.Request, *directoryservice.EnableSSOOutput)
+	EnableSsoRequest(*directoryservice.EnableSsoInput) (*service.Request, *directoryservice.EnableSsoOutput)
 
-	EnableSSO(*directoryservice.EnableSSOInput) (*directoryservice.EnableSSOOutput, error)
+	EnableSso(*directoryservice.EnableSsoInput) (*directoryservice.EnableSsoOutput, error)
 
 	GetDirectoryLimitsRequest(*directoryservice.GetDirectoryLimitsInput) (*service.Request, *directoryservice.GetDirectoryLimitsOutput)
 

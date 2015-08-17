@@ -20,10 +20,10 @@ func ExampleSTS_AssumeRole() {
 	svc := sts.New(nil)
 
 	params := &sts.AssumeRoleInput{
-		RoleARN:         aws.String("arnType"),      // Required
+		RoleArn:         aws.String("arnType"),      // Required
 		RoleSessionName: aws.String("userNameType"), // Required
 		DurationSeconds: aws.Int64(1),
-		ExternalID:      aws.String("externalIdType"),
+		ExternalId:      aws.String("externalIdType"),
 		Policy:          aws.String("sessionPolicyDocumentType"),
 		SerialNumber:    aws.String("serialNumberType"),
 		TokenCode:       aws.String("tokenCodeType"),
@@ -53,8 +53,8 @@ func ExampleSTS_AssumeRoleWithSAML() {
 	svc := sts.New(nil)
 
 	params := &sts.AssumeRoleWithSAMLInput{
-		PrincipalARN:    aws.String("arnType"),           // Required
-		RoleARN:         aws.String("arnType"),           // Required
+		PrincipalArn:    aws.String("arnType"),           // Required
+		RoleArn:         aws.String("arnType"),           // Required
 		SAMLAssertion:   aws.String("SAMLAssertionType"), // Required
 		DurationSeconds: aws.Int64(1),
 		Policy:          aws.String("sessionPolicyDocumentType"),
@@ -84,12 +84,12 @@ func ExampleSTS_AssumeRoleWithWebIdentity() {
 	svc := sts.New(nil)
 
 	params := &sts.AssumeRoleWithWebIdentityInput{
-		RoleARN:          aws.String("arnType"),         // Required
+		RoleArn:          aws.String("arnType"),         // Required
 		RoleSessionName:  aws.String("userNameType"),    // Required
 		WebIdentityToken: aws.String("clientTokenType"), // Required
 		DurationSeconds:  aws.Int64(1),
 		Policy:           aws.String("sessionPolicyDocumentType"),
-		ProviderID:       aws.String("urlType"),
+		ProviderId:       aws.String("urlType"),
 	}
 	resp, err := svc.AssumeRoleWithWebIdentity(params)
 

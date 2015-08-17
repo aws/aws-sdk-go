@@ -866,7 +866,7 @@ func (s DeleteStreamOutput) GoString() string {
 // Represents the input for DescribeStream.
 type DescribeStreamInput struct {
 	// The shard ID of the shard to start with.
-	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string"`
+	ExclusiveStartShardId *string `type:"string"`
 
 	// The maximum number of shards to return.
 	Limit *int64 `type:"integer"`
@@ -978,7 +978,7 @@ func (s GetRecordsOutput) GoString() string {
 // Represents the input for GetShardIterator.
 type GetShardIteratorInput struct {
 	// The shard ID of the shard to get the iterator for.
-	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
+	ShardId *string `type:"string" required:"true"`
 
 	// Determines how the shard iterator is used to start reading data records from
 	// the shard.
@@ -1280,7 +1280,7 @@ type PutRecordOutput struct {
 	SequenceNumber *string `type:"string" required:"true"`
 
 	// The shard ID of the shard where the data record was placed.
-	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
+	ShardId *string `type:"string" required:"true"`
 
 	metadataPutRecordOutput `json:"-" xml:"-"`
 }
@@ -1411,7 +1411,7 @@ type PutRecordsResultEntry struct {
 	SequenceNumber *string `type:"string"`
 
 	// The shard ID for an individual record result.
-	ShardID *string `locationName:"ShardId" type:"string"`
+	ShardId *string `type:"string"`
 
 	metadataPutRecordsResultEntry `json:"-" xml:"-"`
 }
@@ -1534,20 +1534,20 @@ func (s SequenceNumberRange) GoString() string {
 // A uniquely identified group of data records in an Amazon Kinesis stream.
 type Shard struct {
 	// The shard Id of the shard adjacent to the shard's parent.
-	AdjacentParentShardID *string `locationName:"AdjacentParentShardId" type:"string"`
+	AdjacentParentShardId *string `type:"string"`
 
 	// The range of possible hash key values for the shard, which is a set of ordered
 	// contiguous positive integers.
 	HashKeyRange *HashKeyRange `type:"structure" required:"true"`
 
 	// The shard Id of the shard's parent.
-	ParentShardID *string `locationName:"ParentShardId" type:"string"`
+	ParentShardId *string `type:"string"`
 
 	// The range of possible sequence numbers for the shard.
 	SequenceNumberRange *SequenceNumberRange `type:"structure" required:"true"`
 
 	// The unique identifier of the shard within the Amazon Kinesis stream.
-	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
+	ShardId *string `type:"string" required:"true"`
 
 	metadataShard `json:"-" xml:"-"`
 }

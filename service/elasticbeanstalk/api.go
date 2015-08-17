@@ -993,7 +993,7 @@ func (c *ElasticBeanstalk) ValidateConfigurationSettings(input *ValidateConfigur
 type AbortEnvironmentUpdateInput struct {
 	// This specifies the ID of the environment with the in-progress update that
 	// you want to cancel.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// This specifies the name of the environment with the in-progress update that
 	// you want to cancel.
@@ -1622,7 +1622,7 @@ type CreateConfigurationTemplateInput struct {
 	Description *string `type:"string"`
 
 	// The ID of the environment used with this configuration template.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// If specified, AWS Elastic Beanstalk sets the specified configuration option
 	// to the requested value. The new value overrides the value obtained from the
@@ -2217,7 +2217,7 @@ type DescribeEnvironmentHealthInput struct {
 	AttributeNames []*string `type:"list"`
 
 	// Specifies the AWS Elastic Beanstalk environment ID.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// Specifies the AWS Elastic Beanstalk environment name.
 	EnvironmentName *string `type:"string"`
@@ -2292,7 +2292,7 @@ type DescribeEnvironmentResourcesInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to retrieve AWS resource usage data.
 	//
@@ -2348,7 +2348,7 @@ type DescribeEnvironmentsInput struct {
 
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those that have the specified IDs.
-	EnvironmentIDs []*string `locationName:"EnvironmentIds" type:"list"`
+	EnvironmentIds []*string `type:"list"`
 
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those that have the specified names.
@@ -2421,7 +2421,7 @@ type DescribeEventsInput struct {
 
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// those associated with this environment.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// those associated with this environment.
@@ -2436,7 +2436,7 @@ type DescribeEventsInput struct {
 
 	// If specified, AWS Elastic Beanstalk restricts the described events to include
 	// only those associated with this request ID.
-	RequestID *string `locationName:"RequestId" type:"string"`
+	RequestId *string `type:"string"`
 
 	// If specified, limits the events returned from this call to include only those
 	// with the specified severity or higher.
@@ -2504,7 +2504,7 @@ type DescribeInstancesHealthInput struct {
 	AttributeNames []*string `type:"list"`
 
 	// Specifies the AWS Elastic Beanstalk environment ID.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// Specifies the AWS Elastic Beanstalk environment name.
 	EnvironmentName *string `type:"string"`
@@ -2587,7 +2587,7 @@ type EnvironmentDescription struct {
 	EndpointURL *string `type:"string"`
 
 	// The ID of this environment.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of this environment.
 	EnvironmentName *string `type:"string"`
@@ -2659,7 +2659,7 @@ func (s EnvironmentDescription) GoString() string {
 // The information retrieved from the Amazon EC2 instances.
 type EnvironmentInfoDescription struct {
 	// The Amazon EC2 Instance ID for this information.
-	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
+	Ec2InstanceId *string `type:"string"`
 
 	// The type of information retrieved.
 	InfoType *string `type:"string" enum:"EnvironmentInfoType"`
@@ -2793,7 +2793,7 @@ type EventDescription struct {
 	Message *string `type:"string"`
 
 	// The web service request ID for the activity of this event.
-	RequestID *string `locationName:"RequestId" type:"string"`
+	RequestId *string `type:"string"`
 
 	// The severity level of this event.
 	Severity *string `type:"string" enum:"EventSeverity"`
@@ -2824,7 +2824,7 @@ func (s EventDescription) GoString() string {
 // The description of an Amazon EC2 instance.
 type Instance struct {
 	// The ID of the Amazon EC2 instance.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	metadataInstance `json:"-" xml:"-"`
 }
@@ -2859,7 +2859,7 @@ type InstanceHealthSummary struct {
 
 	// Green. An instance is passing health checks and the health agent is not reporting
 	// any problems.
-	OK *int64 `locationName:"Ok" type:"integer"`
+	Ok *int64 `type:"integer"`
 
 	// Grey. An operation is in progress on an instance within the command timeout.
 	Pending *int64 `type:"integer"`
@@ -3171,7 +3171,7 @@ type RebuildEnvironmentInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to rebuild.
 	//
@@ -3225,7 +3225,7 @@ type RequestEnvironmentInfoInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the environment of the requested data.
 	//
@@ -3281,7 +3281,7 @@ type RestartAppServerInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to restart the server for.
 	//
@@ -3334,7 +3334,7 @@ type RetrieveEnvironmentInfoInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the data's environment.
 	//
@@ -3433,7 +3433,7 @@ type SingleInstanceHealth struct {
 	HealthStatus *string `type:"string"`
 
 	// The ID of the Amazon EC2 instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The time at which the EC2 instance was launched.
 	LaunchedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -3553,7 +3553,7 @@ type SwapEnvironmentCNAMEsInput struct {
 	//  Condition: You must specify at least the DestinationEnvironmentID or the
 	// DestinationEnvironmentName. You may also specify both. You must specify the
 	// SourceEnvironmentId with the DestinationEnvironmentId.
-	DestinationEnvironmentID *string `locationName:"DestinationEnvironmentId" type:"string"`
+	DestinationEnvironmentId *string `type:"string"`
 
 	// The name of the destination environment.
 	//
@@ -3567,7 +3567,7 @@ type SwapEnvironmentCNAMEsInput struct {
 	//  Condition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName.
 	// You may also specify both. If you specify the SourceEnvironmentId, you must
 	// specify the DestinationEnvironmentId.
-	SourceEnvironmentID *string `locationName:"SourceEnvironmentId" type:"string"`
+	SourceEnvironmentId *string `type:"string"`
 
 	// The name of the source environment.
 	//
@@ -3672,7 +3672,7 @@ type TerminateEnvironmentInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to terminate.
 	//
@@ -3859,7 +3859,7 @@ type UpdateEnvironmentInput struct {
 	//  Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
-	EnvironmentID *string `locationName:"EnvironmentId" type:"string"`
+	EnvironmentId *string `type:"string"`
 
 	// The name of the environment to update. If no environment with this name exists,
 	// AWS Elastic Beanstalk returns an InvalidParameterValue error.

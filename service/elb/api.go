@@ -2231,7 +2231,7 @@ func (s HealthCheck) GoString() string {
 // The ID of a back-end instance.
 type Instance struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	metadataInstance `json:"-" xml:"-"`
 }
@@ -2284,7 +2284,7 @@ type InstanceState struct {
 	Description *string `type:"string"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// Information about the cause of OutOfService instances. Specifically, whether
 	// the cause is Elastic Load Balancing or the instance.
@@ -2373,7 +2373,7 @@ type Listener struct {
 	Protocol *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the server certificate.
-	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
+	SSLCertificateId *string `type:"string"`
 
 	metadataListener `json:"-" xml:"-"`
 }
@@ -2536,7 +2536,7 @@ type LoadBalancerDescription struct {
 	Subnets []*string `type:"list"`
 
 	// The ID of the VPC for the load balancer.
-	VPCID *string `locationName:"VPCId" type:"string"`
+	VPCId *string `type:"string"`
 
 	metadataLoadBalancerDescription `json:"-" xml:"-"`
 }
@@ -2874,7 +2874,7 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SSL certificate.
-	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string" required:"true"`
+	SSLCertificateId *string `type:"string" required:"true"`
 
 	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-" xml:"-"`
 }

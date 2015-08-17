@@ -1631,10 +1631,10 @@ type AbortMultipartUploadInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The upload ID of the multipart upload to delete.
-	UploadID *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
+	UploadId *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -1682,7 +1682,7 @@ type AbortVaultLockInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -1729,7 +1729,7 @@ type AddTagsToVaultInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The tags to add to the vault. Each tag is composed of a key and a value.
 	// The value can be an empty string.
@@ -1780,7 +1780,7 @@ func (s AddTagsToVaultOutput) GoString() string {
 // (http://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html).
 type ArchiveCreationOutput struct {
 	// The ID of the archive. This value is also included as part of the location.
-	ArchiveID *string `location:"header" locationName:"x-amz-archive-id" type:"string"`
+	ArchiveId *string `location:"header" locationName:"x-amz-archive-id" type:"string"`
 
 	// The checksum of the archive computed by Amazon Glacier.
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
@@ -1816,7 +1816,7 @@ type CompleteMultipartUploadInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The total size, in bytes, of the entire archive. This value should be the
 	// sum of all the sizes of the individual parts that you uploaded.
@@ -1829,7 +1829,7 @@ type CompleteMultipartUploadInput struct {
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`
 
 	// The upload ID of the multipart upload.
-	UploadID *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
+	UploadId *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -1859,10 +1859,10 @@ type CompleteVaultLockInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The lockId value is the lock ID obtained from a InitiateVaultLock request.
-	LockID *string `location:"uri" locationName:"lockId" type:"string" required:"true"`
+	LockId *string `location:"uri" locationName:"lockId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -1910,7 +1910,7 @@ type CreateVaultInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2015,10 +2015,10 @@ type DeleteArchiveInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The ID of the archive to delete.
-	ArchiveID *string `location:"uri" locationName:"archiveId" type:"string" required:"true"`
+	ArchiveId *string `location:"uri" locationName:"archiveId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2065,7 +2065,7 @@ type DeleteVaultAccessPolicyInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2112,7 +2112,7 @@ type DeleteVaultInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2142,7 +2142,7 @@ type DeleteVaultNotificationsInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2207,10 +2207,10 @@ type DescribeJobInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The ID of the job to describe.
-	JobID *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
+	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2239,7 +2239,7 @@ type DescribeVaultInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2312,7 +2312,7 @@ type GetDataRetrievalPolicyInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	metadataGetDataRetrievalPolicyInput `json:"-" xml:"-"`
 }
@@ -2360,10 +2360,10 @@ type GetJobOutputInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The job ID whose data is downloaded.
-	JobID *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
+	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 
 	// The range of bytes to retrieve from the output. For example, if you want
 	// to download the first 1,048,576 bytes, specify "Range: bytes=0-1048575".
@@ -2454,7 +2454,7 @@ type GetVaultAccessPolicyInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2505,7 +2505,7 @@ type GetVaultLockInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2568,7 +2568,7 @@ type GetVaultNotificationsInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -2619,7 +2619,7 @@ type InitiateJobInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// Provides options for specifying job information.
 	JobParameters *JobParameters `locationName:"jobParameters" type:"structure"`
@@ -2647,7 +2647,7 @@ func (s InitiateJobInput) GoString() string {
 // Contains the Amazon Glacier response to your request.
 type InitiateJobOutput struct {
 	// The ID of the job.
-	JobID *string `location:"header" locationName:"x-amz-job-id" type:"string"`
+	JobId *string `location:"header" locationName:"x-amz-job-id" type:"string"`
 
 	// The relative URI path of the job.
 	Location *string `location:"header" locationName:"Location" type:"string"`
@@ -2676,7 +2676,7 @@ type InitiateMultipartUploadInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The archive description that you are uploading in parts.
 	//
@@ -2717,7 +2717,7 @@ type InitiateMultipartUploadOutput struct {
 
 	// The ID of the multipart upload. This value is also included as part of the
 	// location.
-	UploadID *string `location:"header" locationName:"x-amz-multipart-upload-id" type:"string"`
+	UploadId *string `location:"header" locationName:"x-amz-multipart-upload-id" type:"string"`
 
 	metadataInitiateMultipartUploadOutput `json:"-" xml:"-"`
 }
@@ -2744,7 +2744,7 @@ type InitiateVaultLockInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The vault lock policy as a JSON string, which uses "\" as an escape character.
 	Policy *VaultLockPolicy `locationName:"policy" type:"structure"`
@@ -2772,7 +2772,7 @@ func (s InitiateVaultLockInput) GoString() string {
 // Contains the Amazon Glacier response to your request.
 type InitiateVaultLockOutput struct {
 	// The lock ID, which is used to complete the vault locking process.
-	LockID *string `location:"header" locationName:"x-amz-lock-id" type:"string"`
+	LockId *string `location:"header" locationName:"x-amz-lock-id" type:"string"`
 
 	metadataInitiateVaultLockOutput `json:"-" xml:"-"`
 }
@@ -2883,7 +2883,7 @@ type JobDescription struct {
 
 	// For an ArchiveRetrieval job, this is the archive ID requested for download.
 	// Otherwise, this field is null.
-	ArchiveID *string `locationName:"ArchiveId" type:"string"`
+	ArchiveId *string `type:"string"`
 
 	// The SHA256 tree hash of the entire archive for an archive retrieval. For
 	// inventory retrieval jobs, this field is null.
@@ -2915,7 +2915,7 @@ type JobDescription struct {
 	JobDescription *string `type:"string"`
 
 	// An opaque string that identifies an Amazon Glacier job.
-	JobID *string `locationName:"JobId" type:"string"`
+	JobId *string `type:"string"`
 
 	// The retrieved byte range for archive retrieval jobs in the form "StartByteValue-EndByteValue"
 	// If no range was specified in the archive retrieval, then the whole archive
@@ -2978,7 +2978,7 @@ type JobParameters struct {
 	// The ID of the archive that you want to retrieve. This field is required only
 	// if Type is set to archive-retrieval. An error occurs if you specify this
 	// request parameter for an inventory retrieval job request.
-	ArchiveID *string `locationName:"ArchiveId" type:"string"`
+	ArchiveId *string `type:"string"`
 
 	// The optional description for the job. The description must be less than or
 	// equal to 1,024 bytes. The allowable characters are 7-bit ASCII without control
@@ -3039,7 +3039,7 @@ type ListJobsInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// Specifies the state of the jobs to return. You can specify true or false.
 	Completed *string `location:"querystring" locationName:"completed" type:"string"`
@@ -3113,7 +3113,7 @@ type ListMultipartUploadsInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// Specifies the maximum number of uploads returned in the response body. If
 	// this value is not specified, the List Uploads operation returns up to 1,000
@@ -3181,7 +3181,7 @@ type ListPartsInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// Specifies the maximum number of parts returned in the response body. If this
 	// value is not specified, the List Parts operation returns up to 1,000 uploads.
@@ -3195,7 +3195,7 @@ type ListPartsInput struct {
 	Marker *string `location:"querystring" locationName:"marker" type:"string"`
 
 	// The upload ID of the multipart upload.
-	UploadID *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
+	UploadId *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -3232,7 +3232,7 @@ type ListPartsOutput struct {
 	Marker *string `type:"string"`
 
 	// The ID of the upload to which the parts are associated.
-	MultipartUploadID *string `locationName:"MultipartUploadId" type:"string"`
+	MultipartUploadId *string `type:"string"`
 
 	// The part size in bytes.
 	PartSizeInBytes *int64 `type:"long"`
@@ -3268,7 +3268,7 @@ type ListTagsForVaultInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -3321,7 +3321,7 @@ type ListVaultsInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the List Vaults operation returns up to 1,000 items.
@@ -3407,7 +3407,7 @@ type RemoveTagsFromVaultInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// A list of tag keys. Each corresponding tag is removed from the vault.
 	TagKeys []*string `type:"list"`
@@ -3458,7 +3458,7 @@ type SetDataRetrievalPolicyInput struct {
 	// in which case Amazon Glacier uses the AWS account ID associated with the
 	// credentials used to sign the request. If you specify your account ID, do
 	// not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The data retrieval policy in JSON format.
 	Policy *DataRetrievalPolicy `type:"structure"`
@@ -3505,7 +3505,7 @@ type SetVaultAccessPolicyInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The vault access policy as a JSON string.
 	Policy *VaultAccessPolicy `locationName:"policy" type:"structure"`
@@ -3556,7 +3556,7 @@ type SetVaultNotificationsInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`
@@ -3606,7 +3606,7 @@ type UploadArchiveInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The optional description of the archive you are uploading.
 	ArchiveDescription *string `location:"header" locationName:"x-amz-archive-description" type:"string"`
@@ -3647,7 +3647,7 @@ type UploadListElement struct {
 	CreationDate *string `type:"string"`
 
 	// The ID of a multipart upload.
-	MultipartUploadID *string `locationName:"MultipartUploadId" type:"string"`
+	MultipartUploadId *string `type:"string"`
 
 	// The part size, in bytes, specified in the Initiate Multipart Upload request.
 	// This is the size of all the parts in the upload except the last part, which
@@ -3681,7 +3681,7 @@ type UploadMultipartPartInput struct {
 	// (hyphen), in which case Amazon Glacier uses the AWS account ID associated
 	// with the credentials used to sign the request. If you use an account ID,
 	// do not include any hyphens (apos-apos) in the ID.
-	AccountID *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
+	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
 	// The data to upload.
 	Body io.ReadSeeker `locationName:"body" type:"blob"`
@@ -3696,7 +3696,7 @@ type UploadMultipartPartInput struct {
 	Range *string `location:"header" locationName:"Content-Range" type:"string"`
 
 	// The upload ID of the multipart upload.
-	UploadID *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
+	UploadId *string `location:"uri" locationName:"uploadId" type:"string" required:"true"`
 
 	// The name of the vault.
 	VaultName *string `location:"uri" locationName:"vaultName" type:"string" required:"true"`

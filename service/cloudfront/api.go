@@ -803,7 +803,7 @@ type CacheBehavior struct {
 	// The value of ID for the origin that you want CloudFront to route requests
 	// to when a request matches the path pattern either for a cache behavior or
 	// for the default cache behavior.
-	TargetOriginID *string `locationName:"TargetOriginId" type:"string" required:"true"`
+	TargetOriginId *string `type:"string" required:"true"`
 
 	// A complex type that specifies the AWS accounts, if any, that you want to
 	// allow to create signed URLs for private content. If you want to require signed
@@ -1066,7 +1066,7 @@ func (s CreateDistributionOutput) GoString() string {
 // The request to create an invalidation.
 type CreateInvalidationInput struct {
 	// The distribution's id.
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+	DistributionId *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
 
 	// The batch information for the invalidation.
 	InvalidationBatch *InvalidationBatch `locationName:"InvalidationBatch" type:"structure" required:"true"`
@@ -1319,7 +1319,7 @@ type DefaultCacheBehavior struct {
 	// The value of ID for the origin that you want CloudFront to route requests
 	// to when a request matches the path pattern either for a cache behavior or
 	// for the default cache behavior.
-	TargetOriginID *string `locationName:"TargetOriginId" type:"string" required:"true"`
+	TargetOriginId *string `type:"string" required:"true"`
 
 	// A complex type that specifies the AWS accounts, if any, that you want to
 	// allow to create signed URLs for private content. If you want to require signed
@@ -1364,7 +1364,7 @@ func (s DefaultCacheBehavior) GoString() string {
 // The request to delete a origin access identity.
 type DeleteCloudFrontOriginAccessIdentityInput struct {
 	// The origin access identity's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of the ETag header you received from a previous GET or PUT request.
 	// For example: E2QWRUHAPOMQZL.
@@ -1408,7 +1408,7 @@ func (s DeleteCloudFrontOriginAccessIdentityOutput) GoString() string {
 // The request to delete a distribution.
 type DeleteDistributionInput struct {
 	// The distribution id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of the ETag header you received when you disabled the distribution.
 	// For example: E2QWRUHAPOMQZL.
@@ -1452,7 +1452,7 @@ func (s DeleteDistributionOutput) GoString() string {
 // The request to delete a streaming distribution.
 type DeleteStreamingDistributionInput struct {
 	// The distribution id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of the ETag header you received when you disabled the streaming
 	// distribution. For example: E2QWRUHAPOMQZL.
@@ -1512,7 +1512,7 @@ type Distribution struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The number of invalidation batches currently in progress.
 	InProgressInvalidationBatches *int64 `type:"integer" required:"true"`
@@ -1691,7 +1691,7 @@ type DistributionSummary struct {
 	Enabled *bool `type:"boolean" required:"true"`
 
 	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The date and time the distribution was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -1814,7 +1814,7 @@ func (s GeoRestriction) GoString() string {
 // The request to get an origin access identity's configuration.
 type GetCloudFrontOriginAccessIdentityConfigInput struct {
 	// The identity's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetCloudFrontOriginAccessIdentityConfigInput `json:"-" xml:"-"`
 }
@@ -1861,7 +1861,7 @@ func (s GetCloudFrontOriginAccessIdentityConfigOutput) GoString() string {
 // The request to get an origin access identity's information.
 type GetCloudFrontOriginAccessIdentityInput struct {
 	// The identity's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetCloudFrontOriginAccessIdentityInput `json:"-" xml:"-"`
 }
@@ -1909,7 +1909,7 @@ func (s GetCloudFrontOriginAccessIdentityOutput) GoString() string {
 // The request to get a distribution configuration.
 type GetDistributionConfigInput struct {
 	// The distribution's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetDistributionConfigInput `json:"-" xml:"-"`
 }
@@ -1956,7 +1956,7 @@ func (s GetDistributionConfigOutput) GoString() string {
 // The request to get a distribution's information.
 type GetDistributionInput struct {
 	// The distribution's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetDistributionInput `json:"-" xml:"-"`
 }
@@ -2003,10 +2003,10 @@ func (s GetDistributionOutput) GoString() string {
 // The request to get an invalidation's information.
 type GetInvalidationInput struct {
 	// The distribution's id.
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+	DistributionId *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
 
 	// The invalidation's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetInvalidationInput `json:"-" xml:"-"`
 }
@@ -2050,7 +2050,7 @@ func (s GetInvalidationOutput) GoString() string {
 // To request to get a streaming distribution configuration.
 type GetStreamingDistributionConfigInput struct {
 	// The streaming distribution's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetStreamingDistributionConfigInput `json:"-" xml:"-"`
 }
@@ -2097,7 +2097,7 @@ func (s GetStreamingDistributionConfigOutput) GoString() string {
 // The request to get a streaming distribution's information.
 type GetStreamingDistributionInput struct {
 	// The streaming distribution's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataGetStreamingDistributionInput `json:"-" xml:"-"`
 }
@@ -2188,7 +2188,7 @@ type Invalidation struct {
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The identifier for the invalidation request. For example: IDFDVBD632BHDS5.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The current invalidation information for the batch request.
 	InvalidationBatch *InvalidationBatch `type:"structure" required:"true"`
@@ -2300,7 +2300,7 @@ type InvalidationSummary struct {
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The unique ID for an invalidation request.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The status of an invalidation request.
 	Status *string `type:"string" required:"true"`
@@ -2324,7 +2324,7 @@ func (s InvalidationSummary) GoString() string {
 
 // A complex type that lists the active CloudFront key pairs, if any, that are
 // associated with AwsAccountNumber.
-type KeyPairIDs struct {
+type KeyPairIds struct {
 	// A complex type that lists the active CloudFront key pairs, if any, that are
 	// associated with AwsAccountNumber.
 	Items []*string `locationNameList:"KeyPairId" type:"list"`
@@ -2332,20 +2332,20 @@ type KeyPairIDs struct {
 	// The number of active CloudFront key pairs for AwsAccountNumber.
 	Quantity *int64 `type:"integer" required:"true"`
 
-	metadataKeyPairIDs `json:"-" xml:"-"`
+	metadataKeyPairIds `json:"-" xml:"-"`
 }
 
-type metadataKeyPairIDs struct {
+type metadataKeyPairIds struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s KeyPairIDs) String() string {
+func (s KeyPairIds) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s KeyPairIDs) GoString() string {
+func (s KeyPairIds) GoString() string {
 	return s.String()
 }
 
@@ -2454,7 +2454,7 @@ func (s ListDistributionsOutput) GoString() string {
 // The request to list invalidations.
 type ListInvalidationsInput struct {
 	// The distribution's id.
-	DistributionID *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
+	DistributionId *string `location:"uri" locationName:"DistributionId" type:"string" required:"true"`
 
 	// Use this parameter when paginating results to indicate where to begin in
 	// your list of invalidation batches. Because the results are returned in decreasing
@@ -2620,7 +2620,7 @@ type Origin struct {
 	// the distribution. You use the value of Id when you create a cache behavior.
 	// The Id identifies the origin that CloudFront routes a request to when the
 	// request matches the path pattern for that cache behavior.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// An optional element that causes CloudFront to request your content from a
 	// directory in your Amazon S3 bucket or your custom origin. When you include
@@ -2655,12 +2655,12 @@ type OriginAccessIdentity struct {
 	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `type:"structure"`
 
 	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The Amazon S3 canonical user ID for the origin access identity, which you
 	// use when giving the origin access identity read permission to an object in
 	// Amazon S3.
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+	S3CanonicalUserId *string `type:"string" required:"true"`
 
 	metadataOriginAccessIdentity `json:"-" xml:"-"`
 }
@@ -2765,12 +2765,12 @@ type OriginAccessIdentitySummary struct {
 	Comment *string `type:"string" required:"true"`
 
 	// The ID for the origin access identity. For example: E74FTE3AJFJ256A.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The Amazon S3 canonical user ID for the origin access identity, which you
 	// use when giving the origin access identity read permission to an object in
 	// Amazon S3.
-	S3CanonicalUserID *string `locationName:"S3CanonicalUserId" type:"string" required:"true"`
+	S3CanonicalUserId *string `type:"string" required:"true"`
 
 	metadataOriginAccessIdentitySummary `json:"-" xml:"-"`
 }
@@ -2934,11 +2934,11 @@ type Signer struct {
 	// indicates that the AWS account that was used to create the distribution can
 	// created signed URLs, or an AWS account number. Omit the dashes in the account
 	// number.
-	AWSAccountNumber *string `locationName:"AwsAccountNumber" type:"string"`
+	AwsAccountNumber *string `type:"string"`
 
 	// A complex type that lists the active CloudFront key pairs, if any, that are
 	// associated with AwsAccountNumber.
-	KeyPairIDs *KeyPairIDs `locationName:"KeyPairIds" type:"structure"`
+	KeyPairIds *KeyPairIds `type:"structure"`
 
 	metadataSigner `json:"-" xml:"-"`
 }
@@ -2974,7 +2974,7 @@ type StreamingDistribution struct {
 	DomainName *string `type:"string" required:"true"`
 
 	// The identifier for the streaming distribution. For example: EGTXBD79H29TRA8.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The date and time the distribution was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -3131,7 +3131,7 @@ type StreamingDistributionSummary struct {
 	Enabled *bool `type:"boolean" required:"true"`
 
 	// The identifier for the distribution. For example: EDFDVBD632BHDS5.
-	ID *string `locationName:"Id" type:"string" required:"true"`
+	Id *string `type:"string" required:"true"`
 
 	// The date and time the distribution was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -3260,7 +3260,7 @@ type UpdateCloudFrontOriginAccessIdentityInput struct {
 	CloudFrontOriginAccessIdentityConfig *OriginAccessIdentityConfig `locationName:"CloudFrontOriginAccessIdentityConfig" type:"structure" required:"true"`
 
 	// The identity's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of the ETag header you received when retrieving the identity's
 	// configuration. For example: E2QWRUHAPOMQZL.
@@ -3314,7 +3314,7 @@ type UpdateDistributionInput struct {
 	DistributionConfig *DistributionConfig `locationName:"DistributionConfig" type:"structure" required:"true"`
 
 	// The distribution's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of the ETag header you received when retrieving the distribution's
 	// configuration. For example: E2QWRUHAPOMQZL.
@@ -3365,7 +3365,7 @@ func (s UpdateDistributionOutput) GoString() string {
 // The request to update a streaming distribution.
 type UpdateStreamingDistributionInput struct {
 	// The streaming distribution's id.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The value of the ETag header you received when retrieving the streaming distribution's
 	// configuration. For example: E2QWRUHAPOMQZL.
@@ -3429,7 +3429,7 @@ type ViewerCertificate struct {
 	// an alternate domain name in your object URLs (for example, https://example.com/logo.jpg),
 	// specify the IAM certificate identifier of the custom viewer certificate for
 	// this distribution. Specify either this value or CloudFrontDefaultCertificate.
-	IAMCertificateID *string `locationName:"IAMCertificateId" type:"string"`
+	IAMCertificateId *string `type:"string"`
 
 	// Specify the minimum version of the SSL protocol that you want CloudFront
 	// to use, SSLv3 or TLSv1, for HTTPS connections. CloudFront will serve your

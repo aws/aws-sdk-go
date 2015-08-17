@@ -307,29 +307,29 @@ func (c *DirectoryService) DisableRadius(input *DisableRadiusInput) (*DisableRad
 	return out, err
 }
 
-const opDisableSSO = "DisableSso"
+const opDisableSso = "DisableSso"
 
-// DisableSSORequest generates a request for the DisableSSO operation.
-func (c *DirectoryService) DisableSSORequest(input *DisableSSOInput) (req *service.Request, output *DisableSSOOutput) {
+// DisableSsoRequest generates a request for the DisableSso operation.
+func (c *DirectoryService) DisableSsoRequest(input *DisableSsoInput) (req *service.Request, output *DisableSsoOutput) {
 	op := &service.Operation{
-		Name:       opDisableSSO,
+		Name:       opDisableSso,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &DisableSSOInput{}
+		input = &DisableSsoInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &DisableSSOOutput{}
+	output = &DisableSsoOutput{}
 	req.Data = output
 	return
 }
 
 // Disables single-sign on for a directory.
-func (c *DirectoryService) DisableSSO(input *DisableSSOInput) (*DisableSSOOutput, error) {
-	req, out := c.DisableSSORequest(input)
+func (c *DirectoryService) DisableSso(input *DisableSsoInput) (*DisableSsoOutput, error) {
+	req, out := c.DisableSsoRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -362,29 +362,29 @@ func (c *DirectoryService) EnableRadius(input *EnableRadiusInput) (*EnableRadius
 	return out, err
 }
 
-const opEnableSSO = "EnableSso"
+const opEnableSso = "EnableSso"
 
-// EnableSSORequest generates a request for the EnableSSO operation.
-func (c *DirectoryService) EnableSSORequest(input *EnableSSOInput) (req *service.Request, output *EnableSSOOutput) {
+// EnableSsoRequest generates a request for the EnableSso operation.
+func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *service.Request, output *EnableSsoOutput) {
 	op := &service.Operation{
-		Name:       opEnableSSO,
+		Name:       opEnableSso,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
 	}
 
 	if input == nil {
-		input = &EnableSSOInput{}
+		input = &EnableSsoInput{}
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &EnableSSOOutput{}
+	output = &EnableSsoOutput{}
 	req.Data = output
 	return
 }
 
 // Enables single-sign on for a directory.
-func (c *DirectoryService) EnableSSO(input *EnableSSOInput) (*EnableSSOOutput, error) {
-	req, out := c.EnableSSORequest(input)
+func (c *DirectoryService) EnableSso(input *EnableSsoInput) (*EnableSsoOutput, error) {
+	req, out := c.EnableSsoRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -538,7 +538,7 @@ type Computer struct {
 	ComputerAttributes []*Attribute `type:"list"`
 
 	// The identifier of the computer.
-	ComputerID *string `locationName:"ComputerId" type:"string"`
+	ComputerId *string `type:"string"`
 
 	// The computer name.
 	ComputerName *string `type:"string"`
@@ -601,7 +601,7 @@ func (s ConnectDirectoryInput) GoString() string {
 // Contains the results of the ConnectDirectory operation.
 type ConnectDirectoryOutput struct {
 	// The identifier of the new directory.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	metadataConnectDirectoryOutput `json:"-" xml:"-"`
 }
@@ -629,7 +629,7 @@ type CreateAliasInput struct {
 	Alias *string `type:"string" required:"true"`
 
 	// The identifier of the directory to create the alias for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	metadataCreateAliasInput `json:"-" xml:"-"`
 }
@@ -654,7 +654,7 @@ type CreateAliasOutput struct {
 	Alias *string `type:"string"`
 
 	// The identifier of the directory.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	metadataCreateAliasOutput `json:"-" xml:"-"`
 }
@@ -683,7 +683,7 @@ type CreateComputerInput struct {
 	ComputerName *string `type:"string" required:"true"`
 
 	// The identifier of the directory to create the computer account in.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// The fully-qualified distinguished name of the organizational unit to place
 	// the computer account in.
@@ -753,7 +753,7 @@ type CreateDirectoryInput struct {
 
 	// A DirectoryVpcSettings object that contains additional information for the
 	// operation.
-	VPCSettings *DirectoryVPCSettings `locationName:"VpcSettings" type:"structure"`
+	VpcSettings *DirectoryVpcSettings `type:"structure"`
 
 	metadataCreateDirectoryInput `json:"-" xml:"-"`
 }
@@ -775,7 +775,7 @@ func (s CreateDirectoryInput) GoString() string {
 // Contains the results of the CreateDirectory operation.
 type CreateDirectoryOutput struct {
 	// The identifier of the directory that was created.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	metadataCreateDirectoryOutput `json:"-" xml:"-"`
 }
@@ -797,7 +797,7 @@ func (s CreateDirectoryOutput) GoString() string {
 // Contains the inputs for the CreateSnapshot operation.
 type CreateSnapshotInput struct {
 	// The identifier of the directory to take a snapshot of.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// The descriptive name to apply to the snapshot.
 	Name *string `type:"string"`
@@ -822,7 +822,7 @@ func (s CreateSnapshotInput) GoString() string {
 // Contains the results of the CreateSnapshot operation.
 type CreateSnapshotOutput struct {
 	// The identifier of the snapshot that was created.
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	metadataCreateSnapshotOutput `json:"-" xml:"-"`
 }
@@ -844,7 +844,7 @@ func (s CreateSnapshotOutput) GoString() string {
 // Contains the inputs for the DeleteDirectory operation.
 type DeleteDirectoryInput struct {
 	// The identifier of the directory to delete.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	metadataDeleteDirectoryInput `json:"-" xml:"-"`
 }
@@ -866,7 +866,7 @@ func (s DeleteDirectoryInput) GoString() string {
 // Contains the results of the DeleteDirectory operation.
 type DeleteDirectoryOutput struct {
 	// The directory identifier.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	metadataDeleteDirectoryOutput `json:"-" xml:"-"`
 }
@@ -888,7 +888,7 @@ func (s DeleteDirectoryOutput) GoString() string {
 // Contains the inputs for the DeleteSnapshot operation.
 type DeleteSnapshotInput struct {
 	// The identifier of the directory snapshot to be deleted.
-	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
+	SnapshotId *string `type:"string" required:"true"`
 
 	metadataDeleteSnapshotInput `json:"-" xml:"-"`
 }
@@ -910,7 +910,7 @@ func (s DeleteSnapshotInput) GoString() string {
 // Contains the results of the DeleteSnapshot operation.
 type DeleteSnapshotOutput struct {
 	// The identifier of the directory snapshot that was deleted.
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	metadataDeleteSnapshotOutput `json:"-" xml:"-"`
 }
@@ -936,7 +936,7 @@ type DescribeDirectoriesInput struct {
 	// returned.
 	//
 	// An empty list results in an InvalidParameterException being thrown.
-	DirectoryIDs []*string `locationName:"DirectoryIds" type:"list"`
+	DirectoryIds []*string `type:"list"`
 
 	// The maximum number of items to return. If this value is zero, the maximum
 	// number of items is specified by the limitations of the operation.
@@ -998,7 +998,7 @@ func (s DescribeDirectoriesOutput) GoString() string {
 // Contains the inputs for the DescribeSnapshots operation.
 type DescribeSnapshotsInput struct {
 	// The identifier of the directory to retrieve snapshot information for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	// The maximum number of objects to return.
 	Limit *int64 `type:"integer"`
@@ -1010,7 +1010,7 @@ type DescribeSnapshotsInput struct {
 	// A list of identifiers of the snapshots to obtain the information for. If
 	// this member is null or empty, all snapshots are returned using the Limit
 	// and NextToken members.
-	SnapshotIDs []*string `locationName:"SnapshotIds" type:"list"`
+	SnapshotIds []*string `type:"list"`
 
 	metadataDescribeSnapshotsInput `json:"-" xml:"-"`
 }
@@ -1065,7 +1065,7 @@ func (s DescribeSnapshotsOutput) GoString() string {
 type DirectoryConnectSettings struct {
 	// A list of one or more IP addresses of DNS servers or domain controllers in
 	// the on-premises directory.
-	CustomerDNSIPs []*string `locationName:"CustomerDnsIps" type:"list" required:"true"`
+	CustomerDnsIps []*string `type:"list" required:"true"`
 
 	// The username of an account in the on-premises directory that is used to connect
 	// to the directory. This account must have the following privileges:
@@ -1075,10 +1075,10 @@ type DirectoryConnectSettings struct {
 
 	// A list of subnet identifiers in the VPC that the AD Connector is created
 	// in.
-	SubnetIDs []*string `locationName:"SubnetIds" type:"list" required:"true"`
+	SubnetIds []*string `type:"list" required:"true"`
 
 	// The identifier of the VPC that the AD Connector is created in.
-	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
+	VpcId *string `type:"string" required:"true"`
 
 	metadataDirectoryConnectSettings `json:"-" xml:"-"`
 }
@@ -1103,19 +1103,19 @@ type DirectoryConnectSettingsDescription struct {
 	AvailabilityZones []*string `type:"list"`
 
 	// The IP addresses of the AD Connector servers.
-	ConnectIPs []*string `locationName:"ConnectIps" type:"list"`
+	ConnectIps []*string `type:"list"`
 
 	// The username of the service account in the on-premises directory.
 	CustomerUserName *string `type:"string"`
 
 	// The security group identifier for the AD Connector directory.
-	SecurityGroupID *string `locationName:"SecurityGroupId" type:"string"`
+	SecurityGroupId *string `type:"string"`
 
 	// A list of subnet identifiers in the VPC that the AD connector is in.
-	SubnetIDs []*string `locationName:"SubnetIds" type:"list"`
+	SubnetIds []*string `type:"list"`
 
 	// The identifier of the VPC that the AD Connector is in.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDirectoryConnectSettingsDescription `json:"-" xml:"-"`
 }
@@ -1137,7 +1137,7 @@ func (s DirectoryConnectSettingsDescription) GoString() string {
 // Contains information about an AWS Directory Service directory.
 type DirectoryDescription struct {
 	// The access URL for the directory, such as http://<alias>.awsapps.com.
-	AccessURL *string `locationName:"AccessUrl" type:"string"`
+	AccessUrl *string `type:"string"`
 
 	// The alias for the directory.
 	Alias *string `type:"string"`
@@ -1147,18 +1147,18 @@ type DirectoryDescription struct {
 	// is an AD Connector directory.
 	ConnectSettings *DirectoryConnectSettingsDescription `type:"structure"`
 
+	// The textual description for the directory.
+	Description *string `type:"string"`
+
+	// The directory identifier.
+	DirectoryId *string `type:"string"`
+
 	// The IP addresses of the DNS servers for the directory. For a Simple AD directory,
 	// these are the IP addresses of the Simple AD directory servers. For an AD
 	// Connector directory, these are the IP addresses of the DNS servers or domain
 	// controllers in the on-premises directory that the AD Connector is connected
 	// to.
-	DNSIPAddrs []*string `locationName:"DnsIpAddrs" type:"list"`
-
-	// The textual description for the directory.
-	Description *string `type:"string"`
-
-	// The directory identifier.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DnsIpAddrs []*string `type:"list"`
 
 	// Specifies when the directory was created.
 	LaunchTime *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1173,15 +1173,15 @@ type DirectoryDescription struct {
 	// The status of the RADIUS MFA server connection.
 	RadiusStatus *string `type:"string" enum:"RadiusStatus"`
 
-	// Indicates if single-sign on is enabled for the directory. For more information,
-	// see EnableSso and DisableSso.
-	SSOEnabled *bool `locationName:"SsoEnabled" type:"boolean"`
-
 	// The short name of the directory.
 	ShortName *string `type:"string"`
 
 	// The directory size.
 	Size *string `type:"string" enum:"DirectorySize"`
+
+	// Indicates if single-sign on is enabled for the directory. For more information,
+	// see EnableSso and DisableSso.
+	SsoEnabled *bool `type:"boolean"`
 
 	// The current stage of the directory.
 	Stage *string `type:"string" enum:"DirectoryStage"`
@@ -1198,7 +1198,7 @@ type DirectoryDescription struct {
 	// A DirectoryVpcSettingsDescription object that contains additional information
 	// about a Simple AD directory. This member is only present if the directory
 	// is a Simple AD directory.
-	VPCSettings *DirectoryVPCSettingsDescription `locationName:"VpcSettings" type:"structure"`
+	VpcSettings *DirectoryVpcSettingsDescription `type:"structure"`
 
 	metadataDirectoryDescription `json:"-" xml:"-"`
 }
@@ -1256,67 +1256,67 @@ func (s DirectoryLimits) GoString() string {
 
 // Contains information for the CreateDirectory operation when a Simple AD directory
 // is being created.
-type DirectoryVPCSettings struct {
+type DirectoryVpcSettings struct {
 	// The identifiers of the subnets for the directory servers. The two subnets
 	// must be in different Availability Zones. AWS Directory Service creates a
 	// directory server and a DNS server in each of these subnets.
-	SubnetIDs []*string `locationName:"SubnetIds" type:"list" required:"true"`
+	SubnetIds []*string `type:"list" required:"true"`
 
 	// The identifier of the VPC to create the Simple AD directory in.
-	VPCID *string `locationName:"VpcId" type:"string" required:"true"`
+	VpcId *string `type:"string" required:"true"`
 
-	metadataDirectoryVPCSettings `json:"-" xml:"-"`
+	metadataDirectoryVpcSettings `json:"-" xml:"-"`
 }
 
-type metadataDirectoryVPCSettings struct {
+type metadataDirectoryVpcSettings struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s DirectoryVPCSettings) String() string {
+func (s DirectoryVpcSettings) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DirectoryVPCSettings) GoString() string {
+func (s DirectoryVpcSettings) GoString() string {
 	return s.String()
 }
 
 // Contains information about a Simple AD directory.
-type DirectoryVPCSettingsDescription struct {
+type DirectoryVpcSettingsDescription struct {
 	// The list of Availability Zones that the directory is in.
 	AvailabilityZones []*string `type:"list"`
 
 	// The security group identifier for the directory.
-	SecurityGroupID *string `locationName:"SecurityGroupId" type:"string"`
+	SecurityGroupId *string `type:"string"`
 
 	// The identifiers of the subnets for the directory servers.
-	SubnetIDs []*string `locationName:"SubnetIds" type:"list"`
+	SubnetIds []*string `type:"list"`
 
 	// The identifier of the VPC that the directory is in.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
-	metadataDirectoryVPCSettingsDescription `json:"-" xml:"-"`
+	metadataDirectoryVpcSettingsDescription `json:"-" xml:"-"`
 }
 
-type metadataDirectoryVPCSettingsDescription struct {
+type metadataDirectoryVpcSettingsDescription struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s DirectoryVPCSettingsDescription) String() string {
+func (s DirectoryVpcSettingsDescription) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DirectoryVPCSettingsDescription) GoString() string {
+func (s DirectoryVpcSettingsDescription) GoString() string {
 	return s.String()
 }
 
 // Contains the inputs for the DisableRadius operation.
 type DisableRadiusInput struct {
 	// The identifier of the directory to disable MFA for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	metadataDisableRadiusInput `json:"-" xml:"-"`
 }
@@ -1355,9 +1355,9 @@ func (s DisableRadiusOutput) GoString() string {
 }
 
 // Contains the inputs for the DisableSso operation.
-type DisableSSOInput struct {
+type DisableSsoInput struct {
 	// The identifier of the directory to disable single-sign on for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// The password of an alternate account to use to disable single-sign on. This
 	// is only used for AD Connector directories. See the UserName parameter for
@@ -1375,46 +1375,46 @@ type DisableSSOInput struct {
 	// is not changed.
 	UserName *string `type:"string"`
 
-	metadataDisableSSOInput `json:"-" xml:"-"`
+	metadataDisableSsoInput `json:"-" xml:"-"`
 }
 
-type metadataDisableSSOInput struct {
+type metadataDisableSsoInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s DisableSSOInput) String() string {
+func (s DisableSsoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DisableSSOInput) GoString() string {
+func (s DisableSsoInput) GoString() string {
 	return s.String()
 }
 
 // Contains the results of the DisableSso operation.
-type DisableSSOOutput struct {
-	metadataDisableSSOOutput `json:"-" xml:"-"`
+type DisableSsoOutput struct {
+	metadataDisableSsoOutput `json:"-" xml:"-"`
 }
 
-type metadataDisableSSOOutput struct {
+type metadataDisableSsoOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s DisableSSOOutput) String() string {
+func (s DisableSsoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s DisableSSOOutput) GoString() string {
+func (s DisableSsoOutput) GoString() string {
 	return s.String()
 }
 
 // Contains the inputs for the EnableRadius operation.
 type EnableRadiusInput struct {
 	// The identifier of the directory to enable MFA for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`
@@ -1456,9 +1456,9 @@ func (s EnableRadiusOutput) GoString() string {
 }
 
 // Contains the inputs for the EnableSso operation.
-type EnableSSOInput struct {
+type EnableSsoInput struct {
 	// The identifier of the directory to enable single-sign on for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// The password of an alternate account to use to enable single-sign on. This
 	// is only used for AD Connector directories. See the UserName parameter for
@@ -1476,39 +1476,39 @@ type EnableSSOInput struct {
 	// changed.
 	UserName *string `type:"string"`
 
-	metadataEnableSSOInput `json:"-" xml:"-"`
+	metadataEnableSsoInput `json:"-" xml:"-"`
 }
 
-type metadataEnableSSOInput struct {
+type metadataEnableSsoInput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s EnableSSOInput) String() string {
+func (s EnableSsoInput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s EnableSSOInput) GoString() string {
+func (s EnableSsoInput) GoString() string {
 	return s.String()
 }
 
 // Contains the results of the EnableSso operation.
-type EnableSSOOutput struct {
-	metadataEnableSSOOutput `json:"-" xml:"-"`
+type EnableSsoOutput struct {
+	metadataEnableSsoOutput `json:"-" xml:"-"`
 }
 
-type metadataEnableSSOOutput struct {
+type metadataEnableSsoOutput struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s EnableSSOOutput) String() string {
+func (s EnableSsoOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s EnableSSOOutput) GoString() string {
+func (s EnableSsoOutput) GoString() string {
 	return s.String()
 }
 
@@ -1557,7 +1557,7 @@ func (s GetDirectoryLimitsOutput) GoString() string {
 // Contains the inputs for the GetSnapshotLimits operation.
 type GetSnapshotLimitsInput struct {
 	// Contains the identifier of the directory to obtain the limits for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	metadataGetSnapshotLimitsInput `json:"-" xml:"-"`
 }
@@ -1651,7 +1651,7 @@ func (s RadiusSettings) GoString() string {
 // An object representing the inputs for the RestoreFromSnapshot operation.
 type RestoreFromSnapshotInput struct {
 	// The identifier of the snapshot to restore from.
-	SnapshotID *string `locationName:"SnapshotId" type:"string" required:"true"`
+	SnapshotId *string `type:"string" required:"true"`
 
 	metadataRestoreFromSnapshotInput `json:"-" xml:"-"`
 }
@@ -1692,13 +1692,13 @@ func (s RestoreFromSnapshotOutput) GoString() string {
 // Describes a directory snapshot.
 type Snapshot struct {
 	// The directory identifier.
-	DirectoryID *string `locationName:"DirectoryId" type:"string"`
+	DirectoryId *string `type:"string"`
 
 	// The descriptive name of the snapshot.
 	Name *string `type:"string"`
 
 	// The snapshot identifier.
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	// The date and time that the snapshot was taken.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1757,7 +1757,7 @@ func (s SnapshotLimits) GoString() string {
 // Contains the inputs for the UpdateRadius operation.
 type UpdateRadiusInput struct {
 	// The identifier of the directory to update the RADIUS server information for.
-	DirectoryID *string `locationName:"DirectoryId" type:"string" required:"true"`
+	DirectoryId *string `type:"string" required:"true"`
 
 	// A RadiusSettings object that contains information about the RADIUS server.
 	RadiusSettings *RadiusSettings `type:"structure" required:"true"`

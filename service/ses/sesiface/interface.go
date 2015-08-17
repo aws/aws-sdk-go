@@ -22,9 +22,9 @@ type SESAPI interface {
 
 	DeleteVerifiedEmailAddress(*ses.DeleteVerifiedEmailAddressInput) (*ses.DeleteVerifiedEmailAddressOutput, error)
 
-	GetIdentityDKIMAttributesRequest(*ses.GetIdentityDKIMAttributesInput) (*service.Request, *ses.GetIdentityDKIMAttributesOutput)
+	GetIdentityDkimAttributesRequest(*ses.GetIdentityDkimAttributesInput) (*service.Request, *ses.GetIdentityDkimAttributesOutput)
 
-	GetIdentityDKIMAttributes(*ses.GetIdentityDKIMAttributesInput) (*ses.GetIdentityDKIMAttributesOutput, error)
+	GetIdentityDkimAttributes(*ses.GetIdentityDkimAttributesInput) (*ses.GetIdentityDkimAttributesOutput, error)
 
 	GetIdentityNotificationAttributesRequest(*ses.GetIdentityNotificationAttributesInput) (*service.Request, *ses.GetIdentityNotificationAttributesOutput)
 
@@ -72,9 +72,9 @@ type SESAPI interface {
 
 	SendRawEmail(*ses.SendRawEmailInput) (*ses.SendRawEmailOutput, error)
 
-	SetIdentityDKIMEnabledRequest(*ses.SetIdentityDKIMEnabledInput) (*service.Request, *ses.SetIdentityDKIMEnabledOutput)
+	SetIdentityDkimEnabledRequest(*ses.SetIdentityDkimEnabledInput) (*service.Request, *ses.SetIdentityDkimEnabledOutput)
 
-	SetIdentityDKIMEnabled(*ses.SetIdentityDKIMEnabledInput) (*ses.SetIdentityDKIMEnabledOutput, error)
+	SetIdentityDkimEnabled(*ses.SetIdentityDkimEnabledInput) (*ses.SetIdentityDkimEnabledOutput, error)
 
 	SetIdentityFeedbackForwardingEnabledRequest(*ses.SetIdentityFeedbackForwardingEnabledInput) (*service.Request, *ses.SetIdentityFeedbackForwardingEnabledOutput)
 
@@ -84,9 +84,9 @@ type SESAPI interface {
 
 	SetIdentityNotificationTopic(*ses.SetIdentityNotificationTopicInput) (*ses.SetIdentityNotificationTopicOutput, error)
 
-	VerifyDomainDKIMRequest(*ses.VerifyDomainDKIMInput) (*service.Request, *ses.VerifyDomainDKIMOutput)
+	VerifyDomainDkimRequest(*ses.VerifyDomainDkimInput) (*service.Request, *ses.VerifyDomainDkimOutput)
 
-	VerifyDomainDKIM(*ses.VerifyDomainDKIMInput) (*ses.VerifyDomainDKIMOutput, error)
+	VerifyDomainDkim(*ses.VerifyDomainDkimInput) (*ses.VerifyDomainDkimOutput, error)
 
 	VerifyDomainIdentityRequest(*ses.VerifyDomainIdentityInput) (*service.Request, *ses.VerifyDomainIdentityOutput)
 

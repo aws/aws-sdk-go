@@ -23,9 +23,9 @@ func ExampleLambda_AddPermission() {
 		Action:        aws.String("Action"),       // Required
 		FunctionName:  aws.String("FunctionName"), // Required
 		Principal:     aws.String("Principal"),    // Required
-		StatementID:   aws.String("StatementId"),  // Required
-		SourceARN:     aws.String("Arn"),
+		StatementId:   aws.String("StatementId"),  // Required
 		SourceAccount: aws.String("SourceOwner"),
+		SourceArn:     aws.String("Arn"),
 	}
 	resp, err := svc.AddPermission(params)
 
@@ -52,7 +52,7 @@ func ExampleLambda_CreateEventSourceMapping() {
 	svc := lambda.New(nil)
 
 	params := &lambda.CreateEventSourceMappingInput{
-		EventSourceARN:   aws.String("Arn"),                 // Required
+		EventSourceArn:   aws.String("Arn"),                 // Required
 		FunctionName:     aws.String("FunctionName"),        // Required
 		StartingPosition: aws.String("EventSourcePosition"), // Required
 		BatchSize:        aws.Int64(1),
@@ -343,7 +343,7 @@ func ExampleLambda_ListEventSourceMappings() {
 	svc := lambda.New(nil)
 
 	params := &lambda.ListEventSourceMappingsInput{
-		EventSourceARN: aws.String("Arn"),
+		EventSourceArn: aws.String("Arn"),
 		FunctionName:   aws.String("FunctionName"),
 		Marker:         aws.String("String"),
 		MaxItems:       aws.Int64(1),
@@ -402,7 +402,7 @@ func ExampleLambda_RemovePermission() {
 
 	params := &lambda.RemovePermissionInput{
 		FunctionName: aws.String("FunctionName"), // Required
-		StatementID:  aws.String("StatementId"),  // Required
+		StatementId:  aws.String("StatementId"),  // Required
 	}
 	resp, err := svc.RemovePermission(params)
 

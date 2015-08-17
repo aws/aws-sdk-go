@@ -2064,7 +2064,7 @@ type DomainStatus struct {
 	DocService *ServiceEndpoint `type:"structure"`
 
 	// An internally generated unique identifier for a domain.
-	DomainID *string `locationName:"DomainId" type:"string" required:"true"`
+	DomainId *string `type:"string" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start

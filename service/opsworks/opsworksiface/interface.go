@@ -18,9 +18,9 @@ type OpsWorksAPI interface {
 
 	AssignVolume(*opsworks.AssignVolumeInput) (*opsworks.AssignVolumeOutput, error)
 
-	AssociateElasticIPRequest(*opsworks.AssociateElasticIPInput) (*service.Request, *opsworks.AssociateElasticIPOutput)
+	AssociateElasticIpRequest(*opsworks.AssociateElasticIpInput) (*service.Request, *opsworks.AssociateElasticIpOutput)
 
-	AssociateElasticIP(*opsworks.AssociateElasticIPInput) (*opsworks.AssociateElasticIPOutput, error)
+	AssociateElasticIp(*opsworks.AssociateElasticIpInput) (*opsworks.AssociateElasticIpOutput, error)
 
 	AttachElasticLoadBalancerRequest(*opsworks.AttachElasticLoadBalancerInput) (*service.Request, *opsworks.AttachElasticLoadBalancerOutput)
 
@@ -78,17 +78,17 @@ type OpsWorksAPI interface {
 
 	DeregisterEcsCluster(*opsworks.DeregisterEcsClusterInput) (*opsworks.DeregisterEcsClusterOutput, error)
 
-	DeregisterElasticIPRequest(*opsworks.DeregisterElasticIPInput) (*service.Request, *opsworks.DeregisterElasticIPOutput)
+	DeregisterElasticIpRequest(*opsworks.DeregisterElasticIpInput) (*service.Request, *opsworks.DeregisterElasticIpOutput)
 
-	DeregisterElasticIP(*opsworks.DeregisterElasticIPInput) (*opsworks.DeregisterElasticIPOutput, error)
+	DeregisterElasticIp(*opsworks.DeregisterElasticIpInput) (*opsworks.DeregisterElasticIpOutput, error)
 
 	DeregisterInstanceRequest(*opsworks.DeregisterInstanceInput) (*service.Request, *opsworks.DeregisterInstanceOutput)
 
 	DeregisterInstance(*opsworks.DeregisterInstanceInput) (*opsworks.DeregisterInstanceOutput, error)
 
-	DeregisterRDSDBInstanceRequest(*opsworks.DeregisterRDSDBInstanceInput) (*service.Request, *opsworks.DeregisterRDSDBInstanceOutput)
+	DeregisterRdsDbInstanceRequest(*opsworks.DeregisterRdsDbInstanceInput) (*service.Request, *opsworks.DeregisterRdsDbInstanceOutput)
 
-	DeregisterRDSDBInstance(*opsworks.DeregisterRDSDBInstanceInput) (*opsworks.DeregisterRDSDBInstanceOutput, error)
+	DeregisterRdsDbInstance(*opsworks.DeregisterRdsDbInstanceInput) (*opsworks.DeregisterRdsDbInstanceOutput, error)
 
 	DeregisterVolumeRequest(*opsworks.DeregisterVolumeInput) (*service.Request, *opsworks.DeregisterVolumeOutput)
 
@@ -114,9 +114,9 @@ type OpsWorksAPI interface {
 
 	DescribeEcsClusters(*opsworks.DescribeEcsClustersInput) (*opsworks.DescribeEcsClustersOutput, error)
 
-	DescribeElasticIPsRequest(*opsworks.DescribeElasticIPsInput) (*service.Request, *opsworks.DescribeElasticIPsOutput)
+	DescribeElasticIpsRequest(*opsworks.DescribeElasticIpsInput) (*service.Request, *opsworks.DescribeElasticIpsOutput)
 
-	DescribeElasticIPs(*opsworks.DescribeElasticIPsInput) (*opsworks.DescribeElasticIPsOutput, error)
+	DescribeElasticIps(*opsworks.DescribeElasticIpsInput) (*opsworks.DescribeElasticIpsOutput, error)
 
 	DescribeElasticLoadBalancersRequest(*opsworks.DescribeElasticLoadBalancersInput) (*service.Request, *opsworks.DescribeElasticLoadBalancersOutput)
 
@@ -142,13 +142,13 @@ type OpsWorksAPI interface {
 
 	DescribePermissions(*opsworks.DescribePermissionsInput) (*opsworks.DescribePermissionsOutput, error)
 
-	DescribeRAIDArraysRequest(*opsworks.DescribeRAIDArraysInput) (*service.Request, *opsworks.DescribeRAIDArraysOutput)
+	DescribeRaidArraysRequest(*opsworks.DescribeRaidArraysInput) (*service.Request, *opsworks.DescribeRaidArraysOutput)
 
-	DescribeRAIDArrays(*opsworks.DescribeRAIDArraysInput) (*opsworks.DescribeRAIDArraysOutput, error)
+	DescribeRaidArrays(*opsworks.DescribeRaidArraysInput) (*opsworks.DescribeRaidArraysOutput, error)
 
-	DescribeRDSDBInstancesRequest(*opsworks.DescribeRDSDBInstancesInput) (*service.Request, *opsworks.DescribeRDSDBInstancesOutput)
+	DescribeRdsDbInstancesRequest(*opsworks.DescribeRdsDbInstancesInput) (*service.Request, *opsworks.DescribeRdsDbInstancesOutput)
 
-	DescribeRDSDBInstances(*opsworks.DescribeRDSDBInstancesInput) (*opsworks.DescribeRDSDBInstancesOutput, error)
+	DescribeRdsDbInstances(*opsworks.DescribeRdsDbInstancesInput) (*opsworks.DescribeRdsDbInstancesOutput, error)
 
 	DescribeServiceErrorsRequest(*opsworks.DescribeServiceErrorsInput) (*service.Request, *opsworks.DescribeServiceErrorsOutput)
 
@@ -182,9 +182,9 @@ type OpsWorksAPI interface {
 
 	DetachElasticLoadBalancer(*opsworks.DetachElasticLoadBalancerInput) (*opsworks.DetachElasticLoadBalancerOutput, error)
 
-	DisassociateElasticIPRequest(*opsworks.DisassociateElasticIPInput) (*service.Request, *opsworks.DisassociateElasticIPOutput)
+	DisassociateElasticIpRequest(*opsworks.DisassociateElasticIpInput) (*service.Request, *opsworks.DisassociateElasticIpOutput)
 
-	DisassociateElasticIP(*opsworks.DisassociateElasticIPInput) (*opsworks.DisassociateElasticIPOutput, error)
+	DisassociateElasticIp(*opsworks.DisassociateElasticIpInput) (*opsworks.DisassociateElasticIpOutput, error)
 
 	GetHostnameSuggestionRequest(*opsworks.GetHostnameSuggestionInput) (*service.Request, *opsworks.GetHostnameSuggestionOutput)
 
@@ -202,17 +202,17 @@ type OpsWorksAPI interface {
 
 	RegisterEcsCluster(*opsworks.RegisterEcsClusterInput) (*opsworks.RegisterEcsClusterOutput, error)
 
-	RegisterElasticIPRequest(*opsworks.RegisterElasticIPInput) (*service.Request, *opsworks.RegisterElasticIPOutput)
+	RegisterElasticIpRequest(*opsworks.RegisterElasticIpInput) (*service.Request, *opsworks.RegisterElasticIpOutput)
 
-	RegisterElasticIP(*opsworks.RegisterElasticIPInput) (*opsworks.RegisterElasticIPOutput, error)
+	RegisterElasticIp(*opsworks.RegisterElasticIpInput) (*opsworks.RegisterElasticIpOutput, error)
 
 	RegisterInstanceRequest(*opsworks.RegisterInstanceInput) (*service.Request, *opsworks.RegisterInstanceOutput)
 
 	RegisterInstance(*opsworks.RegisterInstanceInput) (*opsworks.RegisterInstanceOutput, error)
 
-	RegisterRDSDBInstanceRequest(*opsworks.RegisterRDSDBInstanceInput) (*service.Request, *opsworks.RegisterRDSDBInstanceOutput)
+	RegisterRdsDbInstanceRequest(*opsworks.RegisterRdsDbInstanceInput) (*service.Request, *opsworks.RegisterRdsDbInstanceOutput)
 
-	RegisterRDSDBInstance(*opsworks.RegisterRDSDBInstanceInput) (*opsworks.RegisterRDSDBInstanceOutput, error)
+	RegisterRdsDbInstance(*opsworks.RegisterRdsDbInstanceInput) (*opsworks.RegisterRdsDbInstanceOutput, error)
 
 	RegisterVolumeRequest(*opsworks.RegisterVolumeInput) (*service.Request, *opsworks.RegisterVolumeOutput)
 
@@ -258,9 +258,9 @@ type OpsWorksAPI interface {
 
 	UpdateApp(*opsworks.UpdateAppInput) (*opsworks.UpdateAppOutput, error)
 
-	UpdateElasticIPRequest(*opsworks.UpdateElasticIPInput) (*service.Request, *opsworks.UpdateElasticIPOutput)
+	UpdateElasticIpRequest(*opsworks.UpdateElasticIpInput) (*service.Request, *opsworks.UpdateElasticIpOutput)
 
-	UpdateElasticIP(*opsworks.UpdateElasticIPInput) (*opsworks.UpdateElasticIPOutput, error)
+	UpdateElasticIp(*opsworks.UpdateElasticIpInput) (*opsworks.UpdateElasticIpOutput, error)
 
 	UpdateInstanceRequest(*opsworks.UpdateInstanceInput) (*service.Request, *opsworks.UpdateInstanceOutput)
 
@@ -274,9 +274,9 @@ type OpsWorksAPI interface {
 
 	UpdateMyUserProfile(*opsworks.UpdateMyUserProfileInput) (*opsworks.UpdateMyUserProfileOutput, error)
 
-	UpdateRDSDBInstanceRequest(*opsworks.UpdateRDSDBInstanceInput) (*service.Request, *opsworks.UpdateRDSDBInstanceOutput)
+	UpdateRdsDbInstanceRequest(*opsworks.UpdateRdsDbInstanceInput) (*service.Request, *opsworks.UpdateRdsDbInstanceOutput)
 
-	UpdateRDSDBInstance(*opsworks.UpdateRDSDBInstanceInput) (*opsworks.UpdateRDSDBInstanceOutput, error)
+	UpdateRdsDbInstance(*opsworks.UpdateRdsDbInstanceInput) (*opsworks.UpdateRdsDbInstanceOutput, error)
 
 	UpdateStackRequest(*opsworks.UpdateStackInput) (*service.Request, *opsworks.UpdateStackOutput)
 

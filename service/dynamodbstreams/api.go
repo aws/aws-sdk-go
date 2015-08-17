@@ -151,13 +151,13 @@ func (c *DynamoDBStreams) ListStreams(input *ListStreamsInput) (*ListStreamsOutp
 type DescribeStreamInput struct {
 	// The shard ID of the first item that this operation will evaluate. Use the
 	// value that was returned for LastEvaluatedShardId in the previous operation.
-	ExclusiveStartShardID *string `locationName:"ExclusiveStartShardId" type:"string"`
+	ExclusiveStartShardId *string `type:"string"`
 
 	// The maximum number of shard objects to return. The upper limit is 100.
 	Limit *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamARN *string `locationName:"StreamArn" type:"string" required:"true"`
+	StreamArn *string `type:"string" required:"true"`
 
 	metadataDescribeStreamInput `json:"-" xml:"-"`
 }
@@ -262,7 +262,7 @@ type GetShardIteratorInput struct {
 
 	// The identifier of the shard. The iterator will be returned for this shard
 	// ID.
-	ShardID *string `locationName:"ShardId" type:"string" required:"true"`
+	ShardId *string `type:"string" required:"true"`
 
 	// Determines how the shard iterator is used to start reading stream records
 	// from the shard:
@@ -283,7 +283,7 @@ type GetShardIteratorInput struct {
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
 
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamARN *string `locationName:"StreamArn" type:"string" required:"true"`
+	StreamArn *string `type:"string" required:"true"`
 
 	metadataGetShardIteratorInput `json:"-" xml:"-"`
 }
@@ -331,7 +331,7 @@ type ListStreamsInput struct {
 	// The ARN (Amazon Resource Name) of the first item that this operation will
 	// evaluate. Use the value that was returned for LastEvaluatedStreamArn in the
 	// previous operation.
-	ExclusiveStartStreamARN *string `locationName:"ExclusiveStartStreamArn" type:"string"`
+	ExclusiveStartStreamArn *string `type:"string"`
 
 	// The maximum number of streams to return. The upper limit is 100.
 	Limit *int64 `type:"integer"`
@@ -369,7 +369,7 @@ type ListStreamsOutput struct {
 	// If LastEvaluatedStreamArn is not empty, it does not necessarily mean that
 	// there is more data in the result set. The only way to know when you have
 	// reached the end of the result set is when LastEvaluatedStreamArn is empty.
-	LastEvaluatedStreamARN *string `locationName:"LastEvaluatedStreamArn" type:"string"`
+	LastEvaluatedStreamArn *string `type:"string"`
 
 	// A list of stream descriptors associated with the current account and endpoint.
 	Streams []*Stream `type:"list"`
@@ -394,11 +394,11 @@ func (s ListStreamsOutput) GoString() string {
 // A description of a unique event within a stream.
 type Record struct {
 	// The region in which the GetRecords request was received.
-	AWSRegion *string `locationName:"awsRegion" type:"string"`
+	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
 	// The main body of the stream record, containing all of the DynamoDB-specific
 	// fields.
-	DynamoDB *StreamRecord `locationName:"dynamodb" type:"structure"`
+	Dynamodb *StreamRecord `locationName:"dynamodb" type:"structure"`
 
 	// A globally unique identifier for the event that was recorded in this stream
 	// record.
@@ -466,13 +466,13 @@ func (s SequenceNumberRange) GoString() string {
 // A uniquely identified group of stream records within a stream.
 type Shard struct {
 	// The shard ID of the current shard's parent.
-	ParentShardID *string `locationName:"ParentShardId" type:"string"`
+	ParentShardId *string `type:"string"`
 
 	// The range of possible sequence numbers for the shard.
 	SequenceNumberRange *SequenceNumberRange `type:"structure"`
 
 	// The system-generated identifier for this shard.
-	ShardID *string `locationName:"ShardId" type:"string"`
+	ShardId *string `type:"string"`
 
 	metadataShard `json:"-" xml:"-"`
 }
@@ -494,7 +494,7 @@ func (s Shard) GoString() string {
 // Represents all of the data describing a particular stream.
 type Stream struct {
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamARN *string `locationName:"StreamArn" type:"string"`
+	StreamArn *string `type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//
@@ -548,13 +548,13 @@ type StreamDescription struct {
 	// If LastEvaluatedShardId is not empty, it does not necessarily mean that
 	// there is more data in the result set. The only way to know when you have
 	// reached the end of the result set is when LastEvaluatedShardId is empty.
-	LastEvaluatedShardID *string `locationName:"LastEvaluatedShardId" type:"string"`
+	LastEvaluatedShardId *string `type:"string"`
 
 	// The shards that comprise the stream.
 	Shards []*Shard `type:"list"`
 
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamARN *string `locationName:"StreamArn" type:"string"`
+	StreamArn *string `type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//

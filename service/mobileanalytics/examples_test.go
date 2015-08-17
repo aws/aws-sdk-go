@@ -35,7 +35,7 @@ func ExampleMobileAnalytics_PutEvents() {
 				},
 				Session: &mobileanalytics.Session{
 					Duration:       aws.Int64(1),
-					ID:             aws.String("String50Chars"),
+					Id:             aws.String("String50Chars"),
 					StartTimestamp: aws.String("ISO8601Timestamp"),
 					StopTimestamp:  aws.String("ISO8601Timestamp"),
 				},

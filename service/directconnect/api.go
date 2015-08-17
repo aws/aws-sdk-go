@@ -629,7 +629,7 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: dxcon-456abc78
 	//
 	// Default: None
-	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
+	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	// Numeric account Id of the customer for whom the connection will be provisioned.
 	//
@@ -643,7 +643,7 @@ type AllocateConnectionOnInterconnectInput struct {
 	// Example: 101
 	//
 	// Default: None
-	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
+	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
 	metadataAllocateConnectionOnInterconnectInput `json:"-" xml:"-"`
 }
@@ -667,7 +667,7 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	// The connection ID on which the private virtual interface is provisioned.
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the private virtual interface to be provisioned.
 	//
@@ -701,7 +701,7 @@ type AllocatePublicVirtualInterfaceInput struct {
 	// The connection ID on which the public virtual interface is provisioned.
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the public virtual interface to be provisioned.
 	//
@@ -737,7 +737,7 @@ type ConfirmConnectionInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	metadataConfirmConnectionInput `json:"-" xml:"-"`
 }
@@ -796,14 +796,14 @@ type ConfirmPrivateVirtualInterfaceInput struct {
 	// action.
 	//
 	// Default: None
-	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string" required:"true"`
+	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string" required:"true"`
 
 	// ID of the virtual interface.
 	//
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
 	metadataConfirmPrivateVirtualInterfaceInput `json:"-" xml:"-"`
 }
@@ -866,7 +866,7 @@ type ConfirmPublicVirtualInterfaceInput struct {
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
 	metadataConfirmPublicVirtualInterfaceInput `json:"-" xml:"-"`
 }
@@ -937,7 +937,7 @@ type Connection struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string"`
+	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	// The name of the connection.
 	//
@@ -979,7 +979,7 @@ type Connection struct {
 	// The VLAN ID.
 	//
 	// Example: 101
-	VLAN *int64 `locationName:"vlan" type:"integer"`
+	Vlan *int64 `locationName:"vlan" type:"integer"`
 
 	metadataConnection `json:"-" xml:"-"`
 }
@@ -1109,7 +1109,7 @@ type CreatePrivateVirtualInterfaceInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the private virtual interface to be created.
 	//
@@ -1140,7 +1140,7 @@ type CreatePublicVirtualInterfaceInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	// Detailed information for the public virtual interface to be created.
 	//
@@ -1171,7 +1171,7 @@ type DeleteConnectionInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string" required:"true"`
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
 
 	metadataDeleteConnectionInput `json:"-" xml:"-"`
 }
@@ -1195,7 +1195,7 @@ type DeleteInterconnectInput struct {
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
-	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
+	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	metadataDeleteInterconnectInput `json:"-" xml:"-"`
 }
@@ -1248,7 +1248,7 @@ type DeleteVirtualInterfaceInput struct {
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
 
 	metadataDeleteVirtualInterfaceInput `json:"-" xml:"-"`
 }
@@ -1311,7 +1311,7 @@ type DescribeConnectionsInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string"`
+	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	metadataDescribeConnectionsInput `json:"-" xml:"-"`
 }
@@ -1337,7 +1337,7 @@ type DescribeConnectionsOnInterconnectInput struct {
 	// Example: dxcon-abc123
 	//
 	// Default: None
-	InterconnectID *string `locationName:"interconnectId" type:"string" required:"true"`
+	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
 	metadataDescribeConnectionsOnInterconnectInput `json:"-" xml:"-"`
 }
@@ -1361,7 +1361,7 @@ type DescribeInterconnectsInput struct {
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
-	InterconnectID *string `locationName:"interconnectId" type:"string"`
+	InterconnectId *string `locationName:"interconnectId" type:"string"`
 
 	metadataDescribeInterconnectsInput `json:"-" xml:"-"`
 }
@@ -1487,14 +1487,14 @@ type DescribeVirtualInterfacesInput struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string"`
+	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	// ID of the virtual interface.
 	//
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string"`
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 
 	metadataDescribeVirtualInterfacesInput `json:"-" xml:"-"`
 }
@@ -1558,7 +1558,7 @@ type Interconnect struct {
 	// The ID of the interconnect.
 	//
 	// Example: dxcon-abc123
-	InterconnectID *string `locationName:"interconnectId" type:"string"`
+	InterconnectId *string `locationName:"interconnectId" type:"string"`
 
 	// The name of the interconnect.
 	//
@@ -1633,15 +1633,15 @@ func (s Location) GoString() string {
 
 // A structure containing information about a new private virtual interface.
 type NewPrivateVirtualInterface struct {
-	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-	//
-	// Example: 65000
-	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
-
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
 	AmazonAddress *string `locationName:"amazonAddress" type:"string"`
+
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
 	//
@@ -1653,21 +1653,21 @@ type NewPrivateVirtualInterface struct {
 	// Example: 192.168.1.2/30
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 
-	// The VLAN ID.
-	//
-	// Example: 101
-	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
-
 	// The ID of the virtual private gateway to a VPC. This only applies to private
 	// virtual interfaces.
 	//
 	// Example: vgw-123er56
-	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string" required:"true"`
+	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string" required:"true"`
 
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
 	metadataNewPrivateVirtualInterface `json:"-" xml:"-"`
 }
@@ -1689,15 +1689,15 @@ func (s NewPrivateVirtualInterface) GoString() string {
 // A structure containing information about a private virtual interface that
 // will be provisioned on a connection.
 type NewPrivateVirtualInterfaceAllocation struct {
-	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-	//
-	// Example: 65000
-	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
-
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
 	AmazonAddress *string `locationName:"amazonAddress" type:"string"`
+
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
 	//
@@ -1709,15 +1709,15 @@ type NewPrivateVirtualInterfaceAllocation struct {
 	// Example: 192.168.1.2/30
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 
-	// The VLAN ID.
-	//
-	// Example: 101
-	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
-
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
 	metadataNewPrivateVirtualInterfaceAllocation `json:"-" xml:"-"`
 }
@@ -1738,15 +1738,15 @@ func (s NewPrivateVirtualInterfaceAllocation) GoString() string {
 
 // A structure containing information about a new public virtual interface.
 type NewPublicVirtualInterface struct {
-	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-	//
-	// Example: 65000
-	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
-
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
 	AmazonAddress *string `locationName:"amazonAddress" type:"string" required:"true"`
+
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
 	//
@@ -1762,15 +1762,15 @@ type NewPublicVirtualInterface struct {
 	// virtual interface) or your VPC (private virtual interface).
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
 
-	// The VLAN ID.
-	//
-	// Example: 101
-	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
-
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
 	metadataNewPublicVirtualInterface `json:"-" xml:"-"`
 }
@@ -1792,15 +1792,15 @@ func (s NewPublicVirtualInterface) GoString() string {
 // A structure containing information about a public virtual interface that
 // will be provisioned on a connection.
 type NewPublicVirtualInterfaceAllocation struct {
-	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-	//
-	// Example: 65000
-	ASN *int64 `locationName:"asn" type:"integer" required:"true"`
-
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
 	AmazonAddress *string `locationName:"amazonAddress" type:"string" required:"true"`
+
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	Asn *int64 `locationName:"asn" type:"integer" required:"true"`
 
 	// Authentication key for BGP configuration.
 	//
@@ -1816,15 +1816,15 @@ type NewPublicVirtualInterfaceAllocation struct {
 	// virtual interface) or your VPC (private virtual interface).
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list" required:"true"`
 
-	// The VLAN ID.
-	//
-	// Example: 101
-	VLAN *int64 `locationName:"vlan" type:"integer" required:"true"`
-
 	// The name of the virtual interface assigned by the customer.
 	//
 	// Example: "My VPC"
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string" required:"true"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	Vlan *int64 `locationName:"vlan" type:"integer" required:"true"`
 
 	metadataNewPublicVirtualInterfaceAllocation `json:"-" xml:"-"`
 }
@@ -1850,7 +1850,7 @@ type RouteFilterPrefix struct {
 	// commas.
 	//
 	// Example: 10.10.10.0/24,10.10.11.0/24
-	CIDR *string `locationName:"cidr" type:"string"`
+	Cidr *string `locationName:"cidr" type:"string"`
 
 	metadataRouteFilterPrefix `json:"-" xml:"-"`
 }
@@ -1879,7 +1879,7 @@ type VirtualGateway struct {
 	// virtual interfaces.
 	//
 	// Example: vgw-123er56
-	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string"`
+	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 
 	// State of the virtual private gateway.   Pending: This is the initial state
 	// after calling CreateVpnGateway.  Available: Ready for use by a private virtual
@@ -1908,15 +1908,15 @@ func (s VirtualGateway) GoString() string {
 // A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
 // location and the customer.
 type VirtualInterface struct {
-	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
-	//
-	// Example: 65000
-	ASN *int64 `locationName:"asn" type:"integer"`
-
 	// IP address assigned to the Amazon interface.
 	//
 	// Example: 192.168.1.1/30
 	AmazonAddress *string `locationName:"amazonAddress" type:"string"`
+
+	// Autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.
+	//
+	// Example: 65000
+	Asn *int64 `locationName:"asn" type:"integer"`
 
 	// Authentication key for BGP configuration.
 	//
@@ -1928,7 +1928,7 @@ type VirtualInterface struct {
 	// Example: dxcon-fg5678gh
 	//
 	// Default: None
-	ConnectionID *string `locationName:"connectionId" type:"string"`
+	ConnectionId *string `locationName:"connectionId" type:"string"`
 
 	// IP address assigned to the customer interface.
 	//
@@ -1951,23 +1951,18 @@ type VirtualInterface struct {
 	// virtual interface) or your VPC (private virtual interface).
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
 
-	// The VLAN ID.
-	//
-	// Example: 101
-	VLAN *int64 `locationName:"vlan" type:"integer"`
-
 	// The ID of the virtual private gateway to a VPC. This only applies to private
 	// virtual interfaces.
 	//
 	// Example: vgw-123er56
-	VirtualGatewayID *string `locationName:"virtualGatewayId" type:"string"`
+	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 
 	// ID of the virtual interface.
 	//
 	// Example: dxvif-123dfg56
 	//
 	// Default: None
-	VirtualInterfaceID *string `locationName:"virtualInterfaceId" type:"string"`
+	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 
 	// The name of the virtual interface assigned by the customer.
 	//
@@ -1997,6 +1992,11 @@ type VirtualInterface struct {
 	// Example: private (Amazon VPC) or public (Amazon S3, Amazon DynamoDB, and
 	// so on.)
 	VirtualInterfaceType *string `locationName:"virtualInterfaceType" type:"string"`
+
+	// The VLAN ID.
+	//
+	// Example: 101
+	Vlan *int64 `locationName:"vlan" type:"integer"`
 
 	metadataVirtualInterface `json:"-" xml:"-"`
 }

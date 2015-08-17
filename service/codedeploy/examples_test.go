@@ -87,7 +87,7 @@ func ExampleCodeDeploy_BatchGetDeployments() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.BatchGetDeploymentsInput{
-		DeploymentIDs: []*string{
+		DeploymentIds: []*string{
 			aws.String("DeploymentId"), // Required
 			// More values...
 		},
@@ -181,7 +181,7 @@ func ExampleCodeDeploy_CreateDeployment() {
 		IgnoreApplicationStopFailures: aws.Bool(true),
 		Revision: &codedeploy.RevisionLocation{
 			GitHubLocation: &codedeploy.GitHubLocation{
-				CommitID:   aws.String("CommitId"),
+				CommitId:   aws.String("CommitId"),
 				Repository: aws.String("Repository"),
 			},
 			RevisionType: aws.String("RevisionLocationType"),
@@ -252,13 +252,13 @@ func ExampleCodeDeploy_CreateDeploymentGroup() {
 	params := &codedeploy.CreateDeploymentGroupInput{
 		ApplicationName:     aws.String("ApplicationName"),     // Required
 		DeploymentGroupName: aws.String("DeploymentGroupName"), // Required
-		ServiceRoleARN:      aws.String("Role"),                // Required
+		ServiceRoleArn:      aws.String("Role"),                // Required
 		AutoScalingGroups: []*string{
 			aws.String("AutoScalingGroupName"), // Required
 			// More values...
 		},
 		DeploymentConfigName: aws.String("DeploymentConfigName"),
-		EC2TagFilters: []*codedeploy.EC2TagFilter{
+		Ec2TagFilters: []*codedeploy.EC2TagFilter{
 			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("EC2TagFilterType"),
@@ -439,7 +439,7 @@ func ExampleCodeDeploy_GetApplicationRevision() {
 		ApplicationName: aws.String("ApplicationName"), // Required
 		Revision: &codedeploy.RevisionLocation{ // Required
 			GitHubLocation: &codedeploy.GitHubLocation{
-				CommitID:   aws.String("CommitId"),
+				CommitId:   aws.String("CommitId"),
 				Repository: aws.String("Repository"),
 			},
 			RevisionType: aws.String("RevisionLocationType"),
@@ -477,7 +477,7 @@ func ExampleCodeDeploy_GetDeployment() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetDeploymentInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
+		DeploymentId: aws.String("DeploymentId"), // Required
 	}
 	resp, err := svc.GetDeployment(params)
 
@@ -559,8 +559,8 @@ func ExampleCodeDeploy_GetDeploymentInstance() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.GetDeploymentInstanceInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
-		InstanceID:   aws.String("InstanceId"),   // Required
+		DeploymentId: aws.String("DeploymentId"), // Required
+		InstanceId:   aws.String("InstanceId"),   // Required
 	}
 	resp, err := svc.GetDeploymentInstance(params)
 
@@ -729,7 +729,7 @@ func ExampleCodeDeploy_ListDeploymentInstances() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.ListDeploymentInstancesInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
+		DeploymentId: aws.String("DeploymentId"), // Required
 		InstanceStatusFilter: []*string{
 			aws.String("InstanceStatus"), // Required
 			// More values...
@@ -837,7 +837,7 @@ func ExampleCodeDeploy_RegisterApplicationRevision() {
 		ApplicationName: aws.String("ApplicationName"), // Required
 		Revision: &codedeploy.RevisionLocation{ // Required
 			GitHubLocation: &codedeploy.GitHubLocation{
-				CommitID:   aws.String("CommitId"),
+				CommitId:   aws.String("CommitId"),
 				Repository: aws.String("Repository"),
 			},
 			RevisionType: aws.String("RevisionLocationType"),
@@ -876,7 +876,7 @@ func ExampleCodeDeploy_RegisterOnPremisesInstance() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.RegisterOnPremisesInstanceInput{
-		IAMUserARN:   aws.String("IamUserArn"),   // Required
+		IamUserArn:   aws.String("IamUserArn"),   // Required
 		InstanceName: aws.String("InstanceName"), // Required
 	}
 	resp, err := svc.RegisterOnPremisesInstance(params)
@@ -941,7 +941,7 @@ func ExampleCodeDeploy_StopDeployment() {
 	svc := codedeploy.New(nil)
 
 	params := &codedeploy.StopDeploymentInput{
-		DeploymentID: aws.String("DeploymentId"), // Required
+		DeploymentId: aws.String("DeploymentId"), // Required
 	}
 	resp, err := svc.StopDeployment(params)
 
@@ -1003,7 +1003,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 			// More values...
 		},
 		DeploymentConfigName: aws.String("DeploymentConfigName"),
-		EC2TagFilters: []*codedeploy.EC2TagFilter{
+		Ec2TagFilters: []*codedeploy.EC2TagFilter{
 			{ // Required
 				Key:   aws.String("Key"),
 				Type:  aws.String("EC2TagFilterType"),
@@ -1020,7 +1020,7 @@ func ExampleCodeDeploy_UpdateDeploymentGroup() {
 			},
 			// More values...
 		},
-		ServiceRoleARN: aws.String("Role"),
+		ServiceRoleArn: aws.String("Role"),
 	}
 	resp, err := svc.UpdateDeploymentGroup(params)
 

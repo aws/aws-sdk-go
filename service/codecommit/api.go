@@ -391,7 +391,7 @@ type BranchInfo struct {
 	BranchName *string `locationName:"branchName" type:"string"`
 
 	// The ID of the last commit made to the branch.
-	CommitID *string `locationName:"commitId" type:"string"`
+	CommitId *string `locationName:"commitId" type:"string"`
 
 	metadataBranchInfo `json:"-" xml:"-"`
 }
@@ -419,7 +419,7 @@ type CreateBranchInput struct {
 	//
 	// If this commit ID is not specified, the new branch will point to the commit
 	// that is pointed to by the repository's default branch.
-	CommitID *string `locationName:"commitId" type:"string" required:"true"`
+	CommitId *string `locationName:"commitId" type:"string" required:"true"`
 
 	// The name of the repository in which you want to create the new branch.
 	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
@@ -535,7 +535,7 @@ func (s DeleteRepositoryInput) GoString() string {
 // Represents the output of a delete repository operation.
 type DeleteRepositoryOutput struct {
 	// The ID of the repository that was deleted.
-	RepositoryID *string `locationName:"repositoryId" type:"string"`
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	metadataDeleteRepositoryOutput `json:"-" xml:"-"`
 }
@@ -737,7 +737,7 @@ type ListRepositoriesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Lists the repositories called by the list repositories operation.
-	Repositories []*RepositoryNameIDPair `locationName:"repositories" type:"list"`
+	Repositories []*RepositoryNameIdPair `locationName:"repositories" type:"list"`
 
 	metadataListRepositoriesOutput `json:"-" xml:"-"`
 }
@@ -758,17 +758,17 @@ func (s ListRepositoriesOutput) GoString() string {
 
 // Information about a repository.
 type RepositoryMetadata struct {
-	// The Amazon Resource Name (ARN) of the repository.
-	ARN *string `locationName:"Arn" type:"string"`
-
 	// The ID of the AWS account associated with the repository.
-	AccountID *string `locationName:"accountId" type:"string"`
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the repository.
+	Arn *string `type:"string"`
 
 	// The URL to use for cloning the repository over HTTPS.
-	CloneURLHTTP *string `locationName:"cloneUrlHttp" type:"string"`
+	CloneUrlHttp *string `locationName:"cloneUrlHttp" type:"string"`
 
 	// The URL to use for cloning the repository over SSH.
-	CloneURLSSH *string `locationName:"cloneUrlSsh" type:"string"`
+	CloneUrlSsh *string `locationName:"cloneUrlSsh" type:"string"`
 
 	// The date and time the repository was created, in timestamp format.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
@@ -783,7 +783,7 @@ type RepositoryMetadata struct {
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
 	// The ID of the repository.
-	RepositoryID *string `locationName:"repositoryId" type:"string"`
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	// The repository's name.
 	RepositoryName *string `locationName:"repositoryName" type:"string"`
@@ -806,29 +806,29 @@ func (s RepositoryMetadata) GoString() string {
 }
 
 // Information about a repository name and ID.
-type RepositoryNameIDPair struct {
+type RepositoryNameIdPair struct {
 	// The ID associated with the repository name.
-	RepositoryID *string `locationName:"repositoryId" type:"string"`
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
 	RepositoryName *string `locationName:"repositoryName" type:"string"`
 
-	metadataRepositoryNameIDPair `json:"-" xml:"-"`
+	metadataRepositoryNameIdPair `json:"-" xml:"-"`
 }
 
-type metadataRepositoryNameIDPair struct {
+type metadataRepositoryNameIdPair struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s RepositoryNameIDPair) String() string {
+func (s RepositoryNameIdPair) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s RepositoryNameIDPair) GoString() string {
+func (s RepositoryNameIdPair) GoString() string {
 	return s.String()
 }
 

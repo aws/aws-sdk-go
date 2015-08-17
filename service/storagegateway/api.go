@@ -1863,7 +1863,7 @@ func (s ActivateGatewayOutput) GoString() string {
 }
 
 type AddCacheInput struct {
-	DiskIDs []*string `locationName:"DiskIds" type:"list" required:"true"`
+	DiskIds []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -1909,7 +1909,7 @@ func (s AddCacheOutput) GoString() string {
 }
 
 type AddUploadBufferInput struct {
-	DiskIDs []*string `locationName:"DiskIds" type:"list" required:"true"`
+	DiskIds []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -1961,7 +1961,7 @@ type AddWorkingStorageInput struct {
 	// An array of strings that identify disks that are to be configured as working
 	// storage. Each string have a minimum length of 1 and maximum length of 300.
 	// You can get the disk IDs from the ListLocalDisks API.
-	DiskIDs []*string `locationName:"DiskIds" type:"list" required:"true"`
+	DiskIds []*string `type:"list" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2009,11 +2009,11 @@ func (s AddWorkingStorageOutput) GoString() string {
 }
 
 type CachediSCSIVolume struct {
-	SourceSnapshotID *string `locationName:"SourceSnapshotId" type:"string"`
+	SourceSnapshotId *string `type:"string"`
 
 	VolumeARN *string `type:"string"`
 
-	VolumeID *string `locationName:"VolumeId" type:"string"`
+	VolumeId *string `type:"string"`
 
 	VolumeProgress *float64 `type:"double"`
 
@@ -2187,9 +2187,9 @@ type CreateCachediSCSIVolumeInput struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string" required:"true"`
 
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string" required:"true"`
+	NetworkInterfaceId *string `type:"string" required:"true"`
 
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	TargetName *string `type:"string" required:"true"`
 
@@ -2257,7 +2257,7 @@ func (s CreateSnapshotFromVolumeRecoveryPointInput) GoString() string {
 }
 
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	VolumeARN *string `type:"string"`
 
@@ -2315,7 +2315,7 @@ type CreateSnapshotOutput struct {
 	// The snapshot ID that is used to refer to the snapshot in future operations
 	// such as describing snapshots (Amazon Elastic Compute Cloud API DescribeSnapshots)
 	// or creating a volume from a snapshot (CreateStorediSCSIVolume).
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the volume of which the snapshot was taken.
 	VolumeARN *string `type:"string"`
@@ -2346,7 +2346,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// The unique identifier for the gateway local disk that is configured as a
 	// stored volume. Use ListLocalDisks (http://docs.aws.amazon.com/storagegateway/latest/userguide/API_ListLocalDisks.html)
 	// to list disk IDs for a gateway.
-	DiskID *string `locationName:"DiskId" type:"string" required:"true"`
+	DiskId *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -2357,7 +2357,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// list of the network interfaces available on a gateway.
 	//
 	// Valid Values: A valid IP address.
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string" required:"true"`
+	NetworkInterfaceId *string `type:"string" required:"true"`
 
 	// Specify this field as true if you want to preserve the data on the local
 	// disk. Otherwise, specifying this field as false creates an empty volume.
@@ -2370,7 +2370,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// volume from a snapshot otherwise do not include this field. To list snapshots
 	// for your account use DescribeSnapshots (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html)
 	// in the Amazon Elastic Compute Cloud API Reference.
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `type:"string"`
 
 	// The name of the iSCSI target used by initiators to connect to the target
 	// and as a suffix for the target ARN. For example, specifying TargetName as
@@ -2907,7 +2907,7 @@ type DescribeCacheOutput struct {
 
 	CacheUsedPercentage *float64 `type:"double"`
 
-	DiskIDs []*string `locationName:"DiskIds" type:"list"`
+	DiskIds []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3063,7 +3063,7 @@ type DescribeGatewayInformationOutput struct {
 	GatewayARN *string `type:"string"`
 
 	// The gateway ID.
-	GatewayID *string `locationName:"GatewayId" type:"string"`
+	GatewayId *string `type:"string"`
 
 	// A NetworkInterface array that contains descriptions of the gateway network
 	// interfaces.
@@ -3475,7 +3475,7 @@ func (s DescribeUploadBufferInput) GoString() string {
 }
 
 type DescribeUploadBufferOutput struct {
-	DiskIDs []*string `locationName:"DiskIds" type:"list"`
+	DiskIds []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3603,7 +3603,7 @@ type DescribeWorkingStorageOutput struct {
 	// Each local disk ID is specified as a string (minimum length of 1 and maximum
 	// length of 300). If no local disks are configured as working storage, then
 	// the DiskIds array is empty.
-	DiskIDs []*string `locationName:"DiskIds" type:"list"`
+	DiskIds []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
@@ -3640,7 +3640,7 @@ type DeviceiSCSIAttributes struct {
 	ChapEnabled *bool `type:"boolean"`
 
 	// The network interface identifier of the VTL device.
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string"`
+	NetworkInterfaceId *string `type:"string"`
 
 	// The port used to communicate with iSCSI VTL device targets.
 	NetworkInterfacePort *int64 `type:"integer"`
@@ -3716,7 +3716,7 @@ type Disk struct {
 
 	DiskAllocationType *string `type:"string"`
 
-	DiskID *string `locationName:"DiskId" type:"string"`
+	DiskId *string `type:"string"`
 
 	DiskNode *string `type:"string"`
 
@@ -4049,16 +4049,16 @@ func (s ListVolumesOutput) GoString() string {
 // Describes a gateway's network interface.
 type NetworkInterface struct {
 	// The Internet Protocol version 4 (IPv4) address of the interface.
-	IPV4Address *string `locationName:"Ipv4Address" type:"string"`
+	Ipv4Address *string `type:"string"`
 
 	// The Internet Protocol version 6 (IPv6) address of the interface. Currently
 	// not supported.
-	IPV6Address *string `locationName:"Ipv6Address" type:"string"`
+	Ipv6Address *string `type:"string"`
 
 	// The Media Access Control (MAC) address of the interface.
 	//
 	// This is currently unsupported and will not be returned in output.
-	MACAddress *string `locationName:"MacAddress" type:"string"`
+	MacAddress *string `type:"string"`
 
 	metadataNetworkInterface `json:"-" xml:"-"`
 }
@@ -4319,13 +4319,13 @@ func (s StartGatewayOutput) GoString() string {
 type StorediSCSIVolume struct {
 	PreservedExistingData *bool `type:"boolean"`
 
-	SourceSnapshotID *string `locationName:"SourceSnapshotId" type:"string"`
+	SourceSnapshotId *string `type:"string"`
 
 	VolumeARN *string `type:"string"`
 
-	VolumeDiskID *string `locationName:"VolumeDiskId" type:"string"`
+	VolumeDiskId *string `type:"string"`
 
-	VolumeID *string `locationName:"VolumeId" type:"string"`
+	VolumeId *string `type:"string"`
 
 	VolumeProgress *float64 `type:"double"`
 
@@ -4954,7 +4954,7 @@ type VolumeiSCSIAttributes struct {
 	LunNumber *int64 `type:"integer"`
 
 	// The network interface identifier.
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string"`
+	NetworkInterfaceId *string `type:"string"`
 
 	// The port used to communicate with iSCSI targets.
 	NetworkInterfacePort *int64 `type:"integer"`

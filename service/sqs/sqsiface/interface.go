@@ -42,9 +42,9 @@ type SQSAPI interface {
 
 	GetQueueAttributes(*sqs.GetQueueAttributesInput) (*sqs.GetQueueAttributesOutput, error)
 
-	GetQueueURLRequest(*sqs.GetQueueURLInput) (*service.Request, *sqs.GetQueueURLOutput)
+	GetQueueUrlRequest(*sqs.GetQueueUrlInput) (*service.Request, *sqs.GetQueueUrlOutput)
 
-	GetQueueURL(*sqs.GetQueueURLInput) (*sqs.GetQueueURLOutput, error)
+	GetQueueUrl(*sqs.GetQueueUrlInput) (*sqs.GetQueueUrlOutput, error)
 
 	ListDeadLetterSourceQueuesRequest(*sqs.ListDeadLetterSourceQueuesInput) (*service.Request, *sqs.ListDeadLetterSourceQueuesOutput)
 

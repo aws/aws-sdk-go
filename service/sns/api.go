@@ -840,7 +840,7 @@ type AddPermissionInput struct {
 	// The AWS account IDs of the users (principals) who will be given access to
 	// the specified actions. The users must have AWS accounts, but do not need
 	// to be signed up for this service.
-	AWSAccountID []*string `locationName:"AWSAccountId" type:"list" required:"true"`
+	AWSAccountId []*string `type:"list" required:"true"`
 
 	// The action you want to allow for the specified principal(s).
 	//
@@ -851,7 +851,7 @@ type AddPermissionInput struct {
 	Label *string `type:"string" required:"true"`
 
 	// The ARN of the topic whose access control policy you wish to modify.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataAddPermissionInput `json:"-" xml:"-"`
 }
@@ -900,7 +900,7 @@ type ConfirmSubscriptionInput struct {
 	Token *string `type:"string" required:"true"`
 
 	// The ARN of the topic for which you wish to confirm a subscription.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataConfirmSubscriptionInput `json:"-" xml:"-"`
 }
@@ -922,7 +922,7 @@ func (s ConfirmSubscriptionInput) GoString() string {
 // Response for ConfirmSubscriptions action.
 type ConfirmSubscriptionOutput struct {
 	// The ARN of the created subscription.
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
+	SubscriptionArn *string `type:"string"`
 
 	metadataConfirmSubscriptionOutput `json:"-" xml:"-"`
 }
@@ -975,7 +975,7 @@ func (s CreatePlatformApplicationInput) GoString() string {
 // Response from CreatePlatformApplication action.
 type CreatePlatformApplicationOutput struct {
 	// PlatformApplicationArn is returned.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
+	PlatformApplicationArn *string `type:"string"`
 
 	metadataCreatePlatformApplicationOutput `json:"-" xml:"-"`
 }
@@ -1005,7 +1005,7 @@ type CreatePlatformEndpointInput struct {
 
 	// PlatformApplicationArn returned from CreatePlatformApplication is used to
 	// create a an endpoint.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	PlatformApplicationArn *string `type:"string" required:"true"`
 
 	// Unique identifier created by the notification service for an app on a device.
 	// The specific name for Token will vary, depending on which notification service
@@ -1034,7 +1034,7 @@ func (s CreatePlatformEndpointInput) GoString() string {
 // Response from CreateEndpoint action.
 type CreatePlatformEndpointOutput struct {
 	// EndpointArn returned from CreateEndpoint action.
-	EndpointARN *string `locationName:"EndpointArn" type:"string"`
+	EndpointArn *string `type:"string"`
 
 	metadataCreatePlatformEndpointOutput `json:"-" xml:"-"`
 }
@@ -1082,7 +1082,7 @@ func (s CreateTopicInput) GoString() string {
 // Response from CreateTopic action.
 type CreateTopicOutput struct {
 	// The Amazon Resource Name (ARN) assigned to the created topic.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	metadataCreateTopicOutput `json:"-" xml:"-"`
 }
@@ -1104,7 +1104,7 @@ func (s CreateTopicOutput) GoString() string {
 // Input for DeleteEndpoint action.
 type DeleteEndpointInput struct {
 	// EndpointArn of endpoint to delete.
-	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
+	EndpointArn *string `type:"string" required:"true"`
 
 	metadataDeleteEndpointInput `json:"-" xml:"-"`
 }
@@ -1144,7 +1144,7 @@ func (s DeleteEndpointOutput) GoString() string {
 // Input for DeletePlatformApplication action.
 type DeletePlatformApplicationInput struct {
 	// PlatformApplicationArn of platform application object to delete.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	PlatformApplicationArn *string `type:"string" required:"true"`
 
 	metadataDeletePlatformApplicationInput `json:"-" xml:"-"`
 }
@@ -1183,7 +1183,7 @@ func (s DeletePlatformApplicationOutput) GoString() string {
 
 type DeleteTopicInput struct {
 	// The ARN of the topic you want to delete.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataDeleteTopicInput `json:"-" xml:"-"`
 }
@@ -1226,7 +1226,7 @@ type Endpoint struct {
 	Attributes map[string]*string `type:"map"`
 
 	// EndpointArn for mobile app and device.
-	EndpointARN *string `locationName:"EndpointArn" type:"string"`
+	EndpointArn *string `type:"string"`
 
 	metadataEndpoint `json:"-" xml:"-"`
 }
@@ -1248,7 +1248,7 @@ func (s Endpoint) GoString() string {
 // Input for GetEndpointAttributes action.
 type GetEndpointAttributesInput struct {
 	// EndpointArn for GetEndpointAttributes input.
-	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
+	EndpointArn *string `type:"string" required:"true"`
 
 	metadataGetEndpointAttributesInput `json:"-" xml:"-"`
 }
@@ -1302,7 +1302,7 @@ func (s GetEndpointAttributesOutput) GoString() string {
 // Input for GetPlatformApplicationAttributes action.
 type GetPlatformApplicationAttributesInput struct {
 	// PlatformApplicationArn for GetPlatformApplicationAttributesInput.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	PlatformApplicationArn *string `type:"string" required:"true"`
 
 	metadataGetPlatformApplicationAttributesInput `json:"-" xml:"-"`
 }
@@ -1354,7 +1354,7 @@ func (s GetPlatformApplicationAttributesOutput) GoString() string {
 // Input for GetSubscriptionAttributes.
 type GetSubscriptionAttributesInput struct {
 	// The ARN of the subscription whose properties you want to get.
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
+	SubscriptionArn *string `type:"string" required:"true"`
 
 	metadataGetSubscriptionAttributesInput `json:"-" xml:"-"`
 }
@@ -1407,7 +1407,7 @@ func (s GetSubscriptionAttributesOutput) GoString() string {
 // Input for GetTopicAttributes action.
 type GetTopicAttributesInput struct {
 	// The ARN of the topic whose properties you want to get.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataGetTopicAttributesInput `json:"-" xml:"-"`
 }
@@ -1467,7 +1467,7 @@ type ListEndpointsByPlatformApplicationInput struct {
 	NextToken *string `type:"string"`
 
 	// PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	PlatformApplicationArn *string `type:"string" required:"true"`
 
 	metadataListEndpointsByPlatformApplicationInput `json:"-" xml:"-"`
 }
@@ -1567,7 +1567,7 @@ type ListSubscriptionsByTopicInput struct {
 	NextToken *string `type:"string"`
 
 	// The ARN of the topic for which you wish to find subscriptions.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataListSubscriptionsByTopicInput `json:"-" xml:"-"`
 }
@@ -1752,7 +1752,7 @@ type PlatformApplication struct {
 	Attributes map[string]*string `type:"map"`
 
 	// PlatformApplicationArn for platform application object.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string"`
+	PlatformApplicationArn *string `type:"string"`
 
 	metadataPlatformApplication `json:"-" xml:"-"`
 }
@@ -1830,10 +1830,10 @@ type PublishInput struct {
 	Subject *string `type:"string"`
 
 	// Either TopicArn or EndpointArn, but not both.
-	TargetARN *string `locationName:"TargetArn" type:"string"`
+	TargetArn *string `type:"string"`
 
 	// The topic you want to publish to.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	metadataPublishInput `json:"-" xml:"-"`
 }
@@ -1857,7 +1857,7 @@ type PublishOutput struct {
 	// Unique identifier assigned to the published message.
 	//
 	// Length Constraint: Maximum 100 characters
-	MessageID *string `locationName:"MessageId" type:"string"`
+	MessageId *string `type:"string"`
 
 	metadataPublishOutput `json:"-" xml:"-"`
 }
@@ -1882,7 +1882,7 @@ type RemovePermissionInput struct {
 	Label *string `type:"string" required:"true"`
 
 	// The ARN of the topic whose access control policy you wish to modify.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataRemovePermissionInput `json:"-" xml:"-"`
 }
@@ -1935,7 +1935,7 @@ type SetEndpointAttributesInput struct {
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// EndpointArn used for SetEndpointAttributes action.
-	EndpointARN *string `locationName:"EndpointArn" type:"string" required:"true"`
+	EndpointArn *string `type:"string" required:"true"`
 
 	metadataSetEndpointAttributesInput `json:"-" xml:"-"`
 }
@@ -1992,7 +1992,7 @@ type SetPlatformApplicationAttributesInput struct {
 	Attributes map[string]*string `type:"map" required:"true"`
 
 	// PlatformApplicationArn for SetPlatformApplicationAttributes action.
-	PlatformApplicationARN *string `locationName:"PlatformApplicationArn" type:"string" required:"true"`
+	PlatformApplicationArn *string `type:"string" required:"true"`
 
 	metadataSetPlatformApplicationAttributesInput `json:"-" xml:"-"`
 }
@@ -2041,7 +2041,7 @@ type SetSubscriptionAttributesInput struct {
 	AttributeValue *string `type:"string"`
 
 	// The ARN of the subscription to modify.
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
+	SubscriptionArn *string `type:"string" required:"true"`
 
 	metadataSetSubscriptionAttributesInput `json:"-" xml:"-"`
 }
@@ -2090,7 +2090,7 @@ type SetTopicAttributesInput struct {
 	AttributeValue *string `type:"string"`
 
 	// The ARN of the topic to modify.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataSetTopicAttributesInput `json:"-" xml:"-"`
 }
@@ -2151,7 +2151,7 @@ type SubscribeInput struct {
 	Protocol *string `type:"string" required:"true"`
 
 	// The ARN of the topic you want to subscribe to.
-	TopicARN *string `locationName:"TopicArn" type:"string" required:"true"`
+	TopicArn *string `type:"string" required:"true"`
 
 	metadataSubscribeInput `json:"-" xml:"-"`
 }
@@ -2174,7 +2174,7 @@ func (s SubscribeInput) GoString() string {
 type SubscribeOutput struct {
 	// The ARN of the subscription, if the service was able to create a subscription
 	// immediately (without requiring endpoint owner confirmation).
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
+	SubscriptionArn *string `type:"string"`
 
 	metadataSubscribeOutput `json:"-" xml:"-"`
 }
@@ -2205,10 +2205,10 @@ type Subscription struct {
 	Protocol *string `type:"string"`
 
 	// The subscription's ARN.
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string"`
+	SubscriptionArn *string `type:"string"`
 
 	// The ARN of the subscription's topic.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	metadataSubscription `json:"-" xml:"-"`
 }
@@ -2231,7 +2231,7 @@ func (s Subscription) GoString() string {
 // topic's attributes, use GetTopicAttributes.
 type Topic struct {
 	// The topic's ARN.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	metadataTopic `json:"-" xml:"-"`
 }
@@ -2253,7 +2253,7 @@ func (s Topic) GoString() string {
 // Input for Unsubscribe action.
 type UnsubscribeInput struct {
 	// The ARN of the subscription to be deleted.
-	SubscriptionARN *string `locationName:"SubscriptionArn" type:"string" required:"true"`
+	SubscriptionArn *string `type:"string" required:"true"`
 
 	metadataUnsubscribeInput `json:"-" xml:"-"`
 }

@@ -1337,7 +1337,7 @@ type AuthorizeCacheSecurityGroupIngressInput struct {
 	// The AWS account number of the Amazon EC2 security group owner. Note that
 	// this is not the same thing as an AWS access key ID - you must provide a valid
 	// AWS account number for this parameter.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
+	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 
 	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -1411,7 +1411,7 @@ type CacheCluster struct {
 
 	// The user-supplied identifier of the cache cluster. This identifier is a unique
 	// key that identifies a cache cluster.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// The current state of this cache cluster, one of the following values: available,
 	// creating, deleted, deleting, incompatible-network, modifying, rebooting cache
@@ -1495,7 +1495,7 @@ type CacheCluster struct {
 
 	// The replication group to which this cache cluster belongs. If this field
 	// is empty, the cache cluster is not associated with any replication group.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	// A list of VPC Security Groups associated with the cache cluster.
 	SecurityGroups []*SecurityGroupMembership `type:"list"`
@@ -1594,7 +1594,7 @@ type CacheNode struct {
 	// The cache node identifier. A node ID is a numeric identifier (0001, 0002,
 	// etc.). The combination of cluster ID and node ID uniquely identifies every
 	// cache node used in a customer's AWS account.
-	CacheNodeID *string `locationName:"CacheNodeId" type:"string"`
+	CacheNodeId *string `type:"string"`
 
 	// The current state of this cache node.
 	CacheNodeStatus *string `type:"string"`
@@ -1611,7 +1611,7 @@ type CacheNode struct {
 	// The ID of the primary node to which this read replica node is synchronized.
 	// If this field is empty, then this node is not associated with a primary cache
 	// cluster.
-	SourceCacheNodeID *string `locationName:"SourceCacheNodeId" type:"string"`
+	SourceCacheNodeId *string `type:"string"`
 
 	metadataCacheNode `json:"-" xml:"-"`
 }
@@ -1759,7 +1759,7 @@ func (s CacheParameterGroupNameMessage) GoString() string {
 type CacheParameterGroupStatus struct {
 	// A list of the cache node IDs which need to be rebooted for parameter changes
 	// to be applied. A node ID is a numeric identifier (0001, 0002, etc.).
-	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list"`
+	CacheNodeIdsToReboot []*string `locationNameList:"CacheNodeId" type:"list"`
 
 	// The name of the cache parameter group.
 	CacheParameterGroupName *string `type:"string"`
@@ -1799,7 +1799,7 @@ type CacheSecurityGroup struct {
 	EC2SecurityGroups []*EC2SecurityGroup `locationNameList:"EC2SecurityGroup" type:"list"`
 
 	// The AWS account ID of the cache security group owner.
-	OwnerID *string `locationName:"OwnerId" type:"string"`
+	OwnerId *string `type:"string"`
 
 	metadataCacheSecurityGroup `json:"-" xml:"-"`
 }
@@ -1860,7 +1860,7 @@ type CacheSubnetGroup struct {
 
 	// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
 	// group.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataCacheSubnetGroup `json:"-" xml:"-"`
 }
@@ -1948,7 +1948,7 @@ type CreateCacheClusterInput struct {
 	//  A name must contain from 1 to 20 alphanumeric characters or hyphens. The
 	// first character must be a letter. A name cannot end with a hyphen or contain
 	// two consecutive hyphens.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the nodes in the node group.
 	//
@@ -2004,7 +2004,7 @@ type CreateCacheClusterInput struct {
 	// (SNS) topic to which notifications will be sent.
 	//
 	// The Amazon SNS topic owner must be the same as the cache cluster owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The initial number of cache nodes that the cache cluster will have.
 	//
@@ -2068,13 +2068,13 @@ type CreateCacheClusterInput struct {
 	// zones that provide the best spread of read replicas across availability zones.
 	//
 	// Note: This parameter is only valid if the Engine parameter is redis.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	// One or more VPC security groups associated with the cache cluster.
 	//
 	// Use this parameter only when you are creating a cache cluster in an Amazon
 	// Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// A single-element string list containing an Amazon Resource Name (ARN) that
 	// uniquely identifies a Redis RDB snapshot file stored in Amazon S3. The snapshot
@@ -2084,7 +2084,7 @@ type CreateCacheClusterInput struct {
 	// Note: This parameter is only valid if the Engine parameter is redis.
 	//
 	// Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
-	SnapshotARNs []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
+	SnapshotArns []*string `locationNameList:"SnapshotArn" type:"list"`
 
 	// The name of a snapshot from which to restore data into the new node group.
 	// The snapshot status changes to restoring while the new node group is being
@@ -2275,7 +2275,7 @@ type CreateCacheSubnetGroupInput struct {
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	// A list of VPC subnet IDs for the cache subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataCreateCacheSubnetGroupInput `json:"-" xml:"-"`
 }
@@ -2382,7 +2382,7 @@ type CreateReplicationGroupInput struct {
 	// (SNS) topic to which notifications will be sent.
 	//
 	// The Amazon SNS topic owner must be the same as the cache cluster owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The number of cache clusters this replication group will initially have.
 	//
@@ -2425,7 +2425,7 @@ type CreateReplicationGroupInput struct {
 	// of available.
 	//
 	// This parameter is not required if NumCacheClusters is specified.
-	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
+	PrimaryClusterId *string `type:"string"`
 
 	// A user-created description for the replication group.
 	ReplicationGroupDescription *string `type:"string" required:"true"`
@@ -2438,13 +2438,13 @@ type CreateReplicationGroupInput struct {
 	//  A name must contain from 1 to 20 alphanumeric characters or hyphens. The
 	// first character must be a letter. A name cannot end with a hyphen or contain
 	// two consecutive hyphens.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
+	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// One or more Amazon VPC security groups associated with this replication group.
 	//
 	// Use this parameter only when you are creating a replication group in an
 	// Amazon Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// A single-element string list containing an Amazon Resource Name (ARN) that
 	// uniquely identifies a Redis RDB snapshot file stored in Amazon S3. The snapshot
@@ -2454,7 +2454,7 @@ type CreateReplicationGroupInput struct {
 	// Note: This parameter is only valid if the Engine parameter is redis.
 	//
 	// Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
-	SnapshotARNs []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
+	SnapshotArns []*string `locationNameList:"SnapshotArn" type:"list"`
 
 	// The name of a snapshot from which to restore data into the new node group.
 	// The snapshot status changes to restoring while the new node group is being
@@ -2530,7 +2530,7 @@ func (s CreateReplicationGroupOutput) GoString() string {
 type CreateSnapshotInput struct {
 	// The identifier of an existing cache cluster. The snapshot will be created
 	// from this cache cluster.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// A name for the snapshot being created.
 	SnapshotName *string `type:"string" required:"true"`
@@ -2578,7 +2578,7 @@ func (s CreateSnapshotOutput) GoString() string {
 type DeleteCacheClusterInput struct {
 	// The cache cluster identifier for the cluster to be deleted. This parameter
 	// is not case sensitive.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// The user-supplied name of a final cache cluster snapshot. This is the unique
 	// name that identifies the snapshot. ElastiCache creates the snapshot, and
@@ -2760,7 +2760,7 @@ type DeleteReplicationGroupInput struct {
 
 	// The identifier for the cluster to be deleted. This parameter is not case
 	// sensitive.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
+	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// If set to true, all of the read replicas will be deleted, but the primary
 	// node will be retained.
@@ -2853,7 +2853,7 @@ type DescribeCacheClustersInput struct {
 	// The user-supplied cluster identifier. If this parameter is specified, only
 	// information about that specific cache cluster is returned. This parameter
 	// isn't case sensitive.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
 	// of results from this action. If this parameter is specified, the response
@@ -3411,7 +3411,7 @@ type DescribeReplicationGroupsInput struct {
 	//
 	// If you do not specify this parameter, information about all replication
 	// groups is returned.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	metadataDescribeReplicationGroupsInput `json:"-" xml:"-"`
 }
@@ -3512,11 +3512,11 @@ type DescribeReservedCacheNodesInput struct {
 
 	// The reserved cache node identifier filter value. Use this parameter to show
 	// only the reservation that matches the specified reservation ID.
-	ReservedCacheNodeID *string `locationName:"ReservedCacheNodeId" type:"string"`
+	ReservedCacheNodeId *string `type:"string"`
 
 	// The offering identifier filter value. Use this parameter to show only purchased
 	// reservations matching the specified offering identifier.
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedCacheNodesInput `json:"-" xml:"-"`
 }
@@ -3593,7 +3593,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	// available offering that matches the specified reservation identifier.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedCacheNodesOfferingsInput `json:"-" xml:"-"`
 }
@@ -3668,7 +3668,7 @@ func (s DescribeReservedCacheNodesOutput) GoString() string {
 type DescribeSnapshotsInput struct {
 	// A user-supplied cluster identifier. If this parameter is specified, only
 	// snapshots associated with that specific cache cluster will be described.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
 	// of results from this action. If this parameter is specified, the response
@@ -3745,7 +3745,7 @@ type EC2SecurityGroup struct {
 	EC2SecurityGroupName *string `type:"string"`
 
 	// The AWS account ID of the Amazon EC2 security group owner.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	// The status of the Amazon EC2 security group.
 	Status *string `type:"string"`
@@ -3922,7 +3922,7 @@ type ModifyCacheClusterInput struct {
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The cache cluster identifier. This value is stored as a lowercase string.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// A list of cache node IDs to be removed. A node ID is a numeric identifier
 	// (0001, 0002, etc.). This parameter is only valid when NumCacheNodes is less
@@ -3934,7 +3934,7 @@ type ModifyCacheClusterInput struct {
 	// For example: If you have 3 active cache nodes, 7 pending cache nodes, and
 	// the number of cache nodes in this ModifyCacheCluser call is 5, you must list
 	// 2 (7 - 5) cache node IDs to remove.
-	CacheNodeIDsToRemove []*string `locationName:"CacheNodeIdsToRemove" locationNameList:"CacheNodeId" type:"list"`
+	CacheNodeIdsToRemove []*string `locationNameList:"CacheNodeId" type:"list"`
 
 	// The name of the cache parameter group to apply to this cache cluster. This
 	// change is asynchronously applied as soon as possible for parameters when
@@ -3998,7 +3998,7 @@ type ModifyCacheClusterInput struct {
 	// will be sent.
 	//
 	// The Amazon SNS topic owner must be same as the cache cluster owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The status of the Amazon SNS notification topic. Notifications are sent only
 	// if the status is active.
@@ -4050,7 +4050,7 @@ type ModifyCacheClusterInput struct {
 	//
 	// This parameter can be used only with clusters that are created in an Amazon
 	// Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// The number of days for which ElastiCache will retain automatic cache cluster
 	// snapshots before deleting them. For example, if you set SnapshotRetentionLimit
@@ -4144,7 +4144,7 @@ type ModifyCacheSubnetGroupInput struct {
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the cache subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list"`
 
 	metadataModifyCacheSubnetGroupInput `json:"-" xml:"-"`
 }
@@ -4239,7 +4239,7 @@ type ModifyReplicationGroupInput struct {
 	// will be sent.
 	//
 	// The Amazon SNS topic owner must be same as the replication group owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The status of the Amazon SNS notification topic for the replication group.
 	// Notifications are sent only if the status is active.
@@ -4258,20 +4258,20 @@ type ModifyReplicationGroupInput struct {
 	// If this parameter is specified, ElastiCache will promote each of the cache
 	// clusters in the specified replication group to the primary role. The nodes
 	// of all other cache clusters in the replication group will be read replicas.
-	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
+	PrimaryClusterId *string `type:"string"`
 
 	// A description for the replication group. Maximum length is 255 characters.
 	ReplicationGroupDescription *string `type:"string"`
 
 	// The identifier of the replication group to modify.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
+	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// Specifies the VPC Security Groups associated with the cache clusters in the
 	// replication group.
 	//
 	// This parameter can be used only with replication group containing cache
 	// clusters running in an Amazon Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// The number of days for which ElastiCache will retain automatic node group
 	// snapshots before deleting them. For example, if you set SnapshotRetentionLimit
@@ -4293,7 +4293,7 @@ type ModifyReplicationGroupInput struct {
 
 	// The cache cluster ID that will be used as the daily snapshot source for the
 	// replication group.
-	SnapshottingClusterID *string `locationName:"SnapshottingClusterId" type:"string"`
+	SnapshottingClusterId *string `type:"string"`
 
 	metadataModifyReplicationGroupInput `json:"-" xml:"-"`
 }
@@ -4337,7 +4337,7 @@ func (s ModifyReplicationGroupOutput) GoString() string {
 type NodeGroup struct {
 	// The identifier for the node group. A replication group contains only one
 	// node group; therefore, the node group ID is 0001.
-	NodeGroupID *string `locationName:"NodeGroupId" type:"string"`
+	NodeGroupId *string `type:"string"`
 
 	// A list containing information about individual nodes within the node group.
 	NodeGroupMembers []*NodeGroupMember `locationNameList:"NodeGroupMember" type:"list"`
@@ -4369,11 +4369,11 @@ func (s NodeGroup) GoString() string {
 // Represents a single node within a node group.
 type NodeGroupMember struct {
 	// The ID of the cache cluster to which the node belongs.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// The ID of the node within its cache cluster. A node ID is a numeric identifier
 	// (0001, 0002, etc.).
-	CacheNodeID *string `locationName:"CacheNodeId" type:"string"`
+	CacheNodeId *string `type:"string"`
 
 	// The role that is currently assigned to the node - primary or replica.
 	CurrentRole *string `type:"string"`
@@ -4408,7 +4408,7 @@ type NodeSnapshot struct {
 	CacheNodeCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The cache node identifier for the node in the source cache cluster.
-	CacheNodeID *string `locationName:"CacheNodeId" type:"string"`
+	CacheNodeId *string `type:"string"`
 
 	// The size of the cache on the source cache node.
 	CacheSize *string `type:"string"`
@@ -4439,7 +4439,7 @@ func (s NodeSnapshot) GoString() string {
 // Service (SNS).
 type NotificationConfiguration struct {
 	// The Amazon Resource Name (ARN) that identifies the topic.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	// The current state of the topic.
 	TopicStatus *string `type:"string"`
@@ -4537,7 +4537,7 @@ func (s ParameterNameValue) GoString() string {
 type PendingModifiedValues struct {
 	// A list of cache node IDs that are being removed (or will be removed) from
 	// the cache cluster. A node ID is a numeric identifier (0001, 0002, etc.).
-	CacheNodeIDsToRemove []*string `locationName:"CacheNodeIdsToRemove" locationNameList:"CacheNodeId" type:"list"`
+	CacheNodeIdsToRemove []*string `locationNameList:"CacheNodeId" type:"list"`
 
 	// The new cache engine version that the cache cluster will run.
 	EngineVersion *string `type:"string"`
@@ -4575,12 +4575,12 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 	// A customer-specified identifier to track this reservation.
 	//
 	// Example: myreservationID
-	ReservedCacheNodeID *string `locationName:"ReservedCacheNodeId" type:"string"`
+	ReservedCacheNodeId *string `type:"string"`
 
 	// The ID of the reserved cache node offering to purchase.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string" required:"true"`
+	ReservedCacheNodesOfferingId *string `type:"string" required:"true"`
 
 	metadataPurchaseReservedCacheNodesOfferingInput `json:"-" xml:"-"`
 }
@@ -4623,12 +4623,12 @@ func (s PurchaseReservedCacheNodesOfferingOutput) GoString() string {
 // Represents the input of a RebootCacheCluster action.
 type RebootCacheClusterInput struct {
 	// The cache cluster identifier. This parameter is stored as a lowercase string.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// A list of cache node IDs to reboot. A node ID is a numeric identifier (0001,
 	// 0002, etc.). To reboot an entire cache cluster, specify all of the cache
 	// node IDs.
-	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list" required:"true"`
+	CacheNodeIdsToReboot []*string `locationNameList:"CacheNodeId" type:"list" required:"true"`
 
 	metadataRebootCacheClusterInput `json:"-" xml:"-"`
 }
@@ -4746,11 +4746,11 @@ type ReplicationGroup struct {
 	PendingModifiedValues *ReplicationGroupPendingModifiedValues `type:"structure"`
 
 	// The identifier for the replication group.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	// The cache cluster ID that is used as the daily snapshot source for the replication
 	// group.
-	SnapshottingClusterID *string `locationName:"SnapshottingClusterId" type:"string"`
+	SnapshottingClusterId *string `type:"string"`
 
 	// The current state of this replication group - creating, available, etc.
 	Status *string `type:"string"`
@@ -4784,7 +4784,7 @@ type ReplicationGroupPendingModifiedValues struct {
 
 	// The primary cluster ID which will be applied immediately (if --apply-immediately
 	// was specified), or during the next maintenance window.
-	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
+	PrimaryClusterId *string `type:"string"`
 
 	metadataReplicationGroupPendingModifiedValues `json:"-" xml:"-"`
 }
@@ -4845,10 +4845,10 @@ type ReservedCacheNode struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// The unique identifier for the reservation.
-	ReservedCacheNodeID *string `locationName:"ReservedCacheNodeId" type:"string"`
+	ReservedCacheNodeId *string `type:"string"`
 
 	// The offering identifier.
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	// The time the reservation started.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4915,7 +4915,7 @@ type ReservedCacheNodesOffering struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// A unique identifier for the reserved cache node offering.
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
@@ -4980,7 +4980,7 @@ type RevokeCacheSecurityGroupIngressInput struct {
 	// The AWS account number of the Amazon EC2 security group owner. Note that
 	// this is not the same thing as an AWS access key ID - you must provide a valid
 	// AWS account number for this parameter.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
+	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 
 	metadataRevokeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -5025,7 +5025,7 @@ func (s RevokeCacheSecurityGroupIngressOutput) GoString() string {
 // Represents a single cache security group and its status.
 type SecurityGroupMembership struct {
 	// The identifier of the cache security group.
-	SecurityGroupID *string `locationName:"SecurityGroupId" type:"string"`
+	SecurityGroupId *string `type:"string"`
 
 	// The status of the cache security group membership. The status changes whenever
 	// a cache security group is modified, or when the cache security groups assigned
@@ -5059,7 +5059,7 @@ type Snapshot struct {
 	CacheClusterCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The user-supplied identifier of the source cache cluster.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// The name of the compute and memory capacity node type for the source cache
 	// cluster.
@@ -5150,11 +5150,11 @@ type Snapshot struct {
 
 	// The Amazon Resource Name (ARN) for the topic used by the source cache cluster
 	// for publishing notifications.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
 	// group for the source cache cluster.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataSnapshot `json:"-" xml:"-"`
 }

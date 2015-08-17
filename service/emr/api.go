@@ -651,7 +651,7 @@ type AddInstanceGroupsInput struct {
 	InstanceGroups []*InstanceGroupConfig `type:"list" required:"true"`
 
 	// Job flow in which to add the instance groups.
-	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowId *string `type:"string" required:"true"`
 
 	metadataAddInstanceGroupsInput `json:"-" xml:"-"`
 }
@@ -673,10 +673,10 @@ func (s AddInstanceGroupsInput) GoString() string {
 // Output from an AddInstanceGroups call.
 type AddInstanceGroupsOutput struct {
 	// Instance group IDs of the newly created instance groups.
-	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list"`
+	InstanceGroupIds []*string `type:"list"`
 
 	// The job flow ID in which the instance groups are added.
-	JobFlowID *string `locationName:"JobFlowId" type:"string"`
+	JobFlowId *string `type:"string"`
 
 	metadataAddInstanceGroupsOutput `json:"-" xml:"-"`
 }
@@ -699,7 +699,7 @@ func (s AddInstanceGroupsOutput) GoString() string {
 type AddJobFlowStepsInput struct {
 	// A string that uniquely identifies the job flow. This identifier is returned
 	// by RunJobFlow and can also be obtained from ListClusters.
-	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowId *string `type:"string" required:"true"`
 
 	// A list of StepConfig to be executed by the job flow.
 	Steps []*StepConfig `type:"list" required:"true"`
@@ -724,7 +724,7 @@ func (s AddJobFlowStepsInput) GoString() string {
 // The output for the AddJobFlowSteps operation.
 type AddJobFlowStepsOutput struct {
 	// The identifiers of the list of steps added to the job flow.
-	StepIDs []*string `locationName:"StepIds" type:"list"`
+	StepIds []*string `type:"list"`
 
 	metadataAddJobFlowStepsOutput `json:"-" xml:"-"`
 }
@@ -747,7 +747,7 @@ func (s AddJobFlowStepsOutput) GoString() string {
 type AddTagsInput struct {
 	// The Amazon EMR resource identifier to which tags will be added. This value
 	// must be a cluster identifier.
-	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
+	ResourceId *string `type:"string" required:"true"`
 
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
 	// Tags are user-defined key/value pairs that consist of a required key string
@@ -898,16 +898,16 @@ type Cluster struct {
 
 	// Provides information about the EC2 instances in a cluster grouped by category.
 	// For example, key name, subnet ID, IAM instance profile, and so on.
-	EC2InstanceAttributes *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure"`
+	Ec2InstanceAttributes *Ec2InstanceAttributes `type:"structure"`
 
 	// The unique identifier for the cluster.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The path to the Amazon S3 location where logs for this cluster are stored.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The public DNS name of the master EC2 instance.
-	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
+	MasterPublicDnsName *string `type:"string"`
 
 	// The name of the cluster.
 	Name *string `type:"string"`
@@ -925,10 +925,10 @@ type Cluster struct {
 	ReleaseLabel *string `type:"string"`
 
 	// The AMI version requested for this cluster.
-	RequestedAMIVersion *string `locationName:"RequestedAmiVersion" type:"string"`
+	RequestedAmiVersion *string `type:"string"`
 
 	// The AMI version running on this cluster.
-	RunningAMIVersion *string `locationName:"RunningAmiVersion" type:"string"`
+	RunningAmiVersion *string `type:"string"`
 
 	// The IAM role that will be assumed by the Amazon EMR service to access AWS
 	// resources on your behalf.
@@ -1027,7 +1027,7 @@ func (s ClusterStatus) GoString() string {
 // The summary description of the cluster.
 type ClusterSummary struct {
 	// The unique identifier for the cluster.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the cluster.
 	Name *string `type:"string"`
@@ -1154,7 +1154,7 @@ func (s Configuration) GoString() string {
 // This input determines which cluster to describe.
 type DescribeClusterInput struct {
 	// The identifier of the cluster to describe.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	metadataDescribeClusterInput `json:"-" xml:"-"`
 }
@@ -1204,7 +1204,7 @@ type DescribeJobFlowsInput struct {
 	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Return only job flows whose job flow ID is contained in this list.
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list"`
+	JobFlowIds []*string `type:"list"`
 
 	// Return only job flows whose state is contained in this list.
 	JobFlowStates []*string `type:"list"`
@@ -1251,10 +1251,10 @@ func (s DescribeJobFlowsOutput) GoString() string {
 // This input determines which step to describe.
 type DescribeStepInput struct {
 	// The identifier of the cluster with steps to describe.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The identifier of the step to describe.
-	StepID *string `locationName:"StepId" type:"string" required:"true"`
+	StepId *string `type:"string" required:"true"`
 
 	metadataDescribeStepInput `json:"-" xml:"-"`
 }
@@ -1297,7 +1297,7 @@ func (s DescribeStepOutput) GoString() string {
 
 // Provides information about the EC2 instances in a cluster grouped by category.
 // For example, key name, subnet ID, IAM instance profile, and so on.
-type EC2InstanceAttributes struct {
+type Ec2InstanceAttributes struct {
 	// A list of additional Amazon EC2 security group IDs for the master node.
 	AdditionalMasterSecurityGroups []*string `type:"list"`
 
@@ -1305,11 +1305,11 @@ type EC2InstanceAttributes struct {
 	AdditionalSlaveSecurityGroups []*string `type:"list"`
 
 	// The Availability Zone in which the cluster will run.
-	EC2AvailabilityZone *string `locationName:"Ec2AvailabilityZone" type:"string"`
+	Ec2AvailabilityZone *string `type:"string"`
 
 	// The name of the Amazon EC2 key pair to use when connecting with SSH into
 	// the master node as a user named "hadoop".
-	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+	Ec2KeyName *string `type:"string"`
 
 	// To launch the job flow in Amazon VPC, set this parameter to the identifier
 	// of the Amazon VPC subnet where you want the job flow to launch. If you do
@@ -1319,47 +1319,47 @@ type EC2InstanceAttributes struct {
 	//  Amazon VPC currently does not support cluster compute quadruple extra large
 	// (cc1.4xlarge) instances. Thus, you cannot specify the cc1.4xlarge instance
 	// type for nodes of a job flow launched in a VPC.
-	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+	Ec2SubnetId *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
 	// MapReduce) for the master node.
-	EMRManagedMasterSecurityGroup *string `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+	EmrManagedMasterSecurityGroup *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
 	// MapReduce) for the slave nodes.
-	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
 	// The IAM role that was specified when the job flow was launched. The EC2 instances
 	// of the job flow assume this role.
-	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
+	IamInstanceProfile *string `type:"string"`
 
-	metadataEC2InstanceAttributes `json:"-" xml:"-"`
+	metadataEc2InstanceAttributes `json:"-" xml:"-"`
 }
 
-type metadataEC2InstanceAttributes struct {
+type metadataEc2InstanceAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s EC2InstanceAttributes) String() string {
+func (s Ec2InstanceAttributes) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s EC2InstanceAttributes) GoString() string {
+func (s Ec2InstanceAttributes) GoString() string {
 	return s.String()
 }
 
 // A job flow step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
-type HadoopJARStepConfig struct {
+type HadoopJarStepConfig struct {
 	// A list of command line arguments passed to the JAR file's main function when
 	// executed.
 	Args []*string `type:"list"`
 
 	// A path to a JAR file run during the step.
-	JAR *string `locationName:"Jar" type:"string" required:"true"`
+	Jar *string `type:"string" required:"true"`
 
 	// The name of the main class in the specified Java file. If not specified,
 	// the JAR file should specify a Main-Class in its manifest file.
@@ -1369,20 +1369,20 @@ type HadoopJARStepConfig struct {
 	// properties to pass key value pairs to your main function.
 	Properties []*KeyValue `type:"list"`
 
-	metadataHadoopJARStepConfig `json:"-" xml:"-"`
+	metadataHadoopJarStepConfig `json:"-" xml:"-"`
 }
 
-type metadataHadoopJARStepConfig struct {
+type metadataHadoopJarStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s HadoopJARStepConfig) String() string {
+func (s HadoopJarStepConfig) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HadoopJARStepConfig) GoString() string {
+func (s HadoopJarStepConfig) GoString() string {
 	return s.String()
 }
 
@@ -1395,7 +1395,7 @@ type HadoopStepConfig struct {
 	Args []*string `type:"list"`
 
 	// The path to the JAR file that runs during the step.
-	JAR *string `locationName:"Jar" type:"string"`
+	Jar *string `type:"string"`
 
 	// The name of the main class in the specified Java file. If not specified,
 	// the JAR file should specify a main class in its manifest file.
@@ -1425,22 +1425,22 @@ func (s HadoopStepConfig) GoString() string {
 // Represents an EC2 instance provisioned as part of cluster.
 type Instance struct {
 	// The unique identifier of the instance in Amazon EC2.
-	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
+	Ec2InstanceId *string `type:"string"`
 
 	// The unique identifier for the instance in Amazon EMR.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The private DNS name of the instance.
-	PrivateDNSName *string `locationName:"PrivateDnsName" type:"string"`
+	PrivateDnsName *string `type:"string"`
 
 	// The private IP address of the instance.
-	PrivateIPAddress *string `locationName:"PrivateIpAddress" type:"string"`
+	PrivateIpAddress *string `type:"string"`
 
 	// The public DNS name of the instance.
-	PublicDNSName *string `locationName:"PublicDnsName" type:"string"`
+	PublicDnsName *string `type:"string"`
 
 	// The public IP address of the instance.
-	PublicIPAddress *string `locationName:"PublicIpAddress" type:"string"`
+	PublicIpAddress *string `type:"string"`
 
 	// The current status of the instance.
 	Status *InstanceStatus `type:"structure"`
@@ -1477,7 +1477,7 @@ type InstanceGroup struct {
 	Configurations []*Configuration `type:"list"`
 
 	// The identifier of the instance group.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The type of the instance group. Valid values are MASTER, CORE or TASK.
 	InstanceGroupType *string `type:"string" enum:"InstanceGroupType"`
@@ -1576,7 +1576,7 @@ type InstanceGroupDetail struct {
 	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Unique identifier for the instance group.
-	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string"`
+	InstanceGroupId *string `type:"string"`
 
 	// Target number of instances to run in the instance group.
 	InstanceRequestCount *int64 `type:"integer" required:"true"`
@@ -1631,13 +1631,13 @@ type InstanceGroupModifyConfig struct {
 	// The EC2 InstanceIds to terminate. For advanced users only. Once you terminate
 	// the instances, the instance group will not return to its original requested
 	// size.
-	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list"`
+	EC2InstanceIdsToTerminate []*string `type:"list"`
 
 	// Target size for the instance group.
 	InstanceCount *int64 `type:"integer"`
 
 	// Unique ID of the instance group to expand or shrink.
-	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string" required:"true"`
+	InstanceGroupId *string `type:"string" required:"true"`
 
 	metadataInstanceGroupModifyConfig `json:"-" xml:"-"`
 }
@@ -1824,7 +1824,7 @@ type JobFlowDetail struct {
 	// flow. For a list of AMI versions currently supported by Amazon ElasticMapReduce,
 	// go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
 	// in the Amazon Elastic MapReduce Developer Guide.
-	AMIVersion *string `locationName:"AmiVersion" type:"string"`
+	AmiVersion *string `type:"string"`
 
 	// A list of the bootstrap actions run by the job flow.
 	BootstrapActions []*BootstrapActionDetail `type:"list"`
@@ -1836,14 +1836,14 @@ type JobFlowDetail struct {
 	Instances *JobFlowInstancesDetail `type:"structure" required:"true"`
 
 	// The job flow identifier.
-	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowId *string `type:"string" required:"true"`
 
 	// The IAM role that was specified when the job flow was launched. The EC2 instances
 	// of the job flow assume this role.
 	JobFlowRole *string `type:"string"`
 
 	// The location in Amazon S3 where log files for the job are stored.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The name of the job flow.
 	Name *string `type:"string" required:"true"`
@@ -1936,7 +1936,7 @@ type JobFlowInstancesConfig struct {
 
 	// The name of the Amazon EC2 key pair that can be used to ssh to the master
 	// node as the user called "hadoop."
-	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+	Ec2KeyName *string `type:"string"`
 
 	// To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set
 	// this parameter to the identifier of the Amazon VPC subnet where you want
@@ -1946,15 +1946,15 @@ type JobFlowInstancesConfig struct {
 	//  Amazon VPC currently does not support cluster compute quadruple extra large
 	// (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance
 	// type for nodes of a job flow launched in a Amazon VPC.
-	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+	Ec2SubnetId *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
 	// for the master node.
-	EMRManagedMasterSecurityGroup *string `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+	EmrManagedMasterSecurityGroup *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
 	// for the slave nodes.
-	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
 	// The Hadoop version for the job flow. Valid inputs are "0.18" (deprecated),
 	// "0.20" (deprecated), "0.20.205" (deprecated), "1.0.3", "2.2.0", or "2.4.0".
@@ -2008,11 +2008,11 @@ func (s JobFlowInstancesConfig) GoString() string {
 type JobFlowInstancesDetail struct {
 	// The name of an Amazon EC2 key pair that can be used to ssh to the master
 	// node of job flow.
-	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+	Ec2KeyName *string `type:"string"`
 
 	// For job flows launched within Amazon Virtual Private Cloud, this value specifies
 	// the identifier of the subnet where the job flow was launched.
-	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+	Ec2SubnetId *string `type:"string"`
 
 	// The Hadoop version for the job flow.
 	HadoopVersion *string `type:"string"`
@@ -2029,13 +2029,13 @@ type JobFlowInstancesDetail struct {
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 
 	// The Amazon EC2 instance identifier of the master node.
-	MasterInstanceID *string `locationName:"MasterInstanceId" type:"string"`
+	MasterInstanceId *string `type:"string"`
 
 	// The Amazon EC2 master node instance type.
 	MasterInstanceType *string `type:"string" required:"true"`
 
 	// The DNS name of the master node.
-	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
+	MasterPublicDnsName *string `type:"string"`
 
 	// An approximation of the cost of the job flow, represented in m1.small/hours.
 	// This value is incremented once for every hour an m1.small runs. Larger instances
@@ -2101,7 +2101,7 @@ func (s KeyValue) GoString() string {
 // This input determines which bootstrap actions to retrieve.
 type ListBootstrapActionsInput struct {
 	// The cluster identifier for the bootstrap actions to list .
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve .
 	Marker *string `type:"string"`
@@ -2209,7 +2209,7 @@ func (s ListClustersOutput) GoString() string {
 // This input determines which instance groups to retrieve.
 type ListInstanceGroupsInput struct {
 	// The identifier of the cluster for which to list the instance groups.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
@@ -2259,10 +2259,10 @@ func (s ListInstanceGroupsOutput) GoString() string {
 // This input determines which instances to list.
 type ListInstancesInput struct {
 	// The identifier of the cluster for which to list the instances.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The identifier of the instance group for which to list the instances.
-	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string"`
+	InstanceGroupId *string `type:"string"`
 
 	// The type of instance group for which to list the instances.
 	InstanceGroupTypes []*string `type:"list"`
@@ -2315,13 +2315,13 @@ func (s ListInstancesOutput) GoString() string {
 // This input determines which steps to list.
 type ListStepsInput struct {
 	// The identifier of the cluster for which to list the steps.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
 	// The filter to limit the step list based on the identifier of the steps.
-	StepIDs []*string `locationName:"StepIds" type:"list"`
+	StepIds []*string `type:"list"`
 
 	// The filter to limit the step list based on certain states.
 	StepStates []*string `type:"list"`
@@ -2434,7 +2434,7 @@ func (s PlacementType) GoString() string {
 type RemoveTagsInput struct {
 	// The Amazon EMR resource identifier from which tags will be removed. This
 	// value must be a cluster identifier.
-	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
+	ResourceId *string `type:"string" required:"true"`
 
 	// A list of tag keys to remove from a resource.
 	TagKeys []*string `type:"list" required:"true"`
@@ -2477,6 +2477,9 @@ func (s RemoveTagsOutput) GoString() string {
 
 // Input to the RunJobFlow operation.
 type RunJobFlowInput struct {
+	// A JSON string for selecting additional features.
+	AdditionalInfo *string `type:"string"`
+
 	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
 	// use ReleaseLabel.
 	//
@@ -2491,10 +2494,7 @@ type RunJobFlowInput struct {
 	// For details about the AMI versions currently supported by Amazon Elastic
 	// MapReduce, go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
 	// in the Amazon Elastic MapReduce Developer's Guide.
-	AMIVersion *string `locationName:"AmiVersion" type:"string"`
-
-	// A JSON string for selecting additional features.
-	AdditionalInfo *string `type:"string"`
+	AmiVersion *string `type:"string"`
 
 	// Amazon EMR releases 4.x or later.
 	//
@@ -2522,7 +2522,7 @@ type RunJobFlowInput struct {
 
 	// The location in Amazon S3 to write the log files of the job flow. If a value
 	// is not provided, logs are not created.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The name of the job flow.
 	Name *string `type:"string" required:"true"`
@@ -2602,7 +2602,7 @@ func (s RunJobFlowInput) GoString() string {
 // The result of the RunJobFlow operation.
 type RunJobFlowOutput struct {
 	// An unique identifier for the job flow.
-	JobFlowID *string `locationName:"JobFlowId" type:"string"`
+	JobFlowId *string `type:"string"`
 
 	metadataRunJobFlowOutput `json:"-" xml:"-"`
 }
@@ -2652,7 +2652,7 @@ type SetTerminationProtectionInput struct {
 	// A list of strings that uniquely identify the job flows to protect. This identifier
 	// is returned by RunJobFlow and can also be obtained from DescribeJobFlows
 	// .
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	JobFlowIds []*string `type:"list" required:"true"`
 
 	// A Boolean that indicates whether to protect the job flow and prevent the
 	// Amazon EC2 instances in the cluster from shutting down due to API calls,
@@ -2697,7 +2697,7 @@ func (s SetTerminationProtectionOutput) GoString() string {
 // The input to the SetVisibleToAllUsers action.
 type SetVisibleToAllUsersInput struct {
 	// Identifiers of the job flows to receive the new visibility setting.
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	JobFlowIds []*string `type:"list" required:"true"`
 
 	// Whether the specified job flows are visible to all IAM users of the AWS account
 	// associated with the job flow. If this value is set to True, all IAM users
@@ -2751,7 +2751,7 @@ type Step struct {
 	Config *HadoopStepConfig `type:"structure"`
 
 	// The identifier of the cluster step.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the cluster step.
 	Name *string `type:"string"`
@@ -2782,7 +2782,7 @@ type StepConfig struct {
 	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The JAR file used for the job flow step.
-	HadoopJARStep *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"`
+	HadoopJarStep *HadoopJarStepConfig `type:"structure" required:"true"`
 
 	// The name of the job flow step.
 	Name *string `type:"string" required:"true"`
@@ -2927,7 +2927,7 @@ type StepSummary struct {
 	Config *HadoopStepConfig `type:"structure"`
 
 	// The identifier of the cluster step.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the cluster step.
 	Name *string `type:"string"`
@@ -3041,7 +3041,7 @@ func (s Tag) GoString() string {
 // Input to the TerminateJobFlows operation.
 type TerminateJobFlowsInput struct {
 	// A list of job flows to be shutdown.
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	JobFlowIds []*string `type:"list" required:"true"`
 
 	metadataTerminateJobFlowsInput `json:"-" xml:"-"`
 }

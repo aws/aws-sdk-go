@@ -51,7 +51,7 @@ func ExampleCodeCommit_CreateBranch() {
 
 	params := &codecommit.CreateBranchInput{
 		BranchName:     aws.String("BranchName"),     // Required
-		CommitID:       aws.String("CommitId"),       // Required
+		CommitId:       aws.String("CommitId"),       // Required
 		RepositoryName: aws.String("RepositoryName"), // Required
 	}
 	resp, err := svc.CreateBranch(params)

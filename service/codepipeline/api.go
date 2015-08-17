@@ -678,7 +678,7 @@ func (c *CodePipeline) UpdatePipeline(input *UpdatePipelineInput) (*UpdatePipeli
 // store artifact for the pipeline in AWS CodePipeline.
 type AWSSessionCredentials struct {
 	// The access key for the session.
-	AccessKeyID *string `locationName:"accessKeyId" type:"string" required:"true"`
+	AccessKeyId *string `locationName:"accessKeyId" type:"string" required:"true"`
 
 	// The secret access key for the session.
 	SecretAccessKey *string `locationName:"secretAccessKey" type:"string" required:"true"`
@@ -706,7 +706,7 @@ func (s AWSSessionCredentials) GoString() string {
 // Represents the input of an acknowledge job action.
 type AcknowledgeJobInput struct {
 	// The unique system-generated ID of the job for which you want to confirm receipt.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
@@ -759,7 +759,7 @@ type AcknowledgeThirdPartyJobInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The unique system-generated ID of the job.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
@@ -907,7 +907,7 @@ func (s ActionContext) GoString() string {
 // Represents information about an action declaration.
 type ActionDeclaration struct {
 	// The configuration information for the action type.
-	ActionTypeID *ActionTypeID `locationName:"actionTypeId" type:"structure" required:"true"`
+	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The action declaration's configuration.
 	Configuration map[string]*string `locationName:"configuration" type:"map"`
@@ -925,7 +925,7 @@ type ActionDeclaration struct {
 
 	// The ARN of the IAM service role that will perform the declared action. This
 	// is assumed through the roleArn for the pipeline.
-	RoleARN *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The order in which actions are run.
 	RunOrder *int64 `locationName:"runOrder" type:"integer"`
@@ -953,11 +953,11 @@ type ActionExecution struct {
 	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
 
 	// The external ID of the run of the action.
-	ExternalExecutionID *string `locationName:"externalExecutionId" type:"string"`
+	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
 
 	// The URL of a resource external to AWS that will be used when running the
 	// action, for example an external repository URL.
-	ExternalExecutionURL *string `locationName:"externalExecutionUrl" type:"string"`
+	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" type:"string"`
 
 	// The last status change of the action.
 	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"unix"`
@@ -997,11 +997,11 @@ type ActionRevision struct {
 
 	// The unique identifier of the change that set the state to this revision,
 	// for example a deployment ID or timestamp.
-	RevisionChangeID *string `locationName:"revisionChangeId" type:"string"`
+	RevisionChangeId *string `locationName:"revisionChangeId" type:"string"`
 
 	// The system-generated unique ID that identifies the revision number of the
 	// action.
-	RevisionID *string `locationName:"revisionId" type:"string" required:"true"`
+	RevisionId *string `locationName:"revisionId" type:"string" required:"true"`
 
 	metadataActionRevision `json:"-" xml:"-"`
 }
@@ -1030,14 +1030,14 @@ type ActionState struct {
 
 	// A URL link for more information about the state of the action, such as a
 	// deployment group details page.
-	EntityURL *string `locationName:"entityUrl" type:"string"`
+	EntityUrl *string `locationName:"entityUrl" type:"string"`
 
 	// Represents information about how an action runs.
 	LatestExecution *ActionExecution `locationName:"latestExecution" type:"structure"`
 
 	// A URL link for more information about the revision, such as a commit details
 	// page.
-	RevisionURL *string `locationName:"revisionUrl" type:"string"`
+	RevisionUrl *string `locationName:"revisionUrl" type:"string"`
 
 	metadataActionState `json:"-" xml:"-"`
 }
@@ -1062,7 +1062,7 @@ type ActionType struct {
 	ActionConfigurationProperties []*ActionConfigurationProperty `locationName:"actionConfigurationProperties" type:"list"`
 
 	// Represents information about an action type.
-	ID *ActionTypeID `locationName:"id" type:"structure" required:"true"`
+	Id *ActionTypeId `locationName:"id" type:"structure" required:"true"`
 
 	// The details of the input artifact for the action, such as its commit ID.
 	InputArtifactDetails *ArtifactDetails `locationName:"inputArtifactDetails" type:"structure" required:"true"`
@@ -1091,7 +1091,7 @@ func (s ActionType) GoString() string {
 }
 
 // Represents information about an action type.
-type ActionTypeID struct {
+type ActionTypeId struct {
 	// A category defines what kind of action can be taken in the stage, and constrains
 	// the provider type for the action. Valid categories are limited to one of
 	// the values below.
@@ -1109,20 +1109,20 @@ type ActionTypeID struct {
 	// A string that identifies the action type.
 	Version *string `locationName:"version" type:"string" required:"true"`
 
-	metadataActionTypeID `json:"-" xml:"-"`
+	metadataActionTypeId `json:"-" xml:"-"`
 }
 
-type metadataActionTypeID struct {
+type metadataActionTypeId struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s ActionTypeID) String() string {
+func (s ActionTypeId) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s ActionTypeID) GoString() string {
+func (s ActionTypeId) GoString() string {
 	return s.String()
 }
 
@@ -1132,23 +1132,23 @@ type ActionTypeSettings struct {
 	// to the resources of the external system, such as the configuration page for
 	// an AWS CodeDeploy deployment group. This link is provided as part of the
 	// action display within the pipeline.
-	EntityURLTemplate *string `locationName:"entityUrlTemplate" type:"string"`
+	EntityUrlTemplate *string `locationName:"entityUrlTemplate" type:"string"`
 
 	// The URL returned to the AWS CodePipeline console that contains a link to
 	// the top-level landing page for the external system, such as console page
 	// for AWS CodeDeploy. This link is shown on the pipeline view page in the AWS
 	// CodePipeline console and provides a link to the execution entity of the external
 	// action.
-	ExecutionURLTemplate *string `locationName:"executionUrlTemplate" type:"string"`
+	ExecutionUrlTemplate *string `locationName:"executionUrlTemplate" type:"string"`
 
 	// The URL returned to the AWS CodePipeline console that contains a link to
 	// the page where customers can update or change the configuration of the external
 	// action.
-	RevisionURLTemplate *string `locationName:"revisionUrlTemplate" type:"string"`
+	RevisionUrlTemplate *string `locationName:"revisionUrlTemplate" type:"string"`
 
 	// The URL of a sign-up page where users can sign up for an external service
 	// and perform initial configuration of the action provided by that service.
-	ThirdPartyConfigurationURL *string `locationName:"thirdPartyConfigurationUrl" type:"string"`
+	ThirdPartyConfigurationUrl *string `locationName:"thirdPartyConfigurationUrl" type:"string"`
 
 	metadataActionTypeSettings `json:"-" xml:"-"`
 }
@@ -1658,7 +1658,7 @@ func (s ErrorDetails) GoString() string {
 type ExecutionDetails struct {
 	// The system-generated unique ID of this action used to identify this job worker
 	// in any external systems, such as AWS CodeDeploy.
-	ExternalExecutionID *string `locationName:"externalExecutionId" type:"string"`
+	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
 
 	// The percentage of work completed on the action, represented on a scale of
 	// zero to one hundred percent.
@@ -1687,7 +1687,7 @@ func (s ExecutionDetails) GoString() string {
 // Represents information about failure details.
 type FailureDetails struct {
 	// The external ID of the run of the action that failed.
-	ExternalExecutionID *string `locationName:"externalExecutionId" type:"string"`
+	ExternalExecutionId *string `locationName:"externalExecutionId" type:"string"`
 
 	// The message about the failure.
 	Message *string `locationName:"message" type:"string"`
@@ -1715,7 +1715,7 @@ func (s FailureDetails) GoString() string {
 // Represents the input of a get job details action.
 type GetJobDetailsInput struct {
 	// The unique system-generated ID for the job.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	metadataGetJobDetailsInput `json:"-" xml:"-"`
 }
@@ -1874,7 +1874,7 @@ type GetThirdPartyJobDetailsInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The unique system-generated ID used for identifying the job.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	metadataGetThirdPartyJobDetailsInput `json:"-" xml:"-"`
 }
@@ -1947,13 +1947,13 @@ func (s InputArtifact) GoString() string {
 // Represents information about a job.
 type Job struct {
 	// The ID of the AWS account to use when performing the job.
-	AccountID *string `locationName:"accountId" type:"string"`
+	AccountId *string `locationName:"accountId" type:"string"`
 
 	// Additional data about a job.
 	Data *JobData `locationName:"data" type:"structure"`
 
 	// The unique system-generated ID of the job.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
@@ -1984,7 +1984,7 @@ type JobData struct {
 	ActionConfiguration *ActionConfiguration `locationName:"actionConfiguration" type:"structure"`
 
 	// Represents information about an action type.
-	ActionTypeID *ActionTypeID `locationName:"actionTypeId" type:"structure"`
+	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure"`
 
 	// Represents an AWS session credentials object. These credentials are temporary
 	// credentials that are issued by AWS Secure Token Service (STS). They can be
@@ -2025,14 +2025,14 @@ func (s JobData) GoString() string {
 // Represents information about the details of a job.
 type JobDetails struct {
 	// The AWS account ID associated with the job.
-	AccountID *string `locationName:"accountId" type:"string"`
+	AccountId *string `locationName:"accountId" type:"string"`
 
 	// Represents additional information about a job required for a job worker to
 	// complete the job.
 	Data *JobData `locationName:"data" type:"structure"`
 
 	// The unique system-generated ID of the job.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	metadataJobDetails `json:"-" xml:"-"`
 }
@@ -2227,7 +2227,7 @@ type PipelineDeclaration struct {
 	// The Amazon Resource Name (ARN) for AWS CodePipeline to use to either perform
 	// actions with no actionRoleArn, or to use to assume roles for actions with
 	// an actionRoleArn.
-	RoleARN *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The stage in which to perform the action.
 	Stages []*StageDeclaration `locationName:"stages" type:"list" required:"true"`
@@ -2287,7 +2287,7 @@ func (s PipelineSummary) GoString() string {
 // Represents the input of a poll for jobs action.
 type PollForJobsInput struct {
 	// Represents information about an action type.
-	ActionTypeID *ActionTypeID `locationName:"actionTypeId" type:"structure" required:"true"`
+	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The maximum number of jobs to return in a poll for jobs call.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
@@ -2340,7 +2340,7 @@ func (s PollForJobsOutput) GoString() string {
 // Represents the input of a poll for third party jobs action.
 type PollForThirdPartyJobsInput struct {
 	// Represents information about an action type.
-	ActionTypeID *ActionTypeID `locationName:"actionTypeId" type:"structure" required:"true"`
+	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The maximum number of jobs to return in a poll for jobs call.
 	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
@@ -2421,7 +2421,7 @@ type PutActionRevisionOutput struct {
 	NewRevision *bool `locationName:"newRevision" type:"boolean"`
 
 	// The ID of the current workflow state of the pipeline.
-	PipelineExecutionID *string `locationName:"pipelineExecutionId" type:"string"`
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
 	metadataPutActionRevisionOutput `json:"-" xml:"-"`
 }
@@ -2447,7 +2447,7 @@ type PutJobFailureResultInput struct {
 
 	// The unique system-generated ID of the job that failed. This is the same ID
 	// returned from PollForJobs.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	metadataPutJobFailureResultInput `json:"-" xml:"-"`
 }
@@ -2500,7 +2500,7 @@ type PutJobSuccessResultInput struct {
 
 	// The unique system-generated ID of the job that succeeded. This is the same
 	// ID returned from PollForJobs.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	metadataPutJobSuccessResultInput `json:"-" xml:"-"`
 }
@@ -2547,7 +2547,7 @@ type PutThirdPartyJobFailureResultInput struct {
 	FailureDetails *FailureDetails `locationName:"failureDetails" type:"structure" required:"true"`
 
 	// The ID of the job that failed. This is the same ID returned from PollForThirdPartyJobs.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	metadataPutThirdPartyJobFailureResultInput `json:"-" xml:"-"`
 }
@@ -2603,7 +2603,7 @@ type PutThirdPartyJobSuccessResultInput struct {
 
 	// The ID of the job that successfully completed. This is the same ID returned
 	// from PollForThirdPartyJobs.
-	JobID *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
 
 	metadataPutThirdPartyJobSuccessResultInput `json:"-" xml:"-"`
 }
@@ -2769,7 +2769,7 @@ func (s StartPipelineExecutionInput) GoString() string {
 // Represents the output of a start pipeline execution action.
 type StartPipelineExecutionOutput struct {
 	// The unique system-generated ID of the pipeline that was started.
-	PipelineExecutionID *string `locationName:"pipelineExecutionId" type:"string"`
+	PipelineExecutionId *string `locationName:"pipelineExecutionId" type:"string"`
 
 	metadataStartPipelineExecutionOutput `json:"-" xml:"-"`
 }
@@ -2793,10 +2793,10 @@ func (s StartPipelineExecutionOutput) GoString() string {
 type ThirdPartyJob struct {
 	// The clientToken portion of the clientId and clientToken pair used to verify
 	// that the calling entity is allowed access to the job and its details.
-	ClientID *string `locationName:"clientId" type:"string"`
+	ClientId *string `locationName:"clientId" type:"string"`
 
 	// The identifier used to identify the job in AWS CodePipeline.
-	JobID *string `locationName:"jobId" type:"string"`
+	JobId *string `locationName:"jobId" type:"string"`
 
 	metadataThirdPartyJob `json:"-" xml:"-"`
 }
@@ -2821,7 +2821,7 @@ type ThirdPartyJobData struct {
 	ActionConfiguration *ActionConfiguration `locationName:"actionConfiguration" type:"structure"`
 
 	// Represents information about an action type.
-	ActionTypeID *ActionTypeID `locationName:"actionTypeId" type:"structure"`
+	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure"`
 
 	// Represents an AWS session credentials object. These credentials are temporary
 	// credentials that are issued by AWS Secure Token Service (STS). They can be
@@ -2871,7 +2871,7 @@ type ThirdPartyJobDetails struct {
 	Data *ThirdPartyJobData `locationName:"data" type:"structure"`
 
 	// The identifier used to identify the job details in AWS CodePipeline.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned

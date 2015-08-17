@@ -21,7 +21,7 @@ func ExampleRoute53Domains_CheckDomainAvailability() {
 
 	params := &route53domains.CheckDomainAvailabilityInput{
 		DomainName:  aws.String("DomainName"), // Required
-		IDNLangCode: aws.String("LangCode"),
+		IdnLangCode: aws.String("LangCode"),
 	}
 	resp, err := svc.CheckDomainAvailability(params)
 
@@ -214,7 +214,7 @@ func ExampleRoute53Domains_GetOperationDetail() {
 	svc := route53domains.New(nil)
 
 	params := &route53domains.GetOperationDetailInput{
-		OperationID: aws.String("OperationId"), // Required
+		OperationId: aws.String("OperationId"), // Required
 	}
 	resp, err := svc.GetOperationDetail(params)
 
@@ -393,7 +393,7 @@ func ExampleRoute53Domains_RegisterDomain() {
 			ZipCode:          aws.String("ZipCode"),
 		},
 		AutoRenew:                       aws.Bool(true),
-		IDNLangCode:                     aws.String("LangCode"),
+		IdnLangCode:                     aws.String("LangCode"),
 		PrivacyProtectAdminContact:      aws.Bool(true),
 		PrivacyProtectRegistrantContact: aws.Bool(true),
 		PrivacyProtectTechContact:       aws.Bool(true),
@@ -520,11 +520,11 @@ func ExampleRoute53Domains_TransferDomain() {
 		},
 		AuthCode:    aws.String("DomainAuthCode"),
 		AutoRenew:   aws.Bool(true),
-		IDNLangCode: aws.String("LangCode"),
+		IdnLangCode: aws.String("LangCode"),
 		Nameservers: []*route53domains.Nameserver{
 			{ // Required
 				Name: aws.String("HostName"), // Required
-				GlueIPs: []*string{
+				GlueIps: []*string{
 					aws.String("GlueIp"), // Required
 					// More values...
 				},
@@ -687,7 +687,7 @@ func ExampleRoute53Domains_UpdateDomainNameservers() {
 		Nameservers: []*route53domains.Nameserver{ // Required
 			{ // Required
 				Name: aws.String("HostName"), // Required
-				GlueIPs: []*string{
+				GlueIps: []*string{
 					aws.String("GlueIp"), // Required
 					// More values...
 				},

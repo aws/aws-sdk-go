@@ -65,7 +65,7 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 
 		switch data := r.Data.(type) {
 		case *s3.CreateMultipartUploadOutput:
-			data.UploadID = aws.String("UPLOAD-ID")
+			data.UploadId = aws.String("UPLOAD-ID")
 		case *s3.UploadPartOutput:
 			partNum++
 			data.ETag = aws.String(fmt.Sprintf("ETAG%d", partNum))
@@ -102,12 +102,12 @@ func TestUploadOrderMulti(t *testing.T) {
 	// Validate input values
 
 	// UploadPart
-	assert.Equal(t, "UPLOAD-ID", val((*args)[1], "UploadID"))
-	assert.Equal(t, "UPLOAD-ID", val((*args)[2], "UploadID"))
-	assert.Equal(t, "UPLOAD-ID", val((*args)[3], "UploadID"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[1], "UploadId"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[2], "UploadId"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[3], "UploadId"))
 
 	// CompleteMultipartUpload
-	assert.Equal(t, "UPLOAD-ID", val((*args)[4], "UploadID"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[4], "UploadId"))
 	assert.Equal(t, int64(1), val((*args)[4], "MultipartUpload.Parts[0].PartNumber"))
 	assert.Equal(t, int64(2), val((*args)[4], "MultipartUpload.Parts[1].PartNumber"))
 	assert.Equal(t, int64(3), val((*args)[4], "MultipartUpload.Parts[2].PartNumber"))

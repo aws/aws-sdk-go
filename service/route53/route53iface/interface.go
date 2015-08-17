@@ -54,9 +54,9 @@ type Route53API interface {
 
 	GetChange(*route53.GetChangeInput) (*route53.GetChangeOutput, error)
 
-	GetCheckerIPRangesRequest(*route53.GetCheckerIPRangesInput) (*service.Request, *route53.GetCheckerIPRangesOutput)
+	GetCheckerIpRangesRequest(*route53.GetCheckerIpRangesInput) (*service.Request, *route53.GetCheckerIpRangesOutput)
 
-	GetCheckerIPRanges(*route53.GetCheckerIPRangesInput) (*route53.GetCheckerIPRangesOutput, error)
+	GetCheckerIpRanges(*route53.GetCheckerIpRangesInput) (*route53.GetCheckerIpRangesOutput, error)
 
 	GetGeoLocationRequest(*route53.GetGeoLocationInput) (*service.Request, *route53.GetGeoLocationOutput)
 

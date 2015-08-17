@@ -46,13 +46,13 @@ type RedshiftAPI interface {
 
 	CreateEventSubscription(*redshift.CreateEventSubscriptionInput) (*redshift.CreateEventSubscriptionOutput, error)
 
-	CreateHSMClientCertificateRequest(*redshift.CreateHSMClientCertificateInput) (*service.Request, *redshift.CreateHSMClientCertificateOutput)
+	CreateHsmClientCertificateRequest(*redshift.CreateHsmClientCertificateInput) (*service.Request, *redshift.CreateHsmClientCertificateOutput)
 
-	CreateHSMClientCertificate(*redshift.CreateHSMClientCertificateInput) (*redshift.CreateHSMClientCertificateOutput, error)
+	CreateHsmClientCertificate(*redshift.CreateHsmClientCertificateInput) (*redshift.CreateHsmClientCertificateOutput, error)
 
-	CreateHSMConfigurationRequest(*redshift.CreateHSMConfigurationInput) (*service.Request, *redshift.CreateHSMConfigurationOutput)
+	CreateHsmConfigurationRequest(*redshift.CreateHsmConfigurationInput) (*service.Request, *redshift.CreateHsmConfigurationOutput)
 
-	CreateHSMConfiguration(*redshift.CreateHSMConfigurationInput) (*redshift.CreateHSMConfigurationOutput, error)
+	CreateHsmConfiguration(*redshift.CreateHsmConfigurationInput) (*redshift.CreateHsmConfigurationOutput, error)
 
 	CreateSnapshotCopyGrantRequest(*redshift.CreateSnapshotCopyGrantInput) (*service.Request, *redshift.CreateSnapshotCopyGrantOutput)
 
@@ -86,13 +86,13 @@ type RedshiftAPI interface {
 
 	DeleteEventSubscription(*redshift.DeleteEventSubscriptionInput) (*redshift.DeleteEventSubscriptionOutput, error)
 
-	DeleteHSMClientCertificateRequest(*redshift.DeleteHSMClientCertificateInput) (*service.Request, *redshift.DeleteHSMClientCertificateOutput)
+	DeleteHsmClientCertificateRequest(*redshift.DeleteHsmClientCertificateInput) (*service.Request, *redshift.DeleteHsmClientCertificateOutput)
 
-	DeleteHSMClientCertificate(*redshift.DeleteHSMClientCertificateInput) (*redshift.DeleteHSMClientCertificateOutput, error)
+	DeleteHsmClientCertificate(*redshift.DeleteHsmClientCertificateInput) (*redshift.DeleteHsmClientCertificateOutput, error)
 
-	DeleteHSMConfigurationRequest(*redshift.DeleteHSMConfigurationInput) (*service.Request, *redshift.DeleteHSMConfigurationOutput)
+	DeleteHsmConfigurationRequest(*redshift.DeleteHsmConfigurationInput) (*service.Request, *redshift.DeleteHsmConfigurationOutput)
 
-	DeleteHSMConfiguration(*redshift.DeleteHSMConfigurationInput) (*redshift.DeleteHSMConfigurationOutput, error)
+	DeleteHsmConfiguration(*redshift.DeleteHsmConfigurationInput) (*redshift.DeleteHsmConfigurationOutput, error)
 
 	DeleteSnapshotCopyGrantRequest(*redshift.DeleteSnapshotCopyGrantInput) (*service.Request, *redshift.DeleteSnapshotCopyGrantOutput)
 
@@ -166,17 +166,17 @@ type RedshiftAPI interface {
 
 	DescribeEventsPages(*redshift.DescribeEventsInput, func(*redshift.DescribeEventsOutput, bool) bool) error
 
-	DescribeHSMClientCertificatesRequest(*redshift.DescribeHSMClientCertificatesInput) (*service.Request, *redshift.DescribeHSMClientCertificatesOutput)
+	DescribeHsmClientCertificatesRequest(*redshift.DescribeHsmClientCertificatesInput) (*service.Request, *redshift.DescribeHsmClientCertificatesOutput)
 
-	DescribeHSMClientCertificates(*redshift.DescribeHSMClientCertificatesInput) (*redshift.DescribeHSMClientCertificatesOutput, error)
+	DescribeHsmClientCertificates(*redshift.DescribeHsmClientCertificatesInput) (*redshift.DescribeHsmClientCertificatesOutput, error)
 
-	DescribeHSMClientCertificatesPages(*redshift.DescribeHSMClientCertificatesInput, func(*redshift.DescribeHSMClientCertificatesOutput, bool) bool) error
+	DescribeHsmClientCertificatesPages(*redshift.DescribeHsmClientCertificatesInput, func(*redshift.DescribeHsmClientCertificatesOutput, bool) bool) error
 
-	DescribeHSMConfigurationsRequest(*redshift.DescribeHSMConfigurationsInput) (*service.Request, *redshift.DescribeHSMConfigurationsOutput)
+	DescribeHsmConfigurationsRequest(*redshift.DescribeHsmConfigurationsInput) (*service.Request, *redshift.DescribeHsmConfigurationsOutput)
 
-	DescribeHSMConfigurations(*redshift.DescribeHSMConfigurationsInput) (*redshift.DescribeHSMConfigurationsOutput, error)
+	DescribeHsmConfigurations(*redshift.DescribeHsmConfigurationsInput) (*redshift.DescribeHsmConfigurationsOutput, error)
 
-	DescribeHSMConfigurationsPages(*redshift.DescribeHSMConfigurationsInput, func(*redshift.DescribeHSMConfigurationsOutput, bool) bool) error
+	DescribeHsmConfigurationsPages(*redshift.DescribeHsmConfigurationsInput, func(*redshift.DescribeHsmConfigurationsOutput, bool) bool) error
 
 	DescribeLoggingStatusRequest(*redshift.DescribeLoggingStatusInput) (*service.Request, *redshift.LoggingStatus)
 

@@ -557,7 +557,7 @@ func ExampleECS_RegisterContainerInstance() {
 
 	params := &ecs.RegisterContainerInstanceInput{
 		Cluster:                           aws.String("String"),
-		ContainerInstanceARN:              aws.String("String"),
+		ContainerInstanceArn:              aws.String("String"),
 		InstanceIdentityDocument:          aws.String("String"),
 		InstanceIdentityDocumentSignature: aws.String("String"),
 		TotalResources: []*ecs.Resource{
@@ -607,11 +607,11 @@ func ExampleECS_RegisterTaskDefinition() {
 	params := &ecs.RegisterTaskDefinitionInput{
 		ContainerDefinitions: []*ecs.ContainerDefinition{ // Required
 			{ // Required
-				CPU: aws.Int64(1),
 				Command: []*string{
 					aws.String("String"), // Required
 					// More values...
 				},
+				Cpu: aws.Int64(1),
 				EntryPoint: []*string{
 					aws.String("String"), // Required
 					// More values...

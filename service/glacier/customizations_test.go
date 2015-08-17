@@ -39,7 +39,7 @@ func TestCustomizations(t *testing.T) {
 	assert.Equal(t, req.Service.APIVersion, req.HTTPRequest.Header.Get("x-amz-glacier-version"))
 
 	// Sets Account ID
-	v := awsutil.ValuesAtPath(req.Params, "AccountID")
+	v := awsutil.ValuesAtPath(req.Params, "AccountId")
 	assert.Equal(t, "-", v[0])
 
 	// Computes checksums
@@ -69,7 +69,7 @@ func TestFillAccountIDWithNilStruct(t *testing.T) {
 	empty := "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 	// Sets Account ID
-	v := awsutil.ValuesAtPath(req.Params, "AccountID")
+	v := awsutil.ValuesAtPath(req.Params, "AccountId")
 	assert.Equal(t, "-", v[0])
 
 	// Does not set tree hash

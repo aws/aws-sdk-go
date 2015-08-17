@@ -865,7 +865,7 @@ type CancelJobInput struct {
 	//
 	// To get a list of the jobs (including their jobId) that have a status of
 	// Submitted, use the ListJobsByStatus API action.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataCancelJobInput `json:"-" xml:"-"`
 }
@@ -1114,7 +1114,7 @@ type CreateJobInput struct {
 	// The pipeline determines several settings, including the Amazon S3 bucket
 	// from which Elastic Transcoder gets the files to transcode and the bucket
 	// into which Elastic Transcoder puts the transcoded files.
-	PipelineID *string `locationName:"PipelineId" type:"string" required:"true"`
+	PipelineId *string `type:"string" required:"true"`
 
 	// If you specify a preset in PresetId for which the value of Container is fmp4
 	// (Fragmented MP4) or ts (MPEG-TS), Playlists contains information about the
@@ -1219,7 +1219,7 @@ type CreateJobOutput struct {
 
 	// The Id of the preset to use for this job. The preset determines the audio,
 	// video, and thumbnail settings that Elastic Transcoder uses for transcoding.
-	PresetID *string `locationName:"PresetId" type:"string"`
+	PresetId *string `type:"string"`
 
 	// The number of degrees clockwise by which you want Elastic Transcoder to rotate
 	// the output relative to the input. Enter one of the following values: auto,
@@ -1311,7 +1311,7 @@ type CreateJobPlaylist struct {
 
 	// The HLS content protection settings, if any, that you want Elastic Transcoder
 	// to apply to the output files associated with this playlist.
-	HLSContentProtection *HLSContentProtection `locationName:"HlsContentProtection" type:"structure"`
+	HlsContentProtection *HlsContentProtection `type:"structure"`
 
 	// The name that you want Elastic Transcoder to assign to the master playlist,
 	// for example, nyc-vacation.m3u8. If the name includes a / character, the section
@@ -1366,7 +1366,7 @@ type CreateJobPlaylist struct {
 
 	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
 	// output files associated with this playlist.
-	PlayReadyDRM *PlayReadyDRM `locationName:"PlayReadyDrm" type:"structure"`
+	PlayReadyDrm *PlayReadyDrm `type:"structure"`
 
 	metadataCreateJobPlaylist `json:"-" xml:"-"`
 }
@@ -1418,7 +1418,7 @@ type CreatePipelineInput struct {
 	// key, is created for you automatically. You need to provide an AWS-KMS key
 	// only if you want to use a non-default AWS-KMS key, or if you are using an
 	// Encryption:Mode of AES-PKCS7, AES-CTR, or AES-GCM.
-	AWSKMSKeyARN *string `locationName:"AwsKmsKeyArn" type:"string"`
+	AwsKmsKeyArn *string `type:"string"`
 
 	// The optional ContentConfig object specifies information about the Amazon
 	// S3 bucket in which you want Elastic Transcoder to save transcoded files and
@@ -1682,7 +1682,7 @@ func (s CreatePresetOutput) GoString() string {
 // The DeletePipelineRequest structure.
 type DeletePipelineInput struct {
 	// The identifier of the pipeline that you want to delete.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
@@ -1723,7 +1723,7 @@ func (s DeletePipelineOutput) GoString() string {
 // The DeletePresetRequest structure.
 type DeletePresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeletePresetInput `json:"-" xml:"-"`
 }
@@ -1824,7 +1824,7 @@ type Encryption struct {
 	// uses the key digest as a checksum to make sure your key was not corrupted
 	// in transit. The key MD5 must be base64-encoded, and it must be exactly 16
 	// bytes long before being base64-encoded.
-	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+	KeyMd5 *string `type:"string"`
 
 	// The specific server-side encryption mode that you want Elastic Transcoder
 	// to use when decrypting your input files or encrypting your output files.
@@ -1880,7 +1880,7 @@ func (s Encryption) GoString() string {
 
 // The HLS content protection settings, if any, that you want Elastic Transcoder
 // to apply to your output files.
-type HLSContentProtection struct {
+type HlsContentProtection struct {
 	// If Elastic Transcoder is generating your key for you, you must leave this
 	// field blank.
 	//
@@ -1907,7 +1907,7 @@ type HLSContentProtection struct {
 	// your output file, and that you want Elastic Transcoder to use as a checksum
 	// to make sure your key was not corrupted in transit. The key MD5 must be base64-encoded,
 	// and it must be exactly 16 bytes before being base64- encoded.
-	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+	KeyMd5 *string `type:"string"`
 
 	// Specify whether you want Elastic Transcoder to write your HLS license key
 	// to an Amazon S3 bucket. If you choose WithVariantPlaylists, LicenseAcquisitionUrl
@@ -1918,7 +1918,7 @@ type HLSContentProtection struct {
 	// The location of the license key required to decrypt your HLS playlist. The
 	// URL must be an absolute path, and is referenced in the URI attribute of the
 	// EXT-X-KEY metadata tag in the playlist file.
-	LicenseAcquisitionURL *string `locationName:"LicenseAcquisitionUrl" type:"string"`
+	LicenseAcquisitionUrl *string `type:"string"`
 
 	// The content protection method for your output. The only valid value is: aes-128.
 	//
@@ -1926,20 +1926,20 @@ type HLSContentProtection struct {
 	// tag in the output playlist.
 	Method *string `type:"string"`
 
-	metadataHLSContentProtection `json:"-" xml:"-"`
+	metadataHlsContentProtection `json:"-" xml:"-"`
 }
 
-type metadataHLSContentProtection struct {
+type metadataHlsContentProtection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s HLSContentProtection) String() string {
+func (s HlsContentProtection) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HLSContentProtection) GoString() string {
+func (s HlsContentProtection) GoString() string {
 	return s.String()
 }
 
@@ -1947,11 +1947,11 @@ func (s HLSContentProtection) GoString() string {
 // is created.
 type Job struct {
 	// The Amazon Resource Name (ARN) for the job.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The identifier that Elastic Transcoder assigned to the job. You use this
 	// value to get settings for the job or to delete the job.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// A section of the request or response body that provides information about
 	// the file that is being transcoded.
@@ -1985,7 +1985,7 @@ type Job struct {
 	// The pipeline determines several settings, including the Amazon S3 bucket
 	// from which Elastic Transcoder gets the files to transcode and the bucket
 	// into which Elastic Transcoder puts the transcoded files.
-	PipelineID *string `locationName:"PipelineId" type:"string"`
+	PipelineId *string `type:"string"`
 
 	// Outputs in Fragmented MP4 or MPEG-TS format only.If you specify a preset
 	// in PresetId for which the value of Container is fmp4 (Fragmented MP4) or
@@ -2239,7 +2239,7 @@ type JobOutput struct {
 	// A sequential counter, starting with 1, that identifies an output among the
 	// outputs from the current job. In the Output syntax, this value is always
 	// 1.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name to assign to the transcoded file. Elastic Transcoder saves the file
 	// in the Amazon S3 bucket specified by the OutputBucket object in the pipeline
@@ -2252,7 +2252,7 @@ type JobOutput struct {
 	// the preset ID that Elastic Transcoder returned in the response when you created
 	// the preset. You can also use the Elastic Transcoder system presets, which
 	// you can get with ListPresets.
-	PresetID *string `locationName:"PresetId" type:"string"`
+	PresetId *string `type:"string"`
 
 	// The number of degrees clockwise by which you want Elastic Transcoder to rotate
 	// the output relative to the input. Enter one of the following values:
@@ -2390,7 +2390,7 @@ type JobWatermark struct {
 	// to the video during transcoding. The settings are in the preset specified
 	// by Preset for the current output. In that preset, the value of Watermarks
 	// Id tells Elastic Transcoder which settings to use.
-	PresetWatermarkID *string `locationName:"PresetWatermarkId" type:"string"`
+	PresetWatermarkId *string `type:"string"`
 
 	metadataJobWatermark `json:"-" xml:"-"`
 }
@@ -2420,7 +2420,7 @@ type ListJobsByPipelineInput struct {
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
 	// The ID of the pipeline for which you want to get job information.
-	PipelineID *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
 
 	metadataListJobsByPipelineInput `json:"-" xml:"-"`
 }
@@ -2721,7 +2721,7 @@ func (s Permission) GoString() string {
 // The pipeline (queue) that is used to manage jobs.
 type Pipeline struct {
 	// The Amazon Resource Name (ARN) for the pipeline.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The AWS Key Management Service (AWS KMS) key that you want to use with this
 	// pipeline.
@@ -2731,7 +2731,7 @@ type Pipeline struct {
 	// key, is created for you automatically. You need to provide an AWS-KMS key
 	// only if you want to use a non-default AWS-KMS key, or if you are using an
 	// Encryption:Mode of AES-PKCS7, AES-CTR, or AES-GCM.
-	AWSKMSKeyARN *string `locationName:"AwsKmsKeyArn" type:"string"`
+	AwsKmsKeyArn *string `type:"string"`
 
 	// Information about the Amazon S3 bucket in which you want Elastic Transcoder
 	// to save transcoded files and playlists. Either you specify both ContentConfig
@@ -2763,7 +2763,7 @@ type Pipeline struct {
 	// The identifier for the pipeline. You use this value to identify the pipeline
 	// in which you want to perform a variety of operations, such as creating a
 	// job or a preset.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The Amazon S3 bucket from which Elastic Transcoder gets media files for transcoding
 	// and the graphics files, if any, that you want to use for watermarks.
@@ -2907,7 +2907,7 @@ func (s PipelineOutputConfig) GoString() string {
 // PlayReady DRM encrypts your media files using AES-CTR encryption.
 //
 // If you use DRM for an HLSv3 playlist, your outputs must have a master playlist.
-type PlayReadyDRM struct {
+type PlayReadyDrm struct {
 	// The type of DRM, if any, that you want Elastic Transcoder to apply to the
 	// output files associated with this playlist.
 	Format *string `type:"string"`
@@ -2935,35 +2935,35 @@ type PlayReadyDRM struct {
 	// it to little endian before inserting it into the PlayReady DRM headers. If
 	// you are unsure whether your license server provides your key ID in big or
 	// little endian, check with your DRM provider.
-	KeyID *string `locationName:"KeyId" type:"string"`
+	KeyId *string `type:"string"`
 
 	// The MD5 digest of the key used for DRM on your file, and that you want Elastic
 	// Transcoder to use as a checksum to make sure your key was not corrupted in
 	// transit. The key MD5 must be base64-encoded, and it must be exactly 16 bytes
 	// before being base64-encoded.
-	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+	KeyMd5 *string `type:"string"`
 
 	// The location of the license key required to play DRM content. The URL must
 	// be an absolute path, and is referenced by the PlayReady header. The PlayReady
 	// header is referenced in the protection header of the client manifest for
 	// Smooth Streaming outputs, and in the EXT-X-DXDRM and EXT-XDXDRMINFO metadata
 	// tags for HLS playlist outputs. An example URL looks like this: https://www.example.com/exampleKey/
-	LicenseAcquisitionURL *string `locationName:"LicenseAcquisitionUrl" type:"string"`
+	LicenseAcquisitionUrl *string `type:"string"`
 
-	metadataPlayReadyDRM `json:"-" xml:"-"`
+	metadataPlayReadyDrm `json:"-" xml:"-"`
 }
 
-type metadataPlayReadyDRM struct {
+type metadataPlayReadyDrm struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s PlayReadyDRM) String() string {
+func (s PlayReadyDrm) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s PlayReadyDRM) GoString() string {
+func (s PlayReadyDrm) GoString() string {
 	return s.String()
 }
 
@@ -2979,7 +2979,7 @@ type Playlist struct {
 
 	// The HLS content protection settings, if any, that you want Elastic Transcoder
 	// to apply to the output files associated with this playlist.
-	HLSContentProtection *HLSContentProtection `locationName:"HlsContentProtection" type:"structure"`
+	HlsContentProtection *HlsContentProtection `type:"structure"`
 
 	// The name that you want Elastic Transcoder to assign to the master playlist,
 	// for example, nyc-vacation.m3u8. If the name includes a / character, the section
@@ -3034,7 +3034,7 @@ type Playlist struct {
 
 	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
 	// output files associated with this playlist.
-	PlayReadyDRM *PlayReadyDRM `locationName:"PlayReadyDrm" type:"structure"`
+	PlayReadyDrm *PlayReadyDrm `type:"structure"`
 
 	// The status of the job with which the playlist is associated.
 	Status *string `type:"string"`
@@ -3067,7 +3067,7 @@ func (s Playlist) GoString() string {
 // a job.
 type Preset struct {
 	// The Amazon Resource Name (ARN) for the preset.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// A section of the response body that provides information about the audio
 	// preset values.
@@ -3082,7 +3082,7 @@ type Preset struct {
 
 	// Identifier for the new preset. You use this value to get settings for the
 	// preset or to delete it.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the preset.
 	Name *string `type:"string"`
@@ -3159,7 +3159,7 @@ type PresetWatermark struct {
 
 	// A unique identifier for the settings for one watermark. The value of Id can
 	// be up to 40 characters long.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The maximum height of the watermark in one of the following formats:  number
 	// of pixels (px): The minimum value is 16 pixels, and the maximum value is
@@ -3262,7 +3262,7 @@ func (s PresetWatermark) GoString() string {
 // The ReadJobRequest structure.
 type ReadJobInput struct {
 	// The identifier of the job for which you want to get detailed information.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataReadJobInput `json:"-" xml:"-"`
 }
@@ -3306,7 +3306,7 @@ func (s ReadJobOutput) GoString() string {
 // The ReadPipelineRequest structure.
 type ReadPipelineInput struct {
 	// The identifier of the pipeline to read.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataReadPipelineInput `json:"-" xml:"-"`
 }
@@ -3358,7 +3358,7 @@ func (s ReadPipelineOutput) GoString() string {
 // The ReadPresetRequest structure.
 type ReadPresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataReadPresetInput `json:"-" xml:"-"`
 }
@@ -3625,7 +3625,7 @@ type UpdatePipelineInput struct {
 	// key, is created for you automatically. You need to provide an AWS-KMS key
 	// only if you want to use a non-default AWS-KMS key, or if you are using an
 	// Encryption:Mode of AES-PKCS7, AES-CTR, or AES-GCM.
-	AWSKMSKeyARN *string `locationName:"AwsKmsKeyArn" type:"string"`
+	AwsKmsKeyArn *string `type:"string"`
 
 	// The optional ContentConfig object specifies information about the Amazon
 	// S3 bucket in which you want Elastic Transcoder to save transcoded files and
@@ -3675,7 +3675,7 @@ type UpdatePipelineInput struct {
 	ContentConfig *PipelineOutputConfig `type:"structure"`
 
 	// The ID of the pipeline that you want to update.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The Amazon S3 bucket in which you saved the media files that you want to
 	// transcode and the graphics that you want to use as watermarks.
@@ -3760,7 +3760,7 @@ func (s UpdatePipelineInput) GoString() string {
 type UpdatePipelineNotificationsInput struct {
 	// The identifier of the pipeline for which you want to change notification
 	// settings.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The topic ARN for the Amazon Simple Notification Service (Amazon SNS) topic
 	// that you want to notify to report job status.
@@ -3853,7 +3853,7 @@ func (s UpdatePipelineOutput) GoString() string {
 // The UpdatePipelineStatusRequest structure.
 type UpdatePipelineStatusInput struct {
 	// The identifier of the pipeline to update.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The desired status of the pipeline:
 	//

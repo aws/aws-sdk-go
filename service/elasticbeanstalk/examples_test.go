@@ -20,7 +20,7 @@ func ExampleElasticBeanstalk_AbortEnvironmentUpdate() {
 	svc := elasticbeanstalk.New(nil)
 
 	params := &elasticbeanstalk.AbortEnvironmentUpdateInput{
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.AbortEnvironmentUpdate(params)
@@ -140,7 +140,7 @@ func ExampleElasticBeanstalk_CreateConfigurationTemplate() {
 		ApplicationName: aws.String("ApplicationName"),           // Required
 		TemplateName:    aws.String("ConfigurationTemplateName"), // Required
 		Description:     aws.String("Description"),
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
 			{ // Required
 				Namespace:    aws.String("OptionNamespace"),
@@ -513,7 +513,7 @@ func ExampleElasticBeanstalk_DescribeEnvironmentHealth() {
 			aws.String("EnvironmentHealthAttribute"), // Required
 			// More values...
 		},
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.DescribeEnvironmentHealth(params)
@@ -541,7 +541,7 @@ func ExampleElasticBeanstalk_DescribeEnvironmentResources() {
 	svc := elasticbeanstalk.New(nil)
 
 	params := &elasticbeanstalk.DescribeEnvironmentResourcesInput{
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.DescribeEnvironmentResources(params)
@@ -570,7 +570,7 @@ func ExampleElasticBeanstalk_DescribeEnvironments() {
 
 	params := &elasticbeanstalk.DescribeEnvironmentsInput{
 		ApplicationName: aws.String("ApplicationName"),
-		EnvironmentIDs: []*string{
+		EnvironmentIds: []*string{
 			aws.String("EnvironmentId"), // Required
 			// More values...
 		},
@@ -609,11 +609,11 @@ func ExampleElasticBeanstalk_DescribeEvents() {
 	params := &elasticbeanstalk.DescribeEventsInput{
 		ApplicationName: aws.String("ApplicationName"),
 		EndTime:         aws.Time(time.Now()),
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 		MaxRecords:      aws.Int64(1),
 		NextToken:       aws.String("Token"),
-		RequestID:       aws.String("RequestId"),
+		RequestId:       aws.String("RequestId"),
 		Severity:        aws.String("EventSeverity"),
 		StartTime:       aws.Time(time.Now()),
 		TemplateName:    aws.String("ConfigurationTemplateName"),
@@ -648,7 +648,7 @@ func ExampleElasticBeanstalk_DescribeInstancesHealth() {
 			aws.String("InstancesHealthAttribute"), // Required
 			// More values...
 		},
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 		NextToken:       aws.String("NextToken"),
 	}
@@ -702,7 +702,7 @@ func ExampleElasticBeanstalk_RebuildEnvironment() {
 	svc := elasticbeanstalk.New(nil)
 
 	params := &elasticbeanstalk.RebuildEnvironmentInput{
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.RebuildEnvironment(params)
@@ -731,7 +731,7 @@ func ExampleElasticBeanstalk_RequestEnvironmentInfo() {
 
 	params := &elasticbeanstalk.RequestEnvironmentInfoInput{
 		InfoType:        aws.String("EnvironmentInfoType"), // Required
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.RequestEnvironmentInfo(params)
@@ -759,7 +759,7 @@ func ExampleElasticBeanstalk_RestartAppServer() {
 	svc := elasticbeanstalk.New(nil)
 
 	params := &elasticbeanstalk.RestartAppServerInput{
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.RestartAppServer(params)
@@ -788,7 +788,7 @@ func ExampleElasticBeanstalk_RetrieveEnvironmentInfo() {
 
 	params := &elasticbeanstalk.RetrieveEnvironmentInfoInput{
 		InfoType:        aws.String("EnvironmentInfoType"), // Required
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 	}
 	resp, err := svc.RetrieveEnvironmentInfo(params)
@@ -816,9 +816,9 @@ func ExampleElasticBeanstalk_SwapEnvironmentCNAMEs() {
 	svc := elasticbeanstalk.New(nil)
 
 	params := &elasticbeanstalk.SwapEnvironmentCNAMEsInput{
-		DestinationEnvironmentID:   aws.String("EnvironmentId"),
+		DestinationEnvironmentId:   aws.String("EnvironmentId"),
 		DestinationEnvironmentName: aws.String("EnvironmentName"),
-		SourceEnvironmentID:        aws.String("EnvironmentId"),
+		SourceEnvironmentId:        aws.String("EnvironmentId"),
 		SourceEnvironmentName:      aws.String("EnvironmentName"),
 	}
 	resp, err := svc.SwapEnvironmentCNAMEs(params)
@@ -846,7 +846,7 @@ func ExampleElasticBeanstalk_TerminateEnvironment() {
 	svc := elasticbeanstalk.New(nil)
 
 	params := &elasticbeanstalk.TerminateEnvironmentInput{
-		EnvironmentID:      aws.String("EnvironmentId"),
+		EnvironmentId:      aws.String("EnvironmentId"),
 		EnvironmentName:    aws.String("EnvironmentName"),
 		TerminateResources: aws.Bool(true),
 	}
@@ -979,7 +979,7 @@ func ExampleElasticBeanstalk_UpdateEnvironment() {
 
 	params := &elasticbeanstalk.UpdateEnvironmentInput{
 		Description:     aws.String("Description"),
-		EnvironmentID:   aws.String("EnvironmentId"),
+		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
 			{ // Required

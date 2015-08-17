@@ -258,11 +258,11 @@ type CreateTrailInput struct {
 	// Specifies a log group name using an Amazon Resource Name (ARN), a unique
 	// identifier that represents the log group to which CloudTrail logs will be
 	// delivered. Not required unless you specify CloudWatchLogsRoleArn.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
 	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
@@ -281,7 +281,7 @@ type CreateTrailInput struct {
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
 	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
 
 	metadataCreateTrailInput `json:"-" xml:"-"`
 }
@@ -305,11 +305,11 @@ func (s CreateTrailInput) GoString() string {
 type CreateTrailOutput struct {
 	// Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail
 	// logs will be delivered.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
 	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
@@ -328,7 +328,7 @@ type CreateTrailOutput struct {
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
 	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
 
 	metadataCreateTrailOutput `json:"-" xml:"-"`
 }
@@ -441,7 +441,7 @@ type Event struct {
 	CloudTrailEvent *string `type:"string"`
 
 	// The CloudTrail ID of the event returned.
-	EventID *string `locationName:"EventId" type:"string"`
+	EventId *string `type:"string"`
 
 	// The name of the event returned.
 	EventName *string `type:"string"`
@@ -775,11 +775,11 @@ func (s StopLoggingOutput) GoString() string {
 type Trail struct {
 	// Specifies an Amazon Resource Name (ARN), a unique identifier that represents
 	// the log group to which CloudTrail logs will be delivered.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
 	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Set to True to include AWS API calls from AWS global services such as IAM.
 	// Otherwise, False.
@@ -796,7 +796,7 @@ type Trail struct {
 
 	// Name of the existing Amazon SNS topic that CloudTrail uses to notify the
 	// account owner when new CloudTrail log files have been delivered.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
 
 	metadataTrail `json:"-" xml:"-"`
 }
@@ -820,11 +820,11 @@ type UpdateTrailInput struct {
 	// Specifies a log group name using an Amazon Resource Name (ARN), a unique
 	// identifier that represents the log group to which CloudTrail logs will be
 	// delivered. Not required unless you specify CloudWatchLogsRoleArn.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
 	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
@@ -843,7 +843,7 @@ type UpdateTrailInput struct {
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
 	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
 
 	metadataUpdateTrailInput `json:"-" xml:"-"`
 }
@@ -867,11 +867,11 @@ func (s UpdateTrailInput) GoString() string {
 type UpdateTrailOutput struct {
 	// Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail
 	// logs will be delivered.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
 	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
@@ -890,7 +890,7 @@ type UpdateTrailOutput struct {
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
 	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
 
 	metadataUpdateTrailOutput `json:"-" xml:"-"`
 }

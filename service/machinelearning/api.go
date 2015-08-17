@@ -907,11 +907,11 @@ func (c *MachineLearning) UpdateMLModel(input *UpdateMLModelInput) (*UpdateMLMod
 // file information of a Batch Prediction.
 type BatchPrediction struct {
 	// The ID of the DataSource that points to the group of observations to predict.
-	BatchPredictionDataSourceID *string `locationName:"BatchPredictionDataSourceId" type:"string"`
+	BatchPredictionDataSourceId *string `type:"string"`
 
 	// The ID assigned to the BatchPrediction at creation. This value should be
 	// identical to the value of the BatchPredictionID in the request.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string"`
+	BatchPredictionId *string `type:"string"`
 
 	// The time that the BatchPrediction was created. The time is expressed in epoch
 	// time.
@@ -920,7 +920,7 @@ type BatchPrediction struct {
 	// The AWS user account that invoked the BatchPrediction. The account type can
 	// be either an AWS root account or an AWS Identity and Access Management (IAM)
 	// user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
@@ -932,7 +932,7 @@ type BatchPrediction struct {
 
 	// The ID of the MLModel that generated predictions for the BatchPrediction
 	// request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// A description of the most recent details about processing the batch prediction
 	// request.
@@ -944,7 +944,7 @@ type BatchPrediction struct {
 	// The location of an Amazon S3 bucket or directory to receive the operation
 	// results. The following substrings are not allowed in the s3 key portion of
 	// the "outputURI" field: ':', '//', '/./', '/../'.
-	OutputURI *string `locationName:"OutputUri" type:"string"`
+	OutputUri *string `type:"string"`
 
 	// The status of the BatchPrediction. This element can have one of the following
 	// values:
@@ -975,17 +975,17 @@ func (s BatchPrediction) GoString() string {
 
 type CreateBatchPredictionInput struct {
 	// The ID of the DataSource that points to the group of observations to predict.
-	BatchPredictionDataSourceID *string `locationName:"BatchPredictionDataSourceId" type:"string" required:"true"`
+	BatchPredictionDataSourceId *string `type:"string" required:"true"`
 
 	// A user-supplied ID that uniquely identifies the BatchPrediction.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
+	BatchPredictionId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the BatchPrediction. BatchPredictionName
 	// can only use the UTF-8 character set.
 	BatchPredictionName *string `type:"string"`
 
 	// The ID of the MLModel that will generate predictions for the group of observations.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	// The location of an Amazon Simple Storage Service (Amazon S3) bucket or directory
 	// to store the batch prediction results. The following substrings are not allowed
@@ -994,7 +994,7 @@ type CreateBatchPredictionInput struct {
 	// Amazon ML needs permissions to store and retrieve the logs on your behalf.
 	// For information about how to set permissions, see the Amazon Machine Learning
 	// Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
-	OutputURI *string `locationName:"OutputUri" type:"string" required:"true"`
+	OutputUri *string `type:"string" required:"true"`
 
 	metadataCreateBatchPredictionInput `json:"-" xml:"-"`
 }
@@ -1022,7 +1022,7 @@ func (s CreateBatchPredictionInput) GoString() string {
 type CreateBatchPredictionOutput struct {
 	// A user-supplied ID that uniquely identifies the BatchPrediction. This value
 	// is identical to the value of the BatchPredictionId in the request.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string"`
+	BatchPredictionId *string `type:"string"`
 
 	metadataCreateBatchPredictionOutput `json:"-" xml:"-"`
 }
@@ -1050,7 +1050,7 @@ type CreateDataSourceFromRDSInput struct {
 
 	// A user-supplied ID that uniquely identifies the DataSource. Typically, an
 	// Amazon Resource Number (ARN) becomes the ID for a DataSource.
-	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
+	DataSourceId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the DataSource.
 	DataSourceName *string `type:"string"`
@@ -1130,7 +1130,7 @@ func (s CreateDataSourceFromRDSInput) GoString() string {
 type CreateDataSourceFromRDSOutput struct {
 	// A user-supplied ID that uniquely identifies the datasource. This value should
 	// be identical to the value of the DataSourceID in the request.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	metadataCreateDataSourceFromRDSOutput `json:"-" xml:"-"`
 }
@@ -1157,7 +1157,7 @@ type CreateDataSourceFromRedshiftInput struct {
 	ComputeStatistics *bool `type:"boolean"`
 
 	// A user-supplied ID that uniquely identifies the DataSource.
-	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
+	DataSourceId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the DataSource.
 	DataSourceName *string `type:"string"`
@@ -1224,7 +1224,7 @@ func (s CreateDataSourceFromRedshiftInput) GoString() string {
 type CreateDataSourceFromRedshiftOutput struct {
 	// A user-supplied ID that uniquely identifies the datasource. This value should
 	// be identical to the value of the DataSourceID in the request.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	metadataCreateDataSourceFromRedshiftOutput `json:"-" xml:"-"`
 }
@@ -1251,7 +1251,7 @@ type CreateDataSourceFromS3Input struct {
 	ComputeStatistics *bool `type:"boolean"`
 
 	// A user-supplied identifier that uniquely identifies the DataSource.
-	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
+	DataSourceId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the DataSource.
 	DataSourceName *string `type:"string"`
@@ -1297,7 +1297,7 @@ func (s CreateDataSourceFromS3Input) GoString() string {
 type CreateDataSourceFromS3Output struct {
 	// A user-supplied ID that uniquely identifies the datasource. This value should
 	// be identical to the value of the DataSourceID in the request.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	metadataCreateDataSourceFromS3Output `json:"-" xml:"-"`
 }
@@ -1319,10 +1319,10 @@ func (s CreateDataSourceFromS3Output) GoString() string {
 type CreateEvaluationInput struct {
 	// The ID of the DataSource for the evaluation. The schema of the DataSource
 	// must match the schema used to create the MLModel.
-	EvaluationDataSourceID *string `locationName:"EvaluationDataSourceId" type:"string" required:"true"`
+	EvaluationDataSourceId *string `type:"string" required:"true"`
 
 	// A user-supplied ID that uniquely identifies the Evaluation.
-	EvaluationID *string `locationName:"EvaluationId" type:"string" required:"true"`
+	EvaluationId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the Evaluation.
 	EvaluationName *string `type:"string"`
@@ -1331,7 +1331,7 @@ type CreateEvaluationInput struct {
 	//
 	// The schema used in creating the MLModel must match the schema of the DataSource
 	// used in the Evaluation.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	metadataCreateEvaluationInput `json:"-" xml:"-"`
 }
@@ -1358,7 +1358,7 @@ func (s CreateEvaluationInput) GoString() string {
 type CreateEvaluationOutput struct {
 	// The user-supplied ID that uniquely identifies the Evaluation. This value
 	// should be identical to the value of the EvaluationId in the request.
-	EvaluationID *string `locationName:"EvaluationId" type:"string"`
+	EvaluationId *string `type:"string"`
 
 	metadataCreateEvaluationOutput `json:"-" xml:"-"`
 }
@@ -1379,7 +1379,7 @@ func (s CreateEvaluationOutput) GoString() string {
 
 type CreateMLModelInput struct {
 	// A user-supplied ID that uniquely identifies the MLModel.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the MLModel.
 	MLModelName *string `type:"string"`
@@ -1435,10 +1435,10 @@ type CreateMLModelInput struct {
 	// The Amazon Simple Storage Service (Amazon S3) location and file name that
 	// contains the MLModel recipe. You must specify either the recipe or its URI.
 	// If you don’t specify a recipe or its URI, Amazon ML creates a default.
-	RecipeURI *string `locationName:"RecipeUri" type:"string"`
+	RecipeUri *string `type:"string"`
 
 	// The DataSource that points to the training data.
-	TrainingDataSourceID *string `locationName:"TrainingDataSourceId" type:"string" required:"true"`
+	TrainingDataSourceId *string `type:"string" required:"true"`
 
 	metadataCreateMLModelInput `json:"-" xml:"-"`
 }
@@ -1465,7 +1465,7 @@ func (s CreateMLModelInput) GoString() string {
 type CreateMLModelOutput struct {
 	// A user-supplied ID that uniquely identifies the MLModel. This value should
 	// be identical to the value of the MLModelId in the request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	metadataCreateMLModelOutput `json:"-" xml:"-"`
 }
@@ -1486,7 +1486,7 @@ func (s CreateMLModelOutput) GoString() string {
 
 type CreateRealtimeEndpointInput struct {
 	// The ID assigned to the MLModel during creation.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	metadataCreateRealtimeEndpointInput `json:"-" xml:"-"`
 }
@@ -1514,7 +1514,7 @@ func (s CreateRealtimeEndpointInput) GoString() string {
 type CreateRealtimeEndpointOutput struct {
 	// A user-supplied ID that uniquely identifies the MLModel. This value should
 	// be identical to the value of the MLModelId in the request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// The endpoint information of the MLModel
 	RealtimeEndpointInfo *RealtimeEndpointInfo `type:"structure"`
@@ -1552,7 +1552,7 @@ type DataSource struct {
 	// The AWS user account from which the DataSource was created. The account type
 	// can be either an AWS root account or an AWS Identity and Access Management
 	// (IAM) user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The location and name of the data in Amazon Simple Storage Service (Amazon
 	// S3) that is used by a DataSource.
@@ -1566,7 +1566,7 @@ type DataSource struct {
 	DataSizeInBytes *int64 `type:"long"`
 
 	// The ID that is assigned to the DataSource during creation.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	// The time of the most recent edit to the BatchPrediction. The time is expressed
 	// in epoch time.
@@ -1620,7 +1620,7 @@ func (s DataSource) GoString() string {
 
 type DeleteBatchPredictionInput struct {
 	// A user-supplied ID that uniquely identifies the BatchPrediction.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
+	BatchPredictionId *string `type:"string" required:"true"`
 
 	metadataDeleteBatchPredictionInput `json:"-" xml:"-"`
 }
@@ -1646,7 +1646,7 @@ func (s DeleteBatchPredictionInput) GoString() string {
 type DeleteBatchPredictionOutput struct {
 	// A user-supplied ID that uniquely identifies the BatchPrediction. This value
 	// should be identical to the value of the BatchPredictionID in the request.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string"`
+	BatchPredictionId *string `type:"string"`
 
 	metadataDeleteBatchPredictionOutput `json:"-" xml:"-"`
 }
@@ -1667,7 +1667,7 @@ func (s DeleteBatchPredictionOutput) GoString() string {
 
 type DeleteDataSourceInput struct {
 	// A user-supplied ID that uniquely identifies the DataSource.
-	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
+	DataSourceId *string `type:"string" required:"true"`
 
 	metadataDeleteDataSourceInput `json:"-" xml:"-"`
 }
@@ -1690,7 +1690,7 @@ func (s DeleteDataSourceInput) GoString() string {
 type DeleteDataSourceOutput struct {
 	// A user-supplied ID that uniquely identifies the DataSource. This value should
 	// be identical to the value of the DataSourceID in the request.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	metadataDeleteDataSourceOutput `json:"-" xml:"-"`
 }
@@ -1711,7 +1711,7 @@ func (s DeleteDataSourceOutput) GoString() string {
 
 type DeleteEvaluationInput struct {
 	// A user-supplied ID that uniquely identifies the Evaluation to delete.
-	EvaluationID *string `locationName:"EvaluationId" type:"string" required:"true"`
+	EvaluationId *string `type:"string" required:"true"`
 
 	metadataDeleteEvaluationInput `json:"-" xml:"-"`
 }
@@ -1738,7 +1738,7 @@ func (s DeleteEvaluationInput) GoString() string {
 type DeleteEvaluationOutput struct {
 	// A user-supplied ID that uniquely identifies the Evaluation. This value should
 	// be identical to the value of the EvaluationId in the request.
-	EvaluationID *string `locationName:"EvaluationId" type:"string"`
+	EvaluationId *string `type:"string"`
 
 	metadataDeleteEvaluationOutput `json:"-" xml:"-"`
 }
@@ -1759,7 +1759,7 @@ func (s DeleteEvaluationOutput) GoString() string {
 
 type DeleteMLModelInput struct {
 	// A user-supplied ID that uniquely identifies the MLModel.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	metadataDeleteMLModelInput `json:"-" xml:"-"`
 }
@@ -1785,7 +1785,7 @@ func (s DeleteMLModelInput) GoString() string {
 type DeleteMLModelOutput struct {
 	// A user-supplied ID that uniquely identifies the MLModel. This value should
 	// be identical to the value of the MLModelID in the request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	metadataDeleteMLModelOutput `json:"-" xml:"-"`
 }
@@ -1806,7 +1806,7 @@ func (s DeleteMLModelOutput) GoString() string {
 
 type DeleteRealtimeEndpointInput struct {
 	// The ID assigned to the MLModel during creation.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	metadataDeleteRealtimeEndpointInput `json:"-" xml:"-"`
 }
@@ -1831,7 +1831,7 @@ func (s DeleteRealtimeEndpointInput) GoString() string {
 type DeleteRealtimeEndpointOutput struct {
 	// A user-supplied ID that uniquely identifies the MLModel. This value should
 	// be identical to the value of the MLModelId in the request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// The endpoint information of the MLModel
 	RealtimeEndpointInfo *RealtimeEndpointInfo `type:"structure"`
@@ -2301,13 +2301,13 @@ type Evaluation struct {
 	// The AWS user account that invoked the evaluation. The account type can be
 	// either an AWS root account or an AWS Identity and Access Management (IAM)
 	// user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The ID of the DataSource that is used to evaluate the MLModel.
-	EvaluationDataSourceID *string `locationName:"EvaluationDataSourceId" type:"string"`
+	EvaluationDataSourceId *string `type:"string"`
 
 	// The ID that is assigned to the Evaluation at creation.
-	EvaluationID *string `locationName:"EvaluationId" type:"string"`
+	EvaluationId *string `type:"string"`
 
 	// The location and name of the data in Amazon Simple Storage Server (Amazon
 	// S3) that is used in the evaluation.
@@ -2318,7 +2318,7 @@ type Evaluation struct {
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the MLModel that is the focus of the evaluation.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// A description of the most recent details about evaluating the MLModel.
 	Message *string `type:"string"`
@@ -2373,7 +2373,7 @@ func (s Evaluation) GoString() string {
 
 type GetBatchPredictionInput struct {
 	// An ID assigned to the BatchPrediction at creation.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
+	BatchPredictionId *string `type:"string" required:"true"`
 
 	metadataGetBatchPredictionInput `json:"-" xml:"-"`
 }
@@ -2395,11 +2395,11 @@ func (s GetBatchPredictionInput) GoString() string {
 // Represents the output of a GetBatchPrediction operation and describes a BatchPrediction.
 type GetBatchPredictionOutput struct {
 	// The ID of the DataSource that was used to create the BatchPrediction.
-	BatchPredictionDataSourceID *string `locationName:"BatchPredictionDataSourceId" type:"string"`
+	BatchPredictionDataSourceId *string `type:"string"`
 
 	// An ID assigned to the BatchPrediction at creation. This value should be identical
 	// to the value of the BatchPredictionID in the request.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string"`
+	BatchPredictionId *string `type:"string"`
 
 	// The time when the BatchPrediction was created. The time is expressed in epoch
 	// time.
@@ -2408,7 +2408,7 @@ type GetBatchPredictionOutput struct {
 	// The AWS user account that invoked the BatchPrediction. The account type can
 	// be either an AWS root account or an AWS Identity and Access Management (IAM)
 	// user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
@@ -2419,11 +2419,11 @@ type GetBatchPredictionOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A link to the file that contains logs of the CreateBatchPrediction operation.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The ID of the MLModel that generated predictions for the BatchPrediction
 	// request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// A description of the most recent details about processing the batch prediction
 	// request.
@@ -2434,7 +2434,7 @@ type GetBatchPredictionOutput struct {
 
 	// The location of an Amazon S3 bucket or directory to receive the operation
 	// results.
-	OutputURI *string `locationName:"OutputUri" type:"string"`
+	OutputUri *string `type:"string"`
 
 	// The status of the BatchPrediction, which can be one of the following values:
 	//
@@ -2464,7 +2464,7 @@ func (s GetBatchPredictionOutput) GoString() string {
 
 type GetDataSourceInput struct {
 	// The ID assigned to the DataSource at creation.
-	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
+	DataSourceId *string `type:"string" required:"true"`
 
 	// Specifies whether the GetDataSource operation should return DataSourceSchema.
 	//
@@ -2503,7 +2503,7 @@ type GetDataSourceOutput struct {
 	// The AWS user account from which the DataSource was created. The account type
 	// can be either an AWS root account or an AWS Identity and Access Management
 	// (IAM) user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
@@ -2518,7 +2518,7 @@ type GetDataSourceOutput struct {
 
 	// The ID assigned to the DataSource at creation. This value should be identical
 	// to the value of the DataSourceId in the request.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	// The schema used by all of the data files of this DataSource.
 	//
@@ -2530,7 +2530,7 @@ type GetDataSourceOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A link to the file containining logs of either create DataSource operation.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The description of the most recent details about creating the DataSource.
 	Message *string `type:"string"`
@@ -2581,7 +2581,7 @@ func (s GetDataSourceOutput) GoString() string {
 type GetEvaluationInput struct {
 	// The ID of the Evaluation to retrieve. The evaluation of each MLModel is recorded
 	// and cataloged. The ID provides the means to access the information.
-	EvaluationID *string `locationName:"EvaluationId" type:"string" required:"true"`
+	EvaluationId *string `type:"string" required:"true"`
 
 	metadataGetEvaluationInput `json:"-" xml:"-"`
 }
@@ -2609,13 +2609,13 @@ type GetEvaluationOutput struct {
 	// The AWS user account that invoked the evaluation. The account type can be
 	// either an AWS root account or an AWS Identity and Access Management (IAM)
 	// user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The DataSource used for this evaluation.
-	EvaluationDataSourceID *string `locationName:"EvaluationDataSourceId" type:"string"`
+	EvaluationDataSourceId *string `type:"string"`
 
 	// The evaluation ID which is same as the EvaluationId in the request.
-	EvaluationID *string `locationName:"EvaluationId" type:"string"`
+	EvaluationId *string `type:"string"`
 
 	// The location of the data file or directory in Amazon Simple Storage Service
 	// (Amazon S3).
@@ -2626,10 +2626,10 @@ type GetEvaluationOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A link to the file that contains logs of the CreateEvaluation operation.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The ID of the MLModel that was the focus of the evaluation.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// A description of the most recent details about evaluating the MLModel.
 	Message *string `type:"string"`
@@ -2684,7 +2684,7 @@ func (s GetEvaluationOutput) GoString() string {
 
 type GetMLModelInput struct {
 	// The ID assigned to the MLModel at creation.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	// Specifies whether the GetMLModel operation should return Recipe.
 	//
@@ -2719,7 +2719,7 @@ type GetMLModelOutput struct {
 	// The AWS user account from which the MLModel was created. The account type
 	// can be either an AWS root account or an AWS Identity and Access Management
 	// (IAM) user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The current endpoint of the MLModel
 	EndpointInfo *RealtimeEndpointInfo `type:"structure"`
@@ -2733,10 +2733,10 @@ type GetMLModelOutput struct {
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// A link to the file that contains logs of the CreateMLModel operation.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The MLModel ID which is same as the MLModelId in the request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// Identifies the MLModel category. The following are the available types:
 	//
@@ -2789,7 +2789,7 @@ type GetMLModelOutput struct {
 	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The ID of the training DataSource.
-	TrainingDataSourceID *string `locationName:"TrainingDataSourceId" type:"string"`
+	TrainingDataSourceId *string `type:"string"`
 
 	// A list of the training parameters in the MLModel. The list is implemented
 	// as a map of key/value pairs.
@@ -2859,7 +2859,7 @@ type MLModel struct {
 	// The AWS user account from which the MLModel was created. The account type
 	// can be either an AWS root account or an AWS Identity and Access Management
 	// (IAM) user account.
-	CreatedByIAMUser *string `locationName:"CreatedByIamUser" type:"string"`
+	CreatedByIamUser *string `type:"string"`
 
 	// The current endpoint of the MLModel.
 	EndpointInfo *RealtimeEndpointInfo `type:"structure"`
@@ -2873,7 +2873,7 @@ type MLModel struct {
 	LastUpdatedAt *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID assigned to the MLModel at creation.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	// Identifies the MLModel category. The following are the available types:
 	//
@@ -2910,7 +2910,7 @@ type MLModel struct {
 	Status *string `type:"string" enum:"EntityStatus"`
 
 	// The ID of the training DataSource. The CreateMLModel operation uses the TrainingDataSourceId.
-	TrainingDataSourceID *string `locationName:"TrainingDataSourceId" type:"string"`
+	TrainingDataSourceId *string `type:"string"`
 
 	// A list of the training parameters in the MLModel. The list is implemented
 	// as a map of key/value pairs.
@@ -3000,7 +3000,7 @@ func (s PerformanceMetrics) GoString() string {
 
 type PredictInput struct {
 	// A unique identifier of the MLModel.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	PredictEndpoint *string `type:"string" required:"true"`
 
@@ -3110,7 +3110,7 @@ type RDSDataSpec struct {
 	DataSchema *string `type:"string"`
 
 	// The Amazon S3 location of the DataSchema.
-	DataSchemaURI *string `locationName:"DataSchemaUri" type:"string"`
+	DataSchemaUri *string `type:"string"`
 
 	// The AWS Identity and Access Management (IAM) credentials that are used connect
 	// to the Amazon RDS database.
@@ -3133,10 +3133,10 @@ type RDSDataSpec struct {
 	// Ensure that there are appropriate ingress rules set up to allow access to
 	// the RDS DB instance. This attribute is used by Data Pipeline to carry out
 	// the copy operation from Amazon RDS to an Amazon S3 task.
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" type:"list" required:"true"`
+	SecurityGroupIds []*string `type:"list" required:"true"`
 
 	// The query that is used to retrieve the observation data for the DataSource.
-	SelectSQLQuery *string `locationName:"SelectSqlQuery" type:"string" required:"true"`
+	SelectSqlQuery *string `type:"string" required:"true"`
 
 	// The role (DataPipelineDefaultRole) assumed by AWS Data Pipeline service to
 	// monitor the progress of the copy task from Amazon RDS to Amazon S3. For more
@@ -3147,7 +3147,7 @@ type RDSDataSpec struct {
 	// The subnet ID to be used to access a VPC-based RDS DB instance. This attribute
 	// is used by Data Pipeline to carry out the copy task from Amazon RDS to Amazon
 	// S3.
-	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
+	SubnetId *string `type:"string" required:"true"`
 
 	metadataRDSDataSpec `json:"-" xml:"-"`
 }
@@ -3225,7 +3225,7 @@ type RDSMetadata struct {
 	// The ID of the Data Pipeline instance that is used to carry to copy data from
 	// Amazon RDS to Amazon S3. You can use the ID to find details about the instance
 	// in the Data Pipeline console.
-	DataPipelineID *string `locationName:"DataPipelineId" type:"string"`
+	DataPipelineId *string `type:"string"`
 
 	// The database details required to connect to an Amazon RDS.
 	Database *RDSDatabase `type:"structure"`
@@ -3243,7 +3243,7 @@ type RDSMetadata struct {
 
 	// The SQL query that is supplied during CreateDataSourceFromRDS. Returns only
 	// if Verbose is true in GetDataSourceInput.
-	SelectSQLQuery *string `locationName:"SelectSqlQuery" type:"string"`
+	SelectSqlQuery *string `type:"string"`
 
 	// The role (DataPipelineDefaultRole) assumed by the Data Pipeline service to
 	// monitor the progress of the copy task from Amazon RDS to Amazon S3. For more
@@ -3287,7 +3287,7 @@ type RealtimeEndpointInfo struct {
 	//
 	// Note The application must wait until the real-time endpoint is ready before
 	// using this URI.
-	EndpointURL *string `locationName:"EndpointUrl" type:"string"`
+	EndpointUrl *string `type:"string"`
 
 	// The maximum processing rate for the real-time endpoint for MLModel, measured
 	// in incoming requests per second.
@@ -3319,7 +3319,7 @@ type RedshiftDataSpec struct {
 	DataSchema *string `type:"string"`
 
 	// Describes the schema location for an Amazon Redshift DataSource.
-	DataSchemaURI *string `locationName:"DataSchemaUri" type:"string"`
+	DataSchemaUri *string `type:"string"`
 
 	// Describes AWS Identity and Access Management (IAM) credentials that are used
 	// connect to the Amazon Redshift database.
@@ -3334,7 +3334,7 @@ type RedshiftDataSpec struct {
 
 	// Describes the SQL Query to execute on an Amazon Redshift database for an
 	// Amazon Redshift DataSource.
-	SelectSQLQuery *string `locationName:"SelectSqlQuery" type:"string" required:"true"`
+	SelectSqlQuery *string `type:"string" required:"true"`
 
 	metadataRedshiftDataSpec `json:"-" xml:"-"`
 }
@@ -3425,7 +3425,7 @@ type RedshiftMetadata struct {
 
 	// The SQL query that is specified during CreateDataSourceFromRedshift. Returns
 	// only if Verbose is true in GetDataSourceInput.
-	SelectSQLQuery *string `locationName:"SelectSqlQuery" type:"string"`
+	SelectSqlQuery *string `type:"string"`
 
 	metadataRedshiftMetadata `json:"-" xml:"-"`
 }
@@ -3479,7 +3479,7 @@ func (s S3DataSpec) GoString() string {
 
 type UpdateBatchPredictionInput struct {
 	// The ID assigned to the BatchPrediction during creation.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string" required:"true"`
+	BatchPredictionId *string `type:"string" required:"true"`
 
 	// A new user-supplied name or description of the BatchPrediction.
 	BatchPredictionName *string `type:"string" required:"true"`
@@ -3507,7 +3507,7 @@ func (s UpdateBatchPredictionInput) GoString() string {
 type UpdateBatchPredictionOutput struct {
 	// The ID assigned to the BatchPrediction during creation. This value should
 	// be identical to the value of the BatchPredictionId in the request.
-	BatchPredictionID *string `locationName:"BatchPredictionId" type:"string"`
+	BatchPredictionId *string `type:"string"`
 
 	metadataUpdateBatchPredictionOutput `json:"-" xml:"-"`
 }
@@ -3528,7 +3528,7 @@ func (s UpdateBatchPredictionOutput) GoString() string {
 
 type UpdateDataSourceInput struct {
 	// The ID assigned to the DataSource during creation.
-	DataSourceID *string `locationName:"DataSourceId" type:"string" required:"true"`
+	DataSourceId *string `type:"string" required:"true"`
 
 	// A new user-supplied name or description of the DataSource that will replace
 	// the current description.
@@ -3557,7 +3557,7 @@ func (s UpdateDataSourceInput) GoString() string {
 type UpdateDataSourceOutput struct {
 	// The ID assigned to the DataSource during creation. This value should be identical
 	// to the value of the DataSourceID in the request.
-	DataSourceID *string `locationName:"DataSourceId" type:"string"`
+	DataSourceId *string `type:"string"`
 
 	metadataUpdateDataSourceOutput `json:"-" xml:"-"`
 }
@@ -3578,7 +3578,7 @@ func (s UpdateDataSourceOutput) GoString() string {
 
 type UpdateEvaluationInput struct {
 	// The ID assigned to the Evaluation during creation.
-	EvaluationID *string `locationName:"EvaluationId" type:"string" required:"true"`
+	EvaluationId *string `type:"string" required:"true"`
 
 	// A new user-supplied name or description of the Evaluation that will replace
 	// the current content.
@@ -3607,7 +3607,7 @@ func (s UpdateEvaluationInput) GoString() string {
 type UpdateEvaluationOutput struct {
 	// The ID assigned to the Evaluation during creation. This value should be identical
 	// to the value of the Evaluation in the request.
-	EvaluationID *string `locationName:"EvaluationId" type:"string"`
+	EvaluationId *string `type:"string"`
 
 	metadataUpdateEvaluationOutput `json:"-" xml:"-"`
 }
@@ -3628,7 +3628,7 @@ func (s UpdateEvaluationOutput) GoString() string {
 
 type UpdateMLModelInput struct {
 	// The ID assigned to the MLModel during creation.
-	MLModelID *string `locationName:"MLModelId" type:"string" required:"true"`
+	MLModelId *string `type:"string" required:"true"`
 
 	// A user-supplied name or description of the MLModel.
 	MLModelName *string `type:"string"`
@@ -3664,7 +3664,7 @@ func (s UpdateMLModelInput) GoString() string {
 type UpdateMLModelOutput struct {
 	// The ID assigned to the MLModel during creation. This value should be identical
 	// to the value of the MLModelID in the request.
-	MLModelID *string `locationName:"MLModelId" type:"string"`
+	MLModelId *string `type:"string"`
 
 	metadataUpdateMLModelOutput `json:"-" xml:"-"`
 }

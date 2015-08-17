@@ -339,7 +339,7 @@ func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (*Upd
 // Describes an association of a configuration document and an instance.
 type Association struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the configuration document.
 	Name *string `type:"string"`
@@ -367,7 +367,7 @@ type AssociationDescription struct {
 	Date *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the configuration document.
 	Name *string `type:"string"`
@@ -496,7 +496,7 @@ func (s CreateAssociationBatchOutput) GoString() string {
 // Describes the association of a configuration document and an instance.
 type CreateAssociationBatchRequestEntry struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// The name of the configuration document.
 	Name *string `type:"string"`
@@ -520,7 +520,7 @@ func (s CreateAssociationBatchRequestEntry) GoString() string {
 
 type CreateAssociationInput struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
@@ -611,7 +611,7 @@ func (s CreateDocumentOutput) GoString() string {
 
 type DeleteAssociationInput struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
@@ -692,7 +692,7 @@ func (s DeleteDocumentOutput) GoString() string {
 
 type DescribeAssociationInput struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`
@@ -786,7 +786,7 @@ type DocumentDescription struct {
 	Name *string `type:"string"`
 
 	// The SHA1 hash of the document, which you can use for verification purposes.
-	SHA1 *string `locationName:"Sha1" type:"string"`
+	Sha1 *string `type:"string"`
 
 	// The status of the configuration document.
 	Status *string `type:"string" enum:"DocumentStatus"`
@@ -1043,7 +1043,7 @@ type UpdateAssociationStatusInput struct {
 	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `type:"string" required:"true"`
 
 	// The name of the configuration document.
 	Name *string `type:"string" required:"true"`

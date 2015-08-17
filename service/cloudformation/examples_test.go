@@ -159,7 +159,7 @@ func ExampleCloudFormation_DescribeStackResource() {
 	svc := cloudformation.New(nil)
 
 	params := &cloudformation.DescribeStackResourceInput{
-		LogicalResourceID: aws.String("LogicalResourceId"), // Required
+		LogicalResourceId: aws.String("LogicalResourceId"), // Required
 		StackName:         aws.String("StackName"),         // Required
 	}
 	resp, err := svc.DescribeStackResource(params)
@@ -187,8 +187,8 @@ func ExampleCloudFormation_DescribeStackResources() {
 	svc := cloudformation.New(nil)
 
 	params := &cloudformation.DescribeStackResourcesInput{
-		LogicalResourceID:  aws.String("LogicalResourceId"),
-		PhysicalResourceID: aws.String("PhysicalResourceId"),
+		LogicalResourceId:  aws.String("LogicalResourceId"),
+		PhysicalResourceId: aws.String("PhysicalResourceId"),
 		StackName:          aws.String("StackName"),
 	}
 	resp, err := svc.DescribeStackResources(params)
@@ -451,10 +451,10 @@ func ExampleCloudFormation_SignalResource() {
 	svc := cloudformation.New(nil)
 
 	params := &cloudformation.SignalResourceInput{
-		LogicalResourceID: aws.String("LogicalResourceId"),      // Required
+		LogicalResourceId: aws.String("LogicalResourceId"),      // Required
 		StackName:         aws.String("StackNameOrId"),          // Required
 		Status:            aws.String("ResourceSignalStatus"),   // Required
-		UniqueID:          aws.String("ResourceSignalUniqueId"), // Required
+		UniqueId:          aws.String("ResourceSignalUniqueId"), // Required
 	}
 	resp, err := svc.SignalResource(params)
 

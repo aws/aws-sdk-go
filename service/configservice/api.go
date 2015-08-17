@@ -455,11 +455,11 @@ func (s ConfigStreamDeliveryInfo) GoString() string {
 //  Currently, the list does not contain information about non-AWS components
 // (for example, applications on your Amazon EC2 instances).
 type ConfigurationItem struct {
-	// The Amazon Resource Name (ARN) of the resource.
-	ARN *string `locationName:"arn" type:"string"`
-
 	// The 12 digit AWS account ID associated with the resource.
-	AccountID *string `locationName:"accountId" type:"string"`
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	Arn *string `locationName:"arn" type:"string"`
 
 	// The Availability Zone associated with the resource.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
@@ -481,7 +481,7 @@ type ConfigurationItem struct {
 
 	// An identifier that indicates the ordering of the configuration items of a
 	// resource.
-	ConfigurationStateID *string `locationName:"configurationStateId" type:"string"`
+	ConfigurationStateId *string `locationName:"configurationStateId" type:"string"`
 
 	// A list of CloudTrail event IDs.
 	//
@@ -500,7 +500,7 @@ type ConfigurationItem struct {
 	ResourceCreationTime *time.Time `locationName:"resourceCreationTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
-	ResourceID *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" type:"string"`
 
 	// The type of AWS resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
@@ -671,7 +671,7 @@ func (s DeliverConfigSnapshotInput) GoString() string {
 // The output for the DeliverConfigSnapshot action in JSON format.
 type DeliverConfigSnapshotOutput struct {
 	// The ID of the snapshot that is being created.
-	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string"`
+	ConfigSnapshotId *string `locationName:"configSnapshotId" type:"string"`
 
 	metadataDeliverConfigSnapshotOutput `json:"-" xml:"-"`
 }
@@ -707,7 +707,7 @@ type DeliveryChannel struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role used for accessing the Amazon
 	// S3 bucket and the Amazon SNS topic.
-	SNSTopicARN *string `locationName:"snsTopicARN" type:"string"`
+	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 
 	metadataDeliveryChannel `json:"-" xml:"-"`
 }
@@ -963,7 +963,7 @@ type GetResourceConfigHistoryInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
-	ResourceID *string `locationName:"resourceId" type:"string" required:"true"`
+	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
 
 	// The resource type.
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
@@ -1133,7 +1133,7 @@ type Relationship struct {
 	RelationshipName *string `locationName:"relationshipName" type:"string"`
 
 	// The resource ID of the related resource (for example, sg-xxxxxx).
-	ResourceID *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" type:"string"`
 
 	// The resource type of the related resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`

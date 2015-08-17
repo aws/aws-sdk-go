@@ -194,7 +194,7 @@ func ExampleConfigService_GetResourceConfigHistory() {
 	svc := configservice.New(nil)
 
 	params := &configservice.GetResourceConfigHistoryInput{
-		ResourceID:         aws.String("ResourceId"),   // Required
+		ResourceId:         aws.String("ResourceId"),   // Required
 		ResourceType:       aws.String("ResourceType"), // Required
 		ChronologicalOrder: aws.String("ChronologicalOrder"),
 		EarlierTime:        aws.Time(time.Now()),
@@ -268,7 +268,7 @@ func ExampleConfigService_PutDeliveryChannel() {
 			Name:         aws.String("ChannelName"),
 			S3BucketName: aws.String("String"),
 			S3KeyPrefix:  aws.String("String"),
-			SNSTopicARN:  aws.String("String"),
+			SnsTopicARN:  aws.String("String"),
 		},
 	}
 	resp, err := svc.PutDeliveryChannel(params)

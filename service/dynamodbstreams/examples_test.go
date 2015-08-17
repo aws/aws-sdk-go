@@ -20,8 +20,8 @@ func ExampleDynamoDBStreams_DescribeStream() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.DescribeStreamInput{
-		StreamARN:             aws.String("StreamArn"), // Required
-		ExclusiveStartShardID: aws.String("ShardId"),
+		StreamArn:             aws.String("StreamArn"), // Required
+		ExclusiveStartShardId: aws.String("ShardId"),
 		Limit: aws.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
@@ -77,9 +77,9 @@ func ExampleDynamoDBStreams_GetShardIterator() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.GetShardIteratorInput{
-		ShardID:           aws.String("ShardId"),           // Required
+		ShardId:           aws.String("ShardId"),           // Required
 		ShardIteratorType: aws.String("ShardIteratorType"), // Required
-		StreamARN:         aws.String("StreamArn"),         // Required
+		StreamArn:         aws.String("StreamArn"),         // Required
 		SequenceNumber:    aws.String("SequenceNumber"),
 	}
 	resp, err := svc.GetShardIterator(params)
@@ -107,7 +107,7 @@ func ExampleDynamoDBStreams_ListStreams() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.ListStreamsInput{
-		ExclusiveStartStreamARN: aws.String("StreamArn"),
+		ExclusiveStartStreamArn: aws.String("StreamArn"),
 		Limit:     aws.Int64(1),
 		TableName: aws.String("TableName"),
 	}

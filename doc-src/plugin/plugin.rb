@@ -60,9 +60,9 @@ eof
         obj.parameters = []
         opname = obj.name.to_s.sub(/Request$/, '')
         obj.docstring = <<-eof
-#{obj.name} generates a {aws.Request} object representing the client request for
+#{obj.name} generates a {service.Request} object representing the client request for
 the {#{opname} #{opname}()} operation. The `output` return value can be used to capture
-response data after {aws.Request.Send Request.Send()} is called.
+response data after {service.Request.Send Request.Send()} is called.
 
 Creating a request object using this method should be used when you want to inject
 custom logic into the request lifecycle using a custom handler, or if you want to
@@ -70,7 +70,7 @@ access properties on the request object before or after sending the request. If
 you just want the service response, call the {#{opname} service operation method}
 directly instead.
 
-@note You must call the {aws.Request.Send Send()} method on the returned
+@note You must call the {service.Request.Send Send()} method on the returned
   request object in order to execute the request.
 @example Sending a request using the #{obj.name}() method
   req, resp := client.#{obj.name}(params)

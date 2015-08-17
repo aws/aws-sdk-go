@@ -540,17 +540,17 @@ func (s CreateFileSystemInput) GoString() string {
 
 type CreateMountTargetInput struct {
 	// The ID of the file system for which to create the mount target.
-	FileSystemID *string `locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `type:"string" required:"true"`
 
 	// A valid IPv4 address within the address range of the specified subnet.
-	IPAddress *string `locationName:"IpAddress" type:"string"`
+	IpAddress *string `type:"string"`
 
 	// Up to 5 VPC security group IDs, of the form "sg-xxxxxxxx". These must be
 	// for the same VPC as subnet specified.
 	SecurityGroups []*string `type:"list"`
 
 	// The ID of the subnet to add the mount target in.
-	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
+	SubnetId *string `type:"string" required:"true"`
 
 	metadataCreateMountTargetInput `json:"-" xml:"-"`
 }
@@ -572,7 +572,7 @@ func (s CreateMountTargetInput) GoString() string {
 type CreateTagsInput struct {
 	// String. The ID of the file system whose tags you want to modify. This operation
 	// modifies only the tags and not the file system.
-	FileSystemID *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// An array of Tag objects to add. Each Tag object is a key-value pair.
 	Tags []*Tag `type:"list" required:"true"`
@@ -614,7 +614,7 @@ func (s CreateTagsOutput) GoString() string {
 
 type DeleteFileSystemInput struct {
 	// The ID of the file system you want to delete.
-	FileSystemID *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	metadataDeleteFileSystemInput `json:"-" xml:"-"`
 }
@@ -653,7 +653,7 @@ func (s DeleteFileSystemOutput) GoString() string {
 
 type DeleteMountTargetInput struct {
 	// String. The ID of the mount target to delete.
-	MountTargetID *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
+	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 
 	metadataDeleteMountTargetInput `json:"-" xml:"-"`
 }
@@ -692,7 +692,7 @@ func (s DeleteMountTargetOutput) GoString() string {
 
 type DeleteTagsInput struct {
 	// String. The ID of the file system whose tags you want to delete.
-	FileSystemID *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// A list of tag keys to delete.
 	TagKeys []*string `type:"list" required:"true"`
@@ -739,7 +739,7 @@ type DescribeFileSystemsInput struct {
 	CreationToken *string `location:"querystring" locationName:"CreationToken" type:"string"`
 
 	// Optional string. File system ID whose description you want to retrieve.
-	FileSystemID *string `location:"querystring" locationName:"FileSystemId" type:"string"`
+	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
 
 	// Optional string. Opaque pagination token returned from a previous DescribeFileSystems
 	// operation. If present, specifies to continue the list from where the returning
@@ -800,7 +800,7 @@ func (s DescribeFileSystemsOutput) GoString() string {
 
 type DescribeMountTargetSecurityGroupsInput struct {
 	// The ID of the mount target whose security groups you want to retrieve.
-	MountTargetID *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
+	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 
 	metadataDescribeMountTargetSecurityGroupsInput `json:"-" xml:"-"`
 }
@@ -842,7 +842,7 @@ func (s DescribeMountTargetSecurityGroupsOutput) GoString() string {
 
 type DescribeMountTargetsInput struct {
 	// String. The ID of the file system whose mount targets you want to list.
-	FileSystemID *string `location:"querystring" locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// Optional. String. Opaque pagination token returned from a previous DescribeMountTargets
 	// operation. If present, it specifies to continue the list from where the previous
@@ -903,7 +903,7 @@ func (s DescribeMountTargetsOutput) GoString() string {
 
 type DescribeTagsInput struct {
 	// The ID of the file system whose tag set you want to retrieve.
-	FileSystemID *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `location:"uri" locationName:"FileSystemId" type:"string" required:"true"`
 
 	// Optional. String. Opaque pagination token returned from a previous DescribeTags
 	// operation. If present, it specifies to continue the list from where the previous
@@ -970,7 +970,7 @@ type FileSystemDescription struct {
 	CreationToken *string `type:"string" required:"true"`
 
 	// The file system ID assigned by Amazon EFS.
-	FileSystemID *string `locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `type:"string" required:"true"`
 
 	// A predefined string value that indicates the lifecycle phase of the file
 	// system.
@@ -987,7 +987,7 @@ type FileSystemDescription struct {
 
 	// The AWS account that created the file system. If the file system was created
 	// by an IAM user, the parent account to which the user belongs is the owner.
-	OwnerID *string `locationName:"OwnerId" type:"string" required:"true"`
+	OwnerId *string `type:"string" required:"true"`
 
 	// This object provides the latest known metered size of data stored in the
 	// file system, in bytes, in its Value field, and the time at which that size
@@ -1052,7 +1052,7 @@ func (s FileSystemSize) GoString() string {
 
 type ModifyMountTargetSecurityGroupsInput struct {
 	// The ID of the mount target whose security groups you want to modify.
-	MountTargetID *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
+	MountTargetId *string `location:"uri" locationName:"MountTargetId" type:"string" required:"true"`
 
 	// An array of up to five VPC security group IDs.
 	SecurityGroups []*string `type:"list"`
@@ -1095,26 +1095,26 @@ func (s ModifyMountTargetSecurityGroupsOutput) GoString() string {
 // This object provides description of a mount target.
 type MountTargetDescription struct {
 	// The ID of the file system for which the mount target is intended.
-	FileSystemID *string `locationName:"FileSystemId" type:"string" required:"true"`
+	FileSystemId *string `type:"string" required:"true"`
 
 	// The address at which the file system may be mounted via the mount target.
-	IPAddress *string `locationName:"IpAddress" type:"string"`
+	IpAddress *string `type:"string"`
 
 	// The lifecycle state the mount target is in.
 	LifeCycleState *string `type:"string" required:"true" enum:"LifeCycleState"`
 
 	// The system-assigned mount target ID.
-	MountTargetID *string `locationName:"MountTargetId" type:"string" required:"true"`
+	MountTargetId *string `type:"string" required:"true"`
 
 	// The ID of the network interface that Amazon EFS created when it created the
 	// mount target.
-	NetworkInterfaceID *string `locationName:"NetworkInterfaceId" type:"string"`
+	NetworkInterfaceId *string `type:"string"`
 
 	// The AWS account ID that owns the resource.
-	OwnerID *string `locationName:"OwnerId" type:"string"`
+	OwnerId *string `type:"string"`
 
 	// The ID of the subnet that the mount target is in.
-	SubnetID *string `locationName:"SubnetId" type:"string" required:"true"`
+	SubnetId *string `type:"string" required:"true"`
 
 	metadataMountTargetDescription `json:"-" xml:"-"`
 }

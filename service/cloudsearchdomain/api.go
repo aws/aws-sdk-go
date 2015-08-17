@@ -228,7 +228,7 @@ type Hit struct {
 	Highlights map[string]*string `locationName:"highlights" type:"map"`
 
 	// The document ID of a document that matches the search request.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	metadataHit `json:"-" xml:"-"`
 }
@@ -608,10 +608,10 @@ func (s SearchOutput) GoString() string {
 // (timems).
 type SearchStatus struct {
 	// The encrypted resource ID for the request.
-	RID *string `locationName:"rid" type:"string"`
+	Rid *string `locationName:"rid" type:"string"`
 
 	// How long it took to process the request, in milliseconds.
-	TimeMS *int64 `locationName:"timems" type:"long"`
+	Timems *int64 `locationName:"timems" type:"long"`
 
 	metadataSearchStatus `json:"-" xml:"-"`
 }
@@ -716,10 +716,10 @@ func (s SuggestOutput) GoString() string {
 // (timems).
 type SuggestStatus struct {
 	// The encrypted resource ID for the request.
-	RID *string `locationName:"rid" type:"string"`
+	Rid *string `locationName:"rid" type:"string"`
 
 	// How long it took to process the request, in milliseconds.
-	TimeMS *int64 `locationName:"timems" type:"long"`
+	Timems *int64 `locationName:"timems" type:"long"`
 
 	metadataSuggestStatus `json:"-" xml:"-"`
 }
@@ -741,7 +741,7 @@ func (s SuggestStatus) GoString() string {
 // An autocomplete suggestion that matches the query string specified in a SuggestRequest.
 type SuggestionMatch struct {
 	// The document ID of the suggested document.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The relevance score of a suggested match.
 	Score *int64 `locationName:"score" type:"long"`
