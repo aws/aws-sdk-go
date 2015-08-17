@@ -69,7 +69,7 @@ func teardown() {
 		svc.AbortMultipartUpload(&s3.AbortMultipartUploadInput{
 			Bucket:   bucketName,
 			Key:      u.Key,
-			UploadID: u.UploadID,
+			UploadId: u.UploadId,
 		})
 	}
 
@@ -158,6 +158,6 @@ func TestUploadFailCleanup(t *testing.T) {
 	assert.NotEmpty(t, uploadID)
 
 	_, err = svc.ListParts(&s3.ListPartsInput{
-		Bucket: bucketName, Key: &key, UploadID: &uploadID})
+		Bucket: bucketName, Key: &key, UploadId: &uploadID})
 	assert.Error(t, err)
 }
