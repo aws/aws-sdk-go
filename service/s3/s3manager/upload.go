@@ -331,6 +331,7 @@ func (u *uploader) nextReader() (io.ReadSeeker, error) {
 
 			if bytesLeft == 0 {
 				err = io.EOF
+				n = bytesLeft
 			} else if bytesLeft <= u.opts.PartSize {
 				err = io.ErrUnexpectedEOF
 				n = bytesLeft
