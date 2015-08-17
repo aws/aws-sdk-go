@@ -46,7 +46,7 @@ the function callback.
 @note This operation can generate multiple requests to a service.
 @example Iterating over at most 3 pages of a #{opname} operation
   pageNum := 0
-  err := client.#{obj.name}(params, func(page *#{obj.parent.parent.name}.#{obj.parameters.first[0].split("*").last}, lastPage bool) bool {
+  err := client.#{obj.name}(params, func(page *#{obj.parent.parent.name}.#{obj.parameters[1][0].split("*").last}, lastPage bool) bool {
     pageNum++
     fmt.Println(page)
     return pageNum <= 3
