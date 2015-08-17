@@ -9,6 +9,8 @@ import (
 	"sort"
 	"sync"
 	"testing"
+	"strings"
+	"net/http/httptest"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -434,6 +436,28 @@ func TestUploadOrderSingleBufferedReader(t *testing.T) {
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
+	assert.NotEqual(t, "", resp.Location)
+	assert.Equal(t, "", resp.UploadID)
+}
+
+func TestUploadZeroLenObject(t *testing.T) {
+	requestMade := false
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+		requestMade = true
+		w.WriteHeader(http.StatusOK)
+	}))
+	svc := s3.New(&aws.Config{
+		Endpoint: aws.String(server.URL),
+	})
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: svc})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   strings.NewReader(""),
+	})
+
+	assert.NoError(t, err)
+	assert.True(t, requestMade)
 	assert.NotEqual(t, "", resp.Location)
 	assert.Equal(t, "", resp.UploadID)
 }
