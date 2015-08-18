@@ -34,7 +34,7 @@ YARD::Parser::SourceParser.after_parse_list do
   end
 
   YARD::Registry.all(:method).each do |obj|
-    if obj.file =~ /\/api\.go$/ && obj.scope == :instance
+    if obj.file =~ /service\/.+?\/api\.go$/ && obj.scope == :instance
       if obj.name.to_s =~ /Pages$/
         obj.group = "Pagination Methods"
         opname = obj.name.to_s.sub(/Pages$/, '')
@@ -95,7 +95,10 @@ eof
 end
 
 def apply_docs
-  pkgs = YARD::Registry.at('service').children.select {|t| t.type == :package }
+  svc_pkg = YARD::Registry.at('service')
+  return if svc_pkg.nil?
+
+  pkgs = svc_pkg.children.select {|t| t.type == :package }
   pkgs.each do |pkg|
     svc = pkg.children.find {|t| t.has_tag?(:service) }
     ctor = P(svc, ".New")
@@ -105,6 +108,7 @@ def apply_docs
     file = Dir.glob("apis/#{svc_name}/#{api_ver}/docs-2.json").sort.last
     next if file.nil?
 
+    next if svc.nil?
     exmeth = svc.children.find {|s| s.has_tag?(:service_operation) }
     pkg.docstring += <<-eof
 
