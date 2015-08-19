@@ -154,8 +154,8 @@ func load(file string) *pkg {
 }
 
 var excludeServices = map[string]struct{}{
-	"simpledb":     struct{}{},
-	"importexport": struct{}{},
+	"simpledb":     {},
+	"importexport": {},
 }
 
 func main() {

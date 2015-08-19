@@ -6,11 +6,11 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"net/http/httptest"
 	"sort"
+	"strings"
 	"sync"
 	"testing"
-	"strings"
-	"net/http/httptest"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -442,7 +442,7 @@ func TestUploadOrderSingleBufferedReader(t *testing.T) {
 
 func TestUploadZeroLenObject(t *testing.T) {
 	requestMade := false
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		requestMade = true
 		w.WriteHeader(http.StatusOK)
 	}))
