@@ -41,7 +41,7 @@ type OutputService1ProtocolTest struct {
 // New returns a new OutputService1ProtocolTest client.
 func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice1protocoltest",
 			APIVersion:  "",
@@ -62,7 +62,7 @@ func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTe
 // newRequest creates a new request for a OutputService1ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService1ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -132,7 +132,7 @@ type OutputService2ProtocolTest struct {
 // New returns a new OutputService2ProtocolTest client.
 func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice2protocoltest",
 			APIVersion:  "",
@@ -153,7 +153,7 @@ func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTe
 // newRequest creates a new request for a OutputService2ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService2ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -209,7 +209,7 @@ type OutputService3ProtocolTest struct {
 // New returns a new OutputService3ProtocolTest client.
 func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice3protocoltest",
 			APIVersion:  "",
@@ -230,7 +230,7 @@ func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTe
 // newRequest creates a new request for a OutputService3ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService3ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -284,7 +284,7 @@ type OutputService4ProtocolTest struct {
 // New returns a new OutputService4ProtocolTest client.
 func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice4protocoltest",
 			APIVersion:  "",
@@ -305,7 +305,7 @@ func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTe
 // newRequest creates a new request for a OutputService4ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService4ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -359,7 +359,7 @@ type OutputService5ProtocolTest struct {
 // New returns a new OutputService5ProtocolTest client.
 func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice5protocoltest",
 			APIVersion:  "",
@@ -380,7 +380,7 @@ func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTe
 // newRequest creates a new request for a OutputService5ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService5ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -434,7 +434,7 @@ type OutputService6ProtocolTest struct {
 // New returns a new OutputService6ProtocolTest client.
 func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice6protocoltest",
 			APIVersion:  "",
@@ -455,7 +455,7 @@ func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTe
 // newRequest creates a new request for a OutputService6ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService6ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -509,7 +509,7 @@ type OutputService7ProtocolTest struct {
 // New returns a new OutputService7ProtocolTest client.
 func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice7protocoltest",
 			APIVersion:  "",
@@ -530,7 +530,7 @@ func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTe
 // newRequest creates a new request for a OutputService7ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService7ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -584,7 +584,7 @@ type OutputService8ProtocolTest struct {
 // New returns a new OutputService8ProtocolTest client.
 func NewOutputService8ProtocolTest(config *aws.Config) *OutputService8ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice8protocoltest",
 			APIVersion:  "",
@@ -605,7 +605,7 @@ func NewOutputService8ProtocolTest(config *aws.Config) *OutputService8ProtocolTe
 // newRequest creates a new request for a OutputService8ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService8ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -673,7 +673,7 @@ type OutputService9ProtocolTest struct {
 // New returns a new OutputService9ProtocolTest client.
 func NewOutputService9ProtocolTest(config *aws.Config) *OutputService9ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice9protocoltest",
 			APIVersion:  "",
@@ -694,7 +694,7 @@ func NewOutputService9ProtocolTest(config *aws.Config) *OutputService9ProtocolTe
 // newRequest creates a new request for a OutputService9ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService9ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -762,7 +762,7 @@ type OutputService10ProtocolTest struct {
 // New returns a new OutputService10ProtocolTest client.
 func NewOutputService10ProtocolTest(config *aws.Config) *OutputService10ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice10protocoltest",
 			APIVersion:  "",
@@ -783,7 +783,7 @@ func NewOutputService10ProtocolTest(config *aws.Config) *OutputService10Protocol
 // newRequest creates a new request for a OutputService10ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService10ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -837,7 +837,7 @@ type OutputService11ProtocolTest struct {
 // New returns a new OutputService11ProtocolTest client.
 func NewOutputService11ProtocolTest(config *aws.Config) *OutputService11ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice11protocoltest",
 			APIVersion:  "",
@@ -858,7 +858,7 @@ func NewOutputService11ProtocolTest(config *aws.Config) *OutputService11Protocol
 // newRequest creates a new request for a OutputService11ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService11ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -922,7 +922,7 @@ type OutputService12ProtocolTest struct {
 // New returns a new OutputService12ProtocolTest client.
 func NewOutputService12ProtocolTest(config *aws.Config) *OutputService12ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice12protocoltest",
 			APIVersion:  "",
@@ -943,7 +943,7 @@ func NewOutputService12ProtocolTest(config *aws.Config) *OutputService12Protocol
 // newRequest creates a new request for a OutputService12ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService12ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -997,7 +997,7 @@ type OutputService13ProtocolTest struct {
 // New returns a new OutputService13ProtocolTest client.
 func NewOutputService13ProtocolTest(config *aws.Config) *OutputService13ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice13protocoltest",
 			APIVersion:  "",
@@ -1018,7 +1018,7 @@ func NewOutputService13ProtocolTest(config *aws.Config) *OutputService13Protocol
 // newRequest creates a new request for a OutputService13ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService13ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -1072,7 +1072,7 @@ type OutputService14ProtocolTest struct {
 // New returns a new OutputService14ProtocolTest client.
 func NewOutputService14ProtocolTest(config *aws.Config) *OutputService14ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "outputservice14protocoltest",
 			APIVersion:  "",
@@ -1093,7 +1093,7 @@ func NewOutputService14ProtocolTest(config *aws.Config) *OutputService14Protocol
 // newRequest creates a new request for a OutputService14ProtocolTest operation and runs any
 // custom request initialization.
 func (c *OutputService14ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }

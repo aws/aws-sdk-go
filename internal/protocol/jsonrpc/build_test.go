@@ -41,7 +41,7 @@ type InputService1ProtocolTest struct {
 // New returns a new InputService1ProtocolTest client.
 func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:       defaults.DefaultConfig.Merge(config),
 			ServiceName:  "inputservice1protocoltest",
 			APIVersion:   "",
@@ -64,7 +64,7 @@ func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest
 // newRequest creates a new request for a InputService1ProtocolTest operation and runs any
 // custom request initialization.
 func (c *InputService1ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -119,7 +119,7 @@ type InputService2ProtocolTest struct {
 // New returns a new InputService2ProtocolTest client.
 func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:       defaults.DefaultConfig.Merge(config),
 			ServiceName:  "inputservice2protocoltest",
 			APIVersion:   "",
@@ -142,7 +142,7 @@ func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest
 // newRequest creates a new request for a InputService2ProtocolTest operation and runs any
 // custom request initialization.
 func (c *InputService2ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -196,7 +196,7 @@ type InputService3ProtocolTest struct {
 // New returns a new InputService3ProtocolTest client.
 func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:       defaults.DefaultConfig.Merge(config),
 			ServiceName:  "inputservice3protocoltest",
 			APIVersion:   "",
@@ -219,7 +219,7 @@ func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest
 // newRequest creates a new request for a InputService3ProtocolTest operation and runs any
 // custom request initialization.
 func (c *InputService3ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -307,7 +307,7 @@ type InputService4ProtocolTest struct {
 // New returns a new InputService4ProtocolTest client.
 func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:       defaults.DefaultConfig.Merge(config),
 			ServiceName:  "inputservice4protocoltest",
 			APIVersion:   "",
@@ -330,7 +330,7 @@ func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest
 // newRequest creates a new request for a InputService4ProtocolTest operation and runs any
 // custom request initialization.
 func (c *InputService4ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }
@@ -385,7 +385,7 @@ type InputService5ProtocolTest struct {
 // New returns a new InputService5ProtocolTest client.
 func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
 	service := &service.Service{
-		Service: serviceinfo.ServiceInfo{
+		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:       defaults.DefaultConfig.Merge(config),
 			ServiceName:  "inputservice5protocoltest",
 			APIVersion:   "",
@@ -408,7 +408,7 @@ func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest
 // newRequest creates a new request for a InputService5ProtocolTest operation and runs any
 // custom request initialization.
 func (c *InputService5ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
-	req := c.NewRequest(c.Service, op, params, data)
+	req := c.NewRequest(op, params, data)
 
 	return req
 }

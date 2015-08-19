@@ -8,6 +8,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/stretchr/testify/assert"
 )
@@ -118,8 +119,8 @@ func TestSignPrecomputedBodyChecksum(t *testing.T) {
 
 func TestAnonymousCredentials(t *testing.T) {
 	svc := service.New(&aws.Config{Credentials: credentials.AnonymousCredentials})
-	svc.NewRequest(
-		&service.Operation{
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -146,7 +147,7 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 		Region:      aws.String("us-west-2"),
 	})
 	r := svc.NewRequest(
-		&service.Operation{
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -168,7 +169,7 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 		Region:      aws.String("us-west-2"),
 	})
 	r := svc.NewRequest(
-		&service.Operation{
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -189,7 +190,7 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
 	svc := service.New(&aws.Config{Credentials: creds})
 	r := svc.NewRequest(
-		&service.Operation{
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -211,7 +212,7 @@ func TestPreResignRequestExpiredCreds(t *testing.T) {
 	creds := credentials.NewCredentials(provider)
 	svc := service.New(&aws.Config{Credentials: creds})
 	r := svc.NewRequest(
-		&service.Operation{
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
