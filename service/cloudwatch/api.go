@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opDeleteAlarms = "DeleteAlarms"
 
 // DeleteAlarmsRequest generates a request for the DeleteAlarms operation.
-func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *service.Request, output *DeleteAlarmsOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) DeleteAlarmsRequest(input *DeleteAlarmsInput) (req *request.Request, output *DeleteAlarmsOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAlarms,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,12 +40,12 @@ func (c *CloudWatch) DeleteAlarms(input *DeleteAlarmsInput) (*DeleteAlarmsOutput
 const opDescribeAlarmHistory = "DescribeAlarmHistory"
 
 // DescribeAlarmHistoryRequest generates a request for the DescribeAlarmHistory operation.
-func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInput) (req *service.Request, output *DescribeAlarmHistoryOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInput) (req *request.Request, output *DescribeAlarmHistoryOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAlarmHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -82,12 +82,12 @@ func (c *CloudWatch) DescribeAlarmHistoryPages(input *DescribeAlarmHistoryInput,
 const opDescribeAlarms = "DescribeAlarms"
 
 // DescribeAlarmsRequest generates a request for the DescribeAlarms operation.
-func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *service.Request, output *DescribeAlarmsOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *request.Request, output *DescribeAlarmsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAlarms,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -124,8 +124,8 @@ func (c *CloudWatch) DescribeAlarmsPages(input *DescribeAlarmsInput, fn func(p *
 const opDescribeAlarmsForMetric = "DescribeAlarmsForMetric"
 
 // DescribeAlarmsForMetricRequest generates a request for the DescribeAlarmsForMetric operation.
-func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetricInput) (req *service.Request, output *DescribeAlarmsForMetricOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetricInput) (req *request.Request, output *DescribeAlarmsForMetricOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAlarmsForMetric,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -152,8 +152,8 @@ func (c *CloudWatch) DescribeAlarmsForMetric(input *DescribeAlarmsForMetricInput
 const opDisableAlarmActions = "DisableAlarmActions"
 
 // DisableAlarmActionsRequest generates a request for the DisableAlarmActions operation.
-func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput) (req *service.Request, output *DisableAlarmActionsOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) DisableAlarmActionsRequest(input *DisableAlarmActionsInput) (req *request.Request, output *DisableAlarmActionsOutput) {
+	op := &request.Operation{
 		Name:       opDisableAlarmActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -180,8 +180,8 @@ func (c *CloudWatch) DisableAlarmActions(input *DisableAlarmActionsInput) (*Disa
 const opEnableAlarmActions = "EnableAlarmActions"
 
 // EnableAlarmActionsRequest generates a request for the EnableAlarmActions operation.
-func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (req *service.Request, output *EnableAlarmActionsOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) EnableAlarmActionsRequest(input *EnableAlarmActionsInput) (req *request.Request, output *EnableAlarmActionsOutput) {
+	op := &request.Operation{
 		Name:       opEnableAlarmActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -207,8 +207,8 @@ func (c *CloudWatch) EnableAlarmActions(input *EnableAlarmActionsInput) (*Enable
 const opGetMetricStatistics = "GetMetricStatistics"
 
 // GetMetricStatisticsRequest generates a request for the GetMetricStatistics operation.
-func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput) (req *service.Request, output *GetMetricStatisticsOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput) (req *request.Request, output *GetMetricStatisticsOutput) {
+	op := &request.Operation{
 		Name:       opGetMetricStatistics,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -259,12 +259,12 @@ func (c *CloudWatch) GetMetricStatistics(input *GetMetricStatisticsInput) (*GetM
 const opListMetrics = "ListMetrics"
 
 // ListMetricsRequest generates a request for the ListMetrics operation.
-func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *service.Request, output *ListMetricsOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) ListMetricsRequest(input *ListMetricsInput) (req *request.Request, output *ListMetricsOutput) {
+	op := &request.Operation{
 		Name:       opListMetrics,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -301,8 +301,8 @@ func (c *CloudWatch) ListMetricsPages(input *ListMetricsInput, fn func(p *ListMe
 const opPutMetricAlarm = "PutMetricAlarm"
 
 // PutMetricAlarmRequest generates a request for the PutMetricAlarm operation.
-func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *service.Request, output *PutMetricAlarmOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *request.Request, output *PutMetricAlarmOutput) {
+	op := &request.Operation{
 		Name:       opPutMetricAlarm,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -334,8 +334,8 @@ func (c *CloudWatch) PutMetricAlarm(input *PutMetricAlarmInput) (*PutMetricAlarm
 const opPutMetricData = "PutMetricData"
 
 // PutMetricDataRequest generates a request for the PutMetricData operation.
-func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *service.Request, output *PutMetricDataOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *request.Request, output *PutMetricDataOutput) {
+	op := &request.Operation{
 		Name:       opPutMetricData,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -374,8 +374,8 @@ func (c *CloudWatch) PutMetricData(input *PutMetricDataInput) (*PutMetricDataOut
 const opSetAlarmState = "SetAlarmState"
 
 // SetAlarmStateRequest generates a request for the SetAlarmState operation.
-func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *service.Request, output *SetAlarmStateOutput) {
-	op := &service.Operation{
+func (c *CloudWatch) SetAlarmStateRequest(input *SetAlarmStateInput) (req *request.Request, output *SetAlarmStateOutput) {
+	op := &request.Operation{
 		Name:       opSetAlarmState,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

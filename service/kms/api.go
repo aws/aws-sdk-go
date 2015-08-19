@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateAlias = "CreateAlias"
 
 // CreateAliasRequest generates a request for the CreateAlias operation.
-func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *service.Request, output *CreateAliasOutput) {
-	op := &service.Operation{
+func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *request.Request, output *CreateAliasOutput) {
+	op := &request.Operation{
 		Name:       opCreateAlias,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -51,8 +51,8 @@ func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 const opCreateGrant = "CreateGrant"
 
 // CreateGrantRequest generates a request for the CreateGrant operation.
-func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *service.Request, output *CreateGrantOutput) {
-	op := &service.Operation{
+func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *request.Request, output *CreateGrantOutput) {
+	op := &request.Operation{
 		Name:       opCreateGrant,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -82,8 +82,8 @@ func (c *KMS) CreateGrant(input *CreateGrantInput) (*CreateGrantOutput, error) {
 const opCreateKey = "CreateKey"
 
 // CreateKeyRequest generates a request for the CreateKey operation.
-func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *service.Request, output *CreateKeyOutput) {
-	op := &service.Operation{
+func (c *KMS) CreateKeyRequest(input *CreateKeyInput) (req *request.Request, output *CreateKeyOutput) {
+	op := &request.Operation{
 		Name:       opCreateKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -112,8 +112,8 @@ func (c *KMS) CreateKey(input *CreateKeyInput) (*CreateKeyOutput, error) {
 const opDecrypt = "Decrypt"
 
 // DecryptRequest generates a request for the Decrypt operation.
-func (c *KMS) DecryptRequest(input *DecryptInput) (req *service.Request, output *DecryptOutput) {
-	op := &service.Operation{
+func (c *KMS) DecryptRequest(input *DecryptInput) (req *request.Request, output *DecryptOutput) {
+	op := &request.Operation{
 		Name:       opDecrypt,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -150,8 +150,8 @@ func (c *KMS) Decrypt(input *DecryptInput) (*DecryptOutput, error) {
 const opDeleteAlias = "DeleteAlias"
 
 // DeleteAliasRequest generates a request for the DeleteAlias operation.
-func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *service.Request, output *DeleteAliasOutput) {
-	op := &service.Operation{
+func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Request, output *DeleteAliasOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAlias,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -178,8 +178,8 @@ func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 const opDescribeKey = "DescribeKey"
 
 // DescribeKeyRequest generates a request for the DescribeKey operation.
-func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *service.Request, output *DescribeKeyOutput) {
-	op := &service.Operation{
+func (c *KMS) DescribeKeyRequest(input *DescribeKeyInput) (req *request.Request, output *DescribeKeyOutput) {
+	op := &request.Operation{
 		Name:       opDescribeKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -205,8 +205,8 @@ func (c *KMS) DescribeKey(input *DescribeKeyInput) (*DescribeKeyOutput, error) {
 const opDisableKey = "DisableKey"
 
 // DisableKeyRequest generates a request for the DisableKey operation.
-func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *service.Request, output *DisableKeyOutput) {
-	op := &service.Operation{
+func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *request.Request, output *DisableKeyOutput) {
+	op := &request.Operation{
 		Name:       opDisableKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -232,8 +232,8 @@ func (c *KMS) DisableKey(input *DisableKeyInput) (*DisableKeyOutput, error) {
 const opDisableKeyRotation = "DisableKeyRotation"
 
 // DisableKeyRotationRequest generates a request for the DisableKeyRotation operation.
-func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *service.Request, output *DisableKeyRotationOutput) {
-	op := &service.Operation{
+func (c *KMS) DisableKeyRotationRequest(input *DisableKeyRotationInput) (req *request.Request, output *DisableKeyRotationOutput) {
+	op := &request.Operation{
 		Name:       opDisableKeyRotation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -259,8 +259,8 @@ func (c *KMS) DisableKeyRotation(input *DisableKeyRotationInput) (*DisableKeyRot
 const opEnableKey = "EnableKey"
 
 // EnableKeyRequest generates a request for the EnableKey operation.
-func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *service.Request, output *EnableKeyOutput) {
-	op := &service.Operation{
+func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *request.Request, output *EnableKeyOutput) {
+	op := &request.Operation{
 		Name:       opEnableKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -287,8 +287,8 @@ func (c *KMS) EnableKey(input *EnableKeyInput) (*EnableKeyOutput, error) {
 const opEnableKeyRotation = "EnableKeyRotation"
 
 // EnableKeyRotationRequest generates a request for the EnableKeyRotation operation.
-func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *service.Request, output *EnableKeyRotationOutput) {
-	op := &service.Operation{
+func (c *KMS) EnableKeyRotationRequest(input *EnableKeyRotationInput) (req *request.Request, output *EnableKeyRotationOutput) {
+	op := &request.Operation{
 		Name:       opEnableKeyRotation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -314,8 +314,8 @@ func (c *KMS) EnableKeyRotation(input *EnableKeyRotationInput) (*EnableKeyRotati
 const opEncrypt = "Encrypt"
 
 // EncryptRequest generates a request for the Encrypt operation.
-func (c *KMS) EncryptRequest(input *EncryptInput) (req *service.Request, output *EncryptOutput) {
-	op := &service.Operation{
+func (c *KMS) EncryptRequest(input *EncryptInput) (req *request.Request, output *EncryptOutput) {
+	op := &request.Operation{
 		Name:       opEncrypt,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -357,8 +357,8 @@ func (c *KMS) Encrypt(input *EncryptInput) (*EncryptOutput, error) {
 const opGenerateDataKey = "GenerateDataKey"
 
 // GenerateDataKeyRequest generates a request for the GenerateDataKey operation.
-func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *service.Request, output *GenerateDataKeyOutput) {
-	op := &service.Operation{
+func (c *KMS) GenerateDataKeyRequest(input *GenerateDataKeyInput) (req *request.Request, output *GenerateDataKeyOutput) {
+	op := &request.Operation{
 		Name:       opGenerateDataKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -413,8 +413,8 @@ func (c *KMS) GenerateDataKey(input *GenerateDataKeyInput) (*GenerateDataKeyOutp
 const opGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
 
 // GenerateDataKeyWithoutPlaintextRequest generates a request for the GenerateDataKeyWithoutPlaintext operation.
-func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWithoutPlaintextInput) (req *service.Request, output *GenerateDataKeyWithoutPlaintextOutput) {
-	op := &service.Operation{
+func (c *KMS) GenerateDataKeyWithoutPlaintextRequest(input *GenerateDataKeyWithoutPlaintextInput) (req *request.Request, output *GenerateDataKeyWithoutPlaintextOutput) {
+	op := &request.Operation{
 		Name:       opGenerateDataKeyWithoutPlaintext,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -444,8 +444,8 @@ func (c *KMS) GenerateDataKeyWithoutPlaintext(input *GenerateDataKeyWithoutPlain
 const opGenerateRandom = "GenerateRandom"
 
 // GenerateRandomRequest generates a request for the GenerateRandom operation.
-func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *service.Request, output *GenerateRandomOutput) {
-	op := &service.Operation{
+func (c *KMS) GenerateRandomRequest(input *GenerateRandomInput) (req *request.Request, output *GenerateRandomOutput) {
+	op := &request.Operation{
 		Name:       opGenerateRandom,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -471,8 +471,8 @@ func (c *KMS) GenerateRandom(input *GenerateRandomInput) (*GenerateRandomOutput,
 const opGetKeyPolicy = "GetKeyPolicy"
 
 // GetKeyPolicyRequest generates a request for the GetKeyPolicy operation.
-func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *service.Request, output *GetKeyPolicyOutput) {
-	op := &service.Operation{
+func (c *KMS) GetKeyPolicyRequest(input *GetKeyPolicyInput) (req *request.Request, output *GetKeyPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetKeyPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -498,8 +498,8 @@ func (c *KMS) GetKeyPolicy(input *GetKeyPolicyInput) (*GetKeyPolicyOutput, error
 const opGetKeyRotationStatus = "GetKeyRotationStatus"
 
 // GetKeyRotationStatusRequest generates a request for the GetKeyRotationStatus operation.
-func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req *service.Request, output *GetKeyRotationStatusOutput) {
-	op := &service.Operation{
+func (c *KMS) GetKeyRotationStatusRequest(input *GetKeyRotationStatusInput) (req *request.Request, output *GetKeyRotationStatusOutput) {
+	op := &request.Operation{
 		Name:       opGetKeyRotationStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -526,12 +526,12 @@ func (c *KMS) GetKeyRotationStatus(input *GetKeyRotationStatusInput) (*GetKeyRot
 const opListAliases = "ListAliases"
 
 // ListAliasesRequest generates a request for the ListAliases operation.
-func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *service.Request, output *ListAliasesOutput) {
-	op := &service.Operation{
+func (c *KMS) ListAliasesRequest(input *ListAliasesInput) (req *request.Request, output *ListAliasesOutput) {
+	op := &request.Operation{
 		Name:       opListAliases,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "Limit",
@@ -566,12 +566,12 @@ func (c *KMS) ListAliasesPages(input *ListAliasesInput, fn func(p *ListAliasesOu
 const opListGrants = "ListGrants"
 
 // ListGrantsRequest generates a request for the ListGrants operation.
-func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *service.Request, output *ListGrantsOutput) {
-	op := &service.Operation{
+func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, output *ListGrantsOutput) {
+	op := &request.Operation{
 		Name:       opListGrants,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "Limit",
@@ -606,12 +606,12 @@ func (c *KMS) ListGrantsPages(input *ListGrantsInput, fn func(p *ListGrantsOutpu
 const opListKeyPolicies = "ListKeyPolicies"
 
 // ListKeyPoliciesRequest generates a request for the ListKeyPolicies operation.
-func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *service.Request, output *ListKeyPoliciesOutput) {
-	op := &service.Operation{
+func (c *KMS) ListKeyPoliciesRequest(input *ListKeyPoliciesInput) (req *request.Request, output *ListKeyPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListKeyPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "Limit",
@@ -646,12 +646,12 @@ func (c *KMS) ListKeyPoliciesPages(input *ListKeyPoliciesInput, fn func(p *ListK
 const opListKeys = "ListKeys"
 
 // ListKeysRequest generates a request for the ListKeys operation.
-func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *service.Request, output *ListKeysOutput) {
-	op := &service.Operation{
+func (c *KMS) ListKeysRequest(input *ListKeysInput) (req *request.Request, output *ListKeysOutput) {
+	op := &request.Operation{
 		Name:       opListKeys,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "Limit",
@@ -686,8 +686,8 @@ func (c *KMS) ListKeysPages(input *ListKeysInput, fn func(p *ListKeysOutput, las
 const opPutKeyPolicy = "PutKeyPolicy"
 
 // PutKeyPolicyRequest generates a request for the PutKeyPolicy operation.
-func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *service.Request, output *PutKeyPolicyOutput) {
-	op := &service.Operation{
+func (c *KMS) PutKeyPolicyRequest(input *PutKeyPolicyInput) (req *request.Request, output *PutKeyPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutKeyPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -713,8 +713,8 @@ func (c *KMS) PutKeyPolicy(input *PutKeyPolicyInput) (*PutKeyPolicyOutput, error
 const opReEncrypt = "ReEncrypt"
 
 // ReEncryptRequest generates a request for the ReEncrypt operation.
-func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *service.Request, output *ReEncryptOutput) {
-	op := &service.Operation{
+func (c *KMS) ReEncryptRequest(input *ReEncryptInput) (req *request.Request, output *ReEncryptOutput) {
+	op := &request.Operation{
 		Name:       opReEncrypt,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -751,8 +751,8 @@ func (c *KMS) ReEncrypt(input *ReEncryptInput) (*ReEncryptOutput, error) {
 const opRetireGrant = "RetireGrant"
 
 // RetireGrantRequest generates a request for the RetireGrant operation.
-func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *service.Request, output *RetireGrantOutput) {
-	op := &service.Operation{
+func (c *KMS) RetireGrantRequest(input *RetireGrantInput) (req *request.Request, output *RetireGrantOutput) {
+	op := &request.Operation{
 		Name:       opRetireGrant,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -786,8 +786,8 @@ func (c *KMS) RetireGrant(input *RetireGrantInput) (*RetireGrantOutput, error) {
 const opRevokeGrant = "RevokeGrant"
 
 // RevokeGrantRequest generates a request for the RevokeGrant operation.
-func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *service.Request, output *RevokeGrantOutput) {
-	op := &service.Operation{
+func (c *KMS) RevokeGrantRequest(input *RevokeGrantInput) (req *request.Request, output *RevokeGrantOutput) {
+	op := &request.Operation{
 		Name:       opRevokeGrant,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -814,8 +814,8 @@ func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, error) {
 const opUpdateAlias = "UpdateAlias"
 
 // UpdateAliasRequest generates a request for the UpdateAlias operation.
-func (c *KMS) UpdateAliasRequest(input *UpdateAliasInput) (req *service.Request, output *UpdateAliasOutput) {
-	op := &service.Operation{
+func (c *KMS) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Request, output *UpdateAliasOutput) {
+	op := &request.Operation{
 		Name:       opUpdateAlias,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -853,8 +853,8 @@ func (c *KMS) UpdateAlias(input *UpdateAliasInput) (*UpdateAliasOutput, error) {
 const opUpdateKeyDescription = "UpdateKeyDescription"
 
 // UpdateKeyDescriptionRequest generates a request for the UpdateKeyDescription operation.
-func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *service.Request, output *UpdateKeyDescriptionOutput) {
-	op := &service.Operation{
+func (c *KMS) UpdateKeyDescriptionRequest(input *UpdateKeyDescriptionInput) (req *request.Request, output *UpdateKeyDescriptionOutput) {
+	op := &request.Operation{
 		Name:       opUpdateKeyDescription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddInstanceGroups = "AddInstanceGroups"
 
 // AddInstanceGroupsRequest generates a request for the AddInstanceGroups operation.
-func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *service.Request, output *AddInstanceGroupsOutput) {
-	op := &service.Operation{
+func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *request.Request, output *AddInstanceGroupsOutput) {
+	op := &request.Operation{
 		Name:       opAddInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGrou
 const opAddJobFlowSteps = "AddJobFlowSteps"
 
 // AddJobFlowStepsRequest generates a request for the AddJobFlowSteps operation.
-func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *service.Request, output *AddJobFlowStepsOutput) {
-	op := &service.Operation{
+func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.Request, output *AddJobFlowStepsOutput) {
+	op := &request.Operation{
 		Name:       opAddJobFlowSteps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -90,8 +90,8 @@ func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutp
 const opAddTags = "AddTags"
 
 // AddTagsRequest generates a request for the AddTags operation.
-func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *service.Request, output *AddTagsOutput) {
-	op := &service.Operation{
+func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
+	op := &request.Operation{
 		Name:       opAddTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -120,8 +120,8 @@ func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 const opDescribeCluster = "DescribeCluster"
 
 // DescribeClusterRequest generates a request for the DescribeCluster operation.
-func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *service.Request, output *DescribeClusterOutput) {
-	op := &service.Operation{
+func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.Request, output *DescribeClusterOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -148,8 +148,8 @@ func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutp
 const opDescribeJobFlows = "DescribeJobFlows"
 
 // DescribeJobFlowsRequest generates a request for the DescribeJobFlows operation.
-func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *service.Request, output *DescribeJobFlowsOutput) {
-	op := &service.Operation{
+func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *request.Request, output *DescribeJobFlowsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeJobFlows,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -192,8 +192,8 @@ func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsO
 const opDescribeStep = "DescribeStep"
 
 // DescribeStepRequest generates a request for the DescribeStep operation.
-func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *service.Request, output *DescribeStepOutput) {
-	op := &service.Operation{
+func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Request, output *DescribeStepOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStep,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -219,12 +219,12 @@ func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error
 const opListBootstrapActions = "ListBootstrapActions"
 
 // ListBootstrapActionsRequest generates a request for the ListBootstrapActions operation.
-func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *service.Request, output *ListBootstrapActionsOutput) {
-	op := &service.Operation{
+func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *request.Request, output *ListBootstrapActionsOutput) {
+	op := &request.Operation{
 		Name:       opListBootstrapActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -259,12 +259,12 @@ func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn fun
 const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a request for the ListClusters operation.
-func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *service.Request, output *ListClustersOutput) {
-	op := &service.Operation{
+func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Request, output *ListClustersOutput) {
+	op := &request.Operation{
 		Name:       opListClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -303,12 +303,12 @@ func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 const opListInstanceGroups = "ListInstanceGroups"
 
 // ListInstanceGroupsRequest generates a request for the ListInstanceGroups operation.
-func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *service.Request, output *ListInstanceGroupsOutput) {
-	op := &service.Operation{
+func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *request.Request, output *ListInstanceGroupsOutput) {
+	op := &request.Operation{
 		Name:       opListInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -343,12 +343,12 @@ func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p 
 const opListInstances = "ListInstances"
 
 // ListInstancesRequest generates a request for the ListInstances operation.
-func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *service.Request, output *ListInstancesOutput) {
-	op := &service.Operation{
+func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
+	op := &request.Operation{
 		Name:       opListInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -387,12 +387,12 @@ func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInsta
 const opListSteps = "ListSteps"
 
 // ListStepsRequest generates a request for the ListSteps operation.
-func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *service.Request, output *ListStepsOutput) {
-	op := &service.Operation{
+func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, output *ListStepsOutput) {
+	op := &request.Operation{
 		Name:       opListSteps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -427,8 +427,8 @@ func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, 
 const opModifyInstanceGroups = "ModifyInstanceGroups"
 
 // ModifyInstanceGroupsRequest generates a request for the ModifyInstanceGroups operation.
-func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *service.Request, output *ModifyInstanceGroupsOutput) {
-	op := &service.Operation{
+func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *request.Request, output *ModifyInstanceGroupsOutput) {
+	op := &request.Operation{
 		Name:       opModifyInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -457,8 +457,8 @@ func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyIns
 const opRemoveTags = "RemoveTags"
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
-func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *service.Request, output *RemoveTagsOutput) {
-	op := &service.Operation{
+func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -489,8 +489,8 @@ func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 const opRunJobFlow = "RunJobFlow"
 
 // RunJobFlowRequest generates a request for the RunJobFlow operation.
-func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *service.Request, output *RunJobFlowOutput) {
-	op := &service.Operation{
+func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, output *RunJobFlowOutput) {
+	op := &request.Operation{
 		Name:       opRunJobFlow,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -538,8 +538,8 @@ func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
 const opSetTerminationProtection = "SetTerminationProtection"
 
 // SetTerminationProtectionRequest generates a request for the SetTerminationProtection operation.
-func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *service.Request, output *SetTerminationProtectionOutput) {
-	op := &service.Operation{
+func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *request.Request, output *SetTerminationProtectionOutput) {
+	op := &request.Operation{
 		Name:       opSetTerminationProtection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -581,8 +581,8 @@ func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*S
 const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 
 // SetVisibleToAllUsersRequest generates a request for the SetVisibleToAllUsers operation.
-func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *service.Request, output *SetVisibleToAllUsersOutput) {
-	op := &service.Operation{
+func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *request.Request, output *SetVisibleToAllUsersOutput) {
+	op := &request.Operation{
 		Name:       opSetVisibleToAllUsers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -613,8 +613,8 @@ func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibl
 const opTerminateJobFlows = "TerminateJobFlows"
 
 // TerminateJobFlowsRequest generates a request for the TerminateJobFlows operation.
-func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *service.Request, output *TerminateJobFlowsOutput) {
-	op := &service.Operation{
+func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *request.Request, output *TerminateJobFlowsOutput) {
+	op := &request.Operation{
 		Name:       opTerminateJobFlows,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -5,14 +5,14 @@ package mobileanalytics
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opPutEvents = "PutEvents"
 
 // PutEventsRequest generates a request for the PutEvents operation.
-func (c *MobileAnalytics) PutEventsRequest(input *PutEventsInput) (req *service.Request, output *PutEventsOutput) {
-	op := &service.Operation{
+func (c *MobileAnalytics) PutEventsRequest(input *PutEventsInput) (req *request.Request, output *PutEventsOutput) {
+	op := &request.Operation{
 		Name:       opPutEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2014-06-05/events",

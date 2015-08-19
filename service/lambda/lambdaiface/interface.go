@@ -4,81 +4,81 @@
 package lambdaiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/lambda"
 )
 
 // LambdaAPI is the interface type for lambda.Lambda.
 type LambdaAPI interface {
-	AddPermissionRequest(*lambda.AddPermissionInput) (*service.Request, *lambda.AddPermissionOutput)
+	AddPermissionRequest(*lambda.AddPermissionInput) (*request.Request, *lambda.AddPermissionOutput)
 
 	AddPermission(*lambda.AddPermissionInput) (*lambda.AddPermissionOutput, error)
 
-	CreateEventSourceMappingRequest(*lambda.CreateEventSourceMappingInput) (*service.Request, *lambda.EventSourceMappingConfiguration)
+	CreateEventSourceMappingRequest(*lambda.CreateEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
 
 	CreateEventSourceMapping(*lambda.CreateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
-	CreateFunctionRequest(*lambda.CreateFunctionInput) (*service.Request, *lambda.FunctionConfiguration)
+	CreateFunctionRequest(*lambda.CreateFunctionInput) (*request.Request, *lambda.FunctionConfiguration)
 
 	CreateFunction(*lambda.CreateFunctionInput) (*lambda.FunctionConfiguration, error)
 
-	DeleteEventSourceMappingRequest(*lambda.DeleteEventSourceMappingInput) (*service.Request, *lambda.EventSourceMappingConfiguration)
+	DeleteEventSourceMappingRequest(*lambda.DeleteEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
 
 	DeleteEventSourceMapping(*lambda.DeleteEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
-	DeleteFunctionRequest(*lambda.DeleteFunctionInput) (*service.Request, *lambda.DeleteFunctionOutput)
+	DeleteFunctionRequest(*lambda.DeleteFunctionInput) (*request.Request, *lambda.DeleteFunctionOutput)
 
 	DeleteFunction(*lambda.DeleteFunctionInput) (*lambda.DeleteFunctionOutput, error)
 
-	GetEventSourceMappingRequest(*lambda.GetEventSourceMappingInput) (*service.Request, *lambda.EventSourceMappingConfiguration)
+	GetEventSourceMappingRequest(*lambda.GetEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
 
 	GetEventSourceMapping(*lambda.GetEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
-	GetFunctionRequest(*lambda.GetFunctionInput) (*service.Request, *lambda.GetFunctionOutput)
+	GetFunctionRequest(*lambda.GetFunctionInput) (*request.Request, *lambda.GetFunctionOutput)
 
 	GetFunction(*lambda.GetFunctionInput) (*lambda.GetFunctionOutput, error)
 
-	GetFunctionConfigurationRequest(*lambda.GetFunctionConfigurationInput) (*service.Request, *lambda.FunctionConfiguration)
+	GetFunctionConfigurationRequest(*lambda.GetFunctionConfigurationInput) (*request.Request, *lambda.FunctionConfiguration)
 
 	GetFunctionConfiguration(*lambda.GetFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 
-	GetPolicyRequest(*lambda.GetPolicyInput) (*service.Request, *lambda.GetPolicyOutput)
+	GetPolicyRequest(*lambda.GetPolicyInput) (*request.Request, *lambda.GetPolicyOutput)
 
 	GetPolicy(*lambda.GetPolicyInput) (*lambda.GetPolicyOutput, error)
 
-	InvokeRequest(*lambda.InvokeInput) (*service.Request, *lambda.InvokeOutput)
+	InvokeRequest(*lambda.InvokeInput) (*request.Request, *lambda.InvokeOutput)
 
 	Invoke(*lambda.InvokeInput) (*lambda.InvokeOutput, error)
 
-	InvokeAsyncRequest(*lambda.InvokeAsyncInput) (*service.Request, *lambda.InvokeAsyncOutput)
+	InvokeAsyncRequest(*lambda.InvokeAsyncInput) (*request.Request, *lambda.InvokeAsyncOutput)
 
 	InvokeAsync(*lambda.InvokeAsyncInput) (*lambda.InvokeAsyncOutput, error)
 
-	ListEventSourceMappingsRequest(*lambda.ListEventSourceMappingsInput) (*service.Request, *lambda.ListEventSourceMappingsOutput)
+	ListEventSourceMappingsRequest(*lambda.ListEventSourceMappingsInput) (*request.Request, *lambda.ListEventSourceMappingsOutput)
 
 	ListEventSourceMappings(*lambda.ListEventSourceMappingsInput) (*lambda.ListEventSourceMappingsOutput, error)
 
 	ListEventSourceMappingsPages(*lambda.ListEventSourceMappingsInput, func(*lambda.ListEventSourceMappingsOutput, bool) bool) error
 
-	ListFunctionsRequest(*lambda.ListFunctionsInput) (*service.Request, *lambda.ListFunctionsOutput)
+	ListFunctionsRequest(*lambda.ListFunctionsInput) (*request.Request, *lambda.ListFunctionsOutput)
 
 	ListFunctions(*lambda.ListFunctionsInput) (*lambda.ListFunctionsOutput, error)
 
 	ListFunctionsPages(*lambda.ListFunctionsInput, func(*lambda.ListFunctionsOutput, bool) bool) error
 
-	RemovePermissionRequest(*lambda.RemovePermissionInput) (*service.Request, *lambda.RemovePermissionOutput)
+	RemovePermissionRequest(*lambda.RemovePermissionInput) (*request.Request, *lambda.RemovePermissionOutput)
 
 	RemovePermission(*lambda.RemovePermissionInput) (*lambda.RemovePermissionOutput, error)
 
-	UpdateEventSourceMappingRequest(*lambda.UpdateEventSourceMappingInput) (*service.Request, *lambda.EventSourceMappingConfiguration)
+	UpdateEventSourceMappingRequest(*lambda.UpdateEventSourceMappingInput) (*request.Request, *lambda.EventSourceMappingConfiguration)
 
 	UpdateEventSourceMapping(*lambda.UpdateEventSourceMappingInput) (*lambda.EventSourceMappingConfiguration, error)
 
-	UpdateFunctionCodeRequest(*lambda.UpdateFunctionCodeInput) (*service.Request, *lambda.FunctionConfiguration)
+	UpdateFunctionCodeRequest(*lambda.UpdateFunctionCodeInput) (*request.Request, *lambda.FunctionConfiguration)
 
 	UpdateFunctionCode(*lambda.UpdateFunctionCodeInput) (*lambda.FunctionConfiguration, error)
 
-	UpdateFunctionConfigurationRequest(*lambda.UpdateFunctionConfigurationInput) (*service.Request, *lambda.FunctionConfiguration)
+	UpdateFunctionConfigurationRequest(*lambda.UpdateFunctionConfigurationInput) (*request.Request, *lambda.FunctionConfiguration)
 
 	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 }

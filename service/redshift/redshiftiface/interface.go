@@ -4,275 +4,275 @@
 package redshiftiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/redshift"
 )
 
 // RedshiftAPI is the interface type for redshift.Redshift.
 type RedshiftAPI interface {
-	AuthorizeClusterSecurityGroupIngressRequest(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*service.Request, *redshift.AuthorizeClusterSecurityGroupIngressOutput)
+	AuthorizeClusterSecurityGroupIngressRequest(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*request.Request, *redshift.AuthorizeClusterSecurityGroupIngressOutput)
 
 	AuthorizeClusterSecurityGroupIngress(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*redshift.AuthorizeClusterSecurityGroupIngressOutput, error)
 
-	AuthorizeSnapshotAccessRequest(*redshift.AuthorizeSnapshotAccessInput) (*service.Request, *redshift.AuthorizeSnapshotAccessOutput)
+	AuthorizeSnapshotAccessRequest(*redshift.AuthorizeSnapshotAccessInput) (*request.Request, *redshift.AuthorizeSnapshotAccessOutput)
 
 	AuthorizeSnapshotAccess(*redshift.AuthorizeSnapshotAccessInput) (*redshift.AuthorizeSnapshotAccessOutput, error)
 
-	CopyClusterSnapshotRequest(*redshift.CopyClusterSnapshotInput) (*service.Request, *redshift.CopyClusterSnapshotOutput)
+	CopyClusterSnapshotRequest(*redshift.CopyClusterSnapshotInput) (*request.Request, *redshift.CopyClusterSnapshotOutput)
 
 	CopyClusterSnapshot(*redshift.CopyClusterSnapshotInput) (*redshift.CopyClusterSnapshotOutput, error)
 
-	CreateClusterRequest(*redshift.CreateClusterInput) (*service.Request, *redshift.CreateClusterOutput)
+	CreateClusterRequest(*redshift.CreateClusterInput) (*request.Request, *redshift.CreateClusterOutput)
 
 	CreateCluster(*redshift.CreateClusterInput) (*redshift.CreateClusterOutput, error)
 
-	CreateClusterParameterGroupRequest(*redshift.CreateClusterParameterGroupInput) (*service.Request, *redshift.CreateClusterParameterGroupOutput)
+	CreateClusterParameterGroupRequest(*redshift.CreateClusterParameterGroupInput) (*request.Request, *redshift.CreateClusterParameterGroupOutput)
 
 	CreateClusterParameterGroup(*redshift.CreateClusterParameterGroupInput) (*redshift.CreateClusterParameterGroupOutput, error)
 
-	CreateClusterSecurityGroupRequest(*redshift.CreateClusterSecurityGroupInput) (*service.Request, *redshift.CreateClusterSecurityGroupOutput)
+	CreateClusterSecurityGroupRequest(*redshift.CreateClusterSecurityGroupInput) (*request.Request, *redshift.CreateClusterSecurityGroupOutput)
 
 	CreateClusterSecurityGroup(*redshift.CreateClusterSecurityGroupInput) (*redshift.CreateClusterSecurityGroupOutput, error)
 
-	CreateClusterSnapshotRequest(*redshift.CreateClusterSnapshotInput) (*service.Request, *redshift.CreateClusterSnapshotOutput)
+	CreateClusterSnapshotRequest(*redshift.CreateClusterSnapshotInput) (*request.Request, *redshift.CreateClusterSnapshotOutput)
 
 	CreateClusterSnapshot(*redshift.CreateClusterSnapshotInput) (*redshift.CreateClusterSnapshotOutput, error)
 
-	CreateClusterSubnetGroupRequest(*redshift.CreateClusterSubnetGroupInput) (*service.Request, *redshift.CreateClusterSubnetGroupOutput)
+	CreateClusterSubnetGroupRequest(*redshift.CreateClusterSubnetGroupInput) (*request.Request, *redshift.CreateClusterSubnetGroupOutput)
 
 	CreateClusterSubnetGroup(*redshift.CreateClusterSubnetGroupInput) (*redshift.CreateClusterSubnetGroupOutput, error)
 
-	CreateEventSubscriptionRequest(*redshift.CreateEventSubscriptionInput) (*service.Request, *redshift.CreateEventSubscriptionOutput)
+	CreateEventSubscriptionRequest(*redshift.CreateEventSubscriptionInput) (*request.Request, *redshift.CreateEventSubscriptionOutput)
 
 	CreateEventSubscription(*redshift.CreateEventSubscriptionInput) (*redshift.CreateEventSubscriptionOutput, error)
 
-	CreateHsmClientCertificateRequest(*redshift.CreateHsmClientCertificateInput) (*service.Request, *redshift.CreateHsmClientCertificateOutput)
+	CreateHsmClientCertificateRequest(*redshift.CreateHsmClientCertificateInput) (*request.Request, *redshift.CreateHsmClientCertificateOutput)
 
 	CreateHsmClientCertificate(*redshift.CreateHsmClientCertificateInput) (*redshift.CreateHsmClientCertificateOutput, error)
 
-	CreateHsmConfigurationRequest(*redshift.CreateHsmConfigurationInput) (*service.Request, *redshift.CreateHsmConfigurationOutput)
+	CreateHsmConfigurationRequest(*redshift.CreateHsmConfigurationInput) (*request.Request, *redshift.CreateHsmConfigurationOutput)
 
 	CreateHsmConfiguration(*redshift.CreateHsmConfigurationInput) (*redshift.CreateHsmConfigurationOutput, error)
 
-	CreateSnapshotCopyGrantRequest(*redshift.CreateSnapshotCopyGrantInput) (*service.Request, *redshift.CreateSnapshotCopyGrantOutput)
+	CreateSnapshotCopyGrantRequest(*redshift.CreateSnapshotCopyGrantInput) (*request.Request, *redshift.CreateSnapshotCopyGrantOutput)
 
 	CreateSnapshotCopyGrant(*redshift.CreateSnapshotCopyGrantInput) (*redshift.CreateSnapshotCopyGrantOutput, error)
 
-	CreateTagsRequest(*redshift.CreateTagsInput) (*service.Request, *redshift.CreateTagsOutput)
+	CreateTagsRequest(*redshift.CreateTagsInput) (*request.Request, *redshift.CreateTagsOutput)
 
 	CreateTags(*redshift.CreateTagsInput) (*redshift.CreateTagsOutput, error)
 
-	DeleteClusterRequest(*redshift.DeleteClusterInput) (*service.Request, *redshift.DeleteClusterOutput)
+	DeleteClusterRequest(*redshift.DeleteClusterInput) (*request.Request, *redshift.DeleteClusterOutput)
 
 	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, error)
 
-	DeleteClusterParameterGroupRequest(*redshift.DeleteClusterParameterGroupInput) (*service.Request, *redshift.DeleteClusterParameterGroupOutput)
+	DeleteClusterParameterGroupRequest(*redshift.DeleteClusterParameterGroupInput) (*request.Request, *redshift.DeleteClusterParameterGroupOutput)
 
 	DeleteClusterParameterGroup(*redshift.DeleteClusterParameterGroupInput) (*redshift.DeleteClusterParameterGroupOutput, error)
 
-	DeleteClusterSecurityGroupRequest(*redshift.DeleteClusterSecurityGroupInput) (*service.Request, *redshift.DeleteClusterSecurityGroupOutput)
+	DeleteClusterSecurityGroupRequest(*redshift.DeleteClusterSecurityGroupInput) (*request.Request, *redshift.DeleteClusterSecurityGroupOutput)
 
 	DeleteClusterSecurityGroup(*redshift.DeleteClusterSecurityGroupInput) (*redshift.DeleteClusterSecurityGroupOutput, error)
 
-	DeleteClusterSnapshotRequest(*redshift.DeleteClusterSnapshotInput) (*service.Request, *redshift.DeleteClusterSnapshotOutput)
+	DeleteClusterSnapshotRequest(*redshift.DeleteClusterSnapshotInput) (*request.Request, *redshift.DeleteClusterSnapshotOutput)
 
 	DeleteClusterSnapshot(*redshift.DeleteClusterSnapshotInput) (*redshift.DeleteClusterSnapshotOutput, error)
 
-	DeleteClusterSubnetGroupRequest(*redshift.DeleteClusterSubnetGroupInput) (*service.Request, *redshift.DeleteClusterSubnetGroupOutput)
+	DeleteClusterSubnetGroupRequest(*redshift.DeleteClusterSubnetGroupInput) (*request.Request, *redshift.DeleteClusterSubnetGroupOutput)
 
 	DeleteClusterSubnetGroup(*redshift.DeleteClusterSubnetGroupInput) (*redshift.DeleteClusterSubnetGroupOutput, error)
 
-	DeleteEventSubscriptionRequest(*redshift.DeleteEventSubscriptionInput) (*service.Request, *redshift.DeleteEventSubscriptionOutput)
+	DeleteEventSubscriptionRequest(*redshift.DeleteEventSubscriptionInput) (*request.Request, *redshift.DeleteEventSubscriptionOutput)
 
 	DeleteEventSubscription(*redshift.DeleteEventSubscriptionInput) (*redshift.DeleteEventSubscriptionOutput, error)
 
-	DeleteHsmClientCertificateRequest(*redshift.DeleteHsmClientCertificateInput) (*service.Request, *redshift.DeleteHsmClientCertificateOutput)
+	DeleteHsmClientCertificateRequest(*redshift.DeleteHsmClientCertificateInput) (*request.Request, *redshift.DeleteHsmClientCertificateOutput)
 
 	DeleteHsmClientCertificate(*redshift.DeleteHsmClientCertificateInput) (*redshift.DeleteHsmClientCertificateOutput, error)
 
-	DeleteHsmConfigurationRequest(*redshift.DeleteHsmConfigurationInput) (*service.Request, *redshift.DeleteHsmConfigurationOutput)
+	DeleteHsmConfigurationRequest(*redshift.DeleteHsmConfigurationInput) (*request.Request, *redshift.DeleteHsmConfigurationOutput)
 
 	DeleteHsmConfiguration(*redshift.DeleteHsmConfigurationInput) (*redshift.DeleteHsmConfigurationOutput, error)
 
-	DeleteSnapshotCopyGrantRequest(*redshift.DeleteSnapshotCopyGrantInput) (*service.Request, *redshift.DeleteSnapshotCopyGrantOutput)
+	DeleteSnapshotCopyGrantRequest(*redshift.DeleteSnapshotCopyGrantInput) (*request.Request, *redshift.DeleteSnapshotCopyGrantOutput)
 
 	DeleteSnapshotCopyGrant(*redshift.DeleteSnapshotCopyGrantInput) (*redshift.DeleteSnapshotCopyGrantOutput, error)
 
-	DeleteTagsRequest(*redshift.DeleteTagsInput) (*service.Request, *redshift.DeleteTagsOutput)
+	DeleteTagsRequest(*redshift.DeleteTagsInput) (*request.Request, *redshift.DeleteTagsOutput)
 
 	DeleteTags(*redshift.DeleteTagsInput) (*redshift.DeleteTagsOutput, error)
 
-	DescribeClusterParameterGroupsRequest(*redshift.DescribeClusterParameterGroupsInput) (*service.Request, *redshift.DescribeClusterParameterGroupsOutput)
+	DescribeClusterParameterGroupsRequest(*redshift.DescribeClusterParameterGroupsInput) (*request.Request, *redshift.DescribeClusterParameterGroupsOutput)
 
 	DescribeClusterParameterGroups(*redshift.DescribeClusterParameterGroupsInput) (*redshift.DescribeClusterParameterGroupsOutput, error)
 
 	DescribeClusterParameterGroupsPages(*redshift.DescribeClusterParameterGroupsInput, func(*redshift.DescribeClusterParameterGroupsOutput, bool) bool) error
 
-	DescribeClusterParametersRequest(*redshift.DescribeClusterParametersInput) (*service.Request, *redshift.DescribeClusterParametersOutput)
+	DescribeClusterParametersRequest(*redshift.DescribeClusterParametersInput) (*request.Request, *redshift.DescribeClusterParametersOutput)
 
 	DescribeClusterParameters(*redshift.DescribeClusterParametersInput) (*redshift.DescribeClusterParametersOutput, error)
 
 	DescribeClusterParametersPages(*redshift.DescribeClusterParametersInput, func(*redshift.DescribeClusterParametersOutput, bool) bool) error
 
-	DescribeClusterSecurityGroupsRequest(*redshift.DescribeClusterSecurityGroupsInput) (*service.Request, *redshift.DescribeClusterSecurityGroupsOutput)
+	DescribeClusterSecurityGroupsRequest(*redshift.DescribeClusterSecurityGroupsInput) (*request.Request, *redshift.DescribeClusterSecurityGroupsOutput)
 
 	DescribeClusterSecurityGroups(*redshift.DescribeClusterSecurityGroupsInput) (*redshift.DescribeClusterSecurityGroupsOutput, error)
 
 	DescribeClusterSecurityGroupsPages(*redshift.DescribeClusterSecurityGroupsInput, func(*redshift.DescribeClusterSecurityGroupsOutput, bool) bool) error
 
-	DescribeClusterSnapshotsRequest(*redshift.DescribeClusterSnapshotsInput) (*service.Request, *redshift.DescribeClusterSnapshotsOutput)
+	DescribeClusterSnapshotsRequest(*redshift.DescribeClusterSnapshotsInput) (*request.Request, *redshift.DescribeClusterSnapshotsOutput)
 
 	DescribeClusterSnapshots(*redshift.DescribeClusterSnapshotsInput) (*redshift.DescribeClusterSnapshotsOutput, error)
 
 	DescribeClusterSnapshotsPages(*redshift.DescribeClusterSnapshotsInput, func(*redshift.DescribeClusterSnapshotsOutput, bool) bool) error
 
-	DescribeClusterSubnetGroupsRequest(*redshift.DescribeClusterSubnetGroupsInput) (*service.Request, *redshift.DescribeClusterSubnetGroupsOutput)
+	DescribeClusterSubnetGroupsRequest(*redshift.DescribeClusterSubnetGroupsInput) (*request.Request, *redshift.DescribeClusterSubnetGroupsOutput)
 
 	DescribeClusterSubnetGroups(*redshift.DescribeClusterSubnetGroupsInput) (*redshift.DescribeClusterSubnetGroupsOutput, error)
 
 	DescribeClusterSubnetGroupsPages(*redshift.DescribeClusterSubnetGroupsInput, func(*redshift.DescribeClusterSubnetGroupsOutput, bool) bool) error
 
-	DescribeClusterVersionsRequest(*redshift.DescribeClusterVersionsInput) (*service.Request, *redshift.DescribeClusterVersionsOutput)
+	DescribeClusterVersionsRequest(*redshift.DescribeClusterVersionsInput) (*request.Request, *redshift.DescribeClusterVersionsOutput)
 
 	DescribeClusterVersions(*redshift.DescribeClusterVersionsInput) (*redshift.DescribeClusterVersionsOutput, error)
 
 	DescribeClusterVersionsPages(*redshift.DescribeClusterVersionsInput, func(*redshift.DescribeClusterVersionsOutput, bool) bool) error
 
-	DescribeClustersRequest(*redshift.DescribeClustersInput) (*service.Request, *redshift.DescribeClustersOutput)
+	DescribeClustersRequest(*redshift.DescribeClustersInput) (*request.Request, *redshift.DescribeClustersOutput)
 
 	DescribeClusters(*redshift.DescribeClustersInput) (*redshift.DescribeClustersOutput, error)
 
 	DescribeClustersPages(*redshift.DescribeClustersInput, func(*redshift.DescribeClustersOutput, bool) bool) error
 
-	DescribeDefaultClusterParametersRequest(*redshift.DescribeDefaultClusterParametersInput) (*service.Request, *redshift.DescribeDefaultClusterParametersOutput)
+	DescribeDefaultClusterParametersRequest(*redshift.DescribeDefaultClusterParametersInput) (*request.Request, *redshift.DescribeDefaultClusterParametersOutput)
 
 	DescribeDefaultClusterParameters(*redshift.DescribeDefaultClusterParametersInput) (*redshift.DescribeDefaultClusterParametersOutput, error)
 
 	DescribeDefaultClusterParametersPages(*redshift.DescribeDefaultClusterParametersInput, func(*redshift.DescribeDefaultClusterParametersOutput, bool) bool) error
 
-	DescribeEventCategoriesRequest(*redshift.DescribeEventCategoriesInput) (*service.Request, *redshift.DescribeEventCategoriesOutput)
+	DescribeEventCategoriesRequest(*redshift.DescribeEventCategoriesInput) (*request.Request, *redshift.DescribeEventCategoriesOutput)
 
 	DescribeEventCategories(*redshift.DescribeEventCategoriesInput) (*redshift.DescribeEventCategoriesOutput, error)
 
-	DescribeEventSubscriptionsRequest(*redshift.DescribeEventSubscriptionsInput) (*service.Request, *redshift.DescribeEventSubscriptionsOutput)
+	DescribeEventSubscriptionsRequest(*redshift.DescribeEventSubscriptionsInput) (*request.Request, *redshift.DescribeEventSubscriptionsOutput)
 
 	DescribeEventSubscriptions(*redshift.DescribeEventSubscriptionsInput) (*redshift.DescribeEventSubscriptionsOutput, error)
 
 	DescribeEventSubscriptionsPages(*redshift.DescribeEventSubscriptionsInput, func(*redshift.DescribeEventSubscriptionsOutput, bool) bool) error
 
-	DescribeEventsRequest(*redshift.DescribeEventsInput) (*service.Request, *redshift.DescribeEventsOutput)
+	DescribeEventsRequest(*redshift.DescribeEventsInput) (*request.Request, *redshift.DescribeEventsOutput)
 
 	DescribeEvents(*redshift.DescribeEventsInput) (*redshift.DescribeEventsOutput, error)
 
 	DescribeEventsPages(*redshift.DescribeEventsInput, func(*redshift.DescribeEventsOutput, bool) bool) error
 
-	DescribeHsmClientCertificatesRequest(*redshift.DescribeHsmClientCertificatesInput) (*service.Request, *redshift.DescribeHsmClientCertificatesOutput)
+	DescribeHsmClientCertificatesRequest(*redshift.DescribeHsmClientCertificatesInput) (*request.Request, *redshift.DescribeHsmClientCertificatesOutput)
 
 	DescribeHsmClientCertificates(*redshift.DescribeHsmClientCertificatesInput) (*redshift.DescribeHsmClientCertificatesOutput, error)
 
 	DescribeHsmClientCertificatesPages(*redshift.DescribeHsmClientCertificatesInput, func(*redshift.DescribeHsmClientCertificatesOutput, bool) bool) error
 
-	DescribeHsmConfigurationsRequest(*redshift.DescribeHsmConfigurationsInput) (*service.Request, *redshift.DescribeHsmConfigurationsOutput)
+	DescribeHsmConfigurationsRequest(*redshift.DescribeHsmConfigurationsInput) (*request.Request, *redshift.DescribeHsmConfigurationsOutput)
 
 	DescribeHsmConfigurations(*redshift.DescribeHsmConfigurationsInput) (*redshift.DescribeHsmConfigurationsOutput, error)
 
 	DescribeHsmConfigurationsPages(*redshift.DescribeHsmConfigurationsInput, func(*redshift.DescribeHsmConfigurationsOutput, bool) bool) error
 
-	DescribeLoggingStatusRequest(*redshift.DescribeLoggingStatusInput) (*service.Request, *redshift.LoggingStatus)
+	DescribeLoggingStatusRequest(*redshift.DescribeLoggingStatusInput) (*request.Request, *redshift.LoggingStatus)
 
 	DescribeLoggingStatus(*redshift.DescribeLoggingStatusInput) (*redshift.LoggingStatus, error)
 
-	DescribeOrderableClusterOptionsRequest(*redshift.DescribeOrderableClusterOptionsInput) (*service.Request, *redshift.DescribeOrderableClusterOptionsOutput)
+	DescribeOrderableClusterOptionsRequest(*redshift.DescribeOrderableClusterOptionsInput) (*request.Request, *redshift.DescribeOrderableClusterOptionsOutput)
 
 	DescribeOrderableClusterOptions(*redshift.DescribeOrderableClusterOptionsInput) (*redshift.DescribeOrderableClusterOptionsOutput, error)
 
 	DescribeOrderableClusterOptionsPages(*redshift.DescribeOrderableClusterOptionsInput, func(*redshift.DescribeOrderableClusterOptionsOutput, bool) bool) error
 
-	DescribeReservedNodeOfferingsRequest(*redshift.DescribeReservedNodeOfferingsInput) (*service.Request, *redshift.DescribeReservedNodeOfferingsOutput)
+	DescribeReservedNodeOfferingsRequest(*redshift.DescribeReservedNodeOfferingsInput) (*request.Request, *redshift.DescribeReservedNodeOfferingsOutput)
 
 	DescribeReservedNodeOfferings(*redshift.DescribeReservedNodeOfferingsInput) (*redshift.DescribeReservedNodeOfferingsOutput, error)
 
 	DescribeReservedNodeOfferingsPages(*redshift.DescribeReservedNodeOfferingsInput, func(*redshift.DescribeReservedNodeOfferingsOutput, bool) bool) error
 
-	DescribeReservedNodesRequest(*redshift.DescribeReservedNodesInput) (*service.Request, *redshift.DescribeReservedNodesOutput)
+	DescribeReservedNodesRequest(*redshift.DescribeReservedNodesInput) (*request.Request, *redshift.DescribeReservedNodesOutput)
 
 	DescribeReservedNodes(*redshift.DescribeReservedNodesInput) (*redshift.DescribeReservedNodesOutput, error)
 
 	DescribeReservedNodesPages(*redshift.DescribeReservedNodesInput, func(*redshift.DescribeReservedNodesOutput, bool) bool) error
 
-	DescribeResizeRequest(*redshift.DescribeResizeInput) (*service.Request, *redshift.DescribeResizeOutput)
+	DescribeResizeRequest(*redshift.DescribeResizeInput) (*request.Request, *redshift.DescribeResizeOutput)
 
 	DescribeResize(*redshift.DescribeResizeInput) (*redshift.DescribeResizeOutput, error)
 
-	DescribeSnapshotCopyGrantsRequest(*redshift.DescribeSnapshotCopyGrantsInput) (*service.Request, *redshift.DescribeSnapshotCopyGrantsOutput)
+	DescribeSnapshotCopyGrantsRequest(*redshift.DescribeSnapshotCopyGrantsInput) (*request.Request, *redshift.DescribeSnapshotCopyGrantsOutput)
 
 	DescribeSnapshotCopyGrants(*redshift.DescribeSnapshotCopyGrantsInput) (*redshift.DescribeSnapshotCopyGrantsOutput, error)
 
-	DescribeTagsRequest(*redshift.DescribeTagsInput) (*service.Request, *redshift.DescribeTagsOutput)
+	DescribeTagsRequest(*redshift.DescribeTagsInput) (*request.Request, *redshift.DescribeTagsOutput)
 
 	DescribeTags(*redshift.DescribeTagsInput) (*redshift.DescribeTagsOutput, error)
 
-	DisableLoggingRequest(*redshift.DisableLoggingInput) (*service.Request, *redshift.LoggingStatus)
+	DisableLoggingRequest(*redshift.DisableLoggingInput) (*request.Request, *redshift.LoggingStatus)
 
 	DisableLogging(*redshift.DisableLoggingInput) (*redshift.LoggingStatus, error)
 
-	DisableSnapshotCopyRequest(*redshift.DisableSnapshotCopyInput) (*service.Request, *redshift.DisableSnapshotCopyOutput)
+	DisableSnapshotCopyRequest(*redshift.DisableSnapshotCopyInput) (*request.Request, *redshift.DisableSnapshotCopyOutput)
 
 	DisableSnapshotCopy(*redshift.DisableSnapshotCopyInput) (*redshift.DisableSnapshotCopyOutput, error)
 
-	EnableLoggingRequest(*redshift.EnableLoggingInput) (*service.Request, *redshift.LoggingStatus)
+	EnableLoggingRequest(*redshift.EnableLoggingInput) (*request.Request, *redshift.LoggingStatus)
 
 	EnableLogging(*redshift.EnableLoggingInput) (*redshift.LoggingStatus, error)
 
-	EnableSnapshotCopyRequest(*redshift.EnableSnapshotCopyInput) (*service.Request, *redshift.EnableSnapshotCopyOutput)
+	EnableSnapshotCopyRequest(*redshift.EnableSnapshotCopyInput) (*request.Request, *redshift.EnableSnapshotCopyOutput)
 
 	EnableSnapshotCopy(*redshift.EnableSnapshotCopyInput) (*redshift.EnableSnapshotCopyOutput, error)
 
-	ModifyClusterRequest(*redshift.ModifyClusterInput) (*service.Request, *redshift.ModifyClusterOutput)
+	ModifyClusterRequest(*redshift.ModifyClusterInput) (*request.Request, *redshift.ModifyClusterOutput)
 
 	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 
-	ModifyClusterParameterGroupRequest(*redshift.ModifyClusterParameterGroupInput) (*service.Request, *redshift.ClusterParameterGroupNameMessage)
+	ModifyClusterParameterGroupRequest(*redshift.ModifyClusterParameterGroupInput) (*request.Request, *redshift.ClusterParameterGroupNameMessage)
 
 	ModifyClusterParameterGroup(*redshift.ModifyClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
 
-	ModifyClusterSubnetGroupRequest(*redshift.ModifyClusterSubnetGroupInput) (*service.Request, *redshift.ModifyClusterSubnetGroupOutput)
+	ModifyClusterSubnetGroupRequest(*redshift.ModifyClusterSubnetGroupInput) (*request.Request, *redshift.ModifyClusterSubnetGroupOutput)
 
 	ModifyClusterSubnetGroup(*redshift.ModifyClusterSubnetGroupInput) (*redshift.ModifyClusterSubnetGroupOutput, error)
 
-	ModifyEventSubscriptionRequest(*redshift.ModifyEventSubscriptionInput) (*service.Request, *redshift.ModifyEventSubscriptionOutput)
+	ModifyEventSubscriptionRequest(*redshift.ModifyEventSubscriptionInput) (*request.Request, *redshift.ModifyEventSubscriptionOutput)
 
 	ModifyEventSubscription(*redshift.ModifyEventSubscriptionInput) (*redshift.ModifyEventSubscriptionOutput, error)
 
-	ModifySnapshotCopyRetentionPeriodRequest(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*service.Request, *redshift.ModifySnapshotCopyRetentionPeriodOutput)
+	ModifySnapshotCopyRetentionPeriodRequest(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*request.Request, *redshift.ModifySnapshotCopyRetentionPeriodOutput)
 
 	ModifySnapshotCopyRetentionPeriod(*redshift.ModifySnapshotCopyRetentionPeriodInput) (*redshift.ModifySnapshotCopyRetentionPeriodOutput, error)
 
-	PurchaseReservedNodeOfferingRequest(*redshift.PurchaseReservedNodeOfferingInput) (*service.Request, *redshift.PurchaseReservedNodeOfferingOutput)
+	PurchaseReservedNodeOfferingRequest(*redshift.PurchaseReservedNodeOfferingInput) (*request.Request, *redshift.PurchaseReservedNodeOfferingOutput)
 
 	PurchaseReservedNodeOffering(*redshift.PurchaseReservedNodeOfferingInput) (*redshift.PurchaseReservedNodeOfferingOutput, error)
 
-	RebootClusterRequest(*redshift.RebootClusterInput) (*service.Request, *redshift.RebootClusterOutput)
+	RebootClusterRequest(*redshift.RebootClusterInput) (*request.Request, *redshift.RebootClusterOutput)
 
 	RebootCluster(*redshift.RebootClusterInput) (*redshift.RebootClusterOutput, error)
 
-	ResetClusterParameterGroupRequest(*redshift.ResetClusterParameterGroupInput) (*service.Request, *redshift.ClusterParameterGroupNameMessage)
+	ResetClusterParameterGroupRequest(*redshift.ResetClusterParameterGroupInput) (*request.Request, *redshift.ClusterParameterGroupNameMessage)
 
 	ResetClusterParameterGroup(*redshift.ResetClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
 
-	RestoreFromClusterSnapshotRequest(*redshift.RestoreFromClusterSnapshotInput) (*service.Request, *redshift.RestoreFromClusterSnapshotOutput)
+	RestoreFromClusterSnapshotRequest(*redshift.RestoreFromClusterSnapshotInput) (*request.Request, *redshift.RestoreFromClusterSnapshotOutput)
 
 	RestoreFromClusterSnapshot(*redshift.RestoreFromClusterSnapshotInput) (*redshift.RestoreFromClusterSnapshotOutput, error)
 
-	RevokeClusterSecurityGroupIngressRequest(*redshift.RevokeClusterSecurityGroupIngressInput) (*service.Request, *redshift.RevokeClusterSecurityGroupIngressOutput)
+	RevokeClusterSecurityGroupIngressRequest(*redshift.RevokeClusterSecurityGroupIngressInput) (*request.Request, *redshift.RevokeClusterSecurityGroupIngressOutput)
 
 	RevokeClusterSecurityGroupIngress(*redshift.RevokeClusterSecurityGroupIngressInput) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)
 
-	RevokeSnapshotAccessRequest(*redshift.RevokeSnapshotAccessInput) (*service.Request, *redshift.RevokeSnapshotAccessOutput)
+	RevokeSnapshotAccessRequest(*redshift.RevokeSnapshotAccessInput) (*request.Request, *redshift.RevokeSnapshotAccessOutput)
 
 	RevokeSnapshotAccess(*redshift.RevokeSnapshotAccessInput) (*redshift.RevokeSnapshotAccessOutput, error)
 
-	RotateEncryptionKeyRequest(*redshift.RotateEncryptionKeyInput) (*service.Request, *redshift.RotateEncryptionKeyOutput)
+	RotateEncryptionKeyRequest(*redshift.RotateEncryptionKeyInput) (*request.Request, *redshift.RotateEncryptionKeyOutput)
 
 	RotateEncryptionKey(*redshift.RotateEncryptionKeyInput) (*redshift.RotateEncryptionKeyOutput, error)
 }

@@ -5,14 +5,14 @@ package sns
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddPermission = "AddPermission"
 
 // AddPermissionRequest generates a request for the AddPermission operation.
-func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *service.Request, output *AddPermissionOutput) {
-	op := &service.Operation{
+func (c *SNS) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
+	op := &request.Operation{
 		Name:       opAddPermission,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -39,8 +39,8 @@ func (c *SNS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, er
 const opConfirmSubscription = "ConfirmSubscription"
 
 // ConfirmSubscriptionRequest generates a request for the ConfirmSubscription operation.
-func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *service.Request, output *ConfirmSubscriptionOutput) {
-	op := &service.Operation{
+func (c *SNS) ConfirmSubscriptionRequest(input *ConfirmSubscriptionInput) (req *request.Request, output *ConfirmSubscriptionOutput) {
+	op := &request.Operation{
 		Name:       opConfirmSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -70,8 +70,8 @@ func (c *SNS) ConfirmSubscription(input *ConfirmSubscriptionInput) (*ConfirmSubs
 const opCreatePlatformApplication = "CreatePlatformApplication"
 
 // CreatePlatformApplicationRequest generates a request for the CreatePlatformApplication operation.
-func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *service.Request, output *CreatePlatformApplicationOutput) {
-	op := &service.Operation{
+func (c *SNS) CreatePlatformApplicationRequest(input *CreatePlatformApplicationInput) (req *request.Request, output *CreatePlatformApplicationOutput) {
+	op := &request.Operation{
 		Name:       opCreatePlatformApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -109,8 +109,8 @@ func (c *SNS) CreatePlatformApplication(input *CreatePlatformApplicationInput) (
 const opCreatePlatformEndpoint = "CreatePlatformEndpoint"
 
 // CreatePlatformEndpointRequest generates a request for the CreatePlatformEndpoint operation.
-func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *service.Request, output *CreatePlatformEndpointOutput) {
-	op := &service.Operation{
+func (c *SNS) CreatePlatformEndpointRequest(input *CreatePlatformEndpointInput) (req *request.Request, output *CreatePlatformEndpointOutput) {
+	op := &request.Operation{
 		Name:       opCreatePlatformEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -149,8 +149,8 @@ func (c *SNS) CreatePlatformEndpoint(input *CreatePlatformEndpointInput) (*Creat
 const opCreateTopic = "CreateTopic"
 
 // CreateTopicRequest generates a request for the CreateTopic operation.
-func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *service.Request, output *CreateTopicOutput) {
-	op := &service.Operation{
+func (c *SNS) CreateTopicRequest(input *CreateTopicInput) (req *request.Request, output *CreateTopicOutput) {
+	op := &request.Operation{
 		Name:       opCreateTopic,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -180,8 +180,8 @@ func (c *SNS) CreateTopic(input *CreateTopicInput) (*CreateTopicOutput, error) {
 const opDeleteEndpoint = "DeleteEndpoint"
 
 // DeleteEndpointRequest generates a request for the DeleteEndpoint operation.
-func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *service.Request, output *DeleteEndpointOutput) {
-	op := &service.Operation{
+func (c *SNS) DeleteEndpointRequest(input *DeleteEndpointInput) (req *request.Request, output *DeleteEndpointOutput) {
+	op := &request.Operation{
 		Name:       opDeleteEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -208,8 +208,8 @@ func (c *SNS) DeleteEndpoint(input *DeleteEndpointInput) (*DeleteEndpointOutput,
 const opDeletePlatformApplication = "DeletePlatformApplication"
 
 // DeletePlatformApplicationRequest generates a request for the DeletePlatformApplication operation.
-func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *service.Request, output *DeletePlatformApplicationOutput) {
-	op := &service.Operation{
+func (c *SNS) DeletePlatformApplicationRequest(input *DeletePlatformApplicationInput) (req *request.Request, output *DeletePlatformApplicationOutput) {
+	op := &request.Operation{
 		Name:       opDeletePlatformApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -237,8 +237,8 @@ func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (
 const opDeleteTopic = "DeleteTopic"
 
 // DeleteTopicRequest generates a request for the DeleteTopic operation.
-func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *service.Request, output *DeleteTopicOutput) {
-	op := &service.Operation{
+func (c *SNS) DeleteTopicRequest(input *DeleteTopicInput) (req *request.Request, output *DeleteTopicOutput) {
+	op := &request.Operation{
 		Name:       opDeleteTopic,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -267,8 +267,8 @@ func (c *SNS) DeleteTopic(input *DeleteTopicInput) (*DeleteTopicOutput, error) {
 const opGetEndpointAttributes = "GetEndpointAttributes"
 
 // GetEndpointAttributesRequest generates a request for the GetEndpointAttributes operation.
-func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *service.Request, output *GetEndpointAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) GetEndpointAttributesRequest(input *GetEndpointAttributesInput) (req *request.Request, output *GetEndpointAttributesOutput) {
+	op := &request.Operation{
 		Name:       opGetEndpointAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -296,8 +296,8 @@ func (c *SNS) GetEndpointAttributes(input *GetEndpointAttributesInput) (*GetEndp
 const opGetPlatformApplicationAttributes = "GetPlatformApplicationAttributes"
 
 // GetPlatformApplicationAttributesRequest generates a request for the GetPlatformApplicationAttributes operation.
-func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *service.Request, output *GetPlatformApplicationAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) GetPlatformApplicationAttributesRequest(input *GetPlatformApplicationAttributesInput) (req *request.Request, output *GetPlatformApplicationAttributesOutput) {
+	op := &request.Operation{
 		Name:       opGetPlatformApplicationAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -325,8 +325,8 @@ func (c *SNS) GetPlatformApplicationAttributes(input *GetPlatformApplicationAttr
 const opGetSubscriptionAttributes = "GetSubscriptionAttributes"
 
 // GetSubscriptionAttributesRequest generates a request for the GetSubscriptionAttributes operation.
-func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *service.Request, output *GetSubscriptionAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) GetSubscriptionAttributesRequest(input *GetSubscriptionAttributesInput) (req *request.Request, output *GetSubscriptionAttributesOutput) {
+	op := &request.Operation{
 		Name:       opGetSubscriptionAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -352,8 +352,8 @@ func (c *SNS) GetSubscriptionAttributes(input *GetSubscriptionAttributesInput) (
 const opGetTopicAttributes = "GetTopicAttributes"
 
 // GetTopicAttributesRequest generates a request for the GetTopicAttributes operation.
-func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *service.Request, output *GetTopicAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) GetTopicAttributesRequest(input *GetTopicAttributesInput) (req *request.Request, output *GetTopicAttributesOutput) {
+	op := &request.Operation{
 		Name:       opGetTopicAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -380,12 +380,12 @@ func (c *SNS) GetTopicAttributes(input *GetTopicAttributesInput) (*GetTopicAttri
 const opListEndpointsByPlatformApplication = "ListEndpointsByPlatformApplication"
 
 // ListEndpointsByPlatformApplicationRequest generates a request for the ListEndpointsByPlatformApplication operation.
-func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *service.Request, output *ListEndpointsByPlatformApplicationOutput) {
-	op := &service.Operation{
+func (c *SNS) ListEndpointsByPlatformApplicationRequest(input *ListEndpointsByPlatformApplicationInput) (req *request.Request, output *ListEndpointsByPlatformApplicationOutput) {
+	op := &request.Operation{
 		Name:       opListEndpointsByPlatformApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -427,12 +427,12 @@ func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlat
 const opListPlatformApplications = "ListPlatformApplications"
 
 // ListPlatformApplicationsRequest generates a request for the ListPlatformApplications operation.
-func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *service.Request, output *ListPlatformApplicationsOutput) {
-	op := &service.Operation{
+func (c *SNS) ListPlatformApplicationsRequest(input *ListPlatformApplicationsInput) (req *request.Request, output *ListPlatformApplicationsOutput) {
+	op := &request.Operation{
 		Name:       opListPlatformApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -474,12 +474,12 @@ func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput
 const opListSubscriptions = "ListSubscriptions"
 
 // ListSubscriptionsRequest generates a request for the ListSubscriptions operation.
-func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *service.Request, output *ListSubscriptionsOutput) {
-	op := &service.Operation{
+func (c *SNS) ListSubscriptionsRequest(input *ListSubscriptionsInput) (req *request.Request, output *ListSubscriptionsOutput) {
+	op := &request.Operation{
 		Name:       opListSubscriptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -517,12 +517,12 @@ func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *L
 const opListSubscriptionsByTopic = "ListSubscriptionsByTopic"
 
 // ListSubscriptionsByTopicRequest generates a request for the ListSubscriptionsByTopic operation.
-func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *service.Request, output *ListSubscriptionsByTopicOutput) {
-	op := &service.Operation{
+func (c *SNS) ListSubscriptionsByTopicRequest(input *ListSubscriptionsByTopicInput) (req *request.Request, output *ListSubscriptionsByTopicOutput) {
+	op := &request.Operation{
 		Name:       opListSubscriptionsByTopic,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -560,12 +560,12 @@ func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput
 const opListTopics = "ListTopics"
 
 // ListTopicsRequest generates a request for the ListTopics operation.
-func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *service.Request, output *ListTopicsOutput) {
-	op := &service.Operation{
+func (c *SNS) ListTopicsRequest(input *ListTopicsInput) (req *request.Request, output *ListTopicsOutput) {
+	op := &request.Operation{
 		Name:       opListTopics,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -602,8 +602,8 @@ func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutpu
 const opPublish = "Publish"
 
 // PublishRequest generates a request for the Publish operation.
-func (c *SNS) PublishRequest(input *PublishInput) (req *service.Request, output *PublishOutput) {
-	op := &service.Operation{
+func (c *SNS) PublishRequest(input *PublishInput) (req *request.Request, output *PublishOutput) {
+	op := &request.Operation{
 		Name:       opPublish,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -638,8 +638,8 @@ func (c *SNS) Publish(input *PublishInput) (*PublishOutput, error) {
 const opRemovePermission = "RemovePermission"
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
-func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *service.Request, output *RemovePermissionOutput) {
-	op := &service.Operation{
+func (c *SNS) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
+	op := &request.Operation{
 		Name:       opRemovePermission,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -665,8 +665,8 @@ func (c *SNS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionO
 const opSetEndpointAttributes = "SetEndpointAttributes"
 
 // SetEndpointAttributesRequest generates a request for the SetEndpointAttributes operation.
-func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *service.Request, output *SetEndpointAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) SetEndpointAttributesRequest(input *SetEndpointAttributesInput) (req *request.Request, output *SetEndpointAttributesOutput) {
+	op := &request.Operation{
 		Name:       opSetEndpointAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -694,8 +694,8 @@ func (c *SNS) SetEndpointAttributes(input *SetEndpointAttributesInput) (*SetEndp
 const opSetPlatformApplicationAttributes = "SetPlatformApplicationAttributes"
 
 // SetPlatformApplicationAttributesRequest generates a request for the SetPlatformApplicationAttributes operation.
-func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *service.Request, output *SetPlatformApplicationAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) SetPlatformApplicationAttributesRequest(input *SetPlatformApplicationAttributesInput) (req *request.Request, output *SetPlatformApplicationAttributesOutput) {
+	op := &request.Operation{
 		Name:       opSetPlatformApplicationAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -723,8 +723,8 @@ func (c *SNS) SetPlatformApplicationAttributes(input *SetPlatformApplicationAttr
 const opSetSubscriptionAttributes = "SetSubscriptionAttributes"
 
 // SetSubscriptionAttributesRequest generates a request for the SetSubscriptionAttributes operation.
-func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *service.Request, output *SetSubscriptionAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) SetSubscriptionAttributesRequest(input *SetSubscriptionAttributesInput) (req *request.Request, output *SetSubscriptionAttributesOutput) {
+	op := &request.Operation{
 		Name:       opSetSubscriptionAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -750,8 +750,8 @@ func (c *SNS) SetSubscriptionAttributes(input *SetSubscriptionAttributesInput) (
 const opSetTopicAttributes = "SetTopicAttributes"
 
 // SetTopicAttributesRequest generates a request for the SetTopicAttributes operation.
-func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *service.Request, output *SetTopicAttributesOutput) {
-	op := &service.Operation{
+func (c *SNS) SetTopicAttributesRequest(input *SetTopicAttributesInput) (req *request.Request, output *SetTopicAttributesOutput) {
+	op := &request.Operation{
 		Name:       opSetTopicAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -777,8 +777,8 @@ func (c *SNS) SetTopicAttributes(input *SetTopicAttributesInput) (*SetTopicAttri
 const opSubscribe = "Subscribe"
 
 // SubscribeRequest generates a request for the Subscribe operation.
-func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *service.Request, output *SubscribeOutput) {
-	op := &service.Operation{
+func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *request.Request, output *SubscribeOutput) {
+	op := &request.Operation{
 		Name:       opSubscribe,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -807,8 +807,8 @@ func (c *SNS) Subscribe(input *SubscribeInput) (*SubscribeOutput, error) {
 const opUnsubscribe = "Unsubscribe"
 
 // UnsubscribeRequest generates a request for the Unsubscribe operation.
-func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *service.Request, output *UnsubscribeOutput) {
-	op := &service.Operation{
+func (c *SNS) UnsubscribeRequest(input *UnsubscribeInput) (req *request.Request, output *UnsubscribeOutput) {
+	op := &request.Operation{
 		Name:       opUnsubscribe,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

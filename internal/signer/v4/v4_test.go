@@ -117,8 +117,8 @@ func TestSignPrecomputedBodyChecksum(t *testing.T) {
 }
 
 func TestAnonymousCredentials(t *testing.T) {
-	r := service.NewRequest(
-		service.NewService(&aws.Config{Credentials: credentials.AnonymousCredentials}),
+	svc := service.New(&aws.Config{Credentials: credentials.AnonymousCredentials})
+	svc.NewRequest(
 		&service.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
@@ -141,11 +141,11 @@ func TestAnonymousCredentials(t *testing.T) {
 }
 
 func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
-	r := service.NewRequest(
-		service.NewService(&aws.Config{
-			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-			Region:      aws.String("us-west-2"),
-		}),
+	svc := service.New(&aws.Config{
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+		Region:      aws.String("us-west-2"),
+	})
+	r := svc.NewRequest(
 		&service.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
@@ -163,11 +163,11 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 }
 
 func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
-	r := service.NewRequest(
-		service.NewService(&aws.Config{
-			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-			Region:      aws.String("us-west-2"),
-		}),
+	svc := service.New(&aws.Config{
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+		Region:      aws.String("us-west-2"),
+	})
+	r := svc.NewRequest(
 		&service.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
@@ -187,8 +187,8 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 
 func TestResignRequestExpiredCreds(t *testing.T) {
 	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
-	r := service.NewRequest(
-		service.NewService(&aws.Config{Credentials: creds}),
+	svc := service.New(&aws.Config{Credentials: creds})
+	r := svc.NewRequest(
 		&service.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
@@ -209,8 +209,8 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 func TestPreResignRequestExpiredCreds(t *testing.T) {
 	provider := &credentials.StaticProvider{credentials.Value{"AKID", "SECRET", "SESSION"}}
 	creds := credentials.NewCredentials(provider)
-	r := service.NewRequest(
-		service.NewService(&aws.Config{Credentials: creds}),
+	svc := service.New(&aws.Config{Credentials: creds})
+	r := svc.NewRequest(
 		&service.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",

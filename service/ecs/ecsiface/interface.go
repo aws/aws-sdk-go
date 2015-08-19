@@ -4,129 +4,129 @@
 package ecsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/ecs"
 )
 
 // ECSAPI is the interface type for ecs.ECS.
 type ECSAPI interface {
-	CreateClusterRequest(*ecs.CreateClusterInput) (*service.Request, *ecs.CreateClusterOutput)
+	CreateClusterRequest(*ecs.CreateClusterInput) (*request.Request, *ecs.CreateClusterOutput)
 
 	CreateCluster(*ecs.CreateClusterInput) (*ecs.CreateClusterOutput, error)
 
-	CreateServiceRequest(*ecs.CreateServiceInput) (*service.Request, *ecs.CreateServiceOutput)
+	CreateServiceRequest(*ecs.CreateServiceInput) (*request.Request, *ecs.CreateServiceOutput)
 
 	CreateService(*ecs.CreateServiceInput) (*ecs.CreateServiceOutput, error)
 
-	DeleteClusterRequest(*ecs.DeleteClusterInput) (*service.Request, *ecs.DeleteClusterOutput)
+	DeleteClusterRequest(*ecs.DeleteClusterInput) (*request.Request, *ecs.DeleteClusterOutput)
 
 	DeleteCluster(*ecs.DeleteClusterInput) (*ecs.DeleteClusterOutput, error)
 
-	DeleteServiceRequest(*ecs.DeleteServiceInput) (*service.Request, *ecs.DeleteServiceOutput)
+	DeleteServiceRequest(*ecs.DeleteServiceInput) (*request.Request, *ecs.DeleteServiceOutput)
 
 	DeleteService(*ecs.DeleteServiceInput) (*ecs.DeleteServiceOutput, error)
 
-	DeregisterContainerInstanceRequest(*ecs.DeregisterContainerInstanceInput) (*service.Request, *ecs.DeregisterContainerInstanceOutput)
+	DeregisterContainerInstanceRequest(*ecs.DeregisterContainerInstanceInput) (*request.Request, *ecs.DeregisterContainerInstanceOutput)
 
 	DeregisterContainerInstance(*ecs.DeregisterContainerInstanceInput) (*ecs.DeregisterContainerInstanceOutput, error)
 
-	DeregisterTaskDefinitionRequest(*ecs.DeregisterTaskDefinitionInput) (*service.Request, *ecs.DeregisterTaskDefinitionOutput)
+	DeregisterTaskDefinitionRequest(*ecs.DeregisterTaskDefinitionInput) (*request.Request, *ecs.DeregisterTaskDefinitionOutput)
 
 	DeregisterTaskDefinition(*ecs.DeregisterTaskDefinitionInput) (*ecs.DeregisterTaskDefinitionOutput, error)
 
-	DescribeClustersRequest(*ecs.DescribeClustersInput) (*service.Request, *ecs.DescribeClustersOutput)
+	DescribeClustersRequest(*ecs.DescribeClustersInput) (*request.Request, *ecs.DescribeClustersOutput)
 
 	DescribeClusters(*ecs.DescribeClustersInput) (*ecs.DescribeClustersOutput, error)
 
-	DescribeContainerInstancesRequest(*ecs.DescribeContainerInstancesInput) (*service.Request, *ecs.DescribeContainerInstancesOutput)
+	DescribeContainerInstancesRequest(*ecs.DescribeContainerInstancesInput) (*request.Request, *ecs.DescribeContainerInstancesOutput)
 
 	DescribeContainerInstances(*ecs.DescribeContainerInstancesInput) (*ecs.DescribeContainerInstancesOutput, error)
 
-	DescribeServicesRequest(*ecs.DescribeServicesInput) (*service.Request, *ecs.DescribeServicesOutput)
+	DescribeServicesRequest(*ecs.DescribeServicesInput) (*request.Request, *ecs.DescribeServicesOutput)
 
 	DescribeServices(*ecs.DescribeServicesInput) (*ecs.DescribeServicesOutput, error)
 
-	DescribeTaskDefinitionRequest(*ecs.DescribeTaskDefinitionInput) (*service.Request, *ecs.DescribeTaskDefinitionOutput)
+	DescribeTaskDefinitionRequest(*ecs.DescribeTaskDefinitionInput) (*request.Request, *ecs.DescribeTaskDefinitionOutput)
 
 	DescribeTaskDefinition(*ecs.DescribeTaskDefinitionInput) (*ecs.DescribeTaskDefinitionOutput, error)
 
-	DescribeTasksRequest(*ecs.DescribeTasksInput) (*service.Request, *ecs.DescribeTasksOutput)
+	DescribeTasksRequest(*ecs.DescribeTasksInput) (*request.Request, *ecs.DescribeTasksOutput)
 
 	DescribeTasks(*ecs.DescribeTasksInput) (*ecs.DescribeTasksOutput, error)
 
-	DiscoverPollEndpointRequest(*ecs.DiscoverPollEndpointInput) (*service.Request, *ecs.DiscoverPollEndpointOutput)
+	DiscoverPollEndpointRequest(*ecs.DiscoverPollEndpointInput) (*request.Request, *ecs.DiscoverPollEndpointOutput)
 
 	DiscoverPollEndpoint(*ecs.DiscoverPollEndpointInput) (*ecs.DiscoverPollEndpointOutput, error)
 
-	ListClustersRequest(*ecs.ListClustersInput) (*service.Request, *ecs.ListClustersOutput)
+	ListClustersRequest(*ecs.ListClustersInput) (*request.Request, *ecs.ListClustersOutput)
 
 	ListClusters(*ecs.ListClustersInput) (*ecs.ListClustersOutput, error)
 
 	ListClustersPages(*ecs.ListClustersInput, func(*ecs.ListClustersOutput, bool) bool) error
 
-	ListContainerInstancesRequest(*ecs.ListContainerInstancesInput) (*service.Request, *ecs.ListContainerInstancesOutput)
+	ListContainerInstancesRequest(*ecs.ListContainerInstancesInput) (*request.Request, *ecs.ListContainerInstancesOutput)
 
 	ListContainerInstances(*ecs.ListContainerInstancesInput) (*ecs.ListContainerInstancesOutput, error)
 
 	ListContainerInstancesPages(*ecs.ListContainerInstancesInput, func(*ecs.ListContainerInstancesOutput, bool) bool) error
 
-	ListServicesRequest(*ecs.ListServicesInput) (*service.Request, *ecs.ListServicesOutput)
+	ListServicesRequest(*ecs.ListServicesInput) (*request.Request, *ecs.ListServicesOutput)
 
 	ListServices(*ecs.ListServicesInput) (*ecs.ListServicesOutput, error)
 
 	ListServicesPages(*ecs.ListServicesInput, func(*ecs.ListServicesOutput, bool) bool) error
 
-	ListTaskDefinitionFamiliesRequest(*ecs.ListTaskDefinitionFamiliesInput) (*service.Request, *ecs.ListTaskDefinitionFamiliesOutput)
+	ListTaskDefinitionFamiliesRequest(*ecs.ListTaskDefinitionFamiliesInput) (*request.Request, *ecs.ListTaskDefinitionFamiliesOutput)
 
 	ListTaskDefinitionFamilies(*ecs.ListTaskDefinitionFamiliesInput) (*ecs.ListTaskDefinitionFamiliesOutput, error)
 
 	ListTaskDefinitionFamiliesPages(*ecs.ListTaskDefinitionFamiliesInput, func(*ecs.ListTaskDefinitionFamiliesOutput, bool) bool) error
 
-	ListTaskDefinitionsRequest(*ecs.ListTaskDefinitionsInput) (*service.Request, *ecs.ListTaskDefinitionsOutput)
+	ListTaskDefinitionsRequest(*ecs.ListTaskDefinitionsInput) (*request.Request, *ecs.ListTaskDefinitionsOutput)
 
 	ListTaskDefinitions(*ecs.ListTaskDefinitionsInput) (*ecs.ListTaskDefinitionsOutput, error)
 
 	ListTaskDefinitionsPages(*ecs.ListTaskDefinitionsInput, func(*ecs.ListTaskDefinitionsOutput, bool) bool) error
 
-	ListTasksRequest(*ecs.ListTasksInput) (*service.Request, *ecs.ListTasksOutput)
+	ListTasksRequest(*ecs.ListTasksInput) (*request.Request, *ecs.ListTasksOutput)
 
 	ListTasks(*ecs.ListTasksInput) (*ecs.ListTasksOutput, error)
 
 	ListTasksPages(*ecs.ListTasksInput, func(*ecs.ListTasksOutput, bool) bool) error
 
-	RegisterContainerInstanceRequest(*ecs.RegisterContainerInstanceInput) (*service.Request, *ecs.RegisterContainerInstanceOutput)
+	RegisterContainerInstanceRequest(*ecs.RegisterContainerInstanceInput) (*request.Request, *ecs.RegisterContainerInstanceOutput)
 
 	RegisterContainerInstance(*ecs.RegisterContainerInstanceInput) (*ecs.RegisterContainerInstanceOutput, error)
 
-	RegisterTaskDefinitionRequest(*ecs.RegisterTaskDefinitionInput) (*service.Request, *ecs.RegisterTaskDefinitionOutput)
+	RegisterTaskDefinitionRequest(*ecs.RegisterTaskDefinitionInput) (*request.Request, *ecs.RegisterTaskDefinitionOutput)
 
 	RegisterTaskDefinition(*ecs.RegisterTaskDefinitionInput) (*ecs.RegisterTaskDefinitionOutput, error)
 
-	RunTaskRequest(*ecs.RunTaskInput) (*service.Request, *ecs.RunTaskOutput)
+	RunTaskRequest(*ecs.RunTaskInput) (*request.Request, *ecs.RunTaskOutput)
 
 	RunTask(*ecs.RunTaskInput) (*ecs.RunTaskOutput, error)
 
-	StartTaskRequest(*ecs.StartTaskInput) (*service.Request, *ecs.StartTaskOutput)
+	StartTaskRequest(*ecs.StartTaskInput) (*request.Request, *ecs.StartTaskOutput)
 
 	StartTask(*ecs.StartTaskInput) (*ecs.StartTaskOutput, error)
 
-	StopTaskRequest(*ecs.StopTaskInput) (*service.Request, *ecs.StopTaskOutput)
+	StopTaskRequest(*ecs.StopTaskInput) (*request.Request, *ecs.StopTaskOutput)
 
 	StopTask(*ecs.StopTaskInput) (*ecs.StopTaskOutput, error)
 
-	SubmitContainerStateChangeRequest(*ecs.SubmitContainerStateChangeInput) (*service.Request, *ecs.SubmitContainerStateChangeOutput)
+	SubmitContainerStateChangeRequest(*ecs.SubmitContainerStateChangeInput) (*request.Request, *ecs.SubmitContainerStateChangeOutput)
 
 	SubmitContainerStateChange(*ecs.SubmitContainerStateChangeInput) (*ecs.SubmitContainerStateChangeOutput, error)
 
-	SubmitTaskStateChangeRequest(*ecs.SubmitTaskStateChangeInput) (*service.Request, *ecs.SubmitTaskStateChangeOutput)
+	SubmitTaskStateChangeRequest(*ecs.SubmitTaskStateChangeInput) (*request.Request, *ecs.SubmitTaskStateChangeOutput)
 
 	SubmitTaskStateChange(*ecs.SubmitTaskStateChangeInput) (*ecs.SubmitTaskStateChangeOutput, error)
 
-	UpdateContainerAgentRequest(*ecs.UpdateContainerAgentInput) (*service.Request, *ecs.UpdateContainerAgentOutput)
+	UpdateContainerAgentRequest(*ecs.UpdateContainerAgentInput) (*request.Request, *ecs.UpdateContainerAgentOutput)
 
 	UpdateContainerAgent(*ecs.UpdateContainerAgentInput) (*ecs.UpdateContainerAgentOutput, error)
 
-	UpdateServiceRequest(*ecs.UpdateServiceInput) (*service.Request, *ecs.UpdateServiceOutput)
+	UpdateServiceRequest(*ecs.UpdateServiceInput) (*request.Request, *ecs.UpdateServiceOutput)
 
 	UpdateService(*ecs.UpdateServiceInput) (*ecs.UpdateServiceOutput, error)
 }

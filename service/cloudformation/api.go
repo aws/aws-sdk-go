@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCancelUpdateStack = "CancelUpdateStack"
 
 // CancelUpdateStackRequest generates a request for the CancelUpdateStack operation.
-func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *service.Request, output *CancelUpdateStackOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput) (req *request.Request, output *CancelUpdateStackOutput) {
+	op := &request.Operation{
 		Name:       opCancelUpdateStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -43,8 +43,8 @@ func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*Canc
 const opCreateStack = "CreateStack"
 
 // CreateStackRequest generates a request for the CreateStack operation.
-func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *service.Request, output *CreateStackOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) CreateStackRequest(input *CreateStackInput) (req *request.Request, output *CreateStackOutput) {
+	op := &request.Operation{
 		Name:       opCreateStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -72,8 +72,8 @@ func (c *CloudFormation) CreateStack(input *CreateStackInput) (*CreateStackOutpu
 const opDeleteStack = "DeleteStack"
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
-func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *service.Request, output *DeleteStackOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *request.Request, output *DeleteStackOutput) {
+	op := &request.Operation{
 		Name:       opDeleteStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -101,12 +101,12 @@ func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutpu
 const opDescribeStackEvents = "DescribeStackEvents"
 
 // DescribeStackEventsRequest generates a request for the DescribeStackEvents operation.
-func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *service.Request, output *DescribeStackEventsOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) DescribeStackEventsRequest(input *DescribeStackEventsInput) (req *request.Request, output *DescribeStackEventsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStackEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -146,8 +146,8 @@ func (c *CloudFormation) DescribeStackEventsPages(input *DescribeStackEventsInpu
 const opDescribeStackResource = "DescribeStackResource"
 
 // DescribeStackResourceRequest generates a request for the DescribeStackResource operation.
-func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *service.Request, output *DescribeStackResourceOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) DescribeStackResourceRequest(input *DescribeStackResourceInput) (req *request.Request, output *DescribeStackResourceOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStackResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -176,8 +176,8 @@ func (c *CloudFormation) DescribeStackResource(input *DescribeStackResourceInput
 const opDescribeStackResources = "DescribeStackResources"
 
 // DescribeStackResourcesRequest generates a request for the DescribeStackResources operation.
-func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *service.Request, output *DescribeStackResourcesOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) DescribeStackResourcesRequest(input *DescribeStackResourcesInput) (req *request.Request, output *DescribeStackResourcesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStackResources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -219,12 +219,12 @@ func (c *CloudFormation) DescribeStackResources(input *DescribeStackResourcesInp
 const opDescribeStacks = "DescribeStacks"
 
 // DescribeStacksRequest generates a request for the DescribeStacks operation.
-func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *service.Request, output *DescribeStacksOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req *request.Request, output *DescribeStacksOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStacks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -260,8 +260,8 @@ func (c *CloudFormation) DescribeStacksPages(input *DescribeStacksInput, fn func
 const opEstimateTemplateCost = "EstimateTemplateCost"
 
 // EstimateTemplateCostRequest generates a request for the EstimateTemplateCost operation.
-func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *service.Request, output *EstimateTemplateCostOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) EstimateTemplateCostRequest(input *EstimateTemplateCostInput) (req *request.Request, output *EstimateTemplateCostOutput) {
+	op := &request.Operation{
 		Name:       opEstimateTemplateCost,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -289,8 +289,8 @@ func (c *CloudFormation) EstimateTemplateCost(input *EstimateTemplateCostInput) 
 const opGetStackPolicy = "GetStackPolicy"
 
 // GetStackPolicyRequest generates a request for the GetStackPolicy operation.
-func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *service.Request, output *GetStackPolicyOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) GetStackPolicyRequest(input *GetStackPolicyInput) (req *request.Request, output *GetStackPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetStackPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -317,8 +317,8 @@ func (c *CloudFormation) GetStackPolicy(input *GetStackPolicyInput) (*GetStackPo
 const opGetTemplate = "GetTemplate"
 
 // GetTemplateRequest generates a request for the GetTemplate operation.
-func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *service.Request, output *GetTemplateOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) GetTemplateRequest(input *GetTemplateInput) (req *request.Request, output *GetTemplateOutput) {
+	op := &request.Operation{
 		Name:       opGetTemplate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -350,8 +350,8 @@ func (c *CloudFormation) GetTemplate(input *GetTemplateInput) (*GetTemplateOutpu
 const opGetTemplateSummary = "GetTemplateSummary"
 
 // GetTemplateSummaryRequest generates a request for the GetTemplateSummary operation.
-func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *service.Request, output *GetTemplateSummaryOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) GetTemplateSummaryRequest(input *GetTemplateSummaryInput) (req *request.Request, output *GetTemplateSummaryOutput) {
+	op := &request.Operation{
 		Name:       opGetTemplateSummary,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -386,12 +386,12 @@ func (c *CloudFormation) GetTemplateSummary(input *GetTemplateSummaryInput) (*Ge
 const opListStackResources = "ListStackResources"
 
 // ListStackResourcesRequest generates a request for the ListStackResources operation.
-func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *service.Request, output *ListStackResourcesOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) ListStackResourcesRequest(input *ListStackResourcesInput) (req *request.Request, output *ListStackResourcesOutput) {
+	op := &request.Operation{
 		Name:       opListStackResources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -429,12 +429,12 @@ func (c *CloudFormation) ListStackResourcesPages(input *ListStackResourcesInput,
 const opListStacks = "ListStacks"
 
 // ListStacksRequest generates a request for the ListStacks operation.
-func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *service.Request, output *ListStacksOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) ListStacksRequest(input *ListStacksInput) (req *request.Request, output *ListStacksOutput) {
+	op := &request.Operation{
 		Name:       opListStacks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -473,8 +473,8 @@ func (c *CloudFormation) ListStacksPages(input *ListStacksInput, fn func(p *List
 const opSetStackPolicy = "SetStackPolicy"
 
 // SetStackPolicyRequest generates a request for the SetStackPolicy operation.
-func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *service.Request, output *SetStackPolicyOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) SetStackPolicyRequest(input *SetStackPolicyInput) (req *request.Request, output *SetStackPolicyOutput) {
+	op := &request.Operation{
 		Name:       opSetStackPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -500,8 +500,8 @@ func (c *CloudFormation) SetStackPolicy(input *SetStackPolicyInput) (*SetStackPo
 const opSignalResource = "SignalResource"
 
 // SignalResourceRequest generates a request for the SignalResource operation.
-func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *service.Request, output *SignalResourceOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) SignalResourceRequest(input *SignalResourceInput) (req *request.Request, output *SignalResourceOutput) {
+	op := &request.Operation{
 		Name:       opSignalResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -532,8 +532,8 @@ func (c *CloudFormation) SignalResource(input *SignalResourceInput) (*SignalReso
 const opUpdateStack = "UpdateStack"
 
 // UpdateStackRequest generates a request for the UpdateStack operation.
-func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *service.Request, output *UpdateStackOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) UpdateStackRequest(input *UpdateStackInput) (req *request.Request, output *UpdateStackOutput) {
+	op := &request.Operation{
 		Name:       opUpdateStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -570,8 +570,8 @@ func (c *CloudFormation) UpdateStack(input *UpdateStackInput) (*UpdateStackOutpu
 const opValidateTemplate = "ValidateTemplate"
 
 // ValidateTemplateRequest generates a request for the ValidateTemplate operation.
-func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *service.Request, output *ValidateTemplateOutput) {
-	op := &service.Operation{
+func (c *CloudFormation) ValidateTemplateRequest(input *ValidateTemplateInput) (req *request.Request, output *ValidateTemplateOutput) {
+	op := &request.Operation{
 		Name:       opValidateTemplate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

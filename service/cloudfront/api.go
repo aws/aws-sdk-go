@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIdentity2015_04_17"
 
 // CreateCloudFrontOriginAccessIdentityRequest generates a request for the CreateCloudFrontOriginAccessIdentity operation.
-func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCloudFrontOriginAccessIdentityInput) (req *service.Request, output *CreateCloudFrontOriginAccessIdentityOutput) {
-	op := &service.Operation{
+func (c *CloudFront) CreateCloudFrontOriginAccessIdentityRequest(input *CreateCloudFrontOriginAccessIdentityInput) (req *request.Request, output *CreateCloudFrontOriginAccessIdentityOutput) {
+	op := &request.Operation{
 		Name:       opCreateCloudFrontOriginAccessIdentity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-04-17/origin-access-identity/cloudfront",
@@ -40,8 +40,8 @@ func (c *CloudFront) CreateCloudFrontOriginAccessIdentity(input *CreateCloudFron
 const opCreateDistribution = "CreateDistribution2015_04_17"
 
 // CreateDistributionRequest generates a request for the CreateDistribution operation.
-func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (req *service.Request, output *CreateDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (req *request.Request, output *CreateDistributionOutput) {
+	op := &request.Operation{
 		Name:       opCreateDistribution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-04-17/distribution",
@@ -67,8 +67,8 @@ func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*Create
 const opCreateInvalidation = "CreateInvalidation2015_04_17"
 
 // CreateInvalidationRequest generates a request for the CreateInvalidation operation.
-func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (req *service.Request, output *CreateInvalidationOutput) {
-	op := &service.Operation{
+func (c *CloudFront) CreateInvalidationRequest(input *CreateInvalidationInput) (req *request.Request, output *CreateInvalidationOutput) {
+	op := &request.Operation{
 		Name:       opCreateInvalidation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-04-17/distribution/{DistributionId}/invalidation",
@@ -94,8 +94,8 @@ func (c *CloudFront) CreateInvalidation(input *CreateInvalidationInput) (*Create
 const opCreateStreamingDistribution = "CreateStreamingDistribution2015_04_17"
 
 // CreateStreamingDistributionRequest generates a request for the CreateStreamingDistribution operation.
-func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDistributionInput) (req *service.Request, output *CreateStreamingDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) CreateStreamingDistributionRequest(input *CreateStreamingDistributionInput) (req *request.Request, output *CreateStreamingDistributionOutput) {
+	op := &request.Operation{
 		Name:       opCreateStreamingDistribution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-04-17/streaming-distribution",
@@ -121,8 +121,8 @@ func (c *CloudFront) CreateStreamingDistribution(input *CreateStreamingDistribut
 const opDeleteCloudFrontOriginAccessIdentity = "DeleteCloudFrontOriginAccessIdentity2015_04_17"
 
 // DeleteCloudFrontOriginAccessIdentityRequest generates a request for the DeleteCloudFrontOriginAccessIdentity operation.
-func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *service.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
-	op := &service.Operation{
+func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCloudFrontOriginAccessIdentityInput) (req *request.Request, output *DeleteCloudFrontOriginAccessIdentityOutput) {
+	op := &request.Operation{
 		Name:       opDeleteCloudFrontOriginAccessIdentity,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-04-17/origin-access-identity/cloudfront/{Id}",
@@ -148,8 +148,8 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentity(input *DeleteCloudFron
 const opDeleteDistribution = "DeleteDistribution2015_04_17"
 
 // DeleteDistributionRequest generates a request for the DeleteDistribution operation.
-func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *service.Request, output *DeleteDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (req *request.Request, output *DeleteDistributionOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDistribution,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-04-17/distribution/{Id}",
@@ -175,8 +175,8 @@ func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*Delete
 const opDeleteStreamingDistribution = "DeleteStreamingDistribution2015_04_17"
 
 // DeleteStreamingDistributionRequest generates a request for the DeleteStreamingDistribution operation.
-func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *service.Request, output *DeleteStreamingDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDistributionInput) (req *request.Request, output *DeleteStreamingDistributionOutput) {
+	op := &request.Operation{
 		Name:       opDeleteStreamingDistribution,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-04-17/streaming-distribution/{Id}",
@@ -202,8 +202,8 @@ func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistribut
 const opGetCloudFrontOriginAccessIdentity = "GetCloudFrontOriginAccessIdentity2015_04_17"
 
 // GetCloudFrontOriginAccessIdentityRequest generates a request for the GetCloudFrontOriginAccessIdentity operation.
-func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFrontOriginAccessIdentityInput) (req *service.Request, output *GetCloudFrontOriginAccessIdentityOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetCloudFrontOriginAccessIdentityRequest(input *GetCloudFrontOriginAccessIdentityInput) (req *request.Request, output *GetCloudFrontOriginAccessIdentityOutput) {
+	op := &request.Operation{
 		Name:       opGetCloudFrontOriginAccessIdentity,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/origin-access-identity/cloudfront/{Id}",
@@ -229,8 +229,8 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentity(input *GetCloudFrontOrigi
 const opGetCloudFrontOriginAccessIdentityConfig = "GetCloudFrontOriginAccessIdentityConfig2015_04_17"
 
 // GetCloudFrontOriginAccessIdentityConfigRequest generates a request for the GetCloudFrontOriginAccessIdentityConfig operation.
-func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCloudFrontOriginAccessIdentityConfigInput) (req *service.Request, output *GetCloudFrontOriginAccessIdentityConfigOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfigRequest(input *GetCloudFrontOriginAccessIdentityConfigInput) (req *request.Request, output *GetCloudFrontOriginAccessIdentityConfigOutput) {
+	op := &request.Operation{
 		Name:       opGetCloudFrontOriginAccessIdentityConfig,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/origin-access-identity/cloudfront/{Id}/config",
@@ -256,8 +256,8 @@ func (c *CloudFront) GetCloudFrontOriginAccessIdentityConfig(input *GetCloudFron
 const opGetDistribution = "GetDistribution2015_04_17"
 
 // GetDistributionRequest generates a request for the GetDistribution operation.
-func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *service.Request, output *GetDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetDistributionRequest(input *GetDistributionInput) (req *request.Request, output *GetDistributionOutput) {
+	op := &request.Operation{
 		Name:       opGetDistribution,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/distribution/{Id}",
@@ -283,8 +283,8 @@ func (c *CloudFront) GetDistribution(input *GetDistributionInput) (*GetDistribut
 const opGetDistributionConfig = "GetDistributionConfig2015_04_17"
 
 // GetDistributionConfigRequest generates a request for the GetDistributionConfig operation.
-func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigInput) (req *service.Request, output *GetDistributionConfigOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetDistributionConfigRequest(input *GetDistributionConfigInput) (req *request.Request, output *GetDistributionConfigOutput) {
+	op := &request.Operation{
 		Name:       opGetDistributionConfig,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/distribution/{Id}/config",
@@ -310,8 +310,8 @@ func (c *CloudFront) GetDistributionConfig(input *GetDistributionConfigInput) (*
 const opGetInvalidation = "GetInvalidation2015_04_17"
 
 // GetInvalidationRequest generates a request for the GetInvalidation operation.
-func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *service.Request, output *GetInvalidationOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetInvalidationRequest(input *GetInvalidationInput) (req *request.Request, output *GetInvalidationOutput) {
+	op := &request.Operation{
 		Name:       opGetInvalidation,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/distribution/{DistributionId}/invalidation/{Id}",
@@ -337,8 +337,8 @@ func (c *CloudFront) GetInvalidation(input *GetInvalidationInput) (*GetInvalidat
 const opGetStreamingDistribution = "GetStreamingDistribution2015_04_17"
 
 // GetStreamingDistributionRequest generates a request for the GetStreamingDistribution operation.
-func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistributionInput) (req *service.Request, output *GetStreamingDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetStreamingDistributionRequest(input *GetStreamingDistributionInput) (req *request.Request, output *GetStreamingDistributionOutput) {
+	op := &request.Operation{
 		Name:       opGetStreamingDistribution,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/streaming-distribution/{Id}",
@@ -364,8 +364,8 @@ func (c *CloudFront) GetStreamingDistribution(input *GetStreamingDistributionInp
 const opGetStreamingDistributionConfig = "GetStreamingDistributionConfig2015_04_17"
 
 // GetStreamingDistributionConfigRequest generates a request for the GetStreamingDistributionConfig operation.
-func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDistributionConfigInput) (req *service.Request, output *GetStreamingDistributionConfigOutput) {
-	op := &service.Operation{
+func (c *CloudFront) GetStreamingDistributionConfigRequest(input *GetStreamingDistributionConfigInput) (req *request.Request, output *GetStreamingDistributionConfigOutput) {
+	op := &request.Operation{
 		Name:       opGetStreamingDistributionConfig,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/streaming-distribution/{Id}/config",
@@ -391,12 +391,12 @@ func (c *CloudFront) GetStreamingDistributionConfig(input *GetStreamingDistribut
 const opListCloudFrontOriginAccessIdentities = "ListCloudFrontOriginAccessIdentities2015_04_17"
 
 // ListCloudFrontOriginAccessIdentitiesRequest generates a request for the ListCloudFrontOriginAccessIdentities operation.
-func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListCloudFrontOriginAccessIdentitiesInput) (req *service.Request, output *ListCloudFrontOriginAccessIdentitiesOutput) {
-	op := &service.Operation{
+func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesRequest(input *ListCloudFrontOriginAccessIdentitiesInput) (req *request.Request, output *ListCloudFrontOriginAccessIdentitiesOutput) {
+	op := &request.Operation{
 		Name:       opListCloudFrontOriginAccessIdentities,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/origin-access-identity/cloudfront",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"CloudFrontOriginAccessIdentityList.NextMarker"},
 			LimitToken:      "MaxItems",
@@ -431,12 +431,12 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudF
 const opListDistributions = "ListDistributions2015_04_17"
 
 // ListDistributionsRequest generates a request for the ListDistributions operation.
-func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (req *service.Request, output *ListDistributionsOutput) {
-	op := &service.Operation{
+func (c *CloudFront) ListDistributionsRequest(input *ListDistributionsInput) (req *request.Request, output *ListDistributionsOutput) {
+	op := &request.Operation{
 		Name:       opListDistributions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/distribution",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"DistributionList.NextMarker"},
 			LimitToken:      "MaxItems",
@@ -471,12 +471,12 @@ func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn fu
 const opListInvalidations = "ListInvalidations2015_04_17"
 
 // ListInvalidationsRequest generates a request for the ListInvalidations operation.
-func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (req *service.Request, output *ListInvalidationsOutput) {
-	op := &service.Operation{
+func (c *CloudFront) ListInvalidationsRequest(input *ListInvalidationsInput) (req *request.Request, output *ListInvalidationsOutput) {
+	op := &request.Operation{
 		Name:       opListInvalidations,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/distribution/{DistributionId}/invalidation",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"InvalidationList.NextMarker"},
 			LimitToken:      "MaxItems",
@@ -511,12 +511,12 @@ func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn fu
 const opListStreamingDistributions = "ListStreamingDistributions2015_04_17"
 
 // ListStreamingDistributionsRequest generates a request for the ListStreamingDistributions operation.
-func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistributionsInput) (req *service.Request, output *ListStreamingDistributionsOutput) {
-	op := &service.Operation{
+func (c *CloudFront) ListStreamingDistributionsRequest(input *ListStreamingDistributionsInput) (req *request.Request, output *ListStreamingDistributionsOutput) {
+	op := &request.Operation{
 		Name:       opListStreamingDistributions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-04-17/streaming-distribution",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"StreamingDistributionList.NextMarker"},
 			LimitToken:      "MaxItems",
@@ -551,8 +551,8 @@ func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistrib
 const opUpdateCloudFrontOriginAccessIdentity = "UpdateCloudFrontOriginAccessIdentity2015_04_17"
 
 // UpdateCloudFrontOriginAccessIdentityRequest generates a request for the UpdateCloudFrontOriginAccessIdentity operation.
-func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCloudFrontOriginAccessIdentityInput) (req *service.Request, output *UpdateCloudFrontOriginAccessIdentityOutput) {
-	op := &service.Operation{
+func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCloudFrontOriginAccessIdentityInput) (req *request.Request, output *UpdateCloudFrontOriginAccessIdentityOutput) {
+	op := &request.Operation{
 		Name:       opUpdateCloudFrontOriginAccessIdentity,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-04-17/origin-access-identity/cloudfront/{Id}/config",
@@ -578,8 +578,8 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentity(input *UpdateCloudFron
 const opUpdateDistribution = "UpdateDistribution2015_04_17"
 
 // UpdateDistributionRequest generates a request for the UpdateDistribution operation.
-func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (req *service.Request, output *UpdateDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (req *request.Request, output *UpdateDistributionOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDistribution,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-04-17/distribution/{Id}/config",
@@ -605,8 +605,8 @@ func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*Update
 const opUpdateStreamingDistribution = "UpdateStreamingDistribution2015_04_17"
 
 // UpdateStreamingDistributionRequest generates a request for the UpdateStreamingDistribution operation.
-func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDistributionInput) (req *service.Request, output *UpdateStreamingDistributionOutput) {
-	op := &service.Operation{
+func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDistributionInput) (req *request.Request, output *UpdateStreamingDistributionOutput) {
+	op := &request.Operation{
 		Name:       opUpdateStreamingDistribution,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-04-17/streaming-distribution/{Id}/config",

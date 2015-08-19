@@ -1,4 +1,4 @@
-package service
+package corehandlers
 
 import (
 	"fmt"
@@ -6,11 +6,12 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 // ValidateParameters is a request handler to validate the input parameters.
 // Validating parameters only has meaning if done prior to the request being sent.
-func ValidateParameters(r *Request) {
+func ValidateParameters(r *request.Request) {
 	if r.ParamsFilled() {
 		v := validator{errors: []string{}}
 		v.validateAny(reflect.ValueOf(r.Params), "")

@@ -5,14 +5,14 @@ package elastictranscoder
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCancelJob = "CancelJob"
 
 // CancelJobRequest generates a request for the CancelJob operation.
-func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *service.Request, output *CancelJobOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
+	op := &request.Operation{
 		Name:       opCancelJob,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2012-09-25/jobs/{Id}",
@@ -42,8 +42,8 @@ func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, 
 const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a request for the CreateJob operation.
-func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *service.Request, output *CreateJobResponse) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *request.Request, output *CreateJobResponse) {
+	op := &request.Operation{
 		Name:       opCreateJob,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/jobs",
@@ -75,8 +75,8 @@ func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse
 const opCreatePipeline = "CreatePipeline"
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
-func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *service.Request, output *CreatePipelineOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opCreatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/pipelines",
@@ -102,8 +102,8 @@ func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreateP
 const opCreatePreset = "CreatePreset"
 
 // CreatePresetRequest generates a request for the CreatePreset operation.
-func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *service.Request, output *CreatePresetOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *request.Request, output *CreatePresetOutput) {
+	op := &request.Operation{
 		Name:       opCreatePreset,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/presets",
@@ -143,8 +143,8 @@ func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePrese
 const opDeletePipeline = "DeletePipeline"
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
-func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *service.Request, output *DeletePipelineOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
+	op := &request.Operation{
 		Name:       opDeletePipeline,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}",
@@ -174,8 +174,8 @@ func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeleteP
 const opDeletePreset = "DeletePreset"
 
 // DeletePresetRequest generates a request for the DeletePreset operation.
-func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *service.Request, output *DeletePresetOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *request.Request, output *DeletePresetOutput) {
+	op := &request.Operation{
 		Name:       opDeletePreset,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2012-09-25/presets/{Id}",
@@ -203,12 +203,12 @@ func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePrese
 const opListJobsByPipeline = "ListJobsByPipeline"
 
 // ListJobsByPipelineRequest generates a request for the ListJobsByPipeline operation.
-func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *service.Request, output *ListJobsByPipelineOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *request.Request, output *ListJobsByPipelineOutput) {
+	op := &request.Operation{
 		Name:       opListJobsByPipeline,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -247,12 +247,12 @@ func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInp
 const opListJobsByStatus = "ListJobsByStatus"
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
-func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *service.Request, output *ListJobsByStatusOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *request.Request, output *ListJobsByStatusOutput) {
+	op := &request.Operation{
 		Name:       opListJobsByStatus,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -289,12 +289,12 @@ func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, 
 const opListPipelines = "ListPipelines"
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
-func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *service.Request, output *ListPipelinesOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
+	op := &request.Operation{
 		Name:       opListPipelines,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/pipelines",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -330,12 +330,12 @@ func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn fun
 const opListPresets = "ListPresets"
 
 // ListPresetsRequest generates a request for the ListPresets operation.
-func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *service.Request, output *ListPresetsOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *request.Request, output *ListPresetsOutput) {
+	op := &request.Operation{
 		Name:       opListPresets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/presets",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -371,8 +371,8 @@ func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(p 
 const opReadJob = "ReadJob"
 
 // ReadJobRequest generates a request for the ReadJob operation.
-func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *service.Request, output *ReadJobOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *request.Request, output *ReadJobOutput) {
+	op := &request.Operation{
 		Name:       opReadJob,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/jobs/{Id}",
@@ -398,8 +398,8 @@ func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, error)
 const opReadPipeline = "ReadPipeline"
 
 // ReadPipelineRequest generates a request for the ReadPipeline operation.
-func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *service.Request, output *ReadPipelineOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *request.Request, output *ReadPipelineOutput) {
+	op := &request.Operation{
 		Name:       opReadPipeline,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}",
@@ -425,8 +425,8 @@ func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelin
 const opReadPreset = "ReadPreset"
 
 // ReadPresetRequest generates a request for the ReadPreset operation.
-func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *service.Request, output *ReadPresetOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *request.Request, output *ReadPresetOutput) {
+	op := &request.Operation{
 		Name:       opReadPreset,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/presets/{Id}",
@@ -452,8 +452,8 @@ func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutpu
 const opTestRole = "TestRole"
 
 // TestRoleRequest generates a request for the TestRole operation.
-func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *service.Request, output *TestRoleOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.Request, output *TestRoleOutput) {
+	op := &request.Operation{
 		Name:       opTestRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/roleTests",
@@ -485,8 +485,8 @@ func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, err
 const opUpdatePipeline = "UpdatePipeline"
 
 // UpdatePipelineRequest generates a request for the UpdatePipeline operation.
-func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *service.Request, output *UpdatePipelineOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opUpdatePipeline,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}",
@@ -516,8 +516,8 @@ func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdateP
 const opUpdatePipelineNotifications = "UpdatePipelineNotifications"
 
 // UpdatePipelineNotificationsRequest generates a request for the UpdatePipelineNotifications operation.
-func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *service.Request, output *UpdatePipelineNotificationsOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *request.Request, output *UpdatePipelineNotificationsOutput) {
+	op := &request.Operation{
 		Name:       opUpdatePipelineNotifications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}/notifications",
@@ -547,8 +547,8 @@ func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNot
 const opUpdatePipelineStatus = "UpdatePipelineStatus"
 
 // UpdatePipelineStatusRequest generates a request for the UpdatePipelineStatus operation.
-func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *service.Request, output *UpdatePipelineStatusOutput) {
-	op := &service.Operation{
+func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *request.Request, output *UpdatePipelineStatusOutput) {
+	op := &request.Operation{
 		Name:       opUpdatePipelineStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}/status",

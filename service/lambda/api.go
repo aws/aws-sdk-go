@@ -8,14 +8,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddPermission = "AddPermission"
 
 // AddPermissionRequest generates a request for the AddPermission operation.
-func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *service.Request, output *AddPermissionOutput) {
-	op := &service.Operation{
+func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
+	op := &request.Operation{
 		Name:       opAddPermission,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD/policy",
@@ -50,8 +50,8 @@ func (c *Lambda) AddPermission(input *AddPermissionInput) (*AddPermissionOutput,
 const opCreateEventSourceMapping = "CreateEventSourceMapping"
 
 // CreateEventSourceMappingRequest generates a request for the CreateEventSourceMapping operation.
-func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMappingInput) (req *service.Request, output *EventSourceMappingConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMappingInput) (req *request.Request, output *EventSourceMappingConfiguration) {
+	op := &request.Operation{
 		Name:       opCreateEventSourceMapping,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-03-31/event-source-mappings/",
@@ -95,8 +95,8 @@ func (c *Lambda) CreateEventSourceMapping(input *CreateEventSourceMappingInput) 
 const opCreateFunction = "CreateFunction"
 
 // CreateFunctionRequest generates a request for the CreateFunction operation.
-func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *service.Request, output *FunctionConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request.Request, output *FunctionConfiguration) {
+	op := &request.Operation{
 		Name:       opCreateFunction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-03-31/functions",
@@ -127,8 +127,8 @@ func (c *Lambda) CreateFunction(input *CreateFunctionInput) (*FunctionConfigurat
 const opDeleteEventSourceMapping = "DeleteEventSourceMapping"
 
 // DeleteEventSourceMappingRequest generates a request for the DeleteEventSourceMapping operation.
-func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMappingInput) (req *service.Request, output *EventSourceMappingConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMappingInput) (req *request.Request, output *EventSourceMappingConfiguration) {
+	op := &request.Operation{
 		Name:       opDeleteEventSourceMapping,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-03-31/event-source-mappings/{UUID}",
@@ -158,8 +158,8 @@ func (c *Lambda) DeleteEventSourceMapping(input *DeleteEventSourceMappingInput) 
 const opDeleteFunction = "DeleteFunction"
 
 // DeleteFunctionRequest generates a request for the DeleteFunction operation.
-func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *service.Request, output *DeleteFunctionOutput) {
-	op := &service.Operation{
+func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request.Request, output *DeleteFunctionOutput) {
+	op := &request.Operation{
 		Name:       opDeleteFunction,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}",
@@ -190,8 +190,8 @@ func (c *Lambda) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutp
 const opGetEventSourceMapping = "GetEventSourceMapping"
 
 // GetEventSourceMappingRequest generates a request for the GetEventSourceMapping operation.
-func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput) (req *service.Request, output *EventSourceMappingConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput) (req *request.Request, output *EventSourceMappingConfiguration) {
+	op := &request.Operation{
 		Name:       opGetEventSourceMapping,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-03-31/event-source-mappings/{UUID}",
@@ -221,8 +221,8 @@ func (c *Lambda) GetEventSourceMapping(input *GetEventSourceMappingInput) (*Even
 const opGetFunction = "GetFunction"
 
 // GetFunctionRequest generates a request for the GetFunction operation.
-func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *service.Request, output *GetFunctionOutput) {
-	op := &service.Operation{
+func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *request.Request, output *GetFunctionOutput) {
+	op := &request.Operation{
 		Name:       opGetFunction,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD",
@@ -254,8 +254,8 @@ func (c *Lambda) GetFunction(input *GetFunctionInput) (*GetFunctionOutput, error
 const opGetFunctionConfiguration = "GetFunctionConfiguration"
 
 // GetFunctionConfigurationRequest generates a request for the GetFunctionConfiguration operation.
-func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfigurationInput) (req *service.Request, output *FunctionConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfigurationInput) (req *request.Request, output *FunctionConfiguration) {
+	op := &request.Operation{
 		Name:       opGetFunctionConfiguration,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD/configuration",
@@ -286,8 +286,8 @@ func (c *Lambda) GetFunctionConfiguration(input *GetFunctionConfigurationInput) 
 const opGetPolicy = "GetPolicy"
 
 // GetPolicyRequest generates a request for the GetPolicy operation.
-func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *service.Request, output *GetPolicyOutput) {
-	op := &service.Operation{
+func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetPolicy,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD/policy",
@@ -316,8 +316,8 @@ func (c *Lambda) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 const opInvoke = "Invoke"
 
 // InvokeRequest generates a request for the Invoke operation.
-func (c *Lambda) InvokeRequest(input *InvokeInput) (req *service.Request, output *InvokeOutput) {
-	op := &service.Operation{
+func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output *InvokeOutput) {
+	op := &request.Operation{
 		Name:       opInvoke,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/invocations",
@@ -345,8 +345,8 @@ func (c *Lambda) Invoke(input *InvokeInput) (*InvokeOutput, error) {
 const opInvokeAsync = "InvokeAsync"
 
 // InvokeAsyncRequest generates a request for the InvokeAsync operation.
-func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *service.Request, output *InvokeAsyncOutput) {
-	op := &service.Operation{
+func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Request, output *InvokeAsyncOutput) {
+	op := &request.Operation{
 		Name:       opInvokeAsync,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2014-11-13/functions/{FunctionName}/invoke-async/",
@@ -377,12 +377,12 @@ func (c *Lambda) InvokeAsync(input *InvokeAsyncInput) (*InvokeAsyncOutput, error
 const opListEventSourceMappings = "ListEventSourceMappings"
 
 // ListEventSourceMappingsRequest generates a request for the ListEventSourceMappings operation.
-func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsInput) (req *service.Request, output *ListEventSourceMappingsOutput) {
-	op := &service.Operation{
+func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsInput) (req *request.Request, output *ListEventSourceMappingsOutput) {
+	op := &request.Operation{
 		Name:       opListEventSourceMappings,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-03-31/event-source-mappings/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "MaxItems",
@@ -425,12 +425,12 @@ func (c *Lambda) ListEventSourceMappingsPages(input *ListEventSourceMappingsInpu
 const opListFunctions = "ListFunctions"
 
 // ListFunctionsRequest generates a request for the ListFunctions operation.
-func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *service.Request, output *ListFunctionsOutput) {
-	op := &service.Operation{
+func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *request.Request, output *ListFunctionsOutput) {
+	op := &request.Operation{
 		Name:       opListFunctions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2015-03-31/functions/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "MaxItems",
@@ -469,8 +469,8 @@ func (c *Lambda) ListFunctionsPages(input *ListFunctionsInput, fn func(p *ListFu
 const opRemovePermission = "RemovePermission"
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
-func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *service.Request, output *RemovePermissionOutput) {
-	op := &service.Operation{
+func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
+	op := &request.Operation{
 		Name:       opRemovePermission,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD/policy/{StatementId}",
@@ -502,8 +502,8 @@ func (c *Lambda) RemovePermission(input *RemovePermissionInput) (*RemovePermissi
 const opUpdateEventSourceMapping = "UpdateEventSourceMapping"
 
 // UpdateEventSourceMappingRequest generates a request for the UpdateEventSourceMapping operation.
-func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMappingInput) (req *service.Request, output *EventSourceMappingConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMappingInput) (req *request.Request, output *EventSourceMappingConfiguration) {
+	op := &request.Operation{
 		Name:       opUpdateEventSourceMapping,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-03-31/event-source-mappings/{UUID}",
@@ -535,8 +535,8 @@ func (c *Lambda) UpdateEventSourceMapping(input *UpdateEventSourceMappingInput) 
 const opUpdateFunctionCode = "UpdateFunctionCode"
 
 // UpdateFunctionCodeRequest generates a request for the UpdateFunctionCode operation.
-func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req *service.Request, output *FunctionConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req *request.Request, output *FunctionConfiguration) {
+	op := &request.Operation{
 		Name:       opUpdateFunctionCode,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD/code",
@@ -566,8 +566,8 @@ func (c *Lambda) UpdateFunctionCode(input *UpdateFunctionCodeInput) (*FunctionCo
 const opUpdateFunctionConfiguration = "UpdateFunctionConfiguration"
 
 // UpdateFunctionConfigurationRequest generates a request for the UpdateFunctionConfiguration operation.
-func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigurationInput) (req *service.Request, output *FunctionConfiguration) {
-	op := &service.Operation{
+func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigurationInput) (req *request.Request, output *FunctionConfiguration) {
+	op := &request.Operation{
 		Name:       opUpdateFunctionConfiguration,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2015-03-31/functions/{FunctionName}/versions/HEAD/configuration",

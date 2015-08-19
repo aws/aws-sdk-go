@@ -4,53 +4,53 @@
 package ssmiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
 // SSMAPI is the interface type for ssm.SSM.
 type SSMAPI interface {
-	CreateAssociationRequest(*ssm.CreateAssociationInput) (*service.Request, *ssm.CreateAssociationOutput)
+	CreateAssociationRequest(*ssm.CreateAssociationInput) (*request.Request, *ssm.CreateAssociationOutput)
 
 	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, error)
 
-	CreateAssociationBatchRequest(*ssm.CreateAssociationBatchInput) (*service.Request, *ssm.CreateAssociationBatchOutput)
+	CreateAssociationBatchRequest(*ssm.CreateAssociationBatchInput) (*request.Request, *ssm.CreateAssociationBatchOutput)
 
 	CreateAssociationBatch(*ssm.CreateAssociationBatchInput) (*ssm.CreateAssociationBatchOutput, error)
 
-	CreateDocumentRequest(*ssm.CreateDocumentInput) (*service.Request, *ssm.CreateDocumentOutput)
+	CreateDocumentRequest(*ssm.CreateDocumentInput) (*request.Request, *ssm.CreateDocumentOutput)
 
 	CreateDocument(*ssm.CreateDocumentInput) (*ssm.CreateDocumentOutput, error)
 
-	DeleteAssociationRequest(*ssm.DeleteAssociationInput) (*service.Request, *ssm.DeleteAssociationOutput)
+	DeleteAssociationRequest(*ssm.DeleteAssociationInput) (*request.Request, *ssm.DeleteAssociationOutput)
 
 	DeleteAssociation(*ssm.DeleteAssociationInput) (*ssm.DeleteAssociationOutput, error)
 
-	DeleteDocumentRequest(*ssm.DeleteDocumentInput) (*service.Request, *ssm.DeleteDocumentOutput)
+	DeleteDocumentRequest(*ssm.DeleteDocumentInput) (*request.Request, *ssm.DeleteDocumentOutput)
 
 	DeleteDocument(*ssm.DeleteDocumentInput) (*ssm.DeleteDocumentOutput, error)
 
-	DescribeAssociationRequest(*ssm.DescribeAssociationInput) (*service.Request, *ssm.DescribeAssociationOutput)
+	DescribeAssociationRequest(*ssm.DescribeAssociationInput) (*request.Request, *ssm.DescribeAssociationOutput)
 
 	DescribeAssociation(*ssm.DescribeAssociationInput) (*ssm.DescribeAssociationOutput, error)
 
-	DescribeDocumentRequest(*ssm.DescribeDocumentInput) (*service.Request, *ssm.DescribeDocumentOutput)
+	DescribeDocumentRequest(*ssm.DescribeDocumentInput) (*request.Request, *ssm.DescribeDocumentOutput)
 
 	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, error)
 
-	GetDocumentRequest(*ssm.GetDocumentInput) (*service.Request, *ssm.GetDocumentOutput)
+	GetDocumentRequest(*ssm.GetDocumentInput) (*request.Request, *ssm.GetDocumentOutput)
 
 	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, error)
 
-	ListAssociationsRequest(*ssm.ListAssociationsInput) (*service.Request, *ssm.ListAssociationsOutput)
+	ListAssociationsRequest(*ssm.ListAssociationsInput) (*request.Request, *ssm.ListAssociationsOutput)
 
 	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, error)
 
-	ListDocumentsRequest(*ssm.ListDocumentsInput) (*service.Request, *ssm.ListDocumentsOutput)
+	ListDocumentsRequest(*ssm.ListDocumentsInput) (*request.Request, *ssm.ListDocumentsOutput)
 
 	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, error)
 
-	UpdateAssociationStatusRequest(*ssm.UpdateAssociationStatusInput) (*service.Request, *ssm.UpdateAssociationStatusOutput)
+	UpdateAssociationStatusRequest(*ssm.UpdateAssociationStatusInput) (*request.Request, *ssm.UpdateAssociationStatusOutput)
 
 	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, error)
 }

@@ -1,4 +1,4 @@
-package service
+package request
 
 // A Handlers provides a collection of request handlers for various
 // stages of handling requests.
@@ -15,8 +15,8 @@ type Handlers struct {
 	AfterRetry       HandlerList
 }
 
-// copy returns of this handler's lists.
-func (h *Handlers) copy() Handlers {
+// Copy returns of this handler's lists.
+func (h *Handlers) Copy() Handlers {
 	return Handlers{
 		Validate:         h.Validate.copy(),
 		Build:            h.Build.copy(),

@@ -7,14 +7,14 @@ import (
 	"io"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAbortMultipartUpload = "AbortMultipartUpload"
 
 // AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
-func (c *Glacier) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *service.Request, output *AbortMultipartUploadOutput) {
-	op := &service.Operation{
+func (c *Glacier) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *request.Request, output *AbortMultipartUploadOutput) {
+	op := &request.Operation{
 		Name:       opAbortMultipartUpload,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
@@ -59,8 +59,8 @@ func (c *Glacier) AbortMultipartUpload(input *AbortMultipartUploadInput) (*Abort
 const opAbortVaultLock = "AbortVaultLock"
 
 // AbortVaultLockRequest generates a request for the AbortVaultLock operation.
-func (c *Glacier) AbortVaultLockRequest(input *AbortVaultLockInput) (req *service.Request, output *AbortVaultLockOutput) {
-	op := &service.Operation{
+func (c *Glacier) AbortVaultLockRequest(input *AbortVaultLockInput) (req *request.Request, output *AbortVaultLockOutput) {
+	op := &request.Operation{
 		Name:       opAbortVaultLock,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy",
@@ -101,8 +101,8 @@ func (c *Glacier) AbortVaultLock(input *AbortVaultLockInput) (*AbortVaultLockOut
 const opAddTagsToVault = "AddTagsToVault"
 
 // AddTagsToVaultRequest generates a request for the AddTagsToVault operation.
-func (c *Glacier) AddTagsToVaultRequest(input *AddTagsToVaultInput) (req *service.Request, output *AddTagsToVaultOutput) {
-	op := &service.Operation{
+func (c *Glacier) AddTagsToVaultRequest(input *AddTagsToVaultInput) (req *request.Request, output *AddTagsToVaultOutput) {
+	op := &request.Operation{
 		Name:       opAddTagsToVault,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/tags?operation=add",
@@ -133,8 +133,8 @@ func (c *Glacier) AddTagsToVault(input *AddTagsToVaultInput) (*AddTagsToVaultOut
 const opCompleteMultipartUpload = "CompleteMultipartUpload"
 
 // CompleteMultipartUploadRequest generates a request for the CompleteMultipartUpload operation.
-func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) (req *service.Request, output *ArchiveCreationOutput) {
-	op := &service.Operation{
+func (c *Glacier) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) (req *request.Request, output *ArchiveCreationOutput) {
+	op := &request.Operation{
 		Name:       opCompleteMultipartUpload,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
@@ -203,8 +203,8 @@ func (c *Glacier) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (
 const opCompleteVaultLock = "CompleteVaultLock"
 
 // CompleteVaultLockRequest generates a request for the CompleteVaultLock operation.
-func (c *Glacier) CompleteVaultLockRequest(input *CompleteVaultLockInput) (req *service.Request, output *CompleteVaultLockOutput) {
-	op := &service.Operation{
+func (c *Glacier) CompleteVaultLockRequest(input *CompleteVaultLockInput) (req *request.Request, output *CompleteVaultLockOutput) {
+	op := &request.Operation{
 		Name:       opCompleteVaultLock,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy/{lockId}",
@@ -244,8 +244,8 @@ func (c *Glacier) CompleteVaultLock(input *CompleteVaultLockInput) (*CompleteVau
 const opCreateVault = "CreateVault"
 
 // CreateVaultRequest generates a request for the CreateVault operation.
-func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *service.Request, output *CreateVaultOutput) {
-	op := &service.Operation{
+func (c *Glacier) CreateVaultRequest(input *CreateVaultInput) (req *request.Request, output *CreateVaultOutput) {
+	op := &request.Operation{
 		Name:       opCreateVault,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}",
@@ -294,8 +294,8 @@ func (c *Glacier) CreateVault(input *CreateVaultInput) (*CreateVaultOutput, erro
 const opDeleteArchive = "DeleteArchive"
 
 // DeleteArchiveRequest generates a request for the DeleteArchive operation.
-func (c *Glacier) DeleteArchiveRequest(input *DeleteArchiveInput) (req *service.Request, output *DeleteArchiveOutput) {
-	op := &service.Operation{
+func (c *Glacier) DeleteArchiveRequest(input *DeleteArchiveInput) (req *request.Request, output *DeleteArchiveOutput) {
+	op := &request.Operation{
 		Name:       opDeleteArchive,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/archives/{archiveId}",
@@ -341,8 +341,8 @@ func (c *Glacier) DeleteArchive(input *DeleteArchiveInput) (*DeleteArchiveOutput
 const opDeleteVault = "DeleteVault"
 
 // DeleteVaultRequest generates a request for the DeleteVault operation.
-func (c *Glacier) DeleteVaultRequest(input *DeleteVaultInput) (req *service.Request, output *DeleteVaultOutput) {
-	op := &service.Operation{
+func (c *Glacier) DeleteVaultRequest(input *DeleteVaultInput) (req *request.Request, output *DeleteVaultOutput) {
+	op := &request.Operation{
 		Name:       opDeleteVault,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}",
@@ -390,8 +390,8 @@ func (c *Glacier) DeleteVault(input *DeleteVaultInput) (*DeleteVaultOutput, erro
 const opDeleteVaultAccessPolicy = "DeleteVaultAccessPolicy"
 
 // DeleteVaultAccessPolicyRequest generates a request for the DeleteVaultAccessPolicy operation.
-func (c *Glacier) DeleteVaultAccessPolicyRequest(input *DeleteVaultAccessPolicyInput) (req *service.Request, output *DeleteVaultAccessPolicyOutput) {
-	op := &service.Operation{
+func (c *Glacier) DeleteVaultAccessPolicyRequest(input *DeleteVaultAccessPolicyInput) (req *request.Request, output *DeleteVaultAccessPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteVaultAccessPolicy,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/access-policy",
@@ -426,8 +426,8 @@ func (c *Glacier) DeleteVaultAccessPolicy(input *DeleteVaultAccessPolicyInput) (
 const opDeleteVaultNotifications = "DeleteVaultNotifications"
 
 // DeleteVaultNotificationsRequest generates a request for the DeleteVaultNotifications operation.
-func (c *Glacier) DeleteVaultNotificationsRequest(input *DeleteVaultNotificationsInput) (req *service.Request, output *DeleteVaultNotificationsOutput) {
-	op := &service.Operation{
+func (c *Glacier) DeleteVaultNotificationsRequest(input *DeleteVaultNotificationsInput) (req *request.Request, output *DeleteVaultNotificationsOutput) {
+	op := &request.Operation{
 		Name:       opDeleteVaultNotifications,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/notification-configuration",
@@ -467,8 +467,8 @@ func (c *Glacier) DeleteVaultNotifications(input *DeleteVaultNotificationsInput)
 const opDescribeJob = "DescribeJob"
 
 // DescribeJobRequest generates a request for the DescribeJob operation.
-func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *service.Request, output *JobDescription) {
-	op := &service.Operation{
+func (c *Glacier) DescribeJobRequest(input *DescribeJobInput) (req *request.Request, output *JobDescription) {
+	op := &request.Operation{
 		Name:       opDescribeJob,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/jobs/{jobId}",
@@ -515,8 +515,8 @@ func (c *Glacier) DescribeJob(input *DescribeJobInput) (*JobDescription, error) 
 const opDescribeVault = "DescribeVault"
 
 // DescribeVaultRequest generates a request for the DescribeVault operation.
-func (c *Glacier) DescribeVaultRequest(input *DescribeVaultInput) (req *service.Request, output *DescribeVaultOutput) {
-	op := &service.Operation{
+func (c *Glacier) DescribeVaultRequest(input *DescribeVaultInput) (req *request.Request, output *DescribeVaultOutput) {
+	op := &request.Operation{
 		Name:       opDescribeVault,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}",
@@ -561,8 +561,8 @@ func (c *Glacier) DescribeVault(input *DescribeVaultInput) (*DescribeVaultOutput
 const opGetDataRetrievalPolicy = "GetDataRetrievalPolicy"
 
 // GetDataRetrievalPolicyRequest generates a request for the GetDataRetrievalPolicy operation.
-func (c *Glacier) GetDataRetrievalPolicyRequest(input *GetDataRetrievalPolicyInput) (req *service.Request, output *GetDataRetrievalPolicyOutput) {
-	op := &service.Operation{
+func (c *Glacier) GetDataRetrievalPolicyRequest(input *GetDataRetrievalPolicyInput) (req *request.Request, output *GetDataRetrievalPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetDataRetrievalPolicy,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/policies/data-retrieval",
@@ -590,8 +590,8 @@ func (c *Glacier) GetDataRetrievalPolicy(input *GetDataRetrievalPolicyInput) (*G
 const opGetJobOutput = "GetJobOutput"
 
 // GetJobOutputRequest generates a request for the GetJobOutput operation.
-func (c *Glacier) GetJobOutputRequest(input *GetJobOutputInput) (req *service.Request, output *GetJobOutputOutput) {
-	op := &service.Operation{
+func (c *Glacier) GetJobOutputRequest(input *GetJobOutputInput) (req *request.Request, output *GetJobOutputOutput) {
+	op := &request.Operation{
 		Name:       opGetJobOutput,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/jobs/{jobId}/output",
@@ -660,8 +660,8 @@ func (c *Glacier) GetJobOutput(input *GetJobOutputInput) (*GetJobOutputOutput, e
 const opGetVaultAccessPolicy = "GetVaultAccessPolicy"
 
 // GetVaultAccessPolicyRequest generates a request for the GetVaultAccessPolicy operation.
-func (c *Glacier) GetVaultAccessPolicyRequest(input *GetVaultAccessPolicyInput) (req *service.Request, output *GetVaultAccessPolicyOutput) {
-	op := &service.Operation{
+func (c *Glacier) GetVaultAccessPolicyRequest(input *GetVaultAccessPolicyInput) (req *request.Request, output *GetVaultAccessPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetVaultAccessPolicy,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/access-policy",
@@ -692,8 +692,8 @@ func (c *Glacier) GetVaultAccessPolicy(input *GetVaultAccessPolicyInput) (*GetVa
 const opGetVaultLock = "GetVaultLock"
 
 // GetVaultLockRequest generates a request for the GetVaultLock operation.
-func (c *Glacier) GetVaultLockRequest(input *GetVaultLockInput) (req *service.Request, output *GetVaultLockOutput) {
-	op := &service.Operation{
+func (c *Glacier) GetVaultLockRequest(input *GetVaultLockInput) (req *request.Request, output *GetVaultLockOutput) {
+	op := &request.Operation{
 		Name:       opGetVaultLock,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy",
@@ -736,8 +736,8 @@ func (c *Glacier) GetVaultLock(input *GetVaultLockInput) (*GetVaultLockOutput, e
 const opGetVaultNotifications = "GetVaultNotifications"
 
 // GetVaultNotificationsRequest generates a request for the GetVaultNotifications operation.
-func (c *Glacier) GetVaultNotificationsRequest(input *GetVaultNotificationsInput) (req *service.Request, output *GetVaultNotificationsOutput) {
-	op := &service.Operation{
+func (c *Glacier) GetVaultNotificationsRequest(input *GetVaultNotificationsInput) (req *request.Request, output *GetVaultNotificationsOutput) {
+	op := &request.Operation{
 		Name:       opGetVaultNotifications,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/notification-configuration",
@@ -781,8 +781,8 @@ func (c *Glacier) GetVaultNotifications(input *GetVaultNotificationsInput) (*Get
 const opInitiateJob = "InitiateJob"
 
 // InitiateJobRequest generates a request for the InitiateJob operation.
-func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *service.Request, output *InitiateJobOutput) {
-	op := &service.Operation{
+func (c *Glacier) InitiateJobRequest(input *InitiateJobInput) (req *request.Request, output *InitiateJobOutput) {
+	op := &request.Operation{
 		Name:       opInitiateJob,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/jobs",
@@ -923,8 +923,8 @@ func (c *Glacier) InitiateJob(input *InitiateJobInput) (*InitiateJobOutput, erro
 const opInitiateMultipartUpload = "InitiateMultipartUpload"
 
 // InitiateMultipartUploadRequest generates a request for the InitiateMultipartUpload operation.
-func (c *Glacier) InitiateMultipartUploadRequest(input *InitiateMultipartUploadInput) (req *service.Request, output *InitiateMultipartUploadOutput) {
-	op := &service.Operation{
+func (c *Glacier) InitiateMultipartUploadRequest(input *InitiateMultipartUploadInput) (req *request.Request, output *InitiateMultipartUploadOutput) {
+	op := &request.Operation{
 		Name:       opInitiateMultipartUpload,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/multipart-uploads",
@@ -984,8 +984,8 @@ func (c *Glacier) InitiateMultipartUpload(input *InitiateMultipartUploadInput) (
 const opInitiateVaultLock = "InitiateVaultLock"
 
 // InitiateVaultLockRequest generates a request for the InitiateVaultLock operation.
-func (c *Glacier) InitiateVaultLockRequest(input *InitiateVaultLockInput) (req *service.Request, output *InitiateVaultLockOutput) {
-	op := &service.Operation{
+func (c *Glacier) InitiateVaultLockRequest(input *InitiateVaultLockInput) (req *request.Request, output *InitiateVaultLockOutput) {
+	op := &request.Operation{
 		Name:       opInitiateVaultLock,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/lock-policy",
@@ -1038,12 +1038,12 @@ func (c *Glacier) InitiateVaultLock(input *InitiateVaultLockInput) (*InitiateVau
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a request for the ListJobs operation.
-func (c *Glacier) ListJobsRequest(input *ListJobsInput) (req *service.Request, output *ListJobsOutput) {
-	op := &service.Operation{
+func (c *Glacier) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
+	op := &request.Operation{
 		Name:       opListJobs,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/jobs",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "limit",
@@ -1117,12 +1117,12 @@ func (c *Glacier) ListJobsPages(input *ListJobsInput, fn func(p *ListJobsOutput,
 const opListMultipartUploads = "ListMultipartUploads"
 
 // ListMultipartUploadsRequest generates a request for the ListMultipartUploads operation.
-func (c *Glacier) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req *service.Request, output *ListMultipartUploadsOutput) {
-	op := &service.Operation{
+func (c *Glacier) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req *request.Request, output *ListMultipartUploadsOutput) {
+	op := &request.Operation{
 		Name:       opListMultipartUploads,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/multipart-uploads",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "limit",
@@ -1186,12 +1186,12 @@ func (c *Glacier) ListMultipartUploadsPages(input *ListMultipartUploadsInput, fn
 const opListParts = "ListParts"
 
 // ListPartsRequest generates a request for the ListParts operation.
-func (c *Glacier) ListPartsRequest(input *ListPartsInput) (req *service.Request, output *ListPartsOutput) {
-	op := &service.Operation{
+func (c *Glacier) ListPartsRequest(input *ListPartsInput) (req *request.Request, output *ListPartsOutput) {
+	op := &request.Operation{
 		Name:       opListParts,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "limit",
@@ -1249,8 +1249,8 @@ func (c *Glacier) ListPartsPages(input *ListPartsInput, fn func(p *ListPartsOutp
 const opListTagsForVault = "ListTagsForVault"
 
 // ListTagsForVaultRequest generates a request for the ListTagsForVault operation.
-func (c *Glacier) ListTagsForVaultRequest(input *ListTagsForVaultInput) (req *service.Request, output *ListTagsForVaultOutput) {
-	op := &service.Operation{
+func (c *Glacier) ListTagsForVaultRequest(input *ListTagsForVaultInput) (req *request.Request, output *ListTagsForVaultOutput) {
+	op := &request.Operation{
 		Name:       opListTagsForVault,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/tags",
@@ -1278,12 +1278,12 @@ func (c *Glacier) ListTagsForVault(input *ListTagsForVaultInput) (*ListTagsForVa
 const opListVaults = "ListVaults"
 
 // ListVaultsRequest generates a request for the ListVaults operation.
-func (c *Glacier) ListVaultsRequest(input *ListVaultsInput) (req *service.Request, output *ListVaultsOutput) {
-	op := &service.Operation{
+func (c *Glacier) ListVaultsRequest(input *ListVaultsInput) (req *request.Request, output *ListVaultsOutput) {
+	op := &request.Operation{
 		Name:       opListVaults,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{accountId}/vaults",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "limit",
@@ -1339,8 +1339,8 @@ func (c *Glacier) ListVaultsPages(input *ListVaultsInput, fn func(p *ListVaultsO
 const opRemoveTagsFromVault = "RemoveTagsFromVault"
 
 // RemoveTagsFromVaultRequest generates a request for the RemoveTagsFromVault operation.
-func (c *Glacier) RemoveTagsFromVaultRequest(input *RemoveTagsFromVaultInput) (req *service.Request, output *RemoveTagsFromVaultOutput) {
-	op := &service.Operation{
+func (c *Glacier) RemoveTagsFromVaultRequest(input *RemoveTagsFromVaultInput) (req *request.Request, output *RemoveTagsFromVaultOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTagsFromVault,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/tags?operation=remove",
@@ -1370,8 +1370,8 @@ func (c *Glacier) RemoveTagsFromVault(input *RemoveTagsFromVaultInput) (*RemoveT
 const opSetDataRetrievalPolicy = "SetDataRetrievalPolicy"
 
 // SetDataRetrievalPolicyRequest generates a request for the SetDataRetrievalPolicy operation.
-func (c *Glacier) SetDataRetrievalPolicyRequest(input *SetDataRetrievalPolicyInput) (req *service.Request, output *SetDataRetrievalPolicyOutput) {
-	op := &service.Operation{
+func (c *Glacier) SetDataRetrievalPolicyRequest(input *SetDataRetrievalPolicyInput) (req *request.Request, output *SetDataRetrievalPolicyOutput) {
+	op := &request.Operation{
 		Name:       opSetDataRetrievalPolicy,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{accountId}/policies/data-retrieval",
@@ -1403,8 +1403,8 @@ func (c *Glacier) SetDataRetrievalPolicy(input *SetDataRetrievalPolicyInput) (*S
 const opSetVaultAccessPolicy = "SetVaultAccessPolicy"
 
 // SetVaultAccessPolicyRequest generates a request for the SetVaultAccessPolicy operation.
-func (c *Glacier) SetVaultAccessPolicyRequest(input *SetVaultAccessPolicyInput) (req *service.Request, output *SetVaultAccessPolicyOutput) {
-	op := &service.Operation{
+func (c *Glacier) SetVaultAccessPolicyRequest(input *SetVaultAccessPolicyInput) (req *request.Request, output *SetVaultAccessPolicyOutput) {
+	op := &request.Operation{
 		Name:       opSetVaultAccessPolicy,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/access-policy",
@@ -1436,8 +1436,8 @@ func (c *Glacier) SetVaultAccessPolicy(input *SetVaultAccessPolicyInput) (*SetVa
 const opSetVaultNotifications = "SetVaultNotifications"
 
 // SetVaultNotificationsRequest generates a request for the SetVaultNotifications operation.
-func (c *Glacier) SetVaultNotificationsRequest(input *SetVaultNotificationsInput) (req *service.Request, output *SetVaultNotificationsOutput) {
-	op := &service.Operation{
+func (c *Glacier) SetVaultNotificationsRequest(input *SetVaultNotificationsInput) (req *request.Request, output *SetVaultNotificationsOutput) {
+	op := &request.Operation{
 		Name:       opSetVaultNotifications,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/notification-configuration",
@@ -1491,8 +1491,8 @@ func (c *Glacier) SetVaultNotifications(input *SetVaultNotificationsInput) (*Set
 const opUploadArchive = "UploadArchive"
 
 // UploadArchiveRequest generates a request for the UploadArchive operation.
-func (c *Glacier) UploadArchiveRequest(input *UploadArchiveInput) (req *service.Request, output *ArchiveCreationOutput) {
-	op := &service.Operation{
+func (c *Glacier) UploadArchiveRequest(input *UploadArchiveInput) (req *request.Request, output *ArchiveCreationOutput) {
+	op := &request.Operation{
 		Name:       opUploadArchive,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/archives",
@@ -1553,8 +1553,8 @@ func (c *Glacier) UploadArchive(input *UploadArchiveInput) (*ArchiveCreationOutp
 const opUploadMultipartPart = "UploadMultipartPart"
 
 // UploadMultipartPartRequest generates a request for the UploadMultipartPart operation.
-func (c *Glacier) UploadMultipartPartRequest(input *UploadMultipartPartInput) (req *service.Request, output *UploadMultipartPartOutput) {
-	op := &service.Operation{
+func (c *Glacier) UploadMultipartPartRequest(input *UploadMultipartPartInput) (req *request.Request, output *UploadMultipartPartOutput) {
+	op := &request.Operation{
 		Name:       opUploadMultipartPart,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{accountId}/vaults/{vaultName}/multipart-uploads/{uploadId}",

@@ -1,4 +1,4 @@
-package service_test
+package request_test
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/s3"
@@ -30,7 +30,7 @@ func TestPagination(t *testing.T) {
 	db.Handlers.Unmarshal.Clear()
 	db.Handlers.UnmarshalMeta.Clear()
 	db.Handlers.ValidateResponse.Clear()
-	db.Handlers.Build.PushBack(func(r *service.Request) {
+	db.Handlers.Build.PushBack(func(r *request.Request) {
 		in := r.Params.(*dynamodb.ListTablesInput)
 		if in == nil {
 			tokens = append(tokens, "")
@@ -38,7 +38,7 @@ func TestPagination(t *testing.T) {
 			tokens = append(tokens, *in.ExclusiveStartTableName)
 		}
 	})
-	db.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	db.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = resps[reqNum]
 		reqNum++
 	})
@@ -82,7 +82,7 @@ func TestPaginationEachPage(t *testing.T) {
 	db.Handlers.Unmarshal.Clear()
 	db.Handlers.UnmarshalMeta.Clear()
 	db.Handlers.ValidateResponse.Clear()
-	db.Handlers.Build.PushBack(func(r *service.Request) {
+	db.Handlers.Build.PushBack(func(r *request.Request) {
 		in := r.Params.(*dynamodb.ListTablesInput)
 		if in == nil {
 			tokens = append(tokens, "")
@@ -90,7 +90,7 @@ func TestPaginationEachPage(t *testing.T) {
 			tokens = append(tokens, *in.ExclusiveStartTableName)
 		}
 	})
-	db.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	db.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = resps[reqNum]
 		reqNum++
 	})
@@ -135,7 +135,7 @@ func TestPaginationEarlyExit(t *testing.T) {
 	db.Handlers.Unmarshal.Clear()
 	db.Handlers.UnmarshalMeta.Clear()
 	db.Handlers.ValidateResponse.Clear()
-	db.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	db.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = resps[reqNum]
 		reqNum++
 	})
@@ -166,7 +166,7 @@ func TestSkipPagination(t *testing.T) {
 	client.Handlers.Unmarshal.Clear()
 	client.Handlers.UnmarshalMeta.Clear()
 	client.Handlers.ValidateResponse.Clear()
-	client.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	client.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = &s3.HeadBucketOutput{}
 	})
 
@@ -201,7 +201,7 @@ func TestPaginationTruncation(t *testing.T) {
 	client.Handlers.Unmarshal.Clear()
 	client.Handlers.UnmarshalMeta.Clear()
 	client.Handlers.ValidateResponse.Clear()
-	client.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	client.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = resps[*reqNum]
 		*reqNum++
 	})
@@ -262,7 +262,7 @@ var benchDb = func() *dynamodb.DynamoDB {
 func BenchmarkCodegenIterator(b *testing.B) {
 	reqNum := 0
 	db := benchDb()
-	db.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	db.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = benchResps[reqNum]
 		reqNum++
 	})
@@ -291,7 +291,7 @@ func BenchmarkCodegenIterator(b *testing.B) {
 func BenchmarkEachPageIterator(b *testing.B) {
 	reqNum := 0
 	db := benchDb()
-	db.Handlers.Unmarshal.PushBack(func(r *service.Request) {
+	db.Handlers.Unmarshal.PushBack(func(r *request.Request) {
 		r.Data = benchResps[reqNum]
 		reqNum++
 	})

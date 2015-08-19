@@ -4,85 +4,85 @@
 package route53domainsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/route53domains"
 )
 
 // Route53DomainsAPI is the interface type for route53domains.Route53Domains.
 type Route53DomainsAPI interface {
-	CheckDomainAvailabilityRequest(*route53domains.CheckDomainAvailabilityInput) (*service.Request, *route53domains.CheckDomainAvailabilityOutput)
+	CheckDomainAvailabilityRequest(*route53domains.CheckDomainAvailabilityInput) (*request.Request, *route53domains.CheckDomainAvailabilityOutput)
 
 	CheckDomainAvailability(*route53domains.CheckDomainAvailabilityInput) (*route53domains.CheckDomainAvailabilityOutput, error)
 
-	DeleteTagsForDomainRequest(*route53domains.DeleteTagsForDomainInput) (*service.Request, *route53domains.DeleteTagsForDomainOutput)
+	DeleteTagsForDomainRequest(*route53domains.DeleteTagsForDomainInput) (*request.Request, *route53domains.DeleteTagsForDomainOutput)
 
 	DeleteTagsForDomain(*route53domains.DeleteTagsForDomainInput) (*route53domains.DeleteTagsForDomainOutput, error)
 
-	DisableDomainAutoRenewRequest(*route53domains.DisableDomainAutoRenewInput) (*service.Request, *route53domains.DisableDomainAutoRenewOutput)
+	DisableDomainAutoRenewRequest(*route53domains.DisableDomainAutoRenewInput) (*request.Request, *route53domains.DisableDomainAutoRenewOutput)
 
 	DisableDomainAutoRenew(*route53domains.DisableDomainAutoRenewInput) (*route53domains.DisableDomainAutoRenewOutput, error)
 
-	DisableDomainTransferLockRequest(*route53domains.DisableDomainTransferLockInput) (*service.Request, *route53domains.DisableDomainTransferLockOutput)
+	DisableDomainTransferLockRequest(*route53domains.DisableDomainTransferLockInput) (*request.Request, *route53domains.DisableDomainTransferLockOutput)
 
 	DisableDomainTransferLock(*route53domains.DisableDomainTransferLockInput) (*route53domains.DisableDomainTransferLockOutput, error)
 
-	EnableDomainAutoRenewRequest(*route53domains.EnableDomainAutoRenewInput) (*service.Request, *route53domains.EnableDomainAutoRenewOutput)
+	EnableDomainAutoRenewRequest(*route53domains.EnableDomainAutoRenewInput) (*request.Request, *route53domains.EnableDomainAutoRenewOutput)
 
 	EnableDomainAutoRenew(*route53domains.EnableDomainAutoRenewInput) (*route53domains.EnableDomainAutoRenewOutput, error)
 
-	EnableDomainTransferLockRequest(*route53domains.EnableDomainTransferLockInput) (*service.Request, *route53domains.EnableDomainTransferLockOutput)
+	EnableDomainTransferLockRequest(*route53domains.EnableDomainTransferLockInput) (*request.Request, *route53domains.EnableDomainTransferLockOutput)
 
 	EnableDomainTransferLock(*route53domains.EnableDomainTransferLockInput) (*route53domains.EnableDomainTransferLockOutput, error)
 
-	GetDomainDetailRequest(*route53domains.GetDomainDetailInput) (*service.Request, *route53domains.GetDomainDetailOutput)
+	GetDomainDetailRequest(*route53domains.GetDomainDetailInput) (*request.Request, *route53domains.GetDomainDetailOutput)
 
 	GetDomainDetail(*route53domains.GetDomainDetailInput) (*route53domains.GetDomainDetailOutput, error)
 
-	GetOperationDetailRequest(*route53domains.GetOperationDetailInput) (*service.Request, *route53domains.GetOperationDetailOutput)
+	GetOperationDetailRequest(*route53domains.GetOperationDetailInput) (*request.Request, *route53domains.GetOperationDetailOutput)
 
 	GetOperationDetail(*route53domains.GetOperationDetailInput) (*route53domains.GetOperationDetailOutput, error)
 
-	ListDomainsRequest(*route53domains.ListDomainsInput) (*service.Request, *route53domains.ListDomainsOutput)
+	ListDomainsRequest(*route53domains.ListDomainsInput) (*request.Request, *route53domains.ListDomainsOutput)
 
 	ListDomains(*route53domains.ListDomainsInput) (*route53domains.ListDomainsOutput, error)
 
 	ListDomainsPages(*route53domains.ListDomainsInput, func(*route53domains.ListDomainsOutput, bool) bool) error
 
-	ListOperationsRequest(*route53domains.ListOperationsInput) (*service.Request, *route53domains.ListOperationsOutput)
+	ListOperationsRequest(*route53domains.ListOperationsInput) (*request.Request, *route53domains.ListOperationsOutput)
 
 	ListOperations(*route53domains.ListOperationsInput) (*route53domains.ListOperationsOutput, error)
 
 	ListOperationsPages(*route53domains.ListOperationsInput, func(*route53domains.ListOperationsOutput, bool) bool) error
 
-	ListTagsForDomainRequest(*route53domains.ListTagsForDomainInput) (*service.Request, *route53domains.ListTagsForDomainOutput)
+	ListTagsForDomainRequest(*route53domains.ListTagsForDomainInput) (*request.Request, *route53domains.ListTagsForDomainOutput)
 
 	ListTagsForDomain(*route53domains.ListTagsForDomainInput) (*route53domains.ListTagsForDomainOutput, error)
 
-	RegisterDomainRequest(*route53domains.RegisterDomainInput) (*service.Request, *route53domains.RegisterDomainOutput)
+	RegisterDomainRequest(*route53domains.RegisterDomainInput) (*request.Request, *route53domains.RegisterDomainOutput)
 
 	RegisterDomain(*route53domains.RegisterDomainInput) (*route53domains.RegisterDomainOutput, error)
 
-	RetrieveDomainAuthCodeRequest(*route53domains.RetrieveDomainAuthCodeInput) (*service.Request, *route53domains.RetrieveDomainAuthCodeOutput)
+	RetrieveDomainAuthCodeRequest(*route53domains.RetrieveDomainAuthCodeInput) (*request.Request, *route53domains.RetrieveDomainAuthCodeOutput)
 
 	RetrieveDomainAuthCode(*route53domains.RetrieveDomainAuthCodeInput) (*route53domains.RetrieveDomainAuthCodeOutput, error)
 
-	TransferDomainRequest(*route53domains.TransferDomainInput) (*service.Request, *route53domains.TransferDomainOutput)
+	TransferDomainRequest(*route53domains.TransferDomainInput) (*request.Request, *route53domains.TransferDomainOutput)
 
 	TransferDomain(*route53domains.TransferDomainInput) (*route53domains.TransferDomainOutput, error)
 
-	UpdateDomainContactRequest(*route53domains.UpdateDomainContactInput) (*service.Request, *route53domains.UpdateDomainContactOutput)
+	UpdateDomainContactRequest(*route53domains.UpdateDomainContactInput) (*request.Request, *route53domains.UpdateDomainContactOutput)
 
 	UpdateDomainContact(*route53domains.UpdateDomainContactInput) (*route53domains.UpdateDomainContactOutput, error)
 
-	UpdateDomainContactPrivacyRequest(*route53domains.UpdateDomainContactPrivacyInput) (*service.Request, *route53domains.UpdateDomainContactPrivacyOutput)
+	UpdateDomainContactPrivacyRequest(*route53domains.UpdateDomainContactPrivacyInput) (*request.Request, *route53domains.UpdateDomainContactPrivacyOutput)
 
 	UpdateDomainContactPrivacy(*route53domains.UpdateDomainContactPrivacyInput) (*route53domains.UpdateDomainContactPrivacyOutput, error)
 
-	UpdateDomainNameserversRequest(*route53domains.UpdateDomainNameserversInput) (*service.Request, *route53domains.UpdateDomainNameserversOutput)
+	UpdateDomainNameserversRequest(*route53domains.UpdateDomainNameserversInput) (*request.Request, *route53domains.UpdateDomainNameserversOutput)
 
 	UpdateDomainNameservers(*route53domains.UpdateDomainNameserversInput) (*route53domains.UpdateDomainNameserversOutput, error)
 
-	UpdateTagsForDomainRequest(*route53domains.UpdateTagsForDomainInput) (*service.Request, *route53domains.UpdateTagsForDomainOutput)
+	UpdateTagsForDomainRequest(*route53domains.UpdateTagsForDomainInput) (*request.Request, *route53domains.UpdateTagsForDomainOutput)
 
 	UpdateTagsForDomain(*route53domains.UpdateTagsForDomainInput) (*route53domains.UpdateTagsForDomainOutput, error)
 }

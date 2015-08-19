@@ -13,7 +13,9 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/protocol/xml/xmlutil"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
@@ -39,9 +41,11 @@ type OutputService1ProtocolTest struct {
 // New returns a new OutputService1ProtocolTest client.
 func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice1protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice1protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -57,8 +61,8 @@ func NewOutputService1ProtocolTest(config *aws.Config) *OutputService1ProtocolTe
 
 // newRequest creates a new request for a OutputService1ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService1ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService1ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -66,8 +70,8 @@ func (c *OutputService1ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService1TestCaseOperation1 = "OperationName"
 
 // OutputService1TestCaseOperation1Request generates a request for the OutputService1TestCaseOperation1 operation.
-func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *service.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1Request(input *OutputService1TestShapeOutputService1TestCaseOperation1Input) (req *request.Request, output *OutputService1TestShapeOutputService1TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService1TestCaseOperation1,
 	}
 
@@ -128,9 +132,11 @@ type OutputService2ProtocolTest struct {
 // New returns a new OutputService2ProtocolTest client.
 func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice2protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice2protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -146,8 +152,8 @@ func NewOutputService2ProtocolTest(config *aws.Config) *OutputService2ProtocolTe
 
 // newRequest creates a new request for a OutputService2ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService2ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService2ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -155,8 +161,8 @@ func (c *OutputService2ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService2TestCaseOperation1 = "OperationName"
 
 // OutputService2TestCaseOperation1Request generates a request for the OutputService2TestCaseOperation1 operation.
-func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *service.Request, output *OutputService2TestShapeOutputService2TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService2ProtocolTest) OutputService2TestCaseOperation1Request(input *OutputService2TestShapeOutputService2TestCaseOperation1Input) (req *request.Request, output *OutputService2TestShapeOutputService2TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService2TestCaseOperation1,
 	}
 
@@ -203,9 +209,11 @@ type OutputService3ProtocolTest struct {
 // New returns a new OutputService3ProtocolTest client.
 func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice3protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice3protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -221,8 +229,8 @@ func NewOutputService3ProtocolTest(config *aws.Config) *OutputService3ProtocolTe
 
 // newRequest creates a new request for a OutputService3ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService3ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService3ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -230,8 +238,8 @@ func (c *OutputService3ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService3TestCaseOperation1 = "OperationName"
 
 // OutputService3TestCaseOperation1Request generates a request for the OutputService3TestCaseOperation1 operation.
-func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *service.Request, output *OutputService3TestShapeOutputService3TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1Request(input *OutputService3TestShapeOutputService3TestCaseOperation1Input) (req *request.Request, output *OutputService3TestShapeOutputService3TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService3TestCaseOperation1,
 	}
 
@@ -276,9 +284,11 @@ type OutputService4ProtocolTest struct {
 // New returns a new OutputService4ProtocolTest client.
 func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice4protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice4protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -294,8 +304,8 @@ func NewOutputService4ProtocolTest(config *aws.Config) *OutputService4ProtocolTe
 
 // newRequest creates a new request for a OutputService4ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService4ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService4ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -303,8 +313,8 @@ func (c *OutputService4ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService4TestCaseOperation1 = "OperationName"
 
 // OutputService4TestCaseOperation1Request generates a request for the OutputService4TestCaseOperation1 operation.
-func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *service.Request, output *OutputService4TestShapeOutputService4TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *request.Request, output *OutputService4TestShapeOutputService4TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService4TestCaseOperation1,
 	}
 
@@ -349,9 +359,11 @@ type OutputService5ProtocolTest struct {
 // New returns a new OutputService5ProtocolTest client.
 func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice5protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice5protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -367,8 +379,8 @@ func NewOutputService5ProtocolTest(config *aws.Config) *OutputService5ProtocolTe
 
 // newRequest creates a new request for a OutputService5ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService5ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService5ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -376,8 +388,8 @@ func (c *OutputService5ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService5TestCaseOperation1 = "OperationName"
 
 // OutputService5TestCaseOperation1Request generates a request for the OutputService5TestCaseOperation1 operation.
-func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (req *service.Request, output *OutputService5TestShapeOutputService5TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1Request(input *OutputService5TestShapeOutputService5TestCaseOperation1Input) (req *request.Request, output *OutputService5TestShapeOutputService5TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService5TestCaseOperation1,
 	}
 
@@ -422,9 +434,11 @@ type OutputService6ProtocolTest struct {
 // New returns a new OutputService6ProtocolTest client.
 func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice6protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice6protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -440,8 +454,8 @@ func NewOutputService6ProtocolTest(config *aws.Config) *OutputService6ProtocolTe
 
 // newRequest creates a new request for a OutputService6ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService6ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService6ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -449,8 +463,8 @@ func (c *OutputService6ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService6TestCaseOperation1 = "OperationName"
 
 // OutputService6TestCaseOperation1Request generates a request for the OutputService6TestCaseOperation1 operation.
-func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *service.Request, output *OutputService6TestShapeOutputService6TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1Request(input *OutputService6TestShapeOutputService6TestCaseOperation1Input) (req *request.Request, output *OutputService6TestShapeOutputService6TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService6TestCaseOperation1,
 	}
 
@@ -495,9 +509,11 @@ type OutputService7ProtocolTest struct {
 // New returns a new OutputService7ProtocolTest client.
 func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice7protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice7protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -513,8 +529,8 @@ func NewOutputService7ProtocolTest(config *aws.Config) *OutputService7ProtocolTe
 
 // newRequest creates a new request for a OutputService7ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService7ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService7ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -522,8 +538,8 @@ func (c *OutputService7ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService7TestCaseOperation1 = "OperationName"
 
 // OutputService7TestCaseOperation1Request generates a request for the OutputService7TestCaseOperation1 operation.
-func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (req *service.Request, output *OutputService7TestShapeOutputService7TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1Request(input *OutputService7TestShapeOutputService7TestCaseOperation1Input) (req *request.Request, output *OutputService7TestShapeOutputService7TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService7TestCaseOperation1,
 	}
 
@@ -568,9 +584,11 @@ type OutputService8ProtocolTest struct {
 // New returns a new OutputService8ProtocolTest client.
 func NewOutputService8ProtocolTest(config *aws.Config) *OutputService8ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice8protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice8protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -586,8 +604,8 @@ func NewOutputService8ProtocolTest(config *aws.Config) *OutputService8ProtocolTe
 
 // newRequest creates a new request for a OutputService8ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService8ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService8ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -595,8 +613,8 @@ func (c *OutputService8ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService8TestCaseOperation1 = "OperationName"
 
 // OutputService8TestCaseOperation1Request generates a request for the OutputService8TestCaseOperation1 operation.
-func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (req *service.Request, output *OutputService8TestShapeOutputService8TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1Request(input *OutputService8TestShapeOutputService8TestCaseOperation1Input) (req *request.Request, output *OutputService8TestShapeOutputService8TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService8TestCaseOperation1,
 	}
 
@@ -655,9 +673,11 @@ type OutputService9ProtocolTest struct {
 // New returns a new OutputService9ProtocolTest client.
 func NewOutputService9ProtocolTest(config *aws.Config) *OutputService9ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice9protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice9protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -673,8 +693,8 @@ func NewOutputService9ProtocolTest(config *aws.Config) *OutputService9ProtocolTe
 
 // newRequest creates a new request for a OutputService9ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService9ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService9ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -682,8 +702,8 @@ func (c *OutputService9ProtocolTest) newRequest(op *service.Operation, params, d
 const opOutputService9TestCaseOperation1 = "OperationName"
 
 // OutputService9TestCaseOperation1Request generates a request for the OutputService9TestCaseOperation1 operation.
-func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (req *service.Request, output *OutputService9TestShapeOutputService9TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (req *request.Request, output *OutputService9TestShapeOutputService9TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService9TestCaseOperation1,
 	}
 
@@ -742,9 +762,11 @@ type OutputService10ProtocolTest struct {
 // New returns a new OutputService10ProtocolTest client.
 func NewOutputService10ProtocolTest(config *aws.Config) *OutputService10ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice10protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice10protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -760,8 +782,8 @@ func NewOutputService10ProtocolTest(config *aws.Config) *OutputService10Protocol
 
 // newRequest creates a new request for a OutputService10ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService10ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService10ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -769,8 +791,8 @@ func (c *OutputService10ProtocolTest) newRequest(op *service.Operation, params, 
 const opOutputService10TestCaseOperation1 = "OperationName"
 
 // OutputService10TestCaseOperation1Request generates a request for the OutputService10TestCaseOperation1 operation.
-func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1Request(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (req *service.Request, output *OutputService10TestShapeOutputService10TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1Request(input *OutputService10TestShapeOutputService10TestCaseOperation1Input) (req *request.Request, output *OutputService10TestShapeOutputService10TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService10TestCaseOperation1,
 	}
 
@@ -815,9 +837,11 @@ type OutputService11ProtocolTest struct {
 // New returns a new OutputService11ProtocolTest client.
 func NewOutputService11ProtocolTest(config *aws.Config) *OutputService11ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice11protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice11protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -833,8 +857,8 @@ func NewOutputService11ProtocolTest(config *aws.Config) *OutputService11Protocol
 
 // newRequest creates a new request for a OutputService11ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService11ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService11ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -842,8 +866,8 @@ func (c *OutputService11ProtocolTest) newRequest(op *service.Operation, params, 
 const opOutputService11TestCaseOperation1 = "OperationName"
 
 // OutputService11TestCaseOperation1Request generates a request for the OutputService11TestCaseOperation1 operation.
-func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *service.Request, output *OutputService11TestShapeOutputService11TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService11ProtocolTest) OutputService11TestCaseOperation1Request(input *OutputService11TestShapeOutputService11TestCaseOperation1Input) (req *request.Request, output *OutputService11TestShapeOutputService11TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService11TestCaseOperation1,
 	}
 
@@ -898,9 +922,11 @@ type OutputService12ProtocolTest struct {
 // New returns a new OutputService12ProtocolTest client.
 func NewOutputService12ProtocolTest(config *aws.Config) *OutputService12ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice12protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice12protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -916,8 +942,8 @@ func NewOutputService12ProtocolTest(config *aws.Config) *OutputService12Protocol
 
 // newRequest creates a new request for a OutputService12ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService12ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService12ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -925,8 +951,8 @@ func (c *OutputService12ProtocolTest) newRequest(op *service.Operation, params, 
 const opOutputService12TestCaseOperation1 = "OperationName"
 
 // OutputService12TestCaseOperation1Request generates a request for the OutputService12TestCaseOperation1 operation.
-func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *service.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1Request(input *OutputService12TestShapeOutputService12TestCaseOperation1Input) (req *request.Request, output *OutputService12TestShapeOutputService12TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService12TestCaseOperation1,
 	}
 
@@ -971,9 +997,11 @@ type OutputService13ProtocolTest struct {
 // New returns a new OutputService13ProtocolTest client.
 func NewOutputService13ProtocolTest(config *aws.Config) *OutputService13ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice13protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice13protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -989,8 +1017,8 @@ func NewOutputService13ProtocolTest(config *aws.Config) *OutputService13Protocol
 
 // newRequest creates a new request for a OutputService13ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService13ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService13ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -998,8 +1026,8 @@ func (c *OutputService13ProtocolTest) newRequest(op *service.Operation, params, 
 const opOutputService13TestCaseOperation1 = "OperationName"
 
 // OutputService13TestCaseOperation1Request generates a request for the OutputService13TestCaseOperation1 operation.
-func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *service.Request, output *OutputService13TestShapeOutputService13TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation1Request(input *OutputService13TestShapeOutputService13TestCaseOperation1Input) (req *request.Request, output *OutputService13TestShapeOutputService13TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService13TestCaseOperation1,
 	}
 
@@ -1044,9 +1072,11 @@ type OutputService14ProtocolTest struct {
 // New returns a new OutputService14ProtocolTest client.
 func NewOutputService14ProtocolTest(config *aws.Config) *OutputService14ProtocolTest {
 	service := &service.Service{
-		Config:      defaults.DefaultConfig.Merge(config),
-		ServiceName: "outputservice14protocoltest",
-		APIVersion:  "",
+		Service: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice14protocoltest",
+			APIVersion:  "",
+		},
 	}
 	service.Initialize()
 
@@ -1062,8 +1092,8 @@ func NewOutputService14ProtocolTest(config *aws.Config) *OutputService14Protocol
 
 // newRequest creates a new request for a OutputService14ProtocolTest operation and runs any
 // custom request initialization.
-func (c *OutputService14ProtocolTest) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *OutputService14ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(c.Service, op, params, data)
 
 	return req
 }
@@ -1071,8 +1101,8 @@ func (c *OutputService14ProtocolTest) newRequest(op *service.Operation, params, 
 const opOutputService14TestCaseOperation1 = "OperationName"
 
 // OutputService14TestCaseOperation1Request generates a request for the OutputService14TestCaseOperation1 operation.
-func (c *OutputService14ProtocolTest) OutputService14TestCaseOperation1Request(input *OutputService14TestShapeOutputService14TestCaseOperation1Input) (req *service.Request, output *OutputService14TestShapeOutputService14TestCaseOperation1Output) {
-	op := &service.Operation{
+func (c *OutputService14ProtocolTest) OutputService14TestCaseOperation1Request(input *OutputService14TestShapeOutputService14TestCaseOperation1Input) (req *request.Request, output *OutputService14TestShapeOutputService14TestCaseOperation1Output) {
+	op := &request.Operation{
 		Name: opOutputService14TestCaseOperation1,
 	}
 
