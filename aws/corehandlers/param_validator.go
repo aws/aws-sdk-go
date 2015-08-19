@@ -11,7 +11,7 @@ import (
 
 // ValidateParameters is a request handler to validate the input parameters.
 // Validating parameters only has meaning if done prior to the request being sent.
-func ValidateParameters(r *request.Request) {
+var ValidateParametersHandler = request.NamedHandler{"core.ValidateParametersHandler", func(r *request.Request) {
 	if r.ParamsFilled() {
 		v := validator{errors: []string{}}
 		v.validateAny(reflect.ValueOf(r.Params), "")
@@ -22,7 +22,7 @@ func ValidateParameters(r *request.Request) {
 			r.Error = awserr.New("InvalidParameter", msg, nil)
 		}
 	}
-}
+}}
 
 // A validator validates values. Collects validations errors which occurs.
 type validator struct {

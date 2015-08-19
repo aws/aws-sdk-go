@@ -20,7 +20,7 @@ func TestValidateEndpointHandler(t *testing.T) {
 	os.Clearenv()
 	svc := service.New(aws.NewConfig().WithRegion("us-west-2"))
 	svc.Handlers.Clear()
-	svc.Handlers.Validate.PushBack(corehandlers.ValidateEndpointHandler)
+	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
 
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := req.Build()
@@ -32,7 +32,7 @@ func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
 	os.Clearenv()
 	svc := service.New(nil)
 	svc.Handlers.Clear()
-	svc.Handlers.Validate.PushBack(corehandlers.ValidateEndpointHandler)
+	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
 
 	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := req.Build()
@@ -68,7 +68,7 @@ func TestAfterRetryRefreshCreds(t *testing.T) {
 	svc.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
 		r.Error = awserr.New("ExpiredTokenException", "", nil)
 	})
-	svc.Handlers.AfterRetry.PushBack(corehandlers.AfterRetryHandler)
+	svc.Handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
 
 	assert.True(t, svc.Config.Credentials.IsExpired(), "Expect to start out expired")
 	assert.False(t, credProvider.retrieveCalled)
@@ -97,7 +97,7 @@ func TestSendHandlerError(t *testing.T) {
 		},
 	})
 	svc.Handlers.Clear()
-	svc.Handlers.Send.PushBack(corehandlers.SendHandler)
+	svc.Handlers.Send.PushBackNamed(corehandlers.SendHandler)
 	r := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 
 	r.Send()

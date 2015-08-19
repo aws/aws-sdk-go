@@ -32,3 +32,16 @@ func TestMultipleHandlers(t *testing.T) {
 		t.Error("Expected handler to execute")
 	}
 }
+
+func TestNamedHandlers(t *testing.T) {
+	l := request.HandlerList{}
+	named := request.NamedHandler{"Name", func(r *request.Request) {}}
+	named2 := request.NamedHandler{"NotName", func(r *request.Request) {}}
+	l.PushBackNamed(named)
+	l.PushBackNamed(named)
+	l.PushBackNamed(named2)
+	l.PushBack(func(r *request.Request) {})
+	assert.Equal(t, 4, l.Len())
+	l.Remove(named)
+	assert.Equal(t, 2, l.Len())
+}

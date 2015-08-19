@@ -23,7 +23,7 @@ type lener interface {
 // BuildContentLength builds the content length of a request based on the body,
 // or will use the HTTPRequest.Header's "Content-Length" if defined. If unable
 // to determine request body length and no "Content-Length" was specified it will panic.
-func BuildContentLength(r *request.Request) {
+var BuildContentLengthHandler = request.NamedHandler{"core.BuildContentLengthHandler", func(r *request.Request) {
 	if slength := r.HTTPRequest.Header.Get("Content-Length"); slength != "" {
 		length, _ := strconv.ParseInt(slength, 10, 64)
 		r.HTTPRequest.ContentLength = length
@@ -47,17 +47,17 @@ func BuildContentLength(r *request.Request) {
 
 	r.HTTPRequest.ContentLength = length
 	r.HTTPRequest.Header.Set("Content-Length", fmt.Sprintf("%d", length))
-}
+}}
 
 // UserAgentHandler is a request handler for injecting User agent into requests.
-func UserAgentHandler(r *request.Request) {
+var UserAgentHandler = request.NamedHandler{"core.UserAgentHandler", func(r *request.Request) {
 	r.HTTPRequest.Header.Set("User-Agent", aws.SDKName+"/"+aws.SDKVersion)
-}
+}}
 
 var reStatusCode = regexp.MustCompile(`^(\d{3})`)
 
 // SendHandler is a request handler to send service request using HTTP client.
-func SendHandler(r *request.Request) {
+var SendHandler = request.NamedHandler{"core.SendHandler", func(r *request.Request) {
 	var err error
 	r.HTTPResponse, err = r.Service.Config.HTTPClient.Do(r.HTTPRequest)
 	if err != nil {
@@ -89,19 +89,19 @@ func SendHandler(r *request.Request) {
 		r.Error = awserr.New("RequestError", "send request failed", err)
 		r.Retryable = aws.Bool(true) // network errors are retryable
 	}
-}
+}}
 
 // ValidateResponseHandler is a request handler to validate service response.
-func ValidateResponseHandler(r *request.Request) {
+var ValidateResponseHandler = request.NamedHandler{"core.ValidateResponseHandler", func(r *request.Request) {
 	if r.HTTPResponse.StatusCode == 0 || r.HTTPResponse.StatusCode >= 300 {
 		// this may be replaced by an UnmarshalError handler
 		r.Error = awserr.New("UnknownError", "unknown error", nil)
 	}
-}
+}}
 
 // AfterRetryHandler performs final checks to determine if the request should
 // be retried and how long to delay.
-func AfterRetryHandler(r *request.Request) {
+var AfterRetryHandler = request.NamedHandler{"core.AfterRetryHandler", func(r *request.Request) {
 	// If one of the other handlers already set the retry state
 	// we don't want to override it based on the service's state
 	if r.Retryable == nil {
@@ -123,15 +123,15 @@ func AfterRetryHandler(r *request.Request) {
 		r.RetryCount++
 		r.Error = nil
 	}
-}
+}}
 
 // ValidateEndpointHandler is a request handler to validate a request had the
 // appropriate Region and Endpoint set. Will set r.Error if the endpoint or
 // region is not valid.
-func ValidateEndpointHandler(r *request.Request) {
+var ValidateEndpointHandler = request.NamedHandler{"core.ValidateEndpointHandler", func(r *request.Request) {
 	if r.Service.SigningRegion == "" && aws.StringValue(r.Service.Config.Region) == "" {
 		r.Error = aws.ErrMissingRegion
 	} else if r.Service.Endpoint == "" {
 		r.Error = aws.ErrMissingEndpoint
 	}
-}
+}}

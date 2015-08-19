@@ -47,14 +47,14 @@ func (s *Service) Initialize() {
 
 	s.Retryer = DefaultRetryer{s}
 	s.DefaultMaxRetries = 3
-	s.Handlers.Validate.PushBack(corehandlers.ValidateEndpointHandler)
-	s.Handlers.Build.PushBack(corehandlers.UserAgentHandler)
-	s.Handlers.Sign.PushBack(corehandlers.BuildContentLength)
-	s.Handlers.Send.PushBack(corehandlers.SendHandler)
-	s.Handlers.AfterRetry.PushBack(corehandlers.AfterRetryHandler)
-	s.Handlers.ValidateResponse.PushBack(corehandlers.ValidateResponseHandler)
+	s.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
+	s.Handlers.Build.PushBackNamed(corehandlers.UserAgentHandler)
+	s.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
+	s.Handlers.Send.PushBackNamed(corehandlers.SendHandler)
+	s.Handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
+	s.Handlers.ValidateResponse.PushBackNamed(corehandlers.ValidateResponseHandler)
 	if !aws.BoolValue(s.Config.DisableParamValidation) {
-		s.Handlers.Validate.PushBack(corehandlers.ValidateParameters)
+		s.Handlers.Validate.PushBackNamed(corehandlers.ValidateParametersHandler)
 	}
 	s.AddDebugHandlers()
 	s.buildEndpoint()

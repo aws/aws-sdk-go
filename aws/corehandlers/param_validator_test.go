@@ -56,14 +56,14 @@ func TestNoErrors(t *testing.T) {
 	}
 
 	req := testSvc.NewRequest(&request.Operation{}, input, nil)
-	corehandlers.ValidateParameters(req)
+	corehandlers.ValidateParametersHandler.Fn(req)
 	assert.NoError(t, req.Error)
 }
 
 func TestMissingRequiredParameters(t *testing.T) {
 	input := &StructShape{}
 	req := testSvc.NewRequest(&request.Operation{}, input, nil)
-	corehandlers.ValidateParameters(req)
+	corehandlers.ValidateParametersHandler.Fn(req)
 
 	assert.Error(t, req.Error)
 	assert.Equal(t, "InvalidParameter", req.Error.(awserr.Error).Code())
@@ -82,7 +82,7 @@ func TestNestedMissingRequiredParameters(t *testing.T) {
 	}
 
 	req := testSvc.NewRequest(&request.Operation{}, input, nil)
-	corehandlers.ValidateParameters(req)
+	corehandlers.ValidateParametersHandler.Fn(req)
 
 	assert.Error(t, req.Error)
 	assert.Equal(t, "InvalidParameter", req.Error.(awserr.Error).Code())
