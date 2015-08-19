@@ -56,3 +56,6 @@ deps:
 
 api_info:
 	@go run internal/model/cli/api-info/api-info.go
+
+perf:
+	@go test -bench . -benchmem -tags 'perf' ./internal/test/perf/...

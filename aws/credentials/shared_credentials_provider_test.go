@@ -79,12 +79,10 @@ func BenchmarkSharedCredentialsProvider(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			_, err := p.Retrieve()
-			if err != nil {
-				b.Fatal(err)
-			}
+	for i := 0; i < b.N; i++ {
+		_, err := p.Retrieve()
+		if err != nil {
+			b.Fatal(err)
 		}
-	})
+	}
 }
