@@ -164,6 +164,8 @@ func (c *Config) WithS3ForcePathStyle(force bool) *Config {
 	return c
 }
 
+// WithSleepDelay overrides the function used to sleep while waiting for the
+// next retry. Defaults to time.Sleep.
 func (c *Config) WithSleepDelay(fn func(time.Duration)) *Config {
 	c.SleepDelay = fn
 	return c

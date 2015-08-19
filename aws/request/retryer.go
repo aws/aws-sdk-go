@@ -6,6 +6,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+// Retryer is an interface to control retry logic for a given service.
+// The default implementation used by most services is the service.DefaultRetryer
+// structure, which contains basic retry logic using exponential backoff.
 type Retryer interface {
 	RetryRules(*Request) time.Duration
 	ShouldRetry(*Request) bool
@@ -45,6 +48,8 @@ func isCodeExpiredCreds(code string) bool {
 	return ok
 }
 
+// IsErrorRetryable returns whether the error is retryable, based on its Code.
+// Returns false if the request has no Error set.
 func (r *Request) IsErrorRetryable() bool {
 	if r.Error != nil {
 		if err, ok := r.Error.(awserr.Error); ok {
@@ -54,6 +59,8 @@ func (r *Request) IsErrorRetryable() bool {
 	return false
 }
 
+// IsErrorExpired returns whether the error code is a credential expiry error.
+// Returns false if the request has no Error set.
 func (r *Request) IsErrorExpired() bool {
 	if r.Error != nil {
 		if err, ok := r.Error.(awserr.Error); ok {
