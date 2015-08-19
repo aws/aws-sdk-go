@@ -2,9 +2,12 @@ package s3
 
 import (
 	"encoding/xml"
+	"fmt"
 	"io"
+	"net/http"
 	"strings"
 
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/service"
 )
@@ -17,6 +20,12 @@ type xmlErrorResponse struct {
 
 func unmarshalError(r *service.Request) {
 	defer r.HTTPResponse.Body.Close()
+
+	if r.HTTPResponse.StatusCode == http.StatusMovedPermanently {
+		r.Error = awserr.New("BucketRegionError",
+			fmt.Sprintf("incorrect region, the bucket is not in '%s' region", aws.StringValue(r.Config.Region)), nil)
+		return
+	}
 
 	if r.HTTPResponse.ContentLength == int64(0) {
 		// No body, use status code to generate an awserr.Error

@@ -58,7 +58,7 @@ func UserAgentHandler(r *Request) {
 	r.HTTPRequest.Header.Set("User-Agent", aws.SDKName+"/"+aws.SDKVersion)
 }
 
-var reStatusCode = regexp.MustCompile(`^(\d+)`)
+var reStatusCode = regexp.MustCompile(`^(\d{3})`)
 
 // SendHandler is a request handler to send service request using HTTP client.
 func SendHandler(r *Request) {
@@ -69,8 +69,8 @@ func SendHandler(r *Request) {
 		// response. e.g. 301 without location header comes back as string
 		// error and r.HTTPResponse is nil. Other url redirect errors will
 		// comeback in a similar method.
-		if e, ok := err.(*url.Error); ok {
-			if s := reStatusCode.FindStringSubmatch(e.Error()); s != nil {
+		if e, ok := err.(*url.Error); ok && e.Err != nil {
+			if s := reStatusCode.FindStringSubmatch(e.Err.Error()); s != nil {
 				code, _ := strconv.ParseInt(s[1], 10, 64)
 				r.HTTPResponse = &http.Response{
 					StatusCode: int(code),
