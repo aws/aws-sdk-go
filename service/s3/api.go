@@ -8,14 +8,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAbortMultipartUpload = "AbortMultipartUpload"
 
 // AbortMultipartUploadRequest generates a request for the AbortMultipartUpload operation.
-func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *service.Request, output *AbortMultipartUploadOutput) {
-	op := &service.Operation{
+func (c *S3) AbortMultipartUploadRequest(input *AbortMultipartUploadInput) (req *request.Request, output *AbortMultipartUploadOutput) {
+	op := &request.Operation{
 		Name:       opAbortMultipartUpload,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -45,8 +45,8 @@ func (c *S3) AbortMultipartUpload(input *AbortMultipartUploadInput) (*AbortMulti
 const opCompleteMultipartUpload = "CompleteMultipartUpload"
 
 // CompleteMultipartUploadRequest generates a request for the CompleteMultipartUpload operation.
-func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) (req *service.Request, output *CompleteMultipartUploadOutput) {
-	op := &service.Operation{
+func (c *S3) CompleteMultipartUploadRequest(input *CompleteMultipartUploadInput) (req *request.Request, output *CompleteMultipartUploadOutput) {
+	op := &request.Operation{
 		Name:       opCompleteMultipartUpload,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -72,8 +72,8 @@ func (c *S3) CompleteMultipartUpload(input *CompleteMultipartUploadInput) (*Comp
 const opCopyObject = "CopyObject"
 
 // CopyObjectRequest generates a request for the CopyObject operation.
-func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *service.Request, output *CopyObjectOutput) {
-	op := &service.Operation{
+func (c *S3) CopyObjectRequest(input *CopyObjectInput) (req *request.Request, output *CopyObjectOutput) {
+	op := &request.Operation{
 		Name:       opCopyObject,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -99,8 +99,8 @@ func (c *S3) CopyObject(input *CopyObjectInput) (*CopyObjectOutput, error) {
 const opCreateBucket = "CreateBucket"
 
 // CreateBucketRequest generates a request for the CreateBucket operation.
-func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *service.Request, output *CreateBucketOutput) {
-	op := &service.Operation{
+func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request, output *CreateBucketOutput) {
+	op := &request.Operation{
 		Name:       opCreateBucket,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}",
@@ -126,8 +126,8 @@ func (c *S3) CreateBucket(input *CreateBucketInput) (*CreateBucketOutput, error)
 const opCreateMultipartUpload = "CreateMultipartUpload"
 
 // CreateMultipartUploadRequest generates a request for the CreateMultipartUpload operation.
-func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (req *service.Request, output *CreateMultipartUploadOutput) {
-	op := &service.Operation{
+func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (req *request.Request, output *CreateMultipartUploadOutput) {
+	op := &request.Operation{
 		Name:       opCreateMultipartUpload,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{Bucket}/{Key+}?uploads",
@@ -159,8 +159,8 @@ func (c *S3) CreateMultipartUpload(input *CreateMultipartUploadInput) (*CreateMu
 const opDeleteBucket = "DeleteBucket"
 
 // DeleteBucketRequest generates a request for the DeleteBucket operation.
-func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *service.Request, output *DeleteBucketOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *request.Request, output *DeleteBucketOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucket,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}",
@@ -187,8 +187,8 @@ func (c *S3) DeleteBucket(input *DeleteBucketInput) (*DeleteBucketOutput, error)
 const opDeleteBucketCors = "DeleteBucketCors"
 
 // DeleteBucketCorsRequest generates a request for the DeleteBucketCors operation.
-func (c *S3) DeleteBucketCorsRequest(input *DeleteBucketCorsInput) (req *service.Request, output *DeleteBucketCorsOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketCorsRequest(input *DeleteBucketCorsInput) (req *request.Request, output *DeleteBucketCorsOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucketCors,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}?cors",
@@ -214,8 +214,8 @@ func (c *S3) DeleteBucketCors(input *DeleteBucketCorsInput) (*DeleteBucketCorsOu
 const opDeleteBucketLifecycle = "DeleteBucketLifecycle"
 
 // DeleteBucketLifecycleRequest generates a request for the DeleteBucketLifecycle operation.
-func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (req *service.Request, output *DeleteBucketLifecycleOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketLifecycleRequest(input *DeleteBucketLifecycleInput) (req *request.Request, output *DeleteBucketLifecycleOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucketLifecycle,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}?lifecycle",
@@ -241,8 +241,8 @@ func (c *S3) DeleteBucketLifecycle(input *DeleteBucketLifecycleInput) (*DeleteBu
 const opDeleteBucketPolicy = "DeleteBucketPolicy"
 
 // DeleteBucketPolicyRequest generates a request for the DeleteBucketPolicy operation.
-func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *service.Request, output *DeleteBucketPolicyOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *request.Request, output *DeleteBucketPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucketPolicy,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}?policy",
@@ -268,8 +268,8 @@ func (c *S3) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (*DeleteBucketPo
 const opDeleteBucketReplication = "DeleteBucketReplication"
 
 // DeleteBucketReplicationRequest generates a request for the DeleteBucketReplication operation.
-func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput) (req *service.Request, output *DeleteBucketReplicationOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketReplicationRequest(input *DeleteBucketReplicationInput) (req *request.Request, output *DeleteBucketReplicationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucketReplication,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}?replication",
@@ -294,8 +294,8 @@ func (c *S3) DeleteBucketReplication(input *DeleteBucketReplicationInput) (*Dele
 const opDeleteBucketTagging = "DeleteBucketTagging"
 
 // DeleteBucketTaggingRequest generates a request for the DeleteBucketTagging operation.
-func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *service.Request, output *DeleteBucketTaggingOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *request.Request, output *DeleteBucketTaggingOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucketTagging,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}?tagging",
@@ -321,8 +321,8 @@ func (c *S3) DeleteBucketTagging(input *DeleteBucketTaggingInput) (*DeleteBucket
 const opDeleteBucketWebsite = "DeleteBucketWebsite"
 
 // DeleteBucketWebsiteRequest generates a request for the DeleteBucketWebsite operation.
-func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *service.Request, output *DeleteBucketWebsiteOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteBucketWebsiteRequest(input *DeleteBucketWebsiteInput) (req *request.Request, output *DeleteBucketWebsiteOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBucketWebsite,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}?website",
@@ -348,8 +348,8 @@ func (c *S3) DeleteBucketWebsite(input *DeleteBucketWebsiteInput) (*DeleteBucket
 const opDeleteObject = "DeleteObject"
 
 // DeleteObjectRequest generates a request for the DeleteObject operation.
-func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *service.Request, output *DeleteObjectOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteObjectRequest(input *DeleteObjectInput) (req *request.Request, output *DeleteObjectOutput) {
+	op := &request.Operation{
 		Name:       opDeleteObject,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -377,8 +377,8 @@ func (c *S3) DeleteObject(input *DeleteObjectInput) (*DeleteObjectOutput, error)
 const opDeleteObjects = "DeleteObjects"
 
 // DeleteObjectsRequest generates a request for the DeleteObjects operation.
-func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *service.Request, output *DeleteObjectsOutput) {
-	op := &service.Operation{
+func (c *S3) DeleteObjectsRequest(input *DeleteObjectsInput) (req *request.Request, output *DeleteObjectsOutput) {
+	op := &request.Operation{
 		Name:       opDeleteObjects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{Bucket}?delete",
@@ -405,8 +405,8 @@ func (c *S3) DeleteObjects(input *DeleteObjectsInput) (*DeleteObjectsOutput, err
 const opGetBucketAcl = "GetBucketAcl"
 
 // GetBucketAclRequest generates a request for the GetBucketAcl operation.
-func (c *S3) GetBucketAclRequest(input *GetBucketAclInput) (req *service.Request, output *GetBucketAclOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketAclRequest(input *GetBucketAclInput) (req *request.Request, output *GetBucketAclOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketAcl,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?acl",
@@ -432,8 +432,8 @@ func (c *S3) GetBucketAcl(input *GetBucketAclInput) (*GetBucketAclOutput, error)
 const opGetBucketCors = "GetBucketCors"
 
 // GetBucketCorsRequest generates a request for the GetBucketCors operation.
-func (c *S3) GetBucketCorsRequest(input *GetBucketCorsInput) (req *service.Request, output *GetBucketCorsOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketCorsRequest(input *GetBucketCorsInput) (req *request.Request, output *GetBucketCorsOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketCors,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?cors",
@@ -459,8 +459,8 @@ func (c *S3) GetBucketCors(input *GetBucketCorsInput) (*GetBucketCorsOutput, err
 const opGetBucketLifecycle = "GetBucketLifecycle"
 
 // GetBucketLifecycleRequest generates a request for the GetBucketLifecycle operation.
-func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *service.Request, output *GetBucketLifecycleOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *request.Request, output *GetBucketLifecycleOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketLifecycle,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?lifecycle",
@@ -486,8 +486,8 @@ func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (*GetBucketLifec
 const opGetBucketLocation = "GetBucketLocation"
 
 // GetBucketLocationRequest generates a request for the GetBucketLocation operation.
-func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *service.Request, output *GetBucketLocationOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketLocationRequest(input *GetBucketLocationInput) (req *request.Request, output *GetBucketLocationOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketLocation,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?location",
@@ -513,8 +513,8 @@ func (c *S3) GetBucketLocation(input *GetBucketLocationInput) (*GetBucketLocatio
 const opGetBucketLogging = "GetBucketLogging"
 
 // GetBucketLoggingRequest generates a request for the GetBucketLogging operation.
-func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *service.Request, output *GetBucketLoggingOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketLoggingRequest(input *GetBucketLoggingInput) (req *request.Request, output *GetBucketLoggingOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketLogging,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?logging",
@@ -541,8 +541,8 @@ func (c *S3) GetBucketLogging(input *GetBucketLoggingInput) (*GetBucketLoggingOu
 const opGetBucketNotification = "GetBucketNotification"
 
 // GetBucketNotificationRequest generates a request for the GetBucketNotification operation.
-func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurationRequest) (req *service.Request, output *NotificationConfigurationDeprecated) {
-	op := &service.Operation{
+func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurationRequest) (req *request.Request, output *NotificationConfigurationDeprecated) {
+	op := &request.Operation{
 		Name:       opGetBucketNotification,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?notification",
@@ -568,8 +568,8 @@ func (c *S3) GetBucketNotification(input *GetBucketNotificationConfigurationRequ
 const opGetBucketNotificationConfiguration = "GetBucketNotificationConfiguration"
 
 // GetBucketNotificationConfigurationRequest generates a request for the GetBucketNotificationConfiguration operation.
-func (c *S3) GetBucketNotificationConfigurationRequest(input *GetBucketNotificationConfigurationRequest) (req *service.Request, output *NotificationConfiguration) {
-	op := &service.Operation{
+func (c *S3) GetBucketNotificationConfigurationRequest(input *GetBucketNotificationConfigurationRequest) (req *request.Request, output *NotificationConfiguration) {
+	op := &request.Operation{
 		Name:       opGetBucketNotificationConfiguration,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?notification",
@@ -595,8 +595,8 @@ func (c *S3) GetBucketNotificationConfiguration(input *GetBucketNotificationConf
 const opGetBucketPolicy = "GetBucketPolicy"
 
 // GetBucketPolicyRequest generates a request for the GetBucketPolicy operation.
-func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *service.Request, output *GetBucketPolicyOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *request.Request, output *GetBucketPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketPolicy,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?policy",
@@ -622,8 +622,8 @@ func (c *S3) GetBucketPolicy(input *GetBucketPolicyInput) (*GetBucketPolicyOutpu
 const opGetBucketReplication = "GetBucketReplication"
 
 // GetBucketReplicationRequest generates a request for the GetBucketReplication operation.
-func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req *service.Request, output *GetBucketReplicationOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketReplicationRequest(input *GetBucketReplicationInput) (req *request.Request, output *GetBucketReplicationOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketReplication,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?replication",
@@ -648,8 +648,8 @@ func (c *S3) GetBucketReplication(input *GetBucketReplicationInput) (*GetBucketR
 const opGetBucketRequestPayment = "GetBucketRequestPayment"
 
 // GetBucketRequestPaymentRequest generates a request for the GetBucketRequestPayment operation.
-func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) (req *service.Request, output *GetBucketRequestPaymentOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketRequestPaymentRequest(input *GetBucketRequestPaymentInput) (req *request.Request, output *GetBucketRequestPaymentOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketRequestPayment,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?requestPayment",
@@ -675,8 +675,8 @@ func (c *S3) GetBucketRequestPayment(input *GetBucketRequestPaymentInput) (*GetB
 const opGetBucketTagging = "GetBucketTagging"
 
 // GetBucketTaggingRequest generates a request for the GetBucketTagging operation.
-func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *service.Request, output *GetBucketTaggingOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *request.Request, output *GetBucketTaggingOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketTagging,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?tagging",
@@ -702,8 +702,8 @@ func (c *S3) GetBucketTagging(input *GetBucketTaggingInput) (*GetBucketTaggingOu
 const opGetBucketVersioning = "GetBucketVersioning"
 
 // GetBucketVersioningRequest generates a request for the GetBucketVersioning operation.
-func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *service.Request, output *GetBucketVersioningOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketVersioningRequest(input *GetBucketVersioningInput) (req *request.Request, output *GetBucketVersioningOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketVersioning,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?versioning",
@@ -729,8 +729,8 @@ func (c *S3) GetBucketVersioning(input *GetBucketVersioningInput) (*GetBucketVer
 const opGetBucketWebsite = "GetBucketWebsite"
 
 // GetBucketWebsiteRequest generates a request for the GetBucketWebsite operation.
-func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *service.Request, output *GetBucketWebsiteOutput) {
-	op := &service.Operation{
+func (c *S3) GetBucketWebsiteRequest(input *GetBucketWebsiteInput) (req *request.Request, output *GetBucketWebsiteOutput) {
+	op := &request.Operation{
 		Name:       opGetBucketWebsite,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?website",
@@ -756,8 +756,8 @@ func (c *S3) GetBucketWebsite(input *GetBucketWebsiteInput) (*GetBucketWebsiteOu
 const opGetObject = "GetObject"
 
 // GetObjectRequest generates a request for the GetObject operation.
-func (c *S3) GetObjectRequest(input *GetObjectInput) (req *service.Request, output *GetObjectOutput) {
-	op := &service.Operation{
+func (c *S3) GetObjectRequest(input *GetObjectInput) (req *request.Request, output *GetObjectOutput) {
+	op := &request.Operation{
 		Name:       opGetObject,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -783,8 +783,8 @@ func (c *S3) GetObject(input *GetObjectInput) (*GetObjectOutput, error) {
 const opGetObjectAcl = "GetObjectAcl"
 
 // GetObjectAclRequest generates a request for the GetObjectAcl operation.
-func (c *S3) GetObjectAclRequest(input *GetObjectAclInput) (req *service.Request, output *GetObjectAclOutput) {
-	op := &service.Operation{
+func (c *S3) GetObjectAclRequest(input *GetObjectAclInput) (req *request.Request, output *GetObjectAclOutput) {
+	op := &request.Operation{
 		Name:       opGetObjectAcl,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}/{Key+}?acl",
@@ -810,8 +810,8 @@ func (c *S3) GetObjectAcl(input *GetObjectAclInput) (*GetObjectAclOutput, error)
 const opGetObjectTorrent = "GetObjectTorrent"
 
 // GetObjectTorrentRequest generates a request for the GetObjectTorrent operation.
-func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *service.Request, output *GetObjectTorrentOutput) {
-	op := &service.Operation{
+func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *request.Request, output *GetObjectTorrentOutput) {
+	op := &request.Operation{
 		Name:       opGetObjectTorrent,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}/{Key+}?torrent",
@@ -837,8 +837,8 @@ func (c *S3) GetObjectTorrent(input *GetObjectTorrentInput) (*GetObjectTorrentOu
 const opHeadBucket = "HeadBucket"
 
 // HeadBucketRequest generates a request for the HeadBucket operation.
-func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *service.Request, output *HeadBucketOutput) {
-	op := &service.Operation{
+func (c *S3) HeadBucketRequest(input *HeadBucketInput) (req *request.Request, output *HeadBucketOutput) {
+	op := &request.Operation{
 		Name:       opHeadBucket,
 		HTTPMethod: "HEAD",
 		HTTPPath:   "/{Bucket}",
@@ -865,8 +865,8 @@ func (c *S3) HeadBucket(input *HeadBucketInput) (*HeadBucketOutput, error) {
 const opHeadObject = "HeadObject"
 
 // HeadObjectRequest generates a request for the HeadObject operation.
-func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *service.Request, output *HeadObjectOutput) {
-	op := &service.Operation{
+func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *request.Request, output *HeadObjectOutput) {
+	op := &request.Operation{
 		Name:       opHeadObject,
 		HTTPMethod: "HEAD",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -894,8 +894,8 @@ func (c *S3) HeadObject(input *HeadObjectInput) (*HeadObjectOutput, error) {
 const opListBuckets = "ListBuckets"
 
 // ListBucketsRequest generates a request for the ListBuckets operation.
-func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *service.Request, output *ListBucketsOutput) {
-	op := &service.Operation{
+func (c *S3) ListBucketsRequest(input *ListBucketsInput) (req *request.Request, output *ListBucketsOutput) {
+	op := &request.Operation{
 		Name:       opListBuckets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/",
@@ -921,12 +921,12 @@ func (c *S3) ListBuckets(input *ListBucketsInput) (*ListBucketsOutput, error) {
 const opListMultipartUploads = "ListMultipartUploads"
 
 // ListMultipartUploadsRequest generates a request for the ListMultipartUploads operation.
-func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req *service.Request, output *ListMultipartUploadsOutput) {
-	op := &service.Operation{
+func (c *S3) ListMultipartUploadsRequest(input *ListMultipartUploadsInput) (req *request.Request, output *ListMultipartUploadsOutput) {
+	op := &request.Operation{
 		Name:       opListMultipartUploads,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?uploads",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"KeyMarker", "UploadIdMarker"},
 			OutputTokens:    []string{"NextKeyMarker", "NextUploadIdMarker"},
 			LimitToken:      "MaxUploads",
@@ -961,12 +961,12 @@ func (c *S3) ListMultipartUploadsPages(input *ListMultipartUploadsInput, fn func
 const opListObjectVersions = "ListObjectVersions"
 
 // ListObjectVersionsRequest generates a request for the ListObjectVersions operation.
-func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *service.Request, output *ListObjectVersionsOutput) {
-	op := &service.Operation{
+func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *request.Request, output *ListObjectVersionsOutput) {
+	op := &request.Operation{
 		Name:       opListObjectVersions,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}?versions",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"KeyMarker", "VersionIdMarker"},
 			OutputTokens:    []string{"NextKeyMarker", "NextVersionIdMarker"},
 			LimitToken:      "MaxKeys",
@@ -1001,12 +1001,12 @@ func (c *S3) ListObjectVersionsPages(input *ListObjectVersionsInput, fn func(p *
 const opListObjects = "ListObjects"
 
 // ListObjectsRequest generates a request for the ListObjects operation.
-func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *service.Request, output *ListObjectsOutput) {
-	op := &service.Operation{
+func (c *S3) ListObjectsRequest(input *ListObjectsInput) (req *request.Request, output *ListObjectsOutput) {
+	op := &request.Operation{
 		Name:       opListObjects,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker || Contents[-1].Key"},
 			LimitToken:      "MaxKeys",
@@ -1043,12 +1043,12 @@ func (c *S3) ListObjectsPages(input *ListObjectsInput, fn func(p *ListObjectsOut
 const opListParts = "ListParts"
 
 // ListPartsRequest generates a request for the ListParts operation.
-func (c *S3) ListPartsRequest(input *ListPartsInput) (req *service.Request, output *ListPartsOutput) {
-	op := &service.Operation{
+func (c *S3) ListPartsRequest(input *ListPartsInput) (req *request.Request, output *ListPartsOutput) {
+	op := &request.Operation{
 		Name:       opListParts,
 		HTTPMethod: "GET",
 		HTTPPath:   "/{Bucket}/{Key+}",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PartNumberMarker"},
 			OutputTokens:    []string{"NextPartNumberMarker"},
 			LimitToken:      "MaxParts",
@@ -1083,8 +1083,8 @@ func (c *S3) ListPartsPages(input *ListPartsInput, fn func(p *ListPartsOutput, l
 const opPutBucketAcl = "PutBucketAcl"
 
 // PutBucketAclRequest generates a request for the PutBucketAcl operation.
-func (c *S3) PutBucketAclRequest(input *PutBucketAclInput) (req *service.Request, output *PutBucketAclOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketAclRequest(input *PutBucketAclInput) (req *request.Request, output *PutBucketAclOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketAcl,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?acl",
@@ -1110,8 +1110,8 @@ func (c *S3) PutBucketAcl(input *PutBucketAclInput) (*PutBucketAclOutput, error)
 const opPutBucketCors = "PutBucketCors"
 
 // PutBucketCorsRequest generates a request for the PutBucketCors operation.
-func (c *S3) PutBucketCorsRequest(input *PutBucketCorsInput) (req *service.Request, output *PutBucketCorsOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketCorsRequest(input *PutBucketCorsInput) (req *request.Request, output *PutBucketCorsOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketCors,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?cors",
@@ -1137,8 +1137,8 @@ func (c *S3) PutBucketCors(input *PutBucketCorsInput) (*PutBucketCorsOutput, err
 const opPutBucketLifecycle = "PutBucketLifecycle"
 
 // PutBucketLifecycleRequest generates a request for the PutBucketLifecycle operation.
-func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *service.Request, output *PutBucketLifecycleOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *request.Request, output *PutBucketLifecycleOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketLifecycle,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?lifecycle",
@@ -1165,8 +1165,8 @@ func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (*PutBucketLifec
 const opPutBucketLogging = "PutBucketLogging"
 
 // PutBucketLoggingRequest generates a request for the PutBucketLogging operation.
-func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *service.Request, output *PutBucketLoggingOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketLoggingRequest(input *PutBucketLoggingInput) (req *request.Request, output *PutBucketLoggingOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketLogging,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?logging",
@@ -1194,8 +1194,8 @@ func (c *S3) PutBucketLogging(input *PutBucketLoggingInput) (*PutBucketLoggingOu
 const opPutBucketNotification = "PutBucketNotification"
 
 // PutBucketNotificationRequest generates a request for the PutBucketNotification operation.
-func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *service.Request, output *PutBucketNotificationOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *request.Request, output *PutBucketNotificationOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketNotification,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?notification",
@@ -1221,8 +1221,8 @@ func (c *S3) PutBucketNotification(input *PutBucketNotificationInput) (*PutBucke
 const opPutBucketNotificationConfiguration = "PutBucketNotificationConfiguration"
 
 // PutBucketNotificationConfigurationRequest generates a request for the PutBucketNotificationConfiguration operation.
-func (c *S3) PutBucketNotificationConfigurationRequest(input *PutBucketNotificationConfigurationInput) (req *service.Request, output *PutBucketNotificationConfigurationOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketNotificationConfigurationRequest(input *PutBucketNotificationConfigurationInput) (req *request.Request, output *PutBucketNotificationConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketNotificationConfiguration,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?notification",
@@ -1248,8 +1248,8 @@ func (c *S3) PutBucketNotificationConfiguration(input *PutBucketNotificationConf
 const opPutBucketPolicy = "PutBucketPolicy"
 
 // PutBucketPolicyRequest generates a request for the PutBucketPolicy operation.
-func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *service.Request, output *PutBucketPolicyOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *request.Request, output *PutBucketPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketPolicy,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?policy",
@@ -1276,8 +1276,8 @@ func (c *S3) PutBucketPolicy(input *PutBucketPolicyInput) (*PutBucketPolicyOutpu
 const opPutBucketReplication = "PutBucketReplication"
 
 // PutBucketReplicationRequest generates a request for the PutBucketReplication operation.
-func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req *service.Request, output *PutBucketReplicationOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req *request.Request, output *PutBucketReplicationOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketReplication,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?replication",
@@ -1304,8 +1304,8 @@ func (c *S3) PutBucketReplication(input *PutBucketReplicationInput) (*PutBucketR
 const opPutBucketRequestPayment = "PutBucketRequestPayment"
 
 // PutBucketRequestPaymentRequest generates a request for the PutBucketRequestPayment operation.
-func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) (req *service.Request, output *PutBucketRequestPaymentOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketRequestPaymentRequest(input *PutBucketRequestPaymentInput) (req *request.Request, output *PutBucketRequestPaymentOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketRequestPayment,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?requestPayment",
@@ -1335,8 +1335,8 @@ func (c *S3) PutBucketRequestPayment(input *PutBucketRequestPaymentInput) (*PutB
 const opPutBucketTagging = "PutBucketTagging"
 
 // PutBucketTaggingRequest generates a request for the PutBucketTagging operation.
-func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *service.Request, output *PutBucketTaggingOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *request.Request, output *PutBucketTaggingOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketTagging,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?tagging",
@@ -1362,8 +1362,8 @@ func (c *S3) PutBucketTagging(input *PutBucketTaggingInput) (*PutBucketTaggingOu
 const opPutBucketVersioning = "PutBucketVersioning"
 
 // PutBucketVersioningRequest generates a request for the PutBucketVersioning operation.
-func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *service.Request, output *PutBucketVersioningOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketVersioningRequest(input *PutBucketVersioningInput) (req *request.Request, output *PutBucketVersioningOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketVersioning,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?versioning",
@@ -1390,8 +1390,8 @@ func (c *S3) PutBucketVersioning(input *PutBucketVersioningInput) (*PutBucketVer
 const opPutBucketWebsite = "PutBucketWebsite"
 
 // PutBucketWebsiteRequest generates a request for the PutBucketWebsite operation.
-func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *service.Request, output *PutBucketWebsiteOutput) {
-	op := &service.Operation{
+func (c *S3) PutBucketWebsiteRequest(input *PutBucketWebsiteInput) (req *request.Request, output *PutBucketWebsiteOutput) {
+	op := &request.Operation{
 		Name:       opPutBucketWebsite,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}?website",
@@ -1417,8 +1417,8 @@ func (c *S3) PutBucketWebsite(input *PutBucketWebsiteInput) (*PutBucketWebsiteOu
 const opPutObject = "PutObject"
 
 // PutObjectRequest generates a request for the PutObject operation.
-func (c *S3) PutObjectRequest(input *PutObjectInput) (req *service.Request, output *PutObjectOutput) {
-	op := &service.Operation{
+func (c *S3) PutObjectRequest(input *PutObjectInput) (req *request.Request, output *PutObjectOutput) {
+	op := &request.Operation{
 		Name:       opPutObject,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -1444,8 +1444,8 @@ func (c *S3) PutObject(input *PutObjectInput) (*PutObjectOutput, error) {
 const opPutObjectAcl = "PutObjectAcl"
 
 // PutObjectAclRequest generates a request for the PutObjectAcl operation.
-func (c *S3) PutObjectAclRequest(input *PutObjectAclInput) (req *service.Request, output *PutObjectAclOutput) {
-	op := &service.Operation{
+func (c *S3) PutObjectAclRequest(input *PutObjectAclInput) (req *request.Request, output *PutObjectAclOutput) {
+	op := &request.Operation{
 		Name:       opPutObjectAcl,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}/{Key+}?acl",
@@ -1472,8 +1472,8 @@ func (c *S3) PutObjectAcl(input *PutObjectAclInput) (*PutObjectAclOutput, error)
 const opRestoreObject = "RestoreObject"
 
 // RestoreObjectRequest generates a request for the RestoreObject operation.
-func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *service.Request, output *RestoreObjectOutput) {
-	op := &service.Operation{
+func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *request.Request, output *RestoreObjectOutput) {
+	op := &request.Operation{
 		Name:       opRestoreObject,
 		HTTPMethod: "POST",
 		HTTPPath:   "/{Bucket}/{Key+}?restore",
@@ -1499,8 +1499,8 @@ func (c *S3) RestoreObject(input *RestoreObjectInput) (*RestoreObjectOutput, err
 const opUploadPart = "UploadPart"
 
 // UploadPartRequest generates a request for the UploadPart operation.
-func (c *S3) UploadPartRequest(input *UploadPartInput) (req *service.Request, output *UploadPartOutput) {
-	op := &service.Operation{
+func (c *S3) UploadPartRequest(input *UploadPartInput) (req *request.Request, output *UploadPartOutput) {
+	op := &request.Operation{
 		Name:       opUploadPart,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}/{Key+}",
@@ -1532,8 +1532,8 @@ func (c *S3) UploadPart(input *UploadPartInput) (*UploadPartOutput, error) {
 const opUploadPartCopy = "UploadPartCopy"
 
 // UploadPartCopyRequest generates a request for the UploadPartCopy operation.
-func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *service.Request, output *UploadPartCopyOutput) {
-	op := &service.Operation{
+func (c *S3) UploadPartCopyRequest(input *UploadPartCopyInput) (req *request.Request, output *UploadPartCopyOutput) {
+	op := &request.Operation{
 		Name:       opUploadPartCopy,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/{Bucket}/{Key+}",

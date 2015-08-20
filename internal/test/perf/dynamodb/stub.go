@@ -1,8 +1,8 @@
 package dynamodb
 
 import (
-	"net/http/httptest"
 	"net/http"
+	"net/http/httptest"
 )
 
 type dbItem struct {

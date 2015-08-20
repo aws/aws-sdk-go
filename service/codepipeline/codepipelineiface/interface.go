@@ -4,101 +4,101 @@
 package codepipelineiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/codepipeline"
 )
 
 // CodePipelineAPI is the interface type for codepipeline.CodePipeline.
 type CodePipelineAPI interface {
-	AcknowledgeJobRequest(*codepipeline.AcknowledgeJobInput) (*service.Request, *codepipeline.AcknowledgeJobOutput)
+	AcknowledgeJobRequest(*codepipeline.AcknowledgeJobInput) (*request.Request, *codepipeline.AcknowledgeJobOutput)
 
 	AcknowledgeJob(*codepipeline.AcknowledgeJobInput) (*codepipeline.AcknowledgeJobOutput, error)
 
-	AcknowledgeThirdPartyJobRequest(*codepipeline.AcknowledgeThirdPartyJobInput) (*service.Request, *codepipeline.AcknowledgeThirdPartyJobOutput)
+	AcknowledgeThirdPartyJobRequest(*codepipeline.AcknowledgeThirdPartyJobInput) (*request.Request, *codepipeline.AcknowledgeThirdPartyJobOutput)
 
 	AcknowledgeThirdPartyJob(*codepipeline.AcknowledgeThirdPartyJobInput) (*codepipeline.AcknowledgeThirdPartyJobOutput, error)
 
-	CreateCustomActionTypeRequest(*codepipeline.CreateCustomActionTypeInput) (*service.Request, *codepipeline.CreateCustomActionTypeOutput)
+	CreateCustomActionTypeRequest(*codepipeline.CreateCustomActionTypeInput) (*request.Request, *codepipeline.CreateCustomActionTypeOutput)
 
 	CreateCustomActionType(*codepipeline.CreateCustomActionTypeInput) (*codepipeline.CreateCustomActionTypeOutput, error)
 
-	CreatePipelineRequest(*codepipeline.CreatePipelineInput) (*service.Request, *codepipeline.CreatePipelineOutput)
+	CreatePipelineRequest(*codepipeline.CreatePipelineInput) (*request.Request, *codepipeline.CreatePipelineOutput)
 
 	CreatePipeline(*codepipeline.CreatePipelineInput) (*codepipeline.CreatePipelineOutput, error)
 
-	DeleteCustomActionTypeRequest(*codepipeline.DeleteCustomActionTypeInput) (*service.Request, *codepipeline.DeleteCustomActionTypeOutput)
+	DeleteCustomActionTypeRequest(*codepipeline.DeleteCustomActionTypeInput) (*request.Request, *codepipeline.DeleteCustomActionTypeOutput)
 
 	DeleteCustomActionType(*codepipeline.DeleteCustomActionTypeInput) (*codepipeline.DeleteCustomActionTypeOutput, error)
 
-	DeletePipelineRequest(*codepipeline.DeletePipelineInput) (*service.Request, *codepipeline.DeletePipelineOutput)
+	DeletePipelineRequest(*codepipeline.DeletePipelineInput) (*request.Request, *codepipeline.DeletePipelineOutput)
 
 	DeletePipeline(*codepipeline.DeletePipelineInput) (*codepipeline.DeletePipelineOutput, error)
 
-	DisableStageTransitionRequest(*codepipeline.DisableStageTransitionInput) (*service.Request, *codepipeline.DisableStageTransitionOutput)
+	DisableStageTransitionRequest(*codepipeline.DisableStageTransitionInput) (*request.Request, *codepipeline.DisableStageTransitionOutput)
 
 	DisableStageTransition(*codepipeline.DisableStageTransitionInput) (*codepipeline.DisableStageTransitionOutput, error)
 
-	EnableStageTransitionRequest(*codepipeline.EnableStageTransitionInput) (*service.Request, *codepipeline.EnableStageTransitionOutput)
+	EnableStageTransitionRequest(*codepipeline.EnableStageTransitionInput) (*request.Request, *codepipeline.EnableStageTransitionOutput)
 
 	EnableStageTransition(*codepipeline.EnableStageTransitionInput) (*codepipeline.EnableStageTransitionOutput, error)
 
-	GetJobDetailsRequest(*codepipeline.GetJobDetailsInput) (*service.Request, *codepipeline.GetJobDetailsOutput)
+	GetJobDetailsRequest(*codepipeline.GetJobDetailsInput) (*request.Request, *codepipeline.GetJobDetailsOutput)
 
 	GetJobDetails(*codepipeline.GetJobDetailsInput) (*codepipeline.GetJobDetailsOutput, error)
 
-	GetPipelineRequest(*codepipeline.GetPipelineInput) (*service.Request, *codepipeline.GetPipelineOutput)
+	GetPipelineRequest(*codepipeline.GetPipelineInput) (*request.Request, *codepipeline.GetPipelineOutput)
 
 	GetPipeline(*codepipeline.GetPipelineInput) (*codepipeline.GetPipelineOutput, error)
 
-	GetPipelineStateRequest(*codepipeline.GetPipelineStateInput) (*service.Request, *codepipeline.GetPipelineStateOutput)
+	GetPipelineStateRequest(*codepipeline.GetPipelineStateInput) (*request.Request, *codepipeline.GetPipelineStateOutput)
 
 	GetPipelineState(*codepipeline.GetPipelineStateInput) (*codepipeline.GetPipelineStateOutput, error)
 
-	GetThirdPartyJobDetailsRequest(*codepipeline.GetThirdPartyJobDetailsInput) (*service.Request, *codepipeline.GetThirdPartyJobDetailsOutput)
+	GetThirdPartyJobDetailsRequest(*codepipeline.GetThirdPartyJobDetailsInput) (*request.Request, *codepipeline.GetThirdPartyJobDetailsOutput)
 
 	GetThirdPartyJobDetails(*codepipeline.GetThirdPartyJobDetailsInput) (*codepipeline.GetThirdPartyJobDetailsOutput, error)
 
-	ListActionTypesRequest(*codepipeline.ListActionTypesInput) (*service.Request, *codepipeline.ListActionTypesOutput)
+	ListActionTypesRequest(*codepipeline.ListActionTypesInput) (*request.Request, *codepipeline.ListActionTypesOutput)
 
 	ListActionTypes(*codepipeline.ListActionTypesInput) (*codepipeline.ListActionTypesOutput, error)
 
-	ListPipelinesRequest(*codepipeline.ListPipelinesInput) (*service.Request, *codepipeline.ListPipelinesOutput)
+	ListPipelinesRequest(*codepipeline.ListPipelinesInput) (*request.Request, *codepipeline.ListPipelinesOutput)
 
 	ListPipelines(*codepipeline.ListPipelinesInput) (*codepipeline.ListPipelinesOutput, error)
 
-	PollForJobsRequest(*codepipeline.PollForJobsInput) (*service.Request, *codepipeline.PollForJobsOutput)
+	PollForJobsRequest(*codepipeline.PollForJobsInput) (*request.Request, *codepipeline.PollForJobsOutput)
 
 	PollForJobs(*codepipeline.PollForJobsInput) (*codepipeline.PollForJobsOutput, error)
 
-	PollForThirdPartyJobsRequest(*codepipeline.PollForThirdPartyJobsInput) (*service.Request, *codepipeline.PollForThirdPartyJobsOutput)
+	PollForThirdPartyJobsRequest(*codepipeline.PollForThirdPartyJobsInput) (*request.Request, *codepipeline.PollForThirdPartyJobsOutput)
 
 	PollForThirdPartyJobs(*codepipeline.PollForThirdPartyJobsInput) (*codepipeline.PollForThirdPartyJobsOutput, error)
 
-	PutActionRevisionRequest(*codepipeline.PutActionRevisionInput) (*service.Request, *codepipeline.PutActionRevisionOutput)
+	PutActionRevisionRequest(*codepipeline.PutActionRevisionInput) (*request.Request, *codepipeline.PutActionRevisionOutput)
 
 	PutActionRevision(*codepipeline.PutActionRevisionInput) (*codepipeline.PutActionRevisionOutput, error)
 
-	PutJobFailureResultRequest(*codepipeline.PutJobFailureResultInput) (*service.Request, *codepipeline.PutJobFailureResultOutput)
+	PutJobFailureResultRequest(*codepipeline.PutJobFailureResultInput) (*request.Request, *codepipeline.PutJobFailureResultOutput)
 
 	PutJobFailureResult(*codepipeline.PutJobFailureResultInput) (*codepipeline.PutJobFailureResultOutput, error)
 
-	PutJobSuccessResultRequest(*codepipeline.PutJobSuccessResultInput) (*service.Request, *codepipeline.PutJobSuccessResultOutput)
+	PutJobSuccessResultRequest(*codepipeline.PutJobSuccessResultInput) (*request.Request, *codepipeline.PutJobSuccessResultOutput)
 
 	PutJobSuccessResult(*codepipeline.PutJobSuccessResultInput) (*codepipeline.PutJobSuccessResultOutput, error)
 
-	PutThirdPartyJobFailureResultRequest(*codepipeline.PutThirdPartyJobFailureResultInput) (*service.Request, *codepipeline.PutThirdPartyJobFailureResultOutput)
+	PutThirdPartyJobFailureResultRequest(*codepipeline.PutThirdPartyJobFailureResultInput) (*request.Request, *codepipeline.PutThirdPartyJobFailureResultOutput)
 
 	PutThirdPartyJobFailureResult(*codepipeline.PutThirdPartyJobFailureResultInput) (*codepipeline.PutThirdPartyJobFailureResultOutput, error)
 
-	PutThirdPartyJobSuccessResultRequest(*codepipeline.PutThirdPartyJobSuccessResultInput) (*service.Request, *codepipeline.PutThirdPartyJobSuccessResultOutput)
+	PutThirdPartyJobSuccessResultRequest(*codepipeline.PutThirdPartyJobSuccessResultInput) (*request.Request, *codepipeline.PutThirdPartyJobSuccessResultOutput)
 
 	PutThirdPartyJobSuccessResult(*codepipeline.PutThirdPartyJobSuccessResultInput) (*codepipeline.PutThirdPartyJobSuccessResultOutput, error)
 
-	StartPipelineExecutionRequest(*codepipeline.StartPipelineExecutionInput) (*service.Request, *codepipeline.StartPipelineExecutionOutput)
+	StartPipelineExecutionRequest(*codepipeline.StartPipelineExecutionInput) (*request.Request, *codepipeline.StartPipelineExecutionOutput)
 
 	StartPipelineExecution(*codepipeline.StartPipelineExecutionInput) (*codepipeline.StartPipelineExecutionOutput, error)
 
-	UpdatePipelineRequest(*codepipeline.UpdatePipelineInput) (*service.Request, *codepipeline.UpdatePipelineOutput)
+	UpdatePipelineRequest(*codepipeline.UpdatePipelineInput) (*request.Request, *codepipeline.UpdatePipelineOutput)
 
 	UpdatePipeline(*codepipeline.UpdatePipelineInput) (*codepipeline.UpdatePipelineOutput, error)
 }

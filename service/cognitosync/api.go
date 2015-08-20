@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opBulkPublish = "BulkPublish"
 
 // BulkPublishRequest generates a request for the BulkPublish operation.
-func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *service.Request, output *BulkPublishOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *request.Request, output *BulkPublishOutput) {
+	op := &request.Operation{
 		Name:       opBulkPublish,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/bulkpublish",
@@ -46,8 +46,8 @@ func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (*BulkPublishOutput, 
 const opDeleteDataset = "DeleteDataset"
 
 // DeleteDatasetRequest generates a request for the DeleteDataset operation.
-func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *service.Request, output *DeleteDatasetOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDataset,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
@@ -79,8 +79,8 @@ func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOu
 const opDescribeDataset = "DescribeDataset"
 
 // DescribeDatasetRequest generates a request for the DescribeDataset operation.
-func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *service.Request, output *DescribeDatasetOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDataset,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
@@ -112,8 +112,8 @@ func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (*DescribeDat
 const opDescribeIdentityPoolUsage = "DescribeIdentityPoolUsage"
 
 // DescribeIdentityPoolUsageRequest generates a request for the DescribeIdentityPoolUsage operation.
-func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *service.Request, output *DescribeIdentityPoolUsageOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *request.Request, output *DescribeIdentityPoolUsageOutput) {
+	op := &request.Operation{
 		Name:       opDescribeIdentityPoolUsage,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}",
@@ -143,8 +143,8 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsage
 const opDescribeIdentityUsage = "DescribeIdentityUsage"
 
 // DescribeIdentityUsageRequest generates a request for the DescribeIdentityUsage operation.
-func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *service.Request, output *DescribeIdentityUsageOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *request.Request, output *DescribeIdentityUsageOutput) {
+	op := &request.Operation{
 		Name:       opDescribeIdentityUsage,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
@@ -174,8 +174,8 @@ func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (
 const opGetBulkPublishDetails = "GetBulkPublishDetails"
 
 // GetBulkPublishDetailsRequest generates a request for the GetBulkPublishDetails operation.
-func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *service.Request, output *GetBulkPublishDetailsOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *request.Request, output *GetBulkPublishDetailsOutput) {
+	op := &request.Operation{
 		Name:       opGetBulkPublishDetails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
@@ -204,8 +204,8 @@ func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (
 const opGetCognitoEvents = "GetCognitoEvents"
 
 // GetCognitoEventsRequest generates a request for the GetCognitoEvents operation.
-func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *service.Request, output *GetCognitoEventsOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *request.Request, output *GetCognitoEventsOutput) {
+	op := &request.Operation{
 		Name:       opGetCognitoEvents,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/events",
@@ -235,8 +235,8 @@ func (c *CognitoSync) GetCognitoEvents(input *GetCognitoEventsInput) (*GetCognit
 const opGetIdentityPoolConfiguration = "GetIdentityPoolConfiguration"
 
 // GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
-func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *service.Request, output *GetIdentityPoolConfigurationOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *request.Request, output *GetIdentityPoolConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opGetIdentityPoolConfiguration,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
@@ -265,8 +265,8 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(input *GetIdentityPoolConfigu
 const opListDatasets = "ListDatasets"
 
 // ListDatasetsRequest generates a request for the ListDatasets operation.
-func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *service.Request, output *ListDatasetsOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
+	op := &request.Operation{
 		Name:       opListDatasets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
@@ -298,8 +298,8 @@ func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutpu
 const opListIdentityPoolUsage = "ListIdentityPoolUsage"
 
 // ListIdentityPoolUsageRequest generates a request for the ListIdentityPoolUsage operation.
-func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *service.Request, output *ListIdentityPoolUsageOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *request.Request, output *ListIdentityPoolUsageOutput) {
+	op := &request.Operation{
 		Name:       opListIdentityPoolUsage,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools",
@@ -329,8 +329,8 @@ func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (
 const opListRecords = "ListRecords"
 
 // ListRecordsRequest generates a request for the ListRecords operation.
-func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *service.Request, output *ListRecordsOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *request.Request, output *ListRecordsOutput) {
+	op := &request.Operation{
 		Name:       opListRecords,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
@@ -363,8 +363,8 @@ func (c *CognitoSync) ListRecords(input *ListRecordsInput) (*ListRecordsOutput, 
 const opRegisterDevice = "RegisterDevice"
 
 // RegisterDeviceRequest generates a request for the RegisterDevice operation.
-func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *service.Request, output *RegisterDeviceOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *request.Request, output *RegisterDeviceOutput) {
+	op := &request.Operation{
 		Name:       opRegisterDevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
@@ -393,8 +393,8 @@ func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDevic
 const opSetCognitoEvents = "SetCognitoEvents"
 
 // SetCognitoEventsRequest generates a request for the SetCognitoEvents operation.
-func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *service.Request, output *SetCognitoEventsOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *request.Request, output *SetCognitoEventsOutput) {
+	op := &request.Operation{
 		Name:       opSetCognitoEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/events",
@@ -426,8 +426,8 @@ func (c *CognitoSync) SetCognitoEvents(input *SetCognitoEventsInput) (*SetCognit
 const opSetIdentityPoolConfiguration = "SetIdentityPoolConfiguration"
 
 // SetIdentityPoolConfigurationRequest generates a request for the SetIdentityPoolConfiguration operation.
-func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *service.Request, output *SetIdentityPoolConfigurationOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *request.Request, output *SetIdentityPoolConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opSetIdentityPoolConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
@@ -456,8 +456,8 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(input *SetIdentityPoolConfigu
 const opSubscribeToDataset = "SubscribeToDataset"
 
 // SubscribeToDatasetRequest generates a request for the SubscribeToDataset operation.
-func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *service.Request, output *SubscribeToDatasetOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *request.Request, output *SubscribeToDatasetOutput) {
+	op := &request.Operation{
 		Name:       opSubscribeToDataset,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
@@ -487,8 +487,8 @@ func (c *CognitoSync) SubscribeToDataset(input *SubscribeToDatasetInput) (*Subsc
 const opUnsubscribeFromDataset = "UnsubscribeFromDataset"
 
 // UnsubscribeFromDatasetRequest generates a request for the UnsubscribeFromDataset operation.
-func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *service.Request, output *UnsubscribeFromDatasetOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *request.Request, output *UnsubscribeFromDatasetOutput) {
+	op := &request.Operation{
 		Name:       opUnsubscribeFromDataset,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
@@ -518,8 +518,8 @@ func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput)
 const opUpdateRecords = "UpdateRecords"
 
 // UpdateRecordsRequest generates a request for the UpdateRecords operation.
-func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *service.Request, output *UpdateRecordsOutput) {
-	op := &service.Operation{
+func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *request.Request, output *UpdateRecordsOutput) {
+	op := &request.Operation{
 		Name:       opUpdateRecords,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",

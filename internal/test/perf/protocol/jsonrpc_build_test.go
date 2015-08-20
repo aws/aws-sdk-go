@@ -3,25 +3,26 @@
 package protocol
 
 import (
+	"bytes"
+	"encoding/json"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
-	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/protocol/json/jsonutil"
+	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"encoding/json"
-	"bytes"
 )
 
 func BenchmarkJSONRPCBuild_Simple_dynamodbPutItem(b *testing.B) {
-	svc := service.NewService(nil)
+	svc := service.New(nil)
 
 	params := getDynamodbPutItemParams(b)
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, &service.Operation{Name: "Operation"}, params, nil)
+		r := svc.NewRequest(&request.Operation{Name: "Operation"}, params, nil)
 		jsonrpc.Build(r)
 		if r.Error != nil {
 			b.Fatal("Unexpected error", r.Error)
@@ -30,12 +31,12 @@ func BenchmarkJSONRPCBuild_Simple_dynamodbPutItem(b *testing.B) {
 }
 
 func BenchmarkJSONUtilBuild_Simple_dynamodbPutItem(b *testing.B) {
-	svc := service.NewService(nil)
+	svc := service.New(nil)
 
 	params := getDynamodbPutItemParams(b)
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, &service.Operation{Name: "Operation"}, params, nil)
+		r := svc.NewRequest(&request.Operation{Name: "Operation"}, params, nil)
 		_, err := jsonutil.BuildJSON(r.Params)
 		if err != nil {
 			b.Fatal("Unexpected error", err)

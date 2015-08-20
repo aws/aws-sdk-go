@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opConnectDirectory = "ConnectDirectory"
 
 // ConnectDirectoryRequest generates a request for the ConnectDirectory operation.
-func (c *DirectoryService) ConnectDirectoryRequest(input *ConnectDirectoryInput) (req *service.Request, output *ConnectDirectoryOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) ConnectDirectoryRequest(input *ConnectDirectoryInput) (req *request.Request, output *ConnectDirectoryOutput) {
+	op := &request.Operation{
 		Name:       opConnectDirectory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *DirectoryService) ConnectDirectory(input *ConnectDirectoryInput) (*Conn
 const opCreateAlias = "CreateAlias"
 
 // CreateAliasRequest generates a request for the CreateAlias operation.
-func (c *DirectoryService) CreateAliasRequest(input *CreateAliasInput) (req *service.Request, output *CreateAliasOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) CreateAliasRequest(input *CreateAliasInput) (req *request.Request, output *CreateAliasOutput) {
+	op := &request.Operation{
 		Name:       opCreateAlias,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -72,8 +72,8 @@ func (c *DirectoryService) CreateAlias(input *CreateAliasInput) (*CreateAliasOut
 const opCreateComputer = "CreateComputer"
 
 // CreateComputerRequest generates a request for the CreateComputer operation.
-func (c *DirectoryService) CreateComputerRequest(input *CreateComputerInput) (req *service.Request, output *CreateComputerOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) CreateComputerRequest(input *CreateComputerInput) (req *request.Request, output *CreateComputerOutput) {
+	op := &request.Operation{
 		Name:       opCreateComputer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -100,8 +100,8 @@ func (c *DirectoryService) CreateComputer(input *CreateComputerInput) (*CreateCo
 const opCreateDirectory = "CreateDirectory"
 
 // CreateDirectoryRequest generates a request for the CreateDirectory operation.
-func (c *DirectoryService) CreateDirectoryRequest(input *CreateDirectoryInput) (req *service.Request, output *CreateDirectoryOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) CreateDirectoryRequest(input *CreateDirectoryInput) (req *request.Request, output *CreateDirectoryOutput) {
+	op := &request.Operation{
 		Name:       opCreateDirectory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -127,8 +127,8 @@ func (c *DirectoryService) CreateDirectory(input *CreateDirectoryInput) (*Create
 const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
-func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (req *service.Request, output *CreateSnapshotOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opCreateSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -156,8 +156,8 @@ func (c *DirectoryService) CreateSnapshot(input *CreateSnapshotInput) (*CreateSn
 const opDeleteDirectory = "DeleteDirectory"
 
 // DeleteDirectoryRequest generates a request for the DeleteDirectory operation.
-func (c *DirectoryService) DeleteDirectoryRequest(input *DeleteDirectoryInput) (req *service.Request, output *DeleteDirectoryOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) DeleteDirectoryRequest(input *DeleteDirectoryInput) (req *request.Request, output *DeleteDirectoryOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDirectory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -183,8 +183,8 @@ func (c *DirectoryService) DeleteDirectory(input *DeleteDirectoryInput) (*Delete
 const opDeleteSnapshot = "DeleteSnapshot"
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
-func (c *DirectoryService) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *service.Request, output *DeleteSnapshotOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *request.Request, output *DeleteSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opDeleteSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -210,8 +210,8 @@ func (c *DirectoryService) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSn
 const opDescribeDirectories = "DescribeDirectories"
 
 // DescribeDirectoriesRequest generates a request for the DescribeDirectories operation.
-func (c *DirectoryService) DescribeDirectoriesRequest(input *DescribeDirectoriesInput) (req *service.Request, output *DescribeDirectoriesOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) DescribeDirectoriesRequest(input *DescribeDirectoriesInput) (req *request.Request, output *DescribeDirectoriesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDirectories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -248,8 +248,8 @@ func (c *DirectoryService) DescribeDirectories(input *DescribeDirectoriesInput) 
 const opDescribeSnapshots = "DescribeSnapshots"
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
-func (c *DirectoryService) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *service.Request, output *DescribeSnapshotsOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *request.Request, output *DescribeSnapshotsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -282,8 +282,8 @@ func (c *DirectoryService) DescribeSnapshots(input *DescribeSnapshotsInput) (*De
 const opDisableRadius = "DisableRadius"
 
 // DisableRadiusRequest generates a request for the DisableRadius operation.
-func (c *DirectoryService) DisableRadiusRequest(input *DisableRadiusInput) (req *service.Request, output *DisableRadiusOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) DisableRadiusRequest(input *DisableRadiusInput) (req *request.Request, output *DisableRadiusOutput) {
+	op := &request.Operation{
 		Name:       opDisableRadius,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -310,8 +310,8 @@ func (c *DirectoryService) DisableRadius(input *DisableRadiusInput) (*DisableRad
 const opDisableSso = "DisableSso"
 
 // DisableSsoRequest generates a request for the DisableSso operation.
-func (c *DirectoryService) DisableSsoRequest(input *DisableSsoInput) (req *service.Request, output *DisableSsoOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) DisableSsoRequest(input *DisableSsoInput) (req *request.Request, output *DisableSsoOutput) {
+	op := &request.Operation{
 		Name:       opDisableSso,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -337,8 +337,8 @@ func (c *DirectoryService) DisableSso(input *DisableSsoInput) (*DisableSsoOutput
 const opEnableRadius = "EnableRadius"
 
 // EnableRadiusRequest generates a request for the EnableRadius operation.
-func (c *DirectoryService) EnableRadiusRequest(input *EnableRadiusInput) (req *service.Request, output *EnableRadiusOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) EnableRadiusRequest(input *EnableRadiusInput) (req *request.Request, output *EnableRadiusOutput) {
+	op := &request.Operation{
 		Name:       opEnableRadius,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -365,8 +365,8 @@ func (c *DirectoryService) EnableRadius(input *EnableRadiusInput) (*EnableRadius
 const opEnableSso = "EnableSso"
 
 // EnableSsoRequest generates a request for the EnableSso operation.
-func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *service.Request, output *EnableSsoOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *request.Request, output *EnableSsoOutput) {
+	op := &request.Operation{
 		Name:       opEnableSso,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -392,8 +392,8 @@ func (c *DirectoryService) EnableSso(input *EnableSsoInput) (*EnableSsoOutput, e
 const opGetDirectoryLimits = "GetDirectoryLimits"
 
 // GetDirectoryLimitsRequest generates a request for the GetDirectoryLimits operation.
-func (c *DirectoryService) GetDirectoryLimitsRequest(input *GetDirectoryLimitsInput) (req *service.Request, output *GetDirectoryLimitsOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) GetDirectoryLimitsRequest(input *GetDirectoryLimitsInput) (req *request.Request, output *GetDirectoryLimitsOutput) {
+	op := &request.Operation{
 		Name:       opGetDirectoryLimits,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -419,8 +419,8 @@ func (c *DirectoryService) GetDirectoryLimits(input *GetDirectoryLimitsInput) (*
 const opGetSnapshotLimits = "GetSnapshotLimits"
 
 // GetSnapshotLimitsRequest generates a request for the GetSnapshotLimits operation.
-func (c *DirectoryService) GetSnapshotLimitsRequest(input *GetSnapshotLimitsInput) (req *service.Request, output *GetSnapshotLimitsOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) GetSnapshotLimitsRequest(input *GetSnapshotLimitsInput) (req *request.Request, output *GetSnapshotLimitsOutput) {
+	op := &request.Operation{
 		Name:       opGetSnapshotLimits,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -446,8 +446,8 @@ func (c *DirectoryService) GetSnapshotLimits(input *GetSnapshotLimitsInput) (*Ge
 const opRestoreFromSnapshot = "RestoreFromSnapshot"
 
 // RestoreFromSnapshotRequest generates a request for the RestoreFromSnapshot operation.
-func (c *DirectoryService) RestoreFromSnapshotRequest(input *RestoreFromSnapshotInput) (req *service.Request, output *RestoreFromSnapshotOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) RestoreFromSnapshotRequest(input *RestoreFromSnapshotInput) (req *request.Request, output *RestoreFromSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opRestoreFromSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -481,8 +481,8 @@ func (c *DirectoryService) RestoreFromSnapshot(input *RestoreFromSnapshotInput) 
 const opUpdateRadius = "UpdateRadius"
 
 // UpdateRadiusRequest generates a request for the UpdateRadius operation.
-func (c *DirectoryService) UpdateRadiusRequest(input *UpdateRadiusInput) (req *service.Request, output *UpdateRadiusOutput) {
-	op := &service.Operation{
+func (c *DirectoryService) UpdateRadiusRequest(input *UpdateRadiusInput) (req *request.Request, output *UpdateRadiusOutput) {
+	op := &request.Operation{
 		Name:       opUpdateRadius,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

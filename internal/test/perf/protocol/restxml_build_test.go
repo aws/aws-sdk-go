@@ -5,18 +5,19 @@ package protocol
 import (
 	"testing"
 
+	"bytes"
+	"encoding/xml"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/restxml"
 	"github.com/aws/aws-sdk-go/service/cloudfront"
-	"bytes"
-	"encoding/xml"
 )
 
 func BenchmarkRESTXMLBuild_Complex_cloudfrontCreateDistribution(b *testing.B) {
 	params := restxmlBuildCreateDistroParms
 
-	op := &service.Operation{
+	op := &request.Operation{
 		Name:       "CreateDistribution",
 		HTTPMethod: "POST",
 		HTTPPath:   "/2015-04-17/distribution/{DistributionId}/invalidation",
@@ -30,7 +31,7 @@ func BenchmarkRESTXMLBuild_Simple_cloudfrontDeleteStreamingDistribution(b *testi
 		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
 	}
-	op := &service.Operation{
+	op := &request.Operation{
 		Name:       "DeleteStreamingDistribution",
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2015-04-17/streaming-distribution/{Id}",
@@ -53,13 +54,13 @@ func BenchmarkEncodingXMLMarshal_Simple_cloudfrontDeleteStreamingDistribution(b 
 	}
 }
 
-func benchRESTXMLBuild(b *testing.B, op *service.Operation, params interface{}) {
-	svc := service.NewService(nil)
+func benchRESTXMLBuild(b *testing.B, op *request.Operation, params interface{}) {
+	svc := service.New(nil)
 	svc.ServiceName = "cloudfront"
 	svc.APIVersion = "2015-04-17"
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, op, params, nil)
+		r := svc.NewRequest(op, params, nil)
 		restxml.Build(r)
 		if r.Error != nil {
 			b.Fatal("Unexpected error", r.Error)

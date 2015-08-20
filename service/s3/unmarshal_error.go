@@ -9,7 +9,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 type xmlErrorResponse struct {
@@ -18,12 +18,12 @@ type xmlErrorResponse struct {
 	Message string   `xml:"Message"`
 }
 
-func unmarshalError(r *service.Request) {
+func unmarshalError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 
 	if r.HTTPResponse.StatusCode == http.StatusMovedPermanently {
 		r.Error = awserr.New("BucketRegionError",
-			fmt.Sprintf("incorrect region, the bucket is not in '%s' region", aws.StringValue(r.Config.Region)), nil)
+			fmt.Sprintf("incorrect region, the bucket is not in '%s' region", aws.StringValue(r.Service.Config.Region)), nil)
 		return
 	}
 

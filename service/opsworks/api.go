@@ -5,14 +5,14 @@ package opsworks
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAssignInstance = "AssignInstance"
 
 // AssignInstanceRequest generates a request for the AssignInstance operation.
-func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *service.Request, output *AssignInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) AssignInstanceRequest(input *AssignInstanceInput) (req *request.Request, output *AssignInstanceOutput) {
+	op := &request.Operation{
 		Name:       opAssignInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -46,8 +46,8 @@ func (c *OpsWorks) AssignInstance(input *AssignInstanceInput) (*AssignInstanceOu
 const opAssignVolume = "AssignVolume"
 
 // AssignVolumeRequest generates a request for the AssignVolume operation.
-func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *service.Request, output *AssignVolumeOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) AssignVolumeRequest(input *AssignVolumeInput) (req *request.Request, output *AssignVolumeOutput) {
+	op := &request.Operation{
 		Name:       opAssignVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -82,8 +82,8 @@ func (c *OpsWorks) AssignVolume(input *AssignVolumeInput) (*AssignVolumeOutput, 
 const opAssociateElasticIp = "AssociateElasticIp"
 
 // AssociateElasticIpRequest generates a request for the AssociateElasticIp operation.
-func (c *OpsWorks) AssociateElasticIpRequest(input *AssociateElasticIpInput) (req *service.Request, output *AssociateElasticIpOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) AssociateElasticIpRequest(input *AssociateElasticIpInput) (req *request.Request, output *AssociateElasticIpOutput) {
+	op := &request.Operation{
 		Name:       opAssociateElasticIp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -116,8 +116,8 @@ func (c *OpsWorks) AssociateElasticIp(input *AssociateElasticIpInput) (*Associat
 const opAttachElasticLoadBalancer = "AttachElasticLoadBalancer"
 
 // AttachElasticLoadBalancerRequest generates a request for the AttachElasticLoadBalancer operation.
-func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBalancerInput) (req *service.Request, output *AttachElasticLoadBalancerOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) AttachElasticLoadBalancerRequest(input *AttachElasticLoadBalancerInput) (req *request.Request, output *AttachElasticLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opAttachElasticLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -153,8 +153,8 @@ func (c *OpsWorks) AttachElasticLoadBalancer(input *AttachElasticLoadBalancerInp
 const opCloneStack = "CloneStack"
 
 // CloneStackRequest generates a request for the CloneStack operation.
-func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *service.Request, output *CloneStackOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CloneStackRequest(input *CloneStackInput) (req *request.Request, output *CloneStackOutput) {
+	op := &request.Operation{
 		Name:       opCloneStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -186,8 +186,8 @@ func (c *OpsWorks) CloneStack(input *CloneStackInput) (*CloneStackOutput, error)
 const opCreateApp = "CreateApp"
 
 // CreateAppRequest generates a request for the CreateApp operation.
-func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *service.Request, output *CreateAppOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CreateAppRequest(input *CreateAppInput) (req *request.Request, output *CreateAppOutput) {
+	op := &request.Operation{
 		Name:       opCreateApp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -219,8 +219,8 @@ func (c *OpsWorks) CreateApp(input *CreateAppInput) (*CreateAppOutput, error) {
 const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a request for the CreateDeployment operation.
-func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *service.Request, output *CreateDeploymentOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request.Request, output *CreateDeploymentOutput) {
+	op := &request.Operation{
 		Name:       opCreateDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -253,8 +253,8 @@ func (c *OpsWorks) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploy
 const opCreateInstance = "CreateInstance"
 
 // CreateInstanceRequest generates a request for the CreateInstance operation.
-func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *service.Request, output *CreateInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CreateInstanceRequest(input *CreateInstanceInput) (req *request.Request, output *CreateInstanceOutput) {
+	op := &request.Operation{
 		Name:       opCreateInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -286,8 +286,8 @@ func (c *OpsWorks) CreateInstance(input *CreateInstanceInput) (*CreateInstanceOu
 const opCreateLayer = "CreateLayer"
 
 // CreateLayerRequest generates a request for the CreateLayer operation.
-func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *service.Request, output *CreateLayerOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CreateLayerRequest(input *CreateLayerInput) (req *request.Request, output *CreateLayerOutput) {
+	op := &request.Operation{
 		Name:       opCreateLayer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -325,8 +325,8 @@ func (c *OpsWorks) CreateLayer(input *CreateLayerInput) (*CreateLayerOutput, err
 const opCreateStack = "CreateStack"
 
 // CreateStackRequest generates a request for the CreateStack operation.
-func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *service.Request, output *CreateStackOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CreateStackRequest(input *CreateStackInput) (req *request.Request, output *CreateStackOutput) {
+	op := &request.Operation{
 		Name:       opCreateStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -356,8 +356,8 @@ func (c *OpsWorks) CreateStack(input *CreateStackInput) (*CreateStackOutput, err
 const opCreateUserProfile = "CreateUserProfile"
 
 // CreateUserProfileRequest generates a request for the CreateUserProfile operation.
-func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req *service.Request, output *CreateUserProfileOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) CreateUserProfileRequest(input *CreateUserProfileInput) (req *request.Request, output *CreateUserProfileOutput) {
+	op := &request.Operation{
 		Name:       opCreateUserProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -387,8 +387,8 @@ func (c *OpsWorks) CreateUserProfile(input *CreateUserProfileInput) (*CreateUser
 const opDeleteApp = "DeleteApp"
 
 // DeleteAppRequest generates a request for the DeleteApp operation.
-func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *service.Request, output *DeleteAppOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeleteAppRequest(input *DeleteAppInput) (req *request.Request, output *DeleteAppOutput) {
+	op := &request.Operation{
 		Name:       opDeleteApp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -419,8 +419,8 @@ func (c *OpsWorks) DeleteApp(input *DeleteAppInput) (*DeleteAppOutput, error) {
 const opDeleteInstance = "DeleteInstance"
 
 // DeleteInstanceRequest generates a request for the DeleteInstance operation.
-func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *service.Request, output *DeleteInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeleteInstanceRequest(input *DeleteInstanceInput) (req *request.Request, output *DeleteInstanceOutput) {
+	op := &request.Operation{
 		Name:       opDeleteInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -454,8 +454,8 @@ func (c *OpsWorks) DeleteInstance(input *DeleteInstanceInput) (*DeleteInstanceOu
 const opDeleteLayer = "DeleteLayer"
 
 // DeleteLayerRequest generates a request for the DeleteLayer operation.
-func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *service.Request, output *DeleteLayerOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeleteLayerRequest(input *DeleteLayerInput) (req *request.Request, output *DeleteLayerOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLayer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -488,8 +488,8 @@ func (c *OpsWorks) DeleteLayer(input *DeleteLayerInput) (*DeleteLayerOutput, err
 const opDeleteStack = "DeleteStack"
 
 // DeleteStackRequest generates a request for the DeleteStack operation.
-func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *service.Request, output *DeleteStackOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeleteStackRequest(input *DeleteStackInput) (req *request.Request, output *DeleteStackOutput) {
+	op := &request.Operation{
 		Name:       opDeleteStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -522,8 +522,8 @@ func (c *OpsWorks) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, err
 const opDeleteUserProfile = "DeleteUserProfile"
 
 // DeleteUserProfileRequest generates a request for the DeleteUserProfile operation.
-func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req *service.Request, output *DeleteUserProfileOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeleteUserProfileRequest(input *DeleteUserProfileInput) (req *request.Request, output *DeleteUserProfileOutput) {
+	op := &request.Operation{
 		Name:       opDeleteUserProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -553,8 +553,8 @@ func (c *OpsWorks) DeleteUserProfile(input *DeleteUserProfileInput) (*DeleteUser
 const opDeregisterEcsCluster = "DeregisterEcsCluster"
 
 // DeregisterEcsClusterRequest generates a request for the DeregisterEcsCluster operation.
-func (c *OpsWorks) DeregisterEcsClusterRequest(input *DeregisterEcsClusterInput) (req *service.Request, output *DeregisterEcsClusterOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeregisterEcsClusterRequest(input *DeregisterEcsClusterInput) (req *request.Request, output *DeregisterEcsClusterOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterEcsCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -585,8 +585,8 @@ func (c *OpsWorks) DeregisterEcsCluster(input *DeregisterEcsClusterInput) (*Dere
 const opDeregisterElasticIp = "DeregisterElasticIp"
 
 // DeregisterElasticIpRequest generates a request for the DeregisterElasticIp operation.
-func (c *OpsWorks) DeregisterElasticIpRequest(input *DeregisterElasticIpInput) (req *service.Request, output *DeregisterElasticIpOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeregisterElasticIpRequest(input *DeregisterElasticIpInput) (req *request.Request, output *DeregisterElasticIpOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterElasticIp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -618,8 +618,8 @@ func (c *OpsWorks) DeregisterElasticIp(input *DeregisterElasticIpInput) (*Deregi
 const opDeregisterInstance = "DeregisterInstance"
 
 // DeregisterInstanceRequest generates a request for the DeregisterInstance operation.
-func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (req *service.Request, output *DeregisterInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeregisterInstanceRequest(input *DeregisterInstanceInput) (req *request.Request, output *DeregisterInstanceOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -652,8 +652,8 @@ func (c *OpsWorks) DeregisterInstance(input *DeregisterInstanceInput) (*Deregist
 const opDeregisterRdsDbInstance = "DeregisterRdsDbInstance"
 
 // DeregisterRdsDbInstanceRequest generates a request for the DeregisterRdsDbInstance operation.
-func (c *OpsWorks) DeregisterRdsDbInstanceRequest(input *DeregisterRdsDbInstanceInput) (req *service.Request, output *DeregisterRdsDbInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeregisterRdsDbInstanceRequest(input *DeregisterRdsDbInstanceInput) (req *request.Request, output *DeregisterRdsDbInstanceOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterRdsDbInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -684,8 +684,8 @@ func (c *OpsWorks) DeregisterRdsDbInstance(input *DeregisterRdsDbInstanceInput) 
 const opDeregisterVolume = "DeregisterVolume"
 
 // DeregisterVolumeRequest generates a request for the DeregisterVolume operation.
-func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *service.Request, output *DeregisterVolumeOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DeregisterVolumeRequest(input *DeregisterVolumeInput) (req *request.Request, output *DeregisterVolumeOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -717,8 +717,8 @@ func (c *OpsWorks) DeregisterVolume(input *DeregisterVolumeInput) (*DeregisterVo
 const opDescribeAgentVersions = "DescribeAgentVersions"
 
 // DescribeAgentVersionsRequest generates a request for the DescribeAgentVersions operation.
-func (c *OpsWorks) DescribeAgentVersionsRequest(input *DescribeAgentVersionsInput) (req *service.Request, output *DescribeAgentVersionsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeAgentVersionsRequest(input *DescribeAgentVersionsInput) (req *request.Request, output *DescribeAgentVersionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAgentVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -746,8 +746,8 @@ func (c *OpsWorks) DescribeAgentVersions(input *DescribeAgentVersionsInput) (*De
 const opDescribeApps = "DescribeApps"
 
 // DescribeAppsRequest generates a request for the DescribeApps operation.
-func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *service.Request, output *DescribeAppsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeAppsRequest(input *DescribeAppsInput) (req *request.Request, output *DescribeAppsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeApps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -780,8 +780,8 @@ func (c *OpsWorks) DescribeApps(input *DescribeAppsInput) (*DescribeAppsOutput, 
 const opDescribeCommands = "DescribeCommands"
 
 // DescribeCommandsRequest generates a request for the DescribeCommands operation.
-func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *service.Request, output *DescribeCommandsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeCommandsRequest(input *DescribeCommandsInput) (req *request.Request, output *DescribeCommandsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCommands,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -814,8 +814,8 @@ func (c *OpsWorks) DescribeCommands(input *DescribeCommandsInput) (*DescribeComm
 const opDescribeDeployments = "DescribeDeployments"
 
 // DescribeDeploymentsRequest generates a request for the DescribeDeployments operation.
-func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (req *service.Request, output *DescribeDeploymentsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeDeploymentsRequest(input *DescribeDeploymentsInput) (req *request.Request, output *DescribeDeploymentsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDeployments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -848,8 +848,8 @@ func (c *OpsWorks) DescribeDeployments(input *DescribeDeploymentsInput) (*Descri
 const opDescribeEcsClusters = "DescribeEcsClusters"
 
 // DescribeEcsClustersRequest generates a request for the DescribeEcsClusters operation.
-func (c *OpsWorks) DescribeEcsClustersRequest(input *DescribeEcsClustersInput) (req *service.Request, output *DescribeEcsClustersOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeEcsClustersRequest(input *DescribeEcsClustersInput) (req *request.Request, output *DescribeEcsClustersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEcsClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -883,8 +883,8 @@ func (c *OpsWorks) DescribeEcsClusters(input *DescribeEcsClustersInput) (*Descri
 const opDescribeElasticIps = "DescribeElasticIps"
 
 // DescribeElasticIpsRequest generates a request for the DescribeElasticIps operation.
-func (c *OpsWorks) DescribeElasticIpsRequest(input *DescribeElasticIpsInput) (req *service.Request, output *DescribeElasticIpsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeElasticIpsRequest(input *DescribeElasticIpsInput) (req *request.Request, output *DescribeElasticIpsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeElasticIps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -917,8 +917,8 @@ func (c *OpsWorks) DescribeElasticIps(input *DescribeElasticIpsInput) (*Describe
 const opDescribeElasticLoadBalancers = "DescribeElasticLoadBalancers"
 
 // DescribeElasticLoadBalancersRequest generates a request for the DescribeElasticLoadBalancers operation.
-func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoadBalancersInput) (req *service.Request, output *DescribeElasticLoadBalancersOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeElasticLoadBalancersRequest(input *DescribeElasticLoadBalancersInput) (req *request.Request, output *DescribeElasticLoadBalancersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeElasticLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -951,8 +951,8 @@ func (c *OpsWorks) DescribeElasticLoadBalancers(input *DescribeElasticLoadBalanc
 const opDescribeInstances = "DescribeInstances"
 
 // DescribeInstancesRequest generates a request for the DescribeInstances operation.
-func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req *service.Request, output *DescribeInstancesOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeInstancesRequest(input *DescribeInstancesInput) (req *request.Request, output *DescribeInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -985,8 +985,8 @@ func (c *OpsWorks) DescribeInstances(input *DescribeInstancesInput) (*DescribeIn
 const opDescribeLayers = "DescribeLayers"
 
 // DescribeLayersRequest generates a request for the DescribeLayers operation.
-func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *service.Request, output *DescribeLayersOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeLayersRequest(input *DescribeLayersInput) (req *request.Request, output *DescribeLayersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLayers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1019,8 +1019,8 @@ func (c *OpsWorks) DescribeLayers(input *DescribeLayersInput) (*DescribeLayersOu
 const opDescribeLoadBasedAutoScaling = "DescribeLoadBasedAutoScaling"
 
 // DescribeLoadBasedAutoScalingRequest generates a request for the DescribeLoadBasedAutoScaling operation.
-func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedAutoScalingInput) (req *service.Request, output *DescribeLoadBasedAutoScalingOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeLoadBasedAutoScalingRequest(input *DescribeLoadBasedAutoScalingInput) (req *request.Request, output *DescribeLoadBasedAutoScalingOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLoadBasedAutoScaling,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1053,8 +1053,8 @@ func (c *OpsWorks) DescribeLoadBasedAutoScaling(input *DescribeLoadBasedAutoScal
 const opDescribeMyUserProfile = "DescribeMyUserProfile"
 
 // DescribeMyUserProfileRequest generates a request for the DescribeMyUserProfile operation.
-func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInput) (req *service.Request, output *DescribeMyUserProfileOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeMyUserProfileRequest(input *DescribeMyUserProfileInput) (req *request.Request, output *DescribeMyUserProfileOutput) {
+	op := &request.Operation{
 		Name:       opDescribeMyUserProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1084,8 +1084,8 @@ func (c *OpsWorks) DescribeMyUserProfile(input *DescribeMyUserProfileInput) (*De
 const opDescribePermissions = "DescribePermissions"
 
 // DescribePermissionsRequest generates a request for the DescribePermissions operation.
-func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (req *service.Request, output *DescribePermissionsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribePermissionsRequest(input *DescribePermissionsInput) (req *request.Request, output *DescribePermissionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribePermissions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1116,8 +1116,8 @@ func (c *OpsWorks) DescribePermissions(input *DescribePermissionsInput) (*Descri
 const opDescribeRaidArrays = "DescribeRaidArrays"
 
 // DescribeRaidArraysRequest generates a request for the DescribeRaidArrays operation.
-func (c *OpsWorks) DescribeRaidArraysRequest(input *DescribeRaidArraysInput) (req *service.Request, output *DescribeRaidArraysOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeRaidArraysRequest(input *DescribeRaidArraysInput) (req *request.Request, output *DescribeRaidArraysOutput) {
+	op := &request.Operation{
 		Name:       opDescribeRaidArrays,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1150,8 +1150,8 @@ func (c *OpsWorks) DescribeRaidArrays(input *DescribeRaidArraysInput) (*Describe
 const opDescribeRdsDbInstances = "DescribeRdsDbInstances"
 
 // DescribeRdsDbInstancesRequest generates a request for the DescribeRdsDbInstances operation.
-func (c *OpsWorks) DescribeRdsDbInstancesRequest(input *DescribeRdsDbInstancesInput) (req *service.Request, output *DescribeRdsDbInstancesOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeRdsDbInstancesRequest(input *DescribeRdsDbInstancesInput) (req *request.Request, output *DescribeRdsDbInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeRdsDbInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1182,8 +1182,8 @@ func (c *OpsWorks) DescribeRdsDbInstances(input *DescribeRdsDbInstancesInput) (*
 const opDescribeServiceErrors = "DescribeServiceErrors"
 
 // DescribeServiceErrorsRequest generates a request for the DescribeServiceErrors operation.
-func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInput) (req *service.Request, output *DescribeServiceErrorsOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeServiceErrorsRequest(input *DescribeServiceErrorsInput) (req *request.Request, output *DescribeServiceErrorsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeServiceErrors,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1214,8 +1214,8 @@ func (c *OpsWorks) DescribeServiceErrors(input *DescribeServiceErrorsInput) (*De
 const opDescribeStackProvisioningParameters = "DescribeStackProvisioningParameters"
 
 // DescribeStackProvisioningParametersRequest generates a request for the DescribeStackProvisioningParameters operation.
-func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeStackProvisioningParametersInput) (req *service.Request, output *DescribeStackProvisioningParametersOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeStackProvisioningParametersRequest(input *DescribeStackProvisioningParametersInput) (req *request.Request, output *DescribeStackProvisioningParametersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStackProvisioningParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1246,8 +1246,8 @@ func (c *OpsWorks) DescribeStackProvisioningParameters(input *DescribeStackProvi
 const opDescribeStackSummary = "DescribeStackSummary"
 
 // DescribeStackSummaryRequest generates a request for the DescribeStackSummary operation.
-func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput) (req *service.Request, output *DescribeStackSummaryOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeStackSummaryRequest(input *DescribeStackSummaryInput) (req *request.Request, output *DescribeStackSummaryOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStackSummary,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1279,8 +1279,8 @@ func (c *OpsWorks) DescribeStackSummary(input *DescribeStackSummaryInput) (*Desc
 const opDescribeStacks = "DescribeStacks"
 
 // DescribeStacksRequest generates a request for the DescribeStacks operation.
-func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *service.Request, output *DescribeStacksOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeStacksRequest(input *DescribeStacksInput) (req *request.Request, output *DescribeStacksOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStacks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1311,8 +1311,8 @@ func (c *OpsWorks) DescribeStacks(input *DescribeStacksInput) (*DescribeStacksOu
 const opDescribeTimeBasedAutoScaling = "DescribeTimeBasedAutoScaling"
 
 // DescribeTimeBasedAutoScalingRequest generates a request for the DescribeTimeBasedAutoScaling operation.
-func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedAutoScalingInput) (req *service.Request, output *DescribeTimeBasedAutoScalingOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeTimeBasedAutoScalingRequest(input *DescribeTimeBasedAutoScalingInput) (req *request.Request, output *DescribeTimeBasedAutoScalingOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTimeBasedAutoScaling,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1345,8 +1345,8 @@ func (c *OpsWorks) DescribeTimeBasedAutoScaling(input *DescribeTimeBasedAutoScal
 const opDescribeUserProfiles = "DescribeUserProfiles"
 
 // DescribeUserProfilesRequest generates a request for the DescribeUserProfiles operation.
-func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput) (req *service.Request, output *DescribeUserProfilesOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeUserProfilesRequest(input *DescribeUserProfilesInput) (req *request.Request, output *DescribeUserProfilesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeUserProfiles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1376,8 +1376,8 @@ func (c *OpsWorks) DescribeUserProfiles(input *DescribeUserProfilesInput) (*Desc
 const opDescribeVolumes = "DescribeVolumes"
 
 // DescribeVolumesRequest generates a request for the DescribeVolumes operation.
-func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *service.Request, output *DescribeVolumesOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DescribeVolumesRequest(input *DescribeVolumesInput) (req *request.Request, output *DescribeVolumesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeVolumes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1410,8 +1410,8 @@ func (c *OpsWorks) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolume
 const opDetachElasticLoadBalancer = "DetachElasticLoadBalancer"
 
 // DetachElasticLoadBalancerRequest generates a request for the DetachElasticLoadBalancer operation.
-func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBalancerInput) (req *service.Request, output *DetachElasticLoadBalancerOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DetachElasticLoadBalancerRequest(input *DetachElasticLoadBalancerInput) (req *request.Request, output *DetachElasticLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opDetachElasticLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1442,8 +1442,8 @@ func (c *OpsWorks) DetachElasticLoadBalancer(input *DetachElasticLoadBalancerInp
 const opDisassociateElasticIp = "DisassociateElasticIp"
 
 // DisassociateElasticIpRequest generates a request for the DisassociateElasticIp operation.
-func (c *OpsWorks) DisassociateElasticIpRequest(input *DisassociateElasticIpInput) (req *service.Request, output *DisassociateElasticIpOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) DisassociateElasticIpRequest(input *DisassociateElasticIpInput) (req *request.Request, output *DisassociateElasticIpOutput) {
+	op := &request.Operation{
 		Name:       opDisassociateElasticIp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1476,8 +1476,8 @@ func (c *OpsWorks) DisassociateElasticIp(input *DisassociateElasticIpInput) (*Di
 const opGetHostnameSuggestion = "GetHostnameSuggestion"
 
 // GetHostnameSuggestionRequest generates a request for the GetHostnameSuggestion operation.
-func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInput) (req *service.Request, output *GetHostnameSuggestionOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) GetHostnameSuggestionRequest(input *GetHostnameSuggestionInput) (req *request.Request, output *GetHostnameSuggestionOutput) {
+	op := &request.Operation{
 		Name:       opGetHostnameSuggestion,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1509,8 +1509,8 @@ func (c *OpsWorks) GetHostnameSuggestion(input *GetHostnameSuggestionInput) (*Ge
 const opGrantAccess = "GrantAccess"
 
 // GrantAccessRequest generates a request for the GrantAccess operation.
-func (c *OpsWorks) GrantAccessRequest(input *GrantAccessInput) (req *service.Request, output *GrantAccessOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) GrantAccessRequest(input *GrantAccessInput) (req *request.Request, output *GrantAccessOutput) {
+	op := &request.Operation{
 		Name:       opGrantAccess,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1537,8 +1537,8 @@ func (c *OpsWorks) GrantAccess(input *GrantAccessInput) (*GrantAccessOutput, err
 const opRebootInstance = "RebootInstance"
 
 // RebootInstanceRequest generates a request for the RebootInstance operation.
-func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *service.Request, output *RebootInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) RebootInstanceRequest(input *RebootInstanceInput) (req *request.Request, output *RebootInstanceOutput) {
+	op := &request.Operation{
 		Name:       opRebootInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1570,8 +1570,8 @@ func (c *OpsWorks) RebootInstance(input *RebootInstanceInput) (*RebootInstanceOu
 const opRegisterEcsCluster = "RegisterEcsCluster"
 
 // RegisterEcsClusterRequest generates a request for the RegisterEcsCluster operation.
-func (c *OpsWorks) RegisterEcsClusterRequest(input *RegisterEcsClusterInput) (req *service.Request, output *RegisterEcsClusterOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) RegisterEcsClusterRequest(input *RegisterEcsClusterInput) (req *request.Request, output *RegisterEcsClusterOutput) {
+	op := &request.Operation{
 		Name:       opRegisterEcsCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1604,8 +1604,8 @@ func (c *OpsWorks) RegisterEcsCluster(input *RegisterEcsClusterInput) (*Register
 const opRegisterElasticIp = "RegisterElasticIp"
 
 // RegisterElasticIpRequest generates a request for the RegisterElasticIp operation.
-func (c *OpsWorks) RegisterElasticIpRequest(input *RegisterElasticIpInput) (req *service.Request, output *RegisterElasticIpOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) RegisterElasticIpRequest(input *RegisterElasticIpInput) (req *request.Request, output *RegisterElasticIpOutput) {
+	op := &request.Operation{
 		Name:       opRegisterElasticIp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1639,8 +1639,8 @@ func (c *OpsWorks) RegisterElasticIp(input *RegisterElasticIpInput) (*RegisterEl
 const opRegisterInstance = "RegisterInstance"
 
 // RegisterInstanceRequest generates a request for the RegisterInstance operation.
-func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *service.Request, output *RegisterInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) RegisterInstanceRequest(input *RegisterInstanceInput) (req *request.Request, output *RegisterInstanceOutput) {
+	op := &request.Operation{
 		Name:       opRegisterInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1678,8 +1678,8 @@ func (c *OpsWorks) RegisterInstance(input *RegisterInstanceInput) (*RegisterInst
 const opRegisterRdsDbInstance = "RegisterRdsDbInstance"
 
 // RegisterRdsDbInstanceRequest generates a request for the RegisterRdsDbInstance operation.
-func (c *OpsWorks) RegisterRdsDbInstanceRequest(input *RegisterRdsDbInstanceInput) (req *service.Request, output *RegisterRdsDbInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) RegisterRdsDbInstanceRequest(input *RegisterRdsDbInstanceInput) (req *request.Request, output *RegisterRdsDbInstanceOutput) {
+	op := &request.Operation{
 		Name:       opRegisterRdsDbInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1710,8 +1710,8 @@ func (c *OpsWorks) RegisterRdsDbInstance(input *RegisterRdsDbInstanceInput) (*Re
 const opRegisterVolume = "RegisterVolume"
 
 // RegisterVolumeRequest generates a request for the RegisterVolume operation.
-func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *service.Request, output *RegisterVolumeOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) RegisterVolumeRequest(input *RegisterVolumeInput) (req *request.Request, output *RegisterVolumeOutput) {
+	op := &request.Operation{
 		Name:       opRegisterVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1745,8 +1745,8 @@ func (c *OpsWorks) RegisterVolume(input *RegisterVolumeInput) (*RegisterVolumeOu
 const opSetLoadBasedAutoScaling = "SetLoadBasedAutoScaling"
 
 // SetLoadBasedAutoScalingRequest generates a request for the SetLoadBasedAutoScaling operation.
-func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScalingInput) (req *service.Request, output *SetLoadBasedAutoScalingOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) SetLoadBasedAutoScalingRequest(input *SetLoadBasedAutoScalingInput) (req *request.Request, output *SetLoadBasedAutoScalingOutput) {
+	op := &request.Operation{
 		Name:       opSetLoadBasedAutoScaling,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1784,8 +1784,8 @@ func (c *OpsWorks) SetLoadBasedAutoScaling(input *SetLoadBasedAutoScalingInput) 
 const opSetPermission = "SetPermission"
 
 // SetPermissionRequest generates a request for the SetPermission operation.
-func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *service.Request, output *SetPermissionOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) SetPermissionRequest(input *SetPermissionInput) (req *request.Request, output *SetPermissionOutput) {
+	op := &request.Operation{
 		Name:       opSetPermission,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1817,8 +1817,8 @@ func (c *OpsWorks) SetPermission(input *SetPermissionInput) (*SetPermissionOutpu
 const opSetTimeBasedAutoScaling = "SetTimeBasedAutoScaling"
 
 // SetTimeBasedAutoScalingRequest generates a request for the SetTimeBasedAutoScaling operation.
-func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScalingInput) (req *service.Request, output *SetTimeBasedAutoScalingOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) SetTimeBasedAutoScalingRequest(input *SetTimeBasedAutoScalingInput) (req *request.Request, output *SetTimeBasedAutoScalingOutput) {
+	op := &request.Operation{
 		Name:       opSetTimeBasedAutoScaling,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1851,8 +1851,8 @@ func (c *OpsWorks) SetTimeBasedAutoScaling(input *SetTimeBasedAutoScalingInput) 
 const opStartInstance = "StartInstance"
 
 // StartInstanceRequest generates a request for the StartInstance operation.
-func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *service.Request, output *StartInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) StartInstanceRequest(input *StartInstanceInput) (req *request.Request, output *StartInstanceOutput) {
+	op := &request.Operation{
 		Name:       opStartInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1884,8 +1884,8 @@ func (c *OpsWorks) StartInstance(input *StartInstanceInput) (*StartInstanceOutpu
 const opStartStack = "StartStack"
 
 // StartStackRequest generates a request for the StartStack operation.
-func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *service.Request, output *StartStackOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) StartStackRequest(input *StartStackInput) (req *request.Request, output *StartStackOutput) {
+	op := &request.Operation{
 		Name:       opStartStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1916,8 +1916,8 @@ func (c *OpsWorks) StartStack(input *StartStackInput) (*StartStackOutput, error)
 const opStopInstance = "StopInstance"
 
 // StopInstanceRequest generates a request for the StopInstance operation.
-func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *service.Request, output *StopInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) StopInstanceRequest(input *StopInstanceInput) (req *request.Request, output *StopInstanceOutput) {
+	op := &request.Operation{
 		Name:       opStopInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1951,8 +1951,8 @@ func (c *OpsWorks) StopInstance(input *StopInstanceInput) (*StopInstanceOutput, 
 const opStopStack = "StopStack"
 
 // StopStackRequest generates a request for the StopStack operation.
-func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *service.Request, output *StopStackOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) StopStackRequest(input *StopStackInput) (req *request.Request, output *StopStackOutput) {
+	op := &request.Operation{
 		Name:       opStopStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1983,8 +1983,8 @@ func (c *OpsWorks) StopStack(input *StopStackInput) (*StopStackOutput, error) {
 const opUnassignInstance = "UnassignInstance"
 
 // UnassignInstanceRequest generates a request for the UnassignInstance operation.
-func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *service.Request, output *UnassignInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UnassignInstanceRequest(input *UnassignInstanceInput) (req *request.Request, output *UnassignInstanceOutput) {
+	op := &request.Operation{
 		Name:       opUnassignInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2018,8 +2018,8 @@ func (c *OpsWorks) UnassignInstance(input *UnassignInstanceInput) (*UnassignInst
 const opUnassignVolume = "UnassignVolume"
 
 // UnassignVolumeRequest generates a request for the UnassignVolume operation.
-func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *service.Request, output *UnassignVolumeOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UnassignVolumeRequest(input *UnassignVolumeInput) (req *request.Request, output *UnassignVolumeOutput) {
+	op := &request.Operation{
 		Name:       opUnassignVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2051,8 +2051,8 @@ func (c *OpsWorks) UnassignVolume(input *UnassignVolumeInput) (*UnassignVolumeOu
 const opUpdateApp = "UpdateApp"
 
 // UpdateAppRequest generates a request for the UpdateApp operation.
-func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *service.Request, output *UpdateAppOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateAppRequest(input *UpdateAppInput) (req *request.Request, output *UpdateAppOutput) {
+	op := &request.Operation{
 		Name:       opUpdateApp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2083,8 +2083,8 @@ func (c *OpsWorks) UpdateApp(input *UpdateAppInput) (*UpdateAppOutput, error) {
 const opUpdateElasticIp = "UpdateElasticIp"
 
 // UpdateElasticIpRequest generates a request for the UpdateElasticIp operation.
-func (c *OpsWorks) UpdateElasticIpRequest(input *UpdateElasticIpInput) (req *service.Request, output *UpdateElasticIpOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateElasticIpRequest(input *UpdateElasticIpInput) (req *request.Request, output *UpdateElasticIpOutput) {
+	op := &request.Operation{
 		Name:       opUpdateElasticIp,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2116,8 +2116,8 @@ func (c *OpsWorks) UpdateElasticIp(input *UpdateElasticIpInput) (*UpdateElasticI
 const opUpdateInstance = "UpdateInstance"
 
 // UpdateInstanceRequest generates a request for the UpdateInstance operation.
-func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *service.Request, output *UpdateInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateInstanceRequest(input *UpdateInstanceInput) (req *request.Request, output *UpdateInstanceOutput) {
+	op := &request.Operation{
 		Name:       opUpdateInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2148,8 +2148,8 @@ func (c *OpsWorks) UpdateInstance(input *UpdateInstanceInput) (*UpdateInstanceOu
 const opUpdateLayer = "UpdateLayer"
 
 // UpdateLayerRequest generates a request for the UpdateLayer operation.
-func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *service.Request, output *UpdateLayerOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateLayerRequest(input *UpdateLayerInput) (req *request.Request, output *UpdateLayerOutput) {
+	op := &request.Operation{
 		Name:       opUpdateLayer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2180,8 +2180,8 @@ func (c *OpsWorks) UpdateLayer(input *UpdateLayerInput) (*UpdateLayerOutput, err
 const opUpdateMyUserProfile = "UpdateMyUserProfile"
 
 // UpdateMyUserProfileRequest generates a request for the UpdateMyUserProfile operation.
-func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (req *service.Request, output *UpdateMyUserProfileOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateMyUserProfileRequest(input *UpdateMyUserProfileInput) (req *request.Request, output *UpdateMyUserProfileOutput) {
+	op := &request.Operation{
 		Name:       opUpdateMyUserProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2211,8 +2211,8 @@ func (c *OpsWorks) UpdateMyUserProfile(input *UpdateMyUserProfileInput) (*Update
 const opUpdateRdsDbInstance = "UpdateRdsDbInstance"
 
 // UpdateRdsDbInstanceRequest generates a request for the UpdateRdsDbInstance operation.
-func (c *OpsWorks) UpdateRdsDbInstanceRequest(input *UpdateRdsDbInstanceInput) (req *service.Request, output *UpdateRdsDbInstanceOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateRdsDbInstanceRequest(input *UpdateRdsDbInstanceInput) (req *request.Request, output *UpdateRdsDbInstanceOutput) {
+	op := &request.Operation{
 		Name:       opUpdateRdsDbInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2243,8 +2243,8 @@ func (c *OpsWorks) UpdateRdsDbInstance(input *UpdateRdsDbInstanceInput) (*Update
 const opUpdateStack = "UpdateStack"
 
 // UpdateStackRequest generates a request for the UpdateStack operation.
-func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *service.Request, output *UpdateStackOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateStackRequest(input *UpdateStackInput) (req *request.Request, output *UpdateStackOutput) {
+	op := &request.Operation{
 		Name:       opUpdateStack,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2275,8 +2275,8 @@ func (c *OpsWorks) UpdateStack(input *UpdateStackInput) (*UpdateStackOutput, err
 const opUpdateUserProfile = "UpdateUserProfile"
 
 // UpdateUserProfileRequest generates a request for the UpdateUserProfile operation.
-func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req *service.Request, output *UpdateUserProfileOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateUserProfileRequest(input *UpdateUserProfileInput) (req *request.Request, output *UpdateUserProfileOutput) {
+	op := &request.Operation{
 		Name:       opUpdateUserProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2306,8 +2306,8 @@ func (c *OpsWorks) UpdateUserProfile(input *UpdateUserProfileInput) (*UpdateUser
 const opUpdateVolume = "UpdateVolume"
 
 // UpdateVolumeRequest generates a request for the UpdateVolume operation.
-func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *service.Request, output *UpdateVolumeOutput) {
-	op := &service.Operation{
+func (c *OpsWorks) UpdateVolumeRequest(input *UpdateVolumeInput) (req *request.Request, output *UpdateVolumeOutput) {
+	op := &request.Operation{
 		Name:       opUpdateVolume,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

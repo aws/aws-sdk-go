@@ -3,6 +3,7 @@ package route53
 import (
 	"regexp"
 
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
 )
 
@@ -14,7 +15,7 @@ func init() {
 
 var reSanitizeURL = regexp.MustCompile(`\/%2F\w+%2F`)
 
-func sanitizeURL(r *service.Request) {
+func sanitizeURL(r *request.Request) {
 	r.HTTPRequest.URL.Opaque =
 		reSanitizeURL.ReplaceAllString(r.HTTPRequest.URL.Opaque, "/")
 }

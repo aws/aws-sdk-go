@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCheckDomainAvailability = "CheckDomainAvailability"
 
 // CheckDomainAvailabilityRequest generates a request for the CheckDomainAvailability operation.
-func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvailabilityInput) (req *service.Request, output *CheckDomainAvailabilityOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) CheckDomainAvailabilityRequest(input *CheckDomainAvailabilityInput) (req *request.Request, output *CheckDomainAvailabilityOutput) {
+	op := &request.Operation{
 		Name:       opCheckDomainAvailability,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -43,8 +43,8 @@ func (c *Route53Domains) CheckDomainAvailability(input *CheckDomainAvailabilityI
 const opDeleteTagsForDomain = "DeleteTagsForDomain"
 
 // DeleteTagsForDomainRequest generates a request for the DeleteTagsForDomain operation.
-func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainInput) (req *service.Request, output *DeleteTagsForDomainOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) DeleteTagsForDomainRequest(input *DeleteTagsForDomainInput) (req *request.Request, output *DeleteTagsForDomainOutput) {
+	op := &request.Operation{
 		Name:       opDeleteTagsForDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -73,8 +73,8 @@ func (c *Route53Domains) DeleteTagsForDomain(input *DeleteTagsForDomainInput) (*
 const opDisableDomainAutoRenew = "DisableDomainAutoRenew"
 
 // DisableDomainAutoRenewRequest generates a request for the DisableDomainAutoRenew operation.
-func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoRenewInput) (req *service.Request, output *DisableDomainAutoRenewOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) DisableDomainAutoRenewRequest(input *DisableDomainAutoRenewInput) (req *request.Request, output *DisableDomainAutoRenewOutput) {
+	op := &request.Operation{
 		Name:       opDisableDomainAutoRenew,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -106,8 +106,8 @@ func (c *Route53Domains) DisableDomainAutoRenew(input *DisableDomainAutoRenewInp
 const opDisableDomainTransferLock = "DisableDomainTransferLock"
 
 // DisableDomainTransferLockRequest generates a request for the DisableDomainTransferLock operation.
-func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTransferLockInput) (req *service.Request, output *DisableDomainTransferLockOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) DisableDomainTransferLockRequest(input *DisableDomainTransferLockInput) (req *request.Request, output *DisableDomainTransferLockOutput) {
+	op := &request.Operation{
 		Name:       opDisableDomainTransferLock,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -139,8 +139,8 @@ func (c *Route53Domains) DisableDomainTransferLock(input *DisableDomainTransferL
 const opEnableDomainAutoRenew = "EnableDomainAutoRenew"
 
 // EnableDomainAutoRenewRequest generates a request for the EnableDomainAutoRenew operation.
-func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRenewInput) (req *service.Request, output *EnableDomainAutoRenewOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) EnableDomainAutoRenewRequest(input *EnableDomainAutoRenewInput) (req *request.Request, output *EnableDomainAutoRenewOutput) {
+	op := &request.Operation{
 		Name:       opEnableDomainAutoRenew,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -175,8 +175,8 @@ func (c *Route53Domains) EnableDomainAutoRenew(input *EnableDomainAutoRenewInput
 const opEnableDomainTransferLock = "EnableDomainTransferLock"
 
 // EnableDomainTransferLockRequest generates a request for the EnableDomainTransferLock operation.
-func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTransferLockInput) (req *service.Request, output *EnableDomainTransferLockOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) EnableDomainTransferLockRequest(input *EnableDomainTransferLockInput) (req *request.Request, output *EnableDomainTransferLockOutput) {
+	op := &request.Operation{
 		Name:       opEnableDomainTransferLock,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -206,8 +206,8 @@ func (c *Route53Domains) EnableDomainTransferLock(input *EnableDomainTransferLoc
 const opGetDomainDetail = "GetDomainDetail"
 
 // GetDomainDetailRequest generates a request for the GetDomainDetail operation.
-func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (req *service.Request, output *GetDomainDetailOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) GetDomainDetailRequest(input *GetDomainDetailInput) (req *request.Request, output *GetDomainDetailOutput) {
+	op := &request.Operation{
 		Name:       opGetDomainDetail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -234,8 +234,8 @@ func (c *Route53Domains) GetDomainDetail(input *GetDomainDetailInput) (*GetDomai
 const opGetOperationDetail = "GetOperationDetail"
 
 // GetOperationDetailRequest generates a request for the GetOperationDetail operation.
-func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInput) (req *service.Request, output *GetOperationDetailOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) GetOperationDetailRequest(input *GetOperationDetailInput) (req *request.Request, output *GetOperationDetailOutput) {
+	op := &request.Operation{
 		Name:       opGetOperationDetail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -261,12 +261,12 @@ func (c *Route53Domains) GetOperationDetail(input *GetOperationDetailInput) (*Ge
 const opListDomains = "ListDomains"
 
 // ListDomainsRequest generates a request for the ListDomains operation.
-func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *service.Request, output *ListDomainsOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
+	op := &request.Operation{
 		Name:       opListDomains,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextPageMarker"},
 			LimitToken:      "MaxItems",
@@ -302,12 +302,12 @@ func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(p *Li
 const opListOperations = "ListOperations"
 
 // ListOperationsRequest generates a request for the ListOperations operation.
-func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req *service.Request, output *ListOperationsOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) ListOperationsRequest(input *ListOperationsInput) (req *request.Request, output *ListOperationsOutput) {
+	op := &request.Operation{
 		Name:       opListOperations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextPageMarker"},
 			LimitToken:      "MaxItems",
@@ -342,8 +342,8 @@ func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func
 const opListTagsForDomain = "ListTagsForDomain"
 
 // ListTagsForDomainRequest generates a request for the ListTagsForDomain operation.
-func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput) (req *service.Request, output *ListTagsForDomainOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) ListTagsForDomainRequest(input *ListTagsForDomainInput) (req *request.Request, output *ListTagsForDomainOutput) {
+	op := &request.Operation{
 		Name:       opListTagsForDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -373,8 +373,8 @@ func (c *Route53Domains) ListTagsForDomain(input *ListTagsForDomainInput) (*List
 const opRegisterDomain = "RegisterDomain"
 
 // RegisterDomainRequest generates a request for the RegisterDomain operation.
-func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req *service.Request, output *RegisterDomainOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) RegisterDomainRequest(input *RegisterDomainInput) (req *request.Request, output *RegisterDomainOutput) {
+	op := &request.Operation{
 		Name:       opRegisterDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -418,8 +418,8 @@ func (c *Route53Domains) RegisterDomain(input *RegisterDomainInput) (*RegisterDo
 const opRetrieveDomainAuthCode = "RetrieveDomainAuthCode"
 
 // RetrieveDomainAuthCodeRequest generates a request for the RetrieveDomainAuthCode operation.
-func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuthCodeInput) (req *service.Request, output *RetrieveDomainAuthCodeOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) RetrieveDomainAuthCodeRequest(input *RetrieveDomainAuthCodeInput) (req *request.Request, output *RetrieveDomainAuthCodeOutput) {
+	op := &request.Operation{
 		Name:       opRetrieveDomainAuthCode,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -446,8 +446,8 @@ func (c *Route53Domains) RetrieveDomainAuthCode(input *RetrieveDomainAuthCodeInp
 const opTransferDomain = "TransferDomain"
 
 // TransferDomainRequest generates a request for the TransferDomain operation.
-func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req *service.Request, output *TransferDomainOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) TransferDomainRequest(input *TransferDomainInput) (req *request.Request, output *TransferDomainOutput) {
+	op := &request.Operation{
 		Name:       opTransferDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -496,8 +496,8 @@ func (c *Route53Domains) TransferDomain(input *TransferDomainInput) (*TransferDo
 const opUpdateDomainContact = "UpdateDomainContact"
 
 // UpdateDomainContactRequest generates a request for the UpdateDomainContact operation.
-func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactInput) (req *service.Request, output *UpdateDomainContactOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) UpdateDomainContactRequest(input *UpdateDomainContactInput) (req *request.Request, output *UpdateDomainContactOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDomainContact,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -530,8 +530,8 @@ func (c *Route53Domains) UpdateDomainContact(input *UpdateDomainContactInput) (*
 const opUpdateDomainContactPrivacy = "UpdateDomainContactPrivacy"
 
 // UpdateDomainContactPrivacyRequest generates a request for the UpdateDomainContactPrivacy operation.
-func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainContactPrivacyInput) (req *service.Request, output *UpdateDomainContactPrivacyOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) UpdateDomainContactPrivacyRequest(input *UpdateDomainContactPrivacyInput) (req *request.Request, output *UpdateDomainContactPrivacyOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDomainContactPrivacy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -567,8 +567,8 @@ func (c *Route53Domains) UpdateDomainContactPrivacy(input *UpdateDomainContactPr
 const opUpdateDomainNameservers = "UpdateDomainNameservers"
 
 // UpdateDomainNameserversRequest generates a request for the UpdateDomainNameservers operation.
-func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNameserversInput) (req *service.Request, output *UpdateDomainNameserversOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) UpdateDomainNameserversRequest(input *UpdateDomainNameserversInput) (req *request.Request, output *UpdateDomainNameserversOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDomainNameservers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -601,8 +601,8 @@ func (c *Route53Domains) UpdateDomainNameservers(input *UpdateDomainNameserversI
 const opUpdateTagsForDomain = "UpdateTagsForDomain"
 
 // UpdateTagsForDomainRequest generates a request for the UpdateTagsForDomain operation.
-func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainInput) (req *service.Request, output *UpdateTagsForDomainOutput) {
-	op := &service.Operation{
+func (c *Route53Domains) UpdateTagsForDomainRequest(input *UpdateTagsForDomainInput) (req *request.Request, output *UpdateTagsForDomainOutput) {
+	op := &request.Operation{
 		Name:       opUpdateTagsForDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

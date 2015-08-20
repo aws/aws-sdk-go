@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateDevicePool = "CreateDevicePool"
 
 // CreateDevicePoolRequest generates a request for the CreateDevicePool operation.
-func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req *service.Request, output *CreateDevicePoolOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) CreateDevicePoolRequest(input *CreateDevicePoolInput) (req *request.Request, output *CreateDevicePoolOutput) {
+	op := &request.Operation{
 		Name:       opCreateDevicePool,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *DeviceFarm) CreateDevicePool(input *CreateDevicePoolInput) (*CreateDevi
 const opCreateProject = "CreateProject"
 
 // CreateProjectRequest generates a request for the CreateProject operation.
-func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *service.Request, output *CreateProjectOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) CreateProjectRequest(input *CreateProjectInput) (req *request.Request, output *CreateProjectOutput) {
+	op := &request.Operation{
 		Name:       opCreateProject,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -67,8 +67,8 @@ func (c *DeviceFarm) CreateProject(input *CreateProjectInput) (*CreateProjectOut
 const opCreateUpload = "CreateUpload"
 
 // CreateUploadRequest generates a request for the CreateUpload operation.
-func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *service.Request, output *CreateUploadOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) CreateUploadRequest(input *CreateUploadInput) (req *request.Request, output *CreateUploadOutput) {
+	op := &request.Operation{
 		Name:       opCreateUpload,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -94,8 +94,8 @@ func (c *DeviceFarm) CreateUpload(input *CreateUploadInput) (*CreateUploadOutput
 const opGetAccountSettings = "GetAccountSettings"
 
 // GetAccountSettingsRequest generates a request for the GetAccountSettings operation.
-func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *service.Request, output *GetAccountSettingsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req *request.Request, output *GetAccountSettingsOutput) {
+	op := &request.Operation{
 		Name:       opGetAccountSettings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -122,8 +122,8 @@ func (c *DeviceFarm) GetAccountSettings(input *GetAccountSettingsInput) (*GetAcc
 const opGetDevice = "GetDevice"
 
 // GetDeviceRequest generates a request for the GetDevice operation.
-func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *service.Request, output *GetDeviceOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, output *GetDeviceOutput) {
+	op := &request.Operation{
 		Name:       opGetDevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -149,8 +149,8 @@ func (c *DeviceFarm) GetDevice(input *GetDeviceInput) (*GetDeviceOutput, error) 
 const opGetDevicePool = "GetDevicePool"
 
 // GetDevicePoolRequest generates a request for the GetDevicePool operation.
-func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *service.Request, output *GetDevicePoolOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetDevicePoolRequest(input *GetDevicePoolInput) (req *request.Request, output *GetDevicePoolOutput) {
+	op := &request.Operation{
 		Name:       opGetDevicePool,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -176,8 +176,8 @@ func (c *DeviceFarm) GetDevicePool(input *GetDevicePoolInput) (*GetDevicePoolOut
 const opGetDevicePoolCompatibility = "GetDevicePoolCompatibility"
 
 // GetDevicePoolCompatibilityRequest generates a request for the GetDevicePoolCompatibility operation.
-func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompatibilityInput) (req *service.Request, output *GetDevicePoolCompatibilityOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetDevicePoolCompatibilityRequest(input *GetDevicePoolCompatibilityInput) (req *request.Request, output *GetDevicePoolCompatibilityOutput) {
+	op := &request.Operation{
 		Name:       opGetDevicePoolCompatibility,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -203,8 +203,8 @@ func (c *DeviceFarm) GetDevicePoolCompatibility(input *GetDevicePoolCompatibilit
 const opGetJob = "GetJob"
 
 // GetJobRequest generates a request for the GetJob operation.
-func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *service.Request, output *GetJobOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetJobRequest(input *GetJobInput) (req *request.Request, output *GetJobOutput) {
+	op := &request.Operation{
 		Name:       opGetJob,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -230,8 +230,8 @@ func (c *DeviceFarm) GetJob(input *GetJobInput) (*GetJobOutput, error) {
 const opGetProject = "GetProject"
 
 // GetProjectRequest generates a request for the GetProject operation.
-func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *service.Request, output *GetProjectOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetProjectRequest(input *GetProjectInput) (req *request.Request, output *GetProjectOutput) {
+	op := &request.Operation{
 		Name:       opGetProject,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -257,8 +257,8 @@ func (c *DeviceFarm) GetProject(input *GetProjectInput) (*GetProjectOutput, erro
 const opGetRun = "GetRun"
 
 // GetRunRequest generates a request for the GetRun operation.
-func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *service.Request, output *GetRunOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetRunRequest(input *GetRunInput) (req *request.Request, output *GetRunOutput) {
+	op := &request.Operation{
 		Name:       opGetRun,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -284,8 +284,8 @@ func (c *DeviceFarm) GetRun(input *GetRunInput) (*GetRunOutput, error) {
 const opGetSuite = "GetSuite"
 
 // GetSuiteRequest generates a request for the GetSuite operation.
-func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *service.Request, output *GetSuiteOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetSuiteRequest(input *GetSuiteInput) (req *request.Request, output *GetSuiteOutput) {
+	op := &request.Operation{
 		Name:       opGetSuite,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -311,8 +311,8 @@ func (c *DeviceFarm) GetSuite(input *GetSuiteInput) (*GetSuiteOutput, error) {
 const opGetTest = "GetTest"
 
 // GetTestRequest generates a request for the GetTest operation.
-func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *service.Request, output *GetTestOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetTestRequest(input *GetTestInput) (req *request.Request, output *GetTestOutput) {
+	op := &request.Operation{
 		Name:       opGetTest,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -338,8 +338,8 @@ func (c *DeviceFarm) GetTest(input *GetTestInput) (*GetTestOutput, error) {
 const opGetUpload = "GetUpload"
 
 // GetUploadRequest generates a request for the GetUpload operation.
-func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *service.Request, output *GetUploadOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) GetUploadRequest(input *GetUploadInput) (req *request.Request, output *GetUploadOutput) {
+	op := &request.Operation{
 		Name:       opGetUpload,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -365,12 +365,12 @@ func (c *DeviceFarm) GetUpload(input *GetUploadInput) (*GetUploadOutput, error) 
 const opListArtifacts = "ListArtifacts"
 
 // ListArtifactsRequest generates a request for the ListArtifacts operation.
-func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *service.Request, output *ListArtifactsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListArtifactsRequest(input *ListArtifactsInput) (req *request.Request, output *ListArtifactsOutput) {
+	op := &request.Operation{
 		Name:       opListArtifacts,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -405,12 +405,12 @@ func (c *DeviceFarm) ListArtifactsPages(input *ListArtifactsInput, fn func(p *Li
 const opListDevicePools = "ListDevicePools"
 
 // ListDevicePoolsRequest generates a request for the ListDevicePools operation.
-func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *service.Request, output *ListDevicePoolsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListDevicePoolsRequest(input *ListDevicePoolsInput) (req *request.Request, output *ListDevicePoolsOutput) {
+	op := &request.Operation{
 		Name:       opListDevicePools,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -445,12 +445,12 @@ func (c *DeviceFarm) ListDevicePoolsPages(input *ListDevicePoolsInput, fn func(p
 const opListDevices = "ListDevices"
 
 // ListDevicesRequest generates a request for the ListDevices operation.
-func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *service.Request, output *ListDevicesOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListDevicesRequest(input *ListDevicesInput) (req *request.Request, output *ListDevicesOutput) {
+	op := &request.Operation{
 		Name:       opListDevices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -485,12 +485,12 @@ func (c *DeviceFarm) ListDevicesPages(input *ListDevicesInput, fn func(p *ListDe
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a request for the ListJobs operation.
-func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *service.Request, output *ListJobsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListJobsRequest(input *ListJobsInput) (req *request.Request, output *ListJobsOutput) {
+	op := &request.Operation{
 		Name:       opListJobs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -525,12 +525,12 @@ func (c *DeviceFarm) ListJobsPages(input *ListJobsInput, fn func(p *ListJobsOutp
 const opListProjects = "ListProjects"
 
 // ListProjectsRequest generates a request for the ListProjects operation.
-func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *service.Request, output *ListProjectsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListProjectsRequest(input *ListProjectsInput) (req *request.Request, output *ListProjectsOutput) {
+	op := &request.Operation{
 		Name:       opListProjects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -565,12 +565,12 @@ func (c *DeviceFarm) ListProjectsPages(input *ListProjectsInput, fn func(p *List
 const opListRuns = "ListRuns"
 
 // ListRunsRequest generates a request for the ListRuns operation.
-func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *service.Request, output *ListRunsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListRunsRequest(input *ListRunsInput) (req *request.Request, output *ListRunsOutput) {
+	op := &request.Operation{
 		Name:       opListRuns,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -605,12 +605,12 @@ func (c *DeviceFarm) ListRunsPages(input *ListRunsInput, fn func(p *ListRunsOutp
 const opListSamples = "ListSamples"
 
 // ListSamplesRequest generates a request for the ListSamples operation.
-func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *service.Request, output *ListSamplesOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListSamplesRequest(input *ListSamplesInput) (req *request.Request, output *ListSamplesOutput) {
+	op := &request.Operation{
 		Name:       opListSamples,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -645,12 +645,12 @@ func (c *DeviceFarm) ListSamplesPages(input *ListSamplesInput, fn func(p *ListSa
 const opListSuites = "ListSuites"
 
 // ListSuitesRequest generates a request for the ListSuites operation.
-func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *service.Request, output *ListSuitesOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListSuitesRequest(input *ListSuitesInput) (req *request.Request, output *ListSuitesOutput) {
+	op := &request.Operation{
 		Name:       opListSuites,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -685,12 +685,12 @@ func (c *DeviceFarm) ListSuitesPages(input *ListSuitesInput, fn func(p *ListSuit
 const opListTests = "ListTests"
 
 // ListTestsRequest generates a request for the ListTests operation.
-func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *service.Request, output *ListTestsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListTestsRequest(input *ListTestsInput) (req *request.Request, output *ListTestsOutput) {
+	op := &request.Operation{
 		Name:       opListTests,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -725,12 +725,12 @@ func (c *DeviceFarm) ListTestsPages(input *ListTestsInput, fn func(p *ListTestsO
 const opListUniqueProblems = "ListUniqueProblems"
 
 // ListUniqueProblemsRequest generates a request for the ListUniqueProblems operation.
-func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (req *service.Request, output *ListUniqueProblemsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListUniqueProblemsRequest(input *ListUniqueProblemsInput) (req *request.Request, output *ListUniqueProblemsOutput) {
+	op := &request.Operation{
 		Name:       opListUniqueProblems,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -765,12 +765,12 @@ func (c *DeviceFarm) ListUniqueProblemsPages(input *ListUniqueProblemsInput, fn 
 const opListUploads = "ListUploads"
 
 // ListUploadsRequest generates a request for the ListUploads operation.
-func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *service.Request, output *ListUploadsOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ListUploadsRequest(input *ListUploadsInput) (req *request.Request, output *ListUploadsOutput) {
+	op := &request.Operation{
 		Name:       opListUploads,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -805,8 +805,8 @@ func (c *DeviceFarm) ListUploadsPages(input *ListUploadsInput, fn func(p *ListUp
 const opScheduleRun = "ScheduleRun"
 
 // ScheduleRunRequest generates a request for the ScheduleRun operation.
-func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *service.Request, output *ScheduleRunOutput) {
-	op := &service.Operation{
+func (c *DeviceFarm) ScheduleRunRequest(input *ScheduleRunInput) (req *request.Request, output *ScheduleRunOutput) {
+	op := &request.Operation{
 		Name:       opScheduleRun,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

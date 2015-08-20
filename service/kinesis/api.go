@@ -5,14 +5,14 @@ package kinesis
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddTagsToStream = "AddTagsToStream"
 
 // AddTagsToStreamRequest generates a request for the AddTagsToStream operation.
-func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *service.Request, output *AddTagsToStreamOutput) {
-	op := &service.Operation{
+func (c *Kinesis) AddTagsToStreamRequest(input *AddTagsToStreamInput) (req *request.Request, output *AddTagsToStreamOutput) {
+	op := &request.Operation{
 		Name:       opAddTagsToStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -42,8 +42,8 @@ func (c *Kinesis) AddTagsToStream(input *AddTagsToStreamInput) (*AddTagsToStream
 const opCreateStream = "CreateStream"
 
 // CreateStreamRequest generates a request for the CreateStream operation.
-func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *service.Request, output *CreateStreamOutput) {
-	op := &service.Operation{
+func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *request.Request, output *CreateStreamOutput) {
+	op := &request.Operation{
 		Name:       opCreateStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -104,8 +104,8 @@ func (c *Kinesis) CreateStream(input *CreateStreamInput) (*CreateStreamOutput, e
 const opDeleteStream = "DeleteStream"
 
 // DeleteStreamRequest generates a request for the DeleteStream operation.
-func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *service.Request, output *DeleteStreamOutput) {
-	op := &service.Operation{
+func (c *Kinesis) DeleteStreamRequest(input *DeleteStreamInput) (req *request.Request, output *DeleteStreamOutput) {
+	op := &request.Operation{
 		Name:       opDeleteStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -149,12 +149,12 @@ func (c *Kinesis) DeleteStream(input *DeleteStreamInput) (*DeleteStreamOutput, e
 const opDescribeStream = "DescribeStream"
 
 // DescribeStreamRequest generates a request for the DescribeStream operation.
-func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *service.Request, output *DescribeStreamOutput) {
-	op := &service.Operation{
+func (c *Kinesis) DescribeStreamRequest(input *DescribeStreamInput) (req *request.Request, output *DescribeStreamOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartShardId"},
 			OutputTokens:    []string{"StreamDescription.Shards[-1].ShardId"},
 			LimitToken:      "Limit",
@@ -210,8 +210,8 @@ func (c *Kinesis) DescribeStreamPages(input *DescribeStreamInput, fn func(p *Des
 const opGetRecords = "GetRecords"
 
 // GetRecordsRequest generates a request for the GetRecords operation.
-func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *service.Request, output *GetRecordsOutput) {
-	op := &service.Operation{
+func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *request.Request, output *GetRecordsOutput) {
+	op := &request.Operation{
 		Name:       opGetRecords,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -280,8 +280,8 @@ func (c *Kinesis) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, error) 
 const opGetShardIterator = "GetShardIterator"
 
 // GetShardIteratorRequest generates a request for the GetShardIterator operation.
-func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *service.Request, output *GetShardIteratorOutput) {
-	op := &service.Operation{
+func (c *Kinesis) GetShardIteratorRequest(input *GetShardIteratorInput) (req *request.Request, output *GetShardIteratorOutput) {
+	op := &request.Operation{
 		Name:       opGetShardIterator,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -343,12 +343,12 @@ func (c *Kinesis) GetShardIterator(input *GetShardIteratorInput) (*GetShardItera
 const opListStreams = "ListStreams"
 
 // ListStreamsRequest generates a request for the ListStreams operation.
-func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *service.Request, output *ListStreamsOutput) {
-	op := &service.Operation{
+func (c *Kinesis) ListStreamsRequest(input *ListStreamsInput) (req *request.Request, output *ListStreamsOutput) {
+	op := &request.Operation{
 		Name:       opListStreams,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartStreamName"},
 			OutputTokens:    []string{"StreamNames[-1]"},
 			LimitToken:      "Limit",
@@ -398,8 +398,8 @@ func (c *Kinesis) ListStreamsPages(input *ListStreamsInput, fn func(p *ListStrea
 const opListTagsForStream = "ListTagsForStream"
 
 // ListTagsForStreamRequest generates a request for the ListTagsForStream operation.
-func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *service.Request, output *ListTagsForStreamOutput) {
-	op := &service.Operation{
+func (c *Kinesis) ListTagsForStreamRequest(input *ListTagsForStreamInput) (req *request.Request, output *ListTagsForStreamOutput) {
+	op := &request.Operation{
 		Name:       opListTagsForStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -425,8 +425,8 @@ func (c *Kinesis) ListTagsForStream(input *ListTagsForStreamInput) (*ListTagsFor
 const opMergeShards = "MergeShards"
 
 // MergeShardsRequest generates a request for the MergeShards operation.
-func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *service.Request, output *MergeShardsOutput) {
-	op := &service.Operation{
+func (c *Kinesis) MergeShardsRequest(input *MergeShardsInput) (req *request.Request, output *MergeShardsOutput) {
+	op := &request.Operation{
 		Name:       opMergeShards,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -486,8 +486,8 @@ func (c *Kinesis) MergeShards(input *MergeShardsInput) (*MergeShardsOutput, erro
 const opPutRecord = "PutRecord"
 
 // PutRecordRequest generates a request for the PutRecord operation.
-func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *service.Request, output *PutRecordOutput) {
-	op := &service.Operation{
+func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *request.Request, output *PutRecordOutput) {
+	op := &request.Operation{
 		Name:       opPutRecord,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -550,8 +550,8 @@ func (c *Kinesis) PutRecord(input *PutRecordInput) (*PutRecordOutput, error) {
 const opPutRecords = "PutRecords"
 
 // PutRecordsRequest generates a request for the PutRecords operation.
-func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *service.Request, output *PutRecordsOutput) {
-	op := &service.Operation{
+func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Request, output *PutRecordsOutput) {
+	op := &request.Operation{
 		Name:       opPutRecords,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -631,8 +631,8 @@ func (c *Kinesis) PutRecords(input *PutRecordsInput) (*PutRecordsOutput, error) 
 const opRemoveTagsFromStream = "RemoveTagsFromStream"
 
 // RemoveTagsFromStreamRequest generates a request for the RemoveTagsFromStream operation.
-func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) (req *service.Request, output *RemoveTagsFromStreamOutput) {
-	op := &service.Operation{
+func (c *Kinesis) RemoveTagsFromStreamRequest(input *RemoveTagsFromStreamInput) (req *request.Request, output *RemoveTagsFromStreamOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTagsFromStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -660,8 +660,8 @@ func (c *Kinesis) RemoveTagsFromStream(input *RemoveTagsFromStreamInput) (*Remov
 const opSplitShard = "SplitShard"
 
 // SplitShardRequest generates a request for the SplitShard operation.
-func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *service.Request, output *SplitShardOutput) {
-	op := &service.Operation{
+func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *request.Request, output *SplitShardOutput) {
+	op := &request.Operation{
 		Name:       opSplitShard,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

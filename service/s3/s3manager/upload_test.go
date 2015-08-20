@@ -15,7 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -51,7 +51,7 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 	svc.Handlers.UnmarshalMeta.Clear()
 	svc.Handlers.UnmarshalError.Clear()
 	svc.Handlers.Send.Clear()
-	svc.Handlers.Send.PushBack(func(r *service.Request) {
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
 		m.Lock()
 		defer m.Unlock()
 
@@ -203,7 +203,7 @@ func TestUploadOrderSingle(t *testing.T) {
 
 func TestUploadOrderSingleFailure(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *service.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse.StatusCode = 400
 	})
 	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
@@ -236,7 +236,7 @@ func TestUploadOrderZero(t *testing.T) {
 
 func TestUploadOrderMultiFailure(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *service.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch t := r.Data.(type) {
 		case *s3.UploadPartOutput:
 			if *t.ETag == "ETAG2" {
@@ -258,7 +258,7 @@ func TestUploadOrderMultiFailure(t *testing.T) {
 
 func TestUploadOrderMultiFailureOnComplete(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *service.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch r.Data.(type) {
 		case *s3.CompleteMultipartUploadOutput:
 			r.HTTPResponse.StatusCode = 400
@@ -279,7 +279,7 @@ func TestUploadOrderMultiFailureOnComplete(t *testing.T) {
 
 func TestUploadOrderMultiFailureOnCreate(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *service.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch r.Data.(type) {
 		case *s3.CreateMultipartUploadOutput:
 			r.HTTPResponse.StatusCode = 400
@@ -299,7 +299,7 @@ func TestUploadOrderMultiFailureOnCreate(t *testing.T) {
 
 func TestUploadOrderMultiFailureLeaveParts(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *service.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch data := r.Data.(type) {
 		case *s3.UploadPartOutput:
 			if *data.ETag == "ETAG2" {

@@ -4,69 +4,69 @@
 package dynamodbiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 )
 
 // DynamoDBAPI is the interface type for dynamodb.DynamoDB.
 type DynamoDBAPI interface {
-	BatchGetItemRequest(*dynamodb.BatchGetItemInput) (*service.Request, *dynamodb.BatchGetItemOutput)
+	BatchGetItemRequest(*dynamodb.BatchGetItemInput) (*request.Request, *dynamodb.BatchGetItemOutput)
 
 	BatchGetItem(*dynamodb.BatchGetItemInput) (*dynamodb.BatchGetItemOutput, error)
 
 	BatchGetItemPages(*dynamodb.BatchGetItemInput, func(*dynamodb.BatchGetItemOutput, bool) bool) error
 
-	BatchWriteItemRequest(*dynamodb.BatchWriteItemInput) (*service.Request, *dynamodb.BatchWriteItemOutput)
+	BatchWriteItemRequest(*dynamodb.BatchWriteItemInput) (*request.Request, *dynamodb.BatchWriteItemOutput)
 
 	BatchWriteItem(*dynamodb.BatchWriteItemInput) (*dynamodb.BatchWriteItemOutput, error)
 
-	CreateTableRequest(*dynamodb.CreateTableInput) (*service.Request, *dynamodb.CreateTableOutput)
+	CreateTableRequest(*dynamodb.CreateTableInput) (*request.Request, *dynamodb.CreateTableOutput)
 
 	CreateTable(*dynamodb.CreateTableInput) (*dynamodb.CreateTableOutput, error)
 
-	DeleteItemRequest(*dynamodb.DeleteItemInput) (*service.Request, *dynamodb.DeleteItemOutput)
+	DeleteItemRequest(*dynamodb.DeleteItemInput) (*request.Request, *dynamodb.DeleteItemOutput)
 
 	DeleteItem(*dynamodb.DeleteItemInput) (*dynamodb.DeleteItemOutput, error)
 
-	DeleteTableRequest(*dynamodb.DeleteTableInput) (*service.Request, *dynamodb.DeleteTableOutput)
+	DeleteTableRequest(*dynamodb.DeleteTableInput) (*request.Request, *dynamodb.DeleteTableOutput)
 
 	DeleteTable(*dynamodb.DeleteTableInput) (*dynamodb.DeleteTableOutput, error)
 
-	DescribeTableRequest(*dynamodb.DescribeTableInput) (*service.Request, *dynamodb.DescribeTableOutput)
+	DescribeTableRequest(*dynamodb.DescribeTableInput) (*request.Request, *dynamodb.DescribeTableOutput)
 
 	DescribeTable(*dynamodb.DescribeTableInput) (*dynamodb.DescribeTableOutput, error)
 
-	GetItemRequest(*dynamodb.GetItemInput) (*service.Request, *dynamodb.GetItemOutput)
+	GetItemRequest(*dynamodb.GetItemInput) (*request.Request, *dynamodb.GetItemOutput)
 
 	GetItem(*dynamodb.GetItemInput) (*dynamodb.GetItemOutput, error)
 
-	ListTablesRequest(*dynamodb.ListTablesInput) (*service.Request, *dynamodb.ListTablesOutput)
+	ListTablesRequest(*dynamodb.ListTablesInput) (*request.Request, *dynamodb.ListTablesOutput)
 
 	ListTables(*dynamodb.ListTablesInput) (*dynamodb.ListTablesOutput, error)
 
 	ListTablesPages(*dynamodb.ListTablesInput, func(*dynamodb.ListTablesOutput, bool) bool) error
 
-	PutItemRequest(*dynamodb.PutItemInput) (*service.Request, *dynamodb.PutItemOutput)
+	PutItemRequest(*dynamodb.PutItemInput) (*request.Request, *dynamodb.PutItemOutput)
 
 	PutItem(*dynamodb.PutItemInput) (*dynamodb.PutItemOutput, error)
 
-	QueryRequest(*dynamodb.QueryInput) (*service.Request, *dynamodb.QueryOutput)
+	QueryRequest(*dynamodb.QueryInput) (*request.Request, *dynamodb.QueryOutput)
 
 	Query(*dynamodb.QueryInput) (*dynamodb.QueryOutput, error)
 
 	QueryPages(*dynamodb.QueryInput, func(*dynamodb.QueryOutput, bool) bool) error
 
-	ScanRequest(*dynamodb.ScanInput) (*service.Request, *dynamodb.ScanOutput)
+	ScanRequest(*dynamodb.ScanInput) (*request.Request, *dynamodb.ScanOutput)
 
 	Scan(*dynamodb.ScanInput) (*dynamodb.ScanOutput, error)
 
 	ScanPages(*dynamodb.ScanInput, func(*dynamodb.ScanOutput, bool) bool) error
 
-	UpdateItemRequest(*dynamodb.UpdateItemInput) (*service.Request, *dynamodb.UpdateItemOutput)
+	UpdateItemRequest(*dynamodb.UpdateItemInput) (*request.Request, *dynamodb.UpdateItemOutput)
 
 	UpdateItem(*dynamodb.UpdateItemInput) (*dynamodb.UpdateItemOutput, error)
 
-	UpdateTableRequest(*dynamodb.UpdateTableInput) (*service.Request, *dynamodb.UpdateTableOutput)
+	UpdateTableRequest(*dynamodb.UpdateTableInput) (*request.Request, *dynamodb.UpdateTableOutput)
 
 	UpdateTable(*dynamodb.UpdateTableInput) (*dynamodb.UpdateTableOutput, error)
 }

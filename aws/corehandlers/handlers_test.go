@@ -1,4 +1,4 @@
-package service
+package corehandlers_test
 
 import (
 	"fmt"
@@ -10,16 +10,19 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 func TestValidateEndpointHandler(t *testing.T) {
 	os.Clearenv()
-	svc := NewService(aws.NewConfig().WithRegion("us-west-2"))
+	svc := service.New(aws.NewConfig().WithRegion("us-west-2"))
 	svc.Handlers.Clear()
-	svc.Handlers.Validate.PushBack(ValidateEndpointHandler)
+	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
 
-	req := NewRequest(svc, &Operation{Name: "Operation"}, nil, nil)
+	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := req.Build()
 
 	assert.NoError(t, err)
@@ -27,15 +30,15 @@ func TestValidateEndpointHandler(t *testing.T) {
 
 func TestValidateEndpointHandlerErrorRegion(t *testing.T) {
 	os.Clearenv()
-	svc := NewService(nil)
+	svc := service.New(nil)
 	svc.Handlers.Clear()
-	svc.Handlers.Validate.PushBack(ValidateEndpointHandler)
+	svc.Handlers.Validate.PushBackNamed(corehandlers.ValidateEndpointHandler)
 
-	req := NewRequest(svc, &Operation{Name: "Operation"}, nil, nil)
+	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	err := req.Build()
 
 	assert.Error(t, err)
-	assert.Equal(t, ErrMissingRegion, err)
+	assert.Equal(t, aws.ErrMissingRegion, err)
 }
 
 type mockCredsProvider struct {
@@ -55,24 +58,22 @@ func (m *mockCredsProvider) IsExpired() bool {
 func TestAfterRetryRefreshCreds(t *testing.T) {
 	os.Clearenv()
 	credProvider := &mockCredsProvider{}
-	svc := NewService(&aws.Config{Credentials: credentials.NewCredentials(credProvider), MaxRetries: aws.Int(1)})
+	svc := service.New(&aws.Config{Credentials: credentials.NewCredentials(credProvider), MaxRetries: aws.Int(1)})
 
 	svc.Handlers.Clear()
-	svc.Handlers.ValidateResponse.PushBack(func(r *Request) {
+	svc.Handlers.ValidateResponse.PushBack(func(r *request.Request) {
 		r.Error = awserr.New("UnknownError", "", nil)
 		r.HTTPResponse = &http.Response{StatusCode: 400}
 	})
-	svc.Handlers.UnmarshalError.PushBack(func(r *Request) {
+	svc.Handlers.UnmarshalError.PushBack(func(r *request.Request) {
 		r.Error = awserr.New("ExpiredTokenException", "", nil)
 	})
-	svc.Handlers.AfterRetry.PushBack(func(r *Request) {
-		AfterRetryHandler(r)
-	})
+	svc.Handlers.AfterRetry.PushBackNamed(corehandlers.AfterRetryHandler)
 
 	assert.True(t, svc.Config.Credentials.IsExpired(), "Expect to start out expired")
 	assert.False(t, credProvider.retrieveCalled)
 
-	req := NewRequest(svc, &Operation{Name: "Operation"}, nil, nil)
+	req := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 	req.Send()
 
 	assert.True(t, svc.Config.Credentials.IsExpired())
@@ -90,14 +91,14 @@ func (t *testSendHandlerTransport) RoundTrip(r *http.Request) (*http.Response, e
 }
 
 func TestSendHandlerError(t *testing.T) {
-	svc := NewService(&aws.Config{
+	svc := service.New(&aws.Config{
 		HTTPClient: &http.Client{
 			Transport: &testSendHandlerTransport{},
 		},
 	})
 	svc.Handlers.Clear()
-	svc.Handlers.Send.PushBack(SendHandler)
-	r := NewRequest(svc, &Operation{Name: "Operation"}, nil, nil)
+	svc.Handlers.Send.PushBackNamed(corehandlers.SendHandler)
+	r := svc.NewRequest(&request.Operation{Name: "Operation"}, nil, nil)
 
 	r.Send()
 

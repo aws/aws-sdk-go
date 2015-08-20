@@ -5,14 +5,14 @@ package cloudwatchlogs
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateLogGroup = "CreateLogGroup"
 
 // CreateLogGroupRequest generates a request for the CreateLogGroup operation.
-func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req *service.Request, output *CreateLogGroupOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req *request.Request, output *CreateLogGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateLogGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -44,8 +44,8 @@ func (c *CloudWatchLogs) CreateLogGroup(input *CreateLogGroupInput) (*CreateLogG
 const opCreateLogStream = "CreateLogStream"
 
 // CreateLogStreamRequest generates a request for the CreateLogStream operation.
-func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (req *service.Request, output *CreateLogStreamOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) CreateLogStreamRequest(input *CreateLogStreamInput) (req *request.Request, output *CreateLogStreamOutput) {
+	op := &request.Operation{
 		Name:       opCreateLogStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -77,8 +77,8 @@ func (c *CloudWatchLogs) CreateLogStream(input *CreateLogStreamInput) (*CreateLo
 const opDeleteDestination = "DeleteDestination"
 
 // DeleteDestinationRequest generates a request for the DeleteDestination operation.
-func (c *CloudWatchLogs) DeleteDestinationRequest(input *DeleteDestinationInput) (req *service.Request, output *DeleteDestinationOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DeleteDestinationRequest(input *DeleteDestinationInput) (req *request.Request, output *DeleteDestinationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDestination,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -106,8 +106,8 @@ func (c *CloudWatchLogs) DeleteDestination(input *DeleteDestinationInput) (*Dele
 const opDeleteLogGroup = "DeleteLogGroup"
 
 // DeleteLogGroupRequest generates a request for the DeleteLogGroup operation.
-func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req *service.Request, output *DeleteLogGroupOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DeleteLogGroupRequest(input *DeleteLogGroupInput) (req *request.Request, output *DeleteLogGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLogGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -134,8 +134,8 @@ func (c *CloudWatchLogs) DeleteLogGroup(input *DeleteLogGroupInput) (*DeleteLogG
 const opDeleteLogStream = "DeleteLogStream"
 
 // DeleteLogStreamRequest generates a request for the DeleteLogStream operation.
-func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (req *service.Request, output *DeleteLogStreamOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DeleteLogStreamRequest(input *DeleteLogStreamInput) (req *request.Request, output *DeleteLogStreamOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLogStream,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -162,8 +162,8 @@ func (c *CloudWatchLogs) DeleteLogStream(input *DeleteLogStreamInput) (*DeleteLo
 const opDeleteMetricFilter = "DeleteMetricFilter"
 
 // DeleteMetricFilterRequest generates a request for the DeleteMetricFilter operation.
-func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInput) (req *service.Request, output *DeleteMetricFilterOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DeleteMetricFilterRequest(input *DeleteMetricFilterInput) (req *request.Request, output *DeleteMetricFilterOutput) {
+	op := &request.Operation{
 		Name:       opDeleteMetricFilter,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -189,8 +189,8 @@ func (c *CloudWatchLogs) DeleteMetricFilter(input *DeleteMetricFilterInput) (*De
 const opDeleteRetentionPolicy = "DeleteRetentionPolicy"
 
 // DeleteRetentionPolicyRequest generates a request for the DeleteRetentionPolicy operation.
-func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPolicyInput) (req *service.Request, output *DeleteRetentionPolicyOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DeleteRetentionPolicyRequest(input *DeleteRetentionPolicyInput) (req *request.Request, output *DeleteRetentionPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteRetentionPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -217,8 +217,8 @@ func (c *CloudWatchLogs) DeleteRetentionPolicy(input *DeleteRetentionPolicyInput
 const opDeleteSubscriptionFilter = "DeleteSubscriptionFilter"
 
 // DeleteSubscriptionFilterRequest generates a request for the DeleteSubscriptionFilter operation.
-func (c *CloudWatchLogs) DeleteSubscriptionFilterRequest(input *DeleteSubscriptionFilterInput) (req *service.Request, output *DeleteSubscriptionFilterOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DeleteSubscriptionFilterRequest(input *DeleteSubscriptionFilterInput) (req *request.Request, output *DeleteSubscriptionFilterOutput) {
+	op := &request.Operation{
 		Name:       opDeleteSubscriptionFilter,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -244,8 +244,8 @@ func (c *CloudWatchLogs) DeleteSubscriptionFilter(input *DeleteSubscriptionFilte
 const opDescribeDestinations = "DescribeDestinations"
 
 // DescribeDestinationsRequest generates a request for the DescribeDestinations operation.
-func (c *CloudWatchLogs) DescribeDestinationsRequest(input *DescribeDestinationsInput) (req *service.Request, output *DescribeDestinationsOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DescribeDestinationsRequest(input *DescribeDestinationsInput) (req *request.Request, output *DescribeDestinationsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDestinations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -278,12 +278,12 @@ func (c *CloudWatchLogs) DescribeDestinations(input *DescribeDestinationsInput) 
 const opDescribeLogGroups = "DescribeLogGroups"
 
 // DescribeLogGroupsRequest generates a request for the DescribeLogGroups operation.
-func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput) (req *service.Request, output *DescribeLogGroupsOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput) (req *request.Request, output *DescribeLogGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLogGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "limit",
@@ -325,12 +325,12 @@ func (c *CloudWatchLogs) DescribeLogGroupsPages(input *DescribeLogGroupsInput, f
 const opDescribeLogStreams = "DescribeLogStreams"
 
 // DescribeLogStreamsRequest generates a request for the DescribeLogStreams operation.
-func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInput) (req *service.Request, output *DescribeLogStreamsOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DescribeLogStreamsRequest(input *DescribeLogStreamsInput) (req *request.Request, output *DescribeLogStreamsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLogStreams,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "limit",
@@ -373,12 +373,12 @@ func (c *CloudWatchLogs) DescribeLogStreamsPages(input *DescribeLogStreamsInput,
 const opDescribeMetricFilters = "DescribeMetricFilters"
 
 // DescribeMetricFiltersRequest generates a request for the DescribeMetricFilters operation.
-func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFiltersInput) (req *service.Request, output *DescribeMetricFiltersOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DescribeMetricFiltersRequest(input *DescribeMetricFiltersInput) (req *request.Request, output *DescribeMetricFiltersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeMetricFilters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "limit",
@@ -419,8 +419,8 @@ func (c *CloudWatchLogs) DescribeMetricFiltersPages(input *DescribeMetricFilters
 const opDescribeSubscriptionFilters = "DescribeSubscriptionFilters"
 
 // DescribeSubscriptionFiltersRequest generates a request for the DescribeSubscriptionFilters operation.
-func (c *CloudWatchLogs) DescribeSubscriptionFiltersRequest(input *DescribeSubscriptionFiltersInput) (req *service.Request, output *DescribeSubscriptionFiltersOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) DescribeSubscriptionFiltersRequest(input *DescribeSubscriptionFiltersInput) (req *request.Request, output *DescribeSubscriptionFiltersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeSubscriptionFilters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -453,8 +453,8 @@ func (c *CloudWatchLogs) DescribeSubscriptionFilters(input *DescribeSubscription
 const opFilterLogEvents = "FilterLogEvents"
 
 // FilterLogEventsRequest generates a request for the FilterLogEvents operation.
-func (c *CloudWatchLogs) FilterLogEventsRequest(input *FilterLogEventsInput) (req *service.Request, output *FilterLogEventsOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) FilterLogEventsRequest(input *FilterLogEventsInput) (req *request.Request, output *FilterLogEventsOutput) {
+	op := &request.Operation{
 		Name:       opFilterLogEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -493,12 +493,12 @@ func (c *CloudWatchLogs) FilterLogEvents(input *FilterLogEventsInput) (*FilterLo
 const opGetLogEvents = "GetLogEvents"
 
 // GetLogEventsRequest generates a request for the GetLogEvents operation.
-func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *service.Request, output *GetLogEventsOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) GetLogEventsRequest(input *GetLogEventsInput) (req *request.Request, output *GetLogEventsOutput) {
+	op := &request.Operation{
 		Name:       opGetLogEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextForwardToken"},
 			LimitToken:      "limit",
@@ -542,8 +542,8 @@ func (c *CloudWatchLogs) GetLogEventsPages(input *GetLogEventsInput, fn func(p *
 const opPutDestination = "PutDestination"
 
 // PutDestinationRequest generates a request for the PutDestination operation.
-func (c *CloudWatchLogs) PutDestinationRequest(input *PutDestinationInput) (req *service.Request, output *PutDestinationOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) PutDestinationRequest(input *PutDestinationInput) (req *request.Request, output *PutDestinationOutput) {
+	op := &request.Operation{
 		Name:       opPutDestination,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -579,8 +579,8 @@ func (c *CloudWatchLogs) PutDestination(input *PutDestinationInput) (*PutDestina
 const opPutDestinationPolicy = "PutDestinationPolicy"
 
 // PutDestinationPolicyRequest generates a request for the PutDestinationPolicy operation.
-func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicyInput) (req *service.Request, output *PutDestinationPolicyOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicyInput) (req *request.Request, output *PutDestinationPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutDestinationPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -609,8 +609,8 @@ func (c *CloudWatchLogs) PutDestinationPolicy(input *PutDestinationPolicyInput) 
 const opPutLogEvents = "PutLogEvents"
 
 // PutLogEventsRequest generates a request for the PutLogEvents operation.
-func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *service.Request, output *PutLogEventsOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *request.Request, output *PutLogEventsOutput) {
+	op := &request.Operation{
 		Name:       opPutLogEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -648,8 +648,8 @@ func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (*PutLogEventsOu
 const opPutMetricFilter = "PutMetricFilter"
 
 // PutMetricFilterRequest generates a request for the PutMetricFilter operation.
-func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (req *service.Request, output *PutMetricFilterOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (req *request.Request, output *PutMetricFilterOutput) {
+	op := &request.Operation{
 		Name:       opPutMetricFilter,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -680,8 +680,8 @@ func (c *CloudWatchLogs) PutMetricFilter(input *PutMetricFilterInput) (*PutMetri
 const opPutRetentionPolicy = "PutRetentionPolicy"
 
 // PutRetentionPolicyRequest generates a request for the PutRetentionPolicy operation.
-func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInput) (req *service.Request, output *PutRetentionPolicyOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) PutRetentionPolicyRequest(input *PutRetentionPolicyInput) (req *request.Request, output *PutRetentionPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutRetentionPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -709,8 +709,8 @@ func (c *CloudWatchLogs) PutRetentionPolicy(input *PutRetentionPolicyInput) (*Pu
 const opPutSubscriptionFilter = "PutSubscriptionFilter"
 
 // PutSubscriptionFilterRequest generates a request for the PutSubscriptionFilter operation.
-func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilterInput) (req *service.Request, output *PutSubscriptionFilterOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilterInput) (req *request.Request, output *PutSubscriptionFilterOutput) {
+	op := &request.Operation{
 		Name:       opPutSubscriptionFilter,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -745,8 +745,8 @@ func (c *CloudWatchLogs) PutSubscriptionFilter(input *PutSubscriptionFilterInput
 const opTestMetricFilter = "TestMetricFilter"
 
 // TestMetricFilterRequest generates a request for the TestMetricFilter operation.
-func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (req *service.Request, output *TestMetricFilterOutput) {
-	op := &service.Operation{
+func (c *CloudWatchLogs) TestMetricFilterRequest(input *TestMetricFilterInput) (req *request.Request, output *TestMetricFilterOutput) {
+	op := &request.Operation{
 		Name:       opTestMetricFilter,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

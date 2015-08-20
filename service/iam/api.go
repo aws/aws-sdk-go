@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddClientIDToOpenIDConnectProvider = "AddClientIDToOpenIDConnectProvider"
 
 // AddClientIDToOpenIDConnectProviderRequest generates a request for the AddClientIDToOpenIDConnectProvider operation.
-func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpenIDConnectProviderInput) (req *service.Request, output *AddClientIDToOpenIDConnectProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) AddClientIDToOpenIDConnectProviderRequest(input *AddClientIDToOpenIDConnectProviderInput) (req *request.Request, output *AddClientIDToOpenIDConnectProviderOutput) {
+	op := &request.Operation{
 		Name:       opAddClientIDToOpenIDConnectProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -44,8 +44,8 @@ func (c *IAM) AddClientIDToOpenIDConnectProvider(input *AddClientIDToOpenIDConne
 const opAddRoleToInstanceProfile = "AddRoleToInstanceProfile"
 
 // AddRoleToInstanceProfileRequest generates a request for the AddRoleToInstanceProfile operation.
-func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInput) (req *service.Request, output *AddRoleToInstanceProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) AddRoleToInstanceProfileRequest(input *AddRoleToInstanceProfileInput) (req *request.Request, output *AddRoleToInstanceProfileOutput) {
+	op := &request.Operation{
 		Name:       opAddRoleToInstanceProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -74,8 +74,8 @@ func (c *IAM) AddRoleToInstanceProfile(input *AddRoleToInstanceProfileInput) (*A
 const opAddUserToGroup = "AddUserToGroup"
 
 // AddUserToGroupRequest generates a request for the AddUserToGroup operation.
-func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *service.Request, output *AddUserToGroupOutput) {
-	op := &service.Operation{
+func (c *IAM) AddUserToGroupRequest(input *AddUserToGroupInput) (req *request.Request, output *AddUserToGroupOutput) {
+	op := &request.Operation{
 		Name:       opAddUserToGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -101,8 +101,8 @@ func (c *IAM) AddUserToGroup(input *AddUserToGroupInput) (*AddUserToGroupOutput,
 const opAttachGroupPolicy = "AttachGroupPolicy"
 
 // AttachGroupPolicyRequest generates a request for the AttachGroupPolicy operation.
-func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *service.Request, output *AttachGroupPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) AttachGroupPolicyRequest(input *AttachGroupPolicyInput) (req *request.Request, output *AttachGroupPolicyOutput) {
+	op := &request.Operation{
 		Name:       opAttachGroupPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -135,8 +135,8 @@ func (c *IAM) AttachGroupPolicy(input *AttachGroupPolicyInput) (*AttachGroupPoli
 const opAttachRolePolicy = "AttachRolePolicy"
 
 // AttachRolePolicyRequest generates a request for the AttachRolePolicy operation.
-func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *service.Request, output *AttachRolePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) AttachRolePolicyRequest(input *AttachRolePolicyInput) (req *request.Request, output *AttachRolePolicyOutput) {
+	op := &request.Operation{
 		Name:       opAttachRolePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -173,8 +173,8 @@ func (c *IAM) AttachRolePolicy(input *AttachRolePolicyInput) (*AttachRolePolicyO
 const opAttachUserPolicy = "AttachUserPolicy"
 
 // AttachUserPolicyRequest generates a request for the AttachUserPolicy operation.
-func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *service.Request, output *AttachUserPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) AttachUserPolicyRequest(input *AttachUserPolicyInput) (req *request.Request, output *AttachUserPolicyOutput) {
+	op := &request.Operation{
 		Name:       opAttachUserPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -207,8 +207,8 @@ func (c *IAM) AttachUserPolicy(input *AttachUserPolicyInput) (*AttachUserPolicyO
 const opChangePassword = "ChangePassword"
 
 // ChangePasswordRequest generates a request for the ChangePassword operation.
-func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *service.Request, output *ChangePasswordOutput) {
-	op := &service.Operation{
+func (c *IAM) ChangePasswordRequest(input *ChangePasswordInput) (req *request.Request, output *ChangePasswordOutput) {
+	op := &request.Operation{
 		Name:       opChangePassword,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -239,8 +239,8 @@ func (c *IAM) ChangePassword(input *ChangePasswordInput) (*ChangePasswordOutput,
 const opCreateAccessKey = "CreateAccessKey"
 
 // CreateAccessKeyRequest generates a request for the CreateAccessKey operation.
-func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *service.Request, output *CreateAccessKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateAccessKeyRequest(input *CreateAccessKeyInput) (req *request.Request, output *CreateAccessKeyOutput) {
+	op := &request.Operation{
 		Name:       opCreateAccessKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -282,8 +282,8 @@ func (c *IAM) CreateAccessKey(input *CreateAccessKeyInput) (*CreateAccessKeyOutp
 const opCreateAccountAlias = "CreateAccountAlias"
 
 // CreateAccountAliasRequest generates a request for the CreateAccountAlias operation.
-func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *service.Request, output *CreateAccountAliasOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateAccountAliasRequest(input *CreateAccountAliasInput) (req *request.Request, output *CreateAccountAliasOutput) {
+	op := &request.Operation{
 		Name:       opCreateAccountAlias,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -311,8 +311,8 @@ func (c *IAM) CreateAccountAlias(input *CreateAccountAliasInput) (*CreateAccount
 const opCreateGroup = "CreateGroup"
 
 // CreateGroupRequest generates a request for the CreateGroup operation.
-func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *service.Request, output *CreateGroupOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateGroupRequest(input *CreateGroupInput) (req *request.Request, output *CreateGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -342,8 +342,8 @@ func (c *IAM) CreateGroup(input *CreateGroupInput) (*CreateGroupOutput, error) {
 const opCreateInstanceProfile = "CreateInstanceProfile"
 
 // CreateInstanceProfileRequest generates a request for the CreateInstanceProfile operation.
-func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *service.Request, output *CreateInstanceProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateInstanceProfileRequest(input *CreateInstanceProfileInput) (req *request.Request, output *CreateInstanceProfileOutput) {
+	op := &request.Operation{
 		Name:       opCreateInstanceProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -374,8 +374,8 @@ func (c *IAM) CreateInstanceProfile(input *CreateInstanceProfileInput) (*CreateI
 const opCreateLoginProfile = "CreateLoginProfile"
 
 // CreateLoginProfileRequest generates a request for the CreateLoginProfile operation.
-func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *service.Request, output *CreateLoginProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateLoginProfileRequest(input *CreateLoginProfileInput) (req *request.Request, output *CreateLoginProfileOutput) {
+	op := &request.Operation{
 		Name:       opCreateLoginProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -404,8 +404,8 @@ func (c *IAM) CreateLoginProfile(input *CreateLoginProfileInput) (*CreateLoginPr
 const opCreateOpenIDConnectProvider = "CreateOpenIDConnectProvider"
 
 // CreateOpenIDConnectProviderRequest generates a request for the CreateOpenIDConnectProvider operation.
-func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProviderInput) (req *service.Request, output *CreateOpenIDConnectProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProviderInput) (req *request.Request, output *CreateOpenIDConnectProviderOutput) {
+	op := &request.Operation{
 		Name:       opCreateOpenIDConnectProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -447,8 +447,8 @@ func (c *IAM) CreateOpenIDConnectProvider(input *CreateOpenIDConnectProviderInpu
 const opCreatePolicy = "CreatePolicy"
 
 // CreatePolicyRequest generates a request for the CreatePolicy operation.
-func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *service.Request, output *CreatePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Request, output *CreatePolicyOutput) {
+	op := &request.Operation{
 		Name:       opCreatePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -483,8 +483,8 @@ func (c *IAM) CreatePolicy(input *CreatePolicyInput) (*CreatePolicyOutput, error
 const opCreatePolicyVersion = "CreatePolicyVersion"
 
 // CreatePolicyVersionRequest generates a request for the CreatePolicyVersion operation.
-func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *service.Request, output *CreatePolicyVersionOutput) {
-	op := &service.Operation{
+func (c *IAM) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *request.Request, output *CreatePolicyVersionOutput) {
+	op := &request.Operation{
 		Name:       opCreatePolicyVersion,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -522,8 +522,8 @@ func (c *IAM) CreatePolicyVersion(input *CreatePolicyVersionInput) (*CreatePolic
 const opCreateRole = "CreateRole"
 
 // CreateRoleRequest generates a request for the CreateRole operation.
-func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *service.Request, output *CreateRoleOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateRoleRequest(input *CreateRoleInput) (req *request.Request, output *CreateRoleOutput) {
+	op := &request.Operation{
 		Name:       opCreateRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -556,8 +556,8 @@ func (c *IAM) CreateRole(input *CreateRoleInput) (*CreateRoleOutput, error) {
 const opCreateSAMLProvider = "CreateSAMLProvider"
 
 // CreateSAMLProviderRequest generates a request for the CreateSAMLProvider operation.
-func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *service.Request, output *CreateSAMLProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateSAMLProviderRequest(input *CreateSAMLProviderInput) (req *request.Request, output *CreateSAMLProviderOutput) {
+	op := &request.Operation{
 		Name:       opCreateSAMLProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -602,8 +602,8 @@ func (c *IAM) CreateSAMLProvider(input *CreateSAMLProviderInput) (*CreateSAMLPro
 const opCreateUser = "CreateUser"
 
 // CreateUserRequest generates a request for the CreateUser operation.
-func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *service.Request, output *CreateUserOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
+	op := &request.Operation{
 		Name:       opCreateUser,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -633,8 +633,8 @@ func (c *IAM) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 const opCreateVirtualMFADevice = "CreateVirtualMFADevice"
 
 // CreateVirtualMFADeviceRequest generates a request for the CreateVirtualMFADevice operation.
-func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) (req *service.Request, output *CreateVirtualMFADeviceOutput) {
-	op := &service.Operation{
+func (c *IAM) CreateVirtualMFADeviceRequest(input *CreateVirtualMFADeviceInput) (req *request.Request, output *CreateVirtualMFADeviceOutput) {
+	op := &request.Operation{
 		Name:       opCreateVirtualMFADevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -673,8 +673,8 @@ func (c *IAM) CreateVirtualMFADevice(input *CreateVirtualMFADeviceInput) (*Creat
 const opDeactivateMFADevice = "DeactivateMFADevice"
 
 // DeactivateMFADeviceRequest generates a request for the DeactivateMFADevice operation.
-func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *service.Request, output *DeactivateMFADeviceOutput) {
-	op := &service.Operation{
+func (c *IAM) DeactivateMFADeviceRequest(input *DeactivateMFADeviceInput) (req *request.Request, output *DeactivateMFADeviceOutput) {
+	op := &request.Operation{
 		Name:       opDeactivateMFADevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -705,8 +705,8 @@ func (c *IAM) DeactivateMFADevice(input *DeactivateMFADeviceInput) (*DeactivateM
 const opDeleteAccessKey = "DeleteAccessKey"
 
 // DeleteAccessKeyRequest generates a request for the DeleteAccessKey operation.
-func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *service.Request, output *DeleteAccessKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteAccessKeyRequest(input *DeleteAccessKeyInput) (req *request.Request, output *DeleteAccessKeyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAccessKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -737,8 +737,8 @@ func (c *IAM) DeleteAccessKey(input *DeleteAccessKeyInput) (*DeleteAccessKeyOutp
 const opDeleteAccountAlias = "DeleteAccountAlias"
 
 // DeleteAccountAliasRequest generates a request for the DeleteAccountAlias operation.
-func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *service.Request, output *DeleteAccountAliasOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteAccountAliasRequest(input *DeleteAccountAliasInput) (req *request.Request, output *DeleteAccountAliasOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAccountAlias,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -766,8 +766,8 @@ func (c *IAM) DeleteAccountAlias(input *DeleteAccountAliasInput) (*DeleteAccount
 const opDeleteAccountPasswordPolicy = "DeleteAccountPasswordPolicy"
 
 // DeleteAccountPasswordPolicyRequest generates a request for the DeleteAccountPasswordPolicy operation.
-func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPolicyInput) (req *service.Request, output *DeleteAccountPasswordPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteAccountPasswordPolicyRequest(input *DeleteAccountPasswordPolicyInput) (req *request.Request, output *DeleteAccountPasswordPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAccountPasswordPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -793,8 +793,8 @@ func (c *IAM) DeleteAccountPasswordPolicy(input *DeleteAccountPasswordPolicyInpu
 const opDeleteGroup = "DeleteGroup"
 
 // DeleteGroupRequest generates a request for the DeleteGroup operation.
-func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *service.Request, output *DeleteGroupOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteGroupRequest(input *DeleteGroupInput) (req *request.Request, output *DeleteGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -821,8 +821,8 @@ func (c *IAM) DeleteGroup(input *DeleteGroupInput) (*DeleteGroupOutput, error) {
 const opDeleteGroupPolicy = "DeleteGroupPolicy"
 
 // DeleteGroupPolicyRequest generates a request for the DeleteGroupPolicy operation.
-func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *service.Request, output *DeleteGroupPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteGroupPolicyRequest(input *DeleteGroupPolicyInput) (req *request.Request, output *DeleteGroupPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteGroupPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -853,8 +853,8 @@ func (c *IAM) DeleteGroupPolicy(input *DeleteGroupPolicyInput) (*DeleteGroupPoli
 const opDeleteInstanceProfile = "DeleteInstanceProfile"
 
 // DeleteInstanceProfileRequest generates a request for the DeleteInstanceProfile operation.
-func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *service.Request, output *DeleteInstanceProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteInstanceProfileRequest(input *DeleteInstanceProfileInput) (req *request.Request, output *DeleteInstanceProfileOutput) {
+	op := &request.Operation{
 		Name:       opDeleteInstanceProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -887,8 +887,8 @@ func (c *IAM) DeleteInstanceProfile(input *DeleteInstanceProfileInput) (*DeleteI
 const opDeleteLoginProfile = "DeleteLoginProfile"
 
 // DeleteLoginProfileRequest generates a request for the DeleteLoginProfile operation.
-func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *service.Request, output *DeleteLoginProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteLoginProfileRequest(input *DeleteLoginProfileInput) (req *request.Request, output *DeleteLoginProfileOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLoginProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -920,8 +920,8 @@ func (c *IAM) DeleteLoginProfile(input *DeleteLoginProfileInput) (*DeleteLoginPr
 const opDeleteOpenIDConnectProvider = "DeleteOpenIDConnectProvider"
 
 // DeleteOpenIDConnectProviderRequest generates a request for the DeleteOpenIDConnectProvider operation.
-func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProviderInput) (req *service.Request, output *DeleteOpenIDConnectProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteOpenIDConnectProviderRequest(input *DeleteOpenIDConnectProviderInput) (req *request.Request, output *DeleteOpenIDConnectProviderOutput) {
+	op := &request.Operation{
 		Name:       opDeleteOpenIDConnectProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -954,8 +954,8 @@ func (c *IAM) DeleteOpenIDConnectProvider(input *DeleteOpenIDConnectProviderInpu
 const opDeletePolicy = "DeletePolicy"
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
-func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *service.Request, output *DeletePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Request, output *DeletePolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeletePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -998,8 +998,8 @@ func (c *IAM) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error
 const opDeletePolicyVersion = "DeletePolicyVersion"
 
 // DeletePolicyVersionRequest generates a request for the DeletePolicyVersion operation.
-func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *service.Request, output *DeletePolicyVersionOutput) {
-	op := &service.Operation{
+func (c *IAM) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *request.Request, output *DeletePolicyVersionOutput) {
+	op := &request.Operation{
 		Name:       opDeletePolicyVersion,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1033,8 +1033,8 @@ func (c *IAM) DeletePolicyVersion(input *DeletePolicyVersionInput) (*DeletePolic
 const opDeleteRole = "DeleteRole"
 
 // DeleteRoleRequest generates a request for the DeleteRole operation.
-func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *service.Request, output *DeleteRoleOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteRoleRequest(input *DeleteRoleInput) (req *request.Request, output *DeleteRoleOutput) {
+	op := &request.Operation{
 		Name:       opDeleteRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1065,8 +1065,8 @@ func (c *IAM) DeleteRole(input *DeleteRoleInput) (*DeleteRoleOutput, error) {
 const opDeleteRolePolicy = "DeleteRolePolicy"
 
 // DeleteRolePolicyRequest generates a request for the DeleteRolePolicy operation.
-func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *service.Request, output *DeleteRolePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteRolePolicyRequest(input *DeleteRolePolicyInput) (req *request.Request, output *DeleteRolePolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteRolePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1097,8 +1097,8 @@ func (c *IAM) DeleteRolePolicy(input *DeleteRolePolicyInput) (*DeleteRolePolicyO
 const opDeleteSAMLProvider = "DeleteSAMLProvider"
 
 // DeleteSAMLProviderRequest generates a request for the DeleteSAMLProvider operation.
-func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *service.Request, output *DeleteSAMLProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteSAMLProviderRequest(input *DeleteSAMLProviderInput) (req *request.Request, output *DeleteSAMLProviderOutput) {
+	op := &request.Operation{
 		Name:       opDeleteSAMLProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1130,8 +1130,8 @@ func (c *IAM) DeleteSAMLProvider(input *DeleteSAMLProviderInput) (*DeleteSAMLPro
 const opDeleteSSHPublicKey = "DeleteSSHPublicKey"
 
 // DeleteSSHPublicKeyRequest generates a request for the DeleteSSHPublicKey operation.
-func (c *IAM) DeleteSSHPublicKeyRequest(input *DeleteSSHPublicKeyInput) (req *service.Request, output *DeleteSSHPublicKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteSSHPublicKeyRequest(input *DeleteSSHPublicKeyInput) (req *request.Request, output *DeleteSSHPublicKeyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteSSHPublicKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1163,8 +1163,8 @@ func (c *IAM) DeleteSSHPublicKey(input *DeleteSSHPublicKeyInput) (*DeleteSSHPubl
 const opDeleteServerCertificate = "DeleteServerCertificate"
 
 // DeleteServerCertificateRequest generates a request for the DeleteServerCertificate operation.
-func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput) (req *service.Request, output *DeleteServerCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteServerCertificateRequest(input *DeleteServerCertificateInput) (req *request.Request, output *DeleteServerCertificateOutput) {
+	op := &request.Operation{
 		Name:       opDeleteServerCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1200,8 +1200,8 @@ func (c *IAM) DeleteServerCertificate(input *DeleteServerCertificateInput) (*Del
 const opDeleteSigningCertificate = "DeleteSigningCertificate"
 
 // DeleteSigningCertificateRequest generates a request for the DeleteSigningCertificate operation.
-func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInput) (req *service.Request, output *DeleteSigningCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteSigningCertificateRequest(input *DeleteSigningCertificateInput) (req *request.Request, output *DeleteSigningCertificateOutput) {
+	op := &request.Operation{
 		Name:       opDeleteSigningCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1232,8 +1232,8 @@ func (c *IAM) DeleteSigningCertificate(input *DeleteSigningCertificateInput) (*D
 const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a request for the DeleteUser operation.
-func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *service.Request, output *DeleteUserOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
+	op := &request.Operation{
 		Name:       opDeleteUser,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1260,8 +1260,8 @@ func (c *IAM) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
 const opDeleteUserPolicy = "DeleteUserPolicy"
 
 // DeleteUserPolicyRequest generates a request for the DeleteUserPolicy operation.
-func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *service.Request, output *DeleteUserPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteUserPolicyRequest(input *DeleteUserPolicyInput) (req *request.Request, output *DeleteUserPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteUserPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1292,8 +1292,8 @@ func (c *IAM) DeleteUserPolicy(input *DeleteUserPolicyInput) (*DeleteUserPolicyO
 const opDeleteVirtualMFADevice = "DeleteVirtualMFADevice"
 
 // DeleteVirtualMFADeviceRequest generates a request for the DeleteVirtualMFADevice operation.
-func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) (req *service.Request, output *DeleteVirtualMFADeviceOutput) {
-	op := &service.Operation{
+func (c *IAM) DeleteVirtualMFADeviceRequest(input *DeleteVirtualMFADeviceInput) (req *request.Request, output *DeleteVirtualMFADeviceOutput) {
+	op := &request.Operation{
 		Name:       opDeleteVirtualMFADevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1322,8 +1322,8 @@ func (c *IAM) DeleteVirtualMFADevice(input *DeleteVirtualMFADeviceInput) (*Delet
 const opDetachGroupPolicy = "DetachGroupPolicy"
 
 // DetachGroupPolicyRequest generates a request for the DetachGroupPolicy operation.
-func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *service.Request, output *DetachGroupPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DetachGroupPolicyRequest(input *DetachGroupPolicyInput) (req *request.Request, output *DetachGroupPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDetachGroupPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1354,8 +1354,8 @@ func (c *IAM) DetachGroupPolicy(input *DetachGroupPolicyInput) (*DetachGroupPoli
 const opDetachRolePolicy = "DetachRolePolicy"
 
 // DetachRolePolicyRequest generates a request for the DetachRolePolicy operation.
-func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *service.Request, output *DetachRolePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DetachRolePolicyRequest(input *DetachRolePolicyInput) (req *request.Request, output *DetachRolePolicyOutput) {
+	op := &request.Operation{
 		Name:       opDetachRolePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1386,8 +1386,8 @@ func (c *IAM) DetachRolePolicy(input *DetachRolePolicyInput) (*DetachRolePolicyO
 const opDetachUserPolicy = "DetachUserPolicy"
 
 // DetachUserPolicyRequest generates a request for the DetachUserPolicy operation.
-func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *service.Request, output *DetachUserPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) DetachUserPolicyRequest(input *DetachUserPolicyInput) (req *request.Request, output *DetachUserPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDetachUserPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1418,8 +1418,8 @@ func (c *IAM) DetachUserPolicy(input *DetachUserPolicyInput) (*DetachUserPolicyO
 const opEnableMFADevice = "EnableMFADevice"
 
 // EnableMFADeviceRequest generates a request for the EnableMFADevice operation.
-func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *service.Request, output *EnableMFADeviceOutput) {
-	op := &service.Operation{
+func (c *IAM) EnableMFADeviceRequest(input *EnableMFADeviceInput) (req *request.Request, output *EnableMFADeviceOutput) {
+	op := &request.Operation{
 		Name:       opEnableMFADevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1447,8 +1447,8 @@ func (c *IAM) EnableMFADevice(input *EnableMFADeviceInput) (*EnableMFADeviceOutp
 const opGenerateCredentialReport = "GenerateCredentialReport"
 
 // GenerateCredentialReportRequest generates a request for the GenerateCredentialReport operation.
-func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *service.Request, output *GenerateCredentialReportOutput) {
-	op := &service.Operation{
+func (c *IAM) GenerateCredentialReportRequest(input *GenerateCredentialReportInput) (req *request.Request, output *GenerateCredentialReportOutput) {
+	op := &request.Operation{
 		Name:       opGenerateCredentialReport,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1476,8 +1476,8 @@ func (c *IAM) GenerateCredentialReport(input *GenerateCredentialReportInput) (*G
 const opGetAccessKeyLastUsed = "GetAccessKeyLastUsed"
 
 // GetAccessKeyLastUsedRequest generates a request for the GetAccessKeyLastUsed operation.
-func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req *service.Request, output *GetAccessKeyLastUsedOutput) {
-	op := &service.Operation{
+func (c *IAM) GetAccessKeyLastUsedRequest(input *GetAccessKeyLastUsedInput) (req *request.Request, output *GetAccessKeyLastUsedOutput) {
+	op := &request.Operation{
 		Name:       opGetAccessKeyLastUsed,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1506,12 +1506,12 @@ func (c *IAM) GetAccessKeyLastUsed(input *GetAccessKeyLastUsedInput) (*GetAccess
 const opGetAccountAuthorizationDetails = "GetAccountAuthorizationDetails"
 
 // GetAccountAuthorizationDetailsRequest generates a request for the GetAccountAuthorizationDetails operation.
-func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *service.Request, output *GetAccountAuthorizationDetailsOutput) {
-	op := &service.Operation{
+func (c *IAM) GetAccountAuthorizationDetailsRequest(input *GetAccountAuthorizationDetailsInput) (req *request.Request, output *GetAccountAuthorizationDetailsOutput) {
+	op := &request.Operation{
 		Name:       opGetAccountAuthorizationDetails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -1552,8 +1552,8 @@ func (c *IAM) GetAccountAuthorizationDetailsPages(input *GetAccountAuthorization
 const opGetAccountPasswordPolicy = "GetAccountPasswordPolicy"
 
 // GetAccountPasswordPolicyRequest generates a request for the GetAccountPasswordPolicy operation.
-func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *service.Request, output *GetAccountPasswordPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) GetAccountPasswordPolicyRequest(input *GetAccountPasswordPolicyInput) (req *request.Request, output *GetAccountPasswordPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetAccountPasswordPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1580,8 +1580,8 @@ func (c *IAM) GetAccountPasswordPolicy(input *GetAccountPasswordPolicyInput) (*G
 const opGetAccountSummary = "GetAccountSummary"
 
 // GetAccountSummaryRequest generates a request for the GetAccountSummary operation.
-func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *service.Request, output *GetAccountSummaryOutput) {
-	op := &service.Operation{
+func (c *IAM) GetAccountSummaryRequest(input *GetAccountSummaryInput) (req *request.Request, output *GetAccountSummaryOutput) {
+	op := &request.Operation{
 		Name:       opGetAccountSummary,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1611,8 +1611,8 @@ func (c *IAM) GetAccountSummary(input *GetAccountSummaryInput) (*GetAccountSumma
 const opGetCredentialReport = "GetCredentialReport"
 
 // GetCredentialReportRequest generates a request for the GetCredentialReport operation.
-func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *service.Request, output *GetCredentialReportOutput) {
-	op := &service.Operation{
+func (c *IAM) GetCredentialReportRequest(input *GetCredentialReportInput) (req *request.Request, output *GetCredentialReportOutput) {
+	op := &request.Operation{
 		Name:       opGetCredentialReport,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1640,12 +1640,12 @@ func (c *IAM) GetCredentialReport(input *GetCredentialReportInput) (*GetCredenti
 const opGetGroup = "GetGroup"
 
 // GetGroupRequest generates a request for the GetGroup operation.
-func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *service.Request, output *GetGroupOutput) {
-	op := &service.Operation{
+func (c *IAM) GetGroupRequest(input *GetGroupInput) (req *request.Request, output *GetGroupOutput) {
+	op := &request.Operation{
 		Name:       opGetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -1681,8 +1681,8 @@ func (c *IAM) GetGroupPages(input *GetGroupInput, fn func(p *GetGroupOutput, las
 const opGetGroupPolicy = "GetGroupPolicy"
 
 // GetGroupPolicyRequest generates a request for the GetGroupPolicy operation.
-func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *service.Request, output *GetGroupPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) GetGroupPolicyRequest(input *GetGroupPolicyInput) (req *request.Request, output *GetGroupPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetGroupPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1718,8 +1718,8 @@ func (c *IAM) GetGroupPolicy(input *GetGroupPolicyInput) (*GetGroupPolicyOutput,
 const opGetInstanceProfile = "GetInstanceProfile"
 
 // GetInstanceProfileRequest generates a request for the GetInstanceProfile operation.
-func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *service.Request, output *GetInstanceProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) GetInstanceProfileRequest(input *GetInstanceProfileInput) (req *request.Request, output *GetInstanceProfileOutput) {
+	op := &request.Operation{
 		Name:       opGetInstanceProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1748,8 +1748,8 @@ func (c *IAM) GetInstanceProfile(input *GetInstanceProfileInput) (*GetInstancePr
 const opGetLoginProfile = "GetLoginProfile"
 
 // GetLoginProfileRequest generates a request for the GetLoginProfile operation.
-func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *service.Request, output *GetLoginProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) GetLoginProfileRequest(input *GetLoginProfileInput) (req *request.Request, output *GetLoginProfileOutput) {
+	op := &request.Operation{
 		Name:       opGetLoginProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1777,8 +1777,8 @@ func (c *IAM) GetLoginProfile(input *GetLoginProfileInput) (*GetLoginProfileOutp
 const opGetOpenIDConnectProvider = "GetOpenIDConnectProvider"
 
 // GetOpenIDConnectProviderRequest generates a request for the GetOpenIDConnectProvider operation.
-func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInput) (req *service.Request, output *GetOpenIDConnectProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) GetOpenIDConnectProviderRequest(input *GetOpenIDConnectProviderInput) (req *request.Request, output *GetOpenIDConnectProviderOutput) {
+	op := &request.Operation{
 		Name:       opGetOpenIDConnectProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1804,8 +1804,8 @@ func (c *IAM) GetOpenIDConnectProvider(input *GetOpenIDConnectProviderInput) (*G
 const opGetPolicy = "GetPolicy"
 
 // GetPolicyRequest generates a request for the GetPolicy operation.
-func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *service.Request, output *GetPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1844,8 +1844,8 @@ func (c *IAM) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
 const opGetPolicyVersion = "GetPolicyVersion"
 
 // GetPolicyVersionRequest generates a request for the GetPolicyVersion operation.
-func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *service.Request, output *GetPolicyVersionOutput) {
-	op := &service.Operation{
+func (c *IAM) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *request.Request, output *GetPolicyVersionOutput) {
+	op := &request.Operation{
 		Name:       opGetPolicyVersion,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1882,8 +1882,8 @@ func (c *IAM) GetPolicyVersion(input *GetPolicyVersionInput) (*GetPolicyVersionO
 const opGetRole = "GetRole"
 
 // GetRoleRequest generates a request for the GetRole operation.
-func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *service.Request, output *GetRoleOutput) {
-	op := &service.Operation{
+func (c *IAM) GetRoleRequest(input *GetRoleInput) (req *request.Request, output *GetRoleOutput) {
+	op := &request.Operation{
 		Name:       opGetRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1912,8 +1912,8 @@ func (c *IAM) GetRole(input *GetRoleInput) (*GetRoleOutput, error) {
 const opGetRolePolicy = "GetRolePolicy"
 
 // GetRolePolicyRequest generates a request for the GetRolePolicy operation.
-func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *service.Request, output *GetRolePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) GetRolePolicyRequest(input *GetRolePolicyInput) (req *request.Request, output *GetRolePolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetRolePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1952,8 +1952,8 @@ func (c *IAM) GetRolePolicy(input *GetRolePolicyInput) (*GetRolePolicyOutput, er
 const opGetSAMLProvider = "GetSAMLProvider"
 
 // GetSAMLProviderRequest generates a request for the GetSAMLProvider operation.
-func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *service.Request, output *GetSAMLProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) GetSAMLProviderRequest(input *GetSAMLProviderInput) (req *request.Request, output *GetSAMLProviderOutput) {
+	op := &request.Operation{
 		Name:       opGetSAMLProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1982,8 +1982,8 @@ func (c *IAM) GetSAMLProvider(input *GetSAMLProviderInput) (*GetSAMLProviderOutp
 const opGetSSHPublicKey = "GetSSHPublicKey"
 
 // GetSSHPublicKeyRequest generates a request for the GetSSHPublicKey operation.
-func (c *IAM) GetSSHPublicKeyRequest(input *GetSSHPublicKeyInput) (req *service.Request, output *GetSSHPublicKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) GetSSHPublicKeyRequest(input *GetSSHPublicKeyInput) (req *request.Request, output *GetSSHPublicKeyOutput) {
+	op := &request.Operation{
 		Name:       opGetSSHPublicKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2015,8 +2015,8 @@ func (c *IAM) GetSSHPublicKey(input *GetSSHPublicKeyInput) (*GetSSHPublicKeyOutp
 const opGetServerCertificate = "GetServerCertificate"
 
 // GetServerCertificateRequest generates a request for the GetServerCertificate operation.
-func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req *service.Request, output *GetServerCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) GetServerCertificateRequest(input *GetServerCertificateInput) (req *request.Request, output *GetServerCertificateOutput) {
+	op := &request.Operation{
 		Name:       opGetServerCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2042,8 +2042,8 @@ func (c *IAM) GetServerCertificate(input *GetServerCertificateInput) (*GetServer
 const opGetUser = "GetUser"
 
 // GetUserRequest generates a request for the GetUser operation.
-func (c *IAM) GetUserRequest(input *GetUserInput) (req *service.Request, output *GetUserOutput) {
-	op := &service.Operation{
+func (c *IAM) GetUserRequest(input *GetUserInput) (req *request.Request, output *GetUserOutput) {
+	op := &request.Operation{
 		Name:       opGetUser,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2073,8 +2073,8 @@ func (c *IAM) GetUser(input *GetUserInput) (*GetUserOutput, error) {
 const opGetUserPolicy = "GetUserPolicy"
 
 // GetUserPolicyRequest generates a request for the GetUserPolicy operation.
-func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *service.Request, output *GetUserPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) GetUserPolicyRequest(input *GetUserPolicyInput) (req *request.Request, output *GetUserPolicyOutput) {
+	op := &request.Operation{
 		Name:       opGetUserPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2110,12 +2110,12 @@ func (c *IAM) GetUserPolicy(input *GetUserPolicyInput) (*GetUserPolicyOutput, er
 const opListAccessKeys = "ListAccessKeys"
 
 // ListAccessKeysRequest generates a request for the ListAccessKeys operation.
-func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *service.Request, output *ListAccessKeysOutput) {
-	op := &service.Operation{
+func (c *IAM) ListAccessKeysRequest(input *ListAccessKeysInput) (req *request.Request, output *ListAccessKeysOutput) {
+	op := &request.Operation{
 		Name:       opListAccessKeys,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2162,12 +2162,12 @@ func (c *IAM) ListAccessKeysPages(input *ListAccessKeysInput, fn func(p *ListAcc
 const opListAccountAliases = "ListAccountAliases"
 
 // ListAccountAliasesRequest generates a request for the ListAccountAliases operation.
-func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *service.Request, output *ListAccountAliasesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListAccountAliasesRequest(input *ListAccountAliasesInput) (req *request.Request, output *ListAccountAliasesOutput) {
+	op := &request.Operation{
 		Name:       opListAccountAliases,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2206,12 +2206,12 @@ func (c *IAM) ListAccountAliasesPages(input *ListAccountAliasesInput, fn func(p 
 const opListAttachedGroupPolicies = "ListAttachedGroupPolicies"
 
 // ListAttachedGroupPoliciesRequest generates a request for the ListAttachedGroupPolicies operation.
-func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesInput) (req *service.Request, output *ListAttachedGroupPoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListAttachedGroupPoliciesRequest(input *ListAttachedGroupPoliciesInput) (req *request.Request, output *ListAttachedGroupPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListAttachedGroupPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2257,12 +2257,12 @@ func (c *IAM) ListAttachedGroupPoliciesPages(input *ListAttachedGroupPoliciesInp
 const opListAttachedRolePolicies = "ListAttachedRolePolicies"
 
 // ListAttachedRolePoliciesRequest generates a request for the ListAttachedRolePolicies operation.
-func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInput) (req *service.Request, output *ListAttachedRolePoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListAttachedRolePoliciesRequest(input *ListAttachedRolePoliciesInput) (req *request.Request, output *ListAttachedRolePoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListAttachedRolePolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2308,12 +2308,12 @@ func (c *IAM) ListAttachedRolePoliciesPages(input *ListAttachedRolePoliciesInput
 const opListAttachedUserPolicies = "ListAttachedUserPolicies"
 
 // ListAttachedUserPoliciesRequest generates a request for the ListAttachedUserPolicies operation.
-func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInput) (req *service.Request, output *ListAttachedUserPoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListAttachedUserPoliciesRequest(input *ListAttachedUserPoliciesInput) (req *request.Request, output *ListAttachedUserPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListAttachedUserPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2359,12 +2359,12 @@ func (c *IAM) ListAttachedUserPoliciesPages(input *ListAttachedUserPoliciesInput
 const opListEntitiesForPolicy = "ListEntitiesForPolicy"
 
 // ListEntitiesForPolicyRequest generates a request for the ListEntitiesForPolicy operation.
-func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (req *service.Request, output *ListEntitiesForPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) ListEntitiesForPolicyRequest(input *ListEntitiesForPolicyInput) (req *request.Request, output *ListEntitiesForPolicyOutput) {
+	op := &request.Operation{
 		Name:       opListEntitiesForPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2407,12 +2407,12 @@ func (c *IAM) ListEntitiesForPolicyPages(input *ListEntitiesForPolicyInput, fn f
 const opListGroupPolicies = "ListGroupPolicies"
 
 // ListGroupPoliciesRequest generates a request for the ListGroupPolicies operation.
-func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *service.Request, output *ListGroupPoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListGroupPoliciesRequest(input *ListGroupPoliciesInput) (req *request.Request, output *ListGroupPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListGroupPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2458,12 +2458,12 @@ func (c *IAM) ListGroupPoliciesPages(input *ListGroupPoliciesInput, fn func(p *L
 const opListGroups = "ListGroups"
 
 // ListGroupsRequest generates a request for the ListGroups operation.
-func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *service.Request, output *ListGroupsOutput) {
-	op := &service.Operation{
+func (c *IAM) ListGroupsRequest(input *ListGroupsInput) (req *request.Request, output *ListGroupsOutput) {
+	op := &request.Operation{
 		Name:       opListGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2500,12 +2500,12 @@ func (c *IAM) ListGroupsPages(input *ListGroupsInput, fn func(p *ListGroupsOutpu
 const opListGroupsForUser = "ListGroupsForUser"
 
 // ListGroupsForUserRequest generates a request for the ListGroupsForUser operation.
-func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *service.Request, output *ListGroupsForUserOutput) {
-	op := &service.Operation{
+func (c *IAM) ListGroupsForUserRequest(input *ListGroupsForUserInput) (req *request.Request, output *ListGroupsForUserOutput) {
+	op := &request.Operation{
 		Name:       opListGroupsForUser,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2542,12 +2542,12 @@ func (c *IAM) ListGroupsForUserPages(input *ListGroupsForUserInput, fn func(p *L
 const opListInstanceProfiles = "ListInstanceProfiles"
 
 // ListInstanceProfilesRequest generates a request for the ListInstanceProfiles operation.
-func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *service.Request, output *ListInstanceProfilesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListInstanceProfilesRequest(input *ListInstanceProfilesInput) (req *request.Request, output *ListInstanceProfilesOutput) {
+	op := &request.Operation{
 		Name:       opListInstanceProfiles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2586,12 +2586,12 @@ func (c *IAM) ListInstanceProfilesPages(input *ListInstanceProfilesInput, fn fun
 const opListInstanceProfilesForRole = "ListInstanceProfilesForRole"
 
 // ListInstanceProfilesForRoleRequest generates a request for the ListInstanceProfilesForRole operation.
-func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForRoleInput) (req *service.Request, output *ListInstanceProfilesForRoleOutput) {
-	op := &service.Operation{
+func (c *IAM) ListInstanceProfilesForRoleRequest(input *ListInstanceProfilesForRoleInput) (req *request.Request, output *ListInstanceProfilesForRoleOutput) {
+	op := &request.Operation{
 		Name:       opListInstanceProfilesForRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2630,12 +2630,12 @@ func (c *IAM) ListInstanceProfilesForRolePages(input *ListInstanceProfilesForRol
 const opListMFADevices = "ListMFADevices"
 
 // ListMFADevicesRequest generates a request for the ListMFADevices operation.
-func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *service.Request, output *ListMFADevicesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListMFADevicesRequest(input *ListMFADevicesInput) (req *request.Request, output *ListMFADevicesOutput) {
+	op := &request.Operation{
 		Name:       opListMFADevices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2675,8 +2675,8 @@ func (c *IAM) ListMFADevicesPages(input *ListMFADevicesInput, fn func(p *ListMFA
 const opListOpenIDConnectProviders = "ListOpenIDConnectProviders"
 
 // ListOpenIDConnectProvidersRequest generates a request for the ListOpenIDConnectProviders operation.
-func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvidersInput) (req *service.Request, output *ListOpenIDConnectProvidersOutput) {
-	op := &service.Operation{
+func (c *IAM) ListOpenIDConnectProvidersRequest(input *ListOpenIDConnectProvidersInput) (req *request.Request, output *ListOpenIDConnectProvidersOutput) {
+	op := &request.Operation{
 		Name:       opListOpenIDConnectProviders,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2702,12 +2702,12 @@ func (c *IAM) ListOpenIDConnectProviders(input *ListOpenIDConnectProvidersInput)
 const opListPolicies = "ListPolicies"
 
 // ListPoliciesRequest generates a request for the ListPolicies operation.
-func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *service.Request, output *ListPoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Request, output *ListPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2754,8 +2754,8 @@ func (c *IAM) ListPoliciesPages(input *ListPoliciesInput, fn func(p *ListPolicie
 const opListPolicyVersions = "ListPolicyVersions"
 
 // ListPolicyVersionsRequest generates a request for the ListPolicyVersions operation.
-func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *service.Request, output *ListPolicyVersionsOutput) {
-	op := &service.Operation{
+func (c *IAM) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *request.Request, output *ListPolicyVersionsOutput) {
+	op := &request.Operation{
 		Name:       opListPolicyVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2786,12 +2786,12 @@ func (c *IAM) ListPolicyVersions(input *ListPolicyVersionsInput) (*ListPolicyVer
 const opListRolePolicies = "ListRolePolicies"
 
 // ListRolePoliciesRequest generates a request for the ListRolePolicies operation.
-func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *service.Request, output *ListRolePoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListRolePoliciesRequest(input *ListRolePoliciesInput) (req *request.Request, output *ListRolePoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListRolePolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2837,12 +2837,12 @@ func (c *IAM) ListRolePoliciesPages(input *ListRolePoliciesInput, fn func(p *Lis
 const opListRoles = "ListRoles"
 
 // ListRolesRequest generates a request for the ListRoles operation.
-func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *service.Request, output *ListRolesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListRolesRequest(input *ListRolesInput) (req *request.Request, output *ListRolesOutput) {
+	op := &request.Operation{
 		Name:       opListRoles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2881,8 +2881,8 @@ func (c *IAM) ListRolesPages(input *ListRolesInput, fn func(p *ListRolesOutput, 
 const opListSAMLProviders = "ListSAMLProviders"
 
 // ListSAMLProvidersRequest generates a request for the ListSAMLProviders operation.
-func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *service.Request, output *ListSAMLProvidersOutput) {
-	op := &service.Operation{
+func (c *IAM) ListSAMLProvidersRequest(input *ListSAMLProvidersInput) (req *request.Request, output *ListSAMLProvidersOutput) {
+	op := &request.Operation{
 		Name:       opListSAMLProviders,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2910,8 +2910,8 @@ func (c *IAM) ListSAMLProviders(input *ListSAMLProvidersInput) (*ListSAMLProvide
 const opListSSHPublicKeys = "ListSSHPublicKeys"
 
 // ListSSHPublicKeysRequest generates a request for the ListSSHPublicKeys operation.
-func (c *IAM) ListSSHPublicKeysRequest(input *ListSSHPublicKeysInput) (req *service.Request, output *ListSSHPublicKeysOutput) {
-	op := &service.Operation{
+func (c *IAM) ListSSHPublicKeysRequest(input *ListSSHPublicKeysInput) (req *request.Request, output *ListSSHPublicKeysOutput) {
+	op := &request.Operation{
 		Name:       opListSSHPublicKeys,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2947,12 +2947,12 @@ func (c *IAM) ListSSHPublicKeys(input *ListSSHPublicKeysInput) (*ListSSHPublicKe
 const opListServerCertificates = "ListServerCertificates"
 
 // ListServerCertificatesRequest generates a request for the ListServerCertificates operation.
-func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) (req *service.Request, output *ListServerCertificatesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListServerCertificatesRequest(input *ListServerCertificatesInput) (req *request.Request, output *ListServerCertificatesOutput) {
+	op := &request.Operation{
 		Name:       opListServerCertificates,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -2990,12 +2990,12 @@ func (c *IAM) ListServerCertificatesPages(input *ListServerCertificatesInput, fn
 const opListSigningCertificates = "ListSigningCertificates"
 
 // ListSigningCertificatesRequest generates a request for the ListSigningCertificates operation.
-func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput) (req *service.Request, output *ListSigningCertificatesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListSigningCertificatesRequest(input *ListSigningCertificatesInput) (req *request.Request, output *ListSigningCertificatesOutput) {
+	op := &request.Operation{
 		Name:       opListSigningCertificates,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -3039,12 +3039,12 @@ func (c *IAM) ListSigningCertificatesPages(input *ListSigningCertificatesInput, 
 const opListUserPolicies = "ListUserPolicies"
 
 // ListUserPoliciesRequest generates a request for the ListUserPolicies operation.
-func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *service.Request, output *ListUserPoliciesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListUserPoliciesRequest(input *ListUserPoliciesInput) (req *request.Request, output *ListUserPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opListUserPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -3089,12 +3089,12 @@ func (c *IAM) ListUserPoliciesPages(input *ListUserPoliciesInput, fn func(p *Lis
 const opListUsers = "ListUsers"
 
 // ListUsersRequest generates a request for the ListUsers operation.
-func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *service.Request, output *ListUsersOutput) {
-	op := &service.Operation{
+func (c *IAM) ListUsersRequest(input *ListUsersInput) (req *request.Request, output *ListUsersOutput) {
+	op := &request.Operation{
 		Name:       opListUsers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -3133,12 +3133,12 @@ func (c *IAM) ListUsersPages(input *ListUsersInput, fn func(p *ListUsersOutput, 
 const opListVirtualMFADevices = "ListVirtualMFADevices"
 
 // ListVirtualMFADevicesRequest generates a request for the ListVirtualMFADevices operation.
-func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (req *service.Request, output *ListVirtualMFADevicesOutput) {
-	op := &service.Operation{
+func (c *IAM) ListVirtualMFADevicesRequest(input *ListVirtualMFADevicesInput) (req *request.Request, output *ListVirtualMFADevicesOutput) {
+	op := &request.Operation{
 		Name:       opListVirtualMFADevices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxItems",
@@ -3178,8 +3178,8 @@ func (c *IAM) ListVirtualMFADevicesPages(input *ListVirtualMFADevicesInput, fn f
 const opPutGroupPolicy = "PutGroupPolicy"
 
 // PutGroupPolicyRequest generates a request for the PutGroupPolicy operation.
-func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *service.Request, output *PutGroupPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) PutGroupPolicyRequest(input *PutGroupPolicyInput) (req *request.Request, output *PutGroupPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutGroupPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3221,8 +3221,8 @@ func (c *IAM) PutGroupPolicy(input *PutGroupPolicyInput) (*PutGroupPolicyOutput,
 const opPutRolePolicy = "PutRolePolicy"
 
 // PutRolePolicyRequest generates a request for the PutRolePolicy operation.
-func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *service.Request, output *PutRolePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) PutRolePolicyRequest(input *PutRolePolicyInput) (req *request.Request, output *PutRolePolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutRolePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3270,8 +3270,8 @@ func (c *IAM) PutRolePolicy(input *PutRolePolicyInput) (*PutRolePolicyOutput, er
 const opPutUserPolicy = "PutUserPolicy"
 
 // PutUserPolicyRequest generates a request for the PutUserPolicy operation.
-func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *service.Request, output *PutUserPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) PutUserPolicyRequest(input *PutUserPolicyInput) (req *request.Request, output *PutUserPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutUserPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3313,8 +3313,8 @@ func (c *IAM) PutUserPolicy(input *PutUserPolicyInput) (*PutUserPolicyOutput, er
 const opRemoveClientIDFromOpenIDConnectProvider = "RemoveClientIDFromOpenIDConnectProvider"
 
 // RemoveClientIDFromOpenIDConnectProviderRequest generates a request for the RemoveClientIDFromOpenIDConnectProvider operation.
-func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClientIDFromOpenIDConnectProviderInput) (req *service.Request, output *RemoveClientIDFromOpenIDConnectProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) RemoveClientIDFromOpenIDConnectProviderRequest(input *RemoveClientIDFromOpenIDConnectProviderInput) (req *request.Request, output *RemoveClientIDFromOpenIDConnectProviderOutput) {
+	op := &request.Operation{
 		Name:       opRemoveClientIDFromOpenIDConnectProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3344,8 +3344,8 @@ func (c *IAM) RemoveClientIDFromOpenIDConnectProvider(input *RemoveClientIDFromO
 const opRemoveRoleFromInstanceProfile = "RemoveRoleFromInstanceProfile"
 
 // RemoveRoleFromInstanceProfileRequest generates a request for the RemoveRoleFromInstanceProfile operation.
-func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstanceProfileInput) (req *service.Request, output *RemoveRoleFromInstanceProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) RemoveRoleFromInstanceProfileRequest(input *RemoveRoleFromInstanceProfileInput) (req *request.Request, output *RemoveRoleFromInstanceProfileOutput) {
+	op := &request.Operation{
 		Name:       opRemoveRoleFromInstanceProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3379,8 +3379,8 @@ func (c *IAM) RemoveRoleFromInstanceProfile(input *RemoveRoleFromInstanceProfile
 const opRemoveUserFromGroup = "RemoveUserFromGroup"
 
 // RemoveUserFromGroupRequest generates a request for the RemoveUserFromGroup operation.
-func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *service.Request, output *RemoveUserFromGroupOutput) {
-	op := &service.Operation{
+func (c *IAM) RemoveUserFromGroupRequest(input *RemoveUserFromGroupInput) (req *request.Request, output *RemoveUserFromGroupOutput) {
+	op := &request.Operation{
 		Name:       opRemoveUserFromGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3406,8 +3406,8 @@ func (c *IAM) RemoveUserFromGroup(input *RemoveUserFromGroupInput) (*RemoveUserF
 const opResyncMFADevice = "ResyncMFADevice"
 
 // ResyncMFADeviceRequest generates a request for the ResyncMFADevice operation.
-func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *service.Request, output *ResyncMFADeviceOutput) {
-	op := &service.Operation{
+func (c *IAM) ResyncMFADeviceRequest(input *ResyncMFADeviceInput) (req *request.Request, output *ResyncMFADeviceOutput) {
+	op := &request.Operation{
 		Name:       opResyncMFADevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3437,8 +3437,8 @@ func (c *IAM) ResyncMFADevice(input *ResyncMFADeviceInput) (*ResyncMFADeviceOutp
 const opSetDefaultPolicyVersion = "SetDefaultPolicyVersion"
 
 // SetDefaultPolicyVersionRequest generates a request for the SetDefaultPolicyVersion operation.
-func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *service.Request, output *SetDefaultPolicyVersionOutput) {
-	op := &service.Operation{
+func (c *IAM) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput) (req *request.Request, output *SetDefaultPolicyVersionOutput) {
+	op := &request.Operation{
 		Name:       opSetDefaultPolicyVersion,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3473,8 +3473,8 @@ func (c *IAM) SetDefaultPolicyVersion(input *SetDefaultPolicyVersionInput) (*Set
 const opUpdateAccessKey = "UpdateAccessKey"
 
 // UpdateAccessKeyRequest generates a request for the UpdateAccessKey operation.
-func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *service.Request, output *UpdateAccessKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateAccessKeyRequest(input *UpdateAccessKeyInput) (req *request.Request, output *UpdateAccessKeyOutput) {
+	op := &request.Operation{
 		Name:       opUpdateAccessKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3511,8 +3511,8 @@ func (c *IAM) UpdateAccessKey(input *UpdateAccessKeyInput) (*UpdateAccessKeyOutp
 const opUpdateAccountPasswordPolicy = "UpdateAccountPasswordPolicy"
 
 // UpdateAccountPasswordPolicyRequest generates a request for the UpdateAccountPasswordPolicy operation.
-func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPolicyInput) (req *service.Request, output *UpdateAccountPasswordPolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateAccountPasswordPolicyRequest(input *UpdateAccountPasswordPolicyInput) (req *request.Request, output *UpdateAccountPasswordPolicyOutput) {
+	op := &request.Operation{
 		Name:       opUpdateAccountPasswordPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3547,8 +3547,8 @@ func (c *IAM) UpdateAccountPasswordPolicy(input *UpdateAccountPasswordPolicyInpu
 const opUpdateAssumeRolePolicy = "UpdateAssumeRolePolicy"
 
 // UpdateAssumeRolePolicyRequest generates a request for the UpdateAssumeRolePolicy operation.
-func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) (req *service.Request, output *UpdateAssumeRolePolicyOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateAssumeRolePolicyRequest(input *UpdateAssumeRolePolicyInput) (req *request.Request, output *UpdateAssumeRolePolicyOutput) {
+	op := &request.Operation{
 		Name:       opUpdateAssumeRolePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3576,8 +3576,8 @@ func (c *IAM) UpdateAssumeRolePolicy(input *UpdateAssumeRolePolicyInput) (*Updat
 const opUpdateGroup = "UpdateGroup"
 
 // UpdateGroupRequest generates a request for the UpdateGroup operation.
-func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *service.Request, output *UpdateGroupOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateGroupRequest(input *UpdateGroupInput) (req *request.Request, output *UpdateGroupOutput) {
+	op := &request.Operation{
 		Name:       opUpdateGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3612,8 +3612,8 @@ func (c *IAM) UpdateGroup(input *UpdateGroupInput) (*UpdateGroupOutput, error) {
 const opUpdateLoginProfile = "UpdateLoginProfile"
 
 // UpdateLoginProfileRequest generates a request for the UpdateLoginProfile operation.
-func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *service.Request, output *UpdateLoginProfileOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateLoginProfileRequest(input *UpdateLoginProfileInput) (req *request.Request, output *UpdateLoginProfileOutput) {
+	op := &request.Operation{
 		Name:       opUpdateLoginProfile,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3643,8 +3643,8 @@ func (c *IAM) UpdateLoginProfile(input *UpdateLoginProfileInput) (*UpdateLoginPr
 const opUpdateOpenIDConnectProviderThumbprint = "UpdateOpenIDConnectProviderThumbprint"
 
 // UpdateOpenIDConnectProviderThumbprintRequest generates a request for the UpdateOpenIDConnectProviderThumbprint operation.
-func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDConnectProviderThumbprintInput) (req *service.Request, output *UpdateOpenIDConnectProviderThumbprintOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateOpenIDConnectProviderThumbprintRequest(input *UpdateOpenIDConnectProviderThumbprintInput) (req *request.Request, output *UpdateOpenIDConnectProviderThumbprintOutput) {
+	op := &request.Operation{
 		Name:       opUpdateOpenIDConnectProviderThumbprint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3683,8 +3683,8 @@ func (c *IAM) UpdateOpenIDConnectProviderThumbprint(input *UpdateOpenIDConnectPr
 const opUpdateSAMLProvider = "UpdateSAMLProvider"
 
 // UpdateSAMLProviderRequest generates a request for the UpdateSAMLProvider operation.
-func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *service.Request, output *UpdateSAMLProviderOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateSAMLProviderRequest(input *UpdateSAMLProviderInput) (req *request.Request, output *UpdateSAMLProviderOutput) {
+	op := &request.Operation{
 		Name:       opUpdateSAMLProvider,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3712,8 +3712,8 @@ func (c *IAM) UpdateSAMLProvider(input *UpdateSAMLProviderInput) (*UpdateSAMLPro
 const opUpdateSSHPublicKey = "UpdateSSHPublicKey"
 
 // UpdateSSHPublicKeyRequest generates a request for the UpdateSSHPublicKey operation.
-func (c *IAM) UpdateSSHPublicKeyRequest(input *UpdateSSHPublicKeyInput) (req *service.Request, output *UpdateSSHPublicKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateSSHPublicKeyRequest(input *UpdateSSHPublicKeyInput) (req *request.Request, output *UpdateSSHPublicKeyOutput) {
+	op := &request.Operation{
 		Name:       opUpdateSSHPublicKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3748,8 +3748,8 @@ func (c *IAM) UpdateSSHPublicKey(input *UpdateSSHPublicKeyInput) (*UpdateSSHPubl
 const opUpdateServerCertificate = "UpdateServerCertificate"
 
 // UpdateServerCertificateRequest generates a request for the UpdateServerCertificate operation.
-func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput) (req *service.Request, output *UpdateServerCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateServerCertificateRequest(input *UpdateServerCertificateInput) (req *request.Request, output *UpdateServerCertificateOutput) {
+	op := &request.Operation{
 		Name:       opUpdateServerCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3785,8 +3785,8 @@ func (c *IAM) UpdateServerCertificate(input *UpdateServerCertificateInput) (*Upd
 const opUpdateSigningCertificate = "UpdateSigningCertificate"
 
 // UpdateSigningCertificateRequest generates a request for the UpdateSigningCertificate operation.
-func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInput) (req *service.Request, output *UpdateSigningCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateSigningCertificateRequest(input *UpdateSigningCertificateInput) (req *request.Request, output *UpdateSigningCertificateOutput) {
+	op := &request.Operation{
 		Name:       opUpdateSigningCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3819,8 +3819,8 @@ func (c *IAM) UpdateSigningCertificate(input *UpdateSigningCertificateInput) (*U
 const opUpdateUser = "UpdateUser"
 
 // UpdateUserRequest generates a request for the UpdateUser operation.
-func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *service.Request, output *UpdateUserOutput) {
-	op := &service.Operation{
+func (c *IAM) UpdateUserRequest(input *UpdateUserInput) (req *request.Request, output *UpdateUserOutput) {
+	op := &request.Operation{
 		Name:       opUpdateUser,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3855,8 +3855,8 @@ func (c *IAM) UpdateUser(input *UpdateUserInput) (*UpdateUserOutput, error) {
 const opUploadSSHPublicKey = "UploadSSHPublicKey"
 
 // UploadSSHPublicKeyRequest generates a request for the UploadSSHPublicKey operation.
-func (c *IAM) UploadSSHPublicKeyRequest(input *UploadSSHPublicKeyInput) (req *service.Request, output *UploadSSHPublicKeyOutput) {
-	op := &service.Operation{
+func (c *IAM) UploadSSHPublicKeyRequest(input *UploadSSHPublicKeyInput) (req *request.Request, output *UploadSSHPublicKeyOutput) {
+	op := &request.Operation{
 		Name:       opUploadSSHPublicKey,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3888,8 +3888,8 @@ func (c *IAM) UploadSSHPublicKey(input *UploadSSHPublicKeyInput) (*UploadSSHPubl
 const opUploadServerCertificate = "UploadServerCertificate"
 
 // UploadServerCertificateRequest generates a request for the UploadServerCertificate operation.
-func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput) (req *service.Request, output *UploadServerCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) UploadServerCertificateRequest(input *UploadServerCertificateInput) (req *request.Request, output *UploadServerCertificateOutput) {
+	op := &request.Operation{
 		Name:       opUploadServerCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -3929,8 +3929,8 @@ func (c *IAM) UploadServerCertificate(input *UploadServerCertificateInput) (*Upl
 const opUploadSigningCertificate = "UploadSigningCertificate"
 
 // UploadSigningCertificateRequest generates a request for the UploadSigningCertificate operation.
-func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInput) (req *service.Request, output *UploadSigningCertificateOutput) {
-	op := &service.Operation{
+func (c *IAM) UploadSigningCertificateRequest(input *UploadSigningCertificateInput) (req *request.Request, output *UploadSigningCertificateOutput) {
+	op := &request.Operation{
 		Name:       opUploadSigningCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

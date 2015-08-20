@@ -5,14 +5,14 @@ package sqs
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddPermission = "AddPermission"
 
 // AddPermissionRequest generates a request for the AddPermission operation.
-func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *service.Request, output *AddPermissionOutput) {
-	op := &service.Operation{
+func (c *SQS) AddPermissionRequest(input *AddPermissionInput) (req *request.Request, output *AddPermissionOutput) {
+	op := &request.Operation{
 		Name:       opAddPermission,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -55,8 +55,8 @@ func (c *SQS) AddPermission(input *AddPermissionInput) (*AddPermissionOutput, er
 const opChangeMessageVisibility = "ChangeMessageVisibility"
 
 // ChangeMessageVisibilityRequest generates a request for the ChangeMessageVisibility operation.
-func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *service.Request, output *ChangeMessageVisibilityOutput) {
-	op := &service.Operation{
+func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput) (req *request.Request, output *ChangeMessageVisibilityOutput) {
+	op := &request.Operation{
 		Name:       opChangeMessageVisibility,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -111,8 +111,8 @@ func (c *SQS) ChangeMessageVisibility(input *ChangeMessageVisibilityInput) (*Cha
 const opChangeMessageVisibilityBatch = "ChangeMessageVisibilityBatch"
 
 // ChangeMessageVisibilityBatchRequest generates a request for the ChangeMessageVisibilityBatch operation.
-func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *service.Request, output *ChangeMessageVisibilityBatchOutput) {
-	op := &service.Operation{
+func (c *SQS) ChangeMessageVisibilityBatchRequest(input *ChangeMessageVisibilityBatchInput) (req *request.Request, output *ChangeMessageVisibilityBatchOutput) {
+	op := &request.Operation{
 		Name:       opChangeMessageVisibilityBatch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -150,8 +150,8 @@ func (c *SQS) ChangeMessageVisibilityBatch(input *ChangeMessageVisibilityBatchIn
 const opCreateQueue = "CreateQueue"
 
 // CreateQueueRequest generates a request for the CreateQueue operation.
-func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *service.Request, output *CreateQueueOutput) {
-	op := &service.Operation{
+func (c *SQS) CreateQueueRequest(input *CreateQueueInput) (req *request.Request, output *CreateQueueOutput) {
+	op := &request.Operation{
 		Name:       opCreateQueue,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -201,8 +201,8 @@ func (c *SQS) CreateQueue(input *CreateQueueInput) (*CreateQueueOutput, error) {
 const opDeleteMessage = "DeleteMessage"
 
 // DeleteMessageRequest generates a request for the DeleteMessage operation.
-func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *service.Request, output *DeleteMessageOutput) {
-	op := &service.Operation{
+func (c *SQS) DeleteMessageRequest(input *DeleteMessageInput) (req *request.Request, output *DeleteMessageOutput) {
+	op := &request.Operation{
 		Name:       opDeleteMessage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -247,8 +247,8 @@ func (c *SQS) DeleteMessage(input *DeleteMessageInput) (*DeleteMessageOutput, er
 const opDeleteMessageBatch = "DeleteMessageBatch"
 
 // DeleteMessageBatchRequest generates a request for the DeleteMessageBatch operation.
-func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *service.Request, output *DeleteMessageBatchOutput) {
-	op := &service.Operation{
+func (c *SQS) DeleteMessageBatchRequest(input *DeleteMessageBatchInput) (req *request.Request, output *DeleteMessageBatchOutput) {
+	op := &request.Operation{
 		Name:       opDeleteMessageBatch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -286,8 +286,8 @@ func (c *SQS) DeleteMessageBatch(input *DeleteMessageBatchInput) (*DeleteMessage
 const opDeleteQueue = "DeleteQueue"
 
 // DeleteQueueRequest generates a request for the DeleteQueue operation.
-func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *service.Request, output *DeleteQueueOutput) {
-	op := &service.Operation{
+func (c *SQS) DeleteQueueRequest(input *DeleteQueueInput) (req *request.Request, output *DeleteQueueOutput) {
+	op := &request.Operation{
 		Name:       opDeleteQueue,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -329,8 +329,8 @@ func (c *SQS) DeleteQueue(input *DeleteQueueInput) (*DeleteQueueOutput, error) {
 const opGetQueueAttributes = "GetQueueAttributes"
 
 // GetQueueAttributesRequest generates a request for the GetQueueAttributes operation.
-func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *service.Request, output *GetQueueAttributesOutput) {
-	op := &service.Operation{
+func (c *SQS) GetQueueAttributesRequest(input *GetQueueAttributesInput) (req *request.Request, output *GetQueueAttributesOutput) {
+	op := &request.Operation{
 		Name:       opGetQueueAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -390,8 +390,8 @@ func (c *SQS) GetQueueAttributes(input *GetQueueAttributesInput) (*GetQueueAttri
 const opGetQueueUrl = "GetQueueUrl"
 
 // GetQueueUrlRequest generates a request for the GetQueueUrl operation.
-func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *service.Request, output *GetQueueUrlOutput) {
-	op := &service.Operation{
+func (c *SQS) GetQueueUrlRequest(input *GetQueueUrlInput) (req *request.Request, output *GetQueueUrlOutput) {
+	op := &request.Operation{
 		Name:       opGetQueueUrl,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -424,8 +424,8 @@ func (c *SQS) GetQueueUrl(input *GetQueueUrlInput) (*GetQueueUrlOutput, error) {
 const opListDeadLetterSourceQueues = "ListDeadLetterSourceQueues"
 
 // ListDeadLetterSourceQueuesRequest generates a request for the ListDeadLetterSourceQueues operation.
-func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *service.Request, output *ListDeadLetterSourceQueuesOutput) {
-	op := &service.Operation{
+func (c *SQS) ListDeadLetterSourceQueuesRequest(input *ListDeadLetterSourceQueuesInput) (req *request.Request, output *ListDeadLetterSourceQueuesOutput) {
+	op := &request.Operation{
 		Name:       opListDeadLetterSourceQueues,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -455,8 +455,8 @@ func (c *SQS) ListDeadLetterSourceQueues(input *ListDeadLetterSourceQueuesInput)
 const opListQueues = "ListQueues"
 
 // ListQueuesRequest generates a request for the ListQueues operation.
-func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *service.Request, output *ListQueuesOutput) {
-	op := &service.Operation{
+func (c *SQS) ListQueuesRequest(input *ListQueuesInput) (req *request.Request, output *ListQueuesOutput) {
+	op := &request.Operation{
 		Name:       opListQueues,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -484,8 +484,8 @@ func (c *SQS) ListQueues(input *ListQueuesInput) (*ListQueuesOutput, error) {
 const opPurgeQueue = "PurgeQueue"
 
 // PurgeQueueRequest generates a request for the PurgeQueue operation.
-func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *service.Request, output *PurgeQueueOutput) {
-	op := &service.Operation{
+func (c *SQS) PurgeQueueRequest(input *PurgeQueueInput) (req *request.Request, output *PurgeQueueOutput) {
+	op := &request.Operation{
 		Name:       opPurgeQueue,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -519,8 +519,8 @@ func (c *SQS) PurgeQueue(input *PurgeQueueInput) (*PurgeQueueOutput, error) {
 const opReceiveMessage = "ReceiveMessage"
 
 // ReceiveMessageRequest generates a request for the ReceiveMessage operation.
-func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *service.Request, output *ReceiveMessageOutput) {
-	op := &service.Operation{
+func (c *SQS) ReceiveMessageRequest(input *ReceiveMessageInput) (req *request.Request, output *ReceiveMessageOutput) {
+	op := &request.Operation{
 		Name:       opReceiveMessage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -587,8 +587,8 @@ func (c *SQS) ReceiveMessage(input *ReceiveMessageInput) (*ReceiveMessageOutput,
 const opRemovePermission = "RemovePermission"
 
 // RemovePermissionRequest generates a request for the RemovePermission operation.
-func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *service.Request, output *RemovePermissionOutput) {
-	op := &service.Operation{
+func (c *SQS) RemovePermissionRequest(input *RemovePermissionInput) (req *request.Request, output *RemovePermissionOutput) {
+	op := &request.Operation{
 		Name:       opRemovePermission,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -615,8 +615,8 @@ func (c *SQS) RemovePermission(input *RemovePermissionInput) (*RemovePermissionO
 const opSendMessage = "SendMessage"
 
 // SendMessageRequest generates a request for the SendMessage operation.
-func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *service.Request, output *SendMessageOutput) {
-	op := &service.Operation{
+func (c *SQS) SendMessageRequest(input *SendMessageInput) (req *request.Request, output *SendMessageOutput) {
+	op := &request.Operation{
 		Name:       opSendMessage,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -653,8 +653,8 @@ func (c *SQS) SendMessage(input *SendMessageInput) (*SendMessageOutput, error) {
 const opSendMessageBatch = "SendMessageBatch"
 
 // SendMessageBatchRequest generates a request for the SendMessageBatch operation.
-func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *service.Request, output *SendMessageBatchOutput) {
-	op := &service.Operation{
+func (c *SQS) SendMessageBatchRequest(input *SendMessageBatchInput) (req *request.Request, output *SendMessageBatchOutput) {
+	op := &request.Operation{
 		Name:       opSendMessageBatch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -705,8 +705,8 @@ func (c *SQS) SendMessageBatch(input *SendMessageBatchInput) (*SendMessageBatchO
 const opSetQueueAttributes = "SetQueueAttributes"
 
 // SetQueueAttributesRequest generates a request for the SetQueueAttributes operation.
-func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *service.Request, output *SetQueueAttributesOutput) {
-	op := &service.Operation{
+func (c *SQS) SetQueueAttributesRequest(input *SetQueueAttributesInput) (req *request.Request, output *SetQueueAttributesOutput) {
+	op := &request.Operation{
 		Name:       opSetQueueAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

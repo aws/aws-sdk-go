@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCountClosedWorkflowExecutions = "CountClosedWorkflowExecutions"
 
 // CountClosedWorkflowExecutionsRequest generates a request for the CountClosedWorkflowExecutions operation.
-func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExecutionsInput) (req *service.Request, output *WorkflowExecutionCount) {
-	op := &service.Operation{
+func (c *SWF) CountClosedWorkflowExecutionsRequest(input *CountClosedWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionCount) {
+	op := &request.Operation{
 		Name:       opCountClosedWorkflowExecutions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -59,8 +59,8 @@ func (c *SWF) CountClosedWorkflowExecutions(input *CountClosedWorkflowExecutions
 const opCountOpenWorkflowExecutions = "CountOpenWorkflowExecutions"
 
 // CountOpenWorkflowExecutionsRequest generates a request for the CountOpenWorkflowExecutions operation.
-func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecutionsInput) (req *service.Request, output *WorkflowExecutionCount) {
-	op := &service.Operation{
+func (c *SWF) CountOpenWorkflowExecutionsRequest(input *CountOpenWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionCount) {
+	op := &request.Operation{
 		Name:       opCountOpenWorkflowExecutions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -105,8 +105,8 @@ func (c *SWF) CountOpenWorkflowExecutions(input *CountOpenWorkflowExecutionsInpu
 const opCountPendingActivityTasks = "CountPendingActivityTasks"
 
 // CountPendingActivityTasksRequest generates a request for the CountPendingActivityTasks operation.
-func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksInput) (req *service.Request, output *PendingTaskCount) {
-	op := &service.Operation{
+func (c *SWF) CountPendingActivityTasksRequest(input *CountPendingActivityTasksInput) (req *request.Request, output *PendingTaskCount) {
+	op := &request.Operation{
 		Name:       opCountPendingActivityTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -150,8 +150,8 @@ func (c *SWF) CountPendingActivityTasks(input *CountPendingActivityTasksInput) (
 const opCountPendingDecisionTasks = "CountPendingDecisionTasks"
 
 // CountPendingDecisionTasksRequest generates a request for the CountPendingDecisionTasks operation.
-func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksInput) (req *service.Request, output *PendingTaskCount) {
-	op := &service.Operation{
+func (c *SWF) CountPendingDecisionTasksRequest(input *CountPendingDecisionTasksInput) (req *request.Request, output *PendingTaskCount) {
+	op := &request.Operation{
 		Name:       opCountPendingDecisionTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -195,8 +195,8 @@ func (c *SWF) CountPendingDecisionTasks(input *CountPendingDecisionTasksInput) (
 const opDeprecateActivityType = "DeprecateActivityType"
 
 // DeprecateActivityTypeRequest generates a request for the DeprecateActivityType operation.
-func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (req *service.Request, output *DeprecateActivityTypeOutput) {
-	op := &service.Operation{
+func (c *SWF) DeprecateActivityTypeRequest(input *DeprecateActivityTypeInput) (req *request.Request, output *DeprecateActivityTypeOutput) {
+	op := &request.Operation{
 		Name:       opDeprecateActivityType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -241,8 +241,8 @@ func (c *SWF) DeprecateActivityType(input *DeprecateActivityTypeInput) (*Depreca
 const opDeprecateDomain = "DeprecateDomain"
 
 // DeprecateDomainRequest generates a request for the DeprecateDomain operation.
-func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *service.Request, output *DeprecateDomainOutput) {
-	op := &service.Operation{
+func (c *SWF) DeprecateDomainRequest(input *DeprecateDomainInput) (req *request.Request, output *DeprecateDomainOutput) {
+	op := &request.Operation{
 		Name:       opDeprecateDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -288,8 +288,8 @@ func (c *SWF) DeprecateDomain(input *DeprecateDomainInput) (*DeprecateDomainOutp
 const opDeprecateWorkflowType = "DeprecateWorkflowType"
 
 // DeprecateWorkflowTypeRequest generates a request for the DeprecateWorkflowType operation.
-func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (req *service.Request, output *DeprecateWorkflowTypeOutput) {
-	op := &service.Operation{
+func (c *SWF) DeprecateWorkflowTypeRequest(input *DeprecateWorkflowTypeInput) (req *request.Request, output *DeprecateWorkflowTypeOutput) {
+	op := &request.Operation{
 		Name:       opDeprecateWorkflowType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -335,8 +335,8 @@ func (c *SWF) DeprecateWorkflowType(input *DeprecateWorkflowTypeInput) (*Depreca
 const opDescribeActivityType = "DescribeActivityType"
 
 // DescribeActivityTypeRequest generates a request for the DescribeActivityType operation.
-func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req *service.Request, output *DescribeActivityTypeOutput) {
-	op := &service.Operation{
+func (c *SWF) DescribeActivityTypeRequest(input *DescribeActivityTypeInput) (req *request.Request, output *DescribeActivityTypeOutput) {
+	op := &request.Operation{
 		Name:       opDescribeActivityType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -380,8 +380,8 @@ func (c *SWF) DescribeActivityType(input *DescribeActivityTypeInput) (*DescribeA
 const opDescribeDomain = "DescribeDomain"
 
 // DescribeDomainRequest generates a request for the DescribeDomain operation.
-func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *service.Request, output *DescribeDomainOutput) {
-	op := &service.Operation{
+func (c *SWF) DescribeDomainRequest(input *DescribeDomainInput) (req *request.Request, output *DescribeDomainOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -422,8 +422,8 @@ func (c *SWF) DescribeDomain(input *DescribeDomainInput) (*DescribeDomainOutput,
 const opDescribeWorkflowExecution = "DescribeWorkflowExecution"
 
 // DescribeWorkflowExecutionRequest generates a request for the DescribeWorkflowExecution operation.
-func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionInput) (req *service.Request, output *DescribeWorkflowExecutionOutput) {
-	op := &service.Operation{
+func (c *SWF) DescribeWorkflowExecutionRequest(input *DescribeWorkflowExecutionInput) (req *request.Request, output *DescribeWorkflowExecutionOutput) {
+	op := &request.Operation{
 		Name:       opDescribeWorkflowExecution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -465,8 +465,8 @@ func (c *SWF) DescribeWorkflowExecution(input *DescribeWorkflowExecutionInput) (
 const opDescribeWorkflowType = "DescribeWorkflowType"
 
 // DescribeWorkflowTypeRequest generates a request for the DescribeWorkflowType operation.
-func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req *service.Request, output *DescribeWorkflowTypeOutput) {
-	op := &service.Operation{
+func (c *SWF) DescribeWorkflowTypeRequest(input *DescribeWorkflowTypeInput) (req *request.Request, output *DescribeWorkflowTypeOutput) {
+	op := &request.Operation{
 		Name:       opDescribeWorkflowType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -510,12 +510,12 @@ func (c *SWF) DescribeWorkflowType(input *DescribeWorkflowTypeInput) (*DescribeW
 const opGetWorkflowExecutionHistory = "GetWorkflowExecutionHistory"
 
 // GetWorkflowExecutionHistoryRequest generates a request for the GetWorkflowExecutionHistory operation.
-func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHistoryInput) (req *service.Request, output *GetWorkflowExecutionHistoryOutput) {
-	op := &service.Operation{
+func (c *SWF) GetWorkflowExecutionHistoryRequest(input *GetWorkflowExecutionHistoryInput) (req *request.Request, output *GetWorkflowExecutionHistoryOutput) {
+	op := &request.Operation{
 		Name:       opGetWorkflowExecutionHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -567,12 +567,12 @@ func (c *SWF) GetWorkflowExecutionHistoryPages(input *GetWorkflowExecutionHistor
 const opListActivityTypes = "ListActivityTypes"
 
 // ListActivityTypesRequest generates a request for the ListActivityTypes operation.
-func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *service.Request, output *ListActivityTypesOutput) {
-	op := &service.Operation{
+func (c *SWF) ListActivityTypesRequest(input *ListActivityTypesInput) (req *request.Request, output *ListActivityTypesOutput) {
+	op := &request.Operation{
 		Name:       opListActivityTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -625,12 +625,12 @@ func (c *SWF) ListActivityTypesPages(input *ListActivityTypesInput, fn func(p *L
 const opListClosedWorkflowExecutions = "ListClosedWorkflowExecutions"
 
 // ListClosedWorkflowExecutionsRequest generates a request for the ListClosedWorkflowExecutions operation.
-func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecutionsInput) (req *service.Request, output *WorkflowExecutionInfos) {
-	op := &service.Operation{
+func (c *SWF) ListClosedWorkflowExecutionsRequest(input *ListClosedWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionInfos) {
+	op := &request.Operation{
 		Name:       opListClosedWorkflowExecutions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -686,12 +686,12 @@ func (c *SWF) ListClosedWorkflowExecutionsPages(input *ListClosedWorkflowExecuti
 const opListDomains = "ListDomains"
 
 // ListDomainsRequest generates a request for the ListDomains operation.
-func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *service.Request, output *ListDomainsOutput) {
-	op := &service.Operation{
+func (c *SWF) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
+	op := &request.Operation{
 		Name:       opListDomains,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -744,12 +744,12 @@ func (c *SWF) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOu
 const opListOpenWorkflowExecutions = "ListOpenWorkflowExecutions"
 
 // ListOpenWorkflowExecutionsRequest generates a request for the ListOpenWorkflowExecutions operation.
-func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecutionsInput) (req *service.Request, output *WorkflowExecutionInfos) {
-	op := &service.Operation{
+func (c *SWF) ListOpenWorkflowExecutionsRequest(input *ListOpenWorkflowExecutionsInput) (req *request.Request, output *WorkflowExecutionInfos) {
+	op := &request.Operation{
 		Name:       opListOpenWorkflowExecutions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -805,12 +805,12 @@ func (c *SWF) ListOpenWorkflowExecutionsPages(input *ListOpenWorkflowExecutionsI
 const opListWorkflowTypes = "ListWorkflowTypes"
 
 // ListWorkflowTypesRequest generates a request for the ListWorkflowTypes operation.
-func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *service.Request, output *ListWorkflowTypesOutput) {
-	op := &service.Operation{
+func (c *SWF) ListWorkflowTypesRequest(input *ListWorkflowTypesInput) (req *request.Request, output *ListWorkflowTypesOutput) {
+	op := &request.Operation{
 		Name:       opListWorkflowTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -861,8 +861,8 @@ func (c *SWF) ListWorkflowTypesPages(input *ListWorkflowTypesInput, fn func(p *L
 const opPollForActivityTask = "PollForActivityTask"
 
 // PollForActivityTaskRequest generates a request for the PollForActivityTask operation.
-func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *service.Request, output *PollForActivityTaskOutput) {
-	op := &service.Operation{
+func (c *SWF) PollForActivityTaskRequest(input *PollForActivityTaskInput) (req *request.Request, output *PollForActivityTaskOutput) {
+	op := &request.Operation{
 		Name:       opPollForActivityTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -912,12 +912,12 @@ func (c *SWF) PollForActivityTask(input *PollForActivityTaskInput) (*PollForActi
 const opPollForDecisionTask = "PollForDecisionTask"
 
 // PollForDecisionTaskRequest generates a request for the PollForDecisionTask operation.
-func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *service.Request, output *PollForDecisionTaskOutput) {
-	op := &service.Operation{
+func (c *SWF) PollForDecisionTaskRequest(input *PollForDecisionTaskInput) (req *request.Request, output *PollForDecisionTaskOutput) {
+	op := &request.Operation{
 		Name:       opPollForDecisionTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextPageToken"},
 			OutputTokens:    []string{"nextPageToken"},
 			LimitToken:      "maximumPageSize",
@@ -984,8 +984,8 @@ func (c *SWF) PollForDecisionTaskPages(input *PollForDecisionTaskInput, fn func(
 const opRecordActivityTaskHeartbeat = "RecordActivityTaskHeartbeat"
 
 // RecordActivityTaskHeartbeatRequest generates a request for the RecordActivityTaskHeartbeat operation.
-func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartbeatInput) (req *service.Request, output *RecordActivityTaskHeartbeatOutput) {
-	op := &service.Operation{
+func (c *SWF) RecordActivityTaskHeartbeatRequest(input *RecordActivityTaskHeartbeatInput) (req *request.Request, output *RecordActivityTaskHeartbeatOutput) {
+	op := &request.Operation{
 		Name:       opRecordActivityTaskHeartbeat,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1046,8 +1046,8 @@ func (c *SWF) RecordActivityTaskHeartbeat(input *RecordActivityTaskHeartbeatInpu
 const opRegisterActivityType = "RegisterActivityType"
 
 // RegisterActivityTypeRequest generates a request for the RegisterActivityType operation.
-func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req *service.Request, output *RegisterActivityTypeOutput) {
-	op := &service.Operation{
+func (c *SWF) RegisterActivityTypeRequest(input *RegisterActivityTypeInput) (req *request.Request, output *RegisterActivityTypeOutput) {
+	op := &request.Operation{
 		Name:       opRegisterActivityType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1093,8 +1093,8 @@ func (c *SWF) RegisterActivityType(input *RegisterActivityTypeInput) (*RegisterA
 const opRegisterDomain = "RegisterDomain"
 
 // RegisterDomainRequest generates a request for the RegisterDomain operation.
-func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *service.Request, output *RegisterDomainOutput) {
-	op := &service.Operation{
+func (c *SWF) RegisterDomainRequest(input *RegisterDomainInput) (req *request.Request, output *RegisterDomainOutput) {
+	op := &request.Operation{
 		Name:       opRegisterDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1135,8 +1135,8 @@ func (c *SWF) RegisterDomain(input *RegisterDomainInput) (*RegisterDomainOutput,
 const opRegisterWorkflowType = "RegisterWorkflowType"
 
 // RegisterWorkflowTypeRequest generates a request for the RegisterWorkflowType operation.
-func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req *service.Request, output *RegisterWorkflowTypeOutput) {
-	op := &service.Operation{
+func (c *SWF) RegisterWorkflowTypeRequest(input *RegisterWorkflowTypeInput) (req *request.Request, output *RegisterWorkflowTypeOutput) {
+	op := &request.Operation{
 		Name:       opRegisterWorkflowType,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1185,8 +1185,8 @@ func (c *SWF) RegisterWorkflowType(input *RegisterWorkflowTypeInput) (*RegisterW
 const opRequestCancelWorkflowExecution = "RequestCancelWorkflowExecution"
 
 // RequestCancelWorkflowExecutionRequest generates a request for the RequestCancelWorkflowExecution operation.
-func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflowExecutionInput) (req *service.Request, output *RequestCancelWorkflowExecutionOutput) {
-	op := &service.Operation{
+func (c *SWF) RequestCancelWorkflowExecutionRequest(input *RequestCancelWorkflowExecutionInput) (req *request.Request, output *RequestCancelWorkflowExecutionOutput) {
+	op := &request.Operation{
 		Name:       opRequestCancelWorkflowExecution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1234,8 +1234,8 @@ func (c *SWF) RequestCancelWorkflowExecution(input *RequestCancelWorkflowExecuti
 const opRespondActivityTaskCanceled = "RespondActivityTaskCanceled"
 
 // RespondActivityTaskCanceledRequest generates a request for the RespondActivityTaskCanceled operation.
-func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCanceledInput) (req *service.Request, output *RespondActivityTaskCanceledOutput) {
-	op := &service.Operation{
+func (c *SWF) RespondActivityTaskCanceledRequest(input *RespondActivityTaskCanceledInput) (req *request.Request, output *RespondActivityTaskCanceledOutput) {
+	op := &request.Operation{
 		Name:       opRespondActivityTaskCanceled,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1288,8 +1288,8 @@ func (c *SWF) RespondActivityTaskCanceled(input *RespondActivityTaskCanceledInpu
 const opRespondActivityTaskCompleted = "RespondActivityTaskCompleted"
 
 // RespondActivityTaskCompletedRequest generates a request for the RespondActivityTaskCompleted operation.
-func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskCompletedInput) (req *service.Request, output *RespondActivityTaskCompletedOutput) {
-	op := &service.Operation{
+func (c *SWF) RespondActivityTaskCompletedRequest(input *RespondActivityTaskCompletedInput) (req *request.Request, output *RespondActivityTaskCompletedOutput) {
+	op := &request.Operation{
 		Name:       opRespondActivityTaskCompleted,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1340,8 +1340,8 @@ func (c *SWF) RespondActivityTaskCompleted(input *RespondActivityTaskCompletedIn
 const opRespondActivityTaskFailed = "RespondActivityTaskFailed"
 
 // RespondActivityTaskFailedRequest generates a request for the RespondActivityTaskFailed operation.
-func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedInput) (req *service.Request, output *RespondActivityTaskFailedOutput) {
-	op := &service.Operation{
+func (c *SWF) RespondActivityTaskFailedRequest(input *RespondActivityTaskFailedInput) (req *request.Request, output *RespondActivityTaskFailedOutput) {
+	op := &request.Operation{
 		Name:       opRespondActivityTaskFailed,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1389,8 +1389,8 @@ func (c *SWF) RespondActivityTaskFailed(input *RespondActivityTaskFailedInput) (
 const opRespondDecisionTaskCompleted = "RespondDecisionTaskCompleted"
 
 // RespondDecisionTaskCompletedRequest generates a request for the RespondDecisionTaskCompleted operation.
-func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskCompletedInput) (req *service.Request, output *RespondDecisionTaskCompletedOutput) {
-	op := &service.Operation{
+func (c *SWF) RespondDecisionTaskCompletedRequest(input *RespondDecisionTaskCompletedInput) (req *request.Request, output *RespondDecisionTaskCompletedOutput) {
+	op := &request.Operation{
 		Name:       opRespondDecisionTaskCompleted,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1431,8 +1431,8 @@ func (c *SWF) RespondDecisionTaskCompleted(input *RespondDecisionTaskCompletedIn
 const opSignalWorkflowExecution = "SignalWorkflowExecution"
 
 // SignalWorkflowExecutionRequest generates a request for the SignalWorkflowExecution operation.
-func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput) (req *service.Request, output *SignalWorkflowExecutionOutput) {
-	op := &service.Operation{
+func (c *SWF) SignalWorkflowExecutionRequest(input *SignalWorkflowExecutionInput) (req *request.Request, output *SignalWorkflowExecutionOutput) {
+	op := &request.Operation{
 		Name:       opSignalWorkflowExecution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1478,8 +1478,8 @@ func (c *SWF) SignalWorkflowExecution(input *SignalWorkflowExecutionInput) (*Sig
 const opStartWorkflowExecution = "StartWorkflowExecution"
 
 // StartWorkflowExecutionRequest generates a request for the StartWorkflowExecution operation.
-func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) (req *service.Request, output *StartWorkflowExecutionOutput) {
-	op := &service.Operation{
+func (c *SWF) StartWorkflowExecutionRequest(input *StartWorkflowExecutionInput) (req *request.Request, output *StartWorkflowExecutionOutput) {
+	op := &request.Operation{
 		Name:       opStartWorkflowExecution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1528,8 +1528,8 @@ func (c *SWF) StartWorkflowExecution(input *StartWorkflowExecutionInput) (*Start
 const opTerminateWorkflowExecution = "TerminateWorkflowExecution"
 
 // TerminateWorkflowExecutionRequest generates a request for the TerminateWorkflowExecution operation.
-func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutionInput) (req *service.Request, output *TerminateWorkflowExecutionOutput) {
-	op := &service.Operation{
+func (c *SWF) TerminateWorkflowExecutionRequest(input *TerminateWorkflowExecutionInput) (req *request.Request, output *TerminateWorkflowExecutionOutput) {
+	op := &request.Operation{
 		Name:       opTerminateWorkflowExecution,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

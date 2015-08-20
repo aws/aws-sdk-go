@@ -4,25 +4,25 @@
 package dynamodbstreamsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/dynamodbstreams"
 )
 
 // DynamoDBStreamsAPI is the interface type for dynamodbstreams.DynamoDBStreams.
 type DynamoDBStreamsAPI interface {
-	DescribeStreamRequest(*dynamodbstreams.DescribeStreamInput) (*service.Request, *dynamodbstreams.DescribeStreamOutput)
+	DescribeStreamRequest(*dynamodbstreams.DescribeStreamInput) (*request.Request, *dynamodbstreams.DescribeStreamOutput)
 
 	DescribeStream(*dynamodbstreams.DescribeStreamInput) (*dynamodbstreams.DescribeStreamOutput, error)
 
-	GetRecordsRequest(*dynamodbstreams.GetRecordsInput) (*service.Request, *dynamodbstreams.GetRecordsOutput)
+	GetRecordsRequest(*dynamodbstreams.GetRecordsInput) (*request.Request, *dynamodbstreams.GetRecordsOutput)
 
 	GetRecords(*dynamodbstreams.GetRecordsInput) (*dynamodbstreams.GetRecordsOutput, error)
 
-	GetShardIteratorRequest(*dynamodbstreams.GetShardIteratorInput) (*service.Request, *dynamodbstreams.GetShardIteratorOutput)
+	GetShardIteratorRequest(*dynamodbstreams.GetShardIteratorInput) (*request.Request, *dynamodbstreams.GetShardIteratorOutput)
 
 	GetShardIterator(*dynamodbstreams.GetShardIteratorInput) (*dynamodbstreams.GetShardIteratorOutput, error)
 
-	ListStreamsRequest(*dynamodbstreams.ListStreamsInput) (*service.Request, *dynamodbstreams.ListStreamsOutput)
+	ListStreamsRequest(*dynamodbstreams.ListStreamsInput) (*request.Request, *dynamodbstreams.ListStreamsOutput)
 
 	ListStreams(*dynamodbstreams.ListStreamsInput) (*dynamodbstreams.ListStreamsOutput, error)
 }

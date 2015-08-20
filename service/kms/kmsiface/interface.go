@@ -4,121 +4,121 @@
 package kmsiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/kms"
 )
 
 // KMSAPI is the interface type for kms.KMS.
 type KMSAPI interface {
-	CreateAliasRequest(*kms.CreateAliasInput) (*service.Request, *kms.CreateAliasOutput)
+	CreateAliasRequest(*kms.CreateAliasInput) (*request.Request, *kms.CreateAliasOutput)
 
 	CreateAlias(*kms.CreateAliasInput) (*kms.CreateAliasOutput, error)
 
-	CreateGrantRequest(*kms.CreateGrantInput) (*service.Request, *kms.CreateGrantOutput)
+	CreateGrantRequest(*kms.CreateGrantInput) (*request.Request, *kms.CreateGrantOutput)
 
 	CreateGrant(*kms.CreateGrantInput) (*kms.CreateGrantOutput, error)
 
-	CreateKeyRequest(*kms.CreateKeyInput) (*service.Request, *kms.CreateKeyOutput)
+	CreateKeyRequest(*kms.CreateKeyInput) (*request.Request, *kms.CreateKeyOutput)
 
 	CreateKey(*kms.CreateKeyInput) (*kms.CreateKeyOutput, error)
 
-	DecryptRequest(*kms.DecryptInput) (*service.Request, *kms.DecryptOutput)
+	DecryptRequest(*kms.DecryptInput) (*request.Request, *kms.DecryptOutput)
 
 	Decrypt(*kms.DecryptInput) (*kms.DecryptOutput, error)
 
-	DeleteAliasRequest(*kms.DeleteAliasInput) (*service.Request, *kms.DeleteAliasOutput)
+	DeleteAliasRequest(*kms.DeleteAliasInput) (*request.Request, *kms.DeleteAliasOutput)
 
 	DeleteAlias(*kms.DeleteAliasInput) (*kms.DeleteAliasOutput, error)
 
-	DescribeKeyRequest(*kms.DescribeKeyInput) (*service.Request, *kms.DescribeKeyOutput)
+	DescribeKeyRequest(*kms.DescribeKeyInput) (*request.Request, *kms.DescribeKeyOutput)
 
 	DescribeKey(*kms.DescribeKeyInput) (*kms.DescribeKeyOutput, error)
 
-	DisableKeyRequest(*kms.DisableKeyInput) (*service.Request, *kms.DisableKeyOutput)
+	DisableKeyRequest(*kms.DisableKeyInput) (*request.Request, *kms.DisableKeyOutput)
 
 	DisableKey(*kms.DisableKeyInput) (*kms.DisableKeyOutput, error)
 
-	DisableKeyRotationRequest(*kms.DisableKeyRotationInput) (*service.Request, *kms.DisableKeyRotationOutput)
+	DisableKeyRotationRequest(*kms.DisableKeyRotationInput) (*request.Request, *kms.DisableKeyRotationOutput)
 
 	DisableKeyRotation(*kms.DisableKeyRotationInput) (*kms.DisableKeyRotationOutput, error)
 
-	EnableKeyRequest(*kms.EnableKeyInput) (*service.Request, *kms.EnableKeyOutput)
+	EnableKeyRequest(*kms.EnableKeyInput) (*request.Request, *kms.EnableKeyOutput)
 
 	EnableKey(*kms.EnableKeyInput) (*kms.EnableKeyOutput, error)
 
-	EnableKeyRotationRequest(*kms.EnableKeyRotationInput) (*service.Request, *kms.EnableKeyRotationOutput)
+	EnableKeyRotationRequest(*kms.EnableKeyRotationInput) (*request.Request, *kms.EnableKeyRotationOutput)
 
 	EnableKeyRotation(*kms.EnableKeyRotationInput) (*kms.EnableKeyRotationOutput, error)
 
-	EncryptRequest(*kms.EncryptInput) (*service.Request, *kms.EncryptOutput)
+	EncryptRequest(*kms.EncryptInput) (*request.Request, *kms.EncryptOutput)
 
 	Encrypt(*kms.EncryptInput) (*kms.EncryptOutput, error)
 
-	GenerateDataKeyRequest(*kms.GenerateDataKeyInput) (*service.Request, *kms.GenerateDataKeyOutput)
+	GenerateDataKeyRequest(*kms.GenerateDataKeyInput) (*request.Request, *kms.GenerateDataKeyOutput)
 
 	GenerateDataKey(*kms.GenerateDataKeyInput) (*kms.GenerateDataKeyOutput, error)
 
-	GenerateDataKeyWithoutPlaintextRequest(*kms.GenerateDataKeyWithoutPlaintextInput) (*service.Request, *kms.GenerateDataKeyWithoutPlaintextOutput)
+	GenerateDataKeyWithoutPlaintextRequest(*kms.GenerateDataKeyWithoutPlaintextInput) (*request.Request, *kms.GenerateDataKeyWithoutPlaintextOutput)
 
 	GenerateDataKeyWithoutPlaintext(*kms.GenerateDataKeyWithoutPlaintextInput) (*kms.GenerateDataKeyWithoutPlaintextOutput, error)
 
-	GenerateRandomRequest(*kms.GenerateRandomInput) (*service.Request, *kms.GenerateRandomOutput)
+	GenerateRandomRequest(*kms.GenerateRandomInput) (*request.Request, *kms.GenerateRandomOutput)
 
 	GenerateRandom(*kms.GenerateRandomInput) (*kms.GenerateRandomOutput, error)
 
-	GetKeyPolicyRequest(*kms.GetKeyPolicyInput) (*service.Request, *kms.GetKeyPolicyOutput)
+	GetKeyPolicyRequest(*kms.GetKeyPolicyInput) (*request.Request, *kms.GetKeyPolicyOutput)
 
 	GetKeyPolicy(*kms.GetKeyPolicyInput) (*kms.GetKeyPolicyOutput, error)
 
-	GetKeyRotationStatusRequest(*kms.GetKeyRotationStatusInput) (*service.Request, *kms.GetKeyRotationStatusOutput)
+	GetKeyRotationStatusRequest(*kms.GetKeyRotationStatusInput) (*request.Request, *kms.GetKeyRotationStatusOutput)
 
 	GetKeyRotationStatus(*kms.GetKeyRotationStatusInput) (*kms.GetKeyRotationStatusOutput, error)
 
-	ListAliasesRequest(*kms.ListAliasesInput) (*service.Request, *kms.ListAliasesOutput)
+	ListAliasesRequest(*kms.ListAliasesInput) (*request.Request, *kms.ListAliasesOutput)
 
 	ListAliases(*kms.ListAliasesInput) (*kms.ListAliasesOutput, error)
 
 	ListAliasesPages(*kms.ListAliasesInput, func(*kms.ListAliasesOutput, bool) bool) error
 
-	ListGrantsRequest(*kms.ListGrantsInput) (*service.Request, *kms.ListGrantsOutput)
+	ListGrantsRequest(*kms.ListGrantsInput) (*request.Request, *kms.ListGrantsOutput)
 
 	ListGrants(*kms.ListGrantsInput) (*kms.ListGrantsOutput, error)
 
 	ListGrantsPages(*kms.ListGrantsInput, func(*kms.ListGrantsOutput, bool) bool) error
 
-	ListKeyPoliciesRequest(*kms.ListKeyPoliciesInput) (*service.Request, *kms.ListKeyPoliciesOutput)
+	ListKeyPoliciesRequest(*kms.ListKeyPoliciesInput) (*request.Request, *kms.ListKeyPoliciesOutput)
 
 	ListKeyPolicies(*kms.ListKeyPoliciesInput) (*kms.ListKeyPoliciesOutput, error)
 
 	ListKeyPoliciesPages(*kms.ListKeyPoliciesInput, func(*kms.ListKeyPoliciesOutput, bool) bool) error
 
-	ListKeysRequest(*kms.ListKeysInput) (*service.Request, *kms.ListKeysOutput)
+	ListKeysRequest(*kms.ListKeysInput) (*request.Request, *kms.ListKeysOutput)
 
 	ListKeys(*kms.ListKeysInput) (*kms.ListKeysOutput, error)
 
 	ListKeysPages(*kms.ListKeysInput, func(*kms.ListKeysOutput, bool) bool) error
 
-	PutKeyPolicyRequest(*kms.PutKeyPolicyInput) (*service.Request, *kms.PutKeyPolicyOutput)
+	PutKeyPolicyRequest(*kms.PutKeyPolicyInput) (*request.Request, *kms.PutKeyPolicyOutput)
 
 	PutKeyPolicy(*kms.PutKeyPolicyInput) (*kms.PutKeyPolicyOutput, error)
 
-	ReEncryptRequest(*kms.ReEncryptInput) (*service.Request, *kms.ReEncryptOutput)
+	ReEncryptRequest(*kms.ReEncryptInput) (*request.Request, *kms.ReEncryptOutput)
 
 	ReEncrypt(*kms.ReEncryptInput) (*kms.ReEncryptOutput, error)
 
-	RetireGrantRequest(*kms.RetireGrantInput) (*service.Request, *kms.RetireGrantOutput)
+	RetireGrantRequest(*kms.RetireGrantInput) (*request.Request, *kms.RetireGrantOutput)
 
 	RetireGrant(*kms.RetireGrantInput) (*kms.RetireGrantOutput, error)
 
-	RevokeGrantRequest(*kms.RevokeGrantInput) (*service.Request, *kms.RevokeGrantOutput)
+	RevokeGrantRequest(*kms.RevokeGrantInput) (*request.Request, *kms.RevokeGrantOutput)
 
 	RevokeGrant(*kms.RevokeGrantInput) (*kms.RevokeGrantOutput, error)
 
-	UpdateAliasRequest(*kms.UpdateAliasInput) (*service.Request, *kms.UpdateAliasOutput)
+	UpdateAliasRequest(*kms.UpdateAliasInput) (*request.Request, *kms.UpdateAliasOutput)
 
 	UpdateAlias(*kms.UpdateAliasInput) (*kms.UpdateAliasOutput, error)
 
-	UpdateKeyDescriptionRequest(*kms.UpdateKeyDescriptionInput) (*service.Request, *kms.UpdateKeyDescriptionOutput)
+	UpdateKeyDescriptionRequest(*kms.UpdateKeyDescriptionInput) (*request.Request, *kms.UpdateKeyDescriptionOutput)
 
 	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, error)
 }

@@ -1,4 +1,4 @@
-package service
+package request
 
 import (
 	"bytes"
@@ -13,11 +13,13 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 )
 
 // A Request is the service request to be made.
 type Request struct {
-	*Service
+	Retryer
+	Service      serviceinfo.ServiceInfo
 	Handlers     Handlers
 	Time         time.Time
 	ExpireTime   time.Duration
@@ -25,7 +27,7 @@ type Request struct {
 	HTTPRequest  *http.Request
 	HTTPResponse *http.Response
 	Body         io.ReadSeeker
-	bodyStart    int64 // offset from beginning of Body that the request body starts
+	BodyStart    int64 // offset from beginning of Body that the request body starts
 	Params       interface{}
 	Error        error
 	Data         interface{}
@@ -53,13 +55,13 @@ type Paginator struct {
 	TruncationToken string
 }
 
-// NewRequest returns a new Request pointer for the service API
+// New returns a new Request pointer for the service API
 // operation and parameters.
 //
 // Params is any value of input parameters to be the request payload.
 // Data is pointer value to an object which the request's response
 // payload will be deserialized to.
-func NewRequest(service *Service, operation *Operation, params interface{}, data interface{}) *Request {
+func New(service serviceinfo.ServiceInfo, handlers Handlers, retryer Retryer, operation *Operation, params interface{}, data interface{}) *Request {
 	method := operation.HTTPMethod
 	if method == "" {
 		method = "POST"
@@ -73,8 +75,9 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 	httpReq.URL, _ = url.Parse(service.Endpoint + p)
 
 	r := &Request{
+		Retryer:     retryer,
 		Service:     service,
-		Handlers:    service.Handlers.copy(),
+		Handlers:    handlers.Copy(),
 		Time:        time.Now(),
 		ExpireTime:  0,
 		Operation:   operation,
@@ -91,7 +94,7 @@ func NewRequest(service *Service, operation *Operation, params interface{}, data
 
 // WillRetry returns if the request's can be retried.
 func (r *Request) WillRetry() bool {
-	return r.Error != nil && aws.BoolValue(r.Retryable) && r.RetryCount < r.Service.MaxRetries()
+	return r.Error != nil && aws.BoolValue(r.Retryable) && r.RetryCount < r.MaxRetries()
 }
 
 // ParamsFilled returns if the request's parameters have been populated
@@ -137,7 +140,7 @@ func (r *Request) Presign(expireTime time.Duration) (string, error) {
 }
 
 func debugLogReqError(r *Request, stage string, retrying bool, err error) {
-	if !r.Config.LogLevel.Matches(aws.LogDebugWithRequestErrors) {
+	if !r.Service.Config.LogLevel.Matches(aws.LogDebugWithRequestErrors) {
 		return
 	}
 
@@ -146,8 +149,8 @@ func debugLogReqError(r *Request, stage string, retrying bool, err error) {
 		retryStr = "will retry"
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf("DEBUG: %s %s/%s failed, %s, error %v",
-		stage, r.ServiceName, r.Operation.Name, retryStr, err))
+	r.Service.Config.Logger.Log(fmt.Sprintf("DEBUG: %s %s/%s failed, %s, error %v",
+		stage, r.Service.ServiceName, r.Operation.Name, retryStr, err))
 }
 
 // Build will build the request's object so it can be signed and sent
@@ -202,14 +205,14 @@ func (r *Request) Send() error {
 		}
 
 		if aws.BoolValue(r.Retryable) {
-			if r.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
-				r.Config.Logger.Log(fmt.Sprintf("DEBUG: Retrying Request %s/%s, attempt %d",
-					r.ServiceName, r.Operation.Name, r.RetryCount))
+			if r.Service.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
+				r.Service.Config.Logger.Log(fmt.Sprintf("DEBUG: Retrying Request %s/%s, attempt %d",
+					r.Service.ServiceName, r.Operation.Name, r.RetryCount))
 			}
 
 			// Re-seek the body back to the original point in for a retry so that
 			// send will send the body's contents again in the upcoming request.
-			r.Body.Seek(r.bodyStart, 0)
+			r.Body.Seek(r.BodyStart, 0)
 			r.HTTPRequest.Body = ioutil.NopCloser(r.Body)
 		}
 		r.Retryable = nil
@@ -312,7 +315,7 @@ func (r *Request) NextPage() *Request {
 	}
 
 	data := reflect.New(reflect.TypeOf(r.Data).Elem()).Interface()
-	nr := NewRequest(r.Service, r.Operation, awsutil.CopyOf(r.Params), data)
+	nr := New(r.Service, r.Handlers, r.Retryer, r.Operation, awsutil.CopyOf(r.Params), data)
 	for i, intok := range nr.Operation.InputTokens {
 		awsutil.SetValueAtAnyPath(nr.Params, intok, tokens[i])
 	}

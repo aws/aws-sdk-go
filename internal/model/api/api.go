@@ -208,7 +208,7 @@ func (a *API) APIGoCode() string {
 	a.resetImports()
 	delete(a.imports, "github.com/aws/aws-sdk-go/aws")
 	a.imports["github.com/aws/aws-sdk-go/aws/awsutil"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/service"] = true
+	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
 	var buf bytes.Buffer
 	err := tplAPI.Execute(&buf, a)
 	if err != nil {
@@ -229,19 +229,21 @@ var tplService = template.Must(template.New("service").Parse(`
 var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*service.Request)
+var initRequest func(*request.Request)
 {{ end }}
 
 // New returns a new {{ .StructName }} client.
 func New(config *aws.Config) *{{ .StructName }} {
 	service := &service.Service{
-		Config:       defaults.DefaultConfig.Merge(config),
-		ServiceName:  "{{ .Metadata.EndpointPrefix }}",{{ if ne .Metadata.SigningName "" }}
-		SigningName:  "{{ .Metadata.SigningName }}",{{ end }}
-		APIVersion:   "{{ .Metadata.APIVersion }}",
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:       defaults.DefaultConfig.Merge(config),
+			ServiceName:  "{{ .Metadata.EndpointPrefix }}",{{ if ne .Metadata.SigningName "" }}
+			SigningName:  "{{ .Metadata.SigningName }}",{{ end }}
+			APIVersion:   "{{ .Metadata.APIVersion }}",
 {{ if eq .Metadata.Protocol "json" }}JSONVersion:  "{{ .Metadata.JSONVersion }}",
-		TargetPrefix: "{{ .Metadata.TargetPrefix }}",
+			TargetPrefix: "{{ .Metadata.TargetPrefix }}",
 {{ end }}
+		},
   }
 	service.Initialize()
 
@@ -263,8 +265,8 @@ func New(config *aws.Config) *{{ .StructName }} {
 
 // newRequest creates a new request for a {{ .StructName }} operation and runs any
 // custom request initialization.
-func (c *{{ .StructName }}) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *{{ .StructName }}) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	{{ if .UseInitMethods }}// Run custom request initialization if present
 	if initRequest != nil {
@@ -281,7 +283,9 @@ func (a *API) ServiceGoCode() string {
 	a.resetImports()
 	a.imports["github.com/aws/aws-sdk-go/aws"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/defaults"] = true
+	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/service"] = true
+	a.imports["github.com/aws/aws-sdk-go/aws/service/serviceinfo"] = true
 	a.imports["github.com/aws/aws-sdk-go/internal/signer/v4"] = true
 	a.imports["github.com/aws/aws-sdk-go/internal/protocol/"+a.ProtocolPackage()] = true
 
@@ -330,7 +334,7 @@ type {{ .StructName }}API interface {
 func (a *API) InterfaceGoCode() string {
 	a.resetImports()
 	a.imports = map[string]bool{
-		"github.com/aws/aws-sdk-go/aws/service":                true,
+		"github.com/aws/aws-sdk-go/aws/request":                true,
 		"github.com/aws/aws-sdk-go/service/" + a.PackageName(): true,
 	}
 

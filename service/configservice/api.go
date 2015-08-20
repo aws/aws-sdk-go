@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 
 // DeleteDeliveryChannelRequest generates a request for the DeleteDeliveryChannel operation.
-func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *service.Request, output *DeleteDeliveryChannelOutput) {
-	op := &service.Operation{
+func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *request.Request, output *DeleteDeliveryChannelOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDeliveryChannel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -45,8 +45,8 @@ func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput)
 const opDeliverConfigSnapshot = "DeliverConfigSnapshot"
 
 // DeliverConfigSnapshotRequest generates a request for the DeliverConfigSnapshot operation.
-func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapshotInput) (req *service.Request, output *DeliverConfigSnapshotOutput) {
-	op := &service.Operation{
+func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapshotInput) (req *request.Request, output *DeliverConfigSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opDeliverConfigSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -78,8 +78,8 @@ func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput)
 const opDescribeConfigurationRecorderStatus = "DescribeConfigurationRecorderStatus"
 
 // DescribeConfigurationRecorderStatusRequest generates a request for the DescribeConfigurationRecorderStatus operation.
-func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *DescribeConfigurationRecorderStatusInput) (req *service.Request, output *DescribeConfigurationRecorderStatusOutput) {
-	op := &service.Operation{
+func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *DescribeConfigurationRecorderStatusInput) (req *request.Request, output *DescribeConfigurationRecorderStatusOutput) {
+	op := &request.Operation{
 		Name:       opDescribeConfigurationRecorderStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -109,8 +109,8 @@ func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfi
 const opDescribeConfigurationRecorders = "DescribeConfigurationRecorders"
 
 // DescribeConfigurationRecordersRequest generates a request for the DescribeConfigurationRecorders operation.
-func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeConfigurationRecordersInput) (req *service.Request, output *DescribeConfigurationRecordersOutput) {
-	op := &service.Operation{
+func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeConfigurationRecordersInput) (req *request.Request, output *DescribeConfigurationRecordersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeConfigurationRecorders,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -140,8 +140,8 @@ func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurat
 const opDescribeDeliveryChannelStatus = "DescribeDeliveryChannelStatus"
 
 // DescribeDeliveryChannelStatusRequest generates a request for the DescribeDeliveryChannelStatus operation.
-func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeliveryChannelStatusInput) (req *service.Request, output *DescribeDeliveryChannelStatusOutput) {
-	op := &service.Operation{
+func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeliveryChannelStatusInput) (req *request.Request, output *DescribeDeliveryChannelStatusOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDeliveryChannelStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -171,8 +171,8 @@ func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryCha
 const opDescribeDeliveryChannels = "DescribeDeliveryChannels"
 
 // DescribeDeliveryChannelsRequest generates a request for the DescribeDeliveryChannels operation.
-func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryChannelsInput) (req *service.Request, output *DescribeDeliveryChannelsOutput) {
-	op := &service.Operation{
+func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryChannelsInput) (req *request.Request, output *DescribeDeliveryChannelsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDeliveryChannels,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -202,12 +202,12 @@ func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannels
 const opGetResourceConfigHistory = "GetResourceConfigHistory"
 
 // GetResourceConfigHistoryRequest generates a request for the GetResourceConfigHistory operation.
-func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfigHistoryInput) (req *service.Request, output *GetResourceConfigHistoryOutput) {
-	op := &service.Operation{
+func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfigHistoryInput) (req *request.Request, output *GetResourceConfigHistoryOutput) {
+	op := &request.Operation{
 		Name:       opGetResourceConfigHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "limit",
@@ -250,8 +250,8 @@ func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHi
 const opPutConfigurationRecorder = "PutConfigurationRecorder"
 
 // PutConfigurationRecorderRequest generates a request for the PutConfigurationRecorder operation.
-func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *service.Request, output *PutConfigurationRecorderOutput) {
-	op := &service.Operation{
+func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *request.Request, output *PutConfigurationRecorderOutput) {
+	op := &request.Operation{
 		Name:       opPutConfigurationRecorder,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -286,8 +286,8 @@ func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorder
 const opPutDeliveryChannel = "PutDeliveryChannel"
 
 // PutDeliveryChannelRequest generates a request for the PutDeliveryChannel operation.
-func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *service.Request, output *PutDeliveryChannelOutput) {
-	op := &service.Operation{
+func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *request.Request, output *PutDeliveryChannelOutput) {
+	op := &request.Operation{
 		Name:       opPutDeliveryChannel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -323,8 +323,8 @@ func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*Put
 const opStartConfigurationRecorder = "StartConfigurationRecorder"
 
 // StartConfigurationRecorderRequest generates a request for the StartConfigurationRecorder operation.
-func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *service.Request, output *StartConfigurationRecorderOutput) {
-	op := &service.Operation{
+func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *request.Request, output *StartConfigurationRecorderOutput) {
+	op := &request.Operation{
 		Name:       opStartConfigurationRecorder,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -354,8 +354,8 @@ func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationReco
 const opStopConfigurationRecorder = "StopConfigurationRecorder"
 
 // StopConfigurationRecorderRequest generates a request for the StopConfigurationRecorder operation.
-func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *service.Request, output *StopConfigurationRecorderOutput) {
-	op := &service.Operation{
+func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *request.Request, output *StopConfigurationRecorderOutput) {
+	op := &request.Operation{
 		Name:       opStopConfigurationRecorder,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -44,12 +44,12 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 
 // {{ .ExportedName }}Request generates a request for the {{ .ExportedName }} operation.
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
-	`input {{ .InputRef.GoType }}) (req *service.Request, output {{ .OutputRef.GoType }}) {
-	op := &service.Operation{
+	`input {{ .InputRef.GoType }}) (req *request.Request, output {{ .OutputRef.GoType }}) {
+	op := &request.Operation{
 		Name:       op{{ .ExportedName }},
 		{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 		{{ end }}{{ if ne .HTTP.RequestURI "" }}HTTPPath:   "{{ .HTTP.RequestURI }}",
-		{{ end }}{{ if .Paginator }}Paginator: &service.Paginator{
+		{{ end }}{{ if .Paginator }}Paginator: &request.Paginator{
 				InputTokens: {{ .Paginator.InputTokensString }},
 				OutputTokens: {{ .Paginator.OutputTokensString }},
 				LimitToken: "{{ .Paginator.LimitKey }}",
@@ -99,7 +99,7 @@ func (o *Operation) GoCode() string {
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.
 var tplInfSig = template.Must(template.New("opsig").Parse(`
-{{ .ExportedName }}Request({{ .InputRef.GoTypeWithPkgName }}) (*service.Request, {{ .OutputRef.GoTypeWithPkgName }})
+{{ .ExportedName }}Request({{ .InputRef.GoTypeWithPkgName }}) (*request.Request, {{ .OutputRef.GoTypeWithPkgName }})
 
 {{ .ExportedName }}({{ .InputRef.GoTypeWithPkgName }}) ({{ .OutputRef.GoTypeWithPkgName }}, error)
 {{ if .Paginator }}

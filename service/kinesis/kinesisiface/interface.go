@@ -4,65 +4,65 @@
 package kinesisiface
 
 import (
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/kinesis"
 )
 
 // KinesisAPI is the interface type for kinesis.Kinesis.
 type KinesisAPI interface {
-	AddTagsToStreamRequest(*kinesis.AddTagsToStreamInput) (*service.Request, *kinesis.AddTagsToStreamOutput)
+	AddTagsToStreamRequest(*kinesis.AddTagsToStreamInput) (*request.Request, *kinesis.AddTagsToStreamOutput)
 
 	AddTagsToStream(*kinesis.AddTagsToStreamInput) (*kinesis.AddTagsToStreamOutput, error)
 
-	CreateStreamRequest(*kinesis.CreateStreamInput) (*service.Request, *kinesis.CreateStreamOutput)
+	CreateStreamRequest(*kinesis.CreateStreamInput) (*request.Request, *kinesis.CreateStreamOutput)
 
 	CreateStream(*kinesis.CreateStreamInput) (*kinesis.CreateStreamOutput, error)
 
-	DeleteStreamRequest(*kinesis.DeleteStreamInput) (*service.Request, *kinesis.DeleteStreamOutput)
+	DeleteStreamRequest(*kinesis.DeleteStreamInput) (*request.Request, *kinesis.DeleteStreamOutput)
 
 	DeleteStream(*kinesis.DeleteStreamInput) (*kinesis.DeleteStreamOutput, error)
 
-	DescribeStreamRequest(*kinesis.DescribeStreamInput) (*service.Request, *kinesis.DescribeStreamOutput)
+	DescribeStreamRequest(*kinesis.DescribeStreamInput) (*request.Request, *kinesis.DescribeStreamOutput)
 
 	DescribeStream(*kinesis.DescribeStreamInput) (*kinesis.DescribeStreamOutput, error)
 
 	DescribeStreamPages(*kinesis.DescribeStreamInput, func(*kinesis.DescribeStreamOutput, bool) bool) error
 
-	GetRecordsRequest(*kinesis.GetRecordsInput) (*service.Request, *kinesis.GetRecordsOutput)
+	GetRecordsRequest(*kinesis.GetRecordsInput) (*request.Request, *kinesis.GetRecordsOutput)
 
 	GetRecords(*kinesis.GetRecordsInput) (*kinesis.GetRecordsOutput, error)
 
-	GetShardIteratorRequest(*kinesis.GetShardIteratorInput) (*service.Request, *kinesis.GetShardIteratorOutput)
+	GetShardIteratorRequest(*kinesis.GetShardIteratorInput) (*request.Request, *kinesis.GetShardIteratorOutput)
 
 	GetShardIterator(*kinesis.GetShardIteratorInput) (*kinesis.GetShardIteratorOutput, error)
 
-	ListStreamsRequest(*kinesis.ListStreamsInput) (*service.Request, *kinesis.ListStreamsOutput)
+	ListStreamsRequest(*kinesis.ListStreamsInput) (*request.Request, *kinesis.ListStreamsOutput)
 
 	ListStreams(*kinesis.ListStreamsInput) (*kinesis.ListStreamsOutput, error)
 
 	ListStreamsPages(*kinesis.ListStreamsInput, func(*kinesis.ListStreamsOutput, bool) bool) error
 
-	ListTagsForStreamRequest(*kinesis.ListTagsForStreamInput) (*service.Request, *kinesis.ListTagsForStreamOutput)
+	ListTagsForStreamRequest(*kinesis.ListTagsForStreamInput) (*request.Request, *kinesis.ListTagsForStreamOutput)
 
 	ListTagsForStream(*kinesis.ListTagsForStreamInput) (*kinesis.ListTagsForStreamOutput, error)
 
-	MergeShardsRequest(*kinesis.MergeShardsInput) (*service.Request, *kinesis.MergeShardsOutput)
+	MergeShardsRequest(*kinesis.MergeShardsInput) (*request.Request, *kinesis.MergeShardsOutput)
 
 	MergeShards(*kinesis.MergeShardsInput) (*kinesis.MergeShardsOutput, error)
 
-	PutRecordRequest(*kinesis.PutRecordInput) (*service.Request, *kinesis.PutRecordOutput)
+	PutRecordRequest(*kinesis.PutRecordInput) (*request.Request, *kinesis.PutRecordOutput)
 
 	PutRecord(*kinesis.PutRecordInput) (*kinesis.PutRecordOutput, error)
 
-	PutRecordsRequest(*kinesis.PutRecordsInput) (*service.Request, *kinesis.PutRecordsOutput)
+	PutRecordsRequest(*kinesis.PutRecordsInput) (*request.Request, *kinesis.PutRecordsOutput)
 
 	PutRecords(*kinesis.PutRecordsInput) (*kinesis.PutRecordsOutput, error)
 
-	RemoveTagsFromStreamRequest(*kinesis.RemoveTagsFromStreamInput) (*service.Request, *kinesis.RemoveTagsFromStreamOutput)
+	RemoveTagsFromStreamRequest(*kinesis.RemoveTagsFromStreamInput) (*request.Request, *kinesis.RemoveTagsFromStreamOutput)
 
 	RemoveTagsFromStream(*kinesis.RemoveTagsFromStreamInput) (*kinesis.RemoveTagsFromStreamOutput, error)
 
-	SplitShardRequest(*kinesis.SplitShardInput) (*service.Request, *kinesis.SplitShardOutput)
+	SplitShardRequest(*kinesis.SplitShardInput) (*request.Request, *kinesis.SplitShardOutput)
 
 	SplitShard(*kinesis.SplitShardInput) (*kinesis.SplitShardOutput, error)
 }

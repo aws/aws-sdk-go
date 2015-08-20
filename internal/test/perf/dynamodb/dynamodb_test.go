@@ -3,15 +3,15 @@
 package dynamodb
 
 import (
+	"io"
+	"net/http"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-	"io"
-	"net/http"
 )
 
 type noopReadCloser struct{}
@@ -27,6 +27,7 @@ var noopBody = &noopReadCloser{}
 
 func BenchmarkPutItem(b *testing.B) {
 	cfg := aws.Config{
+		Region:      aws.String("us-east-1"),
 		DisableSSL:  aws.Bool(true),
 		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", ""),
 	}
@@ -35,7 +36,7 @@ func BenchmarkPutItem(b *testing.B) {
 
 	svc := dynamodb.New(&cfg)
 	svc.Handlers.Send.Clear()
-	svc.Handlers.Send.PushBack(func(r *service.Request) {
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse = &http.Response{
 			StatusCode: http.StatusOK,
 			Status:     http.StatusText(http.StatusOK),

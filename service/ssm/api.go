@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateAssociation = "CreateAssociation"
 
 // CreateAssociationRequest generates a request for the CreateAssociation operation.
-func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *service.Request, output *CreateAssociationOutput) {
-	op := &service.Operation{
+func (c *SSM) CreateAssociationRequest(input *CreateAssociationInput) (req *request.Request, output *CreateAssociationOutput) {
+	op := &request.Operation{
 		Name:       opCreateAssociation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -48,8 +48,8 @@ func (c *SSM) CreateAssociation(input *CreateAssociationInput) (*CreateAssociati
 const opCreateAssociationBatch = "CreateAssociationBatch"
 
 // CreateAssociationBatchRequest generates a request for the CreateAssociationBatch operation.
-func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) (req *service.Request, output *CreateAssociationBatchOutput) {
-	op := &service.Operation{
+func (c *SSM) CreateAssociationBatchRequest(input *CreateAssociationBatchInput) (req *request.Request, output *CreateAssociationBatchOutput) {
+	op := &request.Operation{
 		Name:       opCreateAssociationBatch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -83,8 +83,8 @@ func (c *SSM) CreateAssociationBatch(input *CreateAssociationBatchInput) (*Creat
 const opCreateDocument = "CreateDocument"
 
 // CreateDocumentRequest generates a request for the CreateDocument operation.
-func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *service.Request, output *CreateDocumentOutput) {
-	op := &service.Operation{
+func (c *SSM) CreateDocumentRequest(input *CreateDocumentInput) (req *request.Request, output *CreateDocumentOutput) {
+	op := &request.Operation{
 		Name:       opCreateDocument,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -113,8 +113,8 @@ func (c *SSM) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutput,
 const opDeleteAssociation = "DeleteAssociation"
 
 // DeleteAssociationRequest generates a request for the DeleteAssociation operation.
-func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *service.Request, output *DeleteAssociationOutput) {
-	op := &service.Operation{
+func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *request.Request, output *DeleteAssociationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAssociation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -146,8 +146,8 @@ func (c *SSM) DeleteAssociation(input *DeleteAssociationInput) (*DeleteAssociati
 const opDeleteDocument = "DeleteDocument"
 
 // DeleteDocumentRequest generates a request for the DeleteDocument operation.
-func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *service.Request, output *DeleteDocumentOutput) {
-	op := &service.Operation{
+func (c *SSM) DeleteDocumentRequest(input *DeleteDocumentInput) (req *request.Request, output *DeleteDocumentOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDocument,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -176,8 +176,8 @@ func (c *SSM) DeleteDocument(input *DeleteDocumentInput) (*DeleteDocumentOutput,
 const opDescribeAssociation = "DescribeAssociation"
 
 // DescribeAssociationRequest generates a request for the DescribeAssociation operation.
-func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *service.Request, output *DescribeAssociationOutput) {
-	op := &service.Operation{
+func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *request.Request, output *DescribeAssociationOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAssociation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -203,8 +203,8 @@ func (c *SSM) DescribeAssociation(input *DescribeAssociationInput) (*DescribeAss
 const opDescribeDocument = "DescribeDocument"
 
 // DescribeDocumentRequest generates a request for the DescribeDocument operation.
-func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *service.Request, output *DescribeDocumentOutput) {
-	op := &service.Operation{
+func (c *SSM) DescribeDocumentRequest(input *DescribeDocumentInput) (req *request.Request, output *DescribeDocumentOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDocument,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -230,8 +230,8 @@ func (c *SSM) DescribeDocument(input *DescribeDocumentInput) (*DescribeDocumentO
 const opGetDocument = "GetDocument"
 
 // GetDocumentRequest generates a request for the GetDocument operation.
-func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *service.Request, output *GetDocumentOutput) {
-	op := &service.Operation{
+func (c *SSM) GetDocumentRequest(input *GetDocumentInput) (req *request.Request, output *GetDocumentOutput) {
+	op := &request.Operation{
 		Name:       opGetDocument,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -257,8 +257,8 @@ func (c *SSM) GetDocument(input *GetDocumentInput) (*GetDocumentOutput, error) {
 const opListAssociations = "ListAssociations"
 
 // ListAssociationsRequest generates a request for the ListAssociations operation.
-func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *service.Request, output *ListAssociationsOutput) {
-	op := &service.Operation{
+func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *request.Request, output *ListAssociationsOutput) {
+	op := &request.Operation{
 		Name:       opListAssociations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -284,8 +284,8 @@ func (c *SSM) ListAssociations(input *ListAssociationsInput) (*ListAssociationsO
 const opListDocuments = "ListDocuments"
 
 // ListDocumentsRequest generates a request for the ListDocuments operation.
-func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *service.Request, output *ListDocumentsOutput) {
-	op := &service.Operation{
+func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Request, output *ListDocumentsOutput) {
+	op := &request.Operation{
 		Name:       opListDocuments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -311,8 +311,8 @@ func (c *SSM) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput, er
 const opUpdateAssociationStatus = "UpdateAssociationStatus"
 
 // UpdateAssociationStatusRequest generates a request for the UpdateAssociationStatus operation.
-func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput) (req *service.Request, output *UpdateAssociationStatusOutput) {
-	op := &service.Operation{
+func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput) (req *request.Request, output *UpdateAssociationStatusOutput) {
+	op := &request.Operation{
 		Name:       opUpdateAssociationStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

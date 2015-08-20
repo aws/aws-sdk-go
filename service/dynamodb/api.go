@@ -7,18 +7,18 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opBatchGetItem = "BatchGetItem"
 
 // BatchGetItemRequest generates a request for the BatchGetItem operation.
-func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *service.Request, output *BatchGetItemOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.Request, output *BatchGetItemOutput) {
+	op := &request.Operation{
 		Name:       opBatchGetItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"RequestItems"},
 			OutputTokens:    []string{"UnprocessedKeys"},
 			LimitToken:      "",
@@ -101,8 +101,8 @@ func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(p *BatchG
 const opBatchWriteItem = "BatchWriteItem"
 
 // BatchWriteItemRequest generates a request for the BatchWriteItem operation.
-func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *service.Request, output *BatchWriteItemOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *request.Request, output *BatchWriteItemOutput) {
+	op := &request.Operation{
 		Name:       opBatchWriteItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -196,8 +196,8 @@ func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (*BatchWriteItemOu
 const opCreateTable = "CreateTable"
 
 // CreateTableRequest generates a request for the CreateTable operation.
-func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *service.Request, output *CreateTableOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Request, output *CreateTableOutput) {
+	op := &request.Operation{
 		Name:       opCreateTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -237,8 +237,8 @@ func (c *DynamoDB) CreateTable(input *CreateTableInput) (*CreateTableOutput, err
 const opDeleteItem = "DeleteItem"
 
 // DeleteItemRequest generates a request for the DeleteItem operation.
-func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *service.Request, output *DeleteItemOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Request, output *DeleteItemOutput) {
+	op := &request.Operation{
 		Name:       opDeleteItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -277,8 +277,8 @@ func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (*DeleteItemOutput, error)
 const opDeleteTable = "DeleteTable"
 
 // DeleteTableRequest generates a request for the DeleteTable operation.
-func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *service.Request, output *DeleteTableOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Request, output *DeleteTableOutput) {
+	op := &request.Operation{
 		Name:       opDeleteTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -321,8 +321,8 @@ func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, err
 const opDescribeTable = "DescribeTable"
 
 // DescribeTableRequest generates a request for the DescribeTable operation.
-func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *service.Request, output *DescribeTableOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request.Request, output *DescribeTableOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -356,8 +356,8 @@ func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (*DescribeTableOutpu
 const opGetItem = "GetItem"
 
 // GetItemRequest generates a request for the GetItem operation.
-func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *service.Request, output *GetItemOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, output *GetItemOutput) {
+	op := &request.Operation{
 		Name:       opGetItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -389,12 +389,12 @@ func (c *DynamoDB) GetItem(input *GetItemInput) (*GetItemOutput, error) {
 const opListTables = "ListTables"
 
 // ListTablesRequest generates a request for the ListTables operation.
-func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *service.Request, output *ListTablesOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Request, output *ListTablesOutput) {
+	op := &request.Operation{
 		Name:       opListTables,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartTableName"},
 			OutputTokens:    []string{"LastEvaluatedTableName"},
 			LimitToken:      "Limit",
@@ -431,8 +431,8 @@ func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTables
 const opPutItem = "PutItem"
 
 // PutItemRequest generates a request for the PutItem operation.
-func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *service.Request, output *PutItemOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, output *PutItemOutput) {
+	op := &request.Operation{
 		Name:       opPutItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -482,12 +482,12 @@ func (c *DynamoDB) PutItem(input *PutItemInput) (*PutItemOutput, error) {
 const opQuery = "Query"
 
 // QueryRequest generates a request for the Query operation.
-func (c *DynamoDB) QueryRequest(input *QueryInput) (req *service.Request, output *QueryOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output *QueryOutput) {
+	op := &request.Operation{
 		Name:       opQuery,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartKey"},
 			OutputTokens:    []string{"LastEvaluatedKey"},
 			LimitToken:      "Limit",
@@ -546,12 +546,12 @@ func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPag
 const opScan = "Scan"
 
 // ScanRequest generates a request for the Scan operation.
-func (c *DynamoDB) ScanRequest(input *ScanInput) (req *service.Request, output *ScanOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *ScanOutput) {
+	op := &request.Operation{
 		Name:       opScan,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartKey"},
 			OutputTokens:    []string{"LastEvaluatedKey"},
 			LimitToken:      "Limit",
@@ -604,8 +604,8 @@ func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage b
 const opUpdateItem = "UpdateItem"
 
 // UpdateItemRequest generates a request for the UpdateItem operation.
-func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *service.Request, output *UpdateItemOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Request, output *UpdateItemOutput) {
+	op := &request.Operation{
 		Name:       opUpdateItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -640,8 +640,8 @@ func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (*UpdateItemOutput, error)
 const opUpdateTable = "UpdateTable"
 
 // UpdateTableRequest generates a request for the UpdateTable operation.
-func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *service.Request, output *UpdateTableOutput) {
-	op := &service.Operation{
+func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Request, output *UpdateTableOutput) {
+	op := &request.Operation{
 		Name:       opUpdateTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

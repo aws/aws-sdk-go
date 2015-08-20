@@ -5,14 +5,14 @@ package support
 
 import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddAttachmentsToSet = "AddAttachmentsToSet"
 
 // AddAttachmentsToSetRequest generates a request for the AddAttachmentsToSet operation.
-func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (req *service.Request, output *AddAttachmentsToSetOutput) {
-	op := &service.Operation{
+func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (req *request.Request, output *AddAttachmentsToSetOutput) {
+	op := &request.Operation{
 		Name:       opAddAttachmentsToSet,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -47,8 +47,8 @@ func (c *Support) AddAttachmentsToSet(input *AddAttachmentsToSetInput) (*AddAtta
 const opAddCommunicationToCase = "AddCommunicationToCase"
 
 // AddCommunicationToCaseRequest generates a request for the AddCommunicationToCase operation.
-func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInput) (req *service.Request, output *AddCommunicationToCaseOutput) {
-	op := &service.Operation{
+func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInput) (req *request.Request, output *AddCommunicationToCaseOutput) {
+	op := &request.Operation{
 		Name:       opAddCommunicationToCase,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -81,8 +81,8 @@ func (c *Support) AddCommunicationToCase(input *AddCommunicationToCaseInput) (*A
 const opCreateCase = "CreateCase"
 
 // CreateCaseRequest generates a request for the CreateCase operation.
-func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *service.Request, output *CreateCaseOutput) {
-	op := &service.Operation{
+func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Request, output *CreateCaseOutput) {
+	op := &request.Operation{
 		Name:       opCreateCase,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -137,8 +137,8 @@ func (c *Support) CreateCase(input *CreateCaseInput) (*CreateCaseOutput, error) 
 const opDescribeAttachment = "DescribeAttachment"
 
 // DescribeAttachmentRequest generates a request for the DescribeAttachment operation.
-func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req *service.Request, output *DescribeAttachmentOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req *request.Request, output *DescribeAttachmentOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAttachment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -167,12 +167,12 @@ func (c *Support) DescribeAttachment(input *DescribeAttachmentInput) (*DescribeA
 const opDescribeCases = "DescribeCases"
 
 // DescribeCasesRequest generates a request for the DescribeCases operation.
-func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *service.Request, output *DescribeCasesOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.Request, output *DescribeCasesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCases,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -220,12 +220,12 @@ func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *Descr
 const opDescribeCommunications = "DescribeCommunications"
 
 // DescribeCommunicationsRequest generates a request for the DescribeCommunications operation.
-func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInput) (req *service.Request, output *DescribeCommunicationsOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInput) (req *request.Request, output *DescribeCommunicationsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCommunications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -269,8 +269,8 @@ func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput
 const opDescribeServices = "DescribeServices"
 
 // DescribeServicesRequest generates a request for the DescribeServices operation.
-func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *service.Request, output *DescribeServicesOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *request.Request, output *DescribeServicesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeServices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -306,8 +306,8 @@ func (c *Support) DescribeServices(input *DescribeServicesInput) (*DescribeServi
 const opDescribeSeverityLevels = "DescribeSeverityLevels"
 
 // DescribeSeverityLevelsRequest generates a request for the DescribeSeverityLevels operation.
-func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInput) (req *service.Request, output *DescribeSeverityLevelsOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInput) (req *request.Request, output *DescribeSeverityLevelsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeSeverityLevels,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -335,8 +335,8 @@ func (c *Support) DescribeSeverityLevels(input *DescribeSeverityLevelsInput) (*D
 const opDescribeTrustedAdvisorCheckRefreshStatuses = "DescribeTrustedAdvisorCheckRefreshStatuses"
 
 // DescribeTrustedAdvisorCheckRefreshStatusesRequest generates a request for the DescribeTrustedAdvisorCheckRefreshStatuses operation.
-func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (req *service.Request, output *DescribeTrustedAdvisorCheckRefreshStatusesOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *DescribeTrustedAdvisorCheckRefreshStatusesInput) (req *request.Request, output *DescribeTrustedAdvisorCheckRefreshStatusesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckRefreshStatuses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -363,8 +363,8 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatuses(input *DescribeTrus
 const opDescribeTrustedAdvisorCheckResult = "DescribeTrustedAdvisorCheckResult"
 
 // DescribeTrustedAdvisorCheckResultRequest generates a request for the DescribeTrustedAdvisorCheckResult operation.
-func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTrustedAdvisorCheckResultInput) (req *service.Request, output *DescribeTrustedAdvisorCheckResultOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTrustedAdvisorCheckResultInput) (req *request.Request, output *DescribeTrustedAdvisorCheckResultOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckResult,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -401,8 +401,8 @@ func (c *Support) DescribeTrustedAdvisorCheckResult(input *DescribeTrustedAdviso
 const opDescribeTrustedAdvisorCheckSummaries = "DescribeTrustedAdvisorCheckSummaries"
 
 // DescribeTrustedAdvisorCheckSummariesRequest generates a request for the DescribeTrustedAdvisorCheckSummaries operation.
-func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTrustedAdvisorCheckSummariesInput) (req *service.Request, output *DescribeTrustedAdvisorCheckSummariesOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTrustedAdvisorCheckSummariesInput) (req *request.Request, output *DescribeTrustedAdvisorCheckSummariesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorCheckSummaries,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -431,8 +431,8 @@ func (c *Support) DescribeTrustedAdvisorCheckSummaries(input *DescribeTrustedAdv
 const opDescribeTrustedAdvisorChecks = "DescribeTrustedAdvisorChecks"
 
 // DescribeTrustedAdvisorChecksRequest generates a request for the DescribeTrustedAdvisorChecks operation.
-func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvisorChecksInput) (req *service.Request, output *DescribeTrustedAdvisorChecksOutput) {
-	op := &service.Operation{
+func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvisorChecksInput) (req *request.Request, output *DescribeTrustedAdvisorChecksOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTrustedAdvisorChecks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -461,8 +461,8 @@ func (c *Support) DescribeTrustedAdvisorChecks(input *DescribeTrustedAdvisorChec
 const opRefreshTrustedAdvisorCheck = "RefreshTrustedAdvisorCheck"
 
 // RefreshTrustedAdvisorCheckRequest generates a request for the RefreshTrustedAdvisorCheck operation.
-func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisorCheckInput) (req *service.Request, output *RefreshTrustedAdvisorCheckOutput) {
-	op := &service.Operation{
+func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisorCheckInput) (req *request.Request, output *RefreshTrustedAdvisorCheckOutput) {
+	op := &request.Operation{
 		Name:       opRefreshTrustedAdvisorCheck,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -497,8 +497,8 @@ func (c *Support) RefreshTrustedAdvisorCheck(input *RefreshTrustedAdvisorCheckIn
 const opResolveCase = "ResolveCase"
 
 // ResolveCaseRequest generates a request for the ResolveCase operation.
-func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *service.Request, output *ResolveCaseOutput) {
-	op := &service.Operation{
+func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Request, output *ResolveCaseOutput) {
+	op := &request.Operation{
 		Name:       opResolveCase,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

@@ -7,14 +7,14 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateBatchPrediction = "CreateBatchPrediction"
 
 // CreateBatchPredictionRequest generates a request for the CreateBatchPrediction operation.
-func (c *MachineLearning) CreateBatchPredictionRequest(input *CreateBatchPredictionInput) (req *service.Request, output *CreateBatchPredictionOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateBatchPredictionRequest(input *CreateBatchPredictionInput) (req *request.Request, output *CreateBatchPredictionOutput) {
+	op := &request.Operation{
 		Name:       opCreateBatchPrediction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -53,8 +53,8 @@ func (c *MachineLearning) CreateBatchPrediction(input *CreateBatchPredictionInpu
 const opCreateDataSourceFromRDS = "CreateDataSourceFromRDS"
 
 // CreateDataSourceFromRDSRequest generates a request for the CreateDataSourceFromRDS operation.
-func (c *MachineLearning) CreateDataSourceFromRDSRequest(input *CreateDataSourceFromRDSInput) (req *service.Request, output *CreateDataSourceFromRDSOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateDataSourceFromRDSRequest(input *CreateDataSourceFromRDSInput) (req *request.Request, output *CreateDataSourceFromRDSOutput) {
+	op := &request.Operation{
 		Name:       opCreateDataSourceFromRDS,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -93,8 +93,8 @@ func (c *MachineLearning) CreateDataSourceFromRDS(input *CreateDataSourceFromRDS
 const opCreateDataSourceFromRedshift = "CreateDataSourceFromRedshift"
 
 // CreateDataSourceFromRedshiftRequest generates a request for the CreateDataSourceFromRedshift operation.
-func (c *MachineLearning) CreateDataSourceFromRedshiftRequest(input *CreateDataSourceFromRedshiftInput) (req *service.Request, output *CreateDataSourceFromRedshiftOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateDataSourceFromRedshiftRequest(input *CreateDataSourceFromRedshiftInput) (req *request.Request, output *CreateDataSourceFromRedshiftOutput) {
+	op := &request.Operation{
 		Name:       opCreateDataSourceFromRedshift,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -149,8 +149,8 @@ func (c *MachineLearning) CreateDataSourceFromRedshift(input *CreateDataSourceFr
 const opCreateDataSourceFromS3 = "CreateDataSourceFromS3"
 
 // CreateDataSourceFromS3Request generates a request for the CreateDataSourceFromS3 operation.
-func (c *MachineLearning) CreateDataSourceFromS3Request(input *CreateDataSourceFromS3Input) (req *service.Request, output *CreateDataSourceFromS3Output) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateDataSourceFromS3Request(input *CreateDataSourceFromS3Input) (req *request.Request, output *CreateDataSourceFromS3Output) {
+	op := &request.Operation{
 		Name:       opCreateDataSourceFromS3,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -205,8 +205,8 @@ func (c *MachineLearning) CreateDataSourceFromS3(input *CreateDataSourceFromS3In
 const opCreateEvaluation = "CreateEvaluation"
 
 // CreateEvaluationRequest generates a request for the CreateEvaluation operation.
-func (c *MachineLearning) CreateEvaluationRequest(input *CreateEvaluationInput) (req *service.Request, output *CreateEvaluationOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateEvaluationRequest(input *CreateEvaluationInput) (req *request.Request, output *CreateEvaluationOutput) {
+	op := &request.Operation{
 		Name:       opCreateEvaluation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -247,8 +247,8 @@ func (c *MachineLearning) CreateEvaluation(input *CreateEvaluationInput) (*Creat
 const opCreateMLModel = "CreateMLModel"
 
 // CreateMLModelRequest generates a request for the CreateMLModel operation.
-func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *service.Request, output *CreateMLModelOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateMLModelRequest(input *CreateMLModelInput) (req *request.Request, output *CreateMLModelOutput) {
+	op := &request.Operation{
 		Name:       opCreateMLModel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -290,8 +290,8 @@ func (c *MachineLearning) CreateMLModel(input *CreateMLModelInput) (*CreateMLMod
 const opCreateRealtimeEndpoint = "CreateRealtimeEndpoint"
 
 // CreateRealtimeEndpointRequest generates a request for the CreateRealtimeEndpoint operation.
-func (c *MachineLearning) CreateRealtimeEndpointRequest(input *CreateRealtimeEndpointInput) (req *service.Request, output *CreateRealtimeEndpointOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) CreateRealtimeEndpointRequest(input *CreateRealtimeEndpointInput) (req *request.Request, output *CreateRealtimeEndpointOutput) {
+	op := &request.Operation{
 		Name:       opCreateRealtimeEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -319,8 +319,8 @@ func (c *MachineLearning) CreateRealtimeEndpoint(input *CreateRealtimeEndpointIn
 const opDeleteBatchPrediction = "DeleteBatchPrediction"
 
 // DeleteBatchPredictionRequest generates a request for the DeleteBatchPrediction operation.
-func (c *MachineLearning) DeleteBatchPredictionRequest(input *DeleteBatchPredictionInput) (req *service.Request, output *DeleteBatchPredictionOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DeleteBatchPredictionRequest(input *DeleteBatchPredictionInput) (req *request.Request, output *DeleteBatchPredictionOutput) {
+	op := &request.Operation{
 		Name:       opDeleteBatchPrediction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -351,8 +351,8 @@ func (c *MachineLearning) DeleteBatchPrediction(input *DeleteBatchPredictionInpu
 const opDeleteDataSource = "DeleteDataSource"
 
 // DeleteDataSourceRequest generates a request for the DeleteDataSource operation.
-func (c *MachineLearning) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *service.Request, output *DeleteDataSourceOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *request.Request, output *DeleteDataSourceOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDataSource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -383,8 +383,8 @@ func (c *MachineLearning) DeleteDataSource(input *DeleteDataSourceInput) (*Delet
 const opDeleteEvaluation = "DeleteEvaluation"
 
 // DeleteEvaluationRequest generates a request for the DeleteEvaluation operation.
-func (c *MachineLearning) DeleteEvaluationRequest(input *DeleteEvaluationInput) (req *service.Request, output *DeleteEvaluationOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DeleteEvaluationRequest(input *DeleteEvaluationInput) (req *request.Request, output *DeleteEvaluationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteEvaluation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -415,8 +415,8 @@ func (c *MachineLearning) DeleteEvaluation(input *DeleteEvaluationInput) (*Delet
 const opDeleteMLModel = "DeleteMLModel"
 
 // DeleteMLModelRequest generates a request for the DeleteMLModel operation.
-func (c *MachineLearning) DeleteMLModelRequest(input *DeleteMLModelInput) (req *service.Request, output *DeleteMLModelOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DeleteMLModelRequest(input *DeleteMLModelInput) (req *request.Request, output *DeleteMLModelOutput) {
+	op := &request.Operation{
 		Name:       opDeleteMLModel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -447,8 +447,8 @@ func (c *MachineLearning) DeleteMLModel(input *DeleteMLModelInput) (*DeleteMLMod
 const opDeleteRealtimeEndpoint = "DeleteRealtimeEndpoint"
 
 // DeleteRealtimeEndpointRequest generates a request for the DeleteRealtimeEndpoint operation.
-func (c *MachineLearning) DeleteRealtimeEndpointRequest(input *DeleteRealtimeEndpointInput) (req *service.Request, output *DeleteRealtimeEndpointOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DeleteRealtimeEndpointRequest(input *DeleteRealtimeEndpointInput) (req *request.Request, output *DeleteRealtimeEndpointOutput) {
+	op := &request.Operation{
 		Name:       opDeleteRealtimeEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -474,12 +474,12 @@ func (c *MachineLearning) DeleteRealtimeEndpoint(input *DeleteRealtimeEndpointIn
 const opDescribeBatchPredictions = "DescribeBatchPredictions"
 
 // DescribeBatchPredictionsRequest generates a request for the DescribeBatchPredictions operation.
-func (c *MachineLearning) DescribeBatchPredictionsRequest(input *DescribeBatchPredictionsInput) (req *service.Request, output *DescribeBatchPredictionsOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DescribeBatchPredictionsRequest(input *DescribeBatchPredictionsInput) (req *request.Request, output *DescribeBatchPredictionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeBatchPredictions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "Limit",
@@ -515,12 +515,12 @@ func (c *MachineLearning) DescribeBatchPredictionsPages(input *DescribeBatchPred
 const opDescribeDataSources = "DescribeDataSources"
 
 // DescribeDataSourcesRequest generates a request for the DescribeDataSources operation.
-func (c *MachineLearning) DescribeDataSourcesRequest(input *DescribeDataSourcesInput) (req *service.Request, output *DescribeDataSourcesOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DescribeDataSourcesRequest(input *DescribeDataSourcesInput) (req *request.Request, output *DescribeDataSourcesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDataSources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "Limit",
@@ -555,12 +555,12 @@ func (c *MachineLearning) DescribeDataSourcesPages(input *DescribeDataSourcesInp
 const opDescribeEvaluations = "DescribeEvaluations"
 
 // DescribeEvaluationsRequest generates a request for the DescribeEvaluations operation.
-func (c *MachineLearning) DescribeEvaluationsRequest(input *DescribeEvaluationsInput) (req *service.Request, output *DescribeEvaluationsOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DescribeEvaluationsRequest(input *DescribeEvaluationsInput) (req *request.Request, output *DescribeEvaluationsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEvaluations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "Limit",
@@ -596,12 +596,12 @@ func (c *MachineLearning) DescribeEvaluationsPages(input *DescribeEvaluationsInp
 const opDescribeMLModels = "DescribeMLModels"
 
 // DescribeMLModelsRequest generates a request for the DescribeMLModels operation.
-func (c *MachineLearning) DescribeMLModelsRequest(input *DescribeMLModelsInput) (req *service.Request, output *DescribeMLModelsOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) DescribeMLModelsRequest(input *DescribeMLModelsInput) (req *request.Request, output *DescribeMLModelsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeMLModels,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &service.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "Limit",
@@ -636,8 +636,8 @@ func (c *MachineLearning) DescribeMLModelsPages(input *DescribeMLModelsInput, fn
 const opGetBatchPrediction = "GetBatchPrediction"
 
 // GetBatchPredictionRequest generates a request for the GetBatchPrediction operation.
-func (c *MachineLearning) GetBatchPredictionRequest(input *GetBatchPredictionInput) (req *service.Request, output *GetBatchPredictionOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) GetBatchPredictionRequest(input *GetBatchPredictionInput) (req *request.Request, output *GetBatchPredictionOutput) {
+	op := &request.Operation{
 		Name:       opGetBatchPrediction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -664,8 +664,8 @@ func (c *MachineLearning) GetBatchPrediction(input *GetBatchPredictionInput) (*G
 const opGetDataSource = "GetDataSource"
 
 // GetDataSourceRequest generates a request for the GetDataSource operation.
-func (c *MachineLearning) GetDataSourceRequest(input *GetDataSourceInput) (req *service.Request, output *GetDataSourceOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) GetDataSourceRequest(input *GetDataSourceInput) (req *request.Request, output *GetDataSourceOutput) {
+	op := &request.Operation{
 		Name:       opGetDataSource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -696,8 +696,8 @@ func (c *MachineLearning) GetDataSource(input *GetDataSourceInput) (*GetDataSour
 const opGetEvaluation = "GetEvaluation"
 
 // GetEvaluationRequest generates a request for the GetEvaluation operation.
-func (c *MachineLearning) GetEvaluationRequest(input *GetEvaluationInput) (req *service.Request, output *GetEvaluationOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) GetEvaluationRequest(input *GetEvaluationInput) (req *request.Request, output *GetEvaluationOutput) {
+	op := &request.Operation{
 		Name:       opGetEvaluation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -724,8 +724,8 @@ func (c *MachineLearning) GetEvaluation(input *GetEvaluationInput) (*GetEvaluati
 const opGetMLModel = "GetMLModel"
 
 // GetMLModelRequest generates a request for the GetMLModel operation.
-func (c *MachineLearning) GetMLModelRequest(input *GetMLModelInput) (req *service.Request, output *GetMLModelOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) GetMLModelRequest(input *GetMLModelInput) (req *request.Request, output *GetMLModelOutput) {
+	op := &request.Operation{
 		Name:       opGetMLModel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -754,8 +754,8 @@ func (c *MachineLearning) GetMLModel(input *GetMLModelInput) (*GetMLModelOutput,
 const opPredict = "Predict"
 
 // PredictRequest generates a request for the Predict operation.
-func (c *MachineLearning) PredictRequest(input *PredictInput) (req *service.Request, output *PredictOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) PredictRequest(input *PredictInput) (req *request.Request, output *PredictOutput) {
+	op := &request.Operation{
 		Name:       opPredict,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -784,8 +784,8 @@ func (c *MachineLearning) Predict(input *PredictInput) (*PredictOutput, error) {
 const opUpdateBatchPrediction = "UpdateBatchPrediction"
 
 // UpdateBatchPredictionRequest generates a request for the UpdateBatchPrediction operation.
-func (c *MachineLearning) UpdateBatchPredictionRequest(input *UpdateBatchPredictionInput) (req *service.Request, output *UpdateBatchPredictionOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) UpdateBatchPredictionRequest(input *UpdateBatchPredictionInput) (req *request.Request, output *UpdateBatchPredictionOutput) {
+	op := &request.Operation{
 		Name:       opUpdateBatchPrediction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -814,8 +814,8 @@ func (c *MachineLearning) UpdateBatchPrediction(input *UpdateBatchPredictionInpu
 const opUpdateDataSource = "UpdateDataSource"
 
 // UpdateDataSourceRequest generates a request for the UpdateDataSource operation.
-func (c *MachineLearning) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *service.Request, output *UpdateDataSourceOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *request.Request, output *UpdateDataSourceOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDataSource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -844,8 +844,8 @@ func (c *MachineLearning) UpdateDataSource(input *UpdateDataSourceInput) (*Updat
 const opUpdateEvaluation = "UpdateEvaluation"
 
 // UpdateEvaluationRequest generates a request for the UpdateEvaluation operation.
-func (c *MachineLearning) UpdateEvaluationRequest(input *UpdateEvaluationInput) (req *service.Request, output *UpdateEvaluationOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) UpdateEvaluationRequest(input *UpdateEvaluationInput) (req *request.Request, output *UpdateEvaluationOutput) {
+	op := &request.Operation{
 		Name:       opUpdateEvaluation,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -874,8 +874,8 @@ func (c *MachineLearning) UpdateEvaluation(input *UpdateEvaluationInput) (*Updat
 const opUpdateMLModel = "UpdateMLModel"
 
 // UpdateMLModelRequest generates a request for the UpdateMLModel operation.
-func (c *MachineLearning) UpdateMLModelRequest(input *UpdateMLModelInput) (req *service.Request, output *UpdateMLModelOutput) {
-	op := &service.Operation{
+func (c *MachineLearning) UpdateMLModelRequest(input *UpdateMLModelInput) (req *request.Request, output *UpdateMLModelOutput) {
+	op := &request.Operation{
 		Name:       opUpdateMLModel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",

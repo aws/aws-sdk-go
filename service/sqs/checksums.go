@@ -8,7 +8,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 var (
@@ -16,8 +16,8 @@ var (
 	errChecksumMissingMD5  = fmt.Errorf("cannot verify checksum. missing response MD5")
 )
 
-func setupChecksumValidation(r *service.Request) {
-	if aws.BoolValue(r.Config.DisableComputeChecksums) {
+func setupChecksumValidation(r *request.Request) {
+	if aws.BoolValue(r.Service.Config.DisableComputeChecksums) {
 		return
 	}
 
@@ -31,7 +31,7 @@ func setupChecksumValidation(r *service.Request) {
 	}
 }
 
-func verifySendMessage(r *service.Request) {
+func verifySendMessage(r *request.Request) {
 	if r.DataFilled() && r.ParamsFilled() {
 		in := r.Params.(*SendMessageInput)
 		out := r.Data.(*SendMessageOutput)
@@ -42,7 +42,7 @@ func verifySendMessage(r *service.Request) {
 	}
 }
 
-func verifySendMessageBatch(r *service.Request) {
+func verifySendMessageBatch(r *request.Request) {
 	if r.DataFilled() && r.ParamsFilled() {
 		entries := map[string]*SendMessageBatchResultEntry{}
 		ids := []string{}
@@ -67,7 +67,7 @@ func verifySendMessageBatch(r *service.Request) {
 	}
 }
 
-func verifyReceiveMessage(r *service.Request) {
+func verifyReceiveMessage(r *request.Request) {
 	if r.DataFilled() && r.ParamsFilled() {
 		ids := []string{}
 		out := r.Data.(*ReceiveMessageOutput)
@@ -99,7 +99,7 @@ func checksumsMatch(body, expectedMD5 *string) error {
 	return nil
 }
 
-func setChecksumError(r *service.Request, format string, args ...interface{}) {
+func setChecksumError(r *request.Request, format string, args ...interface{}) {
 	r.Retryable = aws.Bool(true)
 	r.Error = awserr.New("InvalidChecksum", fmt.Sprintf(format, args...), nil)
 }

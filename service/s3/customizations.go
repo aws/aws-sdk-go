@@ -1,6 +1,9 @@
 package s3
 
-import "github.com/aws/aws-sdk-go/aws/service"
+import (
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+)
 
 func init() {
 	initService = func(s *service.Service) {
@@ -16,7 +19,7 @@ func init() {
 		s.Handlers.UnmarshalError.PushBack(unmarshalError)
 	}
 
-	initRequest = func(r *service.Request) {
+	initRequest = func(r *request.Request) {
 		switch r.Operation.Name {
 		case opPutBucketCors, opPutBucketLifecycle, opPutBucketPolicy, opPutBucketTagging, opDeleteObjects:
 			// These S3 operations require Content-MD5 to be set

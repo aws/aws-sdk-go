@@ -5,7 +5,9 @@ package machinelearning
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -19,16 +21,18 @@ type MachineLearning struct {
 var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*service.Request)
+var initRequest func(*request.Request)
 
 // New returns a new MachineLearning client.
 func New(config *aws.Config) *MachineLearning {
 	service := &service.Service{
-		Config:       defaults.DefaultConfig.Merge(config),
-		ServiceName:  "machinelearning",
-		APIVersion:   "2014-12-12",
-		JSONVersion:  "1.1",
-		TargetPrefix: "AmazonML_20141212",
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:       defaults.DefaultConfig.Merge(config),
+			ServiceName:  "machinelearning",
+			APIVersion:   "2014-12-12",
+			JSONVersion:  "1.1",
+			TargetPrefix: "AmazonML_20141212",
+		},
 	}
 	service.Initialize()
 
@@ -49,8 +53,8 @@ func New(config *aws.Config) *MachineLearning {
 
 // newRequest creates a new request for a MachineLearning operation and runs any
 // custom request initialization.
-func (c *MachineLearning) newRequest(op *service.Operation, params, data interface{}) *service.Request {
-	req := service.NewRequest(c.Service, op, params, data)
+func (c *MachineLearning) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

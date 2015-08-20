@@ -3,24 +3,25 @@
 package protocol
 
 import (
+	"bytes"
+	"encoding/json"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/internal/protocol/rest"
 	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
-	"bytes"
-	"encoding/json"
 )
 
 func BenchmarkRESTJSONBuild_Complex_elastictranscoderCreateJobInput(b *testing.B) {
-	svc := service.NewService(nil)
+	svc := service.New(nil)
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, &service.Operation{Name: "CreateJobInput"}, restjsonBuildParms, nil)
+		r := svc.NewRequest(&request.Operation{Name: "CreateJobInput"}, restjsonBuildParms, nil)
 		restjson.Build(r)
 		if r.Error != nil {
 			b.Fatal("Unexpected error", r.Error)
@@ -29,12 +30,12 @@ func BenchmarkRESTJSONBuild_Complex_elastictranscoderCreateJobInput(b *testing.B
 }
 
 func BenchmarkRESTBuild_Complex_elastictranscoderCreateJobInput(b *testing.B) {
-	svc := service.NewService(nil)
+	svc := service.New(nil)
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, &service.Operation{Name: "CreateJobInput"}, restjsonBuildParms, nil)
+		r := svc.NewRequest(&request.Operation{Name: "CreateJobInput"}, restjsonBuildParms, nil)
 		rest.Build(r)
 		if r.Error != nil {
 			b.Fatal("Unexpected error", r.Error)
@@ -55,7 +56,7 @@ func BenchmarkEncodingJSONMarshal_Complex_elastictranscoderCreateJobInput(b *tes
 }
 
 func BenchmarkRESTJSONBuild_Simple_elastictranscoderListJobsByPipeline(b *testing.B) {
-	svc := service.NewService(nil)
+	svc := service.New(nil)
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
@@ -66,7 +67,7 @@ func BenchmarkRESTJSONBuild_Simple_elastictranscoderListJobsByPipeline(b *testin
 	}
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, &service.Operation{Name: "ListJobsByPipeline"}, params, nil)
+		r := svc.NewRequest(&request.Operation{Name: "ListJobsByPipeline"}, params, nil)
 		restjson.Build(r)
 		if r.Error != nil {
 			b.Fatal("Unexpected error", r.Error)
@@ -75,7 +76,7 @@ func BenchmarkRESTJSONBuild_Simple_elastictranscoderListJobsByPipeline(b *testin
 }
 
 func BenchmarkRESTBuild_Simple_elastictranscoderListJobsByPipeline(b *testing.B) {
-	svc := service.NewService(nil)
+	svc := service.New(nil)
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
@@ -86,14 +87,13 @@ func BenchmarkRESTBuild_Simple_elastictranscoderListJobsByPipeline(b *testing.B)
 	}
 
 	for i := 0; i < b.N; i++ {
-		r := service.NewRequest(svc, &service.Operation{Name: "ListJobsByPipeline"}, params, nil)
+		r := svc.NewRequest(&request.Operation{Name: "ListJobsByPipeline"}, params, nil)
 		rest.Build(r)
 		if r.Error != nil {
 			b.Fatal("Unexpected error", r.Error)
 		}
 	}
 }
-
 
 func BenchmarkEncodingJSONMarshal_Simple_elastictranscoderListJobsByPipeline(b *testing.B) {
 	params := &elastictranscoder.ListJobsByPipelineInput{

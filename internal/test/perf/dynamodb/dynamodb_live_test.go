@@ -55,4 +55,3 @@ func benchPutItemParallel(p, c int, b *testing.B) {
 		}
 	})
 }
-
