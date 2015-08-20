@@ -1099,7 +1099,18 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 						// More values...
 					},
 					LambdaFunctionArn: aws.String("LambdaFunctionArn"), // Required
-					Id:                aws.String("NotificationId"),
+					Filter: &s3.NotificationConfigurationFilter{
+						Key: &s3.KeyFilter{
+							FilterRules: []*s3.FilterRule{
+								{ // Required
+									Name:  aws.String("FilterRuleName"),
+									Value: aws.String("FilterRuleValue"),
+								},
+								// More values...
+							},
+						},
+					},
+					Id: aws.String("NotificationId"),
 				},
 				// More values...
 			},
@@ -1110,7 +1121,18 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 						// More values...
 					},
 					QueueArn: aws.String("QueueArn"), // Required
-					Id:       aws.String("NotificationId"),
+					Filter: &s3.NotificationConfigurationFilter{
+						Key: &s3.KeyFilter{
+							FilterRules: []*s3.FilterRule{
+								{ // Required
+									Name:  aws.String("FilterRuleName"),
+									Value: aws.String("FilterRuleValue"),
+								},
+								// More values...
+							},
+						},
+					},
+					Id: aws.String("NotificationId"),
 				},
 				// More values...
 			},
@@ -1121,7 +1143,18 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 						// More values...
 					},
 					TopicArn: aws.String("TopicArn"), // Required
-					Id:       aws.String("NotificationId"),
+					Filter: &s3.NotificationConfigurationFilter{
+						Key: &s3.KeyFilter{
+							FilterRules: []*s3.FilterRule{
+								{ // Required
+									Name:  aws.String("FilterRuleName"),
+									Value: aws.String("FilterRuleValue"),
+								},
+								// More values...
+							},
+						},
+					},
+					Id: aws.String("NotificationId"),
 				},
 				// More values...
 			},

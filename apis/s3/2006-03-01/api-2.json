@@ -1655,6 +1655,26 @@
       "member":{"shape":"ExposeHeader"},
       "flattened":true
     },
+    "FilterRule":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"FilterRuleName"},
+        "Value":{"shape":"FilterRuleValue"}
+      }
+    },
+    "FilterRuleList":{
+      "type":"list",
+      "member":{"shape":"FilterRule"},
+      "flattened":true
+    },
+    "FilterRuleName":{
+      "type":"string",
+      "enum":[
+        "prefix",
+        "suffix"
+      ]
+    },
+    "FilterRuleValue":{"type":"string"},
     "GetBucketAclOutput":{
       "type":"structure",
       "members":{
@@ -2476,7 +2496,8 @@
         "Events":{
           "shape":"EventList",
           "locationName":"Event"
-        }
+        },
+        "Filter":{"shape":"NotificationConfigurationFilter"}
       }
     },
     "LambdaFunctionConfigurationList":{
@@ -2871,6 +2892,15 @@
         "TopicConfiguration":{"shape":"TopicConfigurationDeprecated"},
         "QueueConfiguration":{"shape":"QueueConfigurationDeprecated"},
         "CloudFunctionConfiguration":{"shape":"CloudFunctionConfiguration"}
+      }
+    },
+    "NotificationConfigurationFilter":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"S3KeyFilter",
+          "locationName":"S3Key"
+        }
       }
     },
     "NotificationId":{"type":"string"},
@@ -3594,7 +3624,8 @@
         "Events":{
           "shape":"EventList",
           "locationName":"Event"
-        }
+        },
+        "Filter":{"shape":"NotificationConfigurationFilter"}
       }
     },
     "QueueConfigurationDeprecated":{
@@ -3799,6 +3830,15 @@
       "member":{"shape":"Rule"},
       "flattened":true
     },
+    "S3KeyFilter":{
+      "type":"structure",
+      "members":{
+        "FilterRules":{
+          "shape":"FilterRuleList",
+          "locationName":"FilterRule"
+        }
+      }
+    },
     "SSECustomerAlgorithm":{"type":"string"},
     "SSECustomerKey":{
       "type":"string",
@@ -3821,8 +3861,7 @@
       "type":"string",
       "enum":[
         "STANDARD",
-        "REDUCED_REDUNDANCY",
-        "LT"
+        "REDUCED_REDUNDANCY"
       ]
     },
     "Suffix":{"type":"string"},
@@ -3883,7 +3922,8 @@
         "Events":{
           "shape":"EventList",
           "locationName":"Event"
-        }
+        },
+        "Filter":{"shape":"NotificationConfigurationFilter"}
       }
     },
     "TopicConfigurationDeprecated":{

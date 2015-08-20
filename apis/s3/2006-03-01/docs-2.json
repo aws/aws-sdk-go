@@ -792,6 +792,30 @@
         "CORSRule$ExposeHeaders": "One or more headers in the response that you want customers to be able to access from their applications (for example, from a JavaScript XMLHttpRequest object)."
       }
     },
+    "FilterRule": {
+      "base": "Container for key value pair that defines the criteria for the filter rule.",
+      "refs": {
+        "FilterRuleList$member": null
+      }
+    },
+    "FilterRuleList": {
+      "base": "A list of containers for key value pair that defines the criteria for the filter rule.",
+      "refs": {
+        "S3KeyFilter$FilterRules": null
+      }
+    },
+    "FilterRuleName": {
+      "base": null,
+      "refs": {
+        "FilterRule$Name": "Object key name prefix or suffix identifying one or more objects to which the filtering rule applies. Maximum prefix length can be up to 1,024 characters. Overlapping prefixes and suffixes are not supported. For more information, go to <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Configuring Event Notifications</a> in the Amazon Simple Storage Service Developer Guide."
+      }
+    },
+    "FilterRuleValue": {
+      "base": null,
+      "refs": {
+        "FilterRule$Value": null
+      }
+    },
     "GetBucketAclOutput": {
       "base": null,
       "refs": {
@@ -1427,6 +1451,14 @@
         "PutBucketNotificationRequest$NotificationConfiguration": null
       }
     },
+    "NotificationConfigurationFilter": {
+      "base": "Container for object key name filtering rules. For information about key name filtering, go to <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html\">Configuring Event Notifications</a> in the Amazon Simple Storage Service Developer Guide.",
+      "refs": {
+        "LambdaFunctionConfiguration$Filter": null,
+        "QueueConfiguration$Filter": null,
+        "TopicConfiguration$Filter": null
+      }
+    },
     "NotificationId": {
       "base": "Optional unique identifier for configurations in a notification configuration. If you don't provide one, Amazon S3 will assign an ID.",
       "refs": {
@@ -1952,6 +1984,12 @@
       "refs": {
         "GetBucketLifecycleOutput$Rules": null,
         "LifecycleConfiguration$Rules": null
+      }
+    },
+    "S3KeyFilter": {
+      "base": "Container for object key name prefix and suffix filtering rules.",
+      "refs": {
+        "NotificationConfigurationFilter$Key": null
       }
     },
     "SSECustomerAlgorithm": {

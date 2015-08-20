@@ -2938,6 +2938,34 @@ func (s ErrorDocument) GoString() string {
 	return s.String()
 }
 
+// Container for key value pair that defines the criteria for the filter rule.
+type FilterRule struct {
+	// Object key name prefix or suffix identifying one or more objects to which
+	// the filtering rule applies. Maximum prefix length can be up to 1,024 characters.
+	// Overlapping prefixes and suffixes are not supported. For more information,
+	// go to Configuring Event Notifications (http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	Name *string `type:"string" enum:"FilterRuleName"`
+
+	Value *string `type:"string"`
+
+	metadataFilterRule `json:"-" xml:"-"`
+}
+
+type metadataFilterRule struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FilterRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FilterRule) GoString() string {
+	return s.String()
+}
+
 type GetBucketAclInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -4041,9 +4069,37 @@ func (s Initiator) GoString() string {
 	return s.String()
 }
 
+// Container for object key name prefix and suffix filtering rules.
+type KeyFilter struct {
+	// A list of containers for key value pair that defines the criteria for the
+	// filter rule.
+	FilterRules []*FilterRule `locationName:"FilterRule" type:"list" flattened:"true"`
+
+	metadataKeyFilter `json:"-" xml:"-"`
+}
+
+type metadataKeyFilter struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s KeyFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KeyFilter) GoString() string {
+	return s.String()
+}
+
 // Container for specifying the AWS Lambda notification configuration.
 type LambdaFunctionConfiguration struct {
 	Events []*string `locationName:"Event" type:"list" flattened:"true" required:"true"`
+
+	// Container for object key name filtering rules. For information about key
+	// name filtering, go to Configuring Event Notifications (http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	Filter *NotificationConfigurationFilter `type:"structure"`
 
 	// Optional unique identifier for configurations in a notification configuration.
 	// If you don't provide one, Amazon S3 will assign an ID.
@@ -4765,6 +4821,30 @@ func (s NotificationConfigurationDeprecated) String() string {
 
 // GoString returns the string representation
 func (s NotificationConfigurationDeprecated) GoString() string {
+	return s.String()
+}
+
+// Container for object key name filtering rules. For information about key
+// name filtering, go to Configuring Event Notifications (http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)
+// in the Amazon Simple Storage Service Developer Guide.
+type NotificationConfigurationFilter struct {
+	// Container for object key name prefix and suffix filtering rules.
+	Key *KeyFilter `locationName:"S3Key" type:"structure"`
+
+	metadataNotificationConfigurationFilter `json:"-" xml:"-"`
+}
+
+type metadataNotificationConfigurationFilter struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s NotificationConfigurationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NotificationConfigurationFilter) GoString() string {
 	return s.String()
 }
 
@@ -5657,6 +5737,11 @@ func (s PutObjectOutput) GoString() string {
 type QueueConfiguration struct {
 	Events []*string `locationName:"Event" type:"list" flattened:"true" required:"true"`
 
+	// Container for object key name filtering rules. For information about key
+	// name filtering, go to Configuring Event Notifications (http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	Filter *NotificationConfigurationFilter `type:"structure"`
+
 	// Optional unique identifier for configurations in a notification configuration.
 	// If you don't provide one, Amazon S3 will assign an ID.
 	Id *string `type:"string"`
@@ -6033,6 +6118,11 @@ func (s TargetGrant) GoString() string {
 // events to an Amazon Simple Notification Service (Amazon SNS) topic.
 type TopicConfiguration struct {
 	Events []*string `locationName:"Event" type:"list" flattened:"true" required:"true"`
+
+	// Container for object key name filtering rules. For information about key
+	// name filtering, go to Configuring Event Notifications (http://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	Filter *NotificationConfigurationFilter `type:"structure"`
 
 	// Optional unique identifier for configurations in a notification configuration.
 	// If you don't provide one, Amazon S3 will assign an ID.
@@ -6496,6 +6586,13 @@ const (
 )
 
 const (
+	// @enum FilterRuleName
+	FilterRuleNamePrefix = "prefix"
+	// @enum FilterRuleName
+	FilterRuleNameSuffix = "suffix"
+)
+
+const (
 	// @enum MFADelete
 	MFADeleteEnabled = "Enabled"
 	// @enum MFADelete
@@ -6618,8 +6715,6 @@ const (
 	StorageClassStandard = "STANDARD"
 	// @enum StorageClass
 	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
-	// @enum StorageClass
-	StorageClassLt = "LT"
 )
 
 const (
