@@ -94,7 +94,7 @@ func main() {
 	for idx, res := range resp.Reservations {
 		fmt.Println("  > Number of instances: ", len(res.Instances))
 		for _, inst := range resp.Reservations[idx].Instances {
-			fmt.Println("    - Instance ID: ", *inst.InstanceID)
+			fmt.Println("    - Instance ID: ", *inst.InstanceId)
 		}
 	}
 }
