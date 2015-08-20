@@ -24,22 +24,22 @@
 //
 // Convert dynamodb.AttributeValue to Concrete type: See (ExampleConvertFrom)
 //
-//    r2 := Record{}
-//    err = dynamodbattribute.ConvertFrom(av, &r2)
-//    fmt.Println(err, reflect.DeepEqual(r, r2))
+//     r2 := Record{}
+//     err = dynamodbattribute.ConvertFrom(av, &r2)
+//     fmt.Println(err, reflect.DeepEqual(r, r2))
 //
 // Use Conversion utilities with DynamoDB.PutItem: See ()
 //
-//    svc := dynamodb.New(nil)
-//    item, err := dynamodbattribute.ConvertToMap(r)
-//    if err != nil {
-//        fmt.Println("Failed to convert", err)
-//        return
-//    }
-//    result, err := svc.PutItem(&dynamodb.PutItemInput{
-//        Item:      item,
-//        TableName: aws.String("exampleTable"),
-//    })
+//     svc := dynamodb.New(nil)
+//     item, err := dynamodbattribute.ConvertToMap(r)
+//     if err != nil {
+//         fmt.Println("Failed to convert", err)
+//         return
+//     }
+//     result, err := svc.PutItem(&dynamodb.PutItemInput{
+//         Item:      item,
+//         TableName: aws.String("exampleTable"),
+//     })
 package dynamodbattribute
 
 import (
