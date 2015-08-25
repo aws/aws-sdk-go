@@ -24,7 +24,7 @@ func Build(r *request.Request) {
 		var buf bytes.Buffer
 		err := xmlutil.BuildXML(r.Params, xml.NewEncoder(&buf))
 		if err != nil {
-			r.Error = awserr.New("SerializationError", "failed to enode rest XML request", err)
+			r.Error = awserr.New("SerializationError", "failed to encode rest XML request", err)
 			return
 		}
 		r.SetBufferBody(buf.Bytes())
