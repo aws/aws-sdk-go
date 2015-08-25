@@ -12,10 +12,10 @@ import (
 const DefaultRetries = -1
 
 // A Config provides service configuration for service clients. By default,
-// all clients will use the {DefaultConfig} structure.
+// all clients will use the {defaults.DefaultConfig} structure.
 type Config struct {
 	// The credentials object to use when signing requests. Defaults to
-	// {DefaultChainCredentials}.
+	// {defaults.DefaultChainCredentials}.
 	Credentials *credentials.Credentials
 
 	// An optional endpoint URL (hostname only or fully qualified URI)
