@@ -110,6 +110,10 @@ func ExampleCodePipeline_CreatePipeline() {
 			ArtifactStore: &codepipeline.ArtifactStore{ // Required
 				Location: aws.String("ArtifactStoreLocation"), // Required
 				Type:     aws.String("ArtifactStoreType"),     // Required
+				EncryptionKey: &codepipeline.EncryptionKey{
+					Id:   aws.String("EncryptionKeyId"),   // Required
+					Type: aws.String("EncryptionKeyType"), // Required
+				},
 			},
 			Name:    aws.String("PipelineName"), // Required
 			RoleArn: aws.String("RoleArn"),      // Required
@@ -457,9 +461,9 @@ func ExampleCodePipeline_PutJobFailureResult() {
 
 	params := &codepipeline.PutJobFailureResultInput{
 		FailureDetails: &codepipeline.FailureDetails{ // Required
+			Message:             aws.String("Message"),     // Required
 			Type:                aws.String("FailureType"), // Required
 			ExternalExecutionId: aws.String("ExecutionId"),
-			Message:             aws.String("Message"),
 		},
 		JobId: aws.String("JobId"), // Required
 	}
@@ -511,9 +515,9 @@ func ExampleCodePipeline_PutThirdPartyJobFailureResult() {
 	params := &codepipeline.PutThirdPartyJobFailureResultInput{
 		ClientToken: aws.String("ClientToken"), // Required
 		FailureDetails: &codepipeline.FailureDetails{ // Required
+			Message:             aws.String("Message"),     // Required
 			Type:                aws.String("FailureType"), // Required
 			ExternalExecutionId: aws.String("ExecutionId"),
-			Message:             aws.String("Message"),
 		},
 		JobId: aws.String("ThirdPartyJobId"), // Required
 	}
@@ -587,6 +591,10 @@ func ExampleCodePipeline_UpdatePipeline() {
 			ArtifactStore: &codepipeline.ArtifactStore{ // Required
 				Location: aws.String("ArtifactStoreLocation"), // Required
 				Type:     aws.String("ArtifactStoreType"),     // Required
+				EncryptionKey: &codepipeline.EncryptionKey{
+					Id:   aws.String("EncryptionKeyId"),   // Required
+					Type: aws.String("EncryptionKeyType"), // Required
+				},
 			},
 			Name:    aws.String("PipelineName"), // Required
 			RoleArn: aws.String("RoleArn"),      // Required

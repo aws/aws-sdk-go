@@ -5,11 +5,9 @@
     "endpointPrefix":"codepipeline",
     "jsonVersion":"1.1",
     "serviceAbbreviation":"CodePipeline",
-    "serviceFullName":"CodePipeline Service",
+    "serviceFullName":"AWS CodePipeline",
     "signatureVersion":"v4",
-    "signingName":"codepipeline",
     "targetPrefix":"CodePipeline_20150709",
-    "timestampFormat":"unixTimestamp",
     "protocol":"json"
   },
   "operations":{
@@ -847,7 +845,8 @@
       ],
       "members":{
         "type":{"shape":"ArtifactStoreType"},
-        "location":{"shape":"ArtifactStoreLocation"}
+        "location":{"shape":"ArtifactStoreLocation"},
+        "encryptionKey":{"shape":"EncryptionKey"}
       }
     },
     "ArtifactStoreLocation":{
@@ -998,6 +997,26 @@
       }
     },
     "Enabled":{"type":"boolean"},
+    "EncryptionKey":{
+      "type":"structure",
+      "required":[
+        "id",
+        "type"
+      ],
+      "members":{
+        "id":{"shape":"EncryptionKeyId"},
+        "type":{"shape":"EncryptionKeyType"}
+      }
+    },
+    "EncryptionKeyId":{
+      "type":"string",
+      "min":1,
+      "max":100
+    },
+    "EncryptionKeyType":{
+      "type":"string",
+      "enum":["KMS"]
+    },
     "ErrorDetails":{
       "type":"structure",
       "members":{
@@ -1017,7 +1036,10 @@
     "ExecutionSummary":{"type":"string"},
     "FailureDetails":{
       "type":"structure",
-      "required":["type"],
+      "required":[
+        "type",
+        "message"
+      ],
       "members":{
         "type":{"shape":"FailureType"},
         "message":{"shape":"Message"},
@@ -1179,7 +1201,8 @@
         "inputArtifacts":{"shape":"ArtifactList"},
         "outputArtifacts":{"shape":"ArtifactList"},
         "artifactCredentials":{"shape":"AWSSessionCredentials"},
-        "continuationToken":{"shape":"ContinuationToken"}
+        "continuationToken":{"shape":"ContinuationToken"},
+        "encryptionKey":{"shape":"EncryptionKey"}
       }
     },
     "JobDetails":{
@@ -1573,7 +1596,8 @@
         "inputArtifacts":{"shape":"ArtifactList"},
         "outputArtifacts":{"shape":"ArtifactList"},
         "artifactCredentials":{"shape":"AWSSessionCredentials"},
-        "continuationToken":{"shape":"ContinuationToken"}
+        "continuationToken":{"shape":"ContinuationToken"},
+        "encryptionKey":{"shape":"EncryptionKey"}
       }
     },
     "ThirdPartyJobDetails":{

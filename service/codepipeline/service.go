@@ -100,7 +100,6 @@ func New(config *aws.Config) *CodePipeline {
 		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:       defaults.DefaultConfig.Merge(config),
 			ServiceName:  "codepipeline",
-			SigningName:  "codepipeline",
 			APIVersion:   "2015-07-09",
 			JSONVersion:  "1.1",
 			TargetPrefix: "CodePipeline_20150709",

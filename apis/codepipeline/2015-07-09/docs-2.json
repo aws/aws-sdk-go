@@ -428,6 +428,26 @@
         "TransitionState$enabled": "<p>Whether the transition between stages is enabled (true) or disabled (false).</p>"
       }
     },
+    "EncryptionKey": {
+      "base": "<p>Represents information about the AWS Key Management Service (AWS KMS) key used to encrypt data in the artifact store.</p>",
+      "refs": {
+        "ArtifactStore$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) key used to encrypt the data in the artifact store. If this is undefined, the default key for Amazon S3 is used.</p>",
+        "JobData$encryptionKey": null,
+        "ThirdPartyJobData$encryptionKey": "<p>The AWS Key Management Service (AWS KMS) key used to encrypt and decrypt data in the artifact store for the pipeline.</p>"
+      }
+    },
+    "EncryptionKeyId": {
+      "base": null,
+      "refs": {
+        "EncryptionKey$id": "<p>The ID of the AWS KMS key.</p>"
+      }
+    },
+    "EncryptionKeyType": {
+      "base": null,
+      "refs": {
+        "EncryptionKey$type": "<p>The type of AWS KMS key, such as a customer master key.</p>"
+      }
+    },
     "ErrorDetails": {
       "base": "<p>Represents information about an error in AWS CodePipeline.</p>",
       "refs": {
