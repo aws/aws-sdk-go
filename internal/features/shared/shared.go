@@ -2,6 +2,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"reflect"
@@ -9,12 +10,13 @@ import (
 	"strconv"
 	"strings"
 
+	. "github.com/lsegal/gucumber"
+	"github.com/stretchr/testify/assert"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/defaults"
-	. "github.com/lsegal/gucumber"
-	"github.com/stretchr/testify/assert"
 )
 
 // Imported is a marker to ensure that this package's init() function gets
@@ -46,7 +48,7 @@ func init() {
 
 	Then(`^the value at "(.+?)" should be a list$`, func(member string) {
 		vals := awsutil.ValuesAtAnyPath(World["response"], member)
-		assert.NotEmpty(T, vals)
+		assert.NotNil(T, vals)
 	})
 
 	Then(`^the response should contain a "(.+?)"$`, func(member string) {
@@ -88,6 +90,32 @@ func init() {
 
 			assert.True(T, found, fmt.Sprintf("no error messages matched: \"%s\"", err.Message()))
 		}
+	})
+
+	When(`^I call the "(.+?)" API with JSON:$`, func(s1 string, data string) {
+		callWithJSON(s1, data, false)
+	})
+
+	When(`^I attempt to call the "(.+?)" API with JSON:$`, func(s1 string, data string) {
+		callWithJSON(s1, data, true)
+	})
+
+	Then(`^the error code should be "(.+?)"$`, func(s1 string) {
+		err, ok := World["error"].(awserr.Error)
+		assert.True(T, ok, "no error returned")
+		assert.Equal(T, s1, err.Code())
+	})
+
+	And(`^the error message should contain:$`, func(data string) {
+		err, ok := World["error"].(awserr.Error)
+		assert.True(T, ok, "no error returned")
+		assert.Contains(T, err.Error(), data)
+	})
+
+	Then(`^the request should fail$`, func() {
+		err, ok := World["error"].(awserr.Error)
+		assert.True(T, ok, "no error returned")
+		assert.Error(T, err)
 	})
 }
 
@@ -160,5 +188,32 @@ func fillArgs(in reflect.Value, args [][]string) {
 			}
 		}
 		awsutil.SetValueAtAnyPath(in.Interface(), path, val)
+	}
+}
+
+func callWithJSON(op, j string, allowError bool) {
+	v := reflect.ValueOf(World["client"])
+	if m := findMethod(v, op); m != nil {
+		t := m.Type()
+		in := reflect.New(t.In(0).Elem())
+		fillJSON(in, j)
+
+		resps := m.Call([]reflect.Value{in})
+		World["response"] = resps[0].Interface()
+		World["error"] = resps[1].Interface()
+
+		if !allowError {
+			err, _ := World["error"].(error)
+			assert.NoError(T, err)
+		}
+	} else {
+		assert.Fail(T, "failed to find operation "+op)
+	}
+}
+
+func fillJSON(in reflect.Value, j string) {
+	d := json.NewDecoder(strings.NewReader(j))
+	if err := d.Decode(in.Interface()); err != nil {
+		panic(err)
 	}
 }

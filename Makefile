@@ -31,7 +31,7 @@ services:
 
 integration: deps
 	go test ./internal/test/integration/... -tags=integration
-	gucumber
+	gucumber ./internal/features/smoke
 
 lint: deps
 	@echo "golint ./..."
