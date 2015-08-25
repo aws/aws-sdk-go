@@ -41,12 +41,14 @@ func Unmarshal(r *request.Request) {
 			r.Error = awserr.New("SerializationError", "failed to decode REST XML response", err)
 			return
 		}
+	} else {
+		rest.Unmarshal(r)
 	}
 }
 
 // UnmarshalMeta unmarshals response headers for the REST XML protocol.
 func UnmarshalMeta(r *request.Request) {
-	rest.Unmarshal(r)
+	rest.UnmarshalMeta(r)
 }
 
 // UnmarshalError unmarshals a response error for the REST XML protocol.

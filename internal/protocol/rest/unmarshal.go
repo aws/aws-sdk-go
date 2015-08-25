@@ -20,6 +20,13 @@ func Unmarshal(r *request.Request) {
 	if r.DataFilled() {
 		v := reflect.Indirect(reflect.ValueOf(r.Data))
 		unmarshalBody(r, v)
+	}
+}
+
+// UnmarshalMeta unmarshals the REST metadata of a response in a REST service
+func UnmarshalMeta(r *request.Request) {
+	if r.DataFilled() {
+		v := reflect.Indirect(reflect.ValueOf(r.Data))
 		unmarshalLocationElements(r, v)
 	}
 }

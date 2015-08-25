@@ -29,12 +29,14 @@ func Build(r *request.Request) {
 func Unmarshal(r *request.Request) {
 	if t := rest.PayloadType(r.Data); t == "structure" || t == "" {
 		jsonrpc.Unmarshal(r)
+	} else {
+		rest.Unmarshal(r)
 	}
 }
 
 // UnmarshalMeta unmarshals response headers for the REST JSON protocol.
 func UnmarshalMeta(r *request.Request) {
-	rest.Unmarshal(r)
+	rest.UnmarshalMeta(r)
 }
 
 // UnmarshalError unmarshals a response error for the REST JSON protocol.
