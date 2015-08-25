@@ -491,12 +491,12 @@
         "result": {
           "AllHeaders": {
             "Content-Length": "10",
-            "X-Foo": "bar",
-            "X-Bam": "boo"
+            "x-Foo": "bar",
+            "X-bam": "boo"
           },
           "PrefixedHeaders": {
             "Foo": "bar",
-            "Bam": "boo"
+            "bam": "boo"
           }
         },
         "response": {
@@ -601,44 +601,6 @@
           "status_code": 200,
           "headers": {},
           "body": "abc"
-        }
-      }
-    ]
-  },
-  {
-    "description": "String",
-    "metadata": {
-      "protocol": "rest-json"
-    },
-    "shapes": {
-      "OutputShape": {
-        "type": "structure",
-        "payload": "String",
-        "members": {
-          "String": {
-            "shape": "StringType"
-          }
-        }
-      },
-      "StringType": {
-        "type": "string"
-      }
-    },
-    "cases": [
-      {
-        "given": {
-          "output": {
-            "shape": "OutputShape"
-          },
-          "name": "OperationName"
-        },
-        "result": {
-          "String": "operation result string"
-        },
-        "response": {
-          "status_code": 200,
-          "headers": {},
-          "body": "operation result string"
         }
       }
     ]

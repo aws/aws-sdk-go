@@ -131,21 +131,6 @@
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz"
         }
-      },
-      {
-        "given": {
-          "input": {
-            "shape": "InputShape"
-          },
-          "name": "OperationName"
-        },
-        "params": {
-          "ListArg": []
-        },
-        "serialized": {
-          "uri": "/",
-          "body": "Action=OperationName&Version=2014-01-01&ListArg="
-        }
       }
     ]
   },
@@ -198,7 +183,40 @@
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&ScalarArg=foo&ListArg.1=a&ListArg.2=b&ListArg.3=c"
         }
+      }
+    ]
+  },
+  {
+    "description": "Flattened list with LocationName",
+    "metadata": {
+      "protocol": "query",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "ScalarArg": {
+            "shape": "StringType"
+          },
+          "ListArg": {
+            "shape": "ListType"
+          }
+        }
       },
+      "ListType": {
+        "type": "list",
+        "member": {
+          "shape": "StringType",
+          "locationName": "ListArgLocation"
+        },
+        "flattened": true
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
       {
         "given": {
           "input": {
@@ -208,11 +226,15 @@
         },
         "params": {
           "ScalarArg": "foo",
-          "ListArg": []
+          "ListArg": [
+            "a",
+            "b",
+            "c"
+          ]
         },
         "serialized": {
           "uri": "/",
-          "body": "Action=OperationName&Version=2014-01-01&ScalarArg=foo&ListArg="
+          "body": "Action=OperationName&Version=2014-01-01&ScalarArg=foo&ListArgLocation.1=a&ListArgLocation.2=b&ListArgLocation.3=c"
         }
       }
     ]
@@ -262,72 +284,6 @@
         "serialized": {
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2"
-        }
-      },
-      {
-        "given": {
-          "input": {
-            "shape": "InputShape"
-          },
-          "name": "OperationName"
-        },
-        "params": {
-          "MapArg": {}
-        },
-        "serialized": {
-          "uri": "/",
-          "body": "Action=OperationName&Version=2014-01-01&MapArg="
-        }
-      }
-    ]
-  },
-  {
-    "description": "Serialize map type with locationName",
-    "metadata": {
-      "protocol": "query",
-      "apiVersion": "2014-01-01"
-    },
-    "shapes": {
-      "InputShape": {
-        "type": "structure",
-        "members": {
-          "MapArg": {
-            "shape": "StringMap"
-          }
-        }
-      },
-      "StringMap": {
-        "type": "map",
-        "key": {
-          "shape": "StringType",
-          "locationName": "TheKey"
-        },
-        "value": {
-          "shape": "StringType",
-          "locationName": "TheValue"
-        }
-      },
-      "StringType": {
-        "type": "string"
-      }
-    },
-    "cases": [
-      {
-        "given": {
-          "input": {
-            "shape": "InputShape"
-          },
-          "name": "OperationName"
-        },
-        "params": {
-          "MapArg": {
-            "key1": "val1",
-            "key2": "val2"
-          }
-        },
-        "serialized": {
-          "uri": "/",
-          "body": "Action=OperationName&Version=2014-01-01&MapArg.entry.1.TheKey=key1&MapArg.entry.1.TheValue=val1&MapArg.entry.2.TheKey=key2&MapArg.entry.2.TheValue=val2"
         }
       }
     ]
@@ -588,7 +544,7 @@
         },
         "serialized": {
           "uri": "/",
-          "body": "Action=OperationName&Version=2014-01-01&RecursiveStruct.RecursiveMap.entry.1.key=bar&RecursiveStruct.RecursiveMap.entry.1.value.NoRecurse=bar&RecursiveStruct.RecursiveMap.entry.2.key=foo&RecursiveStruct.RecursiveMap.entry.2.value.NoRecurse=foo"
+          "body": "Action=OperationName&Version=2014-01-01&RecursiveStruct.RecursiveMap.entry.1.key=foo&RecursiveStruct.RecursiveMap.entry.1.value.NoRecurse=foo&RecursiveStruct.RecursiveMap.entry.2.key=bar&RecursiveStruct.RecursiveMap.entry.2.value.NoRecurse=bar"
         }
       }
     ]

@@ -1,35 +1,5 @@
 [
   {
-    "description": "Empty body",
-    "metadata": {
-      "protocol": "json"
-    },
-    "shapes": {
-      "OutputShape": {
-        "type": "structure",
-        "members": {
-        }
-      }
-    },
-    "cases": [
-      {
-        "given": {
-          "output": {
-            "shape": "OutputShape"
-          },
-          "name": "OperationName"
-        },
-        "result": {
-        },
-        "response": {
-          "status_code": 200,
-          "headers": {},
-          "body": ""
-        }
-      }
-    ]
-  },
-  {
     "description": "Scalar members",
     "metadata": {
       "protocol": "json"

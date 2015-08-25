@@ -630,7 +630,7 @@
         "serialized": {
           "uri": "/path",
           "headers": {},
-          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"bar\": {\"NoRecurse\": \"bar\"}, \"foo\": {\"NoRecurse\": \"foo\"}}}}"
+          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"foo\": {\"NoRecurse\": \"foo\"}, \"bar\": {\"NoRecurse\": \"bar\"}}}}"
         }
       }
     ]
