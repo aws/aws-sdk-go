@@ -249,6 +249,12 @@ func (c *CloudWatchLogs) DescribeDestinationsRequest(input *DescribeDestinations
 		Name:       opDescribeDestinations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -273,6 +279,13 @@ func (c *CloudWatchLogs) DescribeDestinations(input *DescribeDestinationsInput) 
 	req, out := c.DescribeDestinationsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudWatchLogs) DescribeDestinationsPages(input *DescribeDestinationsInput, fn func(p *DescribeDestinationsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeDestinationsRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeDestinationsOutput), lastPage)
+	})
 }
 
 const opDescribeLogGroups = "DescribeLogGroups"
@@ -424,6 +437,12 @@ func (c *CloudWatchLogs) DescribeSubscriptionFiltersRequest(input *DescribeSubsc
 		Name:       opDescribeSubscriptionFilters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -450,6 +469,13 @@ func (c *CloudWatchLogs) DescribeSubscriptionFilters(input *DescribeSubscription
 	return out, err
 }
 
+func (c *CloudWatchLogs) DescribeSubscriptionFiltersPages(input *DescribeSubscriptionFiltersInput, fn func(p *DescribeSubscriptionFiltersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeSubscriptionFiltersRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeSubscriptionFiltersOutput), lastPage)
+	})
+}
+
 const opFilterLogEvents = "FilterLogEvents"
 
 // FilterLogEventsRequest generates a request for the FilterLogEvents operation.
@@ -458,6 +484,12 @@ func (c *CloudWatchLogs) FilterLogEventsRequest(input *FilterLogEventsInput) (re
 		Name:       opFilterLogEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -488,6 +520,13 @@ func (c *CloudWatchLogs) FilterLogEvents(input *FilterLogEventsInput) (*FilterLo
 	req, out := c.FilterLogEventsRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *CloudWatchLogs) FilterLogEventsPages(input *FilterLogEventsInput, fn func(p *FilterLogEventsOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.FilterLogEventsRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*FilterLogEventsOutput), lastPage)
+	})
 }
 
 const opGetLogEvents = "GetLogEvents"
