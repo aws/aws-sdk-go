@@ -853,6 +853,12 @@ func (c *OpsWorks) DescribeEcsClustersRequest(input *DescribeEcsClustersInput) (
 		Name:       opDescribeEcsClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -878,6 +884,13 @@ func (c *OpsWorks) DescribeEcsClusters(input *DescribeEcsClustersInput) (*Descri
 	req, out := c.DescribeEcsClustersRequest(input)
 	err := req.Send()
 	return out, err
+}
+
+func (c *OpsWorks) DescribeEcsClustersPages(input *DescribeEcsClustersInput, fn func(p *DescribeEcsClustersOutput, lastPage bool) (shouldContinue bool)) error {
+	page, _ := c.DescribeEcsClustersRequest(input)
+	return page.EachPage(func(p interface{}, lastPage bool) bool {
+		return fn(p.(*DescribeEcsClustersOutput), lastPage)
+	})
 }
 
 const opDescribeElasticIps = "DescribeElasticIps"

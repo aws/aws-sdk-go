@@ -18,6 +18,26 @@
         }
       ]
     },
+    "DeploymentSuccessful": {
+      "delay": 15,
+      "operation": "DescribeDeployments",
+      "maxAttempts": 40,
+      "description": "Wait until a deployment has completed successfully",
+      "acceptors": [
+        {
+          "expected": "successful",
+          "matcher": "pathAll",
+          "state": "success",
+          "argument": "Deployments[].Status"
+        },
+        {
+          "expected": "failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Deployments[].Status"
+        }
+      ]
+    },
     "InstanceOnline": {
       "delay": 15,
       "operation": "DescribeInstances",

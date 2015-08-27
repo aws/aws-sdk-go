@@ -114,6 +114,8 @@ type OpsWorksAPI interface {
 
 	DescribeEcsClusters(*opsworks.DescribeEcsClustersInput) (*opsworks.DescribeEcsClustersOutput, error)
 
+	DescribeEcsClustersPages(*opsworks.DescribeEcsClustersInput, func(*opsworks.DescribeEcsClustersOutput, bool) bool) error
+
 	DescribeElasticIpsRequest(*opsworks.DescribeElasticIpsInput) (*request.Request, *opsworks.DescribeElasticIpsOutput)
 
 	DescribeElasticIps(*opsworks.DescribeElasticIpsInput) (*opsworks.DescribeElasticIpsOutput, error)
