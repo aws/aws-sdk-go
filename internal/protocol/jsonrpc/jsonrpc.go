@@ -13,6 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/protocol/json/jsonutil"
+	"github.com/aws/aws-sdk-go/internal/protocol/rest"
 )
 
 var emptyJSON = []byte("{}")
@@ -59,7 +60,7 @@ func Unmarshal(req *request.Request) {
 
 // UnmarshalMeta unmarshals headers from a response for a JSON RPC service.
 func UnmarshalMeta(req *request.Request) {
-	req.RequestID = req.HTTPResponse.Header.Get("x-amzn-requestid")
+	rest.UnmarshalMeta(req)
 }
 
 // UnmarshalError unmarshals an error response for a JSON RPC service.
@@ -88,7 +89,7 @@ func UnmarshalError(req *request.Request) {
 	req.Error = awserr.NewRequestFailure(
 		awserr.New(codes[len(codes)-1], jsonErr.Message, nil),
 		req.HTTPResponse.StatusCode,
-		"",
+		req.RequestID,
 	)
 }
 

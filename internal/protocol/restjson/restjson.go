@@ -69,7 +69,7 @@ func UnmarshalError(r *request.Request) {
 	r.Error = awserr.NewRequestFailure(
 		awserr.New(codes[0], jsonErr.Message, nil),
 		r.HTTPResponse.StatusCode,
-		"",
+		r.RequestID,
 	)
 }
 
