@@ -227,13 +227,17 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 
 // Returns a list of configuration items for the specified resource. The list
 // contains details about each state of the resource during the specified time
-// interval. You can specify a limit on the number of results returned on the
-// page. If a limit is specified, a nextToken is returned as part of the result
-// that you can use to continue this request.
+// interval.
+//
+// The response is paginated, and by default, AWS Config returns a limit of
+// 10 configuration items per page. You can customize this number with the limit
+// parameter. The response includes a nextToken string, and to get the next
+// page of results, run the request again and enter this string for the nextToken
+// parameter.
 //
 //  Each call to the API is limited to span a duration of seven days. It is
 // likely that the number of records returned is smaller than the specified
-// limit. In such cases, you can make another call, using the nextToken .
+// limit. In such cases, you can make another call, using the nextToken.
 func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistoryInput) (*GetResourceConfigHistoryOutput, error) {
 	req, out := c.GetResourceConfigHistoryRequest(input)
 	err := req.Send()
@@ -245,6 +249,45 @@ func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHi
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*GetResourceConfigHistoryOutput), lastPage)
 	})
+}
+
+const opListDiscoveredResources = "ListDiscoveredResources"
+
+// ListDiscoveredResourcesRequest generates a request for the ListDiscoveredResources operation.
+func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredResourcesInput) (req *request.Request, output *ListDiscoveredResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListDiscoveredResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListDiscoveredResourcesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListDiscoveredResourcesOutput{}
+	req.Data = output
+	return
+}
+
+// Accepts a resource type and returns a list of resource identifiers for the
+// resources of that type. A resource identifier includes the resource type,
+// ID, and (if available) the custom resource name. The results consist of resources
+// that AWS Config has discovered, including those that AWS Config is not currently
+// recording. You can narrow the results to include only resources that have
+// specific resource IDs or a resource name.
+//
+// You can specify either resource IDs or a resource name but not both in the
+// same request. The response is paginated, and by default AWS Config lists
+// 100 resource identifiers on each page. You can customize this number with
+// the limit parameter. The response includes a nextToken string, and to get
+// the next page of results, run the request again and enter this string for
+// the nextToken parameter.
+func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
+	req, out := c.ListDiscoveredResourcesRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opPutConfigurationRecorder = "PutConfigurationRecorder"
@@ -464,6 +507,9 @@ type ConfigurationItem struct {
 	// The Availability Zone associated with the resource.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
 
+	// The region where the resource resides.
+	AwsRegion *string `locationName:"awsRegion" type:"string"`
+
 	// The description of the resource configuration.
 	Configuration *string `locationName:"configuration" type:"string"`
 
@@ -501,6 +547,9 @@ type ConfigurationItem struct {
 
 	// The ID of the resource (for example., sg-xxxxxx).
 	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The custom name of the resource, if available.
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The type of AWS resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
@@ -705,8 +754,8 @@ type DeliveryChannel struct {
 	// The prefix for the specified Amazon S3 bucket.
 	S3KeyPrefix *string `locationName:"s3KeyPrefix" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM role used for accessing the Amazon
-	// S3 bucket and the Amazon SNS topic.
+	// The Amazon Resource Name (ARN) of the SNS topic that AWS Config delivers
+	// notifications to.
 	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 
 	metadataDeliveryChannel `json:"-" xml:"-"`
@@ -955,11 +1004,13 @@ type GetResourceConfigHistoryInput struct {
 	// is taken.
 	LaterTime *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix"`
 
-	// The maximum number of configuration items returned in each page. The default
-	// is 10. You cannot specify a limit greater than 100.
+	// The maximum number of configuration items returned on each page. The default
+	// is 10. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
-	// An optional parameter used for pagination of the results.
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
@@ -990,7 +1041,8 @@ type GetResourceConfigHistoryOutput struct {
 	// A list that contains the configuration history of one or more resources.
 	ConfigurationItems []*ConfigurationItem `locationName:"configurationItems" type:"list"`
 
-	// A token used for pagination of results.
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataGetResourceConfigHistoryOutput `json:"-" xml:"-"`
@@ -1007,6 +1059,76 @@ func (s GetResourceConfigHistoryOutput) String() string {
 
 // GoString returns the string representation
 func (s GetResourceConfigHistoryOutput) GoString() string {
+	return s.String()
+}
+
+type ListDiscoveredResourcesInput struct {
+	// Specifies whether AWS Config includes deleted resources in the results. By
+	// default, deleted resources are not included.
+	IncludeDeletedResources *bool `locationName:"includeDeletedResources" type:"boolean"`
+
+	// The maximum number of resource identifiers returned on each page. The default
+	// is 100. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The IDs of only those resources that you want AWS Config to list in the response.
+	// If you do not specify this parameter, AWS Config lists all resources of the
+	// specified type that it has discovered.
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+
+	// The custom name of only those resources that you want AWS Config to list
+	// in the response. If you do not specify this parameter, AWS Config lists all
+	// resources of the specified type that it has discovered.
+	ResourceName *string `locationName:"resourceName" type:"string"`
+
+	// The type of resources that you want AWS Config to list in the response.
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	metadataListDiscoveredResourcesInput `json:"-" xml:"-"`
+}
+
+type metadataListDiscoveredResourcesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDiscoveredResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDiscoveredResourcesInput) GoString() string {
+	return s.String()
+}
+
+type ListDiscoveredResourcesOutput struct {
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The details that identify a resource that is discovered by AWS Config, including
+	// the resource type, ID, and (if available) the custom resource name.
+	ResourceIdentifiers []*ResourceIdentifier `locationName:"resourceIdentifiers" type:"list"`
+
+	metadataListDiscoveredResourcesOutput `json:"-" xml:"-"`
+}
+
+type metadataListDiscoveredResourcesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDiscoveredResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDiscoveredResourcesOutput) GoString() string {
 	return s.String()
 }
 
@@ -1103,11 +1225,11 @@ type RecordingGroup struct {
 	// If you specify allSupported, you cannot enumerate a list of resourceTypes.
 	AllSupported *bool `locationName:"allSupported" type:"boolean"`
 
-	// A comma-separated list of strings representing valid AWS resource types (e.g.,
-	// AWS::EC2::Instance or AWS::CloudTrail::Trail). resourceTypes is only valid
-	// if you have chosen not to select allSupported. For a list of valid resourceTypes
-	// values, see the resourceType Value column in the following topic: Supported
-	// AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+	// A comma-separated list of strings representing valid AWS resource types (for
+	// example, AWS::EC2::Instance or AWS::CloudTrail::Trail). resourceTypes is
+	// only valid if you have chosen not to select allSupported. For a list of valid
+	// resourceTypes values, see the resourceType Value column in the following
+	// topic: Supported AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
 
 	metadataRecordingGroup `json:"-" xml:"-"`
@@ -1129,11 +1251,14 @@ func (s RecordingGroup) GoString() string {
 
 // The relationship of the related resource to the main resource.
 type Relationship struct {
-	// The name of the related resource.
+	// The type of relationship with the related resource.
 	RelationshipName *string `locationName:"relationshipName" type:"string"`
 
-	// The resource ID of the related resource (for example, sg-xxxxxx).
+	// The ID of the related resource (for example, sg-xxxxxx).
 	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The custom name of the related resource, if available.
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The resource type of the related resource.
 	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
@@ -1152,6 +1277,38 @@ func (s Relationship) String() string {
 
 // GoString returns the string representation
 func (s Relationship) GoString() string {
+	return s.String()
+}
+
+// The details that identify a resource that is discovered by AWS Config, including
+// the resource type, ID, and (if available) the custom resource name.
+type ResourceIdentifier struct {
+	// The time that the resource was deleted.
+	ResourceDeletionTime *time.Time `locationName:"resourceDeletionTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The ID of the resource (for example., sg-xxxxxx).
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The custom name of the resource (if available).
+	ResourceName *string `locationName:"resourceName" type:"string"`
+
+	// The type of resource.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	metadataResourceIdentifier `json:"-" xml:"-"`
+}
+
+type metadataResourceIdentifier struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceIdentifier) GoString() string {
 	return s.String()
 }
 

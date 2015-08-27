@@ -165,6 +165,33 @@ func ExampleConfigService_GetResourceConfigHistory() {
 	fmt.Println(resp)
 }
 
+func ExampleConfigService_ListDiscoveredResources() {
+	svc := configservice.New(nil)
+
+	params := &configservice.ListDiscoveredResourcesInput{
+		ResourceType:            aws.String("ResourceType"), // Required
+		IncludeDeletedResources: aws.Bool(true),
+		Limit:     aws.Int64(1),
+		NextToken: aws.String("NextToken"),
+		ResourceIds: []*string{
+			aws.String("ResourceId"), // Required
+			// More values...
+		},
+		ResourceName: aws.String("ResourceName"),
+	}
+	resp, err := svc.ListDiscoveredResources(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleConfigService_PutConfigurationRecorder() {
 	svc := configservice.New(nil)
 

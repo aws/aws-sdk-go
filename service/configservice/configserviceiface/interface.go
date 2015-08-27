@@ -40,6 +40,10 @@ type ConfigServiceAPI interface {
 
 	GetResourceConfigHistoryPages(*configservice.GetResourceConfigHistoryInput, func(*configservice.GetResourceConfigHistoryOutput, bool) bool) error
 
+	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)
+
+	ListDiscoveredResources(*configservice.ListDiscoveredResourcesInput) (*configservice.ListDiscoveredResourcesOutput, error)
+
 	PutConfigurationRecorderRequest(*configservice.PutConfigurationRecorderInput) (*request.Request, *configservice.PutConfigurationRecorderOutput)
 
 	PutConfigurationRecorder(*configservice.PutConfigurationRecorderInput) (*configservice.PutConfigurationRecorderOutput, error)
