@@ -3927,7 +3927,7 @@ func ExampleEC2_ModifyImageAttribute() {
 				// More values...
 			},
 		},
-		OperationType: aws.String("String"),
+		OperationType: aws.String("OperationType"),
 		ProductCodes: []*string{
 			aws.String("String"), // Required
 			// More values...
@@ -4113,7 +4113,7 @@ func ExampleEC2_ModifySnapshotAttribute() {
 			aws.String("String"), // Required
 			// More values...
 		},
-		OperationType: aws.String("String"),
+		OperationType: aws.String("OperationType"),
 		UserIds: []*string{
 			aws.String("String"), // Required
 			// More values...
@@ -4612,8 +4612,10 @@ func ExampleEC2_RequestSpotFleet() {
 						},
 						// More values...
 					},
-					SubnetId: aws.String("String"),
-					UserData: aws.String("String"),
+					SpotPrice:        aws.String("String"),
+					SubnetId:         aws.String("String"),
+					UserData:         aws.String("String"),
+					WeightedCapacity: aws.Float64(1.0),
 				},
 				// More values...
 			},

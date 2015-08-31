@@ -5448,23 +5448,32 @@ func (c *EC2) RegisterImageRequest(input *RegisterImageInput) (req *request.Requ
 }
 
 // Registers an AMI. When you're creating an AMI, this is the final step you
-// must complete before you can launch an instance from the AMI. This step is
-// required if you're creating an instance store-backed Linux or Windows AMI.
-// For more information, see Creating an Instance Store-Backed Linux AMI (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html)
-// and Creating an Instance Store-Backed Windows AMI (http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/Creating_InstanceStoreBacked_WinAMI.html)
+// must complete before you can launch an instance from the AMI. For more information
+// about creating AMIs, see Creating Your Own AMIs (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // For Amazon EBS-backed instances, CreateImage creates and registers the AMI
 // in a single request, so you don't have to register the AMI yourself.
 //
-// You can also use RegisterImage to create an Amazon EBS-backed AMI from a
-// snapshot of a root device volume. For more information, see Launching an
-// Instance from a Backup (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-launch-snapshot.html)
-// in the Amazon Elastic Compute Cloud User Guide. Note that although you can
-// create a Windows AMI from a snapshot, you can't launch an instance from the
-// AMI - use the CreateImage command instead.
+// You can also use RegisterImage to create an Amazon EBS-backed Linux AMI
+// from a snapshot of a root device volume. For more information, see Launching
+// an Instance from a Snapshot (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html)
+// in the Amazon Elastic Compute Cloud User Guide.
 //
-// If needed, you can deregister an AMI at any time. Any modifications you
+//  Some Linux distributions, such as Red Hat Enterprise Linux (RHEL) and SUSE
+// Linux Enterprise Server (SLES), use the EC2 billingProduct code associated
+// with an AMI to verify subscription status for package updates. Creating an
+// AMI from an EBS snapshot does not maintain this billing code, and subsequent
+// instances launched from such an AMI will not be able to connect to package
+// update infrastructure.
+//
+// Similarly, although you can create a Windows AMI from a snapshot, you can't
+// successfully launch an instance from the AMI.
+//
+// To create Windows AMIs or to create AMIs for Linux operating systems that
+// must retain AMI billing codes to work properly, see CreateImage.
+//
+//  If needed, you can deregister an AMI at any time. Any modifications you
 // make to an AMI backed by an instance store volume invalidates its registration.
 // If you make changes to an image, deregister the previous image and register
 // the new image.
@@ -5730,7 +5739,11 @@ func (c *EC2) RequestSpotFleetRequest(input *RequestSpotFleetInput) (req *reques
 
 // Creates a Spot fleet request.
 //
-// For more information, see Spot Fleets (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html)
+// You can submit a single request that specifies multiple instance types,
+// each with its own instance weighting that reflects its value to your application
+// workload. Amazon EC2 computes the bid price for each launch specification
+// and requests Spot Instances in the Spot pool where the price per unit is
+// the lowest. For more information, see Spot Fleets (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 func (c *EC2) RequestSpotFleet(input *RequestSpotFleetInput) (*RequestSpotFleetOutput, error) {
 	req, out := c.RequestSpotFleetRequest(input)
@@ -6029,6 +6042,12 @@ func (c *EC2) RunInstancesRequest(input *RunInstancesInput) (req *request.Reques
 // (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
+// [EC2-VPC only accounts] If you don't specify a subnet in the request, we
+// choose a default subnet from your default VPC for you.
+//
+// [EC2-Classic accounts] If you're launching into EC2-Classic and you don't
+// specify an Availability Zone, we choose one for you.
+//
 // Linux instances have access to the public key of the key pair at boot. You
 // can use this key to provide secure access to the instance. Amazon EC2 public
 // images use this feature to provide secure access without passwords. For more
@@ -6191,9 +6210,10 @@ func (c *EC2) TerminateInstancesRequest(input *TerminateInstancesInput) (req *re
 // instance store-backed instances. What happens to an instance differs if you
 // stop it or terminate it. For example, when you stop an instance, the root
 // device and any other devices attached to the instance persist. When you terminate
-// an instance, the root device and any other devices attached during the instance
-// launch are automatically deleted. For more information about the differences
-// between stopping and terminating instances, see Instance Lifecycle (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
+// an instance, any attached EBS volumes with the DeleteOnTermination block
+// device mapping parameter set to true are automatically deleted. For more
+// information about the differences between stopping and terminating instances,
+// see Instance Lifecycle (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html)
 // in the Amazon Elastic Compute Cloud User Guide.
 //
 // For more information about troubleshooting, see Troubleshooting Terminating
@@ -16197,7 +16217,7 @@ type EventInformation struct {
 	// are terminating.
 	//
 	//   expired - The Spot fleet request has expired. A subsequent event indicates
-	// that the instances were terminated, if the request was created with terminateInstancesWithExpiration
+	// that the instances were terminated, if the request was created with TerminateInstancesWithExpiration
 	// set.
 	//
 	//   price_update - The bid price for a launch configuration was adjusted because
@@ -18378,7 +18398,7 @@ type ModifyImageAttributeInput struct {
 	LaunchPermission *LaunchPermissionModifications `type:"structure"`
 
 	// The operation type.
-	OperationType *string `type:"string"`
+	OperationType *string `type:"string" enum:"OperationType"`
 
 	// One or more product codes. After you add a product code to an AMI, it can't
 	// be removed. This is only valid when modifying the productCodes attribute.
@@ -18447,7 +18467,8 @@ type ModifyInstanceAttributeInput struct {
 	BlockDeviceMappings []*InstanceBlockDeviceMappingSpecification `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
 
 	// If the value is true, you can't terminate the instance using the Amazon EC2
-	// console, CLI, or API; otherwise, you can.
+	// console, CLI, or API; otherwise, you can. You cannot use this paramater for
+	// Spot Instances.
 	DisableApiTermination *AttributeBooleanValue `locationName:"disableApiTermination" type:"structure"`
 
 	// Checks whether you have the required permissions for the action, without
@@ -18507,7 +18528,7 @@ type ModifyInstanceAttributeInput struct {
 	UserData *BlobAttributeValue `locationName:"userData" type:"structure"`
 
 	// A new value for the attribute. Use only with the kernel, ramdisk, userData,
-	// disableApiTermination, or intanceInitiateShutdownBehavior attribute.
+	// disableApiTermination, or instanceInitiatedShutdownBehavior attribute.
 	Value *string `locationName:"value" type:"string"`
 
 	metadataModifyInstanceAttributeInput `json:"-" xml:"-"`
@@ -18678,7 +18699,7 @@ type ModifySnapshotAttributeInput struct {
 	GroupNames []*string `locationName:"UserGroup" locationNameList:"GroupName" type:"list"`
 
 	// The type of operation to perform to the attribute.
-	OperationType *string `type:"string"`
+	OperationType *string `type:"string" enum:"OperationType"`
 
 	// The ID of the snapshot.
 	SnapshotId *string `type:"string" required:"true"`
@@ -21970,7 +21991,7 @@ func (s SpotDatafeedSubscription) GoString() string {
 	return s.String()
 }
 
-// Describes the launch specification for an instance.
+// Describes the launch specification for one or more Spot Instances.
 type SpotFleetLaunchSpecification struct {
 	// Deprecated.
 	AddressingType *string `locationName:"addressingType" type:"string"`
@@ -21978,7 +21999,7 @@ type SpotFleetLaunchSpecification struct {
 	// One or more block device mapping entries.
 	BlockDeviceMappings []*BlockDeviceMapping `locationName:"blockDeviceMapping" locationNameList:"item" type:"list"`
 
-	// Indicates whether the instance is optimized for EBS I/O. This optimization
+	// Indicates whether the instances are optimized for EBS I/O. This optimization
 	// provides dedicated throughput to Amazon EBS and an optimized configuration
 	// stack to provide optimal EBS I/O performance. This optimization isn't available
 	// with all instance types. Additional usage charges apply when using an EBS
@@ -21987,7 +22008,7 @@ type SpotFleetLaunchSpecification struct {
 	// Default: false
 	EbsOptimized *bool `locationName:"ebsOptimized" type:"boolean"`
 
-	// Describes an IAM instance profile.
+	// The IAM instance profile.
 	IamInstanceProfile *IamInstanceProfileSpecification `locationName:"iamInstanceProfile" type:"structure"`
 
 	// The ID of the AMI.
@@ -22002,13 +22023,13 @@ type SpotFleetLaunchSpecification struct {
 	// The name of the key pair.
 	KeyName *string `locationName:"keyName" type:"string"`
 
-	// Enable or disable monitoring for the instance.
+	// Enable or disable monitoring for the instances.
 	Monitoring *SpotFleetMonitoring `locationName:"monitoring" type:"structure"`
 
 	// One or more network interfaces.
 	NetworkInterfaces []*InstanceNetworkInterfaceSpecification `locationName:"networkInterfaceSet" locationNameList:"item" type:"list"`
 
-	// Describes Spot Instance placement.
+	// The placement information.
 	Placement *SpotPlacement `locationName:"placement" type:"structure"`
 
 	// The ID of the RAM disk.
@@ -22020,11 +22041,26 @@ type SpotFleetLaunchSpecification struct {
 	// group.
 	SecurityGroups []*GroupIdentifier `locationName:"groupSet" locationNameList:"item" type:"list"`
 
-	// The ID of the subnet in which to launch the instance.
+	// The bid price per unit hour for the specified instance type. If this value
+	// is not specified, the default is the Spot bid price specified for the fleet.
+	// To determine the bid price per unit hour, divide the Spot bid price by the
+	// value of WeightedCapacity.
+	SpotPrice *string `locationName:"spotPrice" type:"string"`
+
+	// The ID of the subnet in which to launch the instances.
 	SubnetId *string `locationName:"subnetId" type:"string"`
 
 	// The Base64-encoded MIME user data to make available to the instances.
 	UserData *string `locationName:"userData" type:"string"`
+
+	// The number of units provided by the specified instance type. These are the
+	// same units that you chose to set the target capacity in terms (instances
+	// or a performance characteristic such as vCPUs, memory, or I/O).
+	//
+	// If the target capacity divided by this value is not a whole number, we round
+	// the number of instances to the next whole number. If this value is not specified,
+	// the default is 1.
+	WeightedCapacity *float64 `locationName:"weightedCapacity" type:"double"`
 
 	metadataSpotFleetLaunchSpecification `json:"-" xml:"-"`
 }
@@ -22110,11 +22146,12 @@ type SpotFleetRequestConfigData struct {
 	// Information about the launch specifications for the instances.
 	LaunchSpecifications []*SpotFleetLaunchSpecification `locationName:"launchSpecifications" locationNameList:"item" type:"list" required:"true"`
 
-	// The maximum hourly price (bid) for any Spot Instance launched to fulfill
-	// the request.
+	// The bid price per unit hour.
 	SpotPrice *string `locationName:"spotPrice" type:"string" required:"true"`
 
-	// The maximum number of Spot Instances to launch.
+	// The number of units to request. You can choose to set the target capacity
+	// in terms of instances or a performance characteristic that is important to
+	// your application workload, such as vCPUs, memory, or I/O.
 	TargetCapacity *int64 `locationName:"targetCapacity" type:"integer" required:"true"`
 
 	// Indicates whether running instances should be terminated when the Spot fleet
@@ -22793,7 +22830,7 @@ func (s UnsuccessfulItem) GoString() string {
 	return s.String()
 }
 
-// Information about the error that occured. For more information about errors,
+// Information about the error that occurred. For more information about errors,
 // see Error Codes (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html).
 type UnsuccessfulItemError struct {
 	// The error code.
@@ -24096,6 +24133,13 @@ const (
 	OfferingTypeValuesPartialUpfront = "Partial Upfront"
 	// @enum OfferingTypeValues
 	OfferingTypeValuesAllUpfront = "All Upfront"
+)
+
+const (
+	// @enum OperationType
+	OperationTypeAdd = "add"
+	// @enum OperationType
+	OperationTypeRemove = "remove"
 )
 
 const (
