@@ -110,7 +110,6 @@ var AfterRetryHandler = request.NamedHandler{"core.AfterRetryHandler", func(r *r
 
 	if r.WillRetry() {
 		r.RetryDelay = r.RetryRules(r)
-		fmt.Println(r.Service.Config.SleepDelay)
 		r.Service.Config.SleepDelay(r.RetryDelay)
 
 		// when the expired token exception occurs the credentials
