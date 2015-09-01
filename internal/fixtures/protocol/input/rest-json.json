@@ -363,6 +363,185 @@
     ]
   },
   {
+    "description": "String payload",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "foo": {
+            "shape": "FooShape"
+          }
+        }
+      },
+      "FooShape": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "foo": "bar"
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "bar",
+          "uri": "/"
+        }
+      }
+    ]
+  },
+  {
+    "description": "Blob payload",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "foo": {
+            "shape": "FooShape"
+          }
+        }
+      },
+      "FooShape": {
+        "type": "blob"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "foo": "bar"
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "bar",
+          "uri": "/"
+        }
+      },
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "",
+          "uri": "/"
+        }
+      }
+    ]
+  },
+  {
+    "description": "Structure payload",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "foo": {
+            "shape": "FooShape"
+          }
+        }
+      },
+      "FooShape": {
+        "locationName": "foo",
+        "type": "structure",
+        "members": {
+          "baz": {
+            "shape": "BazShape"
+          }
+        }
+      },
+      "BazShape": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "foo": {
+            "baz": "bar"
+          }
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "{\"baz\": \"bar\"}",
+          "uri": "/"
+        }
+      },
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {},
+        "serialized": {
+          "method": "POST",
+          "body": "",
+          "uri": "/"
+        }
+      }
+    ]
+  },
+  {
     "description": "Omits null query params, but serializes empty strings",
     "metadata": {
       "protocol": "rest-json",
@@ -630,7 +809,7 @@
         "serialized": {
           "uri": "/path",
           "headers": {},
-          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"foo\": {\"NoRecurse\": \"foo\"}, \"bar\": {\"NoRecurse\": \"bar\"}}}}"
+          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"bar\": {\"NoRecurse\": \"bar\"}, \"foo\": {\"NoRecurse\": \"foo\"}}}}"
         }
       }
     ]

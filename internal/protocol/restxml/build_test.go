@@ -1246,32 +1246,6 @@ func (c *InputService14ProtocolTest) InputService14TestCaseOperation2(input *Inp
 	return out, err
 }
 
-const opInputService14TestCaseOperation3 = "OperationName"
-
-// InputService14TestCaseOperation3Request generates a request for the InputService14TestCaseOperation3 operation.
-func (c *InputService14ProtocolTest) InputService14TestCaseOperation3Request(input *InputService14TestShapeInputShape) (req *request.Request, output *InputService14TestShapeInputService14TestCaseOperation3Output) {
-	op := &request.Operation{
-		Name:       opInputService14TestCaseOperation3,
-		HTTPMethod: "POST",
-		HTTPPath:   "/",
-	}
-
-	if input == nil {
-		input = &InputService14TestShapeInputShape{}
-	}
-
-	req = c.newRequest(op, input, output)
-	output = &InputService14TestShapeInputService14TestCaseOperation3Output{}
-	req.Data = output
-	return
-}
-
-func (c *InputService14ProtocolTest) InputService14TestCaseOperation3(input *InputService14TestShapeInputShape) (*InputService14TestShapeInputService14TestCaseOperation3Output, error) {
-	req, out := c.InputService14TestCaseOperation3Request(input)
-	err := req.Send()
-	return out, err
-}
-
 type InputService14TestShapeFooShape struct {
 	Baz *string `locationName:"baz" type:"string"`
 
@@ -1295,14 +1269,6 @@ type InputService14TestShapeInputService14TestCaseOperation2Output struct {
 }
 
 type metadataInputService14TestShapeInputService14TestCaseOperation2Output struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-type InputService14TestShapeInputService14TestCaseOperation3Output struct {
-	metadataInputService14TestShapeInputService14TestCaseOperation3Output `json:"-" xml:"-"`
-}
-
-type metadataInputService14TestShapeInputService14TestCaseOperation3Output struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -2403,34 +2369,8 @@ func TestInputService14ProtocolTestStructurePayloadCase2(t *testing.T) {
 	svc := NewInputService14ProtocolTest(nil)
 	svc.Endpoint = "https://test"
 
-	input := &InputService14TestShapeInputShape{
-		Foo: &InputService14TestShapeFooShape{},
-	}
-	req, _ := svc.InputService14TestCaseOperation2Request(input)
-	r := req.HTTPRequest
-
-	// build request
-	restxml.Build(req)
-	assert.NoError(t, req.Error)
-
-	// assert body
-	assert.NotNil(t, r.Body)
-	body := util.SortXML(r.Body)
-	assert.Equal(t, util.Trim(`<foo></foo>`), util.Trim(string(body)))
-
-	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
-
-	// assert headers
-
-}
-
-func TestInputService14ProtocolTestStructurePayloadCase3(t *testing.T) {
-	svc := NewInputService14ProtocolTest(nil)
-	svc.Endpoint = "https://test"
-
 	input := &InputService14TestShapeInputShape{}
-	req, _ := svc.InputService14TestCaseOperation3Request(input)
+	req, _ := svc.InputService14TestCaseOperation2Request(input)
 	r := req.HTTPRequest
 
 	// build request

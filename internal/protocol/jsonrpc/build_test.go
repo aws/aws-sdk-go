@@ -631,6 +631,84 @@ type metadataInputService5TestShapeRecursiveStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type InputService6ProtocolTest struct {
+	*service.Service
+}
+
+// New returns a new InputService6ProtocolTest client.
+func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:       defaults.DefaultConfig.Merge(config),
+			ServiceName:  "inputservice6protocoltest",
+			APIVersion:   "",
+			JSONVersion:  "1.1",
+			TargetPrefix: "com.amazonaws.foo",
+		},
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(jsonrpc.Build)
+	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
+
+	return &InputService6ProtocolTest{service}
+}
+
+// newRequest creates a new request for a InputService6ProtocolTest operation and runs any
+// custom request initialization.
+func (c *InputService6ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opInputService6TestCaseOperation1 = "OperationName"
+
+// InputService6TestCaseOperation1Request generates a request for the InputService6TestCaseOperation1 operation.
+func (c *InputService6ProtocolTest) InputService6TestCaseOperation1Request(input *InputService6TestShapeInputService6TestCaseOperation1Input) (req *request.Request, output *InputService6TestShapeInputService6TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name:       opInputService6TestCaseOperation1,
+		HTTPMethod: "POST",
+	}
+
+	if input == nil {
+		input = &InputService6TestShapeInputService6TestCaseOperation1Input{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &InputService6TestShapeInputService6TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *InputService6ProtocolTest) InputService6TestCaseOperation1(input *InputService6TestShapeInputService6TestCaseOperation1Input) (*InputService6TestShapeInputService6TestCaseOperation1Output, error) {
+	req, out := c.InputService6TestCaseOperation1Request(input)
+	err := req.Send()
+	return out, err
+}
+
+type InputService6TestShapeInputService6TestCaseOperation1Input struct {
+	Map map[string]*string `type:"map"`
+
+	metadataInputService6TestShapeInputService6TestCaseOperation1Input `json:"-" xml:"-"`
+}
+
+type metadataInputService6TestShapeInputService6TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type InputService6TestShapeInputService6TestCaseOperation1Output struct {
+	metadataInputService6TestShapeInputService6TestCaseOperation1Output `json:"-" xml:"-"`
+}
+
+type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -982,6 +1060,34 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	assert.NotNil(t, r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
 	assert.Equal(t, util.Trim(`{"RecursiveStruct":{"RecursiveMap":{"bar":{"NoRecurse":"bar"},"foo":{"NoRecurse":"foo"}}}}`), util.Trim(string(body)))
+
+	// assert URL
+	assert.Equal(t, "https://test/", r.URL.String())
+
+	// assert headers
+	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
+	assert.Equal(t, "com.amazonaws.foo.OperationName", r.Header.Get("X-Amz-Target"))
+
+}
+
+func TestInputService6ProtocolTestEmptyMapsCase1(t *testing.T) {
+	svc := NewInputService6ProtocolTest(nil)
+	svc.Endpoint = "https://test"
+
+	input := &InputService6TestShapeInputService6TestCaseOperation1Input{
+		Map: map[string]*string{},
+	}
+	req, _ := svc.InputService6TestCaseOperation1Request(input)
+	r := req.HTTPRequest
+
+	// build request
+	jsonrpc.Build(req)
+	assert.NoError(t, req.Error)
+
+	// assert body
+	assert.NotNil(t, r.Body)
+	body, _ := ioutil.ReadAll(r.Body)
+	assert.Equal(t, util.Trim(`{"Map":{}}`), util.Trim(string(body)))
 
 	// assert URL
 	assert.Equal(t, "https://test/", r.URL.String())

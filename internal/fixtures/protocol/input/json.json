@@ -417,7 +417,7 @@
             "X-Amz-Target": "com.amazonaws.foo.OperationName",
             "Content-Type": "application/x-amz-json-1.1"
           },
-          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"foo\": {\"NoRecurse\": \"foo\"}, \"bar\": {\"NoRecurse\": \"bar\"}}}}"
+          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"bar\": {\"NoRecurse\": \"bar\"}, \"foo\": {\"NoRecurse\": \"foo\"}}}}"
         }
       }
     ]
@@ -426,7 +426,7 @@
     "description": "Empty maps",
     "metadata": {
       "protocol": "json",
-      "jsonVersion": 1.1,
+      "jsonVersion": "1.1",
       "targetPrefix": "com.amazonaws.foo"
     },
     "shapes": {

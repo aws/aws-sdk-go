@@ -544,7 +544,7 @@
         },
         "serialized": {
           "uri": "/",
-          "body": "Action=OperationName&Version=2014-01-01&RecursiveStruct.RecursiveMap.entry.1.key=foo&RecursiveStruct.RecursiveMap.entry.1.value.NoRecurse=foo&RecursiveStruct.RecursiveMap.entry.2.key=bar&RecursiveStruct.RecursiveMap.entry.2.value.NoRecurse=bar"
+          "body": "Action=OperationName&Version=2014-01-01&RecursiveStruct.RecursiveMap.entry.1.key=bar&RecursiveStruct.RecursiveMap.entry.1.value.NoRecurse=bar&RecursiveStruct.RecursiveMap.entry.2.key=foo&RecursiveStruct.RecursiveMap.entry.2.value.NoRecurse=foo"
         }
       }
     ]

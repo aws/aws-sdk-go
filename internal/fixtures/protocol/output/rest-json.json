@@ -491,20 +491,20 @@
         "result": {
           "AllHeaders": {
             "Content-Length": "10",
-            "x-Foo": "bar",
-            "X-bam": "boo"
+            "X-Foo": "bar",
+            "X-Bam": "boo"
           },
           "PrefixedHeaders": {
             "Foo": "bar",
-            "bam": "boo"
+            "Bam": "boo"
           }
         },
         "response": {
           "status_code": 200,
           "headers": {
             "Content-Length": "10",
-            "x-Foo": "bar",
-            "X-bam": "boo"
+            "X-Foo": "bar",
+            "X-Bam": "boo"
           },
           "body": "{}"
         }
