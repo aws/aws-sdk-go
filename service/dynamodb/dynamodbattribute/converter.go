@@ -368,6 +368,16 @@ func convertTo(in interface{}) *dynamodb.AttributeValue {
 		return a
 	}
 
+	if ss, ok := in.([]string); ok {
+		a.SS = make([]*string, len(ss))
+		for index, v := range ss {
+			s := new(string)
+			*s = v
+			a.SS[index] = s
+		}
+		return a
+	}
+
 	if m, ok := in.(map[string]interface{}); ok {
 		a.M = make(map[string]*dynamodb.AttributeValue)
 		for k, v := range m {
@@ -441,6 +451,14 @@ func convertFrom(a *dynamodb.AttributeValue) interface{} {
 
 	if a.NULL != nil {
 		return nil
+	}
+
+	if a.SS != nil {
+		ss := make([]string, len(a.SS))
+		for index, v := range a.SS {
+			ss[index] = *v
+		}
+		return ss
 	}
 
 	if a.M != nil {
