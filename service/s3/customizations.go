@@ -30,6 +30,8 @@ func init() {
 		case opCreateBucket:
 			// Auto-populate LocationConstraint with current region
 			r.Handlers.Validate.PushFront(populateLocationConstraint)
+		case opCopyObject, opUploadPartCopy, opCompleteMultipartUpload:
+			r.Handlers.Unmarshal.PushFront(copyMultipartStatusOKUnmarhsalError)
 		}
 	}
 }
