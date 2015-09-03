@@ -3,6 +3,7 @@
   "operations": {
     "ActivateGateway": "<p>This operation activates the gateway you previously deployed on your host. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/GettingStartedActivateGateway-common.html\"> Activate the AWS Storage Gateway</a>. In the activation process, you specify information such as the region you want to use for storing snapshots, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account; for more information, see <a>UpdateGatewayInformation</a>.</p> <note>You must turn on the gateway VM before you can activate your gateway.</note>",
     "AddCache": "<p>This operation configures one or more gateway local disks as cache for a cached-volume gateway. This operation is supported only for the gateway-cached volume architecture (see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html\">Storage Gateway Concepts</a>).</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add cache, and one or more disk IDs that you want to configure as cache. </p>",
+    "AddTagsToResource": "<p>This operation adds one or more tags to the specified resource. You use tags to add metadata to resources, which you can use to categorize these resources. For example, you can categorize resources by purpose, owner, environment, or team. Each tag consists of a key and a value, which you define. You can add tags to the following AWS Storage Gateway resources:</p> <ul> <li><p>Storage gateways of all types</p></li> </ul> <ul> <li><p>Storage Volumes</p></li> </ul> <ul> <li><p>Virtual Tapes</p></li> </ul> <p>You can create a maximum of 10 tags for each resource. Virtual tapes and storage volumes that are recovered to a new gateway maintain their tags.</p>",
     "AddUploadBuffer": "<p>This operation configures one or more gateway local disks as upload buffer for a specified gateway. This operation is supported for both the gateway-stored and gateway-cached volume architectures. </p> <p> In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add upload buffer, and one or more disk IDs that you want to configure as upload buffer.</p>",
     "AddWorkingStorage": "<p>This operation configures one or more gateway local disks as working storage for a gateway. This operation is supported only for the gateway-stored volume architecture. This operation is deprecated method in cached-volumes API version (20120630). Use AddUploadBuffer instead.</p> <note><p>Working storage is also referred to as upload buffer. You can also use the <a>AddUploadBuffer</a> operation to add upload buffer to a stored-volume gateway.</p></note> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add working storage, and one or more disk IDs that you want to configure as working storage.</p>",
     "CancelArchival": "<p>Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after the archiving process is initiated. </p>",
@@ -18,7 +19,7 @@
     "DeleteSnapshotSchedule": "<p> This operation deletes a snapshot of a volume. </p> <p> You can take snapshots of your gateway volumes on a scheduled or ad-hoc basis. This API enables you to delete a snapshot schedule for a volume. For more information, see <a href=\"http://docs.aws.amazon.com/storagegateway/latest/userguide/WorkingWithSnapshots.html\">Working with Snapshots</a>. In the <code>DeleteSnapshotSchedule</code> request, you identify the volume by providing its Amazon Resource Name (ARN). </p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. in <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note>",
     "DeleteTape": "<p>Deletes the specified virtual tape.</p>",
     "DeleteTapeArchive": "<p>Deletes the specified virtual tape from the virtual tape shelf (VTS).</p>",
-    "DeleteVolume": "<p>This operation delete the specified gateway volume that you previously created using the <a>CreateStorediSCSIVolume</a> API. For gateway-stored volumes, the local disk that was configured as the storage volume is not deleted. You can reuse the local disk to create another storage volume. </p> <p>Before you delete a gateway volume, make sure there are no iSCSI connections to the volume you are deleting. You should also make sure there is no snapshot in progress. You can use the Amazon Elastic Compute Cloud (Amazon EC2) API to query snapshots on the volume you are deleting and check the snapshot status. For more information, go to <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> <p>In the request, you must provide the Amazon Resource Name (ARN) of the storage volume you want to delete.</p>",
+    "DeleteVolume": "<p>This operation deletes the specified gateway volume that you previously created using the <a>CreateCachediSCSIVolume</a> or <a>CreateStorediSCSIVolume</a> API. For gateway-stored volumes, the local disk that was configured as the storage volume is not deleted. You can reuse the local disk to create another storage volume. </p> <p>Before you delete a gateway volume, make sure there are no iSCSI connections to the volume you are deleting. You should also make sure there is no snapshot in progress. You can use the Amazon Elastic Compute Cloud (Amazon EC2) API to query snapshots on the volume you are deleting and check the snapshot status. For more information, go to <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> <p>In the request, you must provide the Amazon Resource Name (ARN) of the storage volume you want to delete.</p>",
     "DescribeBandwidthRateLimit": "<p>This operation returns the bandwidth rate limits of a gateway. By default, these limits are not set, which means no bandwidth rate limiting is in effect.</p> <p>This operation only returns a value for a bandwidth rate limit only if the limit is set. If no limits are set for the gateway, then this operation returns only the gateway ARN in the response body. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "DescribeCache": "<p>This operation returns information about the cache of a gateway. This operation is supported only for the gateway-cached volume architecture. </p> <p> The response includes disk IDs that are configured as cache, and it includes the amount of cache allocated and used. </p>",
     "DescribeCachediSCSIVolumes": "<p>This operation returns a description of the gateway volumes specified in the request. This operation is supported only for the gateway-cached volume architecture.</p> <p> The list of gateway volumes in the request must be from one gateway. In the response Amazon Storage Gateway returns volume information sorted by volume Amazon Resource Name (ARN). </p>",
@@ -36,9 +37,11 @@
     "DisableGateway": "<p>Disables a gateway when the gateway is no longer functioning. For example, if your gateway VM is damaged, you can disable the gateway so you can recover virtual tapes. </p> <p>Use this operation for a gateway-VTL that is not reachable or not functioning.</p> <important>Once a gateway is disabled it cannot be enabled.</important>",
     "ListGateways": "<p>This operation lists gateways owned by an AWS account in a region specified in the request. The returned list is ordered by gateway Amazon Resource Name (ARN).</p> <p>By default, the operation returns a maximum of 100 gateways. This operation supports pagination that allows you to optionally reduce the number of gateways returned in a response.</p> <p>If you have more gateways than are returned in a response-that is, the response returns only a truncated list of your gateways-the response contains a marker that you can specify in your next request to fetch the next page of gateways.</p>",
     "ListLocalDisks": "<p>This operation returns a list of the gateway's local disks. To specify which gateway to describe, you use the Amazon Resource Name (ARN) of the gateway in the body of the request.</p> <p>The request returns a list of all disks, specifying which are configured as working storage, cache storage, or stored volume or not configured at all. The response includes a <code>DiskStatus</code> field. This field can have a value of present (the disk is available to use), missing (the disk is no longer connected to the gateway), or mismatch (the disk node is occupied by a disk that has incorrect metadata or the disk content is corrupted). </p>",
+    "ListTagsForResource": "<p>This operation lists the tags that have been added to the specified resource. </p>",
     "ListVolumeInitiators": "<p>This operation lists iSCSI initiators that are connected to a volume. You can use this operation to determine whether a volume is being used or not.</p>",
     "ListVolumeRecoveryPoints": "<p>This operation lists the recovery points for a specified gateway. This operation is supported only for the gateway-cached volume architecture.</p> <p>Each gateway-cached volume has one recovery point. A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To create a snapshot from a volume recovery point use the <a>CreateSnapshotFromVolumeRecoveryPoint</a> operation.</p>",
     "ListVolumes": "<p>This operation lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN. The response includes only the volume ARNs. If you want additional volume information, use the <a>DescribeStorediSCSIVolumes</a> API.</p> <p>The operation supports pagination. By default, the operation returns a maximum of up to 100 volumes. You can optionally specify the <code>Limit</code> field in the body to limit the number of volumes in the response. If the number of volumes returned in the response is truncated, the response includes a Marker field. You can use this Marker value in your subsequent request to retrieve the next set of volumes.</p>",
+    "RemoveTagsFromResource": "<p>This operation removes one or more tags from the specified resource.</p>",
     "ResetCache": "<p>This operation resets all cache disks that have encountered a error and makes the disks available for reconfiguration as cache storage. If your cache disk encounters a error, the gateway prevents read and write operations on virtual tapes in the gateway. For example, an error can occur when a disk is corrupted or removed from the gateway. When a cache is reset, the gateway loses its cache storage. At this point you can reconfigure the disks as cache disks. </p> <important> <p>If the cache disk you are resetting contains data that has not been uploaded to Amazon S3 yet, that data can be lost. After you reset cache disks, there will be no configured cache disks left in the gateway, so you must configure at least one new cache disk for your gateway to function properly.</p> </important>",
     "RetrieveTapeArchive": "<p>Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a gateway-VTL. Virtual tapes archived in the VTS are not associated with any gateway. However after a tape is retrieved, it is associated with a gateway, even though it is also listed in the VTS.</p> <p>Once a tape is successfully retrieved to a gateway, it cannot be retrieved again to another gateway. You must archive the tape again before you can retrieve it to another gateway.</p>",
     "RetrieveTapeRecoveryPoint": "<p>Retrieves the recovery point for the specified virtual tape.</p> <p>A recovery point is a point in time view of a virtual tape at which all the data on the tape is consistent. If your gateway crashes, virtual tapes that have recovery points can be recovered to a new gateway.</p> <note>The virtual tape can be retrieved to only one gateway. The retrieved tape is read-only. The virtual tape can be retrieved to only a gateway-VTL. There is no charge for retrieving recovery points.</note>",
@@ -77,6 +80,16 @@
     },
     "AddCacheOutput": {
       "base": null,
+      "refs": {
+      }
+    },
+    "AddTagsToResourceInput": {
+      "base": "<p>AddTagsToResourceInput</p>",
+      "refs": {
+      }
+    },
+    "AddTagsToResourceOutput": {
+      "base": "<p>AddTagsToResourceOutput</p>",
       "refs": {
       }
     },
@@ -659,7 +672,7 @@
       "refs": {
         "DescribeMaintenanceStartTimeOutput$HourOfDay": null,
         "DescribeSnapshotScheduleOutput$StartAt": null,
-        "UpdateMaintenanceStartTimeInput$HourOfDay": "<p>The hour component of the maintenance start time represented as <emphasis>hh</emphasis>, where <i>hh</i> is the hour (00 to 23). The hour of the day is in the time zone of the gateway.</p>",
+        "UpdateMaintenanceStartTimeInput$HourOfDay": "<p>The hour component of the maintenance start time represented as <i>hh</i>, where <i>hh</i> is the hour (00 to 23). The hour of the day is in the time zone of the gateway.</p>",
         "UpdateSnapshotScheduleInput$StartAt": "<p>The hour of the day at which the snapshot schedule begins represented as <i>hh</i>, where <i>hh</i> is the hour (0 to 23). The hour of the day is in the time zone of the gateway.</p>"
       }
     },
@@ -721,6 +734,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceInput": {
+      "base": "<p>ListTagsForResourceInput</p>",
+      "refs": {
+      }
+    },
+    "ListTagsForResourceOutput": {
+      "base": "<p>ListTagsForResourceOutput</p>",
+      "refs": {
+      }
+    },
     "ListVolumeInitiatorsInput": {
       "base": "<p>ListVolumeInitiatorsInput</p>",
       "refs": {
@@ -764,6 +787,8 @@
         "DescribeVTLDevicesOutput$Marker": "<p>An opaque string that indicates the position at which the VTL devices that were fetched for description ended. Use the marker in your next request to fetch the next set of VTL devices in the list. If there are no more VTL devices to describe, this field does not appear in the response.</p>",
         "ListGatewaysInput$Marker": "<p>An opaque string that indicates the position at which to begin the returned list of gateways.</p>",
         "ListGatewaysOutput$Marker": null,
+        "ListTagsForResourceInput$Marker": "<p>An opaque string that indicates the position at which to begin returning the list of tags.</p>",
+        "ListTagsForResourceOutput$Marker": "<p>An opaque string that indicates the position at which to stop returning the list of tags.</p>",
         "ListVolumesInput$Marker": "<p>A string that indicates the position at which to begin the returned list of volumes. Obtain the marker from the response of a previous List iSCSI Volumes request.</p>",
         "ListVolumesOutput$Marker": null
       }
@@ -816,6 +841,7 @@
         "DescribeTapesInput$Limit": "<p>Specifies that the number of virtual tapes described be limited to the specified number.</p> <note>Amazon Web Services may impose its own limit, if this field is not set.</note>",
         "DescribeVTLDevicesInput$Limit": "<p>Specifies that the number of VTL devices described be limited to the specified number.</p>",
         "ListGatewaysInput$Limit": "<p>Specifies that the list of gateways returned be limited to the specified number of items.</p>",
+        "ListTagsForResourceInput$Limit": "<p>Specifies that the list of tags returned be limited to the specified number of items.</p>",
         "ListVolumesInput$Limit": "<p>Specifies that the list of volumes returned be limited to the specified number of items.</p>",
         "VolumeiSCSIAttributes$LunNumber": "<p>The logical disk number.</p>"
       }
@@ -833,6 +859,16 @@
         "ActivateGatewayInput$GatewayRegion": "<p>One of the values that indicates the region where you want to store the snapshot backups. The gateway region specified must be the same region as the region in your <code>Host</code> header in the request. For more information about available regions and endpoints for AWS Storage Gateway, see <a href=\"http://docs.aws.amazon.com/general/latest/gr/rande.html#sg_region\">Regions and Endpoints</a> in the <i>Amazon Web Services Glossary</i>.</p> <p><i>Valid Values</i>: \"us-east-1\", \"us-west-1\", \"us-west-2\", \"eu-west-1\", \"eu-central-1\", \"ap-northeast-1\", \"ap-southeast-1\", \"ap-southeast-2\", \"sa-east-1\"</p>"
       }
     },
+    "RemoveTagsFromResourceInput": {
+      "base": "<p>RemoveTagsFromResourceInput</p>",
+      "refs": {
+      }
+    },
+    "RemoveTagsFromResourceOutput": {
+      "base": "<p>RemoveTagsFromResourceOutput</p>",
+      "refs": {
+      }
+    },
     "ResetCacheInput": {
       "base": null,
       "refs": {
@@ -841,6 +877,17 @@
     "ResetCacheOutput": {
       "base": null,
       "refs": {
+      }
+    },
+    "ResourceARN": {
+      "base": null,
+      "refs": {
+        "AddTagsToResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource you want to add tags to.</p>",
+        "AddTagsToResourceOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource you want to add tags to.</p>",
+        "ListTagsForResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource for which you want to list tags.</p>",
+        "ListTagsForResourceOutput$ResourceARN": "<p>he Amazon Resource Name (ARN) of the resource for which you want to list tags.</p>",
+        "RemoveTagsFromResourceInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource you want to remove the tags from.</p>",
+        "RemoveTagsFromResourceOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the resource that the tags were removed from.</p>"
       }
     },
     "RetrieveTapeArchiveInput": {
@@ -920,6 +967,38 @@
         "DescribeStorediSCSIVolumesOutput$StorediSCSIVolumes": null
       }
     },
+    "Tag": {
+      "base": null,
+      "refs": {
+        "Tags$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": null,
+        "TagKeys$member": null
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "RemoveTagsFromResourceInput$TagKeys": "<p>The keys of the tags you want to remove from the specified resource. A tag is composed of a key/value pair.</p>"
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "AddTagsToResourceInput$Tags": "<p>The key-value pair that represents the tag you want to add to the resource. The value can be an empty string.</p> <note><p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @.</p></note>",
+        "ListTagsForResourceOutput$Tags": "<p>An array that contains the tags for the specified resource.</p>"
+      }
+    },
     "Tape": {
       "base": "<p>Describes a virtual tape object.</p>",
       "refs": {
@@ -950,7 +1029,7 @@
     "TapeARNs": {
       "base": null,
       "refs": {
-        "CreateTapesOutput$TapeARNs": "<p>A list of unique Amazon Resource Named (ARN) the represents the virtual tapes that were created.</p>",
+        "CreateTapesOutput$TapeARNs": "<p>A list of unique Amazon Resource Named (ARN) that represents the virtual tapes that were created.</p>",
         "DescribeTapeArchivesInput$TapeARNs": "<p>Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe. </p>",
         "DescribeTapesInput$TapeARNs": "<p>Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe. If this parameter is not specified, AWS Storage Gateway returns a description of all virtual tapes associated with the specified gateway.</p>"
       }
@@ -1313,15 +1392,18 @@
       "base": null,
       "refs": {
         "CreateSnapshotFromVolumeRecoveryPointOutput$VolumeRecoveryPointTime": null,
+        "DescribeGatewayInformationOutput$GatewayName": "<p>The gateway name.</p>",
         "Disk$DiskPath": null,
         "Disk$DiskNode": null,
         "Disk$DiskStatus": null,
         "Disk$DiskAllocationResource": null,
+        "GatewayInfo$GatewayName": null,
         "InternalServerError$message": "<p>A human-readable message describing the error that occurred.</p>",
         "InvalidGatewayRequestException$message": "<p>A human-readable message describing the error that occurred.</p>",
         "NetworkInterface$Ipv4Address": "<p>The Internet Protocol version 4 (IPv4) address of the interface.</p>",
         "NetworkInterface$MacAddress": "<p>The Media Access Control (MAC) address of the interface.</p> <note>This is currently unsupported and will not be returned in output.</note>",
         "NetworkInterface$Ipv6Address": "<p>The Internet Protocol version 6 (IPv6) address of the interface. <i>Currently not supported</i>.</p>",
+        "UpdateGatewayInformationOutput$GatewayName": null,
         "VolumeRecoveryPointInfo$VolumeRecoveryPointTime": null,
         "errorDetails$key": null,
         "errorDetails$value": null

@@ -78,6 +78,46 @@ func (c *StorageGateway) AddCache(input *AddCacheInput) (*AddCacheOutput, error)
 	return out, err
 }
 
+const opAddTagsToResource = "AddTagsToResource"
+
+// AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
+func (c *StorageGateway) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
+	op := &request.Operation{
+		Name:       opAddTagsToResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddTagsToResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AddTagsToResourceOutput{}
+	req.Data = output
+	return
+}
+
+// This operation adds one or more tags to the specified resource. You use tags
+// to add metadata to resources, which you can use to categorize these resources.
+// For example, you can categorize resources by purpose, owner, environment,
+// or team. Each tag consists of a key and a value, which you define. You can
+// add tags to the following AWS Storage Gateway resources:
+//
+//  Storage gateways of all types
+//
+//   Storage Volumes
+//
+//   Virtual Tapes
+//
+//  You can create a maximum of 10 tags for each resource. Virtual tapes and
+// storage volumes that are recovered to a new gateway maintain their tags.
+func (c *StorageGateway) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
+	req, out := c.AddTagsToResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opAddUploadBuffer = "AddUploadBuffer"
 
 // AddUploadBufferRequest generates a request for the AddUploadBuffer operation.
@@ -614,10 +654,10 @@ func (c *StorageGateway) DeleteVolumeRequest(input *DeleteVolumeInput) (req *req
 	return
 }
 
-// This operation delete the specified gateway volume that you previously created
-// using the CreateStorediSCSIVolume API. For gateway-stored volumes, the local
-// disk that was configured as the storage volume is not deleted. You can reuse
-// the local disk to create another storage volume.
+// This operation deletes the specified gateway volume that you previously created
+// using the CreateCachediSCSIVolume or CreateStorediSCSIVolume API. For gateway-stored
+// volumes, the local disk that was configured as the storage volume is not
+// deleted. You can reuse the local disk to create another storage volume.
 //
 // Before you delete a gateway volume, make sure there are no iSCSI connections
 // to the volume you are deleting. You should also make sure there is no snapshot
@@ -1239,6 +1279,33 @@ func (c *StorageGateway) ListLocalDisks(input *ListLocalDisksInput) (*ListLocalD
 	return out, err
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
+func (c *StorageGateway) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTagsForResourceOutput{}
+	req.Data = output
+	return
+}
+
+// This operation lists the tags that have been added to the specified resource.
+func (c *StorageGateway) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListVolumeInitiators = "ListVolumeInitiators"
 
 // ListVolumeInitiatorsRequest generates a request for the ListVolumeInitiators operation.
@@ -1347,6 +1414,33 @@ func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *Li
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListVolumesOutput), lastPage)
 	})
+}
+
+const opRemoveTagsFromResource = "RemoveTagsFromResource"
+
+// RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
+func (c *StorageGateway) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
+	op := &request.Operation{
+		Name:       opRemoveTagsFromResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveTagsFromResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RemoveTagsFromResourceOutput{}
+	req.Data = output
+	return
+}
+
+// This operation removes one or more tags from the specified resource.
+func (c *StorageGateway) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
+	req, out := c.RemoveTagsFromResourceRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opResetCache = "ResetCache"
@@ -1905,6 +1999,57 @@ func (s AddCacheOutput) String() string {
 
 // GoString returns the string representation
 func (s AddCacheOutput) GoString() string {
+	return s.String()
+}
+
+// AddTagsToResourceInput
+type AddTagsToResourceInput struct {
+	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
+	ResourceARN *string `type:"string" required:"true"`
+
+	// The key-value pair that represents the tag you want to add to the resource.
+	// The value can be an empty string.
+	//
+	// Valid characters for key and value are letters, spaces, and numbers representable
+	// in UTF-8 format, and the following special characters: + - = . _ : / @.
+	Tags []*Tag `type:"list" required:"true"`
+
+	metadataAddTagsToResourceInput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsToResourceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceInput) GoString() string {
+	return s.String()
+}
+
+// AddTagsToResourceOutput
+type AddTagsToResourceOutput struct {
+	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
+	ResourceARN *string `type:"string"`
+
+	metadataAddTagsToResourceOutput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsToResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsToResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsToResourceOutput) GoString() string {
 	return s.String()
 }
 
@@ -2471,8 +2616,8 @@ func (s CreateTapesInput) GoString() string {
 
 // CreateTapeOutput
 type CreateTapesOutput struct {
-	// A list of unique Amazon Resource Named (ARN) the represents the virtual tapes
-	// that were created.
+	// A list of unique Amazon Resource Named (ARN) that represents the virtual
+	// tapes that were created.
 	TapeARNs []*string `type:"list"`
 
 	metadataCreateTapesOutput `json:"-" xml:"-"`
@@ -3064,6 +3209,9 @@ type DescribeGatewayInformationOutput struct {
 
 	// The gateway ID.
 	GatewayId *string `type:"string"`
+
+	// The gateway name.
+	GatewayName *string `type:"string"`
 
 	// A NetworkInterface array that contains descriptions of the gateway network
 	// interfaces.
@@ -3775,6 +3923,8 @@ type GatewayInfo struct {
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
 
+	GatewayName *string `type:"string"`
+
 	GatewayOperationalState *string `type:"string"`
 
 	GatewayType *string `type:"string"`
@@ -3891,6 +4041,67 @@ func (s ListLocalDisksOutput) String() string {
 
 // GoString returns the string representation
 func (s ListLocalDisksOutput) GoString() string {
+	return s.String()
+}
+
+// ListTagsForResourceInput
+type ListTagsForResourceInput struct {
+	// Specifies that the list of tags returned be limited to the specified number
+	// of items.
+	Limit *int64 `type:"integer"`
+
+	// An opaque string that indicates the position at which to begin returning
+	// the list of tags.
+	Marker *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource for which you want to list
+	// tags.
+	ResourceARN *string `type:"string"`
+
+	metadataListTagsForResourceInput `json:"-" xml:"-"`
+}
+
+type metadataListTagsForResourceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// ListTagsForResourceOutput
+type ListTagsForResourceOutput struct {
+	// An opaque string that indicates the position at which to stop returning the
+	// list of tags.
+	Marker *string `type:"string"`
+
+	// he Amazon Resource Name (ARN) of the resource for which you want to list
+	// tags.
+	ResourceARN *string `type:"string"`
+
+	// An array that contains the tags for the specified resource.
+	Tags []*Tag `type:"list"`
+
+	metadataListTagsForResourceOutput `json:"-" xml:"-"`
+}
+
+type metadataListTagsForResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
 	return s.String()
 }
 
@@ -4074,6 +4285,56 @@ func (s NetworkInterface) String() string {
 
 // GoString returns the string representation
 func (s NetworkInterface) GoString() string {
+	return s.String()
+}
+
+// RemoveTagsFromResourceInput
+type RemoveTagsFromResourceInput struct {
+	// The Amazon Resource Name (ARN) of the resource you want to remove the tags
+	// from.
+	ResourceARN *string `type:"string"`
+
+	// The keys of the tags you want to remove from the specified resource. A tag
+	// is composed of a key/value pair.
+	TagKeys []*string `type:"list"`
+
+	metadataRemoveTagsFromResourceInput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsFromResourceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceInput) GoString() string {
+	return s.String()
+}
+
+// RemoveTagsFromResourceOutput
+type RemoveTagsFromResourceOutput struct {
+	// The Amazon Resource Name (ARN) of the resource that the tags were removed
+	// from.
+	ResourceARN *string `type:"string"`
+
+	metadataRemoveTagsFromResourceOutput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsFromResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsFromResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsFromResourceOutput) GoString() string {
 	return s.String()
 }
 
@@ -4355,6 +4616,28 @@ func (s StorediSCSIVolume) GoString() string {
 	return s.String()
 }
 
+type Tag struct {
+	Key *string `type:"string" required:"true"`
+
+	Value *string `type:"string" required:"true"`
+
+	metadataTag `json:"-" xml:"-"`
+}
+
+type metadataTag struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 // Describes a virtual tape object.
 type Tape struct {
 	// For archiving virtual tapes, indicates how much data remains to be uploaded
@@ -4631,6 +4914,8 @@ type UpdateGatewayInformationOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
 	GatewayARN *string `type:"string"`
+
+	GatewayName *string `type:"string"`
 
 	metadataUpdateGatewayInformationOutput `json:"-" xml:"-"`
 }

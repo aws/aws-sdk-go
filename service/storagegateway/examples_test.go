@@ -62,6 +62,32 @@ func ExampleStorageGateway_AddCache() {
 	fmt.Println(resp)
 }
 
+func ExampleStorageGateway_AddTagsToResource() {
+	svc := storagegateway.New(nil)
+
+	params := &storagegateway.AddTagsToResourceInput{
+		ResourceARN: aws.String("ResourceARN"), // Required
+		Tags: []*storagegateway.Tag{ // Required
+			{ // Required
+				Key:   aws.String("TagKey"),   // Required
+				Value: aws.String("TagValue"), // Required
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.AddTagsToResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleStorageGateway_AddUploadBuffer() {
 	svc := storagegateway.New(nil)
 
@@ -744,6 +770,27 @@ func ExampleStorageGateway_ListLocalDisks() {
 	fmt.Println(resp)
 }
 
+func ExampleStorageGateway_ListTagsForResource() {
+	svc := storagegateway.New(nil)
+
+	params := &storagegateway.ListTagsForResourceInput{
+		Limit:       aws.Int64(1),
+		Marker:      aws.String("Marker"),
+		ResourceARN: aws.String("ResourceARN"),
+	}
+	resp, err := svc.ListTagsForResource(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleStorageGateway_ListVolumeInitiators() {
 	svc := storagegateway.New(nil)
 
@@ -791,6 +838,29 @@ func ExampleStorageGateway_ListVolumes() {
 		Marker:     aws.String("Marker"),
 	}
 	resp, err := svc.ListVolumes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleStorageGateway_RemoveTagsFromResource() {
+	svc := storagegateway.New(nil)
+
+	params := &storagegateway.RemoveTagsFromResourceInput{
+		ResourceARN: aws.String("ResourceARN"),
+		TagKeys: []*string{
+			aws.String("TagKey"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.RemoveTagsFromResource(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

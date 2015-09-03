@@ -52,6 +52,27 @@
         }
       ]
     },
+    "AddTagsToResource":{
+      "name":"AddTagsToResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTagsToResourceInput"},
+      "output":{"shape":"AddTagsToResourceOutput"},
+      "errors":[
+        {
+          "shape":"InvalidGatewayRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
     "AddUploadBuffer":{
       "name":"AddUploadBuffer",
       "http":{
@@ -745,6 +766,27 @@
         }
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceInput"},
+      "output":{"shape":"ListTagsForResourceOutput"},
+      "errors":[
+        {
+          "shape":"InvalidGatewayRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
     "ListVolumeInitiators":{
       "name":"ListVolumeInitiators",
       "http":{
@@ -795,6 +837,27 @@
       },
       "input":{"shape":"ListVolumesInput"},
       "output":{"shape":"ListVolumesOutput"},
+      "errors":[
+        {
+          "shape":"InvalidGatewayRequestException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"InternalServerError",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
+    "RemoveTagsFromResource":{
+      "name":"RemoveTagsFromResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveTagsFromResourceInput"},
+      "output":{"shape":"RemoveTagsFromResourceOutput"},
       "errors":[
         {
           "shape":"InvalidGatewayRequestException",
@@ -1106,6 +1169,23 @@
       "type":"structure",
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "AddTagsToResourceInput":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"ResourceARN"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "AddTagsToResourceOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceARN":{"shape":"ResourceARN"}
       }
     },
     "AddUploadBufferInput":{
@@ -1521,6 +1601,7 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
         "GatewayId":{"shape":"GatewayId"},
+        "GatewayName":{"shape":"string"},
         "GatewayTimezone":{"shape":"GatewayTimezone"},
         "GatewayState":{"shape":"GatewayState"},
         "GatewayNetworkInterfaces":{"shape":"GatewayNetworkInterfaces"},
@@ -1819,7 +1900,8 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"},
         "GatewayType":{"shape":"GatewayType"},
-        "GatewayOperationalState":{"shape":"GatewayOperationalState"}
+        "GatewayOperationalState":{"shape":"GatewayOperationalState"},
+        "GatewayName":{"shape":"string"}
       }
     },
     "GatewayName":{
@@ -1927,6 +2009,22 @@
         "Disks":{"shape":"Disks"}
       }
     },
+    "ListTagsForResourceInput":{
+      "type":"structure",
+      "members":{
+        "ResourceARN":{"shape":"ResourceARN"},
+        "Marker":{"shape":"Marker"},
+        "Limit":{"shape":"PositiveIntObject"}
+      }
+    },
+    "ListTagsForResourceOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceARN":{"shape":"ResourceARN"},
+        "Marker":{"shape":"Marker"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
     "ListVolumeInitiatorsInput":{
       "type":"structure",
       "required":["VolumeARN"],
@@ -2022,6 +2120,19 @@
       "min":1,
       "max":25
     },
+    "RemoveTagsFromResourceInput":{
+      "type":"structure",
+      "members":{
+        "ResourceARN":{"shape":"ResourceARN"},
+        "TagKeys":{"shape":"TagKeys"}
+      }
+    },
+    "RemoveTagsFromResourceOutput":{
+      "type":"structure",
+      "members":{
+        "ResourceARN":{"shape":"ResourceARN"}
+      }
+    },
     "ResetCacheInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -2034,6 +2145,11 @@
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}
       }
+    },
+    "ResourceARN":{
+      "type":"string",
+      "min":50,
+      "max":500
     },
     "RetrieveTapeArchiveInput":{
       "type":"structure",
@@ -2129,6 +2245,35 @@
     "StorediSCSIVolumes":{
       "type":"list",
       "member":{"shape":"StorediSCSIVolume"}
+    },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "min":1,
+      "max":128,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$"
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256
+    },
+    "Tags":{
+      "type":"list",
+      "member":{"shape":"Tag"}
     },
     "Tape":{
       "type":"structure",
@@ -2263,7 +2408,8 @@
     "UpdateGatewayInformationOutput":{
       "type":"structure",
       "members":{
-        "GatewayARN":{"shape":"GatewayARN"}
+        "GatewayARN":{"shape":"GatewayARN"},
+        "GatewayName":{"shape":"string"}
       }
     },
     "UpdateGatewaySoftwareNowInput":{

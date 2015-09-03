@@ -18,6 +18,10 @@ type StorageGatewayAPI interface {
 
 	AddCache(*storagegateway.AddCacheInput) (*storagegateway.AddCacheOutput, error)
 
+	AddTagsToResourceRequest(*storagegateway.AddTagsToResourceInput) (*request.Request, *storagegateway.AddTagsToResourceOutput)
+
+	AddTagsToResource(*storagegateway.AddTagsToResourceInput) (*storagegateway.AddTagsToResourceOutput, error)
+
 	AddUploadBufferRequest(*storagegateway.AddUploadBufferInput) (*request.Request, *storagegateway.AddUploadBufferOutput)
 
 	AddUploadBuffer(*storagegateway.AddUploadBufferInput) (*storagegateway.AddUploadBufferOutput, error)
@@ -160,6 +164,10 @@ type StorageGatewayAPI interface {
 
 	ListLocalDisks(*storagegateway.ListLocalDisksInput) (*storagegateway.ListLocalDisksOutput, error)
 
+	ListTagsForResourceRequest(*storagegateway.ListTagsForResourceInput) (*request.Request, *storagegateway.ListTagsForResourceOutput)
+
+	ListTagsForResource(*storagegateway.ListTagsForResourceInput) (*storagegateway.ListTagsForResourceOutput, error)
+
 	ListVolumeInitiatorsRequest(*storagegateway.ListVolumeInitiatorsInput) (*request.Request, *storagegateway.ListVolumeInitiatorsOutput)
 
 	ListVolumeInitiators(*storagegateway.ListVolumeInitiatorsInput) (*storagegateway.ListVolumeInitiatorsOutput, error)
@@ -173,6 +181,10 @@ type StorageGatewayAPI interface {
 	ListVolumes(*storagegateway.ListVolumesInput) (*storagegateway.ListVolumesOutput, error)
 
 	ListVolumesPages(*storagegateway.ListVolumesInput, func(*storagegateway.ListVolumesOutput, bool) bool) error
+
+	RemoveTagsFromResourceRequest(*storagegateway.RemoveTagsFromResourceInput) (*request.Request, *storagegateway.RemoveTagsFromResourceOutput)
+
+	RemoveTagsFromResource(*storagegateway.RemoveTagsFromResourceInput) (*storagegateway.RemoveTagsFromResourceOutput, error)
 
 	ResetCacheRequest(*storagegateway.ResetCacheInput) (*request.Request, *storagegateway.ResetCacheOutput)
 
