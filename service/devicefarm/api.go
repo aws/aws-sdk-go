@@ -1911,7 +1911,7 @@ func (s Job) GoString() string {
 
 // Represents a request to the list artifacts operation.
 type ListArtifactsInput struct {
-	// The artifacts' ARNs.
+	// The Run, Job, Suite, or Test ARN.
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,

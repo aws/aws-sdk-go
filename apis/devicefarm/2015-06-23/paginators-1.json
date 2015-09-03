@@ -15,11 +15,6 @@
       "output_token": "nextToken",
       "result_key": "devices"
     },
-    "ListDevices": {
-      "input_token": "nextToken",
-      "output_token": "nextToken",
-      "result_key": "devices"
-    },
     "ListJobs": {
       "input_token": "nextToken",
       "output_token": "nextToken",

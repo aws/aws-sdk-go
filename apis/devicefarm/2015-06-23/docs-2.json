@@ -61,7 +61,7 @@
         "GetTestRequest$arn": "<p>The test's ARN.</p>",
         "GetUploadRequest$arn": "<p>The upload's ARN.</p>",
         "Job$arn": "<p>The job's ARN.</p>",
-        "ListArtifactsRequest$arn": "<p>The artifacts' ARNs.</p>",
+        "ListArtifactsRequest$arn": "<p>The Run, Job, Suite, or Test ARN.</p>",
         "ListDevicePoolsRequest$arn": "<p>The project ARN.</p>",
         "ListDevicesRequest$arn": "<p>The device types' ARNs.</p>",
         "ListJobsRequest$arn": "<p>The jobs' ARNs.</p>",
