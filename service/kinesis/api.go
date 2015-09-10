@@ -4,6 +4,8 @@
 package kinesis
 
 import (
+	"time"
+
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 )
@@ -66,11 +68,11 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *request.Re
 // stream.
 //
 // You specify and control the number of shards that a stream is composed of.
-// Each open shard can support up to 5 read transactions per second, up to a
-// maximum total of 2 MB of data read per second. Each shard can support up
-// to 1000 records written per second, up to a maximum total of 1 MB data written
-// per second. You can add shards to a stream if the amount of data input increases
-// and you can remove shards if the amount of data input decreases.
+// Each shard can support reads up to 5 transactions per second, up to a maximum
+// data read total of 2 MB per second. Each shard can support writes up to 1,000
+// records per second, up to a maximum data write total of 1 MB per second.
+// You can add shards to a stream if the amount of data input increases and
+// you can remove shards if the amount of data input decreases.
 //
 // The stream name identifies the stream. The name is scoped to the AWS account
 // used by the application. It is also scoped by region. That is, two streams
@@ -89,7 +91,7 @@ func (c *Kinesis) CreateStreamRequest(input *CreateStreamInput) (req *request.Re
 //  Have more than five streams in the CREATING state at any point in time.
 // Create more shards than are authorized for your account.  For the default
 // shard limit for an AWS account, see Amazon Kinesis Limits (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html).
-// If you need to increase this limit, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// If you need to increase this limit, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
 //
 // You can use DescribeStream to check the stream status, which is returned
 // in StreamStatus.
@@ -248,13 +250,11 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *request.Reques
 // the sequence number or other attribute that marks it as the last record to
 // process.
 //
-// Each data record can be up to 50 KB in size, and each shard can read up
-// to 2 MB per second. You can ensure that your calls don't exceed the maximum
+// Each data record can be up to 1 MB in size, and each shard can read up to
+// 2 MB per second. You can ensure that your calls don't exceed the maximum
 // supported size or throughput by using the Limit parameter to specify the
 // maximum number of records that GetRecords can return. Consider your average
-// record size when determining this limit. For example, if your average record
-// size is 40 KB, you can limit the data returned to about 1 MB per call by
-// specifying 25 as the limit.
+// record size when determining this limit.
 //
 // The size of the data returned by GetRecords will vary depending on the utilization
 // of the shard. The maximum size of data that GetRecords can return is 10 MB.
@@ -267,10 +267,18 @@ func (c *Kinesis) GetRecordsRequest(input *GetRecordsInput) (req *request.Reques
 // that the application will get exceptions for longer than 1 second.
 //
 // To detect whether the application is falling behind in processing, you can
-// use the MillisBehindLatest response attribute. You can also monitor the amount
-// of data in a stream using the CloudWatch metrics. For more information, see
-// Monitoring Amazon Kinesis with Amazon CloudWatch (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring_with_cloudwatch.html)
-// in the Amazon Kinesis Developer Guide.
+// use the MillisBehindLatest response attribute. You can also monitor the stream
+// using CloudWatch metrics (see Monitoring Amazon Kinesis (http://docs.aws.amazon.com/kinesis/latest/dev/monitoring.html)
+// in the Amazon Kinesis Developer Guide).
+//
+// Each Amazon Kinesis record includes a value, ApproximateArrivalTimestamp,
+// that is set when an Amazon Kinesis stream successfully receives and stores
+// a record. This is commonly referred to as a server-side timestamp, which
+// is different than a client-side timestamp, where the timestamp is set when
+// a data producer creates or sends the record to a stream. The timestamp has
+// millisecond precision. There are no guarantees about the timestamp accuracy,
+// or that the timestamp is always increasing. For example, records in a shard
+// or across a stream might have timestamps that are out of order.
 func (c *Kinesis) GetRecords(input *GetRecordsInput) (*GetRecordsOutput, error) {
 	req, out := c.GetRecordsRequest(input)
 	err := req.Send()
@@ -503,11 +511,11 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *request.Request,
 	return
 }
 
-// Puts (writes) a single data record from a producer into an Amazon Kinesis
-// stream. Call PutRecord to send data from the producer into the Amazon Kinesis
-// stream for real-time ingestion and subsequent processing, one record at a
-// time. Each shard can support up to 1000 records written per second, up to
-// a maximum total of 1 MB data written per second.
+// Writes a single data record from a producer into an Amazon Kinesis stream.
+// Call PutRecord to send data from the producer into the Amazon Kinesis stream
+// for real-time ingestion and subsequent processing, one record at a time.
+// Each shard can support writes up to 1,000 records per second, up to a maximum
+// data write total of 1 MB per second.
 //
 // You must specify the name of the stream that captures, stores, and transports
 // the data; a partition key; and the data blob itself.
@@ -525,7 +533,7 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *request.Request,
 // integer values and to map associated data records to shards using the hash
 // key ranges of the shards. You can override hashing the partition key to determine
 // the shard by explicitly specifying a hash value using the ExplicitHashKey
-// parameter. For more information, see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html)
+// parameter. For more information, see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream)
 // in the Amazon Kinesis Developer Guide.
 //
 // PutRecord returns the shard ID of where the data record was placed and the
@@ -533,7 +541,7 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *request.Request,
 //
 // Sequence numbers generally increase over time. To guarantee strictly increasing
 // ordering, use the SequenceNumberForOrdering parameter. For more information,
-// see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html)
+// see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream)
 // in the Amazon Kinesis Developer Guide.
 //
 // If a PutRecord request cannot be processed because of insufficient provisioned
@@ -567,16 +575,20 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Reques
 	return
 }
 
-// Puts (writes) multiple data records from a producer into an Amazon Kinesis
-// stream in a single call (also referred to as a PutRecords request). Use this
-// operation to send data from a data producer into the Amazon Kinesis stream
-// for real-time ingestion and processing. Each shard can support up to 1000
-// records written per second, up to a maximum total of 1 MB data written per
-// second.
+// Writes multiple data records from a producer into an Amazon Kinesis stream
+// in a single call (also referred to as a PutRecords request). Use this operation
+// to send data from a data producer into the Amazon Kinesis stream for data
+// ingestion and processing.
+//
+// Each PutRecords request can support up to 500 records. Each record in the
+// request can be as large as 1 MB, up to a limit of 5 MB for the entire request,
+// including partition keys. Each shard can support writes up to 1,000 records
+// per second, up to a maximum data write total of 1 MB per second.
 //
 // You must specify the name of the stream that captures, stores, and transports
 // the data; and an array of request Records, with each record in the array
-// requiring a partition key and data blob.
+// requiring a partition key and data blob. The record size limit applies to
+// the total size of the partition key and data blob.
 //
 // The data blob can be any type of data; for example, a segment from a log
 // file, geographic/location data, website clickstream data, and so on.
@@ -586,13 +598,13 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Reques
 // hash function is used to map partition keys to 128-bit integer values and
 // to map associated data records to shards. As a result of this hashing mechanism,
 // all data records with the same partition key map to the same shard within
-// the stream. For more information, see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html)
+// the stream. For more information, see Adding Data to a Stream (http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-add-data-to-stream)
 // in the Amazon Kinesis Developer Guide.
 //
 // Each record in the Records array may include an optional parameter, ExplicitHashKey,
 // which overrides the partition key to shard mapping. This parameter allows
 // a data producer to determine explicitly the shard where the record is stored.
-// For more information, see Adding Multiple Records with PutRecords (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords)
+// For more information, see Adding Multiple Records with PutRecords (http://docs.aws.amazon.com/kinesis/latest/dev/developing-producers-with-sdk.html#kinesis-using-sdk-java-putrecords)
 // in the Amazon Kinesis Developer Guide.
 //
 // The PutRecords response includes an array of response Records. Each record
@@ -717,7 +729,7 @@ func (c *Kinesis) SplitShardRequest(input *SplitShardInput) (req *request.Reques
 //
 // For the default shard limit for an AWS account, see Amazon Kinesis Limits
 // (http://docs.aws.amazon.com/kinesis/latest/dev/service-sizes-and-limits.html).
-// If you need to increase this limit, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// If you need to increase this limit, contact AWS Support (http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html).
 //
 // If you try to operate on too many streams in parallel using CreateStream,
 // DeleteStream, MergeShards or SplitShard, you receive a LimitExceededException.
@@ -1226,8 +1238,9 @@ func (s MergeShardsOutput) GoString() string {
 // Represents the input for PutRecord.
 type PutRecordInput struct {
 	// The data blob to put into the record, which is base64-encoded when the blob
-	// is serialized. The maximum size of the data blob (the payload before base64-encoding)
-	// is 50 kilobytes (KB)
+	// is serialized. When the data blob (the payload before base64-encoding) is
+	// added to the partition key size, the total size must not exceed the maximum
+	// record size (1 MB).
 	Data []byte `type:"blob" required:"true"`
 
 	// The hash value used to explicitly determine the shard the data record is
@@ -1356,8 +1369,9 @@ func (s PutRecordsOutput) GoString() string {
 // Represents the output for PutRecords.
 type PutRecordsRequestEntry struct {
 	// The data blob to put into the record, which is base64-encoded when the blob
-	// is serialized. The maximum size of the data blob (the payload before base64-encoding)
-	// is 50 kilobytes (KB)
+	// is serialized. When the data blob (the payload before base64-encoding) is
+	// added to the partition key size, the total size must not exceed the maximum
+	// record size (1 MB).
 	Data []byte `type:"blob" required:"true"`
 
 	// The hash value used to determine explicitly the shard that the data record
@@ -1433,16 +1447,20 @@ func (s PutRecordsResultEntry) GoString() string {
 // The unit of data of the Amazon Kinesis stream, which is composed of a sequence
 // number, a partition key, and a data blob.
 type Record struct {
+	// The approximate time that the record was inserted into the stream.
+	ApproximateArrivalTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
 	// The data blob. The data in the blob is both opaque and immutable to the Amazon
 	// Kinesis service, which does not inspect, interpret, or change the data in
-	// the blob in any way. The maximum size of the data blob (the payload before
-	// base64-encoding) is 50 kilobytes (KB)
+	// the blob in any way. When the data blob (the payload before base64-encoding)
+	// is added to the partition key size, the total size must not exceed the maximum
+	// record size (1 MB).
 	Data []byte `type:"blob" required:"true"`
 
 	// Identifies which shard in the stream the data record is assigned to.
 	PartitionKey *string `type:"string" required:"true"`
 
-	// The unique identifier for the record in the Amazon Kinesis stream.
+	// The unique identifier of the record in the stream.
 	SequenceNumber *string `type:"string" required:"true"`
 
 	metadataRecord `json:"-" xml:"-"`
