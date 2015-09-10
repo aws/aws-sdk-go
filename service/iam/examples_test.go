@@ -966,6 +966,51 @@ func ExampleIAM_GetAccountSummary() {
 	fmt.Println(resp)
 }
 
+func ExampleIAM_GetContextKeysForCustomPolicy() {
+	svc := iam.New(nil)
+
+	params := &iam.GetContextKeysForCustomPolicyInput{
+		PolicyInputList: []*string{ // Required
+			aws.String("policyDocumentType"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.GetContextKeysForCustomPolicy(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIAM_GetContextKeysForPrincipalPolicy() {
+	svc := iam.New(nil)
+
+	params := &iam.GetContextKeysForPrincipalPolicyInput{
+		PolicySourceArn: aws.String("arnType"), // Required
+		PolicyInputList: []*string{
+			aws.String("policyDocumentType"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.GetContextKeysForPrincipalPolicy(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleIAM_GetCredentialReport() {
 	svc := iam.New(nil)
 
@@ -1912,6 +1957,93 @@ func ExampleIAM_SetDefaultPolicyVersion() {
 		VersionId: aws.String("policyVersionIdType"), // Required
 	}
 	resp, err := svc.SetDefaultPolicyVersion(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIAM_SimulateCustomPolicy() {
+	svc := iam.New(nil)
+
+	params := &iam.SimulateCustomPolicyInput{
+		ActionNames: []*string{ // Required
+			aws.String("ActionNameType"), // Required
+			// More values...
+		},
+		PolicyInputList: []*string{ // Required
+			aws.String("policyDocumentType"), // Required
+			// More values...
+		},
+		ContextEntries: []*iam.ContextEntry{
+			{ // Required
+				ContextKeyName: aws.String("ContextKeyNameType"),
+				ContextKeyType: aws.String("ContextKeyTypeEnum"),
+				ContextKeyValues: []*string{
+					aws.String("ContextKeyValueType"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:   aws.String("markerType"),
+		MaxItems: aws.Int64(1),
+		ResourceArns: []*string{
+			aws.String("ResourceNameType"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.SimulateCustomPolicy(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleIAM_SimulatePrincipalPolicy() {
+	svc := iam.New(nil)
+
+	params := &iam.SimulatePrincipalPolicyInput{
+		ActionNames: []*string{ // Required
+			aws.String("ActionNameType"), // Required
+			// More values...
+		},
+		PolicySourceArn: aws.String("arnType"), // Required
+		ContextEntries: []*iam.ContextEntry{
+			{ // Required
+				ContextKeyName: aws.String("ContextKeyNameType"),
+				ContextKeyType: aws.String("ContextKeyTypeEnum"),
+				ContextKeyValues: []*string{
+					aws.String("ContextKeyValueType"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		Marker:   aws.String("markerType"),
+		MaxItems: aws.Int64(1),
+		PolicyInputList: []*string{
+			aws.String("policyDocumentType"), // Required
+			// More values...
+		},
+		ResourceArns: []*string{
+			aws.String("ResourceNameType"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.SimulatePrincipalPolicy(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

@@ -2053,6 +2053,61 @@
         }
       ]
     },
+    "GetContextKeysForCustomPolicy":{
+      "name":"GetContextKeysForCustomPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetContextKeysForCustomPolicyRequest"},
+      "output":{
+        "shape":"GetContextKeysForPolicyResponse",
+        "resultWrapper":"GetContextKeysForCustomPolicyResult"
+      },
+      "errors":[
+        {
+          "shape":"InvalidInputException",
+          "error":{
+            "code":"InvalidInput",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "GetContextKeysForPrincipalPolicy":{
+      "name":"GetContextKeysForPrincipalPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetContextKeysForPrincipalPolicyRequest"},
+      "output":{
+        "shape":"GetContextKeysForPolicyResponse",
+        "resultWrapper":"GetContextKeysForPrincipalPolicyResult"
+      },
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInputException",
+          "error":{
+            "code":"InvalidInput",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "GetCredentialReport":{
       "name":"GetCredentialReport",
       "http":{
@@ -3586,6 +3641,77 @@
         }
       ]
     },
+    "SimulateCustomPolicy":{
+      "name":"SimulateCustomPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SimulateCustomPolicyRequest"},
+      "output":{
+        "shape":"SimulatePolicyResponse",
+        "resultWrapper":"SimulateCustomPolicyResult"
+      },
+      "errors":[
+        {
+          "shape":"InvalidInputException",
+          "error":{
+            "code":"InvalidInput",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"PolicyEvaluationException",
+          "error":{
+            "code":"PolicyEvaluation",
+            "httpStatusCode":500
+          },
+          "exception":true
+        }
+      ]
+    },
+    "SimulatePrincipalPolicy":{
+      "name":"SimulatePrincipalPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SimulatePrincipalPolicyRequest"},
+      "output":{
+        "shape":"SimulatePolicyResponse",
+        "resultWrapper":"SimulatePrincipalPolicyResult"
+      },
+      "errors":[
+        {
+          "shape":"NoSuchEntityException",
+          "error":{
+            "code":"NoSuchEntity",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInputException",
+          "error":{
+            "code":"InvalidInput",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"PolicyEvaluationException",
+          "error":{
+            "code":"PolicyEvaluation",
+            "httpStatusCode":500
+          },
+          "exception":true
+        }
+      ]
+    },
     "UpdateAccessKey":{
       "name":"UpdateAccessKey",
       "http":{
@@ -4283,6 +4409,15 @@
         "CreateDate":{"shape":"dateType"}
       }
     },
+    "ActionNameListType":{
+      "type":"list",
+      "member":{"shape":"ActionNameType"}
+    },
+    "ActionNameType":{
+      "type":"string",
+      "min":3,
+      "max":128
+    },
     "AddClientIDToOpenIDConnectProviderRequest":{
       "type":"structure",
       "required":[
@@ -4371,6 +4506,50 @@
         "NewPassword":{"shape":"passwordType"}
       }
     },
+    "ColumnNumber":{"type":"integer"},
+    "ContextEntry":{
+      "type":"structure",
+      "members":{
+        "ContextKeyName":{"shape":"ContextKeyNameType"},
+        "ContextKeyValues":{"shape":"ContextKeyValueListType"},
+        "ContextKeyType":{"shape":"ContextKeyTypeEnum"}
+      }
+    },
+    "ContextEntryListType":{
+      "type":"list",
+      "member":{"shape":"ContextEntry"}
+    },
+    "ContextKeyNameType":{
+      "type":"string",
+      "min":5,
+      "max":256
+    },
+    "ContextKeyNamesResultListType":{
+      "type":"list",
+      "member":{"shape":"ContextKeyNameType"}
+    },
+    "ContextKeyTypeEnum":{
+      "type":"string",
+      "enum":[
+        "string",
+        "stringList",
+        "numeric",
+        "numericList",
+        "boolean",
+        "booleanList",
+        "ip",
+        "ipList",
+        "binary",
+        "binaryList",
+        "date",
+        "dateList"
+      ]
+    },
+    "ContextKeyValueListType":{
+      "type":"list",
+      "member":{"shape":"ContextKeyValueType"}
+    },
+    "ContextKeyValueType":{"type":"string"},
     "CreateAccessKeyRequest":{
       "type":"structure",
       "members":{
@@ -4873,6 +5052,25 @@
         "AWSManagedPolicy"
       ]
     },
+    "EvaluationResult":{
+      "type":"structure",
+      "required":[
+        "EvalActionName",
+        "EvalResourceName",
+        "EvalDecision"
+      ],
+      "members":{
+        "EvalActionName":{"shape":"ActionNameType"},
+        "EvalResourceName":{"shape":"ResourceNameType"},
+        "EvalDecision":{"shape":"PolicyEvaluationDecisionType"},
+        "MatchedStatements":{"shape":"StatementListType"},
+        "MissingContextValues":{"shape":"ContextKeyNamesResultListType"}
+      }
+    },
+    "EvaluationResultsListType":{
+      "type":"list",
+      "member":{"shape":"EvaluationResult"}
+    },
     "GenerateCredentialReportResponse":{
       "type":"structure",
       "members":{
@@ -4924,6 +5122,27 @@
       "type":"structure",
       "members":{
         "SummaryMap":{"shape":"summaryMapType"}
+      }
+    },
+    "GetContextKeysForCustomPolicyRequest":{
+      "type":"structure",
+      "required":["PolicyInputList"],
+      "members":{
+        "PolicyInputList":{"shape":"SimulationPolicyListType"}
+      }
+    },
+    "GetContextKeysForPolicyResponse":{
+      "type":"structure",
+      "members":{
+        "ContextKeyNames":{"shape":"ContextKeyNamesResultListType"}
+      }
+    },
+    "GetContextKeysForPrincipalPolicyRequest":{
+      "type":"structure",
+      "required":["PolicySourceArn"],
+      "members":{
+        "PolicySourceArn":{"shape":"arnType"},
+        "PolicyInputList":{"shape":"SimulationPolicyListType"}
       }
     },
     "GetCredentialReportResponse":{
@@ -5309,6 +5528,7 @@
       },
       "exception":true
     },
+    "LineNumber":{"type":"integer"},
     "ListAccessKeysRequest":{
       "type":"structure",
       "members":{
@@ -5861,6 +6081,25 @@
         "PolicyDocument":{"shape":"policyDocumentType"}
       }
     },
+    "PolicyEvaluationDecisionType":{
+      "type":"string",
+      "enum":[
+        "allowed",
+        "explicitDeny",
+        "implicitDeny"
+      ]
+    },
+    "PolicyEvaluationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"policyEvaluationErrorMessage"}
+      },
+      "error":{
+        "code":"PolicyEvaluation",
+        "httpStatusCode":500
+      },
+      "exception":true
+    },
     "PolicyGroup":{
       "type":"structure",
       "members":{
@@ -5871,6 +6110,7 @@
       "type":"list",
       "member":{"shape":"PolicyGroup"}
     },
+    "PolicyIdentifierType":{"type":"string"},
     "PolicyRole":{
       "type":"structure",
       "members":{
@@ -5880,6 +6120,17 @@
     "PolicyRoleListType":{
       "type":"list",
       "member":{"shape":"PolicyRole"}
+    },
+    "PolicySourceType":{
+      "type":"string",
+      "enum":[
+        "user",
+        "group",
+        "role",
+        "aws-managed",
+        "user-managed",
+        "none"
+      ]
     },
     "PolicyUser":{
       "type":"structure",
@@ -5898,6 +6149,13 @@
         "VersionId":{"shape":"policyVersionIdType"},
         "IsDefaultVersion":{"shape":"booleanType"},
         "CreateDate":{"shape":"dateType"}
+      }
+    },
+    "Position":{
+      "type":"structure",
+      "members":{
+        "Line":{"shape":"LineNumber"},
+        "Column":{"shape":"ColumnNumber"}
       }
     },
     "PutGroupPolicyRequest":{
@@ -5985,6 +6243,15 @@
         "INPROGRESS",
         "COMPLETE"
       ]
+    },
+    "ResourceNameListType":{
+      "type":"list",
+      "member":{"shape":"ResourceNameType"}
+    },
+    "ResourceNameType":{
+      "type":"string",
+      "min":1,
+      "max":2048
     },
     "ResyncMFADeviceRequest":{
       "type":"structure",
@@ -6159,6 +6426,62 @@
         "Status":{"shape":"statusType"},
         "UploadDate":{"shape":"dateType"}
       }
+    },
+    "SimulateCustomPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "PolicyInputList",
+        "ActionNames"
+      ],
+      "members":{
+        "PolicyInputList":{"shape":"SimulationPolicyListType"},
+        "ActionNames":{"shape":"ActionNameListType"},
+        "ResourceArns":{"shape":"ResourceNameListType"},
+        "ContextEntries":{"shape":"ContextEntryListType"},
+        "MaxItems":{"shape":"maxItemsType"},
+        "Marker":{"shape":"markerType"}
+      }
+    },
+    "SimulatePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "EvaluationResults":{"shape":"EvaluationResultsListType"},
+        "IsTruncated":{"shape":"booleanType"},
+        "Marker":{"shape":"markerType"}
+      }
+    },
+    "SimulatePrincipalPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "PolicySourceArn",
+        "ActionNames"
+      ],
+      "members":{
+        "PolicySourceArn":{"shape":"arnType"},
+        "PolicyInputList":{"shape":"SimulationPolicyListType"},
+        "ActionNames":{"shape":"ActionNameListType"},
+        "ResourceArns":{"shape":"ResourceNameListType"},
+        "ContextEntries":{"shape":"ContextEntryListType"},
+        "MaxItems":{"shape":"maxItemsType"},
+        "Marker":{"shape":"markerType"}
+      }
+    },
+    "SimulationPolicyListType":{
+      "type":"list",
+      "member":{"shape":"policyDocumentType"}
+    },
+    "Statement":{
+      "type":"structure",
+      "members":{
+        "SourcePolicyId":{"shape":"PolicyIdentifierType"},
+        "SourcePolicyType":{"shape":"PolicySourceType"},
+        "StartPosition":{"shape":"Position"},
+        "EndPosition":{"shape":"Position"}
+      }
+    },
+    "StatementListType":{
+      "type":"list",
+      "member":{"shape":"Statement"}
     },
     "UnrecognizedPublicKeyEncodingException":{
       "type":"structure",
@@ -6617,6 +6940,7 @@
       "type":"list",
       "member":{"shape":"PolicyVersion"}
     },
+    "policyEvaluationErrorMessage":{"type":"string"},
     "policyListType":{
       "type":"list",
       "member":{"shape":"Policy"}

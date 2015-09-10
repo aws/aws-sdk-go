@@ -204,6 +204,14 @@ type IAMAPI interface {
 
 	GetAccountSummary(*iam.GetAccountSummaryInput) (*iam.GetAccountSummaryOutput, error)
 
+	GetContextKeysForCustomPolicyRequest(*iam.GetContextKeysForCustomPolicyInput) (*request.Request, *iam.GetContextKeysForPolicyResponse)
+
+	GetContextKeysForCustomPolicy(*iam.GetContextKeysForCustomPolicyInput) (*iam.GetContextKeysForPolicyResponse, error)
+
+	GetContextKeysForPrincipalPolicyRequest(*iam.GetContextKeysForPrincipalPolicyInput) (*request.Request, *iam.GetContextKeysForPolicyResponse)
+
+	GetContextKeysForPrincipalPolicy(*iam.GetContextKeysForPrincipalPolicyInput) (*iam.GetContextKeysForPolicyResponse, error)
+
 	GetCredentialReportRequest(*iam.GetCredentialReportInput) (*request.Request, *iam.GetCredentialReportOutput)
 
 	GetCredentialReport(*iam.GetCredentialReportInput) (*iam.GetCredentialReportOutput, error)
@@ -433,6 +441,14 @@ type IAMAPI interface {
 	SetDefaultPolicyVersionRequest(*iam.SetDefaultPolicyVersionInput) (*request.Request, *iam.SetDefaultPolicyVersionOutput)
 
 	SetDefaultPolicyVersion(*iam.SetDefaultPolicyVersionInput) (*iam.SetDefaultPolicyVersionOutput, error)
+
+	SimulateCustomPolicyRequest(*iam.SimulateCustomPolicyInput) (*request.Request, *iam.SimulatePolicyResponse)
+
+	SimulateCustomPolicy(*iam.SimulateCustomPolicyInput) (*iam.SimulatePolicyResponse, error)
+
+	SimulatePrincipalPolicyRequest(*iam.SimulatePrincipalPolicyInput) (*request.Request, *iam.SimulatePolicyResponse)
+
+	SimulatePrincipalPolicy(*iam.SimulatePrincipalPolicyInput) (*iam.SimulatePolicyResponse, error)
 
 	UpdateAccessKeyRequest(*iam.UpdateAccessKeyInput) (*request.Request, *iam.UpdateAccessKeyOutput)
 
