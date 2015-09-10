@@ -341,7 +341,7 @@ func (c *MachineLearning) DeleteBatchPredictionRequest(input *DeleteBatchPredict
 // After using the DeleteBatchPrediction operation, you can use the GetBatchPrediction
 // operation to verify that the status of the BatchPrediction changed to DELETED.
 //
-// Caution The result of the DeleteBatchPrediction operation is irreversible.
+// Caution: The result of the DeleteBatchPrediction operation is irreversible.
 func (c *MachineLearning) DeleteBatchPrediction(input *DeleteBatchPredictionInput) (*DeleteBatchPredictionOutput, error) {
 	req, out := c.DeleteBatchPredictionRequest(input)
 	err := req.Send()
@@ -373,7 +373,7 @@ func (c *MachineLearning) DeleteDataSourceRequest(input *DeleteDataSourceInput) 
 // After using the DeleteDataSource operation, you can use the GetDataSource
 // operation to verify that the status of the DataSource changed to DELETED.
 //
-// Caution The results of the DeleteDataSource operation are irreversible.
+// Caution: The results of the DeleteDataSource operation are irreversible.
 func (c *MachineLearning) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSourceOutput, error) {
 	req, out := c.DeleteDataSourceRequest(input)
 	err := req.Send()
@@ -405,7 +405,7 @@ func (c *MachineLearning) DeleteEvaluationRequest(input *DeleteEvaluationInput) 
 // After invoking the DeleteEvaluation operation, you can use the GetEvaluation
 // operation to verify that the status of the Evaluation changed to DELETED.
 //
-// Caution The results of the DeleteEvaluation operation are irreversible.
+// Caution: The results of the DeleteEvaluation operation are irreversible.
 func (c *MachineLearning) DeleteEvaluation(input *DeleteEvaluationInput) (*DeleteEvaluationOutput, error) {
 	req, out := c.DeleteEvaluationRequest(input)
 	err := req.Send()
@@ -437,7 +437,7 @@ func (c *MachineLearning) DeleteMLModelRequest(input *DeleteMLModelInput) (req *
 // After using the DeleteMLModel operation, you can use the GetMLModel operation
 // to verify that the status of the MLModel changed to DELETED.
 //
-// Caution The result of the DeleteMLModel operation is irreversible.
+// Caution: The result of the DeleteMLModel operation is irreversible.
 func (c *MachineLearning) DeleteMLModel(input *DeleteMLModelInput) (*DeleteMLModelOutput, error) {
 	req, out := c.DeleteMLModelRequest(input)
 	err := req.Send()
@@ -771,10 +771,10 @@ func (c *MachineLearning) PredictRequest(input *PredictInput) (req *request.Requ
 	return
 }
 
-// Generates a prediction for the observation using the specified MLModel.
+// Generates a prediction for the observation using the specified ML Model.
 //
-// Note Not all response parameters will be populated because this is dependent
-// on the type of requested model.
+// Note Not all response parameters will be populated. Whether a response parameter
+// is populated depends on the type of model requested.
 func (c *MachineLearning) Predict(input *PredictInput) (*PredictOutput, error) {
 	req, out := c.PredictRequest(input)
 	err := req.Send()
@@ -1093,7 +1093,7 @@ type CreateDataSourceFromRDSInput struct {
 	//  DataRearrangement - A JSON string representing the splitting requirement
 	// of a Datasource.
 	//
-	//   Sample -  "{\"randomSeed\":\"some-random-seed\", \"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	RDSData *RDSDataSpec `type:"structure" required:"true"`
 
 	// The role that Amazon ML assumes on behalf of the user to create and activate
@@ -1185,7 +1185,7 @@ type CreateDataSourceFromRedshiftInput struct {
 	//  DataRearrangement - A JSON string representing the splitting requirement
 	// of a Datasource.
 	//
-	//   Sample -  "{\"randomSeed\":\"some-random-seed\", \"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	DataSpec *RedshiftDataSpec `type:"structure" required:"true"`
 
 	// A fully specified role Amazon Resource Name (ARN). Amazon ML assumes the
@@ -1269,7 +1269,7 @@ type CreateDataSourceFromS3Input struct {
 	//  DataRearrangement - A JSON string representing the splitting requirement
 	// of a Datasource.
 	//
-	//   Sample -  "{\"randomSeed\":\"some-random-seed\", \"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	DataSpec *S3DataSpec `type:"structure" required:"true"`
 
 	metadataCreateDataSourceFromS3Input `json:"-" xml:"-"`
@@ -3102,11 +3102,41 @@ type RDSDataSpec struct {
 	// DataRearrangement - A JSON string that represents the splitting requirement
 	// of a DataSource.
 	//
-	//   Sample -  "{\"randomSeed\":\"some-random-seed\", \"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
+	//   Sample -  "{\"splitting\":{\"percentBegin\":10,\"percentEnd\":60}}"
 	DataRearrangement *string `type:"string"`
 
-	// A JSON string that represents the schema. This is not required if DataSchemaUri
-	// is specified.
+	// A JSON string that represents the schema for an Amazon RDS DataSource. The
+	// DataSchema defines the structure of the observation data in the data file(s)
+	// referenced in the DataSource.
+	//
+	// A DataSchema is not required if you specify a DataSchemaUri
+	//
+	// Define your DataSchema as a series of key-value pairs. attributes and excludedVariableNames
+	// have an array of key-value pairs for their value. Use the following format
+	// to define your DataSchema.
+	//
+	// { "version": "1.0",
+	//
+	//  "recordAnnotationFieldName": "F1",
+	//
+	//  "recordWeightFieldName": "F2",
+	//
+	//  "targetFieldName": "F3",
+	//
+	//  "dataFormat": "CSV",
+	//
+	//  "dataFileContainsHeader": true,
+	//
+	//  "attributes": [
+	//
+	//  { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
+	// "NUMERIC" }, { "fieldName": "F3", "fieldType": "CATEGORICAL" }, { "fieldName":
+	// "F4", "fieldType": "NUMERIC" }, { "fieldName": "F5", "fieldType": "CATEGORICAL"
+	// }, { "fieldName": "F6", "fieldType": "TEXT" }, { "fieldName": "F7", "fieldType":
+	// "WEIGHTED_INT_SEQUENCE" }, { "fieldName": "F8", "fieldType": "WEIGHTED_STRING_SEQUENCE"
+	// } ],
+	//
+	//  "excludedVariableNames": [ "F6" ] }
 	DataSchema *string `type:"string"`
 
 	// The Amazon S3 location of the DataSchema.
@@ -3315,7 +3345,38 @@ type RedshiftDataSpec struct {
 	// Describes the splitting specifications for a DataSource.
 	DataRearrangement *string `type:"string"`
 
-	// Describes the schema for an Amazon Redshift DataSource.
+	// A JSON string that represents the schema for an Amazon Redshift DataSource.
+	// The DataSchema defines the structure of the observation data in the data
+	// file(s) referenced in the DataSource.
+	//
+	// A DataSchema is not required if you specify a DataSchemaUri.
+	//
+	// Define your DataSchema as a series of key-value pairs. attributes and excludedVariableNames
+	// have an array of key-value pairs for their value. Use the following format
+	// to define your DataSchema.
+	//
+	// { "version": "1.0",
+	//
+	//  "recordAnnotationFieldName": "F1",
+	//
+	//  "recordWeightFieldName": "F2",
+	//
+	//  "targetFieldName": "F3",
+	//
+	//  "dataFormat": "CSV",
+	//
+	//  "dataFileContainsHeader": true,
+	//
+	//  "attributes": [
+	//
+	//  { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
+	// "NUMERIC" }, { "fieldName": "F3", "fieldType": "CATEGORICAL" }, { "fieldName":
+	// "F4", "fieldType": "NUMERIC" }, { "fieldName": "F5", "fieldType": "CATEGORICAL"
+	// }, { "fieldName": "F6", "fieldType": "TEXT" }, { "fieldName": "F7", "fieldType":
+	// "WEIGHTED_INT_SEQUENCE" }, { "fieldName": "F8", "fieldType": "WEIGHTED_STRING_SEQUENCE"
+	// } ],
+	//
+	//  "excludedVariableNames": [ "F6" ] }
 	DataSchema *string `type:"string"`
 
 	// Describes the schema location for an Amazon Redshift DataSource.
@@ -3454,7 +3515,36 @@ type S3DataSpec struct {
 	// Describes the splitting requirement of a Datasource.
 	DataRearrangement *string `type:"string"`
 
-	// Describes the schema for an Amazon S3 DataSource.
+	// A JSON string that represents the schema for an Amazon S3 DataSource. The
+	// DataSchema defines the structure of the observation data in the data file(s)
+	// referenced in the DataSource.
+	//
+	// Define your DataSchema as a series of key-value pairs. attributes and excludedVariableNames
+	// have an array of key-value pairs for their value. Use the following format
+	// to define your DataSchema.
+	//
+	// { "version": "1.0",
+	//
+	//  "recordAnnotationFieldName": "F1",
+	//
+	//  "recordWeightFieldName": "F2",
+	//
+	//  "targetFieldName": "F3",
+	//
+	//  "dataFormat": "CSV",
+	//
+	//  "dataFileContainsHeader": true,
+	//
+	//  "attributes": [
+	//
+	//  { "fieldName": "F1", "fieldType": "TEXT" }, { "fieldName": "F2", "fieldType":
+	// "NUMERIC" }, { "fieldName": "F3", "fieldType": "CATEGORICAL" }, { "fieldName":
+	// "F4", "fieldType": "NUMERIC" }, { "fieldName": "F5", "fieldType": "CATEGORICAL"
+	// }, { "fieldName": "F6", "fieldType": "TEXT" }, { "fieldName": "F7", "fieldType":
+	// "WEIGHTED_INT_SEQUENCE" }, { "fieldName": "F8", "fieldType": "WEIGHTED_STRING_SEQUENCE"
+	// } ],
+	//
+	//  "excludedVariableNames": [ "F6" ] }
 	DataSchema *string `type:"string"`
 
 	// Describes the schema Location in Amazon S3.
