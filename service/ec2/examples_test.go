@@ -4621,6 +4621,7 @@ func ExampleEC2_RequestSpotFleet() {
 			},
 			SpotPrice:                        aws.String("String"), // Required
 			TargetCapacity:                   aws.Int64(1),         // Required
+			AllocationStrategy:               aws.String("AllocationStrategy"),
 			ClientToken:                      aws.String("String"),
 			TerminateInstancesWithExpiration: aws.Bool(true),
 			ValidFrom:                        aws.Time(time.Now()),

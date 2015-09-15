@@ -1786,6 +1786,13 @@
         "locationName":"AllocationId"
       }
     },
+    "AllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "lowestPrice",
+        "diversified"
+      ]
+    },
     "ArchitectureValues":{
       "type":"string",
       "enum":[
@@ -10253,6 +10260,10 @@
           "shape":"SnapshotState",
           "locationName":"status"
         },
+        "StateMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        },
         "StartTime":{
           "shape":"DateTime",
           "locationName":"startTime"
@@ -10288,6 +10299,10 @@
         "KmsKeyId":{
           "shape":"String",
           "locationName":"kmsKeyId"
+        },
+        "DataEncryptionKeyId":{
+          "shape":"String",
+          "locationName":"dataEncryptionKeyId"
         }
       }
     },
@@ -10591,6 +10606,10 @@
         "LaunchSpecifications":{
           "shape":"LaunchSpecsList",
           "locationName":"launchSpecifications"
+        },
+        "AllocationStrategy":{
+          "shape":"AllocationStrategy",
+          "locationName":"allocationStrategy"
         }
       }
     },
