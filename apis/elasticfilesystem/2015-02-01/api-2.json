@@ -310,6 +310,11 @@
           "shape":"FileSystemNotFound",
           "error":{"httpStatusCode":404},
           "exception":true
+        },
+        {
+          "shape":"MountTargetNotFound",
+          "error":{"httpStatusCode":404},
+          "exception":true
         }
       ]
     },
@@ -383,10 +388,7 @@
     }
   },
   "shapes":{
-    "AwsAccountId":{
-      "type":"string",
-      "pattern":"[0-9]{12}"
-    },
+    "AwsAccountId":{"type":"string"},
     "BadRequest":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -537,7 +539,6 @@
     },
     "DescribeMountTargetsRequest":{
       "type":"structure",
-      "required":["FileSystemId"],
       "members":{
         "MaxItems":{
           "shape":"MaxItems",
@@ -553,6 +554,11 @@
           "shape":"FileSystemId",
           "location":"querystring",
           "locationName":"FileSystemId"
+        },
+        "MountTargetId":{
+          "shape":"MountTargetId",
+          "location":"querystring",
+          "locationName":"MountTargetId"
         }
       }
     },
@@ -639,10 +645,7 @@
       "type":"list",
       "member":{"shape":"FileSystemDescription"}
     },
-    "FileSystemId":{
-      "type":"string",
-      "pattern":"fs-[0-9a-f]{8}"
-    },
+    "FileSystemId":{"type":"string"},
     "FileSystemInUse":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -715,10 +718,7 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
-    "IpAddress":{
-      "type":"string",
-      "pattern":"[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}"
-    },
+    "IpAddress":{"type":"string"},
     "IpAddressInUse":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -791,10 +791,7 @@
       "type":"list",
       "member":{"shape":"MountTargetDescription"}
     },
-    "MountTargetId":{
-      "type":"string",
-      "pattern":"fsmt-[0-9a-f]{8}"
-    },
+    "MountTargetId":{"type":"string"},
     "MountTargetNotFound":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -805,10 +802,7 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
-    "NetworkInterfaceId":{
-      "type":"string",
-      "pattern":"eni-[0-9a-f]{8}"
-    },
+    "NetworkInterfaceId":{"type":"string"},
     "NetworkInterfaceLimitExceeded":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -829,10 +823,7 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
-    "SecurityGroup":{
-      "type":"string",
-      "pattern":"sg-[0-9a-f]{8}"
-    },
+    "SecurityGroup":{"type":"string"},
     "SecurityGroupLimitExceeded":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -858,10 +849,7 @@
       "member":{"shape":"SecurityGroup"},
       "max":5
     },
-    "SubnetId":{
-      "type":"string",
-      "pattern":"subnet-[0-9a-f]{8}"
-    },
+    "SubnetId":{"type":"string"},
     "SubnetNotFound":{
       "type":"structure",
       "required":["ErrorCode"],
@@ -886,8 +874,7 @@
     "TagKey":{
       "type":"string",
       "min":1,
-      "max":128,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$"
+      "max":128
     },
     "TagKeys":{
       "type":"list",
@@ -895,8 +882,7 @@
     },
     "TagValue":{
       "type":"string",
-      "max":256,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-%@]*)$"
+      "max":256
     },
     "Tags":{
       "type":"list",

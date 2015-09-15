@@ -190,9 +190,10 @@ func ExampleEFS_DescribeMountTargets() {
 	svc := efs.New(nil)
 
 	params := &efs.DescribeMountTargetsInput{
-		FileSystemId: aws.String("FileSystemId"), // Required
-		Marker:       aws.String("Marker"),
-		MaxItems:     aws.Int64(1),
+		FileSystemId:  aws.String("FileSystemId"),
+		Marker:        aws.String("Marker"),
+		MaxItems:      aws.Int64(1),
+		MountTargetId: aws.String("MountTargetId"),
 	}
 	resp, err := svc.DescribeMountTargets(params)
 

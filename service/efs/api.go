@@ -113,7 +113,7 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // when mounting the file system. The EC2 instance on which you mount the file
 // system via the mount target can resolve the mount target's DNS name to its
 // IP address. For more information, see How it Works: Implementation Overview
-// (http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation)
+// (http://docs.aws.amazon.com/efs/latest/ug/how-it-works.html#how-it-works-implementation).
 //
 //  Note that you can create mount targets for a file system in only one VPC,
 // and there can be only one mount target per Availability Zone. That is, if
@@ -153,16 +153,16 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 // in another Availability Zone. For more information, go to Amazon EFS (http://aws.amazon.com/efs/)
 // product detail page. In addition, by always using a mount target local to
 // the instance's Availability Zone, you eliminate a partial failure scenario;
-// if the Availablity Zone in which your mount target is created goes down,
+// if the Availability Zone in which your mount target is created goes down,
 // then you won't be able to access your file system through that mount target.
 //
 // This operation requires permission for the following action on the file
 // system:
 //
-//  elasticfilesystem:CreateMountTarget  This operation also requires permission
+//   elasticfilesystem:CreateMountTarget   This operation also requires permission
 // for the following Amazon EC2 actions:
 //
-//  ec2:DescribeSubnets ec2:DescribeNetworkInterfaces ec2:CreateNetworkInterface
+//   ec2:DescribeSubnets   ec2:DescribeNetworkInterfaces   ec2:CreateNetworkInterface
 func (c *EFS) CreateMountTarget(input *CreateMountTargetInput) (*MountTargetDescription, error) {
 	req, out := c.CreateMountTargetRequest(input)
 	err := req.Send()
@@ -277,14 +277,14 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 //  This operation requires permission for the following action on the file
 // system:
 //
-//  elasticfilesystem:DeleteMountTarget  The DeleteMountTarget call returns
+//   elasticfilesystem:DeleteMountTarget   The DeleteMountTarget call returns
 // while the mount target state is still "deleting". You can check the mount
 // target deletion by calling the DescribeMountTargets API, which returns a
 // list of mount target descriptions for the given file system.  The operation
 // also requires permission for the following Amazon EC2 action on the mount
 // target's network interface:
 //
-//  ec2:DeleteNetworkInterface
+//   ec2:DeleteNetworkInterface
 func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTargetOutput, error) {
 	req, out := c.DeleteMountTargetRequest(input)
 	err := req.Send()
@@ -432,11 +432,13 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 	return
 }
 
-// Returns the descriptions of the current mount targets for a file system.
-// The order of mount targets returned in the response is unspecified.
+// Returns the descriptions of all the current mount targets, or a specific
+// mount target, for a file system. When requesting all of the current mount
+// targets, the order of mount targets returned in the response is unspecified.
 //
-//  This operation requires permission for the elasticfilesystem:DescribeMountTargets
-// action on the file system FileSystemId.
+// This operation requires permission for the elasticfilesystem:DescribeMountTargets
+// action, on either the file system id that you specify in FileSystemId, or
+// on the file system of the mount target that you specify in MountTargetId.
 func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeMountTargetsOutput, error) {
 	req, out := c.DescribeMountTargetsRequest(input)
 	err := req.Send()
@@ -841,8 +843,9 @@ func (s DescribeMountTargetSecurityGroupsOutput) GoString() string {
 }
 
 type DescribeMountTargetsInput struct {
-	// String. The ID of the file system whose mount targets you want to list.
-	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string" required:"true"`
+	// Optional. String. The ID of the file system whose mount targets you want
+	// to list. It must be included in your request if MountTargetId is not included.
+	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
 
 	// Optional. String. Opaque pagination token returned from a previous DescribeMountTargets
 	// operation. If present, it specifies to continue the list from where the previous
@@ -852,6 +855,10 @@ type DescribeMountTargetsInput struct {
 	// Optional. Maximum number of mount targets to return in the response. It must
 	// be an integer with a value greater than zero.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+
+	// Optional. String. The ID of the mount target that you want to have described.
+	// It must be included in your request if FileSystemId is not included.
+	MountTargetId *string `location:"querystring" locationName:"MountTargetId" type:"string"`
 
 	metadataDescribeMountTargetsInput `json:"-" xml:"-"`
 }
