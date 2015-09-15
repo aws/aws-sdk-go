@@ -962,6 +962,14 @@
       "type":"list",
       "member":{"shape":"IPAddressCidr"}
     },
+    "ChildHealthCheckList":{
+      "type":"list",
+      "member":{
+        "shape":"HealthCheckId",
+        "locationName":"ChildHealthCheck"
+      },
+      "max":256
+    },
     "ConflictingDomainExists":{
       "type":"structure",
       "members":{
@@ -1469,7 +1477,11 @@
         "FullyQualifiedDomainName":{"shape":"FullyQualifiedDomainName"},
         "SearchString":{"shape":"SearchString"},
         "RequestInterval":{"shape":"RequestInterval"},
-        "FailureThreshold":{"shape":"FailureThreshold"}
+        "FailureThreshold":{"shape":"FailureThreshold"},
+        "MeasureLatency":{"shape":"MeasureLatency"},
+        "Inverted":{"shape":"Inverted"},
+        "HealthThreshold":{"shape":"HealthThreshold"},
+        "ChildHealthChecks":{"shape":"ChildHealthCheckList"}
       }
     },
     "HealthCheckCount":{"type":"long"},
@@ -1511,7 +1523,8 @@
         "HTTPS",
         "HTTP_STR_MATCH",
         "HTTPS_STR_MATCH",
-        "TCP"
+        "TCP",
+        "CALCULATED"
       ]
     },
     "HealthCheckVersion":{
@@ -1532,6 +1545,11 @@
         "shape":"HealthCheck",
         "locationName":"HealthCheck"
       }
+    },
+    "HealthThreshold":{
+      "type":"integer",
+      "min":0,
+      "max":256
     },
     "HostedZone":{
       "type":"structure",
@@ -1639,6 +1657,7 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Inverted":{"type":"boolean"},
     "IsPrivateZone":{"type":"boolean"},
     "LastVPCAssociation":{
       "type":"structure",
@@ -1926,6 +1945,7 @@
         "ResourceTagSets":{"shape":"ResourceTagSetList"}
       }
     },
+    "MeasureLatency":{"type":"boolean"},
     "NoSuchChange":{
       "type":"structure",
       "members":{
@@ -2237,7 +2257,10 @@
         "ResourcePath":{"shape":"ResourcePath"},
         "FullyQualifiedDomainName":{"shape":"FullyQualifiedDomainName"},
         "SearchString":{"shape":"SearchString"},
-        "FailureThreshold":{"shape":"FailureThreshold"}
+        "FailureThreshold":{"shape":"FailureThreshold"},
+        "Inverted":{"shape":"Inverted"},
+        "HealthThreshold":{"shape":"HealthThreshold"},
+        "ChildHealthChecks":{"shape":"ChildHealthCheckList"}
       }
     },
     "UpdateHealthCheckResponse":{

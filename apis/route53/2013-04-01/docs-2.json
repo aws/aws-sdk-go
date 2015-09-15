@@ -129,6 +129,13 @@
         "GetCheckerIpRangesResponse$CheckerIpRanges": "<p>A complex type that contains sorted list of IP ranges in CIDR format for Amazon Route 53 health checkers.</p>"
       }
     },
+    "ChildHealthCheckList": {
+      "base": null,
+      "refs": {
+        "HealthCheckConfig$ChildHealthChecks": "<p>For a specified parent health check, a list of <code>HealthCheckId</code> values for the associated child health checks.</p>",
+        "UpdateHealthCheckRequest$ChildHealthChecks": "<p>For a specified parent health check, a list of <code>HealthCheckId</code> values for the associated child health checks.</p> <p>Specify this value only if you want to change it.</p>"
+      }
+    },
     "ConflictingDomainExists": {
       "base": null,
       "refs": {
@@ -525,6 +532,7 @@
     "HealthCheckId": {
       "base": null,
       "refs": {
+        "ChildHealthCheckList$member": null,
         "DeleteHealthCheckRequest$HealthCheckId": "<p>The ID of the health check to delete.</p>",
         "GetHealthCheckLastFailureReasonRequest$HealthCheckId": "<p>The ID of the health check for which you want to retrieve the reason for the most recent failure.</p>",
         "GetHealthCheckRequest$HealthCheckId": "<p>The ID of the health check to retrieve.</p>",
@@ -581,6 +589,13 @@
       "base": null,
       "refs": {
         "ListHealthChecksResponse$HealthChecks": "<p>A complex type that contains information about the health checks associated with the current AWS account.</p>"
+      }
+    },
+    "HealthThreshold": {
+      "base": null,
+      "refs": {
+        "HealthCheckConfig$HealthThreshold": "<p>The minimum number of child health checks that must be healthy for Route 53 to consider the parent health check to be healthy. Valid values are integers between 0 and 256, inclusive.</p>",
+        "UpdateHealthCheckRequest$HealthThreshold": "<p>The minimum number of child health checks that must be healthy for Route 53 to consider the parent health check to be healthy. Valid values are integers between 0 and 256, inclusive.</p> <p>Specify this value only if you want to change it.</p>"
       }
     },
     "HostedZone": {
@@ -677,6 +692,13 @@
       "refs": {
       }
     },
+    "Inverted": {
+      "base": null,
+      "refs": {
+        "HealthCheckConfig$Inverted": "<p>A boolean value that indicates whether the status of health check should be inverted. For example, if a health check is healthy but <code>Inverted</code> is <code>True</code>, then Route 53 considers the health check to be unhealthy.</p>",
+        "UpdateHealthCheckRequest$Inverted": "<p>A boolean value that indicates whether the status of health check should be inverted. For example, if a health check is healthy but <code>Inverted</code> is <code>True</code>, then Route 53 considers the health check to be unhealthy.</p> <p>Specify this value only if you want to change it.</p>"
+      }
+    },
     "IsPrivateZone": {
       "base": null,
       "refs": {
@@ -771,6 +793,12 @@
     "ListTagsForResourcesResponse": {
       "base": "<p>A complex type containing tags for the specified resources.</p>",
       "refs": {
+      }
+    },
+    "MeasureLatency": {
+      "base": null,
+      "refs": {
+        "HealthCheckConfig$MeasureLatency": "<p>A Boolean value that indicates whether you want Route 53 to measure the latency between health checkers in multiple AWS regions and your endpoint and to display CloudWatch latency graphs in the Route 53 console.</p>"
       }
     },
     "NoSuchChange": {

@@ -2414,6 +2414,10 @@ func (s HealthCheck) GoString() string {
 
 // A complex type that contains the health check configuration.
 type HealthCheckConfig struct {
+	// For a specified parent health check, a list of HealthCheckId values for the
+	// associated child health checks.
+	ChildHealthChecks []*string `locationNameList:"ChildHealthCheck" type:"list"`
+
 	// The number of consecutive health checks that an endpoint must pass or fail
 	// for Route 53 to change the current status of the endpoint from unhealthy
 	// to healthy or vice versa.
@@ -2426,8 +2430,23 @@ type HealthCheckConfig struct {
 	// Fully qualified domain name of the instance to be health checked.
 	FullyQualifiedDomainName *string `type:"string"`
 
+	// The minimum number of child health checks that must be healthy for Route
+	// 53 to consider the parent health check to be healthy. Valid values are integers
+	// between 0 and 256, inclusive.
+	HealthThreshold *int64 `type:"integer"`
+
 	// IP Address of the instance being checked.
 	IPAddress *string `type:"string"`
+
+	// A boolean value that indicates whether the status of health check should
+	// be inverted. For example, if a health check is healthy but Inverted is True,
+	// then Route 53 considers the health check to be unhealthy.
+	Inverted *bool `type:"boolean"`
+
+	// A Boolean value that indicates whether you want Route 53 to measure the latency
+	// between health checkers in multiple AWS regions and your endpoint and to
+	// display CloudWatch latency graphs in the Route 53 console.
+	MeasureLatency *bool `type:"boolean"`
 
 	// Port on which connection will be opened to the instance to health check.
 	// For HTTP and HTTP_STR_MATCH this defaults to 80 if the port is not specified.
@@ -3425,6 +3444,12 @@ func (s Tag) GoString() string {
 // >A complex type that contains information about the request to update a health
 // check.
 type UpdateHealthCheckInput struct {
+	// For a specified parent health check, a list of HealthCheckId values for the
+	// associated child health checks.
+	//
+	// Specify this value only if you want to change it.
+	ChildHealthChecks []*string `locationNameList:"ChildHealthCheck" type:"list"`
+
 	// The number of consecutive health checks that an endpoint must pass or fail
 	// for Route 53 to change the current status of the endpoint from unhealthy
 	// to healthy or vice versa.
@@ -3450,10 +3475,24 @@ type UpdateHealthCheckInput struct {
 	// lets you prevent overwriting another change to the health check.
 	HealthCheckVersion *int64 `type:"long"`
 
+	// The minimum number of child health checks that must be healthy for Route
+	// 53 to consider the parent health check to be healthy. Valid values are integers
+	// between 0 and 256, inclusive.
+	//
+	// Specify this value only if you want to change it.
+	HealthThreshold *int64 `type:"integer"`
+
 	// The IP address of the resource that you want to check.
 	//
 	// Specify this value only if you want to change it.
 	IPAddress *string `type:"string"`
+
+	// A boolean value that indicates whether the status of health check should
+	// be inverted. For example, if a health check is healthy but Inverted is True,
+	// then Route 53 considers the health check to be unhealthy.
+	//
+	// Specify this value only if you want to change it.
+	Inverted *bool `type:"boolean"`
 
 	// The port on which you want Route 53 to open a connection to perform health
 	// checks.
@@ -3614,6 +3653,8 @@ const (
 	HealthCheckTypeHttpsStrMatch = "HTTPS_STR_MATCH"
 	// @enum HealthCheckType
 	HealthCheckTypeTcp = "TCP"
+	// @enum HealthCheckType
+	HealthCheckTypeCalculated = "CALCULATED"
 )
 
 const (

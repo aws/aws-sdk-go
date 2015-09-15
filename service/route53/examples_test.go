@@ -129,10 +129,17 @@ func ExampleRoute53_CreateHealthCheck() {
 	params := &route53.CreateHealthCheckInput{
 		CallerReference: aws.String("HealthCheckNonce"), // Required
 		HealthCheckConfig: &route53.HealthCheckConfig{ // Required
-			Type:                     aws.String("HealthCheckType"), // Required
+			Type: aws.String("HealthCheckType"), // Required
+			ChildHealthChecks: []*string{
+				aws.String("HealthCheckId"), // Required
+				// More values...
+			},
 			FailureThreshold:         aws.Int64(1),
 			FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
+			HealthThreshold:          aws.Int64(1),
 			IPAddress:                aws.String("IPAddress"),
+			Inverted:                 aws.Bool(true),
+			MeasureLatency:           aws.Bool(true),
 			Port:                     aws.Int64(1),
 			RequestInterval:          aws.Int64(1),
 			ResourcePath:             aws.String("ResourcePath"),
@@ -642,11 +649,17 @@ func ExampleRoute53_UpdateHealthCheck() {
 	svc := route53.New(nil)
 
 	params := &route53.UpdateHealthCheckInput{
-		HealthCheckId:            aws.String("HealthCheckId"), // Required
+		HealthCheckId: aws.String("HealthCheckId"), // Required
+		ChildHealthChecks: []*string{
+			aws.String("HealthCheckId"), // Required
+			// More values...
+		},
 		FailureThreshold:         aws.Int64(1),
 		FullyQualifiedDomainName: aws.String("FullyQualifiedDomainName"),
 		HealthCheckVersion:       aws.Int64(1),
+		HealthThreshold:          aws.Int64(1),
 		IPAddress:                aws.String("IPAddress"),
+		Inverted:                 aws.Bool(true),
 		Port:                     aws.Int64(1),
 		ResourcePath:             aws.String("ResourcePath"),
 		SearchString:             aws.String("SearchString"),
