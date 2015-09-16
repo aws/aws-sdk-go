@@ -34,6 +34,12 @@ func hostStyleBucketName(r *request.Request, bucket string) bool {
 		return false
 	}
 
+	// GetBucketLocation should be able to be called from any region within
+	// a partition, and return the associated region of the bucket.
+	if r.Operation.Name == opGetBucketLocation {
+		return false
+	}
+
 	// Use host-style if the bucket is DNS compatible
 	return dnsCompatibleBucketName(bucket)
 }
