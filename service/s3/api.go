@@ -476,9 +476,36 @@ func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *req
 	return
 }
 
-// Returns the lifecycle configuration information set on the bucket.
+// Deprecated, see the GetBucketLifecycleConfiguration operation.
 func (c *S3) GetBucketLifecycle(input *GetBucketLifecycleInput) (*GetBucketLifecycleOutput, error) {
 	req, out := c.GetBucketLifecycleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetBucketLifecycleConfiguration = "GetBucketLifecycleConfiguration"
+
+// GetBucketLifecycleConfigurationRequest generates a request for the GetBucketLifecycleConfiguration operation.
+func (c *S3) GetBucketLifecycleConfigurationRequest(input *GetBucketLifecycleConfigurationInput) (req *request.Request, output *GetBucketLifecycleConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketLifecycleConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/{Bucket}?lifecycle",
+	}
+
+	if input == nil {
+		input = &GetBucketLifecycleConfigurationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetBucketLifecycleConfigurationOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the lifecycle configuration information set on the bucket.
+func (c *S3) GetBucketLifecycleConfiguration(input *GetBucketLifecycleConfigurationInput) (*GetBucketLifecycleConfigurationOutput, error) {
+	req, out := c.GetBucketLifecycleConfigurationRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1154,10 +1181,37 @@ func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *req
 	return
 }
 
-// Sets lifecycle configuration for your bucket. If a lifecycle configuration
-// exists, it replaces it.
+// Deprecated, see the PutBucketLifecycleConfiguration operation.
 func (c *S3) PutBucketLifecycle(input *PutBucketLifecycleInput) (*PutBucketLifecycleOutput, error) {
 	req, out := c.PutBucketLifecycleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opPutBucketLifecycleConfiguration = "PutBucketLifecycleConfiguration"
+
+// PutBucketLifecycleConfigurationRequest generates a request for the PutBucketLifecycleConfiguration operation.
+func (c *S3) PutBucketLifecycleConfigurationRequest(input *PutBucketLifecycleConfigurationInput) (req *request.Request, output *PutBucketLifecycleConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketLifecycleConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/{Bucket}?lifecycle",
+	}
+
+	if input == nil {
+		input = &PutBucketLifecycleConfigurationInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutBucketLifecycleConfigurationOutput{}
+	req.Data = output
+	return
+}
+
+// Sets lifecycle configuration for your bucket. If a lifecycle configuration
+// exists, it replaces it.
+func (c *S3) PutBucketLifecycleConfiguration(input *PutBucketLifecycleConfigurationInput) (*PutBucketLifecycleConfigurationOutput, error) {
+	req, out := c.PutBucketLifecycleConfigurationRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -1655,6 +1709,26 @@ func (s Bucket) GoString() string {
 	return s.String()
 }
 
+type BucketLifecycleConfiguration struct {
+	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
+
+	metadataBucketLifecycleConfiguration `json:"-" xml:"-"`
+}
+
+type metadataBucketLifecycleConfiguration struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s BucketLifecycleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BucketLifecycleConfiguration) GoString() string {
+	return s.String()
+}
+
 type BucketLoggingStatus struct {
 	LoggingEnabled *LoggingEnabled `type:"structure"`
 
@@ -1676,7 +1750,7 @@ func (s BucketLoggingStatus) GoString() string {
 }
 
 type CORSConfiguration struct {
-	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true"`
+	CORSRules []*CORSRule `locationName:"CORSRule" type:"list" flattened:"true" required:"true"`
 
 	metadataCORSConfiguration `json:"-" xml:"-"`
 }
@@ -1701,10 +1775,10 @@ type CORSRule struct {
 
 	// Identifies HTTP methods that the domain/origin specified in the rule is allowed
 	// to execute.
-	AllowedMethods []*string `locationName:"AllowedMethod" type:"list" flattened:"true"`
+	AllowedMethods []*string `locationName:"AllowedMethod" type:"list" flattened:"true" required:"true"`
 
 	// One or more origins you want customers to be able to access the bucket from.
-	AllowedOrigins []*string `locationName:"AllowedOrigin" type:"list" flattened:"true"`
+	AllowedOrigins []*string `locationName:"AllowedOrigin" type:"list" flattened:"true" required:"true"`
 
 	// One or more headers in the response that you want customers to be able to
 	// access from their applications (for example, from a JavaScript XMLHttpRequest
@@ -2874,6 +2948,9 @@ type Destination struct {
 	// replicas of the object identified by the rule.
 	Bucket *string `type:"string" required:"true"`
 
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string" enum:"StorageClass"`
+
 	metadataDestination `json:"-" xml:"-"`
 }
 
@@ -3046,6 +3123,46 @@ func (s GetBucketCorsOutput) String() string {
 
 // GoString returns the string representation
 func (s GetBucketCorsOutput) GoString() string {
+	return s.String()
+}
+
+type GetBucketLifecycleConfigurationInput struct {
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	metadataGetBucketLifecycleConfigurationInput `json:"-" xml:"-"`
+}
+
+type metadataGetBucketLifecycleConfigurationInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBucketLifecycleConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketLifecycleConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type GetBucketLifecycleConfigurationOutput struct {
+	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true"`
+
+	metadataGetBucketLifecycleConfigurationOutput `json:"-" xml:"-"`
+}
+
+type metadataGetBucketLifecycleConfigurationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBucketLifecycleConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -4172,6 +4289,47 @@ func (s LifecycleExpiration) GoString() string {
 	return s.String()
 }
 
+type LifecycleRule struct {
+	Expiration *LifecycleExpiration `type:"structure"`
+
+	// Unique identifier for the rule. The value cannot be longer than 255 characters.
+	ID *string `type:"string"`
+
+	// Specifies when noncurrent object versions expire. Upon expiration, Amazon
+	// S3 permanently deletes the noncurrent object versions. You set this lifecycle
+	// configuration action on a bucket that has versioning enabled (or suspended)
+	// to request that Amazon S3 delete noncurrent object versions at a specific
+	// period in the object's lifetime.
+	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
+
+	NoncurrentVersionTransitions []*NoncurrentVersionTransition `locationName:"NoncurrentVersionTransition" type:"list" flattened:"true"`
+
+	// Prefix identifying one or more objects to which the rule applies.
+	Prefix *string `type:"string" required:"true"`
+
+	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
+	// is not currently being applied.
+	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
+
+	Transitions []*Transition `locationName:"Transition" type:"list" flattened:"true"`
+
+	metadataLifecycleRule `json:"-" xml:"-"`
+}
+
+type metadataLifecycleRule struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s LifecycleRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleRule) GoString() string {
+	return s.String()
+}
+
 type ListBucketsInput struct {
 	metadataListBucketsInput `json:"-" xml:"-"`
 }
@@ -4696,10 +4854,10 @@ func (s NoncurrentVersionExpiration) GoString() string {
 }
 
 // Container for the transition rule that describes when noncurrent objects
-// transition to the GLACIER storage class. If your bucket is versioning-enabled
-// (or versioning is suspended), you can set this action to request that Amazon
-// S3 transition noncurrent object versions to the GLACIER storage class at
-// a specific period in the object's lifetime.
+// transition to the STANDARD_IA or GLACIER storage class. If your bucket is
+// versioning-enabled (or versioning is suspended), you can set this action
+// to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA
+// or GLACIER storage class at a specific period in the object's lifetime.
 type NoncurrentVersionTransition struct {
 	// Specifies the number of days an object is noncurrent before Amazon S3 can
 	// perform the associated action. For information about the noncurrent days
@@ -5013,7 +5171,7 @@ func (s PutBucketAclOutput) GoString() string {
 type PutBucketCorsInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure"`
+	CORSConfiguration *CORSConfiguration `locationName:"CORSConfiguration" type:"structure" required:"true"`
 
 	metadataPutBucketCorsInput `json:"-" xml:"-"`
 }
@@ -5047,6 +5205,46 @@ func (s PutBucketCorsOutput) String() string {
 
 // GoString returns the string representation
 func (s PutBucketCorsOutput) GoString() string {
+	return s.String()
+}
+
+type PutBucketLifecycleConfigurationInput struct {
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	LifecycleConfiguration *BucketLifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure"`
+
+	metadataPutBucketLifecycleConfigurationInput `json:"-" xml:"-"`
+}
+
+type metadataPutBucketLifecycleConfigurationInput struct {
+	SDKShapeTraits bool `type:"structure" payload:"LifecycleConfiguration"`
+}
+
+// String returns the string representation
+func (s PutBucketLifecycleConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketLifecycleConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type PutBucketLifecycleConfigurationOutput struct {
+	metadataPutBucketLifecycleConfigurationOutput `json:"-" xml:"-"`
+}
+
+type metadataPutBucketLifecycleConfigurationOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutBucketLifecycleConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -6015,10 +6213,10 @@ type Rule struct {
 	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
 
 	// Container for the transition rule that describes when noncurrent objects
-	// transition to the GLACIER storage class. If your bucket is versioning-enabled
-	// (or versioning is suspended), you can set this action to request that Amazon
-	// S3 transition noncurrent object versions to the GLACIER storage class at
-	// a specific period in the object's lifetime.
+	// transition to the STANDARD_IA or GLACIER storage class. If your bucket is
+	// versioning-enabled (or versioning is suspended), you can set this action
+	// to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA
+	// or GLACIER storage class at a specific period in the object's lifetime.
 	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
 
 	// Prefix identifying one or more objects to which the rule applies.
@@ -6715,11 +6913,15 @@ const (
 	StorageClassStandard = "STANDARD"
 	// @enum StorageClass
 	StorageClassReducedRedundancy = "REDUCED_REDUNDANCY"
+	// @enum StorageClass
+	StorageClassStandardIa = "STANDARD_IA"
 )
 
 const (
 	// @enum TransitionStorageClass
 	TransitionStorageClassGlacier = "GLACIER"
+	// @enum TransitionStorageClass
+	TransitionStorageClassStandardIa = "STANDARD_IA"
 )
 
 const (

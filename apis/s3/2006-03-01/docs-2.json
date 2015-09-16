@@ -17,7 +17,8 @@
     "DeleteObjects": "This operation enables you to delete multiple objects from a bucket using a single HTTP request. You may specify up to 1000 keys.",
     "GetBucketAcl": "Gets the access control policy for the bucket.",
     "GetBucketCors": "Returns the cors configuration for the bucket.",
-    "GetBucketLifecycle": "Returns the lifecycle configuration information set on the bucket.",
+    "GetBucketLifecycle": "Deprecated, see the GetBucketLifecycleConfiguration operation.",
+    "GetBucketLifecycleConfiguration": "Returns the lifecycle configuration information set on the bucket.",
     "GetBucketLocation": "Returns the region the bucket resides in.",
     "GetBucketLogging": "Returns the logging status of a bucket and the permissions users have to view and modify that status. To use GET, you must be the bucket owner.",
     "GetBucketNotification": "Deprecated, see the GetBucketNotificationConfiguration operation.",
@@ -40,7 +41,8 @@
     "ListParts": "Lists the parts that have been uploaded for a specific multipart upload.",
     "PutBucketAcl": "Sets the permissions on a bucket using access control lists (ACL).",
     "PutBucketCors": "Sets the cors configuration for a bucket.",
-    "PutBucketLifecycle": "Sets lifecycle configuration for your bucket. If a lifecycle configuration exists, it replaces it.",
+    "PutBucketLifecycle": "Deprecated, see the PutBucketLifecycleConfiguration operation.",
+    "PutBucketLifecycleConfiguration": "Sets lifecycle configuration for your bucket. If a lifecycle configuration exists, it replaces it.",
     "PutBucketLogging": "Set the logging parameters for a bucket and to specify permissions for who can view and modify the logging parameters. To set the logging status of a bucket, you must be the bucket owner.",
     "PutBucketNotification": "Deprecated, see the PutBucketNotificationConfiguraiton operation.",
     "PutBucketNotificationConfiguration": "Enables notifications of specified events for a bucket.",
@@ -145,6 +147,12 @@
         "PutBucketAclRequest$ACL": "The canned ACL to apply to the bucket."
       }
     },
+    "BucketLifecycleConfiguration": {
+      "base": null,
+      "refs": {
+        "PutBucketLifecycleConfigurationRequest$LifecycleConfiguration": null
+      }
+    },
     "BucketLocationConstraint": {
       "base": null,
       "refs": {
@@ -187,6 +195,7 @@
         "Destination$Bucket": "Amazon resource name (ARN) of the bucket where you want Amazon S3 to store replicas of the object identified by the rule.",
         "GetBucketAclRequest$Bucket": null,
         "GetBucketCorsRequest$Bucket": null,
+        "GetBucketLifecycleConfigurationRequest$Bucket": null,
         "GetBucketLifecycleRequest$Bucket": null,
         "GetBucketLocationRequest$Bucket": null,
         "GetBucketLoggingRequest$Bucket": null,
@@ -212,6 +221,7 @@
         "ListPartsRequest$Bucket": null,
         "PutBucketAclRequest$Bucket": null,
         "PutBucketCorsRequest$Bucket": null,
+        "PutBucketLifecycleConfigurationRequest$Bucket": null,
         "PutBucketLifecycleRequest$Bucket": null,
         "PutBucketLoggingRequest$Bucket": null,
         "PutBucketNotificationConfigurationRequest$Bucket": null,
@@ -767,6 +777,7 @@
     "ExpirationStatus": {
       "base": null,
       "refs": {
+        "LifecycleRule$Status": "If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being applied.",
         "Rule$Status": "If 'Enabled', the rule is currently being applied. If 'Disabled', the rule is not currently being applied."
       }
     },
@@ -832,6 +843,16 @@
       }
     },
     "GetBucketCorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketLifecycleConfigurationOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketLifecycleConfigurationRequest": {
       "base": null,
       "refs": {
       }
@@ -1073,6 +1094,7 @@
       "refs": {
         "Grantee$ID": "The canonical user ID of the grantee.",
         "Initiator$ID": "If the principal is an AWS account, it provides the Canonical User ID. If the principal is an IAM User, it provides a user ARN value.",
+        "LifecycleRule$ID": "Unique identifier for the rule. The value cannot be longer than 255 characters.",
         "Owner$ID": null,
         "ReplicationRule$ID": "Unique identifier for the rule. The value cannot be longer than 255 characters.",
         "Rule$ID": "Unique identifier for the rule. The value cannot be longer than 255 characters."
@@ -1197,7 +1219,21 @@
     "LifecycleExpiration": {
       "base": null,
       "refs": {
+        "LifecycleRule$Expiration": null,
         "Rule$Expiration": null
+      }
+    },
+    "LifecycleRule": {
+      "base": null,
+      "refs": {
+        "LifecycleRules$member": null
+      }
+    },
+    "LifecycleRules": {
+      "base": null,
+      "refs": {
+        "BucketLifecycleConfiguration$Rules": null,
+        "GetBucketLifecycleConfigurationOutput$Rules": null
       }
     },
     "ListBucketsOutput": {
@@ -1430,13 +1466,21 @@
     "NoncurrentVersionExpiration": {
       "base": "Specifies when noncurrent object versions expire. Upon expiration, Amazon S3 permanently deletes the noncurrent object versions. You set this lifecycle configuration action on a bucket that has versioning enabled (or suspended) to request that Amazon S3 delete noncurrent object versions at a specific period in the object's lifetime.",
       "refs": {
+        "LifecycleRule$NoncurrentVersionExpiration": null,
         "Rule$NoncurrentVersionExpiration": null
       }
     },
     "NoncurrentVersionTransition": {
-      "base": "Container for the transition rule that describes when noncurrent objects transition to the GLACIER storage class. If your bucket is versioning-enabled (or versioning is suspended), you can set this action to request that Amazon S3 transition noncurrent object versions to the GLACIER storage class at a specific period in the object's lifetime.",
+      "base": "Container for the transition rule that describes when noncurrent objects transition to the STANDARD_IA or GLACIER storage class. If your bucket is versioning-enabled (or versioning is suspended), you can set this action to request that Amazon S3 transition noncurrent object versions to the STANDARD_IA or GLACIER storage class at a specific period in the object's lifetime.",
       "refs": {
+        "NoncurrentVersionTransitionList$member": null,
         "Rule$NoncurrentVersionTransition": null
+      }
+    },
+    "NoncurrentVersionTransitionList": {
+      "base": null,
+      "refs": {
+        "LifecycleRule$NoncurrentVersionTransitions": null
       }
     },
     "NotificationConfiguration": {
@@ -1655,6 +1699,7 @@
       "base": null,
       "refs": {
         "CommonPrefix$Prefix": null,
+        "LifecycleRule$Prefix": "Prefix identifying one or more objects to which the rule applies.",
         "ListMultipartUploadsOutput$Prefix": "When a prefix is provided in the request, this field contains the specified prefix. The result contains only keys starting with the specified prefix.",
         "ListMultipartUploadsRequest$Prefix": "Lists in-progress uploads only for those keys that begin with the specified prefix.",
         "ListObjectVersionsOutput$Prefix": null,
@@ -1678,6 +1723,11 @@
       }
     },
     "PutBucketCorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutBucketLifecycleConfigurationRequest": {
       "base": null,
       "refs": {
       }
@@ -2087,6 +2137,7 @@
       "refs": {
         "CopyObjectRequest$StorageClass": "The type of storage to use for the object. Defaults to 'STANDARD'.",
         "CreateMultipartUploadRequest$StorageClass": "The type of storage to use for the object. Defaults to 'STANDARD'.",
+        "Destination$StorageClass": "The class of storage used to store the object.",
         "GetObjectOutput$StorageClass": null,
         "HeadObjectOutput$StorageClass": null,
         "ListPartsOutput$StorageClass": "The class of storage used to store the object.",
@@ -2171,7 +2222,14 @@
     "Transition": {
       "base": null,
       "refs": {
-        "Rule$Transition": null
+        "Rule$Transition": null,
+        "TransitionList$member": null
+      }
+    },
+    "TransitionList": {
+      "base": null,
+      "refs": {
+        "LifecycleRule$Transitions": null
       }
     },
     "TransitionStorageClass": {

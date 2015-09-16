@@ -31,7 +31,10 @@ func TestMD5InPutBucketCors(t *testing.T) {
 		Bucket: aws.String("bucketname"),
 		CORSConfiguration: &s3.CORSConfiguration{
 			CORSRules: []*s3.CORSRule{
-				{AllowedMethods: []*string{aws.String("GET")}},
+				{
+					AllowedMethods: []*string{aws.String("GET")},
+					AllowedOrigins: []*string{aws.String("*")},
+				},
 			},
 		},
 	})

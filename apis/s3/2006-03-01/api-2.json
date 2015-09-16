@@ -194,7 +194,17 @@
       },
       "input":{"shape":"GetBucketLifecycleRequest"},
       "output":{"shape":"GetBucketLifecycleOutput"},
+      "deprecated":true,
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html"
+    },
+    "GetBucketLifecycleConfiguration":{
+      "name":"GetBucketLifecycleConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?lifecycle"
+      },
+      "input":{"shape":"GetBucketLifecycleConfigurationRequest"},
+      "output":{"shape":"GetBucketLifecycleConfigurationOutput"}
     },
     "GetBucketLocation":{
       "name":"GetBucketLocation",
@@ -451,7 +461,16 @@
         "requestUri":"/{Bucket}?lifecycle"
       },
       "input":{"shape":"PutBucketLifecycleRequest"},
+      "deprecated":true,
       "documentationUrl":"http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUTlifecycle.html"
+    },
+    "PutBucketLifecycleConfiguration":{
+      "name":"PutBucketLifecycleConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}?lifecycle"
+      },
+      "input":{"shape":"PutBucketLifecycleConfigurationRequest"}
     },
     "PutBucketLogging":{
       "name":"PutBucketLogging",
@@ -690,6 +709,16 @@
         "authenticated-read"
       ]
     },
+    "BucketLifecycleConfiguration":{
+      "type":"structure",
+      "required":["Rules"],
+      "members":{
+        "Rules":{
+          "shape":"LifecycleRules",
+          "locationName":"Rule"
+        }
+      }
+    },
     "BucketLocationConstraint":{
       "type":"string",
       "enum":[
@@ -736,6 +765,7 @@
     },
     "CORSConfiguration":{
       "type":"structure",
+      "required":["CORSRules"],
       "members":{
         "CORSRules":{
           "shape":"CORSRules",
@@ -745,6 +775,10 @@
     },
     "CORSRule":{
       "type":"structure",
+      "required":[
+        "AllowedMethods",
+        "AllowedOrigins"
+      ],
       "members":{
         "AllowedHeaders":{
           "shape":"AllowedHeaders",
@@ -1590,7 +1624,8 @@
       "type":"structure",
       "required":["Bucket"],
       "members":{
-        "Bucket":{"shape":"BucketName"}
+        "Bucket":{"shape":"BucketName"},
+        "StorageClass":{"shape":"StorageClass"}
       }
     },
     "DisplayName":{"type":"string"},
@@ -1706,6 +1741,26 @@
       }
     },
     "GetBucketCorsRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        }
+      }
+    },
+    "GetBucketLifecycleConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "Rules":{
+          "shape":"LifecycleRules",
+          "locationName":"Rule"
+        }
+      }
+    },
+    "GetBucketLifecycleConfigurationRequest":{
       "type":"structure",
       "required":["Bucket"],
       "members":{
@@ -2523,6 +2578,33 @@
         "Days":{"shape":"Days"}
       }
     },
+    "LifecycleRule":{
+      "type":"structure",
+      "required":[
+        "Prefix",
+        "Status"
+      ],
+      "members":{
+        "Expiration":{"shape":"LifecycleExpiration"},
+        "ID":{"shape":"ID"},
+        "Prefix":{"shape":"Prefix"},
+        "Status":{"shape":"ExpirationStatus"},
+        "Transitions":{
+          "shape":"TransitionList",
+          "locationName":"Transition"
+        },
+        "NoncurrentVersionTransitions":{
+          "shape":"NoncurrentVersionTransitionList",
+          "locationName":"NoncurrentVersionTransition"
+        },
+        "NoncurrentVersionExpiration":{"shape":"NoncurrentVersionExpiration"}
+      }
+    },
+    "LifecycleRules":{
+      "type":"list",
+      "member":{"shape":"LifecycleRule"},
+      "flattened":true
+    },
     "ListBucketsOutput":{
       "type":"structure",
       "members":{
@@ -2869,6 +2951,11 @@
         "StorageClass":{"shape":"TransitionStorageClass"}
       }
     },
+    "NoncurrentVersionTransitionList":{
+      "type":"list",
+      "member":{"shape":"NoncurrentVersionTransition"},
+      "flattened":true
+    },
     "NotificationConfiguration":{
       "type":"structure",
       "members":{
@@ -2945,7 +3032,10 @@
       "member":{"shape":"ObjectIdentifier"},
       "flattened":true
     },
-    "ObjectKey":{"type":"string"},
+    "ObjectKey":{
+      "type":"string",
+      "min":1
+    },
     "ObjectList":{
       "type":"list",
       "member":{"shape":"Object"},
@@ -3091,7 +3181,10 @@
     },
     "PutBucketCorsRequest":{
       "type":"structure",
-      "required":["Bucket"],
+      "required":[
+        "Bucket",
+        "CORSConfiguration"
+      ],
       "members":{
         "Bucket":{
           "shape":"BucketName",
@@ -3110,6 +3203,23 @@
         }
       },
       "payload":"CORSConfiguration"
+    },
+    "PutBucketLifecycleConfigurationRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "LifecycleConfiguration":{
+          "shape":"BucketLifecycleConfiguration",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"},
+          "locationName":"LifecycleConfiguration"
+        }
+      },
+      "payload":"LifecycleConfiguration"
     },
     "PutBucketLifecycleRequest":{
       "type":"structure",
@@ -3861,7 +3971,8 @@
       "type":"string",
       "enum":[
         "STANDARD",
-        "REDUCED_REDUNDANCY"
+        "REDUCED_REDUNDANCY",
+        "STANDARD_IA"
       ]
     },
     "Suffix":{"type":"string"},
@@ -3954,9 +4065,17 @@
         "StorageClass":{"shape":"TransitionStorageClass"}
       }
     },
+    "TransitionList":{
+      "type":"list",
+      "member":{"shape":"Transition"},
+      "flattened":true
+    },
     "TransitionStorageClass":{
       "type":"string",
-      "enum":["GLACIER"]
+      "enum":[
+        "GLACIER",
+        "STANDARD_IA"
+      ]
     },
     "Type":{
       "type":"string",
