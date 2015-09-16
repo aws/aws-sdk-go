@@ -3070,7 +3070,7 @@ func (s GetBucketLifecycleInput) GoString() string {
 }
 
 type GetBucketLifecycleOutput struct {
-	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true"`
+	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true"`
 
 	metadataGetBucketLifecycleOutput `json:"-" xml:"-"`
 }
@@ -4127,7 +4127,7 @@ func (s LambdaFunctionConfiguration) GoString() string {
 }
 
 type LifecycleConfiguration struct {
-	Rules []*LifecycleRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
+	Rules []*Rule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
 
 	metadataLifecycleConfiguration `json:"-" xml:"-"`
 }
@@ -4169,52 +4169,6 @@ func (s LifecycleExpiration) String() string {
 
 // GoString returns the string representation
 func (s LifecycleExpiration) GoString() string {
-	return s.String()
-}
-
-type LifecycleRule struct {
-	Expiration *LifecycleExpiration `type:"structure"`
-
-	// Unique identifier for the rule. The value cannot be longer than 255 characters.
-	ID *string `type:"string"`
-
-	// Specifies when noncurrent object versions expire. Upon expiration, Amazon
-	// S3 permanently deletes the noncurrent object versions. You set this lifecycle
-	// configuration action on a bucket that has versioning enabled (or suspended)
-	// to request that Amazon S3 delete noncurrent object versions at a specific
-	// period in the object's lifetime.
-	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
-
-	// Container for the transition rule that describes when noncurrent objects
-	// transition to the GLACIER storage class. If your bucket is versioning-enabled
-	// (or versioning is suspended), you can set this action to request that Amazon
-	// S3 transition noncurrent object versions to the GLACIER storage class at
-	// a specific period in the object's lifetime.
-	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
-
-	// Prefix identifying one or more objects to which the rule applies.
-	Prefix *string `type:"string" required:"true"`
-
-	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
-	// is not currently being applied.
-	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
-
-	Transition *Transition `type:"structure"`
-
-	metadataLifecycleRule `json:"-" xml:"-"`
-}
-
-type metadataLifecycleRule struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// String returns the string representation
-func (s LifecycleRule) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s LifecycleRule) GoString() string {
 	return s.String()
 }
 
@@ -6044,6 +5998,52 @@ func (s RoutingRule) String() string {
 
 // GoString returns the string representation
 func (s RoutingRule) GoString() string {
+	return s.String()
+}
+
+type Rule struct {
+	Expiration *LifecycleExpiration `type:"structure"`
+
+	// Unique identifier for the rule. The value cannot be longer than 255 characters.
+	ID *string `type:"string"`
+
+	// Specifies when noncurrent object versions expire. Upon expiration, Amazon
+	// S3 permanently deletes the noncurrent object versions. You set this lifecycle
+	// configuration action on a bucket that has versioning enabled (or suspended)
+	// to request that Amazon S3 delete noncurrent object versions at a specific
+	// period in the object's lifetime.
+	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
+
+	// Container for the transition rule that describes when noncurrent objects
+	// transition to the GLACIER storage class. If your bucket is versioning-enabled
+	// (or versioning is suspended), you can set this action to request that Amazon
+	// S3 transition noncurrent object versions to the GLACIER storage class at
+	// a specific period in the object's lifetime.
+	NoncurrentVersionTransition *NoncurrentVersionTransition `type:"structure"`
+
+	// Prefix identifying one or more objects to which the rule applies.
+	Prefix *string `type:"string" required:"true"`
+
+	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
+	// is not currently being applied.
+	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
+
+	Transition *Transition `type:"structure"`
+
+	metadataRule `json:"-" xml:"-"`
+}
+
+type metadataRule struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Rule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Rule) GoString() string {
 	return s.String()
 }
 

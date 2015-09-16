@@ -44,11 +44,6 @@ func s3Customizations(a *API) {
 			}
 		}
 	}
-
-	// Rename "Rule" to "LifecycleRule"
-	if s, ok := a.Shapes["Rule"]; ok {
-		s.Rename("LifecycleRule")
-	}
 }
 
 // cloudfrontCustomizations customized the API generation to replace values
