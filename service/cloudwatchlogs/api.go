@@ -812,7 +812,7 @@ func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (*TestMe
 
 type CreateLogGroupInput struct {
 	// The name of the log group to create.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	metadataCreateLogGroupInput `json:"-" xml:"-"`
 }
@@ -851,10 +851,10 @@ func (s CreateLogGroupOutput) GoString() string {
 
 type CreateLogStreamInput struct {
 	// The name of the log group under which the log stream is to be created.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to create.
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	metadataCreateLogStreamInput `json:"-" xml:"-"`
 }
@@ -893,7 +893,7 @@ func (s CreateLogStreamOutput) GoString() string {
 
 type DeleteDestinationInput struct {
 	// The name of destination to delete.
-	DestinationName *string `locationName:"destinationName" type:"string" required:"true"`
+	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDestinationInput `json:"-" xml:"-"`
 }
@@ -932,7 +932,7 @@ func (s DeleteDestinationOutput) GoString() string {
 
 type DeleteLogGroupInput struct {
 	// The name of the log group to delete.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteLogGroupInput `json:"-" xml:"-"`
 }
@@ -971,10 +971,10 @@ func (s DeleteLogGroupOutput) GoString() string {
 
 type DeleteLogStreamInput struct {
 	// The name of the log group under which the log stream to delete belongs.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to delete.
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteLogStreamInput `json:"-" xml:"-"`
 }
@@ -1013,10 +1013,10 @@ func (s DeleteLogStreamOutput) GoString() string {
 
 type DeleteMetricFilterInput struct {
 	// The name of the metric filter to delete.
-	FilterName *string `locationName:"filterName" type:"string" required:"true"`
+	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// The name of the log group that is associated with the metric filter to delete.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteMetricFilterInput `json:"-" xml:"-"`
 }
@@ -1056,7 +1056,7 @@ func (s DeleteMetricFilterOutput) GoString() string {
 type DeleteRetentionPolicyInput struct {
 	// The name of the log group that is associated with the retention policy to
 	// delete.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteRetentionPolicyInput `json:"-" xml:"-"`
 }
@@ -1095,11 +1095,11 @@ func (s DeleteRetentionPolicyOutput) GoString() string {
 
 type DeleteSubscriptionFilterInput struct {
 	// The name of the subscription filter to delete.
-	FilterName *string `locationName:"filterName" type:"string" required:"true"`
+	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// The name of the log group that is associated with the subscription filter
 	// to delete.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteSubscriptionFilterInput `json:"-" xml:"-"`
 }
@@ -1139,15 +1139,15 @@ func (s DeleteSubscriptionFilterOutput) GoString() string {
 type DescribeDestinationsInput struct {
 	// Will only return destinations that match the provided destinationNamePrefix.
 	// If you don't specify a value, no prefix is applied.
-	DestinationNamePrefix *string `type:"string"`
+	DestinationNamePrefix *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeDestinationsInput `json:"-" xml:"-"`
 }
@@ -1172,7 +1172,7 @@ type DescribeDestinationsOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeDestinationsOutput `json:"-" xml:"-"`
 }
@@ -1194,16 +1194,16 @@ func (s DescribeDestinationsOutput) GoString() string {
 type DescribeLogGroupsInput struct {
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// Will only return log groups that match the provided logGroupNamePrefix. If
 	// you don't specify a value, no prefix filter is applied.
-	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" type:"string"`
+	LogGroupNamePrefix *string `locationName:"logGroupNamePrefix" min:"1" type:"string"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous DescribeLogGroups
 	// request.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeLogGroupsInput `json:"-" xml:"-"`
 }
@@ -1229,7 +1229,7 @@ type DescribeLogGroupsOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeLogGroupsOutput `json:"-" xml:"-"`
 }
@@ -1255,19 +1255,19 @@ type DescribeLogStreamsInput struct {
 
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The log group name for which log streams are to be listed.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Will only return log streams that match the provided logStreamNamePrefix.
 	// If you don't specify a value, no prefix filter is applied.
-	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" type:"string"`
+	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" min:"1" type:"string"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous DescribeLogStreams
 	// request.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// Specifies what to order the returned log streams by. Valid arguments are
 	// 'LogStreamName' or 'LastEventTime'. If you don't specify a value, results
@@ -1299,7 +1299,7 @@ type DescribeLogStreamsOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeLogStreamsOutput `json:"-" xml:"-"`
 }
@@ -1321,19 +1321,19 @@ func (s DescribeLogStreamsOutput) GoString() string {
 type DescribeMetricFiltersInput struct {
 	// Will only return metric filters that match the provided filterNamePrefix.
 	// If you don't specify a value, no prefix filter is applied.
-	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string"`
+	FilterNamePrefix *string `locationName:"filterNamePrefix" min:"1" type:"string"`
 
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The log group name for which metric filters are to be listed.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous DescribeMetricFilters
 	// request.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeMetricFiltersInput `json:"-" xml:"-"`
 }
@@ -1358,7 +1358,7 @@ type DescribeMetricFiltersOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeMetricFiltersOutput `json:"-" xml:"-"`
 }
@@ -1380,18 +1380,18 @@ func (s DescribeMetricFiltersOutput) GoString() string {
 type DescribeSubscriptionFiltersInput struct {
 	// Will only return subscription filters that match the provided filterNamePrefix.
 	// If you don't specify a value, no prefix filter is applied.
-	FilterNamePrefix *string `locationName:"filterNamePrefix" type:"string"`
+	FilterNamePrefix *string `locationName:"filterNamePrefix" min:"1" type:"string"`
 
 	// The maximum number of results to return.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The log group name for which subscription filters are to be listed.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	metadataDescribeSubscriptionFiltersInput `json:"-" xml:"-"`
 }
@@ -1414,7 +1414,7 @@ type DescribeSubscriptionFiltersOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	SubscriptionFilters []*SubscriptionFilter `locationName:"subscriptionFilters" type:"list"`
 
@@ -1436,7 +1436,7 @@ func (s DescribeSubscriptionFiltersOutput) GoString() string {
 }
 
 type Destination struct {
-	AccessPolicy *string `locationName:"accessPolicy" type:"string"`
+	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string"`
 
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -1444,11 +1444,11 @@ type Destination struct {
 	// 00:00:00 UTC.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
 
-	DestinationName *string `locationName:"destinationName" type:"string"`
+	DestinationName *string `locationName:"destinationName" min:"1" type:"string"`
 
-	RoleArn *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
-	TargetArn *string `locationName:"targetArn" type:"string"`
+	TargetArn *string `locationName:"targetArn" min:"1" type:"string"`
 
 	metadataDestination `json:"-" xml:"-"`
 }
@@ -1484,18 +1484,18 @@ type FilterLogEventsInput struct {
 
 	// The maximum number of events to return in a page of results. Default is 10,000
 	// events.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The name of the log group to query.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Optional list of log stream names within the specified log group to search.
 	// Defaults to all the log streams in the log group.
-	LogStreamNames []*string `locationName:"logStreamNames" type:"list"`
+	LogStreamNames []*string `locationName:"logStreamNames" min:"1" type:"list"`
 
 	// A pagination token obtained from a FilterLogEvents response to continue paginating
 	// the FilterLogEvents results.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// A unix timestamp indicating the start time of the range for the request.
 	// If provided, events with a timestamp prior to this time will not be returned.
@@ -1525,7 +1525,7 @@ type FilterLogEventsOutput struct {
 
 	// A pagination token obtained from a FilterLogEvents response to continue paginating
 	// the FilterLogEvents results.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// A list of SearchedLogStream objects indicating which log streams have been
 	// searched in this request and whether each has been searched completely or
@@ -1559,10 +1559,10 @@ type FilteredLogEvent struct {
 	IngestionTime *int64 `locationName:"ingestionTime" type:"long"`
 
 	// The name of the log stream this event belongs to.
-	LogStreamName *string `locationName:"logStreamName" type:"string"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string"`
 
 	// The data contained in the log event.
-	Message *string `locationName:"message" type:"string"`
+	Message *string `locationName:"message" min:"1" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1593,18 +1593,18 @@ type GetLogEventsInput struct {
 	// The maximum number of log events returned in the response. If you don't specify
 	// a value, the request would return as many log events as can fit in a response
 	// size of 1MB, up to 10,000 log events.
-	Limit *int64 `locationName:"limit" type:"integer"`
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
 
 	// The name of the log group to query.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to query.
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the nextForwardToken or nextBackwardToken
 	// fields in the response of the previous GetLogEvents request.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// If set to true, the earliest log events would be returned first. The default
 	// is false (the latest log events are returned first).
@@ -1637,12 +1637,12 @@ type GetLogEventsOutput struct {
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextBackwardToken *string `locationName:"nextBackwardToken" type:"string"`
+	NextBackwardToken *string `locationName:"nextBackwardToken" min:"1" type:"string"`
 
 	// A string token used for pagination that points to the next page of results.
 	// It must be a value obtained from the response of the previous request. The
 	// token expires after 24 hours.
-	NextForwardToken *string `locationName:"nextForwardToken" type:"string"`
+	NextForwardToken *string `locationName:"nextForwardToken" min:"1" type:"string"`
 
 	metadataGetLogEventsOutput `json:"-" xml:"-"`
 }
@@ -1666,7 +1666,7 @@ func (s GetLogEventsOutput) GoString() string {
 // Logs understands contains two properties: the timestamp of when the event
 // occurred, and the raw event message.
 type InputLogEvent struct {
-	Message *string `locationName:"message" type:"string" required:"true"`
+	Message *string `locationName:"message" min:"1" type:"string" required:"true"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1696,7 +1696,7 @@ type LogGroup struct {
 	// 00:00:00 UTC.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
 
-	LogGroupName *string `locationName:"logGroupName" type:"string"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
 	// The number of metric filters associated with the log group.
 	MetricFilterCount *int64 `locationName:"metricFilterCount" type:"integer"`
@@ -1745,14 +1745,14 @@ type LogStream struct {
 	// 00:00:00 UTC.
 	LastIngestionTime *int64 `locationName:"lastIngestionTime" type:"long"`
 
-	LogStreamName *string `locationName:"logStreamName" type:"string"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string"`
 
 	StoredBytes *int64 `locationName:"storedBytes" type:"long"`
 
 	// A string token used for making PutLogEvents requests. A sequenceToken can
 	// only be used once, and PutLogEvents requests must include the sequenceToken
 	// obtained from the response of the previous request.
-	UploadSequenceToken *string `locationName:"uploadSequenceToken" type:"string"`
+	UploadSequenceToken *string `locationName:"uploadSequenceToken" min:"1" type:"string"`
 
 	metadataLogStream `json:"-" xml:"-"`
 }
@@ -1780,7 +1780,7 @@ type MetricFilter struct {
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
 
 	// A name for a metric or subscription filter.
-	FilterName *string `locationName:"filterName" type:"string"`
+	FilterName *string `locationName:"filterName" min:"1" type:"string"`
 
 	// A symbolic description of how Amazon CloudWatch Logs should interpret the
 	// data in each log event. For example, a log event may contain timestamps,
@@ -1788,7 +1788,7 @@ type MetricFilter struct {
 	// to look for in the log event message.
 	FilterPattern *string `locationName:"filterPattern" type:"string"`
 
-	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list"`
+	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" min:"1" type:"list"`
 
 	metadataMetricFilter `json:"-" xml:"-"`
 }
@@ -1808,7 +1808,7 @@ func (s MetricFilter) GoString() string {
 }
 
 type MetricFilterMatchRecord struct {
-	EventMessage *string `locationName:"eventMessage" type:"string"`
+	EventMessage *string `locationName:"eventMessage" min:"1" type:"string"`
 
 	EventNumber *int64 `locationName:"eventNumber" type:"long"`
 
@@ -1867,7 +1867,7 @@ type OutputLogEvent struct {
 	// 00:00:00 UTC.
 	IngestionTime *int64 `locationName:"ingestionTime" type:"long"`
 
-	Message *string `locationName:"message" type:"string"`
+	Message *string `locationName:"message" min:"1" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
 	// 00:00:00 UTC.
@@ -1892,14 +1892,14 @@ func (s OutputLogEvent) GoString() string {
 
 type PutDestinationInput struct {
 	// A name for the destination.
-	DestinationName *string `locationName:"destinationName" type:"string" required:"true"`
+	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 
 	// The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to
 	// do Amazon Kinesis PutRecord requests on the desitnation stream.
-	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
 	// The ARN of an Amazon Kinesis stream to deliver matching log events to.
-	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
+	TargetArn *string `locationName:"targetArn" min:"1" type:"string" required:"true"`
 
 	metadataPutDestinationInput `json:"-" xml:"-"`
 }
@@ -1941,10 +1941,10 @@ func (s PutDestinationOutput) GoString() string {
 type PutDestinationPolicyInput struct {
 	// An IAM policy document that authorizes cross-account users to deliver their
 	// log events to associated destination.
-	AccessPolicy *string `locationName:"accessPolicy" type:"string" required:"true"`
+	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string" required:"true"`
 
 	// A name for an existing destination.
-	DestinationName *string `locationName:"destinationName" type:"string" required:"true"`
+	DestinationName *string `locationName:"destinationName" min:"1" type:"string" required:"true"`
 
 	metadataPutDestinationPolicyInput `json:"-" xml:"-"`
 }
@@ -1983,17 +1983,17 @@ func (s PutDestinationPolicyOutput) GoString() string {
 
 type PutLogEventsInput struct {
 	// A list of log events belonging to a log stream.
-	LogEvents []*InputLogEvent `locationName:"logEvents" type:"list" required:"true"`
+	LogEvents []*InputLogEvent `locationName:"logEvents" min:"1" type:"list" required:"true"`
 
 	// The name of the log group to put log events to.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The name of the log stream to put log events to.
-	LogStreamName *string `locationName:"logStreamName" type:"string" required:"true"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string" required:"true"`
 
 	// A string token that must be obtained from the response of the previous PutLogEvents
 	// request.
-	SequenceToken *string `locationName:"sequenceToken" type:"string"`
+	SequenceToken *string `locationName:"sequenceToken" min:"1" type:"string"`
 
 	metadataPutLogEventsInput `json:"-" xml:"-"`
 }
@@ -2016,7 +2016,7 @@ type PutLogEventsOutput struct {
 	// A string token used for making PutLogEvents requests. A sequenceToken can
 	// only be used once, and PutLogEvents requests must include the sequenceToken
 	// obtained from the response of the previous request.
-	NextSequenceToken *string `locationName:"nextSequenceToken" type:"string"`
+	NextSequenceToken *string `locationName:"nextSequenceToken" min:"1" type:"string"`
 
 	RejectedLogEventsInfo *RejectedLogEventsInfo `locationName:"rejectedLogEventsInfo" type:"structure"`
 
@@ -2039,17 +2039,17 @@ func (s PutLogEventsOutput) GoString() string {
 
 type PutMetricFilterInput struct {
 	// A name for the metric filter.
-	FilterName *string `locationName:"filterName" type:"string" required:"true"`
+	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// A valid CloudWatch Logs filter pattern for extracting metric data out of
 	// ingested log events.
 	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
 
 	// The name of the log group to associate the metric filter with.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// A collection of information needed to define how metric data gets emitted.
-	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" type:"list" required:"true"`
+	MetricTransformations []*MetricTransformation `locationName:"metricTransformations" min:"1" type:"list" required:"true"`
 
 	metadataPutMetricFilterInput `json:"-" xml:"-"`
 }
@@ -2088,7 +2088,7 @@ func (s PutMetricFilterOutput) GoString() string {
 
 type PutRetentionPolicyInput struct {
 	// The name of the log group to associate the retention policy with.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// Specifies the number of days you want to retain log events in the specified
 	// log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180,
@@ -2136,23 +2136,23 @@ type PutSubscriptionFilterInput struct {
 	// same account as the subscription filter, for same-account delivery.   A logical
 	// destination (used via an ARN of Destination) belonging to a different account,
 	// for cross-account delivery.
-	DestinationArn *string `locationName:"destinationArn" type:"string" required:"true"`
+	DestinationArn *string `locationName:"destinationArn" min:"1" type:"string" required:"true"`
 
 	// A name for the subscription filter.
-	FilterName *string `locationName:"filterName" type:"string" required:"true"`
+	FilterName *string `locationName:"filterName" min:"1" type:"string" required:"true"`
 
 	// A valid CloudWatch Logs filter pattern for subscribing to a filtered stream
 	// of log events.
 	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
 
 	// The name of the log group to associate the subscription filter with.
-	LogGroupName *string `locationName:"logGroupName" type:"string" required:"true"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The ARN of an IAM role that grants Amazon CloudWatch Logs permissions to
 	// deliver ingested log events to the destination stream. You don't need to
 	// provide the ARN when you are working with a logical destination (used via
 	// an ARN of Destination) for cross-account delivery.
-	RoleArn *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
 	metadataPutSubscriptionFilterInput `json:"-" xml:"-"`
 }
@@ -2217,7 +2217,7 @@ func (s RejectedLogEventsInfo) GoString() string {
 // request.
 type SearchedLogStream struct {
 	// The name of the log stream.
-	LogStreamName *string `locationName:"logStreamName" type:"string"`
+	LogStreamName *string `locationName:"logStreamName" min:"1" type:"string"`
 
 	// Indicates whether all the events in this log stream were searched or more
 	// data exists to search by paginating further.
@@ -2245,10 +2245,10 @@ type SubscriptionFilter struct {
 	// 00:00:00 UTC.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
 
-	DestinationArn *string `locationName:"destinationArn" type:"string"`
+	DestinationArn *string `locationName:"destinationArn" min:"1" type:"string"`
 
 	// A name for a metric or subscription filter.
-	FilterName *string `locationName:"filterName" type:"string"`
+	FilterName *string `locationName:"filterName" min:"1" type:"string"`
 
 	// A symbolic description of how Amazon CloudWatch Logs should interpret the
 	// data in each log event. For example, a log event may contain timestamps,
@@ -2256,9 +2256,9 @@ type SubscriptionFilter struct {
 	// to look for in the log event message.
 	FilterPattern *string `locationName:"filterPattern" type:"string"`
 
-	LogGroupName *string `locationName:"logGroupName" type:"string"`
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
 
-	RoleArn *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
 	metadataSubscriptionFilter `json:"-" xml:"-"`
 }
@@ -2285,7 +2285,7 @@ type TestMetricFilterInput struct {
 	FilterPattern *string `locationName:"filterPattern" type:"string" required:"true"`
 
 	// A list of log event messages to test.
-	LogEventMessages []*string `locationName:"logEventMessages" type:"list" required:"true"`
+	LogEventMessages []*string `locationName:"logEventMessages" min:"1" type:"list" required:"true"`
 
 	metadataTestMetricFilterInput `json:"-" xml:"-"`
 }

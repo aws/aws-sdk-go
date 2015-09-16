@@ -759,7 +759,7 @@ type AcknowledgeThirdPartyJobInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The unique system-generated ID of the job.
-	JobId *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
@@ -831,13 +831,13 @@ func (s ActionConfiguration) GoString() string {
 type ActionConfigurationProperty struct {
 	// The description of the action configuration property that will be displayed
 	// to users.
-	Description *string `locationName:"description" type:"string"`
+	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// Whether the configuration property is a key.
 	Key *bool `locationName:"key" type:"boolean" required:"true"`
 
 	// The name of the action configuration property.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Indicates that the proprety will be used in conjunction with PollForJobs.
 	// When creating a custom action, an action can have up to one queryable property.
@@ -885,7 +885,7 @@ func (s ActionConfigurationProperty) GoString() string {
 // worker.
 type ActionContext struct {
 	// The name of the action within the context of a job.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	metadataActionContext `json:"-" xml:"-"`
 }
@@ -917,7 +917,7 @@ type ActionDeclaration struct {
 	InputArtifacts []*InputArtifact `locationName:"inputArtifacts" type:"list"`
 
 	// The action declaration's name.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The name or ID of the result of the action declaration, such as a test or
 	// build artifact.
@@ -928,7 +928,7 @@ type ActionDeclaration struct {
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The order in which actions are run.
-	RunOrder *int64 `locationName:"runOrder" type:"integer"`
+	RunOrder *int64 `locationName:"runOrder" min:"1" type:"integer"`
 
 	metadataActionDeclaration `json:"-" xml:"-"`
 }
@@ -957,7 +957,7 @@ type ActionExecution struct {
 
 	// The URL of a resource external to AWS that will be used when running the
 	// action, for example an external repository URL.
-	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" type:"string"`
+	ExternalExecutionUrl *string `locationName:"externalExecutionUrl" min:"1" type:"string"`
 
 	// The last status change of the action.
 	LastStatusChange *time.Time `locationName:"lastStatusChange" type:"timestamp" timestampFormat:"unix"`
@@ -1023,21 +1023,21 @@ func (s ActionRevision) GoString() string {
 // Represents information about the state of an action.
 type ActionState struct {
 	// The name of the action.
-	ActionName *string `locationName:"actionName" type:"string"`
+	ActionName *string `locationName:"actionName" min:"1" type:"string"`
 
 	// Represents information about the version (or revision) of an action.
 	CurrentRevision *ActionRevision `locationName:"currentRevision" type:"structure"`
 
 	// A URL link for more information about the state of the action, such as a
 	// deployment group details page.
-	EntityUrl *string `locationName:"entityUrl" type:"string"`
+	EntityUrl *string `locationName:"entityUrl" min:"1" type:"string"`
 
 	// Represents information about how an action runs.
 	LatestExecution *ActionExecution `locationName:"latestExecution" type:"structure"`
 
 	// A URL link for more information about the revision, such as a commit details
 	// page.
-	RevisionUrl *string `locationName:"revisionUrl" type:"string"`
+	RevisionUrl *string `locationName:"revisionUrl" min:"1" type:"string"`
 
 	metadataActionState `json:"-" xml:"-"`
 }
@@ -1104,10 +1104,10 @@ type ActionTypeId struct {
 	// determined by the action category. For example, an action in the Deploy category
 	// type might have a provider of AWS CodeDeploy, which would be specified as
 	// CodeDeploy.
-	Provider *string `locationName:"provider" type:"string" required:"true"`
+	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
 
 	// A string that identifies the action type.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataActionTypeId `json:"-" xml:"-"`
 }
@@ -1132,23 +1132,23 @@ type ActionTypeSettings struct {
 	// to the resources of the external system, such as the configuration page for
 	// an AWS CodeDeploy deployment group. This link is provided as part of the
 	// action display within the pipeline.
-	EntityUrlTemplate *string `locationName:"entityUrlTemplate" type:"string"`
+	EntityUrlTemplate *string `locationName:"entityUrlTemplate" min:"1" type:"string"`
 
 	// The URL returned to the AWS CodePipeline console that contains a link to
 	// the top-level landing page for the external system, such as console page
 	// for AWS CodeDeploy. This link is shown on the pipeline view page in the AWS
 	// CodePipeline console and provides a link to the execution entity of the external
 	// action.
-	ExecutionUrlTemplate *string `locationName:"executionUrlTemplate" type:"string"`
+	ExecutionUrlTemplate *string `locationName:"executionUrlTemplate" min:"1" type:"string"`
 
 	// The URL returned to the AWS CodePipeline console that contains a link to
 	// the page where customers can update or change the configuration of the external
 	// action.
-	RevisionUrlTemplate *string `locationName:"revisionUrlTemplate" type:"string"`
+	RevisionUrlTemplate *string `locationName:"revisionUrlTemplate" min:"1" type:"string"`
 
 	// The URL of a sign-up page where users can sign up for an external service
 	// and perform initial configuration of the action provided by that service.
-	ThirdPartyConfigurationUrl *string `locationName:"thirdPartyConfigurationUrl" type:"string"`
+	ThirdPartyConfigurationUrl *string `locationName:"thirdPartyConfigurationUrl" min:"1" type:"string"`
 
 	metadataActionTypeSettings `json:"-" xml:"-"`
 }
@@ -1174,7 +1174,7 @@ type Artifact struct {
 	Location *ArtifactLocation `locationName:"location" type:"structure"`
 
 	// The artifact's name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The artifact's revision ID. Depending on the type of object, this could be
 	// a commit ID (GitHub) or a revision ID (Amazon S3).
@@ -1258,7 +1258,7 @@ type ArtifactStore struct {
 
 	// The location for storing the artifacts for a pipeline, such as an S3 bucket
 	// or folder.
-	Location *string `locationName:"location" type:"string" required:"true"`
+	Location *string `locationName:"location" min:"3" type:"string" required:"true"`
 
 	// The type of the artifact store, such as S3.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ArtifactStoreType"`
@@ -1283,7 +1283,7 @@ func (s ArtifactStore) GoString() string {
 // Represents information about a gate declaration.
 type BlockerDeclaration struct {
 	// The name of the gate declaration.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The type of the gate declaration.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"BlockerType"`
@@ -1320,7 +1320,7 @@ type CreateCustomActionTypeInput struct {
 	OutputArtifactDetails *ArtifactDetails `locationName:"outputArtifactDetails" type:"structure" required:"true"`
 
 	// The provider of the service used in the custom action, such as AWS CodeDeploy.
-	Provider *string `locationName:"provider" type:"string" required:"true"`
+	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
 
 	// Returns information about the settings for an action type.
 	Settings *ActionTypeSettings `locationName:"settings" type:"structure"`
@@ -1329,7 +1329,7 @@ type CreateCustomActionTypeInput struct {
 	//
 	// A newly-created custom action is always assigned a version number of 1.
 	// This is required.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataCreateCustomActionTypeInput `json:"-" xml:"-"`
 }
@@ -1447,10 +1447,10 @@ type DeleteCustomActionTypeInput struct {
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
 	// The provider of the service used in the custom action, such as AWS CodeDeploy.
-	Provider *string `locationName:"provider" type:"string" required:"true"`
+	Provider *string `locationName:"provider" min:"1" type:"string" required:"true"`
 
 	// The version of the custom action to delete.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataDeleteCustomActionTypeInput `json:"-" xml:"-"`
 }
@@ -1490,7 +1490,7 @@ func (s DeleteCustomActionTypeOutput) GoString() string {
 // Represents the input of a delete pipeline action.
 type DeletePipelineInput struct {
 	// The name of the pipeline to be deleted.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
@@ -1531,16 +1531,16 @@ func (s DeletePipelineOutput) GoString() string {
 type DisableStageTransitionInput struct {
 	// The name of the pipeline in which you want to disable the flow of artifacts
 	// from one stage to another.
-	PipelineName *string `locationName:"pipelineName" type:"string" required:"true"`
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The reason given to the user why a stage is disabled, such as waiting for
 	// manual approval or manual tests. This message is displayed in the pipeline
 	// console UI.
-	Reason *string `locationName:"reason" type:"string" required:"true"`
+	Reason *string `locationName:"reason" min:"1" type:"string" required:"true"`
 
 	// The name of the stage where you want to disable the inbound or outbound transition
 	// of artifacts.
-	StageName *string `locationName:"stageName" type:"string" required:"true"`
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
 	// Specifies whether artifacts will be prevented from transitioning into the
 	// stage and being processed by the actions in that stage (inbound), or prevented
@@ -1587,11 +1587,11 @@ func (s DisableStageTransitionOutput) GoString() string {
 type EnableStageTransitionInput struct {
 	// The name of the pipeline in which you want to enable the flow of artifacts
 	// from one stage to another.
-	PipelineName *string `locationName:"pipelineName" type:"string" required:"true"`
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The name of the stage where you want to enable the transition of artifacts,
 	// either into the stage (inbound) or from that stage to the next stage (outbound).
-	StageName *string `locationName:"stageName" type:"string" required:"true"`
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
 	// Specifies whether artifacts will be allowed to enter the stage and be processed
 	// by the actions in that stage (inbound) or whether already-processed artifacts
@@ -1637,7 +1637,7 @@ func (s EnableStageTransitionOutput) GoString() string {
 // used to encrypt data in the artifact store.
 type EncryptionKey struct {
 	// The ID of the AWS KMS key.
-	Id *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The type of AWS KMS key, such as a customer master key.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EncryptionKeyType"`
@@ -1794,11 +1794,11 @@ func (s GetJobDetailsOutput) GoString() string {
 type GetPipelineInput struct {
 	// The name of the pipeline for which you want to get information. Pipeline
 	// names must be unique under an Amazon Web Services (AWS) user account.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The version number of the pipeline. If you do not specify a version, defaults
 	// to the most current version.
-	Version *int64 `locationName:"version" type:"integer"`
+	Version *int64 `locationName:"version" min:"1" type:"integer"`
 
 	metadataGetPipelineInput `json:"-" xml:"-"`
 }
@@ -1842,7 +1842,7 @@ func (s GetPipelineOutput) GoString() string {
 // Represents the input of a get pipeline state action.
 type GetPipelineStateInput struct {
 	// The name of the pipeline about which you want to get information.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataGetPipelineStateInput `json:"-" xml:"-"`
 }
@@ -1867,12 +1867,12 @@ type GetPipelineStateOutput struct {
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
 
 	// The name of the pipeline for which you want to get the state.
-	PipelineName *string `locationName:"pipelineName" type:"string"`
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string"`
 
 	// The version number of the pipeline.
 	//
 	// A newly-created pipeline is always assigned a version number of 1.
-	PipelineVersion *int64 `locationName:"pipelineVersion" type:"integer"`
+	PipelineVersion *int64 `locationName:"pipelineVersion" min:"1" type:"integer"`
 
 	// A list of the pipeline stage output information, including stage name, state,
 	// most recent run details, whether the stage is disabled, and other data.
@@ -1905,7 +1905,7 @@ type GetThirdPartyJobDetailsInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" required:"true"`
 
 	// The unique system-generated ID used for identifying the job.
-	JobId *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
 	metadataGetThirdPartyJobDetailsInput `json:"-" xml:"-"`
 }
@@ -1956,7 +1956,7 @@ type InputArtifact struct {
 	// action in strict sequence from the action that provided the output artifact.
 	// Actions in parallel can declare different output artifacts, which are in
 	// turn consumed by different following actions.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataInputArtifact `json:"-" xml:"-"`
 }
@@ -2200,7 +2200,7 @@ type OutputArtifact struct {
 	// turn consumed by different following actions.
 	//
 	// Output artifact names must be unique within a pipeline.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataOutputArtifact `json:"-" xml:"-"`
 }
@@ -2227,7 +2227,7 @@ type PipelineContext struct {
 
 	// The name of the pipeline. This is a user-specified value. Pipeline names
 	// must be unique across all pipeline names under an Amazon Web Services account.
-	PipelineName *string `locationName:"pipelineName" type:"string"`
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string"`
 
 	// The stage of the pipeline.
 	Stage *StageContext `locationName:"stage" type:"structure"`
@@ -2257,7 +2257,7 @@ type PipelineDeclaration struct {
 	ArtifactStore *ArtifactStore `locationName:"artifactStore" type:"structure" required:"true"`
 
 	// The name of the action to be performed.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) for AWS CodePipeline to use to either perform
 	// actions with no actionRoleArn, or to use to assume roles for actions with
@@ -2269,7 +2269,7 @@ type PipelineDeclaration struct {
 
 	// The version number of the pipeline. A new pipeline always has a version number
 	// of 1. This number is automatically incremented when a pipeline is updated.
-	Version *int64 `locationName:"version" type:"integer"`
+	Version *int64 `locationName:"version" min:"1" type:"integer"`
 
 	metadataPipelineDeclaration `json:"-" xml:"-"`
 }
@@ -2294,13 +2294,13 @@ type PipelineSummary struct {
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
 
 	// The name of the pipeline.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The date and time of the last update to the pipeline, in timestamp format.
 	Updated *time.Time `locationName:"updated" type:"timestamp" timestampFormat:"unix"`
 
 	// The version number of the pipeline.
-	Version *int64 `locationName:"version" type:"integer"`
+	Version *int64 `locationName:"version" min:"1" type:"integer"`
 
 	metadataPipelineSummary `json:"-" xml:"-"`
 }
@@ -2325,7 +2325,7 @@ type PollForJobsInput struct {
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The maximum number of jobs to return in a poll for jobs call.
-	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+	MaxBatchSize *int64 `locationName:"maxBatchSize" min:"1" type:"integer"`
 
 	// A map of property names and values. For an action type with no queryable
 	// properties, this value must be null or an empty map. For an action type with
@@ -2378,7 +2378,7 @@ type PollForThirdPartyJobsInput struct {
 	ActionTypeId *ActionTypeId `locationName:"actionTypeId" type:"structure" required:"true"`
 
 	// The maximum number of jobs to return in a poll for jobs call.
-	MaxBatchSize *int64 `locationName:"maxBatchSize" type:"integer"`
+	MaxBatchSize *int64 `locationName:"maxBatchSize" min:"1" type:"integer"`
 
 	metadataPollForThirdPartyJobsInput `json:"-" xml:"-"`
 }
@@ -2422,16 +2422,16 @@ func (s PollForThirdPartyJobsOutput) GoString() string {
 // Represents the input of a put action revision action.
 type PutActionRevisionInput struct {
 	// The name of the action that will process the revision.
-	ActionName *string `locationName:"actionName" type:"string" required:"true"`
+	ActionName *string `locationName:"actionName" min:"1" type:"string" required:"true"`
 
 	// Represents information about the version (or revision) of an action.
 	ActionRevision *ActionRevision `locationName:"actionRevision" type:"structure" required:"true"`
 
 	// The name of the pipeline that will start processing the revision to the source.
-	PipelineName *string `locationName:"pipelineName" type:"string" required:"true"`
+	PipelineName *string `locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
 	// The name of the stage that contains the action that will act upon the revision.
-	StageName *string `locationName:"stageName" type:"string" required:"true"`
+	StageName *string `locationName:"stageName" min:"1" type:"string" required:"true"`
 
 	metadataPutActionRevisionInput `json:"-" xml:"-"`
 }
@@ -2582,7 +2582,7 @@ type PutThirdPartyJobFailureResultInput struct {
 	FailureDetails *FailureDetails `locationName:"failureDetails" type:"structure" required:"true"`
 
 	// The ID of the job that failed. This is the same ID returned from PollForThirdPartyJobs.
-	JobId *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
 	metadataPutThirdPartyJobFailureResultInput `json:"-" xml:"-"`
 }
@@ -2638,7 +2638,7 @@ type PutThirdPartyJobSuccessResultInput struct {
 
 	// The ID of the job that successfully completed. This is the same ID returned
 	// from PollForThirdPartyJobs.
-	JobId *string `locationName:"jobId" type:"string" required:"true"`
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
 
 	metadataPutThirdPartyJobSuccessResultInput `json:"-" xml:"-"`
 }
@@ -2704,7 +2704,7 @@ func (s S3ArtifactLocation) GoString() string {
 // Represents information about a stage to a job worker.
 type StageContext struct {
 	// The name of the stage.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	metadataStageContext `json:"-" xml:"-"`
 }
@@ -2732,7 +2732,7 @@ type StageDeclaration struct {
 	Blockers []*BlockerDeclaration `locationName:"blockers" type:"list"`
 
 	// The name of the stage.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataStageDeclaration `json:"-" xml:"-"`
 }
@@ -2760,7 +2760,7 @@ type StageState struct {
 	InboundTransitionState *TransitionState `locationName:"inboundTransitionState" type:"structure"`
 
 	// The name of the stage.
-	StageName *string `locationName:"stageName" type:"string"`
+	StageName *string `locationName:"stageName" min:"1" type:"string"`
 
 	metadataStageState `json:"-" xml:"-"`
 }
@@ -2782,7 +2782,7 @@ func (s StageState) GoString() string {
 // Represents the input of a start pipeline execution action.
 type StartPipelineExecutionInput struct {
 	// The name of the pipeline to start.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataStartPipelineExecutionInput `json:"-" xml:"-"`
 }
@@ -2910,7 +2910,7 @@ type ThirdPartyJobDetails struct {
 	Data *ThirdPartyJobData `locationName:"data" type:"structure"`
 
 	// The identifier used to identify the job details in AWS CodePipeline.
-	Id *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// A system-generated random number that AWS CodePipeline uses to ensure that
 	// the job is being worked on by only one job worker. This number must be returned
@@ -2939,7 +2939,7 @@ func (s ThirdPartyJobDetails) GoString() string {
 type TransitionState struct {
 	// The user-specified reason why the transition between two stages of a pipeline
 	// was disabled.
-	DisabledReason *string `locationName:"disabledReason" type:"string"`
+	DisabledReason *string `locationName:"disabledReason" min:"1" type:"string"`
 
 	// Whether the transition between stages is enabled (true) or disabled (false).
 	Enabled *bool `locationName:"enabled" type:"boolean"`

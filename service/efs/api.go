@@ -521,7 +521,7 @@ func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGr
 type CreateFileSystemInput struct {
 	// String of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent
 	// creation.
-	CreationToken *string `type:"string" required:"true"`
+	CreationToken *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateFileSystemInput `json:"-" xml:"-"`
 }
@@ -738,7 +738,7 @@ type DescribeFileSystemsInput struct {
 	// Optional string. Restricts the list to the file system with this creation
 	// token (you specify a creation token at the time of creating an Amazon EFS
 	// file system).
-	CreationToken *string `location:"querystring" locationName:"CreationToken" type:"string"`
+	CreationToken *string `location:"querystring" locationName:"CreationToken" min:"1" type:"string"`
 
 	// Optional string. File system ID whose description you want to retrieve.
 	FileSystemId *string `location:"querystring" locationName:"FileSystemId" type:"string"`
@@ -753,7 +753,7 @@ type DescribeFileSystemsInput struct {
 	// of items Amazon EFS returns will be the minimum of the MaxItems parameter
 	// specified in the request and the service's internal maximum number of items
 	// per page.
-	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
 	metadataDescribeFileSystemsInput `json:"-" xml:"-"`
 }
@@ -854,7 +854,7 @@ type DescribeMountTargetsInput struct {
 
 	// Optional. Maximum number of mount targets to return in the response. It must
 	// be an integer with a value greater than zero.
-	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
 	// Optional. String. The ID of the mount target that you want to have described.
 	// It must be included in your request if FileSystemId is not included.
@@ -919,7 +919,7 @@ type DescribeTagsInput struct {
 
 	// Optional. Maximum number of file system tags to return in the response. It
 	// must be an integer with a value greater than zero.
-	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
 	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
@@ -974,7 +974,7 @@ type FileSystemDescription struct {
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
 
 	// Opaque string specified in the request.
-	CreationToken *string `type:"string" required:"true"`
+	CreationToken *string `min:"1" type:"string" required:"true"`
 
 	// The file system ID assigned by Amazon EFS.
 	FileSystemId *string `type:"string" required:"true"`
@@ -1145,7 +1145,7 @@ func (s MountTargetDescription) GoString() string {
 // '+', '-', '=', '.', '_', ':', and '/'.
 type Tag struct {
 	// Tag key, a string. The key must not start with "aws:".
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// Value of the tag key.
 	Value *string `type:"string" required:"true"`

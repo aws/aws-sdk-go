@@ -317,7 +317,7 @@ func (s ComputeType) GoString() string {
 // Contains the inputs for the CreateWorkspaces operation.
 type CreateWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to create.
-	Workspaces []*WorkspaceRequest `type:"list" required:"true"`
+	Workspaces []*WorkspaceRequest `min:"1" type:"list" required:"true"`
 
 	metadataCreateWorkspacesInput `json:"-" xml:"-"`
 }
@@ -406,11 +406,11 @@ func (s DefaultWorkspaceCreationProperties) GoString() string {
 type DescribeWorkspaceBundlesInput struct {
 	// An array of strings that contains the identifiers of the bundles to retrieve.
 	// This parameter cannot be combined with any other filter parameter.
-	BundleIds []*string `type:"list"`
+	BundleIds []*string `min:"1" type:"list"`
 
 	// The NextToken value from a previous call to this operation. Pass null if
 	// this is the first call.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// The owner of the bundles to retrieve. This parameter cannot be combined with
 	// any other filter parameter.
@@ -446,7 +446,7 @@ type DescribeWorkspaceBundlesOutput struct {
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
 	// of items. This token is valid for one day and must be used within that timeframe.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	metadataDescribeWorkspaceBundlesOutput `json:"-" xml:"-"`
 }
@@ -469,11 +469,11 @@ func (s DescribeWorkspaceBundlesOutput) GoString() string {
 type DescribeWorkspaceDirectoriesInput struct {
 	// An array of strings that contains the directory identifiers to retrieve information
 	// for. If this member is null, all directories are retrieved.
-	DirectoryIds []*string `type:"list"`
+	DirectoryIds []*string `min:"1" type:"list"`
 
 	// The NextToken value from a previous call to this operation. Pass null if
 	// this is the first call.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	metadataDescribeWorkspaceDirectoriesInput `json:"-" xml:"-"`
 }
@@ -500,7 +500,7 @@ type DescribeWorkspaceDirectoriesOutput struct {
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
 	// of items. This token is valid for one day and must be used within that timeframe.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	metadataDescribeWorkspaceDirectoriesOutput `json:"-" xml:"-"`
 }
@@ -532,15 +532,15 @@ type DescribeWorkspacesInput struct {
 	DirectoryId *string `type:"string"`
 
 	// The maximum number of items to return.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// The NextToken value from a previous call to this operation. Pass null if
 	// this is the first call.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// Used with the DirectoryId parameter to specify the directory user for which
 	// to obtain the WorkSpace.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	// An array of strings that contain the identifiers of the WorkSpaces for which
 	// to retrieve information. This parameter cannot be combined with any other
@@ -549,7 +549,7 @@ type DescribeWorkspacesInput struct {
 	// Because the CreateWorkspaces operation is asynchronous, the identifier returned
 	// by CreateWorkspaces is not immediately available. If you immediately call
 	// DescribeWorkspaces with this identifier, no information will be returned.
-	WorkspaceIds []*string `type:"list"`
+	WorkspaceIds []*string `min:"1" type:"list"`
 
 	metadataDescribeWorkspacesInput `json:"-" xml:"-"`
 }
@@ -573,7 +573,7 @@ type DescribeWorkspacesOutput struct {
 	// If not null, more results are available. Pass this value for the NextToken
 	// parameter in a subsequent call to this operation to retrieve the next set
 	// of items. This token is valid for one day and must be used within that timeframe.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// An array of structures that contain the information about the WorkSpaces.
 	//
@@ -682,7 +682,7 @@ func (s RebootRequest) GoString() string {
 // Contains the inputs for the RebootWorkspaces operation.
 type RebootWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to reboot.
-	RebootWorkspaceRequests []*RebootRequest `type:"list" required:"true"`
+	RebootWorkspaceRequests []*RebootRequest `min:"1" type:"list" required:"true"`
 
 	metadataRebootWorkspacesInput `json:"-" xml:"-"`
 }
@@ -749,7 +749,7 @@ func (s RebuildRequest) GoString() string {
 // Contains the inputs for the RebuildWorkspaces operation.
 type RebuildWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to rebuild.
-	RebuildWorkspaceRequests []*RebuildRequest `type:"list" required:"true"`
+	RebuildWorkspaceRequests []*RebuildRequest `min:"1" type:"list" required:"true"`
 
 	metadataRebuildWorkspacesInput `json:"-" xml:"-"`
 }
@@ -816,7 +816,7 @@ func (s TerminateRequest) GoString() string {
 // Contains the inputs for the TerminateWorkspaces operation.
 type TerminateWorkspacesInput struct {
 	// An array of structures that specify the WorkSpaces to terminate.
-	TerminateWorkspaceRequests []*TerminateRequest `type:"list" required:"true"`
+	TerminateWorkspaceRequests []*TerminateRequest `min:"1" type:"list" required:"true"`
 
 	metadataTerminateWorkspacesInput `json:"-" xml:"-"`
 }
@@ -860,7 +860,7 @@ func (s TerminateWorkspacesOutput) GoString() string {
 // Contains information about the user storage for a WorkSpace bundle.
 type UserStorage struct {
 	// The amount of user storage for the bundle.
-	Capacity *string `type:"string"`
+	Capacity *string `min:"1" type:"string"`
 
 	metadataUserStorage `json:"-" xml:"-"`
 }
@@ -905,7 +905,7 @@ type Workspace struct {
 	SubnetId *string `type:"string"`
 
 	// The user that the WorkSpace is assigned to.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
@@ -939,7 +939,7 @@ type WorkspaceBundle struct {
 	Description *string `type:"string"`
 
 	// The name of the bundle.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The owner of the bundle. This contains the owner's account identifier, or
 	// AMAZON if the bundle is provided by AWS.
@@ -973,7 +973,7 @@ type WorkspaceDirectory struct {
 	Alias *string `type:"string"`
 
 	// The user name for the service account.
-	CustomerUserName *string `type:"string"`
+	CustomerUserName *string `min:"1" type:"string"`
 
 	// The directory identifier.
 	DirectoryId *string `type:"string"`
@@ -994,7 +994,7 @@ type WorkspaceDirectory struct {
 
 	// The registration code for the directory. This is the code that users enter
 	// in their Amazon WorkSpaces client application to connect to the directory.
-	RegistrationCode *string `type:"string"`
+	RegistrationCode *string `min:"1" type:"string"`
 
 	// The state of the directory's registration with Amazon WorkSpaces
 	State *string `type:"string" enum:"WorkspaceDirectoryState"`
@@ -1041,7 +1041,7 @@ type WorkspaceRequest struct {
 
 	// The username that the WorkSpace is assigned to. This username must exist
 	// in the AWS Directory Service directory specified by the DirectoryId member.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataWorkspaceRequest `json:"-" xml:"-"`
 }

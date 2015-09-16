@@ -47,7 +47,7 @@ type Event struct {
 
 	// A name signifying an event that occurred in your app. This is used for grouping
 	// and aggregating like events together for reporting purposes.
-	EventType *string `locationName:"eventType" type:"string" required:"true"`
+	EventType *string `locationName:"eventType" min:"1" type:"string" required:"true"`
 
 	// A collection of key-value pairs that gives additional, measurable context
 	// to the event. The key-value pairs are specified by the developer.
@@ -63,7 +63,7 @@ type Event struct {
 	Timestamp *string `locationName:"timestamp" type:"string" required:"true"`
 
 	// The version of the event.
-	Version *string `locationName:"version" type:"string"`
+	Version *string `locationName:"version" min:"1" type:"string"`
 
 	metadataEvent `json:"-" xml:"-"`
 }
@@ -135,7 +135,7 @@ type Session struct {
 	Duration *int64 `locationName:"duration" type:"long"`
 
 	// A unique identifier for the session
-	Id *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The time the event started in ISO 8601 standard date time format. For example,
 	// 2014-06-30T19:07:47.885Z

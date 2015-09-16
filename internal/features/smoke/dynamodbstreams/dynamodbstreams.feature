@@ -9,8 +9,8 @@ Feature: Amazon DynamoDB Streams
   Scenario: Handling errors
     When I attempt to call the "DescribeStream" API with:
     | StreamArn | fake-stream |
-    Then I expect the response error code to be "ValidationException"
+    Then I expect the response error code to be "InvalidParameter"
     And I expect the response error message to include:
     """
-    Invalid StreamArn
+    StreamArn
     """

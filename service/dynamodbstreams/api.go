@@ -151,13 +151,13 @@ func (c *DynamoDBStreams) ListStreams(input *ListStreamsInput) (*ListStreamsOutp
 type DescribeStreamInput struct {
 	// The shard ID of the first item that this operation will evaluate. Use the
 	// value that was returned for LastEvaluatedShardId in the previous operation.
-	ExclusiveStartShardId *string `type:"string"`
+	ExclusiveStartShardId *string `min:"28" type:"string"`
 
 	// The maximum number of shard objects to return. The upper limit is 100.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamArn *string `type:"string" required:"true"`
+	StreamArn *string `min:"37" type:"string" required:"true"`
 
 	metadataDescribeStreamInput `json:"-" xml:"-"`
 }
@@ -205,11 +205,11 @@ func (s DescribeStreamOutput) GoString() string {
 type GetRecordsInput struct {
 	// The maximum number of records to return from the shard. The upper limit is
 	// 1000.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A shard iterator that was retrieved from a previous GetShardIterator operation.
 	// This iterator can be used to access the stream records in this shard.
-	ShardIterator *string `type:"string" required:"true"`
+	ShardIterator *string `min:"1" type:"string" required:"true"`
 
 	metadataGetRecordsInput `json:"-" xml:"-"`
 }
@@ -233,7 +233,7 @@ type GetRecordsOutput struct {
 	// The next position in the shard from which to start sequentially reading stream
 	// records. If set to null, the shard has been closed and the requested iterator
 	// will not return any more data.
-	NextShardIterator *string `type:"string"`
+	NextShardIterator *string `min:"1" type:"string"`
 
 	// The stream records from the shard, which were retrieved using the shard iterator.
 	Records []*Record `type:"list"`
@@ -258,11 +258,11 @@ func (s GetRecordsOutput) GoString() string {
 // Represents the input of a GetShardIterator operation.
 type GetShardIteratorInput struct {
 	// The sequence number of a stream record in the shard from which to start reading.
-	SequenceNumber *string `type:"string"`
+	SequenceNumber *string `min:"21" type:"string"`
 
 	// The identifier of the shard. The iterator will be returned for this shard
 	// ID.
-	ShardId *string `type:"string" required:"true"`
+	ShardId *string `min:"28" type:"string" required:"true"`
 
 	// Determines how the shard iterator is used to start reading stream records
 	// from the shard:
@@ -283,7 +283,7 @@ type GetShardIteratorInput struct {
 	ShardIteratorType *string `type:"string" required:"true" enum:"ShardIteratorType"`
 
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamArn *string `type:"string" required:"true"`
+	StreamArn *string `min:"37" type:"string" required:"true"`
 
 	metadataGetShardIteratorInput `json:"-" xml:"-"`
 }
@@ -307,7 +307,7 @@ type GetShardIteratorOutput struct {
 	// The position in the shard from which to start reading stream records sequentially.
 	// A shard iterator specifies this position using the sequence number of a stream
 	// record in a shard.
-	ShardIterator *string `type:"string"`
+	ShardIterator *string `min:"1" type:"string"`
 
 	metadataGetShardIteratorOutput `json:"-" xml:"-"`
 }
@@ -331,14 +331,14 @@ type ListStreamsInput struct {
 	// The ARN (Amazon Resource Name) of the first item that this operation will
 	// evaluate. Use the value that was returned for LastEvaluatedStreamArn in the
 	// previous operation.
-	ExclusiveStartStreamArn *string `type:"string"`
+	ExclusiveStartStreamArn *string `min:"37" type:"string"`
 
 	// The maximum number of streams to return. The upper limit is 100.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// If this parameter is provided, then only the streams associated with this
 	// table name are returned.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	metadataListStreamsInput `json:"-" xml:"-"`
 }
@@ -369,7 +369,7 @@ type ListStreamsOutput struct {
 	// If LastEvaluatedStreamArn is not empty, it does not necessarily mean that
 	// there is more data in the result set. The only way to know when you have
 	// reached the end of the result set is when LastEvaluatedStreamArn is empty.
-	LastEvaluatedStreamArn *string `type:"string"`
+	LastEvaluatedStreamArn *string `min:"37" type:"string"`
 
 	// A list of stream descriptors associated with the current account and endpoint.
 	Streams []*Stream `type:"list"`
@@ -441,10 +441,10 @@ func (s Record) GoString() string {
 // within a shard.
 type SequenceNumberRange struct {
 	// The last sequence number.
-	EndingSequenceNumber *string `type:"string"`
+	EndingSequenceNumber *string `min:"21" type:"string"`
 
 	// The first sequence number.
-	StartingSequenceNumber *string `type:"string"`
+	StartingSequenceNumber *string `min:"21" type:"string"`
 
 	metadataSequenceNumberRange `json:"-" xml:"-"`
 }
@@ -466,13 +466,13 @@ func (s SequenceNumberRange) GoString() string {
 // A uniquely identified group of stream records within a stream.
 type Shard struct {
 	// The shard ID of the current shard's parent.
-	ParentShardId *string `type:"string"`
+	ParentShardId *string `min:"28" type:"string"`
 
 	// The range of possible sequence numbers for the shard.
 	SequenceNumberRange *SequenceNumberRange `type:"structure"`
 
 	// The system-generated identifier for this shard.
-	ShardId *string `type:"string"`
+	ShardId *string `min:"28" type:"string"`
 
 	metadataShard `json:"-" xml:"-"`
 }
@@ -494,7 +494,7 @@ func (s Shard) GoString() string {
 // Represents all of the data describing a particular stream.
 type Stream struct {
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamArn *string `type:"string"`
+	StreamArn *string `min:"37" type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//
@@ -511,7 +511,7 @@ type Stream struct {
 	StreamLabel *string `type:"string"`
 
 	// The DynamoDB table with which the stream is associated.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	metadataStream `json:"-" xml:"-"`
 }
@@ -536,7 +536,7 @@ type StreamDescription struct {
 	CreationRequestDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The key attribute(s) of the stream's DynamoDB table.
-	KeySchema []*dynamodb.KeySchemaElement `type:"list"`
+	KeySchema []*dynamodb.KeySchemaElement `min:"1" type:"list"`
 
 	// The shard ID of the item where the operation stopped, inclusive of the previous
 	// result set. Use this value to start a new operation, excluding this value
@@ -548,13 +548,13 @@ type StreamDescription struct {
 	// If LastEvaluatedShardId is not empty, it does not necessarily mean that
 	// there is more data in the result set. The only way to know when you have
 	// reached the end of the result set is when LastEvaluatedShardId is empty.
-	LastEvaluatedShardId *string `type:"string"`
+	LastEvaluatedShardId *string `min:"28" type:"string"`
 
 	// The shards that comprise the stream.
 	Shards []*Shard `type:"list"`
 
 	// The Amazon Resource Name (ARN) for the stream.
-	StreamArn *string `type:"string"`
+	StreamArn *string `min:"37" type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//
@@ -596,7 +596,7 @@ type StreamDescription struct {
 	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	// The DynamoDB table with which the stream is associated.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	metadataStreamDescription `json:"-" xml:"-"`
 }
@@ -628,10 +628,10 @@ type StreamRecord struct {
 	OldImage map[string]*dynamodb.AttributeValue `type:"map"`
 
 	// The sequence number of the stream record.
-	SequenceNumber *string `type:"string"`
+	SequenceNumber *string `min:"21" type:"string"`
 
 	// The size of the stream record, in bytes.
-	SizeBytes *int64 `type:"long"`
+	SizeBytes *int64 `min:"1" type:"long"`
 
 	// The type of data from the modified DynamoDB item that was captured in this
 	// stream record:

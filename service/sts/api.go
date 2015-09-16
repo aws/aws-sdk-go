@@ -471,7 +471,7 @@ type AssumeRoleInput struct {
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
 	// to 3600 seconds.
-	DurationSeconds *int64 `type:"integer"`
+	DurationSeconds *int64 `min:"900" type:"integer"`
 
 	// A unique identifier that is used by third parties when assuming roles in
 	// their customers' accounts. For each role that the third party can assume,
@@ -482,7 +482,7 @@ type AssumeRoleInput struct {
 	// created it. For more information about the external ID, see How to Use External
 	// ID When Granting Access to Your AWS Resources (http://docs.aws.amazon.com/STS/latest/UsingSTS/sts-delegating-externalid.html)
 	// in Using Temporary Security Credentials.
-	ExternalId *string `type:"string"`
+	ExternalId *string `min:"2" type:"string"`
 
 	// An IAM policy in JSON format.
 	//
@@ -502,10 +502,10 @@ type AssumeRoleInput struct {
 	// The PackedPolicySize response element indicates by percentage how close to
 	// the upper size limit the policy is, with 100% equaling the maximum allowed
 	// size.
-	Policy *string `type:"string"`
+	Policy *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the role to assume.
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `min:"20" type:"string" required:"true"`
 
 	// An identifier for the assumed role session.
 	//
@@ -516,20 +516,20 @@ type AssumeRoleInput struct {
 	// of the assumed role principal. This means that subsequent cross-account API
 	// requests using the temporary security credentials will expose the role session
 	// name to the external account in their CloudTrail logs.
-	RoleSessionName *string `type:"string" required:"true"`
+	RoleSessionName *string `min:"2" type:"string" required:"true"`
 
 	// The identification number of the MFA device that is associated with the user
 	// who is making the AssumeRole call. Specify this value if the trust policy
 	// of the role being assumed includes a condition that requires MFA authentication.
 	// The value is either the serial number for a hardware device (such as GAHT12345678)
 	// or an Amazon Resource Name (ARN) for a virtual device (such as arn:aws:iam::123456789012:mfa/user).
-	SerialNumber *string `type:"string"`
+	SerialNumber *string `min:"9" type:"string"`
 
 	// The value provided by the MFA device, if the trust policy of the role being
 	// assumed requires MFA (that is, if the policy includes a condition that tests
 	// for MFA). If the role being assumed requires MFA and if the TokenCode value
 	// is missing or expired, the AssumeRole call returns an "access denied" error.
-	TokenCode *string `type:"string"`
+	TokenCode *string `min:"6" type:"string"`
 
 	metadataAssumeRoleInput `json:"-" xml:"-"`
 }
@@ -593,7 +593,7 @@ type AssumeRoleWithSAMLInput struct {
 	//
 	// The maximum duration for a session is 1 hour, and the minimum duration is
 	// 15 minutes, even if values outside this range are specified.
-	DurationSeconds *int64 `type:"integer"`
+	DurationSeconds *int64 `min:"900" type:"integer"`
 
 	// An IAM policy in JSON format.
 	//
@@ -612,21 +612,21 @@ type AssumeRoleWithSAMLInput struct {
 	// The PackedPolicySize response element indicates by percentage how close to
 	// the upper size limit the policy is, with 100% equaling the maximum allowed
 	// size.
-	Policy *string `type:"string"`
+	Policy *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider in IAM that describes
 	// the IdP.
-	PrincipalArn *string `type:"string" required:"true"`
+	PrincipalArn *string `min:"20" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the role that the caller is assuming.
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `min:"20" type:"string" required:"true"`
 
 	// The base-64 encoded SAML authentication response provided by the IdP.
 	//
 	// For more information, see Configuring a Relying Party and Adding Claims
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/create-role-saml-IdP-tasks.html)
 	// in the Using IAM guide.
-	SAMLAssertion *string `type:"string" required:"true"`
+	SAMLAssertion *string `min:"4" type:"string" required:"true"`
 
 	metadataAssumeRoleWithSAMLInput `json:"-" xml:"-"`
 }
@@ -712,7 +712,7 @@ type AssumeRoleWithWebIdentityInput struct {
 	// The duration, in seconds, of the role session. The value can range from 900
 	// seconds (15 minutes) to 3600 seconds (1 hour). By default, the value is set
 	// to 3600 seconds.
-	DurationSeconds *int64 `type:"integer"`
+	DurationSeconds *int64 `min:"900" type:"integer"`
 
 	// An IAM policy in JSON format.
 	//
@@ -730,7 +730,7 @@ type AssumeRoleWithWebIdentityInput struct {
 	// The PackedPolicySize response element indicates by percentage how close to
 	// the upper size limit the policy is, with 100% equaling the maximum allowed
 	// size.
-	Policy *string `type:"string"`
+	Policy *string `min:"1" type:"string"`
 
 	// The fully qualified host component of the domain name of the identity provider.
 	//
@@ -739,23 +739,23 @@ type AssumeRoleWithWebIdentityInput struct {
 	// 2.0 access tokens. Do not include URL schemes and port numbers.
 	//
 	// Do not specify this value for OpenID Connect ID tokens.
-	ProviderId *string `type:"string"`
+	ProviderId *string `min:"4" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the role that the caller is assuming.
-	RoleArn *string `type:"string" required:"true"`
+	RoleArn *string `min:"20" type:"string" required:"true"`
 
 	// An identifier for the assumed role session. Typically, you pass the name
 	// or identifier that is associated with the user who is using your application.
 	// That way, the temporary security credentials that your application will use
 	// are associated with that user. This session name is included as part of the
 	// ARN and assumed role ID in the AssumedRoleUser response element.
-	RoleSessionName *string `type:"string" required:"true"`
+	RoleSessionName *string `min:"2" type:"string" required:"true"`
 
 	// The OAuth 2.0 access token or OpenID Connect ID token that is provided by
 	// the identity provider. Your application must get this token by authenticating
 	// the user who is using your application with a web identity provider before
 	// the application makes an AssumeRoleWithWebIdentity call.
-	WebIdentityToken *string `type:"string" required:"true"`
+	WebIdentityToken *string `min:"4" type:"string" required:"true"`
 
 	metadataAssumeRoleWithWebIdentityInput `json:"-" xml:"-"`
 }
@@ -810,7 +810,7 @@ type AssumeRoleWithWebIdentityOutput struct {
 	// the user and the application that acquired the WebIdentityToken (pairwise
 	// identifier). For OpenID Connect ID tokens, this field contains the value
 	// returned by the identity provider as the token's sub (Subject) claim.
-	SubjectFromWebIdentityToken *string `type:"string"`
+	SubjectFromWebIdentityToken *string `min:"6" type:"string"`
 
 	metadataAssumeRoleWithWebIdentityOutput `json:"-" xml:"-"`
 }
@@ -836,12 +836,12 @@ type AssumedRoleUser struct {
 	// AssumeRole action. For more information about ARNs and how to use them in
 	// policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in Using IAM.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// A unique identifier that contains the role ID and the role session name of
 	// the role that is being assumed. The role ID is generated by AWS when the
 	// role is created.
-	AssumedRoleId *string `type:"string" required:"true"`
+	AssumedRoleId *string `min:"2" type:"string" required:"true"`
 
 	metadataAssumedRoleUser `json:"-" xml:"-"`
 }
@@ -863,7 +863,7 @@ func (s AssumedRoleUser) GoString() string {
 // AWS credentials for API authentication.
 type Credentials struct {
 	// The access key ID that identifies the temporary security credentials.
-	AccessKeyId *string `type:"string" required:"true"`
+	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The date on which the current credentials expire.
 	Expiration *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -893,7 +893,7 @@ func (s Credentials) GoString() string {
 
 type DecodeAuthorizationMessageInput struct {
 	// The encoded message that was returned with the response.
-	EncodedMessage *string `type:"string" required:"true"`
+	EncodedMessage *string `min:"1" type:"string" required:"true"`
 
 	metadataDecodeAuthorizationMessageInput `json:"-" xml:"-"`
 }
@@ -943,11 +943,11 @@ type FederatedUser struct {
 	// For more information about ARNs and how to use them in policies, see IAM
 	// Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in Using IAM.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The string that identifies the federated user associated with the credentials,
 	// similar to the unique ID of an IAM user.
-	FederatedUserId *string `type:"string" required:"true"`
+	FederatedUserId *string `min:"2" type:"string" required:"true"`
 
 	metadataFederatedUser `json:"-" xml:"-"`
 }
@@ -974,13 +974,13 @@ type GetFederationTokenInput struct {
 	// seconds (one hour). If the specified duration is longer than one hour, the
 	// session obtained by using AWS account (root) credentials defaults to one
 	// hour.
-	DurationSeconds *int64 `type:"integer"`
+	DurationSeconds *int64 `min:"900" type:"integer"`
 
 	// The name of the federated user. The name is used as an identifier for the
 	// temporary security credentials (such as Bob). For example, you can reference
 	// the federated user name in a resource-based policy, such as in an Amazon
 	// S3 bucket policy.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"2" type:"string" required:"true"`
 
 	// An IAM policy in JSON format that is passed with the GetFederationToken call
 	// and evaluated along with the policy or policies that are attached to the
@@ -1003,7 +1003,7 @@ type GetFederationTokenInput struct {
 	// the upper size limit the policy is, with 100% equaling the maximum allowed
 	// size.  For more information about how permissions work, see Permissions for
 	// GetFederationToken (http://docs.aws.amazon.com/STS/latest/UsingSTS/permissions-get-federation-token.html).
-	Policy *string `type:"string"`
+	Policy *string `min:"1" type:"string"`
 
 	metadataGetFederationTokenInput `json:"-" xml:"-"`
 }
@@ -1063,7 +1063,7 @@ type GetSessionTokenInput struct {
 	// for AWS account owners are restricted to a maximum of 3600 seconds (one hour).
 	// If the duration is longer than one hour, the session for AWS account owners
 	// defaults to one hour.
-	DurationSeconds *int64 `type:"integer"`
+	DurationSeconds *int64 `min:"900" type:"integer"`
 
 	// The identification number of the MFA device that is associated with the IAM
 	// user who is making the GetSessionToken call. Specify this value if the IAM
@@ -1072,14 +1072,14 @@ type GetSessionTokenInput struct {
 	// Name (ARN) for a virtual device (such as arn:aws:iam::123456789012:mfa/user).
 	// You can find the device for an IAM user by going to the AWS Management Console
 	// and viewing the user's security credentials.
-	SerialNumber *string `type:"string"`
+	SerialNumber *string `min:"9" type:"string"`
 
 	// The value provided by the MFA device, if MFA is required. If any policy requires
 	// the IAM user to submit an MFA code, specify this value. If MFA authentication
 	// is required, and the user does not provide a code when requesting a set of
 	// temporary security credentials, the user will receive an "access denied"
 	// response when requesting resources that require MFA authentication.
-	TokenCode *string `type:"string"`
+	TokenCode *string `min:"6" type:"string"`
 
 	metadataGetSessionTokenInput `json:"-" xml:"-"`
 }

@@ -684,7 +684,7 @@ func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, err
 // Represents an attribute for describing the key schema for the table and indexes.
 type AttributeDefinition struct {
 	// A name for the attribute.
-	AttributeName *string `type:"string" required:"true"`
+	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The data type for the attribute.
 	AttributeType *string `type:"string" required:"true" enum:"ScalarAttributeType"`
@@ -944,7 +944,7 @@ type BatchGetItemInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	RequestItems map[string]*KeysAndAttributes `type:"map" required:"true"`
+	RequestItems map[string]*KeysAndAttributes `min:"1" type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
 	// is returned in the response:
@@ -1016,7 +1016,7 @@ type BatchGetItemOutput struct {
 	//
 	//   If there are no unprocessed keys remaining, the response contains an empty
 	// UnprocessedKeys map.
-	UnprocessedKeys map[string]*KeysAndAttributes `type:"map"`
+	UnprocessedKeys map[string]*KeysAndAttributes `min:"1" type:"map"`
 
 	metadataBatchGetItemOutput `json:"-" xml:"-"`
 }
@@ -1063,7 +1063,7 @@ type BatchWriteItemInput struct {
 	// If you specify any attributes that are part of an index key, then the data
 	// types for those attributes must match those of the schema in the table's
 	// attribute definition.
-	RequestItems map[string][]*WriteRequest `type:"map" required:"true"`
+	RequestItems map[string][]*WriteRequest `min:"1" type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
 	// is returned in the response:
@@ -1166,7 +1166,7 @@ type BatchWriteItemOutput struct {
 	//
 	//     If there are no unprocessed items remaining, the response contains an
 	// empty UnprocessedItems map.
-	UnprocessedItems map[string][]*WriteRequest `type:"map"`
+	UnprocessedItems map[string][]*WriteRequest `min:"1" type:"map"`
 
 	metadataBatchWriteItemOutput `json:"-" xml:"-"`
 }
@@ -1406,7 +1406,7 @@ type ConsumedCapacity struct {
 	Table *Capacity `type:"structure"`
 
 	// The name of the table that was affected by the operation.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	metadataConsumedCapacity `json:"-" xml:"-"`
 }
@@ -1428,10 +1428,10 @@ func (s ConsumedCapacity) GoString() string {
 // Represents a new global secondary index to be added to an existing table.
 type CreateGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be created.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The key schema for the global secondary index.
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -1520,7 +1520,7 @@ type CreateTableInput struct {
 	//
 	// For more information, see Specifying the Primary Key (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key)
 	// in the Amazon DynamoDB Developer Guide.
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// One or more local secondary indexes (the maximum is five) to be created on
 	// the table. Each index is scoped to a given hash key value. There is a 10
@@ -1587,7 +1587,7 @@ type CreateTableInput struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to create.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataCreateTableInput `json:"-" xml:"-"`
 }
@@ -1631,7 +1631,7 @@ func (s CreateTableOutput) GoString() string {
 // Represents a global secondary index to be deleted from an existing table.
 type DeleteGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be deleted.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteGlobalSecondaryIndexAction `json:"-" xml:"-"`
 }
@@ -1989,7 +1989,7 @@ type DeleteItemInput struct {
 	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table from which to delete the item.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteItemInput `json:"-" xml:"-"`
 }
@@ -2088,7 +2088,7 @@ func (s DeleteRequest) GoString() string {
 // Represents the input of a DeleteTable operation.
 type DeleteTableInput struct {
 	// The name of the table to delete.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteTableInput `json:"-" xml:"-"`
 }
@@ -2132,7 +2132,7 @@ func (s DeleteTableOutput) GoString() string {
 // Represents the input of a DescribeTable operation.
 type DescribeTableInput struct {
 	// The name of the table to describe.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeTableInput `json:"-" xml:"-"`
 }
@@ -2407,7 +2407,7 @@ type GetItemInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// Determines the read consistency model: If set to true, then the operation
 	// uses strongly consistent reads; otherwise, the operation uses eventually
@@ -2491,7 +2491,7 @@ type GetItemInput struct {
 	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// The name of the table containing the requested item.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataGetItemInput `json:"-" xml:"-"`
 }
@@ -2544,11 +2544,11 @@ func (s GetItemOutput) GoString() string {
 type GlobalSecondaryIndex struct {
 	// The name of the global secondary index. The name must be unique among all
 	// other indexes on this table.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The complete key schema for a global secondary index, which consists of one
 	// or more pairs of attribute names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2597,7 +2597,7 @@ type GlobalSecondaryIndexDescription struct {
 	IndexArn *string `type:"string"`
 
 	// The name of the global secondary index.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The total size of the specified index, in bytes. DynamoDB updates this value
 	// approximately every six hours. Recent changes might not be reflected in this
@@ -2621,7 +2621,7 @@ type GlobalSecondaryIndexDescription struct {
 
 	// The complete key schema for the global secondary index, consisting of one
 	// or more pairs of attribute names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2741,7 +2741,7 @@ func (s ItemCollectionMetrics) GoString() string {
 // the hash attribute, and another KeySchemaElement for the range attribute.
 type KeySchemaElement struct {
 	// The name of a key attribute.
-	AttributeName *string `type:"string" required:"true"`
+	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The attribute data, consisting of the data type and the attribute value itself.
 	KeyType *string `type:"string" required:"true" enum:"KeyType"`
@@ -2774,7 +2774,7 @@ type KeysAndAttributes struct {
 	// One or more attributes to retrieve from the table or index. If no attribute
 	// names are specified then all attributes will be returned. If any of the specified
 	// attributes are not found, they will not appear in the result.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// The consistency of a read operation. If set to true, then a strongly consistent
 	// read is used; otherwise, an eventually consistent read is used.
@@ -2818,7 +2818,7 @@ type KeysAndAttributes struct {
 
 	// The primary key attribute values that define the items and the attributes
 	// associated with the items.
-	Keys []map[string]*AttributeValue `type:"list" required:"true"`
+	Keys []map[string]*AttributeValue `min:"1" type:"list" required:"true"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
 	// These attributes can include scalars, sets, or elements of a JSON document.
@@ -2856,11 +2856,11 @@ type ListTablesInput struct {
 	// The first table name that this operation will evaluate. Use the value that
 	// was returned for LastEvaluatedTableName in a previous operation, so that
 	// you can obtain the next page of results.
-	ExclusiveStartTableName *string `type:"string"`
+	ExclusiveStartTableName *string `min:"3" type:"string"`
 
 	// A maximum number of table names to return. If this parameter is not specified,
 	// the limit is 100.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	metadataListTablesInput `json:"-" xml:"-"`
 }
@@ -2887,7 +2887,7 @@ type ListTablesOutput struct {
 	//
 	// If you do not receive a LastEvaluatedTableName value in the response, this
 	// means that there are no more table names to be retrieved.
-	LastEvaluatedTableName *string `type:"string"`
+	LastEvaluatedTableName *string `min:"3" type:"string"`
 
 	// The names of the tables associated with the current account at the current
 	// endpoint. The maximum size of this array is 100.
@@ -2918,11 +2918,11 @@ func (s ListTablesOutput) GoString() string {
 type LocalSecondaryIndex struct {
 	// The name of the local secondary index. The name must be unique among all
 	// other indexes on this table.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The complete key schema for the local secondary index, consisting of one
 	// or more pairs of attribute names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2952,7 +2952,7 @@ type LocalSecondaryIndexDescription struct {
 	IndexArn *string `type:"string"`
 
 	// Represents the name of the local secondary index.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The total size of the specified index, in bytes. DynamoDB updates this value
 	// approximately every six hours. Recent changes might not be reflected in this
@@ -2965,7 +2965,7 @@ type LocalSecondaryIndexDescription struct {
 
 	// The complete index key schema, which consists of one or more pairs of attribute
 	// names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2999,7 +2999,7 @@ type Projection struct {
 	// across all of the local secondary indexes, must not exceed 20. If you project
 	// the same attribute into two different indexes, this counts as two distinct
 	// attributes when determining the total.
-	NonKeyAttributes []*string `type:"list"`
+	NonKeyAttributes []*string `min:"1" type:"list"`
 
 	// The set of attributes that are projected into the index:
 	//
@@ -3039,13 +3039,13 @@ type ProvisionedThroughput struct {
 	// DynamoDB returns a ThrottlingException. For more information, see Specifying
 	// Read and Write Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
-	ReadCapacityUnits *int64 `type:"long" required:"true"`
+	ReadCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 
 	// The maximum number of writes consumed per second before DynamoDB returns
 	// a ThrottlingException. For more information, see Specifying Read and Write
 	// Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
-	WriteCapacityUnits *int64 `type:"long" required:"true"`
+	WriteCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 
 	metadataProvisionedThroughput `json:"-" xml:"-"`
 }
@@ -3077,17 +3077,17 @@ type ProvisionedThroughputDescription struct {
 	// UTC calendar day. For current maximums on provisioned throughput decreases,
 	// see Limits (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
-	NumberOfDecreasesToday *int64 `type:"long"`
+	NumberOfDecreasesToday *int64 `min:"1" type:"long"`
 
 	// The maximum number of strongly consistent reads consumed per second before
 	// DynamoDB returns a ThrottlingException. Eventually consistent reads require
 	// less effort than strongly consistent reads, so a setting of 50 ReadCapacityUnits
 	// per second provides 100 eventually consistent ReadCapacityUnits per second.
-	ReadCapacityUnits *int64 `type:"long"`
+	ReadCapacityUnits *int64 `min:"1" type:"long"`
 
 	// The maximum number of writes consumed per second before DynamoDB returns
 	// a ThrottlingException.
-	WriteCapacityUnits *int64 `type:"long"`
+	WriteCapacityUnits *int64 `min:"1" type:"long"`
 
 	metadataProvisionedThroughputDescription `json:"-" xml:"-"`
 }
@@ -3459,7 +3459,7 @@ type PutItemInput struct {
 	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table to contain the item.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataPutItemInput `json:"-" xml:"-"`
 }
@@ -3589,7 +3589,7 @@ type QueryInput struct {
 	// If you query a global secondary index, you can only request attributes that
 	// are projected into the index. Global secondary index queries cannot fetch
 	// attributes from the parent table.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use FilterExpression instead. Do not combine legacy parameters and
@@ -3702,7 +3702,7 @@ type QueryInput struct {
 	// The name of an index to query. This index can be any local secondary index
 	// or global secondary index on the table. Note that if you use the IndexName
 	// parameter, you must also provide TableName.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The condition that specifies the key value(s) for items to be retrieved by
 	// the Query action.
@@ -3884,7 +3884,7 @@ type QueryInput struct {
 	// and returns the matching values up to the limit, and a key in LastEvaluatedKey
 	// to apply in a subsequent operation to continue the operation. For more information,
 	// see Query and Scan in the Amazon DynamoDB Developer Guide.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
 	// These attributes can include scalars, sets, or elements of a JSON document.
@@ -4034,7 +4034,7 @@ type QueryInput struct {
 	Select *string `type:"string" enum:"Select"`
 
 	// The name of the table containing the requested items.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataQueryInput `json:"-" xml:"-"`
 }
@@ -4132,7 +4132,7 @@ type ScanInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use FilterExpression instead. Do not combine legacy parameters and
@@ -4259,7 +4259,7 @@ type ScanInput struct {
 	// The name of a secondary index to scan. This index can be any local secondary
 	// index or global secondary index. Note that if you use the IndexName parameter,
 	// you must also provide TableName.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The maximum number of items to evaluate (not necessarily the number of matching
 	// items). If DynamoDB processes the number of items up to the limit while processing
@@ -4270,7 +4270,7 @@ type ScanInput struct {
 	// and returns the matching values up to the limit, and a key in LastEvaluatedKey
 	// to apply in a subsequent operation to continue the operation. For more information,
 	// see Query and Scan in the Amazon DynamoDB Developer Guide.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A string that identifies one or more attributes to retrieve from the specified
 	// table or index. These attributes can include scalars, sets, or elements of
@@ -4389,7 +4389,7 @@ type ScanInput struct {
 
 	// The name of the table containing the requested items; or, if you provide
 	// IndexName, the name of the table to which that index belongs.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	// For a parallel Scan request, TotalSegments represents the total number of
 	// segments into which the Scan operation will be divided. The value of TotalSegments
@@ -4402,7 +4402,7 @@ type ScanInput struct {
 	// Scan operation will be sequential rather than parallel.
 	//
 	// If you specify TotalSegments, you must also specify Segment.
-	TotalSegments *int64 `type:"integer"`
+	TotalSegments *int64 `min:"1" type:"integer"`
 
 	metadataScanInput `json:"-" xml:"-"`
 }
@@ -4616,11 +4616,11 @@ type TableDescription struct {
 	//
 	//   For more information about primary keys, see Primary Key (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey)
 	// in the Amazon DynamoDB Developer Guide.
-	KeySchema []*KeySchemaElement `type:"list"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the latest stream
 	// for this table.
-	LatestStreamArn *string `type:"string"`
+	LatestStreamArn *string `min:"37" type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//
@@ -4691,7 +4691,7 @@ type TableDescription struct {
 	TableArn *string `type:"string"`
 
 	// The name of the table.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	// The total size of the specified table, in bytes. DynamoDB updates this value
 	// approximately every six hours. Recent changes might not be reflected in this
@@ -4730,7 +4730,7 @@ func (s TableDescription) GoString() string {
 // secondary index.
 type UpdateGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be updated.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// Represents the provisioned throughput settings for a specified table or index.
 	// The settings can be modified using the UpdateTable operation.
@@ -5193,7 +5193,7 @@ type UpdateItemInput struct {
 	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table containing the item to update.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	// An expression that defines one or more attributes to be updated, the action
 	// to be performed on them, and new value(s) for them.
@@ -5363,7 +5363,7 @@ type UpdateTableInput struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to be updated.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataUpdateTableInput `json:"-" xml:"-"`
 }

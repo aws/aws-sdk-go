@@ -3,6 +3,7 @@ package corehandlers
 import (
 	"fmt"
 	"reflect"
+	"strconv"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -66,25 +67,78 @@ func (v *validator) validateStruct(value reflect.Value, path string) {
 		}
 		fvalue := value.FieldByName(f.Name)
 
-		notset := false
-		if f.Tag.Get("required") != "" {
-			switch fvalue.Kind() {
-			case reflect.Ptr, reflect.Slice, reflect.Map:
-				if fvalue.IsNil() {
-					notset = true
-				}
-			default:
-				if !fvalue.IsValid() {
-					notset = true
-				}
-			}
+		err := validateField(f, fvalue, validateFieldRequired, validateFieldMin)
+		if err != nil {
+			v.errors = append(v.errors, fmt.Sprintf("%s: %s", err.Error(), path+prefix+f.Name))
+			continue
 		}
 
-		if notset {
-			msg := "missing required parameter: " + path + prefix + f.Name
-			v.errors = append(v.errors, msg)
-		} else {
-			v.validateAny(fvalue, path+prefix+f.Name)
+		v.validateAny(fvalue, path+prefix+f.Name)
+	}
+}
+
+type validatorFunc func(f reflect.StructField, fvalue reflect.Value) error
+
+func validateField(f reflect.StructField, fvalue reflect.Value, funcs ...validatorFunc) error {
+	for _, fn := range funcs {
+		if err := fn(f, fvalue); err != nil {
+			return err
 		}
 	}
+	return nil
+}
+
+// Validates that a field has a valid value provided for required fields.
+func validateFieldRequired(f reflect.StructField, fvalue reflect.Value) error {
+	if f.Tag.Get("required") == "" {
+		return nil
+	}
+
+	switch fvalue.Kind() {
+	case reflect.Ptr, reflect.Slice, reflect.Map:
+		if fvalue.IsNil() {
+			return fmt.Errorf("missing required parameter")
+		}
+	default:
+		if !fvalue.IsValid() {
+			return fmt.Errorf("missing required parameter")
+		}
+	}
+	return nil
+}
+
+// Validates that if a value is provided for a field, that value must be at
+// least a minimum length.
+func validateFieldMin(f reflect.StructField, fvalue reflect.Value) error {
+	minStr := f.Tag.Get("min")
+	if minStr == "" {
+		return nil
+	}
+	min, _ := strconv.ParseInt(minStr, 10, 64)
+
+	kind := fvalue.Kind()
+	if kind == reflect.Ptr {
+		if fvalue.IsNil() {
+			return nil
+		}
+		fvalue = fvalue.Elem()
+	}
+
+	switch fvalue.Kind() {
+	case reflect.String:
+		if int64(fvalue.Len()) < min {
+			return fmt.Errorf("field too short, minimum length %d", min)
+		}
+	case reflect.Slice, reflect.Map:
+		if fvalue.IsNil() {
+			return nil
+		}
+		if int64(fvalue.Len()) < min {
+			return fmt.Errorf("field too short, minimum length %d", min)
+		}
+
+		// TODO min can also apply to number minimum value.
+
+	}
+	return nil
 }

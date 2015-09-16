@@ -847,7 +847,7 @@ type AnalysisScheme struct {
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
-	AnalysisSchemeName *string `type:"string" required:"true"`
+	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
 
 	metadataAnalysisScheme `json:"-" xml:"-"`
 }
@@ -926,7 +926,7 @@ type BuildSuggestersInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataBuildSuggestersInput `json:"-" xml:"-"`
 }
@@ -974,7 +974,7 @@ type CreateDomainInput struct {
 	// A name for the domain you are creating. Allowed characters are a-z (lower-case
 	// letters), 0-9, and hyphen (-). Domain names must start with a letter or number
 	// and be at least 3 and no more than 28 characters long.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataCreateDomainInput `json:"-" xml:"-"`
 }
@@ -1085,7 +1085,7 @@ type DateOptions struct {
 	//
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
-	SourceField *string `type:"string"`
+	SourceField *string `min:"1" type:"string"`
 
 	metadataDateOptions `json:"-" xml:"-"`
 }
@@ -1117,7 +1117,7 @@ type DefineAnalysisSchemeInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDefineAnalysisSchemeInput `json:"-" xml:"-"`
 }
@@ -1167,7 +1167,7 @@ type DefineExpressionInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// A named expression that can be evaluated at search time. Can be used to sort
 	// the search results, define other expressions, or return computed information
@@ -1221,7 +1221,7 @@ type DefineIndexFieldInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The index field and field options you want to configure.
 	IndexField *IndexField `type:"structure" required:"true"`
@@ -1273,7 +1273,7 @@ type DefineSuggesterInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// Configuration information for a search suggester. Each suggester has a unique
 	// name and specifies the text field you want to use for suggestions. The following
@@ -1325,13 +1325,13 @@ func (s DefineSuggesterOutput) GoString() string {
 // to delete.
 type DeleteAnalysisSchemeInput struct {
 	// The name of the analysis scheme you want to delete.
-	AnalysisSchemeName *string `type:"string" required:"true"`
+	AnalysisSchemeName *string `min:"1" type:"string" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteAnalysisSchemeInput `json:"-" xml:"-"`
 }
@@ -1377,7 +1377,7 @@ func (s DeleteAnalysisSchemeOutput) GoString() string {
 // name of the domain you want to delete.
 type DeleteDomainInput struct {
 	// The name of the domain you want to permanently delete.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteDomainInput `json:"-" xml:"-"`
 }
@@ -1427,10 +1427,10 @@ type DeleteExpressionInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The name of the Expression to delete.
-	ExpressionName *string `type:"string" required:"true"`
+	ExpressionName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteExpressionInput `json:"-" xml:"-"`
 }
@@ -1480,11 +1480,11 @@ type DeleteIndexFieldInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The name of the index field your want to remove from the domain's indexing
 	// options.
-	IndexFieldName *string `type:"string" required:"true"`
+	IndexFieldName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteIndexFieldInput `json:"-" xml:"-"`
 }
@@ -1533,10 +1533,10 @@ type DeleteSuggesterInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// Specifies the name of the suggester you want to delete.
-	SuggesterName *string `type:"string" required:"true"`
+	SuggesterName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteSuggesterInput `json:"-" xml:"-"`
 }
@@ -1592,7 +1592,7 @@ type DescribeAnalysisSchemesInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeAnalysisSchemesInput `json:"-" xml:"-"`
 }
@@ -1644,7 +1644,7 @@ type DescribeAvailabilityOptionsInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeAvailabilityOptionsInput `json:"-" xml:"-"`
 }
@@ -1745,7 +1745,7 @@ type DescribeExpressionsInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// Limits the DescribeExpressions response to the specified expressions. If
 	// not specified, all expressions are shown.
@@ -1802,7 +1802,7 @@ type DescribeIndexFieldsInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// A list of the index fields you want to describe. If not specified, information
 	// is returned for all configured index fields.
@@ -1855,7 +1855,7 @@ type DescribeScalingParametersInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeScalingParametersInput `json:"-" xml:"-"`
 }
@@ -1907,7 +1907,7 @@ type DescribeServiceAccessPoliciesInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeServiceAccessPoliciesInput `json:"-" xml:"-"`
 }
@@ -1959,7 +1959,7 @@ type DescribeSuggestersInput struct {
 	Deployed *bool `type:"boolean"`
 
 	// The name of the domain you want to describe.
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The suggesters you want to describe.
 	SuggesterNames []*string `type:"list"`
@@ -2022,7 +2022,7 @@ type DocumentSuggesterOptions struct {
 	SortExpression *string `type:"string"`
 
 	// The name of the index field you want to use for suggestions.
-	SourceField *string `type:"string" required:"true"`
+	SourceField *string `min:"1" type:"string" required:"true"`
 
 	metadataDocumentSuggesterOptions `json:"-" xml:"-"`
 }
@@ -2064,13 +2064,13 @@ type DomainStatus struct {
 	DocService *ServiceEndpoint `type:"structure"`
 
 	// An internally generated unique identifier for a domain.
-	DomainId *string `type:"string" required:"true"`
+	DomainId *string `min:"1" type:"string" required:"true"`
 
 	// A string that represents the name of a domain. Domain names are unique across
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	Limits *Limits `type:"structure"`
 
@@ -2082,13 +2082,13 @@ type DomainStatus struct {
 	RequiresIndexDocuments *bool `type:"boolean" required:"true"`
 
 	// The number of search instances that are available to process search requests.
-	SearchInstanceCount *int64 `type:"integer"`
+	SearchInstanceCount *int64 `min:"1" type:"integer"`
 
 	// The instance type that is being used to process search requests.
 	SearchInstanceType *string `type:"string"`
 
 	// The number of partitions across which the search index is spread.
-	SearchPartitionCount *int64 `type:"integer"`
+	SearchPartitionCount *int64 `min:"1" type:"integer"`
 
 	// The service endpoint for requesting search results from a search domain.
 	SearchService *ServiceEndpoint `type:"structure"`
@@ -2167,7 +2167,7 @@ type DoubleOptions struct {
 	SortEnabled *bool `type:"boolean"`
 
 	// The name of the source field to map to the field.
-	SourceField *string `type:"string"`
+	SourceField *string `min:"1" type:"string"`
 
 	metadataDoubleOptions `json:"-" xml:"-"`
 }
@@ -2192,13 +2192,13 @@ func (s DoubleOptions) GoString() string {
 type Expression struct {
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
-	ExpressionName *string `type:"string" required:"true"`
+	ExpressionName *string `min:"1" type:"string" required:"true"`
 
 	// The expression to evaluate for sorting while processing a search request.
 	// The Expression syntax is based on JavaScript expressions. For more information,
 	// see Configuring Expressions (http://docs.aws.amazon.com/cloudsearch/latest/developerguide/configuring-expressions.html"
 	// target="_blank) in the Amazon CloudSearch Developer Guide.
-	ExpressionValue *string `type:"string" required:"true"`
+	ExpressionValue *string `min:"1" type:"string" required:"true"`
 
 	metadataExpression `json:"-" xml:"-"`
 }
@@ -2249,7 +2249,7 @@ type IndexDocumentsInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataIndexDocumentsInput `json:"-" xml:"-"`
 }
@@ -2327,7 +2327,7 @@ type IndexField struct {
 	//
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
-	IndexFieldName *string `type:"string" required:"true"`
+	IndexFieldName *string `min:"1" type:"string" required:"true"`
 
 	// The type of field. The valid options for a field depend on the field type.
 	// For more information about the supported field types, see Configuring Index
@@ -2468,7 +2468,7 @@ type IntOptions struct {
 	SortEnabled *bool `type:"boolean"`
 
 	// The name of the source field to map to the field.
-	SourceField *string `type:"string"`
+	SourceField *string `min:"1" type:"string"`
 
 	metadataIntOptions `json:"-" xml:"-"`
 }
@@ -2520,7 +2520,7 @@ type LatLonOptions struct {
 	//
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
-	SourceField *string `type:"string"`
+	SourceField *string `min:"1" type:"string"`
 
 	metadataLatLonOptions `json:"-" xml:"-"`
 }
@@ -2540,9 +2540,9 @@ func (s LatLonOptions) GoString() string {
 }
 
 type Limits struct {
-	MaximumPartitionCount *int64 `type:"integer" required:"true"`
+	MaximumPartitionCount *int64 `min:"1" type:"integer" required:"true"`
 
-	MaximumReplicationCount *int64 `type:"integer" required:"true"`
+	MaximumReplicationCount *int64 `min:"1" type:"integer" required:"true"`
 
 	metadataLimits `json:"-" xml:"-"`
 }
@@ -2670,7 +2670,7 @@ type LiteralOptions struct {
 	//
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
-	SourceField *string `type:"string"`
+	SourceField *string `min:"1" type:"string"`
 
 	metadataLiteralOptions `json:"-" xml:"-"`
 }
@@ -2818,7 +2818,7 @@ type Suggester struct {
 
 	// Names must begin with a letter and can contain the following characters:
 	// a-z (lowercase), 0-9, and _ (underscore).
-	SuggesterName *string `type:"string" required:"true"`
+	SuggesterName *string `min:"1" type:"string" required:"true"`
 
 	metadataSuggester `json:"-" xml:"-"`
 }
@@ -2933,7 +2933,7 @@ type TextOptions struct {
 	//
 	// The name score is reserved and cannot be used as a field name. To reference
 	// a document's ID, you can use the name _id.
-	SourceField *string `type:"string"`
+	SourceField *string `min:"1" type:"string"`
 
 	metadataTextOptions `json:"-" xml:"-"`
 }
@@ -2960,7 +2960,7 @@ type UpdateAvailabilityOptionsInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// You expand an existing search domain to a second Availability Zone by setting
 	// the Multi-AZ option to true. Similarly, you can turn off the Multi-AZ option
@@ -3017,7 +3017,7 @@ type UpdateScalingParametersInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	// The desired instance type and desired number of replicas of each index partition.
 	ScalingParameters *ScalingParameters `type:"structure" required:"true"`
@@ -3074,7 +3074,7 @@ type UpdateServiceAccessPoliciesInput struct {
 	// the domains owned by an account within an AWS region. Domain names start
 	// with a letter or number and can contain the following characters: a-z (lowercase),
 	// 0-9, and - (hyphen).
-	DomainName *string `type:"string" required:"true"`
+	DomainName *string `min:"3" type:"string" required:"true"`
 
 	metadataUpdateServiceAccessPoliciesInput `json:"-" xml:"-"`
 }

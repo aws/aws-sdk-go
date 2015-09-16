@@ -628,7 +628,7 @@ func (s CreateHsmOutput) GoString() string {
 type CreateLunaClientInput struct {
 	// The contents of a Base64-Encoded X.509 v3 certificate to be installed on
 	// the HSMs used by this client.
-	Certificate *string `type:"string" required:"true"`
+	Certificate *string `min:"600" type:"string" required:"true"`
 
 	// The label for the client.
 	Label *string `type:"string"`
@@ -1009,7 +1009,7 @@ func (s DescribeLunaClientInput) GoString() string {
 
 type DescribeLunaClientOutput struct {
 	// The certificate installed on the HSMs used by this client.
-	Certificate *string `type:"string"`
+	Certificate *string `min:"600" type:"string"`
 
 	// The certificate fingerprint.
 	CertificateFingerprint *string `type:"string"`
@@ -1393,7 +1393,7 @@ func (s ModifyHsmOutput) GoString() string {
 
 type ModifyLunaClientInput struct {
 	// The new certificate for the client.
-	Certificate *string `type:"string" required:"true"`
+	Certificate *string `min:"600" type:"string" required:"true"`
 
 	// The ARN of the client.
 	ClientArn *string `type:"string" required:"true"`

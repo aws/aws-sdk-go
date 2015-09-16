@@ -561,7 +561,7 @@ func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (*UpdateRecordsOu
 type BulkPublishInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataBulkPublishInput `json:"-" xml:"-"`
 }
@@ -584,7 +584,7 @@ func (s BulkPublishInput) GoString() string {
 type BulkPublishOutput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	metadataBulkPublishOutput `json:"-" xml:"-"`
 }
@@ -608,11 +608,11 @@ type CognitoStreams struct {
 	// The ARN of the role Amazon Cognito can assume in order to publish to the
 	// stream. This role must grant access to Amazon Cognito (cognito-sync) to invoke
 	// PutRecord on your Cognito stream.
-	RoleArn *string `type:"string"`
+	RoleArn *string `min:"20" type:"string"`
 
 	// The name of the Cognito stream to receive updates. This stream must be in
 	// the developers account and in the same region as the identity pool.
-	StreamName *string `type:"string"`
+	StreamName *string `min:"1" type:"string"`
 
 	// Status of the Cognito streams. Valid values are: ENABLED - Streaming of updates
 	// to identity pool is enabled.
@@ -652,11 +652,11 @@ type Dataset struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `type:"string"`
+	DatasetName *string `min:"1" type:"string"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `type:"string"`
+	IdentityId *string `min:"1" type:"string"`
 
 	// The device that made the last change to this dataset.
 	LastModifiedBy *string `type:"string"`
@@ -688,15 +688,15 @@ func (s Dataset) GoString() string {
 type DeleteDatasetInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDatasetInput `json:"-" xml:"-"`
 }
@@ -746,15 +746,15 @@ func (s DeleteDatasetOutput) GoString() string {
 type DescribeDatasetInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeDatasetInput `json:"-" xml:"-"`
 }
@@ -803,7 +803,7 @@ func (s DescribeDatasetOutput) GoString() string {
 type DescribeIdentityPoolUsageInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeIdentityPoolUsageInput `json:"-" xml:"-"`
 }
@@ -848,11 +848,11 @@ func (s DescribeIdentityPoolUsageOutput) GoString() string {
 type DescribeIdentityUsageInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeIdentityUsageInput `json:"-" xml:"-"`
 }
@@ -897,7 +897,7 @@ func (s DescribeIdentityUsageOutput) GoString() string {
 type GetBulkPublishDetailsInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataGetBulkPublishDetailsInput `json:"-" xml:"-"`
 }
@@ -943,7 +943,7 @@ type GetBulkPublishDetailsOutput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	metadataGetBulkPublishDetailsOutput `json:"-" xml:"-"`
 }
@@ -965,7 +965,7 @@ func (s GetBulkPublishDetailsOutput) GoString() string {
 // A request for a list of the configured Cognito Events
 type GetCognitoEventsInput struct {
 	// The Cognito Identity Pool ID for the request
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataGetCognitoEventsInput `json:"-" xml:"-"`
 }
@@ -1011,7 +1011,7 @@ type GetIdentityPoolConfigurationInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool for which to return
 	// a configuration.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataGetIdentityPoolConfigurationInput `json:"-" xml:"-"`
 }
@@ -1037,7 +1037,7 @@ type GetIdentityPoolConfigurationOutput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito.
-	IdentityPoolId *string `type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
@@ -1066,7 +1066,7 @@ type IdentityPoolUsage struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Date on which the identity pool was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1101,11 +1101,11 @@ type IdentityUsage struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `type:"string"`
+	IdentityId *string `min:"1" type:"string"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1131,11 +1131,11 @@ func (s IdentityUsage) GoString() string {
 type ListDatasetsInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -1248,15 +1248,15 @@ func (s ListIdentityPoolUsageOutput) GoString() string {
 type ListRecordsInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The last server sync count for this record.
 	LastSyncCount *int64 `location:"querystring" locationName:"lastSyncCount" type:"long"`
@@ -1339,7 +1339,7 @@ type PushSync struct {
 	ApplicationArns []*string `type:"list"`
 
 	// A role configured to allow Cognito to call SNS on behalf of the developer.
-	RoleArn *string `type:"string"`
+	RoleArn *string `min:"20" type:"string"`
 
 	metadataPushSync `json:"-" xml:"-"`
 }
@@ -1364,7 +1364,7 @@ type Record struct {
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The key for the record.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The user/device that made the last change to this record.
 	LastModifiedBy *string `type:"string"`
@@ -1401,7 +1401,7 @@ type RecordPatch struct {
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The key associated with the record patch.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// An operation, either replace or remove.
 	Op *string `type:"string" required:"true" enum:"Operation"`
@@ -1432,12 +1432,12 @@ func (s RecordPatch) GoString() string {
 // A request to RegisterDevice.
 type RegisterDeviceInput struct {
 	// The unique ID for this identity.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. Here, the ID of the pool that the identity belongs
 	// to.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The SNS platform type (e.g. GCM, SDM, APNS, APNS_SANDBOX).
 	Platform *string `type:"string" required:"true" enum:"Platform"`
@@ -1465,7 +1465,7 @@ func (s RegisterDeviceInput) GoString() string {
 // Response to a RegisterDevice request.
 type RegisterDeviceOutput struct {
 	// The unique ID generated for this device by Cognito.
-	DeviceId *string `type:"string"`
+	DeviceId *string `min:"1" type:"string"`
 
 	metadataRegisterDeviceOutput `json:"-" xml:"-"`
 }
@@ -1492,7 +1492,7 @@ type SetCognitoEventsInput struct {
 	Events map[string]*string `type:"map" required:"true"`
 
 	// The Cognito Identity Pool to use when configuring Cognito Events
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataSetCognitoEventsInput `json:"-" xml:"-"`
 }
@@ -1536,7 +1536,7 @@ type SetIdentityPoolConfigurationInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool to modify.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
@@ -1565,7 +1565,7 @@ type SetIdentityPoolConfigurationOutput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito.
-	IdentityPoolId *string `type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
@@ -1590,17 +1590,17 @@ func (s SetIdentityPoolConfigurationOutput) GoString() string {
 // A request to SubscribeToDatasetRequest.
 type SubscribeToDatasetInput struct {
 	// The name of the dataset to subcribe to.
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
-	DeviceId *string `location:"uri" locationName:"DeviceId" type:"string" required:"true"`
+	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Unique ID for this identity.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which the identity belongs.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataSubscribeToDatasetInput `json:"-" xml:"-"`
 }
@@ -1641,17 +1641,17 @@ func (s SubscribeToDatasetOutput) GoString() string {
 // A request to UnsubscribeFromDataset.
 type UnsubscribeFromDatasetInput struct {
 	// The name of the dataset from which to unsubcribe.
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
-	DeviceId *string `location:"uri" locationName:"DeviceId" type:"string" required:"true"`
+	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Unique ID for this identity.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which this identity belongs.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataUnsubscribeFromDatasetInput `json:"-" xml:"-"`
 }
@@ -1698,18 +1698,18 @@ type UpdateRecordsInput struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
-	DeviceId *string `type:"string"`
+	DeviceId *string `min:"1" type:"string"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityId *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// A list of patch operations.
 	RecordPatches []*RecordPatch `type:"list"`

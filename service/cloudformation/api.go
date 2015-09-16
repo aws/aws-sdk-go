@@ -687,13 +687,13 @@ type CreateStackInput struct {
 	// Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
 	// in the AWS CloudFormation User Guide. You can specify either the StackPolicyBody
 	// or the StackPolicyURL parameter, but not both.
-	StackPolicyBody *string `type:"string"`
+	StackPolicyBody *string `min:"1" type:"string"`
 
 	// Location of a file containing the stack policy. The URL must point to a policy
 	// (max size: 16KB) located in an S3 bucket in the same region as the stack.
 	// You can specify either the StackPolicyBody or the StackPolicyURL parameter,
 	// but not both.
-	StackPolicyURL *string `type:"string"`
+	StackPolicyURL *string `min:"1" type:"string"`
 
 	// A set of user-defined Tags to associate with this stack, represented by key/value
 	// pairs. Tags defined for the stack are propagated to EC2 resources that are
@@ -707,7 +707,7 @@ type CreateStackInput struct {
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
 	// parameter, but not both.
-	TemplateBody *string `type:"string"`
+	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
 	// (max size: 460,800 bytes) located in an S3 bucket in the same region as the
@@ -716,12 +716,12 @@ type CreateStackInput struct {
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
 	// parameter, but not both.
-	TemplateURL *string `type:"string"`
+	TemplateURL *string `min:"1" type:"string"`
 
 	// The amount of time that can pass before the stack status becomes CREATE_FAILED;
 	// if DisableRollback is not set or is set to false, the stack will be rolled
 	// back.
-	TimeoutInMinutes *int64 `type:"integer"`
+	TimeoutInMinutes *int64 `min:"1" type:"integer"`
 
 	metadataCreateStackInput `json:"-" xml:"-"`
 }
@@ -808,7 +808,7 @@ type DescribeStackEventsInput struct {
 	// one.
 	//
 	// Default: There is no default value.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
@@ -839,7 +839,7 @@ func (s DescribeStackEventsInput) GoString() string {
 type DescribeStackEventsOutput struct {
 	// String that identifies the start of the next list of events, if there is
 	// one.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// A list of StackEvents structures.
 	StackEvents []*StackEvent `type:"list"`
@@ -991,7 +991,7 @@ func (s DescribeStackResourcesOutput) GoString() string {
 type DescribeStacksInput struct {
 	// String that identifies the start of the next list of stacks, if there is
 	// one.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
@@ -1022,7 +1022,7 @@ func (s DescribeStacksInput) GoString() string {
 type DescribeStacksOutput struct {
 	// String that identifies the start of the next list of stacks, if there is
 	// one.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// A list of stack structures.
 	Stacks []*Stack `type:"list"`
@@ -1055,7 +1055,7 @@ type EstimateTemplateCostInput struct {
 	//
 	// Conditional: You must pass TemplateBody or TemplateURL. If both are passed,
 	// only TemplateBody is used.
-	TemplateBody *string `type:"string"`
+	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
 	// located in an S3 bucket in the same region as the stack. For more information,
@@ -1064,7 +1064,7 @@ type EstimateTemplateCostInput struct {
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
 	// only TemplateBody is used.
-	TemplateURL *string `type:"string"`
+	TemplateURL *string `min:"1" type:"string"`
 
 	metadataEstimateTemplateCostInput `json:"-" xml:"-"`
 }
@@ -1134,7 +1134,7 @@ type GetStackPolicyOutput struct {
 	// Structure containing the stack policy body. (For more information, go to
 	//  Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
 	// in the AWS CloudFormation User Guide.)
-	StackPolicyBody *string `type:"string"`
+	StackPolicyBody *string `min:"1" type:"string"`
 
 	metadataGetStackPolicyOutput `json:"-" xml:"-"`
 }
@@ -1185,7 +1185,7 @@ type GetTemplateOutput struct {
 	// Structure containing the template body. (For more information, go to Template
 	// Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.)
-	TemplateBody *string `type:"string"`
+	TemplateBody *string `min:"1" type:"string"`
 
 	metadataGetTemplateOutput `json:"-" xml:"-"`
 }
@@ -1213,7 +1213,7 @@ type GetTemplateSummaryInput struct {
 	//
 	// Conditional: You must specify only one of the following parameters: StackName,
 	// TemplateBody, or TemplateURL.
-	StackName *string `type:"string"`
+	StackName *string `min:"1" type:"string"`
 
 	// Structure containing the template body with a minimum length of 1 byte and
 	// a maximum length of 51,200 bytes. For more information about templates, see
@@ -1222,7 +1222,7 @@ type GetTemplateSummaryInput struct {
 	//
 	// Conditional: You must specify only one of the following parameters: StackName,
 	// TemplateBody, or TemplateURL.
-	TemplateBody *string `type:"string"`
+	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
 	// (max size: 460,800 bytes) located in an Amazon S3 bucket. For more information
@@ -1231,7 +1231,7 @@ type GetTemplateSummaryInput struct {
 	//
 	// Conditional: You must specify only one of the following parameters: StackName,
 	// TemplateBody, or TemplateURL.
-	TemplateURL *string `type:"string"`
+	TemplateURL *string `min:"1" type:"string"`
 
 	metadataGetTemplateSummaryInput `json:"-" xml:"-"`
 }
@@ -1300,7 +1300,7 @@ type ListStackResourcesInput struct {
 	// if there is one.
 	//
 	// Default: There is no default value.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// The name or the unique stack ID that is associated with the stack, which
 	// are not always interchangeable:
@@ -1331,7 +1331,7 @@ func (s ListStackResourcesInput) GoString() string {
 type ListStackResourcesOutput struct {
 	// String that identifies the start of the next list of stack resources, if
 	// there is one.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// A list of StackResourceSummary structures.
 	StackResourceSummaries []*StackResourceSummary `type:"list"`
@@ -1359,7 +1359,7 @@ type ListStacksInput struct {
 	// one.
 	//
 	// Default: There is no default value.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// Stack status to use as a filter. Specify one or more stack status codes to
 	// list only stacks with the specified status codes. For a complete list of
@@ -1387,7 +1387,7 @@ func (s ListStacksInput) GoString() string {
 type ListStacksOutput struct {
 	// String that identifies the start of the next list of stacks, if there is
 	// one.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"1" type:"string"`
 
 	// A list of StackSummary structures containing information about the specified
 	// stacks.
@@ -1541,13 +1541,13 @@ type SetStackPolicyInput struct {
 	// Prevent Updates to Stack Resources (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)
 	// in the AWS CloudFormation User Guide. You can specify either the StackPolicyBody
 	// or the StackPolicyURL parameter, but not both.
-	StackPolicyBody *string `type:"string"`
+	StackPolicyBody *string `min:"1" type:"string"`
 
 	// Location of a file containing the stack policy. The URL must point to a policy
 	// (max size: 16KB) located in an S3 bucket in the same region as the stack.
 	// You can specify either the StackPolicyBody or the StackPolicyURL parameter,
 	// but not both.
-	StackPolicyURL *string `type:"string"`
+	StackPolicyURL *string `min:"1" type:"string"`
 
 	metadataSetStackPolicyInput `json:"-" xml:"-"`
 }
@@ -1592,7 +1592,7 @@ type SignalResourceInput struct {
 
 	// The stack name or unique stack ID that includes the resource that you want
 	// to signal.
-	StackName *string `type:"string" required:"true"`
+	StackName *string `min:"1" type:"string" required:"true"`
 
 	// The status of the signal, which is either success or failure. A failure signal
 	// causes AWS CloudFormation to immediately fail the stack creation or update.
@@ -1602,7 +1602,7 @@ type SignalResourceInput struct {
 	// groups, specify the instance ID that you are signaling as the unique ID.
 	// If you send multiple signals to a single resource (such as signaling a wait
 	// condition), each signal requires a different unique ID.
-	UniqueId *string `type:"string" required:"true"`
+	UniqueId *string `min:"1" type:"string" required:"true"`
 
 	metadataSignalResourceInput `json:"-" xml:"-"`
 }
@@ -1684,7 +1684,7 @@ type Stack struct {
 	Tags []*Tag `type:"list"`
 
 	// The amount of time within which stack creation should complete.
-	TimeoutInMinutes *int64 `type:"integer"`
+	TimeoutInMinutes *int64 `min:"1" type:"integer"`
 
 	metadataStack `json:"-" xml:"-"`
 }
@@ -2040,7 +2040,7 @@ type UpdateStackInput struct {
 	// You might update the stack policy, for example, in order to protect a new
 	// resource that you created during a stack update. If you do not specify a
 	// stack policy, the current policy that is associated with the stack is unchanged.
-	StackPolicyBody *string `type:"string"`
+	StackPolicyBody *string `min:"1" type:"string"`
 
 	// Structure containing the temporary overriding stack policy body. You can
 	// specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL
@@ -2049,7 +2049,7 @@ type UpdateStackInput struct {
 	// If you want to update protected resources, specify a temporary overriding
 	// stack policy during this update. If you do not specify a stack policy, the
 	// current policy that is associated with the stack will be used.
-	StackPolicyDuringUpdateBody *string `type:"string"`
+	StackPolicyDuringUpdateBody *string `min:"1" type:"string"`
 
 	// Location of a file containing the temporary overriding stack policy. The
 	// URL must point to a policy (max size: 16KB) located in an S3 bucket in the
@@ -2059,7 +2059,7 @@ type UpdateStackInput struct {
 	// If you want to update protected resources, specify a temporary overriding
 	// stack policy during this update. If you do not specify a stack policy, the
 	// current policy that is associated with the stack will be used.
-	StackPolicyDuringUpdateURL *string `type:"string"`
+	StackPolicyDuringUpdateURL *string `min:"1" type:"string"`
 
 	// Location of a file containing the updated stack policy. The URL must point
 	// to a policy (max size: 16KB) located in an S3 bucket in the same region as
@@ -2069,7 +2069,7 @@ type UpdateStackInput struct {
 	// You might update the stack policy, for example, in order to protect a new
 	// resource that you created during a stack update. If you do not specify a
 	// stack policy, the current policy that is associated with the stack is unchanged.
-	StackPolicyURL *string `type:"string"`
+	StackPolicyURL *string `min:"1" type:"string"`
 
 	// Structure containing the template body with a minimum length of 1 byte and
 	// a maximum length of 51,200 bytes. (For more information, go to Template Anatomy
@@ -2078,7 +2078,7 @@ type UpdateStackInput struct {
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
 	// parameter, but not both.
-	TemplateBody *string `type:"string"`
+	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
 	// located in an S3 bucket in the same region as the stack. For more information,
@@ -2087,7 +2087,7 @@ type UpdateStackInput struct {
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
 	// parameter, but not both.
-	TemplateURL *string `type:"string"`
+	TemplateURL *string `min:"1" type:"string"`
 
 	// Reuse the existing template that is associated with the stack that you are
 	// updating.
@@ -2141,7 +2141,7 @@ type ValidateTemplateInput struct {
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
 	// only TemplateBody is used.
-	TemplateBody *string `type:"string"`
+	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
 	// (max size: 460,800 bytes) located in an S3 bucket in the same region as the
@@ -2150,7 +2150,7 @@ type ValidateTemplateInput struct {
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
 	// only TemplateBody is used.
-	TemplateURL *string `type:"string"`
+	TemplateURL *string `min:"1" type:"string"`
 
 	metadataValidateTemplateInput `json:"-" xml:"-"`
 }

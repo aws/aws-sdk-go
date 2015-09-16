@@ -591,7 +591,7 @@ type LookupEventsInput struct {
 
 	// The number of events to return. Possible values are 1 through 50. The default
 	// is 10.
-	MaxResults *int64 `type:"integer"`
+	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token to use to get the next page of results after a previous API call.
 	// This token must be passed in with the same parameters that were specified

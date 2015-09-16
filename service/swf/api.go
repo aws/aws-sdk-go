@@ -1578,7 +1578,7 @@ func (c *SWF) TerminateWorkflowExecution(input *TerminateWorkflowExecutionInput)
 // Provides details of the ActivityTaskCancelRequested event.
 type ActivityTaskCancelRequestedEventAttributes struct {
 	// The unique ID of the task.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	// The ID of the DecisionTaskCompleted event corresponding to the decision task
 	// that resulted in the RequestCancelActivityTask decision for this cancellation
@@ -1710,7 +1710,7 @@ func (s ActivityTaskFailedEventAttributes) GoString() string {
 // Provides details of the ActivityTaskScheduled event.
 type ActivityTaskScheduledEventAttributes struct {
 	// The unique ID of the activity task.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	// The type of the activity task.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -1846,13 +1846,13 @@ type ActivityType struct {
 	//
 	// The combination of activity type name and version must be unique within
 	// a domain.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The version of this activity.
 	//
 	// The combination of activity type name and version must be unique with in
 	// a domain.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataActivityType `json:"-" xml:"-"`
 }
@@ -1998,7 +1998,7 @@ func (s ActivityTypeInfo) GoString() string {
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type CancelTimerDecisionAttributes struct {
 	// Required. The unique ID of the timer to cancel.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataCancelTimerDecisionAttributes `json:"-" xml:"-"`
 }
@@ -2034,7 +2034,7 @@ type CancelTimerFailedEventAttributes struct {
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The timerId provided in the CancelTimer decision that failed.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataCancelTimerFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -2501,7 +2501,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	// In order for this workflow execution to invoke AWS Lambda functions, an
 	// appropriate IAM role must be specified either as a default for the workflow
 	// type or through this field.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The list of tags to associate with the new workflow execution. A maximum
 	// of 5 tags can be specified. You can list workflow executions with a specific
@@ -2536,7 +2536,7 @@ type ContinueAsNewWorkflowExecutionDecisionAttributes struct {
 	// at registration time then a fault will be returned.
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
 
-	WorkflowTypeVersion *string `locationName:"workflowTypeVersion" type:"string"`
+	WorkflowTypeVersion *string `locationName:"workflowTypeVersion" min:"1" type:"string"`
 
 	metadataContinueAsNewWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
@@ -2604,7 +2604,7 @@ type CountClosedWorkflowExecutionsInput struct {
 	CloseTimeFilter *ExecutionTimeFilter `locationName:"closeTimeFilter" type:"structure"`
 
 	// The name of the domain containing the workflow executions to count.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// If specified, only workflow executions matching the WorkflowId in the filter
 	// are counted.
@@ -2652,7 +2652,7 @@ func (s CountClosedWorkflowExecutionsInput) GoString() string {
 
 type CountOpenWorkflowExecutionsInput struct {
 	// The name of the domain containing the workflow executions to count.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// If specified, only workflow executions matching the WorkflowId in the filter
 	// are counted.
@@ -2697,7 +2697,7 @@ func (s CountOpenWorkflowExecutionsInput) GoString() string {
 
 type CountPendingActivityTasksInput struct {
 	// The name of the domain that contains the task list.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
@@ -2721,7 +2721,7 @@ func (s CountPendingActivityTasksInput) GoString() string {
 
 type CountPendingDecisionTasksInput struct {
 	// The name of the domain that contains the task list.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The name of the task list.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
@@ -3075,7 +3075,7 @@ type DeprecateActivityTypeInput struct {
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
 
 	// The name of the domain in which the activity type is registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	metadataDeprecateActivityTypeInput `json:"-" xml:"-"`
 }
@@ -3114,7 +3114,7 @@ func (s DeprecateActivityTypeOutput) GoString() string {
 
 type DeprecateDomainInput struct {
 	// The name of the domain to deprecate.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataDeprecateDomainInput `json:"-" xml:"-"`
 }
@@ -3153,7 +3153,7 @@ func (s DeprecateDomainOutput) GoString() string {
 
 type DeprecateWorkflowTypeInput struct {
 	// The name of the domain in which the workflow type is registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The workflow type to deprecate.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -3199,7 +3199,7 @@ type DescribeActivityTypeInput struct {
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
 
 	// The name of the domain in which the activity type is registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	metadataDescribeActivityTypeInput `json:"-" xml:"-"`
 }
@@ -3253,7 +3253,7 @@ func (s DescribeActivityTypeOutput) GoString() string {
 
 type DescribeDomainInput struct {
 	// The name of the domain to describe.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataDescribeDomainInput `json:"-" xml:"-"`
 }
@@ -3299,7 +3299,7 @@ func (s DescribeDomainOutput) GoString() string {
 
 type DescribeWorkflowExecutionInput struct {
 	// The name of the domain containing the workflow execution.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The workflow execution to describe.
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
@@ -3363,7 +3363,7 @@ func (s DescribeWorkflowExecutionOutput) GoString() string {
 
 type DescribeWorkflowTypeInput struct {
 	// The name of the domain in which this workflow type is registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The workflow type to describe.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -3421,7 +3421,7 @@ func (s DescribeWorkflowTypeOutput) GoString() string {
 // Contains the configuration settings of a domain.
 type DomainConfiguration struct {
 	// The retention period for workflow executions in this domain.
-	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
+	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" min:"1" type:"string" required:"true"`
 
 	metadataDomainConfiguration `json:"-" xml:"-"`
 }
@@ -3446,7 +3446,7 @@ type DomainInfo struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the domain. This name is unique within the account.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The status of the domain:
 	//
@@ -3632,7 +3632,7 @@ func (s FailWorkflowExecutionFailedEventAttributes) GoString() string {
 
 type GetWorkflowExecutionHistoryInput struct {
 	// The name of the domain containing the workflow execution.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// Specifies the workflow execution for which to return the history.
 	Execution *WorkflowExecution `locationName:"execution" type:"structure" required:"true"`
@@ -4122,13 +4122,13 @@ type LambdaFunctionScheduledEventAttributes struct {
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The unique Amazon SWF ID for the AWS Lambda task.
-	Id *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// Input provided to the AWS Lambda function.
-	Input *string `locationName:"input" type:"string"`
+	Input *string `locationName:"input" min:"1" type:"string"`
 
 	// The name of the scheduled AWS Lambda function.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The maximum time, in seconds, that the AWS Lambda function can take to execute
 	// from start to close before it is marked as failed.
@@ -4207,7 +4207,7 @@ func (s LambdaFunctionTimedOutEventAttributes) GoString() string {
 
 type ListActivityTypesInput struct {
 	// The name of the domain in which the activity types have been registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
 	// can be used to obtain futher pages of results. The default is 1000, which
@@ -4219,7 +4219,7 @@ type ListActivityTypesInput struct {
 	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
 
 	// If specified, only lists the activity types that have this name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// If a NextPageToken was returned by a previous call, there are more results
 	// available. To retrieve the next page of results, make the call again using
@@ -4302,7 +4302,7 @@ type ListClosedWorkflowExecutionsInput struct {
 	CloseTimeFilter *ExecutionTimeFilter `locationName:"closeTimeFilter" type:"structure"`
 
 	// The name of the domain that contains the workflow executions to list.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// If specified, only workflow executions matching the workflow ID specified
 	// in the filter are returned.
@@ -4444,7 +4444,7 @@ func (s ListDomainsOutput) GoString() string {
 
 type ListOpenWorkflowExecutionsInput struct {
 	// The name of the domain that contains the workflow executions to list.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// If specified, only workflow executions matching the workflow ID specified
 	// in the filter are returned.
@@ -4509,7 +4509,7 @@ func (s ListOpenWorkflowExecutionsInput) GoString() string {
 
 type ListWorkflowTypesInput struct {
 	// The name of the domain in which the workflow types have been registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The maximum number of results that will be returned per call. nextPageToken
 	// can be used to obtain futher pages of results. The default is 1000, which
@@ -4521,7 +4521,7 @@ type ListWorkflowTypesInput struct {
 	MaximumPageSize *int64 `locationName:"maximumPageSize" type:"integer"`
 
 	// If specified, lists the workflow type with this name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// If a NextPageToken was returned by a previous call, there are more results
 	// available. To retrieve the next page of results, make the call again using
@@ -4598,7 +4598,7 @@ type MarkerRecordedEventAttributes struct {
 	Details *string `locationName:"details" type:"string"`
 
 	// The name of the marker.
-	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
+	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
 
 	metadataMarkerRecordedEventAttributes `json:"-" xml:"-"`
 }
@@ -4645,7 +4645,7 @@ func (s PendingTaskCount) GoString() string {
 
 type PollForActivityTaskInput struct {
 	// The name of the domain that contains the task lists being polled.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// Identity of the worker making the request, recorded in the ActivityTaskStarted
 	// event in the workflow history. This enables diagnostic tracing when problems
@@ -4680,7 +4680,7 @@ func (s PollForActivityTaskInput) GoString() string {
 // Unit of work sent to an activity worker.
 type PollForActivityTaskOutput struct {
 	// The unique ID of the task.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	// The type of this activity task.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -4695,7 +4695,7 @@ type PollForActivityTaskOutput struct {
 	// The opaque string used as a handle on the task. This token is used by workers
 	// to communicate progress and response information back to the system about
 	// the task.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	// The workflow execution that started this activity task.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -4719,7 +4719,7 @@ func (s PollForActivityTaskOutput) GoString() string {
 
 type PollForDecisionTaskInput struct {
 	// The name of the domain containing the task lists to poll.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// Identity of the decider making the request, which is recorded in the DecisionTaskStarted
 	// event in the workflow history. This enables diagnostic tracing when problems
@@ -4804,7 +4804,7 @@ type PollForDecisionTaskOutput struct {
 	// The opaque string used as a handle on the task. This token is used by workers
 	// to communicate progress and response information back to the system about
 	// the task.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	// The workflow execution for which this decision task was created.
 	WorkflowExecution *WorkflowExecution `locationName:"workflowExecution" type:"structure" required:"true"`
@@ -4838,7 +4838,7 @@ type RecordActivityTaskHeartbeatInput struct {
 	//  taskToken is generated by the service and should be treated as an opaque
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	metadataRecordActivityTaskHeartbeatInput `json:"-" xml:"-"`
 }
@@ -4899,7 +4899,7 @@ type RecordMarkerDecisionAttributes struct {
 	Details *string `locationName:"details" type:"string"`
 
 	// Required. The name of the marker.
-	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
+	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
 
 	metadataRecordMarkerDecisionAttributes `json:"-" xml:"-"`
 }
@@ -4935,7 +4935,7 @@ type RecordMarkerFailedEventAttributes struct {
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The marker's name.
-	MarkerName *string `locationName:"markerName" type:"string" required:"true"`
+	MarkerName *string `locationName:"markerName" min:"1" type:"string" required:"true"`
 
 	metadataRecordMarkerFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -5011,7 +5011,7 @@ type RegisterActivityTypeInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the domain in which this activity is to be registered.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The name of the activity type within the domain.
 	//
@@ -5019,7 +5019,7 @@ type RegisterActivityTypeInput struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The version of the activity type.
 	//
@@ -5028,7 +5028,7 @@ type RegisterActivityTypeInput struct {
 	// end with whitespace. It must not contain a : (colon), / (slash), | (vertical
 	// bar), or any control characters (\u0000-\u001f | \u007f - \u009f). Also,
 	// it must not contain the literal string quotarnquot.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataRegisterActivityTypeInput `json:"-" xml:"-"`
 }
@@ -5076,7 +5076,7 @@ type RegisterDomainInput struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The duration (in days) that records and histories of workflow executions
 	// on the domain should be kept by the service. After the retention period,
@@ -5089,7 +5089,7 @@ type RegisterDomainInput struct {
 	// The maximum workflow execution retention period is 90 days. For more information
 	// about Amazon SWF service limits, see: Amazon SWF Service Limits (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dg-limits.html)
 	// in the Amazon SWF Developer Guide.
-	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" type:"string" required:"true"`
+	WorkflowExecutionRetentionPeriodInDays *string `locationName:"workflowExecutionRetentionPeriodInDays" min:"1" type:"string" required:"true"`
 
 	metadataRegisterDomainInput `json:"-" xml:"-"`
 }
@@ -5159,7 +5159,7 @@ type RegisterWorkflowTypeInput struct {
 	// This default can be overridden when starting a workflow execution using
 	// the StartWorkflowExecution action or the StartChildWorkflowExecution and
 	// ContinueAsNewWorkflowExecution decision.
-	DefaultLambdaRole *string `locationName:"defaultLambdaRole" type:"string"`
+	DefaultLambdaRole *string `locationName:"defaultLambdaRole" min:"1" type:"string"`
 
 	// If set, specifies the default task list to use for scheduling decision tasks
 	// for executions of this workflow type. This default is used only if a task
@@ -5190,7 +5190,7 @@ type RegisterWorkflowTypeInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The name of the domain in which to register the workflow type.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The name of the workflow type.
 	//
@@ -5198,7 +5198,7 @@ type RegisterWorkflowTypeInput struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The version of the workflow type.
 	//
@@ -5208,7 +5208,7 @@ type RegisterWorkflowTypeInput struct {
 	// not start or end with whitespace. It must not contain a : (colon), / (slash),
 	// | (vertical bar), or any control characters (\u0000-\u001f | \u007f - \u009f).
 	// Also, it must not contain the literal string quotarnquot.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataRegisterWorkflowTypeInput `json:"-" xml:"-"`
 }
@@ -5262,7 +5262,7 @@ func (s RegisterWorkflowTypeOutput) GoString() string {
 // SWF Workflows (http://docs.aws.amazon.com/amazonswf/latest/developerguide/swf-dev-iam.html).
 type RequestCancelActivityTaskDecisionAttributes struct {
 	// The activityId of the activity task to be canceled.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	metadataRequestCancelActivityTaskDecisionAttributes `json:"-" xml:"-"`
 }
@@ -5284,7 +5284,7 @@ func (s RequestCancelActivityTaskDecisionAttributes) GoString() string {
 // Provides details of the RequestCancelActivityTaskFailed event.
 type RequestCancelActivityTaskFailedEventAttributes struct {
 	// The activityId provided in the RequestCancelActivityTask decision that failed.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	// The cause of the failure. This information is generated by the system and
 	// can be useful for diagnostic purposes.
@@ -5341,7 +5341,7 @@ type RequestCancelExternalWorkflowExecutionDecisionAttributes struct {
 	RunId *string `locationName:"runId" type:"string"`
 
 	// Required. The workflowId of the external workflow execution to cancel.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
@@ -5389,7 +5389,7 @@ type RequestCancelExternalWorkflowExecutionFailedEventAttributes struct {
 
 	// The workflowId of the external workflow to which the cancel request was to
 	// be delivered.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -5424,7 +5424,7 @@ type RequestCancelExternalWorkflowExecutionInitiatedEventAttributes struct {
 	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the external workflow execution to be canceled.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataRequestCancelExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
@@ -5445,13 +5445,13 @@ func (s RequestCancelExternalWorkflowExecutionInitiatedEventAttributes) GoString
 
 type RequestCancelWorkflowExecutionInput struct {
 	// The name of the domain containing the workflow execution to cancel.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The runId of the workflow execution to cancel.
 	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the workflow execution to cancel.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataRequestCancelWorkflowExecutionInput `json:"-" xml:"-"`
 }
@@ -5497,7 +5497,7 @@ type RespondActivityTaskCanceledInput struct {
 	// taskToken is generated by the service and should be treated as an opaque
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	metadataRespondActivityTaskCanceledInput `json:"-" xml:"-"`
 }
@@ -5544,7 +5544,7 @@ type RespondActivityTaskCompletedInput struct {
 	//  taskToken is generated by the service and should be treated as an opaque
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	metadataRespondActivityTaskCompletedInput `json:"-" xml:"-"`
 }
@@ -5593,7 +5593,7 @@ type RespondActivityTaskFailedInput struct {
 	//  taskToken is generated by the service and should be treated as an opaque
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	metadataRespondActivityTaskFailedInput `json:"-" xml:"-"`
 }
@@ -5643,7 +5643,7 @@ type RespondDecisionTaskCompletedInput struct {
 	// taskToken is generated by the service and should be treated as an opaque
 	// value. If the task is passed to another process, its taskToken must also
 	// be passed. This enables it to provide its progress and respond with results.
-	TaskToken *string `locationName:"taskToken" type:"string" required:"true"`
+	TaskToken *string `locationName:"taskToken" min:"1" type:"string" required:"true"`
 
 	metadataRespondDecisionTaskCompletedInput `json:"-" xml:"-"`
 }
@@ -5705,7 +5705,7 @@ type ScheduleActivityTaskDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	// Required. The type of the activity task to schedule.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -5809,7 +5809,7 @@ func (s ScheduleActivityTaskDecisionAttributes) GoString() string {
 // Provides details of the ScheduleActivityTaskFailed event.
 type ScheduleActivityTaskFailedEventAttributes struct {
 	// The activityId provided in the ScheduleActivityTask decision that failed.
-	ActivityId *string `locationName:"activityId" type:"string" required:"true"`
+	ActivityId *string `locationName:"activityId" min:"1" type:"string" required:"true"`
 
 	// The activity type provided in the ScheduleActivityTask decision that failed.
 	ActivityType *ActivityType `locationName:"activityType" type:"structure" required:"true"`
@@ -5870,13 +5870,13 @@ type ScheduleLambdaFunctionDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	Id *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The input provided to the AWS Lambda function.
-	Input *string `locationName:"input" type:"string"`
+	Input *string `locationName:"input" min:"1" type:"string"`
 
 	// Required. The name of the AWS Lambda function to invoke.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// If set, specifies the maximum duration the function may take to execute.
 	StartToCloseTimeout *string `locationName:"startToCloseTimeout" type:"string"`
@@ -5915,10 +5915,10 @@ type ScheduleLambdaFunctionFailedEventAttributes struct {
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The unique Amazon SWF ID of the AWS Lambda task.
-	Id *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The name of the scheduled AWS Lambda function.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataScheduleLambdaFunctionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -5966,10 +5966,10 @@ type SignalExternalWorkflowExecutionDecisionAttributes struct {
 
 	// Required. The name of the signal.The target workflow execution will use the
 	// signal name and input to process the signal.
-	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+	SignalName *string `locationName:"signalName" min:"1" type:"string" required:"true"`
 
 	// Required. The workflowId of the workflow execution to be signaled.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionDecisionAttributes `json:"-" xml:"-"`
 }
@@ -6018,7 +6018,7 @@ type SignalExternalWorkflowExecutionFailedEventAttributes struct {
 
 	// The workflowId of the external workflow execution that the signal was being
 	// delivered to.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -6056,10 +6056,10 @@ type SignalExternalWorkflowExecutionInitiatedEventAttributes struct {
 	RunId *string `locationName:"runId" type:"string"`
 
 	// The name of the signal.
-	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+	SignalName *string `locationName:"signalName" min:"1" type:"string" required:"true"`
 
 	// The workflowId of the external workflow execution.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataSignalExternalWorkflowExecutionInitiatedEventAttributes `json:"-" xml:"-"`
 }
@@ -6080,7 +6080,7 @@ func (s SignalExternalWorkflowExecutionInitiatedEventAttributes) GoString() stri
 
 type SignalWorkflowExecutionInput struct {
 	// The name of the domain containing the workflow execution to signal.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// Data to attach to the WorkflowExecutionSignaled event in the target workflow
 	// execution's history.
@@ -6090,10 +6090,10 @@ type SignalWorkflowExecutionInput struct {
 	RunId *string `locationName:"runId" type:"string"`
 
 	// The name of the signal. This name must be meaningful to the target workflow.
-	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+	SignalName *string `locationName:"signalName" min:"1" type:"string" required:"true"`
 
 	// The workflowId of the workflow execution to signal.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataSignalWorkflowExecutionInput `json:"-" xml:"-"`
 }
@@ -6192,7 +6192,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// In order for this workflow execution to invoke AWS Lambda functions, an
 	// appropriate IAM role must be specified either as a default for the workflow
 	// type or through this field.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The list of tags to associate with the child workflow execution. A maximum
 	// of 5 tags can be specified. You can list workflow executions with a specific
@@ -6242,7 +6242,7 @@ type StartChildWorkflowExecutionDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	// Required. The type of the workflow execution to be started.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -6289,7 +6289,7 @@ type StartChildWorkflowExecutionFailedEventAttributes struct {
 	InitiatedEventId *int64 `locationName:"initiatedEventId" type:"long" required:"true"`
 
 	// The workflowId of the child workflow execution.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	// The workflow type provided in the StartChildWorkflowExecution decision that
 	// failed.
@@ -6349,7 +6349,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 
 	// The IAM role attached to this workflow execution to use when invoking AWS
 	// Lambda functions.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The list of tags to associated with the child workflow execution.
 	TagList []*string `locationName:"tagList" type:"list"`
@@ -6375,7 +6375,7 @@ type StartChildWorkflowExecutionInitiatedEventAttributes struct {
 	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string"`
 
 	// The workflowId of the child workflow execution.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	// The type of the child workflow execution.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -6456,7 +6456,7 @@ type StartTimerDecisionAttributes struct {
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0.
-	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
+	StartToFireTimeout *string `locationName:"startToFireTimeout" min:"1" type:"string" required:"true"`
 
 	// Required. The unique ID of the timer.
 	//
@@ -6464,7 +6464,7 @@ type StartTimerDecisionAttributes struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataStartTimerDecisionAttributes `json:"-" xml:"-"`
 }
@@ -6500,7 +6500,7 @@ type StartTimerFailedEventAttributes struct {
 	DecisionTaskCompletedEventId *int64 `locationName:"decisionTaskCompletedEventId" type:"long" required:"true"`
 
 	// The timerId provided in the StartTimer decision that failed.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataStartTimerFailedEventAttributes `json:"-" xml:"-"`
 }
@@ -6539,7 +6539,7 @@ type StartWorkflowExecutionInput struct {
 	ChildPolicy *string `locationName:"childPolicy" type:"string" enum:"ChildPolicy"`
 
 	// The name of the domain in which the workflow execution is created.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// The total duration for this workflow execution. This overrides the defaultExecutionStartToCloseTimeout
 	// specified when registering the workflow type.
@@ -6566,7 +6566,7 @@ type StartWorkflowExecutionInput struct {
 	// In order for this workflow execution to invoke AWS Lambda functions, an
 	// appropriate IAM role must be specified either as a default for the workflow
 	// type or through this field.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The list of tags to associate with the workflow execution. You can specify
 	// a maximum of 5 tags. You can list workflow executions with a specific tag
@@ -6622,7 +6622,7 @@ type StartWorkflowExecutionInput struct {
 	// contain a : (colon), / (slash), | (vertical bar), or any control characters
 	// (\u0000-\u001f | \u007f - \u009f). Also, it must not contain the literal
 	// string quotarnquot.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	// The type of the workflow to start.
 	WorkflowType *WorkflowType `locationName:"workflowType" type:"structure" required:"true"`
@@ -6648,7 +6648,7 @@ func (s StartWorkflowExecutionInput) GoString() string {
 type StartWorkflowExecutionOutput struct {
 	// The runId of a workflow execution. This ID is generated by the service and
 	// can be used to uniquely identify the workflow execution within a domain.
-	RunId *string `locationName:"runId" type:"string"`
+	RunId *string `locationName:"runId" min:"1" type:"string"`
 
 	metadataStartWorkflowExecutionOutput `json:"-" xml:"-"`
 }
@@ -6671,7 +6671,7 @@ func (s StartWorkflowExecutionOutput) GoString() string {
 type TagFilter struct {
 	// Required. Specifies the tag that must be associated with the execution for
 	// it to meet the filter criteria.
-	Tag *string `locationName:"tag" type:"string" required:"true"`
+	Tag *string `locationName:"tag" min:"1" type:"string" required:"true"`
 
 	metadataTagFilter `json:"-" xml:"-"`
 }
@@ -6693,7 +6693,7 @@ func (s TagFilter) GoString() string {
 // Represents a task list.
 type TaskList struct {
 	// The name of the task list.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataTaskList `json:"-" xml:"-"`
 }
@@ -6735,7 +6735,7 @@ type TerminateWorkflowExecutionInput struct {
 	Details *string `locationName:"details" type:"string"`
 
 	// The domain of the workflow execution to terminate.
-	Domain *string `locationName:"domain" type:"string" required:"true"`
+	Domain *string `locationName:"domain" min:"1" type:"string" required:"true"`
 
 	// Optional. A descriptive reason for terminating the workflow execution.
 	Reason *string `locationName:"reason" type:"string"`
@@ -6744,7 +6744,7 @@ type TerminateWorkflowExecutionInput struct {
 	RunId *string `locationName:"runId" type:"string"`
 
 	// The workflowId of the workflow execution to terminate.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataTerminateWorkflowExecutionInput `json:"-" xml:"-"`
 }
@@ -6795,7 +6795,7 @@ type TimerCanceledEventAttributes struct {
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The unique ID of the timer that was canceled.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataTimerCanceledEventAttributes `json:"-" xml:"-"`
 }
@@ -6822,7 +6822,7 @@ type TimerFiredEventAttributes struct {
 	StartedEventId *int64 `locationName:"startedEventId" type:"long" required:"true"`
 
 	// The unique ID of the timer that fired.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataTimerFiredEventAttributes `json:"-" xml:"-"`
 }
@@ -6857,10 +6857,10 @@ type TimerStartedEventAttributes struct {
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0.
-	StartToFireTimeout *string `locationName:"startToFireTimeout" type:"string" required:"true"`
+	StartToFireTimeout *string `locationName:"startToFireTimeout" min:"1" type:"string" required:"true"`
 
 	// The unique ID of the timer that was started.
-	TimerId *string `locationName:"timerId" type:"string" required:"true"`
+	TimerId *string `locationName:"timerId" min:"1" type:"string" required:"true"`
 
 	metadataTimerStartedEventAttributes `json:"-" xml:"-"`
 }
@@ -6882,10 +6882,10 @@ func (s TimerStartedEventAttributes) GoString() string {
 // Represents a workflow execution.
 type WorkflowExecution struct {
 	// A system-generated unique identifier for the workflow execution.
-	RunId *string `locationName:"runId" type:"string" required:"true"`
+	RunId *string `locationName:"runId" min:"1" type:"string" required:"true"`
 
 	// The user defined identifier associated with the workflow execution.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataWorkflowExecution `json:"-" xml:"-"`
 }
@@ -7016,10 +7016,10 @@ type WorkflowExecutionConfiguration struct {
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
-	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" type:"string" required:"true"`
+	ExecutionStartToCloseTimeout *string `locationName:"executionStartToCloseTimeout" min:"1" type:"string" required:"true"`
 
 	// The IAM role used by this workflow execution when invoking AWS Lambda functions.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The task list used for the decision tasks generated for this workflow execution.
 	TaskList *TaskList `locationName:"taskList" type:"structure" required:"true"`
@@ -7037,7 +7037,7 @@ type WorkflowExecutionConfiguration struct {
 	//
 	// The duration is specified in seconds; an integer greater than or equal to
 	// 0. The value "NONE" can be used to specify unlimited duration.
-	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" type:"string" required:"true"`
+	TaskStartToCloseTimeout *string `locationName:"taskStartToCloseTimeout" min:"1" type:"string" required:"true"`
 
 	metadataWorkflowExecutionConfiguration `json:"-" xml:"-"`
 }
@@ -7088,10 +7088,10 @@ type WorkflowExecutionContinuedAsNewEventAttributes struct {
 
 	// The IAM role attached to this workflow execution to use when invoking AWS
 	// Lambda functions.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The runId of the new workflow execution.
-	NewExecutionRunId *string `locationName:"newExecutionRunId" type:"string" required:"true"`
+	NewExecutionRunId *string `locationName:"newExecutionRunId" min:"1" type:"string" required:"true"`
 
 	// The list of tags associated with the new workflow execution.
 	TagList []*string `locationName:"tagList" type:"list"`
@@ -7188,7 +7188,7 @@ func (s WorkflowExecutionFailedEventAttributes) GoString() string {
 // Used to filter the workflow executions in visibility APIs by their workflowId.
 type WorkflowExecutionFilter struct {
 	// The workflowId to pass of match the criteria of this filter.
-	WorkflowId *string `locationName:"workflowId" type:"string" required:"true"`
+	WorkflowId *string `locationName:"workflowId" min:"1" type:"string" required:"true"`
 
 	metadataWorkflowExecutionFilter `json:"-" xml:"-"`
 }
@@ -7353,7 +7353,7 @@ type WorkflowExecutionSignaledEventAttributes struct {
 
 	// The name of the signal received. The decider can use the signal name and
 	// inputs to determine how to the process the signal.
-	SignalName *string `locationName:"signalName" type:"string" required:"true"`
+	SignalName *string `locationName:"signalName" min:"1" type:"string" required:"true"`
 
 	metadataWorkflowExecutionSignaledEventAttributes `json:"-" xml:"-"`
 }
@@ -7403,7 +7403,7 @@ type WorkflowExecutionStartedEventAttributes struct {
 
 	// The IAM role attached to this workflow execution to use when invoking AWS
 	// Lambda functions.
-	LambdaRole *string `locationName:"lambdaRole" type:"string"`
+	LambdaRole *string `locationName:"lambdaRole" min:"1" type:"string"`
 
 	// The ID of the StartChildWorkflowExecutionInitiated event corresponding to
 	// the StartChildWorkflowExecution decision to start this workflow execution.
@@ -7532,13 +7532,13 @@ type WorkflowType struct {
 	//
 	// The combination of workflow type name and version must be unique with in
 	// a domain.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Required. The version of the workflow type.
 	//
 	// The combination of workflow type name and version must be unique with in
 	// a domain.
-	Version *string `locationName:"version" type:"string" required:"true"`
+	Version *string `locationName:"version" min:"1" type:"string" required:"true"`
 
 	metadataWorkflowType `json:"-" xml:"-"`
 }
@@ -7585,7 +7585,7 @@ type WorkflowTypeConfiguration struct {
 
 	// The default IAM role to use when a workflow execution invokes a AWS Lambda
 	// function.
-	DefaultLambdaRole *string `locationName:"defaultLambdaRole" type:"string"`
+	DefaultLambdaRole *string `locationName:"defaultLambdaRole" min:"1" type:"string"`
 
 	// Optional. The default task list, specified when registering the workflow
 	// type, for decisions tasks scheduled for workflow executions of this type.
@@ -7639,7 +7639,7 @@ func (s WorkflowTypeConfiguration) GoString() string {
 // if specified, defines a rule that must be satisfied by each returned result.
 type WorkflowTypeFilter struct {
 	// Required. Name of the workflow type.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// Version of the workflow type.
 	Version *string `locationName:"version" type:"string"`

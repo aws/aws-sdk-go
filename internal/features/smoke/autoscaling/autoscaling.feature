@@ -11,8 +11,8 @@ Feature: Auto Scaling
     | LaunchConfigurationName |              |
     | ImageId                 | ami-12345678 |
     | InstanceType            | m1.small     |
-    Then I expect the response error code to be "ValidationError"
+    Then I expect the response error code to be "InvalidParameter"
     And I expect the response error message to include:
     """
-    Member must have length greater than or equal to 1
+    LaunchConfigurationName
     """

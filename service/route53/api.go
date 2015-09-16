@@ -1223,7 +1223,7 @@ func (s Change) GoString() string {
 type ChangeBatch struct {
 	// A complex type that contains one Change element for each resource record
 	// set that you want to create or delete.
-	Changes []*Change `locationNameList:"Change" type:"list" required:"true"`
+	Changes []*Change `locationNameList:"Change" min:"1" type:"list" required:"true"`
 
 	// Optional: Any comments you want to include about a change batch request.
 	Comment *string `type:"string"`
@@ -1348,10 +1348,10 @@ func (s ChangeResourceRecordSetsOutput) GoString() string {
 type ChangeTagsForResourceInput struct {
 	// A complex type that contains a list of Tag elements. Each Tag element identifies
 	// a tag that you want to add or update for the specified resource.
-	AddTags []*Tag `locationNameList:"Tag" type:"list"`
+	AddTags []*Tag `locationNameList:"Tag" min:"1" type:"list"`
 
 	// A list of Tag keys that you want to remove from the specified resource.
-	RemoveTagKeys []*string `locationNameList:"Key" type:"list"`
+	RemoveTagKeys []*string `locationNameList:"Key" min:"1" type:"list"`
 
 	// The ID of the resource for which you want to add, change, or delete tags.
 	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
@@ -1410,7 +1410,7 @@ type CreateHealthCheckInput struct {
 	//
 	// Valid characters are any Unicode code points that are legal in an XML 1.0
 	// document. The UTF-8 encoding of the value must be less than 128 bytes.
-	CallerReference *string `type:"string" required:"true"`
+	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that contains health check configuration.
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
@@ -1468,7 +1468,7 @@ type CreateHostedZoneInput struct {
 	//
 	// Valid characters are any Unicode code points that are legal in an XML 1.0
 	// document. The UTF-8 encoding of the value must be less than 128 bytes.
-	CallerReference *string `type:"string" required:"true"`
+	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// The delegation set id of the reusable delgation set whose NS records you
 	// want to assign to the new hosted zone.
@@ -1553,7 +1553,7 @@ type CreateReusableDelegationSetInput struct {
 	//
 	// Valid characters are any Unicode code points that are legal in an XML 1.0
 	// document. The UTF-8 encoding of the value must be less than 128 bytes.
-	CallerReference *string `type:"string" required:"true"`
+	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the hosted zone whose delegation set you want to mark as reusable.
 	// It is an optional parameter.
@@ -1602,14 +1602,14 @@ func (s CreateReusableDelegationSetOutput) GoString() string {
 
 // A complex type that contains name server information.
 type DelegationSet struct {
-	CallerReference *string `type:"string"`
+	CallerReference *string `min:"1" type:"string"`
 
 	Id *string `type:"string"`
 
 	// A complex type that contains the authoritative name servers for the hosted
 	// zone. Use the method provided by your domain registrar to add an NS record
 	// to your domain for each NameServer that is assigned to your hosted zone.
-	NameServers []*string `locationNameList:"NameServer" type:"list" required:"true"`
+	NameServers []*string `locationNameList:"NameServer" min:"1" type:"list" required:"true"`
 
 	metadataDelegationSet `json:"-" xml:"-"`
 }
@@ -1819,21 +1819,21 @@ type GeoLocation struct {
 	//
 	// Constraint: Specifying ContinentCode with either CountryCode or SubdivisionCode
 	// returns an InvalidInput error.
-	ContinentCode *string `type:"string"`
+	ContinentCode *string `min:"2" type:"string"`
 
 	// The code for a country geo location. The default location uses '*' for the
 	// country code and will match all locations that are not matched by a geo location.
 	//
 	// The default geo location uses a * for the country code. All other country
 	// codes follow the ISO 3166 two-character code.
-	CountryCode *string `type:"string"`
+	CountryCode *string `min:"1" type:"string"`
 
 	// The code for a country's subdivision (e.g., a province of Canada). A subdivision
 	// code is only valid with the appropriate country code.
 	//
 	// Constraint: Specifying SubdivisionCode without CountryCode returns an InvalidInput
 	// error.
-	SubdivisionCode *string `type:"string"`
+	SubdivisionCode *string `min:"1" type:"string"`
 
 	metadataGeoLocation `json:"-" xml:"-"`
 }
@@ -1856,30 +1856,30 @@ func (s GeoLocation) GoString() string {
 type GeoLocationDetails struct {
 	// The code for a continent geo location. Note: only continent locations have
 	// a continent code.
-	ContinentCode *string `type:"string"`
+	ContinentCode *string `min:"2" type:"string"`
 
 	// The name of the continent. This element is only present if ContinentCode
 	// is also present.
-	ContinentName *string `type:"string"`
+	ContinentName *string `min:"1" type:"string"`
 
 	// The code for a country geo location. The default location uses '*' for the
 	// country code and will match all locations that are not matched by a geo location.
 	//
 	// The default geo location uses a * for the country code. All other country
 	// codes follow the ISO 3166 two-character code.
-	CountryCode *string `type:"string"`
+	CountryCode *string `min:"1" type:"string"`
 
 	// The name of the country. This element is only present if CountryCode is also
 	// present.
-	CountryName *string `type:"string"`
+	CountryName *string `min:"1" type:"string"`
 
 	// The code for a country's subdivision (e.g., a province of Canada). A subdivision
 	// code is only valid with the appropriate country code.
-	SubdivisionCode *string `type:"string"`
+	SubdivisionCode *string `min:"1" type:"string"`
 
 	// The name of the subdivision. This element is only present if SubdivisionCode
 	// is also present.
-	SubdivisionName *string `type:"string"`
+	SubdivisionName *string `min:"1" type:"string"`
 
 	metadataGeoLocationDetails `json:"-" xml:"-"`
 }
@@ -1997,21 +1997,21 @@ type GetGeoLocationInput struct {
 	//
 	// Constraint: Specifying ContinentCode with either CountryCode or SubdivisionCode
 	// returns an InvalidInput error.
-	ContinentCode *string `location:"querystring" locationName:"continentcode" type:"string"`
+	ContinentCode *string `location:"querystring" locationName:"continentcode" min:"2" type:"string"`
 
 	// The code for a country geo location. The default location uses '*' for the
 	// country code and will match all locations that are not matched by a geo location.
 	//
 	// The default geo location uses a * for the country code. All other country
 	// codes follow the ISO 3166 two-character code.
-	CountryCode *string `location:"querystring" locationName:"countrycode" type:"string"`
+	CountryCode *string `location:"querystring" locationName:"countrycode" min:"1" type:"string"`
 
 	// The code for a country's subdivision (e.g., a province of Canada). A subdivision
 	// code is only valid with the appropriate country code.
 	//
 	// Constraint: Specifying SubdivisionCode without CountryCode returns an InvalidInput
 	// error.
-	SubdivisionCode *string `location:"querystring" locationName:"subdivisioncode" type:"string"`
+	SubdivisionCode *string `location:"querystring" locationName:"subdivisioncode" min:"1" type:"string"`
 
 	metadataGetGeoLocationInput `json:"-" xml:"-"`
 }
@@ -2313,7 +2313,7 @@ type GetHostedZoneOutput struct {
 
 	// A complex type that contains information about VPCs associated with the specified
 	// hosted zone.
-	VPCs []*VPC `locationNameList:"VPC" type:"list"`
+	VPCs []*VPC `locationNameList:"VPC" min:"1" type:"list"`
 
 	metadataGetHostedZoneOutput `json:"-" xml:"-"`
 }
@@ -2382,7 +2382,7 @@ func (s GetReusableDelegationSetOutput) GoString() string {
 // A complex type that contains identifying information about the health check.
 type HealthCheck struct {
 	// A unique string that identifies the request to create the health check.
-	CallerReference *string `type:"string" required:"true"`
+	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that contains the health check configuration.
 	HealthCheckConfig *HealthCheckConfig `type:"structure" required:"true"`
@@ -2390,7 +2390,7 @@ type HealthCheck struct {
 	// The version of the health check. You can optionally pass this value in a
 	// call to UpdateHealthCheck to prevent overwriting another change to the health
 	// check.
-	HealthCheckVersion *int64 `type:"long" required:"true"`
+	HealthCheckVersion *int64 `min:"1" type:"long" required:"true"`
 
 	// The ID of the specified health check.
 	Id *string `type:"string" required:"true"`
@@ -2425,7 +2425,7 @@ type HealthCheckConfig struct {
 	// Valid values are integers between 1 and 10. For more information, see "How
 	// Amazon Route 53 Determines Whether an Endpoint Is Healthy" in the Amazon
 	// Route 53 Developer Guide.
-	FailureThreshold *int64 `type:"integer"`
+	FailureThreshold *int64 `min:"1" type:"integer"`
 
 	// Fully qualified domain name of the instance to be health checked.
 	FullyQualifiedDomainName *string `type:"string"`
@@ -2451,14 +2451,14 @@ type HealthCheckConfig struct {
 	// Port on which connection will be opened to the instance to health check.
 	// For HTTP and HTTP_STR_MATCH this defaults to 80 if the port is not specified.
 	// For HTTPS and HTTPS_STR_MATCH this defaults to 443 if the port is not specified.
-	Port *int64 `type:"integer"`
+	Port *int64 `min:"1" type:"integer"`
 
 	// The number of seconds between the time that Route 53 gets a response from
 	// your endpoint and the time that it sends the next health-check request.
 	//
 	// Each Route 53 health checker makes requests at this interval. Valid values
 	// are 10 and 30. The default value is 30.
-	RequestInterval *int64 `type:"integer"`
+	RequestInterval *int64 `min:"10" type:"integer"`
 
 	// Path to ping on the instance to check the health. Required for HTTP, HTTPS,
 	// HTTP_STR_MATCH, and HTTPS_STR_MATCH health checks, HTTP request is issued
@@ -2520,7 +2520,7 @@ func (s HealthCheckObservation) GoString() string {
 // A complex type that contain information about the specified hosted zone.
 type HostedZone struct {
 	// A unique string that identifies the request to create the hosted zone.
-	CallerReference *string `type:"string" required:"true"`
+	CallerReference *string `min:"1" type:"string" required:"true"`
 
 	// A complex type that contains the Comment element.
 	Config *HostedZoneConfig `type:"structure"`
@@ -2601,21 +2601,21 @@ type ListGeoLocationsInput struct {
 	//
 	// Constraint: Specifying ContinentCode with either CountryCode or SubdivisionCode
 	// returns an InvalidInput error.
-	StartContinentCode *string `location:"querystring" locationName:"startcontinentcode" type:"string"`
+	StartContinentCode *string `location:"querystring" locationName:"startcontinentcode" min:"2" type:"string"`
 
 	// The first country code in the lexicographic ordering of geo locations that
 	// you want the ListGeoLocations request to list.
 	//
 	// The default geo location uses a * for the country code. All other country
 	// codes follow the ISO 3166 two-character code.
-	StartCountryCode *string `location:"querystring" locationName:"startcountrycode" type:"string"`
+	StartCountryCode *string `location:"querystring" locationName:"startcountrycode" min:"1" type:"string"`
 
 	// The first subdivision code in the lexicographic ordering of geo locations
 	// that you want the ListGeoLocations request to list.
 	//
 	// Constraint: Specifying SubdivisionCode without CountryCode returns an InvalidInput
 	// error.
-	StartSubdivisionCode *string `location:"querystring" locationName:"startsubdivisioncode" type:"string"`
+	StartSubdivisionCode *string `location:"querystring" locationName:"startsubdivisioncode" min:"1" type:"string"`
 
 	metadataListGeoLocationsInput `json:"-" xml:"-"`
 }
@@ -2657,17 +2657,17 @@ type ListGeoLocationsOutput struct {
 	// If the results were truncated, the continent code of the next geo location
 	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
 	// is true and the next geo location to list is a continent location.
-	NextContinentCode *string `type:"string"`
+	NextContinentCode *string `min:"2" type:"string"`
 
 	// If the results were truncated, the country code of the next geo location
 	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
 	// is true and the next geo location to list is not a continent location.
-	NextCountryCode *string `type:"string"`
+	NextCountryCode *string `min:"1" type:"string"`
 
 	// If the results were truncated, the subdivision code of the next geo location
 	// in the list. This element is present only if ListGeoLocationsResponse$IsTruncated
 	// is true and the next geo location has a subdivision.
-	NextSubdivisionCode *string `type:"string"`
+	NextSubdivisionCode *string `min:"1" type:"string"`
 
 	metadataListGeoLocationsOutput `json:"-" xml:"-"`
 }
@@ -2972,7 +2972,7 @@ type ListResourceRecordSetsInput struct {
 	// DNS name and type, specify the value of ListResourceRecordSetsResponse$NextRecordIdentifier
 	// from the previous response to get the next resource record set that has the
 	// current DNS name and type.
-	StartRecordIdentifier *string `location:"querystring" locationName:"identifier" type:"string"`
+	StartRecordIdentifier *string `location:"querystring" locationName:"identifier" min:"1" type:"string"`
 
 	// The first name in the lexicographic ordering of domain names that you want
 	// the ListResourceRecordSets request to list.
@@ -3027,7 +3027,7 @@ type ListResourceRecordSetsOutput struct {
 	// Weighted resource record sets only: If results were truncated for a given
 	// DNS name and type, the value of SetIdentifier for the next resource record
 	// set that has the current DNS name and type.
-	NextRecordIdentifier *string `type:"string"`
+	NextRecordIdentifier *string `min:"1" type:"string"`
 
 	// If the results were truncated, the name of the next record in the list. This
 	// element is present only if ListResourceRecordSetsResponse$IsTruncated is
@@ -3203,7 +3203,7 @@ func (s ListTagsForResourceOutput) GoString() string {
 type ListTagsForResourcesInput struct {
 	// A complex type that contains the ResourceId element for each resource for
 	// which you want to get a list of tags.
-	ResourceIds []*string `locationNameList:"ResourceId" type:"list" required:"true"`
+	ResourceIds []*string `locationNameList:"ResourceId" min:"1" type:"list" required:"true"`
 
 	// The type of the resources.
 	//
@@ -3315,16 +3315,16 @@ type ResourceRecordSet struct {
 	// Latency-based resource record sets only: Among resource record sets that
 	// have the same combination of DNS name and type, a value that specifies the
 	// AWS region for the current resource record set.
-	Region *string `type:"string" enum:"ResourceRecordSetRegion"`
+	Region *string `min:"1" type:"string" enum:"ResourceRecordSetRegion"`
 
 	// A complex type that contains the resource records for the current resource
 	// record set.
-	ResourceRecords []*ResourceRecord `locationNameList:"ResourceRecord" type:"list"`
+	ResourceRecords []*ResourceRecord `locationNameList:"ResourceRecord" min:"1" type:"list"`
 
 	// Weighted, Latency, Geo, and Failover resource record sets only: An identifier
 	// that differentiates among multiple resource record sets that have the same
 	// combination of DNS name and type.
-	SetIdentifier *string `type:"string"`
+	SetIdentifier *string `min:"1" type:"string"`
 
 	// The cache time to live for the current resource record set.
 	TTL *int64 `type:"long"`
@@ -3368,7 +3368,7 @@ type ResourceTagSet struct {
 	ResourceType *string `type:"string" enum:"TagResourceType"`
 
 	// The tags associated with the specified resource.
-	Tags []*Tag `locationNameList:"Tag" type:"list"`
+	Tags []*Tag `locationNameList:"Tag" min:"1" type:"list"`
 
 	metadataResourceTagSet `json:"-" xml:"-"`
 }
@@ -3459,7 +3459,7 @@ type UpdateHealthCheckInput struct {
 	// Route 53 Developer Guide.
 	//
 	// Specify this value only if you want to change it.
-	FailureThreshold *int64 `type:"integer"`
+	FailureThreshold *int64 `min:"1" type:"integer"`
 
 	// Fully qualified domain name of the instance to be health checked.
 	//
@@ -3473,7 +3473,7 @@ type UpdateHealthCheckInput struct {
 	// value with the current value in the health check, which prevents you from
 	// updating the health check when the versions don't match. Using HealthCheckVersion
 	// lets you prevent overwriting another change to the health check.
-	HealthCheckVersion *int64 `type:"long"`
+	HealthCheckVersion *int64 `min:"1" type:"long"`
 
 	// The minimum number of child health checks that must be healthy for Route
 	// 53 to consider the parent health check to be healthy. Valid values are integers
@@ -3498,7 +3498,7 @@ type UpdateHealthCheckInput struct {
 	// checks.
 	//
 	// Specify this value only if you want to change it.
-	Port *int64 `type:"integer"`
+	Port *int64 `min:"1" type:"integer"`
 
 	// The path that you want Amazon Route 53 to request when performing health
 	// checks. The path can be any value for which your endpoint will return an
@@ -3607,7 +3607,7 @@ type VPC struct {
 	// A VPC ID
 	VPCId *string `type:"string"`
 
-	VPCRegion *string `type:"string" enum:"VPCRegion"`
+	VPCRegion *string `min:"1" type:"string" enum:"VPCRegion"`
 
 	metadataVPC `json:"-" xml:"-"`
 }

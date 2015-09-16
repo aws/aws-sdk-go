@@ -54,6 +54,8 @@ type Shape struct {
 	Location      string
 	LocationName  string
 	XMLNamespace  XMLInfo
+	Min           int // optional Minimum length (string, list) or value (number)
+	Max           int // optional Minimum length (string, list) or value (number)
 
 	refs       []*ShapeRef // References to this shape
 	resolvePkg string      // use this package in the goType() if present
@@ -194,6 +196,9 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 	if ref.Shape.ValueRef.LocationName != "" {
 		code += `locationNameValue:"` + ref.Shape.ValueRef.LocationName + `" `
+	}
+	if ref.Shape.Min > 0 {
+		code += fmt.Sprintf(`min:"%d" `, ref.Shape.Min)
 	}
 	code += `type:"` + ref.Shape.Type + `" `
 

@@ -10,8 +10,8 @@ Feature: AWS STS
     When I attempt to call the "GetFederationToken" API with:
     | Name   | temp |
     | Policy |      |
-    Then I expect the response error code to be "ValidationError"
+    Then I expect the response error code to be "InvalidParameter"
     And I expect the response error message to include:
     """
-    Value '' at 'policy' failed to satisfy constraint
+    Policy
     """

@@ -1483,7 +1483,7 @@ type InstanceGroup struct {
 	InstanceGroupType *string `type:"string" enum:"InstanceGroupType"`
 
 	// The EC2 instance type for all instances in the instance group.
-	InstanceType *string `type:"string"`
+	InstanceType *string `min:"1" type:"string"`
 
 	// The marketplace to provision instances for this group. Valid values are ON_DEMAND
 	// or SPOT.
@@ -1538,7 +1538,7 @@ type InstanceGroupConfig struct {
 	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// The Amazon EC2 instance type for all instances in the instance group.
-	InstanceType *string `type:"string" required:"true"`
+	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
 	Market *string `type:"string" enum:"MarketType"`
@@ -1588,7 +1588,7 @@ type InstanceGroupDetail struct {
 	InstanceRunningCount *int64 `type:"integer" required:"true"`
 
 	// Amazon EC2 Instance type.
-	InstanceType *string `type:"string" required:"true"`
+	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Details regarding the state of the instance group.
 	LastStateChangeReason *string `type:"string"`
@@ -1974,13 +1974,13 @@ type JobFlowInstancesConfig struct {
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 
 	// The EC2 instance type of the master node.
-	MasterInstanceType *string `type:"string"`
+	MasterInstanceType *string `min:"1" type:"string"`
 
 	// The Availability Zone the job flow will run in.
 	Placement *PlacementType `type:"structure"`
 
 	// The EC2 instance type of the slave nodes.
-	SlaveInstanceType *string `type:"string"`
+	SlaveInstanceType *string `min:"1" type:"string"`
 
 	// Specifies whether to lock the job flow to prevent the Amazon EC2 instances
 	// from being terminated by API call, user intervention, or in the event of
@@ -2032,7 +2032,7 @@ type JobFlowInstancesDetail struct {
 	MasterInstanceId *string `type:"string"`
 
 	// The Amazon EC2 master node instance type.
-	MasterInstanceType *string `type:"string" required:"true"`
+	MasterInstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The DNS name of the master node.
 	MasterPublicDnsName *string `type:"string"`
@@ -2049,7 +2049,7 @@ type JobFlowInstancesDetail struct {
 	Placement *PlacementType `type:"structure"`
 
 	// The Amazon EC2 slave node instance type.
-	SlaveInstanceType *string `type:"string" required:"true"`
+	SlaveInstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the Amazon EC2 instances in the cluster are protected from
 	// termination by API calls, user intervention, or in the event of a job flow

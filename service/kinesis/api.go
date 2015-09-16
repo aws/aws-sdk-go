@@ -744,10 +744,10 @@ func (c *Kinesis) SplitShard(input *SplitShardInput) (*SplitShardOutput, error) 
 // Represents the input for AddTagsToStream.
 type AddTagsToStreamInput struct {
 	// The name of the stream.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// The set of key-value pairs to use to create the tags.
-	Tags map[string]*string `type:"map" required:"true"`
+	Tags map[string]*string `min:"1" type:"map" required:"true"`
 
 	metadataAddTagsToStreamInput `json:"-" xml:"-"`
 }
@@ -791,14 +791,14 @@ type CreateStreamInput struct {
 	// provisioned throughput.
 	//
 	// DefaultShardLimit;
-	ShardCount *int64 `type:"integer" required:"true"`
+	ShardCount *int64 `min:"1" type:"integer" required:"true"`
 
 	// A name to identify the stream. The stream name is scoped to the AWS account
 	// used by the application that creates the stream. It is also scoped by region.
 	// That is, two streams in two different AWS accounts can have the same name,
 	// and two streams in the same AWS account, but in two different regions, can
 	// have the same name.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateStreamInput `json:"-" xml:"-"`
 }
@@ -838,7 +838,7 @@ func (s CreateStreamOutput) GoString() string {
 // Represents the input for DeleteStream.
 type DeleteStreamInput struct {
 	// The name of the stream to delete.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteStreamInput `json:"-" xml:"-"`
 }
@@ -878,13 +878,13 @@ func (s DeleteStreamOutput) GoString() string {
 // Represents the input for DescribeStream.
 type DescribeStreamInput struct {
 	// The shard ID of the shard to start with.
-	ExclusiveStartShardId *string `type:"string"`
+	ExclusiveStartShardId *string `min:"1" type:"string"`
 
 	// The maximum number of shards to return.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// The name of the stream to describe.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataDescribeStreamInput `json:"-" xml:"-"`
 }
@@ -930,12 +930,12 @@ func (s DescribeStreamOutput) GoString() string {
 type GetRecordsInput struct {
 	// The maximum number of records to return. Specify a value of up to 10,000.
 	// If you specify a value that is greater than 10,000, GetRecords throws InvalidArgumentException.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// The position in the shard from which you want to start sequentially reading
 	// data records. A shard iterator specifies this position using the sequence
 	// number of a data record in the shard.
-	ShardIterator *string `type:"string" required:"true"`
+	ShardIterator *string `min:"1" type:"string" required:"true"`
 
 	metadataGetRecordsInput `json:"-" xml:"-"`
 }
@@ -965,7 +965,7 @@ type GetRecordsOutput struct {
 	// The next position in the shard from which to start sequentially reading data
 	// records. If set to null, the shard has been closed and the requested iterator
 	// will not return any more data.
-	NextShardIterator *string `type:"string"`
+	NextShardIterator *string `min:"1" type:"string"`
 
 	// The data records retrieved from the shard.
 	Records []*Record `type:"list" required:"true"`
@@ -990,7 +990,7 @@ func (s GetRecordsOutput) GoString() string {
 // Represents the input for GetShardIterator.
 type GetShardIteratorInput struct {
 	// The shard ID of the shard to get the iterator for.
-	ShardId *string `type:"string" required:"true"`
+	ShardId *string `min:"1" type:"string" required:"true"`
 
 	// Determines how the shard iterator is used to start reading data records from
 	// the shard.
@@ -1011,7 +1011,7 @@ type GetShardIteratorInput struct {
 	StartingSequenceNumber *string `type:"string"`
 
 	// The name of the stream.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetShardIteratorInput `json:"-" xml:"-"`
 }
@@ -1035,7 +1035,7 @@ type GetShardIteratorOutput struct {
 	// The position in the shard from which to start reading data records sequentially.
 	// A shard iterator specifies this position using the sequence number of a data
 	// record in a shard.
-	ShardIterator *string `type:"string"`
+	ShardIterator *string `min:"1" type:"string"`
 
 	metadataGetShardIteratorOutput `json:"-" xml:"-"`
 }
@@ -1083,10 +1083,10 @@ func (s HashKeyRange) GoString() string {
 // Represents the input for ListStreams.
 type ListStreamsInput struct {
 	// The name of the stream to start the list with.
-	ExclusiveStartStreamName *string `type:"string"`
+	ExclusiveStartStreamName *string `min:"1" type:"string"`
 
 	// The maximum number of streams to list.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	metadataListStreamsInput `json:"-" xml:"-"`
 }
@@ -1135,15 +1135,15 @@ func (s ListStreamsOutput) GoString() string {
 type ListTagsForStreamInput struct {
 	// The key to use as the starting point for the list of tags. If this parameter
 	// is set, ListTagsForStream gets all tags that occur after ExclusiveStartTagKey.
-	ExclusiveStartTagKey *string `type:"string"`
+	ExclusiveStartTagKey *string `min:"1" type:"string"`
 
 	// The number of tags to return. If this number is less than the total number
 	// of tags associated with the stream, HasMoreTags is set to true. To list additional
 	// tags, set ExclusiveStartTagKey to the last key in the response.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// The name of the stream.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataListTagsForStreamInput `json:"-" xml:"-"`
 }
@@ -1192,13 +1192,13 @@ func (s ListTagsForStreamOutput) GoString() string {
 // Represents the input for MergeShards.
 type MergeShardsInput struct {
 	// The shard ID of the adjacent shard for the merge.
-	AdjacentShardToMerge *string `type:"string" required:"true"`
+	AdjacentShardToMerge *string `min:"1" type:"string" required:"true"`
 
 	// The shard ID of the shard to combine with the adjacent shard for the merge.
-	ShardToMerge *string `type:"string" required:"true"`
+	ShardToMerge *string `min:"1" type:"string" required:"true"`
 
 	// The name of the stream for the merge.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataMergeShardsInput `json:"-" xml:"-"`
 }
@@ -1255,7 +1255,7 @@ type PutRecordInput struct {
 	// and to map associated data records to shards. As a result of this hashing
 	// mechanism, all data records with the same partition key will map to the same
 	// shard within the stream.
-	PartitionKey *string `type:"string" required:"true"`
+	PartitionKey *string `min:"1" type:"string" required:"true"`
 
 	// Guarantees strictly increasing sequence numbers, for puts from the same client
 	// and to the same partition key. Usage: set the SequenceNumberForOrdering of
@@ -1265,7 +1265,7 @@ type PutRecordInput struct {
 	SequenceNumberForOrdering *string `type:"string"`
 
 	// The name of the stream to put the data record into.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutRecordInput `json:"-" xml:"-"`
 }
@@ -1293,7 +1293,7 @@ type PutRecordOutput struct {
 	SequenceNumber *string `type:"string" required:"true"`
 
 	// The shard ID of the shard where the data record was placed.
-	ShardId *string `type:"string" required:"true"`
+	ShardId *string `min:"1" type:"string" required:"true"`
 
 	metadataPutRecordOutput `json:"-" xml:"-"`
 }
@@ -1315,10 +1315,10 @@ func (s PutRecordOutput) GoString() string {
 // A PutRecords request.
 type PutRecordsInput struct {
 	// The records associated with the request.
-	Records []*PutRecordsRequestEntry `type:"list" required:"true"`
+	Records []*PutRecordsRequestEntry `min:"1" type:"list" required:"true"`
 
 	// The stream name associated with the request.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutRecordsInput `json:"-" xml:"-"`
 }
@@ -1340,14 +1340,14 @@ func (s PutRecordsInput) GoString() string {
 // PutRecords results.
 type PutRecordsOutput struct {
 	// The number of unsuccessfully processed records in a PutRecords request.
-	FailedRecordCount *int64 `type:"integer"`
+	FailedRecordCount *int64 `min:"1" type:"integer"`
 
 	// An array of successfully and unsuccessfully processed record results, correlated
 	// with the request by natural ordering. A record that is successfully added
 	// to your Amazon Kinesis stream includes SequenceNumber and ShardId in the
 	// result. A record that fails to be added to your Amazon Kinesis stream includes
 	// ErrorCode and ErrorMessage in the result.
-	Records []*PutRecordsResultEntry `type:"list" required:"true"`
+	Records []*PutRecordsResultEntry `min:"1" type:"list" required:"true"`
 
 	metadataPutRecordsOutput `json:"-" xml:"-"`
 }
@@ -1386,7 +1386,7 @@ type PutRecordsRequestEntry struct {
 	// and to map associated data records to shards. As a result of this hashing
 	// mechanism, all data records with the same partition key map to the same shard
 	// within the stream.
-	PartitionKey *string `type:"string" required:"true"`
+	PartitionKey *string `min:"1" type:"string" required:"true"`
 
 	metadataPutRecordsRequestEntry `json:"-" xml:"-"`
 }
@@ -1425,7 +1425,7 @@ type PutRecordsResultEntry struct {
 	SequenceNumber *string `type:"string"`
 
 	// The shard ID for an individual record result.
-	ShardId *string `type:"string"`
+	ShardId *string `min:"1" type:"string"`
 
 	metadataPutRecordsResultEntry `json:"-" xml:"-"`
 }
@@ -1458,7 +1458,7 @@ type Record struct {
 	Data []byte `type:"blob" required:"true"`
 
 	// Identifies which shard in the stream the data record is assigned to.
-	PartitionKey *string `type:"string" required:"true"`
+	PartitionKey *string `min:"1" type:"string" required:"true"`
 
 	// The unique identifier of the record in the stream.
 	SequenceNumber *string `type:"string" required:"true"`
@@ -1483,10 +1483,10 @@ func (s Record) GoString() string {
 // Represents the input for RemoveTagsFromStream.
 type RemoveTagsFromStreamInput struct {
 	// The name of the stream.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// A list of tag keys. Each corresponding tag is removed from the stream.
-	TagKeys []*string `type:"list" required:"true"`
+	TagKeys []*string `min:"1" type:"list" required:"true"`
 
 	metadataRemoveTagsFromStreamInput `json:"-" xml:"-"`
 }
@@ -1552,20 +1552,20 @@ func (s SequenceNumberRange) GoString() string {
 // A uniquely identified group of data records in an Amazon Kinesis stream.
 type Shard struct {
 	// The shard Id of the shard adjacent to the shard's parent.
-	AdjacentParentShardId *string `type:"string"`
+	AdjacentParentShardId *string `min:"1" type:"string"`
 
 	// The range of possible hash key values for the shard, which is a set of ordered
 	// contiguous positive integers.
 	HashKeyRange *HashKeyRange `type:"structure" required:"true"`
 
 	// The shard Id of the shard's parent.
-	ParentShardId *string `type:"string"`
+	ParentShardId *string `min:"1" type:"string"`
 
 	// The range of possible sequence numbers for the shard.
 	SequenceNumberRange *SequenceNumberRange `type:"structure" required:"true"`
 
 	// The unique identifier of the shard within the Amazon Kinesis stream.
-	ShardId *string `type:"string" required:"true"`
+	ShardId *string `min:"1" type:"string" required:"true"`
 
 	metadataShard `json:"-" xml:"-"`
 }
@@ -1596,10 +1596,10 @@ type SplitShardInput struct {
 	NewStartingHashKey *string `type:"string" required:"true"`
 
 	// The shard ID of the shard to split.
-	ShardToSplit *string `type:"string" required:"true"`
+	ShardToSplit *string `min:"1" type:"string" required:"true"`
 
 	// The name of the stream for the shard split.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	metadataSplitShardInput `json:"-" xml:"-"`
 }
@@ -1648,7 +1648,7 @@ type StreamDescription struct {
 	StreamARN *string `type:"string" required:"true"`
 
 	// The name of the stream being described.
-	StreamName *string `type:"string" required:"true"`
+	StreamName *string `min:"1" type:"string" required:"true"`
 
 	// The current status of the stream being described.
 	//
@@ -1685,7 +1685,7 @@ func (s StreamDescription) GoString() string {
 type Tag struct {
 	// A unique identifier for the tag. Maximum length: 128 characters. Valid characters:
 	// Unicode letters, digits, white space, _ . / = + - % @
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// An optional string, typically used to describe or define the tag. Maximum
 	// length: 256 characters. Valid characters: Unicode letters, digits, white

@@ -406,16 +406,16 @@ func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (*SetAlarmStateOut
 // returns this data type as part of the DescribeAlarmHistoryResult data type.
 type AlarmHistoryItem struct {
 	// The descriptive name for the alarm.
-	AlarmName *string `type:"string"`
+	AlarmName *string `min:"1" type:"string"`
 
 	// Machine-readable data about the alarm in JSON format.
-	HistoryData *string `type:"string"`
+	HistoryData *string `min:"1" type:"string"`
 
 	// The type of alarm history item.
 	HistoryItemType *string `type:"string" enum:"HistoryItemType"`
 
 	// A human-readable summary of the alarm history.
-	HistorySummary *string `type:"string"`
+	HistorySummary *string `min:"1" type:"string"`
 
 	// The time stamp for the alarm history item. Amazon CloudWatch uses Coordinated
 	// Universal Time (UTC) when returning time stamps, which do not accommodate
@@ -528,7 +528,7 @@ func (s DeleteAlarmsOutput) GoString() string {
 
 type DescribeAlarmHistoryInput struct {
 	// The name of the alarm.
-	AlarmName *string `type:"string"`
+	AlarmName *string `min:"1" type:"string"`
 
 	// The ending date to retrieve alarm history.
 	EndDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -537,7 +537,7 @@ type DescribeAlarmHistoryInput struct {
 	HistoryItemType *string `type:"string" enum:"HistoryItemType"`
 
 	// The maximum number of alarm history records to retrieve.
-	MaxRecords *int64 `type:"integer"`
+	MaxRecords *int64 `min:"1" type:"integer"`
 
 	// The token returned by a previous call to indicate that there is more data
 	// available.
@@ -593,13 +593,13 @@ type DescribeAlarmsForMetricInput struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The name of the metric.
-	MetricName *string `type:"string" required:"true"`
+	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace of the metric.
-	Namespace *string `type:"string" required:"true"`
+	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// The period in seconds over which the statistic is applied.
-	Period *int64 `type:"integer"`
+	Period *int64 `min:"60" type:"integer"`
 
 	// The statistic for the metric.
 	Statistic *string `type:"string" enum:"Statistic"`
@@ -648,17 +648,17 @@ func (s DescribeAlarmsForMetricOutput) GoString() string {
 
 type DescribeAlarmsInput struct {
 	// The action name prefix.
-	ActionPrefix *string `type:"string"`
+	ActionPrefix *string `min:"1" type:"string"`
 
 	// The alarm name prefix. AlarmNames cannot be specified if this parameter is
 	// specified.
-	AlarmNamePrefix *string `type:"string"`
+	AlarmNamePrefix *string `min:"1" type:"string"`
 
 	// A list of alarm names to retrieve information for.
 	AlarmNames []*string `type:"list"`
 
 	// The maximum number of alarm descriptions to retrieve.
-	MaxRecords *int64 `type:"integer"`
+	MaxRecords *int64 `min:"1" type:"integer"`
 
 	// The token returned by a previous call to indicate that there is more data
 	// available.
@@ -715,10 +715,10 @@ func (s DescribeAlarmsOutput) GoString() string {
 // For examples that use one or more dimensions, see PutMetricData.
 type Dimension struct {
 	// The name of the dimension.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// The value representing the dimension measurement
-	Value *string `type:"string" required:"true"`
+	Value *string `min:"1" type:"string" required:"true"`
 
 	metadataDimension `json:"-" xml:"-"`
 }
@@ -740,10 +740,10 @@ func (s Dimension) GoString() string {
 // The DimensionFilter data type is used to filter ListMetrics results.
 type DimensionFilter struct {
 	// The dimension name to be matched.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// The value of the dimension to be matched.
-	Value *string `type:"string"`
+	Value *string `min:"1" type:"string"`
 
 	metadataDimensionFilter `json:"-" xml:"-"`
 }
@@ -850,14 +850,14 @@ type GetMetricStatisticsInput struct {
 	EndTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The name of the metric, with or without spaces.
-	MetricName *string `type:"string" required:"true"`
+	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace of the metric, with or without spaces.
-	Namespace *string `type:"string" required:"true"`
+	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// The granularity, in seconds, of the returned datapoints. Period must be at
 	// least 60 seconds and must be a multiple of 60. The default value is 60.
-	Period *int64 `type:"integer" required:"true"`
+	Period *int64 `min:"60" type:"integer" required:"true"`
 
 	// The time stamp to use for determining the first datapoint to return. The
 	// value specified is inclusive; results include datapoints with the time stamp
@@ -869,7 +869,7 @@ type GetMetricStatisticsInput struct {
 	// in the Amazon CloudWatch Developer Guide.
 	//
 	//  Valid Values: Average | Sum | SampleCount | Maximum | Minimum
-	Statistics []*string `type:"list" required:"true"`
+	Statistics []*string `min:"1" type:"list" required:"true"`
 
 	// The unit for the metric.
 	Unit *string `type:"string" enum:"StandardUnit"`
@@ -921,10 +921,10 @@ type ListMetricsInput struct {
 	Dimensions []*DimensionFilter `type:"list"`
 
 	// The name of the metric to filter against.
-	MetricName *string `type:"string"`
+	MetricName *string `min:"1" type:"string"`
 
 	// The namespace to filter against.
-	Namespace *string `type:"string"`
+	Namespace *string `min:"1" type:"string"`
 
 	// The token returned by a previous call to indicate that there is more data
 	// available.
@@ -984,10 +984,10 @@ type Metric struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The name of the metric.
-	MetricName *string `type:"string"`
+	MetricName *string `min:"1" type:"string"`
 
 	// The namespace of the metric.
-	Namespace *string `type:"string"`
+	Namespace *string `min:"1" type:"string"`
 
 	metadataMetric `json:"-" xml:"-"`
 }
@@ -1020,7 +1020,7 @@ type MetricAlarm struct {
 	AlarmActions []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the alarm.
-	AlarmArn *string `type:"string"`
+	AlarmArn *string `min:"1" type:"string"`
 
 	// The time stamp of the last update to the alarm configuration. Amazon CloudWatch
 	// uses Coordinated Universal Time (UTC) when returning time stamps, which do
@@ -1033,7 +1033,7 @@ type MetricAlarm struct {
 	AlarmDescription *string `type:"string"`
 
 	// The name of the alarm.
-	AlarmName *string `type:"string"`
+	AlarmName *string `min:"1" type:"string"`
 
 	// The arithmetic operation to use when comparing the specified Statistic and
 	// Threshold. The specified Statistic value is used as the first operand.
@@ -1043,7 +1043,7 @@ type MetricAlarm struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The number of periods over which data is compared to the specified threshold.
-	EvaluationPeriods *int64 `type:"integer"`
+	EvaluationPeriods *int64 `min:"1" type:"integer"`
 
 	// The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA
 	// state from any other state. Each action is specified as an Amazon Resource
@@ -1054,10 +1054,10 @@ type MetricAlarm struct {
 	InsufficientDataActions []*string `type:"list"`
 
 	// The name of the alarm's metric.
-	MetricName *string `type:"string"`
+	MetricName *string `min:"1" type:"string"`
 
 	// The namespace of alarm's associated metric.
-	Namespace *string `type:"string"`
+	Namespace *string `min:"1" type:"string"`
 
 	// The list of actions to execute when this alarm transitions into an OK state
 	// from any other state. Each action is specified as an Amazon Resource Number
@@ -1066,7 +1066,7 @@ type MetricAlarm struct {
 	OKActions []*string `type:"list"`
 
 	// The period in seconds over which the statistic is applied.
-	Period *int64 `type:"integer"`
+	Period *int64 `min:"60" type:"integer"`
 
 	// A human-readable explanation for the alarm's state.
 	StateReason *string `type:"string"`
@@ -1119,7 +1119,7 @@ type MetricDatum struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The name of the metric.
-	MetricName *string `type:"string" required:"true"`
+	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// A set of statistical values describing the metric.
 	StatisticValues *StatisticSet `type:"structure"`
@@ -1176,7 +1176,7 @@ type PutMetricAlarmInput struct {
 
 	// The descriptive name for the alarm. This name must be unique within the user's
 	// AWS account
-	AlarmName *string `type:"string" required:"true"`
+	AlarmName *string `min:"1" type:"string" required:"true"`
 
 	// The arithmetic operation to use when comparing the specified Statistic and
 	// Threshold. The specified Statistic value is used as the first operand.
@@ -1186,7 +1186,7 @@ type PutMetricAlarmInput struct {
 	Dimensions []*Dimension `type:"list"`
 
 	// The number of periods over which data is compared to the specified threshold.
-	EvaluationPeriods *int64 `type:"integer" required:"true"`
+	EvaluationPeriods *int64 `min:"1" type:"integer" required:"true"`
 
 	// The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA
 	// state from any other state. Each action is specified as an Amazon Resource
@@ -1195,10 +1195,10 @@ type PutMetricAlarmInput struct {
 	InsufficientDataActions []*string `type:"list"`
 
 	// The name for the alarm's associated metric.
-	MetricName *string `type:"string" required:"true"`
+	MetricName *string `min:"1" type:"string" required:"true"`
 
 	// The namespace for the alarm's associated metric.
-	Namespace *string `type:"string" required:"true"`
+	Namespace *string `min:"1" type:"string" required:"true"`
 
 	// The list of actions to execute when this alarm transitions into an OK state
 	// from any other state. Each action is specified as an Amazon Resource Number
@@ -1207,7 +1207,7 @@ type PutMetricAlarmInput struct {
 	OKActions []*string `type:"list"`
 
 	// The period in seconds over which the specified statistic is applied.
-	Period *int64 `type:"integer" required:"true"`
+	Period *int64 `min:"60" type:"integer" required:"true"`
 
 	// The statistic to apply to the alarm's associated metric.
 	Statistic *string `type:"string" required:"true" enum:"Statistic"`
@@ -1258,7 +1258,7 @@ type PutMetricDataInput struct {
 	MetricData []*MetricDatum `type:"list" required:"true"`
 
 	// The namespace for the metric data.
-	Namespace *string `type:"string" required:"true"`
+	Namespace *string `min:"1" type:"string" required:"true"`
 
 	metadataPutMetricDataInput `json:"-" xml:"-"`
 }
@@ -1298,7 +1298,7 @@ func (s PutMetricDataOutput) GoString() string {
 type SetAlarmStateInput struct {
 	// The descriptive name for the alarm. This name must be unique within the user's
 	// AWS account. The maximum length is 255 characters.
-	AlarmName *string `type:"string" required:"true"`
+	AlarmName *string `min:"1" type:"string" required:"true"`
 
 	// The reason that this alarm is set to this specific state (in human-readable
 	// text format)

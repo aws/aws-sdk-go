@@ -1613,7 +1613,7 @@ func (c *S3) UploadPartCopy(input *UploadPartCopyInput) (*UploadPartCopyOutput, 
 type AbortMultipartUploadInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
@@ -1860,7 +1860,7 @@ func (s CommonPrefix) GoString() string {
 type CompleteMultipartUploadInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	MultipartUpload *CompletedMultipartUpload `locationName:"CompleteMultipartUpload" type:"structure"`
 
@@ -1899,7 +1899,7 @@ type CompleteMultipartUploadOutput struct {
 	// date (expiry-date) and rule ID (rule-id). The value of rule-id is URL encoded.
 	Expiration *string `location:"header" locationName:"x-amz-expiration" type:"string"`
 
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	Location *string `type:"string"`
 
@@ -2082,7 +2082,7 @@ type CopyObjectInput struct {
 	// Allows grantee to write the ACL for the applicable object.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
@@ -2361,7 +2361,7 @@ type CreateMultipartUploadInput struct {
 	// Allows grantee to write the ACL for the applicable object.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
@@ -2427,7 +2427,7 @@ type CreateMultipartUploadOutput struct {
 	Bucket *string `locationName:"Bucket" type:"string"`
 
 	// Object key for which the multipart upload was initiated.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// If present, indicates that the requester was successfully charged for the
 	// request.
@@ -2767,7 +2767,7 @@ type DeleteMarkerEntry struct {
 	IsLatest *bool `type:"boolean"`
 
 	// The object key.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// Date and time the object was last modified.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -2797,7 +2797,7 @@ func (s DeleteMarkerEntry) GoString() string {
 type DeleteObjectInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// The concatenation of the authentication device's serial number, a space,
 	// and the value that is displayed on your authentication device.
@@ -2922,7 +2922,7 @@ type DeletedObject struct {
 
 	DeleteMarkerVersionId *string `type:"string"`
 
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	VersionId *string `type:"string"`
 
@@ -2971,7 +2971,7 @@ func (s Destination) GoString() string {
 type Error struct {
 	Code *string `type:"string"`
 
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	Message *string `type:"string"`
 
@@ -2996,7 +2996,7 @@ func (s Error) GoString() string {
 
 type ErrorDocument struct {
 	// The object key name to use when a 4XX class error occurs.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	metadataErrorDocument `json:"-" xml:"-"`
 }
@@ -3566,7 +3566,7 @@ func (s GetBucketWebsiteOutput) GoString() string {
 type GetObjectAclInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
@@ -3640,7 +3640,7 @@ type GetObjectInput struct {
 	// otherwise return a 412 (precondition failed).
 	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Downloads the specified range bytes of an object. For more information about
 	// the HTTP Range header, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
@@ -3821,7 +3821,7 @@ func (s GetObjectOutput) GoString() string {
 type GetObjectTorrentInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
@@ -3983,7 +3983,7 @@ type HeadObjectInput struct {
 	// otherwise return a 412 (precondition failed).
 	IfUnmodifiedSince *time.Time `location:"header" locationName:"If-Unmodified-Since" type:"timestamp" timestampFormat:"rfc822"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Downloads the specified range bytes of an object. For more information about
 	// the HTTP Range header, go to http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
@@ -4666,7 +4666,7 @@ func (s ListObjectsOutput) GoString() string {
 type ListPartsInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Sets the maximum number of parts to return.
 	MaxParts *int64 `location:"querystring" locationName:"max-parts" type:"integer"`
@@ -4712,7 +4712,7 @@ type ListPartsOutput struct {
 	IsTruncated *bool `type:"boolean"`
 
 	// Object key for which the multipart upload was initiated.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// Maximum number of parts that were allowed in the response.
 	MaxParts *int64 `type:"integer"`
@@ -4796,7 +4796,7 @@ type MultipartUpload struct {
 	Initiator *Initiator `type:"structure"`
 
 	// Key of the object for which the multipart upload was initiated.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	Owner *Owner `type:"structure"`
 
@@ -4963,7 +4963,7 @@ func (s NotificationConfigurationFilter) GoString() string {
 type Object struct {
 	ETag *string `type:"string"`
 
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -4993,7 +4993,7 @@ func (s Object) GoString() string {
 
 type ObjectIdentifier struct {
 	// Key name of the object to delete.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// VersionId for the specific version of the object to delete.
 	VersionId *string `type:"string"`
@@ -5023,7 +5023,7 @@ type ObjectVersion struct {
 	IsLatest *bool `type:"boolean"`
 
 	// The object key.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// Date and time the object was last modified.
 	LastModified *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -5681,7 +5681,7 @@ type PutObjectAclInput struct {
 	// Allows grantee to write the ACL for the applicable bucket.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
@@ -5773,7 +5773,7 @@ type PutObjectInput struct {
 	// Allows grantee to write the ACL for the applicable object.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// A map of metadata to store with the object in S3.
 	Metadata map[string]*string `location:"headers" locationName:"x-amz-meta-" type:"map"`
@@ -6098,7 +6098,7 @@ func (s RequestPaymentConfiguration) GoString() string {
 type RestoreObjectInput struct {
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Confirms that the requester knows that she or he will be charged for the
 	// request. Bucket owners need not specify this parameter in their requests.
@@ -6247,7 +6247,7 @@ func (s Rule) GoString() string {
 
 type Tag struct {
 	// Name of the tag.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// Value of the tag.
 	Value *string `type:"string" required:"true"`
@@ -6447,7 +6447,7 @@ type UploadPartCopyInput struct {
 	// key was transmitted without error.
 	CopySourceSSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-copy-source-server-side-encryption-customer-key-MD5" type:"string"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Part number of part being copied. This is a positive integer between 1 and
 	// 10,000.
@@ -6550,7 +6550,7 @@ type UploadPartInput struct {
 	// body cannot be determined automatically.
 	ContentLength *int64 `location:"header" locationName:"Content-Length" type:"integer"`
 
-	Key *string `location:"uri" locationName:"Key" type:"string" required:"true"`
+	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
 
 	// Part number of part being uploaded. This is a positive integer between 1
 	// and 10,000.

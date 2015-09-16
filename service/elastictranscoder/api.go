@@ -602,7 +602,7 @@ type Artwork struct {
 	// If the file name includes a prefix, for example, cooking/pie.jpg, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
-	InputKey *string `type:"string"`
+	InputKey *string `min:"1" type:"string"`
 
 	// The maximum height of the output album art in pixels. If you specify auto,
 	// Elastic Transcoder uses 600 as the default value. If you specify a numeric
@@ -979,12 +979,12 @@ type CaptionSource struct {
 
 	// The name of the sidecar caption file that you want Elastic Transcoder to
 	// include in the output file.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The label of the caption shown in the player when choosing a language. We
 	// recommend that you put the caption language name here, in the language of
 	// the captions.
-	Label *string `type:"string"`
+	Label *string `min:"1" type:"string"`
 
 	// A string that specifies the language of the caption. Specify this as one
 	// of:
@@ -995,7 +995,7 @@ type CaptionSource struct {
 	//
 	//  For more information on ISO language codes and language names, see the
 	// List of ISO 639-1 codes.
-	Language *string `type:"string"`
+	Language *string `min:"1" type:"string"`
 
 	// For clip generation or captions that do not start at the same time as the
 	// associated video file, the TimeOffset tells Elastic Transcoder how much of
@@ -1103,7 +1103,7 @@ type CreateJobInput struct {
 	// The value, if any, that you want Elastic Transcoder to prepend to the names
 	// of all files that this job creates, including output files, thumbnails, and
 	// playlists.
-	OutputKeyPrefix *string `type:"string"`
+	OutputKeyPrefix *string `min:"1" type:"string"`
 
 	// A section of the request body that provides information about the transcoded
 	// (target) files. We recommend that you use the Outputs syntax instead of the
@@ -1215,7 +1215,7 @@ type CreateJobOutput struct {
 	// in the Amazon S3 bucket specified by the OutputBucket object in the pipeline
 	// that is specified by the pipeline ID. If a file with the specified name already
 	// exists in the output bucket, the job fails.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The Id of the preset to use for this job. The preset determines the audio,
 	// video, and thumbnail settings that Elastic Transcoder uses for transcoding.
@@ -1323,7 +1323,7 @@ type CreateJobPlaylist struct {
 	// to the file name (.m3u8 for HLSv3 and HLSv4 playlists, and .ism and .ismc
 	// for Smooth playlists). If you include a file extension in Name, the file
 	// name will have two extensions.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// For each output in this job that you want to include in a master playlist,
 	// the value of the Outputs:Key object.
@@ -1475,7 +1475,7 @@ type CreatePipelineInput struct {
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic that you want to
 	// notify to report job status.
@@ -1624,7 +1624,7 @@ type CreatePresetInput struct {
 
 	// The name of the preset. We recommend that the name be unique within the AWS
 	// account, but uniqueness is not enforced.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// A section of the request body that specifies the thumbnail parameters, if
 	// any.
@@ -1970,7 +1970,7 @@ type Job struct {
 	// of all files that this job creates, including output files, thumbnails, and
 	// playlists. We recommend that you add a / or some other delimiter to the end
 	// of the OutputKeyPrefix.
-	OutputKeyPrefix *string `type:"string"`
+	OutputKeyPrefix *string `min:"1" type:"string"`
 
 	// Information about the output files. We recommend that you use the Outputs
 	// syntax for all jobs, even when you want Elastic Transcoder to transcode a
@@ -2127,7 +2127,7 @@ type JobInput struct {
 	// If the file name includes a prefix, such as cooking/lasagna.mpg, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// This value must be auto, which causes Elastic Transcoder to automatically
 	// detect the resolution of the input file.
@@ -2244,7 +2244,7 @@ type JobOutput struct {
 	// The name to assign to the transcoded file. Elastic Transcoder saves the file
 	// in the Amazon S3 bucket specified by the OutputBucket object in the pipeline
 	// that is specified by the pipeline ID.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The value of the Id object for the preset that you want to use for this job.
 	// The preset determines the audio, video, and thumbnail settings that Elastic
@@ -2384,13 +2384,13 @@ type JobWatermark struct {
 	//  If the file name includes a prefix, for example, logos/128x64.png, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
-	InputKey *string `type:"string"`
+	InputKey *string `min:"1" type:"string"`
 
 	// The ID of the watermark settings that Elastic Transcoder uses to add watermarks
 	// to the video during transcoding. The settings are in the preset specified
 	// by Preset for the current output. In that preset, the value of Watermarks
 	// Id tells Elastic Transcoder which settings to use.
-	PresetWatermarkId *string `type:"string"`
+	PresetWatermarkId *string `min:"1" type:"string"`
 
 	metadataJobWatermark `json:"-" xml:"-"`
 }
@@ -2691,7 +2691,7 @@ type Permission struct {
 	// ID for an AWS account, an origin access identity for a CloudFront distribution,
 	// the registered email address of an AWS account, or a predefined Amazon S3
 	// group.
-	Grantee *string `type:"string"`
+	Grantee *string `min:"1" type:"string"`
 
 	// The type of value that appears in the Grantee object:   Canonical: Either
 	// the canonical user ID for an AWS account or an origin access identity for
@@ -2773,7 +2773,7 @@ type Pipeline struct {
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic that you want to
 	// notify to report job status.
@@ -2948,7 +2948,7 @@ type PlayReadyDrm struct {
 	// header is referenced in the protection header of the client manifest for
 	// Smooth Streaming outputs, and in the EXT-X-DXDRM and EXT-XDXDRMINFO metadata
 	// tags for HLS playlist outputs. An example URL looks like this: https://www.example.com/exampleKey/
-	LicenseAcquisitionUrl *string `type:"string"`
+	LicenseAcquisitionUrl *string `min:"1" type:"string"`
 
 	metadataPlayReadyDrm `json:"-" xml:"-"`
 }
@@ -2991,7 +2991,7 @@ type Playlist struct {
 	// to the file name (.m3u8 for HLSv3 and HLSv4 playlists, and .ism and .ismc
 	// for Smooth playlists). If you include a file extension in Name, the file
 	// name will have two extensions.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// For each output in this job that you want to include in a master playlist,
 	// the value of the Outputs:Key object.
@@ -3085,7 +3085,7 @@ type Preset struct {
 	Id *string `type:"string"`
 
 	// The name of the preset.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// A section of the response body that provides information about the thumbnail
 	// preset values, if any.
@@ -3159,7 +3159,7 @@ type PresetWatermark struct {
 
 	// A unique identifier for the settings for one watermark. The value of Id can
 	// be up to 40 characters long.
-	Id *string `type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// The maximum height of the watermark in one of the following formats:  number
 	// of pixels (px): The minimum value is 16 pixels, and the maximum value is
@@ -3685,7 +3685,7 @@ type UpdatePipelineInput struct {
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic or topics to notify
 	// in order to report job status.

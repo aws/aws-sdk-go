@@ -612,7 +612,7 @@ type AddPermissionInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// The principal who is getting this permission. It can be Amazon S3 service
 	// Principal ("s3.amazonaws.com") if you want Amazon S3 to invoke the function,
@@ -642,7 +642,7 @@ type AddPermissionInput struct {
 	SourceArn *string `type:"string"`
 
 	// A unique statement identifier.
-	StatementId *string `type:"string" required:"true"`
+	StatementId *string `min:"1" type:"string" required:"true"`
 
 	metadataAddPermissionInput `json:"-" xml:"-"`
 }
@@ -687,7 +687,7 @@ type CreateEventSourceMappingInput struct {
 	// The largest number of records that AWS Lambda will retrieve from your event
 	// source at the time of invoking your function. Your function receives an event
 	// with all the retrieved records. The default is 100 records.
-	BatchSize *int64 `type:"integer"`
+	BatchSize *int64 `min:"1" type:"integer"`
 
 	// Indicates whether AWS Lambda should begin polling the event source, the default
 	// is not enabled.
@@ -708,7 +708,7 @@ type CreateEventSourceMappingInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `type:"string" required:"true"`
+	FunctionName *string `min:"1" type:"string" required:"true"`
 
 	// The position in the stream where AWS Lambda should start reading. For more
 	// information, go to ShardIteratorType (http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetShardIterator.html#Kinesis-GetShardIterator-request-ShardIteratorType)
@@ -749,7 +749,7 @@ type CreateFunctionInput struct {
 	// 64 character in length. The function names appear in the console and are
 	// returned in the ListFunctions API. Function names are used to specify functions
 	// to other AWS Lambda APIs, such as Invoke.
-	FunctionName *string `type:"string" required:"true"`
+	FunctionName *string `min:"1" type:"string" required:"true"`
 
 	// The function within your code that Lambda calls to begin execution. For Node.js,
 	// it is the module-name.export value in your function. For Java, it can be
@@ -763,7 +763,7 @@ type CreateFunctionInput struct {
 	// a database operation might need less memory compared to an image processing
 	// function. The default value is 128 MB. The value must be a multiple of 64
 	// MB.
-	MemorySize *int64 `type:"integer"`
+	MemorySize *int64 `min:"128" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that Lambda assumes when it
 	// executes your function to access any other Amazon Web Services (AWS) resources.
@@ -777,7 +777,7 @@ type CreateFunctionInput struct {
 	// The function execution time at which Lambda should terminate the function.
 	// Because the execution time has cost implications, we recommend you set this
 	// value based on your expected execution time. The default is 3 seconds.
-	Timeout *int64 `type:"integer"`
+	Timeout *int64 `min:"1" type:"integer"`
 
 	metadataCreateFunctionInput `json:"-" xml:"-"`
 }
@@ -826,7 +826,7 @@ type DeleteFunctionInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteFunctionInput `json:"-" xml:"-"`
 }
@@ -868,7 +868,7 @@ type EventSourceMappingConfiguration struct {
 	// The largest number of records that AWS Lambda will retrieve from your event
 	// source at the time of invoking your function. Your function receives an event
 	// with all the retrieved records.
-	BatchSize *int64 `type:"integer"`
+	BatchSize *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Kinesis stream that is the source
 	// of events.
@@ -916,13 +916,13 @@ type FunctionCode struct {
 	// Amazon S3 bucket name where the .zip file containing your deployment package
 	// is stored. This bucket must reside in the same AWS region where you are creating
 	// the Lambda function.
-	S3Bucket *string `type:"string"`
+	S3Bucket *string `min:"3" type:"string"`
 
 	// The Amazon S3 object (the deployment package) key name you want to upload.
-	S3Key *string `type:"string"`
+	S3Key *string `min:"1" type:"string"`
 
 	// The Amazon S3 object (the deployment package) version you want to upload.
-	S3ObjectVersion *string `type:"string"`
+	S3ObjectVersion *string `min:"1" type:"string"`
 
 	// A base64-encoded .zip file containing your deployment package. For more information
 	// about creating a .zip file, go to Execution Permissions (http://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role.html)
@@ -984,7 +984,7 @@ type FunctionConfiguration struct {
 	FunctionArn *string `type:"string"`
 
 	// The name of the function.
-	FunctionName *string `type:"string"`
+	FunctionName *string `min:"1" type:"string"`
 
 	// The function Lambda calls to begin executing your function.
 	Handler *string `type:"string"`
@@ -994,7 +994,7 @@ type FunctionConfiguration struct {
 
 	// The memory size, in MB, you configured for the function. Must be a multiple
 	// of 64 MB.
-	MemorySize *int64 `type:"integer"`
+	MemorySize *int64 `min:"128" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that Lambda assumes when it
 	// executes your function to access any other Amazon Web Services (AWS) resources.
@@ -1006,7 +1006,7 @@ type FunctionConfiguration struct {
 	// The function execution time at which Lambda should terminate the function.
 	// Because the execution time has cost implications, we recommend you set this
 	// value based on your expected execution time. The default is 3 seconds.
-	Timeout *int64 `type:"integer"`
+	Timeout *int64 `min:"1" type:"integer"`
 
 	metadataFunctionConfiguration `json:"-" xml:"-"`
 }
@@ -1056,7 +1056,7 @@ type GetFunctionConfigurationInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	metadataGetFunctionConfigurationInput `json:"-" xml:"-"`
 }
@@ -1084,7 +1084,7 @@ type GetFunctionInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	metadataGetFunctionInput `json:"-" xml:"-"`
 }
@@ -1137,7 +1137,7 @@ type GetPolicyInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	metadataGetPolicyInput `json:"-" xml:"-"`
 }
@@ -1180,7 +1180,7 @@ func (s GetPolicyOutput) GoString() string {
 
 type InvokeAsyncInput struct {
 	// The Lambda function name.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// JSON that you want to provide to your Lambda function as input.
 	InvokeArgs io.ReadSeeker `type:"blob" required:"true"`
@@ -1242,7 +1242,7 @@ type InvokeInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// By default, the Invoke API assumes "RequestResponse" invocation type. You
 	// can optionally request asynchronous execution by specifying "Event" as the
@@ -1337,7 +1337,7 @@ type ListEventSourceMappingsInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"querystring" locationName:"FunctionName" type:"string"`
+	FunctionName *string `location:"querystring" locationName:"FunctionName" min:"1" type:"string"`
 
 	// Optional string. An opaque pagination token returned from a previous ListEventSourceMappings
 	// operation. If present, specifies to continue the list from where the returning
@@ -1346,7 +1346,7 @@ type ListEventSourceMappingsInput struct {
 
 	// Optional integer. Specifies the maximum number of event sources to return
 	// in response. This value must be greater than 0.
-	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
 	metadataListEventSourceMappingsInput `json:"-" xml:"-"`
 }
@@ -1397,7 +1397,7 @@ type ListFunctionsInput struct {
 
 	// Optional integer. Specifies the maximum number of AWS Lambda functions to
 	// return in response. This parameter value must be greater than 0.
-	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 
 	metadataListFunctionsInput `json:"-" xml:"-"`
 }
@@ -1450,10 +1450,10 @@ type RemovePermissionInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Statement ID of the permission to remove.
-	StatementId *string `location:"uri" locationName:"StatementId" type:"string" required:"true"`
+	StatementId *string `location:"uri" locationName:"StatementId" min:"1" type:"string" required:"true"`
 
 	metadataRemovePermissionInput `json:"-" xml:"-"`
 }
@@ -1493,7 +1493,7 @@ func (s RemovePermissionOutput) GoString() string {
 type UpdateEventSourceMappingInput struct {
 	// The maximum number of stream records that can be sent to your Lambda function
 	// for a single invocation.
-	BatchSize *int64 `type:"integer"`
+	BatchSize *int64 `min:"1" type:"integer"`
 
 	// Specifies whether AWS Lambda should actively poll the stream or not. If disabled,
 	// AWS Lambda will not poll the stream.
@@ -1507,7 +1507,7 @@ type UpdateEventSourceMappingInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `type:"string"`
+	FunctionName *string `min:"1" type:"string"`
 
 	// The event source mapping identifier.
 	UUID *string `location:"uri" locationName:"UUID" type:"string" required:"true"`
@@ -1538,18 +1538,18 @@ type UpdateFunctionCodeInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// Amazon S3 bucket name where the .zip file containing your deployment package
 	// is stored. This bucket must reside in the same AWS region where you are creating
 	// the Lambda function.
-	S3Bucket *string `type:"string"`
+	S3Bucket *string `min:"3" type:"string"`
 
 	// The Amazon S3 object (the deployment package) key name you want to upload.
-	S3Key *string `type:"string"`
+	S3Key *string `min:"1" type:"string"`
 
 	// The Amazon S3 object (the deployment package) version you want to upload.
-	S3ObjectVersion *string `type:"string"`
+	S3ObjectVersion *string `min:"1" type:"string"`
 
 	// Based64-encoded .zip file containing your packaged source code.
 	ZipFile []byte `type:"blob"`
@@ -1584,7 +1584,7 @@ type UpdateFunctionConfigurationInput struct {
 	// allows you to specify only the account ID qualifier (for example, "account-id:Thumbnail").
 	// Note that the length constraint applies only to the ARN. If you specify only
 	// the function name, it is limited to 64 character in length.
-	FunctionName *string `location:"uri" locationName:"FunctionName" type:"string" required:"true"`
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
 	// The function that Lambda calls to begin executing your function. For Node.js,
 	// it is the module-name.export value in your function.
@@ -1596,7 +1596,7 @@ type UpdateFunctionConfigurationInput struct {
 	// a database operation might need less memory compared to an image processing
 	// function. The default value is 128 MB. The value must be a multiple of 64
 	// MB.
-	MemorySize *int64 `type:"integer"`
+	MemorySize *int64 `min:"128" type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that Lambda will assume when
 	// it executes your function.
@@ -1605,7 +1605,7 @@ type UpdateFunctionConfigurationInput struct {
 	// The function execution time at which AWS Lambda should terminate the function.
 	// Because the execution time has cost implications, we recommend you set this
 	// value based on your expected execution time. The default is 3 seconds.
-	Timeout *int64 `type:"integer"`
+	Timeout *int64 `min:"1" type:"integer"`
 
 	metadataUpdateFunctionConfigurationInput `json:"-" xml:"-"`
 }

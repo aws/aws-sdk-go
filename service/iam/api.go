@@ -4155,7 +4155,7 @@ func (c *IAM) UploadSigningCertificate(input *UploadSigningCertificateInput) (*U
 // key, you must create a new access key.
 type AccessKey struct {
 	// The ID for this access key.
-	AccessKeyId *string `type:"string" required:"true"`
+	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4168,7 +4168,7 @@ type AccessKey struct {
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user that the access key is associated with.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataAccessKey `json:"-" xml:"-"`
 }
@@ -4250,7 +4250,7 @@ func (s AccessKeyLastUsed) GoString() string {
 // This data type is used as a response element in the ListAccessKeys action.
 type AccessKeyMetadata struct {
 	// The ID for this access key.
-	AccessKeyId *string `type:"string"`
+	AccessKeyId *string `min:"16" type:"string"`
 
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4260,7 +4260,7 @@ type AccessKeyMetadata struct {
 	Status *string `type:"string" enum:"statusType"`
 
 	// The name of the IAM user that the key is associated with.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataAccessKeyMetadata `json:"-" xml:"-"`
 }
@@ -4281,12 +4281,12 @@ func (s AccessKeyMetadata) GoString() string {
 
 type AddClientIDToOpenIDConnectProviderInput struct {
 	// The client ID (also known as audience) to add to the IAM OpenID Connect provider.
-	ClientID *string `type:"string" required:"true"`
+	ClientID *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to add the client ID to. You can get a list of OIDC provider ARNs by using
 	// the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderArn *string `type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataAddClientIDToOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -4325,10 +4325,10 @@ func (s AddClientIDToOpenIDConnectProviderOutput) GoString() string {
 
 type AddRoleToInstanceProfileInput struct {
 	// The name of the instance profile to update.
-	InstanceProfileName *string `type:"string" required:"true"`
+	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to add.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataAddRoleToInstanceProfileInput `json:"-" xml:"-"`
 }
@@ -4367,10 +4367,10 @@ func (s AddRoleToInstanceProfileOutput) GoString() string {
 
 type AddUserToGroupInput struct {
 	// The name of the group to update.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user to add.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataAddUserToGroupInput `json:"-" xml:"-"`
 }
@@ -4409,14 +4409,14 @@ func (s AddUserToGroupOutput) GoString() string {
 
 type AttachGroupPolicyInput struct {
 	// The name (friendly name, not ARN) of the group to attach the policy to.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	metadataAttachGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -4459,10 +4459,10 @@ type AttachRolePolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the role to attach the policy to.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataAttachRolePolicyInput `json:"-" xml:"-"`
 }
@@ -4505,10 +4505,10 @@ type AttachUserPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the user to attach the policy to.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataAttachUserPolicyInput `json:"-" xml:"-"`
 }
@@ -4561,10 +4561,10 @@ type AttachedPolicy struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string"`
+	PolicyArn *string `min:"20" type:"string"`
 
 	// The friendly name of the attached policy.
-	PolicyName *string `type:"string"`
+	PolicyName *string `min:"1" type:"string"`
 
 	metadataAttachedPolicy `json:"-" xml:"-"`
 }
@@ -4586,10 +4586,10 @@ func (s AttachedPolicy) GoString() string {
 type ChangePasswordInput struct {
 	// The new password. The new password must conform to the AWS account's password
 	// policy, if one exists.
-	NewPassword *string `type:"string" required:"true"`
+	NewPassword *string `min:"1" type:"string" required:"true"`
 
 	// The IAM user's current password.
-	OldPassword *string `type:"string" required:"true"`
+	OldPassword *string `min:"1" type:"string" required:"true"`
 
 	metadataChangePasswordInput `json:"-" xml:"-"`
 }
@@ -4635,7 +4635,7 @@ func (s ChangePasswordOutput) GoString() string {
 type ContextEntry struct {
 	// The full name of a condition context key, including the service prefix. For
 	// example, aws:SourceIp or s3:VersionId.
-	ContextKeyName *string `type:"string"`
+	ContextKeyName *string `min:"5" type:"string"`
 
 	// The data type of the value (or values) specified in the ContextKeyValues
 	// parameter.
@@ -4665,7 +4665,7 @@ func (s ContextEntry) GoString() string {
 
 type CreateAccessKeyInput struct {
 	// The user name that the new key will belong to.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataCreateAccessKeyInput `json:"-" xml:"-"`
 }
@@ -4708,7 +4708,7 @@ func (s CreateAccessKeyOutput) GoString() string {
 
 type CreateAccountAliasInput struct {
 	// The account alias to create.
-	AccountAlias *string `type:"string" required:"true"`
+	AccountAlias *string `min:"3" type:"string" required:"true"`
 
 	metadataCreateAccountAliasInput `json:"-" xml:"-"`
 }
@@ -4747,7 +4747,7 @@ func (s CreateAccountAliasOutput) GoString() string {
 
 type CreateGroupInput struct {
 	// The name of the group to create. Do not include the path in this value.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the group. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -4755,7 +4755,7 @@ type CreateGroupInput struct {
 	//
 	// This parameter is optional. If it is not included, it defaults to a slash
 	// (/).
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	metadataCreateGroupInput `json:"-" xml:"-"`
 }
@@ -4798,7 +4798,7 @@ func (s CreateGroupOutput) GoString() string {
 
 type CreateInstanceProfileInput struct {
 	// The name of the instance profile to create.
-	InstanceProfileName *string `type:"string" required:"true"`
+	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the instance profile. For more information about paths, see IAM
 	// Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -4806,7 +4806,7 @@ type CreateInstanceProfileInput struct {
 	//
 	// This parameter is optional. If it is not included, it defaults to a slash
 	// (/).
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	metadataCreateInstanceProfileInput `json:"-" xml:"-"`
 }
@@ -4849,13 +4849,13 @@ func (s CreateInstanceProfileOutput) GoString() string {
 
 type CreateLoginProfileInput struct {
 	// The new password for the user.
-	Password *string `type:"string" required:"true"`
+	Password *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the user is required to set a new password on next sign-in.
 	PasswordResetRequired *bool `type:"boolean"`
 
 	// The name of the user to create a password for.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateLoginProfileInput `json:"-" xml:"-"`
 }
@@ -4940,7 +4940,7 @@ type CreateOpenIDConnectProviderInput struct {
 	// You cannot register the same provider multiple times in a single AWS account.
 	// If you try to submit a URL that has already been used for an OpenID Connect
 	// provider in the AWS account, you will get an error.
-	Url *string `type:"string" required:"true"`
+	Url *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -4963,7 +4963,7 @@ func (s CreateOpenIDConnectProviderInput) GoString() string {
 type CreateOpenIDConnectProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect provider that was
 	// created. For more information, see OpenIDConnectProviderListEntry.
-	OpenIDConnectProviderArn *string `type:"string"`
+	OpenIDConnectProviderArn *string `min:"20" type:"string"`
 
 	metadataCreateOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
@@ -5002,10 +5002,10 @@ type CreatePolicyInput struct {
 	Path *string `type:"string"`
 
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreatePolicyInput `json:"-" xml:"-"`
 }
@@ -5052,10 +5052,10 @@ type CreatePolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether to set this version as the policy's default version.
 	//
@@ -5109,7 +5109,7 @@ func (s CreatePolicyVersionOutput) GoString() string {
 
 type CreateRoleInput struct {
 	// The policy that grants an entity permission to assume the role.
-	AssumeRolePolicyDocument *string `type:"string" required:"true"`
+	AssumeRolePolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The path to the role. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -5117,10 +5117,10 @@ type CreateRoleInput struct {
 	//
 	// This parameter is optional. If it is not included, it defaults to a slash
 	// (/).
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The name of the role to create.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateRoleInput `json:"-" xml:"-"`
 }
@@ -5163,7 +5163,7 @@ func (s CreateRoleOutput) GoString() string {
 
 type CreateSAMLProviderInput struct {
 	// The name of the provider to create.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// An XML document generated by an identity provider (IdP) that supports SAML
 	// 2.0. The document includes the issuer's name, expiration information, and
@@ -5173,7 +5173,7 @@ type CreateSAMLProviderInput struct {
 	//
 	// For more information, see About SAML 2.0-based Federation (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html)
 	// in the IAM User Guide
-	SAMLMetadataDocument *string `type:"string" required:"true"`
+	SAMLMetadataDocument *string `min:"1000" type:"string" required:"true"`
 
 	metadataCreateSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -5195,7 +5195,7 @@ func (s CreateSAMLProviderInput) GoString() string {
 // Contains the response to a successful CreateSAMLProvider request.
 type CreateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
-	SAMLProviderArn *string `type:"string"`
+	SAMLProviderArn *string `min:"20" type:"string"`
 
 	metadataCreateSAMLProviderOutput `json:"-" xml:"-"`
 }
@@ -5221,10 +5221,10 @@ type CreateUserInput struct {
 	//
 	// This parameter is optional. If it is not included, it defaults to a slash
 	// (/).
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The name of the user to create.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateUserInput `json:"-" xml:"-"`
 }
@@ -5272,11 +5272,11 @@ type CreateVirtualMFADeviceInput struct {
 	//
 	// This parameter is optional. If it is not included, it defaults to a slash
 	// (/).
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The name of the virtual MFA device. Use with path to uniquely identify a
 	// virtual MFA device.
-	VirtualMFADeviceName *string `type:"string" required:"true"`
+	VirtualMFADeviceName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateVirtualMFADeviceInput `json:"-" xml:"-"`
 }
@@ -5320,10 +5320,10 @@ func (s CreateVirtualMFADeviceOutput) GoString() string {
 type DeactivateMFADeviceInput struct {
 	// The serial number that uniquely identifies the MFA device. For virtual MFA
 	// devices, the serial number is the device ARN.
-	SerialNumber *string `type:"string" required:"true"`
+	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The name of the user whose MFA device you want to deactivate.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeactivateMFADeviceInput `json:"-" xml:"-"`
 }
@@ -5363,10 +5363,10 @@ func (s DeactivateMFADeviceOutput) GoString() string {
 type DeleteAccessKeyInput struct {
 	// The access key ID for the access key ID and secret access key you want to
 	// delete.
-	AccessKeyId *string `type:"string" required:"true"`
+	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The name of the user whose key you want to delete.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataDeleteAccessKeyInput `json:"-" xml:"-"`
 }
@@ -5405,7 +5405,7 @@ func (s DeleteAccessKeyOutput) GoString() string {
 
 type DeleteAccountAliasInput struct {
 	// The name of the account alias to delete.
-	AccountAlias *string `type:"string" required:"true"`
+	AccountAlias *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteAccountAliasInput `json:"-" xml:"-"`
 }
@@ -5480,7 +5480,7 @@ func (s DeleteAccountPasswordPolicyOutput) GoString() string {
 
 type DeleteGroupInput struct {
 	// The name of the group to delete.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteGroupInput `json:"-" xml:"-"`
 }
@@ -5520,10 +5520,10 @@ func (s DeleteGroupOutput) GoString() string {
 type DeleteGroupPolicyInput struct {
 	// The name (friendly name, not ARN) identifying the group that the policy is
 	// embedded in.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name identifying the policy document to delete.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -5562,7 +5562,7 @@ func (s DeleteGroupPolicyOutput) GoString() string {
 
 type DeleteInstanceProfileInput struct {
 	// The name of the instance profile to delete.
-	InstanceProfileName *string `type:"string" required:"true"`
+	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteInstanceProfileInput `json:"-" xml:"-"`
 }
@@ -5601,7 +5601,7 @@ func (s DeleteInstanceProfileOutput) GoString() string {
 
 type DeleteLoginProfileInput struct {
 	// The name of the user whose password you want to delete.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteLoginProfileInput `json:"-" xml:"-"`
 }
@@ -5642,7 +5642,7 @@ type DeleteOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect provider to delete.
 	// You can get a list of OpenID Connect provider ARNs by using the ListOpenIDConnectProviders
 	// action.
-	OpenIDConnectProviderArn *string `type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataDeleteOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -5685,7 +5685,7 @@ type DeletePolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	metadataDeletePolicyInput `json:"-" xml:"-"`
 }
@@ -5728,7 +5728,7 @@ type DeletePolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The policy version to delete.
 	//
@@ -5774,7 +5774,7 @@ func (s DeletePolicyVersionOutput) GoString() string {
 
 type DeleteRoleInput struct {
 	// The name of the role to delete.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteRoleInput `json:"-" xml:"-"`
 }
@@ -5813,11 +5813,11 @@ func (s DeleteRoleOutput) GoString() string {
 
 type DeleteRolePolicyInput struct {
 	// The name identifying the policy document to delete.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) identifying the role that the policy is
 	// embedded in.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteRolePolicyInput `json:"-" xml:"-"`
 }
@@ -5856,7 +5856,7 @@ func (s DeleteRolePolicyOutput) GoString() string {
 
 type DeleteSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to delete.
-	SAMLProviderArn *string `type:"string" required:"true"`
+	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataDeleteSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -5895,10 +5895,10 @@ func (s DeleteSAMLProviderOutput) GoString() string {
 
 type DeleteSSHPublicKeyInput struct {
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyId *string `type:"string" required:"true"`
+	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteSSHPublicKeyInput `json:"-" xml:"-"`
 }
@@ -5937,7 +5937,7 @@ func (s DeleteSSHPublicKeyOutput) GoString() string {
 
 type DeleteServerCertificateInput struct {
 	// The name of the server certificate you want to delete.
-	ServerCertificateName *string `type:"string" required:"true"`
+	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteServerCertificateInput `json:"-" xml:"-"`
 }
@@ -5976,10 +5976,10 @@ func (s DeleteServerCertificateOutput) GoString() string {
 
 type DeleteSigningCertificateInput struct {
 	// The ID of the signing certificate to delete.
-	CertificateId *string `type:"string" required:"true"`
+	CertificateId *string `min:"24" type:"string" required:"true"`
 
 	// The name of the user the signing certificate belongs to.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataDeleteSigningCertificateInput `json:"-" xml:"-"`
 }
@@ -6018,7 +6018,7 @@ func (s DeleteSigningCertificateOutput) GoString() string {
 
 type DeleteUserInput struct {
 	// The name of the user to delete.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteUserInput `json:"-" xml:"-"`
 }
@@ -6057,11 +6057,11 @@ func (s DeleteUserOutput) GoString() string {
 
 type DeleteUserPolicyInput struct {
 	// The name identifying the policy document to delete.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) identifying the user that the policy is
 	// embedded in.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteUserPolicyInput `json:"-" xml:"-"`
 }
@@ -6101,7 +6101,7 @@ func (s DeleteUserPolicyOutput) GoString() string {
 type DeleteVirtualMFADeviceInput struct {
 	// The serial number that uniquely identifies the MFA device. For virtual MFA
 	// devices, the serial number is the same as the ARN.
-	SerialNumber *string `type:"string" required:"true"`
+	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	metadataDeleteVirtualMFADeviceInput `json:"-" xml:"-"`
 }
@@ -6140,14 +6140,14 @@ func (s DeleteVirtualMFADeviceOutput) GoString() string {
 
 type DetachGroupPolicyInput struct {
 	// The name (friendly name, not ARN) of the group to detach the policy from.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	metadataDetachGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -6190,10 +6190,10 @@ type DetachRolePolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the role to detach the policy from.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataDetachRolePolicyInput `json:"-" xml:"-"`
 }
@@ -6236,10 +6236,10 @@ type DetachUserPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The name (friendly name, not ARN) of the user to detach the policy from.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataDetachUserPolicyInput `json:"-" xml:"-"`
 }
@@ -6278,17 +6278,17 @@ func (s DetachUserPolicyOutput) GoString() string {
 
 type EnableMFADeviceInput struct {
 	// An authentication code emitted by the device.
-	AuthenticationCode1 *string `type:"string" required:"true"`
+	AuthenticationCode1 *string `min:"6" type:"string" required:"true"`
 
 	// A subsequent authentication code emitted by the device.
-	AuthenticationCode2 *string `type:"string" required:"true"`
+	AuthenticationCode2 *string `min:"6" type:"string" required:"true"`
 
 	// The serial number that uniquely identifies the MFA device. For virtual MFA
 	// devices, the serial number is the device ARN.
-	SerialNumber *string `type:"string" required:"true"`
+	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The name of the user for whom you want to enable the MFA device.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataEnableMFADeviceInput `json:"-" xml:"-"`
 }
@@ -6330,13 +6330,13 @@ func (s EnableMFADeviceOutput) GoString() string {
 // This data type is used by the return parameter of SimulatePolicy.
 type EvaluationResult struct {
 	// The name of the API action tested on the indicated resource.
-	EvalActionName *string `type:"string" required:"true"`
+	EvalActionName *string `min:"3" type:"string" required:"true"`
 
 	// The result of the simulation.
 	EvalDecision *string `type:"string" required:"true" enum:"PolicyEvaluationDecisionType"`
 
 	// The ARN of the resource that the indicated API action was tested on.
-	EvalResourceName *string `type:"string" required:"true"`
+	EvalResourceName *string `min:"1" type:"string" required:"true"`
 
 	// A list of the statements in the input policies that determine the result
 	// for this scenario. Remember that even if multiple statements allow the action
@@ -6418,7 +6418,7 @@ func (s GenerateCredentialReportOutput) GoString() string {
 
 type GetAccessKeyLastUsedInput struct {
 	// The identifier of an access key.
-	AccessKeyId *string `type:"string" required:"true"`
+	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	metadataGetAccessKeyLastUsedInput `json:"-" xml:"-"`
 }
@@ -6445,7 +6445,7 @@ type GetAccessKeyLastUsedOutput struct {
 	AccessKeyLastUsed *AccessKeyLastUsed `type:"structure"`
 
 	// The name of the AWS IAM user that owns this access key.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataGetAccessKeyLastUsedOutput `json:"-" xml:"-"`
 }
@@ -6473,7 +6473,7 @@ type GetAccountAuthorizationDetailsInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -6484,7 +6484,7 @@ type GetAccountAuthorizationDetailsInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	metadataGetAccountAuthorizationDetailsInput `json:"-" xml:"-"`
 }
@@ -6518,7 +6518,7 @@ type GetAccountAuthorizationDetailsOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list containing information about managed policies.
 	Policies []*ManagedPolicyDetail `type:"list"`
@@ -6829,7 +6829,7 @@ type GetContextKeysForPrincipalPolicyInput struct {
 	// only those context keys that are found in policies attached to that entity.
 	// Note that all parameters are shown in unencoded form here for clarity, but
 	// must be URL encoded to be included as a part of a real HTML request.
-	PolicySourceArn *string `type:"string" required:"true"`
+	PolicySourceArn *string `min:"20" type:"string" required:"true"`
 
 	metadataGetContextKeysForPrincipalPolicyInput `json:"-" xml:"-"`
 }
@@ -6897,13 +6897,13 @@ func (s GetCredentialReportOutput) GoString() string {
 
 type GetGroupInput struct {
 	// The name of the group.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -6914,7 +6914,7 @@ type GetGroupInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	metadataGetGroupInput `json:"-" xml:"-"`
 }
@@ -6948,7 +6948,7 @@ type GetGroupOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of users in the group.
 	Users []*User `type:"list" required:"true"`
@@ -6972,10 +6972,10 @@ func (s GetGroupOutput) GoString() string {
 
 type GetGroupPolicyInput struct {
 	// The name of the group the policy is associated with.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document to get.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -6997,13 +6997,13 @@ func (s GetGroupPolicyInput) GoString() string {
 // Contains the response to a successful GetGroupPolicy request.
 type GetGroupPolicyOutput struct {
 	// The group the policy is associated with.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetGroupPolicyOutput `json:"-" xml:"-"`
 }
@@ -7024,7 +7024,7 @@ func (s GetGroupPolicyOutput) GoString() string {
 
 type GetInstanceProfileInput struct {
 	// The name of the instance profile to get information about.
-	InstanceProfileName *string `type:"string" required:"true"`
+	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetInstanceProfileInput `json:"-" xml:"-"`
 }
@@ -7067,7 +7067,7 @@ func (s GetInstanceProfileOutput) GoString() string {
 
 type GetLoginProfileInput struct {
 	// The name of the user whose login profile you want to retrieve.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetLoginProfileInput `json:"-" xml:"-"`
 }
@@ -7112,7 +7112,7 @@ type GetOpenIDConnectProviderInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to get information for. You can get a list of OIDC provider ARNs by using
 	// the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderArn *string `type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataGetOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -7147,7 +7147,7 @@ type GetOpenIDConnectProviderOutput struct {
 
 	// The URL that the IAM OpenID Connect provider is associated with. For more
 	// information, see CreateOpenIDConnectProvider.
-	Url *string `type:"string"`
+	Url *string `min:"1" type:"string"`
 
 	metadataGetOpenIDConnectProviderOutput `json:"-" xml:"-"`
 }
@@ -7172,7 +7172,7 @@ type GetPolicyInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	metadataGetPolicyInput `json:"-" xml:"-"`
 }
@@ -7219,7 +7219,7 @@ type GetPolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// Identifies the policy version to retrieve.
 	VersionId *string `type:"string" required:"true"`
@@ -7269,7 +7269,7 @@ func (s GetPolicyVersionOutput) GoString() string {
 
 type GetRoleInput struct {
 	// The name of the role to get information about.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetRoleInput `json:"-" xml:"-"`
 }
@@ -7312,10 +7312,10 @@ func (s GetRoleOutput) GoString() string {
 
 type GetRolePolicyInput struct {
 	// The name of the policy document to get.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role associated with the policy.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetRolePolicyInput `json:"-" xml:"-"`
 }
@@ -7337,13 +7337,13 @@ func (s GetRolePolicyInput) GoString() string {
 // Contains the response to a successful GetRolePolicy request.
 type GetRolePolicyOutput struct {
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The role the policy is associated with.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetRolePolicyOutput `json:"-" xml:"-"`
 }
@@ -7364,7 +7364,7 @@ func (s GetRolePolicyOutput) GoString() string {
 
 type GetSAMLProviderInput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider to get information about.
-	SAMLProviderArn *string `type:"string" required:"true"`
+	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataGetSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -7389,7 +7389,7 @@ type GetSAMLProviderOutput struct {
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The XML metadata document that includes information about an identity provider.
-	SAMLMetadataDocument *string `type:"string"`
+	SAMLMetadataDocument *string `min:"1000" type:"string"`
 
 	// The expiration date and time for the SAML provider.
 	ValidUntil *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -7418,10 +7418,10 @@ type GetSSHPublicKeyInput struct {
 	Encoding *string `type:"string" required:"true" enum:"encodingType"`
 
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyId *string `type:"string" required:"true"`
+	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetSSHPublicKeyInput `json:"-" xml:"-"`
 }
@@ -7464,7 +7464,7 @@ func (s GetSSHPublicKeyOutput) GoString() string {
 
 type GetServerCertificateInput struct {
 	// The name of the server certificate you want to retrieve information about.
-	ServerCertificateName *string `type:"string" required:"true"`
+	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetServerCertificateInput `json:"-" xml:"-"`
 }
@@ -7510,7 +7510,7 @@ type GetUserInput struct {
 	//
 	// This parameter is optional. If it is not included, it defaults to the user
 	// making the request.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataGetUserInput `json:"-" xml:"-"`
 }
@@ -7553,10 +7553,10 @@ func (s GetUserOutput) GoString() string {
 
 type GetUserPolicyInput struct {
 	// The name of the policy document to get.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user who the policy is associated with.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetUserPolicyInput `json:"-" xml:"-"`
 }
@@ -7578,13 +7578,13 @@ func (s GetUserPolicyInput) GoString() string {
 // Contains the response to a successful GetUserPolicy request.
 type GetUserPolicyOutput struct {
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The user the policy is associated with.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetUserPolicyOutput `json:"-" xml:"-"`
 }
@@ -7612,7 +7612,7 @@ type Group struct {
 	// The Amazon Resource Name (ARN) specifying the group. For more information
 	// about ARNs and how to use them in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the group was created.
@@ -7621,15 +7621,15 @@ type Group struct {
 	// The stable and unique string identifying the group. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	GroupId *string `type:"string" required:"true"`
+	GroupId *string `min:"16" type:"string" required:"true"`
 
 	// The friendly name that identifies the group.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the group. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string" required:"true"`
+	Path *string `min:"1" type:"string" required:"true"`
 
 	metadataGroup `json:"-" xml:"-"`
 }
@@ -7658,7 +7658,7 @@ type GroupDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// A list of the managed policies attached to the group.
 	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
@@ -7670,10 +7670,10 @@ type GroupDetail struct {
 	// The stable and unique string identifying the group. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	GroupId *string `type:"string"`
+	GroupId *string `min:"16" type:"string"`
 
 	// The friendly name that identifies the group.
-	GroupName *string `type:"string"`
+	GroupName *string `min:"1" type:"string"`
 
 	// A list of the inline policies embedded in the group.
 	GroupPolicyList []*PolicyDetail `type:"list"`
@@ -7681,7 +7681,7 @@ type GroupDetail struct {
 	// The path to the group. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	metadataGroupDetail `json:"-" xml:"-"`
 }
@@ -7716,7 +7716,7 @@ type InstanceProfile struct {
 	// information about ARNs and how to use them in policies, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date when the instance profile was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -7724,15 +7724,15 @@ type InstanceProfile struct {
 	// The stable and unique string identifying the instance profile. For more information
 	// about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	InstanceProfileId *string `type:"string" required:"true"`
+	InstanceProfileId *string `min:"16" type:"string" required:"true"`
 
 	// The name identifying the instance profile.
-	InstanceProfileName *string `type:"string" required:"true"`
+	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The path to the instance profile. For more information about paths, see IAM
 	// Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string" required:"true"`
+	Path *string `min:"1" type:"string" required:"true"`
 
 	// The role associated with the instance profile.
 	Roles []*Role `type:"list" required:"true"`
@@ -7759,7 +7759,7 @@ type ListAccessKeysInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -7770,10 +7770,10 @@ type ListAccessKeysInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the user.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataListAccessKeysInput `json:"-" xml:"-"`
 }
@@ -7807,7 +7807,7 @@ type ListAccessKeysOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListAccessKeysOutput `json:"-" xml:"-"`
 }
@@ -7831,7 +7831,7 @@ type ListAccountAliasesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -7842,7 +7842,7 @@ type ListAccountAliasesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	metadataListAccountAliasesInput `json:"-" xml:"-"`
 }
@@ -7876,7 +7876,7 @@ type ListAccountAliasesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListAccountAliasesOutput `json:"-" xml:"-"`
 }
@@ -7898,13 +7898,13 @@ func (s ListAccountAliasesOutput) GoString() string {
 type ListAttachedGroupPoliciesInput struct {
 	// The name (friendly name, not ARN) of the group to list attached policies
 	// for.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -7915,7 +7915,7 @@ type ListAttachedGroupPoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
 	// it is not included, it defaults to a slash (/), listing all policies.
@@ -7953,7 +7953,7 @@ type ListAttachedGroupPoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListAttachedGroupPoliciesOutput `json:"-" xml:"-"`
 }
@@ -7977,7 +7977,7 @@ type ListAttachedRolePoliciesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -7988,14 +7988,14 @@ type ListAttachedRolePoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
 	// it is not included, it defaults to a slash (/), listing all policies.
 	PathPrefix *string `type:"string"`
 
 	// The name (friendly name, not ARN) of the role to list attached policies for.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataListAttachedRolePoliciesInput `json:"-" xml:"-"`
 }
@@ -8029,7 +8029,7 @@ type ListAttachedRolePoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListAttachedRolePoliciesOutput `json:"-" xml:"-"`
 }
@@ -8053,7 +8053,7 @@ type ListAttachedUserPoliciesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8064,14 +8064,14 @@ type ListAttachedUserPoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
 	// it is not included, it defaults to a slash (/), listing all policies.
 	PathPrefix *string `type:"string"`
 
 	// The name (friendly name, not ARN) of the user to list attached policies for.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataListAttachedUserPoliciesInput `json:"-" xml:"-"`
 }
@@ -8105,7 +8105,7 @@ type ListAttachedUserPoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListAttachedUserPoliciesOutput `json:"-" xml:"-"`
 }
@@ -8136,7 +8136,7 @@ type ListEntitiesForPolicyInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8147,18 +8147,18 @@ type ListEntitiesForPolicyInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. This parameter is optional. If
 	// it is not included, it defaults to a slash (/), listing all entities.
-	PathPrefix *string `type:"string"`
+	PathPrefix *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	metadataListEntitiesForPolicyInput `json:"-" xml:"-"`
 }
@@ -8189,7 +8189,7 @@ type ListEntitiesForPolicyOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of groups that the policy is attached to.
 	PolicyGroups []*PolicyGroup `type:"list"`
@@ -8219,13 +8219,13 @@ func (s ListEntitiesForPolicyOutput) GoString() string {
 
 type ListGroupPoliciesInput struct {
 	// The name of the group to list policies for.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// Use this parameter only when paginating results and only after you receive
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8236,7 +8236,7 @@ type ListGroupPoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	metadataListGroupPoliciesInput `json:"-" xml:"-"`
 }
@@ -8267,7 +8267,7 @@ type ListGroupPoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
@@ -8294,7 +8294,7 @@ type ListGroupsForUserInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8305,10 +8305,10 @@ type ListGroupsForUserInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the user to list groups for.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataListGroupsForUserInput `json:"-" xml:"-"`
 }
@@ -8342,7 +8342,7 @@ type ListGroupsForUserOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListGroupsForUserOutput `json:"-" xml:"-"`
 }
@@ -8366,7 +8366,7 @@ type ListGroupsInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8377,14 +8377,14 @@ type ListGroupsInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. For example, the prefix /division_abc/subdivision_xyz/
 	// gets all groups whose path starts with /division_abc/subdivision_xyz/.
 	//
 	//  This parameter is optional. If it is not included, it defaults to a slash
 	// (/), listing all groups.
-	PathPrefix *string `type:"string"`
+	PathPrefix *string `min:"1" type:"string"`
 
 	metadataListGroupsInput `json:"-" xml:"-"`
 }
@@ -8418,7 +8418,7 @@ type ListGroupsOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListGroupsOutput `json:"-" xml:"-"`
 }
@@ -8442,7 +8442,7 @@ type ListInstanceProfilesForRoleInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8453,10 +8453,10 @@ type ListInstanceProfilesForRoleInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the role to list instance profiles for.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataListInstanceProfilesForRoleInput `json:"-" xml:"-"`
 }
@@ -8490,7 +8490,7 @@ type ListInstanceProfilesForRoleOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListInstanceProfilesForRoleOutput `json:"-" xml:"-"`
 }
@@ -8514,7 +8514,7 @@ type ListInstanceProfilesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8525,14 +8525,14 @@ type ListInstanceProfilesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/
 	// gets all instance profiles whose path starts with /application_abc/component_xyz/.
 	//
 	//  This parameter is optional. If it is not included, it defaults to a slash
 	// (/), listing all instance profiles.
-	PathPrefix *string `type:"string"`
+	PathPrefix *string `min:"1" type:"string"`
 
 	metadataListInstanceProfilesInput `json:"-" xml:"-"`
 }
@@ -8566,7 +8566,7 @@ type ListInstanceProfilesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListInstanceProfilesOutput `json:"-" xml:"-"`
 }
@@ -8590,7 +8590,7 @@ type ListMFADevicesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8601,10 +8601,10 @@ type ListMFADevicesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the user whose MFA devices you want to list.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataListMFADevicesInput `json:"-" xml:"-"`
 }
@@ -8638,7 +8638,7 @@ type ListMFADevicesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListMFADevicesOutput `json:"-" xml:"-"`
 }
@@ -8702,7 +8702,7 @@ type ListPoliciesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8713,7 +8713,7 @@ type ListPoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// A flag to filter the results to only the attached policies.
 	//
@@ -8764,7 +8764,7 @@ type ListPoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of policies.
 	Policies []*Policy `type:"list"`
@@ -8791,7 +8791,7 @@ type ListPolicyVersionsInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8802,14 +8802,14 @@ type ListPolicyVersionsInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The Amazon Resource Name (ARN). ARNs are unique identifiers for AWS resources.
 	//
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	metadataListPolicyVersionsInput `json:"-" xml:"-"`
 }
@@ -8840,7 +8840,7 @@ type ListPolicyVersionsOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of policy versions.
 	//
@@ -8871,7 +8871,7 @@ type ListRolePoliciesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8882,10 +8882,10 @@ type ListRolePoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the role to list policies for.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataListRolePoliciesInput `json:"-" xml:"-"`
 }
@@ -8916,7 +8916,7 @@ type ListRolePoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
@@ -8943,7 +8943,7 @@ type ListRolesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -8954,14 +8954,14 @@ type ListRolesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. For example, the prefix /application_abc/component_xyz/
 	// gets all roles whose path starts with /application_abc/component_xyz/.
 	//
 	//  This parameter is optional. If it is not included, it defaults to a slash
 	// (/), listing all roles.
-	PathPrefix *string `type:"string"`
+	PathPrefix *string `min:"1" type:"string"`
 
 	metadataListRolesInput `json:"-" xml:"-"`
 }
@@ -8992,7 +8992,7 @@ type ListRolesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of roles.
 	Roles []*Role `type:"list" required:"true"`
@@ -9059,7 +9059,7 @@ type ListSSHPublicKeysInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -9070,12 +9070,12 @@ type ListSSHPublicKeysInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the IAM user to list SSH public keys for. If none is specified,
 	// the UserName field is determined implicitly based on the AWS access key used
 	// to sign the request.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataListSSHPublicKeysInput `json:"-" xml:"-"`
 }
@@ -9106,7 +9106,7 @@ type ListSSHPublicKeysOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of SSH public keys.
 	SSHPublicKeys []*SSHPublicKeyMetadata `type:"list"`
@@ -9133,7 +9133,7 @@ type ListServerCertificatesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -9144,14 +9144,14 @@ type ListServerCertificatesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. For example: /company/servercerts
 	// would get all server certificates for which the path starts with /company/servercerts.
 	//
 	//  This parameter is optional. If it is not included, it defaults to a slash
 	// (/), listing all server certificates.
-	PathPrefix *string `type:"string"`
+	PathPrefix *string `min:"1" type:"string"`
 
 	metadataListServerCertificatesInput `json:"-" xml:"-"`
 }
@@ -9182,7 +9182,7 @@ type ListServerCertificatesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of server certificates.
 	ServerCertificateMetadataList []*ServerCertificateMetadata `type:"list" required:"true"`
@@ -9209,7 +9209,7 @@ type ListSigningCertificatesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -9220,10 +9220,10 @@ type ListSigningCertificatesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the user.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataListSigningCertificatesInput `json:"-" xml:"-"`
 }
@@ -9257,7 +9257,7 @@ type ListSigningCertificatesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListSigningCertificatesOutput `json:"-" xml:"-"`
 }
@@ -9281,7 +9281,7 @@ type ListUserPoliciesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -9292,10 +9292,10 @@ type ListUserPoliciesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The name of the user to list policies for.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataListUserPoliciesInput `json:"-" xml:"-"`
 }
@@ -9326,7 +9326,7 @@ type ListUserPoliciesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of policy names.
 	PolicyNames []*string `type:"list" required:"true"`
@@ -9353,7 +9353,7 @@ type ListUsersInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -9364,14 +9364,14 @@ type ListUsersInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// The path prefix for filtering the results. For example: /division_abc/subdivision_xyz/,
 	// which would get all user names whose path starts with /division_abc/subdivision_xyz/.
 	//
 	//  This parameter is optional. If it is not included, it defaults to a slash
 	// (/), listing all user names.
-	PathPrefix *string `type:"string"`
+	PathPrefix *string `min:"1" type:"string"`
 
 	metadataListUsersInput `json:"-" xml:"-"`
 }
@@ -9402,7 +9402,7 @@ type ListUsersOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// A list of users.
 	Users []*User `type:"list" required:"true"`
@@ -9434,7 +9434,7 @@ type ListVirtualMFADevicesInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -9445,7 +9445,7 @@ type ListVirtualMFADevicesInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	metadataListVirtualMFADevicesInput `json:"-" xml:"-"`
 }
@@ -9476,7 +9476,7 @@ type ListVirtualMFADevicesOutput struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// The list of virtual MFA devices in the current account that match the AssignmentStatus
 	// value that was passed in the request.
@@ -9512,7 +9512,7 @@ type LoginProfile struct {
 
 	// The name of the user, which can be used for signing in to the AWS Management
 	// Console.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataLoginProfile `json:"-" xml:"-"`
 }
@@ -9540,10 +9540,10 @@ type MFADevice struct {
 
 	// The serial number that uniquely identifies the MFA device. For virtual MFA
 	// devices, the serial number is the device ARN.
-	SerialNumber *string `type:"string" required:"true"`
+	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The user with whom the MFA device is associated.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataMFADevice `json:"-" xml:"-"`
 }
@@ -9578,7 +9578,7 @@ type ManagedPolicyDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// The number of principal entities (users, groups, and roles) that the policy
 	// is attached to.
@@ -9612,10 +9612,10 @@ type ManagedPolicyDetail struct {
 	//
 	// For more information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	PolicyId *string `type:"string"`
+	PolicyId *string `min:"16" type:"string"`
 
 	// The friendly name (not ARN) identifying the policy.
-	PolicyName *string `type:"string"`
+	PolicyName *string `min:"1" type:"string"`
 
 	// A list containing information about the versions of the policy.
 	PolicyVersionList []*PolicyVersion `type:"list"`
@@ -9653,7 +9653,7 @@ type OpenIDConnectProviderListEntry struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	metadataOpenIDConnectProviderListEntry `json:"-" xml:"-"`
 }
@@ -9689,14 +9689,14 @@ type PasswordPolicy struct {
 	HardExpiry *bool `type:"boolean"`
 
 	// The number of days that an IAM user password is valid.
-	MaxPasswordAge *int64 `type:"integer"`
+	MaxPasswordAge *int64 `min:"1" type:"integer"`
 
 	// Minimum length to require for IAM user passwords.
-	MinimumPasswordLength *int64 `type:"integer"`
+	MinimumPasswordLength *int64 `min:"6" type:"integer"`
 
 	// Specifies the number of previous passwords that IAM users are prevented from
 	// reusing.
-	PasswordReusePrevention *int64 `type:"integer"`
+	PasswordReusePrevention *int64 `min:"1" type:"integer"`
 
 	// Specifies whether to require lowercase characters for IAM user passwords.
 	RequireLowercaseCharacters *bool `type:"boolean"`
@@ -9741,7 +9741,7 @@ type Policy struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// The number of entities (users, groups, and roles) that the policy is attached
 	// to.
@@ -9773,10 +9773,10 @@ type Policy struct {
 	//
 	// For more information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	PolicyId *string `type:"string"`
+	PolicyId *string `min:"16" type:"string"`
 
 	// The friendly name (not ARN) identifying the policy.
-	PolicyName *string `type:"string"`
+	PolicyName *string `min:"1" type:"string"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the policy was last updated.
@@ -9810,10 +9810,10 @@ func (s Policy) GoString() string {
 // action.
 type PolicyDetail struct {
 	// The policy document.
-	PolicyDocument *string `type:"string"`
+	PolicyDocument *string `min:"1" type:"string"`
 
 	// The name of the policy.
-	PolicyName *string `type:"string"`
+	PolicyName *string `min:"1" type:"string"`
 
 	metadataPolicyDetail `json:"-" xml:"-"`
 }
@@ -9842,7 +9842,7 @@ func (s PolicyDetail) GoString() string {
 // in the Using IAM guide.
 type PolicyGroup struct {
 	// The name (friendly name, not ARN) identifying the group.
-	GroupName *string `type:"string"`
+	GroupName *string `min:"1" type:"string"`
 
 	metadataPolicyGroup `json:"-" xml:"-"`
 }
@@ -9871,7 +9871,7 @@ func (s PolicyGroup) GoString() string {
 // in the Using IAM guide.
 type PolicyRole struct {
 	// The name (friendly name, not ARN) identifying the role.
-	RoleName *string `type:"string"`
+	RoleName *string `min:"1" type:"string"`
 
 	metadataPolicyRole `json:"-" xml:"-"`
 }
@@ -9900,7 +9900,7 @@ func (s PolicyRole) GoString() string {
 // in the Using IAM guide.
 type PolicyUser struct {
 	// The name (friendly name, not ARN) identifying the user.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataPolicyUser `json:"-" xml:"-"`
 }
@@ -9938,7 +9938,7 @@ type PolicyVersion struct {
 	// The policy document is returned in the response to the GetPolicyVersion
 	// and GetAccountAuthorizationDetails operations. It is not returned in the
 	// response to the CreatePolicyVersion or ListPolicyVersions operations.
-	Document *string `type:"string"`
+	Document *string `min:"1" type:"string"`
 
 	// Specifies whether the policy version is set as the policy's default version.
 	IsDefaultVersion *bool `type:"boolean"`
@@ -9996,13 +9996,13 @@ func (s Position) GoString() string {
 
 type PutGroupPolicyInput struct {
 	// The name of the group to associate the policy with.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutGroupPolicyInput `json:"-" xml:"-"`
 }
@@ -10041,13 +10041,13 @@ func (s PutGroupPolicyOutput) GoString() string {
 
 type PutRolePolicyInput struct {
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to associate the policy with.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutRolePolicyInput `json:"-" xml:"-"`
 }
@@ -10086,13 +10086,13 @@ func (s PutRolePolicyOutput) GoString() string {
 
 type PutUserPolicyInput struct {
 	// The policy document.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy document.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user to associate the policy with.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutUserPolicyInput `json:"-" xml:"-"`
 }
@@ -10132,12 +10132,12 @@ func (s PutUserPolicyOutput) GoString() string {
 type RemoveClientIDFromOpenIDConnectProviderInput struct {
 	// The client ID (also known as audience) to remove from the IAM OpenID Connect
 	// provider. For more information about client IDs, see CreateOpenIDConnectProvider.
-	ClientID *string `type:"string" required:"true"`
+	ClientID *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to remove the client ID from. You can get a list of OIDC provider ARNs by
 	// using the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderArn *string `type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataRemoveClientIDFromOpenIDConnectProviderInput `json:"-" xml:"-"`
 }
@@ -10176,10 +10176,10 @@ func (s RemoveClientIDFromOpenIDConnectProviderOutput) GoString() string {
 
 type RemoveRoleFromInstanceProfileInput struct {
 	// The name of the instance profile to update.
-	InstanceProfileName *string `type:"string" required:"true"`
+	InstanceProfileName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to remove.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataRemoveRoleFromInstanceProfileInput `json:"-" xml:"-"`
 }
@@ -10218,10 +10218,10 @@ func (s RemoveRoleFromInstanceProfileOutput) GoString() string {
 
 type RemoveUserFromGroupInput struct {
 	// The name of the group to update.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user to remove.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataRemoveUserFromGroupInput `json:"-" xml:"-"`
 }
@@ -10260,16 +10260,16 @@ func (s RemoveUserFromGroupOutput) GoString() string {
 
 type ResyncMFADeviceInput struct {
 	// An authentication code emitted by the device.
-	AuthenticationCode1 *string `type:"string" required:"true"`
+	AuthenticationCode1 *string `min:"6" type:"string" required:"true"`
 
 	// A subsequent authentication code emitted by the device.
-	AuthenticationCode2 *string `type:"string" required:"true"`
+	AuthenticationCode2 *string `min:"6" type:"string" required:"true"`
 
 	// Serial number that uniquely identifies the MFA device.
-	SerialNumber *string `type:"string" required:"true"`
+	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// The name of the user whose MFA device you want to resynchronize.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataResyncMFADeviceInput `json:"-" xml:"-"`
 }
@@ -10319,10 +10319,10 @@ type Role struct {
 	// The Amazon Resource Name (ARN) specifying the role. For more information
 	// about ARNs and how to use them in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The policy that grants an entity permission to assume the role.
-	AssumeRolePolicyDocument *string `type:"string"`
+	AssumeRolePolicyDocument *string `min:"1" type:"string"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the role was created.
@@ -10331,15 +10331,15 @@ type Role struct {
 	// The path to the role. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string" required:"true"`
+	Path *string `min:"1" type:"string" required:"true"`
 
 	// The stable and unique string identifying the role. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	RoleId *string `type:"string" required:"true"`
+	RoleId *string `min:"16" type:"string" required:"true"`
 
 	// The friendly name that identifies the role.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataRole `json:"-" xml:"-"`
 }
@@ -10368,10 +10368,10 @@ type RoleDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// The trust policy that grants permission to assume the role.
-	AssumeRolePolicyDocument *string `type:"string"`
+	AssumeRolePolicyDocument *string `min:"1" type:"string"`
 
 	// A list of managed policies attached to the role. These policies are the role's
 	// access (permissions) policies.
@@ -10387,15 +10387,15 @@ type RoleDetail struct {
 	// The path to the role. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The stable and unique string identifying the role. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	RoleId *string `type:"string"`
+	RoleId *string `min:"16" type:"string"`
 
 	// The friendly name that identifies the role.
-	RoleName *string `type:"string"`
+	RoleName *string `min:"1" type:"string"`
 
 	// A list of inline policies embedded in the role. These policies are the role's
 	// access (permissions) policies.
@@ -10421,7 +10421,7 @@ func (s RoleDetail) GoString() string {
 // Contains the list of SAML providers for this account.
 type SAMLProviderListEntry struct {
 	// The Amazon Resource Name (ARN) of the SAML provider.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// The date and time when the SAML provider was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -10452,13 +10452,13 @@ func (s SAMLProviderListEntry) GoString() string {
 // UploadSSHPublicKey actions.
 type SSHPublicKey struct {
 	// The MD5 message digest of the SSH public key.
-	Fingerprint *string `type:"string" required:"true"`
+	Fingerprint *string `min:"48" type:"string" required:"true"`
 
 	// The SSH public key.
-	SSHPublicKeyBody *string `type:"string" required:"true"`
+	SSHPublicKeyBody *string `min:"1" type:"string" required:"true"`
 
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyId *string `type:"string" required:"true"`
+	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
@@ -10469,7 +10469,7 @@ type SSHPublicKey struct {
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the IAM user associated with the SSH public key.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataSSHPublicKey `json:"-" xml:"-"`
 }
@@ -10493,7 +10493,7 @@ func (s SSHPublicKey) GoString() string {
 // This data type is used as a response element in the ListSSHPublicKeys action.
 type SSHPublicKeyMetadata struct {
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyId *string `type:"string" required:"true"`
+	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The status of the SSH public key. Active means the key can be used for authentication
 	// with an AWS CodeCommit repository. Inactive means the key cannot be used.
@@ -10504,7 +10504,7 @@ type SSHPublicKeyMetadata struct {
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The name of the IAM user associated with the SSH public key.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataSSHPublicKeyMetadata `json:"-" xml:"-"`
 }
@@ -10529,10 +10529,10 @@ func (s SSHPublicKeyMetadata) GoString() string {
 // action.
 type ServerCertificate struct {
 	// The contents of the public key certificate.
-	CertificateBody *string `type:"string" required:"true"`
+	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The contents of the public key certificate chain.
-	CertificateChain *string `type:"string"`
+	CertificateChain *string `min:"1" type:"string"`
 
 	// The meta information of the server certificate, such as its name, path, ID,
 	// and ARN.
@@ -10565,7 +10565,7 @@ type ServerCertificateMetadata struct {
 	// information about ARNs and how to use them in policies, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date on which the certificate is set to expire.
 	Expiration *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -10573,15 +10573,15 @@ type ServerCertificateMetadata struct {
 	// The path to the server certificate. For more information about paths, see
 	// IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string" required:"true"`
+	Path *string `min:"1" type:"string" required:"true"`
 
 	// The stable and unique string identifying the server certificate. For more
 	// information about IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	ServerCertificateId *string `type:"string" required:"true"`
+	ServerCertificateId *string `min:"16" type:"string" required:"true"`
 
 	// The name that identifies the server certificate.
-	ServerCertificateName *string `type:"string" required:"true"`
+	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
 	// The date when the server certificate was uploaded.
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -10609,7 +10609,7 @@ type SetDefaultPolicyVersionInput struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	PolicyArn *string `type:"string" required:"true"`
+	PolicyArn *string `min:"20" type:"string" required:"true"`
 
 	// The version of the policy to set as the default (operative) version.
 	//
@@ -10659,10 +10659,10 @@ func (s SetDefaultPolicyVersionOutput) GoString() string {
 // and ListSigningCertificates actions.
 type SigningCertificate struct {
 	// The contents of the signing certificate.
-	CertificateBody *string `type:"string" required:"true"`
+	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The ID for the signing certificate.
-	CertificateId *string `type:"string" required:"true"`
+	CertificateId *string `min:"24" type:"string" required:"true"`
 
 	// The status of the signing certificate. Active means the key is valid for
 	// API calls, while Inactive means it is not.
@@ -10672,7 +10672,7 @@ type SigningCertificate struct {
 	UploadDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The name of the user the signing certificate is associated with.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataSigningCertificate `json:"-" xml:"-"`
 }
@@ -10706,7 +10706,7 @@ type SimulateCustomPolicyInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -10717,7 +10717,7 @@ type SimulateCustomPolicyInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// A list of policy documents to include in the simulation. Each document is
 	// specified as a string containing the complete, valid JSON text of an IAM
@@ -10764,7 +10764,7 @@ type SimulatePolicyResponse struct {
 
 	// When IsTruncated is true, this element is present and contains the value
 	// to use for the Marker parameter in a subsequent pagination request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataSimulatePolicyResponse `json:"-" xml:"-"`
 }
@@ -10798,7 +10798,7 @@ type SimulatePrincipalPolicyInput struct {
 	// a response indicating that the results are truncated. Set it to the value
 	// of the Marker element in the response you received to inform the next call
 	// about where to start.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Use this only when paginating results to indicate the maximum number of items
 	// you want in the response. If there are additional items beyond the maximum
@@ -10809,7 +10809,7 @@ type SimulatePrincipalPolicyInput struct {
 	// available. If this is the case, the IsTruncated response element returns
 	// true and Marker contains a value to include in the subsequent call that tells
 	// the service where to continue from.
-	MaxItems *int64 `type:"integer"`
+	MaxItems *int64 `min:"1" type:"integer"`
 
 	// An optional list of additional policy documents to include in the simulation.
 	// Each document is specified as a string containing the complete, valid JSON
@@ -10821,7 +10821,7 @@ type SimulatePrincipalPolicyInput struct {
 	// the simulation includes all policies associated with that entity. If you
 	// specify a user, the simulation also includes all policies attached to any
 	// groups the user is a member of.
-	PolicySourceArn *string `type:"string" required:"true"`
+	PolicySourceArn *string `min:"20" type:"string" required:"true"`
 
 	// A list of ARNs of AWS resources to include in the simulation. If this parameter
 	// is not provided then the value defaults to * (all resources). Each API in
@@ -10884,7 +10884,7 @@ func (s Statement) GoString() string {
 
 type UpdateAccessKeyInput struct {
 	// The access key ID of the secret access key you want to update.
-	AccessKeyId *string `type:"string" required:"true"`
+	AccessKeyId *string `min:"16" type:"string" required:"true"`
 
 	// The status you want to assign to the secret access key. Active means the
 	// key can be used for API calls to AWS, while Inactive means the key cannot
@@ -10892,7 +10892,7 @@ type UpdateAccessKeyInput struct {
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the user whose key you want to update.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataUpdateAccessKeyInput `json:"-" xml:"-"`
 }
@@ -10947,19 +10947,19 @@ type UpdateAccountPasswordPolicyInput struct {
 	// of 0 means IAM user passwords never expire.
 	//
 	// Default value: 0
-	MaxPasswordAge *int64 `type:"integer"`
+	MaxPasswordAge *int64 `min:"1" type:"integer"`
 
 	// The minimum number of characters allowed in an IAM user password.
 	//
 	// Default value: 6
-	MinimumPasswordLength *int64 `type:"integer"`
+	MinimumPasswordLength *int64 `min:"6" type:"integer"`
 
 	// Specifies the number of previous passwords that IAM users are prevented from
 	// reusing. The default value of 0 means IAM users are not prevented from reusing
 	// previous passwords.
 	//
 	// Default value: 0
-	PasswordReusePrevention *int64 `type:"integer"`
+	PasswordReusePrevention *int64 `min:"1" type:"integer"`
 
 	// Specifies whether IAM user passwords must contain at least one lowercase
 	// character from the ISO basic Latin alphabet (a to z).
@@ -11024,10 +11024,10 @@ func (s UpdateAccountPasswordPolicyOutput) GoString() string {
 
 type UpdateAssumeRolePolicyInput struct {
 	// The policy that grants an entity permission to assume the role.
-	PolicyDocument *string `type:"string" required:"true"`
+	PolicyDocument *string `min:"1" type:"string" required:"true"`
 
 	// The name of the role to update.
-	RoleName *string `type:"string" required:"true"`
+	RoleName *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateAssumeRolePolicyInput `json:"-" xml:"-"`
 }
@@ -11067,13 +11067,13 @@ func (s UpdateAssumeRolePolicyOutput) GoString() string {
 type UpdateGroupInput struct {
 	// Name of the group to update. If you're changing the name of the group, this
 	// is the original name.
-	GroupName *string `type:"string" required:"true"`
+	GroupName *string `min:"1" type:"string" required:"true"`
 
 	// New name for the group. Only include this if changing the group's name.
-	NewGroupName *string `type:"string"`
+	NewGroupName *string `min:"1" type:"string"`
 
 	// New path for the group. Only include this if changing the group's path.
-	NewPath *string `type:"string"`
+	NewPath *string `min:"1" type:"string"`
 
 	metadataUpdateGroupInput `json:"-" xml:"-"`
 }
@@ -11112,13 +11112,13 @@ func (s UpdateGroupOutput) GoString() string {
 
 type UpdateLoginProfileInput struct {
 	// The new password for the specified user.
-	Password *string `type:"string"`
+	Password *string `min:"1" type:"string"`
 
 	// Require the specified user to set a new password on next sign-in.
 	PasswordResetRequired *bool `type:"boolean"`
 
 	// The name of the user whose password you want to update.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateLoginProfileInput `json:"-" xml:"-"`
 }
@@ -11159,7 +11159,7 @@ type UpdateOpenIDConnectProviderThumbprintInput struct {
 	// The Amazon Resource Name (ARN) of the IAM OpenID Connect (OIDC) provider
 	// to update the thumbprint for. You can get a list of OIDC provider ARNs by
 	// using the ListOpenIDConnectProviders action.
-	OpenIDConnectProviderArn *string `type:"string" required:"true"`
+	OpenIDConnectProviderArn *string `min:"20" type:"string" required:"true"`
 
 	// A list of certificate thumbprints that are associated with the specified
 	// IAM OpenID Connect provider. For more information, see CreateOpenIDConnectProvider.
@@ -11206,10 +11206,10 @@ type UpdateSAMLProviderInput struct {
 	// keys that can be used to validate the SAML authentication response (assertions)
 	// that are received from the IdP. You must generate the metadata document using
 	// the identity management software that is used as your organization's IdP.
-	SAMLMetadataDocument *string `type:"string" required:"true"`
+	SAMLMetadataDocument *string `min:"1000" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SAML provider to update.
-	SAMLProviderArn *string `type:"string" required:"true"`
+	SAMLProviderArn *string `min:"20" type:"string" required:"true"`
 
 	metadataUpdateSAMLProviderInput `json:"-" xml:"-"`
 }
@@ -11231,7 +11231,7 @@ func (s UpdateSAMLProviderInput) GoString() string {
 // Contains the response to a successful UpdateSAMLProvider request.
 type UpdateSAMLProviderOutput struct {
 	// The Amazon Resource Name (ARN) of the SAML provider that was updated.
-	SAMLProviderArn *string `type:"string"`
+	SAMLProviderArn *string `min:"20" type:"string"`
 
 	metadataUpdateSAMLProviderOutput `json:"-" xml:"-"`
 }
@@ -11252,7 +11252,7 @@ func (s UpdateSAMLProviderOutput) GoString() string {
 
 type UpdateSSHPublicKeyInput struct {
 	// The unique identifier for the SSH public key.
-	SSHPublicKeyId *string `type:"string" required:"true"`
+	SSHPublicKeyId *string `min:"20" type:"string" required:"true"`
 
 	// The status to assign to the SSH public key. Active means the key can be used
 	// for authentication with an AWS CodeCommit repository. Inactive means the
@@ -11260,7 +11260,7 @@ type UpdateSSHPublicKeyInput struct {
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the IAM user associated with the SSH public key.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateSSHPublicKeyInput `json:"-" xml:"-"`
 }
@@ -11300,15 +11300,15 @@ func (s UpdateSSHPublicKeyOutput) GoString() string {
 type UpdateServerCertificateInput struct {
 	// The new path for the server certificate. Include this only if you are updating
 	// the server certificate's path.
-	NewPath *string `type:"string"`
+	NewPath *string `min:"1" type:"string"`
 
 	// The new name for the server certificate. Include this only if you are updating
 	// the server certificate's name. The name of the certificate cannot contain
 	// any spaces.
-	NewServerCertificateName *string `type:"string"`
+	NewServerCertificateName *string `min:"1" type:"string"`
 
 	// The name of the server certificate that you want to update.
-	ServerCertificateName *string `type:"string" required:"true"`
+	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateServerCertificateInput `json:"-" xml:"-"`
 }
@@ -11347,7 +11347,7 @@ func (s UpdateServerCertificateOutput) GoString() string {
 
 type UpdateSigningCertificateInput struct {
 	// The ID of the signing certificate you want to update.
-	CertificateId *string `type:"string" required:"true"`
+	CertificateId *string `min:"24" type:"string" required:"true"`
 
 	// The status you want to assign to the certificate. Active means the certificate
 	// can be used for API calls to AWS, while Inactive means the certificate cannot
@@ -11355,7 +11355,7 @@ type UpdateSigningCertificateInput struct {
 	Status *string `type:"string" required:"true" enum:"statusType"`
 
 	// The name of the user the signing certificate belongs to.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataUpdateSigningCertificateInput `json:"-" xml:"-"`
 }
@@ -11395,15 +11395,15 @@ func (s UpdateSigningCertificateOutput) GoString() string {
 type UpdateUserInput struct {
 	// New path for the user. Include this parameter only if you're changing the
 	// user's path.
-	NewPath *string `type:"string"`
+	NewPath *string `min:"1" type:"string"`
 
 	// New name for the user. Include this parameter only if you're changing the
 	// user's name.
-	NewUserName *string `type:"string"`
+	NewUserName *string `min:"1" type:"string"`
 
 	// Name of the user to update. If you're changing the name of the user, this
 	// is the original user name.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateUserInput `json:"-" xml:"-"`
 }
@@ -11443,10 +11443,10 @@ func (s UpdateUserOutput) GoString() string {
 type UploadSSHPublicKeyInput struct {
 	// The SSH public key. The public key must be encoded in ssh-rsa format or PEM
 	// format.
-	SSHPublicKeyBody *string `type:"string" required:"true"`
+	SSHPublicKeyBody *string `min:"1" type:"string" required:"true"`
 
 	// The name of the IAM user to associate the SSH public key with.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataUploadSSHPublicKeyInput `json:"-" xml:"-"`
 }
@@ -11489,11 +11489,11 @@ func (s UploadSSHPublicKeyOutput) GoString() string {
 
 type UploadServerCertificateInput struct {
 	// The contents of the public key certificate in PEM-encoded format.
-	CertificateBody *string `type:"string" required:"true"`
+	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The contents of the certificate chain. This is typically a concatenation
 	// of the PEM-encoded public key certificates of the chain.
-	CertificateChain *string `type:"string"`
+	CertificateChain *string `min:"1" type:"string"`
 
 	// The path for the server certificate. For more information about paths, see
 	// IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
@@ -11506,14 +11506,14 @@ type UploadServerCertificateInput struct {
 	// CloudFront distributions, you must specify a path using the --path option.
 	// The path must begin with /cloudfront and must include a trailing slash (for
 	// example, /cloudfront/test/).
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The contents of the private key in PEM-encoded format.
-	PrivateKey *string `type:"string" required:"true"`
+	PrivateKey *string `min:"1" type:"string" required:"true"`
 
 	// The name for the server certificate. Do not include the path in this value.
 	// The name of the certificate cannot contain any spaces.
-	ServerCertificateName *string `type:"string" required:"true"`
+	ServerCertificateName *string `min:"1" type:"string" required:"true"`
 
 	metadataUploadServerCertificateInput `json:"-" xml:"-"`
 }
@@ -11557,10 +11557,10 @@ func (s UploadServerCertificateOutput) GoString() string {
 
 type UploadSigningCertificateInput struct {
 	// The contents of the signing certificate.
-	CertificateBody *string `type:"string" required:"true"`
+	CertificateBody *string `min:"1" type:"string" required:"true"`
 
 	// The name of the user the signing certificate is for.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataUploadSigningCertificateInput `json:"-" xml:"-"`
 }
@@ -11614,7 +11614,7 @@ type User struct {
 	// The Amazon Resource Name (ARN) that identifies the user. For more information
 	// about ARNs and how to use ARNs in policies, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Arn *string `type:"string" required:"true"`
+	Arn *string `min:"20" type:"string" required:"true"`
 
 	// The date and time, in ISO 8601 date-time format (http://www.iso.org/iso/iso8601),
 	// when the user was created.
@@ -11641,15 +11641,15 @@ type User struct {
 	// The path to the user. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string" required:"true"`
+	Path *string `min:"1" type:"string" required:"true"`
 
 	// The stable and unique string identifying the user. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	UserId *string `type:"string" required:"true"`
+	UserId *string `min:"16" type:"string" required:"true"`
 
 	// The friendly name identifying the user.
-	UserName *string `type:"string" required:"true"`
+	UserName *string `min:"1" type:"string" required:"true"`
 
 	metadataUser `json:"-" xml:"-"`
 }
@@ -11679,7 +11679,7 @@ type UserDetail struct {
 	// For more information about ARNs, go to Amazon Resource Names (ARNs) and
 	// AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// in the AWS General Reference.
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// A list of the managed policies attached to the user.
 	AttachedManagedPolicies []*AttachedPolicy `type:"list"`
@@ -11694,15 +11694,15 @@ type UserDetail struct {
 	// The path to the user. For more information about paths, see IAM Identifiers
 	// (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The stable and unique string identifying the user. For more information about
 	// IDs, see IAM Identifiers (http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_Identifiers.html)
 	// in the Using IAM guide.
-	UserId *string `type:"string"`
+	UserId *string `min:"16" type:"string"`
 
 	// The friendly name identifying the user.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	// A list of the inline policies embedded in the user.
 	UserPolicyList []*PolicyDetail `type:"list"`
@@ -11740,7 +11740,7 @@ type VirtualMFADevice struct {
 	QRCodePNG []byte `type:"blob"`
 
 	// The serial number associated with VirtualMFADevice.
-	SerialNumber *string `type:"string" required:"true"`
+	SerialNumber *string `min:"9" type:"string" required:"true"`
 
 	// Contains information about an IAM user entity.
 	//

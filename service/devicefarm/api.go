@@ -832,7 +832,7 @@ func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, e
 // A container for account-level settings within AWS Device Farm.
 type AccountSettings struct {
 	// The AWS account number specified in the AccountSettings container.
-	AwsAccountNumber *string `locationName:"awsAccountNumber" type:"string"`
+	AwsAccountNumber *string `locationName:"awsAccountNumber" min:"2" type:"string"`
 
 	// Returns the unmetered devices you have purchased.
 	UnmeteredDevices map[string]*int64 `locationName:"unmeteredDevices" type:"map"`
@@ -857,7 +857,7 @@ func (s AccountSettings) GoString() string {
 // Represents the output of a test. Examples of artifacts include logs and screenshots.
 type Artifact struct {
 	// The artifact's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The artifact's file extension.
 	Extension *string `locationName:"extension" type:"string"`
@@ -1004,7 +1004,7 @@ type CreateDevicePoolInput struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The ARN of the project for the device pool.
-	ProjectArn *string `locationName:"projectArn" type:"string" required:"true"`
+	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 
 	// The device pool's rules.
 	Rules []*Rule `locationName:"rules" type:"list" required:"true"`
@@ -1101,7 +1101,7 @@ type CreateUploadInput struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The ARN of the project for the upload.
-	ProjectArn *string `locationName:"projectArn" type:"string" required:"true"`
+	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 
 	// The upload's upload type.
 	//
@@ -1168,7 +1168,7 @@ func (s CreateUploadOutput) GoString() string {
 // Represents a device type that an app is tested against.
 type Device struct {
 	// The device's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The device's carrier.
 	Carrier *string `locationName:"carrier" type:"string"`
@@ -1242,7 +1242,7 @@ func (s Device) GoString() string {
 // Represents a collection of device types.
 type DevicePool struct {
 	// The device pool's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The device pool's description.
 	Description *string `locationName:"description" type:"string"`
@@ -1349,7 +1349,7 @@ func (s GetAccountSettingsOutput) GoString() string {
 // Represents a request to the get device request.
 type GetDeviceInput struct {
 	// The device type's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetDeviceInput `json:"-" xml:"-"`
 }
@@ -1393,10 +1393,10 @@ func (s GetDeviceOutput) GoString() string {
 // Represents a request to the get device pool compatibility operation.
 type GetDevicePoolCompatibilityInput struct {
 	// The ARN of the app that is associated with the specified device pool.
-	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+	AppArn *string `locationName:"appArn" min:"32" type:"string" required:"true"`
 
 	// The device pool's ARN.
-	DevicePoolArn *string `locationName:"devicePoolArn" type:"string" required:"true"`
+	DevicePoolArn *string `locationName:"devicePoolArn" min:"32" type:"string" required:"true"`
 
 	// The test type for the specified device pool.
 	//
@@ -1467,7 +1467,7 @@ func (s GetDevicePoolCompatibilityOutput) GoString() string {
 // Represents a request to the get device pool operation.
 type GetDevicePoolInput struct {
 	// The device pool's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetDevicePoolInput `json:"-" xml:"-"`
 }
@@ -1511,7 +1511,7 @@ func (s GetDevicePoolOutput) GoString() string {
 // Represents a request to the get job operation.
 type GetJobInput struct {
 	// The job's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetJobInput `json:"-" xml:"-"`
 }
@@ -1555,7 +1555,7 @@ func (s GetJobOutput) GoString() string {
 // Represents a request to the get project operation.
 type GetProjectInput struct {
 	// The project's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetProjectInput `json:"-" xml:"-"`
 }
@@ -1600,7 +1600,7 @@ func (s GetProjectOutput) GoString() string {
 // Represents a request to the get run operation.
 type GetRunInput struct {
 	// The run's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetRunInput `json:"-" xml:"-"`
 }
@@ -1644,7 +1644,7 @@ func (s GetRunOutput) GoString() string {
 // Represents a request to the get suite operation.
 type GetSuiteInput struct {
 	// The suite's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetSuiteInput `json:"-" xml:"-"`
 }
@@ -1688,7 +1688,7 @@ func (s GetSuiteOutput) GoString() string {
 // Represents a request to the get test operation.
 type GetTestInput struct {
 	// The test's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetTestInput `json:"-" xml:"-"`
 }
@@ -1732,7 +1732,7 @@ func (s GetTestOutput) GoString() string {
 // Represents a request to the get upload operation.
 type GetUploadInput struct {
 	// The upload's ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	metadataGetUploadInput `json:"-" xml:"-"`
 }
@@ -1811,7 +1811,7 @@ func (s IncompatibilityMessage) GoString() string {
 // Represents a device.
 type Job struct {
 	// The job's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The job's result counters.
 	Counters *Counters `locationName:"counters" type:"structure"`
@@ -1912,11 +1912,11 @@ func (s Job) GoString() string {
 // Represents a request to the list artifacts operation.
 type ListArtifactsInput struct {
 	// The Run, Job, Suite, or Test ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// The artifacts' type.
 	//
@@ -1951,7 +1951,7 @@ type ListArtifactsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListArtifactsOutput `json:"-" xml:"-"`
 }
@@ -1973,11 +1973,11 @@ func (s ListArtifactsOutput) GoString() string {
 // Represents the result of a list device pools request.
 type ListDevicePoolsInput struct {
 	// The project ARN.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// The device pools' type.
 	//
@@ -2013,7 +2013,7 @@ type ListDevicePoolsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListDevicePoolsOutput `json:"-" xml:"-"`
 }
@@ -2035,11 +2035,11 @@ func (s ListDevicePoolsOutput) GoString() string {
 // Represents the result of a list devices request.
 type ListDevicesInput struct {
 	// The device types' ARNs.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListDevicesInput `json:"-" xml:"-"`
 }
@@ -2066,7 +2066,7 @@ type ListDevicesOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListDevicesOutput `json:"-" xml:"-"`
 }
@@ -2088,11 +2088,11 @@ func (s ListDevicesOutput) GoString() string {
 // Represents a request to the list jobs operation.
 type ListJobsInput struct {
 	// The jobs' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListJobsInput `json:"-" xml:"-"`
 }
@@ -2119,7 +2119,7 @@ type ListJobsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListJobsOutput `json:"-" xml:"-"`
 }
@@ -2141,11 +2141,11 @@ func (s ListJobsOutput) GoString() string {
 // Represents a request to the list projects operation.
 type ListProjectsInput struct {
 	// The projects' ARNs.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListProjectsInput `json:"-" xml:"-"`
 }
@@ -2169,7 +2169,7 @@ type ListProjectsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the projects.
 	Projects []*Project `locationName:"projects" type:"list"`
@@ -2194,11 +2194,11 @@ func (s ListProjectsOutput) GoString() string {
 // Represents a request to the list runs operation.
 type ListRunsInput struct {
 	// The runs' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListRunsInput `json:"-" xml:"-"`
 }
@@ -2222,7 +2222,7 @@ type ListRunsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the runs.
 	Runs []*Run `locationName:"runs" type:"list"`
@@ -2247,11 +2247,11 @@ func (s ListRunsOutput) GoString() string {
 // Represents a request to the list samples operation.
 type ListSamplesInput struct {
 	// The samples' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListSamplesInput `json:"-" xml:"-"`
 }
@@ -2275,7 +2275,7 @@ type ListSamplesOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the samples.
 	Samples []*Sample `locationName:"samples" type:"list"`
@@ -2300,11 +2300,11 @@ func (s ListSamplesOutput) GoString() string {
 // Represents a request to the list suites operation.
 type ListSuitesInput struct {
 	// The suites' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListSuitesInput `json:"-" xml:"-"`
 }
@@ -2328,7 +2328,7 @@ type ListSuitesOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the suites.
 	Suites []*Suite `locationName:"suites" type:"list"`
@@ -2353,11 +2353,11 @@ func (s ListSuitesOutput) GoString() string {
 // Represents a request to the list tests operation.
 type ListTestsInput struct {
 	// The tests' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListTestsInput `json:"-" xml:"-"`
 }
@@ -2381,7 +2381,7 @@ type ListTestsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the tests.
 	Tests []*Test `locationName:"tests" type:"list"`
@@ -2406,11 +2406,11 @@ func (s ListTestsOutput) GoString() string {
 // Represents a request to the list unique problems operation.
 type ListUniqueProblemsInput struct {
 	// The unique problems' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListUniqueProblemsInput `json:"-" xml:"-"`
 }
@@ -2434,7 +2434,7 @@ type ListUniqueProblemsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the unique problems.
 	//
@@ -2475,11 +2475,11 @@ func (s ListUniqueProblemsOutput) GoString() string {
 // Represents a request to the list uploads operation.
 type ListUploadsInput struct {
 	// The uploads' ARNs.
-	Arn *string `locationName:"arn" type:"string" required:"true"`
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous call to this operation,
 	// which can be used to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	metadataListUploadsInput `json:"-" xml:"-"`
 }
@@ -2503,7 +2503,7 @@ type ListUploadsOutput struct {
 	// If the number of items that are returned is significantly large, this is
 	// an identifier that is also returned, which can be used in a subsequent call
 	// to this operation to return the next set of items in the list.
-	NextToken *string `locationName:"nextToken" type:"string"`
+	NextToken *string `locationName:"nextToken" min:"4" type:"string"`
 
 	// Information about the uploads.
 	Uploads []*Upload `locationName:"uploads" type:"list"`
@@ -2612,7 +2612,7 @@ func (s Problem) GoString() string {
 // Information about a problem detail.
 type ProblemDetail struct {
 	// The problem detail's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The problem detail's name.
 	Name *string `locationName:"name" type:"string"`
@@ -2638,7 +2638,7 @@ func (s ProblemDetail) GoString() string {
 // tests.
 type Project struct {
 	// The project's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// When the project was created.
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
@@ -2772,7 +2772,7 @@ func (s Rule) GoString() string {
 // Represents an app on a set of devices with a specific test and configuration.
 type Run struct {
 	// The run's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// Specifies the billing method for a test run: metered or unmetered. If the
 	// parameter is not specified, the default value is unmetered.
@@ -2889,7 +2889,7 @@ func (s Run) GoString() string {
 // Represents a sample of performance data.
 type Sample struct {
 	// The sample's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The sample's type.
 	//
@@ -2969,7 +2969,7 @@ type ScheduleRunConfiguration struct {
 	// The ARN of the extra data for the run. The extra data is a .zip file that
 	// AWS Device Farm will extract to external data for Android or the app's sandbox
 	// for iOS.
-	ExtraDataPackageArn *string `locationName:"extraDataPackageArn" type:"string"`
+	ExtraDataPackageArn *string `locationName:"extraDataPackageArn" min:"32" type:"string"`
 
 	// Information about the locale that is used for the run.
 	Locale *string `locationName:"locale" type:"string"`
@@ -2978,7 +2978,7 @@ type ScheduleRunConfiguration struct {
 	Location *Location `locationName:"location" type:"structure"`
 
 	// Reserved for internal use.
-	NetworkProfileArn *string `locationName:"networkProfileArn" type:"string"`
+	NetworkProfileArn *string `locationName:"networkProfileArn" min:"32" type:"string"`
 
 	// Information about the radio states for the run.
 	Radios *Radios `locationName:"radios" type:"structure"`
@@ -3003,19 +3003,19 @@ func (s ScheduleRunConfiguration) GoString() string {
 // Represents a request to the schedule run operation.
 type ScheduleRunInput struct {
 	// The ARN of the app to schedule a run.
-	AppArn *string `locationName:"appArn" type:"string" required:"true"`
+	AppArn *string `locationName:"appArn" min:"32" type:"string" required:"true"`
 
 	// Information about the settings for the run to be scheduled.
 	Configuration *ScheduleRunConfiguration `locationName:"configuration" type:"structure"`
 
 	// The ARN of the device pool for the run to be scheduled.
-	DevicePoolArn *string `locationName:"devicePoolArn" type:"string" required:"true"`
+	DevicePoolArn *string `locationName:"devicePoolArn" min:"32" type:"string" required:"true"`
 
 	// The name for the run to be scheduled.
 	Name *string `locationName:"name" type:"string"`
 
 	// The ARN of the project for the run to be scheduled.
-	ProjectArn *string `locationName:"projectArn" type:"string" required:"true"`
+	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
 
 	// Information about the test for the run to be scheduled.
 	Test *ScheduleRunTest `locationName:"test" type:"structure" required:"true"`
@@ -3068,7 +3068,7 @@ type ScheduleRunTest struct {
 	Parameters map[string]*string `locationName:"parameters" type:"map"`
 
 	// The ARN of the uploaded test that will be run.
-	TestPackageArn *string `locationName:"testPackageArn" type:"string"`
+	TestPackageArn *string `locationName:"testPackageArn" min:"32" type:"string"`
 
 	// The test's type.
 	//
@@ -3114,7 +3114,7 @@ func (s ScheduleRunTest) GoString() string {
 // Represents a collection of one or more tests.
 type Suite struct {
 	// The suite's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The suite's result counters.
 	Counters *Counters `locationName:"counters" type:"structure"`
@@ -3212,7 +3212,7 @@ func (s Suite) GoString() string {
 // Represents a condition that is evaluated.
 type Test struct {
 	// The test's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The test's result counters.
 	Counters *Counters `locationName:"counters" type:"structure"`
@@ -3335,7 +3335,7 @@ func (s UniqueProblem) GoString() string {
 // An app or a set of one or more tests to upload or that have been uploaded.
 type Upload struct {
 	// The upload's ARN.
-	Arn *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" min:"32" type:"string"`
 
 	// The upload's content type (for example, "application/octet-stream").
 	ContentType *string `locationName:"contentType" type:"string"`

@@ -509,7 +509,7 @@ func (c *DirectoryService) UpdateRadius(input *UpdateRadiusInput) (*UpdateRadius
 // Represents a named directory attribute.
 type Attribute struct {
 	// The name of the attribute.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The value of the attribute.
 	Value *string `type:"string"`
@@ -538,10 +538,10 @@ type Computer struct {
 	ComputerAttributes []*Attribute `type:"list"`
 
 	// The identifier of the computer.
-	ComputerId *string `type:"string"`
+	ComputerId *string `min:"1" type:"string"`
 
 	// The computer name.
-	ComputerName *string `type:"string"`
+	ComputerName *string `min:"1" type:"string"`
 
 	metadataComputer `json:"-" xml:"-"`
 }
@@ -573,7 +573,7 @@ type ConnectDirectoryInput struct {
 	Name *string `type:"string" required:"true"`
 
 	// The password for the on-premises user account.
-	Password *string `type:"string" required:"true"`
+	Password *string `min:"1" type:"string" required:"true"`
 
 	// The NetBIOS name of the on-premises directory, such as CORP.
 	ShortName *string `type:"string"`
@@ -626,7 +626,7 @@ type CreateAliasInput struct {
 	//
 	// The alias must be unique amongst all aliases in AWS. This operation will
 	// throw an EntityAlreadyExistsException if this alias already exists.
-	Alias *string `type:"string" required:"true"`
+	Alias *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the directory to create the alias for.
 	DirectoryId *string `type:"string" required:"true"`
@@ -651,7 +651,7 @@ func (s CreateAliasInput) GoString() string {
 // Contains the results of the CreateAlias operation.
 type CreateAliasOutput struct {
 	// The alias for the directory.
-	Alias *string `type:"string"`
+	Alias *string `min:"1" type:"string"`
 
 	// The identifier of the directory.
 	DirectoryId *string `type:"string"`
@@ -680,18 +680,18 @@ type CreateComputerInput struct {
 	ComputerAttributes []*Attribute `type:"list"`
 
 	// The name of the computer account.
-	ComputerName *string `type:"string" required:"true"`
+	ComputerName *string `min:"1" type:"string" required:"true"`
 
 	// The identifier of the directory to create the computer account in.
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The fully-qualified distinguished name of the organizational unit to place
 	// the computer account in.
-	OrganizationalUnitDistinguishedName *string `type:"string"`
+	OrganizationalUnitDistinguishedName *string `min:"1" type:"string"`
 
 	// A one-time password that is used to join the computer to the directory. You
 	// should generate a random, strong password to use for this parameter.
-	Password *string `type:"string" required:"true"`
+	Password *string `min:"8" type:"string" required:"true"`
 
 	metadataCreateComputerInput `json:"-" xml:"-"`
 }
@@ -1071,7 +1071,7 @@ type DirectoryConnectSettings struct {
 	// to the directory. This account must have the following privileges:
 	//
 	//  Read users and groups Create computer objects Join computers to the domain
-	CustomerUserName *string `type:"string" required:"true"`
+	CustomerUserName *string `min:"1" type:"string" required:"true"`
 
 	// A list of subnet identifiers in the VPC that the AD Connector is created
 	// in.
@@ -1106,7 +1106,7 @@ type DirectoryConnectSettingsDescription struct {
 	ConnectIps []*string `type:"list"`
 
 	// The username of the service account in the on-premises directory.
-	CustomerUserName *string `type:"string"`
+	CustomerUserName *string `min:"1" type:"string"`
 
 	// The security group identifier for the AD Connector directory.
 	SecurityGroupId *string `type:"string"`
@@ -1137,10 +1137,10 @@ func (s DirectoryConnectSettingsDescription) GoString() string {
 // Contains information about an AWS Directory Service directory.
 type DirectoryDescription struct {
 	// The access URL for the directory, such as http://<alias>.awsapps.com.
-	AccessUrl *string `type:"string"`
+	AccessUrl *string `min:"1" type:"string"`
 
 	// The alias for the directory.
-	Alias *string `type:"string"`
+	Alias *string `min:"1" type:"string"`
 
 	// A DirectoryConnectSettingsDescription object that contains additional information
 	// about an AD Connector directory. This member is only present if the directory
@@ -1362,7 +1362,7 @@ type DisableSsoInput struct {
 	// The password of an alternate account to use to disable single-sign on. This
 	// is only used for AD Connector directories. See the UserName parameter for
 	// more information.
-	Password *string `type:"string"`
+	Password *string `min:"1" type:"string"`
 
 	// The username of an alternate account to use to disable single-sign on. This
 	// is only used for AD Connector directories. This account must have privileges
@@ -1373,7 +1373,7 @@ type DisableSsoInput struct {
 	// and Password parameters. These credentials are only used to disable single
 	// sign-on and are not stored by the service. The AD Connector service account
 	// is not changed.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataDisableSsoInput `json:"-" xml:"-"`
 }
@@ -1463,7 +1463,7 @@ type EnableSsoInput struct {
 	// The password of an alternate account to use to enable single-sign on. This
 	// is only used for AD Connector directories. See the UserName parameter for
 	// more information.
-	Password *string `type:"string"`
+	Password *string `min:"1" type:"string"`
 
 	// The username of an alternate account to use to enable single-sign on. This
 	// is only used for AD Connector directories. This account must have privileges
@@ -1474,7 +1474,7 @@ type EnableSsoInput struct {
 	// Password parameters. These credentials are only used to enable single sign-on
 	// and are not stored by the service. The AD Connector service account is not
 	// changed.
-	UserName *string `type:"string"`
+	UserName *string `min:"1" type:"string"`
 
 	metadataEnableSsoInput `json:"-" xml:"-"`
 }
@@ -1606,12 +1606,12 @@ type RadiusSettings struct {
 	AuthenticationProtocol *string `type:"string" enum:"RadiusAuthenticationProtocol"`
 
 	// Not currently used.
-	DisplayLabel *string `type:"string"`
+	DisplayLabel *string `min:"1" type:"string"`
 
 	// The port that your RADIUS server is using for communications. Your on-premises
 	// network must allow inbound traffic over this port from the AWS Directory
 	// Service servers.
-	RadiusPort *int64 `type:"integer"`
+	RadiusPort *int64 `min:"1025" type:"integer"`
 
 	// The maximum number of times that communication with the RADIUS server is
 	// attempted.
@@ -1622,11 +1622,11 @@ type RadiusSettings struct {
 	RadiusServers []*string `type:"list"`
 
 	// The amount of time, in seconds, to wait for the RADIUS server to respond.
-	RadiusTimeout *int64 `type:"integer"`
+	RadiusTimeout *int64 `min:"1" type:"integer"`
 
 	// The shared secret code that was specified when your RADIUS endpoints were
 	// created.
-	SharedSecret *string `type:"string"`
+	SharedSecret *string `min:"8" type:"string"`
 
 	// Not currently used.
 	UseSameUsername *bool `type:"boolean"`

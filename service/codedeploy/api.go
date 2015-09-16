@@ -1014,7 +1014,7 @@ type ApplicationInfo struct {
 	ApplicationId *string `locationName:"applicationId" type:"string"`
 
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// The time that the application was created.
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
@@ -1202,7 +1202,7 @@ func (s BatchGetOnPremisesInstancesOutput) GoString() string {
 type CreateApplicationInput struct {
 	// The name of the application. This name must be unique with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	metadataCreateApplicationInput `json:"-" xml:"-"`
 }
@@ -1246,7 +1246,7 @@ func (s CreateApplicationOutput) GoString() string {
 // Represents the input of a create deployment configuration operation.
 type CreateDeploymentConfigInput struct {
 	// The name of the deployment configuration to create.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	// The minimum number of healthy instances that should be available at any time
 	// during the deployment. There are two parameters expected in the input: type
@@ -1309,7 +1309,7 @@ func (s CreateDeploymentConfigOutput) GoString() string {
 type CreateDeploymentGroupInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// A list of associated Auto Scaling groups.
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
@@ -1343,10 +1343,10 @@ type CreateDeploymentGroupInput struct {
 	// specified for either the deployment or the deployment group.  To create a
 	// custom deployment configuration, call the create deployment configuration
 	// operation.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	// The Amazon EC2 tags to filter on.
 	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
@@ -1401,7 +1401,7 @@ func (s CreateDeploymentGroupOutput) GoString() string {
 type CreateDeploymentInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
@@ -1409,10 +1409,10 @@ type CreateDeploymentInput struct {
 	// If not specified, the value configured in the deployment group will be used
 	// as the default. If the deployment group does not have a deployment configuration
 	// associated with it, then CodeDeployDefault.OneAtATime will be used by default.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The deployment group's name.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// A comment about the deployment.
 	Description *string `locationName:"description" type:"string"`
@@ -1475,7 +1475,7 @@ func (s CreateDeploymentOutput) GoString() string {
 type DeleteApplicationInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteApplicationInput `json:"-" xml:"-"`
 }
@@ -1516,7 +1516,7 @@ func (s DeleteApplicationOutput) GoString() string {
 type DeleteDeploymentConfigInput struct {
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDeploymentConfigInput `json:"-" xml:"-"`
 }
@@ -1557,10 +1557,10 @@ func (s DeleteDeploymentConfigOutput) GoString() string {
 type DeleteDeploymentGroupInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -1615,7 +1615,7 @@ type DeploymentConfigInfo struct {
 	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
 
 	// The deployment configuration name.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// Information about the number or percentage of minimum healthy instances.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
@@ -1640,19 +1640,19 @@ func (s DeploymentConfigInfo) GoString() string {
 // Information about a deployment group.
 type DeploymentGroupInfo struct {
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A list of associated Auto Scaling groups.
 	AutoScalingGroups []*AutoScalingGroup `locationName:"autoScalingGroups" type:"list"`
 
 	// The deployment configuration name.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The deployment group ID.
 	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
 
 	// The deployment group name.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// The Amazon EC2 tags to filter on.
 	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
@@ -1687,7 +1687,7 @@ func (s DeploymentGroupInfo) GoString() string {
 // Information about a deployment.
 type DeploymentInfo struct {
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A timestamp indicating when the deployment was completed.
 	CompleteTime *time.Time `locationName:"completeTime" type:"timestamp" timestampFormat:"unix"`
@@ -1702,10 +1702,10 @@ type DeploymentInfo struct {
 	Creator *string `locationName:"creator" type:"string" enum:"DeploymentCreator"`
 
 	// The deployment configuration name.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The deployment group name.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// The deployment ID.
 	DeploymentId *string `locationName:"deploymentId" type:"string"`
@@ -1987,7 +1987,7 @@ func (s GenericRevisionInfo) GoString() string {
 type GetApplicationInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	metadataGetApplicationInput `json:"-" xml:"-"`
 }
@@ -2031,7 +2031,7 @@ func (s GetApplicationOutput) GoString() string {
 // Represents the input of a get application revision operation.
 type GetApplicationRevisionInput struct {
 	// The name of the application that corresponds to the revision.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Information about the application revision to get, including the revision's
 	// type and its location.
@@ -2057,7 +2057,7 @@ func (s GetApplicationRevisionInput) GoString() string {
 // Represents the output of a get application revision operation.
 type GetApplicationRevisionOutput struct {
 	// The name of the application that corresponds to the revision.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// Additional information about the revision, including the revision's type
 	// and its location.
@@ -2087,7 +2087,7 @@ func (s GetApplicationRevisionOutput) GoString() string {
 type GetDeploymentConfigInput struct {
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	metadataGetDeploymentConfigInput `json:"-" xml:"-"`
 }
@@ -2132,10 +2132,10 @@ func (s GetDeploymentConfigOutput) GoString() string {
 type GetDeploymentGroupInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	metadataGetDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -2465,7 +2465,7 @@ func (s LifecycleEvent) GoString() string {
 type ListApplicationRevisionsInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Whether to list revisions based on whether the revision is the target revision
 	// of an deployment group:
@@ -2659,7 +2659,7 @@ func (s ListDeploymentConfigsOutput) GoString() string {
 type ListDeploymentGroupsInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous list deployment groups
 	// call, which can be used to return the next set of deployment groups in the
@@ -2686,7 +2686,7 @@ func (s ListDeploymentGroupsInput) GoString() string {
 // Represents the output of a list deployment groups operation.
 type ListDeploymentGroupsOutput struct {
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A list of corresponding deployment group names.
 	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list"`
@@ -2784,14 +2784,14 @@ func (s ListDeploymentInstancesOutput) GoString() string {
 type ListDeploymentsInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A deployment creation start- and end-time range for returning a subset of
 	// the list of deployments.
 	CreateTimeRange *TimeRange `locationName:"createTimeRange" type:"structure"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// A subset of deployments to list, by status:
 	//
@@ -2957,7 +2957,7 @@ func (s MinimumHealthyHosts) GoString() string {
 type RegisterApplicationRevisionInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// A comment about the revision.
 	Description *string `locationName:"description" type:"string"`
@@ -3303,10 +3303,10 @@ func (s TimeRange) GoString() string {
 // Represents the input of an update application operation.
 type UpdateApplicationInput struct {
 	// The current name of the application that you want to change.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// The new name that you want to change the application to.
-	NewApplicationName *string `locationName:"newApplicationName" type:"string"`
+	NewApplicationName *string `locationName:"newApplicationName" min:"1" type:"string"`
 
 	metadataUpdateApplicationInput `json:"-" xml:"-"`
 }
@@ -3346,25 +3346,25 @@ func (s UpdateApplicationOutput) GoString() string {
 // Represents the input of an update deployment group operation.
 type UpdateDeploymentGroupInput struct {
 	// The application name corresponding to the deployment group to update.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The replacement list of Auto Scaling groups to be included in the deployment
 	// group, if you want to change them.
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
 
 	// The current name of the existing deployment group.
-	CurrentDeploymentGroupName *string `locationName:"currentDeploymentGroupName" type:"string" required:"true"`
+	CurrentDeploymentGroupName *string `locationName:"currentDeploymentGroupName" min:"1" type:"string" required:"true"`
 
 	// The replacement deployment configuration name to use, if you want to change
 	// it.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The replacement set of Amazon EC2 tags to filter on, if you want to change
 	// them.
 	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The new name of the deployment group, if you want to change it.
-	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" type:"string"`
+	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" min:"1" type:"string"`
 
 	// The replacement set of on-premises instance tags for filter on, if you want
 	// to change them.

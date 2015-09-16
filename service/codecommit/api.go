@@ -388,7 +388,7 @@ func (s BatchGetRepositoriesOutput) GoString() string {
 // Returns information about a branch.
 type BranchInfo struct {
 	// The name of the branch.
-	BranchName *string `locationName:"branchName" type:"string"`
+	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
 	// The ID of the last commit made to the branch.
 	CommitId *string `locationName:"commitId" type:"string"`
@@ -413,7 +413,7 @@ func (s BranchInfo) GoString() string {
 // Represents the input of a create branch operation.
 type CreateBranchInput struct {
 	// The name of the new branch to create.
-	BranchName *string `locationName:"branchName" type:"string" required:"true"`
+	BranchName *string `locationName:"branchName" min:"1" type:"string" required:"true"`
 
 	// The ID of the commit to point the new branch to.
 	//
@@ -422,7 +422,7 @@ type CreateBranchInput struct {
 	CommitId *string `locationName:"commitId" type:"string" required:"true"`
 
 	// The name of the repository in which you want to create the new branch.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataCreateBranchInput `json:"-" xml:"-"`
 }
@@ -469,7 +469,7 @@ type CreateRepositoryInput struct {
 	// The repository name must be unique across the calling AWS account. In addition,
 	// repository names are restricted to alphanumeric characters. The suffix ".git"
 	// is prohibited.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataCreateRepositoryInput `json:"-" xml:"-"`
 }
@@ -513,7 +513,7 @@ func (s CreateRepositoryOutput) GoString() string {
 // Represents the input of a delete repository operation.
 type DeleteRepositoryInput struct {
 	// The name of the repository to delete.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteRepositoryInput `json:"-" xml:"-"`
 }
@@ -557,12 +557,12 @@ func (s DeleteRepositoryOutput) GoString() string {
 // Represents the input of a get branch operation.
 type GetBranchInput struct {
 	// The name of the branch for which you want to retrieve information.
-	BranchName *string `locationName:"branchName" type:"string"`
+	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	RepositoryName *string `locationName:"repositoryName" type:"string"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
 	metadataGetBranchInput `json:"-" xml:"-"`
 }
@@ -606,7 +606,7 @@ func (s GetBranchOutput) GoString() string {
 // Represents the input of a get repository operation.
 type GetRepositoryInput struct {
 	// The name of the repository to get information about.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataGetRepositoryInput `json:"-" xml:"-"`
 }
@@ -653,7 +653,7 @@ type ListBranchesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the repository that contains the branches.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataListBranchesInput `json:"-" xml:"-"`
 }
@@ -774,7 +774,7 @@ type RepositoryMetadata struct {
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The repository's default branch name.
-	DefaultBranch *string `locationName:"defaultBranch" type:"string"`
+	DefaultBranch *string `locationName:"defaultBranch" min:"1" type:"string"`
 
 	// The date and time the repository was last modified, in timestamp format.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp" timestampFormat:"unix"`
@@ -786,7 +786,7 @@ type RepositoryMetadata struct {
 	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	// The repository's name.
-	RepositoryName *string `locationName:"repositoryName" type:"string"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
 	metadataRepositoryMetadata `json:"-" xml:"-"`
 }
@@ -813,7 +813,7 @@ type RepositoryNameIdPair struct {
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	RepositoryName *string `locationName:"repositoryName" type:"string"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
 	metadataRepositoryNameIdPair `json:"-" xml:"-"`
 }
@@ -835,10 +835,10 @@ func (s RepositoryNameIdPair) GoString() string {
 // Represents the input of an update default branch operation.
 type UpdateDefaultBranchInput struct {
 	// The name of the branch to set as the default.
-	DefaultBranchName *string `locationName:"defaultBranchName" type:"string" required:"true"`
+	DefaultBranchName *string `locationName:"defaultBranchName" min:"1" type:"string" required:"true"`
 
 	// The name of the repository to set or change the default branch for.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataUpdateDefaultBranchInput `json:"-" xml:"-"`
 }
@@ -881,7 +881,7 @@ type UpdateRepositoryDescriptionInput struct {
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
 	// The name of the repository to set or change the comment or description for.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataUpdateRepositoryDescriptionInput `json:"-" xml:"-"`
 }
@@ -923,12 +923,12 @@ type UpdateRepositoryNameInput struct {
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	NewName *string `locationName:"newName" type:"string" required:"true"`
+	NewName *string `locationName:"newName" min:"1" type:"string" required:"true"`
 
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	OldName *string `locationName:"oldName" type:"string" required:"true"`
+	OldName *string `locationName:"oldName" min:"1" type:"string" required:"true"`
 
 	metadataUpdateRepositoryNameInput `json:"-" xml:"-"`
 }

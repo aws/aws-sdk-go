@@ -583,7 +583,7 @@ type ConfigurationRecorder struct {
 	// The name of the recorder. By default, AWS Config automatically assigns the
 	// name "default" when creating the configuration recorder. You cannot change
 	// the assigned name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The recording group specifies either to record configurations for all supported
 	// resources or to provide a list of resource types to record. The list of resource
@@ -658,7 +658,7 @@ func (s ConfigurationRecorderStatus) GoString() string {
 // data in JSON format.
 type DeleteDeliveryChannelInput struct {
 	// The name of the delivery channel to delete.
-	DeliveryChannelName *string `type:"string" required:"true"`
+	DeliveryChannelName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteDeliveryChannelInput `json:"-" xml:"-"`
 }
@@ -698,7 +698,7 @@ func (s DeleteDeliveryChannelOutput) GoString() string {
 // The input for the DeliverConfigSnapshot action.
 type DeliverConfigSnapshotInput struct {
 	// The name of the delivery channel through which the snapshot is delivered.
-	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" required:"true"`
+	DeliveryChannelName *string `locationName:"deliveryChannelName" min:"1" type:"string" required:"true"`
 
 	metadataDeliverConfigSnapshotInput `json:"-" xml:"-"`
 }
@@ -745,7 +745,7 @@ type DeliveryChannel struct {
 	// The name of the delivery channel. By default, AWS Config automatically assigns
 	// the name "default" when creating the delivery channel. You cannot change
 	// the assigned name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The name of the Amazon S3 bucket used to store configuration history for
 	// the delivery channel.
@@ -1316,7 +1316,7 @@ func (s ResourceIdentifier) GoString() string {
 type StartConfigurationRecorderInput struct {
 	// The name of the recorder object that records each configuration change made
 	// to the resources.
-	ConfigurationRecorderName *string `type:"string" required:"true"`
+	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 
 	metadataStartConfigurationRecorderInput `json:"-" xml:"-"`
 }
@@ -1357,7 +1357,7 @@ func (s StartConfigurationRecorderOutput) GoString() string {
 type StopConfigurationRecorderInput struct {
 	// The name of the recorder object that records each configuration change made
 	// to the resources.
-	ConfigurationRecorderName *string `type:"string" required:"true"`
+	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 
 	metadataStopConfigurationRecorderInput `json:"-" xml:"-"`
 }

@@ -985,7 +985,7 @@ type DescribeCasesInput struct {
 	Language *string `locationName:"language" type:"string"`
 
 	// The maximum number of results to return before paginating.
-	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+	MaxResults *int64 `locationName:"maxResults" min:"10" type:"integer"`
 
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -1047,7 +1047,7 @@ type DescribeCommunicationsInput struct {
 	CaseId *string `locationName:"caseId" type:"string" required:"true"`
 
 	// The maximum number of results to return before paginating.
-	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+	MaxResults *int64 `locationName:"maxResults" min:"10" type:"integer"`
 
 	// A resumption point for pagination.
 	NextToken *string `locationName:"nextToken" type:"string"`

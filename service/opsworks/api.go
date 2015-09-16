@@ -2640,7 +2640,7 @@ type AutoScalingThresholds struct {
 	// which typically takes several minutes. IgnoreMetricsTime allows you to direct
 	// AWS OpsWorks to suppress scaling events long enough to get the new instances
 	// online.
-	IgnoreMetricsTime *int64 `type:"integer"`
+	IgnoreMetricsTime *int64 `min:"1" type:"integer"`
 
 	// The number of instances to add or remove when the load exceeds a threshold.
 	InstanceCount *int64 `type:"integer"`
@@ -2654,7 +2654,7 @@ type AutoScalingThresholds struct {
 
 	// The amount of time, in minutes, that the load must exceed a threshold before
 	// more instances are added or removed.
-	ThresholdsWaitTime *int64 `type:"integer"`
+	ThresholdsWaitTime *int64 `min:"1" type:"integer"`
 
 	metadataAutoScalingThresholds `json:"-" xml:"-"`
 }
@@ -5591,7 +5591,7 @@ type GrantAccessInput struct {
 	// at the end of this period, the user will no longer be able to use the credentials
 	// to log in. If the user is logged in at the time, he or she automatically
 	// will be logged out.
-	ValidForInMinutes *int64 `type:"integer"`
+	ValidForInMinutes *int64 `min:"60" type:"integer"`
 
 	metadataGrantAccessInput `json:"-" xml:"-"`
 }

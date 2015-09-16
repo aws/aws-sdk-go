@@ -9,8 +9,8 @@ Feature: AWS Storage Gateway
   Scenario: Handling errors
     When I attempt to call the "ListVolumes" API with:
     | GatewayARN | fake_gateway |
-    Then I expect the response error code to be "ValidationException"
+    Then I expect the response error code to be "InvalidParameter"
     And I expect the response error message to include:
     """
-    Value 'fake_gateway' at 'gatewayARN' failed to satisfy constraint
+    GatewayARN
     """

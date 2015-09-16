@@ -2792,7 +2792,7 @@ func (s OriginAccessIdentitySummary) GoString() string {
 // A complex type that contains information about origins for this distribution.
 type Origins struct {
 	// A complex type that contains origins for this distribution.
-	Items []*Origin `locationNameList:"Origin" type:"list"`
+	Items []*Origin `locationNameList:"Origin" min:"1" type:"list"`
 
 	// The number of origins for this distribution.
 	Quantity *int64 `type:"integer" required:"true"`

@@ -1874,11 +1874,11 @@ type ActivateGatewayInput struct {
 	// also include other activation-related parameters, however, these are merely
 	// defaults -- the arguments you pass to the ActivateGateway API call determine
 	// the actual configuration of your gateway.
-	ActivationKey *string `type:"string" required:"true"`
+	ActivationKey *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for your gateway. This name becomes part of the gateway
 	// Amazon Resources Name (ARN) which is what you use as an input to other operations.
-	GatewayName *string `type:"string" required:"true"`
+	GatewayName *string `min:"2" type:"string" required:"true"`
 
 	// One of the values that indicates the region where you want to store the snapshot
 	// backups. The gateway region specified must be the same region as the region
@@ -1889,29 +1889,29 @@ type ActivateGatewayInput struct {
 	//
 	// Valid Values: "us-east-1", "us-west-1", "us-west-2", "eu-west-1", "eu-central-1",
 	// "ap-northeast-1", "ap-southeast-1", "ap-southeast-2", "sa-east-1"
-	GatewayRegion *string `type:"string" required:"true"`
+	GatewayRegion *string `min:"1" type:"string" required:"true"`
 
 	// One of the values that indicates the time zone you want to set for the gateway.
 	// The time zone is used, for example, for scheduling snapshots and your gateway's
 	// maintenance schedule.
-	GatewayTimezone *string `type:"string" required:"true"`
+	GatewayTimezone *string `min:"3" type:"string" required:"true"`
 
 	// One of the values that defines the type of gateway to activate. The type
 	// specified is critical to all later functions of the gateway and cannot be
 	// changed after activation. The default value is STORED.
-	GatewayType *string `type:"string"`
+	GatewayType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of medium changer to use for gateway-VTL.
 	// This field is optional.
 	//
 	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
-	MediumChangerType *string `type:"string"`
+	MediumChangerType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of tape drive to use for gateway-VTL. This
 	// field is optional.
 	//
 	// Valid Values: "IBM-ULT3580-TD5"
-	TapeDriveType *string `type:"string"`
+	TapeDriveType *string `min:"2" type:"string"`
 
 	metadataActivateGatewayInput `json:"-" xml:"-"`
 }
@@ -1937,7 +1937,7 @@ func (s ActivateGatewayInput) GoString() string {
 type ActivateGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataActivateGatewayOutput `json:"-" xml:"-"`
 }
@@ -1961,7 +1961,7 @@ type AddCacheInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataAddCacheInput `json:"-" xml:"-"`
 }
@@ -1983,7 +1983,7 @@ func (s AddCacheInput) GoString() string {
 type AddCacheOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataAddCacheOutput `json:"-" xml:"-"`
 }
@@ -2005,7 +2005,7 @@ func (s AddCacheOutput) GoString() string {
 // AddTagsToResourceInput
 type AddTagsToResourceInput struct {
 	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
-	ResourceARN *string `type:"string" required:"true"`
+	ResourceARN *string `min:"50" type:"string" required:"true"`
 
 	// The key-value pair that represents the tag you want to add to the resource.
 	// The value can be an empty string.
@@ -2034,7 +2034,7 @@ func (s AddTagsToResourceInput) GoString() string {
 // AddTagsToResourceOutput
 type AddTagsToResourceOutput struct {
 	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
-	ResourceARN *string `type:"string"`
+	ResourceARN *string `min:"50" type:"string"`
 
 	metadataAddTagsToResourceOutput `json:"-" xml:"-"`
 }
@@ -2058,7 +2058,7 @@ type AddUploadBufferInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataAddUploadBufferInput `json:"-" xml:"-"`
 }
@@ -2080,7 +2080,7 @@ func (s AddUploadBufferInput) GoString() string {
 type AddUploadBufferOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataAddUploadBufferOutput `json:"-" xml:"-"`
 }
@@ -2110,7 +2110,7 @@ type AddWorkingStorageInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataAddWorkingStorageInput `json:"-" xml:"-"`
 }
@@ -2134,7 +2134,7 @@ func (s AddWorkingStorageInput) GoString() string {
 type AddWorkingStorageOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataAddWorkingStorageOutput `json:"-" xml:"-"`
 }
@@ -2156,17 +2156,17 @@ func (s AddWorkingStorageOutput) GoString() string {
 type CachediSCSIVolume struct {
 	SourceSnapshotId *string `type:"string"`
 
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
-	VolumeId *string `type:"string"`
+	VolumeId *string `min:"12" type:"string"`
 
 	VolumeProgress *float64 `type:"double"`
 
 	VolumeSizeInBytes *int64 `type:"long"`
 
-	VolumeStatus *string `type:"string"`
+	VolumeStatus *string `min:"3" type:"string"`
 
-	VolumeType *string `type:"string"`
+	VolumeType *string `min:"3" type:"string"`
 
 	// Lists iSCSI information about a volume.
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `type:"structure"`
@@ -2192,11 +2192,11 @@ func (s CachediSCSIVolume) GoString() string {
 type CancelArchivalInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape you want to cancel archiving
 	// for.
-	TapeARN *string `type:"string" required:"true"`
+	TapeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataCancelArchivalInput `json:"-" xml:"-"`
 }
@@ -2219,7 +2219,7 @@ func (s CancelArchivalInput) GoString() string {
 type CancelArchivalOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape for which archiving was
 	// canceled.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	metadataCancelArchivalOutput `json:"-" xml:"-"`
 }
@@ -2242,11 +2242,11 @@ func (s CancelArchivalOutput) GoString() string {
 type CancelRetrievalInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape you want to cancel retrieval
 	// for.
-	TapeARN *string `type:"string" required:"true"`
+	TapeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataCancelRetrievalInput `json:"-" xml:"-"`
 }
@@ -2269,7 +2269,7 @@ func (s CancelRetrievalInput) GoString() string {
 type CancelRetrievalOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape for which retrieval was
 	// canceled.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	metadataCancelRetrievalOutput `json:"-" xml:"-"`
 }
@@ -2292,21 +2292,21 @@ func (s CancelRetrievalOutput) GoString() string {
 // that supports authentication between your gateway and iSCSI initiators.
 type ChapInfo struct {
 	// The iSCSI initiator that connects to the target.
-	InitiatorName *string `type:"string"`
+	InitiatorName *string `min:"1" type:"string"`
 
 	// The secret key that the initiator (for example, the Windows client) must
 	// provide to participate in mutual CHAP with the target.
-	SecretToAuthenticateInitiator *string `type:"string"`
+	SecretToAuthenticateInitiator *string `min:"1" type:"string"`
 
 	// The secret key that the target must provide to participate in mutual CHAP
 	// with the initiator (e.g. Windows client).
-	SecretToAuthenticateTarget *string `type:"string"`
+	SecretToAuthenticateTarget *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the volume.
 	//
 	// Valid Values: 50 to 500 lowercase letters, numbers, periods (.), and hyphens
 	// (-).
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
 	metadataChapInfo `json:"-" xml:"-"`
 }
@@ -2326,17 +2326,17 @@ func (s ChapInfo) GoString() string {
 }
 
 type CreateCachediSCSIVolumeInput struct {
-	ClientToken *string `type:"string" required:"true"`
+	ClientToken *string `min:"5" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	NetworkInterfaceId *string `type:"string" required:"true"`
 
 	SnapshotId *string `type:"string"`
 
-	TargetName *string `type:"string" required:"true"`
+	TargetName *string `min:"1" type:"string" required:"true"`
 
 	VolumeSizeInBytes *int64 `type:"long" required:"true"`
 
@@ -2358,9 +2358,9 @@ func (s CreateCachediSCSIVolumeInput) GoString() string {
 }
 
 type CreateCachediSCSIVolumeOutput struct {
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	metadataCreateCachediSCSIVolumeOutput `json:"-" xml:"-"`
 }
@@ -2380,9 +2380,9 @@ func (s CreateCachediSCSIVolumeOutput) GoString() string {
 }
 
 type CreateSnapshotFromVolumeRecoveryPointInput struct {
-	SnapshotDescription *string `type:"string" required:"true"`
+	SnapshotDescription *string `min:"1" type:"string" required:"true"`
 
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataCreateSnapshotFromVolumeRecoveryPointInput `json:"-" xml:"-"`
 }
@@ -2404,7 +2404,7 @@ func (s CreateSnapshotFromVolumeRecoveryPointInput) GoString() string {
 type CreateSnapshotFromVolumeRecoveryPointOutput struct {
 	SnapshotId *string `type:"string"`
 
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	VolumeRecoveryPointTime *string `type:"string"`
 
@@ -2432,11 +2432,11 @@ type CreateSnapshotInput struct {
 	// Textual description of the snapshot that appears in the Amazon EC2 console,
 	// Elastic Block Store snapshots panel in the Description field, and in the
 	// AWS Storage Gateway snapshot Details pane, Description field
-	SnapshotDescription *string `type:"string" required:"true"`
+	SnapshotDescription *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataCreateSnapshotInput `json:"-" xml:"-"`
 }
@@ -2463,7 +2463,7 @@ type CreateSnapshotOutput struct {
 	SnapshotId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the volume of which the snapshot was taken.
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	metadataCreateSnapshotOutput `json:"-" xml:"-"`
 }
@@ -2491,11 +2491,11 @@ type CreateStorediSCSIVolumeInput struct {
 	// The unique identifier for the gateway local disk that is configured as a
 	// stored volume. Use ListLocalDisks (http://docs.aws.amazon.com/storagegateway/latest/userguide/API_ListLocalDisks.html)
 	// to list disk IDs for a gateway.
-	DiskId *string `type:"string" required:"true"`
+	DiskId *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The network interface of the gateway on which to expose the iSCSI target.
 	// Only IPv4 addresses are accepted. Use DescribeGatewayInformation to get a
@@ -2521,7 +2521,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// and as a suffix for the target ARN. For example, specifying TargetName as
 	// myvolume results in the target ARN of arn:aws:storagegateway:us-east-1:111122223333:gateway/mygateway/target/iqn.1997-05.com.amazon:myvolume.
 	// The target name must be unique across all volumes of a gateway.
-	TargetName *string `type:"string" required:"true"`
+	TargetName *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateStorediSCSIVolumeInput `json:"-" xml:"-"`
 }
@@ -2544,10 +2544,10 @@ func (s CreateStorediSCSIVolumeInput) GoString() string {
 type CreateStorediSCSIVolumeOutput struct {
 	// he Amazon Resource Name (ARN) of the volume target that includes the iSCSI
 	// name that initiators can use to connect to the target.
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the configured volume.
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	// The size of the volume in bytes.
 	VolumeSizeInBytes *int64 `type:"long"`
@@ -2575,22 +2575,22 @@ type CreateTapesInput struct {
 	// use the same ClientToken you specified in the initial request.
 	//
 	// Using the same ClientToken prevents creating the tape multiple times.
-	ClientToken *string `type:"string" required:"true"`
+	ClientToken *string `min:"5" type:"string" required:"true"`
 
 	// The unique Amazon Resource Name(ARN) that represents the gateway to associate
 	// the virtual tapes with. Use the ListGateways operation to return a list of
 	// gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The number of virtual tapes you want to create.
-	NumTapesToCreate *int64 `type:"integer" required:"true"`
+	NumTapesToCreate *int64 `min:"1" type:"integer" required:"true"`
 
 	// A prefix you append to the barcode of the virtual tape you are creating.
 	// This makes a barcode unique.
 	//
 	// The prefix must be 1 to 4 characters in length and must be upper-case letters
 	// A-Z.
-	TapeBarcodePrefix *string `type:"string" required:"true"`
+	TapeBarcodePrefix *string `min:"1" type:"string" required:"true"`
 
 	// The size, in bytes, of the virtual tapes you want to create.
 	//
@@ -2638,11 +2638,11 @@ func (s CreateTapesOutput) GoString() string {
 }
 
 type DeleteBandwidthRateLimitInput struct {
-	BandwidthType *string `type:"string" required:"true"`
+	BandwidthType *string `min:"3" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteBandwidthRateLimitInput `json:"-" xml:"-"`
 }
@@ -2666,7 +2666,7 @@ func (s DeleteBandwidthRateLimitInput) GoString() string {
 type DeleteBandwidthRateLimitOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataDeleteBandwidthRateLimitOutput `json:"-" xml:"-"`
 }
@@ -2690,11 +2690,11 @@ func (s DeleteBandwidthRateLimitOutput) GoString() string {
 //   DeleteChapCredentialsInput$InitiatorName   DeleteChapCredentialsInput$TargetARN
 type DeleteChapCredentialsInput struct {
 	// The iSCSI initiator that connects to the target.
-	InitiatorName *string `type:"string" required:"true"`
+	InitiatorName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
-	TargetARN *string `type:"string" required:"true"`
+	TargetARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteChapCredentialsInput `json:"-" xml:"-"`
 }
@@ -2716,10 +2716,10 @@ func (s DeleteChapCredentialsInput) GoString() string {
 // A JSON object containing the following fields:
 type DeleteChapCredentialsOutput struct {
 	// The iSCSI initiator that connects to the target.
-	InitiatorName *string `type:"string"`
+	InitiatorName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the target.
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
 	metadataDeleteChapCredentialsOutput `json:"-" xml:"-"`
 }
@@ -2742,7 +2742,7 @@ func (s DeleteChapCredentialsOutput) GoString() string {
 type DeleteGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteGatewayInput `json:"-" xml:"-"`
 }
@@ -2765,7 +2765,7 @@ func (s DeleteGatewayInput) GoString() string {
 type DeleteGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataDeleteGatewayOutput `json:"-" xml:"-"`
 }
@@ -2785,7 +2785,7 @@ func (s DeleteGatewayOutput) GoString() string {
 }
 
 type DeleteSnapshotScheduleInput struct {
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteSnapshotScheduleInput `json:"-" xml:"-"`
 }
@@ -2805,7 +2805,7 @@ func (s DeleteSnapshotScheduleInput) GoString() string {
 }
 
 type DeleteSnapshotScheduleOutput struct {
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	metadataDeleteSnapshotScheduleOutput `json:"-" xml:"-"`
 }
@@ -2828,7 +2828,7 @@ func (s DeleteSnapshotScheduleOutput) GoString() string {
 type DeleteTapeArchiveInput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape to delete from the virtual
 	// tape shelf (VTS).
-	TapeARN *string `type:"string" required:"true"`
+	TapeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteTapeArchiveInput `json:"-" xml:"-"`
 }
@@ -2851,7 +2851,7 @@ func (s DeleteTapeArchiveInput) GoString() string {
 type DeleteTapeArchiveOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape that was deleted from
 	// the virtual tape shelf (VTS).
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	metadataDeleteTapeArchiveOutput `json:"-" xml:"-"`
 }
@@ -2875,10 +2875,10 @@ type DeleteTapeInput struct {
 	// The unique Amazon Resource Name (ARN) of the gateway that the virtual tape
 	// to delete is associated with. Use the ListGateways operation to return a
 	// list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape to delete.
-	TapeARN *string `type:"string" required:"true"`
+	TapeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteTapeInput `json:"-" xml:"-"`
 }
@@ -2900,7 +2900,7 @@ func (s DeleteTapeInput) GoString() string {
 // DeleteTapeOutput
 type DeleteTapeOutput struct {
 	// The Amazon Resource Name (ARN) of the deleted virtual tape.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	metadataDeleteTapeOutput `json:"-" xml:"-"`
 }
@@ -2923,7 +2923,7 @@ func (s DeleteTapeOutput) GoString() string {
 type DeleteVolumeInput struct {
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDeleteVolumeInput `json:"-" xml:"-"`
 }
@@ -2946,7 +2946,7 @@ func (s DeleteVolumeInput) GoString() string {
 type DeleteVolumeOutput struct {
 	// The Amazon Resource Name (ARN) of the storage volume that was deleted. It
 	// is the same ARN you provided in the request.
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	metadataDeleteVolumeOutput `json:"-" xml:"-"`
 }
@@ -2969,7 +2969,7 @@ func (s DeleteVolumeOutput) GoString() string {
 type DescribeBandwidthRateLimitInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeBandwidthRateLimitInput `json:"-" xml:"-"`
 }
@@ -2992,15 +2992,15 @@ func (s DescribeBandwidthRateLimitInput) GoString() string {
 type DescribeBandwidthRateLimitOutput struct {
 	// The average download bandwidth rate limit in bits per second. This field
 	// does not appear in the response if the download rate limit is not set.
-	AverageDownloadRateLimitInBitsPerSec *int64 `type:"long"`
+	AverageDownloadRateLimitInBitsPerSec *int64 `min:"102400" type:"long"`
 
 	// The average upload bandwidth rate limit in bits per second. This field does
 	// not appear in the response if the upload rate limit is not set.
-	AverageUploadRateLimitInBitsPerSec *int64 `type:"long"`
+	AverageUploadRateLimitInBitsPerSec *int64 `min:"51200" type:"long"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataDescribeBandwidthRateLimitOutput `json:"-" xml:"-"`
 }
@@ -3022,7 +3022,7 @@ func (s DescribeBandwidthRateLimitOutput) GoString() string {
 type DescribeCacheInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeCacheInput `json:"-" xml:"-"`
 }
@@ -3056,7 +3056,7 @@ type DescribeCacheOutput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataDescribeCacheOutput `json:"-" xml:"-"`
 }
@@ -3123,7 +3123,7 @@ func (s DescribeCachediSCSIVolumesOutput) GoString() string {
 type DescribeChapCredentialsInput struct {
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
 	// operation to return to retrieve the TargetARN for specified VolumeARN.
-	TargetARN *string `type:"string" required:"true"`
+	TargetARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeChapCredentialsInput `json:"-" xml:"-"`
 }
@@ -3182,7 +3182,7 @@ func (s DescribeChapCredentialsOutput) GoString() string {
 type DescribeGatewayInformationInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeGatewayInformationInput `json:"-" xml:"-"`
 }
@@ -3205,10 +3205,10 @@ func (s DescribeGatewayInformationInput) GoString() string {
 type DescribeGatewayInformationOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	// The gateway ID.
-	GatewayId *string `type:"string"`
+	GatewayId *string `min:"12" type:"string"`
 
 	// The gateway name.
 	GatewayName *string `type:"string"`
@@ -3218,23 +3218,23 @@ type DescribeGatewayInformationOutput struct {
 	GatewayNetworkInterfaces []*NetworkInterface `type:"list"`
 
 	// One of the values that indicates the operating state of the gateway.
-	GatewayState *string `type:"string"`
+	GatewayState *string `min:"2" type:"string"`
 
 	// One of the values that indicates the time zone configured for the gateway.
-	GatewayTimezone *string `type:"string"`
+	GatewayTimezone *string `min:"3" type:"string"`
 
 	// The type of the gateway.
-	GatewayType *string `type:"string"`
+	GatewayType *string `min:"2" type:"string"`
 
 	// The date on which the last software update was applied to the gateway. If
 	// the gateway has never been updated, this field does not return a value in
 	// the response.
-	LastSoftwareUpdate *string `type:"string"`
+	LastSoftwareUpdate *string `min:"1" type:"string"`
 
 	// The date on which an update to the gateway is available. This date is in
 	// the time zone of the gateway. If the gateway is not available for an update
 	// this field is not returned in the response.
-	NextUpdateAvailabilityDate *string `type:"string"`
+	NextUpdateAvailabilityDate *string `min:"1" type:"string"`
 
 	metadataDescribeGatewayInformationOutput `json:"-" xml:"-"`
 }
@@ -3257,7 +3257,7 @@ func (s DescribeGatewayInformationOutput) GoString() string {
 type DescribeMaintenanceStartTimeInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeMaintenanceStartTimeInput `json:"-" xml:"-"`
 }
@@ -3281,13 +3281,13 @@ type DescribeMaintenanceStartTimeOutput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	HourOfDay *int64 `type:"integer"`
 
 	MinuteOfHour *int64 `type:"integer"`
 
-	Timezone *string `type:"string"`
+	Timezone *string `min:"3" type:"string"`
 
 	metadataDescribeMaintenanceStartTimeOutput `json:"-" xml:"-"`
 }
@@ -3311,7 +3311,7 @@ func (s DescribeMaintenanceStartTimeOutput) GoString() string {
 type DescribeSnapshotScheduleInput struct {
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeSnapshotScheduleInput `json:"-" xml:"-"`
 }
@@ -3331,15 +3331,15 @@ func (s DescribeSnapshotScheduleInput) GoString() string {
 }
 
 type DescribeSnapshotScheduleOutput struct {
-	Description *string `type:"string"`
+	Description *string `min:"1" type:"string"`
 
-	RecurrenceInHours *int64 `type:"integer"`
+	RecurrenceInHours *int64 `min:"1" type:"integer"`
 
 	StartAt *int64 `type:"integer"`
 
-	Timezone *string `type:"string"`
+	Timezone *string `min:"3" type:"string"`
 
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	metadataDescribeSnapshotScheduleOutput `json:"-" xml:"-"`
 }
@@ -3406,11 +3406,11 @@ func (s DescribeStorediSCSIVolumesOutput) GoString() string {
 type DescribeTapeArchivesInput struct {
 	// Specifies that the number of virtual tapes descried be limited to the specified
 	// number.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// An opaque string that indicates the position at which to begin describing
 	// virtual tapes.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Specifies one or more unique Amazon Resource Names (ARNs) that represent
 	// the virtual tapes you want to describe.
@@ -3440,7 +3440,7 @@ type DescribeTapeArchivesOutput struct {
 	// to fetch the next set of virtual tapes in the virtual tape shelf (VTS). If
 	// there are no more virtual tapes to describe, this field does not appear in
 	// the response.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// An array of virtual tape objects in the virtual tape shelf (VTS). The description
 	// includes of the Amazon Resource Name(ARN) of the virtual tapes. The information
@@ -3469,15 +3469,15 @@ func (s DescribeTapeArchivesOutput) GoString() string {
 type DescribeTapeRecoveryPointsInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the number of virtual tape recovery points that are described
 	// be limited to the specified number.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// An opaque string that indicates the position at which to begin describing
 	// the virtual tape recovery points.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataDescribeTapeRecoveryPointsInput `json:"-" xml:"-"`
 }
@@ -3500,7 +3500,7 @@ func (s DescribeTapeRecoveryPointsInput) GoString() string {
 type DescribeTapeRecoveryPointsOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	// An opaque string that indicates the position at which the virtual tape recovery
 	// points that were listed for description ended.
@@ -3508,7 +3508,7 @@ type DescribeTapeRecoveryPointsOutput struct {
 	// Use this marker in your next request to list the next set of virtual tape
 	// recovery points in the list. If there are no more recovery points to describe,
 	// this field does not appear in the response.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// An array of TapeRecoveryPointInfos that are available for the specified gateway.
 	TapeRecoveryPointInfos []*TapeRecoveryPointInfo `type:"list"`
@@ -3534,19 +3534,19 @@ func (s DescribeTapeRecoveryPointsOutput) GoString() string {
 type DescribeTapesInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the number of virtual tapes described be limited to the specified
 	// number.
 	//
 	// Amazon Web Services may impose its own limit, if this field is not set.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A marker value, obtained in a previous call to DescribeTapes. This marker
 	// indicates which page of results to retrieve.
 	//
 	// If not specified, the first page of results is retrieved.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// Specifies one or more unique Amazon Resource Names (ARNs) that represent
 	// the virtual tapes you want to describe. If this parameter is not specified,
@@ -3578,7 +3578,7 @@ type DescribeTapesOutput struct {
 	//
 	// If a response does not contain a marker, then there are no more results
 	// to be retrieved.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// An array of virtual tape descriptions.
 	Tapes []*Tape `type:"list"`
@@ -3603,7 +3603,7 @@ func (s DescribeTapesOutput) GoString() string {
 type DescribeUploadBufferInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeUploadBufferInput `json:"-" xml:"-"`
 }
@@ -3627,7 +3627,7 @@ type DescribeUploadBufferOutput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	UploadBufferAllocatedInBytes *int64 `type:"long"`
 
@@ -3654,15 +3654,15 @@ func (s DescribeUploadBufferOutput) GoString() string {
 type DescribeVTLDevicesInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the number of VTL devices described be limited to the specified
 	// number.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// An opaque string that indicates the position at which to begin describing
 	// the VTL devices.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// An array of strings, where each string represents the Amazon Resource Name
 	// (ARN) of a VTL device.
@@ -3693,13 +3693,13 @@ func (s DescribeVTLDevicesInput) GoString() string {
 type DescribeVTLDevicesOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	// An opaque string that indicates the position at which the VTL devices that
 	// were fetched for description ended. Use the marker in your next request to
 	// fetch the next set of VTL devices in the list. If there are no more VTL devices
 	// to describe, this field does not appear in the response.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// An array of VTL device objects composed of the Amazon Resource Name(ARN)
 	// of the VTL devices.
@@ -3726,7 +3726,7 @@ func (s DescribeVTLDevicesOutput) GoString() string {
 type DescribeWorkingStorageInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDescribeWorkingStorageInput `json:"-" xml:"-"`
 }
@@ -3755,7 +3755,7 @@ type DescribeWorkingStorageOutput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	// The total working storage in bytes allocated for the gateway. If no working
 	// storage is configured for the gateway, this field returns 0.
@@ -3795,7 +3795,7 @@ type DeviceiSCSIAttributes struct {
 
 	// Specifies the unique Amazon Resource Name(ARN) that encodes the iSCSI qualified
 	// name(iqn) of a tape drive or media changer target.
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
 	metadataDeviceiSCSIAttributes `json:"-" xml:"-"`
 }
@@ -3818,7 +3818,7 @@ func (s DeviceiSCSIAttributes) GoString() string {
 type DisableGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataDisableGatewayInput `json:"-" xml:"-"`
 }
@@ -3840,7 +3840,7 @@ func (s DisableGatewayInput) GoString() string {
 // DisableGatewayOutput
 type DisableGatewayOutput struct {
 	// The unique Amazon Resource Name of the disabled gateway.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataDisableGatewayOutput `json:"-" xml:"-"`
 }
@@ -3862,9 +3862,9 @@ func (s DisableGatewayOutput) GoString() string {
 type Disk struct {
 	DiskAllocationResource *string `type:"string"`
 
-	DiskAllocationType *string `type:"string"`
+	DiskAllocationType *string `min:"3" type:"string"`
 
-	DiskId *string `type:"string"`
+	DiskId *string `min:"1" type:"string"`
 
 	DiskNode *string `type:"string"`
 
@@ -3921,13 +3921,13 @@ func (s Error) GoString() string {
 type GatewayInfo struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	GatewayName *string `type:"string"`
 
-	GatewayOperationalState *string `type:"string"`
+	GatewayOperationalState *string `min:"2" type:"string"`
 
-	GatewayType *string `type:"string"`
+	GatewayType *string `min:"2" type:"string"`
 
 	metadataGatewayInfo `json:"-" xml:"-"`
 }
@@ -3952,11 +3952,11 @@ func (s GatewayInfo) GoString() string {
 type ListGatewaysInput struct {
 	// Specifies that the list of gateways returned be limited to the specified
 	// number of items.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// An opaque string that indicates the position at which to begin the returned
 	// list of gateways.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListGatewaysInput `json:"-" xml:"-"`
 }
@@ -3978,7 +3978,7 @@ func (s ListGatewaysInput) GoString() string {
 type ListGatewaysOutput struct {
 	Gateways []*GatewayInfo `type:"list"`
 
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListGatewaysOutput `json:"-" xml:"-"`
 }
@@ -4001,7 +4001,7 @@ func (s ListGatewaysOutput) GoString() string {
 type ListLocalDisksInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataListLocalDisksInput `json:"-" xml:"-"`
 }
@@ -4025,7 +4025,7 @@ type ListLocalDisksOutput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataListLocalDisksOutput `json:"-" xml:"-"`
 }
@@ -4048,15 +4048,15 @@ func (s ListLocalDisksOutput) GoString() string {
 type ListTagsForResourceInput struct {
 	// Specifies that the list of tags returned be limited to the specified number
 	// of items.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// An opaque string that indicates the position at which to begin returning
 	// the list of tags.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource for which you want to list
 	// tags.
-	ResourceARN *string `type:"string"`
+	ResourceARN *string `min:"50" type:"string"`
 
 	metadataListTagsForResourceInput `json:"-" xml:"-"`
 }
@@ -4079,11 +4079,11 @@ func (s ListTagsForResourceInput) GoString() string {
 type ListTagsForResourceOutput struct {
 	// An opaque string that indicates the position at which to stop returning the
 	// list of tags.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	// he Amazon Resource Name (ARN) of the resource for which you want to list
 	// tags.
-	ResourceARN *string `type:"string"`
+	ResourceARN *string `min:"50" type:"string"`
 
 	// An array that contains the tags for the specified resource.
 	Tags []*Tag `type:"list"`
@@ -4109,7 +4109,7 @@ func (s ListTagsForResourceOutput) GoString() string {
 type ListVolumeInitiatorsInput struct {
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes for the gateway.
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataListVolumeInitiatorsInput `json:"-" xml:"-"`
 }
@@ -4154,7 +4154,7 @@ func (s ListVolumeInitiatorsOutput) GoString() string {
 type ListVolumeRecoveryPointsInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataListVolumeRecoveryPointsInput `json:"-" xml:"-"`
 }
@@ -4176,7 +4176,7 @@ func (s ListVolumeRecoveryPointsInput) GoString() string {
 type ListVolumeRecoveryPointsOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	VolumeRecoveryPointInfos []*VolumeRecoveryPointInfo `type:"list"`
 
@@ -4203,16 +4203,16 @@ func (s ListVolumeRecoveryPointsOutput) GoString() string {
 type ListVolumesInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// Specifies that the list of volumes returned be limited to the specified number
 	// of items.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A string that indicates the position at which to begin the returned list
 	// of volumes. Obtain the marker from the response of a previous List iSCSI
 	// Volumes request.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListVolumesInput `json:"-" xml:"-"`
 }
@@ -4234,9 +4234,9 @@ func (s ListVolumesInput) GoString() string {
 type ListVolumesOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	VolumeInfos []*VolumeInfo `type:"list"`
 
@@ -4292,7 +4292,7 @@ func (s NetworkInterface) GoString() string {
 type RemoveTagsFromResourceInput struct {
 	// The Amazon Resource Name (ARN) of the resource you want to remove the tags
 	// from.
-	ResourceARN *string `type:"string"`
+	ResourceARN *string `min:"50" type:"string"`
 
 	// The keys of the tags you want to remove from the specified resource. A tag
 	// is composed of a key/value pair.
@@ -4319,7 +4319,7 @@ func (s RemoveTagsFromResourceInput) GoString() string {
 type RemoveTagsFromResourceOutput struct {
 	// The Amazon Resource Name (ARN) of the resource that the tags were removed
 	// from.
-	ResourceARN *string `type:"string"`
+	ResourceARN *string `min:"50" type:"string"`
 
 	metadataRemoveTagsFromResourceOutput `json:"-" xml:"-"`
 }
@@ -4341,7 +4341,7 @@ func (s RemoveTagsFromResourceOutput) GoString() string {
 type ResetCacheInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataResetCacheInput `json:"-" xml:"-"`
 }
@@ -4363,7 +4363,7 @@ func (s ResetCacheInput) GoString() string {
 type ResetCacheOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataResetCacheOutput `json:"-" xml:"-"`
 }
@@ -4390,11 +4390,11 @@ type RetrieveTapeArchiveInput struct {
 	//
 	// You retrieve archived virtual tapes to only one gateway and the gateway
 	// must be a gateway-VTL.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape you want to retrieve from
 	// the virtual tape shelf (VTS).
-	TapeARN *string `type:"string" required:"true"`
+	TapeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataRetrieveTapeArchiveInput `json:"-" xml:"-"`
 }
@@ -4416,7 +4416,7 @@ func (s RetrieveTapeArchiveInput) GoString() string {
 // RetrieveTapeArchiveOutput
 type RetrieveTapeArchiveOutput struct {
 	// The Amazon Resource Name (ARN) of the retrieved virtual tape.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	metadataRetrieveTapeArchiveOutput `json:"-" xml:"-"`
 }
@@ -4439,11 +4439,11 @@ func (s RetrieveTapeArchiveOutput) GoString() string {
 type RetrieveTapeRecoveryPointInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape for which you want to
 	// retrieve the recovery point.
-	TapeARN *string `type:"string" required:"true"`
+	TapeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataRetrieveTapeRecoveryPointInput `json:"-" xml:"-"`
 }
@@ -4466,7 +4466,7 @@ func (s RetrieveTapeRecoveryPointInput) GoString() string {
 type RetrieveTapeRecoveryPointOutput struct {
 	// The Amazon Resource Name (ARN) of the virtual tape for which the recovery
 	// point was retrieved.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	metadataRetrieveTapeRecoveryPointOutput `json:"-" xml:"-"`
 }
@@ -4489,7 +4489,7 @@ func (s RetrieveTapeRecoveryPointOutput) GoString() string {
 type ShutdownGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataShutdownGatewayInput `json:"-" xml:"-"`
 }
@@ -4512,7 +4512,7 @@ func (s ShutdownGatewayInput) GoString() string {
 type ShutdownGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataShutdownGatewayOutput `json:"-" xml:"-"`
 }
@@ -4535,7 +4535,7 @@ func (s ShutdownGatewayOutput) GoString() string {
 type StartGatewayInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataStartGatewayInput `json:"-" xml:"-"`
 }
@@ -4558,7 +4558,7 @@ func (s StartGatewayInput) GoString() string {
 type StartGatewayOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataStartGatewayOutput `json:"-" xml:"-"`
 }
@@ -4582,19 +4582,19 @@ type StorediSCSIVolume struct {
 
 	SourceSnapshotId *string `type:"string"`
 
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
-	VolumeDiskId *string `type:"string"`
+	VolumeDiskId *string `min:"1" type:"string"`
 
-	VolumeId *string `type:"string"`
+	VolumeId *string `min:"12" type:"string"`
 
 	VolumeProgress *float64 `type:"double"`
 
 	VolumeSizeInBytes *int64 `type:"long"`
 
-	VolumeStatus *string `type:"string"`
+	VolumeStatus *string `min:"3" type:"string"`
 
-	VolumeType *string `type:"string"`
+	VolumeType *string `min:"3" type:"string"`
 
 	// Lists iSCSI information about a volume.
 	VolumeiSCSIAttributes *VolumeiSCSIAttributes `type:"structure"`
@@ -4617,7 +4617,7 @@ func (s StorediSCSIVolume) GoString() string {
 }
 
 type Tag struct {
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	Value *string `type:"string" required:"true"`
 
@@ -4647,10 +4647,10 @@ type Tape struct {
 	Progress *float64 `type:"double"`
 
 	// The Amazon Resource Name (ARN) of the virtual tape.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	// The barcode that identifies a specific virtual tape.
-	TapeBarcode *string `type:"string"`
+	TapeBarcode *string `min:"7" type:"string"`
 
 	// The size, in bytes, of the virtual tape.
 	TapeSizeInBytes *int64 `type:"long"`
@@ -4660,7 +4660,7 @@ type Tape struct {
 
 	// The virtual tape library (VTL) device that the virtual tape is associated
 	// with.
-	VTLDevice *string `type:"string"`
+	VTLDevice *string `min:"50" type:"string"`
 
 	metadataTape `json:"-" xml:"-"`
 }
@@ -4691,13 +4691,13 @@ type TapeArchive struct {
 	// being retrieved to.
 	//
 	// The virtual tape is retrieved from the virtual tape shelf (VTS).
-	RetrievedTo *string `type:"string"`
+	RetrievedTo *string `min:"50" type:"string"`
 
 	// The Amazon Resource Name (ARN) of an archived virtual tape.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	// The barcode that identifies the archived virtual tape.
-	TapeBarcode *string `type:"string"`
+	TapeBarcode *string `min:"7" type:"string"`
 
 	// The size, in bytes, of the archived virtual tape.
 	TapeSizeInBytes *int64 `type:"long"`
@@ -4725,7 +4725,7 @@ func (s TapeArchive) GoString() string {
 // Describes a recovery point.
 type TapeRecoveryPointInfo struct {
 	// The Amazon Resource Name (ARN) of the virtual tape.
-	TapeARN *string `type:"string"`
+	TapeARN *string `min:"50" type:"string"`
 
 	// The time when the point-in-time view of the virtual tape was replicated for
 	// later recovery.
@@ -4761,14 +4761,14 @@ func (s TapeRecoveryPointInfo) GoString() string {
 //   UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec   UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec
 type UpdateBandwidthRateLimitInput struct {
 	// The average download bandwidth rate limit in bits per second.
-	AverageDownloadRateLimitInBitsPerSec *int64 `type:"long"`
+	AverageDownloadRateLimitInBitsPerSec *int64 `min:"102400" type:"long"`
 
 	// The average upload bandwidth rate limit in bits per second.
-	AverageUploadRateLimitInBitsPerSec *int64 `type:"long"`
+	AverageUploadRateLimitInBitsPerSec *int64 `min:"51200" type:"long"`
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataUpdateBandwidthRateLimitInput `json:"-" xml:"-"`
 }
@@ -4792,7 +4792,7 @@ func (s UpdateBandwidthRateLimitInput) GoString() string {
 type UpdateBandwidthRateLimitOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataUpdateBandwidthRateLimitOutput `json:"-" xml:"-"`
 }
@@ -4817,13 +4817,13 @@ func (s UpdateBandwidthRateLimitOutput) GoString() string {
 //   UpdateChapCredentialsInput$SecretToAuthenticateTarget   UpdateChapCredentialsInput$TargetARN
 type UpdateChapCredentialsInput struct {
 	// The iSCSI initiator that connects to the target.
-	InitiatorName *string `type:"string" required:"true"`
+	InitiatorName *string `min:"1" type:"string" required:"true"`
 
 	// The secret key that the initiator (for example, the Windows client) must
 	// provide to participate in mutual CHAP with the target.
 	//
 	// The secret key must be between 12 and 16 bytes when encoded in UTF-8.
-	SecretToAuthenticateInitiator *string `type:"string" required:"true"`
+	SecretToAuthenticateInitiator *string `min:"1" type:"string" required:"true"`
 
 	// The secret key that the target must provide to participate in mutual CHAP
 	// with the initiator (e.g. Windows client).
@@ -4831,11 +4831,11 @@ type UpdateChapCredentialsInput struct {
 	// Byte constraints: Minimum bytes of 12. Maximum bytes of 16.
 	//
 	// The secret key must be between 12 and 16 bytes when encoded in UTF-8.
-	SecretToAuthenticateTarget *string `type:"string"`
+	SecretToAuthenticateTarget *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the iSCSI volume target. Use the DescribeStorediSCSIVolumes
 	// operation to return the TargetARN for specified VolumeARN.
-	TargetARN *string `type:"string" required:"true"`
+	TargetARN *string `min:"50" type:"string" required:"true"`
 
 	metadataUpdateChapCredentialsInput `json:"-" xml:"-"`
 }
@@ -4858,11 +4858,11 @@ func (s UpdateChapCredentialsInput) GoString() string {
 type UpdateChapCredentialsOutput struct {
 	// The iSCSI initiator that connects to the target. This is the same initiator
 	// name specified in the request.
-	InitiatorName *string `type:"string"`
+	InitiatorName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the target. This is the same target specified
 	// in the request.
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
 	metadataUpdateChapCredentialsOutput `json:"-" xml:"-"`
 }
@@ -4884,13 +4884,13 @@ func (s UpdateChapCredentialsOutput) GoString() string {
 type UpdateGatewayInformationInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// A unique identifier for your gateway. This name becomes part of the gateway
 	// Amazon Resources Name (ARN) which is what you use as an input to other operations.
-	GatewayName *string `type:"string"`
+	GatewayName *string `min:"2" type:"string"`
 
-	GatewayTimezone *string `type:"string"`
+	GatewayTimezone *string `min:"3" type:"string"`
 
 	metadataUpdateGatewayInformationInput `json:"-" xml:"-"`
 }
@@ -4913,7 +4913,7 @@ func (s UpdateGatewayInformationInput) GoString() string {
 type UpdateGatewayInformationOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	GatewayName *string `type:"string"`
 
@@ -4938,7 +4938,7 @@ func (s UpdateGatewayInformationOutput) GoString() string {
 type UpdateGatewaySoftwareNowInput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	metadataUpdateGatewaySoftwareNowInput `json:"-" xml:"-"`
 }
@@ -4961,7 +4961,7 @@ func (s UpdateGatewaySoftwareNowInput) GoString() string {
 type UpdateGatewaySoftwareNowOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataUpdateGatewaySoftwareNowOutput `json:"-" xml:"-"`
 }
@@ -4990,7 +4990,7 @@ type UpdateMaintenanceStartTimeInput struct {
 
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string" required:"true"`
+	GatewayARN *string `min:"50" type:"string" required:"true"`
 
 	// The hour component of the maintenance start time represented as hh, where
 	// hh is the hour (00 to 23). The hour of the day is in the time zone of the
@@ -5024,7 +5024,7 @@ func (s UpdateMaintenanceStartTimeInput) GoString() string {
 type UpdateMaintenanceStartTimeOutput struct {
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and region.
-	GatewayARN *string `type:"string"`
+	GatewayARN *string `min:"50" type:"string"`
 
 	metadataUpdateMaintenanceStartTimeOutput `json:"-" xml:"-"`
 }
@@ -5049,10 +5049,10 @@ func (s UpdateMaintenanceStartTimeOutput) GoString() string {
 //   UpdateSnapshotScheduleInput$StartAt   UpdateSnapshotScheduleInput$VolumeARN
 type UpdateSnapshotScheduleInput struct {
 	// Optional description of the snapshot that overwrites the existing description.
-	Description *string `type:"string"`
+	Description *string `min:"1" type:"string"`
 
 	// Frequency of snapshots. Specify the number of hours between snapshots.
-	RecurrenceInHours *int64 `type:"integer" required:"true"`
+	RecurrenceInHours *int64 `min:"1" type:"integer" required:"true"`
 
 	// The hour of the day at which the snapshot schedule begins represented as
 	// hh, where hh is the hour (0 to 23). The hour of the day is in the time zone
@@ -5061,7 +5061,7 @@ type UpdateSnapshotScheduleInput struct {
 
 	// The Amazon Resource Name (ARN) of the volume. Use the ListVolumes operation
 	// to return a list of gateway volumes.
-	VolumeARN *string `type:"string" required:"true"`
+	VolumeARN *string `min:"50" type:"string" required:"true"`
 
 	metadataUpdateSnapshotScheduleInput `json:"-" xml:"-"`
 }
@@ -5082,7 +5082,7 @@ func (s UpdateSnapshotScheduleInput) GoString() string {
 
 // A JSON object containing the of the updated storage volume.
 type UpdateSnapshotScheduleOutput struct {
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	metadataUpdateSnapshotScheduleOutput `json:"-" xml:"-"`
 }
@@ -5106,10 +5106,10 @@ type UpdateVTLDeviceTypeInput struct {
 	// The type of medium changer you want to select.
 	//
 	// Valid Values: "STK-L700", "AWS-Gateway-VTL"
-	DeviceType *string `type:"string" required:"true"`
+	DeviceType *string `min:"2" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the medium changer you want to select.
-	VTLDeviceARN *string `type:"string" required:"true"`
+	VTLDeviceARN *string `min:"50" type:"string" required:"true"`
 
 	metadataUpdateVTLDeviceTypeInput `json:"-" xml:"-"`
 }
@@ -5131,7 +5131,7 @@ func (s UpdateVTLDeviceTypeInput) GoString() string {
 // UpdateVTLDeviceTypeOutput
 type UpdateVTLDeviceTypeOutput struct {
 	// The Amazon Resource Name (ARN) of the medium changer you have selected.
-	VTLDeviceARN *string `type:"string"`
+	VTLDeviceARN *string `min:"50" type:"string"`
 
 	metadataUpdateVTLDeviceTypeOutput `json:"-" xml:"-"`
 }
@@ -5157,7 +5157,7 @@ type VTLDevice struct {
 
 	// Specifies the unique Amazon Resource Name (ARN) of the device (tape drive
 	// or media changer).
-	VTLDeviceARN *string `type:"string"`
+	VTLDeviceARN *string `min:"50" type:"string"`
 
 	VTLDeviceProductIdentifier *string `type:"string"`
 
@@ -5183,9 +5183,9 @@ func (s VTLDevice) GoString() string {
 }
 
 type VolumeInfo struct {
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
-	VolumeType *string `type:"string"`
+	VolumeType *string `min:"3" type:"string"`
 
 	metadataVolumeInfo `json:"-" xml:"-"`
 }
@@ -5205,7 +5205,7 @@ func (s VolumeInfo) GoString() string {
 }
 
 type VolumeRecoveryPointInfo struct {
-	VolumeARN *string `type:"string"`
+	VolumeARN *string `min:"50" type:"string"`
 
 	VolumeRecoveryPointTime *string `type:"string"`
 
@@ -5236,7 +5236,7 @@ type VolumeiSCSIAttributes struct {
 	ChapEnabled *bool `type:"boolean"`
 
 	// The logical disk number.
-	LunNumber *int64 `type:"integer"`
+	LunNumber *int64 `min:"1" type:"integer"`
 
 	// The network interface identifier.
 	NetworkInterfaceId *string `type:"string"`
@@ -5245,7 +5245,7 @@ type VolumeiSCSIAttributes struct {
 	NetworkInterfacePort *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the volume target.
-	TargetARN *string `type:"string"`
+	TargetARN *string `min:"50" type:"string"`
 
 	metadataVolumeiSCSIAttributes `json:"-" xml:"-"`
 }

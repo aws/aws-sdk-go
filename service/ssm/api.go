@@ -339,10 +339,10 @@ func (c *SSM) UpdateAssociationStatus(input *UpdateAssociationStatusInput) (*Upd
 // Describes an association of a configuration document and an instance.
 type Association struct {
 	// The ID of the instance.
-	InstanceId *string `type:"string"`
+	InstanceId *string `min:"10" type:"string"`
 
 	// The name of the configuration document.
-	Name *string `type:"string"`
+	Name *string `min:"3" type:"string"`
 
 	metadataAssociation `json:"-" xml:"-"`
 }
@@ -367,10 +367,10 @@ type AssociationDescription struct {
 	Date *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the instance.
-	InstanceId *string `type:"string"`
+	InstanceId *string `min:"10" type:"string"`
 
 	// The name of the configuration document.
-	Name *string `type:"string"`
+	Name *string `min:"3" type:"string"`
 
 	// The association status.
 	Status *AssociationStatus `type:"structure"`
@@ -398,7 +398,7 @@ type AssociationFilter struct {
 	Key *string `locationName:"key" type:"string" required:"true" enum:"AssociationFilterKey"`
 
 	// The filter value.
-	Value *string `locationName:"value" type:"string" required:"true"`
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 
 	metadataAssociationFilter `json:"-" xml:"-"`
 }
@@ -496,10 +496,10 @@ func (s CreateAssociationBatchOutput) GoString() string {
 // Describes the association of a configuration document and an instance.
 type CreateAssociationBatchRequestEntry struct {
 	// The ID of the instance.
-	InstanceId *string `type:"string"`
+	InstanceId *string `min:"10" type:"string"`
 
 	// The name of the configuration document.
-	Name *string `type:"string"`
+	Name *string `min:"3" type:"string"`
 
 	metadataCreateAssociationBatchRequestEntry `json:"-" xml:"-"`
 }
@@ -520,10 +520,10 @@ func (s CreateAssociationBatchRequestEntry) GoString() string {
 
 type CreateAssociationInput struct {
 	// The ID of the instance.
-	InstanceId *string `type:"string" required:"true"`
+	InstanceId *string `min:"10" type:"string" required:"true"`
 
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataCreateAssociationInput `json:"-" xml:"-"`
 }
@@ -566,10 +566,10 @@ func (s CreateAssociationOutput) GoString() string {
 type CreateDocumentInput struct {
 	// A valid JSON file. For more information about the contents of this file,
 	// see Configuration Document (http://docs.aws.amazon.com/ssm/latest/APIReference/aws-ssm-document.html).
-	Content *string `type:"string" required:"true"`
+	Content *string `min:"1" type:"string" required:"true"`
 
 	// A name for the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataCreateDocumentInput `json:"-" xml:"-"`
 }
@@ -611,10 +611,10 @@ func (s CreateDocumentOutput) GoString() string {
 
 type DeleteAssociationInput struct {
 	// The ID of the instance.
-	InstanceId *string `type:"string" required:"true"`
+	InstanceId *string `min:"10" type:"string" required:"true"`
 
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteAssociationInput `json:"-" xml:"-"`
 }
@@ -653,7 +653,7 @@ func (s DeleteAssociationOutput) GoString() string {
 
 type DeleteDocumentInput struct {
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteDocumentInput `json:"-" xml:"-"`
 }
@@ -692,10 +692,10 @@ func (s DeleteDocumentOutput) GoString() string {
 
 type DescribeAssociationInput struct {
 	// The ID of the instance.
-	InstanceId *string `type:"string" required:"true"`
+	InstanceId *string `min:"10" type:"string" required:"true"`
 
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeAssociationInput `json:"-" xml:"-"`
 }
@@ -737,7 +737,7 @@ func (s DescribeAssociationOutput) GoString() string {
 
 type DescribeDocumentInput struct {
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeDocumentInput `json:"-" xml:"-"`
 }
@@ -783,7 +783,7 @@ type DocumentDescription struct {
 	CreatedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The name of the configuration document.
-	Name *string `type:"string"`
+	Name *string `min:"3" type:"string"`
 
 	// The SHA1 hash of the document, which you can use for verification purposes.
 	Sha1 *string `type:"string"`
@@ -814,7 +814,7 @@ type DocumentFilter struct {
 	Key *string `locationName:"key" type:"string" required:"true" enum:"DocumentFilterKey"`
 
 	// The value of the filter.
-	Value *string `locationName:"value" type:"string" required:"true"`
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
 
 	metadataDocumentFilter `json:"-" xml:"-"`
 }
@@ -836,7 +836,7 @@ func (s DocumentFilter) GoString() string {
 // Describes the name of a configuration document.
 type DocumentIdentifier struct {
 	// The name of the configuration document.
-	Name *string `type:"string"`
+	Name *string `min:"3" type:"string"`
 
 	metadataDocumentIdentifier `json:"-" xml:"-"`
 }
@@ -885,7 +885,7 @@ func (s FailedCreateAssociation) GoString() string {
 
 type GetDocumentInput struct {
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataGetDocumentInput `json:"-" xml:"-"`
 }
@@ -906,10 +906,10 @@ func (s GetDocumentInput) GoString() string {
 
 type GetDocumentOutput struct {
 	// The contents of the configuration document.
-	Content *string `type:"string"`
+	Content *string `min:"1" type:"string"`
 
 	// The name of the configuration document.
-	Name *string `type:"string"`
+	Name *string `min:"3" type:"string"`
 
 	metadataGetDocumentOutput `json:"-" xml:"-"`
 }
@@ -930,12 +930,12 @@ func (s GetDocumentOutput) GoString() string {
 
 type ListAssociationsInput struct {
 	// One or more filters. Use a filter to return a more specific list of results.
-	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" type:"list" required:"true"`
+	AssociationFilterList []*AssociationFilter `locationNameList:"AssociationFilter" min:"1" type:"list" required:"true"`
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
 	// results.
-	MaxResults *int64 `type:"integer"`
+	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token for the next set of items to return. (You received this token from
 	// a previous call.)
@@ -985,12 +985,12 @@ func (s ListAssociationsOutput) GoString() string {
 
 type ListDocumentsInput struct {
 	// One or more filters. Use a filter to return a more specific list of results.
-	DocumentFilterList []*DocumentFilter `locationNameList:"DocumentFilter" type:"list"`
+	DocumentFilterList []*DocumentFilter `locationNameList:"DocumentFilter" min:"1" type:"list"`
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
 	// results.
-	MaxResults *int64 `type:"integer"`
+	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token for the next set of items to return. (You received this token from
 	// a previous call.)
@@ -1043,10 +1043,10 @@ type UpdateAssociationStatusInput struct {
 	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
 
 	// The ID of the instance.
-	InstanceId *string `type:"string" required:"true"`
+	InstanceId *string `min:"10" type:"string" required:"true"`
 
 	// The name of the configuration document.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"3" type:"string" required:"true"`
 
 	metadataUpdateAssociationStatusInput `json:"-" xml:"-"`
 }

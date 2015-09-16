@@ -929,7 +929,7 @@ type DeleteIdentityPolicyInput struct {
 	Identity *string `type:"string" required:"true"`
 
 	// The name of the policy to be deleted.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteIdentityPolicyInput `json:"-" xml:"-"`
 }
@@ -1625,13 +1625,13 @@ type PutIdentityPolicyInput struct {
 	//
 	// For information about the syntax of sending authorization policies, see
 	// the Amazon SES Developer Guide (http://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html).
-	Policy *string `type:"string" required:"true"`
+	Policy *string `min:"1" type:"string" required:"true"`
 
 	// The name of the policy.
 	//
 	// The policy name cannot exceed 64 characters and can only include alphanumeric
 	// characters, dashes, and underscores.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutIdentityPolicyInput `json:"-" xml:"-"`
 }

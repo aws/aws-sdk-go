@@ -880,13 +880,13 @@ func (c *KMS) UpdateKeyDescription(input *UpdateKeyDescriptionInput) (*UpdateKey
 // Contains information about an alias.
 type AliasListEntry struct {
 	// String that contains the key ARN.
-	AliasArn *string `type:"string"`
+	AliasArn *string `min:"20" type:"string"`
 
 	// String that contains the alias.
-	AliasName *string `type:"string"`
+	AliasName *string `min:"1" type:"string"`
 
 	// String that contains the key identifier pointed to by the alias.
-	TargetKeyId *string `type:"string"`
+	TargetKeyId *string `min:"1" type:"string"`
 
 	metadataAliasListEntry `json:"-" xml:"-"`
 }
@@ -909,13 +909,13 @@ type CreateAliasInput struct {
 	// String that contains the display name. The name must start with the word
 	// "alias" followed by a forward slash (alias/). Aliases that begin with "alias/AWS"
 	// are reserved.
-	AliasName *string `type:"string" required:"true"`
+	AliasName *string `min:"1" type:"string" required:"true"`
 
 	// An identifier of the key for which you are creating the alias. This value
 	// cannot be another alias but can be a globally unique identifier or a fully
 	// specified ARN to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	TargetKeyId *string `type:"string" required:"true"`
+	TargetKeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataCreateAliasInput `json:"-" xml:"-"`
 }
@@ -962,13 +962,13 @@ type CreateGrantInput struct {
 
 	// Principal given permission by the grant to use the key identified by the
 	// keyId parameter.
-	GranteePrincipal *string `type:"string" required:"true"`
+	GranteePrincipal *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// List of operations permitted by the grant. This can be any combination of
 	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
@@ -977,7 +977,7 @@ type CreateGrantInput struct {
 
 	// Principal given permission to retire the grant. For more information, see
 	// RetireGrant.
-	RetiringPrincipal *string `type:"string"`
+	RetiringPrincipal *string `min:"1" type:"string"`
 
 	metadataCreateGrantInput `json:"-" xml:"-"`
 }
@@ -998,10 +998,10 @@ func (s CreateGrantInput) GoString() string {
 
 type CreateGrantOutput struct {
 	// Unique grant identifier. You can use the GrantId value to revoke a grant.
-	GrantId *string `type:"string"`
+	GrantId *string `min:"1" type:"string"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
-	GrantToken *string `type:"string"`
+	GrantToken *string `min:"1" type:"string"`
 
 	metadataCreateGrantOutput `json:"-" xml:"-"`
 }
@@ -1031,7 +1031,7 @@ type CreateKeyInput struct {
 
 	// Policy to be attached to the key. This is required and delegates back to
 	// the account. The key is the root of trust.
-	Policy *string `type:"string"`
+	Policy *string `min:"1" type:"string"`
 
 	metadataCreateKeyInput `json:"-" xml:"-"`
 }
@@ -1073,7 +1073,7 @@ func (s CreateKeyOutput) GoString() string {
 
 type DecryptInput struct {
 	// Ciphertext to be decrypted. The blob includes metadata.
-	CiphertextBlob []byte `type:"blob" required:"true"`
+	CiphertextBlob []byte `min:"1" type:"blob" required:"true"`
 
 	// The encryption context. If this was specified in the Encrypt function, it
 	// must be specified here or the decryption operation will fail. For more information,
@@ -1103,11 +1103,11 @@ func (s DecryptInput) GoString() string {
 type DecryptOutput struct {
 	// ARN of the key used to perform the decryption. This value is returned if
 	// no errors are encountered during the operation.
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	// Decrypted plaintext data. This value may not be returned if the customer
 	// master key is not available or if you didn't have permission to use it.
-	Plaintext []byte `type:"blob"`
+	Plaintext []byte `min:"1" type:"blob"`
 
 	metadataDecryptOutput `json:"-" xml:"-"`
 }
@@ -1129,7 +1129,7 @@ func (s DecryptOutput) GoString() string {
 type DeleteAliasInput struct {
 	// The alias to be deleted. The name must start with the word "alias" followed
 	// by a forward slash (alias/). Aliases that begin with "alias/AWS" are reserved.
-	AliasName *string `type:"string" required:"true"`
+	AliasName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteAliasInput `json:"-" xml:"-"`
 }
@@ -1173,7 +1173,7 @@ type DescribeKeyInput struct {
 	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataDescribeKeyInput `json:"-" xml:"-"`
 }
@@ -1218,7 +1218,7 @@ type DisableKeyInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataDisableKeyInput `json:"-" xml:"-"`
 }
@@ -1260,7 +1260,7 @@ type DisableKeyRotationInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataDisableKeyRotationInput `json:"-" xml:"-"`
 }
@@ -1302,7 +1302,7 @@ type EnableKeyInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataEnableKeyInput `json:"-" xml:"-"`
 }
@@ -1344,7 +1344,7 @@ type EnableKeyRotationInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataEnableKeyRotationInput `json:"-" xml:"-"`
 }
@@ -1397,10 +1397,10 @@ type EncryptInput struct {
 	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// Data to be encrypted.
-	Plaintext []byte `type:"blob" required:"true"`
+	Plaintext []byte `min:"1" type:"blob" required:"true"`
 
 	metadataEncryptInput `json:"-" xml:"-"`
 }
@@ -1422,10 +1422,10 @@ func (s EncryptInput) GoString() string {
 type EncryptOutput struct {
 	// The encrypted plaintext. If you are using the CLI, the value is Base64 encoded.
 	// Otherwise, it is not encoded.
-	CiphertextBlob []byte `type:"blob"`
+	CiphertextBlob []byte `min:"1" type:"blob"`
 
 	// The ID of the key used during encryption.
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	metadataEncryptOutput `json:"-" xml:"-"`
 }
@@ -1459,7 +1459,7 @@ type GenerateDataKeyInput struct {
 	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// Value that identifies the encryption algorithm and key size to generate a
 	// data key for. Currently this can be AES_128 or AES_256.
@@ -1468,7 +1468,7 @@ type GenerateDataKeyInput struct {
 	// Integer that contains the number of bytes to generate. Common values are
 	// 128, 256, 512, and 1024. 1024 is the current limit. We recommend that you
 	// use the KeySpec parameter instead.
-	NumberOfBytes *int64 `type:"integer"`
+	NumberOfBytes *int64 `min:"1" type:"integer"`
 
 	metadataGenerateDataKeyInput `json:"-" xml:"-"`
 }
@@ -1496,15 +1496,15 @@ type GenerateDataKeyOutput struct {
 	//
 	// If you are using the CLI, the value is Base64 encoded. Otherwise, it is
 	// not encoded.
-	CiphertextBlob []byte `type:"blob"`
+	CiphertextBlob []byte `min:"1" type:"blob"`
 
 	// System generated unique identifier of the key to be used to decrypt the encrypted
 	// copy of the data key.
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	// Plaintext that contains the data key. Use this for encryption and decryption
 	// and then remove it from memory as soon as possible.
-	Plaintext []byte `type:"blob"`
+	Plaintext []byte `min:"1" type:"blob"`
 
 	metadataGenerateDataKeyOutput `json:"-" xml:"-"`
 }
@@ -1537,7 +1537,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// Value that identifies the encryption algorithm and key size. Currently this
 	// can be AES_128 or AES_256.
@@ -1546,7 +1546,7 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// Integer that contains the number of bytes to generate. Common values are
 	// 128, 256, 512, 1024 and so on. We recommend that you use the KeySpec parameter
 	// instead.
-	NumberOfBytes *int64 `type:"integer"`
+	NumberOfBytes *int64 `min:"1" type:"integer"`
 
 	metadataGenerateDataKeyWithoutPlaintextInput `json:"-" xml:"-"`
 }
@@ -1571,11 +1571,11 @@ type GenerateDataKeyWithoutPlaintextOutput struct {
 	//
 	// If you are using the CLI, the value is Base64 encoded. Otherwise, it is
 	// not encoded.
-	CiphertextBlob []byte `type:"blob"`
+	CiphertextBlob []byte `min:"1" type:"blob"`
 
 	// System generated unique identifier of the key to be used to decrypt the encrypted
 	// copy of the data key.
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	metadataGenerateDataKeyWithoutPlaintextOutput `json:"-" xml:"-"`
 }
@@ -1597,7 +1597,7 @@ func (s GenerateDataKeyWithoutPlaintextOutput) GoString() string {
 type GenerateRandomInput struct {
 	// Integer that contains the number of bytes to generate. Common values are
 	// 128, 256, 512, 1024 and so on. The current limit is 1024 bytes.
-	NumberOfBytes *int64 `type:"integer"`
+	NumberOfBytes *int64 `min:"1" type:"integer"`
 
 	metadataGenerateRandomInput `json:"-" xml:"-"`
 }
@@ -1618,7 +1618,7 @@ func (s GenerateRandomInput) GoString() string {
 
 type GenerateRandomOutput struct {
 	// Plaintext that contains the unpredictable byte string.
-	Plaintext []byte `type:"blob"`
+	Plaintext []byte `min:"1" type:"blob"`
 
 	metadataGenerateRandomOutput `json:"-" xml:"-"`
 }
@@ -1642,11 +1642,11 @@ type GetKeyPolicyInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// String that contains the name of the policy. Currently, this must be "default".
 	// Policy names can be discovered by calling ListKeyPolicies.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataGetKeyPolicyInput `json:"-" xml:"-"`
 }
@@ -1667,7 +1667,7 @@ func (s GetKeyPolicyInput) GoString() string {
 
 type GetKeyPolicyOutput struct {
 	// A policy document in JSON format.
-	Policy *string `type:"string"`
+	Policy *string `min:"1" type:"string"`
 
 	metadataGetKeyPolicyOutput `json:"-" xml:"-"`
 }
@@ -1691,7 +1691,7 @@ type GetKeyRotationStatusInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataGetKeyRotationStatusInput `json:"-" xml:"-"`
 }
@@ -1764,13 +1764,13 @@ type GrantListEntry struct {
 	Constraints *GrantConstraints `type:"structure"`
 
 	// Unique grant identifier.
-	GrantId *string `type:"string"`
+	GrantId *string `min:"1" type:"string"`
 
 	// The principal that receives the grant permission.
-	GranteePrincipal *string `type:"string"`
+	GranteePrincipal *string `min:"1" type:"string"`
 
 	// The account under which the grant was issued.
-	IssuingAccount *string `type:"string"`
+	IssuingAccount *string `min:"1" type:"string"`
 
 	// List of operations permitted by the grant. This can be any combination of
 	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
@@ -1778,7 +1778,7 @@ type GrantListEntry struct {
 	Operations []*string `type:"list"`
 
 	// The principal that can retire the account.
-	RetiringPrincipal *string `type:"string"`
+	RetiringPrincipal *string `min:"1" type:"string"`
 
 	metadataGrantListEntry `json:"-" xml:"-"`
 }
@@ -1800,10 +1800,10 @@ func (s GrantListEntry) GoString() string {
 // Contains information about each entry in the key list.
 type KeyListEntry struct {
 	// ARN of the key.
-	KeyArn *string `type:"string"`
+	KeyArn *string `min:"20" type:"string"`
 
 	// Unique identifier of the key.
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	metadataKeyListEntry `json:"-" xml:"-"`
 }
@@ -1828,7 +1828,7 @@ type KeyMetadata struct {
 	AWSAccountId *string `type:"string"`
 
 	// Key ARN (Amazon Resource Name).
-	Arn *string `type:"string"`
+	Arn *string `min:"20" type:"string"`
 
 	// Date the key was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1840,7 +1840,7 @@ type KeyMetadata struct {
 	Enabled *bool `type:"boolean"`
 
 	// Unique identifier for the key.
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// A value that specifies what operation(s) the key can perform.
 	KeyUsage *string `type:"string" enum:"KeyUsageType"`
@@ -1866,12 +1866,12 @@ type ListAliasesInput struct {
 	// Specify this parameter when paginating results to indicate the maximum number
 	// of aliases you want in each response. If there are additional aliases beyond
 	// the maximum you specify, the Truncated response element will be set to true.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter when paginating results, and only in a subsequent request
 	// after you've received a response where the results are truncated. Set it
 	// to the value of the NextMarker element in the response you just received.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListAliasesInput `json:"-" xml:"-"`
 }
@@ -1896,7 +1896,7 @@ type ListAliasesOutput struct {
 
 	// If Truncated is true, this value is present and contains the value to use
 	// for the Marker request parameter in a subsequent pagination request.
-	NextMarker *string `type:"string"`
+	NextMarker *string `min:"1" type:"string"`
 
 	// A flag that indicates whether there are more items in the list. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
@@ -1925,18 +1925,18 @@ type ListGrantsInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// Specify this parameter only when paginating results to indicate the maximum
 	// number of grants you want listed in the response. If there are additional
 	// grants beyond the maximum you specify, the Truncated response element will
 	// be set to true.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results, and only in a subsequent
 	// request after you've received a response where the results are truncated.
 	// Set it to the value of the NextMarker in the response you just received.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListGrantsInput `json:"-" xml:"-"`
 }
@@ -1961,7 +1961,7 @@ type ListGrantsOutput struct {
 
 	// If Truncated is true, this value is present and contains the value to use
 	// for the Marker request parameter in a subsequent pagination request.
-	NextMarker *string `type:"string"`
+	NextMarker *string `min:"1" type:"string"`
 
 	// A flag that indicates whether there are more items in the list. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
@@ -1992,18 +1992,18 @@ type ListKeyPoliciesInput struct {
 	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// Specify this parameter only when paginating results to indicate the maximum
 	// number of policies you want listed in the response. If there are additional
 	// policies beyond the maximum you specify, the Truncated response element will
 	// be set to true.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results, and only in a subsequent
 	// request after you've received a response where the results are truncated.
 	// Set it to the value of the NextMarker in the response you just received.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListKeyPoliciesInput `json:"-" xml:"-"`
 }
@@ -2025,7 +2025,7 @@ func (s ListKeyPoliciesInput) GoString() string {
 type ListKeyPoliciesOutput struct {
 	// If Truncated is true, this value is present and contains the value to use
 	// for the Marker request parameter in a subsequent pagination request.
-	NextMarker *string `type:"string"`
+	NextMarker *string `min:"1" type:"string"`
 
 	// A list of policy names. Currently, there is only one policy and it is named
 	// "Default".
@@ -2058,12 +2058,12 @@ type ListKeysInput struct {
 	// number of keys you want listed in the response. If there are additional keys
 	// beyond the maximum you specify, the Truncated response element will be set
 	// to true.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// Use this parameter only when paginating results, and only in a subsequent
 	// request after you've received a response where the results are truncated.
 	// Set it to the value of the NextMarker in the response you just received.
-	Marker *string `type:"string"`
+	Marker *string `min:"1" type:"string"`
 
 	metadataListKeysInput `json:"-" xml:"-"`
 }
@@ -2088,7 +2088,7 @@ type ListKeysOutput struct {
 
 	// If Truncated is true, this value is present and contains the value to use
 	// for the Marker request parameter in a subsequent pagination request.
-	NextMarker *string `type:"string"`
+	NextMarker *string `min:"1" type:"string"`
 
 	// A flag that indicates whether there are more items in the list. If your results
 	// were truncated, you can make a subsequent pagination request using the Marker
@@ -2117,14 +2117,14 @@ type PutKeyPolicyInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	// The policy, in JSON format, to be attached to the key.
-	Policy *string `type:"string" required:"true"`
+	Policy *string `min:"1" type:"string" required:"true"`
 
 	// Name of the policy to be attached. Currently, the only supported name is
 	// "default".
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataPutKeyPolicyInput `json:"-" xml:"-"`
 }
@@ -2163,7 +2163,7 @@ func (s PutKeyPolicyOutput) GoString() string {
 
 type ReEncryptInput struct {
 	// Ciphertext of the data to re-encrypt.
-	CiphertextBlob []byte `type:"blob" required:"true"`
+	CiphertextBlob []byte `min:"1" type:"blob" required:"true"`
 
 	// Encryption context to be used when the data is re-encrypted.
 	DestinationEncryptionContext map[string]*string `type:"map"`
@@ -2175,7 +2175,7 @@ type ReEncryptInput struct {
 	// Alias ARN Example - arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012 Alias
 	// Name Example - alias/MyAliasName
-	DestinationKeyId *string `type:"string" required:"true"`
+	DestinationKeyId *string `min:"1" type:"string" required:"true"`
 
 	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
 	GrantTokens []*string `type:"list"`
@@ -2204,13 +2204,13 @@ func (s ReEncryptInput) GoString() string {
 type ReEncryptOutput struct {
 	// The re-encrypted data. If you are using the CLI, the value is Base64 encoded.
 	// Otherwise, it is not encoded.
-	CiphertextBlob []byte `type:"blob"`
+	CiphertextBlob []byte `min:"1" type:"blob"`
 
 	// Unique identifier of the key used to re-encrypt the data.
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	// Unique identifier of the key used to originally encrypt the data.
-	SourceKeyId *string `type:"string"`
+	SourceKeyId *string `min:"1" type:"string"`
 
 	metadataReEncryptOutput `json:"-" xml:"-"`
 }
@@ -2232,16 +2232,16 @@ func (s ReEncryptOutput) GoString() string {
 type RetireGrantInput struct {
 	// Unique identifier of the grant to be retired. The grant ID is returned by
 	// the CreateGrant function.  Grant ID Example - 0123456789012345678901234567890123456789012345678901234567890123
-	GrantId *string `type:"string"`
+	GrantId *string `min:"1" type:"string"`
 
 	// Token that identifies the grant to be retired.
-	GrantToken *string `type:"string"`
+	GrantToken *string `min:"1" type:"string"`
 
 	// A unique identifier for the customer master key associated with the grant.
 	// This value can be a globally unique identifier or a fully specified ARN of
 	// the key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string"`
+	KeyId *string `min:"1" type:"string"`
 
 	metadataRetireGrantInput `json:"-" xml:"-"`
 }
@@ -2280,13 +2280,13 @@ func (s RetireGrantOutput) GoString() string {
 
 type RevokeGrantInput struct {
 	// Identifier of the grant to be revoked.
-	GrantId *string `type:"string" required:"true"`
+	GrantId *string `min:"1" type:"string" required:"true"`
 
 	// A unique identifier for the customer master key associated with the grant.
 	// This value can be a globally unique identifier or the fully specified ARN
 	// to a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataRevokeGrantInput `json:"-" xml:"-"`
 }
@@ -2327,13 +2327,13 @@ type UpdateAliasInput struct {
 	// String that contains the name of the alias to be modifed. The name must start
 	// with the word "alias" followed by a forward slash (alias/). Aliases that
 	// begin with "alias/AWS" are reserved.
-	AliasName *string `type:"string" required:"true"`
+	AliasName *string `min:"1" type:"string" required:"true"`
 
 	// Unique identifier of the customer master key to be associated with the alias.
 	// This value can be a globally unique identifier or the fully specified ARN
 	// of a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	TargetKeyId *string `type:"string" required:"true"`
+	TargetKeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateAliasInput `json:"-" xml:"-"`
 }
@@ -2378,7 +2378,7 @@ type UpdateKeyDescriptionInput struct {
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
 	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
-	KeyId *string `type:"string" required:"true"`
+	KeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateKeyDescriptionInput `json:"-" xml:"-"`
 }

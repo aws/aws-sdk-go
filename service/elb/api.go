@@ -1004,7 +1004,7 @@ type AddTagsInput struct {
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	// The tags.
-	Tags []*Tag `type:"list" required:"true"`
+	Tags []*Tag `min:"1" type:"list" required:"true"`
 
 	metadataAddTagsInput `json:"-" xml:"-"`
 }
@@ -1187,7 +1187,7 @@ func (s AttachLoadBalancerToSubnetsOutput) GoString() string {
 // Information about the configuration of a back-end server.
 type BackendServerDescription struct {
 	// The port on which the back-end server is listening.
-	InstancePort *int64 `type:"integer"`
+	InstancePort *int64 `min:"1" type:"integer"`
 
 	// The names of the policies enabled for the back-end server.
 	PolicyNames []*string `type:"list"`
@@ -1284,7 +1284,7 @@ func (s ConnectionDraining) GoString() string {
 type ConnectionSettings struct {
 	// The time, in seconds, that the connection is allowed to be idle (no data
 	// has been sent over the connection) before it is closed by the load balancer.
-	IdleTimeout *int64 `type:"integer" required:"true"`
+	IdleTimeout *int64 `min:"1" type:"integer" required:"true"`
 
 	metadataConnectionSettings `json:"-" xml:"-"`
 }
@@ -1443,7 +1443,7 @@ type CreateLoadBalancerInput struct {
 	//
 	// For more information about tagging your load balancer, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
 	// in the Elastic Load Balancing Developer Guide.
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `min:"1" type:"list"`
 
 	metadataCreateLoadBalancerInput `json:"-" xml:"-"`
 }
@@ -1950,7 +1950,7 @@ type DescribeLoadBalancersInput struct {
 
 	// The maximum number of results to return with this call (a number from 1 to
 	// 400). The default is 400.
-	PageSize *int64 `type:"integer"`
+	PageSize *int64 `min:"1" type:"integer"`
 
 	metadataDescribeLoadBalancersInput `json:"-" xml:"-"`
 }
@@ -1996,7 +1996,7 @@ func (s DescribeLoadBalancersOutput) GoString() string {
 
 type DescribeTagsInput struct {
 	// The names of the load balancers.
-	LoadBalancerNames []*string `type:"list" required:"true"`
+	LoadBalancerNames []*string `min:"1" type:"list" required:"true"`
 
 	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
@@ -2175,11 +2175,11 @@ func (s EnableAvailabilityZonesForLoadBalancerOutput) GoString() string {
 type HealthCheck struct {
 	// The number of consecutive health checks successes required before moving
 	// the instance to the Healthy state.
-	HealthyThreshold *int64 `type:"integer" required:"true"`
+	HealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 
 	// The approximate interval, in seconds, between health checks of an individual
 	// instance.
-	Interval *int64 `type:"integer" required:"true"`
+	Interval *int64 `min:"1" type:"integer" required:"true"`
 
 	// The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
 	// The range of valid ports is one (1) through 65535.
@@ -2205,11 +2205,11 @@ type HealthCheck struct {
 	// check.
 	//
 	// This value must be less than the Interval value.
-	Timeout *int64 `type:"integer" required:"true"`
+	Timeout *int64 `min:"1" type:"integer" required:"true"`
 
 	// The number of consecutive health check failures required before moving the
 	// instance to the Unhealthy state.
-	UnhealthyThreshold *int64 `type:"integer" required:"true"`
+	UnhealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 
 	metadataHealthCheck `json:"-" xml:"-"`
 }
@@ -2349,7 +2349,7 @@ func (s LBCookieStickinessPolicy) GoString() string {
 // in the Elastic Load Balancing Developer Guide.
 type Listener struct {
 	// The port on which the instance is listening.
-	InstancePort *int64 `type:"integer" required:"true"`
+	InstancePort *int64 `min:"1" type:"integer" required:"true"`
 
 	// The protocol to use for routing traffic to back-end instances: HTTP, HTTPS,
 	// TCP, or SSL.
@@ -2829,7 +2829,7 @@ type RemoveTagsInput struct {
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	// The list of tag keys to remove.
-	Tags []*TagKeyOnly `type:"list" required:"true"`
+	Tags []*TagKeyOnly `min:"1" type:"list" required:"true"`
 
 	metadataRemoveTagsInput `json:"-" xml:"-"`
 }
@@ -3031,7 +3031,7 @@ func (s SourceSecurityGroup) GoString() string {
 // Information about a tag.
 type Tag struct {
 	// The key of the tag.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
 	Value *string `type:"string"`
@@ -3059,7 +3059,7 @@ type TagDescription struct {
 	LoadBalancerName *string `type:"string"`
 
 	// The tags.
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `min:"1" type:"list"`
 
 	metadataTagDescription `json:"-" xml:"-"`
 }
@@ -3081,7 +3081,7 @@ func (s TagDescription) GoString() string {
 // The key of a tag.
 type TagKeyOnly struct {
 	// The name of the key.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	metadataTagKeyOnly `json:"-" xml:"-"`
 }

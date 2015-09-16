@@ -1879,7 +1879,7 @@ type RegisterDomainInput struct {
 	// Valid values: Integer from 1 to 10
 	//
 	// Required: Yes
-	DurationInYears *int64 `type:"integer" required:"true"`
+	DurationInYears *int64 `min:"1" type:"integer" required:"true"`
 
 	// Reserved for future use.
 	IdnLangCode *string `type:"string"`
@@ -2151,7 +2151,7 @@ type TransferDomainInput struct {
 	// Valid values: Integer from 1 to 10
 	//
 	// Required: Yes
-	DurationInYears *int64 `type:"integer" required:"true"`
+	DurationInYears *int64 `min:"1" type:"integer" required:"true"`
 
 	// Reserved for future use.
 	IdnLangCode *string `type:"string"`

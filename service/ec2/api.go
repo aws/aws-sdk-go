@@ -22173,7 +22173,7 @@ type SpotFleetRequestConfigData struct {
 	IamFleetRole *string `locationName:"iamFleetRole" type:"string" required:"true"`
 
 	// Information about the launch specifications for the Spot fleet request.
-	LaunchSpecifications []*SpotFleetLaunchSpecification `locationName:"launchSpecifications" locationNameList:"item" type:"list" required:"true"`
+	LaunchSpecifications []*SpotFleetLaunchSpecification `locationName:"launchSpecifications" locationNameList:"item" min:"1" type:"list" required:"true"`
 
 	// The bid price per unit hour.
 	SpotPrice *string `locationName:"spotPrice" type:"string" required:"true"`
