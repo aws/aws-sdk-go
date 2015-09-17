@@ -8,6 +8,65 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opCancelExportTask = "CancelExportTask"
+
+// CancelExportTaskRequest generates a request for the CancelExportTask operation.
+func (c *CloudWatchLogs) CancelExportTaskRequest(input *CancelExportTaskInput) (req *request.Request, output *CancelExportTaskOutput) {
+	op := &request.Operation{
+		Name:       opCancelExportTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelExportTaskInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CancelExportTaskOutput{}
+	req.Data = output
+	return
+}
+
+// Cancels an export task if it is in PENDING or RUNNING state.
+func (c *CloudWatchLogs) CancelExportTask(input *CancelExportTaskInput) (*CancelExportTaskOutput, error) {
+	req, out := c.CancelExportTaskRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateExportTask = "CreateExportTask"
+
+// CreateExportTaskRequest generates a request for the CreateExportTask operation.
+func (c *CloudWatchLogs) CreateExportTaskRequest(input *CreateExportTaskInput) (req *request.Request, output *CreateExportTaskOutput) {
+	op := &request.Operation{
+		Name:       opCreateExportTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateExportTaskInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateExportTaskOutput{}
+	req.Data = output
+	return
+}
+
+// Creates an ExportTask which allows you to efficiently export data from a
+// Log Group to your Amazon S3 bucket.
+//
+//  This is an asynchronous call. If all the required information is provided,
+// this API will initiate an export task and respond with the task Id. Once
+// started, DescribeExportTasks can be used to get the status of an export task.
+func (c *CloudWatchLogs) CreateExportTask(input *CreateExportTaskInput) (*CreateExportTaskOutput, error) {
+	req, out := c.CreateExportTaskRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateLogGroup = "CreateLogGroup"
 
 // CreateLogGroupRequest generates a request for the CreateLogGroup operation.
@@ -286,6 +345,40 @@ func (c *CloudWatchLogs) DescribeDestinationsPages(input *DescribeDestinationsIn
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDestinationsOutput), lastPage)
 	})
+}
+
+const opDescribeExportTasks = "DescribeExportTasks"
+
+// DescribeExportTasksRequest generates a request for the DescribeExportTasks operation.
+func (c *CloudWatchLogs) DescribeExportTasksRequest(input *DescribeExportTasksInput) (req *request.Request, output *DescribeExportTasksOutput) {
+	op := &request.Operation{
+		Name:       opDescribeExportTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeExportTasksInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeExportTasksOutput{}
+	req.Data = output
+	return
+}
+
+// Returns all the export tasks that are associated with the AWS account making
+// the request. The export tasks can be filtered based on TaskId or TaskStatus.
+//
+//  By default, this operation returns up to 50 export tasks that satisfy the
+// specified filters. If there are more export tasks to list, the response would
+// contain a nextToken value in the response body. You can also limit the number
+// of export tasks returned in the response by specifying the limit parameter
+// in the request.
+func (c *CloudWatchLogs) DescribeExportTasks(input *DescribeExportTasksInput) (*DescribeExportTasksOutput, error) {
+	req, out := c.DescribeExportTasksRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opDescribeLogGroups = "DescribeLogGroups"
@@ -810,6 +903,110 @@ func (c *CloudWatchLogs) TestMetricFilter(input *TestMetricFilterInput) (*TestMe
 	return out, err
 }
 
+type CancelExportTaskInput struct {
+	// Id of the export task to cancel.
+	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
+
+	metadataCancelExportTaskInput `json:"-" xml:"-"`
+}
+
+type metadataCancelExportTaskInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelExportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelExportTaskInput) GoString() string {
+	return s.String()
+}
+
+type CancelExportTaskOutput struct {
+	metadataCancelExportTaskOutput `json:"-" xml:"-"`
+}
+
+type metadataCancelExportTaskOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelExportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelExportTaskOutput) GoString() string {
+	return s.String()
+}
+
+type CreateExportTaskInput struct {
+	// Name of Amazon S3 bucket to which the log data will be exported. NOTE: Only
+	// buckets in the same AWS region are supported
+	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
+
+	// Prefix that will be used as the start of Amazon S3 key for every object exported.
+	// If not specified, this defaults to 'exportedlogs'.
+	DestinationPrefix *string `locationName:"destinationPrefix" type:"string"`
+
+	// A unix timestamp indicating the start time of the range for the request.
+	// Events with a timestamp prior to this time will not be exported.
+	From *int64 `locationName:"from" type:"long" required:"true"`
+
+	// The name of the log group to export.
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
+
+	// Will only export log streams that match the provided logStreamNamePrefix.
+	// If you don't specify a value, no prefix filter is applied.
+	LogStreamNamePrefix *string `locationName:"logStreamNamePrefix" min:"1" type:"string"`
+
+	// The name of the export task.
+	TaskName *string `locationName:"taskName" min:"1" type:"string"`
+
+	// A unix timestamp indicating the end time of the range for the request. Events
+	// with a timestamp later than this time will not be exported.
+	To *int64 `locationName:"to" type:"long" required:"true"`
+
+	metadataCreateExportTaskInput `json:"-" xml:"-"`
+}
+
+type metadataCreateExportTaskInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateExportTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateExportTaskInput) GoString() string {
+	return s.String()
+}
+
+type CreateExportTaskOutput struct {
+	// Id of the export task that got created.
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
+
+	metadataCreateExportTaskOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateExportTaskOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateExportTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateExportTaskOutput) GoString() string {
+	return s.String()
+}
+
 type CreateLogGroupInput struct {
 	// The name of the log group to create.
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
@@ -1191,6 +1388,67 @@ func (s DescribeDestinationsOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeExportTasksInput struct {
+	// The maximum number of items returned in the response. If you don't specify
+	// a value, the request would return up to 50 items.
+	Limit *int64 `locationName:"limit" min:"1" type:"integer"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous DescribeExportTasks
+	// request.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// All export tasks that matches the specified status code will be returned.
+	// This can return zero or more export tasks.
+	StatusCode *string `locationName:"statusCode" type:"string" enum:"ExportTaskStatusCode"`
+
+	// Export task that matches the specified task Id will be returned. This can
+	// result in zero or one export task.
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
+
+	metadataDescribeExportTasksInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeExportTasksInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeExportTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportTasksInput) GoString() string {
+	return s.String()
+}
+
+type DescribeExportTasksOutput struct {
+	// A list of export tasks.
+	ExportTasks []*ExportTask `locationName:"exportTasks" type:"list"`
+
+	// A string token used for pagination that points to the next page of results.
+	// It must be a value obtained from the response of the previous request. The
+	// token expires after 24 hours.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	metadataDescribeExportTasksOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeExportTasksOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeExportTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportTasksOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeLogGroupsInput struct {
 	// The maximum number of items returned in the response. If you don't specify
 	// a value, the request would return up to 50 items.
@@ -1435,19 +1693,27 @@ func (s DescribeSubscriptionFiltersOutput) GoString() string {
 	return s.String()
 }
 
+// A cross account destination that is the recipient of subscription log events.
 type Destination struct {
+	// An IAM policy document that governs which AWS accounts can create subscription
+	// filters against this destination.
 	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string"`
 
+	// ARN of this destination.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// A point in time expressed as the number of milliseconds since Jan 1, 1970
-	// 00:00:00 UTC.
+	// 00:00:00 UTC specifying when this destination was created.
 	CreationTime *int64 `locationName:"creationTime" type:"long"`
 
+	// Name of the destination.
 	DestinationName *string `locationName:"destinationName" min:"1" type:"string"`
 
+	// A role for impersonation for delivering log events to the target.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
+	// ARN of the physical target where the log events will be delivered (eg. ARN
+	// of a Kinesis stream).
 	TargetArn *string `locationName:"targetArn" min:"1" type:"string"`
 
 	metadataDestination `json:"-" xml:"-"`
@@ -1464,6 +1730,104 @@ func (s Destination) String() string {
 
 // GoString returns the string representation
 func (s Destination) GoString() string {
+	return s.String()
+}
+
+// Represents an export task.
+type ExportTask struct {
+	// Name of Amazon S3 bucket to which the log data was exported.
+	Destination *string `locationName:"destination" min:"1" type:"string"`
+
+	// Prefix that was used as the start of Amazon S3 key for every object exported.
+	DestinationPrefix *string `locationName:"destinationPrefix" type:"string"`
+
+	// Execution info about the export task.
+	ExecutionInfo *ExportTaskExecutionInfo `locationName:"executionInfo" type:"structure"`
+
+	// A unix timestamp indicating the start time of the range for the request.
+	// Events with a timestamp prior to this time were not exported.
+	From *int64 `locationName:"from" type:"long"`
+
+	// The name of the log group from which logs data was exported.
+	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string"`
+
+	// Status of the export task.
+	Status *ExportTaskStatus `locationName:"status" type:"structure"`
+
+	// Id of the export task.
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
+
+	// The name of the export task.
+	TaskName *string `locationName:"taskName" min:"1" type:"string"`
+
+	// A unix timestamp indicating the end time of the range for the request. Events
+	// with a timestamp later than this time were not exported.
+	To *int64 `locationName:"to" type:"long"`
+
+	metadataExportTask `json:"-" xml:"-"`
+}
+
+type metadataExportTask struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportTask) GoString() string {
+	return s.String()
+}
+
+// Represents the status of an export task.
+type ExportTaskExecutionInfo struct {
+	// A point in time when the export task got completed.
+	CompletionTime *int64 `locationName:"completionTime" type:"long"`
+
+	// A point in time when the export task got created.
+	CreationTime *int64 `locationName:"creationTime" type:"long"`
+
+	metadataExportTaskExecutionInfo `json:"-" xml:"-"`
+}
+
+type metadataExportTaskExecutionInfo struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportTaskExecutionInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportTaskExecutionInfo) GoString() string {
+	return s.String()
+}
+
+// Represents the status of an export task.
+type ExportTaskStatus struct {
+	// Status code of the export task.
+	Code *string `locationName:"code" type:"string" enum:"ExportTaskStatusCode"`
+
+	// Status message related to the code.
+	Message *string `locationName:"message" type:"string"`
+
+	metadataExportTaskStatus `json:"-" xml:"-"`
+}
+
+type metadataExportTaskStatus struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportTaskStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportTaskStatus) GoString() string {
 	return s.String()
 }
 
@@ -1919,6 +2283,7 @@ func (s PutDestinationInput) GoString() string {
 }
 
 type PutDestinationOutput struct {
+	// A cross account destination that is the recipient of subscription log events.
 	Destination *Destination `locationName:"destination" type:"structure"`
 
 	metadataPutDestinationOutput `json:"-" xml:"-"`
@@ -2323,6 +2688,21 @@ func (s TestMetricFilterOutput) String() string {
 func (s TestMetricFilterOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ExportTaskStatusCode
+	ExportTaskStatusCodeCancelled = "CANCELLED"
+	// @enum ExportTaskStatusCode
+	ExportTaskStatusCodeCompleted = "COMPLETED"
+	// @enum ExportTaskStatusCode
+	ExportTaskStatusCodeFailed = "FAILED"
+	// @enum ExportTaskStatusCode
+	ExportTaskStatusCodePending = "PENDING"
+	// @enum ExportTaskStatusCode
+	ExportTaskStatusCodePendingCancel = "PENDING_CANCEL"
+	// @enum ExportTaskStatusCode
+	ExportTaskStatusCodeRunning = "RUNNING"
+)
 
 const (
 	// @enum OrderBy

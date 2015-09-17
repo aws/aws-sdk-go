@@ -10,6 +10,69 @@
     "protocol":"json"
   },
   "operations":{
+    "CancelExportTask":{
+      "name":"CancelExportTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelExportTaskRequest"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidOperationException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "CreateExportTask":{
+      "name":"CreateExportTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateExportTaskRequest"},
+      "output":{"shape":"CreateExportTaskResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceAlreadyExistsException",
+          "exception":true
+        }
+      ]
+    },
     "CreateLogGroup":{
       "name":"CreateLogGroup",
       "http":{
@@ -238,6 +301,26 @@
       },
       "input":{"shape":"DescribeDestinationsRequest"},
       "output":{"shape":"DescribeDestinationsResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DescribeExportTasks":{
+      "name":"DescribeExportTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExportTasksRequest"},
+      "output":{"shape":"DescribeExportTasksResponse"},
       "errors":[
         {
           "shape":"InvalidParameterException",
@@ -589,6 +672,37 @@
       "min":1
     },
     "Arn":{"type":"string"},
+    "CancelExportTaskRequest":{
+      "type":"structure",
+      "required":["taskId"],
+      "members":{
+        "taskId":{"shape":"ExportTaskId"}
+      }
+    },
+    "CreateExportTaskRequest":{
+      "type":"structure",
+      "required":[
+        "logGroupName",
+        "from",
+        "to",
+        "destination"
+      ],
+      "members":{
+        "taskName":{"shape":"ExportTaskName"},
+        "logGroupName":{"shape":"LogGroupName"},
+        "logStreamNamePrefix":{"shape":"LogStreamName"},
+        "from":{"shape":"Timestamp"},
+        "to":{"shape":"Timestamp"},
+        "destination":{"shape":"ExportDestinationBucket"},
+        "destinationPrefix":{"shape":"ExportDestinationPrefix"}
+      }
+    },
+    "CreateExportTaskResponse":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"ExportTaskId"}
+      }
+    },
     "CreateLogGroupRequest":{
       "type":"structure",
       "required":["logGroupName"],
@@ -682,6 +796,22 @@
       "type":"structure",
       "members":{
         "destinations":{"shape":"Destinations"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeExportTasksRequest":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"ExportTaskId"},
+        "statusCode":{"shape":"ExportTaskStatusCode"},
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeExportTasksResponse":{
+      "type":"structure",
+      "members":{
+        "exportTasks":{"shape":"ExportTasks"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -794,6 +924,66 @@
       "min":1,
       "max":10000
     },
+    "ExportDestinationBucket":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
+    "ExportDestinationPrefix":{"type":"string"},
+    "ExportTask":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"ExportTaskId"},
+        "taskName":{"shape":"ExportTaskName"},
+        "logGroupName":{"shape":"LogGroupName"},
+        "from":{"shape":"Timestamp"},
+        "to":{"shape":"Timestamp"},
+        "destination":{"shape":"ExportDestinationBucket"},
+        "destinationPrefix":{"shape":"ExportDestinationPrefix"},
+        "status":{"shape":"ExportTaskStatus"},
+        "executionInfo":{"shape":"ExportTaskExecutionInfo"}
+      }
+    },
+    "ExportTaskExecutionInfo":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "completionTime":{"shape":"Timestamp"}
+      }
+    },
+    "ExportTaskId":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
+    "ExportTaskName":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
+    "ExportTaskStatus":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"ExportTaskStatusCode"},
+        "message":{"shape":"ExportTaskStatusMessage"}
+      }
+    },
+    "ExportTaskStatusCode":{
+      "type":"string",
+      "enum":[
+        "CANCELLED",
+        "COMPLETED",
+        "FAILED",
+        "PENDING",
+        "PENDING_CANCEL",
+        "RUNNING"
+      ]
+    },
+    "ExportTaskStatusMessage":{"type":"string"},
+    "ExportTasks":{
+      "type":"list",
+      "member":{"shape":"ExportTask"}
+    },
     "ExtractedValues":{
       "type":"map",
       "key":{"shape":"Token"},
@@ -895,6 +1085,12 @@
       "max":100
     },
     "Interleaved":{"type":"boolean"},
+    "InvalidOperationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidParameterException":{
       "type":"structure",
       "members":{

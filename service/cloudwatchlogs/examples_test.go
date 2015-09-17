@@ -14,6 +14,50 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleCloudWatchLogs_CancelExportTask() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.CancelExportTaskInput{
+		TaskId: aws.String("ExportTaskId"), // Required
+	}
+	resp, err := svc.CancelExportTask(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_CreateExportTask() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.CreateExportTaskInput{
+		Destination:         aws.String("ExportDestinationBucket"), // Required
+		From:                aws.Int64(1),                          // Required
+		LogGroupName:        aws.String("LogGroupName"),            // Required
+		To:                  aws.Int64(1),                          // Required
+		DestinationPrefix:   aws.String("ExportDestinationPrefix"),
+		LogStreamNamePrefix: aws.String("LogStreamName"),
+		TaskName:            aws.String("ExportTaskName"),
+	}
+	resp, err := svc.CreateExportTask(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudWatchLogs_CreateLogGroup() {
 	svc := cloudwatchlogs.New(nil)
 
@@ -179,6 +223,28 @@ func ExampleCloudWatchLogs_DescribeDestinations() {
 		NextToken: aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeDestinations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_DescribeExportTasks() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.DescribeExportTasksInput{
+		Limit:      aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+		StatusCode: aws.String("ExportTaskStatusCode"),
+		TaskId:     aws.String("ExportTaskId"),
+	}
+	resp, err := svc.DescribeExportTasks(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
