@@ -17,11 +17,11 @@ type API struct {
 	Shapes        map[string]*Shape
 	Documentation string
 
-	// Disables inflection checks. Only use this when generating tests
-	NoInflections bool
-
 	// Set to true to avoid removing unused shapes
 	NoRemoveUnusedShapes bool
+
+	// Set to true to avoid renaming to 'Input/Output' postfixed shapes
+	NoRenameToplevelShapes bool
 
 	// Set to true to ignore service/request init methods (for testing)
 	NoInitMethods bool
@@ -29,11 +29,10 @@ type API struct {
 	// Set to true to ignore String() and GoString methods (for generated tests)
 	NoStringerMethods bool
 
-	initialized       bool
-	imports           map[string]bool
-	name              string
-	unrecognizedNames map[string]string
-	path              string
+	initialized bool
+	imports     map[string]bool
+	name        string
+	path        string
 }
 
 // A Metadata is the metadata about an API's definition.
