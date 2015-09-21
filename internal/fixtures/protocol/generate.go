@@ -254,7 +254,6 @@ func generateTestSuite(filename string) string {
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 
-		suite.API.NoInflections = true     // don't require inflections
 		suite.API.NoInitMethods = true     // don't generate init methods
 		suite.API.NoStringerMethods = true // don't generate stringer methods
 		suite.API.Setup()
