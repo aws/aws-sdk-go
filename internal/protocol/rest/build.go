@@ -18,7 +18,7 @@ import (
 )
 
 // RFC822 returns an RFC822 formatted timestamp for AWS protocols
-const RFC822 = "Mon, 2 Jan 2006 15:04:05 GMT"
+const RFC822 = "Mon, 2 Jan 2006 15:04:05 MST"
 
 // Whether the byte value can be sent without escaping in AWS URLs
 var noEscape [256]bool
