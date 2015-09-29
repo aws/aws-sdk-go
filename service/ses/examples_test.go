@@ -14,6 +14,138 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleSES_CloneReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	params := &ses.CloneReceiptRuleSetInput{
+		OriginalRuleSetName: aws.String("ReceiptRuleSetName"), // Required
+		RuleSetName:         aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.CloneReceiptRuleSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_CreateReceiptFilter() {
+	svc := ses.New(nil)
+
+	params := &ses.CreateReceiptFilterInput{
+		Filter: &ses.ReceiptFilter{ // Required
+			IpFilter: &ses.ReceiptIpFilter{ // Required
+				Cidr:   aws.String("Cidr"),                // Required
+				Policy: aws.String("ReceiptFilterPolicy"), // Required
+			},
+			Name: aws.String("ReceiptFilterName"), // Required
+		},
+	}
+	resp, err := svc.CreateReceiptFilter(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_CreateReceiptRule() {
+	svc := ses.New(nil)
+
+	params := &ses.CreateReceiptRuleInput{
+		Rule: &ses.ReceiptRule{ // Required
+			Name: aws.String("ReceiptRuleName"), // Required
+			Actions: []*ses.ReceiptAction{
+				{ // Required
+					AddHeaderAction: &ses.AddHeaderAction{
+						HeaderName:  aws.String("HeaderName"),  // Required
+						HeaderValue: aws.String("HeaderValue"), // Required
+					},
+					BounceAction: &ses.BounceAction{
+						Message:       aws.String("BounceMessage"),       // Required
+						Sender:        aws.String("Address"),             // Required
+						SmtpReplyCode: aws.String("BounceSmtpReplyCode"), // Required
+						StatusCode:    aws.String("BounceStatusCode"),
+						TopicArn:      aws.String("AmazonResourceName"),
+					},
+					LambdaAction: &ses.LambdaAction{
+						FunctionArn:    aws.String("AmazonResourceName"), // Required
+						InvocationType: aws.String("InvocationType"),
+						TopicArn:       aws.String("AmazonResourceName"),
+					},
+					S3Action: &ses.S3Action{
+						BucketName:      aws.String("S3BucketName"), // Required
+						KmsKeyArn:       aws.String("AmazonResourceName"),
+						ObjectKeyPrefix: aws.String("S3KeyPrefix"),
+						TopicArn:        aws.String("AmazonResourceName"),
+					},
+					SNSAction: &ses.SNSAction{
+						TopicArn: aws.String("AmazonResourceName"), // Required
+					},
+					StopAction: &ses.StopAction{
+						Scope:    aws.String("StopScope"), // Required
+						TopicArn: aws.String("AmazonResourceName"),
+					},
+					WorkmailAction: &ses.WorkmailAction{
+						OrganizationArn: aws.String("AmazonResourceName"), // Required
+						TopicArn:        aws.String("AmazonResourceName"),
+					},
+				},
+				// More values...
+			},
+			Enabled: aws.Bool(true),
+			Recipients: []*string{
+				aws.String("Recipient"), // Required
+				// More values...
+			},
+			ScanEnabled: aws.Bool(true),
+			TlsPolicy:   aws.String("TlsPolicy"),
+		},
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+		After:       aws.String("ReceiptRuleName"),
+	}
+	resp, err := svc.CreateReceiptRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_CreateReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	params := &ses.CreateReceiptRuleSetInput{
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.CreateReceiptRuleSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSES_DeleteIdentity() {
 	svc := ses.New(nil)
 
@@ -53,6 +185,64 @@ func ExampleSES_DeleteIdentityPolicy() {
 	fmt.Println(resp)
 }
 
+func ExampleSES_DeleteReceiptFilter() {
+	svc := ses.New(nil)
+
+	params := &ses.DeleteReceiptFilterInput{
+		FilterName: aws.String("ReceiptFilterName"), // Required
+	}
+	resp, err := svc.DeleteReceiptFilter(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_DeleteReceiptRule() {
+	svc := ses.New(nil)
+
+	params := &ses.DeleteReceiptRuleInput{
+		RuleName:    aws.String("ReceiptRuleName"),    // Required
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.DeleteReceiptRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_DeleteReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	params := &ses.DeleteReceiptRuleSetInput{
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.DeleteReceiptRuleSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSES_DeleteVerifiedEmailAddress() {
 	svc := ses.New(nil)
 
@@ -60,6 +250,62 @@ func ExampleSES_DeleteVerifiedEmailAddress() {
 		EmailAddress: aws.String("Address"), // Required
 	}
 	resp, err := svc.DeleteVerifiedEmailAddress(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_DescribeActiveReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	var params *ses.DescribeActiveReceiptRuleSetInput
+	resp, err := svc.DescribeActiveReceiptRuleSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_DescribeReceiptRule() {
+	svc := ses.New(nil)
+
+	params := &ses.DescribeReceiptRuleInput{
+		RuleName:    aws.String("ReceiptRuleName"),    // Required
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.DescribeReceiptRule(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_DescribeReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	params := &ses.DescribeReceiptRuleSetInput{
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.DescribeReceiptRuleSet(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -235,6 +481,42 @@ func ExampleSES_ListIdentityPolicies() {
 	fmt.Println(resp)
 }
 
+func ExampleSES_ListReceiptFilters() {
+	svc := ses.New(nil)
+
+	var params *ses.ListReceiptFiltersInput
+	resp, err := svc.ListReceiptFilters(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_ListReceiptRuleSets() {
+	svc := ses.New(nil)
+
+	params := &ses.ListReceiptRuleSetsInput{
+		NextToken: aws.String("NextToken"),
+	}
+	resp, err := svc.ListReceiptRuleSets(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSES_ListVerifiedEmailAddresses() {
 	svc := ses.New(nil)
 
@@ -261,6 +543,85 @@ func ExampleSES_PutIdentityPolicy() {
 		PolicyName: aws.String("PolicyName"), // Required
 	}
 	resp, err := svc.PutIdentityPolicy(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_ReorderReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	params := &ses.ReorderReceiptRuleSetInput{
+		RuleNames: []*string{ // Required
+			aws.String("ReceiptRuleName"), // Required
+			// More values...
+		},
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.ReorderReceiptRuleSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_SendBounce() {
+	svc := ses.New(nil)
+
+	params := &ses.SendBounceInput{
+		BounceSender: aws.String("Address"), // Required
+		BouncedRecipientInfoList: []*ses.BouncedRecipientInfo{ // Required
+			{ // Required
+				Recipient:    aws.String("Address"), // Required
+				BounceType:   aws.String("BounceType"),
+				RecipientArn: aws.String("AmazonResourceName"),
+				RecipientDsnFields: &ses.RecipientDsnFields{
+					Action:         aws.String("DsnAction"), // Required
+					Status:         aws.String("DsnStatus"), // Required
+					DiagnosticCode: aws.String("DiagnosticCode"),
+					ExtensionFields: []*ses.ExtensionField{
+						{ // Required
+							Name:  aws.String("ExtensionFieldName"),  // Required
+							Value: aws.String("ExtensionFieldValue"), // Required
+						},
+						// More values...
+					},
+					FinalRecipient:  aws.String("Address"),
+					LastAttemptDate: aws.Time(time.Now()),
+					RemoteMta:       aws.String("RemoteMta"),
+				},
+			},
+			// More values...
+		},
+		OriginalMessageId: aws.String("MessageId"), // Required
+		BounceSenderArn:   aws.String("AmazonResourceName"),
+		Explanation:       aws.String("Explanation"),
+		MessageDsn: &ses.MessageDsn{
+			ReportingMta: aws.String("ReportingMta"), // Required
+			ArrivalDate:  aws.Time(time.Now()),
+			ExtensionFields: []*ses.ExtensionField{
+				{ // Required
+					Name:  aws.String("ExtensionFieldName"),  // Required
+					Value: aws.String("ExtensionFieldValue"), // Required
+				},
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.SendBounce(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -358,6 +719,25 @@ func ExampleSES_SendRawEmail() {
 	fmt.Println(resp)
 }
 
+func ExampleSES_SetActiveReceiptRuleSet() {
+	svc := ses.New(nil)
+
+	params := &ses.SetActiveReceiptRuleSetInput{
+		RuleSetName: aws.String("ReceiptRuleSetName"),
+	}
+	resp, err := svc.SetActiveReceiptRuleSet(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSES_SetIdentityDkimEnabled() {
 	svc := ses.New(nil)
 
@@ -407,6 +787,94 @@ func ExampleSES_SetIdentityNotificationTopic() {
 		SnsTopic:         aws.String("NotificationTopic"),
 	}
 	resp, err := svc.SetIdentityNotificationTopic(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_SetReceiptRulePosition() {
+	svc := ses.New(nil)
+
+	params := &ses.SetReceiptRulePositionInput{
+		RuleName:    aws.String("ReceiptRuleName"),    // Required
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+		After:       aws.String("ReceiptRuleName"),
+	}
+	resp, err := svc.SetReceiptRulePosition(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSES_UpdateReceiptRule() {
+	svc := ses.New(nil)
+
+	params := &ses.UpdateReceiptRuleInput{
+		Rule: &ses.ReceiptRule{ // Required
+			Name: aws.String("ReceiptRuleName"), // Required
+			Actions: []*ses.ReceiptAction{
+				{ // Required
+					AddHeaderAction: &ses.AddHeaderAction{
+						HeaderName:  aws.String("HeaderName"),  // Required
+						HeaderValue: aws.String("HeaderValue"), // Required
+					},
+					BounceAction: &ses.BounceAction{
+						Message:       aws.String("BounceMessage"),       // Required
+						Sender:        aws.String("Address"),             // Required
+						SmtpReplyCode: aws.String("BounceSmtpReplyCode"), // Required
+						StatusCode:    aws.String("BounceStatusCode"),
+						TopicArn:      aws.String("AmazonResourceName"),
+					},
+					LambdaAction: &ses.LambdaAction{
+						FunctionArn:    aws.String("AmazonResourceName"), // Required
+						InvocationType: aws.String("InvocationType"),
+						TopicArn:       aws.String("AmazonResourceName"),
+					},
+					S3Action: &ses.S3Action{
+						BucketName:      aws.String("S3BucketName"), // Required
+						KmsKeyArn:       aws.String("AmazonResourceName"),
+						ObjectKeyPrefix: aws.String("S3KeyPrefix"),
+						TopicArn:        aws.String("AmazonResourceName"),
+					},
+					SNSAction: &ses.SNSAction{
+						TopicArn: aws.String("AmazonResourceName"), // Required
+					},
+					StopAction: &ses.StopAction{
+						Scope:    aws.String("StopScope"), // Required
+						TopicArn: aws.String("AmazonResourceName"),
+					},
+					WorkmailAction: &ses.WorkmailAction{
+						OrganizationArn: aws.String("AmazonResourceName"), // Required
+						TopicArn:        aws.String("AmazonResourceName"),
+					},
+				},
+				// More values...
+			},
+			Enabled: aws.Bool(true),
+			Recipients: []*string{
+				aws.String("Recipient"), // Required
+				// More values...
+			},
+			ScanEnabled: aws.Bool(true),
+			TlsPolicy:   aws.String("TlsPolicy"),
+		},
+		RuleSetName: aws.String("ReceiptRuleSetName"), // Required
+	}
+	resp, err := svc.UpdateReceiptRule(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
