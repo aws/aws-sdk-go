@@ -56,6 +56,10 @@ func ExampleCloudFormation_CreateStack() {
 			},
 			// More values...
 		},
+		ResourceTypes: []*string{
+			aws.String("ResourceType"), // Required
+			// More values...
+		},
 		StackPolicyBody: aws.String("StackPolicyBody"),
 		StackPolicyURL:  aws.String("StackPolicyURL"),
 		Tags: []*cloudformation.Tag{
@@ -89,6 +93,25 @@ func ExampleCloudFormation_DeleteStack() {
 		StackName: aws.String("StackName"), // Required
 	}
 	resp, err := svc.DeleteStack(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudFormation_DescribeAccountLimits() {
+	svc := cloudformation.New(nil)
+
+	params := &cloudformation.DescribeAccountLimitsInput{
+		NextToken: aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeAccountLimits(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -374,6 +397,10 @@ func ExampleCloudFormation_UpdateStack() {
 				ParameterValue:   aws.String("ParameterValue"),
 				UsePreviousValue: aws.Bool(true),
 			},
+			// More values...
+		},
+		ResourceTypes: []*string{
+			aws.String("ResourceType"), // Required
 			// More values...
 		},
 		StackPolicyBody:             aws.String("StackPolicyBody"),

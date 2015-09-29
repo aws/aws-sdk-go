@@ -31,9 +31,9 @@ func (c *CloudFormation) CancelUpdateStackRequest(input *CancelUpdateStackInput)
 }
 
 // Cancels an update on the specified stack. If the call completes successfully,
-// the stack will roll back the update and revert to the previous stack configuration.
+// the stack rolls back the update and reverts to the previous stack configuration.
 //
-// Only stacks that are in the UPDATE_IN_PROGRESS state can be canceled.
+// You can cancel only stacks that are in the UPDATE_IN_PROGRESS state.
 func (c *CloudFormation) CancelUpdateStack(input *CancelUpdateStackInput) (*CancelUpdateStackOutput, error) {
 	req, out := c.CancelUpdateStackRequest(input)
 	err := req.Send()
@@ -94,6 +94,34 @@ func (c *CloudFormation) DeleteStackRequest(input *DeleteStackInput) (req *reque
 // has been completed successfully.
 func (c *CloudFormation) DeleteStack(input *DeleteStackInput) (*DeleteStackOutput, error) {
 	req, out := c.DeleteStackRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeAccountLimits = "DescribeAccountLimits"
+
+// DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
+func (c *CloudFormation) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *request.Request, output *DescribeAccountLimitsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountLimits,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAccountLimitsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeAccountLimitsOutput{}
+	req.Data = output
+	return
+}
+
+// Retrieves your account's AWS CloudFormation limits, such as the maximum number
+// of stacks that you can create in your account.
+func (c *CloudFormation) DescribeAccountLimits(input *DescribeAccountLimitsInput) (*DescribeAccountLimitsOutput, error) {
+	req, out := c.DescribeAccountLimitsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -594,7 +622,32 @@ func (c *CloudFormation) ValidateTemplate(input *ValidateTemplateInput) (*Valida
 	return out, err
 }
 
-// The input for CancelUpdateStack action.
+// The AccountLimit data type.
+type AccountLimit struct {
+	// The name of the account limit. Currently, the only account limit is StackLimit.
+	Name *string `type:"string"`
+
+	// The value that is associated with the account limit name.
+	Value *int64 `type:"integer"`
+
+	metadataAccountLimit `json:"-" xml:"-"`
+}
+
+type metadataAccountLimit struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AccountLimit) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountLimit) GoString() string {
+	return s.String()
+}
+
+// The input for the CancelUpdateStack action.
 type CancelUpdateStackInput struct {
 	// The name or the unique stack ID that is associated with the stack.
 	StackName *string `type:"string" required:"true"`
@@ -675,6 +728,22 @@ type CreateStackInput struct {
 	// A list of Parameter structures that specify input parameters for the stack.
 	Parameters []*Parameter `type:"list"`
 
+	// The template resource types that you have permissions to work with for this
+	// create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance.
+	// Use the following syntax to describe template resource types: AWS::* (for
+	// all AWS resource), Custom::* (for all custom resources), Custom::logical_ID
+	// (for a specific custom resource), AWS::service_name::* (for all resources
+	// of a particular AWS service), and AWS::service_name::resource_logical_ID
+	// (for a specific AWS resource).
+	//
+	// If the list of resource types doesn't include a resource that you're creating,
+	// the stack creation fails. By default, AWS CloudFormation grants permissions
+	// to all resource types. AWS Identity and Access Management (IAM) uses this
+	// parameter for AWS CloudFormation-specific condition keys in IAM policies.
+	// For more information, see Controlling Access with AWS Identity and Access
+	// Management (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html).
+	ResourceTypes []*string `type:"list"`
+
 	// The name that is associated with the stack. The name must be unique in the
 	// region in which you are creating the stack.
 	//
@@ -710,8 +779,8 @@ type CreateStackInput struct {
 	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// (max size: 460,800 bytes) located in an S3 bucket in the same region as the
-	// stack. For more information, go to the Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// (max size: 460,800 bytes) that is located in an Amazon S3 bucket. For more
+	// information, go to the Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
@@ -799,6 +868,55 @@ func (s DeleteStackOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteStackOutput) GoString() string {
+	return s.String()
+}
+
+// The input for the DescribeAccountLimits action.
+type DescribeAccountLimitsInput struct {
+	// A string that identifies the next page of limits that you want to retrieve.
+	NextToken *string `min:"1" type:"string"`
+
+	metadataDescribeAccountLimitsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeAccountLimitsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountLimitsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountLimitsInput) GoString() string {
+	return s.String()
+}
+
+// The output for the DescribeAccountLimits action.
+type DescribeAccountLimitsOutput struct {
+	// An account limit structure that contain a list of AWS CloudFormation account
+	// limits and their values.
+	AccountLimits []*AccountLimit `type:"list"`
+
+	// A string that identifies the next page of limits. If no additional page exists,
+	// this value is null.
+	NextToken *string `min:"1" type:"string"`
+
+	metadataDescribeAccountLimitsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeAccountLimitsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountLimitsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountLimitsOutput) GoString() string {
 	return s.String()
 }
 
@@ -1058,8 +1176,8 @@ type EstimateTemplateCostInput struct {
 	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// located in an S3 bucket in the same region as the stack. For more information,
-	// go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// that is located in an Amazon S3 bucket. For more information, go to Template
+	// Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,
@@ -1225,8 +1343,8 @@ type GetTemplateSummaryInput struct {
 	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// (max size: 460,800 bytes) located in an Amazon S3 bucket. For more information
-	// about templates, see Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// (max size: 460,800 bytes) that is located in an Amazon S3 bucket. For more
+	// information about templates, see Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
 	// Conditional: You must specify only one of the following parameters: StackName,
@@ -1272,6 +1390,15 @@ type GetTemplateSummaryOutput struct {
 	// A list of parameter declarations that describe various properties for each
 	// parameter.
 	Parameters []*ParameterDeclaration `type:"list"`
+
+	// A list of all the template resource types that are defined in the template,
+	// such as AWS::EC2::Instance, AWS::Dynamo::Table, and Custom::MyCustomInstance.
+	// Use the following syntax to describe template resource types: AWS::* (for
+	// all AWS resources), Custom::* (for all custom resources), Custom::logical_ID
+	// (for a specific custom resource), AWS::service_name::* (for all resources
+	// of a particular AWS service), and AWS::service_name::resource_logical_ID
+	// (for a specific AWS resource).
+	ResourceTypes []*string `type:"list"`
 
 	// The AWS template format version, which identifies the capabilities of the
 	// template.
@@ -1644,10 +1771,10 @@ type Stack struct {
 	// The capabilities allowed in the stack.
 	Capabilities []*string `type:"list"`
 
-	// Time at which the stack was created.
+	// The time at which the stack was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// User defined description associated with the stack.
+	// A user-defined description associated with the stack.
 	Description *string `type:"string"`
 
 	// Boolean to enable or disable rollback on stack creation failures:
@@ -2031,6 +2158,17 @@ type UpdateStackInput struct {
 	// data type.
 	Parameters []*Parameter `type:"list"`
 
+	// The template resource types that you have permissions to work with for this
+	// update stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance.
+	//
+	// If the list of resource types doesn't include a resource that you're updating,
+	// the stack update fails. By default, AWS CloudFormation grants permissions
+	// to all resource types. AWS Identity and Access Management (IAM) uses this
+	// parameter for AWS CloudFormation-specific condition keys in IAM policies.
+	// For more information, see Controlling Access with AWS Identity and Access
+	// Management (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-iam-template.html)
+	ResourceTypes []*string `type:"list"`
+
 	// The name or unique stack ID of the stack to update.
 	StackName *string `type:"string" required:"true"`
 
@@ -2081,8 +2219,8 @@ type UpdateStackInput struct {
 	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// located in an S3 bucket in the same region as the stack. For more information,
-	// go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// that is located in an Amazon S3 bucket. For more information, go to Template
+	// Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
 	// Conditional: You must specify either the TemplateBody or the TemplateURL
@@ -2144,8 +2282,8 @@ type ValidateTemplateInput struct {
 	TemplateBody *string `min:"1" type:"string"`
 
 	// Location of file containing the template body. The URL must point to a template
-	// (max size: 460,800 bytes) located in an S3 bucket in the same region as the
-	// stack. For more information, go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
+	// (max size: 460,800 bytes) that is located in an Amazon S3 bucket. For more
+	// information, go to Template Anatomy (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html)
 	// in the AWS CloudFormation User Guide.
 	//
 	// Conditional: You must pass TemplateURL or TemplateBody. If both are passed,

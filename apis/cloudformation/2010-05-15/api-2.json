@@ -66,6 +66,18 @@
       },
       "input":{"shape":"DeleteStackInput"}
     },
+    "DescribeAccountLimits":{
+      "name":"DescribeAccountLimits",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAccountLimitsInput"},
+      "output":{
+        "shape":"DescribeAccountLimitsOutput",
+        "resultWrapper":"DescribeAccountLimitsResult"
+      }
+    },
     "DescribeStackEvents":{
       "name":"DescribeStackEvents",
       "http":{
@@ -239,6 +251,17 @@
     }
   },
   "shapes":{
+    "AccountLimit":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"LimitName"},
+        "Value":{"shape":"LimitValue"}
+      }
+    },
+    "AccountLimitList":{
+      "type":"list",
+      "member":{"shape":"AccountLimit"}
+    },
     "AllowedValue":{"type":"string"},
     "AllowedValues":{
       "type":"list",
@@ -283,6 +306,7 @@
         "TimeoutInMinutes":{"shape":"TimeoutMinutes"},
         "NotificationARNs":{"shape":"NotificationARNs"},
         "Capabilities":{"shape":"Capabilities"},
+        "ResourceTypes":{"shape":"ResourceTypes"},
         "OnFailure":{"shape":"OnFailure"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"},
@@ -304,6 +328,19 @@
       }
     },
     "DeletionTime":{"type":"timestamp"},
+    "DescribeAccountLimitsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeAccountLimitsOutput":{
+      "type":"structure",
+      "members":{
+        "AccountLimits":{"shape":"AccountLimitList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeStackEventsInput":{
       "type":"structure",
       "members":{
@@ -421,6 +458,7 @@
         "Description":{"shape":"Description"},
         "Capabilities":{"shape":"Capabilities"},
         "CapabilitiesReason":{"shape":"CapabilitiesReason"},
+        "ResourceTypes":{"shape":"ResourceTypes"},
         "Version":{"shape":"Version"},
         "Metadata":{"shape":"Metadata"}
       }
@@ -448,6 +486,8 @@
       },
       "exception":true
     },
+    "LimitName":{"type":"string"},
+    "LimitValue":{"type":"integer"},
     "ListStackResourcesInput":{
       "type":"structure",
       "required":["StackName"],
@@ -580,6 +620,10 @@
     },
     "ResourceStatusReason":{"type":"string"},
     "ResourceType":{"type":"string"},
+    "ResourceTypes":{
+      "type":"list",
+      "member":{"shape":"ResourceType"}
+    },
     "SetStackPolicyInput":{
       "type":"structure",
       "required":["StackName"],
@@ -851,6 +895,7 @@
         "StackPolicyDuringUpdateURL":{"shape":"StackPolicyDuringUpdateURL"},
         "Parameters":{"shape":"Parameters"},
         "Capabilities":{"shape":"Capabilities"},
+        "ResourceTypes":{"shape":"ResourceTypes"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"},
         "NotificationARNs":{"shape":"NotificationARNs"}
