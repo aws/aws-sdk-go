@@ -1721,9 +1721,9 @@ type CreateEnvironmentInput struct {
 	// set for this new environment.
 	OptionsToRemove []*OptionSpecification `type:"list"`
 
-	// This is an alternative to specifying a configuration name. If specified,
-	// AWS Elastic Beanstalk sets the configuration values to the default values
-	// associated with the specified solution stack.
+	// This is an alternative to specifying a template name. If specified, AWS Elastic
+	// Beanstalk sets the configuration values to the default values associated
+	// with the specified solution stack.
 	//
 	//  Condition: You must specify either this or a TemplateName, but not both.
 	// If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination
@@ -3429,7 +3429,7 @@ type SingleInstanceHealth struct {
 	Color *string `type:"string"`
 
 	// Returns the health status of the specified instance. For more information,
-	// see .
+	// see Health Colors and Statuses (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/health-enhanced-status.html).
 	HealthStatus *string `type:"string"`
 
 	// The ID of the Amazon EC2 instance.
