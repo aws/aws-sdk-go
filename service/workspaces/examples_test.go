@@ -20,9 +20,12 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 	params := &workspaces.CreateWorkspacesInput{
 		Workspaces: []*workspaces.WorkspaceRequest{ // Required
 			{ // Required
-				BundleId:    aws.String("BundleId"),    // Required
-				DirectoryId: aws.String("DirectoryId"), // Required
-				UserName:    aws.String("UserName"),    // Required
+				BundleId:                    aws.String("BundleId"),    // Required
+				DirectoryId:                 aws.String("DirectoryId"), // Required
+				UserName:                    aws.String("UserName"),    // Required
+				RootVolumeEncryptionEnabled: aws.Bool(true),
+				UserVolumeEncryptionEnabled: aws.Bool(true),
+				VolumeEncryptionKey:         aws.String("VolumeEncryptionKey"),
 			},
 			// More values...
 		},

@@ -138,6 +138,7 @@
         "Name":{"shape":"Compute"}
       }
     },
+    "ComputerName":{"type":"string"},
     "CreateWorkspacesRequest":{
       "type":"structure",
       "required":["Workspaces"],
@@ -407,6 +408,7 @@
         "Capacity":{"shape":"NonEmptyString"}
       }
     },
+    "VolumeEncryptionKey":{"type":"string"},
     "Workspace":{
       "type":"structure",
       "members":{
@@ -418,7 +420,11 @@
         "BundleId":{"shape":"BundleId"},
         "SubnetId":{"shape":"SubnetId"},
         "ErrorMessage":{"shape":"Description"},
-        "ErrorCode":{"shape":"WorkspaceErrorCode"}
+        "ErrorCode":{"shape":"WorkspaceErrorCode"},
+        "ComputerName":{"shape":"ComputerName"},
+        "VolumeEncryptionKey":{"shape":"VolumeEncryptionKey"},
+        "UserVolumeEncryptionEnabled":{"shape":"BooleanObject"},
+        "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"}
       }
     },
     "WorkspaceBundle":{
@@ -491,7 +497,10 @@
       "members":{
         "DirectoryId":{"shape":"DirectoryId"},
         "UserName":{"shape":"UserName"},
-        "BundleId":{"shape":"BundleId"}
+        "BundleId":{"shape":"BundleId"},
+        "VolumeEncryptionKey":{"shape":"VolumeEncryptionKey"},
+        "UserVolumeEncryptionEnabled":{"shape":"BooleanObject"},
+        "RootVolumeEncryptionEnabled":{"shape":"BooleanObject"}
       }
     },
     "WorkspaceRequestList":{

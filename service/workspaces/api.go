@@ -884,6 +884,9 @@ type Workspace struct {
 	// The identifier of the bundle that the WorkSpace was created from.
 	BundleId *string `type:"string"`
 
+	// The name of the WorkSpace as seen by the operating system.
+	ComputerName *string `type:"string"`
+
 	// The identifier of the AWS Directory Service directory that the WorkSpace
 	// belongs to.
 	DirectoryId *string `type:"string"`
@@ -898,6 +901,9 @@ type Workspace struct {
 	// The IP address of the WorkSpace.
 	IpAddress *string `type:"string"`
 
+	// Specifies whether the data stored on the root volume, or C: drive, is encrypted.
+	RootVolumeEncryptionEnabled *bool `type:"boolean"`
+
 	// The operational state of the WorkSpace.
 	State *string `type:"string" enum:"WorkspaceState"`
 
@@ -906,6 +912,12 @@ type Workspace struct {
 
 	// The user that the WorkSpace is assigned to.
 	UserName *string `min:"1" type:"string"`
+
+	// Specifies whether the data stored on the user volume, or D: drive, is encrypted.
+	UserVolumeEncryptionEnabled *bool `type:"boolean"`
+
+	// The KMS key used to encrypt data stored on your WorkSpace.
+	VolumeEncryptionKey *string `type:"string"`
 
 	// The identifier of the WorkSpace.
 	WorkspaceId *string `type:"string"`
@@ -1039,9 +1051,18 @@ type WorkspaceRequest struct {
 	// of the directories that are available.
 	DirectoryId *string `type:"string" required:"true"`
 
+	// Specifies whether the data stored on the root volume, or C: drive, is encrypted.
+	RootVolumeEncryptionEnabled *bool `type:"boolean"`
+
 	// The username that the WorkSpace is assigned to. This username must exist
 	// in the AWS Directory Service directory specified by the DirectoryId member.
 	UserName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether the data stored on the user volume, or D: drive, is encrypted.
+	UserVolumeEncryptionEnabled *bool `type:"boolean"`
+
+	// The KMS key used to encrypt data stored on your WorkSpace.
+	VolumeEncryptionKey *string `type:"string"`
 
 	metadataWorkspaceRequest `json:"-" xml:"-"`
 }

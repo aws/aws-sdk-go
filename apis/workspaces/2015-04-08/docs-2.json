@@ -28,7 +28,11 @@
       "refs": {
         "DefaultWorkspaceCreationProperties$EnableWorkDocs": "<p>Specifies if the directory is enabled for Amazon WorkDocs.</p>",
         "DefaultWorkspaceCreationProperties$EnableInternetAccess": "<p>A public IP address will be attached to all WorkSpaces that are created or rebuilt.</p>",
-        "DefaultWorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>The WorkSpace user is an administrator on the WorkSpace.</p>"
+        "DefaultWorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>The WorkSpace user is an administrator on the WorkSpace.</p>",
+        "Workspace$UserVolumeEncryptionEnabled": "<p>Specifies whether the data stored on the user volume, or D: drive, is encrypted.</p>",
+        "Workspace$RootVolumeEncryptionEnabled": "<p>Specifies whether the data stored on the root volume, or C: drive, is encrypted.</p>",
+        "WorkspaceRequest$UserVolumeEncryptionEnabled": "<p>Specifies whether the data stored on the user volume, or D: drive, is encrypted.</p>",
+        "WorkspaceRequest$RootVolumeEncryptionEnabled": "<p>Specifies whether the data stored on the root volume, or C: drive, is encrypted.</p>"
       }
     },
     "BundleId": {
@@ -70,6 +74,12 @@
       "base": "<p>Contains information about the compute type of a WorkSpace bundle.</p>",
       "refs": {
         "WorkspaceBundle$ComputeType": "<p>A <a>ComputeType</a> object that specifies the compute type for the bundle.</p>"
+      }
+    },
+    "ComputerName": {
+      "base": null,
+      "refs": {
+        "Workspace$ComputerName": "<p>The name of the WorkSpace as seen by the operating system.</p>"
       }
     },
     "CreateWorkspacesRequest": {
@@ -372,6 +382,13 @@
       "base": "<p>Contains information about the user storage for a WorkSpace bundle.</p>",
       "refs": {
         "WorkspaceBundle$UserStorage": "<p>A <a>UserStorage</a> object that specifies the amount of user storage that the bundle contains.</p>"
+      }
+    },
+    "VolumeEncryptionKey": {
+      "base": null,
+      "refs": {
+        "Workspace$VolumeEncryptionKey": "<p>The KMS key used to encrypt data stored on your WorkSpace.</p>",
+        "WorkspaceRequest$VolumeEncryptionKey": "<p>The KMS key used to encrypt data stored on your WorkSpace.</p>"
       }
     },
     "Workspace": {
