@@ -3089,6 +3089,10 @@ func (s CopyDBParameterGroupOutput) GoString() string {
 }
 
 type CopyDBSnapshotInput struct {
+	// True to copy all tags from the source DB snapshot to the target DB snapshot;
+	// otherwise false. The default is false.
+	CopyTags *bool `type:"boolean"`
+
 	// The identifier for the source DB snapshot.
 	//
 	// Constraints:
@@ -3248,7 +3252,7 @@ type CreateDBClusterInput struct {
 	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
 	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
 	//  Example: my-cluster1
-	DBClusterIdentifier *string `type:"string"`
+	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to associate with this DB cluster.
 	// If this argument is omitted, default.aurora5.6 for the specified engine will
@@ -3270,21 +3274,21 @@ type CreateDBClusterInput struct {
 
 	// The name of the database engine to be used for this DB cluster.
 	//
-	// Valid Values: MySQL
-	Engine *string `type:"string"`
+	// Valid Values: aurora
+	Engine *string `type:"string" required:"true"`
 
 	// The version number of the database engine to use.
 	//
 	//  Aurora
 	//
-	// Example: 5.6.0
+	// Example: 5.6.10a
 	EngineVersion *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
 	// printable ASCII character except "/", """, or "@".
 	//
 	// Constraints: Must contain from 8 to 41 characters.
-	MasterUserPassword *string `type:"string"`
+	MasterUserPassword *string `type:"string" required:"true"`
 
 	// The name of the master user for the client DB cluster.
 	//
@@ -3292,7 +3296,7 @@ type CreateDBClusterInput struct {
 	//
 	//  Must be 1 to 16 alphanumeric characters. First character must be a letter.
 	// Cannot be a reserved word for the chosen database engine.
-	MasterUsername *string `type:"string"`
+	MasterUsername *string `type:"string" required:"true"`
 
 	// A value that indicates that the DB cluster should be associated with the
 	// specified option group.
@@ -3573,6 +3577,10 @@ type CreateDBInstanceInput struct {
 	// with the specified CharacterSet.
 	CharacterSetName *string `type:"string"`
 
+	// True to copy all tags from the DB instance to snapshots of the DB instance;
+	// otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The identifier of the DB cluster that the instance will belong to.
 	//
 	// For information on creating a DB cluster, see CreateDBCluster.
@@ -3586,7 +3594,7 @@ type CreateDBInstanceInput struct {
 	// db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium
 	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge
 	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
-	// | db.t2.medium
+	// | db.t2.medium | db.t2.large
 	DBInstanceClass *string `type:"string" required:"true"`
 
 	// The DB instance identifier. This parameter is stored as a lowercase string.
@@ -3632,6 +3640,17 @@ type CreateDBInstanceInput struct {
 	//  Cannot be longer than 8 characters   SQL Server
 	//
 	// Not applicable. Must be null.
+	//
+	//  Amazon Aurora
+	//
+	// The name of the database to create when the primary instance of the DB cluster
+	// is created. If this parameter is not specified, no database is created in
+	// the DB instance.
+	//
+	// Constraints:
+	//
+	//  Must contain 1 to 64 alphanumeric characters Cannot be a word reserved
+	// by the specified database engine
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -3676,104 +3695,30 @@ type CreateDBInstanceInput struct {
 	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
 	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
 	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
-	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   MySQL
-	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
-	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   MySQL
-	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
-	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   MySQL
-	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
 	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   Oracle Database Enterprise
 	// Edition (oracle-ee)
 	//
 	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
 	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
-	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
-	// | 11.2.0.4.v3   Version 12.1 (Available in all regions):  12.1.0.1.v1   Oracle
-	// Database Enterprise Edition (oracle-ee)
-	//
-	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
-	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
-	// | 11.2.0.4.v3   Version 12.1 (Available in all regions):  12.1.0.1.v1   Oracle
-	// Database Enterprise Edition (oracle-ee)
-	//
-	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
-	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
-	// | 11.2.0.4.v3   Version 12.1 (Available in all regions):  12.1.0.1.v1   Oracle
-	// Database Standard Edition (oracle-se)
+	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.3.v3
+	// | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version 12.1 (Available in all
+	// regions): 12.1.0.1.v1 | 12.1.0.1.v2 | 12.1.0.2.v1    Oracle Database Standard
+	// Edition (oracle-se)
 	//
 	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
 	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
 	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3   Version 12.1 (Only available
-	// in the following regions: eu-central-1, us-west-1):  12.1.0.1.v1   Oracle
-	// Database Standard Edition (oracle-se)
+	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version
+	// 12.1 (Only available in the following regions: eu-central-1, us-west-1):
+	// 12.1.0.1.v1 | 12.1.0.1.v2   Oracle Database Standard Edition One (oracle-se1)
 	//
 	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
 	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
 	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3   Version 12.1 (Only available
-	// in the following regions: eu-central-1, us-west-1):  12.1.0.1.v1   Oracle
-	// Database Standard Edition (oracle-se)
-	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
-	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3   Version 12.1 (Only available
-	// in the following regions: eu-central-1, us-west-1):  12.1.0.1.v1   Oracle
-	// Database Standard Edition One (oracle-se1)
-	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
-	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3   Version 12.1 (Only available
-	// in the following regions: eu-central-1, us-west-1):  12.1.0.1.v1   Oracle
-	// Database Standard Edition One (oracle-se1)
-	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
-	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3   Version 12.1 (Only available
-	// in the following regions: eu-central-1, us-west-1):  12.1.0.1.v1   Oracle
-	// Database Standard Edition One (oracle-se1)
-	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
-	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3   Version 12.1 (Only available
-	// in the following regions: eu-central-1, us-west-1):  12.1.0.1.v1   PostgreSQL
-	//
-	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5 |
-	// 9.3.6   Version 9.4 (Available in all regions):  9.4.1   PostgreSQL
-	//
-	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5 |
-	// 9.3.6   Version 9.4 (Available in all regions):  9.4.1   PostgreSQL
+	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version
+	// 12.1 (Only available in the following regions: eu-central-1, us-west-1):
+	//  12.1.0.1.v1 | 12.1.0.1.v2   PostgreSQL
 	//
 	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
@@ -3784,28 +3729,11 @@ type CreateDBInstanceInput struct {
 	//   Version 10.50 (Only available in the following regions: eu-central-1,
 	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
 	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1   Microsoft SQL Server
-	// Enterprise Edition (sqlserver-ee)
-	//
-	//   Version 10.50 (Only available in the following regions: eu-central-1,
-	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
-	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1   Microsoft SQL Server
 	// Express Edition (sqlserver-ex)
 	//
 	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Express
-	// Edition (sqlserver-ex)
-	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
 	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Standard
 	// Edition (sqlserver-se)
-	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Standard
-	// Edition (sqlserver-se)
-	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Web
-	// Edition (sqlserver-web)
 	//
 	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
 	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Web
@@ -3859,6 +3787,10 @@ type CreateDBInstanceInput struct {
 	//  PostgreSQL
 	//
 	//  Constraints: Must contain from 8 to 128 characters.
+	//
+	//  Amazon Aurora
+	//
+	//  Constraints: Must contain from 8 to 41 characters.
 	MasterUserPassword *string `type:"string"`
 
 	// The name of master user for the client DB instance.
@@ -3932,6 +3864,14 @@ type CreateDBInstanceInput struct {
 	//
 	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
 	// through 49156.
+	//
+	//  Amazon Aurora
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	//
+	// Type: Integer
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -4065,12 +4005,17 @@ type CreateDBInstanceReadReplicaInput struct {
 	//  Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
+	// True to copy all tags from the Read Replica to snapshots of the Read Replica;
+	// otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The compute and memory capacity of the Read Replica.
 	//
 	//  Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
 	// db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
 	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
 	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.t2.large
 	//
 	// Default: Inherits from the source DB instance.
 	DBInstanceClass *string `type:"string"`
@@ -4384,8 +4329,8 @@ type CreateDBSubnetGroupInput struct {
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
-	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
-	// Must not be "Default".
+	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
+	// underscores, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
@@ -4899,6 +4844,10 @@ type DBEngineVersion struct {
 	// parameter of the CreateDBInstance API.
 	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
 
+	// A list of engine versions that this database engine version can be upgraded
+	// to.
+	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
+
 	metadataDBEngineVersion `json:"-" xml:"-"`
 }
 
@@ -4940,6 +4889,10 @@ type DBInstance struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
+	// Specifies whether tags are copied from the DB instance to snapshots of the
+	// DB instance.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// If the DB instance is a member of a DB cluster, contains the name of the
 	// DB cluster that the DB instance is a member of.
 	DBClusterIdentifier *string `type:"string"`
@@ -4959,7 +4912,7 @@ type DBInstance struct {
 	// when returning values from CreateDBInstanceReadReplica since Read Replicas
 	// are only supported for MySQL and PostgreSQL.
 	//
-	//  MySQL, SQL Server, PostgreSQL
+	//  MySQL, SQL Server, PostgreSQL, Amazon Aurora
 	//
 	//  Contains the name of the initial database of this instance that was provided
 	// at create time, if one was specified when the DB instance was created. This
@@ -5435,7 +5388,7 @@ type DeleteDBClusterInput struct {
 	//
 	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
-	DBClusterIdentifier *string `type:"string"`
+	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The DB cluster snapshot identifier of the new DB cluster snapshot created
 	// when SkipFinalSnapshot is set to false.
@@ -8283,7 +8236,7 @@ type ModifyDBClusterInput struct {
 	//  Must be the identifier for an existing DB cluster. Must contain from 1
 	// to 63 alphanumeric characters or hyphens. First character must be a letter.
 	// Cannot end with a hyphen or contain two consecutive hyphens.
-	DBClusterIdentifier *string `type:"string"`
+	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the DB cluster parameter group to use for the DB cluster.
 	DBClusterParameterGroupName *string `type:"string"`
@@ -8536,6 +8489,10 @@ type ModifyDBInstanceInput struct {
 	// Indicates the certificate that needs to be associated with the instance.
 	CACertificateIdentifier *string `type:"string"`
 
+	// True to copy all tags from the DB instance to snapshots of the DB instance;
+	// otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The new compute and memory capacity of the DB instance. To determine the
 	// instance classes that are available for a particular DB engine, use the DescribeOrderableDBInstanceOptions
 	// action.
@@ -8550,6 +8507,7 @@ type ModifyDBInstanceInput struct {
 	// | db.m2.xlarge | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
 	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
 	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.t2.large
 	DBInstanceClass *string `type:"string"`
 
 	// The DB instance identifier. This value is stored as a lowercase string.
@@ -8641,8 +8599,9 @@ type ModifyDBInstanceInput struct {
 	//
 	// Default: Uses existing setting
 	//
-	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL), 8 to 30 alphanumeric
-	// characters (Oracle), or 8 to 128 alphanumeric characters (SQL Server).
+	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL and Amazon Aurora),
+	// 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric characters
+	// (SQL Server).
 	//
 	//  Amazon RDS API actions never return the password, so this action provides
 	// a way to regain access to a primary instance user if the password is lost.
@@ -10248,12 +10207,16 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
+	// True to copy all tags from the restored DB instance to snapshots of the DB
+	// instance; otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance.
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
 	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
-	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	DBInstanceClass *string `type:"string"`
 
 	// Name of the DB instance to create from the DB snapshot. This parameter isn't
@@ -10261,9 +10224,9 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
-	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
-	//  Example: my-snapshot-id
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15 for
+	// SQL Server) First character must be a letter Cannot end with a hyphen or
+	// contain two consecutive hyphens  Example: my-snapshot-id
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The database name for the restored DB instance.
@@ -10275,7 +10238,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
@@ -10423,12 +10386,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
+	// True to copy all tags from the restored DB instance to snapshots of the DB
+	// instance; otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance.
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
 	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
-	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	//
 	// Default: The same DBInstanceClass as the original DB instance.
 	DBInstanceClass *string `type:"string"`
@@ -10728,6 +10695,42 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
+// The version of the database engine that a DB instance can be upgraded to.
+type UpgradeTarget struct {
+	// A value that indicates whether the target version will be applied to any
+	// source DB instances that have AutoMinorVersionUpgrade set to true.
+	AutoUpgrade *bool `type:"boolean"`
+
+	// The version of the database engine that a DB instance can be upgraded to.
+	Description *string `type:"string"`
+
+	// The name of the upgrade target database engine.
+	Engine *string `type:"string"`
+
+	// The version number of the upgrade target database engine.
+	EngineVersion *string `type:"string"`
+
+	// A value that indicates whether a database engine will be upgraded to a major
+	// version.
+	IsMajorVersionUpgrade *bool `type:"boolean"`
+
+	metadataUpgradeTarget `json:"-" xml:"-"`
+}
+
+type metadataUpgradeTarget struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpgradeTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpgradeTarget) GoString() string {
+	return s.String()
+}
+
 // This data type is used as a response element for queries on VPC security
 // group membership.
 type VpcSecurityGroupMembership struct {
@@ -10769,5 +10772,7 @@ const (
 	// @enum SourceType
 	SourceTypeDbSecurityGroup = "db-security-group"
 	// @enum SourceType
-	SourceTypeDbSnapshot = "db-snapshot"
+	SourceTypeDbCluster = "db-cluster"
+	// @enum SourceType
+	SourceTypeDbClusterSnapshot = "db-cluster-snapshot"
 )

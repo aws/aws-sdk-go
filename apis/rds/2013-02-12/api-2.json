@@ -1,12 +1,12 @@
 {
   "version":"2.0",
   "metadata":{
-    "apiVersion":"2014-10-31",
+    "apiVersion":"2013-02-12",
     "endpointPrefix":"rds",
     "serviceAbbreviation":"Amazon RDS",
     "serviceFullName":"Amazon Relational Database Service",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://rds.amazonaws.com/doc/2014-10-31/",
+    "xmlNamespace":"http://rds.amazonaws.com/doc/2013-02-12/",
     "protocol":"query"
   },
   "operations":{
@@ -71,30 +71,6 @@
         }
       ]
     },
-    "ApplyPendingMaintenanceAction":{
-      "name":"ApplyPendingMaintenanceAction",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ApplyPendingMaintenanceActionMessage"},
-      "output":{
-        "shape":"ApplyPendingMaintenanceActionResult",
-        "wrapper":true,
-        "resultWrapper":"ApplyPendingMaintenanceActionResult"
-      },
-      "errors":[
-        {
-          "shape":"ResourceNotFoundFault",
-          "error":{
-            "code":"ResourceNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "AuthorizeDBSecurityGroupIngress":{
       "name":"AuthorizeDBSecurityGroupIngress",
       "http":{
@@ -146,90 +122,6 @@
         }
       ]
     },
-    "CopyDBClusterSnapshot":{
-      "name":"CopyDBClusterSnapshot",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"CopyDBClusterSnapshotMessage"},
-      "output":{
-        "shape":"CopyDBClusterSnapshotResult",
-        "wrapper":true,
-        "resultWrapper":"CopyDBClusterSnapshotResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterSnapshotAlreadyExistsFault",
-          "error":{
-            "code":"DBClusterSnapshotAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"DBClusterSnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "CopyDBParameterGroup":{
-      "name":"CopyDBParameterGroup",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"CopyDBParameterGroupMessage"},
-      "output":{
-        "shape":"CopyDBParameterGroupResult",
-        "wrapper":true,
-        "resultWrapper":"CopyDBParameterGroupResult"
-      },
-      "errors":[
-        {
-          "shape":"DBParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBParameterGroupAlreadyExistsFault",
-          "error":{
-            "code":"DBParameterGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBParameterGroupQuotaExceededFault",
-          "error":{
-            "code":"DBParameterGroupQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "CopyDBSnapshot":{
       "name":"CopyDBSnapshot",
       "http":{
@@ -266,237 +158,6 @@
           "error":{
             "code":"InvalidDBSnapshotState",
             "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotQuotaExceededFault",
-          "error":{
-            "code":"SnapshotQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "CopyOptionGroup":{
-      "name":"CopyOptionGroup",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"CopyOptionGroupMessage"},
-      "output":{
-        "shape":"CopyOptionGroupResult",
-        "wrapper":true,
-        "resultWrapper":"CopyOptionGroupResult"
-      },
-      "errors":[
-        {
-          "shape":"OptionGroupAlreadyExistsFault",
-          "error":{
-            "code":"OptionGroupAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"OptionGroupNotFoundFault",
-          "error":{
-            "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"OptionGroupQuotaExceededFault",
-          "error":{
-            "code":"OptionGroupQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "CreateDBCluster":{
-      "name":"CreateDBCluster",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"CreateDBClusterMessage"},
-      "output":{
-        "shape":"CreateDBClusterResult",
-        "wrapper":true,
-        "resultWrapper":"CreateDBClusterResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterAlreadyExistsFault",
-          "error":{
-            "code":"DBClusterAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientStorageClusterCapacityFault",
-          "error":{
-            "code":"InsufficientStorageClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterQuotaExceededFault",
-          "error":{
-            "code":"DBClusterQuotaExceededFault",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageQuotaExceededFault",
-          "error":{
-            "code":"StorageQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotFoundFault",
-          "error":{
-            "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBSubnetGroupStateFault",
-          "error":{
-            "code":"InvalidDBSubnetGroupStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "CreateDBClusterParameterGroup":{
-      "name":"CreateDBClusterParameterGroup",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"CreateDBClusterParameterGroupMessage"},
-      "output":{
-        "shape":"CreateDBClusterParameterGroupResult",
-        "wrapper":true,
-        "resultWrapper":"CreateDBClusterParameterGroupResult"
-      },
-      "errors":[
-        {
-          "shape":"DBParameterGroupQuotaExceededFault",
-          "error":{
-            "code":"DBParameterGroupQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBParameterGroupAlreadyExistsFault",
-          "error":{
-            "code":"DBParameterGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "CreateDBClusterSnapshot":{
-      "name":"CreateDBClusterSnapshot",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"CreateDBClusterSnapshotMessage"},
-      "output":{
-        "shape":"CreateDBClusterSnapshotResult",
-        "wrapper":true,
-        "resultWrapper":"CreateDBClusterSnapshotResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterSnapshotAlreadyExistsFault",
-          "error":{
-            "code":"DBClusterSnapshotAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true
@@ -598,15 +259,6 @@
           "exception":true
         },
         {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
           "shape":"InvalidSubnet",
           "error":{
             "code":"InvalidSubnet",
@@ -638,42 +290,6 @@
           "error":{
             "code":"OptionGroupNotFoundFault",
             "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageTypeNotSupportedFault",
-          "error":{
-            "code":"StorageTypeNotSupported",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"KMSKeyNotAccessibleFault",
-          "error":{
-            "code":"KMSKeyNotAccessibleFault",
-            "httpStatusCode":400,
             "senderFault":true
           },
           "exception":true
@@ -815,42 +431,6 @@
           "error":{
             "code":"OptionGroupNotFoundFault",
             "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotAllowedFault",
-          "error":{
-            "code":"DBSubnetGroupNotAllowedFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBSubnetGroupFault",
-          "error":{
-            "code":"InvalidDBSubnetGroupFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageTypeNotSupportedFault",
-          "error":{
-            "code":"StorageTypeNotSupported",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"KMSKeyNotAccessibleFault",
-          "error":{
-            "code":"KMSKeyNotAccessibleFault",
-            "httpStatusCode":400,
             "senderFault":true
           },
           "exception":true
@@ -1154,100 +734,6 @@
         }
       ]
     },
-    "DeleteDBCluster":{
-      "name":"DeleteDBCluster",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DeleteDBClusterMessage"},
-      "output":{
-        "shape":"DeleteDBClusterResult",
-        "wrapper":true,
-        "resultWrapper":"DeleteDBClusterResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "DeleteDBClusterParameterGroup":{
-      "name":"DeleteDBClusterParameterGroup",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DeleteDBClusterParameterGroupMessage"},
-      "errors":[
-        {
-          "shape":"InvalidDBParameterGroupStateFault",
-          "error":{
-            "code":"InvalidDBParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "DeleteDBClusterSnapshot":{
-      "name":"DeleteDBClusterSnapshot",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DeleteDBClusterSnapshotMessage"},
-      "output":{
-        "shape":"DeleteDBClusterSnapshotResult",
-        "wrapper":true,
-        "resultWrapper":"DeleteDBClusterSnapshotResult"
-      },
-      "errors":[
-        {
-          "shape":"InvalidDBClusterSnapshotStateFault",
-          "error":{
-            "code":"InvalidDBClusterSnapshotStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"DBClusterSnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "DeleteDBInstance":{
       "name":"DeleteDBInstance",
       "http":{
@@ -1486,133 +972,6 @@
         }
       ]
     },
-    "DescribeAccountAttributes":{
-      "name":"DescribeAccountAttributes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeAccountAttributesMessage"},
-      "output":{
-        "shape":"AccountAttributesMessage",
-        "resultWrapper":"DescribeAccountAttributesResult"
-      }
-    },
-    "DescribeCertificates":{
-      "name":"DescribeCertificates",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeCertificatesMessage"},
-      "output":{
-        "shape":"CertificateMessage",
-        "resultWrapper":"DescribeCertificatesResult"
-      },
-      "errors":[
-        {
-          "shape":"CertificateNotFoundFault",
-          "error":{
-            "code":"CertificateNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "DescribeDBClusterParameterGroups":{
-      "name":"DescribeDBClusterParameterGroups",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeDBClusterParameterGroupsMessage"},
-      "output":{
-        "shape":"DBClusterParameterGroupsMessage",
-        "resultWrapper":"DescribeDBClusterParameterGroupsResult"
-      },
-      "errors":[
-        {
-          "shape":"DBParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "DescribeDBClusterParameters":{
-      "name":"DescribeDBClusterParameters",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeDBClusterParametersMessage"},
-      "output":{
-        "shape":"DBClusterParameterGroupDetails",
-        "resultWrapper":"DescribeDBClusterParametersResult"
-      },
-      "errors":[
-        {
-          "shape":"DBParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "DescribeDBClusterSnapshots":{
-      "name":"DescribeDBClusterSnapshots",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeDBClusterSnapshotsMessage"},
-      "output":{
-        "shape":"DBClusterSnapshotMessage",
-        "resultWrapper":"DescribeDBClusterSnapshotsResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"DBClusterSnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "DescribeDBClusters":{
-      "name":"DescribeDBClusters",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeDBClustersMessage"},
-      "output":{
-        "shape":"DBClusterMessage",
-        "resultWrapper":"DescribeDBClustersResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "DescribeDBEngineVersions":{
       "name":"DescribeDBEngineVersions",
       "http":{
@@ -1786,19 +1145,6 @@
         }
       ]
     },
-    "DescribeEngineDefaultClusterParameters":{
-      "name":"DescribeEngineDefaultClusterParameters",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribeEngineDefaultClusterParametersMessage"},
-      "output":{
-        "shape":"DescribeEngineDefaultClusterParametersResult",
-        "wrapper":true,
-        "resultWrapper":"DescribeEngineDefaultClusterParametersResult"
-      }
-    },
     "DescribeEngineDefaultParameters":{
       "name":"DescribeEngineDefaultParameters",
       "http":{
@@ -1906,29 +1252,6 @@
         "resultWrapper":"DescribeOrderableDBInstanceOptionsResult"
       }
     },
-    "DescribePendingMaintenanceActions":{
-      "name":"DescribePendingMaintenanceActions",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DescribePendingMaintenanceActionsMessage"},
-      "output":{
-        "shape":"PendingMaintenanceActionsMessage",
-        "resultWrapper":"DescribePendingMaintenanceActionsResult"
-      },
-      "errors":[
-        {
-          "shape":"ResourceNotFoundFault",
-          "error":{
-            "code":"ResourceNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "DescribeReservedDBInstances":{
       "name":"DescribeReservedDBInstances",
       "http":{
@@ -2007,39 +1330,6 @@
         }
       ]
     },
-    "FailoverDBCluster":{
-      "name":"FailoverDBCluster",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"FailoverDBClusterMessage"},
-      "output":{
-        "shape":"FailoverDBClusterResult",
-        "wrapper":true,
-        "resultWrapper":"FailoverDBClusterResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -2066,152 +1356,6 @@
           "error":{
             "code":"DBSnapshotNotFound",
             "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "ModifyDBCluster":{
-      "name":"ModifyDBCluster",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ModifyDBClusterMessage"},
-      "output":{
-        "shape":"ModifyDBClusterResult",
-        "wrapper":true,
-        "resultWrapper":"ModifyDBClusterResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterStateFault",
-          "error":{
-            "code":"InvalidDBClusterStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageQuotaExceededFault",
-          "error":{
-            "code":"StorageQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotFoundFault",
-          "error":{
-            "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBSubnetGroupStateFault",
-          "error":{
-            "code":"InvalidDBSubnetGroupStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidDBSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBInstanceStateFault",
-          "error":{
-            "code":"InvalidDBInstanceState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterAlreadyExistsFault",
-          "error":{
-            "code":"DBClusterAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "ModifyDBClusterParameterGroup":{
-      "name":"ModifyDBClusterParameterGroup",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ModifyDBClusterParameterGroupMessage"},
-      "output":{
-        "shape":"DBClusterParameterGroupNameMessage",
-        "resultWrapper":"ModifyDBClusterParameterGroupResult"
-      },
-      "errors":[
-        {
-          "shape":"DBParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBParameterGroupStateFault",
-          "error":{
-            "code":"InvalidDBParameterGroupState",
-            "httpStatusCode":400,
             "senderFault":true
           },
           "exception":true
@@ -2335,33 +1479,6 @@
           "error":{
             "code":"DBUpgradeDependencyFailure",
             "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageTypeNotSupportedFault",
-          "error":{
-            "code":"StorageTypeNotSupported",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CertificateNotFoundFault",
-          "error":{
-            "code":"CertificateNotFound",
-            "httpStatusCode":404,
             "senderFault":true
           },
           "exception":true
@@ -2731,38 +1848,6 @@
         }
       ]
     },
-    "ResetDBClusterParameterGroup":{
-      "name":"ResetDBClusterParameterGroup",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ResetDBClusterParameterGroupMessage"},
-      "output":{
-        "shape":"DBClusterParameterGroupNameMessage",
-        "resultWrapper":"ResetDBClusterParameterGroupResult"
-      },
-      "errors":[
-        {
-          "shape":"InvalidDBParameterGroupStateFault",
-          "error":{
-            "code":"InvalidDBParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBParameterGroupNotFoundFault",
-          "error":{
-            "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
     "ResetDBParameterGroup":{
       "name":"ResetDBParameterGroup",
       "http":{
@@ -2788,315 +1873,6 @@
           "shape":"DBParameterGroupNotFoundFault",
           "error":{
             "code":"DBParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "RestoreDBClusterFromSnapshot":{
-      "name":"RestoreDBClusterFromSnapshot",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"RestoreDBClusterFromSnapshotMessage"},
-      "output":{
-        "shape":"RestoreDBClusterFromSnapshotResult",
-        "wrapper":true,
-        "resultWrapper":"RestoreDBClusterFromSnapshotResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterAlreadyExistsFault",
-          "error":{
-            "code":"DBClusterAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterQuotaExceededFault",
-          "error":{
-            "code":"DBClusterQuotaExceededFault",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageQuotaExceededFault",
-          "error":{
-            "code":"StorageQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotFoundFault",
-          "error":{
-            "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSnapshotNotFoundFault",
-          "error":{
-            "code":"DBSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"DBClusterSnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientDBClusterCapacityFault",
-          "error":{
-            "code":"InsufficientDBClusterCapacityFault",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientStorageClusterCapacityFault",
-          "error":{
-            "code":"InsufficientStorageClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBSnapshotStateFault",
-          "error":{
-            "code":"InvalidDBSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterSnapshotStateFault",
-          "error":{
-            "code":"InvalidDBClusterSnapshotStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageQuotaExceededFault",
-          "error":{
-            "code":"StorageQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidRestoreFault",
-          "error":{
-            "code":"InvalidRestoreFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotFoundFault",
-          "error":{
-            "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"OptionGroupNotFoundFault",
-          "error":{
-            "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
-      ]
-    },
-    "RestoreDBClusterToPointInTime":{
-      "name":"RestoreDBClusterToPointInTime",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"RestoreDBClusterToPointInTimeMessage"},
-      "output":{
-        "shape":"RestoreDBClusterToPointInTimeResult",
-        "wrapper":true,
-        "resultWrapper":"RestoreDBClusterToPointInTimeResult"
-      },
-      "errors":[
-        {
-          "shape":"DBClusterAlreadyExistsFault",
-          "error":{
-            "code":"DBClusterAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterQuotaExceededFault",
-          "error":{
-            "code":"DBClusterQuotaExceededFault",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageQuotaExceededFault",
-          "error":{
-            "code":"StorageQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotFoundFault",
-          "error":{
-            "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterNotFoundFault",
-          "error":{
-            "code":"DBClusterNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"DBClusterSnapshotNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientDBClusterCapacityFault",
-          "error":{
-            "code":"InsufficientDBClusterCapacityFault",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBSnapshotStateFault",
-          "error":{
-            "code":"InvalidDBSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidDBClusterSnapshotStateFault",
-          "error":{
-            "code":"InvalidDBClusterSnapshotStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageQuotaExceededFault",
-          "error":{
-            "code":"StorageQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidRestoreFault",
-          "error":{
-            "code":"InvalidRestoreFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSubnetGroupNotFoundFault",
-          "error":{
-            "code":"DBSubnetGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"OptionGroupNotFoundFault",
-          "error":{
-            "code":"OptionGroupNotFoundFault",
             "httpStatusCode":404,
             "senderFault":true
           },
@@ -3229,42 +2005,6 @@
           "shape":"OptionGroupNotFoundFault",
           "error":{
             "code":"OptionGroupNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"StorageTypeNotSupportedFault",
-          "error":{
-            "code":"StorageTypeNotSupported",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"KMSKeyNotAccessibleFault",
-          "error":{
-            "code":"KMSKeyNotAccessibleFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSecurityGroupNotFoundFault",
-          "error":{
-            "code":"DBSecurityGroupNotFound",
             "httpStatusCode":404,
             "senderFault":true
           },
@@ -3410,42 +2150,6 @@
             "senderFault":true
           },
           "exception":true
-        },
-        {
-          "shape":"StorageTypeNotSupportedFault",
-          "error":{
-            "code":"StorageTypeNotSupported",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"KMSKeyNotAccessibleFault",
-          "error":{
-            "code":"KMSKeyNotAccessibleFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"DBSecurityGroupNotFoundFault",
-          "error":{
-            "code":"DBSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
         }
       ]
     },
@@ -3493,28 +2197,6 @@
     }
   },
   "shapes":{
-    "AccountAttributesMessage":{
-      "type":"structure",
-      "members":{
-        "AccountQuotas":{"shape":"AccountQuotaList"}
-      }
-    },
-    "AccountQuota":{
-      "type":"structure",
-      "members":{
-        "AccountQuotaName":{"shape":"String"},
-        "Used":{"shape":"Long"},
-        "Max":{"shape":"Long"}
-      },
-      "wrapper":true
-    },
-    "AccountQuotaList":{
-      "type":"list",
-      "member":{
-        "shape":"AccountQuota",
-        "locationName":"AccountQuota"
-      }
-    },
     "AddSourceIdentifierToSubscriptionMessage":{
       "type":"structure",
       "required":[
@@ -3543,19 +2225,6 @@
         "immediate",
         "pending-reboot"
       ]
-    },
-    "ApplyPendingMaintenanceActionMessage":{
-      "type":"structure",
-      "required":[
-        "ResourceIdentifier",
-        "ApplyAction",
-        "OptInType"
-      ],
-      "members":{
-        "ResourceIdentifier":{"shape":"String"},
-        "ApplyAction":{"shape":"String"},
-        "OptInType":{"shape":"String"}
-      }
     },
     "AuthorizationAlreadyExistsFault":{
       "type":"structure",
@@ -3604,7 +2273,8 @@
     "AvailabilityZone":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"String"}
+        "Name":{"shape":"String"},
+        "ProvisionedIopsCapable":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -3615,82 +2285,13 @@
         "locationName":"AvailabilityZone"
       }
     },
-    "AvailabilityZones":{
-      "type":"list",
-      "member":{
-        "shape":"String",
-        "locationName":"AvailabilityZone"
-      }
-    },
     "Boolean":{"type":"boolean"},
     "BooleanOptional":{"type":"boolean"},
-    "Certificate":{
-      "type":"structure",
-      "members":{
-        "CertificateIdentifier":{"shape":"String"},
-        "CertificateType":{"shape":"String"},
-        "Thumbprint":{"shape":"String"},
-        "ValidFrom":{"shape":"TStamp"},
-        "ValidTill":{"shape":"TStamp"}
-      },
-      "wrapper":true
-    },
-    "CertificateList":{
-      "type":"list",
-      "member":{
-        "shape":"Certificate",
-        "locationName":"Certificate"
-      }
-    },
-    "CertificateMessage":{
-      "type":"structure",
-      "members":{
-        "Certificates":{"shape":"CertificateList"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "CertificateNotFoundFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"CertificateNotFound",
-        "httpStatusCode":404,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "CharacterSet":{
       "type":"structure",
       "members":{
         "CharacterSetName":{"shape":"String"},
         "CharacterSetDescription":{"shape":"String"}
-      }
-    },
-    "CopyDBClusterSnapshotMessage":{
-      "type":"structure",
-      "required":[
-        "SourceDBClusterSnapshotIdentifier",
-        "TargetDBClusterSnapshotIdentifier"
-      ],
-      "members":{
-        "SourceDBClusterSnapshotIdentifier":{"shape":"String"},
-        "TargetDBClusterSnapshotIdentifier":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
-      }
-    },
-    "CopyDBParameterGroupMessage":{
-      "type":"structure",
-      "required":[
-        "SourceDBParameterGroupIdentifier",
-        "TargetDBParameterGroupIdentifier",
-        "TargetDBParameterGroupDescription"
-      ],
-      "members":{
-        "SourceDBParameterGroupIdentifier":{"shape":"String"},
-        "TargetDBParameterGroupIdentifier":{"shape":"String"},
-        "TargetDBParameterGroupDescription":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
       }
     },
     "CopyDBSnapshotMessage":{
@@ -3701,85 +2302,18 @@
       ],
       "members":{
         "SourceDBSnapshotIdentifier":{"shape":"String"},
-        "TargetDBSnapshotIdentifier":{"shape":"String"},
-        "Tags":{"shape":"TagList"},
-        "CopyTags":{"shape":"BooleanOptional"}
-      }
-    },
-    "CopyOptionGroupMessage":{
-      "type":"structure",
-      "required":[
-        "SourceOptionGroupIdentifier",
-        "TargetOptionGroupIdentifier",
-        "TargetOptionGroupDescription"
-      ],
-      "members":{
-        "SourceOptionGroupIdentifier":{"shape":"String"},
-        "TargetOptionGroupIdentifier":{"shape":"String"},
-        "TargetOptionGroupDescription":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
-      }
-    },
-    "CreateDBClusterMessage":{
-      "type":"structure",
-      "required":[
-        "DBClusterIdentifier",
-        "Engine",
-        "MasterUsername",
-        "MasterUserPassword"
-      ],
-      "members":{
-        "AvailabilityZones":{"shape":"AvailabilityZones"},
-        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
-        "CharacterSetName":{"shape":"String"},
-        "DatabaseName":{"shape":"String"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
-        "DBSubnetGroupName":{"shape":"String"},
-        "Engine":{"shape":"String"},
-        "EngineVersion":{"shape":"String"},
-        "Port":{"shape":"IntegerOptional"},
-        "MasterUsername":{"shape":"String"},
-        "MasterUserPassword":{"shape":"String"},
-        "OptionGroupName":{"shape":"String"},
-        "PreferredBackupWindow":{"shape":"String"},
-        "PreferredMaintenanceWindow":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
-      }
-    },
-    "CreateDBClusterParameterGroupMessage":{
-      "type":"structure",
-      "required":[
-        "DBClusterParameterGroupName",
-        "DBParameterGroupFamily",
-        "Description"
-      ],
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "DBParameterGroupFamily":{"shape":"String"},
-        "Description":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
-      }
-    },
-    "CreateDBClusterSnapshotMessage":{
-      "type":"structure",
-      "required":[
-        "DBClusterSnapshotIdentifier",
-        "DBClusterIdentifier"
-      ],
-      "members":{
-        "DBClusterSnapshotIdentifier":{"shape":"String"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "TargetDBSnapshotIdentifier":{"shape":"String"}
       }
     },
     "CreateDBInstanceMessage":{
       "type":"structure",
       "required":[
         "DBInstanceIdentifier",
+        "AllocatedStorage",
         "DBInstanceClass",
-        "Engine"
+        "Engine",
+        "MasterUsername",
+        "MasterUserPassword"
       ],
       "members":{
         "DBName":{"shape":"String"},
@@ -3805,15 +2339,7 @@
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
         "CharacterSetName":{"shape":"String"},
-        "PubliclyAccessible":{"shape":"BooleanOptional"},
-        "Tags":{"shape":"TagList"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "StorageType":{"shape":"String"},
-        "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"},
-        "StorageEncrypted":{"shape":"BooleanOptional"},
-        "KmsKeyId":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "PubliclyAccessible":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -3831,11 +2357,7 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
-        "PubliclyAccessible":{"shape":"BooleanOptional"},
-        "Tags":{"shape":"TagList"},
-        "DBSubnetGroupName":{"shape":"String"},
-        "StorageType":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "PubliclyAccessible":{"shape":"BooleanOptional"}
       }
     },
     "CreateDBParameterGroupMessage":{
@@ -3848,8 +2370,7 @@
       "members":{
         "DBParameterGroupName":{"shape":"String"},
         "DBParameterGroupFamily":{"shape":"String"},
-        "Description":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "Description":{"shape":"String"}
       }
     },
     "CreateDBSecurityGroupMessage":{
@@ -3860,8 +2381,7 @@
       ],
       "members":{
         "DBSecurityGroupName":{"shape":"String"},
-        "DBSecurityGroupDescription":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "DBSecurityGroupDescription":{"shape":"String"}
       }
     },
     "CreateDBSnapshotMessage":{
@@ -3872,8 +2392,7 @@
       ],
       "members":{
         "DBSnapshotIdentifier":{"shape":"String"},
-        "DBInstanceIdentifier":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "DBInstanceIdentifier":{"shape":"String"}
       }
     },
     "CreateDBSubnetGroupMessage":{
@@ -3886,8 +2405,7 @@
       "members":{
         "DBSubnetGroupName":{"shape":"String"},
         "DBSubnetGroupDescription":{"shape":"String"},
-        "SubnetIds":{"shape":"SubnetIdentifierList"},
-        "Tags":{"shape":"TagList"}
+        "SubnetIds":{"shape":"SubnetIdentifierList"}
       }
     },
     "CreateEventSubscriptionMessage":{
@@ -3902,8 +2420,7 @@
         "SourceType":{"shape":"String"},
         "EventCategories":{"shape":"EventCategoriesList"},
         "SourceIds":{"shape":"SourceIdsList"},
-        "Enabled":{"shape":"BooleanOptional"},
-        "Tags":{"shape":"TagList"}
+        "Enabled":{"shape":"BooleanOptional"}
       }
     },
     "CreateOptionGroupMessage":{
@@ -3918,218 +2435,8 @@
         "OptionGroupName":{"shape":"String"},
         "EngineName":{"shape":"String"},
         "MajorEngineVersion":{"shape":"String"},
-        "OptionGroupDescription":{"shape":"String"},
-        "Tags":{"shape":"TagList"}
+        "OptionGroupDescription":{"shape":"String"}
       }
-    },
-    "DBCluster":{
-      "type":"structure",
-      "members":{
-        "AllocatedStorage":{"shape":"IntegerOptional"},
-        "AvailabilityZones":{"shape":"AvailabilityZones"},
-        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
-        "CharacterSetName":{"shape":"String"},
-        "DatabaseName":{"shape":"String"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "DBClusterParameterGroup":{"shape":"String"},
-        "DBSubnetGroup":{"shape":"String"},
-        "Status":{"shape":"String"},
-        "PercentProgress":{"shape":"String"},
-        "EarliestRestorableTime":{"shape":"TStamp"},
-        "Endpoint":{"shape":"String"},
-        "Engine":{"shape":"String"},
-        "EngineVersion":{"shape":"String"},
-        "LatestRestorableTime":{"shape":"TStamp"},
-        "Port":{"shape":"IntegerOptional"},
-        "MasterUsername":{"shape":"String"},
-        "DBClusterOptionGroupMemberships":{"shape":"DBClusterOptionGroupMemberships"},
-        "PreferredBackupWindow":{"shape":"String"},
-        "PreferredMaintenanceWindow":{"shape":"String"},
-        "DBClusterMembers":{"shape":"DBClusterMemberList"},
-        "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"}
-      },
-      "wrapper":true
-    },
-    "DBClusterAlreadyExistsFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBClusterAlreadyExistsFault",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "DBClusterList":{
-      "type":"list",
-      "member":{
-        "shape":"DBCluster",
-        "locationName":"DBCluster"
-      }
-    },
-    "DBClusterMember":{
-      "type":"structure",
-      "members":{
-        "DBInstanceIdentifier":{"shape":"String"},
-        "IsClusterWriter":{"shape":"Boolean"},
-        "DBClusterParameterGroupStatus":{"shape":"String"}
-      },
-      "wrapper":true
-    },
-    "DBClusterMemberList":{
-      "type":"list",
-      "member":{
-        "shape":"DBClusterMember",
-        "locationName":"DBClusterMember"
-      }
-    },
-    "DBClusterMessage":{
-      "type":"structure",
-      "members":{
-        "Marker":{"shape":"String"},
-        "DBClusters":{"shape":"DBClusterList"}
-      }
-    },
-    "DBClusterNotFoundFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBClusterNotFoundFault",
-        "httpStatusCode":404,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "DBClusterOptionGroupMemberships":{
-      "type":"list",
-      "member":{
-        "shape":"DBClusterOptionGroupStatus",
-        "locationName":"DBClusterOptionGroup"
-      }
-    },
-    "DBClusterOptionGroupStatus":{
-      "type":"structure",
-      "members":{
-        "DBClusterOptionGroupName":{"shape":"String"},
-        "Status":{"shape":"String"}
-      }
-    },
-    "DBClusterParameterGroup":{
-      "type":"structure",
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "DBParameterGroupFamily":{"shape":"String"},
-        "Description":{"shape":"String"}
-      },
-      "wrapper":true
-    },
-    "DBClusterParameterGroupDetails":{
-      "type":"structure",
-      "members":{
-        "Parameters":{"shape":"ParametersList"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "DBClusterParameterGroupList":{
-      "type":"list",
-      "member":{
-        "shape":"DBClusterParameterGroup",
-        "locationName":"DBClusterParameterGroup"
-      }
-    },
-    "DBClusterParameterGroupNameMessage":{
-      "type":"structure",
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"}
-      }
-    },
-    "DBClusterParameterGroupNotFoundFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBClusterParameterGroupNotFound",
-        "httpStatusCode":404,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "DBClusterParameterGroupsMessage":{
-      "type":"structure",
-      "members":{
-        "Marker":{"shape":"String"},
-        "DBClusterParameterGroups":{"shape":"DBClusterParameterGroupList"}
-      }
-    },
-    "DBClusterQuotaExceededFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBClusterQuotaExceededFault",
-        "httpStatusCode":403,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "DBClusterSnapshot":{
-      "type":"structure",
-      "members":{
-        "AvailabilityZones":{"shape":"AvailabilityZones"},
-        "DBClusterSnapshotIdentifier":{"shape":"String"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "SnapshotCreateTime":{"shape":"TStamp"},
-        "Engine":{"shape":"String"},
-        "AllocatedStorage":{"shape":"Integer"},
-        "Status":{"shape":"String"},
-        "Port":{"shape":"Integer"},
-        "VpcId":{"shape":"String"},
-        "ClusterCreateTime":{"shape":"TStamp"},
-        "MasterUsername":{"shape":"String"},
-        "EngineVersion":{"shape":"String"},
-        "LicenseModel":{"shape":"String"},
-        "SnapshotType":{"shape":"String"},
-        "PercentProgress":{"shape":"Integer"}
-      },
-      "wrapper":true
-    },
-    "DBClusterSnapshotAlreadyExistsFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBClusterSnapshotAlreadyExistsFault",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "DBClusterSnapshotList":{
-      "type":"list",
-      "member":{
-        "shape":"DBClusterSnapshot",
-        "locationName":"DBClusterSnapshot"
-      }
-    },
-    "DBClusterSnapshotMessage":{
-      "type":"structure",
-      "members":{
-        "Marker":{"shape":"String"},
-        "DBClusterSnapshots":{"shape":"DBClusterSnapshotList"}
-      }
-    },
-    "DBClusterSnapshotNotFoundFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBClusterSnapshotNotFoundFault",
-        "httpStatusCode":404,
-        "senderFault":true
-      },
-      "exception":true
     },
     "DBEngineVersion":{
       "type":"structure",
@@ -4140,8 +2447,7 @@
         "DBEngineDescription":{"shape":"String"},
         "DBEngineVersionDescription":{"shape":"String"},
         "DefaultCharacterSet":{"shape":"CharacterSet"},
-        "SupportedCharacterSets":{"shape":"SupportedCharacterSetsList"},
-        "ValidUpgradeTarget":{"shape":"ValidUpgradeTargetList"}
+        "SupportedCharacterSets":{"shape":"SupportedCharacterSetsList"}
       }
     },
     "DBEngineVersionList":{
@@ -4190,17 +2496,7 @@
         "OptionGroupMemberships":{"shape":"OptionGroupMembershipList"},
         "CharacterSetName":{"shape":"String"},
         "SecondaryAvailabilityZone":{"shape":"String"},
-        "PubliclyAccessible":{"shape":"Boolean"},
-        "StatusInfos":{"shape":"DBInstanceStatusInfoList"},
-        "StorageType":{"shape":"String"},
-        "TdeCredentialArn":{"shape":"String"},
-        "DbInstancePort":{"shape":"Integer"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "StorageEncrypted":{"shape":"Boolean"},
-        "KmsKeyId":{"shape":"String"},
-        "DbiResourceId":{"shape":"String"},
-        "CACertificateIdentifier":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"Boolean"}
+        "PubliclyAccessible":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -4239,22 +2535,6 @@
         "senderFault":true
       },
       "exception":true
-    },
-    "DBInstanceStatusInfo":{
-      "type":"structure",
-      "members":{
-        "StatusType":{"shape":"String"},
-        "Normal":{"shape":"Boolean"},
-        "Status":{"shape":"String"},
-        "Message":{"shape":"String"}
-      }
-    },
-    "DBInstanceStatusInfoList":{
-      "type":"list",
-      "member":{
-        "shape":"DBInstanceStatusInfo",
-        "locationName":"DBInstanceStatusInfo"
-      }
     },
     "DBLogFileNotFoundFault":{
       "type":"structure",
@@ -4459,14 +2739,7 @@
         "LicenseModel":{"shape":"String"},
         "SnapshotType":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
-        "OptionGroupName":{"shape":"String"},
-        "PercentProgress":{"shape":"Integer"},
-        "SourceRegion":{"shape":"String"},
-        "SourceDBSnapshotIdentifier":{"shape":"String"},
-        "StorageType":{"shape":"String"},
-        "TdeCredentialArn":{"shape":"String"},
-        "Encrypted":{"shape":"Boolean"},
-        "KmsKeyId":{"shape":"String"}
+        "OptionGroupName":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4546,17 +2819,6 @@
         "DBSubnetGroups":{"shape":"DBSubnetGroups"}
       }
     },
-    "DBSubnetGroupNotAllowedFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"DBSubnetGroupNotAllowedFault",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "DBSubnetGroupNotFoundFault":{
       "type":"structure",
       "members":{
@@ -4607,29 +2869,6 @@
         "senderFault":true
       },
       "exception":true
-    },
-    "DeleteDBClusterMessage":{
-      "type":"structure",
-      "required":["DBClusterIdentifier"],
-      "members":{
-        "DBClusterIdentifier":{"shape":"String"},
-        "SkipFinalSnapshot":{"shape":"Boolean"},
-        "FinalDBSnapshotIdentifier":{"shape":"String"}
-      }
-    },
-    "DeleteDBClusterParameterGroupMessage":{
-      "type":"structure",
-      "required":["DBClusterParameterGroupName"],
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"}
-      }
-    },
-    "DeleteDBClusterSnapshotMessage":{
-      "type":"structure",
-      "required":["DBClusterSnapshotIdentifier"],
-      "members":{
-        "DBClusterSnapshotIdentifier":{"shape":"String"}
-      }
     },
     "DeleteDBInstanceMessage":{
       "type":"structure",
@@ -4682,67 +2921,12 @@
         "OptionGroupName":{"shape":"String"}
       }
     },
-    "DescribeAccountAttributesMessage":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DescribeCertificatesMessage":{
-      "type":"structure",
-      "members":{
-        "CertificateIdentifier":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "DescribeDBClusterParameterGroupsMessage":{
-      "type":"structure",
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "DescribeDBClusterParametersMessage":{
-      "type":"structure",
-      "required":["DBClusterParameterGroupName"],
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "Source":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "DescribeDBClusterSnapshotsMessage":{
-      "type":"structure",
-      "members":{
-        "DBClusterIdentifier":{"shape":"String"},
-        "DBClusterSnapshotIdentifier":{"shape":"String"},
-        "SnapshotType":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "DescribeDBClustersMessage":{
-      "type":"structure",
-      "members":{
-        "DBClusterIdentifier":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
-      }
-    },
     "DescribeDBEngineVersionsMessage":{
       "type":"structure",
       "members":{
         "Engine":{"shape":"String"},
         "EngineVersion":{"shape":"String"},
         "DBParameterGroupFamily":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"},
         "DefaultOnly":{"shape":"Boolean"},
@@ -4753,7 +2937,6 @@
       "type":"structure",
       "members":{
         "DBInstanceIdentifier":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4781,7 +2964,6 @@
         "FilenameContains":{"shape":"String"},
         "FileLastWritten":{"shape":"Long"},
         "FileSize":{"shape":"Long"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4797,7 +2979,6 @@
       "type":"structure",
       "members":{
         "DBParameterGroupName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4808,7 +2989,6 @@
       "members":{
         "DBParameterGroupName":{"shape":"String"},
         "Source":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4817,7 +2997,6 @@
       "type":"structure",
       "members":{
         "DBSecurityGroupName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4828,7 +3007,6 @@
         "DBInstanceIdentifier":{"shape":"String"},
         "DBSnapshotIdentifier":{"shape":"String"},
         "SnapshotType":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4837,17 +3015,6 @@
       "type":"structure",
       "members":{
         "DBSubnetGroupName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
-      }
-    },
-    "DescribeEngineDefaultClusterParametersMessage":{
-      "type":"structure",
-      "required":["DBParameterGroupFamily"],
-      "members":{
-        "DBParameterGroupFamily":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4857,7 +3024,6 @@
       "required":["DBParameterGroupFamily"],
       "members":{
         "DBParameterGroupFamily":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4865,15 +3031,13 @@
     "DescribeEventCategoriesMessage":{
       "type":"structure",
       "members":{
-        "SourceType":{"shape":"String"},
-        "Filters":{"shape":"FilterList"}
+        "SourceType":{"shape":"String"}
       }
     },
     "DescribeEventSubscriptionsMessage":{
       "type":"structure",
       "members":{
         "SubscriptionName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4887,7 +3051,6 @@
         "EndTime":{"shape":"TStamp"},
         "Duration":{"shape":"IntegerOptional"},
         "EventCategories":{"shape":"EventCategoriesList"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4898,7 +3061,6 @@
       "members":{
         "EngineName":{"shape":"String"},
         "MajorEngineVersion":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4907,7 +3069,6 @@
       "type":"structure",
       "members":{
         "OptionGroupName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
         "Marker":{"shape":"String"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "EngineName":{"shape":"String"},
@@ -4923,18 +3084,8 @@
         "DBInstanceClass":{"shape":"String"},
         "LicenseModel":{"shape":"String"},
         "Vpc":{"shape":"BooleanOptional"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
-      }
-    },
-    "DescribePendingMaintenanceActionsMessage":{
-      "type":"structure",
-      "members":{
-        "ResourceIdentifier":{"shape":"String"},
-        "Filters":{"shape":"FilterList"},
-        "Marker":{"shape":"String"},
-        "MaxRecords":{"shape":"IntegerOptional"}
       }
     },
     "DescribeReservedDBInstancesMessage":{
@@ -4947,7 +3098,6 @@
         "ProductDescription":{"shape":"String"},
         "OfferingType":{"shape":"String"},
         "MultiAZ":{"shape":"BooleanOptional"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -4961,7 +3111,6 @@
         "ProductDescription":{"shape":"String"},
         "OfferingType":{"shape":"String"},
         "MultiAZ":{"shape":"BooleanOptional"},
-        "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
         "Marker":{"shape":"String"}
       }
@@ -5112,37 +3261,6 @@
         "Events":{"shape":"EventList"}
       }
     },
-    "FailoverDBClusterMessage":{
-      "type":"structure",
-      "members":{
-        "DBClusterIdentifier":{"shape":"String"}
-      }
-    },
-    "Filter":{
-      "type":"structure",
-      "required":[
-        "Name",
-        "Values"
-      ],
-      "members":{
-        "Name":{"shape":"String"},
-        "Values":{"shape":"FilterValueList"}
-      }
-    },
-    "FilterList":{
-      "type":"list",
-      "member":{
-        "shape":"Filter",
-        "locationName":"Filter"
-      }
-    },
-    "FilterValueList":{
-      "type":"list",
-      "member":{
-        "shape":"String",
-        "locationName":"Value"
-      }
-    },
     "IPRange":{
       "type":"structure",
       "members":{
@@ -5168,17 +3286,6 @@
       },
       "exception":true
     },
-    "InsufficientDBClusterCapacityFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"InsufficientDBClusterCapacityFault",
-        "httpStatusCode":403,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "InsufficientDBInstanceCapacityFault":{
       "type":"structure",
       "members":{
@@ -5190,41 +3297,8 @@
       },
       "exception":true
     },
-    "InsufficientStorageClusterCapacityFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"InsufficientStorageClusterCapacity",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "Integer":{"type":"integer"},
     "IntegerOptional":{"type":"integer"},
-    "InvalidDBClusterSnapshotStateFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"InvalidDBClusterSnapshotStateFault",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "InvalidDBClusterStateFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"InvalidDBClusterStateFault",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "InvalidDBInstanceStateFault":{
       "type":"structure",
       "members":{
@@ -5264,17 +3338,6 @@
       },
       "error":{
         "code":"InvalidDBSnapshotState",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "InvalidDBSubnetGroupFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"InvalidDBSubnetGroupFault",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -5357,17 +3420,6 @@
       },
       "exception":true
     },
-    "KMSKeyNotAccessibleFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"KMSKeyNotAccessibleFault",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
     "KeyList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -5376,39 +3428,10 @@
       "type":"structure",
       "required":["ResourceName"],
       "members":{
-        "ResourceName":{"shape":"String"},
-        "Filters":{"shape":"FilterList"}
+        "ResourceName":{"shape":"String"}
       }
     },
     "Long":{"type":"long"},
-    "ModifyDBClusterMessage":{
-      "type":"structure",
-      "required":["DBClusterIdentifier"],
-      "members":{
-        "DBClusterIdentifier":{"shape":"String"},
-        "NewDBClusterIdentifier":{"shape":"String"},
-        "ApplyImmediately":{"shape":"Boolean"},
-        "BackupRetentionPeriod":{"shape":"IntegerOptional"},
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
-        "Port":{"shape":"IntegerOptional"},
-        "MasterUserPassword":{"shape":"String"},
-        "OptionGroupName":{"shape":"String"},
-        "PreferredBackupWindow":{"shape":"String"},
-        "PreferredMaintenanceWindow":{"shape":"String"}
-      }
-    },
-    "ModifyDBClusterParameterGroupMessage":{
-      "type":"structure",
-      "required":[
-        "DBClusterParameterGroupName",
-        "Parameters"
-      ],
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "Parameters":{"shape":"ParametersList"}
-      }
-    },
     "ModifyDBInstanceMessage":{
       "type":"structure",
       "required":["DBInstanceIdentifier"],
@@ -5430,12 +3453,7 @@
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "Iops":{"shape":"IntegerOptional"},
         "OptionGroupName":{"shape":"String"},
-        "NewDBInstanceIdentifier":{"shape":"String"},
-        "StorageType":{"shape":"String"},
-        "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"},
-        "CACertificateIdentifier":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "NewDBInstanceIdentifier":{"shape":"String"}
       }
     },
     "ModifyDBParameterGroupMessage":{
@@ -5488,7 +3506,6 @@
         "OptionName":{"shape":"String"},
         "OptionDescription":{"shape":"String"},
         "Persistent":{"shape":"Boolean"},
-        "Permanent":{"shape":"Boolean"},
         "Port":{"shape":"IntegerOptional"},
         "OptionSettings":{"shape":"OptionSettingConfigurationList"},
         "DBSecurityGroupMemberships":{"shape":"DBSecurityGroupMembershipList"},
@@ -5574,7 +3591,6 @@
         "DefaultPort":{"shape":"IntegerOptional"},
         "OptionsDependedOn":{"shape":"OptionsDependedOn"},
         "Persistent":{"shape":"Boolean"},
-        "Permanent":{"shape":"Boolean"},
         "OptionGroupOptionSettings":{"shape":"OptionGroupOptionSettingsList"}
       }
     },
@@ -5691,10 +3707,7 @@
         "AvailabilityZones":{"shape":"AvailabilityZoneList"},
         "MultiAZCapable":{"shape":"Boolean"},
         "ReadReplicaCapable":{"shape":"Boolean"},
-        "Vpc":{"shape":"Boolean"},
-        "SupportsStorageEncryption":{"shape":"Boolean"},
-        "StorageType":{"shape":"String"},
-        "SupportsIops":{"shape":"Boolean"}
+        "Vpc":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -5734,38 +3747,6 @@
         "locationName":"Parameter"
       }
     },
-    "PendingMaintenanceAction":{
-      "type":"structure",
-      "members":{
-        "Action":{"shape":"String"},
-        "AutoAppliedAfterDate":{"shape":"TStamp"},
-        "ForcedApplyDate":{"shape":"TStamp"},
-        "OptInStatus":{"shape":"String"},
-        "CurrentApplyDate":{"shape":"TStamp"},
-        "Description":{"shape":"String"}
-      }
-    },
-    "PendingMaintenanceActionDetails":{
-      "type":"list",
-      "member":{
-        "shape":"PendingMaintenanceAction",
-        "locationName":"PendingMaintenanceAction"
-      }
-    },
-    "PendingMaintenanceActions":{
-      "type":"list",
-      "member":{
-        "shape":"ResourcePendingMaintenanceActions",
-        "locationName":"ResourcePendingMaintenanceActions"
-      }
-    },
-    "PendingMaintenanceActionsMessage":{
-      "type":"structure",
-      "members":{
-        "PendingMaintenanceActions":{"shape":"PendingMaintenanceActions"},
-        "Marker":{"shape":"String"}
-      }
-    },
     "PendingModifiedValues":{
       "type":"structure",
       "members":{
@@ -5777,9 +3758,7 @@
         "MultiAZ":{"shape":"BooleanOptional"},
         "EngineVersion":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
-        "DBInstanceIdentifier":{"shape":"String"},
-        "StorageType":{"shape":"String"},
-        "CACertificateIdentifier":{"shape":"String"}
+        "DBInstanceIdentifier":{"shape":"String"}
       }
     },
     "PointInTimeRestoreNotEnabledFault":{
@@ -5819,8 +3798,7 @@
       "members":{
         "ReservedDBInstancesOfferingId":{"shape":"String"},
         "ReservedDBInstanceId":{"shape":"String"},
-        "DBInstanceCount":{"shape":"IntegerOptional"},
-        "Tags":{"shape":"TagList"}
+        "DBInstanceCount":{"shape":"IntegerOptional"}
       }
     },
     "ReadReplicaDBInstanceIdentifierList":{
@@ -5983,15 +3961,6 @@
       },
       "exception":true
     },
-    "ResetDBClusterParameterGroupMessage":{
-      "type":"structure",
-      "required":["DBClusterParameterGroupName"],
-      "members":{
-        "DBClusterParameterGroupName":{"shape":"String"},
-        "ResetAllParameters":{"shape":"Boolean"},
-        "Parameters":{"shape":"ParametersList"}
-      }
-    },
     "ResetDBParameterGroupMessage":{
       "type":"structure",
       "required":["DBParameterGroupName"],
@@ -5999,64 +3968,6 @@
         "DBParameterGroupName":{"shape":"String"},
         "ResetAllParameters":{"shape":"Boolean"},
         "Parameters":{"shape":"ParametersList"}
-      }
-    },
-    "ResourceNotFoundFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"ResourceNotFoundFault",
-        "httpStatusCode":404,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "ResourcePendingMaintenanceActions":{
-      "type":"structure",
-      "members":{
-        "ResourceIdentifier":{"shape":"String"},
-        "PendingMaintenanceActionDetails":{"shape":"PendingMaintenanceActionDetails"}
-      },
-      "wrapper":true
-    },
-    "RestoreDBClusterFromSnapshotMessage":{
-      "type":"structure",
-      "required":[
-        "DBClusterIdentifier",
-        "SnapshotIdentifier",
-        "Engine"
-      ],
-      "members":{
-        "AvailabilityZones":{"shape":"AvailabilityZones"},
-        "DBClusterIdentifier":{"shape":"String"},
-        "SnapshotIdentifier":{"shape":"String"},
-        "Engine":{"shape":"String"},
-        "EngineVersion":{"shape":"String"},
-        "Port":{"shape":"IntegerOptional"},
-        "DBSubnetGroupName":{"shape":"String"},
-        "DatabaseName":{"shape":"String"},
-        "OptionGroupName":{"shape":"String"},
-        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
-        "Tags":{"shape":"TagList"}
-      }
-    },
-    "RestoreDBClusterToPointInTimeMessage":{
-      "type":"structure",
-      "required":[
-        "DBClusterIdentifier",
-        "SourceDBClusterIdentifier"
-      ],
-      "members":{
-        "DBClusterIdentifier":{"shape":"String"},
-        "SourceDBClusterIdentifier":{"shape":"String"},
-        "RestoreToTime":{"shape":"TStamp"},
-        "UseLatestRestorableTime":{"shape":"Boolean"},
-        "Port":{"shape":"IntegerOptional"},
-        "DBSubnetGroupName":{"shape":"String"},
-        "OptionGroupName":{"shape":"String"},
-        "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
-        "Tags":{"shape":"TagList"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotMessage":{
@@ -6079,12 +3990,7 @@
         "DBName":{"shape":"String"},
         "Engine":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
-        "OptionGroupName":{"shape":"String"},
-        "Tags":{"shape":"TagList"},
-        "StorageType":{"shape":"String"},
-        "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "OptionGroupName":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeMessage":{
@@ -6109,12 +4015,7 @@
         "DBName":{"shape":"String"},
         "Engine":{"shape":"String"},
         "Iops":{"shape":"IntegerOptional"},
-        "OptionGroupName":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
-        "Tags":{"shape":"TagList"},
-        "StorageType":{"shape":"String"},
-        "TdeCredentialArn":{"shape":"String"},
-        "TdeCredentialPassword":{"shape":"String"}
+        "OptionGroupName":{"shape":"String"}
       }
     },
     "RevokeDBSecurityGroupIngressMessage":{
@@ -6196,8 +4097,7 @@
         "db-instance",
         "db-parameter-group",
         "db-security-group",
-        "db-cluster",
-        "db-cluster-snapshot"
+        "db-snapshot"
       ]
     },
     "StorageQuotaExceededFault":{
@@ -6206,17 +4106,6 @@
       },
       "error":{
         "code":"StorageQuotaExceeded",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
-      "exception":true
-    },
-    "StorageTypeNotSupportedFault":{
-      "type":"structure",
-      "members":{
-      },
-      "error":{
-        "code":"StorageTypeNotSupported",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -6317,23 +4206,6 @@
         "TagList":{"shape":"TagList"}
       }
     },
-    "UpgradeTarget":{
-      "type":"structure",
-      "members":{
-        "Engine":{"shape":"String"},
-        "EngineVersion":{"shape":"String"},
-        "Description":{"shape":"String"},
-        "AutoUpgrade":{"shape":"Boolean"},
-        "IsMajorVersionUpgrade":{"shape":"Boolean"}
-      }
-    },
-    "ValidUpgradeTargetList":{
-      "type":"list",
-      "member":{
-        "shape":"UpgradeTarget",
-        "locationName":"UpgradeTarget"
-      }
-    },
     "VpcSecurityGroupIdList":{
       "type":"list",
       "member":{
@@ -6361,58 +4233,16 @@
         "EventSubscription":{"shape":"EventSubscription"}
       }
     },
-    "ApplyPendingMaintenanceActionResult":{
-      "type":"structure",
-      "members":{
-        "ResourcePendingMaintenanceActions":{"shape":"ResourcePendingMaintenanceActions"}
-      }
-    },
     "AuthorizeDBSecurityGroupIngressResult":{
       "type":"structure",
       "members":{
         "DBSecurityGroup":{"shape":"DBSecurityGroup"}
       }
     },
-    "CopyDBClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "DBClusterSnapshot":{"shape":"DBClusterSnapshot"}
-      }
-    },
-    "CopyDBParameterGroupResult":{
-      "type":"structure",
-      "members":{
-        "DBParameterGroup":{"shape":"DBParameterGroup"}
-      }
-    },
     "CopyDBSnapshotResult":{
       "type":"structure",
       "members":{
         "DBSnapshot":{"shape":"DBSnapshot"}
-      }
-    },
-    "CopyOptionGroupResult":{
-      "type":"structure",
-      "members":{
-        "OptionGroup":{"shape":"OptionGroup"}
-      }
-    },
-    "CreateDBClusterResult":{
-      "type":"structure",
-      "members":{
-        "DBCluster":{"shape":"DBCluster"}
-      }
-    },
-    "CreateDBClusterParameterGroupResult":{
-      "type":"structure",
-      "members":{
-        "DBClusterParameterGroup":{"shape":"DBClusterParameterGroup"}
-      }
-    },
-    "CreateDBClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "DBClusterSnapshot":{"shape":"DBClusterSnapshot"}
       }
     },
     "CreateDBInstanceResult":{
@@ -6463,18 +4293,6 @@
         "OptionGroup":{"shape":"OptionGroup"}
       }
     },
-    "DeleteDBClusterResult":{
-      "type":"structure",
-      "members":{
-        "DBCluster":{"shape":"DBCluster"}
-      }
-    },
-    "DeleteDBClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "DBClusterSnapshot":{"shape":"DBClusterSnapshot"}
-      }
-    },
     "DeleteDBInstanceResult":{
       "type":"structure",
       "members":{
@@ -6493,28 +4311,10 @@
         "EventSubscription":{"shape":"EventSubscription"}
       }
     },
-    "DescribeEngineDefaultClusterParametersResult":{
-      "type":"structure",
-      "members":{
-        "EngineDefaults":{"shape":"EngineDefaults"}
-      }
-    },
     "DescribeEngineDefaultParametersResult":{
       "type":"structure",
       "members":{
         "EngineDefaults":{"shape":"EngineDefaults"}
-      }
-    },
-    "FailoverDBClusterResult":{
-      "type":"structure",
-      "members":{
-        "DBCluster":{"shape":"DBCluster"}
-      }
-    },
-    "ModifyDBClusterResult":{
-      "type":"structure",
-      "members":{
-        "DBCluster":{"shape":"DBCluster"}
       }
     },
     "ModifyDBInstanceResult":{
@@ -6563,18 +4363,6 @@
       "type":"structure",
       "members":{
         "EventSubscription":{"shape":"EventSubscription"}
-      }
-    },
-    "RestoreDBClusterFromSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "DBCluster":{"shape":"DBCluster"}
-      }
-    },
-    "RestoreDBClusterToPointInTimeResult":{
-      "type":"structure",
-      "members":{
-        "DBCluster":{"shape":"DBCluster"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{

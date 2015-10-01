@@ -165,6 +165,7 @@ func ExampleRDS_CopyDBSnapshot() {
 	params := &rds.CopyDBSnapshotInput{
 		SourceDBSnapshotIdentifier: aws.String("String"), // Required
 		TargetDBSnapshotIdentifier: aws.String("String"), // Required
+		CopyTags:                   aws.Bool(true),
 		Tags: []*rds.Tag{
 			{ // Required
 				Key:   aws.String("String"),
@@ -218,20 +219,20 @@ func ExampleRDS_CreateDBCluster() {
 	svc := rds.New(nil)
 
 	params := &rds.CreateDBClusterInput{
+		DBClusterIdentifier: aws.String("String"), // Required
+		Engine:              aws.String("String"), // Required
+		MasterUserPassword:  aws.String("String"), // Required
+		MasterUsername:      aws.String("String"), // Required
 		AvailabilityZones: []*string{
 			aws.String("String"), // Required
 			// More values...
 		},
 		BackupRetentionPeriod:       aws.Int64(1),
 		CharacterSetName:            aws.String("String"),
-		DBClusterIdentifier:         aws.String("String"),
 		DBClusterParameterGroupName: aws.String("String"),
 		DBSubnetGroupName:           aws.String("String"),
 		DatabaseName:                aws.String("String"),
-		Engine:                      aws.String("String"),
 		EngineVersion:               aws.String("String"),
-		MasterUserPassword:          aws.String("String"),
-		MasterUsername:              aws.String("String"),
 		OptionGroupName:             aws.String("String"),
 		Port:                        aws.Int64(1),
 		PreferredBackupWindow:      aws.String("String"),
@@ -328,6 +329,7 @@ func ExampleRDS_CreateDBInstance() {
 		AvailabilityZone:        aws.String("String"),
 		BackupRetentionPeriod:   aws.Int64(1),
 		CharacterSetName:        aws.String("String"),
+		CopyTagsToSnapshot:      aws.Bool(true),
 		DBClusterIdentifier:     aws.String("String"),
 		DBName:                  aws.String("String"),
 		DBParameterGroupName:    aws.String("String"),
@@ -385,6 +387,7 @@ func ExampleRDS_CreateDBInstanceReadReplica() {
 		SourceDBInstanceIdentifier: aws.String("String"), // Required
 		AutoMinorVersionUpgrade:    aws.Bool(true),
 		AvailabilityZone:           aws.String("String"),
+		CopyTagsToSnapshot:         aws.Bool(true),
 		DBInstanceClass:            aws.String("String"),
 		DBSubnetGroupName:          aws.String("String"),
 		Iops:                       aws.Int64(1),
@@ -596,7 +599,7 @@ func ExampleRDS_DeleteDBCluster() {
 	svc := rds.New(nil)
 
 	params := &rds.DeleteDBClusterInput{
-		DBClusterIdentifier:       aws.String("String"),
+		DBClusterIdentifier:       aws.String("String"), // Required
 		FinalDBSnapshotIdentifier: aws.String("String"),
 		SkipFinalSnapshot:         aws.Bool(true),
 	}
@@ -1658,9 +1661,9 @@ func ExampleRDS_ModifyDBCluster() {
 	svc := rds.New(nil)
 
 	params := &rds.ModifyDBClusterInput{
+		DBClusterIdentifier:         aws.String("String"), // Required
 		ApplyImmediately:            aws.Bool(true),
 		BackupRetentionPeriod:       aws.Int64(1),
-		DBClusterIdentifier:         aws.String("String"),
 		DBClusterParameterGroupName: aws.String("String"),
 		MasterUserPassword:          aws.String("String"),
 		NewDBClusterIdentifier:      aws.String("String"),
@@ -1731,6 +1734,7 @@ func ExampleRDS_ModifyDBInstance() {
 		AutoMinorVersionUpgrade:  aws.Bool(true),
 		BackupRetentionPeriod:    aws.Int64(1),
 		CACertificateIdentifier:  aws.String("String"),
+		CopyTagsToSnapshot:       aws.Bool(true),
 		DBInstanceClass:          aws.String("String"),
 		DBParameterGroupName:     aws.String("String"),
 		DBSecurityGroups: []*string{
@@ -2170,6 +2174,7 @@ func ExampleRDS_RestoreDBInstanceFromDBSnapshot() {
 		DBSnapshotIdentifier:    aws.String("String"), // Required
 		AutoMinorVersionUpgrade: aws.Bool(true),
 		AvailabilityZone:        aws.String("String"),
+		CopyTagsToSnapshot:      aws.Bool(true),
 		DBInstanceClass:         aws.String("String"),
 		DBName:                  aws.String("String"),
 		DBSubnetGroupName:       aws.String("String"),
@@ -2212,6 +2217,7 @@ func ExampleRDS_RestoreDBInstanceToPointInTime() {
 		TargetDBInstanceIdentifier: aws.String("String"), // Required
 		AutoMinorVersionUpgrade:    aws.Bool(true),
 		AvailabilityZone:           aws.String("String"),
+		CopyTagsToSnapshot:         aws.Bool(true),
 		DBInstanceClass:            aws.String("String"),
 		DBName:                     aws.String("String"),
 		DBSubnetGroupName:          aws.String("String"),
