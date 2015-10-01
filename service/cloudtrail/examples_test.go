@@ -14,6 +14,32 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleCloudTrail_AddTags() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.AddTagsInput{
+		ResourceId: aws.String("String"), // Required
+		TagsList: []*cloudtrail.Tag{
+			{ // Required
+				Key:   aws.String("String"), // Required
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.AddTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudTrail_CreateTrail() {
 	svc := cloudtrail.New(nil)
 
@@ -22,7 +48,9 @@ func ExampleCloudTrail_CreateTrail() {
 		S3BucketName:               aws.String("String"), // Required
 		CloudWatchLogsLogGroupArn:  aws.String("String"),
 		CloudWatchLogsRoleArn:      aws.String("String"),
+		EnableLogFileValidation:    aws.Bool(true),
 		IncludeGlobalServiceEvents: aws.Bool(true),
+		KmsKeyId:                   aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
 		SnsTopicName:               aws.String("String"),
 	}
@@ -99,6 +127,50 @@ func ExampleCloudTrail_GetTrailStatus() {
 	fmt.Println(resp)
 }
 
+func ExampleCloudTrail_ListPublicKeys() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.ListPublicKeysInput{
+		EndTime:   aws.Time(time.Now()),
+		NextToken: aws.String("String"),
+		StartTime: aws.Time(time.Now()),
+	}
+	resp, err := svc.ListPublicKeys(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudTrail_ListTags() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.ListTagsInput{
+		ResourceIdList: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		NextToken: aws.String("String"),
+	}
+	resp, err := svc.ListTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudTrail_LookupEvents() {
 	svc := cloudtrail.New(nil)
 
@@ -116,6 +188,32 @@ func ExampleCloudTrail_LookupEvents() {
 		StartTime:  aws.Time(time.Now()),
 	}
 	resp, err := svc.LookupEvents(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudTrail_RemoveTags() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.RemoveTagsInput{
+		ResourceId: aws.String("String"), // Required
+		TagsList: []*cloudtrail.Tag{
+			{ // Required
+				Key:   aws.String("String"), // Required
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.RemoveTags(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -173,7 +271,9 @@ func ExampleCloudTrail_UpdateTrail() {
 		Name: aws.String("String"), // Required
 		CloudWatchLogsLogGroupArn:  aws.String("String"),
 		CloudWatchLogsRoleArn:      aws.String("String"),
+		EnableLogFileValidation:    aws.Bool(true),
 		IncludeGlobalServiceEvents: aws.Bool(true),
+		KmsKeyId:                   aws.String("String"),
 		S3BucketName:               aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
 		SnsTopicName:               aws.String("String"),
