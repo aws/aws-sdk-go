@@ -57,6 +57,26 @@ func ExampleKinesis_CreateStream() {
 	fmt.Println(resp)
 }
 
+func ExampleKinesis_DecreaseStreamRetentionPeriod() {
+	svc := kinesis.New(nil)
+
+	params := &kinesis.DecreaseStreamRetentionPeriodInput{
+		RetentionPeriodHours: aws.Int64(1),             // Required
+		StreamName:           aws.String("StreamName"), // Required
+	}
+	resp, err := svc.DecreaseStreamRetentionPeriod(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleKinesis_DeleteStream() {
 	svc := kinesis.New(nil)
 
@@ -127,6 +147,26 @@ func ExampleKinesis_GetShardIterator() {
 		StartingSequenceNumber: aws.String("SequenceNumber"),
 	}
 	resp, err := svc.GetShardIterator(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKinesis_IncreaseStreamRetentionPeriod() {
+	svc := kinesis.New(nil)
+
+	params := &kinesis.IncreaseStreamRetentionPeriodInput{
+		RetentionPeriodHours: aws.Int64(1),             // Required
+		StreamName:           aws.String("StreamName"), // Required
+	}
+	resp, err := svc.IncreaseStreamRetentionPeriod(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

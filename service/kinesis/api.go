@@ -103,6 +103,39 @@ func (c *Kinesis) CreateStream(input *CreateStreamInput) (*CreateStreamOutput, e
 	return out, err
 }
 
+const opDecreaseStreamRetentionPeriod = "DecreaseStreamRetentionPeriod"
+
+// DecreaseStreamRetentionPeriodRequest generates a request for the DecreaseStreamRetentionPeriod operation.
+func (c *Kinesis) DecreaseStreamRetentionPeriodRequest(input *DecreaseStreamRetentionPeriodInput) (req *request.Request, output *DecreaseStreamRetentionPeriodOutput) {
+	op := &request.Operation{
+		Name:       opDecreaseStreamRetentionPeriod,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DecreaseStreamRetentionPeriodInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DecreaseStreamRetentionPeriodOutput{}
+	req.Data = output
+	return
+}
+
+// Decreases the stream's retention period, which is the length of time data
+// records are accessible after they are added to the stream. The minimum value
+// of a stream’s retention period is 24 hours.
+//
+// This operation may result in lost data. For example, if the stream's retention
+// period is 48 hours and is decreased to 24 hours, any data already in the
+// stream that is older than 24 hours is inaccessible.
+func (c *Kinesis) DecreaseStreamRetentionPeriod(input *DecreaseStreamRetentionPeriodInput) (*DecreaseStreamRetentionPeriodOutput, error) {
+	req, out := c.DecreaseStreamRetentionPeriodRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteStream = "DeleteStream"
 
 // DeleteStreamRequest generates a request for the DeleteStream operation.
@@ -348,6 +381,43 @@ func (c *Kinesis) GetShardIterator(input *GetShardIteratorInput) (*GetShardItera
 	return out, err
 }
 
+const opIncreaseStreamRetentionPeriod = "IncreaseStreamRetentionPeriod"
+
+// IncreaseStreamRetentionPeriodRequest generates a request for the IncreaseStreamRetentionPeriod operation.
+func (c *Kinesis) IncreaseStreamRetentionPeriodRequest(input *IncreaseStreamRetentionPeriodInput) (req *request.Request, output *IncreaseStreamRetentionPeriodOutput) {
+	op := &request.Operation{
+		Name:       opIncreaseStreamRetentionPeriod,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &IncreaseStreamRetentionPeriodInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &IncreaseStreamRetentionPeriodOutput{}
+	req.Data = output
+	return
+}
+
+// Increases the stream's retention period, which is the length of time data
+// records are accessible after they are added to the stream. The maximum value
+// of a stream’s retention period is 168 hours (7 days).
+//
+// Upon choosing a longer stream retention period, this operation will increase
+// the time period records are accessible that have not yet expired. However,
+// it will not make previous data that has expired (older than the stream’s
+// previous retention period) accessible after the operation has been called.
+// For example, if a stream’s retention period is set to 24 hours and is increased
+// to 168 hours, any data that is older than 24 hours will remain inaccessible
+// to consumer applications.
+func (c *Kinesis) IncreaseStreamRetentionPeriod(input *IncreaseStreamRetentionPeriodInput) (*IncreaseStreamRetentionPeriodOutput, error) {
+	req, out := c.IncreaseStreamRetentionPeriodRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListStreams = "ListStreams"
 
 // ListStreamsRequest generates a request for the ListStreams operation.
@@ -547,8 +617,10 @@ func (c *Kinesis) PutRecordRequest(input *PutRecordInput) (req *request.Request,
 // If a PutRecord request cannot be processed because of insufficient provisioned
 // throughput on the shard involved in the request, PutRecord throws ProvisionedThroughputExceededException.
 //
-// Data records are accessible for only 24 hours from the time that they are
-// added to an Amazon Kinesis stream.
+// By default, data records are accessible for only 24 hours from the time
+// that they are added to an Amazon Kinesis stream. This retention period can
+// be modified using the DecreaseStreamRetentionPeriod and IncreaseStreamRetentionPeriod
+// operations.
 func (c *Kinesis) PutRecord(input *PutRecordInput) (*PutRecordOutput, error) {
 	req, out := c.PutRecordRequest(input)
 	err := req.Send()
@@ -632,8 +704,10 @@ func (c *Kinesis) PutRecordsRequest(input *PutRecordsInput) (req *request.Reques
 // see Adding Multiple Records with PutRecords (http://docs.aws.amazon.com/kinesis/latest/dev/kinesis-using-sdk-java-add-data-to-stream.html#kinesis-using-sdk-java-putrecords)
 // in the Amazon Kinesis Developer Guide.
 //
-// Data records are accessible for only 24 hours from the time that they are
-// added to an Amazon Kinesis stream.
+// By default, data records are accessible for only 24 hours from the time
+// that they are added to an Amazon Kinesis stream. This retention period can
+// be modified using the DecreaseStreamRetentionPeriod and IncreaseStreamRetentionPeriod
+// operations.
 func (c *Kinesis) PutRecords(input *PutRecordsInput) (*PutRecordsOutput, error) {
 	req, out := c.PutRecordsRequest(input)
 	err := req.Send()
@@ -832,6 +906,50 @@ func (s CreateStreamOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateStreamOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the input for DecreaseStreamRetentionPeriod.
+type DecreaseStreamRetentionPeriodInput struct {
+	// The new retention period of the stream, in hours. Must be less than the current
+	// retention period.
+	RetentionPeriodHours *int64 `min:"24" type:"integer" required:"true"`
+
+	// The name of the stream to modify.
+	StreamName *string `min:"1" type:"string" required:"true"`
+
+	metadataDecreaseStreamRetentionPeriodInput `json:"-" xml:"-"`
+}
+
+type metadataDecreaseStreamRetentionPeriodInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DecreaseStreamRetentionPeriodInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DecreaseStreamRetentionPeriodInput) GoString() string {
+	return s.String()
+}
+
+type DecreaseStreamRetentionPeriodOutput struct {
+	metadataDecreaseStreamRetentionPeriodOutput `json:"-" xml:"-"`
+}
+
+type metadataDecreaseStreamRetentionPeriodOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DecreaseStreamRetentionPeriodOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DecreaseStreamRetentionPeriodOutput) GoString() string {
 	return s.String()
 }
 
@@ -1077,6 +1195,50 @@ func (s HashKeyRange) String() string {
 
 // GoString returns the string representation
 func (s HashKeyRange) GoString() string {
+	return s.String()
+}
+
+// Represents the input for IncreaseStreamRetentionPeriod.
+type IncreaseStreamRetentionPeriodInput struct {
+	// The new retention period of the stream, in hours. Must be more than the current
+	// retention period.
+	RetentionPeriodHours *int64 `min:"24" type:"integer" required:"true"`
+
+	// The name of the stream to modify.
+	StreamName *string `min:"1" type:"string" required:"true"`
+
+	metadataIncreaseStreamRetentionPeriodInput `json:"-" xml:"-"`
+}
+
+type metadataIncreaseStreamRetentionPeriodInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IncreaseStreamRetentionPeriodInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IncreaseStreamRetentionPeriodInput) GoString() string {
+	return s.String()
+}
+
+type IncreaseStreamRetentionPeriodOutput struct {
+	metadataIncreaseStreamRetentionPeriodOutput `json:"-" xml:"-"`
+}
+
+type metadataIncreaseStreamRetentionPeriodOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s IncreaseStreamRetentionPeriodOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IncreaseStreamRetentionPeriodOutput) GoString() string {
 	return s.String()
 }
 
@@ -1640,6 +1802,9 @@ func (s SplitShardOutput) GoString() string {
 type StreamDescription struct {
 	// If set to true, more shards in the stream are available to describe.
 	HasMoreShards *bool `type:"boolean" required:"true"`
+
+	// The current retention period, in hours.
+	RetentionPeriodHours *int64 `min:"24" type:"integer" required:"true"`
 
 	// The shards that comprise the stream.
 	Shards []*Shard `type:"list" required:"true"`

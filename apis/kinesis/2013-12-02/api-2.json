@@ -59,6 +59,32 @@
         }
       ]
     },
+    "DecreaseStreamRetentionPeriod":{
+      "name":"DecreaseStreamRetentionPeriod",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DecreaseStreamRetentionPeriodInput"},
+      "errors":[
+        {
+          "shape":"ResourceInUseException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidArgumentException",
+          "exception":true
+        }
+      ]
+    },
     "DeleteStream":{
       "name":"DeleteStream",
       "http":{
@@ -142,6 +168,32 @@
         },
         {
           "shape":"ProvisionedThroughputExceededException",
+          "exception":true
+        }
+      ]
+    },
+    "IncreaseStreamRetentionPeriod":{
+      "name":"IncreaseStreamRetentionPeriod",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"IncreaseStreamRetentionPeriodInput"},
+      "errors":[
+        {
+          "shape":"ResourceInUseException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidArgumentException",
           "exception":true
         }
       ]
@@ -339,6 +391,17 @@
       "min":0,
       "max":1048576
     },
+    "DecreaseStreamRetentionPeriodInput":{
+      "type":"structure",
+      "required":[
+        "StreamName",
+        "RetentionPeriodHours"
+      ],
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "RetentionPeriodHours":{"shape":"RetentionPeriodHours"}
+      }
+    },
     "DeleteStreamInput":{
       "type":"structure",
       "required":["StreamName"],
@@ -431,6 +494,17 @@
       "members":{
         "StartingHashKey":{"shape":"HashKey"},
         "EndingHashKey":{"shape":"HashKey"}
+      }
+    },
+    "IncreaseStreamRetentionPeriodInput":{
+      "type":"structure",
+      "required":[
+        "StreamName",
+        "RetentionPeriodHours"
+      ],
+      "members":{
+        "StreamName":{"shape":"StreamName"},
+        "RetentionPeriodHours":{"shape":"RetentionPeriodHours"}
       }
     },
     "InvalidArgumentException":{
@@ -650,6 +724,11 @@
       },
       "exception":true
     },
+    "RetentionPeriodHours":{
+      "type":"integer",
+      "min":24,
+      "max":168
+    },
     "SequenceNumber":{
       "type":"string",
       "pattern":"0|([1-9]\\d{0,128})"
@@ -722,14 +801,16 @@
         "StreamARN",
         "StreamStatus",
         "Shards",
-        "HasMoreShards"
+        "HasMoreShards",
+        "RetentionPeriodHours"
       ],
       "members":{
         "StreamName":{"shape":"StreamName"},
         "StreamARN":{"shape":"StreamARN"},
         "StreamStatus":{"shape":"StreamStatus"},
         "Shards":{"shape":"ShardList"},
-        "HasMoreShards":{"shape":"BooleanObject"}
+        "HasMoreShards":{"shape":"BooleanObject"},
+        "RetentionPeriodHours":{"shape":"RetentionPeriodHours"}
       }
     },
     "StreamName":{
