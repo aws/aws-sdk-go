@@ -410,6 +410,13 @@ func ExampleECS_RegisterContainerInstance() {
 	svc := ecs.New(nil)
 
 	params := &ecs.RegisterContainerInstanceInput{
+		Attributes: []*ecs.Attribute{
+			{ // Required
+				Name:  aws.String("String"), // Required
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
 		Cluster:                           aws.String("String"),
 		ContainerInstanceArn:              aws.String("String"),
 		InstanceIdentityDocument:          aws.String("String"),
@@ -457,7 +464,24 @@ func ExampleECS_RegisterTaskDefinition() {
 					aws.String("String"), // Required
 					// More values...
 				},
-				Cpu: aws.Int64(1),
+				Cpu:               aws.Int64(1),
+				DisableNetworking: aws.Bool(true),
+				DnsSearchDomains: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+				DnsServers: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
+				DockerLabels: map[string]*string{
+					"Key": aws.String("String"), // Required
+					// More values...
+				},
+				DockerSecurityOptions: []*string{
+					aws.String("String"), // Required
+					// More values...
+				},
 				EntryPoint: []*string{
 					aws.String("String"), // Required
 					// More values...
@@ -470,10 +494,25 @@ func ExampleECS_RegisterTaskDefinition() {
 					// More values...
 				},
 				Essential: aws.Bool(true),
-				Image:     aws.String("String"),
+				ExtraHosts: []*ecs.HostEntry{
+					{ // Required
+						Hostname:  aws.String("String"), // Required
+						IpAddress: aws.String("String"), // Required
+					},
+					// More values...
+				},
+				Hostname: aws.String("String"),
+				Image:    aws.String("String"),
 				Links: []*string{
 					aws.String("String"), // Required
 					// More values...
+				},
+				LogConfiguration: &ecs.LogConfiguration{
+					LogDriver: aws.String("LogDriver"), // Required
+					Options: map[string]*string{
+						"Key": aws.String("String"), // Required
+						// More values...
+					},
 				},
 				Memory: aws.Int64(1),
 				MountPoints: []*ecs.MountPoint{
@@ -493,6 +532,17 @@ func ExampleECS_RegisterTaskDefinition() {
 					},
 					// More values...
 				},
+				Privileged:             aws.Bool(true),
+				ReadonlyRootFilesystem: aws.Bool(true),
+				Ulimits: []*ecs.Ulimit{
+					{ // Required
+						HardLimit: aws.Int64(1),             // Required
+						Name:      aws.String("UlimitName"), // Required
+						SoftLimit: aws.Int64(1),             // Required
+					},
+					// More values...
+				},
+				User: aws.String("String"),
 				VolumesFrom: []*ecs.VolumeFrom{
 					{ // Required
 						ReadOnly:        aws.Bool(true),
@@ -500,6 +550,7 @@ func ExampleECS_RegisterTaskDefinition() {
 					},
 					// More values...
 				},
+				WorkingDirectory: aws.String("String"),
 			},
 			// More values...
 		},

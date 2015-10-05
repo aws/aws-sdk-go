@@ -488,6 +488,10 @@
         {
           "shape":"ClusterNotFoundException",
           "exception":true
+        },
+        {
+          "shape":"ServiceNotFoundException",
+          "exception":true
         }
       ]
     },
@@ -748,6 +752,18 @@
         "FAILED"
       ]
     },
+    "Attribute":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "value":{"shape":"String"}
+      }
+    },
+    "Attributes":{
+      "type":"list",
+      "member":{"shape":"Attribute"}
+    },
     "Boolean":{"type":"boolean"},
     "BoxedBoolean":{
       "type":"boolean",
@@ -824,7 +840,20 @@
         "command":{"shape":"StringList"},
         "environment":{"shape":"EnvironmentVariables"},
         "mountPoints":{"shape":"MountPointList"},
-        "volumesFrom":{"shape":"VolumeFromList"}
+        "volumesFrom":{"shape":"VolumeFromList"},
+        "hostname":{"shape":"String"},
+        "user":{"shape":"String"},
+        "workingDirectory":{"shape":"String"},
+        "disableNetworking":{"shape":"BoxedBoolean"},
+        "privileged":{"shape":"BoxedBoolean"},
+        "readonlyRootFilesystem":{"shape":"BoxedBoolean"},
+        "dnsServers":{"shape":"StringList"},
+        "dnsSearchDomains":{"shape":"StringList"},
+        "extraHosts":{"shape":"HostEntryList"},
+        "dockerSecurityOptions":{"shape":"StringList"},
+        "dockerLabels":{"shape":"DockerLabelsMap"},
+        "ulimits":{"shape":"UlimitList"},
+        "logConfiguration":{"shape":"LogConfiguration"}
       }
     },
     "ContainerDefinitions":{
@@ -843,7 +872,8 @@
         "agentConnected":{"shape":"Boolean"},
         "runningTasksCount":{"shape":"Integer"},
         "pendingTasksCount":{"shape":"Integer"},
-        "agentUpdateStatus":{"shape":"AgentUpdateStatus"}
+        "agentUpdateStatus":{"shape":"AgentUpdateStatus"},
+        "attributes":{"shape":"Attributes"}
       }
     },
     "ContainerInstances":{
@@ -1066,6 +1096,14 @@
         "telemetryEndpoint":{"shape":"String"}
       }
     },
+    "DockerLabelsMap":{
+      "type":"map",
+      "key":{
+        "shape":"String",
+        "required":true
+      },
+      "value":{"shape":"String"}
+    },
     "Double":{"type":"double"},
     "EnvironmentVariables":{
       "type":"list",
@@ -1081,6 +1119,21 @@
     "Failures":{
       "type":"list",
       "member":{"shape":"Failure"}
+    },
+    "HostEntry":{
+      "type":"structure",
+      "required":[
+        "hostname",
+        "ipAddress"
+      ],
+      "members":{
+        "hostname":{"shape":"String"},
+        "ipAddress":{"shape":"String"}
+      }
+    },
+    "HostEntryList":{
+      "type":"list",
+      "member":{"shape":"HostEntry"}
     },
     "HostVolumeProperties":{
       "type":"structure",
@@ -1210,6 +1263,32 @@
       "type":"list",
       "member":{"shape":"LoadBalancer"}
     },
+    "LogConfiguration":{
+      "type":"structure",
+      "required":["logDriver"],
+      "members":{
+        "logDriver":{"shape":"LogDriver"},
+        "options":{"shape":"LogConfigurationOptionsMap"}
+      }
+    },
+    "LogConfigurationOptionsMap":{
+      "type":"map",
+      "key":{
+        "shape":"String",
+        "required":true
+      },
+      "value":{"shape":"String"}
+    },
+    "LogDriver":{
+      "type":"string",
+      "enum":[
+        "json-file",
+        "syslog",
+        "journald",
+        "gelf",
+        "fluentd"
+      ]
+    },
     "Long":{"type":"long"},
     "MissingVersionException":{
       "type":"structure",
@@ -1268,7 +1347,8 @@
         "instanceIdentityDocumentSignature":{"shape":"String"},
         "totalResources":{"shape":"Resources"},
         "versionInfo":{"shape":"VersionInfo"},
-        "containerInstanceArn":{"shape":"String"}
+        "containerInstanceArn":{"shape":"String"},
+        "attributes":{"shape":"Attributes"}
       }
     },
     "RegisterContainerInstanceResponse":{
@@ -1294,6 +1374,10 @@
       "members":{
         "taskDefinition":{"shape":"TaskDefinition"}
       }
+    },
+    "RequiresAttributes":{
+      "type":"list",
+      "member":{"shape":"Attribute"}
     },
     "Resource":{
       "type":"structure",
@@ -1483,7 +1567,8 @@
         "family":{"shape":"String"},
         "revision":{"shape":"Integer"},
         "volumes":{"shape":"VolumeList"},
-        "status":{"shape":"TaskDefinitionStatus"}
+        "status":{"shape":"TaskDefinitionStatus"},
+        "requiresAttributes":{"shape":"RequiresAttributes"}
       }
     },
     "TaskDefinitionStatus":{
@@ -1509,6 +1594,43 @@
       "enum":[
         "tcp",
         "udp"
+      ]
+    },
+    "Ulimit":{
+      "type":"structure",
+      "required":[
+        "name",
+        "softLimit",
+        "hardLimit"
+      ],
+      "members":{
+        "name":{"shape":"UlimitName"},
+        "softLimit":{"shape":"Integer"},
+        "hardLimit":{"shape":"Integer"}
+      }
+    },
+    "UlimitList":{
+      "type":"list",
+      "member":{"shape":"Ulimit"}
+    },
+    "UlimitName":{
+      "type":"string",
+      "enum":[
+        "core",
+        "cpu",
+        "data",
+        "fsize",
+        "locks",
+        "memlock",
+        "msgqueue",
+        "nice",
+        "nofile",
+        "nproc",
+        "rss",
+        "rtprio",
+        "rttime",
+        "sigpending",
+        "stack"
       ]
     },
     "UpdateContainerAgentRequest":{
