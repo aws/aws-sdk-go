@@ -9416,6 +9416,10 @@
           "shape":"String",
           "locationName":"availabilityZoneGroup"
         },
+        "BlockDurationMinutes":{
+          "shape":"Integer",
+          "locationName":"blockDurationMinutes"
+        },
         "LaunchSpecification":{"shape":"RequestSpotLaunchSpecification"}
       }
     },
@@ -10736,6 +10740,14 @@
         "ProductDescription":{
           "shape":"RIProductDescription",
           "locationName":"productDescription"
+        },
+        "BlockDurationMinutes":{
+          "shape":"Integer",
+          "locationName":"blockDurationMinutes"
+        },
+        "ActualBlockHourlyPrice":{
+          "shape":"String",
+          "locationName":"actualBlockHourlyPrice"
         },
         "Tags":{
           "shape":"TagList",

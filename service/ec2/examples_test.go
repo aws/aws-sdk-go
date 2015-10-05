@@ -4670,6 +4670,7 @@ func ExampleEC2_RequestSpotInstances() {
 	params := &ec2.RequestSpotInstancesInput{
 		SpotPrice:             aws.String("String"), // Required
 		AvailabilityZoneGroup: aws.String("String"),
+		BlockDurationMinutes:  aws.Int64(1),
 		ClientToken:           aws.String("String"),
 		DryRun:                aws.Bool(true),
 		InstanceCount:         aws.Int64(1),

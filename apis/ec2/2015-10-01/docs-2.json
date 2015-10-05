@@ -1271,8 +1271,8 @@
         "SpotFleetRequestConfig$CreateTime": "<p>The creation date and time of the request.</p>",
         "SpotFleetRequestConfigData$ValidFrom": "<p>The start date and time of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). The default is to start fulfilling the request immediately.</p>",
         "SpotFleetRequestConfigData$ValidUntil": "<p>The end date and time of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). At this point, no new Spot instance requests are placed or enabled to fulfill the request.</p>",
-        "SpotInstanceRequest$ValidFrom": "<p>The start date of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). If this is a one-time request, the request becomes active at this date and time and remains active until all instances launch, the request expires, or the request is canceled. If the request is persistent, the request becomes active at this date and time and remains active until it expires or is canceled.</p>",
-        "SpotInstanceRequest$ValidUntil": "<p>The end date of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). If this is a one-time request, the request remains active until all instances launch, the request is canceled, or this date is reached. If the request is persistent, it remains active until it is canceled or this date is reached.</p>",
+        "SpotInstanceRequest$ValidFrom": "<p>The start date of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). The request becomes active at this date and time.</p>",
+        "SpotInstanceRequest$ValidUntil": "<p>The end date of the request, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). If this is a one-time request, it remains active until all instances launch, the request is canceled, or this date is reached. If the request is persistent, it remains active until it is canceled or this date is reached.</p>",
         "SpotInstanceRequest$CreateTime": "<p>The date and time when the Spot instance request was created, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>",
         "SpotInstanceStatus$UpdateTime": "<p>The date and time of the most recent status update, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>",
         "SpotPrice$Timestamp": "<p>The date and time the request was created, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z).</p>",
@@ -2871,6 +2871,7 @@
         "PurchaseReservedInstancesOfferingRequest$InstanceCount": "<p>The number of Reserved Instances to purchase.</p>",
         "ReplaceNetworkAclEntryRequest$RuleNumber": "<p>The rule number of the entry to replace.</p>",
         "RequestSpotInstancesRequest$InstanceCount": "<p>The maximum number of Spot instances to launch.</p> <p>Default: 1</p>",
+        "RequestSpotInstancesRequest$BlockDurationMinutes": "<p>The required duration for the Spot instances, in minutes. This value must be a multiple of 60 (60, 120, 180, 240, 300, or 360).</p> <p>The duration period starts as soon as your Spot instance receives its instance ID. At the end of the duration period, Amazon EC2 marks the Spot instance for termination and provides a Spot instance termination notice, which gives the instance a two-minute warning before it terminates.</p> <p>Note that you can't specify an Availability Zone group or a launch group if you specify a required duration.</p>",
         "ReservedInstances$InstanceCount": "<p>The number of Reserved Instances purchased.</p>",
         "ReservedInstancesConfiguration$InstanceCount": "<p>The number of modified Reserved Instances.</p>",
         "RevokeSecurityGroupEgressRequest$FromPort": "<p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all ICMP types.</p>",
@@ -2881,6 +2882,7 @@
         "RunInstancesRequest$MaxCount": "<p>The maximum number of instances to launch. If you specify more instances than Amazon EC2 can launch in the target Availability Zone, Amazon EC2 launches the largest possible number of instances above <code>MinCount</code>.</p> <p>Constraints: Between 1 and the maximum number you're allowed for the specified instance type. For more information about the default limits, and how to request an increase, see <a href=\"http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2\">How many instances can I run in Amazon EC2</a> in the Amazon EC2 General FAQ.</p>",
         "Snapshot$VolumeSize": "<p>The size of the volume, in GiB.</p>",
         "SpotFleetRequestConfigData$TargetCapacity": "<p>The number of units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O.</p>",
+        "SpotInstanceRequest$BlockDurationMinutes": "<p>The required duration for the Spot instance, in minutes.</p>",
         "Subnet$AvailableIpAddressCount": "<p>The number of unused IP addresses in the subnet. Note that the IP addresses for any stopped instances are considered unavailable.</p>",
         "VgwTelemetry$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "Volume$Size": "<p>The size of the volume, in GiBs.</p>",
@@ -4025,7 +4027,7 @@
       }
     },
     "SpotInstanceRequest": {
-      "base": "<p>Describe a Spot instance request.</p>",
+      "base": "<p>Describes a Spot instance request.</p>",
       "refs": {
         "SpotInstanceRequestList$member": null
       }
@@ -4817,10 +4819,11 @@
         "SpotFleetRequestConfigData$SpotPrice": "<p>The bid price per unit hour.</p>",
         "SpotFleetRequestConfigData$IamFleetRole": "<p>Grants the Spot fleet permission to terminate Spot instances on your behalf when you cancel its Spot fleet request using <a>CancelSpotFleetRequests</a> or when the Spot fleet request expires, if you set <code>terminateInstancesWithExpiration</code>.</p>",
         "SpotInstanceRequest$SpotInstanceRequestId": "<p>The ID of the Spot instance request.</p>",
-        "SpotInstanceRequest$SpotPrice": "<p>The maximum hourly price (bid) for any Spot instance launched to fulfill the request.</p>",
+        "SpotInstanceRequest$SpotPrice": "<p>The maximum hourly price (bid) for the Spot instance launched to fulfill the request.</p>",
         "SpotInstanceRequest$LaunchGroup": "<p>The instance launch group. Launch groups are Spot instances that launch together and terminate together.</p>",
         "SpotInstanceRequest$AvailabilityZoneGroup": "<p>The Availability Zone group. If you specify the same Availability Zone group for all Spot instance requests, all Spot instances are launched in the same Availability Zone.</p>",
         "SpotInstanceRequest$InstanceId": "<p>The instance ID, if an instance has been launched to fulfill the Spot instance request.</p>",
+        "SpotInstanceRequest$ActualBlockHourlyPrice": "<p>If you specified a required duration and your request was fulfilled, this is the fixed hourly price in effect for the Spot instance while it runs.</p>",
         "SpotInstanceRequest$LaunchedAvailabilityZone": "<p>The Availability Zone in which the bid is launched.</p>",
         "SpotInstanceRequestIdList$member": null,
         "SpotInstanceStateFault$Code": "<p>The reason code for the Spot instance state change.</p>",

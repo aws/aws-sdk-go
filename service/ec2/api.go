@@ -20580,6 +20580,18 @@ type RequestSpotInstancesInput struct {
 	// Default: Instances are launched in any available Availability Zone.
 	AvailabilityZoneGroup *string `locationName:"availabilityZoneGroup" type:"string"`
 
+	// The required duration for the Spot instances, in minutes. This value must
+	// be a multiple of 60 (60, 120, 180, 240, 300, or 360).
+	//
+	// The duration period starts as soon as your Spot instance receives its instance
+	// ID. At the end of the duration period, Amazon EC2 marks the Spot instance
+	// for termination and provides a Spot instance termination notice, which gives
+	// the instance a two-minute warning before it terminates.
+	//
+	// Note that you can't specify an Availability Zone group or a launch group
+	// if you specify a required duration.
+	BlockDurationMinutes *int64 `locationName:"blockDurationMinutes" type:"integer"`
+
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. For more information, see How to Ensure Idempotency (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
@@ -22334,12 +22346,19 @@ func (s SpotFleetRequestConfigData) GoString() string {
 	return s.String()
 }
 
-// Describe a Spot instance request.
+// Describes a Spot instance request.
 type SpotInstanceRequest struct {
+	// If you specified a required duration and your request was fulfilled, this
+	// is the fixed hourly price in effect for the Spot instance while it runs.
+	ActualBlockHourlyPrice *string `locationName:"actualBlockHourlyPrice" type:"string"`
+
 	// The Availability Zone group. If you specify the same Availability Zone group
 	// for all Spot instance requests, all Spot instances are launched in the same
 	// Availability Zone.
 	AvailabilityZoneGroup *string `locationName:"availabilityZoneGroup" type:"string"`
+
+	// The required duration for the Spot instance, in minutes.
+	BlockDurationMinutes *int64 `locationName:"blockDurationMinutes" type:"integer"`
 
 	// The date and time when the Spot instance request was created, in UTC format
 	// (for example, YYYY-MM-DDTHH:MM:SSZ).
@@ -22368,7 +22387,7 @@ type SpotInstanceRequest struct {
 	// The ID of the Spot instance request.
 	SpotInstanceRequestId *string `locationName:"spotInstanceRequestId" type:"string"`
 
-	// The maximum hourly price (bid) for any Spot instance launched to fulfill
+	// The maximum hourly price (bid) for the Spot instance launched to fulfill
 	// the request.
 	SpotPrice *string `locationName:"spotPrice" type:"string"`
 
@@ -22388,16 +22407,13 @@ type SpotInstanceRequest struct {
 	Type *string `locationName:"type" type:"string" enum:"SpotInstanceType"`
 
 	// The start date of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
-	// If this is a one-time request, the request becomes active at this date and
-	// time and remains active until all instances launch, the request expires,
-	// or the request is canceled. If the request is persistent, the request becomes
-	// active at this date and time and remains active until it expires or is canceled.
+	// The request becomes active at this date and time.
 	ValidFrom *time.Time `locationName:"validFrom" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The end date of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ).
-	// If this is a one-time request, the request remains active until all instances
-	// launch, the request is canceled, or this date is reached. If the request
-	// is persistent, it remains active until it is canceled or this date is reached.
+	// If this is a one-time request, it remains active until all instances launch,
+	// the request is canceled, or this date is reached. If the request is persistent,
+	// it remains active until it is canceled or this date is reached.
 	ValidUntil *time.Time `locationName:"validUntil" type:"timestamp" timestampFormat:"iso8601"`
 
 	metadataSpotInstanceRequest `json:"-" xml:"-"`
