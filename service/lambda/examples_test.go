@@ -22,10 +22,33 @@ func ExampleLambda_AddPermission() {
 		FunctionName:  aws.String("FunctionName"), // Required
 		Principal:     aws.String("Principal"),    // Required
 		StatementId:   aws.String("StatementId"),  // Required
+		Qualifier:     aws.String("Qualifier"),
 		SourceAccount: aws.String("SourceOwner"),
 		SourceArn:     aws.String("Arn"),
 	}
 	resp, err := svc.AddPermission(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleLambda_CreateAlias() {
+	svc := lambda.New(nil)
+
+	params := &lambda.CreateAliasInput{
+		FunctionName:    aws.String("FunctionName"), // Required
+		FunctionVersion: aws.String("Version"),      // Required
+		Name:            aws.String("Alias"),        // Required
+		Description:     aws.String("Description"),
+	}
+	resp, err := svc.CreateAlias(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -77,9 +100,30 @@ func ExampleLambda_CreateFunction() {
 		Runtime:      aws.String("Runtime"),      // Required
 		Description:  aws.String("Description"),
 		MemorySize:   aws.Int64(1),
+		Publish:      aws.Bool(true),
 		Timeout:      aws.Int64(1),
 	}
 	resp, err := svc.CreateFunction(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleLambda_DeleteAlias() {
+	svc := lambda.New(nil)
+
+	params := &lambda.DeleteAliasInput{
+		FunctionName: aws.String("FunctionName"), // Required
+		Name:         aws.String("Alias"),        // Required
+	}
+	resp, err := svc.DeleteAlias(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -116,8 +160,29 @@ func ExampleLambda_DeleteFunction() {
 
 	params := &lambda.DeleteFunctionInput{
 		FunctionName: aws.String("FunctionName"), // Required
+		Qualifier:    aws.String("Qualifier"),
 	}
 	resp, err := svc.DeleteFunction(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleLambda_GetAlias() {
+	svc := lambda.New(nil)
+
+	params := &lambda.GetAliasInput{
+		FunctionName: aws.String("FunctionName"), // Required
+		Name:         aws.String("Alias"),        // Required
+	}
+	resp, err := svc.GetAlias(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -154,6 +219,7 @@ func ExampleLambda_GetFunction() {
 
 	params := &lambda.GetFunctionInput{
 		FunctionName: aws.String("FunctionName"), // Required
+		Qualifier:    aws.String("Qualifier"),
 	}
 	resp, err := svc.GetFunction(params)
 
@@ -173,6 +239,7 @@ func ExampleLambda_GetFunctionConfiguration() {
 
 	params := &lambda.GetFunctionConfigurationInput{
 		FunctionName: aws.String("FunctionName"), // Required
+		Qualifier:    aws.String("Qualifier"),
 	}
 	resp, err := svc.GetFunctionConfiguration(params)
 
@@ -192,6 +259,7 @@ func ExampleLambda_GetPolicy() {
 
 	params := &lambda.GetPolicyInput{
 		FunctionName: aws.String("FunctionName"), // Required
+		Qualifier:    aws.String("Qualifier"),
 	}
 	resp, err := svc.GetPolicy(params)
 
@@ -215,6 +283,7 @@ func ExampleLambda_Invoke() {
 		InvocationType: aws.String("InvocationType"),
 		LogType:        aws.String("LogType"),
 		Payload:        []byte("PAYLOAD"),
+		Qualifier:      aws.String("Qualifier"),
 	}
 	resp, err := svc.Invoke(params)
 
@@ -237,6 +306,28 @@ func ExampleLambda_InvokeAsync() {
 		InvokeArgs:   bytes.NewReader([]byte("PAYLOAD")), // Required
 	}
 	resp, err := svc.InvokeAsync(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleLambda_ListAliases() {
+	svc := lambda.New(nil)
+
+	params := &lambda.ListAliasesInput{
+		FunctionName:    aws.String("FunctionName"), // Required
+		FunctionVersion: aws.String("Version"),
+		Marker:          aws.String("String"),
+		MaxItems:        aws.Int64(1),
+	}
+	resp, err := svc.ListAliases(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -291,14 +382,79 @@ func ExampleLambda_ListFunctions() {
 	fmt.Println(resp)
 }
 
+func ExampleLambda_ListVersionsByFunction() {
+	svc := lambda.New(nil)
+
+	params := &lambda.ListVersionsByFunctionInput{
+		FunctionName: aws.String("FunctionName"), // Required
+		Marker:       aws.String("String"),
+		MaxItems:     aws.Int64(1),
+	}
+	resp, err := svc.ListVersionsByFunction(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleLambda_PublishVersion() {
+	svc := lambda.New(nil)
+
+	params := &lambda.PublishVersionInput{
+		FunctionName: aws.String("FunctionName"), // Required
+		CodeSha256:   aws.String("String"),
+		Description:  aws.String("Description"),
+	}
+	resp, err := svc.PublishVersion(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleLambda_RemovePermission() {
 	svc := lambda.New(nil)
 
 	params := &lambda.RemovePermissionInput{
 		FunctionName: aws.String("FunctionName"), // Required
 		StatementId:  aws.String("StatementId"),  // Required
+		Qualifier:    aws.String("Qualifier"),
 	}
 	resp, err := svc.RemovePermission(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleLambda_UpdateAlias() {
+	svc := lambda.New(nil)
+
+	params := &lambda.UpdateAliasInput{
+		FunctionName:    aws.String("FunctionName"), // Required
+		Name:            aws.String("Alias"),        // Required
+		Description:     aws.String("Description"),
+		FunctionVersion: aws.String("Version"),
+	}
+	resp, err := svc.UpdateAlias(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
@@ -338,6 +494,7 @@ func ExampleLambda_UpdateFunctionCode() {
 
 	params := &lambda.UpdateFunctionCodeInput{
 		FunctionName:    aws.String("FunctionName"), // Required
+		Publish:         aws.Bool(true),
 		S3Bucket:        aws.String("S3Bucket"),
 		S3Key:           aws.String("S3Key"),
 		S3ObjectVersion: aws.String("S3ObjectVersion"),

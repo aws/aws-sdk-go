@@ -12,7 +12,7 @@
       "name":"AddPermission",
       "http":{
         "method":"POST",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD/policy",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/policy",
         "responseCode":201
       },
       "input":{"shape":"AddPermissionRequest"},
@@ -40,6 +40,43 @@
         },
         {
           "shape":"PolicyLengthExceededException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        }
+      ]
+    },
+    "CreateAlias":{
+      "name":"CreateAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/aliases",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateAliasRequest"},
+      "output":{"shape":"AliasConfiguration"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"ResourceConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
           "error":{"httpStatusCode":400},
           "exception":true
         },
@@ -124,6 +161,32 @@
         }
       ]
     },
+    "DeleteAlias":{
+      "name":"DeleteAlias",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/aliases/{Name}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteAliasRequest"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        }
+      ]
+    },
     "DeleteEventSourceMapping":{
       "name":"DeleteEventSourceMapping",
       "http":{
@@ -179,6 +242,48 @@
           "shape":"TooManyRequestsException",
           "error":{"httpStatusCode":429},
           "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ResourceConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true
+        }
+      ]
+    },
+    "GetAlias":{
+      "name":"GetAlias",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/aliases/{Name}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetAliasRequest"},
+      "output":{"shape":"AliasConfiguration"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
         }
       ]
     },
@@ -218,7 +323,7 @@
       "name":"GetFunction",
       "http":{
         "method":"GET",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD",
+        "requestUri":"/2015-03-31/functions/{FunctionName}",
         "responseCode":200
       },
       "input":{"shape":"GetFunctionRequest"},
@@ -238,6 +343,11 @@
           "shape":"TooManyRequestsException",
           "error":{"httpStatusCode":429},
           "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
         }
       ]
     },
@@ -245,7 +355,7 @@
       "name":"GetFunctionConfiguration",
       "http":{
         "method":"GET",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD/configuration",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/configuration",
         "responseCode":200
       },
       "input":{"shape":"GetFunctionConfigurationRequest"},
@@ -265,6 +375,11 @@
           "shape":"TooManyRequestsException",
           "error":{"httpStatusCode":429},
           "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
         }
       ]
     },
@@ -272,7 +387,7 @@
       "name":"GetPolicy",
       "http":{
         "method":"GET",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD/policy",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/policy",
         "responseCode":200
       },
       "input":{"shape":"GetPolicyRequest"},
@@ -291,6 +406,11 @@
         {
           "shape":"TooManyRequestsException",
           "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
           "exception":true
         }
       ]
@@ -333,6 +453,11 @@
           "shape":"TooManyRequestsException",
           "error":{"httpStatusCode":429},
           "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
         }
       ]
     },
@@ -369,6 +494,38 @@
         }
       ],
       "deprecated":true
+    },
+    "ListAliases":{
+      "name":"ListAliases",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/aliases",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAliasesRequest"},
+      "output":{"shape":"ListAliasesResponse"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        }
+      ]
     },
     "ListEventSourceMappings":{
       "name":"ListEventSourceMappings",
@@ -424,11 +581,80 @@
         }
       ]
     },
+    "ListVersionsByFunction":{
+      "name":"ListVersionsByFunction",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/versions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListVersionsByFunctionRequest"},
+      "output":{"shape":"ListVersionsByFunctionResponse"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        }
+      ]
+    },
+    "PublishVersion":{
+      "name":"PublishVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/versions",
+        "responseCode":201
+      },
+      "input":{"shape":"PublishVersionRequest"},
+      "output":{"shape":"FunctionConfiguration"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        },
+        {
+          "shape":"CodeStorageExceededException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        }
+      ]
+    },
     "RemovePermission":{
       "name":"RemovePermission",
       "http":{
         "method":"DELETE",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD/policy/{StatementId}",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/policy/{StatementId}",
         "responseCode":204
       },
       "input":{"shape":"RemovePermissionRequest"},
@@ -441,6 +667,43 @@
         {
           "shape":"ResourceNotFoundException",
           "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"TooManyRequestsException",
+          "error":{"httpStatusCode":429},
+          "exception":true
+        }
+      ]
+    },
+    "UpdateAlias":{
+      "name":"UpdateAlias",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/aliases/{Name}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAliasRequest"},
+      "output":{"shape":"AliasConfiguration"},
+      "errors":[
+        {
+          "shape":"ServiceException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
           "exception":true
         },
         {
@@ -479,6 +742,11 @@
           "shape":"TooManyRequestsException",
           "error":{"httpStatusCode":429},
           "exception":true
+        },
+        {
+          "shape":"ResourceConflictException",
+          "error":{"httpStatusCode":409},
+          "exception":true
         }
       ]
     },
@@ -486,7 +754,7 @@
       "name":"UpdateFunctionCode",
       "http":{
         "method":"PUT",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD/code",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/code",
         "responseCode":200
       },
       "input":{"shape":"UpdateFunctionCodeRequest"},
@@ -523,7 +791,7 @@
       "name":"UpdateFunctionConfiguration",
       "http":{
         "method":"PUT",
-        "requestUri":"/2015-03-31/functions/{FunctionName}/versions/HEAD/configuration",
+        "requestUri":"/2015-03-31/functions/{FunctionName}/configuration",
         "responseCode":200
       },
       "input":{"shape":"UpdateFunctionConfigurationRequest"},
@@ -575,7 +843,12 @@
         "Action":{"shape":"Action"},
         "Principal":{"shape":"Principal"},
         "SourceArn":{"shape":"Arn"},
-        "SourceAccount":{"shape":"SourceOwner"}
+        "SourceAccount":{"shape":"SourceOwner"},
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
       }
     },
     "AddPermissionResponse":{
@@ -583,6 +856,25 @@
       "members":{
         "Statement":{"shape":"String"}
       }
+    },
+    "Alias":{
+      "type":"string",
+      "min":1,
+      "max":128,
+      "pattern":"(?!^[0-9]+$)([a-zA-Z0-9-_]+)"
+    },
+    "AliasConfiguration":{
+      "type":"structure",
+      "members":{
+        "AliasArn":{"shape":"FunctionArn"},
+        "Name":{"shape":"Alias"},
+        "FunctionVersion":{"shape":"Version"},
+        "Description":{"shape":"Description"}
+      }
+    },
+    "AliasList":{
+      "type":"list",
+      "member":{"shape":"AliasConfiguration"}
     },
     "Arn":{
       "type":"string",
@@ -598,6 +890,7 @@
       "type":"blob",
       "streaming":true
     },
+    "Boolean":{"type":"boolean"},
     "CodeStorageExceededException":{
       "type":"structure",
       "members":{
@@ -606,6 +899,24 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "CreateAliasRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Name",
+        "FunctionVersion"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Name":{"shape":"Alias"},
+        "FunctionVersion":{"shape":"Version"},
+        "Description":{"shape":"Description"}
+      }
     },
     "CreateEventSourceMappingRequest":{
       "type":"structure",
@@ -636,13 +947,33 @@
         "Runtime":{"shape":"Runtime"},
         "Role":{"shape":"RoleArn"},
         "Handler":{"shape":"Handler"},
+        "Code":{"shape":"FunctionCode"},
         "Description":{"shape":"Description"},
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"},
-        "Code":{"shape":"FunctionCode"}
+        "Publish":{"shape":"Boolean"}
       }
     },
     "Date":{"type":"timestamp"},
+    "DeleteAliasRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Name"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Name":{
+          "shape":"Alias",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
+    },
     "DeleteEventSourceMappingRequest":{
       "type":"structure",
       "required":["UUID"],
@@ -662,6 +993,11 @@
           "shape":"FunctionName",
           "location":"uri",
           "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
         }
       }
     },
@@ -697,7 +1033,7 @@
     },
     "FunctionArn":{
       "type":"string",
-      "pattern":"arn:aws:lambda:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(\\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?"
+      "pattern":"arn:aws:lambda:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
     },
     "FunctionCode":{
       "type":"structure",
@@ -727,7 +1063,9 @@
         "Description":{"shape":"Description"},
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"},
-        "LastModified":{"shape":"Timestamp"}
+        "LastModified":{"shape":"Timestamp"},
+        "CodeSha256":{"shape":"String"},
+        "Version":{"shape":"Version"}
       }
     },
     "FunctionList":{
@@ -737,8 +1075,27 @@
     "FunctionName":{
       "type":"string",
       "min":1,
-      "max":111,
-      "pattern":"(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)"
+      "max":140,
+      "pattern":"(arn:aws:lambda:)?([a-z]{2}-[a-z]+-\\d{1}:)?(\\d{12}:)?(function:)?([a-zA-Z0-9-_]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+    },
+    "GetAliasRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Name"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Name":{
+          "shape":"Alias",
+          "location":"uri",
+          "locationName":"Name"
+        }
+      }
     },
     "GetEventSourceMappingRequest":{
       "type":"structure",
@@ -759,6 +1116,11 @@
           "shape":"FunctionName",
           "location":"uri",
           "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
         }
       }
     },
@@ -770,6 +1132,11 @@
           "shape":"FunctionName",
           "location":"uri",
           "locationName":"FunctionName"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
         }
       }
     },
@@ -788,7 +1155,8 @@
           "shape":"FunctionName",
           "location":"uri",
           "locationName":"FunctionName"
-        }
+        },
+        "Qualifier":{"shape":"Qualifier"}
       }
     },
     "GetPolicyResponse":{
@@ -846,7 +1214,12 @@
           "location":"header",
           "locationName":"X-Amz-Client-Context"
         },
-        "Payload":{"shape":"Blob"}
+        "Payload":{"shape":"Blob"},
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
+        }
       },
       "payload":"Payload"
     },
@@ -906,6 +1279,39 @@
       },
       "deprecated":true
     },
+    "ListAliasesRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "FunctionVersion":{
+          "shape":"Version",
+          "location":"querystring",
+          "locationName":"FunctionVersion"
+        },
+        "Marker":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"MaxListItems",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListAliasesResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"String"},
+        "Aliases":{"shape":"AliasList"}
+      }
+    },
     "ListEventSourceMappingsRequest":{
       "type":"structure",
       "members":{
@@ -960,6 +1366,34 @@
         "Functions":{"shape":"FunctionList"}
       }
     },
+    "ListVersionsByFunctionRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Marker":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"MaxListItems",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListVersionsByFunctionResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"String"},
+        "Versions":{"shape":"FunctionList"}
+      }
+    },
     "LogType":{
       "type":"string",
       "enum":[
@@ -991,6 +1425,25 @@
       "type":"string",
       "pattern":".*"
     },
+    "PublishVersionRequest":{
+      "type":"structure",
+      "required":["FunctionName"],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "CodeSha256":{"shape":"String"},
+        "Description":{"shape":"Description"}
+      }
+    },
+    "Qualifier":{
+      "type":"string",
+      "min":1,
+      "max":128,
+      "pattern":"(|[a-zA-Z0-9$_]+)"
+    },
     "RemovePermissionRequest":{
       "type":"structure",
       "required":[
@@ -1007,6 +1460,11 @@
           "shape":"StatementId",
           "location":"uri",
           "locationName":"StatementId"
+        },
+        "Qualifier":{
+          "shape":"Qualifier",
+          "location":"querystring",
+          "locationName":"Qualifier"
         }
       }
     },
@@ -1045,7 +1503,8 @@
       "type":"string",
       "enum":[
         "nodejs",
-        "java8"
+        "java8",
+        "python2.7"
       ]
     },
     "S3Bucket":{
@@ -1086,8 +1545,7 @@
     "String":{"type":"string"},
     "Timeout":{
       "type":"integer",
-      "min":1,
-      "max":60
+      "min":1
     },
     "Timestamp":{"type":"string"},
     "TooManyRequestsException":{
@@ -1112,6 +1570,27 @@
       },
       "error":{"httpStatusCode":415},
       "exception":true
+    },
+    "UpdateAliasRequest":{
+      "type":"structure",
+      "required":[
+        "FunctionName",
+        "Name"
+      ],
+      "members":{
+        "FunctionName":{
+          "shape":"FunctionName",
+          "location":"uri",
+          "locationName":"FunctionName"
+        },
+        "Name":{
+          "shape":"Alias",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "FunctionVersion":{"shape":"Version"},
+        "Description":{"shape":"Description"}
+      }
     },
     "UpdateEventSourceMappingRequest":{
       "type":"structure",
@@ -1139,7 +1618,8 @@
         "ZipFile":{"shape":"Blob"},
         "S3Bucket":{"shape":"S3Bucket"},
         "S3Key":{"shape":"S3Key"},
-        "S3ObjectVersion":{"shape":"S3ObjectVersion"}
+        "S3ObjectVersion":{"shape":"S3ObjectVersion"},
+        "Publish":{"shape":"Boolean"}
       }
     },
     "UpdateFunctionConfigurationRequest":{
@@ -1157,6 +1637,12 @@
         "Timeout":{"shape":"Timeout"},
         "MemorySize":{"shape":"MemorySize"}
       }
+    },
+    "Version":{
+      "type":"string",
+      "min":1,
+      "max":1024,
+      "pattern":"(\\$LATEST|[0-9]+)"
     }
   }
 }
