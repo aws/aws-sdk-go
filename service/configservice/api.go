@@ -10,6 +10,39 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opDeleteConfigRule = "DeleteConfigRule"
+
+// DeleteConfigRuleRequest generates a request for the DeleteConfigRule operation.
+func (c *ConfigService) DeleteConfigRuleRequest(input *DeleteConfigRuleInput) (req *request.Request, output *DeleteConfigRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteConfigRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteConfigRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteConfigRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the specified AWS Config rule and all of its evaluation results.
+//
+// AWS Config sets the state of a rule to DELETING until the deletion is complete.
+// You cannot update a rule while it is in this state. If you make a PutConfigRule
+// request for the rule, you will receive a ResourceInUseException.
+//
+// You can check the state of a rule by using the DescribeConfigRules request.
+func (c *ConfigService) DeleteConfigRule(input *DeleteConfigRuleInput) (*DeleteConfigRuleOutput, error) {
+	req, out := c.DeleteConfigRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 
 // DeleteDeliveryChannelRequest generates a request for the DeleteDeliveryChannel operation.
@@ -71,6 +104,153 @@ func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapsho
 // if the delivery failed to complete.
 func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput) (*DeliverConfigSnapshotOutput, error) {
 	req, out := c.DeliverConfigSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeComplianceByConfigRule = "DescribeComplianceByConfigRule"
+
+// DescribeComplianceByConfigRuleRequest generates a request for the DescribeComplianceByConfigRule operation.
+func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeComplianceByConfigRuleInput) (req *request.Request, output *DescribeComplianceByConfigRuleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeComplianceByConfigRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeComplianceByConfigRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeComplianceByConfigRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Indicates whether the specified AWS Config rules are compliant. If a rule
+// is noncompliant, this action returns the number of AWS resources that do
+// not comply with the rule.
+//
+// A rule is compliant if all of the evaluated resources comply with it, and
+// it is noncompliant if any of these resources do not comply.
+//
+// If AWS Config has no current evaluation results for the rule, it returns
+// InsufficientData. This result might indicate one of the following conditions:
+//  AWS Config has never invoked an evaluation for the rule. To check whether
+// it has, use the DescribeConfigRuleEvaluationStatus action to get the LastSuccessfulInvocationTime
+// and LastFailedInvocationTime. The rule's AWS Lambda function is failing to
+// send evaluation results to AWS Config. Verify that the role that you assigned
+// to your configuration recorder includes the config:PutEvaluations permission.
+// If the rule is a customer managed rule, verify that the AWS Lambda execution
+// role includes the config:PutEvaluations permission. The rule's AWS Lambda
+// function has returned NOT_APPLICABLE for all evaluation results. This can
+// occur if the resources were deleted or removed from the rule's scope.
+func (c *ConfigService) DescribeComplianceByConfigRule(input *DescribeComplianceByConfigRuleInput) (*DescribeComplianceByConfigRuleOutput, error) {
+	req, out := c.DescribeComplianceByConfigRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeComplianceByResource = "DescribeComplianceByResource"
+
+// DescribeComplianceByResourceRequest generates a request for the DescribeComplianceByResource operation.
+func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeComplianceByResourceInput) (req *request.Request, output *DescribeComplianceByResourceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeComplianceByResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeComplianceByResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeComplianceByResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Indicates whether the specified AWS resources are compliant. If a resource
+// is noncompliant, this action returns the number of AWS Config rules that
+// the resource does not comply with.
+//
+// A resource is compliant if it complies with all the AWS Config rules that
+// evaluate it. It is noncompliant if it does not comply with one or more of
+// these rules.
+//
+// If AWS Config has no current evaluation results for the resource, it returns
+// InsufficientData. This result might indicate one of the following conditions
+// about the rules that evaluate the resource:  AWS Config has never invoked
+// an evaluation for the rule. To check whether it has, use the DescribeConfigRuleEvaluationStatus
+// action to get the LastSuccessfulInvocationTime and LastFailedInvocationTime.
+// The rule's AWS Lambda function is failing to send evaluation results to AWS
+// Config. Verify that the role that you assigned to your configuration recorder
+// includes the config:PutEvaluations permission. If the rule is a customer
+// managed rule, verify that the AWS Lambda execution role includes the config:PutEvaluations
+// permission. The rule's AWS Lambda function has returned NOT_APPLICABLE for
+// all evaluation results. This can occur if the resources were deleted or removed
+// from the rule's scope.
+func (c *ConfigService) DescribeComplianceByResource(input *DescribeComplianceByResourceInput) (*DescribeComplianceByResourceOutput, error) {
+	req, out := c.DescribeComplianceByResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeConfigRuleEvaluationStatus = "DescribeConfigRuleEvaluationStatus"
+
+// DescribeConfigRuleEvaluationStatusRequest generates a request for the DescribeConfigRuleEvaluationStatus operation.
+func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *DescribeConfigRuleEvaluationStatusInput) (req *request.Request, output *DescribeConfigRuleEvaluationStatusOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConfigRuleEvaluationStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConfigRuleEvaluationStatusInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeConfigRuleEvaluationStatusOutput{}
+	req.Data = output
+	return
+}
+
+// Returns status information for each of your AWS managed Config rules. The
+// status includes information such as the last time AWS Config invoked the
+// rule, the last time AWS Config failed to invoke the rule, and the related
+// error for the last failure.
+func (c *ConfigService) DescribeConfigRuleEvaluationStatus(input *DescribeConfigRuleEvaluationStatusInput) (*DescribeConfigRuleEvaluationStatusOutput, error) {
+	req, out := c.DescribeConfigRuleEvaluationStatusRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeConfigRules = "DescribeConfigRules"
+
+// DescribeConfigRulesRequest generates a request for the DescribeConfigRules operation.
+func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInput) (req *request.Request, output *DescribeConfigRulesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeConfigRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeConfigRulesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeConfigRulesOutput{}
+	req.Data = output
+	return
+}
+
+// Returns details about your AWS Config rules.
+func (c *ConfigService) DescribeConfigRules(input *DescribeConfigRulesInput) (*DescribeConfigRulesOutput, error) {
+	req, out := c.DescribeConfigRulesRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -199,6 +379,121 @@ func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannels
 	return out, err
 }
 
+const opGetComplianceDetailsByConfigRule = "GetComplianceDetailsByConfigRule"
+
+// GetComplianceDetailsByConfigRuleRequest generates a request for the GetComplianceDetailsByConfigRule operation.
+func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetComplianceDetailsByConfigRuleInput) (req *request.Request, output *GetComplianceDetailsByConfigRuleOutput) {
+	op := &request.Operation{
+		Name:       opGetComplianceDetailsByConfigRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetComplianceDetailsByConfigRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetComplianceDetailsByConfigRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the evaluation results for the specified AWS Config rule. The results
+// indicate which AWS resources were evaluated by the rule, when each resource
+// was last evaluated, and whether each resource complies with the rule.
+func (c *ConfigService) GetComplianceDetailsByConfigRule(input *GetComplianceDetailsByConfigRuleInput) (*GetComplianceDetailsByConfigRuleOutput, error) {
+	req, out := c.GetComplianceDetailsByConfigRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetComplianceDetailsByResource = "GetComplianceDetailsByResource"
+
+// GetComplianceDetailsByResourceRequest generates a request for the GetComplianceDetailsByResource operation.
+func (c *ConfigService) GetComplianceDetailsByResourceRequest(input *GetComplianceDetailsByResourceInput) (req *request.Request, output *GetComplianceDetailsByResourceOutput) {
+	op := &request.Operation{
+		Name:       opGetComplianceDetailsByResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetComplianceDetailsByResourceInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetComplianceDetailsByResourceOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the evaluation results for the specified AWS resource. The results
+// indicate which AWS Config rules were used to evaluate the resource, when
+// each rule was last used, and whether the resource complies with each rule.
+func (c *ConfigService) GetComplianceDetailsByResource(input *GetComplianceDetailsByResourceInput) (*GetComplianceDetailsByResourceOutput, error) {
+	req, out := c.GetComplianceDetailsByResourceRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetComplianceSummaryByConfigRule = "GetComplianceSummaryByConfigRule"
+
+// GetComplianceSummaryByConfigRuleRequest generates a request for the GetComplianceSummaryByConfigRule operation.
+func (c *ConfigService) GetComplianceSummaryByConfigRuleRequest(input *GetComplianceSummaryByConfigRuleInput) (req *request.Request, output *GetComplianceSummaryByConfigRuleOutput) {
+	op := &request.Operation{
+		Name:       opGetComplianceSummaryByConfigRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetComplianceSummaryByConfigRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetComplianceSummaryByConfigRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the number of AWS Config rules that are compliant and noncompliant,
+// up to a maximum of 25 for each.
+func (c *ConfigService) GetComplianceSummaryByConfigRule(input *GetComplianceSummaryByConfigRuleInput) (*GetComplianceSummaryByConfigRuleOutput, error) {
+	req, out := c.GetComplianceSummaryByConfigRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opGetComplianceSummaryByResourceType = "GetComplianceSummaryByResourceType"
+
+// GetComplianceSummaryByResourceTypeRequest generates a request for the GetComplianceSummaryByResourceType operation.
+func (c *ConfigService) GetComplianceSummaryByResourceTypeRequest(input *GetComplianceSummaryByResourceTypeInput) (req *request.Request, output *GetComplianceSummaryByResourceTypeOutput) {
+	op := &request.Operation{
+		Name:       opGetComplianceSummaryByResourceType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetComplianceSummaryByResourceTypeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &GetComplianceSummaryByResourceTypeOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the number of resources that are compliant and the number that are
+// noncompliant. You can specify one or more resource types to get these numbers
+// for each resource type. The maximum number returned is 100.
+func (c *ConfigService) GetComplianceSummaryByResourceType(input *GetComplianceSummaryByResourceTypeInput) (*GetComplianceSummaryByResourceTypeOutput, error) {
+	req, out := c.GetComplianceSummaryByResourceTypeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetResourceConfigHistory = "GetResourceConfigHistory"
 
 // GetResourceConfigHistoryRequest generates a request for the GetResourceConfigHistory operation.
@@ -290,6 +585,64 @@ func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesIn
 	return out, err
 }
 
+const opPutConfigRule = "PutConfigRule"
+
+// PutConfigRuleRequest generates a request for the PutConfigRule operation.
+func (c *ConfigService) PutConfigRuleRequest(input *PutConfigRuleInput) (req *request.Request, output *PutConfigRuleOutput) {
+	op := &request.Operation{
+		Name:       opPutConfigRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutConfigRuleInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutConfigRuleOutput{}
+	req.Data = output
+	return
+}
+
+// Adds or updates an AWS Config rule for evaluating whether your AWS resources
+// comply with your desired configurations.
+//
+// You can use this action for customer managed Config rules and AWS managed
+// Config rules. A customer managed Config rule is a custom rule that you develop
+// and maintain. An AWS managed Config rule is a customizable, predefined rule
+// that is provided by AWS Config.
+//
+// If you are adding a new customer managed Config rule, you must first create
+// the AWS Lambda function that the rule invokes to evaluate your resources.
+// When you use the PutConfigRule action to add the rule to AWS Config, you
+// must specify the Amazon Resource Name (ARN) that AWS Lambda assigns to the
+// function. Specify the ARN for the SourceIdentifier key. This key is part
+// of the Source object, which is part of the ConfigRule object.
+//
+// If you are adding a new AWS managed Config rule, specify the rule's identifier
+// for the SourceIdentifier key. To reference AWS managed Config rule identifiers,
+// see Using AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+//
+// For any new rule that you add, specify the ConfigRuleName in the ConfigRule
+// object. Do not specify the ConfigRuleArn or the ConfigRuleId. These values
+// are generated by AWS Config for new rules.
+//
+// If you are updating a rule that you have added previously, specify the rule's
+// ConfigRuleName, ConfigRuleId, or ConfigRuleArn in the ConfigRule data type
+// that you use in this request.
+//
+// The maximum number of rules that AWS Config supports is 25.
+//
+// For more information about developing and using AWS Config rules, see Evaluating
+// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// in the AWS Config Developer Guide.
+func (c *ConfigService) PutConfigRule(input *PutConfigRuleInput) (*PutConfigRuleOutput, error) {
+	req, out := c.PutConfigRuleRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPutConfigurationRecorder = "PutConfigurationRecorder"
 
 // PutConfigurationRecorderRequest generates a request for the PutConfigurationRecorder operation.
@@ -363,6 +716,35 @@ func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*Put
 	return out, err
 }
 
+const opPutEvaluations = "PutEvaluations"
+
+// PutEvaluationsRequest generates a request for the PutEvaluations operation.
+func (c *ConfigService) PutEvaluationsRequest(input *PutEvaluationsInput) (req *request.Request, output *PutEvaluationsOutput) {
+	op := &request.Operation{
+		Name:       opPutEvaluations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutEvaluationsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &PutEvaluationsOutput{}
+	req.Data = output
+	return
+}
+
+// Used by an AWS Lambda function to deliver evaluation results to AWS Config.
+// This action is required in every AWS Lambda function that is invoked by an
+// AWS Config rule.
+func (c *ConfigService) PutEvaluations(input *PutEvaluationsInput) (*PutEvaluationsOutput, error) {
+	req, out := c.PutEvaluationsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opStartConfigurationRecorder = "StartConfigurationRecorder"
 
 // StartConfigurationRecorderRequest generates a request for the StartConfigurationRecorder operation.
@@ -422,6 +804,184 @@ func (c *ConfigService) StopConfigurationRecorder(input *StopConfigurationRecord
 	return out, err
 }
 
+// Indicates whether an AWS resource or AWS Config rule is compliant and provides
+// the number of contributors that affect the compliance.
+type Compliance struct {
+	// The number of AWS resources or AWS Config rules that cause a result of NON_COMPLIANT,
+	// up to a maximum of 25.
+	ComplianceContributorCount *ComplianceContributorCount `type:"structure"`
+
+	// Indicates whether an AWS resource or AWS Config rule is compliant.
+	//
+	// A resource is compliant if it complies with all of the AWS Config rules
+	// that evaluate it, and it is noncompliant if it does not comply with one or
+	// more of these rules.
+	//
+	// A rule is compliant if all of the resources that the rule evaluates comply
+	// with it, and it is noncompliant if any of these resources do not comply.
+	ComplianceType *string `type:"string" enum:"ComplianceType"`
+
+	metadataCompliance `json:"-" xml:"-"`
+}
+
+type metadataCompliance struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Compliance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Compliance) GoString() string {
+	return s.String()
+}
+
+// Indicates whether an AWS Config rule is compliant. A rule is compliant if
+// all of the resources that the rule evaluated comply with it, and it is noncompliant
+// if any of these resources do not comply.
+type ComplianceByConfigRule struct {
+	// Indicates whether the AWS Config rule is compliant.
+	Compliance *Compliance `type:"structure"`
+
+	// The name of the AWS Config rule.
+	ConfigRuleName *string `min:"1" type:"string"`
+
+	metadataComplianceByConfigRule `json:"-" xml:"-"`
+}
+
+type metadataComplianceByConfigRule struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ComplianceByConfigRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComplianceByConfigRule) GoString() string {
+	return s.String()
+}
+
+// Indicates whether an AWS resource that is evaluated according to one or more
+// AWS Config rules is compliant. A resource is compliant if it complies with
+// all of the rules that evaluate it, and it is noncompliant if it does not
+// comply with one or more of these rules.
+type ComplianceByResource struct {
+	// Indicates whether the AWS resource complies with all of the AWS Config rules
+	// that evaluated it.
+	Compliance *Compliance `type:"structure"`
+
+	// The ID of the AWS resource that was evaluated.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The type of the AWS resource that was evaluated.
+	ResourceType *string `min:"1" type:"string"`
+
+	metadataComplianceByResource `json:"-" xml:"-"`
+}
+
+type metadataComplianceByResource struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ComplianceByResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComplianceByResource) GoString() string {
+	return s.String()
+}
+
+// The number of AWS resources or AWS Config rules responsible for the current
+// compliance of the item, up to a maximum number.
+type ComplianceContributorCount struct {
+	// Indicates whether the maximum count is reached.
+	CapExceeded *bool `type:"boolean"`
+
+	// The number of AWS resources or AWS Config rules responsible for the current
+	// compliance of the item.
+	CappedCount *int64 `type:"integer"`
+
+	metadataComplianceContributorCount `json:"-" xml:"-"`
+}
+
+type metadataComplianceContributorCount struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ComplianceContributorCount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComplianceContributorCount) GoString() string {
+	return s.String()
+}
+
+// The number of AWS Config rules or AWS resources that are compliant and noncompliant,
+// up to a maximum.
+type ComplianceSummary struct {
+	// The time that AWS Config created the compliance summary.
+	ComplianceSummaryTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The number of AWS Config rules or AWS resources that are compliant, up to
+	// a maximum of 25 for rules and 100 for resources.
+	CompliantResourceCount *ComplianceContributorCount `type:"structure"`
+
+	// The number of AWS Config rules or AWS resources that are noncompliant, up
+	// to a maximum of 25 for rules and 100 for resources.
+	NonCompliantResourceCount *ComplianceContributorCount `type:"structure"`
+
+	metadataComplianceSummary `json:"-" xml:"-"`
+}
+
+type metadataComplianceSummary struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ComplianceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComplianceSummary) GoString() string {
+	return s.String()
+}
+
+// The number of AWS resources of a specific type that are compliant or noncompliant,
+// up to a maximum of 100 for each compliance.
+type ComplianceSummaryByResourceType struct {
+	// The number of AWS resources that are compliant or noncompliant, up to a maximum
+	// of 100 for each compliance.
+	ComplianceSummary *ComplianceSummary `type:"structure"`
+
+	// The type of AWS resource.
+	ResourceType *string `min:"1" type:"string"`
+
+	metadataComplianceSummaryByResourceType `json:"-" xml:"-"`
+}
+
+type metadataComplianceSummaryByResourceType struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ComplianceSummaryByResourceType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComplianceSummaryByResourceType) GoString() string {
+	return s.String()
+}
+
 // A list that contains the status of the delivery of either the snapshot or
 // the configuration history to the specified Amazon S3 bucket.
 type ConfigExportDeliveryInfo struct {
@@ -440,6 +1000,9 @@ type ConfigExportDeliveryInfo struct {
 	// The time of the last successful delivery.
 	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix"`
 
+	// The time that the next delivery occurs.
+	NextDeliveryTime *time.Time `locationName:"nextDeliveryTime" type:"timestamp" timestampFormat:"unix"`
+
 	metadataConfigExportDeliveryInfo `json:"-" xml:"-"`
 }
 
@@ -454,6 +1017,157 @@ func (s ConfigExportDeliveryInfo) String() string {
 
 // GoString returns the string representation
 func (s ConfigExportDeliveryInfo) GoString() string {
+	return s.String()
+}
+
+// An AWS Lambda function that evaluates configuration items to assess whether
+// your AWS resources comply with your desired configurations. This function
+// can run when AWS Config detects a configuration change or delivers a configuration
+// snapshot. This function can evaluate any resource in the recording group.
+// To define which of these are evaluated, specify a value for the Scope key.
+//
+// For more information about developing and using AWS Config rules, see Evaluating
+// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+// in the AWS Config Developer Guide.
+type ConfigRule struct {
+	// The Amazon Resource Name (ARN) of the AWS Config rule.
+	ConfigRuleArn *string `type:"string"`
+
+	// The ID of the AWS Config rule.
+	ConfigRuleId *string `type:"string"`
+
+	// The name that you assign to the AWS Config rule. The name is required if
+	// you are adding a new rule.
+	ConfigRuleName *string `min:"1" type:"string"`
+
+	// Indicates whether the AWS Config rule is active or currently being deleted
+	// by AWS Config.
+	//
+	// AWS Config sets the state of a rule to DELETING temporarily after you use
+	// the DeleteConfigRule request to delete the rule. After AWS Config finishes
+	// deleting a rule, the rule and all of its evaluations are erased and no longer
+	// available.
+	//
+	// You cannot add a rule to AWS Config that has the state set to DELETING.
+	// If you want to delete a rule, you must use the DeleteConfigRule request.
+	ConfigRuleState *string `type:"string" enum:"ConfigRuleState"`
+
+	// The description that you provide for the AWS Config rule.
+	Description *string `type:"string"`
+
+	// A string in JSON format that is passed to the AWS Config rule Lambda function.
+	InputParameters *string `min:"1" type:"string"`
+
+	// The maximum frequency at which the AWS Config rule runs evaluations.
+	//
+	// If your rule is periodic, meaning it runs an evaluation when AWS Config
+	// delivers a configuration snapshot, then it cannot run evaluations more frequently
+	// than AWS Config delivers the snapshots. For periodic rules, set the value
+	// of the MaximumExecutionFrequency key to be equal to or greater than the value
+	// of the deliveryFrequency key, which is part of ConfigSnapshotDeliveryProperties.
+	// To update the frequency with which AWS Config delivers your snapshots, use
+	// the PutDeliveryChannel action.
+	MaximumExecutionFrequency *string `type:"string" enum:"MaximumExecutionFrequency"`
+
+	// Defines which resources the AWS Config rule evaluates. The scope can include
+	// one or more resource types, a combination of a tag key and value, or a combination
+	// of one resource type and one or more resource IDs. Specify a scope to constrain
+	// the resources that are evaluated. If you do not specify a scope, the AWS
+	// Config Rule evaluates all resources in the recording group.
+	Scope *Scope `type:"structure"`
+
+	// Provides the rule owner (AWS or customer), the rule identifier, and the events
+	// that cause the function to evaluate your AWS resources.
+	Source *Source `type:"structure" required:"true"`
+
+	metadataConfigRule `json:"-" xml:"-"`
+}
+
+type metadataConfigRule struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigRule) GoString() string {
+	return s.String()
+}
+
+// Status information for your AWS managed Config rules. The status includes
+// information such as the last time the rule ran, the last time it failed,
+// and the related error for the last failure.
+//
+// This action does not return status information about customer managed Config
+// rules.
+type ConfigRuleEvaluationStatus struct {
+	// The Amazon Resource Name (ARN) of the AWS Config rule.
+	ConfigRuleArn *string `type:"string"`
+
+	// The ID of the AWS Config rule.
+	ConfigRuleId *string `type:"string"`
+
+	// The name of the AWS Config rule.
+	ConfigRuleName *string `min:"1" type:"string"`
+
+	// The time that you first activated the AWS Config rule.
+	FirstActivatedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The error code that AWS Config returned when the rule last failed.
+	LastErrorCode *string `type:"string"`
+
+	// The error message that AWS Config returned when the rule last failed.
+	LastErrorMessage *string `type:"string"`
+
+	// The time that AWS Config last failed to invoke the AWS Config rule to evaluate
+	// your AWS resources.
+	LastFailedInvocationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The time that AWS Config last successfully invoked the AWS Config rule to
+	// evaluate your AWS resources.
+	LastSuccessfulInvocationTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	metadataConfigRuleEvaluationStatus `json:"-" xml:"-"`
+}
+
+type metadataConfigRuleEvaluationStatus struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigRuleEvaluationStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigRuleEvaluationStatus) GoString() string {
+	return s.String()
+}
+
+// Options for how AWS Config delivers configuration snapshots to the Amazon
+// S3 bucket in your delivery channel.
+type ConfigSnapshotDeliveryProperties struct {
+	// The frequency with which a AWS Config recurringly delivers configuration
+	// snapshots.
+	DeliveryFrequency *string `locationName:"deliveryFrequency" type:"string" enum:"MaximumExecutionFrequency"`
+
+	metadataConfigSnapshotDeliveryProperties `json:"-" xml:"-"`
+}
+
+type metadataConfigSnapshotDeliveryProperties struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigSnapshotDeliveryProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigSnapshotDeliveryProperties) GoString() string {
 	return s.String()
 }
 
@@ -654,6 +1368,45 @@ func (s ConfigurationRecorderStatus) GoString() string {
 	return s.String()
 }
 
+type DeleteConfigRuleInput struct {
+	// The name of the AWS Config rule that you want to delete.
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	metadataDeleteConfigRuleInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteConfigRuleInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConfigRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigRuleInput) GoString() string {
+	return s.String()
+}
+
+type DeleteConfigRuleOutput struct {
+	metadataDeleteConfigRuleOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteConfigRuleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteConfigRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteConfigRuleOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the DeleteDeliveryChannel action. The action accepts the following
 // data in JSON format.
 type DeleteDeliveryChannelInput struct {
@@ -742,6 +1495,10 @@ func (s DeliverConfigSnapshotOutput) GoString() string {
 // A logical container used for storing the configuration changes of an AWS
 // resource.
 type DeliveryChannel struct {
+	// Options for how AWS Config delivers configuration snapshots to the Amazon
+	// S3 bucket in your delivery channel.
+	ConfigSnapshotDeliveryProperties *ConfigSnapshotDeliveryProperties `locationName:"configSnapshotDeliveryProperties" type:"structure"`
+
 	// The name of the delivery channel. By default, AWS Config automatically assigns
 	// the name "default" when creating the delivery channel. You cannot change
 	// the assigned name.
@@ -808,6 +1565,220 @@ func (s DeliveryChannelStatus) String() string {
 
 // GoString returns the string representation
 func (s DeliveryChannelStatus) GoString() string {
+	return s.String()
+}
+
+type DescribeComplianceByConfigRuleInput struct {
+	// Filters the results by compliance. The valid values are Compliant and NonCompliant.
+	ComplianceTypes []*string `type:"list"`
+
+	// Specify one or more AWS Config rule names to filter the results by rule.
+	ConfigRuleNames []*string `type:"list"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataDescribeComplianceByConfigRuleInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeComplianceByConfigRuleInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeComplianceByConfigRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeComplianceByConfigRuleInput) GoString() string {
+	return s.String()
+}
+
+type DescribeComplianceByConfigRuleOutput struct {
+	// Indicates whether each of the specified AWS Config rules is compliant.
+	ComplianceByConfigRules []*ComplianceByConfigRule `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataDescribeComplianceByConfigRuleOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeComplianceByConfigRuleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeComplianceByConfigRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeComplianceByConfigRuleOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeComplianceByResourceInput struct {
+	// Filters the results by compliance. The valid values are Compliant and NonCompliant.
+	ComplianceTypes []*string `type:"list"`
+
+	// The maximum number of evaluation results returned on each page. The default
+	// is 10. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	// The ID of the AWS resource for which you want compliance information. You
+	// can specify only one resource ID. If you specify a resource ID, you must
+	// also specify a type for ResourceType.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The types of AWS resources for which you want compliance information; for
+	// example, AWS::EC2::Instance. For this action, you can specify that the resource
+	// type is an AWS account by specifying AWS::::Account.
+	ResourceType *string `min:"1" type:"string"`
+
+	metadataDescribeComplianceByResourceInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeComplianceByResourceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeComplianceByResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeComplianceByResourceInput) GoString() string {
+	return s.String()
+}
+
+type DescribeComplianceByResourceOutput struct {
+	// Indicates whether the specified AWS resource complies with all of the AWS
+	// Config rules that evaluate it.
+	ComplianceByResources []*ComplianceByResource `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataDescribeComplianceByResourceOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeComplianceByResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeComplianceByResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeComplianceByResourceOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeConfigRuleEvaluationStatusInput struct {
+	// The name of the AWS managed Config rules for which you want status information.
+	// If you do not specify any names, AWS Config returns status information for
+	// all AWS managed Config rules that you use.
+	ConfigRuleNames []*string `type:"list"`
+
+	metadataDescribeConfigRuleEvaluationStatusInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeConfigRuleEvaluationStatusInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConfigRuleEvaluationStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigRuleEvaluationStatusInput) GoString() string {
+	return s.String()
+}
+
+type DescribeConfigRuleEvaluationStatusOutput struct {
+	// Status information about your AWS managed Config rules.
+	ConfigRulesEvaluationStatus []*ConfigRuleEvaluationStatus `type:"list"`
+
+	metadataDescribeConfigRuleEvaluationStatusOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeConfigRuleEvaluationStatusOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConfigRuleEvaluationStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigRuleEvaluationStatusOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeConfigRulesInput struct {
+	// The names of the AWS Config rules for which you want details. If you do not
+	// specify any names, AWS Config returns details for all your rules.
+	ConfigRuleNames []*string `type:"list"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataDescribeConfigRulesInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeConfigRulesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConfigRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigRulesInput) GoString() string {
+	return s.String()
+}
+
+type DescribeConfigRulesOutput struct {
+	// The details about your AWS Config rules.
+	ConfigRules []*ConfigRule `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataDescribeConfigRulesOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeConfigRulesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeConfigRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeConfigRulesOutput) GoString() string {
 	return s.String()
 }
 
@@ -989,6 +1960,351 @@ func (s DescribeDeliveryChannelsOutput) GoString() string {
 	return s.String()
 }
 
+// Identifies an AWS resource and indicates whether it complies with the AWS
+// Config rule that it was evaluated against.
+type Evaluation struct {
+	// Supplementary information about how the evaluation determined the compliance.
+	Annotation *string `min:"1" type:"string"`
+
+	// The ID of the AWS resource that was evaluated.
+	ComplianceResourceId *string `min:"1" type:"string" required:"true"`
+
+	// The type of AWS resource that was evaluated.
+	ComplianceResourceType *string `min:"1" type:"string" required:"true"`
+
+	// Indicates whether the AWS resource complies with the AWS Config rule that
+	// it was evaluated against.
+	ComplianceType *string `type:"string" required:"true" enum:"ComplianceType"`
+
+	// The time of the event in AWS Config that triggered the evaluation. For event-based
+	// evaluations, the time indicates when AWS Config created the configuration
+	// item that triggered the evaluation. For periodic evaluations, the time indicates
+	// when AWS Config delivered the configuration snapshot that triggered the evaluation.
+	OrderingTimestamp *time.Time `type:"timestamp" timestampFormat:"unix" required:"true"`
+
+	metadataEvaluation `json:"-" xml:"-"`
+}
+
+type metadataEvaluation struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Evaluation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Evaluation) GoString() string {
+	return s.String()
+}
+
+// The details of an AWS Config evaluation. Provides the AWS resource that was
+// evaluated, the compliance of the resource, related timestamps, and supplementary
+// information.
+type EvaluationResult struct {
+	// Supplementary information about how the evaluation determined the compliance.
+	Annotation *string `min:"1" type:"string"`
+
+	// Indicates whether the AWS resource complies with the AWS Config rule that
+	// evaluated it.
+	ComplianceType *string `type:"string" enum:"ComplianceType"`
+
+	// The time when the AWS Config rule evaluated the AWS resource.
+	ConfigRuleInvokedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Uniquely identifies the evaluation result.
+	EvaluationResultIdentifier *EvaluationResultIdentifier `type:"structure"`
+
+	// The time when AWS Config recorded the evaluation result.
+	ResultRecordedTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// An encrypted token that associates an evaluation with an AWS Config rule.
+	// The token identifies the rule, the AWS resource being evaluated, and the
+	// event that triggered the evaluation.
+	ResultToken *string `type:"string"`
+
+	metadataEvaluationResult `json:"-" xml:"-"`
+}
+
+type metadataEvaluationResult struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EvaluationResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EvaluationResult) GoString() string {
+	return s.String()
+}
+
+// Uniquely identifies an evaluation result.
+type EvaluationResultIdentifier struct {
+	// Identifies an AWS Config rule used to evaluate an AWS resource, and provides
+	// the type and ID of the evaluated resource.
+	EvaluationResultQualifier *EvaluationResultQualifier `type:"structure"`
+
+	// The time of the event that triggered the evaluation of your AWS resources.
+	// The time can indicate when AWS Config delivered a configuration item change
+	// notification, or it can indicate when AWS Config delivered the configuration
+	// snapshot, depending on which event triggered the evaluation.
+	OrderingTimestamp *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	metadataEvaluationResultIdentifier `json:"-" xml:"-"`
+}
+
+type metadataEvaluationResultIdentifier struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EvaluationResultIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EvaluationResultIdentifier) GoString() string {
+	return s.String()
+}
+
+// Identifies an AWS Config rule that evaluated an AWS resource, and provides
+// the type and ID of the resource that the rule evaluated.
+type EvaluationResultQualifier struct {
+	// The name of the AWS Config rule that was used in the evaluation.
+	ConfigRuleName *string `min:"1" type:"string"`
+
+	// The ID of the evaluated AWS resource.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The type of AWS resource that was evaluated.
+	ResourceType *string `min:"1" type:"string"`
+
+	metadataEvaluationResultQualifier `json:"-" xml:"-"`
+}
+
+type metadataEvaluationResultQualifier struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EvaluationResultQualifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EvaluationResultQualifier) GoString() string {
+	return s.String()
+}
+
+type GetComplianceDetailsByConfigRuleInput struct {
+	// Specify to filter the results by compliance. The valid values are Compliant,
+	// NonCompliant, and NotApplicable.
+	ComplianceTypes []*string `type:"list"`
+
+	// The name of the AWS Config rule for which you want compliance information.
+	ConfigRuleName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of evaluation results returned on each page. The default
+	// is 10. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataGetComplianceDetailsByConfigRuleInput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceDetailsByConfigRuleInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceDetailsByConfigRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceDetailsByConfigRuleInput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceDetailsByConfigRuleOutput struct {
+	// Indicates whether the AWS resource complies with the specified AWS Config
+	// rule.
+	EvaluationResults []*EvaluationResult `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataGetComplianceDetailsByConfigRuleOutput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceDetailsByConfigRuleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceDetailsByConfigRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceDetailsByConfigRuleOutput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceDetailsByResourceInput struct {
+	// Specify to filter the results by compliance. The valid values are Compliant,
+	// NonCompliant, and NotApplicable.
+	ComplianceTypes []*string `type:"list"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+
+	// The ID of the AWS resource for which you want compliance information.
+	ResourceId *string `min:"1" type:"string" required:"true"`
+
+	// The type of the AWS resource for which you want compliance information.
+	ResourceType *string `min:"1" type:"string" required:"true"`
+
+	metadataGetComplianceDetailsByResourceInput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceDetailsByResourceInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceDetailsByResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceDetailsByResourceInput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceDetailsByResourceOutput struct {
+	// Indicates whether the specified AWS resource complies each AWS Config rule.
+	EvaluationResults []*EvaluationResult `type:"list"`
+
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `type:"string"`
+
+	metadataGetComplianceDetailsByResourceOutput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceDetailsByResourceOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceDetailsByResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceDetailsByResourceOutput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceSummaryByConfigRuleInput struct {
+	metadataGetComplianceSummaryByConfigRuleInput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceSummaryByConfigRuleInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceSummaryByConfigRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceSummaryByConfigRuleInput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceSummaryByConfigRuleOutput struct {
+	// The number of AWS Config rules that are compliant and the number that are
+	// noncompliant, up to a maximum of 25 for each.
+	ComplianceSummary *ComplianceSummary `type:"structure"`
+
+	metadataGetComplianceSummaryByConfigRuleOutput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceSummaryByConfigRuleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceSummaryByConfigRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceSummaryByConfigRuleOutput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceSummaryByResourceTypeInput struct {
+	// Specify one or more resource types to get the number of resources that are
+	// compliant and the number that are noncompliant for each resource type.
+	//
+	// For this request, you can specify an AWS resource type such as AWS::EC2::Instance,
+	// and you can specify that the resource type is an AWS account by specifying
+	// AWS::::Account.
+	ResourceTypes []*string `type:"list"`
+
+	metadataGetComplianceSummaryByResourceTypeInput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceSummaryByResourceTypeInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceSummaryByResourceTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceSummaryByResourceTypeInput) GoString() string {
+	return s.String()
+}
+
+type GetComplianceSummaryByResourceTypeOutput struct {
+	// The number of resources that are compliant and the number that are noncompliant.
+	// If one or more resource types were provided with the request, the numbers
+	// are returned for each resource type. The maximum number returned is 100.
+	ComplianceSummariesByResourceType []*ComplianceSummaryByResourceType `type:"list"`
+
+	metadataGetComplianceSummaryByResourceTypeOutput `json:"-" xml:"-"`
+}
+
+type metadataGetComplianceSummaryByResourceTypeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetComplianceSummaryByResourceTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetComplianceSummaryByResourceTypeOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the GetResourceConfigHistory action.
 type GetResourceConfigHistoryInput struct {
 	// The chronological order for configuration items listed. By default the results
@@ -1132,6 +2448,53 @@ func (s ListDiscoveredResourcesOutput) GoString() string {
 	return s.String()
 }
 
+type PutConfigRuleInput struct {
+	// An AWS Lambda function that evaluates configuration items to assess whether
+	// your AWS resources comply with your desired configurations. This function
+	// can run when AWS Config detects a configuration change or delivers a configuration
+	// snapshot. This function can evaluate any resource in the recording group.
+	// To define which of these are evaluated, specify a value for the Scope key.
+	//
+	// For more information about developing and using AWS Config rules, see Evaluating
+	// AWS Resource Configurations with AWS Config (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config.html)
+	// in the AWS Config Developer Guide.
+	ConfigRule *ConfigRule `type:"structure" required:"true"`
+
+	metadataPutConfigRuleInput `json:"-" xml:"-"`
+}
+
+type metadataPutConfigRuleInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutConfigRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutConfigRuleInput) GoString() string {
+	return s.String()
+}
+
+type PutConfigRuleOutput struct {
+	metadataPutConfigRuleOutput `json:"-" xml:"-"`
+}
+
+type metadataPutConfigRuleOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutConfigRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutConfigRuleOutput) GoString() string {
+	return s.String()
+}
+
 // The input for the PutConfigurationRecorder action.
 type PutConfigurationRecorderInput struct {
 	// The configuration recorder object that records each configuration change
@@ -1211,6 +2574,54 @@ func (s PutDeliveryChannelOutput) String() string {
 
 // GoString returns the string representation
 func (s PutDeliveryChannelOutput) GoString() string {
+	return s.String()
+}
+
+type PutEvaluationsInput struct {
+	// The assessments that the AWS Lambda function performs. Each evaluation identifies
+	// an AWS resource and indicates whether it complies with the AWS Config rule
+	// that invokes the AWS Lambda function.
+	Evaluations []*Evaluation `type:"list"`
+
+	// An encrypted token that associates an evaluation with an AWS Config rule.
+	// Identifies the rule and the event that triggered the evaluation
+	ResultToken *string `type:"string" required:"true"`
+
+	metadataPutEvaluationsInput `json:"-" xml:"-"`
+}
+
+type metadataPutEvaluationsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEvaluationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEvaluationsInput) GoString() string {
+	return s.String()
+}
+
+type PutEvaluationsOutput struct {
+	// Requests that failed because of a client or server error.
+	FailedEvaluations []*Evaluation `type:"list"`
+
+	metadataPutEvaluationsOutput `json:"-" xml:"-"`
+}
+
+type metadataPutEvaluationsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutEvaluationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutEvaluationsOutput) GoString() string {
 	return s.String()
 }
 
@@ -1312,6 +2723,114 @@ func (s ResourceIdentifier) GoString() string {
 	return s.String()
 }
 
+// Defines which resources AWS Config evaluates against a rule. The scope can
+// include one or more resource types, a combination of a tag key and value,
+// or a combination of one resource type and one or more resource IDs. Specify
+// a scope to constrain the resources to be evaluated. If you do not specify
+// a scope, all resources in your recording group are evaluated against the
+// rule.
+type Scope struct {
+	// The IDs of only those AWS resources that you want AWS Config to evaluate
+	// against the rule. If you specify a resource ID, you must specify one resource
+	// type for ComplianceResourceTypes.
+	ComplianceResourceId *string `min:"1" type:"string"`
+
+	// The resource types of only those AWS resources that you want AWS Config to
+	// evaluate against the rule. You can specify only one type if you also specify
+	// resource IDs for ComplianceResourceId.
+	ComplianceResourceTypes []*string `type:"list"`
+
+	// The tag key that is applied to only those AWS resources that you want AWS
+	// Config to evaluate against the rule.
+	TagKey *string `min:"1" type:"string"`
+
+	// The tag value applied to only those AWS resources that you want AWS Config
+	// to evaluate against the rule. If you specify a value for TagValue, you must
+	// also specify a value for TagKey.
+	TagValue *string `min:"1" type:"string"`
+
+	metadataScope `json:"-" xml:"-"`
+}
+
+type metadataScope struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Scope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Scope) GoString() string {
+	return s.String()
+}
+
+// Provides the AWS Config rule owner (AWS or customer), the rule identifier,
+// and the events that trigger the evaluation of your AWS resources.
+type Source struct {
+	// Indicates whether AWS or the customer owns and manages the AWS Config rule.
+	Owner *string `type:"string" enum:"Owner"`
+
+	// Provides the source and type of the event that causes AWS Config to evaluate
+	// your AWS resources.
+	SourceDetails []*SourceDetail `type:"list"`
+
+	// For AWS managed Config rules, a pre-defined identifier from a list. To reference
+	// the list, see Using AWS Managed Config Rules (http://docs.aws.amazon.com/config/latest/developerguide/evaluate-config_use-managed-rules.html).
+	//
+	// For customer managed Config rules, the identifier is the Amazon Resource
+	// Name (ARN) of the rule's AWS Lambda function.
+	SourceIdentifier *string `min:"1" type:"string"`
+
+	metadataSource `json:"-" xml:"-"`
+}
+
+type metadataSource struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Source) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Source) GoString() string {
+	return s.String()
+}
+
+// Provides the source and type of the event that triggers AWS Config to evaluate
+// your AWS resources against a rule.
+type SourceDetail struct {
+	// The source of the event, such as an AWS service, that triggers AWS Config
+	// to evaluate your AWS resources.
+	EventSource *string `type:"string" enum:"EventSource"`
+
+	// The type of SNS message that triggers AWS Config to run an evaluation. For
+	// evaluations that are initiated when AWS Config delivers a configuration item
+	// change notification, you must use ConfigurationItemChangeNotification. For
+	// evaluations that are initiated when AWS Config delivers a configuration snapshot,
+	// you must use ConfigurationSnapshotDeliveryCompleted.
+	MessageType *string `type:"string" enum:"MessageType"`
+
+	metadataSourceDetail `json:"-" xml:"-"`
+}
+
+type metadataSourceDetail struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s SourceDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceDetail) GoString() string {
+	return s.String()
+}
+
 // The input for the StartConfigurationRecorder action.
 type StartConfigurationRecorderInput struct {
 	// The name of the recorder object that records each configuration change made
@@ -1402,6 +2921,24 @@ const (
 )
 
 const (
+	// @enum ComplianceType
+	ComplianceTypeCompliant = "COMPLIANT"
+	// @enum ComplianceType
+	ComplianceTypeNonCompliant = "NON_COMPLIANT"
+	// @enum ComplianceType
+	ComplianceTypeNotApplicable = "NOT_APPLICABLE"
+	// @enum ComplianceType
+	ComplianceTypeInsufficientData = "INSUFFICIENT_DATA"
+)
+
+const (
+	// @enum ConfigRuleState
+	ConfigRuleStateActive = "ACTIVE"
+	// @enum ConfigRuleState
+	ConfigRuleStateDeleting = "DELETING"
+)
+
+const (
 	// @enum ConfigurationItemStatus
 	ConfigurationItemStatusOk = "Ok"
 	// @enum ConfigurationItemStatus
@@ -1419,6 +2956,38 @@ const (
 	DeliveryStatusFailure = "Failure"
 	// @enum DeliveryStatus
 	DeliveryStatusNotApplicable = "Not_Applicable"
+)
+
+const (
+	// @enum EventSource
+	EventSourceAwsConfig = "aws.config"
+)
+
+const (
+	// @enum MaximumExecutionFrequency
+	MaximumExecutionFrequencyOneHour = "One_Hour"
+	// @enum MaximumExecutionFrequency
+	MaximumExecutionFrequencyThreeHours = "Three_Hours"
+	// @enum MaximumExecutionFrequency
+	MaximumExecutionFrequencySixHours = "Six_Hours"
+	// @enum MaximumExecutionFrequency
+	MaximumExecutionFrequencyTwelveHours = "Twelve_Hours"
+	// @enum MaximumExecutionFrequency
+	MaximumExecutionFrequencyTwentyFourHours = "TwentyFour_Hours"
+)
+
+const (
+	// @enum MessageType
+	MessageTypeConfigurationItemChangeNotification = "ConfigurationItemChangeNotification"
+	// @enum MessageType
+	MessageTypeConfigurationSnapshotDeliveryCompleted = "ConfigurationSnapshotDeliveryCompleted"
+)
+
+const (
+	// @enum Owner
+	OwnerCustomLambda = "CUSTOM_LAMBDA"
+	// @enum Owner
+	OwnerAws = "AWS"
 )
 
 const (
