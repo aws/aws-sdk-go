@@ -29,7 +29,7 @@ func New(config *aws.Config) *CloudFront {
 		ServiceInfo: serviceinfo.ServiceInfo{
 			Config:      defaults.DefaultConfig.Merge(config),
 			ServiceName: "cloudfront",
-			APIVersion:  "2015-04-17",
+			APIVersion:  "2015-07-27",
 		},
 	}
 	service.Initialize()

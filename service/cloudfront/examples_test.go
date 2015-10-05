@@ -213,6 +213,7 @@ func ExampleCloudFront_CreateDistribution() {
 				MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
 				SSLSupportMethod:             aws.String("SSLSupportMethod"),
 			},
+			WebACLId: aws.String("string"),
 		},
 	}
 	resp, err := svc.CreateDistribution(params)
@@ -539,6 +540,27 @@ func ExampleCloudFront_ListDistributions() {
 	fmt.Println(resp)
 }
 
+func ExampleCloudFront_ListDistributionsByWebACLId() {
+	svc := cloudfront.New(nil)
+
+	params := &cloudfront.ListDistributionsByWebACLIdInput{
+		WebACLId: aws.String("string"), // Required
+		Marker:   aws.String("string"),
+		MaxItems: aws.Int64(1),
+	}
+	resp, err := svc.ListDistributionsByWebACLId(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleCloudFront_ListInvalidations() {
 	svc := cloudfront.New(nil)
 
@@ -781,6 +803,7 @@ func ExampleCloudFront_UpdateDistribution() {
 				MinimumProtocolVersion:       aws.String("MinimumProtocolVersion"),
 				SSLSupportMethod:             aws.String("SSLSupportMethod"),
 			},
+			WebACLId: aws.String("string"),
 		},
 		Id:      aws.String("string"), // Required
 		IfMatch: aws.String("string"),
