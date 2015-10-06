@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/dynamodbstreams"
 )
 
@@ -20,29 +18,21 @@ func ExampleDynamoDBStreams_DescribeStream() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.DescribeStreamInput{
-		StreamARN:             aws.String("StreamArn"), // Required
-		ExclusiveStartShardID: aws.String("ShardId"),
-		Limit: aws.Long(1),
+		StreamArn:             aws.String("StreamArn"), // Required
+		ExclusiveStartShardId: aws.String("ShardId"),
+		Limit: aws.Int64(1),
 	}
 	resp, err := svc.DescribeStream(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDynamoDBStreams_GetRecords() {
@@ -50,84 +40,60 @@ func ExampleDynamoDBStreams_GetRecords() {
 
 	params := &dynamodbstreams.GetRecordsInput{
 		ShardIterator: aws.String("ShardIterator"), // Required
-		Limit:         aws.Long(1),
+		Limit:         aws.Int64(1),
 	}
 	resp, err := svc.GetRecords(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDynamoDBStreams_GetShardIterator() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.GetShardIteratorInput{
-		ShardID:           aws.String("ShardId"),           // Required
+		ShardId:           aws.String("ShardId"),           // Required
 		ShardIteratorType: aws.String("ShardIteratorType"), // Required
-		StreamARN:         aws.String("StreamArn"),         // Required
+		StreamArn:         aws.String("StreamArn"),         // Required
 		SequenceNumber:    aws.String("SequenceNumber"),
 	}
 	resp, err := svc.GetShardIterator(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDynamoDBStreams_ListStreams() {
 	svc := dynamodbstreams.New(nil)
 
 	params := &dynamodbstreams.ListStreamsInput{
-		ExclusiveStartStreamARN: aws.String("StreamArn"),
-		Limit:     aws.Long(1),
+		ExclusiveStartStreamArn: aws.String("StreamArn"),
+		Limit:     aws.Int64(1),
 		TableName: aws.String("TableName"),
 	}
 	resp, err := svc.ListStreams(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

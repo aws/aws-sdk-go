@@ -6,15 +6,15 @@ package cloudsearchdomain
 import (
 	"io"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opSearch = "Search"
 
 // SearchRequest generates a request for the Search operation.
-func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *aws.Request, output *SearchOutput) {
-	op := &aws.Operation{
+func (c *CloudSearchDomain) SearchRequest(input *SearchInput) (req *request.Request, output *SearchOutput) {
+	op := &request.Operation{
 		Name:       opSearch,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-01-01/search?format=sdk&pretty=true",
@@ -58,8 +58,8 @@ func (c *CloudSearchDomain) Search(input *SearchInput) (*SearchOutput, error) {
 const opSuggest = "Suggest"
 
 // SuggestRequest generates a request for the Suggest operation.
-func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *aws.Request, output *SuggestOutput) {
-	op := &aws.Operation{
+func (c *CloudSearchDomain) SuggestRequest(input *SuggestInput) (req *request.Request, output *SuggestOutput) {
+	op := &request.Operation{
 		Name:       opSuggest,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2013-01-01/suggest?format=sdk&pretty=true",
@@ -101,8 +101,8 @@ func (c *CloudSearchDomain) Suggest(input *SuggestInput) (*SuggestOutput, error)
 const opUploadDocuments = "UploadDocuments"
 
 // UploadDocumentsRequest generates a request for the UploadDocuments operation.
-func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *aws.Request, output *UploadDocumentsOutput) {
-	op := &aws.Operation{
+func (c *CloudSearchDomain) UploadDocumentsRequest(input *UploadDocumentsInput) (req *request.Request, output *UploadDocumentsOutput) {
+	op := &request.Operation{
 		Name:       opUploadDocuments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2013-01-01/documents/batch?format=sdk",
@@ -163,7 +163,7 @@ type metadataBucket struct {
 
 // String returns the string representation
 func (s Bucket) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -185,7 +185,7 @@ type metadataBucketInfo struct {
 
 // String returns the string representation
 func (s BucketInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -208,7 +208,7 @@ type metadataDocumentServiceWarning struct {
 
 // String returns the string representation
 func (s DocumentServiceWarning) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -228,7 +228,7 @@ type Hit struct {
 	Highlights map[string]*string `locationName:"highlights" type:"map"`
 
 	// The document ID of a document that matches the search request.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	metadataHit `json:"-" xml:"-"`
 }
@@ -239,7 +239,7 @@ type metadataHit struct {
 
 // String returns the string representation
 func (s Hit) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -271,7 +271,7 @@ type metadataHits struct {
 
 // String returns the string representation
 func (s Hits) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -525,7 +525,7 @@ type SearchInput struct {
 	//   dismax: search using the simplified subset of the Apache Lucene query parser
 	// syntax defined by the DisMax query parser. For more information, see DisMax
 	// Query Parser Syntax (http://wiki.apache.org/solr/DisMaxQParserPlugin#Query_Syntax).
-	QueryParser *string `location:"querystring" locationName:"q.parser" type:"string"`
+	QueryParser *string `location:"querystring" locationName:"q.parser" type:"string" enum:"QueryParser"`
 
 	// Specifies the field and expression values to include in the response. Multiple
 	// fields or expressions are specified as a comma-separated list. By default,
@@ -567,7 +567,7 @@ type metadataSearchInput struct {
 
 // String returns the string representation
 func (s SearchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -596,7 +596,7 @@ type metadataSearchOutput struct {
 
 // String returns the string representation
 func (s SearchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -608,10 +608,10 @@ func (s SearchOutput) GoString() string {
 // (timems).
 type SearchStatus struct {
 	// The encrypted resource ID for the request.
-	RID *string `locationName:"rid" type:"string"`
+	Rid *string `locationName:"rid" type:"string"`
 
 	// How long it took to process the request, in milliseconds.
-	TimeMS *int64 `locationName:"timems" type:"long"`
+	Timems *int64 `locationName:"timems" type:"long"`
 
 	metadataSearchStatus `json:"-" xml:"-"`
 }
@@ -622,7 +622,7 @@ type metadataSearchStatus struct {
 
 // String returns the string representation
 func (s SearchStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -650,7 +650,7 @@ type metadataSuggestInput struct {
 
 // String returns the string representation
 func (s SuggestInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -678,7 +678,7 @@ type metadataSuggestModel struct {
 
 // String returns the string representation
 func (s SuggestModel) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -704,7 +704,7 @@ type metadataSuggestOutput struct {
 
 // String returns the string representation
 func (s SuggestOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -716,10 +716,10 @@ func (s SuggestOutput) GoString() string {
 // (timems).
 type SuggestStatus struct {
 	// The encrypted resource ID for the request.
-	RID *string `locationName:"rid" type:"string"`
+	Rid *string `locationName:"rid" type:"string"`
 
 	// How long it took to process the request, in milliseconds.
-	TimeMS *int64 `locationName:"timems" type:"long"`
+	Timems *int64 `locationName:"timems" type:"long"`
 
 	metadataSuggestStatus `json:"-" xml:"-"`
 }
@@ -730,7 +730,7 @@ type metadataSuggestStatus struct {
 
 // String returns the string representation
 func (s SuggestStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -741,7 +741,7 @@ func (s SuggestStatus) GoString() string {
 // An autocomplete suggestion that matches the query string specified in a SuggestRequest.
 type SuggestionMatch struct {
 	// The document ID of the suggested document.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The relevance score of a suggested match.
 	Score *int64 `locationName:"score" type:"long"`
@@ -758,7 +758,7 @@ type metadataSuggestionMatch struct {
 
 // String returns the string representation
 func (s SuggestionMatch) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -772,7 +772,7 @@ type UploadDocumentsInput struct {
 	// document batch formats:
 	//
 	//  application/json application/xml
-	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true"`
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string" required:"true" enum:"ContentType"`
 
 	// A batch of documents formatted in JSON or HTML.
 	Documents io.ReadSeeker `locationName:"documents" type:"blob" required:"true"`
@@ -786,7 +786,7 @@ type metadataUploadDocumentsInput struct {
 
 // String returns the string representation
 func (s UploadDocumentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -817,10 +817,28 @@ type metadataUploadDocumentsOutput struct {
 
 // String returns the string representation
 func (s UploadDocumentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s UploadDocumentsOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ContentType
+	ContentTypeApplicationJson = "application/json"
+	// @enum ContentType
+	ContentTypeApplicationXml = "application/xml"
+)
+
+const (
+	// @enum QueryParser
+	QueryParserSimple = "simple"
+	// @enum QueryParser
+	QueryParserStructured = "structured"
+	// @enum QueryParser
+	QueryParserLucene = "lucene"
+	// @enum QueryParser
+	QueryParserDismax = "dismax"
+)

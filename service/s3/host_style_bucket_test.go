@@ -1,12 +1,15 @@
 package s3_test
 
 import (
+	"net/url"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/stretchr/testify/assert"
 )
 
 type s3BucketTest struct {
@@ -51,11 +54,24 @@ func TestHostStyleBucketBuild(t *testing.T) {
 }
 
 func TestHostStyleBucketBuildNoSSL(t *testing.T) {
-	s := s3.New(&aws.Config{DisableSSL: true})
+	s := s3.New(&aws.Config{DisableSSL: aws.Bool(true)})
 	runTests(t, s, nosslTests)
 }
 
 func TestPathStyleBucketBuild(t *testing.T) {
-	s := s3.New(&aws.Config{S3ForcePathStyle: true})
+	s := s3.New(&aws.Config{S3ForcePathStyle: aws.Bool(true)})
 	runTests(t, s, forcepathTests)
+}
+
+func TestHostStyleBucketGetBucketLocation(t *testing.T) {
+	s := s3.New(nil)
+	req, _ := s.GetBucketLocationRequest(&s3.GetBucketLocationInput{
+		Bucket: aws.String("bucket"),
+	})
+
+	req.Build()
+	require.NoError(t, req.Error)
+	u, _ := url.Parse(req.HTTPRequest.URL.String())
+	assert.NotContains(t, u.Host, "bucket")
+	assert.Contains(t, u.Path, "bucket")
 }

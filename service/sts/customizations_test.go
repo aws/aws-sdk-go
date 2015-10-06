@@ -9,13 +9,13 @@ import (
 )
 
 var svc = sts.New(&aws.Config{
-	Region: "mock-region",
+	Region: aws.String("mock-region"),
 })
 
 func TestUnsignedRequest_AssumeRoleWithSAML(t *testing.T) {
 	req, _ := svc.AssumeRoleWithSAMLRequest(&sts.AssumeRoleWithSAMLInput{
-		PrincipalARN:  aws.String("ARN"),
-		RoleARN:       aws.String("ARN"),
+		PrincipalArn:  aws.String("ARN01234567890123456789"),
+		RoleArn:       aws.String("ARN01234567890123456789"),
 		SAMLAssertion: aws.String("ASSERT"),
 	})
 
@@ -26,7 +26,7 @@ func TestUnsignedRequest_AssumeRoleWithSAML(t *testing.T) {
 
 func TestUnsignedRequest_AssumeRoleWithWebIdentity(t *testing.T) {
 	req, _ := svc.AssumeRoleWithWebIdentityRequest(&sts.AssumeRoleWithWebIdentityInput{
-		RoleARN:          aws.String("ARN"),
+		RoleArn:          aws.String("ARN01234567890123456789"),
 		RoleSessionName:  aws.String("SESSION"),
 		WebIdentityToken: aws.String("TOKEN"),
 	})

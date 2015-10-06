@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/test/integration"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -68,7 +69,7 @@ func teardown() {
 		svc.AbortMultipartUpload(&s3.AbortMultipartUploadInput{
 			Bucket:   bucketName,
 			Key:      u.Key,
-			UploadID: u.UploadID,
+			UploadId: u.UploadId,
 		})
 	}
 
@@ -130,7 +131,7 @@ func TestUploadFailCleanup(t *testing.T) {
 
 	// Break checksum on 2nd part so it fails
 	part := 0
-	svc.Handlers.Build.PushBack(func(r *aws.Request) {
+	svc.Handlers.Build.PushBack(func(r *request.Request) {
 		if r.Operation.Name == "UploadPart" {
 			if part == 1 {
 				r.HTTPRequest.Header.Set("X-Amz-Content-Sha256", "000")
@@ -157,6 +158,6 @@ func TestUploadFailCleanup(t *testing.T) {
 	assert.NotEmpty(t, uploadID)
 
 	_, err = svc.ListParts(&s3.ListPartsInput{
-		Bucket: bucketName, Key: &key, UploadID: &uploadID})
+		Bucket: bucketName, Key: &key, UploadId: &uploadID})
 	assert.Error(t, err)
 }

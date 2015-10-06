@@ -4,6 +4,12 @@ sudo: false
 
 go:
   - 1.4
+  - 1.5
+  - tip
 
 install: "go get -v -t ./... && make deps"
 script: make unit
+
+matrix:
+  allow_failures:
+    - go: tip

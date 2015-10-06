@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
@@ -22,28 +20,20 @@ func ExampleS3_AbortMultipartUpload() {
 	params := &s3.AbortMultipartUploadInput{
 		Bucket:       aws.String("BucketName"),        // Required
 		Key:          aws.String("ObjectKey"),         // Required
-		UploadID:     aws.String("MultipartUploadId"), // Required
+		UploadId:     aws.String("MultipartUploadId"), // Required
 		RequestPayer: aws.String("RequestPayer"),
 	}
 	resp, err := svc.AbortMultipartUpload(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_CompleteMultipartUpload() {
@@ -52,12 +42,12 @@ func ExampleS3_CompleteMultipartUpload() {
 	params := &s3.CompleteMultipartUploadInput{
 		Bucket:   aws.String("BucketName"),        // Required
 		Key:      aws.String("ObjectKey"),         // Required
-		UploadID: aws.String("MultipartUploadId"), // Required
+		UploadId: aws.String("MultipartUploadId"), // Required
 		MultipartUpload: &s3.CompletedMultipartUpload{
 			Parts: []*s3.CompletedPart{
 				{ // Required
 					ETag:       aws.String("ETag"),
-					PartNumber: aws.Long(1),
+					PartNumber: aws.Int64(1),
 				},
 				// More values...
 			},
@@ -67,22 +57,14 @@ func ExampleS3_CompleteMultipartUpload() {
 	resp, err := svc.CompleteMultipartUpload(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_CopyObject() {
@@ -119,7 +101,7 @@ func ExampleS3_CopyObject() {
 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:          aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
-		SSEKMSKeyID:             aws.String("SSEKMSKeyId"),
+		SSEKMSKeyId:             aws.String("SSEKMSKeyId"),
 		ServerSideEncryption:    aws.String("ServerSideEncryption"),
 		StorageClass:            aws.String("StorageClass"),
 		WebsiteRedirectLocation: aws.String("WebsiteRedirectLocation"),
@@ -127,22 +109,14 @@ func ExampleS3_CopyObject() {
 	resp, err := svc.CopyObject(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_CreateBucket() {
@@ -163,22 +137,14 @@ func ExampleS3_CreateBucket() {
 	resp, err := svc.CreateBucket(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_CreateMultipartUpload() {
@@ -206,7 +172,7 @@ func ExampleS3_CreateMultipartUpload() {
 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:          aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
-		SSEKMSKeyID:             aws.String("SSEKMSKeyId"),
+		SSEKMSKeyId:             aws.String("SSEKMSKeyId"),
 		ServerSideEncryption:    aws.String("ServerSideEncryption"),
 		StorageClass:            aws.String("StorageClass"),
 		WebsiteRedirectLocation: aws.String("WebsiteRedirectLocation"),
@@ -214,22 +180,14 @@ func ExampleS3_CreateMultipartUpload() {
 	resp, err := svc.CreateMultipartUpload(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteBucket() {
@@ -241,49 +199,33 @@ func ExampleS3_DeleteBucket() {
 	resp, err := svc.DeleteBucket(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_DeleteBucketCORS() {
+func ExampleS3_DeleteBucketCors() {
 	svc := s3.New(nil)
 
-	params := &s3.DeleteBucketCORSInput{
+	params := &s3.DeleteBucketCorsInput{
 		Bucket: aws.String("BucketName"), // Required
 	}
-	resp, err := svc.DeleteBucketCORS(params)
+	resp, err := svc.DeleteBucketCors(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteBucketLifecycle() {
@@ -295,22 +237,14 @@ func ExampleS3_DeleteBucketLifecycle() {
 	resp, err := svc.DeleteBucketLifecycle(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteBucketPolicy() {
@@ -322,22 +256,14 @@ func ExampleS3_DeleteBucketPolicy() {
 	resp, err := svc.DeleteBucketPolicy(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteBucketReplication() {
@@ -349,22 +275,14 @@ func ExampleS3_DeleteBucketReplication() {
 	resp, err := svc.DeleteBucketReplication(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteBucketTagging() {
@@ -376,22 +294,14 @@ func ExampleS3_DeleteBucketTagging() {
 	resp, err := svc.DeleteBucketTagging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteBucketWebsite() {
@@ -403,22 +313,14 @@ func ExampleS3_DeleteBucketWebsite() {
 	resp, err := svc.DeleteBucketWebsite(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteObject() {
@@ -429,27 +331,19 @@ func ExampleS3_DeleteObject() {
 		Key:          aws.String("ObjectKey"),  // Required
 		MFA:          aws.String("MFA"),
 		RequestPayer: aws.String("RequestPayer"),
-		VersionID:    aws.String("ObjectVersionId"),
+		VersionId:    aws.String("ObjectVersionId"),
 	}
 	resp, err := svc.DeleteObject(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_DeleteObjects() {
@@ -461,11 +355,11 @@ func ExampleS3_DeleteObjects() {
 			Objects: []*s3.ObjectIdentifier{ // Required
 				{ // Required
 					Key:       aws.String("ObjectKey"), // Required
-					VersionID: aws.String("ObjectVersionId"),
+					VersionId: aws.String("ObjectVersionId"),
 				},
 				// More values...
 			},
-			Quiet: aws.Boolean(true),
+			Quiet: aws.Bool(true),
 		},
 		MFA:          aws.String("MFA"),
 		RequestPayer: aws.String("RequestPayer"),
@@ -473,76 +367,52 @@ func ExampleS3_DeleteObjects() {
 	resp, err := svc.DeleteObjects(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_GetBucketACL() {
+func ExampleS3_GetBucketAcl() {
 	svc := s3.New(nil)
 
-	params := &s3.GetBucketACLInput{
+	params := &s3.GetBucketAclInput{
 		Bucket: aws.String("BucketName"), // Required
 	}
-	resp, err := svc.GetBucketACL(params)
+	resp, err := svc.GetBucketAcl(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_GetBucketCORS() {
+func ExampleS3_GetBucketCors() {
 	svc := s3.New(nil)
 
-	params := &s3.GetBucketCORSInput{
+	params := &s3.GetBucketCorsInput{
 		Bucket: aws.String("BucketName"), // Required
 	}
-	resp, err := svc.GetBucketCORS(params)
+	resp, err := svc.GetBucketCors(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketLifecycle() {
@@ -554,22 +424,33 @@ func ExampleS3_GetBucketLifecycle() {
 	resp, err := svc.GetBucketLifecycle(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleS3_GetBucketLifecycleConfiguration() {
+	svc := s3.New(nil)
+
+	params := &s3.GetBucketLifecycleConfigurationInput{
+		Bucket: aws.String("BucketName"), // Required
+	}
+	resp, err := svc.GetBucketLifecycleConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketLocation() {
@@ -581,22 +462,14 @@ func ExampleS3_GetBucketLocation() {
 	resp, err := svc.GetBucketLocation(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketLogging() {
@@ -608,22 +481,14 @@ func ExampleS3_GetBucketLogging() {
 	resp, err := svc.GetBucketLogging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketNotification() {
@@ -635,22 +500,14 @@ func ExampleS3_GetBucketNotification() {
 	resp, err := svc.GetBucketNotification(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketNotificationConfiguration() {
@@ -662,22 +519,14 @@ func ExampleS3_GetBucketNotificationConfiguration() {
 	resp, err := svc.GetBucketNotificationConfiguration(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketPolicy() {
@@ -689,22 +538,14 @@ func ExampleS3_GetBucketPolicy() {
 	resp, err := svc.GetBucketPolicy(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketReplication() {
@@ -716,22 +557,14 @@ func ExampleS3_GetBucketReplication() {
 	resp, err := svc.GetBucketReplication(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketRequestPayment() {
@@ -743,22 +576,14 @@ func ExampleS3_GetBucketRequestPayment() {
 	resp, err := svc.GetBucketRequestPayment(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketTagging() {
@@ -770,22 +595,14 @@ func ExampleS3_GetBucketTagging() {
 	resp, err := svc.GetBucketTagging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketVersioning() {
@@ -797,22 +614,14 @@ func ExampleS3_GetBucketVersioning() {
 	resp, err := svc.GetBucketVersioning(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetBucketWebsite() {
@@ -824,22 +633,14 @@ func ExampleS3_GetBucketWebsite() {
 	resp, err := svc.GetBucketWebsite(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetObject() {
@@ -863,57 +664,41 @@ func ExampleS3_GetObject() {
 		SSECustomerAlgorithm:       aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:             aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:          aws.String("SSECustomerKeyMD5"),
-		VersionID:                  aws.String("ObjectVersionId"),
+		VersionId:                  aws.String("ObjectVersionId"),
 	}
 	resp, err := svc.GetObject(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_GetObjectACL() {
+func ExampleS3_GetObjectAcl() {
 	svc := s3.New(nil)
 
-	params := &s3.GetObjectACLInput{
+	params := &s3.GetObjectAclInput{
 		Bucket:       aws.String("BucketName"), // Required
 		Key:          aws.String("ObjectKey"),  // Required
 		RequestPayer: aws.String("RequestPayer"),
-		VersionID:    aws.String("ObjectVersionId"),
+		VersionId:    aws.String("ObjectVersionId"),
 	}
-	resp, err := svc.GetObjectACL(params)
+	resp, err := svc.GetObjectAcl(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_GetObjectTorrent() {
@@ -927,22 +712,14 @@ func ExampleS3_GetObjectTorrent() {
 	resp, err := svc.GetObjectTorrent(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_HeadBucket() {
@@ -954,22 +731,14 @@ func ExampleS3_HeadBucket() {
 	resp, err := svc.HeadBucket(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_HeadObject() {
@@ -987,27 +756,19 @@ func ExampleS3_HeadObject() {
 		SSECustomerAlgorithm: aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:       aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:    aws.String("SSECustomerKeyMD5"),
-		VersionID:            aws.String("ObjectVersionId"),
+		VersionId:            aws.String("ObjectVersionId"),
 	}
 	resp, err := svc.HeadObject(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_ListBuckets() {
@@ -1017,22 +778,14 @@ func ExampleS3_ListBuckets() {
 	resp, err := svc.ListBuckets(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_ListMultipartUploads() {
@@ -1043,29 +796,21 @@ func ExampleS3_ListMultipartUploads() {
 		Delimiter:      aws.String("Delimiter"),
 		EncodingType:   aws.String("EncodingType"),
 		KeyMarker:      aws.String("KeyMarker"),
-		MaxUploads:     aws.Long(1),
+		MaxUploads:     aws.Int64(1),
 		Prefix:         aws.String("Prefix"),
-		UploadIDMarker: aws.String("UploadIdMarker"),
+		UploadIdMarker: aws.String("UploadIdMarker"),
 	}
 	resp, err := svc.ListMultipartUploads(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_ListObjectVersions() {
@@ -1076,29 +821,21 @@ func ExampleS3_ListObjectVersions() {
 		Delimiter:       aws.String("Delimiter"),
 		EncodingType:    aws.String("EncodingType"),
 		KeyMarker:       aws.String("KeyMarker"),
-		MaxKeys:         aws.Long(1),
+		MaxKeys:         aws.Int64(1),
 		Prefix:          aws.String("Prefix"),
-		VersionIDMarker: aws.String("VersionIdMarker"),
+		VersionIdMarker: aws.String("VersionIdMarker"),
 	}
 	resp, err := svc.ListObjectVersions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_ListObjects() {
@@ -1109,28 +846,20 @@ func ExampleS3_ListObjects() {
 		Delimiter:    aws.String("Delimiter"),
 		EncodingType: aws.String("EncodingType"),
 		Marker:       aws.String("Marker"),
-		MaxKeys:      aws.Long(1),
+		MaxKeys:      aws.Int64(1),
 		Prefix:       aws.String("Prefix"),
 	}
 	resp, err := svc.ListObjects(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_ListParts() {
@@ -1139,36 +868,28 @@ func ExampleS3_ListParts() {
 	params := &s3.ListPartsInput{
 		Bucket:           aws.String("BucketName"),        // Required
 		Key:              aws.String("ObjectKey"),         // Required
-		UploadID:         aws.String("MultipartUploadId"), // Required
-		MaxParts:         aws.Long(1),
-		PartNumberMarker: aws.Long(1),
+		UploadId:         aws.String("MultipartUploadId"), // Required
+		MaxParts:         aws.Int64(1),
+		PartNumberMarker: aws.Int64(1),
 		RequestPayer:     aws.String("RequestPayer"),
 	}
 	resp, err := svc.ListParts(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_PutBucketACL() {
+func ExampleS3_PutBucketAcl() {
 	svc := s3.New(nil)
 
-	params := &s3.PutBucketACLInput{
+	params := &s3.PutBucketAclInput{
 		Bucket: aws.String("BucketName"), // Required
 		ACL:    aws.String("BucketCannedACL"),
 		AccessControlPolicy: &s3.AccessControlPolicy{
@@ -1196,76 +917,60 @@ func ExampleS3_PutBucketACL() {
 		GrantWrite:       aws.String("GrantWrite"),
 		GrantWriteACP:    aws.String("GrantWriteACP"),
 	}
-	resp, err := svc.PutBucketACL(params)
+	resp, err := svc.PutBucketAcl(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_PutBucketCORS() {
+func ExampleS3_PutBucketCors() {
 	svc := s3.New(nil)
 
-	params := &s3.PutBucketCORSInput{
+	params := &s3.PutBucketCorsInput{
 		Bucket: aws.String("BucketName"), // Required
-		CORSConfiguration: &s3.CORSConfiguration{
-			CORSRules: []*s3.CORSRule{
+		CORSConfiguration: &s3.CORSConfiguration{ // Required
+			CORSRules: []*s3.CORSRule{ // Required
 				{ // Required
-					AllowedHeaders: []*string{
-						aws.String("AllowedHeader"), // Required
-						// More values...
-					},
-					AllowedMethods: []*string{
+					AllowedMethods: []*string{ // Required
 						aws.String("AllowedMethod"), // Required
 						// More values...
 					},
-					AllowedOrigins: []*string{
+					AllowedOrigins: []*string{ // Required
 						aws.String("AllowedOrigin"), // Required
+						// More values...
+					},
+					AllowedHeaders: []*string{
+						aws.String("AllowedHeader"), // Required
 						// More values...
 					},
 					ExposeHeaders: []*string{
 						aws.String("ExposeHeader"), // Required
 						// More values...
 					},
-					MaxAgeSeconds: aws.Long(1),
+					MaxAgeSeconds: aws.Int64(1),
 				},
 				// More values...
 			},
 		},
 	}
-	resp, err := svc.PutBucketCORS(params)
+	resp, err := svc.PutBucketCors(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketLifecycle() {
@@ -1274,25 +979,25 @@ func ExampleS3_PutBucketLifecycle() {
 	params := &s3.PutBucketLifecycleInput{
 		Bucket: aws.String("BucketName"), // Required
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
-			Rules: []*s3.LifecycleRule{ // Required
+			Rules: []*s3.Rule{ // Required
 				{ // Required
 					Prefix: aws.String("Prefix"),           // Required
 					Status: aws.String("ExpirationStatus"), // Required
 					Expiration: &s3.LifecycleExpiration{
 						Date: aws.Time(time.Now()),
-						Days: aws.Long(1),
+						Days: aws.Int64(1),
 					},
 					ID: aws.String("ID"),
 					NoncurrentVersionExpiration: &s3.NoncurrentVersionExpiration{
-						NoncurrentDays: aws.Long(1),
+						NoncurrentDays: aws.Int64(1),
 					},
 					NoncurrentVersionTransition: &s3.NoncurrentVersionTransition{
-						NoncurrentDays: aws.Long(1),
+						NoncurrentDays: aws.Int64(1),
 						StorageClass:   aws.String("TransitionStorageClass"),
 					},
 					Transition: &s3.Transition{
 						Date:         aws.Time(time.Now()),
-						Days:         aws.Long(1),
+						Days:         aws.Int64(1),
 						StorageClass: aws.String("TransitionStorageClass"),
 					},
 				},
@@ -1303,22 +1008,65 @@ func ExampleS3_PutBucketLifecycle() {
 	resp, err := svc.PutBucketLifecycle(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleS3_PutBucketLifecycleConfiguration() {
+	svc := s3.New(nil)
+
+	params := &s3.PutBucketLifecycleConfigurationInput{
+		Bucket: aws.String("BucketName"), // Required
+		LifecycleConfiguration: &s3.BucketLifecycleConfiguration{
+			Rules: []*s3.LifecycleRule{ // Required
+				{ // Required
+					Prefix: aws.String("Prefix"),           // Required
+					Status: aws.String("ExpirationStatus"), // Required
+					Expiration: &s3.LifecycleExpiration{
+						Date: aws.Time(time.Now()),
+						Days: aws.Int64(1),
+					},
+					ID: aws.String("ID"),
+					NoncurrentVersionExpiration: &s3.NoncurrentVersionExpiration{
+						NoncurrentDays: aws.Int64(1),
+					},
+					NoncurrentVersionTransitions: []*s3.NoncurrentVersionTransition{
+						{ // Required
+							NoncurrentDays: aws.Int64(1),
+							StorageClass:   aws.String("TransitionStorageClass"),
+						},
+						// More values...
+					},
+					Transitions: []*s3.Transition{
+						{ // Required
+							Date:         aws.Time(time.Now()),
+							Days:         aws.Int64(1),
+							StorageClass: aws.String("TransitionStorageClass"),
+						},
+						// More values...
+					},
+				},
+				// More values...
+			},
+		},
+	}
+	resp, err := svc.PutBucketLifecycleConfiguration(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketLogging() {
@@ -1349,22 +1097,14 @@ func ExampleS3_PutBucketLogging() {
 	resp, err := svc.PutBucketLogging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketNotification() {
@@ -1380,7 +1120,7 @@ func ExampleS3_PutBucketNotification() {
 					aws.String("Event"), // Required
 					// More values...
 				},
-				ID:             aws.String("NotificationId"),
+				Id:             aws.String("NotificationId"),
 				InvocationRole: aws.String("CloudFunctionInvocationRole"),
 			},
 			QueueConfiguration: &s3.QueueConfigurationDeprecated{
@@ -1389,7 +1129,7 @@ func ExampleS3_PutBucketNotification() {
 					aws.String("Event"), // Required
 					// More values...
 				},
-				ID:    aws.String("NotificationId"),
+				Id:    aws.String("NotificationId"),
 				Queue: aws.String("QueueArn"),
 			},
 			TopicConfiguration: &s3.TopicConfigurationDeprecated{
@@ -1398,7 +1138,7 @@ func ExampleS3_PutBucketNotification() {
 					aws.String("Event"), // Required
 					// More values...
 				},
-				ID:    aws.String("NotificationId"),
+				Id:    aws.String("NotificationId"),
 				Topic: aws.String("TopicArn"),
 			},
 		},
@@ -1406,22 +1146,14 @@ func ExampleS3_PutBucketNotification() {
 	resp, err := svc.PutBucketNotification(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketNotificationConfiguration() {
@@ -1436,8 +1168,19 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 						aws.String("Event"), // Required
 						// More values...
 					},
-					LambdaFunctionARN: aws.String("LambdaFunctionArn"), // Required
-					ID:                aws.String("NotificationId"),
+					LambdaFunctionArn: aws.String("LambdaFunctionArn"), // Required
+					Filter: &s3.NotificationConfigurationFilter{
+						Key: &s3.KeyFilter{
+							FilterRules: []*s3.FilterRule{
+								{ // Required
+									Name:  aws.String("FilterRuleName"),
+									Value: aws.String("FilterRuleValue"),
+								},
+								// More values...
+							},
+						},
+					},
+					Id: aws.String("NotificationId"),
 				},
 				// More values...
 			},
@@ -1447,8 +1190,19 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 						aws.String("Event"), // Required
 						// More values...
 					},
-					QueueARN: aws.String("QueueArn"), // Required
-					ID:       aws.String("NotificationId"),
+					QueueArn: aws.String("QueueArn"), // Required
+					Filter: &s3.NotificationConfigurationFilter{
+						Key: &s3.KeyFilter{
+							FilterRules: []*s3.FilterRule{
+								{ // Required
+									Name:  aws.String("FilterRuleName"),
+									Value: aws.String("FilterRuleValue"),
+								},
+								// More values...
+							},
+						},
+					},
+					Id: aws.String("NotificationId"),
 				},
 				// More values...
 			},
@@ -1458,8 +1212,19 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 						aws.String("Event"), // Required
 						// More values...
 					},
-					TopicARN: aws.String("TopicArn"), // Required
-					ID:       aws.String("NotificationId"),
+					TopicArn: aws.String("TopicArn"), // Required
+					Filter: &s3.NotificationConfigurationFilter{
+						Key: &s3.KeyFilter{
+							FilterRules: []*s3.FilterRule{
+								{ // Required
+									Name:  aws.String("FilterRuleName"),
+									Value: aws.String("FilterRuleValue"),
+								},
+								// More values...
+							},
+						},
+					},
+					Id: aws.String("NotificationId"),
 				},
 				// More values...
 			},
@@ -1468,22 +1233,14 @@ func ExampleS3_PutBucketNotificationConfiguration() {
 	resp, err := svc.PutBucketNotificationConfiguration(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketPolicy() {
@@ -1496,22 +1253,14 @@ func ExampleS3_PutBucketPolicy() {
 	resp, err := svc.PutBucketPolicy(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketReplication() {
@@ -1524,7 +1273,8 @@ func ExampleS3_PutBucketReplication() {
 			Rules: []*s3.ReplicationRule{ // Required
 				{ // Required
 					Destination: &s3.Destination{ // Required
-						Bucket: aws.String("BucketName"), // Required
+						Bucket:       aws.String("BucketName"), // Required
+						StorageClass: aws.String("StorageClass"),
 					},
 					Prefix: aws.String("Prefix"),                // Required
 					Status: aws.String("ReplicationRuleStatus"), // Required
@@ -1537,22 +1287,14 @@ func ExampleS3_PutBucketReplication() {
 	resp, err := svc.PutBucketReplication(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketRequestPayment() {
@@ -1567,22 +1309,14 @@ func ExampleS3_PutBucketRequestPayment() {
 	resp, err := svc.PutBucketRequestPayment(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketTagging() {
@@ -1603,22 +1337,14 @@ func ExampleS3_PutBucketTagging() {
 	resp, err := svc.PutBucketTagging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketVersioning() {
@@ -1635,22 +1361,14 @@ func ExampleS3_PutBucketVersioning() {
 	resp, err := svc.PutBucketVersioning(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutBucketWebsite() {
@@ -1672,14 +1390,14 @@ func ExampleS3_PutBucketWebsite() {
 			RoutingRules: []*s3.RoutingRule{
 				{ // Required
 					Redirect: &s3.Redirect{ // Required
-						HTTPRedirectCode:     aws.String("HttpRedirectCode"),
 						HostName:             aws.String("HostName"),
+						HttpRedirectCode:     aws.String("HttpRedirectCode"),
 						Protocol:             aws.String("Protocol"),
 						ReplaceKeyPrefixWith: aws.String("ReplaceKeyPrefixWith"),
 						ReplaceKeyWith:       aws.String("ReplaceKeyWith"),
 					},
 					Condition: &s3.Condition{
-						HTTPErrorCodeReturnedEquals: aws.String("HttpErrorCodeReturnedEquals"),
+						HttpErrorCodeReturnedEquals: aws.String("HttpErrorCodeReturnedEquals"),
 						KeyPrefixEquals:             aws.String("KeyPrefixEquals"),
 					},
 				},
@@ -1690,22 +1408,14 @@ func ExampleS3_PutBucketWebsite() {
 	resp, err := svc.PutBucketWebsite(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_PutObject() {
@@ -1720,7 +1430,7 @@ func ExampleS3_PutObject() {
 		ContentDisposition: aws.String("ContentDisposition"),
 		ContentEncoding:    aws.String("ContentEncoding"),
 		ContentLanguage:    aws.String("ContentLanguage"),
-		ContentLength:      aws.Long(1),
+		ContentLength:      aws.Int64(1),
 		ContentType:        aws.String("ContentType"),
 		Expires:            aws.Time(time.Now()),
 		GrantFullControl:   aws.String("GrantFullControl"),
@@ -1735,7 +1445,7 @@ func ExampleS3_PutObject() {
 		SSECustomerAlgorithm:    aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:          aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:       aws.String("SSECustomerKeyMD5"),
-		SSEKMSKeyID:             aws.String("SSEKMSKeyId"),
+		SSEKMSKeyId:             aws.String("SSEKMSKeyId"),
 		ServerSideEncryption:    aws.String("ServerSideEncryption"),
 		StorageClass:            aws.String("StorageClass"),
 		WebsiteRedirectLocation: aws.String("WebsiteRedirectLocation"),
@@ -1743,28 +1453,20 @@ func ExampleS3_PutObject() {
 	resp, err := svc.PutObject(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleS3_PutObjectACL() {
+func ExampleS3_PutObjectAcl() {
 	svc := s3.New(nil)
 
-	params := &s3.PutObjectACLInput{
+	params := &s3.PutObjectAclInput{
 		Bucket: aws.String("BucketName"), // Required
 		Key:    aws.String("ObjectKey"),  // Required
 		ACL:    aws.String("ObjectCannedACL"),
@@ -1794,25 +1496,17 @@ func ExampleS3_PutObjectACL() {
 		GrantWriteACP:    aws.String("GrantWriteACP"),
 		RequestPayer:     aws.String("RequestPayer"),
 	}
-	resp, err := svc.PutObjectACL(params)
+	resp, err := svc.PutObjectAcl(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_RestoreObject() {
@@ -1823,29 +1517,21 @@ func ExampleS3_RestoreObject() {
 		Key:          aws.String("ObjectKey"),  // Required
 		RequestPayer: aws.String("RequestPayer"),
 		RestoreRequest: &s3.RestoreRequest{
-			Days: aws.Long(1), // Required
+			Days: aws.Int64(1), // Required
 		},
-		VersionID: aws.String("ObjectVersionId"),
+		VersionId: aws.String("ObjectVersionId"),
 	}
 	resp, err := svc.RestoreObject(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_UploadPart() {
@@ -1854,10 +1540,10 @@ func ExampleS3_UploadPart() {
 	params := &s3.UploadPartInput{
 		Bucket:               aws.String("BucketName"),        // Required
 		Key:                  aws.String("ObjectKey"),         // Required
-		PartNumber:           aws.Long(1),                     // Required
-		UploadID:             aws.String("MultipartUploadId"), // Required
+		PartNumber:           aws.Int64(1),                    // Required
+		UploadId:             aws.String("MultipartUploadId"), // Required
 		Body:                 bytes.NewReader([]byte("PAYLOAD")),
-		ContentLength:        aws.Long(1),
+		ContentLength:        aws.Int64(1),
 		RequestPayer:         aws.String("RequestPayer"),
 		SSECustomerAlgorithm: aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:       aws.String("SSECustomerKey"),
@@ -1866,22 +1552,14 @@ func ExampleS3_UploadPart() {
 	resp, err := svc.UploadPart(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleS3_UploadPartCopy() {
@@ -1891,8 +1569,8 @@ func ExampleS3_UploadPartCopy() {
 		Bucket:                         aws.String("BucketName"),        // Required
 		CopySource:                     aws.String("CopySource"),        // Required
 		Key:                            aws.String("ObjectKey"),         // Required
-		PartNumber:                     aws.Long(1),                     // Required
-		UploadID:                       aws.String("MultipartUploadId"), // Required
+		PartNumber:                     aws.Int64(1),                    // Required
+		UploadId:                       aws.String("MultipartUploadId"), // Required
 		CopySourceIfMatch:              aws.String("CopySourceIfMatch"),
 		CopySourceIfModifiedSince:      aws.Time(time.Now()),
 		CopySourceIfNoneMatch:          aws.String("CopySourceIfNoneMatch"),
@@ -1909,20 +1587,12 @@ func ExampleS3_UploadPartCopy() {
 	resp, err := svc.UploadPartCopy(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

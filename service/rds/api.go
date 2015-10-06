@@ -6,15 +6,15 @@ package rds
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
 
 // AddSourceIdentifierToSubscriptionRequest generates a request for the AddSourceIdentifierToSubscription operation.
-func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *aws.Request, output *AddSourceIdentifierToSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *RDS) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *request.Request, output *AddSourceIdentifierToSubscriptionOutput) {
+	op := &request.Operation{
 		Name:       opAddSourceIdentifierToSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *RDS) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubs
 const opAddTagsToResource = "AddTagsToResource"
 
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
-func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *AddTagsToResourceOutput) {
-	op := &aws.Operation{
+func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *AddTagsToResourceOutput) {
+	op := &request.Operation{
 		Name:       opAddTagsToResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -59,7 +59,7 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.
 
 // Adds metadata tags to an Amazon RDS resource. These tags can also be used
 // with cost allocation reporting to track cost associated with Amazon RDS resources,
-// or used in Condition statement in IAM policy for Amazon RDS.
+// or used in a Condition statement in an IAM policy for Amazon RDS.
 //
 // For an overview on tagging Amazon RDS resources, see Tagging Amazon RDS
 // Resources (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Tagging.html).
@@ -72,8 +72,8 @@ func (c *RDS) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResour
 const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 
 // ApplyPendingMaintenanceActionRequest generates a request for the ApplyPendingMaintenanceAction operation.
-func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *aws.Request, output *ApplyPendingMaintenanceActionOutput) {
-	op := &aws.Operation{
+func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanceActionInput) (req *request.Request, output *ApplyPendingMaintenanceActionOutput) {
+	op := &request.Operation{
 		Name:       opApplyPendingMaintenanceAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -89,7 +89,8 @@ func (c *RDS) ApplyPendingMaintenanceActionRequest(input *ApplyPendingMaintenanc
 	return
 }
 
-// Applies a pending maintenance action to a resource (for example, a DB instance).
+// Applies a pending maintenance action to a resource (for example, to a DB
+// instance).
 func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceActionInput) (*ApplyPendingMaintenanceActionOutput, error) {
 	req, out := c.ApplyPendingMaintenanceActionRequest(input)
 	err := req.Send()
@@ -99,8 +100,8 @@ func (c *RDS) ApplyPendingMaintenanceAction(input *ApplyPendingMaintenanceAction
 const opAuthorizeDBSecurityGroupIngress = "AuthorizeDBSecurityGroupIngress"
 
 // AuthorizeDBSecurityGroupIngressRequest generates a request for the AuthorizeDBSecurityGroupIngress operation.
-func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityGroupIngressInput) (req *request.Request, output *AuthorizeDBSecurityGroupIngressOutput) {
+	op := &request.Operation{
 		Name:       opAuthorizeDBSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -124,7 +125,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 // EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either EC2SecurityGroupName
 // or EC2SecurityGroupId for non-VPC).
 //
-//  You cannot authorize ingress from an EC2 security group in one Region to
+//  You cannot authorize ingress from an EC2 security group in one region to
 // an Amazon RDS DB instance in another. You cannot authorize ingress from a
 // VPC security group in one VPC to an Amazon RDS DB instance in another.  For
 // an overview of CIDR ranges, go to the Wikipedia Tutorial (http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
@@ -134,11 +135,40 @@ func (c *RDS) AuthorizeDBSecurityGroupIngress(input *AuthorizeDBSecurityGroupIng
 	return out, err
 }
 
+const opCopyDBClusterSnapshot = "CopyDBClusterSnapshot"
+
+// CopyDBClusterSnapshotRequest generates a request for the CopyDBClusterSnapshot operation.
+func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (req *request.Request, output *CopyDBClusterSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opCopyDBClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CopyDBClusterSnapshotInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CopyDBClusterSnapshotOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a snapshot of a DB cluster. For more information on Amazon Aurora,
+// see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) CopyDBClusterSnapshot(input *CopyDBClusterSnapshotInput) (*CopyDBClusterSnapshotOutput, error) {
+	req, out := c.CopyDBClusterSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCopyDBParameterGroup = "CopyDBParameterGroup"
 
 // CopyDBParameterGroupRequest generates a request for the CopyDBParameterGroup operation.
-func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *aws.Request, output *CopyDBParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) CopyDBParameterGroupRequest(input *CopyDBParameterGroupInput) (req *request.Request, output *CopyDBParameterGroupOutput) {
+	op := &request.Operation{
 		Name:       opCopyDBParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -164,8 +194,8 @@ func (c *RDS) CopyDBParameterGroup(input *CopyDBParameterGroupInput) (*CopyDBPar
 const opCopyDBSnapshot = "CopyDBSnapshot"
 
 // CopyDBSnapshotRequest generates a request for the CopyDBSnapshot operation.
-func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *aws.Request, output *CopyDBSnapshotOutput) {
-	op := &aws.Operation{
+func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Request, output *CopyDBSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opCopyDBSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -192,8 +222,8 @@ func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput,
 const opCopyOptionGroup = "CopyOptionGroup"
 
 // CopyOptionGroupRequest generates a request for the CopyOptionGroup operation.
-func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *aws.Request, output *CopyOptionGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) CopyOptionGroupRequest(input *CopyOptionGroupInput) (req *request.Request, output *CopyOptionGroupOutput) {
+	op := &request.Operation{
 		Name:       opCopyOptionGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -216,11 +246,123 @@ func (c *RDS) CopyOptionGroup(input *CopyOptionGroupInput) (*CopyOptionGroupOutp
 	return out, err
 }
 
+const opCreateDBCluster = "CreateDBCluster"
+
+// CreateDBClusterRequest generates a request for the CreateDBCluster operation.
+func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.Request, output *CreateDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opCreateDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new Amazon Aurora DB cluster. For more information on Amazon Aurora,
+// see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) CreateDBCluster(input *CreateDBClusterInput) (*CreateDBClusterOutput, error) {
+	req, out := c.CreateDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateDBClusterParameterGroup = "CreateDBClusterParameterGroup"
+
+// CreateDBClusterParameterGroupRequest generates a request for the CreateDBClusterParameterGroup operation.
+func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParameterGroupInput) (req *request.Request, output *CreateDBClusterParameterGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateDBClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDBClusterParameterGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateDBClusterParameterGroupOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new DB cluster parameter group.
+//
+//  Parameters in a DB cluster parameter group apply to all of the instances
+// in a DB cluster.
+//
+//  A DB cluster parameter group is initially created with the default parameters
+// for the database engine used by instances in the DB cluster. To provide custom
+// values for any of the parameters, you must modify the group after creating
+// it using ModifyDBClusterParameterGroup. Once you've created a DB cluster
+// parameter group, you need to associate it with your DB cluster using ModifyDBCluster.
+// When you associate a new DB cluster parameter group with a running DB cluster,
+// you need to reboot the DB instances in the DB cluster without failover for
+// the new DB cluster parameter group and associated settings to take effect.
+//
+//  After you create a DB cluster parameter group, you should wait at least
+// 5 minutes before creating your first DB cluster that uses that DB cluster
+// parameter group as the default parameter group. This allows Amazon RDS to
+// fully complete the create action before the DB cluster parameter group is
+// used as the default for a new DB cluster. This is especially important for
+// parameters that are critical when creating the default database for a DB
+// cluster, such as the character set for the default database defined by the
+// character_set_database parameter. You can use the Parameter Groups option
+// of the Amazon RDS console (https://console.aws.amazon.com/rds/) or the DescribeDBClusterParameters
+// command to verify that your DB cluster parameter group has been created or
+// modified.
+//
+//  For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) CreateDBClusterParameterGroup(input *CreateDBClusterParameterGroupInput) (*CreateDBClusterParameterGroupOutput, error) {
+	req, out := c.CreateDBClusterParameterGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opCreateDBClusterSnapshot = "CreateDBClusterSnapshot"
+
+// CreateDBClusterSnapshotRequest generates a request for the CreateDBClusterSnapshot operation.
+func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput) (req *request.Request, output *CreateDBClusterSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opCreateDBClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDBClusterSnapshotInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CreateDBClusterSnapshotOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a snapshot of a DB cluster. For more information on Amazon Aurora,
+// see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) CreateDBClusterSnapshot(input *CreateDBClusterSnapshotInput) (*CreateDBClusterSnapshotOutput, error) {
+	req, out := c.CreateDBClusterSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateDBInstance = "CreateDBInstance"
 
 // CreateDBInstanceRequest generates a request for the CreateDBInstance operation.
-func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *aws.Request, output *CreateDBInstanceOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *request.Request, output *CreateDBInstanceOutput) {
+	op := &request.Operation{
 		Name:       opCreateDBInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -246,8 +388,8 @@ func (c *RDS) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceO
 const opCreateDBInstanceReadReplica = "CreateDBInstanceReadReplica"
 
 // CreateDBInstanceReadReplicaRequest generates a request for the CreateDBInstanceReadReplica operation.
-func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *aws.Request, output *CreateDBInstanceReadReplicaOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadReplicaInput) (req *request.Request, output *CreateDBInstanceReadReplicaOutput) {
+	op := &request.Operation{
 		Name:       opCreateDBInstanceReadReplica,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -263,7 +405,8 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 	return
 }
 
-// Creates a DB instance that acts as a Read Replica of a source DB instance.
+// Creates a DB instance for a DB instance running MySQL or PostgreSQL that
+// acts as a Read Replica of a source DB instance.
 //
 //  All Read Replica DB instances are created as Single-AZ deployments with
 // backups disabled. All other DB instance attributes (including DB security
@@ -280,8 +423,8 @@ func (c *RDS) CreateDBInstanceReadReplica(input *CreateDBInstanceReadReplicaInpu
 const opCreateDBParameterGroup = "CreateDBParameterGroup"
 
 // CreateDBParameterGroupRequest generates a request for the CreateDBParameterGroup operation.
-func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *aws.Request, output *CreateDBParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) (req *request.Request, output *CreateDBParameterGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateDBParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -327,8 +470,8 @@ func (c *RDS) CreateDBParameterGroup(input *CreateDBParameterGroupInput) (*Creat
 const opCreateDBSecurityGroup = "CreateDBSecurityGroup"
 
 // CreateDBSecurityGroupRequest generates a request for the CreateDBSecurityGroup operation.
-func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *aws.Request, output *CreateDBSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateDBSecurityGroupRequest(input *CreateDBSecurityGroupInput) (req *request.Request, output *CreateDBSecurityGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateDBSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -355,8 +498,8 @@ func (c *RDS) CreateDBSecurityGroup(input *CreateDBSecurityGroupInput) (*CreateD
 const opCreateDBSnapshot = "CreateDBSnapshot"
 
 // CreateDBSnapshotRequest generates a request for the CreateDBSnapshot operation.
-func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *aws.Request, output *CreateDBSnapshotOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *request.Request, output *CreateDBSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opCreateDBSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -382,8 +525,8 @@ func (c *RDS) CreateDBSnapshot(input *CreateDBSnapshotInput) (*CreateDBSnapshotO
 const opCreateDBSubnetGroup = "CreateDBSubnetGroup"
 
 // CreateDBSubnetGroupRequest generates a request for the CreateDBSubnetGroup operation.
-func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *aws.Request, output *CreateDBSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req *request.Request, output *CreateDBSubnetGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateDBSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -410,8 +553,8 @@ func (c *RDS) CreateDBSubnetGroup(input *CreateDBSubnetGroupInput) (*CreateDBSub
 const opCreateEventSubscription = "CreateEventSubscription"
 
 // CreateEventSubscriptionRequest generates a request for the CreateEventSubscription operation.
-func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *aws.Request, output *CreateEventSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *request.Request, output *CreateEventSubscriptionOutput) {
+	op := &request.Operation{
 		Name:       opCreateEventSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -455,8 +598,8 @@ func (c *RDS) CreateEventSubscription(input *CreateEventSubscriptionInput) (*Cre
 const opCreateOptionGroup = "CreateOptionGroup"
 
 // CreateOptionGroupRequest generates a request for the CreateOptionGroup operation.
-func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *aws.Request, output *CreateOptionGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *request.Request, output *CreateOptionGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateOptionGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -479,11 +622,108 @@ func (c *RDS) CreateOptionGroup(input *CreateOptionGroupInput) (*CreateOptionGro
 	return out, err
 }
 
+const opDeleteDBCluster = "DeleteDBCluster"
+
+// DeleteDBClusterRequest generates a request for the DeleteDBCluster operation.
+func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.Request, output *DeleteDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// The DeleteDBCluster action deletes a previously provisioned DB cluster. A
+// successful response from the web service indicates the request was received
+// correctly. When you delete a DB cluster, all automated backups for that DB
+// cluster are deleted and cannot be recovered. Manual DB cluster snapshots
+// of the DB cluster to be deleted are not deleted.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DeleteDBCluster(input *DeleteDBClusterInput) (*DeleteDBClusterOutput, error) {
+	req, out := c.DeleteDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteDBClusterParameterGroup = "DeleteDBClusterParameterGroup"
+
+// DeleteDBClusterParameterGroupRequest generates a request for the DeleteDBClusterParameterGroup operation.
+func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParameterGroupInput) (req *request.Request, output *DeleteDBClusterParameterGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDBClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDBClusterParameterGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteDBClusterParameterGroupOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a specified DB cluster parameter group. The DB cluster parameter
+// group to be deleted cannot be associated with any DB clusters.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DeleteDBClusterParameterGroup(input *DeleteDBClusterParameterGroupInput) (*DeleteDBClusterParameterGroupOutput, error) {
+	req, out := c.DeleteDBClusterParameterGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteDBClusterSnapshot = "DeleteDBClusterSnapshot"
+
+// DeleteDBClusterSnapshotRequest generates a request for the DeleteDBClusterSnapshot operation.
+func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput) (req *request.Request, output *DeleteDBClusterSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDBClusterSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDBClusterSnapshotInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteDBClusterSnapshotOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a DB cluster snapshot. If the snapshot is being copied, the copy
+// operation is terminated.
+//
+// The DB cluster snapshot must be in the available state to be deleted. For
+// more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DeleteDBClusterSnapshot(input *DeleteDBClusterSnapshotInput) (*DeleteDBClusterSnapshotOutput, error) {
+	req, out := c.DeleteDBClusterSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDeleteDBInstance = "DeleteDBInstance"
 
 // DeleteDBInstanceRequest generates a request for the DeleteDBInstance operation.
-func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Request, output *DeleteDBInstanceOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *request.Request, output *DeleteDBInstanceOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDBInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -509,6 +749,10 @@ func (c *RDS) DeleteDBInstanceRequest(input *DeleteDBInstanceInput) (req *aws.Re
 // be "deleting" until the DB snapshot is created. The API action DescribeDBInstance
 // is used to monitor the status of this operation. The action cannot be canceled
 // or reverted once submitted.
+//
+// Note that when a DB instance is in a failure state and has a status of 'failed',
+// 'incompatible-restore', or 'incompatible-network', it can only be deleted
+// when the SkipFinalSnapshot parameter is set to "true".
 func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceOutput, error) {
 	req, out := c.DeleteDBInstanceRequest(input)
 	err := req.Send()
@@ -518,8 +762,8 @@ func (c *RDS) DeleteDBInstance(input *DeleteDBInstanceInput) (*DeleteDBInstanceO
 const opDeleteDBParameterGroup = "DeleteDBParameterGroup"
 
 // DeleteDBParameterGroupRequest generates a request for the DeleteDBParameterGroup operation.
-func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) (req *aws.Request, output *DeleteDBParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteDBParameterGroupRequest(input *DeleteDBParameterGroupInput) (req *request.Request, output *DeleteDBParameterGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDBParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -546,8 +790,8 @@ func (c *RDS) DeleteDBParameterGroup(input *DeleteDBParameterGroupInput) (*Delet
 const opDeleteDBSecurityGroup = "DeleteDBSecurityGroup"
 
 // DeleteDBSecurityGroupRequest generates a request for the DeleteDBSecurityGroup operation.
-func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (req *aws.Request, output *DeleteDBSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteDBSecurityGroupRequest(input *DeleteDBSecurityGroupInput) (req *request.Request, output *DeleteDBSecurityGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDBSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -575,8 +819,8 @@ func (c *RDS) DeleteDBSecurityGroup(input *DeleteDBSecurityGroupInput) (*DeleteD
 const opDeleteDBSnapshot = "DeleteDBSnapshot"
 
 // DeleteDBSnapshotRequest generates a request for the DeleteDBSnapshot operation.
-func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *aws.Request, output *DeleteDBSnapshotOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteDBSnapshotRequest(input *DeleteDBSnapshotInput) (req *request.Request, output *DeleteDBSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDBSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -605,8 +849,8 @@ func (c *RDS) DeleteDBSnapshot(input *DeleteDBSnapshotInput) (*DeleteDBSnapshotO
 const opDeleteDBSubnetGroup = "DeleteDBSubnetGroup"
 
 // DeleteDBSubnetGroupRequest generates a request for the DeleteDBSubnetGroup operation.
-func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *aws.Request, output *DeleteDBSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteDBSubnetGroupRequest(input *DeleteDBSubnetGroupInput) (req *request.Request, output *DeleteDBSubnetGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDBSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -634,8 +878,8 @@ func (c *RDS) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (*DeleteDBSub
 const opDeleteEventSubscription = "DeleteEventSubscription"
 
 // DeleteEventSubscriptionRequest generates a request for the DeleteEventSubscription operation.
-func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *aws.Request, output *DeleteEventSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *request.Request, output *DeleteEventSubscriptionOutput) {
+	op := &request.Operation{
 		Name:       opDeleteEventSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -661,8 +905,8 @@ func (c *RDS) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*Del
 const opDeleteOptionGroup = "DeleteOptionGroup"
 
 // DeleteOptionGroupRequest generates a request for the DeleteOptionGroup operation.
-func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *aws.Request, output *DeleteOptionGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) DeleteOptionGroupRequest(input *DeleteOptionGroupInput) (req *request.Request, output *DeleteOptionGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteOptionGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -688,8 +932,8 @@ func (c *RDS) DeleteOptionGroup(input *DeleteOptionGroupInput) (*DeleteOptionGro
 const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
 // DescribeAccountAttributesRequest generates a request for the DescribeAccountAttributes operation.
-func (c *RDS) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *aws.Request, output *DescribeAccountAttributesOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeAccountAttributesRequest(input *DescribeAccountAttributesInput) (req *request.Request, output *DescribeAccountAttributesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAccountAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -720,8 +964,8 @@ func (c *RDS) DescribeAccountAttributes(input *DescribeAccountAttributesInput) (
 const opDescribeCertificates = "DescribeCertificates"
 
 // DescribeCertificatesRequest generates a request for the DescribeCertificates operation.
-func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req *aws.Request, output *DescribeCertificatesOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeCertificatesRequest(input *DescribeCertificatesInput) (req *request.Request, output *DescribeCertificatesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCertificates,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -744,15 +988,139 @@ func (c *RDS) DescribeCertificates(input *DescribeCertificatesInput) (*DescribeC
 	return out, err
 }
 
+const opDescribeDBClusterParameterGroups = "DescribeDBClusterParameterGroups"
+
+// DescribeDBClusterParameterGroupsRequest generates a request for the DescribeDBClusterParameterGroups operation.
+func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterParameterGroupsInput) (req *request.Request, output *DescribeDBClusterParameterGroupsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBClusterParameterGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDBClusterParameterGroupsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDBClusterParameterGroupsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of DBClusterParameterGroup descriptions. If a DBClusterParameterGroupName
+// parameter is specified, the list will contain only the description of the
+// specified DB cluster parameter group.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DescribeDBClusterParameterGroups(input *DescribeDBClusterParameterGroupsInput) (*DescribeDBClusterParameterGroupsOutput, error) {
+	req, out := c.DescribeDBClusterParameterGroupsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeDBClusterParameters = "DescribeDBClusterParameters"
+
+// DescribeDBClusterParametersRequest generates a request for the DescribeDBClusterParameters operation.
+func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParametersInput) (req *request.Request, output *DescribeDBClusterParametersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBClusterParameters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDBClusterParametersInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDBClusterParametersOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the detailed parameter list for a particular DB cluster parameter
+// group.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DescribeDBClusterParameters(input *DescribeDBClusterParametersInput) (*DescribeDBClusterParametersOutput, error) {
+	req, out := c.DescribeDBClusterParametersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeDBClusterSnapshots = "DescribeDBClusterSnapshots"
+
+// DescribeDBClusterSnapshotsRequest generates a request for the DescribeDBClusterSnapshots operation.
+func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshotsInput) (req *request.Request, output *DescribeDBClusterSnapshotsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBClusterSnapshots,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDBClusterSnapshotsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDBClusterSnapshotsOutput{}
+	req.Data = output
+	return
+}
+
+// Returns information about DB cluster snapshots. This API supports pagination.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DescribeDBClusterSnapshots(input *DescribeDBClusterSnapshotsInput) (*DescribeDBClusterSnapshotsOutput, error) {
+	req, out := c.DescribeDBClusterSnapshotsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDescribeDBClusters = "DescribeDBClusters"
+
+// DescribeDBClustersRequest generates a request for the DescribeDBClusters operation.
+func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *request.Request, output *DescribeDBClustersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBClusters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDBClustersInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDBClustersOutput{}
+	req.Data = output
+	return
+}
+
+// Returns information about provisioned Aurora DB clusters. This API supports
+// pagination.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DescribeDBClusters(input *DescribeDBClustersInput) (*DescribeDBClustersOutput, error) {
+	req, out := c.DescribeDBClustersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeDBEngineVersions = "DescribeDBEngineVersions"
 
 // DescribeDBEngineVersionsRequest generates a request for the DescribeDBEngineVersions operation.
-func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *aws.Request, output *DescribeDBEngineVersionsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBEngineVersionsRequest(input *DescribeDBEngineVersionsInput) (req *request.Request, output *DescribeDBEngineVersionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBEngineVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -787,12 +1155,12 @@ func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput
 const opDescribeDBInstances = "DescribeDBInstances"
 
 // DescribeDBInstancesRequest generates a request for the DescribeDBInstances operation.
-func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *aws.Request, output *DescribeDBInstancesOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBInstancesRequest(input *DescribeDBInstancesInput) (req *request.Request, output *DescribeDBInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -827,12 +1195,12 @@ func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(
 const opDescribeDBLogFiles = "DescribeDBLogFiles"
 
 // DescribeDBLogFilesRequest generates a request for the DescribeDBLogFiles operation.
-func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *aws.Request, output *DescribeDBLogFilesOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *request.Request, output *DescribeDBLogFilesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBLogFiles,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -867,12 +1235,12 @@ func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(p 
 const opDescribeDBParameterGroups = "DescribeDBParameterGroups"
 
 // DescribeDBParameterGroupsRequest generates a request for the DescribeDBParameterGroups operation.
-func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *aws.Request, output *DescribeDBParameterGroupsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBParameterGroupsRequest(input *DescribeDBParameterGroupsInput) (req *request.Request, output *DescribeDBParameterGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBParameterGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -909,12 +1277,12 @@ func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInp
 const opDescribeDBParameters = "DescribeDBParameters"
 
 // DescribeDBParametersRequest generates a request for the DescribeDBParameters operation.
-func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *aws.Request, output *DescribeDBParametersOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBParametersRequest(input *DescribeDBParametersInput) (req *request.Request, output *DescribeDBParametersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -949,12 +1317,12 @@ func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn fun
 const opDescribeDBSecurityGroups = "DescribeDBSecurityGroups"
 
 // DescribeDBSecurityGroupsRequest generates a request for the DescribeDBSecurityGroups operation.
-func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *aws.Request, output *DescribeDBSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBSecurityGroupsRequest(input *DescribeDBSecurityGroupsInput) (req *request.Request, output *DescribeDBSecurityGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBSecurityGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -991,12 +1359,12 @@ func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput
 const opDescribeDBSnapshots = "DescribeDBSnapshots"
 
 // DescribeDBSnapshotsRequest generates a request for the DescribeDBSnapshots operation.
-func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *aws.Request, output *DescribeDBSnapshotsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBSnapshotsRequest(input *DescribeDBSnapshotsInput) (req *request.Request, output *DescribeDBSnapshotsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1031,12 +1399,12 @@ func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(
 const opDescribeDBSubnetGroups = "DescribeDBSubnetGroups"
 
 // DescribeDBSubnetGroupsRequest generates a request for the DescribeDBSubnetGroups operation.
-func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *aws.Request, output *DescribeDBSubnetGroupsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeDBSubnetGroupsRequest(input *DescribeDBSubnetGroupsInput) (req *request.Request, output *DescribeDBSubnetGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDBSubnetGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1071,15 +1439,46 @@ func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn
 	})
 }
 
+const opDescribeEngineDefaultClusterParameters = "DescribeEngineDefaultClusterParameters"
+
+// DescribeEngineDefaultClusterParametersRequest generates a request for the DescribeEngineDefaultClusterParameters operation.
+func (c *RDS) DescribeEngineDefaultClusterParametersRequest(input *DescribeEngineDefaultClusterParametersInput) (req *request.Request, output *DescribeEngineDefaultClusterParametersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEngineDefaultClusterParameters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEngineDefaultClusterParametersInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeEngineDefaultClusterParametersOutput{}
+	req.Data = output
+	return
+}
+
+// Returns the default engine and system parameter information for the cluster
+// database engine.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) DescribeEngineDefaultClusterParameters(input *DescribeEngineDefaultClusterParametersInput) (*DescribeEngineDefaultClusterParametersOutput, error) {
+	req, out := c.DescribeEngineDefaultClusterParametersRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
-func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *request.Request, output *DescribeEngineDefaultParametersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEngineDefaultParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"EngineDefaults.Marker"},
 			LimitToken:      "MaxRecords",
@@ -1115,8 +1514,8 @@ func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultP
 const opDescribeEventCategories = "DescribeEventCategories"
 
 // DescribeEventCategoriesRequest generates a request for the DescribeEventCategories operation.
-func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *aws.Request, output *DescribeEventCategoriesOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeEventCategoriesRequest(input *DescribeEventCategoriesInput) (req *request.Request, output *DescribeEventCategoriesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEventCategories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1145,12 +1544,12 @@ func (c *RDS) DescribeEventCategories(input *DescribeEventCategoriesInput) (*Des
 const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 
 // DescribeEventSubscriptionsRequest generates a request for the DescribeEventSubscriptions operation.
-func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *aws.Request, output *DescribeEventSubscriptionsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *request.Request, output *DescribeEventSubscriptionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEventSubscriptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1189,12 +1588,12 @@ func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsI
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1233,12 +1632,12 @@ func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(p *Describ
 const opDescribeOptionGroupOptions = "DescribeOptionGroupOptions"
 
 // DescribeOptionGroupOptionsRequest generates a request for the DescribeOptionGroupOptions operation.
-func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *aws.Request, output *DescribeOptionGroupOptionsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeOptionGroupOptionsRequest(input *DescribeOptionGroupOptionsInput) (req *request.Request, output *DescribeOptionGroupOptionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeOptionGroupOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1273,12 +1672,12 @@ func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsI
 const opDescribeOptionGroups = "DescribeOptionGroups"
 
 // DescribeOptionGroupsRequest generates a request for the DescribeOptionGroups operation.
-func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *aws.Request, output *DescribeOptionGroupsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeOptionGroupsRequest(input *DescribeOptionGroupsInput) (req *request.Request, output *DescribeOptionGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeOptionGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1313,12 +1712,12 @@ func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn fun
 const opDescribeOrderableDBInstanceOptions = "DescribeOrderableDBInstanceOptions"
 
 // DescribeOrderableDBInstanceOptionsRequest generates a request for the DescribeOrderableDBInstanceOptions operation.
-func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *aws.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderableDBInstanceOptionsInput) (req *request.Request, output *DescribeOrderableDBInstanceOptionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeOrderableDBInstanceOptions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1353,8 +1752,8 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDB
 const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 
 // DescribePendingMaintenanceActionsRequest generates a request for the DescribePendingMaintenanceActions operation.
-func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *aws.Request, output *DescribePendingMaintenanceActionsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribePendingMaintenanceActionsRequest(input *DescribePendingMaintenanceActionsInput) (req *request.Request, output *DescribePendingMaintenanceActionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribePendingMaintenanceActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1381,12 +1780,12 @@ func (c *RDS) DescribePendingMaintenanceActions(input *DescribePendingMaintenanc
 const opDescribeReservedDBInstances = "DescribeReservedDBInstances"
 
 // DescribeReservedDBInstancesRequest generates a request for the DescribeReservedDBInstances operation.
-func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *aws.Request, output *DescribeReservedDBInstancesOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeReservedDBInstancesRequest(input *DescribeReservedDBInstancesInput) (req *request.Request, output *DescribeReservedDBInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeReservedDBInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1422,12 +1821,12 @@ func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstance
 const opDescribeReservedDBInstancesOfferings = "DescribeReservedDBInstancesOfferings"
 
 // DescribeReservedDBInstancesOfferingsRequest generates a request for the DescribeReservedDBInstancesOfferings operation.
-func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *aws.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
-	op := &aws.Operation{
+func (c *RDS) DescribeReservedDBInstancesOfferingsRequest(input *DescribeReservedDBInstancesOfferingsInput) (req *request.Request, output *DescribeReservedDBInstancesOfferingsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeReservedDBInstancesOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1462,12 +1861,12 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedD
 const opDownloadDBLogFilePortion = "DownloadDBLogFilePortion"
 
 // DownloadDBLogFilePortionRequest generates a request for the DownloadDBLogFilePortion operation.
-func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *aws.Request, output *DownloadDBLogFilePortionOutput) {
-	op := &aws.Operation{
+func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInput) (req *request.Request, output *DownloadDBLogFilePortionOutput) {
+	op := &request.Operation{
 		Name:       opDownloadDBLogFilePortion,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "NumberOfLines",
@@ -1485,7 +1884,7 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 	return
 }
 
-// Downloads all or a portion of the specified log file.
+// Downloads all or a portion of the specified log file, up to 1 MB in size.
 func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*DownloadDBLogFilePortionOutput, error) {
 	req, out := c.DownloadDBLogFilePortionRequest(input)
 	err := req.Send()
@@ -1499,11 +1898,52 @@ func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput
 	})
 }
 
+const opFailoverDBCluster = "FailoverDBCluster"
+
+// FailoverDBClusterRequest generates a request for the FailoverDBCluster operation.
+func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *request.Request, output *FailoverDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opFailoverDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &FailoverDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &FailoverDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Forces a failover for a DB cluster.
+//
+// A failover for a DB cluster promotes one of the read-only instances in the
+// DB cluster to the master DB instance (the cluster writer) and deletes the
+// current primary instance.
+//
+// Amazon Aurora will automatically fail over to a read-only instance, if one
+// exists, when the primary instance fails. You can force a failover when you
+// want to simulate a failure of a DB instance for testing. Because each instance
+// in a DB cluster has its own endpoint address, you will need to clean up and
+// re-establish any existing connections that use those endpoint addresses when
+// the failover is complete.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) FailoverDBCluster(input *FailoverDBClusterInput) (*FailoverDBClusterOutput, error) {
+	req, out := c.FailoverDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
-func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *ListTagsForResourceOutput) {
-	op := &aws.Operation{
+func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1529,11 +1969,90 @@ func (c *RDS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsFor
 	return out, err
 }
 
+const opModifyDBCluster = "ModifyDBCluster"
+
+// ModifyDBClusterRequest generates a request for the ModifyDBCluster operation.
+func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.Request, output *ModifyDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opModifyDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBClusterInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ModifyDBClusterOutput{}
+	req.Data = output
+	return
+}
+
+// Modify a setting for an Amazon Aurora DB cluster. You can change one or more
+// database configuration parameters by specifying these parameters and the
+// new values in the request. For more information on Amazon Aurora, see Aurora
+// on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) ModifyDBCluster(input *ModifyDBClusterInput) (*ModifyDBClusterOutput, error) {
+	req, out := c.ModifyDBClusterRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opModifyDBClusterParameterGroup = "ModifyDBClusterParameterGroup"
+
+// ModifyDBClusterParameterGroupRequest generates a request for the ModifyDBClusterParameterGroup operation.
+func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParameterGroupInput) (req *request.Request, output *DBClusterParameterGroupNameMessage) {
+	op := &request.Operation{
+		Name:       opModifyDBClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBClusterParameterGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DBClusterParameterGroupNameMessage{}
+	req.Data = output
+	return
+}
+
+// Modifies the parameters of a DB cluster parameter group. To modify more than
+// one parameter, submit a list of the following: ParameterName, ParameterValue,
+// and ApplyMethod. A maximum of 20 parameters can be modified in a single request.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+//
+//   Changes to dynamic parameters are applied immediately. Changes to static
+// parameters require a reboot without failover to the DB cluster associated
+// with the parameter group before the change can take effect.
+//
+//   After you create a DB cluster parameter group, you should wait at least
+// 5 minutes before creating your first DB cluster that uses that DB cluster
+// parameter group as the default parameter group. This allows Amazon RDS to
+// fully complete the create action before the parameter group is used as the
+// default for a new DB cluster. This is especially important for parameters
+// that are critical when creating the default database for a DB cluster, such
+// as the character set for the default database defined by the character_set_database
+// parameter. You can use the Parameter Groups option of the Amazon RDS console
+// (https://console.aws.amazon.com/rds/) or the DescribeDBClusterParameters
+// command to verify that your DB cluster parameter group has been created or
+// modified.
+func (c *RDS) ModifyDBClusterParameterGroup(input *ModifyDBClusterParameterGroupInput) (*DBClusterParameterGroupNameMessage, error) {
+	req, out := c.ModifyDBClusterParameterGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opModifyDBInstance = "ModifyDBInstance"
 
 // ModifyDBInstanceRequest generates a request for the ModifyDBInstance operation.
-func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *aws.Request, output *ModifyDBInstanceOutput) {
-	op := &aws.Operation{
+func (c *RDS) ModifyDBInstanceRequest(input *ModifyDBInstanceInput) (req *request.Request, output *ModifyDBInstanceOutput) {
+	op := &request.Operation{
 		Name:       opModifyDBInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1560,8 +2079,8 @@ func (c *RDS) ModifyDBInstance(input *ModifyDBInstanceInput) (*ModifyDBInstanceO
 const opModifyDBParameterGroup = "ModifyDBParameterGroup"
 
 // ModifyDBParameterGroupRequest generates a request for the ModifyDBParameterGroup operation.
-func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) (req *request.Request, output *DBParameterGroupNameMessage) {
+	op := &request.Operation{
 		Name:       opModifyDBParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1604,8 +2123,8 @@ func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBPar
 const opModifyDBSubnetGroup = "ModifyDBSubnetGroup"
 
 // ModifyDBSubnetGroupRequest generates a request for the ModifyDBSubnetGroup operation.
-func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *aws.Request, output *ModifyDBSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req *request.Request, output *ModifyDBSubnetGroupOutput) {
+	op := &request.Operation{
 		Name:       opModifyDBSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1632,8 +2151,8 @@ func (c *RDS) ModifyDBSubnetGroup(input *ModifyDBSubnetGroupInput) (*ModifyDBSub
 const opModifyEventSubscription = "ModifyEventSubscription"
 
 // ModifyEventSubscriptionRequest generates a request for the ModifyEventSubscription operation.
-func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *aws.Request, output *ModifyEventSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *RDS) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *request.Request, output *ModifyEventSubscriptionOutput) {
+	op := &request.Operation{
 		Name:       opModifyEventSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1667,8 +2186,8 @@ func (c *RDS) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*Mod
 const opModifyOptionGroup = "ModifyOptionGroup"
 
 // ModifyOptionGroupRequest generates a request for the ModifyOptionGroup operation.
-func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *aws.Request, output *ModifyOptionGroupOutput) {
-	op := &aws.Operation{
+func (c *RDS) ModifyOptionGroupRequest(input *ModifyOptionGroupInput) (req *request.Request, output *ModifyOptionGroupOutput) {
+	op := &request.Operation{
 		Name:       opModifyOptionGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1694,8 +2213,8 @@ func (c *RDS) ModifyOptionGroup(input *ModifyOptionGroupInput) (*ModifyOptionGro
 const opPromoteReadReplica = "PromoteReadReplica"
 
 // PromoteReadReplicaRequest generates a request for the PromoteReadReplica operation.
-func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *aws.Request, output *PromoteReadReplicaOutput) {
-	op := &aws.Operation{
+func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *request.Request, output *PromoteReadReplicaOutput) {
+	op := &request.Operation{
 		Name:       opPromoteReadReplica,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1726,8 +2245,8 @@ func (c *RDS) PromoteReadReplica(input *PromoteReadReplicaInput) (*PromoteReadRe
 const opPurchaseReservedDBInstancesOffering = "PurchaseReservedDBInstancesOffering"
 
 // PurchaseReservedDBInstancesOfferingRequest generates a request for the PurchaseReservedDBInstancesOffering operation.
-func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *aws.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
-	op := &aws.Operation{
+func (c *RDS) PurchaseReservedDBInstancesOfferingRequest(input *PurchaseReservedDBInstancesOfferingInput) (req *request.Request, output *PurchaseReservedDBInstancesOfferingOutput) {
+	op := &request.Operation{
 		Name:       opPurchaseReservedDBInstancesOffering,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1753,8 +2272,8 @@ func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInsta
 const opRebootDBInstance = "RebootDBInstance"
 
 // RebootDBInstanceRequest generates a request for the RebootDBInstance operation.
-func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *aws.Request, output *RebootDBInstanceOutput) {
-	op := &aws.Operation{
+func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *request.Request, output *RebootDBInstanceOutput) {
+	op := &request.Operation{
 		Name:       opRebootDBInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1796,8 +2315,8 @@ func (c *RDS) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanceO
 const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubscription"
 
 // RemoveSourceIdentifierFromSubscriptionRequest generates a request for the RemoveSourceIdentifierFromSubscription operation.
-func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *aws.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
-	op := &aws.Operation{
+func (c *RDS) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *request.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
+	op := &request.Operation{
 		Name:       opRemoveSourceIdentifierFromSubscription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1823,8 +2342,8 @@ func (c *RDS) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifi
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
-func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *RemoveTagsFromResourceOutput) {
-	op := &aws.Operation{
+func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *RemoveTagsFromResourceOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTagsFromResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1850,11 +2369,50 @@ func (c *RDS) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*Remov
 	return out, err
 }
 
+const opResetDBClusterParameterGroup = "ResetDBClusterParameterGroup"
+
+// ResetDBClusterParameterGroupRequest generates a request for the ResetDBClusterParameterGroup operation.
+func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameterGroupInput) (req *request.Request, output *DBClusterParameterGroupNameMessage) {
+	op := &request.Operation{
+		Name:       opResetDBClusterParameterGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ResetDBClusterParameterGroupInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DBClusterParameterGroupNameMessage{}
+	req.Data = output
+	return
+}
+
+// Modifies the parameters of a DB cluster parameter group to the default value.
+// To reset specific parameters submit a list of the following: ParameterName
+// and ApplyMethod. To reset the entire DB cluster parameter group, specify
+// the DBClusterParameterGroupName and ResetAllParameters parameters.
+//
+//  When resetting the entire group, dynamic parameters are updated immediately
+// and static parameters are set to pending-reboot to take effect on the next
+// DB instance restart or RebootDBInstance request. You must call RebootDBInstance
+// for every DB instance in your DB cluster that you want the updated static
+// parameter to apply to.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) ResetDBClusterParameterGroup(input *ResetDBClusterParameterGroupInput) (*DBClusterParameterGroupNameMessage, error) {
+	req, out := c.ResetDBClusterParameterGroupRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opResetDBParameterGroup = "ResetDBParameterGroup"
 
 // ResetDBParameterGroupRequest generates a request for the ResetDBParameterGroup operation.
-func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *aws.Request, output *DBParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *RDS) ResetDBParameterGroupRequest(input *ResetDBParameterGroupInput) (req *request.Request, output *DBParameterGroupNameMessage) {
+	op := &request.Operation{
 		Name:       opResetDBParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1883,11 +2441,78 @@ func (c *RDS) ResetDBParameterGroup(input *ResetDBParameterGroupInput) (*DBParam
 	return out, err
 }
 
+const opRestoreDBClusterFromSnapshot = "RestoreDBClusterFromSnapshot"
+
+// RestoreDBClusterFromSnapshotRequest generates a request for the RestoreDBClusterFromSnapshot operation.
+func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSnapshotInput) (req *request.Request, output *RestoreDBClusterFromSnapshotOutput) {
+	op := &request.Operation{
+		Name:       opRestoreDBClusterFromSnapshot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RestoreDBClusterFromSnapshotInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RestoreDBClusterFromSnapshotOutput{}
+	req.Data = output
+	return
+}
+
+// Creates a new DB cluster from a DB cluster snapshot. The target DB cluster
+// is created from the source DB cluster restore point with the same configuration
+// as the original source DB cluster, except that the new DB cluster is created
+// with the default security group.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) RestoreDBClusterFromSnapshot(input *RestoreDBClusterFromSnapshotInput) (*RestoreDBClusterFromSnapshotOutput, error) {
+	req, out := c.RestoreDBClusterFromSnapshotRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRestoreDBClusterToPointInTime = "RestoreDBClusterToPointInTime"
+
+// RestoreDBClusterToPointInTimeRequest generates a request for the RestoreDBClusterToPointInTime operation.
+func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPointInTimeInput) (req *request.Request, output *RestoreDBClusterToPointInTimeOutput) {
+	op := &request.Operation{
+		Name:       opRestoreDBClusterToPointInTime,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RestoreDBClusterToPointInTimeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RestoreDBClusterToPointInTimeOutput{}
+	req.Data = output
+	return
+}
+
+// Restores a DB cluster to an arbitrary point in time. Users can restore to
+// any point in time before LatestRestorableTime for up to BackupRetentionPeriod
+// days. The target DB cluster is created from the source DB cluster with the
+// same configuration as the original DB cluster, except that the new DB cluster
+// is created with the default DB security group.
+//
+// For more information on Amazon Aurora, see Aurora on Amazon RDS (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Aurora.html)
+// in the Amazon RDS User Guide.
+func (c *RDS) RestoreDBClusterToPointInTime(input *RestoreDBClusterToPointInTimeInput) (*RestoreDBClusterToPointInTimeOutput, error) {
+	req, out := c.RestoreDBClusterToPointInTimeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opRestoreDBInstanceFromDBSnapshot = "RestoreDBInstanceFromDBSnapshot"
 
 // RestoreDBInstanceFromDBSnapshotRequest generates a request for the RestoreDBInstanceFromDBSnapshot operation.
-func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *aws.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
-	op := &aws.Operation{
+func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFromDBSnapshotInput) (req *request.Request, output *RestoreDBInstanceFromDBSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opRestoreDBInstanceFromDBSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1904,9 +2529,13 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 }
 
 // Creates a new DB instance from a DB snapshot. The target database is created
-// from the source database restore point with the same configuration as the
-// original source database, except that the new RDS instance is created with
-// the default security group.
+// from the source database restore point with the most of original configuration,
+// but in a system chosen availability zone with the default security group,
+// the default subnet group, and the default DB parameter group. By default,
+// the new DB instance is created as a single-AZ deployment except when the
+// instance is a SQL Server instance that has an option group that is associated
+// with mirroring; in this case, the instance becomes a mirrored AZ deployment
+// and not a single-AZ deployment.
 //
 // If your intent is to replace your original DB instance with the new, restored
 // DB instance, then rename your original DB instance before you call the RestoreDBInstanceFromDBSnapshot
@@ -1925,8 +2554,8 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnap
 const opRestoreDBInstanceToPointInTime = "RestoreDBInstanceToPointInTime"
 
 // RestoreDBInstanceToPointInTimeRequest generates a request for the RestoreDBInstanceToPointInTime operation.
-func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *aws.Request, output *RestoreDBInstanceToPointInTimeOutput) {
-	op := &aws.Operation{
+func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPointInTimeInput) (req *request.Request, output *RestoreDBInstanceToPointInTimeOutput) {
+	op := &request.Operation{
 		Name:       opRestoreDBInstanceToPointInTime,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1944,9 +2573,13 @@ func (c *RDS) RestoreDBInstanceToPointInTimeRequest(input *RestoreDBInstanceToPo
 
 // Restores a DB instance to an arbitrary point-in-time. Users can restore to
 // any point in time before the LatestRestorableTime for up to BackupRetentionPeriod
-// days. The target database is created from the source database with the same
-// configuration as the original database except that the DB instance is created
-// with the default DB security group.
+// days. The target database is created with the most of original configuration,
+// but in a system chosen availability zone with the default security group,
+// the default subnet group, and the default DB parameter group. By default,
+// the new DB instance is created as a single-AZ deployment except when the
+// instance is a SQL Server instance that has an option group that is associated
+// with mirroring; in this case, the instance becomes a mirrored deployment
+// and not a single-AZ deployment.
 func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTimeInput) (*RestoreDBInstanceToPointInTimeOutput, error) {
 	req, out := c.RestoreDBInstanceToPointInTimeRequest(input)
 	err := req.Send()
@@ -1956,8 +2589,8 @@ func (c *RDS) RestoreDBInstanceToPointInTime(input *RestoreDBInstanceToPointInTi
 const opRevokeDBSecurityGroupIngress = "RevokeDBSecurityGroupIngress"
 
 // RevokeDBSecurityGroupIngressRequest generates a request for the RevokeDBSecurityGroupIngress operation.
-func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *aws.Request, output *RevokeDBSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIngressInput) (req *request.Request, output *RevokeDBSecurityGroupIngressOutput) {
+	op := &request.Operation{
 		Name:       opRevokeDBSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -2004,7 +2637,7 @@ type metadataAccountQuota struct {
 
 // String returns the string representation
 func (s AccountQuota) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2039,7 +2672,7 @@ type metadataAddSourceIdentifierToSubscriptionInput struct {
 
 // String returns the string representation
 func (s AddSourceIdentifierToSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2061,7 +2694,7 @@ type metadataAddSourceIdentifierToSubscriptionOutput struct {
 
 // String returns the string representation
 func (s AddSourceIdentifierToSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2087,7 +2720,7 @@ type metadataAddTagsToResourceInput struct {
 
 // String returns the string representation
 func (s AddTagsToResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2105,7 +2738,7 @@ type metadataAddTagsToResourceOutput struct {
 
 // String returns the string representation
 func (s AddTagsToResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2127,7 +2760,9 @@ type ApplyPendingMaintenanceActionInput struct {
 	// resource.  undo-opt-in - Cancel any existing next-maintenance opt-in requests.
 	OptInType *string `type:"string" required:"true"`
 
-	// The ARN of the resource that the pending maintenance action applies to.
+	// The RDS Amazon Resource Name (ARN) of the resource that the pending maintenance
+	// action applies to. For information about creating an ARN, see  Constructing
+	// an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	ResourceIdentifier *string `type:"string" required:"true"`
 
 	metadataApplyPendingMaintenanceActionInput `json:"-" xml:"-"`
@@ -2139,7 +2774,7 @@ type metadataApplyPendingMaintenanceActionInput struct {
 
 // String returns the string representation
 func (s ApplyPendingMaintenanceActionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2160,7 +2795,7 @@ type metadataApplyPendingMaintenanceActionOutput struct {
 
 // String returns the string representation
 func (s ApplyPendingMaintenanceActionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2178,19 +2813,19 @@ type AuthorizeDBSecurityGroupIngressInput struct {
 	// Id of the EC2 security group to authorize. For VPC DB security groups, EC2SecurityGroupId
 	// must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName
 	// or EC2SecurityGroupId must be provided.
-	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+	EC2SecurityGroupId *string `type:"string"`
 
 	// Name of the EC2 security group to authorize. For VPC DB security groups,
 	// EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and
 	// either EC2SecurityGroupName or EC2SecurityGroupId must be provided.
 	EC2SecurityGroupName *string `type:"string"`
 
-	// AWS Account Number of the owner of the EC2 security group specified in the
+	// AWS account number of the owner of the EC2 security group specified in the
 	// EC2SecurityGroupName parameter. The AWS Access Key ID is not an acceptable
 	// value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise,
 	// EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId
 	// must be provided.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	metadataAuthorizeDBSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -2201,7 +2836,7 @@ type metadataAuthorizeDBSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s AuthorizeDBSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2226,7 +2861,7 @@ type metadataAuthorizeDBSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s AuthorizeDBSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2250,7 +2885,7 @@ type metadataAvailabilityZone struct {
 
 // String returns the string representation
 func (s AvailabilityZone) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2284,7 +2919,7 @@ type metadataCertificate struct {
 
 // String returns the string representation
 func (s Certificate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2309,7 +2944,7 @@ type metadataCharacterSet struct {
 
 // String returns the string representation
 func (s CharacterSet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2317,8 +2952,75 @@ func (s CharacterSet) GoString() string {
 	return s.String()
 }
 
+type CopyDBClusterSnapshotInput struct {
+	// The identifier of the DB cluster snapshot to copy. This parameter is not
+	// case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
+	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//  Example: my-cluster-snapshot1
+	SourceDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// The identifier of the new DB cluster snapshot to create from the source DB
+	// cluster snapshot. This parameter is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
+	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//  Example: my-cluster-snapshot2
+	TargetDBClusterSnapshotIdentifier *string `type:"string" required:"true"`
+
+	metadataCopyDBClusterSnapshotInput `json:"-" xml:"-"`
+}
+
+type metadataCopyDBClusterSnapshotInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyDBClusterSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBClusterSnapshotInput) GoString() string {
+	return s.String()
+}
+
+type CopyDBClusterSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBClusterSnapshot   DeleteDBClusterSnapshot   This data type is
+	// used as a response element in the DescribeDBClusterSnapshots action.
+	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
+
+	metadataCopyDBClusterSnapshotOutput `json:"-" xml:"-"`
+}
+
+type metadataCopyDBClusterSnapshotOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CopyDBClusterSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CopyDBClusterSnapshotOutput) GoString() string {
+	return s.String()
+}
+
 type CopyDBParameterGroupInput struct {
-	// The identifier or ARN for the source DB parameter group.
+	// The identifier or ARN for the source DB parameter group. For information
+	// about creating an ARN, see  Constructing an RDS Amazon Resource Name (ARN)
+	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	//
 	// Constraints:
 	//
@@ -2353,7 +3055,7 @@ type metadataCopyDBParameterGroupInput struct {
 
 // String returns the string representation
 func (s CopyDBParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2378,7 +3080,7 @@ type metadataCopyDBParameterGroupOutput struct {
 
 // String returns the string representation
 func (s CopyDBParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2387,6 +3089,10 @@ func (s CopyDBParameterGroupOutput) GoString() string {
 }
 
 type CopyDBSnapshotInput struct {
+	// True to copy all tags from the source DB snapshot to the target DB snapshot;
+	// otherwise false. The default is false.
+	CopyTags *bool `type:"boolean"`
+
 	// The identifier for the source DB snapshot.
 	//
 	// Constraints:
@@ -2422,7 +3128,7 @@ type metadataCopyDBSnapshotInput struct {
 
 // String returns the string representation
 func (s CopyDBSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2446,7 +3152,7 @@ type metadataCopyDBSnapshotOutput struct {
 
 // String returns the string representation
 func (s CopyDBSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2455,7 +3161,8 @@ func (s CopyDBSnapshotOutput) GoString() string {
 }
 
 type CopyOptionGroupInput struct {
-	// The identifier or ARN for the source option group.
+	// The identifier or ARN for the source option group. For information about
+	// creating an ARN, see  Constructing an RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	//
 	// Constraints:
 	//
@@ -2489,7 +3196,7 @@ type metadataCopyOptionGroupInput struct {
 
 // String returns the string representation
 func (s CopyOptionGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2509,11 +3216,305 @@ type metadataCopyOptionGroupOutput struct {
 
 // String returns the string representation
 func (s CopyOptionGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s CopyOptionGroupOutput) GoString() string {
+	return s.String()
+}
+
+type CreateDBClusterInput struct {
+	// A list of EC2 Availability Zones that instances in the DB cluster can be
+	// created in. For information on regions and Availability Zones, see Regions
+	// and Availability Zones (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
+	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
+
+	// The number of days for which automated backups are retained. Setting this
+	// parameter to a positive number enables backups. Setting this parameter to
+	// 0 disables automated backups.
+	//
+	// Default: 1
+	//
+	// Constraints:
+	//
+	//  Must be a value from 0 to 35
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// A value that indicates that the DB cluster should be associated with the
+	// specified CharacterSet.
+	CharacterSetName *string `type:"string"`
+
+	// The DB cluster identifier. This parameter is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
+	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//  Example: my-cluster1
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the DB cluster parameter group to associate with this DB cluster.
+	// If this argument is omitted, default.aurora5.6 for the specified engine will
+	// be used.
+	//
+	//  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterParameterGroupName *string `type:"string"`
+
+	// A DB subnet group to associate with this DB cluster.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The name for your database of up to 8 alpha-numeric characters. If you do
+	// not provide a name, Amazon RDS will not create a database in the DB cluster
+	// you are creating.
+	DatabaseName *string `type:"string"`
+
+	// The name of the database engine to be used for this DB cluster.
+	//
+	// Valid Values: aurora
+	Engine *string `type:"string" required:"true"`
+
+	// The version number of the database engine to use.
+	//
+	//  Aurora
+	//
+	// Example: 5.6.10a
+	EngineVersion *string `type:"string"`
+
+	// The password for the master database user. This password can contain any
+	// printable ASCII character except "/", """, or "@".
+	//
+	// Constraints: Must contain from 8 to 41 characters.
+	MasterUserPassword *string `type:"string" required:"true"`
+
+	// The name of the master user for the client DB cluster.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 16 alphanumeric characters. First character must be a letter.
+	// Cannot be a reserved word for the chosen database engine.
+	MasterUsername *string `type:"string" required:"true"`
+
+	// A value that indicates that the DB cluster should be associated with the
+	// specified option group.
+	//
+	// Permanent options cannot be removed from an option group. The option group
+	// cannot be removed from a DB cluster once it is associated with a DB cluster.
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the instances in the DB cluster accept connections.
+	//
+	//  Default: 3306
+	Port *int64 `type:"integer"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled using the BackupRetentionPeriod parameter.
+	//
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region. To see the time blocks available, see  Adjusting the Preferred
+	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//  Must be in the format hh24:mi-hh24:mi. Times should be in Universal Coordinated
+	// Time (UTC). Must not conflict with the preferred maintenance window. Must
+	// be at least 30 minutes.
+	PreferredBackupWindow *string `type:"string"`
+
+	// The weekly time range during which system maintenance can occur, in Universal
+	// Coordinated Time (UTC).
+	//
+	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	//
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week. To see the time blocks
+	// available, see  Adjusting the Preferred Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
+	//
+	// Constraints: Minimum 30-minute window.
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A list of EC2 VPC security groups to associate with this DB cluster.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
+
+	metadataCreateDBClusterInput `json:"-" xml:"-"`
+}
+
+type metadataCreateDBClusterInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterInput) GoString() string {
+	return s.String()
+}
+
+type CreateDBClusterOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+	//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+	// in the DescribeDBClusters action.
+	DBCluster *DBCluster `type:"structure"`
+
+	metadataCreateDBClusterOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateDBClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterOutput) GoString() string {
+	return s.String()
+}
+
+type CreateDBClusterParameterGroupInput struct {
+	// The name of the DB cluster parameter group.
+	//
+	//  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens  This value is
+	// stored as a lowercase string.
+	DBClusterParameterGroupName *string `type:"string" required:"true"`
+
+	// The DB cluster parameter group family name. A DB cluster parameter group
+	// can be associated with one and only one DB cluster parameter group family,
+	// and can be applied only to a DB cluster running a database engine and engine
+	// version compatible with that DB cluster parameter group family.
+	DBParameterGroupFamily *string `type:"string" required:"true"`
+
+	// The description for the DB cluster parameter group.
+	Description *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataCreateDBClusterParameterGroupInput `json:"-" xml:"-"`
+}
+
+type metadataCreateDBClusterParameterGroupInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterParameterGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterParameterGroupInput) GoString() string {
+	return s.String()
+}
+
+type CreateDBClusterParameterGroupOutput struct {
+	// Contains the result of a successful invocation of the CreateDBClusterParameterGroup
+	// action.
+	//
+	// This data type is used as a request parameter in the DeleteDBClusterParameterGroup
+	// action, and as a response element in the DescribeDBClusterParameterGroups
+	// action.
+	DBClusterParameterGroup *DBClusterParameterGroup `type:"structure"`
+
+	metadataCreateDBClusterParameterGroupOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateDBClusterParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterParameterGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterParameterGroupOutput) GoString() string {
+	return s.String()
+}
+
+type CreateDBClusterSnapshotInput struct {
+	// The identifier of the DB cluster to create a snapshot for. This parameter
+	// is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
+	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//  Example: my-cluster1
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The identifier of the DB cluster snapshot. This parameter is stored as a
+	// lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens. First character
+	// must be a letter. Cannot end with a hyphen or contain two consecutive hyphens.
+	//  Example: my-cluster1-snapshot1
+	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// The tags to be assigned to the DB cluster snapshot.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	metadataCreateDBClusterSnapshotInput `json:"-" xml:"-"`
+}
+
+type metadataCreateDBClusterSnapshotInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterSnapshotInput) GoString() string {
+	return s.String()
+}
+
+type CreateDBClusterSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBClusterSnapshot   DeleteDBClusterSnapshot   This data type is
+	// used as a response element in the DescribeDBClusterSnapshots action.
+	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
+
+	metadataCreateDBClusterSnapshotOutput `json:"-" xml:"-"`
+}
+
+type metadataCreateDBClusterSnapshotOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterSnapshotOutput) GoString() string {
 	return s.String()
 }
 
@@ -2525,21 +3526,21 @@ type CreateDBInstanceInput struct {
 	//
 	//  MySQL
 	//
-	//  Constraints: Must be an integer from 5 to 3072.
+	//  Constraints: Must be an integer from 5 to 6144.
 	//
 	//  PostgreSQL
 	//
-	//  Constraints: Must be an integer from 5 to 3072.
+	//  Constraints: Must be an integer from 5 to 6144.
 	//
 	//  Oracle
 	//
-	//  Constraints: Must be an integer from 10 to 3072.
+	//  Constraints: Must be an integer from 10 to 6144.
 	//
 	//  SQL Server
 	//
-	//  Constraints: Must be an integer from 200 to 1024 (Standard Edition and
-	// Enterprise Edition) or from 20 to 1024 (Express Edition and Web Edition)
-	AllocatedStorage *int64 `type:"integer" required:"true"`
+	//  Constraints: Must be an integer from 200 to 4096 (Standard Edition and
+	// Enterprise Edition) or from 20 to 4096 (Express Edition and Web Edition)
+	AllocatedStorage *int64 `type:"integer"`
 
 	// Indicates that minor engine upgrades will be applied automatically to the
 	// DB instance during the maintenance window.
@@ -2576,13 +3577,24 @@ type CreateDBInstanceInput struct {
 	// with the specified CharacterSet.
 	CharacterSetName *string `type:"string"`
 
+	// True to copy all tags from the DB instance to snapshots of the DB instance;
+	// otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
+	// The identifier of the DB cluster that the instance will belong to.
+	//
+	// For information on creating a DB cluster, see CreateDBCluster.
+	//
+	// Type: String
+	DBClusterIdentifier *string `type:"string"`
+
 	// The compute and memory capacity of the DB instance.
 	//
 	//  Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large |
 	// db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium
 	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge
 	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
-	// | db.t2.medium
+	// | db.t2.medium | db.t2.large
 	DBInstanceClass *string `type:"string" required:"true"`
 
 	// The DB instance identifier. This parameter is stored as a lowercase string.
@@ -2610,7 +3622,8 @@ type CreateDBInstanceInput struct {
 	// by the specified database engine   PostgreSQL
 	//
 	// The name of the database to create when the DB instance is created. If this
-	// parameter is not specified, no database is created in the DB instance.
+	// parameter is not specified, the default "postgres" database is created in
+	// the DB instance.
 	//
 	// Constraints:
 	//
@@ -2627,6 +3640,17 @@ type CreateDBInstanceInput struct {
 	//  Cannot be longer than 8 characters   SQL Server
 	//
 	// Not applicable. Must be null.
+	//
+	//  Amazon Aurora
+	//
+	// The name of the database to create when the primary instance of the DB cluster
+	// is created. If this parameter is not specified, no database is created in
+	// the DB instance.
+	//
+	// Constraints:
+	//
+	//  Must contain 1 to 64 alphanumeric characters Cannot be a word reserved
+	// by the specified database engine
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance. If
@@ -2663,113 +3687,56 @@ type CreateDBInstanceInput struct {
 	// are available with Amazon RDS. Not every database engine is available for
 	// every AWS region.
 	//
-	//  MySQL
+	// MySQL
 	//
 	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
 	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
 	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
 	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
-	// | 5.6.21 | 5.6.21b | 5.6.22    MySQL
-	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
-	// | 5.6.21 | 5.6.21b | 5.6.22    MySQL
-	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
-	// | 5.6.21 | 5.6.21b | 5.6.22    MySQL
-	//
-	//   Version 5.1 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  5.1.73a | 5.1.73b   Version 5.5 (Only available in the following regions:
-	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
-	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
-	// 5.5.40b | 5.5.41   Version 5.6 (Available in all regions):  5.6.19a | 5.6.19b
-	// | 5.6.21 | 5.6.21b | 5.6.22    Oracle Database Enterprise Edition (oracle-ee)
+	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
+	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   Oracle Database Enterprise
+	// Edition (oracle-ee)
 	//
 	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
 	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
-	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
-	// | 11.2.0.4.v3    Oracle Database Enterprise Edition (oracle-ee)
-	//
-	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  11.2.0.2.v3 | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version
-	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.4.v1
-	// | 11.2.0.4.v3    Oracle Database Standard Edition (oracle-se)
+	// 11.2 (Available in all regions):  11.2.0.3.v1 | 11.2.0.3.v2 | 11.2.0.3.v3
+	// | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version 12.1 (Available in all
+	// regions): 12.1.0.1.v1 | 12.1.0.1.v2 | 12.1.0.2.v1    Oracle Database Standard
+	// Edition (oracle-se)
 	//
 	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
 	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
 	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    Oracle Database Standard Edition
-	// (oracle-se)
+	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version
+	// 12.1 (Only available in the following regions: eu-central-1, us-west-1):
+	// 12.1.0.1.v1 | 12.1.0.1.v2   Oracle Database Standard Edition One (oracle-se1)
 	//
 	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
 	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
 	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    Oracle Database Standard Edition
-	// One (oracle-se1)
-	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
-	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    Oracle Database Standard Edition
-	// One (oracle-se1)
-	//
-	//   Version 11.2 (Only available in the following regions: us-west-1):  11.2.0.2.v3
-	// | 11.2.0.2.v4 | 11.2.0.2.v5 | 11.2.0.2.v6 | 11.2.0.2.v7   Version 11.2 (Only
-	// available in the following regions: eu-central-1, us-west-1):  11.2.0.3.v1
-	// | 11.2.0.3.v2 | 11.2.0.4.v1 | 11.2.0.4.v3    PostgreSQL
+	// | 11.2.0.3.v2 | 11.2.0.3.v3 | 11.2.0.4.v1 | 11.2.0.4.v3 | 11.2.0.4.v4   Version
+	// 12.1 (Only available in the following regions: eu-central-1, us-west-1):
+	//  12.1.0.1.v1 | 12.1.0.1.v2   PostgreSQL
 	//
 	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5
-	//   PostgreSQL
-	//
-	//   Version 9.3 (Only available in the following regions: ap-northeast-1,
-	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
-	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5
-	//   Microsoft SQL Server Enterprise Edition (sqlserver-ee)
-	//
-	//   Version 10.50 (Only available in the following regions: eu-central-1,
-	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
-	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1    Microsoft SQL Server
+	//  9.3.1 | 9.3.2   Version 9.3 (Available in all regions):  9.3.3 | 9.3.5 |
+	// 9.3.6   Version 9.4 (Available in all regions):  9.4.1   Microsoft SQL Server
 	// Enterprise Edition (sqlserver-ee)
 	//
 	//   Version 10.50 (Only available in the following regions: eu-central-1,
 	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
-	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1    Microsoft SQL Server
+	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1   Microsoft SQL Server
 	// Express Edition (sqlserver-ex)
 	//
 	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Express
-	// Edition (sqlserver-ex)
-	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Standard
+	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Standard
 	// Edition (sqlserver-se)
 	//
 	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Standard
-	// Edition (sqlserver-se)
-	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Web
-	// Edition (sqlserver-web)
-	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1    Microsoft SQL Server Web
+	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Web
 	// Edition (sqlserver-web)
 	//
 	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
@@ -2780,7 +3747,7 @@ type CreateDBInstanceInput struct {
 	// initially allocated for the DB instance.
 	//
 	//  Constraints: To use PIOPS, this value must be an integer greater than 1000.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The KMS key identifier for an encrypted DB instance.
 	//
@@ -2793,7 +3760,7 @@ type CreateDBInstanceInput struct {
 	// for the KmsKeyId parameter, then Amazon RDS will use your default encryption
 	// key. AWS KMS creates the default encryption key for your AWS account. Your
 	// AWS account has a different default encryption key for each AWS region.
-	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+	KmsKeyId *string `type:"string"`
 
 	// License model information for this DB instance.
 	//
@@ -2820,7 +3787,11 @@ type CreateDBInstanceInput struct {
 	//  PostgreSQL
 	//
 	//  Constraints: Must contain from 8 to 128 characters.
-	MasterUserPassword *string `type:"string" required:"true"`
+	//
+	//  Amazon Aurora
+	//
+	//  Constraints: Must contain from 8 to 41 characters.
+	MasterUserPassword *string `type:"string"`
 
 	// The name of master user for the client DB instance.
 	//
@@ -2847,10 +3818,12 @@ type CreateDBInstanceInput struct {
 	//
 	//  Must be 1 to 63 alphanumeric characters. First character must be a letter.
 	// Cannot be a reserved word for the chosen database engine.
-	MasterUsername *string `type:"string" required:"true"`
+	MasterUsername *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment. You cannot set the
-	// AvailabilityZone parameter if the MultiAZ parameter is set to true.
+	// AvailabilityZone parameter if the MultiAZ parameter is set to true. Do not
+	// set this value if you want a Multi-AZ deployment for a SQL Server DB instance.
+	// Multi-AZ for SQL Server is set using the Mirroring option in an option group.
 	MultiAZ *bool `type:"boolean"`
 
 	// Indicates that the DB instance should be associated with the specified option
@@ -2891,6 +3864,14 @@ type CreateDBInstanceInput struct {
 	//
 	//  Valid Values: 1150-65535 except for 1434, 3389, 47001, 49152, and 49152
 	// through 49156.
+	//
+	//  Amazon Aurora
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	//
+	// Type: Integer
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -2898,16 +3879,20 @@ type CreateDBInstanceInput struct {
 	// information, see DB Instance Backups (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html).
 	//
 	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region. See the Amazon RDS User Guide for the time blocks for each
-	// region from which the default backup windows are assigned.
+	// time per region. To see the time blocks available, see  Adjusting the Preferred
+	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
 	//
-	//  Constraints: Must be in the format hh24:mi-hh24:mi. Times should be Universal
-	// Time Coordinated (UTC). Must not conflict with the preferred maintenance
-	// window. Must be at least 30 minutes.
+	// Constraints:
+	//
+	//  Must be in the format hh24:mi-hh24:mi. Times should be in Universal Coordinated
+	// Time (UTC). Must not conflict with the preferred maintenance window. Must
+	// be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
-	// The weekly time range (in UTC) during which system maintenance can occur.
-	// For more information, see DB Instance Maintenance (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBMaintenance.html).
+	// The weekly time range during which system maintenance can occur, in Universal
+	// Coordinated Time (UTC). For more information, see DB Instance Maintenance
+	// (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBMaintenance.html).
 	//
 	//  Format: ddd:hh24:mi-ddd:hh24:mi
 	//
@@ -2950,20 +3935,20 @@ type CreateDBInstanceInput struct {
 	//  Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the Key Store in order to access the
 	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
-
-	// A list of tags.
-	Tags []*Tag `locationNameList:"Tag" type:"list"`
+	TdeCredentialPassword *string `type:"string"`
 
 	// A list of EC2 VPC security groups to associate with this DB instance.
 	//
 	//  Default: The default EC2 VPC security group for the DB subnet group's VPC.
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataCreateDBInstanceInput `json:"-" xml:"-"`
 }
@@ -2974,7 +3959,7 @@ type metadataCreateDBInstanceInput struct {
 
 // String returns the string representation
 func (s CreateDBInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2998,7 +3983,7 @@ type metadataCreateDBInstanceOutput struct {
 
 // String returns the string representation
 func (s CreateDBInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3020,18 +4005,24 @@ type CreateDBInstanceReadReplicaInput struct {
 	//  Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
+	// True to copy all tags from the Read Replica to snapshots of the Read Replica;
+	// otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The compute and memory capacity of the Read Replica.
 	//
 	//  Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
 	// db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
 	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
 	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.t2.large
 	//
 	// Default: Inherits from the source DB instance.
 	DBInstanceClass *string `type:"string"`
 
-	// The DB instance identifier of the Read Replica. This is the unique key that
-	// identifies a DB instance. This parameter is stored as a lowercase string.
+	// The DB instance identifier of the Read Replica. This identifier is the unique
+	// key that identifies a DB instance. This parameter is stored as a lowercase
+	// string.
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Specifies a DB subnet group for the DB instance. The new DB instance will
@@ -3051,7 +4042,7 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for the DB instance.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The option group the DB instance will be associated with. If omitted, the
 	// default option group for the engine specified will be used.
@@ -3116,7 +4107,7 @@ type metadataCreateDBInstanceReadReplicaInput struct {
 
 // String returns the string representation
 func (s CreateDBInstanceReadReplicaInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3140,7 +4131,7 @@ type metadataCreateDBInstanceReadReplicaOutput struct {
 
 // String returns the string representation
 func (s CreateDBInstanceReadReplicaOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3161,7 +4152,7 @@ type CreateDBParameterGroupInput struct {
 	//
 	//  Must be 1 to 255 alphanumeric characters First character must be a letter
 	// Cannot end with a hyphen or contain two consecutive hyphens  This value is
-	// stored as a lower-case string.
+	// stored as a lowercase string.
 	DBParameterGroupName *string `type:"string" required:"true"`
 
 	// The description for the DB parameter group.
@@ -3179,7 +4170,7 @@ type metadataCreateDBParameterGroupInput struct {
 
 // String returns the string representation
 func (s CreateDBParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3204,7 +4195,7 @@ type metadataCreateDBParameterGroupOutput struct {
 
 // String returns the string representation
 func (s CreateDBParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3222,7 +4213,7 @@ type CreateDBSecurityGroupInput struct {
 	//
 	//  Must be 1 to 255 alphanumeric characters First character must be a letter
 	// Cannot end with a hyphen or contain two consecutive hyphens Must not be "Default"
-	// May not contain spaces  Example: mysecuritygroup
+	// Cannot contain spaces  Example: mysecuritygroup
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	// A list of tags.
@@ -3237,7 +4228,7 @@ type metadataCreateDBSecurityGroupInput struct {
 
 // String returns the string representation
 func (s CreateDBSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3262,7 +4253,7 @@ type metadataCreateDBSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s CreateDBSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3300,7 +4291,7 @@ type metadataCreateDBSnapshotInput struct {
 
 // String returns the string representation
 func (s CreateDBSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3324,7 +4315,7 @@ type metadataCreateDBSnapshotOutput struct {
 
 // String returns the string representation
 func (s CreateDBSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3338,14 +4329,14 @@ type CreateDBSubnetGroupInput struct {
 
 	// The name for the DB subnet group. This value is stored as a lowercase string.
 	//
-	// Constraints: Must contain no more than 255 alphanumeric characters or hyphens.
-	// Must not be "Default".
+	// Constraints: Must contain no more than 255 alphanumeric characters, periods,
+	// underscores, or hyphens. Must not be default.
 	//
 	// Example: mySubnetgroup
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 Subnet IDs for the DB subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -3359,7 +4350,7 @@ type metadataCreateDBSubnetGroupInput struct {
 
 // String returns the string representation
 func (s CreateDBSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3384,7 +4375,7 @@ type metadataCreateDBSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s CreateDBSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3407,7 +4398,7 @@ type CreateEventSubscriptionInput struct {
 	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
 	// The ARN is created by Amazon SNS when you create a topic and subscribe to
 	// it.
-	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string" required:"true"`
+	SnsTopicArn *string `type:"string" required:"true"`
 
 	// The list of identifiers of the event sources for which events will be returned.
 	// If not specified, then all sources are included in the response. An identifier
@@ -3422,7 +4413,7 @@ type CreateEventSubscriptionInput struct {
 	// If the source type is a DB parameter group, a DBParameterGroupName must be
 	// supplied. If the source type is a DB snapshot, a DBSnapshotIdentifier must
 	// be supplied.
-	SourceIDs []*string `locationName:"SourceIds" locationNameList:"SourceId" type:"list"`
+	SourceIds []*string `locationNameList:"SourceId" type:"list"`
 
 	// The type of source that will be generating the events. For example, if you
 	// want to be notified of events generated by a DB instance, you would set this
@@ -3449,7 +4440,7 @@ type metadataCreateEventSubscriptionInput struct {
 
 // String returns the string representation
 func (s CreateEventSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3471,7 +4462,7 @@ type metadataCreateEventSubscriptionOutput struct {
 
 // String returns the string representation
 func (s CreateEventSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3512,7 +4503,7 @@ type metadataCreateOptionGroupInput struct {
 
 // String returns the string representation
 func (s CreateOptionGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3532,11 +4523,299 @@ type metadataCreateOptionGroupOutput struct {
 
 // String returns the string representation
 func (s CreateOptionGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s CreateOptionGroupOutput) GoString() string {
+	return s.String()
+}
+
+// Contains the result of a successful invocation of the following actions:
+//
+//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+// in the DescribeDBClusters action.
+type DBCluster struct {
+	// Specifies the allocated storage size in gigabytes (GB).
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Provides the list of EC2 Availability Zones that instances in the DB cluster
+	// can be created in.
+	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
+
+	// Specifies the number of days for which automatic DB snapshots are retained.
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// If present, specifies the name of the character set that this cluster is
+	// associated with.
+	CharacterSetName *string `type:"string"`
+
+	// Contains a user-supplied DB cluster identifier. This identifier is the unique
+	// key that identifies a DB cluster.
+	DBClusterIdentifier *string `type:"string"`
+
+	// Provides the list of instances that make up the DB cluster.
+	DBClusterMembers []*DBClusterMember `locationNameList:"DBClusterMember" type:"list"`
+
+	// Provides the list of option group memberships for this DB cluster.
+	DBClusterOptionGroupMemberships []*DBClusterOptionGroupStatus `locationNameList:"DBClusterOptionGroup" type:"list"`
+
+	// Specifies the name of the DB cluster parameter group for the DB cluster.
+	DBClusterParameterGroup *string `type:"string"`
+
+	// Specifies information on the subnet group associated with the DB cluster,
+	// including the name, description, and subnets in the subnet group.
+	DBSubnetGroup *string `type:"string"`
+
+	// Contains the name of the initial database of this DB cluster that was provided
+	// at create time, if one was specified when the DB cluster was created. This
+	// same name is returned for the life of the DB cluster.
+	DatabaseName *string `type:"string"`
+
+	// Specifies the earliest time to which a database can be restored with point-in-time
+	// restore.
+	EarliestRestorableTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies the connection endpoint for the primary instance of the DB cluster.
+	Endpoint *string `type:"string"`
+
+	// Provides the name of the database engine to be used for this DB cluster.
+	Engine *string `type:"string"`
+
+	// Indicates the database engine version.
+	EngineVersion *string `type:"string"`
+
+	// Specifies the latest time to which a database can be restored with point-in-time
+	// restore.
+	LatestRestorableTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Contains the master username for the DB cluster.
+	MasterUsername *string `type:"string"`
+
+	// Specifies the progress of the operation as a percentage.
+	PercentProgress *string `type:"string"`
+
+	// Specifies the port that the database engine is listening on.
+	Port *int64 `type:"integer"`
+
+	// Specifies the daily time range during which automated backups are created
+	// if automated backups are enabled, as determined by the BackupRetentionPeriod.
+	PreferredBackupWindow *string `type:"string"`
+
+	// Specifies the weekly time range during which system maintenance can occur,
+	// in Universal Coordinated Time (UTC).
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies the current state of this DB cluster.
+	Status *string `type:"string"`
+
+	// Provides a list of VPC security groups that the DB cluster belongs to.
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
+
+	metadataDBCluster `json:"-" xml:"-"`
+}
+
+type metadataDBCluster struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBCluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBCluster) GoString() string {
+	return s.String()
+}
+
+// Contains information about an instance that is part of a DB cluster.
+type DBClusterMember struct {
+	// Specifies the status of the DB cluster parameter group for this member of
+	// the DB cluster.
+	DBClusterParameterGroupStatus *string `type:"string"`
+
+	// Specifies the instance identifier for this member of the DB cluster.
+	DBInstanceIdentifier *string `type:"string"`
+
+	// Value that is true if the cluster member is the primary instance for the
+	// DB cluster and false otherwise.
+	IsClusterWriter *bool `type:"boolean"`
+
+	metadataDBClusterMember `json:"-" xml:"-"`
+}
+
+type metadataDBClusterMember struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBClusterMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterMember) GoString() string {
+	return s.String()
+}
+
+// Contains status information for a DB cluster option group.
+type DBClusterOptionGroupStatus struct {
+	// Specifies the name of the DB cluster option group.
+	DBClusterOptionGroupName *string `type:"string"`
+
+	// Specifies the status of the DB cluster option group.
+	Status *string `type:"string"`
+
+	metadataDBClusterOptionGroupStatus `json:"-" xml:"-"`
+}
+
+type metadataDBClusterOptionGroupStatus struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBClusterOptionGroupStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterOptionGroupStatus) GoString() string {
+	return s.String()
+}
+
+// Contains the result of a successful invocation of the CreateDBClusterParameterGroup
+// action.
+//
+// This data type is used as a request parameter in the DeleteDBClusterParameterGroup
+// action, and as a response element in the DescribeDBClusterParameterGroups
+// action.
+type DBClusterParameterGroup struct {
+	// Provides the name of the DB cluster parameter group.
+	DBClusterParameterGroupName *string `type:"string"`
+
+	// Provides the name of the DB parameter group family that this DB cluster parameter
+	// group is compatible with.
+	DBParameterGroupFamily *string `type:"string"`
+
+	// Provides the customer-specified description for this DB cluster parameter
+	// group.
+	Description *string `type:"string"`
+
+	metadataDBClusterParameterGroup `json:"-" xml:"-"`
+}
+
+type metadataDBClusterParameterGroup struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBClusterParameterGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterParameterGroup) GoString() string {
+	return s.String()
+}
+
+type DBClusterParameterGroupNameMessage struct {
+	// The name of the DB cluster parameter group.
+	//
+	//  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens  This value is
+	// stored as a lowercase string.
+	DBClusterParameterGroupName *string `type:"string"`
+
+	metadataDBClusterParameterGroupNameMessage `json:"-" xml:"-"`
+}
+
+type metadataDBClusterParameterGroupNameMessage struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBClusterParameterGroupNameMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterParameterGroupNameMessage) GoString() string {
+	return s.String()
+}
+
+// Contains the result of a successful invocation of the following actions:
+//
+//   CreateDBClusterSnapshot   DeleteDBClusterSnapshot   This data type is
+// used as a response element in the DescribeDBClusterSnapshots action.
+type DBClusterSnapshot struct {
+	// Specifies the allocated storage size in gigabytes (GB).
+	AllocatedStorage *int64 `type:"integer"`
+
+	// Provides the list of EC2 Availability Zones that instances in the DB cluster
+	// snapshot can be restored in.
+	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
+
+	// Specifies the time when the DB cluster was created, in Universal Coordinated
+	// Time (UTC).
+	ClusterCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Specifies the DB cluster identifier of the DB cluster that this DB cluster
+	// snapshot was created from.
+	DBClusterIdentifier *string `type:"string"`
+
+	// Specifies the identifier for the DB cluster snapshot.
+	DBClusterSnapshotIdentifier *string `type:"string"`
+
+	// Specifies the name of the database engine.
+	Engine *string `type:"string"`
+
+	// Provides the version of the database engine for this DB cluster snapshot.
+	EngineVersion *string `type:"string"`
+
+	// Provides the license model information for this DB cluster snapshot.
+	LicenseModel *string `type:"string"`
+
+	// Provides the master username for the DB cluster snapshot.
+	MasterUsername *string `type:"string"`
+
+	// Specifies the percentage of the estimated data that has been transferred.
+	PercentProgress *int64 `type:"integer"`
+
+	// Specifies the port that the DB cluster was listening on at the time of the
+	// snapshot.
+	Port *int64 `type:"integer"`
+
+	// Provides the time when the snapshot was taken, in Universal Coordinated Time
+	// (UTC).
+	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Provides the type of the DB cluster snapshot.
+	SnapshotType *string `type:"string"`
+
+	// Specifies the status of this DB cluster snapshot.
+	Status *string `type:"string"`
+
+	// Provides the VPC ID associated with the DB cluster snapshot.
+	VpcId *string `type:"string"`
+
+	metadataDBClusterSnapshot `json:"-" xml:"-"`
+}
+
+type metadataDBClusterSnapshot struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBClusterSnapshot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterSnapshot) GoString() string {
 	return s.String()
 }
 
@@ -3565,6 +4844,10 @@ type DBEngineVersion struct {
 	// parameter of the CreateDBInstance API.
 	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
 
+	// A list of engine versions that this database engine version can be upgraded
+	// to.
+	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
+
 	metadataDBEngineVersion `json:"-" xml:"-"`
 }
 
@@ -3574,7 +4857,7 @@ type metadataDBEngineVersion struct {
 
 // String returns the string representation
 func (s DBEngineVersion) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3606,16 +4889,19 @@ type DBInstance struct {
 	// associated with.
 	CharacterSetName *string `type:"string"`
 
-	// If StorageEncrypted is true, the region-unique, immutable identifier for
-	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
-	// entries whenever the KMS key for the DB instance is accessed.
-	DBIResourceID *string `locationName:"DbiResourceId" type:"string"`
+	// Specifies whether tags are copied from the DB instance to snapshots of the
+	// DB instance.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
+	// If the DB instance is a member of a DB cluster, contains the name of the
+	// DB cluster that the DB instance is a member of.
+	DBClusterIdentifier *string `type:"string"`
 
 	// Contains the name of the compute and memory capacity class of the DB instance.
 	DBInstanceClass *string `type:"string"`
 
-	// Contains a user-supplied database identifier. This is the unique key that
-	// identifies a DB instance.
+	// Contains a user-supplied database identifier. This identifier is the unique
+	// key that identifies a DB instance.
 	DBInstanceIdentifier *string `type:"string"`
 
 	// Specifies the current state of this database.
@@ -3626,7 +4912,7 @@ type DBInstance struct {
 	// when returning values from CreateDBInstanceReadReplica since Read Replicas
 	// are only supported for MySQL and PostgreSQL.
 	//
-	//  MySQL, SQL Server, PostgreSQL
+	//  MySQL, SQL Server, PostgreSQL, Amazon Aurora
 	//
 	//  Contains the name of the initial database of this instance that was provided
 	// at create time, if one was specified when the DB instance was created. This
@@ -3651,6 +4937,15 @@ type DBInstance struct {
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
+	// Specifies the port that the DB instance listens on. If the DB instance is
+	// part of a DB cluster, this can be a different port than the DB cluster port.
+	DbInstancePort *int64 `type:"integer"`
+
+	// If StorageEncrypted is true, the region-unique, immutable identifier for
+	// the encrypted DB instance. This identifier is found in AWS CloudTrail log
+	// entries whenever the KMS key for the DB instance is accessed.
+	DbiResourceId *string `type:"string"`
+
 	// Specifies the connection endpoint.
 	Endpoint *Endpoint `type:"structure"`
 
@@ -3660,15 +4955,15 @@ type DBInstance struct {
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
-	// Specifies the Provisioned IOPS (I/O operations per second) value.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
-
 	// Provides the date and time the DB instance was created.
 	InstanceCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Specifies the Provisioned IOPS (I/O operations per second) value.
+	Iops *int64 `type:"integer"`
+
 	// If StorageEncrypted is true, the KMS key identifier for the encrypted DB
 	// instance.
-	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
 	// restore.
@@ -3694,8 +4989,8 @@ type DBInstance struct {
 	// if automated backups are enabled, as determined by the BackupRetentionPeriod.
 	PreferredBackupWindow *string `type:"string"`
 
-	// Specifies the weekly time range (in UTC) during which system maintenance
-	// can occur.
+	// Specifies the weekly time range during which system maintenance can occur,
+	// in Universal Coordinated Time (UTC).
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// Specifies the accessibility options for the DB instance. A value of true
@@ -3737,11 +5032,11 @@ type DBInstance struct {
 
 	// The ARN from the Key Store with which the instance is associated for TDE
 	// encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// Provides List of VPC security group elements that the DB instance belongs
 	// to.
-	VPCSecurityGroups []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroups" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataDBInstance `json:"-" xml:"-"`
 }
@@ -3752,7 +5047,7 @@ type metadataDBInstance struct {
 
 // String returns the string representation
 func (s DBInstance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3786,7 +5081,7 @@ type metadataDBInstanceStatusInfo struct {
 
 // String returns the string representation
 func (s DBInstanceStatusInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3819,7 +5114,7 @@ type metadataDBParameterGroup struct {
 
 // String returns the string representation
 func (s DBParameterGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3830,7 +5125,7 @@ func (s DBParameterGroup) GoString() string {
 // Contains the result of a successful invocation of the ModifyDBParameterGroup
 // or ResetDBParameterGroup action.
 type DBParameterGroupNameMessage struct {
-	// The name of the DB parameter group.
+	// Provides the name of the DB parameter group.
 	DBParameterGroupName *string `type:"string"`
 
 	metadataDBParameterGroupNameMessage `json:"-" xml:"-"`
@@ -3842,7 +5137,7 @@ type metadataDBParameterGroupNameMessage struct {
 
 // String returns the string representation
 func (s DBParameterGroupNameMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3872,7 +5167,7 @@ type metadataDBParameterGroupStatus struct {
 
 // String returns the string representation
 func (s DBParameterGroupStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3899,10 +5194,10 @@ type DBSecurityGroup struct {
 	IPRanges []*IPRange `locationNameList:"IPRange" type:"list"`
 
 	// Provides the AWS ID of the owner of a specific DB security group.
-	OwnerID *string `locationName:"OwnerId" type:"string"`
+	OwnerId *string `type:"string"`
 
 	// Provides the VpcId of the DB security group.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDBSecurityGroup `json:"-" xml:"-"`
 }
@@ -3913,7 +5208,7 @@ type metadataDBSecurityGroup struct {
 
 // String returns the string representation
 func (s DBSecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3941,7 +5236,7 @@ type metadataDBSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s DBSecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3977,15 +5272,16 @@ type DBSnapshot struct {
 	// Specifies the version of the database engine.
 	EngineVersion *string `type:"string"`
 
-	// Specifies the Provisioned IOPS (I/O operations per second) value of the DB
-	// instance at the time of the snapshot.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
-
-	// Specifies the time (UTC) when the snapshot was taken.
+	// Specifies the time when the snapshot was taken, in Universal Coordinated
+	// Time (UTC).
 	InstanceCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// Specifies the Provisioned IOPS (I/O operations per second) value of the DB
+	// instance at the time of the snapshot.
+	Iops *int64 `type:"integer"`
+
 	// If Encrypted is true, the KMS key identifier for the encrypted DB snapshot.
-	KMSKeyID *string `locationName:"KmsKeyId" type:"string"`
+	KmsKeyId *string `type:"string"`
 
 	// License model information for the restored DB instance.
 	LicenseModel *string `type:"string"`
@@ -4003,11 +5299,16 @@ type DBSnapshot struct {
 	// of the snapshot.
 	Port *int64 `type:"integer"`
 
-	// Provides the time (UTC) when the snapshot was taken.
+	// Provides the time when the snapshot was taken, in Universal Coordinated Time
+	// (UTC).
 	SnapshotCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// Provides the type of the DB snapshot.
 	SnapshotType *string `type:"string"`
+
+	// The DB snapshot Arn that the DB snapshot was copied from. It only has value
+	// in case of cross customer or cross region copy.
+	SourceDBSnapshotIdentifier *string `type:"string"`
 
 	// The region that the DB snapshot was created in or copied from.
 	SourceRegion *string `type:"string"`
@@ -4019,10 +5320,10 @@ type DBSnapshot struct {
 	StorageType *string `type:"string"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
-	// Provides the Vpc Id associated with the DB snapshot.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	// Provides the VPC ID associated with the DB snapshot.
+	VpcId *string `type:"string"`
 
 	metadataDBSnapshot `json:"-" xml:"-"`
 }
@@ -4033,7 +5334,7 @@ type metadataDBSnapshot struct {
 
 // String returns the string representation
 func (s DBSnapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4060,7 +5361,7 @@ type DBSubnetGroup struct {
 	Subnets []*Subnet `locationNameList:"Subnet" type:"list"`
 
 	// Provides the VpcId of the DB subnet group.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataDBSubnetGroup `json:"-" xml:"-"`
 }
@@ -4071,7 +5372,7 @@ type metadataDBSubnetGroup struct {
 
 // String returns the string representation
 func (s DBSubnetGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4079,9 +5380,172 @@ func (s DBSubnetGroup) GoString() string {
 	return s.String()
 }
 
+type DeleteDBClusterInput struct {
+	// The DB cluster identifier for the DB cluster to be deleted. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The DB cluster snapshot identifier of the new DB cluster snapshot created
+	// when SkipFinalSnapshot is set to false.
+	//
+	//  Specifying this parameter and also setting the SkipFinalShapshot parameter
+	// to true results in an error.  Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	FinalDBSnapshotIdentifier *string `type:"string"`
+
+	// Determines whether a final DB cluster snapshot is created before the DB cluster
+	// is deleted. If true is specified, no DB cluster snapshot is created. If false
+	// is specified, a DB cluster snapshot is created before the DB cluster is deleted.
+	//
+	// You must specify a FinalDBSnapshotIdentifier parameter if SkipFinalSnapshot
+	// is false. Default: false
+	SkipFinalSnapshot *bool `type:"boolean"`
+
+	metadataDeleteDBClusterInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDBClusterInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterInput) GoString() string {
+	return s.String()
+}
+
+type DeleteDBClusterOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+	//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+	// in the DescribeDBClusters action.
+	DBCluster *DBCluster `type:"structure"`
+
+	metadataDeleteDBClusterOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDBClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDBClusterParameterGroupInput struct {
+	// The name of the DB cluster parameter group.
+	//
+	// Constraints:
+	//
+	//  Must be the name of an existing DB cluster parameter group. You cannot
+	// delete a default DB cluster parameter group. Cannot be associated with any
+	// DB clusters.
+	DBClusterParameterGroupName *string `type:"string" required:"true"`
+
+	metadataDeleteDBClusterParameterGroupInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDBClusterParameterGroupInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterParameterGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterParameterGroupInput) GoString() string {
+	return s.String()
+}
+
+type DeleteDBClusterParameterGroupOutput struct {
+	metadataDeleteDBClusterParameterGroupOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDBClusterParameterGroupOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterParameterGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterParameterGroupOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteDBClusterSnapshotInput struct {
+	// The identifier of the DB cluster snapshot to delete.
+	//
+	// Constraints: Must be the name of an existing DB cluster snapshot in the
+	// available state.
+	DBClusterSnapshotIdentifier *string `type:"string" required:"true"`
+
+	metadataDeleteDBClusterSnapshotInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDBClusterSnapshotInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterSnapshotInput) GoString() string {
+	return s.String()
+}
+
+type DeleteDBClusterSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBClusterSnapshot   DeleteDBClusterSnapshot   This data type is
+	// used as a response element in the DescribeDBClusterSnapshots action.
+	DBClusterSnapshot *DBClusterSnapshot `type:"structure"`
+
+	metadataDeleteDBClusterSnapshotOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDBClusterSnapshotOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterSnapshotOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteDBInstanceInput struct {
 	// The DB instance identifier for the DB instance to be deleted. This parameter
-	// isn't case sensitive.
+	// isn't case-sensitive.
 	//
 	// Constraints:
 	//
@@ -4104,6 +5568,10 @@ type DeleteDBInstanceInput struct {
 	// is deleted. If true is specified, no DBSnapshot is created. If false is specified,
 	// a DB snapshot is created before the DB instance is deleted.
 	//
+	// Note that when a DB instance is in a failure state and has a status of 'failed',
+	// 'incompatible-restore', or 'incompatible-network', it can only be deleted
+	// when the SkipFinalSnapshot parameter is set to "true".
+	//
 	// Specify true when deleting a Read Replica.
 	//
 	// The FinalDBSnapshotIdentifier parameter must be specified if SkipFinalSnapshot
@@ -4119,7 +5587,7 @@ type metadataDeleteDBInstanceInput struct {
 
 // String returns the string representation
 func (s DeleteDBInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4143,7 +5611,7 @@ type metadataDeleteDBInstanceOutput struct {
 
 // String returns the string representation
 func (s DeleteDBInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4169,7 +5637,7 @@ type metadataDeleteDBParameterGroupInput struct {
 
 // String returns the string representation
 func (s DeleteDBParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4187,7 +5655,7 @@ type metadataDeleteDBParameterGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteDBParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4202,7 +5670,7 @@ type DeleteDBSecurityGroupInput struct {
 	//
 	//  Must be 1 to 255 alphanumeric characters First character must be a letter
 	// Cannot end with a hyphen or contain two consecutive hyphens Must not be "Default"
-	// May not contain spaces
+	// Cannot contain spaces
 	DBSecurityGroupName *string `type:"string" required:"true"`
 
 	metadataDeleteDBSecurityGroupInput `json:"-" xml:"-"`
@@ -4214,7 +5682,7 @@ type metadataDeleteDBSecurityGroupInput struct {
 
 // String returns the string representation
 func (s DeleteDBSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4232,7 +5700,7 @@ type metadataDeleteDBSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteDBSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4256,7 +5724,7 @@ type metadataDeleteDBSnapshotInput struct {
 
 // String returns the string representation
 func (s DeleteDBSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4280,7 +5748,7 @@ type metadataDeleteDBSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeleteDBSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4306,7 +5774,7 @@ type metadataDeleteDBSubnetGroupInput struct {
 
 // String returns the string representation
 func (s DeleteDBSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4324,7 +5792,7 @@ type metadataDeleteDBSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteDBSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4345,7 +5813,7 @@ type metadataDeleteEventSubscriptionInput struct {
 
 // String returns the string representation
 func (s DeleteEventSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4367,7 +5835,7 @@ type metadataDeleteEventSubscriptionOutput struct {
 
 // String returns the string representation
 func (s DeleteEventSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4390,7 +5858,7 @@ type metadataDeleteOptionGroupInput struct {
 
 // String returns the string representation
 func (s DeleteOptionGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4408,7 +5876,7 @@ type metadataDeleteOptionGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteOptionGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4426,7 +5894,7 @@ type metadataDescribeAccountAttributesInput struct {
 
 // String returns the string representation
 func (s DescribeAccountAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4449,7 +5917,7 @@ type metadataDescribeAccountAttributesOutput struct {
 
 // String returns the string representation
 func (s DescribeAccountAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4482,7 +5950,7 @@ type DescribeCertificatesInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: Minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeCertificatesInput `json:"-" xml:"-"`
@@ -4494,7 +5962,7 @@ type metadataDescribeCertificatesInput struct {
 
 // String returns the string representation
 func (s DescribeCertificatesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4521,11 +5989,317 @@ type metadataDescribeCertificatesOutput struct {
 
 // String returns the string representation
 func (s DescribeCertificatesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s DescribeCertificatesOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeDBClusterParameterGroupsInput struct {
+	// The name of a specific DB cluster parameter group to return details for.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterParameterGroupName *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterParameterGroups
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	metadataDescribeDBClusterParameterGroupsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClusterParameterGroupsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterParameterGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterParameterGroupsInput) GoString() string {
+	return s.String()
+}
+
+type DescribeDBClusterParameterGroupsOutput struct {
+	// A list of DB cluster parameter groups.
+	DBClusterParameterGroups []*DBClusterParameterGroup `locationNameList:"DBClusterParameterGroup" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterParameterGroups
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	metadataDescribeDBClusterParameterGroupsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClusterParameterGroupsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterParameterGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterParameterGroupsOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeDBClusterParametersInput struct {
+	// The name of a specific DB cluster parameter group to return parameter details
+	// for.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterParameterGroupName *string `type:"string" required:"true"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterParameters
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	// A value that indicates to return only parameters for a specific source. Parameter
+	// sources can be engine, service, or customer.
+	Source *string `type:"string"`
+
+	metadataDescribeDBClusterParametersInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClusterParametersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterParametersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterParametersInput) GoString() string {
+	return s.String()
+}
+
+// Provides details about a DB cluster parameter group including the parameters
+// in the DB cluster parameter group.
+type DescribeDBClusterParametersOutput struct {
+	// An optional pagination token provided by a previous DescribeDBClusterParameters
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords .
+	Marker *string `type:"string"`
+
+	// Provides a list of parameters for the DB cluster parameter group.
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
+
+	metadataDescribeDBClusterParametersOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClusterParametersOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterParametersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterParametersOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeDBClusterSnapshotsInput struct {
+	// A DB cluster identifier to retrieve the list of DB cluster snapshots for.
+	// This parameter cannot be used in conjunction with the DBClusterSnapshotIdentifier
+	// parameter. This parameter is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterIdentifier *string `type:"string"`
+
+	// A specific DB cluster snapshot identifier to describe. This parameter cannot
+	// be used in conjunction with the DBClusterIdentifier parameter. This value
+	// is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 255 alphanumeric characters First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens If this is the
+	// identifier of an automated snapshot, the SnapshotType parameter must also
+	// be specified.
+	DBClusterSnapshotIdentifier *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterSnapshots
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	// The type of DB cluster snapshots that will be returned. Values can be automated
+	// or manual. If this parameter is not specified, the returned results will
+	// include all snapshot types.
+	SnapshotType *string `type:"string"`
+
+	metadataDescribeDBClusterSnapshotsInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClusterSnapshotsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterSnapshotsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterSnapshotsInput) GoString() string {
+	return s.String()
+}
+
+// Provides a list of DB cluster snapshots for the user as the result of a call
+// to the DescribeDBClusterSnapshots action.
+type DescribeDBClusterSnapshotsOutput struct {
+	// Provides a list of DB cluster snapshots for the user.
+	DBClusterSnapshots []*DBClusterSnapshot `locationNameList:"DBClusterSnapshot" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterSnapshots
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	metadataDescribeDBClusterSnapshotsOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClusterSnapshotsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterSnapshotsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterSnapshotsOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeDBClustersInput struct {
+	// The user-supplied DB cluster identifier. If this parameter is specified,
+	// information from only the specific DB cluster is returned. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterIdentifier *string `type:"string"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusters request.
+	// If this parameter is specified, the response includes only records beyond
+	// the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	metadataDescribeDBClustersInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClustersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClustersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClustersInput) GoString() string {
+	return s.String()
+}
+
+// Contains the result of a successful invocation of the DescribeDBClusters
+// action.
+type DescribeDBClustersOutput struct {
+	// Contains a list of DB clusters for the user.
+	DBClusters []*DBCluster `locationNameList:"DBCluster" type:"list"`
+
+	// A pagination token that can be used in a subsequent DescribeDBClusters request.
+	Marker *string `type:"string"`
+
+	metadataDescribeDBClustersOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBClustersOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBClustersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClustersOutput) GoString() string {
 	return s.String()
 }
 
@@ -4569,7 +6343,7 @@ type DescribeDBEngineVersionsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBEngineVersionsInput `json:"-" xml:"-"`
@@ -4581,7 +6355,7 @@ type metadataDescribeDBEngineVersionsInput struct {
 
 // String returns the string representation
 func (s DescribeDBEngineVersionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4609,7 +6383,7 @@ type metadataDescribeDBEngineVersionsOutput struct {
 
 // String returns the string representation
 func (s DescribeDBEngineVersionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4619,8 +6393,7 @@ func (s DescribeDBEngineVersionsOutput) GoString() string {
 
 type DescribeDBInstancesInput struct {
 	// The user-supplied instance identifier. If this parameter is specified, information
-	// from only the specific DB instance is returned. This parameter isn't case
-	// sensitive.
+	// from only the specific DB instance is returned. This parameter isn't case-sensitive.
 	//
 	// Constraints:
 	//
@@ -4633,16 +6406,16 @@ type DescribeDBInstancesInput struct {
 
 	// An optional pagination token provided by a previous DescribeDBInstances request.
 	// If this parameter is specified, the response includes only records beyond
-	// the marker, up to the value specified by MaxRecords .
+	// the marker, up to the value specified by MaxRecords.
 	Marker *string `type:"string"`
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBInstancesInput `json:"-" xml:"-"`
@@ -4654,7 +6427,7 @@ type metadataDescribeDBInstancesInput struct {
 
 // String returns the string representation
 func (s DescribeDBInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4682,7 +6455,7 @@ type metadataDescribeDBInstancesOutput struct {
 
 // String returns the string representation
 func (s DescribeDBInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4710,7 +6483,7 @@ type metadataDescribeDBLogFilesDetails struct {
 
 // String returns the string representation
 func (s DescribeDBLogFilesDetails) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4729,7 +6502,7 @@ type DescribeDBLogFilesInput struct {
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Filters the available log files for files written since the specified date,
-	// in POSIX timestamp format.
+	// in POSIX timestamp format with milliseconds.
 	FileLastWritten *int64 `type:"long"`
 
 	// Filters the available log files for files larger than the specified size.
@@ -4761,7 +6534,7 @@ type metadataDescribeDBLogFilesInput struct {
 
 // String returns the string representation
 func (s DescribeDBLogFilesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4786,7 +6559,7 @@ type metadataDescribeDBLogFilesOutput struct {
 
 // String returns the string representation
 func (s DescribeDBLogFilesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4813,11 +6586,11 @@ type DescribeDBParameterGroupsInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBParameterGroupsInput `json:"-" xml:"-"`
@@ -4829,7 +6602,7 @@ type metadataDescribeDBParameterGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeDBParameterGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4857,7 +6630,7 @@ type metadataDescribeDBParameterGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeDBParameterGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4884,11 +6657,11 @@ type DescribeDBParametersInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The parameter types to return.
@@ -4907,7 +6680,7 @@ type metadataDescribeDBParametersInput struct {
 
 // String returns the string representation
 func (s DescribeDBParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4935,7 +6708,7 @@ type metadataDescribeDBParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeDBParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4957,11 +6730,11 @@ type DescribeDBSecurityGroupsInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBSecurityGroupsInput `json:"-" xml:"-"`
@@ -4973,7 +6746,7 @@ type metadataDescribeDBSecurityGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeDBSecurityGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5001,7 +6774,7 @@ type metadataDescribeDBSecurityGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeDBSecurityGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5010,9 +6783,9 @@ func (s DescribeDBSecurityGroupsOutput) GoString() string {
 }
 
 type DescribeDBSnapshotsInput struct {
-	// A DB instance identifier to retrieve the list of DB snapshots for. Cannot
-	// be used in conjunction with DBSnapshotIdentifier. This parameter is not case
-	// sensitive.
+	// A DB instance identifier to retrieve the list of DB snapshots for. This parameter
+	// cannot be used in conjunction with DBSnapshotIdentifier. This parameter is
+	// not case-sensitive.
 	//
 	// Constraints:
 	//
@@ -5020,13 +6793,14 @@ type DescribeDBSnapshotsInput struct {
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBInstanceIdentifier *string `type:"string"`
 
-	// A specific DB snapshot identifier to describe. Cannot be used in conjunction
-	// with DBInstanceIdentifier. This value is stored as a lowercase string.
+	// A specific DB snapshot identifier to describe. This parameter cannot be used
+	// in conjunction with DBInstanceIdentifier. This value is stored as a lowercase
+	// string.
 	//
 	// Constraints:
 	//
-	//  Must be 1 to 255 alphanumeric characters First character must be a letter
-	// Cannot end with a hyphen or contain two consecutive hyphens If this is the
+	//  Must be 1 to 255 alphanumeric characters. First character must be a letter.
+	// Cannot end with a hyphen or contain two consecutive hyphens. If this is the
 	// identifier of an automated snapshot, the SnapshotType parameter must also
 	// be specified.
 	DBSnapshotIdentifier *string `type:"string"`
@@ -5041,11 +6815,11 @@ type DescribeDBSnapshotsInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The type of snapshots that will be returned. Values can be "automated" or
@@ -5062,7 +6836,7 @@ type metadataDescribeDBSnapshotsInput struct {
 
 // String returns the string representation
 func (s DescribeDBSnapshotsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5090,7 +6864,7 @@ type metadataDescribeDBSnapshotsOutput struct {
 
 // String returns the string representation
 func (s DescribeDBSnapshotsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5112,11 +6886,11 @@ type DescribeDBSubnetGroupsInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeDBSubnetGroupsInput `json:"-" xml:"-"`
@@ -5128,7 +6902,7 @@ type metadataDescribeDBSubnetGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeDBSubnetGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5156,11 +6930,72 @@ type metadataDescribeDBSubnetGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeDBSubnetGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s DescribeDBSubnetGroupsOutput) GoString() string {
+	return s.String()
+}
+
+type DescribeEngineDefaultClusterParametersInput struct {
+	// The name of the DB cluster parameter group family to return engine parameter
+	// information for.
+	DBParameterGroupFamily *string `type:"string" required:"true"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeEngineDefaultClusterParameters
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	metadataDescribeEngineDefaultClusterParametersInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeEngineDefaultClusterParametersInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEngineDefaultClusterParametersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEngineDefaultClusterParametersInput) GoString() string {
+	return s.String()
+}
+
+type DescribeEngineDefaultClusterParametersOutput struct {
+	// Contains the result of a successful invocation of the DescribeEngineDefaultParameters
+	// action.
+	EngineDefaults *EngineDefaults `type:"structure"`
+
+	metadataDescribeEngineDefaultClusterParametersOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeEngineDefaultClusterParametersOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeEngineDefaultClusterParametersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEngineDefaultClusterParametersOutput) GoString() string {
 	return s.String()
 }
 
@@ -5178,11 +7013,11 @@ type DescribeEngineDefaultParametersInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeEngineDefaultParametersInput `json:"-" xml:"-"`
@@ -5194,7 +7029,7 @@ type metadataDescribeEngineDefaultParametersInput struct {
 
 // String returns the string representation
 func (s DescribeEngineDefaultParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5216,7 +7051,7 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeEngineDefaultParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5242,7 +7077,7 @@ type metadataDescribeEventCategoriesInput struct {
 
 // String returns the string representation
 func (s DescribeEventCategoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5264,7 +7099,7 @@ type metadataDescribeEventCategoriesOutput struct {
 
 // String returns the string representation
 func (s DescribeEventCategoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5287,7 +7122,7 @@ type DescribeEventSubscriptionsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The name of the RDS event notification subscription you want to describe.
@@ -5302,7 +7137,7 @@ type metadataDescribeEventSubscriptionsInput struct {
 
 // String returns the string representation
 func (s DescribeEventSubscriptionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5329,7 +7164,7 @@ type metadataDescribeEventSubscriptionsOutput struct {
 
 // String returns the string representation
 func (s DescribeEventSubscriptionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5364,11 +7199,11 @@ type DescribeEventsInput struct {
 
 	// The maximum number of records to include in the response. If more records
 	// exist than the specified MaxRecords value, a pagination token called a marker
-	// is included in the response so that the remaining results may be retrieved.
+	// is included in the response so that the remaining results can be retrieved.
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The identifier of the event source for which events will be returned. If
@@ -5386,7 +7221,7 @@ type DescribeEventsInput struct {
 
 	// The event source to retrieve events for. If no value is specified, all events
 	// are returned.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
 	// 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia
@@ -5404,7 +7239,7 @@ type metadataDescribeEventsInput struct {
 
 // String returns the string representation
 func (s DescribeEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5431,7 +7266,7 @@ type metadataDescribeEventsOutput struct {
 
 // String returns the string representation
 func (s DescribeEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5440,7 +7275,7 @@ func (s DescribeEventsOutput) GoString() string {
 }
 
 type DescribeOptionGroupOptionsInput struct {
-	// A required parameter. Options available for the given Engine name will be
+	// A required parameter. Options available for the given engine name will be
 	// described.
 	EngineName *string `type:"string" required:"true"`
 
@@ -5462,7 +7297,7 @@ type DescribeOptionGroupOptionsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	metadataDescribeOptionGroupOptionsInput `json:"-" xml:"-"`
@@ -5474,7 +7309,7 @@ type metadataDescribeOptionGroupOptionsInput struct {
 
 // String returns the string representation
 func (s DescribeOptionGroupOptionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5500,7 +7335,7 @@ type metadataDescribeOptionGroupOptionsOutput struct {
 
 // String returns the string representation
 func (s DescribeOptionGroupOptionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5532,7 +7367,7 @@ type DescribeOptionGroupsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The name of the option group to describe. Cannot be supplied together with
@@ -5548,7 +7383,7 @@ type metadataDescribeOptionGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeOptionGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5575,7 +7410,7 @@ type metadataDescribeOptionGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeOptionGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5613,12 +7448,12 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The VPC filter value. Specify this parameter to show only the available VPC
 	// or non-VPC offerings.
-	VPC *bool `locationName:"Vpc" type:"boolean"`
+	Vpc *bool `type:"boolean"`
 
 	metadataDescribeOrderableDBInstanceOptionsInput `json:"-" xml:"-"`
 }
@@ -5629,7 +7464,7 @@ type metadataDescribeOrderableDBInstanceOptionsInput struct {
 
 // String returns the string representation
 func (s DescribeOrderableDBInstanceOptionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5658,7 +7493,7 @@ type metadataDescribeOrderableDBInstanceOptionsOutput struct {
 
 // String returns the string representation
 func (s DescribeOrderableDBInstanceOptionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5688,7 +7523,7 @@ type DescribePendingMaintenanceActionsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The ARN of a resource to return pending maintenance actions for.
@@ -5703,7 +7538,7 @@ type metadataDescribePendingMaintenanceActionsInput struct {
 
 // String returns the string representation
 func (s DescribePendingMaintenanceActionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5730,7 +7565,7 @@ type metadataDescribePendingMaintenanceActionsOutput struct {
 
 // String returns the string representation
 func (s DescribePendingMaintenanceActionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5763,7 +7598,7 @@ type DescribeReservedDBInstancesInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The Multi-AZ filter value. Specify this parameter to show only those reservations
@@ -5773,7 +7608,7 @@ type DescribeReservedDBInstancesInput struct {
 	// The offering type filter value. Specify this parameter to show only the available
 	// offerings matching the specified offering type.
 	//
-	// Valid Values: "Light Utilization" | "Medium Utilization" | "Heavy Utilization"
+	// Valid Values: "Partial Upfront" | "All Upfront" | "No Upfront"
 	OfferingType *string `type:"string"`
 
 	// The product description filter value. Specify this parameter to show only
@@ -5782,11 +7617,11 @@ type DescribeReservedDBInstancesInput struct {
 
 	// The reserved DB instance identifier filter value. Specify this parameter
 	// to show only the reservation that matches the specified reservation ID.
-	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+	ReservedDBInstanceId *string `type:"string"`
 
 	// The offering identifier filter value. Specify this parameter to show only
 	// purchased reservations matching the specified offering identifier.
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedDBInstancesInput `json:"-" xml:"-"`
 }
@@ -5797,7 +7632,7 @@ type metadataDescribeReservedDBInstancesInput struct {
 
 // String returns the string representation
 func (s DescribeReservedDBInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5830,7 +7665,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	//
 	// Default: 100
 	//
-	// Constraints: minimum 20, maximum 100
+	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
 	// The Multi-AZ filter value. Specify this parameter to show only the available
@@ -5840,7 +7675,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	// The offering type filter value. Specify this parameter to show only the available
 	// offerings matching the specified offering type.
 	//
-	// Valid Values: "Light Utilization" | "Medium Utilization" | "Heavy Utilization"
+	// Valid Values: "Partial Upfront" | "All Upfront" | "No Upfront"
 	OfferingType *string `type:"string"`
 
 	// Product description filter value. Specify this parameter to show only the
@@ -5851,7 +7686,7 @@ type DescribeReservedDBInstancesOfferingsInput struct {
 	// the available offering that matches the specified reservation identifier.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedDBInstancesOfferingsInput `json:"-" xml:"-"`
 }
@@ -5862,7 +7697,7 @@ type metadataDescribeReservedDBInstancesOfferingsInput struct {
 
 // String returns the string representation
 func (s DescribeReservedDBInstancesOfferingsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5890,7 +7725,7 @@ type metadataDescribeReservedDBInstancesOfferingsOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedDBInstancesOfferingsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5918,7 +7753,7 @@ type metadataDescribeReservedDBInstancesOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedDBInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5944,7 +7779,8 @@ type DownloadDBLogFilePortionInput struct {
 	// until the end of the file or up to NumberOfLines.
 	Marker *string `type:"string"`
 
-	// The number of lines to download.
+	// The number of lines to download. If the number of lines specified results
+	// in a file over 1 MB in size, the file will be truncated at 1 MB in size.
 	//
 	// If the NumberOfLines parameter is specified, then the block of lines returned
 	// can be from the beginning or the end of the log file, depending on the value
@@ -5973,7 +7809,7 @@ type metadataDownloadDBLogFilePortionInput struct {
 
 // String returns the string representation
 func (s DownloadDBLogFilePortionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6002,7 +7838,7 @@ type metadataDownloadDBLogFilePortionOutput struct {
 
 // String returns the string representation
 func (s DownloadDBLogFilePortionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6015,14 +7851,14 @@ func (s DownloadDBLogFilePortionOutput) GoString() string {
 //   AuthorizeDBSecurityGroupIngress   DescribeDBSecurityGroups   RevokeDBSecurityGroupIngress
 type EC2SecurityGroup struct {
 	// Specifies the id of the EC2 security group.
-	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+	EC2SecurityGroupId *string `type:"string"`
 
 	// Specifies the name of the EC2 security group.
 	EC2SecurityGroupName *string `type:"string"`
 
 	// Specifies the AWS ID of the owner of the EC2 security group specified in
 	// the EC2SecurityGroupName field.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	// Provides the status of the EC2 security group. Status can be "authorizing",
 	// "authorized", "revoking", and "revoked".
@@ -6037,7 +7873,7 @@ type metadataEC2SecurityGroup struct {
 
 // String returns the string representation
 func (s EC2SecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6064,7 +7900,7 @@ type metadataEndpoint struct {
 
 // String returns the string representation
 func (s Endpoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6075,7 +7911,7 @@ func (s Endpoint) GoString() string {
 // Contains the result of a successful invocation of the DescribeEngineDefaultParameters
 // action.
 type EngineDefaults struct {
-	// Specifies the name of the DB parameter group family which the engine default
+	// Specifies the name of the DB parameter group family that the engine default
 	// parameters apply to.
 	DBParameterGroupFamily *string `type:"string"`
 
@@ -6096,7 +7932,7 @@ type metadataEngineDefaults struct {
 
 // String returns the string representation
 func (s EngineDefaults) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6119,7 +7955,7 @@ type Event struct {
 	SourceIdentifier *string `type:"string"`
 
 	// Specifies the source type for this event.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	metadataEvent `json:"-" xml:"-"`
 }
@@ -6130,7 +7966,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6156,7 +7992,7 @@ type metadataEventCategoriesMap struct {
 
 // String returns the string representation
 func (s EventCategoriesMap) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6168,10 +8004,10 @@ func (s EventCategoriesMap) GoString() string {
 // action.
 type EventSubscription struct {
 	// The RDS event notification subscription Id.
-	CustSubscriptionID *string `locationName:"CustSubscriptionId" type:"string"`
+	CustSubscriptionId *string `type:"string"`
 
 	// The AWS customer account associated with the RDS event notification subscription.
-	CustomerAWSID *string `locationName:"CustomerAwsId" type:"string"`
+	CustomerAwsId *string `type:"string"`
 
 	// A Boolean value indicating if the subscription is enabled. True indicates
 	// the subscription is enabled.
@@ -6181,10 +8017,10 @@ type EventSubscription struct {
 	EventCategoriesList []*string `locationNameList:"EventCategory" type:"list"`
 
 	// The topic ARN of the RDS event notification subscription.
-	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string"`
+	SnsTopicArn *string `type:"string"`
 
 	// A list of source IDs for the RDS event notification subscription.
-	SourceIDsList []*string `locationName:"SourceIdsList" locationNameList:"SourceId" type:"list"`
+	SourceIdsList []*string `locationNameList:"SourceId" type:"list"`
 
 	// The source type for the RDS event notification subscription.
 	SourceType *string `type:"string"`
@@ -6213,11 +8049,62 @@ type metadataEventSubscription struct {
 
 // String returns the string representation
 func (s EventSubscription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s EventSubscription) GoString() string {
+	return s.String()
+}
+
+type FailoverDBClusterInput struct {
+	// A DB cluster identifier to force a failover for. This parameter is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterIdentifier *string `type:"string"`
+
+	metadataFailoverDBClusterInput `json:"-" xml:"-"`
+}
+
+type metadataFailoverDBClusterInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FailoverDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverDBClusterInput) GoString() string {
+	return s.String()
+}
+
+type FailoverDBClusterOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+	//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+	// in the DescribeDBClusters action.
+	DBCluster *DBCluster `type:"structure"`
+
+	metadataFailoverDBClusterOutput `json:"-" xml:"-"`
+}
+
+type metadataFailoverDBClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s FailoverDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverDBClusterOutput) GoString() string {
 	return s.String()
 }
 
@@ -6237,7 +8124,7 @@ type metadataFilter struct {
 
 // String returns the string representation
 func (s Filter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6264,7 +8151,7 @@ type metadataIPRange struct {
 
 // String returns the string representation
 func (s IPRange) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6290,7 +8177,7 @@ type metadataListTagsForResourceInput struct {
 
 // String returns the string representation
 func (s ListTagsForResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6311,11 +8198,180 @@ type metadataListTagsForResourceOutput struct {
 
 // String returns the string representation
 func (s ListTagsForResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+type ModifyDBClusterInput struct {
+	// A value that specifies whether the modifications in this request and any
+	// pending modifications are asynchronously applied as soon as possible, regardless
+	// of the PreferredMaintenanceWindow setting for the DB cluster.
+	//
+	// If this parameter is set to false, changes to the DB cluster are applied
+	// during the next maintenance window.
+	//
+	// Default: false
+	ApplyImmediately *bool `type:"boolean"`
+
+	// The number of days for which automated backups are retained. Setting this
+	// parameter to a positive number enables backups. Setting this parameter to
+	// 0 disables automated backups.
+	//
+	// Default: 1
+	//
+	// Constraints:
+	//
+	//  Must be a value from 0 to 35
+	BackupRetentionPeriod *int64 `type:"integer"`
+
+	// The DB cluster identifier for the cluster being modified. This parameter
+	// is not case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must be the identifier for an existing DB cluster. Must contain from 1
+	// to 63 alphanumeric characters or hyphens. First character must be a letter.
+	// Cannot end with a hyphen or contain two consecutive hyphens.
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the DB cluster parameter group to use for the DB cluster.
+	DBClusterParameterGroupName *string `type:"string"`
+
+	// The new password for the master database user. This password can contain
+	// any printable ASCII character except "/", """, or "@".
+	//
+	// Constraints: Must contain from 8 to 41 characters.
+	MasterUserPassword *string `type:"string"`
+
+	// The new DB cluster identifier for the DB cluster when renaming a DB cluster.
+	// This value is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	//  Example: my-cluster2
+	NewDBClusterIdentifier *string `type:"string"`
+
+	// A value that indicates that the DB cluster should be associated with the
+	// specified option group. Changing this parameter does not result in an outage
+	// except in the following case, and the change is applied during the next maintenance
+	// window unless the ApplyImmediately parameter is set to true for this request.
+	// If the parameter change results in an option group that enables OEM, this
+	// change can cause a brief (sub-second) period during which new connections
+	// are rejected but existing connections are not interrupted.
+	//
+	// Permanent options cannot be removed from an option group. The option group
+	// cannot be removed from a DB cluster once it is associated with a DB cluster.
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the DB cluster accepts connections.
+	//
+	// Constraints: Value must be 1150-65535
+	//
+	// Default: The same port as the original DB cluster.
+	Port *int64 `type:"integer"`
+
+	// The daily time range during which automated backups are created if automated
+	// backups are enabled, using the BackupRetentionPeriod parameter.
+	//
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region. To see the time blocks available, see  Adjusting the Preferred
+	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints:
+	//
+	//  Must be in the format hh24:mi-hh24:mi. Times should be in Universal Coordinated
+	// Time (UTC). Must not conflict with the preferred maintenance window. Must
+	// be at least 30 minutes.
+	PreferredBackupWindow *string `type:"string"`
+
+	// The weekly time range during which system maintenance can occur, in Universal
+	// Coordinated Time (UTC).
+	//
+	//  Format: ddd:hh24:mi-ddd:hh24:mi
+	//
+	// Default: A 30-minute window selected at random from an 8-hour block of time
+	// per region, occurring on a random day of the week. To see the time blocks
+	// available, see  Adjusting the Preferred Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
+	//
+	// Constraints: Minimum 30-minute window.
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// A lst of VPC security groups that the DB cluster will belong to.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
+
+	metadataModifyDBClusterInput `json:"-" xml:"-"`
+}
+
+type metadataModifyDBClusterInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBClusterInput) GoString() string {
+	return s.String()
+}
+
+type ModifyDBClusterOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+	//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+	// in the DescribeDBClusters action.
+	DBCluster *DBCluster `type:"structure"`
+
+	metadataModifyDBClusterOutput `json:"-" xml:"-"`
+}
+
+type metadataModifyDBClusterOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBClusterOutput) GoString() string {
+	return s.String()
+}
+
+type ModifyDBClusterParameterGroupInput struct {
+	// The name of the DB cluster parameter group to modify.
+	DBClusterParameterGroupName *string `type:"string" required:"true"`
+
+	// A list of parameters in the DB cluster parameter group to modify.
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
+
+	metadataModifyDBClusterParameterGroupInput `json:"-" xml:"-"`
+}
+
+type metadataModifyDBClusterParameterGroupInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBClusterParameterGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBClusterParameterGroupInput) GoString() string {
 	return s.String()
 }
 
@@ -6328,7 +8384,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Default: Uses existing setting
 	//
-	// Valid Values: 5-3072
+	// Valid Values: 5-6144
 	//
 	// Constraints: Value supplied must be at least 10% greater than the current
 	// value. Values that are not at least 10% greater than the existing value are
@@ -6340,7 +8396,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Default: Uses existing setting
 	//
-	// Valid Values: 5-3072
+	// Valid Values: 5-6144
 	//
 	// Constraints: Value supplied must be at least 10% greater than the current
 	// value. Values that are not at least 10% greater than the existing value are
@@ -6352,7 +8408,7 @@ type ModifyDBInstanceInput struct {
 	//
 	// Default: Uses existing setting
 	//
-	// Valid Values: 10-3072
+	// Valid Values: 10-6144
 	//
 	// Constraints: Value supplied must be at least 10% greater than the current
 	// value. Values that are not at least 10% greater than the existing value are
@@ -6369,7 +8425,7 @@ type ModifyDBInstanceInput struct {
 	// or Provisioned IOPS), amount of IOPS provisioned (if any), and the number
 	// of prior scale storage operations. Typical migration times are under 24 hours,
 	// but the process can take up to several days in some cases. During the migration,
-	// the DB instance will be available for use, but may experience performance
+	// the DB instance will be available for use, but might experience performance
 	// degradation. While the migration takes place, nightly backups for the instance
 	// will be suspended. No other Amazon RDS operations can take place for the
 	// instance, including modifying the instance, rebooting the instance, deleting
@@ -6430,8 +8486,12 @@ type ModifyDBInstanceInput struct {
 	// to 0 if the DB instance is a source to Read Replicas
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// Indicates the certificate which needs to be associated with the instance.
+	// Indicates the certificate that needs to be associated with the instance.
 	CACertificateIdentifier *string `type:"string"`
+
+	// True to copy all tags from the DB instance to snapshots of the DB instance;
+	// otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The new compute and memory capacity of the DB instance. To determine the
 	// instance classes that are available for a particular DB engine, use the DescribeOrderableDBInstanceOptions
@@ -6447,6 +8507,7 @@ type ModifyDBInstanceInput struct {
 	// | db.m2.xlarge | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
 	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
 	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.t2.large
 	DBInstanceClass *string `type:"string"`
 
 	// The DB instance identifier. This value is stored as a lowercase string.
@@ -6520,13 +8581,13 @@ type ModifyDBInstanceInput struct {
 	// or Provisioned IOPS), amount of IOPS provisioned (if any), and the number
 	// of prior scale storage operations. Typical migration times are under 24 hours,
 	// but the process can take up to several days in some cases. During the migration,
-	// the DB instance will be available for use, but may experience performance
+	// the DB instance will be available for use, but might experience performance
 	// degradation. While the migration takes place, nightly backups for the instance
 	// will be suspended. No other Amazon RDS operations can take place for the
 	// instance, including modifying the instance, rebooting the instance, deleting
 	// the instance, creating a Read Replica for the instance, and creating a DB
 	// snapshot of the instance.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// The new password for the DB instance master user. Can be any printable ASCII
 	// character except "/", """, or "@".
@@ -6538,19 +8599,23 @@ type ModifyDBInstanceInput struct {
 	//
 	// Default: Uses existing setting
 	//
-	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL), 8 to 30 alphanumeric
-	// characters (Oracle), or 8 to 128 alphanumeric characters (SQL Server).
+	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL and Amazon Aurora),
+	// 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric characters
+	// (SQL Server).
 	//
 	//  Amazon RDS API actions never return the password, so this action provides
 	// a way to regain access to a primary instance user if the password is lost.
-	// This includes restoring privileges that may have been accidentally revoked.
+	// This includes restoring privileges that might have been accidentally revoked.
 	MasterUserPassword *string `type:"string"`
 
 	// Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter
 	// does not result in an outage and the change is applied during the next maintenance
 	// window unless the ApplyImmediately parameter is set to true for this request.
 	//
-	// Constraints: Cannot be specified if the DB instance is a Read Replica.
+	// Constraints: Cannot be specified if the DB instance is a Read Replica. This
+	// parameter cannot be used with SQL Server DB instances. Multi-AZ for SQL Server
+	// DB instances is set using the Mirroring option in an option group associated
+	// with the DB instance.
 	MultiAZ *bool `type:"boolean"`
 
 	// The new DB instance identifier for the DB instance when renaming a DB instance.
@@ -6579,20 +8644,20 @@ type ModifyDBInstanceInput struct {
 	OptionGroupName *string `type:"string"`
 
 	// The daily time range during which automated backups are created if automated
-	// backups are enabled, as determined by the BackupRetentionPeriod. Changing
-	// this parameter does not result in an outage and the change is asynchronously
+	// backups are enabled, as determined by the BackupRetentionPeriod parameter.
+	// Changing this parameter does not result in an outage and the change is asynchronously
 	// applied as soon as possible.
 	//
 	// Constraints:
 	//
-	//  Must be in the format hh24:mi-hh24:mi Times should be Universal Time Coordinated
-	// (UTC) Must not conflict with the preferred maintenance window Must be at
-	// least 30 minutes
+	//  Must be in the format hh24:mi-hh24:mi Times should be in Universal Time
+	// Coordinated (UTC) Must not conflict with the preferred maintenance window
+	// Must be at least 30 minutes
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range (in UTC) during which system maintenance can occur,
-	// which may result in an outage. Changing this parameter does not result in
-	// an outage, except in the following situation, and the change is asynchronously
+	// which might result in an outage. Changing this parameter does not result
+	// in an outage, except in the following situation, and the change is asynchronously
 	// applied as soon as possible. If there are pending actions that cause a reboot,
 	// and the maintenance window is changed to include the current time, then changing
 	// this parameter will cause a reboot of the DB instance. If moving this window
@@ -6618,11 +8683,11 @@ type ModifyDBInstanceInput struct {
 	StorageType *string `type:"string"`
 
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the Key Store in order to access the
 	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
+	TdeCredentialPassword *string `type:"string"`
 
 	// A list of EC2 VPC security groups to authorize on this DB instance. This
 	// change is asynchronously applied as soon as possible.
@@ -6631,7 +8696,7 @@ type ModifyDBInstanceInput struct {
 	//
 	//  Must be 1 to 255 alphanumeric characters First character must be a letter
 	// Cannot end with a hyphen or contain two consecutive hyphens
-	VPCSecurityGroupIDs []*string `locationName:"VpcSecurityGroupIds" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataModifyDBInstanceInput `json:"-" xml:"-"`
 }
@@ -6642,7 +8707,7 @@ type metadataModifyDBInstanceInput struct {
 
 // String returns the string representation
 func (s ModifyDBInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6666,7 +8731,7 @@ type metadataModifyDBInstanceOutput struct {
 
 // String returns the string representation
 func (s ModifyDBInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6686,7 +8751,7 @@ type ModifyDBParameterGroupInput struct {
 
 	// An array of parameter names, values, and the apply method for the parameter
 	// update. At least one parameter name, value, and apply method must be supplied;
-	// subsequent arguments are optional. A maximum of 20 parameters may be modified
+	// subsequent arguments are optional. A maximum of 20 parameters can be modified
 	// in a single request.
 	//
 	// Valid Values (for the application method): immediate | pending-reboot
@@ -6705,7 +8770,7 @@ type metadataModifyDBParameterGroupInput struct {
 
 // String returns the string representation
 func (s ModifyDBParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6726,7 +8791,7 @@ type ModifyDBSubnetGroupInput struct {
 	DBSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the DB subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataModifyDBSubnetGroupInput `json:"-" xml:"-"`
 }
@@ -6737,7 +8802,7 @@ type metadataModifyDBSubnetGroupInput struct {
 
 // String returns the string representation
 func (s ModifyDBSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6762,7 +8827,7 @@ type metadataModifyDBSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyDBSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6784,7 +8849,7 @@ type ModifyEventSubscriptionInput struct {
 	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
 	// The ARN is created by Amazon SNS when you create a topic and subscribe to
 	// it.
-	SNSTopicARN *string `locationName:"SnsTopicArn" type:"string"`
+	SnsTopicArn *string `type:"string"`
 
 	// The type of source that will be generating the events. For example, if you
 	// want to be notified of events generated by a DB instance, you would set this
@@ -6806,7 +8871,7 @@ type metadataModifyEventSubscriptionInput struct {
 
 // String returns the string representation
 func (s ModifyEventSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6828,7 +8893,7 @@ type metadataModifyEventSubscriptionOutput struct {
 
 // String returns the string representation
 func (s ModifyEventSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6864,7 +8929,7 @@ type metadataModifyOptionGroupInput struct {
 
 // String returns the string representation
 func (s ModifyOptionGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6884,7 +8949,7 @@ type metadataModifyOptionGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyOptionGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6918,7 +8983,7 @@ type Option struct {
 
 	// If the option requires access to a port, then this VPC security group allows
 	// access to the port.
-	VPCSecurityGroupMemberships []*VPCSecurityGroupMembership `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupMembership" type:"list"`
+	VpcSecurityGroupMemberships []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
 
 	metadataOption `json:"-" xml:"-"`
 }
@@ -6929,7 +8994,7 @@ type metadataOption struct {
 
 // String returns the string representation
 func (s Option) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6952,7 +9017,7 @@ type OptionConfiguration struct {
 	Port *int64 `type:"integer"`
 
 	// A list of VpcSecurityGroupMemebrship name strings used for this option.
-	VPCSecurityGroupMemberships []*string `locationName:"VpcSecurityGroupMemberships" locationNameList:"VpcSecurityGroupId" type:"list"`
+	VpcSecurityGroupMemberships []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 
 	metadataOptionConfiguration `json:"-" xml:"-"`
 }
@@ -6963,7 +9028,7 @@ type metadataOptionConfiguration struct {
 
 // String returns the string representation
 func (s OptionConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -6975,9 +9040,9 @@ type OptionGroup struct {
 	// Indicates whether this option group can be applied to both VPC and non-VPC
 	// instances. The value true indicates the option group can be applied to both
 	// VPC and non-VPC instances.
-	AllowsVPCAndNonVPCInstanceMemberships *bool `locationName:"AllowsVpcAndNonVpcInstanceMemberships" type:"boolean"`
+	AllowsVpcAndNonVpcInstanceMemberships *bool `type:"boolean"`
 
-	// Engine name that this option group can be applied to.
+	// Indicates the name of the engine that this option group can be applied to.
 	EngineName *string `type:"string"`
 
 	// Indicates the major engine version associated with this option group.
@@ -6997,7 +9062,7 @@ type OptionGroup struct {
 	// this option group can be applied to both VPC and non-VPC instances. If this
 	// field contains a value, then this option group can only be applied to instances
 	// that are in the VPC indicated by this field.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataOptionGroup `json:"-" xml:"-"`
 }
@@ -7008,7 +9073,7 @@ type metadataOptionGroup struct {
 
 // String returns the string representation
 func (s OptionGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7034,7 +9099,7 @@ type metadataOptionGroupMembership struct {
 
 // String returns the string representation
 func (s OptionGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7092,7 +9157,7 @@ type metadataOptionGroupOption struct {
 
 // String returns the string representation
 func (s OptionGroupOption) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7132,7 +9197,7 @@ type metadataOptionGroupOptionSetting struct {
 
 // String returns the string representation
 func (s OptionGroupOptionSetting) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7182,7 +9247,7 @@ type metadataOptionSetting struct {
 
 // String returns the string representation
 func (s OptionSetting) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7195,10 +9260,10 @@ func (s OptionSetting) GoString() string {
 //  This data type is used as a response element in the DescribeOrderableDBInstanceOptions
 // action.
 type OrderableDBInstanceOption struct {
-	// A list of availability zones for the orderable DB instance.
+	// A list of Availability Zones for the orderable DB instance.
 	AvailabilityZones []*AvailabilityZone `locationNameList:"AvailabilityZone" type:"list"`
 
-	// The DB instance Class for the orderable DB instance
+	// The DB instance class for the orderable DB instance.
 	DBInstanceClass *string `type:"string"`
 
 	// The engine type of the orderable DB instance.
@@ -7216,17 +9281,17 @@ type OrderableDBInstanceOption struct {
 	// Indicates whether this orderable DB instance can have a Read Replica.
 	ReadReplicaCapable *bool `type:"boolean"`
 
-	// The storage type for this orderable DB instance.
+	// Indicates the storage type for this orderable DB instance.
 	StorageType *string `type:"string"`
 
 	// Indicates whether this orderable DB instance supports provisioned IOPS.
-	SupportsIOPS *bool `locationName:"SupportsIops" type:"boolean"`
+	SupportsIops *bool `type:"boolean"`
 
 	// Indicates whether this orderable DB instance supports encrypted storage.
 	SupportsStorageEncryption *bool `type:"boolean"`
 
 	// Indicates whether this is a VPC orderable DB instance.
-	VPC *bool `locationName:"Vpc" type:"boolean"`
+	Vpc *bool `type:"boolean"`
 
 	metadataOrderableDBInstanceOption `json:"-" xml:"-"`
 }
@@ -7237,7 +9302,7 @@ type metadataOrderableDBInstanceOption struct {
 
 // String returns the string representation
 func (s OrderableDBInstanceOption) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7255,7 +9320,7 @@ type Parameter struct {
 	AllowedValues *string `type:"string"`
 
 	// Indicates when to apply parameter updates.
-	ApplyMethod *string `type:"string"`
+	ApplyMethod *string `type:"string" enum:"ApplyMethod"`
 
 	// Specifies the engine specific parameters type.
 	ApplyType *string `type:"string"`
@@ -7292,7 +9357,7 @@ type metadataParameter struct {
 
 // String returns the string representation
 func (s Parameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7339,7 +9404,7 @@ type metadataPendingMaintenanceAction struct {
 
 // String returns the string representation
 func (s PendingMaintenanceAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7372,7 +9437,7 @@ type PendingModifiedValues struct {
 
 	// Specifies the new Provisioned IOPS value for the DB instance that will be
 	// applied or is being applied.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// Contains the pending or in-progress change of the master credentials for
 	// the DB instance.
@@ -7396,7 +9461,7 @@ type metadataPendingModifiedValues struct {
 
 // String returns the string representation
 func (s PendingModifiedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7430,12 +9495,15 @@ type PromoteReadReplicaInput struct {
 	// backups are enabled, using the BackupRetentionPeriod parameter.
 	//
 	//  Default: A 30-minute window selected at random from an 8-hour block of
-	// time per region. See the Amazon RDS User Guide for the time blocks for each
-	// region from which the default backup windows are assigned.
+	// time per region. To see the time blocks available, see  Adjusting the Preferred
+	// Maintenance Window (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/AdjustingTheMaintenanceWindow.html)
+	// in the Amazon RDS User Guide.
 	//
-	//  Constraints: Must be in the format hh24:mi-hh24:mi. Times should be Universal
-	// Time Coordinated (UTC). Must not conflict with the preferred maintenance
-	// window. Must be at least 30 minutes.
+	// Constraints:
+	//
+	//  Must be in the format hh24:mi-hh24:mi. Times should be in Universal Coordinated
+	// Time (UTC). Must not conflict with the preferred maintenance window. Must
+	// be at least 30 minutes.
 	PreferredBackupWindow *string `type:"string"`
 
 	metadataPromoteReadReplicaInput `json:"-" xml:"-"`
@@ -7447,7 +9515,7 @@ type metadataPromoteReadReplicaInput struct {
 
 // String returns the string representation
 func (s PromoteReadReplicaInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7471,7 +9539,7 @@ type metadataPromoteReadReplicaOutput struct {
 
 // String returns the string representation
 func (s PromoteReadReplicaOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7488,12 +9556,12 @@ type PurchaseReservedDBInstancesOfferingInput struct {
 	// Customer-specified identifier to track this reservation.
 	//
 	// Example: myreservationID
-	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+	ReservedDBInstanceId *string `type:"string"`
 
 	// The ID of the Reserved DB instance offering to purchase.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string" required:"true"`
+	ReservedDBInstancesOfferingId *string `type:"string" required:"true"`
 
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
@@ -7507,7 +9575,7 @@ type metadataPurchaseReservedDBInstancesOfferingInput struct {
 
 // String returns the string representation
 func (s PurchaseReservedDBInstancesOfferingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7529,7 +9597,7 @@ type metadataPurchaseReservedDBInstancesOfferingOutput struct {
 
 // String returns the string representation
 func (s PurchaseReservedDBInstancesOfferingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7561,7 +9629,7 @@ type metadataRebootDBInstanceInput struct {
 
 // String returns the string representation
 func (s RebootDBInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7585,7 +9653,7 @@ type metadataRebootDBInstanceOutput struct {
 
 // String returns the string representation
 func (s RebootDBInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7611,7 +9679,7 @@ type metadataRecurringCharge struct {
 
 // String returns the string representation
 func (s RecurringCharge) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7637,7 +9705,7 @@ type metadataRemoveSourceIdentifierFromSubscriptionInput struct {
 
 // String returns the string representation
 func (s RemoveSourceIdentifierFromSubscriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7659,7 +9727,7 @@ type metadataRemoveSourceIdentifierFromSubscriptionOutput struct {
 
 // String returns the string representation
 func (s RemoveSourceIdentifierFromSubscriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7685,7 +9753,7 @@ type metadataRemoveTagsFromResourceInput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7703,7 +9771,7 @@ type metadataRemoveTagsFromResourceOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromResourceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7742,10 +9810,10 @@ type ReservedDBInstance struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// The unique identifier for the reservation.
-	ReservedDBInstanceID *string `locationName:"ReservedDBInstanceId" type:"string"`
+	ReservedDBInstanceId *string `type:"string"`
 
 	// The offering identifier.
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	// The time the reservation started.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -7765,7 +9833,7 @@ type metadataReservedDBInstance struct {
 
 // String returns the string representation
 func (s ReservedDBInstance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7801,7 +9869,7 @@ type ReservedDBInstancesOffering struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// The offering identifier.
-	ReservedDBInstancesOfferingID *string `locationName:"ReservedDBInstancesOfferingId" type:"string"`
+	ReservedDBInstancesOfferingId *string `type:"string"`
 
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
@@ -7815,11 +9883,42 @@ type metadataReservedDBInstancesOffering struct {
 
 // String returns the string representation
 func (s ReservedDBInstancesOffering) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s ReservedDBInstancesOffering) GoString() string {
+	return s.String()
+}
+
+type ResetDBClusterParameterGroupInput struct {
+	// The name of the DB cluster parameter group to reset.
+	DBClusterParameterGroupName *string `type:"string" required:"true"`
+
+	// A list of parameter names in the DB cluster parameter group to reset to the
+	// default values. You cannot use this parameter if the ResetAllParameters parameter
+	// is set to true.
+	Parameters []*Parameter `locationNameList:"Parameter" type:"list"`
+
+	// A value that is set to true to reset all parameters in the DB cluster parameter
+	// group to their default values, and false otherwise. You cannot use this parameter
+	// if there is a list of parameter names specified for the Parameters parameter.
+	ResetAllParameters *bool `type:"boolean"`
+
+	metadataResetDBClusterParameterGroupInput `json:"-" xml:"-"`
+}
+
+type metadataResetDBClusterParameterGroupInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetDBClusterParameterGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResetDBClusterParameterGroupInput) GoString() string {
 	return s.String()
 }
 
@@ -7834,7 +9933,7 @@ type ResetDBParameterGroupInput struct {
 
 	// An array of parameter names, values, and the apply method for the parameter
 	// update. At least one parameter name, value, and apply method must be supplied;
-	// subsequent arguments are optional. A maximum of 20 parameters may be modified
+	// subsequent arguments are optional. A maximum of 20 parameters can be modified
 	// in a single request.
 	//
 	//  MySQL
@@ -7865,7 +9964,7 @@ type metadataResetDBParameterGroupInput struct {
 
 // String returns the string representation
 func (s ResetDBParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -7891,11 +9990,205 @@ type metadataResourcePendingMaintenanceActions struct {
 
 // String returns the string representation
 func (s ResourcePendingMaintenanceActions) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s ResourcePendingMaintenanceActions) GoString() string {
+	return s.String()
+}
+
+type RestoreDBClusterFromSnapshotInput struct {
+	// Provides the list of EC2 Availability Zones that instances in the restored
+	// DB cluster can be created in.
+	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
+
+	// The name of the DB cluster to create from the DB cluster snapshot. This parameter
+	// isn't case-sensitive.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	//  Example: my-snapshot-id
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the DB subnet group to use for the new DB cluster.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The database name for the restored DB cluster.
+	DatabaseName *string `type:"string"`
+
+	// The database engine to use for the new DB cluster.
+	//
+	// Default: The same as source
+	//
+	// Constraint: Must be compatible with the engine of the source
+	Engine *string `type:"string" required:"true"`
+
+	// The version of the database engine to use for the new DB cluster.
+	EngineVersion *string `type:"string"`
+
+	// The name of the option group to use for the restored DB cluster.
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the new DB cluster accepts connections.
+	//
+	// Constraints: Value must be 1150-65535
+	//
+	// Default: The same port as the original DB cluster.
+	Port *int64 `type:"integer"`
+
+	// The identifier for the DB cluster snapshot to restore from.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	SnapshotIdentifier *string `type:"string" required:"true"`
+
+	// The tags to be assigned to the restored DB cluster.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A list of VPC security groups that the new DB cluster will belong to.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
+
+	metadataRestoreDBClusterFromSnapshotInput `json:"-" xml:"-"`
+}
+
+type metadataRestoreDBClusterFromSnapshotInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreDBClusterFromSnapshotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBClusterFromSnapshotInput) GoString() string {
+	return s.String()
+}
+
+type RestoreDBClusterFromSnapshotOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+	//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+	// in the DescribeDBClusters action.
+	DBCluster *DBCluster `type:"structure"`
+
+	metadataRestoreDBClusterFromSnapshotOutput `json:"-" xml:"-"`
+}
+
+type metadataRestoreDBClusterFromSnapshotOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreDBClusterFromSnapshotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBClusterFromSnapshotOutput) GoString() string {
+	return s.String()
+}
+
+type RestoreDBClusterToPointInTimeInput struct {
+	// The name of the new DB cluster to be created.
+	//
+	// Constraints:
+	//
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The DB subnet group name to use for the new DB cluster.
+	DBSubnetGroupName *string `type:"string"`
+
+	// The name of the option group for the new DB cluster.
+	OptionGroupName *string `type:"string"`
+
+	// The port number on which the new DB cluster accepts connections.
+	//
+	// Constraints: Value must be 1150-65535
+	//
+	// Default: The same port as the original DB cluster.
+	Port *int64 `type:"integer"`
+
+	// The date and time to restore the DB cluster to.
+	//
+	// Valid Values: Value must be a time in Universal Coordinated Time (UTC) format
+	//
+	// Constraints:
+	//
+	//  Must be before the latest restorable time for the DB instance Cannot be
+	// specified if UseLatestRestorableTime parameter is true  Example: 2015-03-07T23:45:00Z
+	RestoreToTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The identifier of the source DB cluster from which to restore.
+	//
+	// Constraints:
+	//
+	//  Must be the identifier of an existing database instance Must contain from
+	// 1 to 63 alphanumeric characters or hyphens First character must be a letter
+	// Cannot end with a hyphen or contain two consecutive hyphens
+	SourceDBClusterIdentifier *string `type:"string" required:"true"`
+
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A value that is set to true to restore the DB cluster to the latest restorable
+	// backup time, and false otherwise.
+	//
+	// Default: false
+	//
+	// Constraints: Cannot be specified if RestoreToTime parameter is provided.
+	UseLatestRestorableTime *bool `type:"boolean"`
+
+	// A lst of VPC security groups that the new DB cluster belongs to.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
+
+	metadataRestoreDBClusterToPointInTimeInput `json:"-" xml:"-"`
+}
+
+type metadataRestoreDBClusterToPointInTimeInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreDBClusterToPointInTimeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBClusterToPointInTimeInput) GoString() string {
+	return s.String()
+}
+
+type RestoreDBClusterToPointInTimeOutput struct {
+	// Contains the result of a successful invocation of the following actions:
+	//
+	//   CreateDBCluster   DeleteDBCluster   FailoverDBCluster   ModifyDBCluster
+	//   RestoreDBClusterFromSnapshot   This data type is used as a response element
+	// in the DescribeDBClusters action.
+	DBCluster *DBCluster `type:"structure"`
+
+	metadataRestoreDBClusterToPointInTimeOutput `json:"-" xml:"-"`
+}
+
+type metadataRestoreDBClusterToPointInTimeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RestoreDBClusterToPointInTimeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RestoreDBClusterToPointInTimeOutput) GoString() string {
 	return s.String()
 }
 
@@ -7914,22 +10207,26 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
+	// True to copy all tags from the restored DB instance to snapshots of the DB
+	// instance; otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance.
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
 	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
-	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	DBInstanceClass *string `type:"string"`
 
 	// Name of the DB instance to create from the DB snapshot. This parameter isn't
-	// case sensitive.
+	// case-sensitive.
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
-	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
-	//  Example: my-snapshot-id
+	//  Must contain from 1 to 63 alphanumeric characters or hyphens (1 to 15 for
+	// SQL Server) First character must be a letter Cannot end with a hyphen or
+	// contain two consecutive hyphens  Example: my-snapshot-id
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The database name for the restored DB instance.
@@ -7941,7 +10238,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraints:
 	//
-	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
+	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
@@ -7970,7 +10267,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// License model information for the restored DB instance.
 	//
@@ -8023,15 +10320,15 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//  Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
+	// A list of tags.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
+	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the Key Store in order to access the
 	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
-
-	// A list of tags.
-	Tags []*Tag `locationNameList:"Tag" type:"list"`
+	TdeCredentialPassword *string `type:"string"`
 
 	metadataRestoreDBInstanceFromDBSnapshotInput `json:"-" xml:"-"`
 }
@@ -8042,7 +10339,7 @@ type metadataRestoreDBInstanceFromDBSnapshotInput struct {
 
 // String returns the string representation
 func (s RestoreDBInstanceFromDBSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8066,7 +10363,7 @@ type metadataRestoreDBInstanceFromDBSnapshotOutput struct {
 
 // String returns the string representation
 func (s RestoreDBInstanceFromDBSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8089,12 +10386,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
+	// True to copy all tags from the restored DB instance to snapshots of the DB
+	// instance; otherwise false. The default is false.
+	CopyTagsToSnapshot *bool `type:"boolean"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance.
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
 	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
-	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
+	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	//
 	// Default: The same DBInstanceClass as the original DB instance.
 	DBInstanceClass *string `type:"string"`
@@ -8125,7 +10426,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//  SQL Server
 	//
 	// Setting the IOPS value for the SQL Server database engine is not supported.
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `type:"integer"`
 
 	// License model information for the restored DB instance.
 	//
@@ -8171,7 +10472,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The date and time to restore from.
 	//
-	// Valid Values: Value must be a UTC time
+	// Valid Values: Value must be a time in Universal Coordinated Time (UTC) format
 	//
 	// Constraints:
 	//
@@ -8197,13 +10498,6 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//  Default: io1 if the Iops parameter is specified; otherwise standard
 	StorageType *string `type:"string"`
 
-	// The ARN from the Key Store with which to associate the instance for TDE encryption.
-	TDECredentialARN *string `locationName:"TdeCredentialArn" type:"string"`
-
-	// The password for the given ARN from the Key Store in order to access the
-	// device.
-	TDECredentialPassword *string `locationName:"TdeCredentialPassword" type:"string"`
-
 	// A list of tags.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
@@ -8214,6 +10508,13 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//  Must contain from 1 to 63 alphanumeric characters or hyphens First character
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
 	TargetDBInstanceIdentifier *string `type:"string" required:"true"`
+
+	// The ARN from the Key Store with which to associate the instance for TDE encryption.
+	TdeCredentialArn *string `type:"string"`
+
+	// The password for the given ARN from the Key Store in order to access the
+	// device.
+	TdeCredentialPassword *string `type:"string"`
 
 	// Specifies whether (true) or not (false) the DB instance is restored from
 	// the latest backup time.
@@ -8232,7 +10533,7 @@ type metadataRestoreDBInstanceToPointInTimeInput struct {
 
 // String returns the string representation
 func (s RestoreDBInstanceToPointInTimeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8256,7 +10557,7 @@ type metadataRestoreDBInstanceToPointInTimeOutput struct {
 
 // String returns the string representation
 func (s RestoreDBInstanceToPointInTimeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8276,7 +10577,7 @@ type RevokeDBSecurityGroupIngressInput struct {
 	// The id of the EC2 security group to revoke access from. For VPC DB security
 	// groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId
 	// and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.
-	EC2SecurityGroupID *string `locationName:"EC2SecurityGroupId" type:"string"`
+	EC2SecurityGroupId *string `type:"string"`
 
 	// The name of the EC2 security group to revoke access from. For VPC DB security
 	// groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId
@@ -8288,7 +10589,7 @@ type RevokeDBSecurityGroupIngressInput struct {
 	// value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise,
 	// EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId
 	// must be provided.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	metadataRevokeDBSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -8299,7 +10600,7 @@ type metadataRevokeDBSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s RevokeDBSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8324,7 +10625,7 @@ type metadataRevokeDBSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s RevokeDBSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8355,7 +10656,7 @@ type metadataSubnet struct {
 
 // String returns the string representation
 func (s Subnet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8367,13 +10668,13 @@ func (s Subnet) GoString() string {
 type Tag struct {
 	// A key is the required name of the tag. The string value can be from 1 to
 	// 128 Unicode characters in length and cannot be prefixed with "aws:" or "rds:".
-	// The string may only contain only the set of Unicode letters, digits, white-space,
+	// The string can only contain only the set of Unicode letters, digits, white-space,
 	// '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Key *string `type:"string"`
 
 	// A value is the optional value of the tag. The string value can be from 1
 	// to 256 Unicode characters in length and cannot be prefixed with "aws:" or
-	// "rds:". The string may only contain only the set of Unicode letters, digits,
+	// "rds:". The string can only contain only the set of Unicode letters, digits,
 	// white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Value *string `type:"string"`
 
@@ -8386,7 +10687,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -8394,28 +10695,84 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
-// This data type is used as a response element for queries on VPC security
-// group membership.
-type VPCSecurityGroupMembership struct {
-	// The status of the VPC security group.
-	Status *string `type:"string"`
+// The version of the database engine that a DB instance can be upgraded to.
+type UpgradeTarget struct {
+	// A value that indicates whether the target version will be applied to any
+	// source DB instances that have AutoMinorVersionUpgrade set to true.
+	AutoUpgrade *bool `type:"boolean"`
 
-	// The name of the VPC security group.
-	VPCSecurityGroupID *string `locationName:"VpcSecurityGroupId" type:"string"`
+	// The version of the database engine that a DB instance can be upgraded to.
+	Description *string `type:"string"`
 
-	metadataVPCSecurityGroupMembership `json:"-" xml:"-"`
+	// The name of the upgrade target database engine.
+	Engine *string `type:"string"`
+
+	// The version number of the upgrade target database engine.
+	EngineVersion *string `type:"string"`
+
+	// A value that indicates whether a database engine will be upgraded to a major
+	// version.
+	IsMajorVersionUpgrade *bool `type:"boolean"`
+
+	metadataUpgradeTarget `json:"-" xml:"-"`
 }
 
-type metadataVPCSecurityGroupMembership struct {
+type metadataUpgradeTarget struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s VPCSecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+func (s UpgradeTarget) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s VPCSecurityGroupMembership) GoString() string {
+func (s UpgradeTarget) GoString() string {
 	return s.String()
 }
+
+// This data type is used as a response element for queries on VPC security
+// group membership.
+type VpcSecurityGroupMembership struct {
+	// The status of the VPC security group.
+	Status *string `type:"string"`
+
+	// The name of the VPC security group.
+	VpcSecurityGroupId *string `type:"string"`
+
+	metadataVpcSecurityGroupMembership `json:"-" xml:"-"`
+}
+
+type metadataVpcSecurityGroupMembership struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s VpcSecurityGroupMembership) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcSecurityGroupMembership) GoString() string {
+	return s.String()
+}
+
+const (
+	// @enum ApplyMethod
+	ApplyMethodImmediate = "immediate"
+	// @enum ApplyMethod
+	ApplyMethodPendingReboot = "pending-reboot"
+)
+
+const (
+	// @enum SourceType
+	SourceTypeDbInstance = "db-instance"
+	// @enum SourceType
+	SourceTypeDbParameterGroup = "db-parameter-group"
+	// @enum SourceType
+	SourceTypeDbSecurityGroup = "db-security-group"
+	// @enum SourceType
+	SourceTypeDbCluster = "db-cluster"
+	// @enum SourceType
+	SourceTypeDbClusterSnapshot = "db-cluster-snapshot"
+)

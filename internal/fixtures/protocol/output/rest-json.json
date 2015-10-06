@@ -503,8 +503,8 @@
           "status_code": 200,
           "headers": {
             "Content-Length": "10",
-            "x-Foo": "bar",
-            "X-bam": "boo"
+            "X-Foo": "bar",
+            "X-Bam": "boo"
           },
           "body": "{}"
         }
@@ -601,44 +601,6 @@
           "status_code": 200,
           "headers": {},
           "body": "abc"
-        }
-      }
-    ]
-  },
-  {
-    "description": "String",
-    "metadata": {
-      "protocol": "rest-json"
-    },
-    "shapes": {
-      "OutputShape": {
-        "type": "structure",
-        "payload": "String",
-        "members": {
-          "String": {
-            "shape": "StringType"
-          }
-        }
-      },
-      "StringType": {
-        "type": "string"
-      }
-    },
-    "cases": [
-      {
-        "given": {
-          "output": {
-            "shape": "OutputShape"
-          },
-          "name": "OperationName"
-        },
-        "result": {
-          "String": "operation result string"
-        },
-        "response": {
-          "status_code": 200,
-          "headers": {},
-          "body": "operation result string"
         }
       }
     ]

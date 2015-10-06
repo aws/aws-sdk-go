@@ -4,6 +4,10 @@ package elasticache
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -20,21 +24,23 @@ import (
 // visibility into the key performance statistics associated with their cache
 // and can receive alarms if a part of their cache runs hot.
 type ElastiCache struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new ElastiCache client.
 func New(config *aws.Config) *ElastiCache {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
-		ServiceName: "elasticache",
-		APIVersion:  "2015-02-02",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "elasticache",
+			APIVersion:  "2015-02-02",
+		},
 	}
 	service.Initialize()
 
@@ -55,8 +61,8 @@ func New(config *aws.Config) *ElastiCache {
 
 // newRequest creates a new request for a ElastiCache operation and runs any
 // custom request initialization.
-func (c *ElastiCache) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *ElastiCache) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

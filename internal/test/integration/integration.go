@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
 )
 
 // Imported is a marker to ensure that this package's init() function gets
@@ -21,14 +22,16 @@ const Imported = true
 
 func init() {
 	if os.Getenv("DEBUG") != "" {
-		aws.DefaultConfig.LogLevel = 1
+		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebug)
+	}
+	if os.Getenv("DEBUG_SIGNING") != "" {
+		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning)
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		aws.DefaultConfig.LogLevel = 1
-		aws.DefaultConfig.LogHTTPBody = true
+		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
 	}
 
-	if aws.DefaultConfig.Region == "" {
+	if aws.StringValue(defaults.DefaultConfig.Region) == "" {
 		panic("AWS_REGION must be configured to run integration tests")
 	}
 }

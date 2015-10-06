@@ -4,6 +4,10 @@ package lambda
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -16,21 +20,23 @@ import (
 // about how the service works, go to AWS Lambda: How it Works (http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html)
 // in the AWS Lambda Developer Guide.
 type Lambda struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new Lambda client.
 func New(config *aws.Config) *Lambda {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
-		ServiceName: "lambda",
-		APIVersion:  "2015-03-31",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "lambda",
+			APIVersion:  "2015-03-31",
+		},
 	}
 	service.Initialize()
 
@@ -51,8 +57,8 @@ func New(config *aws.Config) *Lambda {
 
 // newRequest creates a new request for a Lambda operation and runs any
 // custom request initialization.
-func (c *Lambda) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *Lambda) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

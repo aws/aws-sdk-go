@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
@@ -20,7 +18,7 @@ func ExampleSQS_AddPermission() {
 	svc := sqs.New(nil)
 
 	params := &sqs.AddPermissionInput{
-		AWSAccountIDs: []*string{ // Required
+		AWSAccountIds: []*string{ // Required
 			aws.String("String"), // Required
 			// More values...
 		},
@@ -29,56 +27,40 @@ func ExampleSQS_AddPermission() {
 			// More values...
 		},
 		Label:    aws.String("String"), // Required
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.AddPermission(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_ChangeMessageVisibility() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ChangeMessageVisibilityInput{
-		QueueURL:          aws.String("String"), // Required
+		QueueUrl:          aws.String("String"), // Required
 		ReceiptHandle:     aws.String("String"), // Required
-		VisibilityTimeout: aws.Long(1),          // Required
+		VisibilityTimeout: aws.Int64(1),         // Required
 	}
 	resp, err := svc.ChangeMessageVisibility(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_ChangeMessageVisibilityBatch() {
@@ -87,33 +69,25 @@ func ExampleSQS_ChangeMessageVisibilityBatch() {
 	params := &sqs.ChangeMessageVisibilityBatchInput{
 		Entries: []*sqs.ChangeMessageVisibilityBatchRequestEntry{ // Required
 			{ // Required
-				ID:                aws.String("String"), // Required
+				Id:                aws.String("String"), // Required
 				ReceiptHandle:     aws.String("String"), // Required
-				VisibilityTimeout: aws.Long(1),
+				VisibilityTimeout: aws.Int64(1),
 			},
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.ChangeMessageVisibilityBatch(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_CreateQueue() {
@@ -129,50 +103,34 @@ func ExampleSQS_CreateQueue() {
 	resp, err := svc.CreateQueue(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_DeleteMessage() {
 	svc := sqs.New(nil)
 
 	params := &sqs.DeleteMessageInput{
-		QueueURL:      aws.String("String"), // Required
+		QueueUrl:      aws.String("String"), // Required
 		ReceiptHandle: aws.String("String"), // Required
 	}
 	resp, err := svc.DeleteMessage(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_DeleteMessageBatch() {
@@ -181,66 +139,50 @@ func ExampleSQS_DeleteMessageBatch() {
 	params := &sqs.DeleteMessageBatchInput{
 		Entries: []*sqs.DeleteMessageBatchRequestEntry{ // Required
 			{ // Required
-				ID:            aws.String("String"), // Required
+				Id:            aws.String("String"), // Required
 				ReceiptHandle: aws.String("String"), // Required
 			},
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.DeleteMessageBatch(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_DeleteQueue() {
 	svc := sqs.New(nil)
 
 	params := &sqs.DeleteQueueInput{
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.DeleteQueue(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_GetQueueAttributes() {
 	svc := sqs.New(nil)
 
 	params := &sqs.GetQueueAttributesInput{
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 		AttributeNames: []*string{
 			aws.String("QueueAttributeName"), // Required
 			// More values...
@@ -249,77 +191,53 @@ func ExampleSQS_GetQueueAttributes() {
 	resp, err := svc.GetQueueAttributes(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleSQS_GetQueueURL() {
+func ExampleSQS_GetQueueUrl() {
 	svc := sqs.New(nil)
 
-	params := &sqs.GetQueueURLInput{
+	params := &sqs.GetQueueUrlInput{
 		QueueName:              aws.String("String"), // Required
-		QueueOwnerAWSAccountID: aws.String("String"),
+		QueueOwnerAWSAccountId: aws.String("String"),
 	}
-	resp, err := svc.GetQueueURL(params)
+	resp, err := svc.GetQueueUrl(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_ListDeadLetterSourceQueues() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ListDeadLetterSourceQueuesInput{
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.ListDeadLetterSourceQueues(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_ListQueues() {
@@ -331,87 +249,63 @@ func ExampleSQS_ListQueues() {
 	resp, err := svc.ListQueues(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_PurgeQueue() {
 	svc := sqs.New(nil)
 
 	params := &sqs.PurgeQueueInput{
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.PurgeQueue(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_ReceiveMessage() {
 	svc := sqs.New(nil)
 
 	params := &sqs.ReceiveMessageInput{
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 		AttributeNames: []*string{
 			aws.String("QueueAttributeName"), // Required
 			// More values...
 		},
-		MaxNumberOfMessages: aws.Long(1),
+		MaxNumberOfMessages: aws.Int64(1),
 		MessageAttributeNames: []*string{
 			aws.String("MessageAttributeName"), // Required
 			// More values...
 		},
-		VisibilityTimeout: aws.Long(1),
-		WaitTimeSeconds:   aws.Long(1),
+		VisibilityTimeout: aws.Int64(1),
+		WaitTimeSeconds:   aws.Int64(1),
 	}
 	resp, err := svc.ReceiveMessage(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_RemovePermission() {
@@ -419,27 +313,19 @@ func ExampleSQS_RemovePermission() {
 
 	params := &sqs.RemovePermissionInput{
 		Label:    aws.String("String"), // Required
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.RemovePermission(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_SendMessage() {
@@ -447,8 +333,8 @@ func ExampleSQS_SendMessage() {
 
 	params := &sqs.SendMessageInput{
 		MessageBody:  aws.String("String"), // Required
-		QueueURL:     aws.String("String"), // Required
-		DelaySeconds: aws.Long(1),
+		QueueUrl:     aws.String("String"), // Required
+		DelaySeconds: aws.Int64(1),
 		MessageAttributes: map[string]*sqs.MessageAttributeValue{
 			"Key": { // Required
 				DataType: aws.String("String"), // Required
@@ -469,22 +355,14 @@ func ExampleSQS_SendMessage() {
 	resp, err := svc.SendMessage(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_SendMessageBatch() {
@@ -493,9 +371,9 @@ func ExampleSQS_SendMessageBatch() {
 	params := &sqs.SendMessageBatchInput{
 		Entries: []*sqs.SendMessageBatchRequestEntry{ // Required
 			{ // Required
-				ID:           aws.String("String"), // Required
+				Id:           aws.String("String"), // Required
 				MessageBody:  aws.String("String"), // Required
-				DelaySeconds: aws.Long(1),
+				DelaySeconds: aws.Int64(1),
 				MessageAttributes: map[string]*sqs.MessageAttributeValue{
 					"Key": { // Required
 						DataType: aws.String("String"), // Required
@@ -515,27 +393,19 @@ func ExampleSQS_SendMessageBatch() {
 			},
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.SendMessageBatch(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSQS_SetQueueAttributes() {
@@ -546,25 +416,17 @@ func ExampleSQS_SetQueueAttributes() {
 			"Key": aws.String("String"), // Required
 			// More values...
 		},
-		QueueURL: aws.String("String"), // Required
+		QueueUrl: aws.String("String"), // Required
 	}
 	resp, err := svc.SetQueueAttributes(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

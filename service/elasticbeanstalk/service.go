@@ -4,27 +4,53 @@ package elasticbeanstalk
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// ElasticBeanstalk is a client for Elastic Beanstalk.
+// This is the AWS Elastic Beanstalk API Reference. This guide provides detailed
+// information about AWS Elastic Beanstalk actions, data types, parameters,
+// and errors.
+//
+// AWS Elastic Beanstalk is a tool that makes it easy for you to create, deploy,
+// and manage scalable, fault-tolerant applications running on Amazon Web Services
+// cloud resources.
+//
+//  For more information about this product, go to the AWS Elastic Beanstalk
+// (http://aws.amazon.com/elasticbeanstalk/) details page. The location of the
+// latest AWS Elastic Beanstalk WSDL is http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl
+// (http://elasticbeanstalk.s3.amazonaws.com/doc/2010-12-01/AWSElasticBeanstalk.wsdl).
+// To install the Software Development Kits (SDKs), Integrated Development Environment
+// (IDE) Toolkits, and command line tools that enable you to access the API,
+// go to Tools for Amazon Web Services (https://aws.amazon.com/tools/).
+//
+// Endpoints
+//
+// For a list of region-specific endpoints that AWS Elastic Beanstalk supports,
+// go to Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#elasticbeanstalk_region)
+// in the Amazon Web Services Glossary.
 type ElasticBeanstalk struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new ElasticBeanstalk client.
 func New(config *aws.Config) *ElasticBeanstalk {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
-		ServiceName: "elasticbeanstalk",
-		APIVersion:  "2010-12-01",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "elasticbeanstalk",
+			APIVersion:  "2010-12-01",
+		},
 	}
 	service.Initialize()
 
@@ -45,8 +71,8 @@ func New(config *aws.Config) *ElasticBeanstalk {
 
 // newRequest creates a new request for a ElasticBeanstalk operation and runs any
 // custom request initialization.
-func (c *ElasticBeanstalk) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *ElasticBeanstalk) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

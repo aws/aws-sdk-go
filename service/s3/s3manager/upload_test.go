@@ -6,13 +6,16 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"net/http/httptest"
 	"sort"
+	"strings"
 	"sync"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
@@ -48,7 +51,7 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 	svc.Handlers.UnmarshalMeta.Clear()
 	svc.Handlers.UnmarshalError.Clear()
 	svc.Handlers.Send.Clear()
-	svc.Handlers.Send.PushBack(func(r *aws.Request) {
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
 		m.Lock()
 		defer m.Unlock()
 
@@ -64,12 +67,15 @@ func loggingSvc(ignoreOps []string) (*s3.S3, *[]string, *[]interface{}) {
 
 		switch data := r.Data.(type) {
 		case *s3.CreateMultipartUploadOutput:
-			data.UploadID = aws.String("UPLOAD-ID")
+			data.UploadId = aws.String("UPLOAD-ID")
 		case *s3.UploadPartOutput:
 			partNum++
 			data.ETag = aws.String(fmt.Sprintf("ETAG%d", partNum))
 		case *s3.CompleteMultipartUploadOutput:
 			data.Location = aws.String("https://location")
+			data.VersionId = aws.String("VERSION-ID")
+		case *s3.PutObjectOutput:
+			data.VersionId = aws.String("VERSION-ID")
 		}
 	})
 
@@ -97,16 +103,17 @@ func TestUploadOrderMulti(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
 	assert.Equal(t, "https://location", resp.Location)
 	assert.Equal(t, "UPLOAD-ID", resp.UploadID)
+	assert.Equal(t, aws.String("VERSION-ID"), resp.VersionID)
 
 	// Validate input values
 
 	// UploadPart
-	assert.Equal(t, "UPLOAD-ID", val((*args)[1], "UploadID"))
-	assert.Equal(t, "UPLOAD-ID", val((*args)[2], "UploadID"))
-	assert.Equal(t, "UPLOAD-ID", val((*args)[3], "UploadID"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[1], "UploadId"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[2], "UploadId"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[3], "UploadId"))
 
 	// CompleteMultipartUpload
-	assert.Equal(t, "UPLOAD-ID", val((*args)[4], "UploadID"))
+	assert.Equal(t, "UPLOAD-ID", val((*args)[4], "UploadId"))
 	assert.Equal(t, int64(1), val((*args)[4], "MultipartUpload.Parts[0].PartNumber"))
 	assert.Equal(t, int64(2), val((*args)[4], "MultipartUpload.Parts[1].PartNumber"))
 	assert.Equal(t, int64(3), val((*args)[4], "MultipartUpload.Parts[2].PartNumber"))
@@ -193,6 +200,7 @@ func TestUploadOrderSingle(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
 	assert.NotEqual(t, "", resp.Location)
+	assert.Equal(t, aws.String("VERSION-ID"), resp.VersionID)
 	assert.Equal(t, "", resp.UploadID)
 	assert.Equal(t, "AES256", val((*args)[0], "ServerSideEncryption"))
 	assert.Equal(t, "content/type", val((*args)[0], "ContentType"))
@@ -200,7 +208,7 @@ func TestUploadOrderSingle(t *testing.T) {
 
 func TestUploadOrderSingleFailure(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *aws.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		r.HTTPResponse.StatusCode = 400
 	})
 	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: s})
@@ -233,7 +241,7 @@ func TestUploadOrderZero(t *testing.T) {
 
 func TestUploadOrderMultiFailure(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *aws.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch t := r.Data.(type) {
 		case *s3.UploadPartOutput:
 			if *t.ETag == "ETAG2" {
@@ -255,7 +263,7 @@ func TestUploadOrderMultiFailure(t *testing.T) {
 
 func TestUploadOrderMultiFailureOnComplete(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *aws.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch r.Data.(type) {
 		case *s3.CompleteMultipartUploadOutput:
 			r.HTTPResponse.StatusCode = 400
@@ -276,7 +284,7 @@ func TestUploadOrderMultiFailureOnComplete(t *testing.T) {
 
 func TestUploadOrderMultiFailureOnCreate(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *aws.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch r.Data.(type) {
 		case *s3.CreateMultipartUploadOutput:
 			r.HTTPResponse.StatusCode = 400
@@ -296,7 +304,7 @@ func TestUploadOrderMultiFailureOnCreate(t *testing.T) {
 
 func TestUploadOrderMultiFailureLeaveParts(t *testing.T) {
 	s, ops, _ := loggingSvc(emptyList)
-	s.Handlers.Send.PushBack(func(r *aws.Request) {
+	s.Handlers.Send.PushBack(func(r *request.Request) {
 		switch data := r.Data.(type) {
 		case *s3.UploadPartOutput:
 			if *data.ETag == "ETAG2" {
@@ -433,6 +441,28 @@ func TestUploadOrderSingleBufferedReader(t *testing.T) {
 
 	assert.NoError(t, err)
 	assert.Equal(t, []string{"PutObject"}, *ops)
+	assert.NotEqual(t, "", resp.Location)
+	assert.Equal(t, "", resp.UploadID)
+}
+
+func TestUploadZeroLenObject(t *testing.T) {
+	requestMade := false
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requestMade = true
+		w.WriteHeader(http.StatusOK)
+	}))
+	svc := s3.New(&aws.Config{
+		Endpoint: aws.String(server.URL),
+	})
+	mgr := s3manager.NewUploader(&s3manager.UploadOptions{S3: svc})
+	resp, err := mgr.Upload(&s3manager.UploadInput{
+		Bucket: aws.String("Bucket"),
+		Key:    aws.String("Key"),
+		Body:   strings.NewReader(""),
+	})
+
+	assert.NoError(t, err)
+	assert.True(t, requestMade)
 	assert.NotEqual(t, "", resp.Location)
 	assert.Equal(t, "", resp.UploadID)
 }

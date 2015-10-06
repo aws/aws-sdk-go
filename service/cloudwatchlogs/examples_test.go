@@ -8,13 +8,55 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudwatchlogs"
 )
 
 var _ time.Duration
 var _ bytes.Buffer
+
+func ExampleCloudWatchLogs_CancelExportTask() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.CancelExportTaskInput{
+		TaskId: aws.String("ExportTaskId"), // Required
+	}
+	resp, err := svc.CancelExportTask(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_CreateExportTask() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.CreateExportTaskInput{
+		Destination:         aws.String("ExportDestinationBucket"), // Required
+		From:                aws.Int64(1),                          // Required
+		LogGroupName:        aws.String("LogGroupName"),            // Required
+		To:                  aws.Int64(1),                          // Required
+		DestinationPrefix:   aws.String("ExportDestinationPrefix"),
+		LogStreamNamePrefix: aws.String("LogStreamName"),
+		TaskName:            aws.String("ExportTaskName"),
+	}
+	resp, err := svc.CreateExportTask(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
 
 func ExampleCloudWatchLogs_CreateLogGroup() {
 	svc := cloudwatchlogs.New(nil)
@@ -25,22 +67,14 @@ func ExampleCloudWatchLogs_CreateLogGroup() {
 	resp, err := svc.CreateLogGroup(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_CreateLogStream() {
@@ -53,22 +87,33 @@ func ExampleCloudWatchLogs_CreateLogStream() {
 	resp, err := svc.CreateLogStream(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_DeleteDestination() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.DeleteDestinationInput{
+		DestinationName: aws.String("DestinationName"), // Required
+	}
+	resp, err := svc.DeleteDestination(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DeleteLogGroup() {
@@ -80,22 +125,14 @@ func ExampleCloudWatchLogs_DeleteLogGroup() {
 	resp, err := svc.DeleteLogGroup(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DeleteLogStream() {
@@ -108,22 +145,14 @@ func ExampleCloudWatchLogs_DeleteLogStream() {
 	resp, err := svc.DeleteLogStream(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DeleteMetricFilter() {
@@ -136,22 +165,14 @@ func ExampleCloudWatchLogs_DeleteMetricFilter() {
 	resp, err := svc.DeleteMetricFilter(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
@@ -163,22 +184,14 @@ func ExampleCloudWatchLogs_DeleteRetentionPolicy() {
 	resp, err := svc.DeleteRetentionPolicy(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DeleteSubscriptionFilter() {
@@ -191,51 +204,78 @@ func ExampleCloudWatchLogs_DeleteSubscriptionFilter() {
 	resp, err := svc.DeleteSubscriptionFilter(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_DescribeDestinations() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.DescribeDestinationsInput{
+		DestinationNamePrefix: aws.String("DestinationName"),
+		Limit:     aws.Int64(1),
+		NextToken: aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeDestinations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_DescribeExportTasks() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.DescribeExportTasksInput{
+		Limit:      aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+		StatusCode: aws.String("ExportTaskStatusCode"),
+		TaskId:     aws.String("ExportTaskId"),
+	}
+	resp, err := svc.DescribeExportTasks(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DescribeLogGroups() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.DescribeLogGroupsInput{
-		Limit:              aws.Long(1),
+		Limit:              aws.Int64(1),
 		LogGroupNamePrefix: aws.String("LogGroupName"),
 		NextToken:          aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeLogGroups(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DescribeLogStreams() {
@@ -243,8 +283,8 @@ func ExampleCloudWatchLogs_DescribeLogStreams() {
 
 	params := &cloudwatchlogs.DescribeLogStreamsInput{
 		LogGroupName:        aws.String("LogGroupName"), // Required
-		Descending:          aws.Boolean(true),
-		Limit:               aws.Long(1),
+		Descending:          aws.Bool(true),
+		Limit:               aws.Int64(1),
 		LogStreamNamePrefix: aws.String("LogStreamName"),
 		NextToken:           aws.String("NextToken"),
 		OrderBy:             aws.String("OrderBy"),
@@ -252,22 +292,14 @@ func ExampleCloudWatchLogs_DescribeLogStreams() {
 	resp, err := svc.DescribeLogStreams(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DescribeMetricFilters() {
@@ -276,28 +308,20 @@ func ExampleCloudWatchLogs_DescribeMetricFilters() {
 	params := &cloudwatchlogs.DescribeMetricFiltersInput{
 		LogGroupName:     aws.String("LogGroupName"), // Required
 		FilterNamePrefix: aws.String("FilterName"),
-		Limit:            aws.Long(1),
+		Limit:            aws.Int64(1),
 		NextToken:        aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeMetricFilters(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
@@ -306,28 +330,20 @@ func ExampleCloudWatchLogs_DescribeSubscriptionFilters() {
 	params := &cloudwatchlogs.DescribeSubscriptionFiltersInput{
 		LogGroupName:     aws.String("LogGroupName"), // Required
 		FilterNamePrefix: aws.String("FilterName"),
-		Limit:            aws.Long(1),
+		Limit:            aws.Int64(1),
 		NextToken:        aws.String("NextToken"),
 	}
 	resp, err := svc.DescribeSubscriptionFilters(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_FilterLogEvents() {
@@ -335,36 +351,28 @@ func ExampleCloudWatchLogs_FilterLogEvents() {
 
 	params := &cloudwatchlogs.FilterLogEventsInput{
 		LogGroupName:  aws.String("LogGroupName"), // Required
-		EndTime:       aws.Long(1),
+		EndTime:       aws.Int64(1),
 		FilterPattern: aws.String("FilterPattern"),
-		Interleaved:   aws.Boolean(true),
-		Limit:         aws.Long(1),
+		Interleaved:   aws.Bool(true),
+		Limit:         aws.Int64(1),
 		LogStreamNames: []*string{
 			aws.String("LogStreamName"), // Required
 			// More values...
 		},
 		NextToken: aws.String("NextToken"),
-		StartTime: aws.Long(1),
+		StartTime: aws.Int64(1),
 	}
 	resp, err := svc.FilterLogEvents(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_GetLogEvents() {
@@ -373,31 +381,64 @@ func ExampleCloudWatchLogs_GetLogEvents() {
 	params := &cloudwatchlogs.GetLogEventsInput{
 		LogGroupName:  aws.String("LogGroupName"),  // Required
 		LogStreamName: aws.String("LogStreamName"), // Required
-		EndTime:       aws.Long(1),
-		Limit:         aws.Long(1),
+		EndTime:       aws.Int64(1),
+		Limit:         aws.Int64(1),
 		NextToken:     aws.String("NextToken"),
-		StartFromHead: aws.Boolean(true),
-		StartTime:     aws.Long(1),
+		StartFromHead: aws.Bool(true),
+		StartTime:     aws.Int64(1),
 	}
 	resp, err := svc.GetLogEvents(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_PutDestination() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.PutDestinationInput{
+		DestinationName: aws.String("DestinationName"), // Required
+		RoleArn:         aws.String("RoleArn"),         // Required
+		TargetArn:       aws.String("TargetArn"),       // Required
+	}
+	resp, err := svc.PutDestination(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudWatchLogs_PutDestinationPolicy() {
+	svc := cloudwatchlogs.New(nil)
+
+	params := &cloudwatchlogs.PutDestinationPolicyInput{
+		AccessPolicy:    aws.String("AccessPolicy"),    // Required
+		DestinationName: aws.String("DestinationName"), // Required
+	}
+	resp, err := svc.PutDestinationPolicy(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_PutLogEvents() {
@@ -407,7 +448,7 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 		LogEvents: []*cloudwatchlogs.InputLogEvent{ // Required
 			{ // Required
 				Message:   aws.String("EventMessage"), // Required
-				Timestamp: aws.Long(1),                // Required
+				Timestamp: aws.Int64(1),               // Required
 			},
 			// More values...
 		},
@@ -418,22 +459,14 @@ func ExampleCloudWatchLogs_PutLogEvents() {
 	resp, err := svc.PutLogEvents(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_PutMetricFilter() {
@@ -455,22 +488,14 @@ func ExampleCloudWatchLogs_PutMetricFilter() {
 	resp, err := svc.PutMetricFilter(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_PutRetentionPolicy() {
@@ -478,58 +503,42 @@ func ExampleCloudWatchLogs_PutRetentionPolicy() {
 
 	params := &cloudwatchlogs.PutRetentionPolicyInput{
 		LogGroupName:    aws.String("LogGroupName"), // Required
-		RetentionInDays: aws.Long(1),                // Required
+		RetentionInDays: aws.Int64(1),               // Required
 	}
 	resp, err := svc.PutRetentionPolicy(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_PutSubscriptionFilter() {
 	svc := cloudwatchlogs.New(nil)
 
 	params := &cloudwatchlogs.PutSubscriptionFilterInput{
-		DestinationARN: aws.String("DestinationArn"), // Required
+		DestinationArn: aws.String("DestinationArn"), // Required
 		FilterName:     aws.String("FilterName"),     // Required
 		FilterPattern:  aws.String("FilterPattern"),  // Required
 		LogGroupName:   aws.String("LogGroupName"),   // Required
-		RoleARN:        aws.String("RoleArn"),        // Required
+		RoleArn:        aws.String("RoleArn"),
 	}
 	resp, err := svc.PutSubscriptionFilter(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudWatchLogs_TestMetricFilter() {
@@ -545,20 +554,12 @@ func ExampleCloudWatchLogs_TestMetricFilter() {
 	resp, err := svc.TestMetricFilter(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

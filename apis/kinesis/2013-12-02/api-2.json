@@ -321,6 +321,7 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "ApproximateArrivalTimestamp":{"type":"timestamp"},
     "BooleanObject":{"type":"boolean"},
     "CreateStreamInput":{
       "type":"structure",
@@ -336,7 +337,7 @@
     "Data":{
       "type":"blob",
       "min":0,
-      "max":51200
+      "max":1048576
     },
     "DeleteStreamInput":{
       "type":"structure",
@@ -518,7 +519,8 @@
     },
     "PositiveIntegerObject":{
       "type":"integer",
-      "min":1
+      "min":1,
+      "max":100000
     },
     "ProvisionedThroughputExceededException":{
       "type":"structure",
@@ -614,6 +616,7 @@
       ],
       "members":{
         "SequenceNumber":{"shape":"SequenceNumber"},
+        "ApproximateArrivalTimestamp":{"shape":"ApproximateArrivalTimestamp"},
         "Data":{"shape":"Data"},
         "PartitionKey":{"shape":"PartitionKey"}
       }

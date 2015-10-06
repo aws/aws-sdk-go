@@ -1,5 +1,6 @@
 LINTIGNOREDOT='internal/features.+should not use dot imports'
 LINTIGNOREDOC='service/[^/]+/(api|service)\.go:.+(comment on exported|should have comment or be unexported)'
+LINTIGNORECONST='service/[^/]+/(api|service)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -30,12 +31,12 @@ services:
 
 integration: deps
 	go test ./internal/test/integration/... -tags=integration
-	gucumber
+	gucumber ./internal/features/smoke
 
 lint: deps
 	@echo "golint ./..."
 	@lint=`golint ./...`; \
-	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC}`; \
+	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST}`; \
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
@@ -55,3 +56,6 @@ deps:
 
 api_info:
 	@go run internal/model/cli/api-info/api-info.go
+
+perf:
+	@go test -bench . -benchmem -tags 'perf' ./internal/test/perf/...

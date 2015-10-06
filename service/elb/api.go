@@ -6,15 +6,15 @@ package elb
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddTags = "AddTags"
 
 // AddTagsRequest generates a request for the AddTags operation.
-func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
-	op := &aws.Operation{
+func (c *ELB) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
+	op := &request.Operation{
 		Name:       opAddTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -47,8 +47,8 @@ func (c *ELB) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 const opApplySecurityGroupsToLoadBalancer = "ApplySecurityGroupsToLoadBalancer"
 
 // ApplySecurityGroupsToLoadBalancerRequest generates a request for the ApplySecurityGroupsToLoadBalancer operation.
-func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroupsToLoadBalancerInput) (req *aws.Request, output *ApplySecurityGroupsToLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) ApplySecurityGroupsToLoadBalancerRequest(input *ApplySecurityGroupsToLoadBalancerInput) (req *request.Request, output *ApplySecurityGroupsToLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opApplySecurityGroupsToLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -79,8 +79,8 @@ func (c *ELB) ApplySecurityGroupsToLoadBalancer(input *ApplySecurityGroupsToLoad
 const opAttachLoadBalancerToSubnets = "AttachLoadBalancerToSubnets"
 
 // AttachLoadBalancerToSubnetsRequest generates a request for the AttachLoadBalancerToSubnets operation.
-func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubnetsInput) (req *aws.Request, output *AttachLoadBalancerToSubnetsOutput) {
-	op := &aws.Operation{
+func (c *ELB) AttachLoadBalancerToSubnetsRequest(input *AttachLoadBalancerToSubnetsInput) (req *request.Request, output *AttachLoadBalancerToSubnetsOutput) {
+	op := &request.Operation{
 		Name:       opAttachLoadBalancerToSubnets,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -112,8 +112,8 @@ func (c *ELB) AttachLoadBalancerToSubnets(input *AttachLoadBalancerToSubnetsInpu
 const opConfigureHealthCheck = "ConfigureHealthCheck"
 
 // ConfigureHealthCheckRequest generates a request for the ConfigureHealthCheck operation.
-func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req *aws.Request, output *ConfigureHealthCheckOutput) {
-	op := &aws.Operation{
+func (c *ELB) ConfigureHealthCheckRequest(input *ConfigureHealthCheckInput) (req *request.Request, output *ConfigureHealthCheckOutput) {
+	op := &request.Operation{
 		Name:       opConfigureHealthCheck,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -143,8 +143,8 @@ func (c *ELB) ConfigureHealthCheck(input *ConfigureHealthCheckInput) (*Configure
 const opCreateAppCookieStickinessPolicy = "CreateAppCookieStickinessPolicy"
 
 // CreateAppCookieStickinessPolicyRequest generates a request for the CreateAppCookieStickinessPolicy operation.
-func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStickinessPolicyInput) (req *aws.Request, output *CreateAppCookieStickinessPolicyOutput) {
-	op := &aws.Operation{
+func (c *ELB) CreateAppCookieStickinessPolicyRequest(input *CreateAppCookieStickinessPolicyInput) (req *request.Request, output *CreateAppCookieStickinessPolicyOutput) {
+	op := &request.Operation{
 		Name:       opCreateAppCookieStickinessPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -184,8 +184,8 @@ func (c *ELB) CreateAppCookieStickinessPolicy(input *CreateAppCookieStickinessPo
 const opCreateLBCookieStickinessPolicy = "CreateLBCookieStickinessPolicy"
 
 // CreateLBCookieStickinessPolicyRequest generates a request for the CreateLBCookieStickinessPolicy operation.
-func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickinessPolicyInput) (req *aws.Request, output *CreateLBCookieStickinessPolicyOutput) {
-	op := &aws.Operation{
+func (c *ELB) CreateLBCookieStickinessPolicyRequest(input *CreateLBCookieStickinessPolicyInput) (req *request.Request, output *CreateLBCookieStickinessPolicyOutput) {
+	op := &request.Operation{
 		Name:       opCreateLBCookieStickinessPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -227,8 +227,8 @@ func (c *ELB) CreateLBCookieStickinessPolicy(input *CreateLBCookieStickinessPoli
 const opCreateLoadBalancer = "CreateLoadBalancer"
 
 // CreateLoadBalancerRequest generates a request for the CreateLoadBalancer operation.
-func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *aws.Request, output *CreateLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) CreateLoadBalancerRequest(input *CreateLoadBalancerInput) (req *request.Request, output *CreateLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opCreateLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -265,8 +265,8 @@ func (c *ELB) CreateLoadBalancer(input *CreateLoadBalancerInput) (*CreateLoadBal
 const opCreateLoadBalancerListeners = "CreateLoadBalancerListeners"
 
 // CreateLoadBalancerListenersRequest generates a request for the CreateLoadBalancerListeners operation.
-func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *aws.Request, output *CreateLoadBalancerListenersOutput) {
-	op := &aws.Operation{
+func (c *ELB) CreateLoadBalancerListenersRequest(input *CreateLoadBalancerListenersInput) (req *request.Request, output *CreateLoadBalancerListenersOutput) {
+	op := &request.Operation{
 		Name:       opCreateLoadBalancerListeners,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -298,8 +298,8 @@ func (c *ELB) CreateLoadBalancerListeners(input *CreateLoadBalancerListenersInpu
 const opCreateLoadBalancerPolicy = "CreateLoadBalancerPolicy"
 
 // CreateLoadBalancerPolicyRequest generates a request for the CreateLoadBalancerPolicy operation.
-func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInput) (req *aws.Request, output *CreateLoadBalancerPolicyOutput) {
-	op := &aws.Operation{
+func (c *ELB) CreateLoadBalancerPolicyRequest(input *CreateLoadBalancerPolicyInput) (req *request.Request, output *CreateLoadBalancerPolicyOutput) {
+	op := &request.Operation{
 		Name:       opCreateLoadBalancerPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -329,8 +329,8 @@ func (c *ELB) CreateLoadBalancerPolicy(input *CreateLoadBalancerPolicyInput) (*C
 const opDeleteLoadBalancer = "DeleteLoadBalancer"
 
 // DeleteLoadBalancerRequest generates a request for the DeleteLoadBalancer operation.
-func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *aws.Request, output *DeleteLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) DeleteLoadBalancerRequest(input *DeleteLoadBalancerInput) (req *request.Request, output *DeleteLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -365,8 +365,8 @@ func (c *ELB) DeleteLoadBalancer(input *DeleteLoadBalancerInput) (*DeleteLoadBal
 const opDeleteLoadBalancerListeners = "DeleteLoadBalancerListeners"
 
 // DeleteLoadBalancerListenersRequest generates a request for the DeleteLoadBalancerListeners operation.
-func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *aws.Request, output *DeleteLoadBalancerListenersOutput) {
-	op := &aws.Operation{
+func (c *ELB) DeleteLoadBalancerListenersRequest(input *DeleteLoadBalancerListenersInput) (req *request.Request, output *DeleteLoadBalancerListenersOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLoadBalancerListeners,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -392,8 +392,8 @@ func (c *ELB) DeleteLoadBalancerListeners(input *DeleteLoadBalancerListenersInpu
 const opDeleteLoadBalancerPolicy = "DeleteLoadBalancerPolicy"
 
 // DeleteLoadBalancerPolicyRequest generates a request for the DeleteLoadBalancerPolicy operation.
-func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInput) (req *aws.Request, output *DeleteLoadBalancerPolicyOutput) {
-	op := &aws.Operation{
+func (c *ELB) DeleteLoadBalancerPolicyRequest(input *DeleteLoadBalancerPolicyInput) (req *request.Request, output *DeleteLoadBalancerPolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLoadBalancerPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -420,8 +420,8 @@ func (c *ELB) DeleteLoadBalancerPolicy(input *DeleteLoadBalancerPolicyInput) (*D
 const opDeregisterInstancesFromLoadBalancer = "DeregisterInstancesFromLoadBalancer"
 
 // DeregisterInstancesFromLoadBalancerRequest generates a request for the DeregisterInstancesFromLoadBalancer operation.
-func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *aws.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) DeregisterInstancesFromLoadBalancerRequest(input *DeregisterInstancesFromLoadBalancerInput) (req *request.Request, output *DeregisterInstancesFromLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterInstancesFromLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -455,8 +455,8 @@ func (c *ELB) DeregisterInstancesFromLoadBalancer(input *DeregisterInstancesFrom
 const opDescribeInstanceHealth = "DescribeInstanceHealth"
 
 // DescribeInstanceHealthRequest generates a request for the DescribeInstanceHealth operation.
-func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *aws.Request, output *DescribeInstanceHealthOutput) {
-	op := &aws.Operation{
+func (c *ELB) DescribeInstanceHealthRequest(input *DescribeInstanceHealthInput) (req *request.Request, output *DescribeInstanceHealthOutput) {
+	op := &request.Operation{
 		Name:       opDescribeInstanceHealth,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -485,8 +485,8 @@ func (c *ELB) DescribeInstanceHealth(input *DescribeInstanceHealthInput) (*Descr
 const opDescribeLoadBalancerAttributes = "DescribeLoadBalancerAttributes"
 
 // DescribeLoadBalancerAttributesRequest generates a request for the DescribeLoadBalancerAttributes operation.
-func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerAttributesInput) (req *aws.Request, output *DescribeLoadBalancerAttributesOutput) {
-	op := &aws.Operation{
+func (c *ELB) DescribeLoadBalancerAttributesRequest(input *DescribeLoadBalancerAttributesInput) (req *request.Request, output *DescribeLoadBalancerAttributesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLoadBalancerAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -512,8 +512,8 @@ func (c *ELB) DescribeLoadBalancerAttributes(input *DescribeLoadBalancerAttribut
 const opDescribeLoadBalancerPolicies = "DescribeLoadBalancerPolicies"
 
 // DescribeLoadBalancerPoliciesRequest generates a request for the DescribeLoadBalancerPolicies operation.
-func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPoliciesInput) (req *aws.Request, output *DescribeLoadBalancerPoliciesOutput) {
-	op := &aws.Operation{
+func (c *ELB) DescribeLoadBalancerPoliciesRequest(input *DescribeLoadBalancerPoliciesInput) (req *request.Request, output *DescribeLoadBalancerPoliciesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLoadBalancerPolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -546,8 +546,8 @@ func (c *ELB) DescribeLoadBalancerPolicies(input *DescribeLoadBalancerPoliciesIn
 const opDescribeLoadBalancerPolicyTypes = "DescribeLoadBalancerPolicyTypes"
 
 // DescribeLoadBalancerPolicyTypesRequest generates a request for the DescribeLoadBalancerPolicyTypes operation.
-func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancerPolicyTypesInput) (req *aws.Request, output *DescribeLoadBalancerPolicyTypesOutput) {
-	op := &aws.Operation{
+func (c *ELB) DescribeLoadBalancerPolicyTypesRequest(input *DescribeLoadBalancerPolicyTypesInput) (req *request.Request, output *DescribeLoadBalancerPolicyTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLoadBalancerPolicyTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -576,12 +576,12 @@ func (c *ELB) DescribeLoadBalancerPolicyTypes(input *DescribeLoadBalancerPolicyT
 const opDescribeLoadBalancers = "DescribeLoadBalancers"
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
-func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *ELB) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *request.Request, output *DescribeLoadBalancersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"NextMarker"},
 			LimitToken:      "",
@@ -617,8 +617,8 @@ func (c *ELB) DescribeLoadBalancersPages(input *DescribeLoadBalancersInput, fn f
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	op := &aws.Operation{
+func (c *ELB) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -644,8 +644,8 @@ func (c *ELB) DescribeTags(input *DescribeTagsInput) (*DescribeTagsOutput, error
 const opDetachLoadBalancerFromSubnets = "DetachLoadBalancerFromSubnets"
 
 // DetachLoadBalancerFromSubnetsRequest generates a request for the DetachLoadBalancerFromSubnets operation.
-func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFromSubnetsInput) (req *aws.Request, output *DetachLoadBalancerFromSubnetsOutput) {
-	op := &aws.Operation{
+func (c *ELB) DetachLoadBalancerFromSubnetsRequest(input *DetachLoadBalancerFromSubnetsInput) (req *request.Request, output *DetachLoadBalancerFromSubnetsOutput) {
+	op := &request.Operation{
 		Name:       opDetachLoadBalancerFromSubnets,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -676,8 +676,8 @@ func (c *ELB) DetachLoadBalancerFromSubnets(input *DetachLoadBalancerFromSubnets
 const opDisableAvailabilityZonesForLoadBalancer = "DisableAvailabilityZonesForLoadBalancer"
 
 // DisableAvailabilityZonesForLoadBalancerRequest generates a request for the DisableAvailabilityZonesForLoadBalancer operation.
-func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) DisableAvailabilityZonesForLoadBalancerRequest(input *DisableAvailabilityZonesForLoadBalancerInput) (req *request.Request, output *DisableAvailabilityZonesForLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opDisableAvailabilityZonesForLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -714,8 +714,8 @@ func (c *ELB) DisableAvailabilityZonesForLoadBalancer(input *DisableAvailability
 const opEnableAvailabilityZonesForLoadBalancer = "EnableAvailabilityZonesForLoadBalancer"
 
 // EnableAvailabilityZonesForLoadBalancerRequest generates a request for the EnableAvailabilityZonesForLoadBalancer operation.
-func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *aws.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) EnableAvailabilityZonesForLoadBalancerRequest(input *EnableAvailabilityZonesForLoadBalancerInput) (req *request.Request, output *EnableAvailabilityZonesForLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opEnableAvailabilityZonesForLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -748,8 +748,8 @@ func (c *ELB) EnableAvailabilityZonesForLoadBalancer(input *EnableAvailabilityZo
 const opModifyLoadBalancerAttributes = "ModifyLoadBalancerAttributes"
 
 // ModifyLoadBalancerAttributesRequest generates a request for the ModifyLoadBalancerAttributes operation.
-func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttributesInput) (req *aws.Request, output *ModifyLoadBalancerAttributesOutput) {
-	op := &aws.Operation{
+func (c *ELB) ModifyLoadBalancerAttributesRequest(input *ModifyLoadBalancerAttributesInput) (req *request.Request, output *ModifyLoadBalancerAttributesOutput) {
+	op := &request.Operation{
 		Name:       opModifyLoadBalancerAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -788,8 +788,8 @@ func (c *ELB) ModifyLoadBalancerAttributes(input *ModifyLoadBalancerAttributesIn
 const opRegisterInstancesWithLoadBalancer = "RegisterInstancesWithLoadBalancer"
 
 // RegisterInstancesWithLoadBalancerRequest generates a request for the RegisterInstancesWithLoadBalancer operation.
-func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *aws.Request, output *RegisterInstancesWithLoadBalancerOutput) {
-	op := &aws.Operation{
+func (c *ELB) RegisterInstancesWithLoadBalancerRequest(input *RegisterInstancesWithLoadBalancerInput) (req *request.Request, output *RegisterInstancesWithLoadBalancerOutput) {
+	op := &request.Operation{
 		Name:       opRegisterInstancesWithLoadBalancer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -841,8 +841,8 @@ func (c *ELB) RegisterInstancesWithLoadBalancer(input *RegisterInstancesWithLoad
 const opRemoveTags = "RemoveTags"
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
-func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
-	op := &aws.Operation{
+func (c *ELB) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -868,8 +868,8 @@ func (c *ELB) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 const opSetLoadBalancerListenerSSLCertificate = "SetLoadBalancerListenerSSLCertificate"
 
 // SetLoadBalancerListenerSSLCertificateRequest generates a request for the SetLoadBalancerListenerSSLCertificate operation.
-func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalancerListenerSSLCertificateInput) (req *aws.Request, output *SetLoadBalancerListenerSSLCertificateOutput) {
-	op := &aws.Operation{
+func (c *ELB) SetLoadBalancerListenerSSLCertificateRequest(input *SetLoadBalancerListenerSSLCertificateInput) (req *request.Request, output *SetLoadBalancerListenerSSLCertificateOutput) {
+	op := &request.Operation{
 		Name:       opSetLoadBalancerListenerSSLCertificate,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -901,8 +901,8 @@ func (c *ELB) SetLoadBalancerListenerSSLCertificate(input *SetLoadBalancerListen
 const opSetLoadBalancerPoliciesForBackendServer = "SetLoadBalancerPoliciesForBackendServer"
 
 // SetLoadBalancerPoliciesForBackendServerRequest generates a request for the SetLoadBalancerPoliciesForBackendServer operation.
-func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalancerPoliciesForBackendServerInput) (req *aws.Request, output *SetLoadBalancerPoliciesForBackendServerOutput) {
-	op := &aws.Operation{
+func (c *ELB) SetLoadBalancerPoliciesForBackendServerRequest(input *SetLoadBalancerPoliciesForBackendServerInput) (req *request.Request, output *SetLoadBalancerPoliciesForBackendServerOutput) {
+	op := &request.Operation{
 		Name:       opSetLoadBalancerPoliciesForBackendServer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -938,8 +938,8 @@ func (c *ELB) SetLoadBalancerPoliciesForBackendServer(input *SetLoadBalancerPoli
 const opSetLoadBalancerPoliciesOfListener = "SetLoadBalancerPoliciesOfListener"
 
 // SetLoadBalancerPoliciesOfListenerRequest generates a request for the SetLoadBalancerPoliciesOfListener operation.
-func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPoliciesOfListenerInput) (req *aws.Request, output *SetLoadBalancerPoliciesOfListenerOutput) {
-	op := &aws.Operation{
+func (c *ELB) SetLoadBalancerPoliciesOfListenerRequest(input *SetLoadBalancerPoliciesOfListenerInput) (req *request.Request, output *SetLoadBalancerPoliciesOfListenerOutput) {
+	op := &request.Operation{
 		Name:       opSetLoadBalancerPoliciesOfListener,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -991,7 +991,7 @@ type metadataAccessLog struct {
 
 // String returns the string representation
 func (s AccessLog) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1004,7 +1004,7 @@ type AddTagsInput struct {
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	// The tags.
-	Tags []*Tag `type:"list" required:"true"`
+	Tags []*Tag `min:"1" type:"list" required:"true"`
 
 	metadataAddTagsInput `json:"-" xml:"-"`
 }
@@ -1015,7 +1015,7 @@ type metadataAddTagsInput struct {
 
 // String returns the string representation
 func (s AddTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1033,7 +1033,7 @@ type metadataAddTagsOutput struct {
 
 // String returns the string representation
 func (s AddTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1058,7 +1058,7 @@ type metadataAdditionalAttribute struct {
 
 // String returns the string representation
 func (s AdditionalAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1084,7 +1084,7 @@ type metadataAppCookieStickinessPolicy struct {
 
 // String returns the string representation
 func (s AppCookieStickinessPolicy) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1109,7 +1109,7 @@ type metadataApplySecurityGroupsToLoadBalancerInput struct {
 
 // String returns the string representation
 func (s ApplySecurityGroupsToLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1130,7 +1130,7 @@ type metadataApplySecurityGroupsToLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s ApplySecurityGroupsToLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1155,7 +1155,7 @@ type metadataAttachLoadBalancerToSubnetsInput struct {
 
 // String returns the string representation
 func (s AttachLoadBalancerToSubnetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1176,7 +1176,7 @@ type metadataAttachLoadBalancerToSubnetsOutput struct {
 
 // String returns the string representation
 func (s AttachLoadBalancerToSubnetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1187,7 +1187,7 @@ func (s AttachLoadBalancerToSubnetsOutput) GoString() string {
 // Information about the configuration of a back-end server.
 type BackendServerDescription struct {
 	// The port on which the back-end server is listening.
-	InstancePort *int64 `type:"integer"`
+	InstancePort *int64 `min:"1" type:"integer"`
 
 	// The names of the policies enabled for the back-end server.
 	PolicyNames []*string `type:"list"`
@@ -1201,7 +1201,7 @@ type metadataBackendServerDescription struct {
 
 // String returns the string representation
 func (s BackendServerDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1225,7 +1225,7 @@ type metadataConfigureHealthCheckInput struct {
 
 // String returns the string representation
 func (s ConfigureHealthCheckInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1246,7 +1246,7 @@ type metadataConfigureHealthCheckOutput struct {
 
 // String returns the string representation
 func (s ConfigureHealthCheckOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1272,7 +1272,7 @@ type metadataConnectionDraining struct {
 
 // String returns the string representation
 func (s ConnectionDraining) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1284,7 +1284,7 @@ func (s ConnectionDraining) GoString() string {
 type ConnectionSettings struct {
 	// The time, in seconds, that the connection is allowed to be idle (no data
 	// has been sent over the connection) before it is closed by the load balancer.
-	IdleTimeout *int64 `type:"integer" required:"true"`
+	IdleTimeout *int64 `min:"1" type:"integer" required:"true"`
 
 	metadataConnectionSettings `json:"-" xml:"-"`
 }
@@ -1295,7 +1295,7 @@ type metadataConnectionSettings struct {
 
 // String returns the string representation
 func (s ConnectionSettings) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1323,7 +1323,7 @@ type metadataCreateAppCookieStickinessPolicyInput struct {
 
 // String returns the string representation
 func (s CreateAppCookieStickinessPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1341,7 +1341,7 @@ type metadataCreateAppCookieStickinessPolicyOutput struct {
 
 // String returns the string representation
 func (s CreateAppCookieStickinessPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1371,7 +1371,7 @@ type metadataCreateLBCookieStickinessPolicyInput struct {
 
 // String returns the string representation
 func (s CreateLBCookieStickinessPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1389,7 +1389,7 @@ type metadataCreateLBCookieStickinessPolicyOutput struct {
 
 // String returns the string representation
 func (s CreateLBCookieStickinessPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1443,7 +1443,7 @@ type CreateLoadBalancerInput struct {
 	//
 	// For more information about tagging your load balancer, see Tagging (http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/TerminologyandKeyConcepts.html#tagging-elb)
 	// in the Elastic Load Balancing Developer Guide.
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `min:"1" type:"list"`
 
 	metadataCreateLoadBalancerInput `json:"-" xml:"-"`
 }
@@ -1454,7 +1454,7 @@ type metadataCreateLoadBalancerInput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1478,7 +1478,7 @@ type metadataCreateLoadBalancerListenersInput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerListenersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1496,7 +1496,7 @@ type metadataCreateLoadBalancerListenersOutput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerListenersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1517,7 +1517,7 @@ type metadataCreateLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1548,7 +1548,7 @@ type metadataCreateLoadBalancerPolicyInput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1566,7 +1566,7 @@ type metadataCreateLoadBalancerPolicyOutput struct {
 
 // String returns the string representation
 func (s CreateLoadBalancerPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1588,7 +1588,7 @@ type metadataCrossZoneLoadBalancing struct {
 
 // String returns the string representation
 func (s CrossZoneLoadBalancing) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1609,7 +1609,7 @@ type metadataDeleteLoadBalancerInput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1633,7 +1633,7 @@ type metadataDeleteLoadBalancerListenersInput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerListenersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1651,7 +1651,7 @@ type metadataDeleteLoadBalancerListenersOutput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerListenersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1669,7 +1669,7 @@ type metadataDeleteLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1694,7 +1694,7 @@ type metadataDeleteLoadBalancerPolicyInput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1712,7 +1712,7 @@ type metadataDeleteLoadBalancerPolicyOutput struct {
 
 // String returns the string representation
 func (s DeleteLoadBalancerPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1736,7 +1736,7 @@ type metadataDeregisterInstancesFromLoadBalancerInput struct {
 
 // String returns the string representation
 func (s DeregisterInstancesFromLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1757,7 +1757,7 @@ type metadataDeregisterInstancesFromLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s DeregisterInstancesFromLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1781,7 +1781,7 @@ type metadataDescribeInstanceHealthInput struct {
 
 // String returns the string representation
 func (s DescribeInstanceHealthInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1802,7 +1802,7 @@ type metadataDescribeInstanceHealthOutput struct {
 
 // String returns the string representation
 func (s DescribeInstanceHealthOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1823,7 +1823,7 @@ type metadataDescribeLoadBalancerAttributesInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1844,7 +1844,7 @@ type metadataDescribeLoadBalancerAttributesOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1868,7 +1868,7 @@ type metadataDescribeLoadBalancerPoliciesInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPoliciesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1889,7 +1889,7 @@ type metadataDescribeLoadBalancerPoliciesOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPoliciesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1911,7 +1911,7 @@ type metadataDescribeLoadBalancerPolicyTypesInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPolicyTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1932,7 +1932,7 @@ type metadataDescribeLoadBalancerPolicyTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancerPolicyTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1950,7 +1950,7 @@ type DescribeLoadBalancersInput struct {
 
 	// The maximum number of results to return with this call (a number from 1 to
 	// 400). The default is 400.
-	PageSize *int64 `type:"integer"`
+	PageSize *int64 `min:"1" type:"integer"`
 
 	metadataDescribeLoadBalancersInput `json:"-" xml:"-"`
 }
@@ -1961,7 +1961,7 @@ type metadataDescribeLoadBalancersInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1986,7 +1986,7 @@ type metadataDescribeLoadBalancersOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1996,7 +1996,7 @@ func (s DescribeLoadBalancersOutput) GoString() string {
 
 type DescribeTagsInput struct {
 	// The names of the load balancers.
-	LoadBalancerNames []*string `type:"list" required:"true"`
+	LoadBalancerNames []*string `min:"1" type:"list" required:"true"`
 
 	metadataDescribeTagsInput `json:"-" xml:"-"`
 }
@@ -2007,7 +2007,7 @@ type metadataDescribeTagsInput struct {
 
 // String returns the string representation
 func (s DescribeTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2028,7 +2028,7 @@ type metadataDescribeTagsOutput struct {
 
 // String returns the string representation
 func (s DescribeTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2052,7 +2052,7 @@ type metadataDetachLoadBalancerFromSubnetsInput struct {
 
 // String returns the string representation
 func (s DetachLoadBalancerFromSubnetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2073,7 +2073,7 @@ type metadataDetachLoadBalancerFromSubnetsOutput struct {
 
 // String returns the string representation
 func (s DetachLoadBalancerFromSubnetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2097,7 +2097,7 @@ type metadataDisableAvailabilityZonesForLoadBalancerInput struct {
 
 // String returns the string representation
 func (s DisableAvailabilityZonesForLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2118,7 +2118,7 @@ type metadataDisableAvailabilityZonesForLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s DisableAvailabilityZonesForLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2142,7 +2142,7 @@ type metadataEnableAvailabilityZonesForLoadBalancerInput struct {
 
 // String returns the string representation
 func (s EnableAvailabilityZonesForLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2163,7 +2163,7 @@ type metadataEnableAvailabilityZonesForLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s EnableAvailabilityZonesForLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2175,11 +2175,11 @@ func (s EnableAvailabilityZonesForLoadBalancerOutput) GoString() string {
 type HealthCheck struct {
 	// The number of consecutive health checks successes required before moving
 	// the instance to the Healthy state.
-	HealthyThreshold *int64 `type:"integer" required:"true"`
+	HealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 
 	// The approximate interval, in seconds, between health checks of an individual
 	// instance.
-	Interval *int64 `type:"integer" required:"true"`
+	Interval *int64 `min:"1" type:"integer" required:"true"`
 
 	// The instance being checked. The protocol is either TCP, HTTP, HTTPS, or SSL.
 	// The range of valid ports is one (1) through 65535.
@@ -2205,11 +2205,11 @@ type HealthCheck struct {
 	// check.
 	//
 	// This value must be less than the Interval value.
-	Timeout *int64 `type:"integer" required:"true"`
+	Timeout *int64 `min:"1" type:"integer" required:"true"`
 
 	// The number of consecutive health check failures required before moving the
 	// instance to the Unhealthy state.
-	UnhealthyThreshold *int64 `type:"integer" required:"true"`
+	UnhealthyThreshold *int64 `min:"2" type:"integer" required:"true"`
 
 	metadataHealthCheck `json:"-" xml:"-"`
 }
@@ -2220,7 +2220,7 @@ type metadataHealthCheck struct {
 
 // String returns the string representation
 func (s HealthCheck) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2231,7 +2231,7 @@ func (s HealthCheck) GoString() string {
 // The ID of a back-end instance.
 type Instance struct {
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	metadataInstance `json:"-" xml:"-"`
 }
@@ -2242,7 +2242,7 @@ type metadataInstance struct {
 
 // String returns the string representation
 func (s Instance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2284,7 +2284,7 @@ type InstanceState struct {
 	Description *string `type:"string"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `type:"string"`
 
 	// Information about the cause of OutOfService instances. Specifically, whether
 	// the cause is Elastic Load Balancing or the instance.
@@ -2306,7 +2306,7 @@ type metadataInstanceState struct {
 
 // String returns the string representation
 func (s InstanceState) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2334,7 +2334,7 @@ type metadataLBCookieStickinessPolicy struct {
 
 // String returns the string representation
 func (s LBCookieStickinessPolicy) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2349,7 +2349,7 @@ func (s LBCookieStickinessPolicy) GoString() string {
 // in the Elastic Load Balancing Developer Guide.
 type Listener struct {
 	// The port on which the instance is listening.
-	InstancePort *int64 `type:"integer" required:"true"`
+	InstancePort *int64 `min:"1" type:"integer" required:"true"`
 
 	// The protocol to use for routing traffic to back-end instances: HTTP, HTTPS,
 	// TCP, or SSL.
@@ -2373,7 +2373,7 @@ type Listener struct {
 	Protocol *string `type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the server certificate.
-	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string"`
+	SSLCertificateId *string `type:"string"`
 
 	metadataListener `json:"-" xml:"-"`
 }
@@ -2384,7 +2384,7 @@ type metadataListener struct {
 
 // String returns the string representation
 func (s Listener) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2413,7 +2413,7 @@ type metadataListenerDescription struct {
 
 // String returns the string representation
 func (s ListenerDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2466,7 +2466,7 @@ type metadataLoadBalancerAttributes struct {
 
 // String returns the string representation
 func (s LoadBalancerAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2536,7 +2536,7 @@ type LoadBalancerDescription struct {
 	Subnets []*string `type:"list"`
 
 	// The ID of the VPC for the load balancer.
-	VPCID *string `locationName:"VPCId" type:"string"`
+	VPCId *string `type:"string"`
 
 	metadataLoadBalancerDescription `json:"-" xml:"-"`
 }
@@ -2547,7 +2547,7 @@ type metadataLoadBalancerDescription struct {
 
 // String returns the string representation
 func (s LoadBalancerDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2571,7 +2571,7 @@ type metadataModifyLoadBalancerAttributesInput struct {
 
 // String returns the string representation
 func (s ModifyLoadBalancerAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2595,7 +2595,7 @@ type metadataModifyLoadBalancerAttributesOutput struct {
 
 // String returns the string representation
 func (s ModifyLoadBalancerAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2623,7 +2623,7 @@ type metadataPolicies struct {
 
 // String returns the string representation
 func (s Policies) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2648,7 +2648,7 @@ type metadataPolicyAttribute struct {
 
 // String returns the string representation
 func (s PolicyAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2673,7 +2673,7 @@ type metadataPolicyAttributeDescription struct {
 
 // String returns the string representation
 func (s PolicyAttributeDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2713,7 +2713,7 @@ type metadataPolicyAttributeTypeDescription struct {
 
 // String returns the string representation
 func (s PolicyAttributeTypeDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2741,7 +2741,7 @@ type metadataPolicyDescription struct {
 
 // String returns the string representation
 func (s PolicyDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2770,7 +2770,7 @@ type metadataPolicyTypeDescription struct {
 
 // String returns the string representation
 func (s PolicyTypeDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2794,7 +2794,7 @@ type metadataRegisterInstancesWithLoadBalancerInput struct {
 
 // String returns the string representation
 func (s RegisterInstancesWithLoadBalancerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2815,7 +2815,7 @@ type metadataRegisterInstancesWithLoadBalancerOutput struct {
 
 // String returns the string representation
 func (s RegisterInstancesWithLoadBalancerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2829,7 +2829,7 @@ type RemoveTagsInput struct {
 	LoadBalancerNames []*string `type:"list" required:"true"`
 
 	// The list of tag keys to remove.
-	Tags []*TagKeyOnly `type:"list" required:"true"`
+	Tags []*TagKeyOnly `min:"1" type:"list" required:"true"`
 
 	metadataRemoveTagsInput `json:"-" xml:"-"`
 }
@@ -2840,7 +2840,7 @@ type metadataRemoveTagsInput struct {
 
 // String returns the string representation
 func (s RemoveTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2858,7 +2858,7 @@ type metadataRemoveTagsOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2874,7 +2874,7 @@ type SetLoadBalancerListenerSSLCertificateInput struct {
 	LoadBalancerPort *int64 `type:"integer" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SSL certificate.
-	SSLCertificateID *string `locationName:"SSLCertificateId" type:"string" required:"true"`
+	SSLCertificateId *string `type:"string" required:"true"`
 
 	metadataSetLoadBalancerListenerSSLCertificateInput `json:"-" xml:"-"`
 }
@@ -2885,7 +2885,7 @@ type metadataSetLoadBalancerListenerSSLCertificateInput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerListenerSSLCertificateInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2903,7 +2903,7 @@ type metadataSetLoadBalancerListenerSSLCertificateOutput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerListenerSSLCertificateOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2931,7 +2931,7 @@ type metadataSetLoadBalancerPoliciesForBackendServerInput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesForBackendServerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2949,7 +2949,7 @@ type metadataSetLoadBalancerPoliciesForBackendServerOutput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesForBackendServerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2977,7 +2977,7 @@ type metadataSetLoadBalancerPoliciesOfListenerInput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesOfListenerInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2995,7 +2995,7 @@ type metadataSetLoadBalancerPoliciesOfListenerOutput struct {
 
 // String returns the string representation
 func (s SetLoadBalancerPoliciesOfListenerOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3020,7 +3020,7 @@ type metadataSourceSecurityGroup struct {
 
 // String returns the string representation
 func (s SourceSecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3031,7 +3031,7 @@ func (s SourceSecurityGroup) GoString() string {
 // Information about a tag.
 type Tag struct {
 	// The key of the tag.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// The value of the tag.
 	Value *string `type:"string"`
@@ -3045,7 +3045,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3059,7 +3059,7 @@ type TagDescription struct {
 	LoadBalancerName *string `type:"string"`
 
 	// The tags.
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `min:"1" type:"list"`
 
 	metadataTagDescription `json:"-" xml:"-"`
 }
@@ -3070,7 +3070,7 @@ type metadataTagDescription struct {
 
 // String returns the string representation
 func (s TagDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3081,7 +3081,7 @@ func (s TagDescription) GoString() string {
 // The key of a tag.
 type TagKeyOnly struct {
 	// The name of the key.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	metadataTagKeyOnly `json:"-" xml:"-"`
 }
@@ -3092,7 +3092,7 @@ type metadataTagKeyOnly struct {
 
 // String returns the string representation
 func (s TagKeyOnly) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

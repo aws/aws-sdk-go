@@ -4,6 +4,10 @@ package swf
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -22,23 +26,25 @@ import (
 // This documentation serves as reference only. For a broader overview of the
 // Amazon SWF programming model, see the Amazon SWF Developer Guide (http://docs.aws.amazon.com/amazonswf/latest/developerguide/).
 type SWF struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new SWF client.
 func New(config *aws.Config) *SWF {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
-		ServiceName:  "swf",
-		APIVersion:   "2012-01-25",
-		JSONVersion:  "1.0",
-		TargetPrefix: "SimpleWorkflowService",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:       defaults.DefaultConfig.Merge(config),
+			ServiceName:  "swf",
+			APIVersion:   "2012-01-25",
+			JSONVersion:  "1.0",
+			TargetPrefix: "SimpleWorkflowService",
+		},
 	}
 	service.Initialize()
 
@@ -59,8 +65,8 @@ func New(config *aws.Config) *SWF {
 
 // newRequest creates a new request for a SWF operation and runs any
 // custom request initialization.
-func (c *SWF) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *SWF) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

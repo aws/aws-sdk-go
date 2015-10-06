@@ -6,15 +6,15 @@ package codedeploy
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddTagsToOnPremisesInstances = "AddTagsToOnPremisesInstances"
 
 // AddTagsToOnPremisesInstancesRequest generates a request for the AddTagsToOnPremisesInstances operation.
-func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremisesInstancesInput) (req *aws.Request, output *AddTagsToOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) AddTagsToOnPremisesInstancesRequest(input *AddTagsToOnPremisesInstancesInput) (req *request.Request, output *AddTagsToOnPremisesInstancesOutput) {
+	op := &request.Operation{
 		Name:       opAddTagsToOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *CodeDeploy) AddTagsToOnPremisesInstances(input *AddTagsToOnPremisesInst
 const opBatchGetApplications = "BatchGetApplications"
 
 // BatchGetApplicationsRequest generates a request for the BatchGetApplications operation.
-func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *aws.Request, output *BatchGetApplicationsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) BatchGetApplicationsRequest(input *BatchGetApplicationsInput) (req *request.Request, output *BatchGetApplicationsOutput) {
+	op := &request.Operation{
 		Name:       opBatchGetApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -67,8 +67,8 @@ func (c *CodeDeploy) BatchGetApplications(input *BatchGetApplicationsInput) (*Ba
 const opBatchGetDeployments = "BatchGetDeployments"
 
 // BatchGetDeploymentsRequest generates a request for the BatchGetDeployments operation.
-func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput) (req *aws.Request, output *BatchGetDeploymentsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) BatchGetDeploymentsRequest(input *BatchGetDeploymentsInput) (req *request.Request, output *BatchGetDeploymentsOutput) {
+	op := &request.Operation{
 		Name:       opBatchGetDeployments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -94,8 +94,8 @@ func (c *CodeDeploy) BatchGetDeployments(input *BatchGetDeploymentsInput) (*Batc
 const opBatchGetOnPremisesInstances = "BatchGetOnPremisesInstances"
 
 // BatchGetOnPremisesInstancesRequest generates a request for the BatchGetOnPremisesInstances operation.
-func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremisesInstancesInput) (req *aws.Request, output *BatchGetOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) BatchGetOnPremisesInstancesRequest(input *BatchGetOnPremisesInstancesInput) (req *request.Request, output *BatchGetOnPremisesInstancesOutput) {
+	op := &request.Operation{
 		Name:       opBatchGetOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -121,8 +121,8 @@ func (c *CodeDeploy) BatchGetOnPremisesInstances(input *BatchGetOnPremisesInstan
 const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
-func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *aws.Request, output *CreateApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateApplicationRequest(input *CreateApplicationInput) (req *request.Request, output *CreateApplicationOutput) {
+	op := &request.Operation{
 		Name:       opCreateApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -148,8 +148,8 @@ func (c *CodeDeploy) CreateApplication(input *CreateApplicationInput) (*CreateAp
 const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a request for the CreateDeployment operation.
-func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req *aws.Request, output *CreateDeploymentOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateDeploymentRequest(input *CreateDeploymentInput) (req *request.Request, output *CreateDeploymentOutput) {
+	op := &request.Operation{
 		Name:       opCreateDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -175,8 +175,8 @@ func (c *CodeDeploy) CreateDeployment(input *CreateDeploymentInput) (*CreateDepl
 const opCreateDeploymentConfig = "CreateDeploymentConfig"
 
 // CreateDeploymentConfigRequest generates a request for the CreateDeploymentConfig operation.
-func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfigInput) (req *aws.Request, output *CreateDeploymentConfigOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateDeploymentConfigRequest(input *CreateDeploymentConfigInput) (req *request.Request, output *CreateDeploymentConfigOutput) {
+	op := &request.Operation{
 		Name:       opCreateDeploymentConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -202,8 +202,8 @@ func (c *CodeDeploy) CreateDeploymentConfig(input *CreateDeploymentConfigInput) 
 const opCreateDeploymentGroup = "CreateDeploymentGroup"
 
 // CreateDeploymentGroupRequest generates a request for the CreateDeploymentGroup operation.
-func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupInput) (req *aws.Request, output *CreateDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) CreateDeploymentGroupRequest(input *CreateDeploymentGroupInput) (req *request.Request, output *CreateDeploymentGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -229,8 +229,8 @@ func (c *CodeDeploy) CreateDeploymentGroup(input *CreateDeploymentGroupInput) (*
 const opDeleteApplication = "DeleteApplication"
 
 // DeleteApplicationRequest generates a request for the DeleteApplication operation.
-func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *aws.Request, output *DeleteApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeleteApplicationRequest(input *DeleteApplicationInput) (req *request.Request, output *DeleteApplicationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -256,8 +256,8 @@ func (c *CodeDeploy) DeleteApplication(input *DeleteApplicationInput) (*DeleteAp
 const opDeleteDeploymentConfig = "DeleteDeploymentConfig"
 
 // DeleteDeploymentConfigRequest generates a request for the DeleteDeploymentConfig operation.
-func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *aws.Request, output *DeleteDeploymentConfigOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeleteDeploymentConfigRequest(input *DeleteDeploymentConfigInput) (req *request.Request, output *DeleteDeploymentConfigOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDeploymentConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -286,8 +286,8 @@ func (c *CodeDeploy) DeleteDeploymentConfig(input *DeleteDeploymentConfigInput) 
 const opDeleteDeploymentGroup = "DeleteDeploymentGroup"
 
 // DeleteDeploymentGroupRequest generates a request for the DeleteDeploymentGroup operation.
-func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupInput) (req *aws.Request, output *DeleteDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeleteDeploymentGroupRequest(input *DeleteDeploymentGroupInput) (req *request.Request, output *DeleteDeploymentGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -313,8 +313,8 @@ func (c *CodeDeploy) DeleteDeploymentGroup(input *DeleteDeploymentGroupInput) (*
 const opDeregisterOnPremisesInstance = "DeregisterOnPremisesInstance"
 
 // DeregisterOnPremisesInstanceRequest generates a request for the DeregisterOnPremisesInstance operation.
-func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPremisesInstanceInput) (req *aws.Request, output *DeregisterOnPremisesInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) DeregisterOnPremisesInstanceRequest(input *DeregisterOnPremisesInstanceInput) (req *request.Request, output *DeregisterOnPremisesInstanceOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterOnPremisesInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -340,8 +340,8 @@ func (c *CodeDeploy) DeregisterOnPremisesInstance(input *DeregisterOnPremisesIns
 const opGetApplication = "GetApplication"
 
 // GetApplicationRequest generates a request for the GetApplication operation.
-func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *aws.Request, output *GetApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetApplicationRequest(input *GetApplicationInput) (req *request.Request, output *GetApplicationOutput) {
+	op := &request.Operation{
 		Name:       opGetApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -367,8 +367,8 @@ func (c *CodeDeploy) GetApplication(input *GetApplicationInput) (*GetApplication
 const opGetApplicationRevision = "GetApplicationRevision"
 
 // GetApplicationRevisionRequest generates a request for the GetApplicationRevision operation.
-func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevisionInput) (req *aws.Request, output *GetApplicationRevisionOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetApplicationRevisionRequest(input *GetApplicationRevisionInput) (req *request.Request, output *GetApplicationRevisionOutput) {
+	op := &request.Operation{
 		Name:       opGetApplicationRevision,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -394,8 +394,8 @@ func (c *CodeDeploy) GetApplicationRevision(input *GetApplicationRevisionInput) 
 const opGetDeployment = "GetDeployment"
 
 // GetDeploymentRequest generates a request for the GetDeployment operation.
-func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *aws.Request, output *GetDeploymentOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentRequest(input *GetDeploymentInput) (req *request.Request, output *GetDeploymentOutput) {
+	op := &request.Operation{
 		Name:       opGetDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -421,8 +421,8 @@ func (c *CodeDeploy) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOut
 const opGetDeploymentConfig = "GetDeploymentConfig"
 
 // GetDeploymentConfigRequest generates a request for the GetDeploymentConfig operation.
-func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput) (req *aws.Request, output *GetDeploymentConfigOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentConfigRequest(input *GetDeploymentConfigInput) (req *request.Request, output *GetDeploymentConfigOutput) {
+	op := &request.Operation{
 		Name:       opGetDeploymentConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -448,8 +448,8 @@ func (c *CodeDeploy) GetDeploymentConfig(input *GetDeploymentConfigInput) (*GetD
 const opGetDeploymentGroup = "GetDeploymentGroup"
 
 // GetDeploymentGroupRequest generates a request for the GetDeploymentGroup operation.
-func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (req *aws.Request, output *GetDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentGroupRequest(input *GetDeploymentGroupInput) (req *request.Request, output *GetDeploymentGroupOutput) {
+	op := &request.Operation{
 		Name:       opGetDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -475,8 +475,8 @@ func (c *CodeDeploy) GetDeploymentGroup(input *GetDeploymentGroupInput) (*GetDep
 const opGetDeploymentInstance = "GetDeploymentInstance"
 
 // GetDeploymentInstanceRequest generates a request for the GetDeploymentInstance operation.
-func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceInput) (req *aws.Request, output *GetDeploymentInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetDeploymentInstanceRequest(input *GetDeploymentInstanceInput) (req *request.Request, output *GetDeploymentInstanceOutput) {
+	op := &request.Operation{
 		Name:       opGetDeploymentInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -502,8 +502,8 @@ func (c *CodeDeploy) GetDeploymentInstance(input *GetDeploymentInstanceInput) (*
 const opGetOnPremisesInstance = "GetOnPremisesInstance"
 
 // GetOnPremisesInstanceRequest generates a request for the GetOnPremisesInstance operation.
-func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceInput) (req *aws.Request, output *GetOnPremisesInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) GetOnPremisesInstanceRequest(input *GetOnPremisesInstanceInput) (req *request.Request, output *GetOnPremisesInstanceOutput) {
+	op := &request.Operation{
 		Name:       opGetOnPremisesInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -529,12 +529,12 @@ func (c *CodeDeploy) GetOnPremisesInstance(input *GetOnPremisesInstanceInput) (*
 const opListApplicationRevisions = "ListApplicationRevisions"
 
 // ListApplicationRevisionsRequest generates a request for the ListApplicationRevisions operation.
-func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *aws.Request, output *ListApplicationRevisionsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListApplicationRevisionsRequest(input *ListApplicationRevisionsInput) (req *request.Request, output *ListApplicationRevisionsOutput) {
+	op := &request.Operation{
 		Name:       opListApplicationRevisions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -569,12 +569,12 @@ func (c *CodeDeploy) ListApplicationRevisionsPages(input *ListApplicationRevisio
 const opListApplications = "ListApplications"
 
 // ListApplicationsRequest generates a request for the ListApplications operation.
-func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req *aws.Request, output *ListApplicationsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListApplicationsRequest(input *ListApplicationsInput) (req *request.Request, output *ListApplicationsOutput) {
+	op := &request.Operation{
 		Name:       opListApplications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -609,12 +609,12 @@ func (c *CodeDeploy) ListApplicationsPages(input *ListApplicationsInput, fn func
 const opListDeploymentConfigs = "ListDeploymentConfigs"
 
 // ListDeploymentConfigsRequest generates a request for the ListDeploymentConfigs operation.
-func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsInput) (req *aws.Request, output *ListDeploymentConfigsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentConfigsRequest(input *ListDeploymentConfigsInput) (req *request.Request, output *ListDeploymentConfigsOutput) {
+	op := &request.Operation{
 		Name:       opListDeploymentConfigs,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -649,12 +649,12 @@ func (c *CodeDeploy) ListDeploymentConfigsPages(input *ListDeploymentConfigsInpu
 const opListDeploymentGroups = "ListDeploymentGroups"
 
 // ListDeploymentGroupsRequest generates a request for the ListDeploymentGroups operation.
-func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInput) (req *aws.Request, output *ListDeploymentGroupsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentGroupsRequest(input *ListDeploymentGroupsInput) (req *request.Request, output *ListDeploymentGroupsOutput) {
+	op := &request.Operation{
 		Name:       opListDeploymentGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -690,12 +690,12 @@ func (c *CodeDeploy) ListDeploymentGroupsPages(input *ListDeploymentGroupsInput,
 const opListDeploymentInstances = "ListDeploymentInstances"
 
 // ListDeploymentInstancesRequest generates a request for the ListDeploymentInstances operation.
-func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstancesInput) (req *aws.Request, output *ListDeploymentInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentInstancesRequest(input *ListDeploymentInstancesInput) (req *request.Request, output *ListDeploymentInstancesOutput) {
+	op := &request.Operation{
 		Name:       opListDeploymentInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -731,12 +731,12 @@ func (c *CodeDeploy) ListDeploymentInstancesPages(input *ListDeploymentInstances
 const opListDeployments = "ListDeployments"
 
 // ListDeploymentsRequest generates a request for the ListDeployments operation.
-func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *aws.Request, output *ListDeploymentsOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListDeploymentsRequest(input *ListDeploymentsInput) (req *request.Request, output *ListDeploymentsOutput) {
+	op := &request.Operation{
 		Name:       opListDeployments,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "",
@@ -772,8 +772,8 @@ func (c *CodeDeploy) ListDeploymentsPages(input *ListDeploymentsInput, fn func(p
 const opListOnPremisesInstances = "ListOnPremisesInstances"
 
 // ListOnPremisesInstancesRequest generates a request for the ListOnPremisesInstances operation.
-func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstancesInput) (req *aws.Request, output *ListOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) ListOnPremisesInstancesRequest(input *ListOnPremisesInstancesInput) (req *request.Request, output *ListOnPremisesInstancesOutput) {
+	op := &request.Operation{
 		Name:       opListOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -803,8 +803,8 @@ func (c *CodeDeploy) ListOnPremisesInstances(input *ListOnPremisesInstancesInput
 const opRegisterApplicationRevision = "RegisterApplicationRevision"
 
 // RegisterApplicationRevisionRequest generates a request for the RegisterApplicationRevision operation.
-func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *aws.Request, output *RegisterApplicationRevisionOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) RegisterApplicationRevisionRequest(input *RegisterApplicationRevisionInput) (req *request.Request, output *RegisterApplicationRevisionOutput) {
+	op := &request.Operation{
 		Name:       opRegisterApplicationRevision,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -830,8 +830,8 @@ func (c *CodeDeploy) RegisterApplicationRevision(input *RegisterApplicationRevis
 const opRegisterOnPremisesInstance = "RegisterOnPremisesInstance"
 
 // RegisterOnPremisesInstanceRequest generates a request for the RegisterOnPremisesInstance operation.
-func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremisesInstanceInput) (req *aws.Request, output *RegisterOnPremisesInstanceOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) RegisterOnPremisesInstanceRequest(input *RegisterOnPremisesInstanceInput) (req *request.Request, output *RegisterOnPremisesInstanceOutput) {
+	op := &request.Operation{
 		Name:       opRegisterOnPremisesInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -857,8 +857,8 @@ func (c *CodeDeploy) RegisterOnPremisesInstance(input *RegisterOnPremisesInstanc
 const opRemoveTagsFromOnPremisesInstances = "RemoveTagsFromOnPremisesInstances"
 
 // RemoveTagsFromOnPremisesInstancesRequest generates a request for the RemoveTagsFromOnPremisesInstances operation.
-func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsFromOnPremisesInstancesInput) (req *aws.Request, output *RemoveTagsFromOnPremisesInstancesOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) RemoveTagsFromOnPremisesInstancesRequest(input *RemoveTagsFromOnPremisesInstancesInput) (req *request.Request, output *RemoveTagsFromOnPremisesInstancesOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTagsFromOnPremisesInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -884,8 +884,8 @@ func (c *CodeDeploy) RemoveTagsFromOnPremisesInstances(input *RemoveTagsFromOnPr
 const opStopDeployment = "StopDeployment"
 
 // StopDeploymentRequest generates a request for the StopDeployment operation.
-func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *aws.Request, output *StopDeploymentOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) StopDeploymentRequest(input *StopDeploymentInput) (req *request.Request, output *StopDeploymentOutput) {
+	op := &request.Operation{
 		Name:       opStopDeployment,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -911,8 +911,8 @@ func (c *CodeDeploy) StopDeployment(input *StopDeploymentInput) (*StopDeployment
 const opUpdateApplication = "UpdateApplication"
 
 // UpdateApplicationRequest generates a request for the UpdateApplication operation.
-func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *aws.Request, output *UpdateApplicationOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) UpdateApplicationRequest(input *UpdateApplicationInput) (req *request.Request, output *UpdateApplicationOutput) {
+	op := &request.Operation{
 		Name:       opUpdateApplication,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -938,8 +938,8 @@ func (c *CodeDeploy) UpdateApplication(input *UpdateApplicationInput) (*UpdateAp
 const opUpdateDeploymentGroup = "UpdateDeploymentGroup"
 
 // UpdateDeploymentGroupRequest generates a request for the UpdateDeploymentGroup operation.
-func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupInput) (req *aws.Request, output *UpdateDeploymentGroupOutput) {
-	op := &aws.Operation{
+func (c *CodeDeploy) UpdateDeploymentGroupRequest(input *UpdateDeploymentGroupInput) (req *request.Request, output *UpdateDeploymentGroupOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDeploymentGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -982,7 +982,7 @@ type metadataAddTagsToOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s AddTagsToOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1000,7 +1000,7 @@ type metadataAddTagsToOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s AddTagsToOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1011,10 +1011,10 @@ func (s AddTagsToOnPremisesInstancesOutput) GoString() string {
 // Information about an application.
 type ApplicationInfo struct {
 	// The application ID.
-	ApplicationID *string `locationName:"applicationId" type:"string"`
+	ApplicationId *string `locationName:"applicationId" type:"string"`
 
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// The time that the application was created.
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
@@ -1032,7 +1032,7 @@ type metadataApplicationInfo struct {
 
 // String returns the string representation
 func (s ApplicationInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1057,7 +1057,7 @@ type metadataAutoScalingGroup struct {
 
 // String returns the string representation
 func (s AutoScalingGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1080,7 +1080,7 @@ type metadataBatchGetApplicationsInput struct {
 
 // String returns the string representation
 func (s BatchGetApplicationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1102,7 +1102,7 @@ type metadataBatchGetApplicationsOutput struct {
 
 // String returns the string representation
 func (s BatchGetApplicationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1113,7 +1113,7 @@ func (s BatchGetApplicationsOutput) GoString() string {
 // Represents the input of a batch get deployments operation.
 type BatchGetDeploymentsInput struct {
 	// A list of deployment IDs, with multiple deployment IDs separated by spaces.
-	DeploymentIDs []*string `locationName:"deploymentIds" type:"list"`
+	DeploymentIds []*string `locationName:"deploymentIds" type:"list"`
 
 	metadataBatchGetDeploymentsInput `json:"-" xml:"-"`
 }
@@ -1124,7 +1124,7 @@ type metadataBatchGetDeploymentsInput struct {
 
 // String returns the string representation
 func (s BatchGetDeploymentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1146,7 +1146,7 @@ type metadataBatchGetDeploymentsOutput struct {
 
 // String returns the string representation
 func (s BatchGetDeploymentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1168,7 +1168,7 @@ type metadataBatchGetOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s BatchGetOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1190,7 +1190,7 @@ type metadataBatchGetOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s BatchGetOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1202,7 +1202,7 @@ func (s BatchGetOnPremisesInstancesOutput) GoString() string {
 type CreateApplicationInput struct {
 	// The name of the application. This name must be unique with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	metadataCreateApplicationInput `json:"-" xml:"-"`
 }
@@ -1213,7 +1213,7 @@ type metadataCreateApplicationInput struct {
 
 // String returns the string representation
 func (s CreateApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1224,7 +1224,7 @@ func (s CreateApplicationInput) GoString() string {
 // Represents the output of a create application operation.
 type CreateApplicationOutput struct {
 	// A unique application ID.
-	ApplicationID *string `locationName:"applicationId" type:"string"`
+	ApplicationId *string `locationName:"applicationId" type:"string"`
 
 	metadataCreateApplicationOutput `json:"-" xml:"-"`
 }
@@ -1235,7 +1235,7 @@ type metadataCreateApplicationOutput struct {
 
 // String returns the string representation
 func (s CreateApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1246,7 +1246,7 @@ func (s CreateApplicationOutput) GoString() string {
 // Represents the input of a create deployment configuration operation.
 type CreateDeploymentConfigInput struct {
 	// The name of the deployment configuration to create.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	// The minimum number of healthy instances that should be available at any time
 	// during the deployment. There are two parameters expected in the input: type
@@ -1275,7 +1275,7 @@ type metadataCreateDeploymentConfigInput struct {
 
 // String returns the string representation
 func (s CreateDeploymentConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1286,7 +1286,7 @@ func (s CreateDeploymentConfigInput) GoString() string {
 // Represents the output of a create deployment configuration operation.
 type CreateDeploymentConfigOutput struct {
 	// A unique deployment configuration ID.
-	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
+	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
 
 	metadataCreateDeploymentConfigOutput `json:"-" xml:"-"`
 }
@@ -1297,7 +1297,7 @@ type metadataCreateDeploymentConfigOutput struct {
 
 // String returns the string representation
 func (s CreateDeploymentConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1309,7 +1309,7 @@ func (s CreateDeploymentConfigOutput) GoString() string {
 type CreateDeploymentGroupInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// A list of associated Auto Scaling groups.
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
@@ -1343,20 +1343,20 @@ type CreateDeploymentGroupInput struct {
 	// specified for either the deployment or the deployment group.  To create a
 	// custom deployment configuration, call the create deployment configuration
 	// operation.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	// The Amazon EC2 tags to filter on.
-	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The on-premises instance tags to filter on.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A service role ARN that allows AWS CodeDeploy to act on the user's behalf
 	// when interacting with AWS services.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string" required:"true"`
+	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string" required:"true"`
 
 	metadataCreateDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -1367,7 +1367,7 @@ type metadataCreateDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s CreateDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1378,7 +1378,7 @@ func (s CreateDeploymentGroupInput) GoString() string {
 // Represents the output of a create deployment group operation.
 type CreateDeploymentGroupOutput struct {
 	// A unique deployment group ID.
-	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
+	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
 
 	metadataCreateDeploymentGroupOutput `json:"-" xml:"-"`
 }
@@ -1389,7 +1389,7 @@ type metadataCreateDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s CreateDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1401,7 +1401,7 @@ func (s CreateDeploymentGroupOutput) GoString() string {
 type CreateDeploymentInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
@@ -1409,10 +1409,10 @@ type CreateDeploymentInput struct {
 	// If not specified, the value configured in the deployment group will be used
 	// as the default. If the deployment group does not have a deployment configuration
 	// associated with it, then CodeDeployDefault.OneAtATime will be used by default.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The deployment group's name.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// A comment about the deployment.
 	Description *string `locationName:"description" type:"string"`
@@ -1441,7 +1441,7 @@ type metadataCreateDeploymentInput struct {
 
 // String returns the string representation
 func (s CreateDeploymentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1452,7 +1452,7 @@ func (s CreateDeploymentInput) GoString() string {
 // Represents the output of a create deployment operation.
 type CreateDeploymentOutput struct {
 	// A unique deployment ID.
-	DeploymentID *string `locationName:"deploymentId" type:"string"`
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	metadataCreateDeploymentOutput `json:"-" xml:"-"`
 }
@@ -1463,7 +1463,7 @@ type metadataCreateDeploymentOutput struct {
 
 // String returns the string representation
 func (s CreateDeploymentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1475,7 +1475,7 @@ func (s CreateDeploymentOutput) GoString() string {
 type DeleteApplicationInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteApplicationInput `json:"-" xml:"-"`
 }
@@ -1486,7 +1486,7 @@ type metadataDeleteApplicationInput struct {
 
 // String returns the string representation
 func (s DeleteApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1504,7 +1504,7 @@ type metadataDeleteApplicationOutput struct {
 
 // String returns the string representation
 func (s DeleteApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1516,7 +1516,7 @@ func (s DeleteApplicationOutput) GoString() string {
 type DeleteDeploymentConfigInput struct {
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDeploymentConfigInput `json:"-" xml:"-"`
 }
@@ -1527,7 +1527,7 @@ type metadataDeleteDeploymentConfigInput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1545,7 +1545,7 @@ type metadataDeleteDeploymentConfigOutput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1557,10 +1557,10 @@ func (s DeleteDeploymentConfigOutput) GoString() string {
 type DeleteDeploymentGroupInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -1571,7 +1571,7 @@ type metadataDeleteDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1598,7 +1598,7 @@ type metadataDeleteDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1612,10 +1612,10 @@ type DeploymentConfigInfo struct {
 	CreateTime *time.Time `locationName:"createTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The deployment configuration ID.
-	DeploymentConfigID *string `locationName:"deploymentConfigId" type:"string"`
+	DeploymentConfigId *string `locationName:"deploymentConfigId" type:"string"`
 
 	// The deployment configuration name.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// Information about the number or percentage of minimum healthy instances.
 	MinimumHealthyHosts *MinimumHealthyHosts `locationName:"minimumHealthyHosts" type:"structure"`
@@ -1629,7 +1629,7 @@ type metadataDeploymentConfigInfo struct {
 
 // String returns the string representation
 func (s DeploymentConfigInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1640,28 +1640,28 @@ func (s DeploymentConfigInfo) GoString() string {
 // Information about a deployment group.
 type DeploymentGroupInfo struct {
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A list of associated Auto Scaling groups.
 	AutoScalingGroups []*AutoScalingGroup `locationName:"autoScalingGroups" type:"list"`
 
 	// The deployment configuration name.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The deployment group ID.
-	DeploymentGroupID *string `locationName:"deploymentGroupId" type:"string"`
+	DeploymentGroupId *string `locationName:"deploymentGroupId" type:"string"`
 
 	// The deployment group name.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// The Amazon EC2 tags to filter on.
-	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The on-premises instance tags to filter on.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A service role ARN.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
+	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
 	// Information about the deployment group's target revision, including the revision's
 	// type and its location.
@@ -1676,7 +1676,7 @@ type metadataDeploymentGroupInfo struct {
 
 // String returns the string representation
 func (s DeploymentGroupInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1687,7 +1687,7 @@ func (s DeploymentGroupInfo) GoString() string {
 // Information about a deployment.
 type DeploymentInfo struct {
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A timestamp indicating when the deployment was completed.
 	CompleteTime *time.Time `locationName:"completeTime" type:"timestamp" timestampFormat:"unix"`
@@ -1699,16 +1699,16 @@ type DeploymentInfo struct {
 	//
 	//  user: A user created the deployment. autoscaling: Auto Scaling created
 	// the deployment.
-	Creator *string `locationName:"creator" type:"string"`
+	Creator *string `locationName:"creator" type:"string" enum:"DeploymentCreator"`
 
 	// The deployment configuration name.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The deployment group name.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// The deployment ID.
-	DeploymentID *string `locationName:"deploymentId" type:"string"`
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	// A summary of the deployment status of the instances in the deployment.
 	DeploymentOverview *DeploymentOverview `locationName:"deploymentOverview" type:"structure"`
@@ -1743,7 +1743,7 @@ type DeploymentInfo struct {
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The current state of the deployment as a whole.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"DeploymentStatus"`
 
 	metadataDeploymentInfo `json:"-" xml:"-"`
 }
@@ -1754,7 +1754,7 @@ type metadataDeploymentInfo struct {
 
 // String returns the string representation
 func (s DeploymentInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1788,7 +1788,7 @@ type metadataDeploymentOverview struct {
 
 // String returns the string representation
 func (s DeploymentOverview) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1810,7 +1810,7 @@ type metadataDeregisterOnPremisesInstanceInput struct {
 
 // String returns the string representation
 func (s DeregisterOnPremisesInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1828,7 +1828,7 @@ type metadataDeregisterOnPremisesInstanceOutput struct {
 
 // String returns the string representation
 func (s DeregisterOnPremisesInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1846,7 +1846,7 @@ type Diagnostics struct {
 	// script did not finish running in the specified time period. ScriptFailed:
 	// The specified script failed to run as expected. UnknownError: The specified
 	// script did not run for an unknown reason.
-	ErrorCode *string `locationName:"errorCode" type:"string"`
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"LifecycleErrorCode"`
 
 	// The last portion of the associated diagnostic log.
 	LogTail *string `locationName:"logTail" type:"string"`
@@ -1866,7 +1866,7 @@ type metadataDiagnostics struct {
 
 // String returns the string representation
 func (s Diagnostics) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1882,7 +1882,7 @@ type EC2TagFilter struct {
 	// The tag filter type:
 	//
 	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"EC2TagFilterType"`
 
 	// The tag filter value.
 	Value *string `type:"string"`
@@ -1896,7 +1896,7 @@ type metadataEC2TagFilter struct {
 
 // String returns the string representation
 func (s EC2TagFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1927,7 +1927,7 @@ type ErrorInformation struct {
 	// has timed out. REVISION_MISSING: The revision ID was missing. Note that this
 	// error code will most likely be raised if the revision is deleted after the
 	// deployment is created but before it starts.
-	Code *string `locationName:"code" type:"string"`
+	Code *string `locationName:"code" type:"string" enum:"ErrorCode"`
 
 	// An accompanying error message.
 	Message *string `locationName:"message" type:"string"`
@@ -1941,7 +1941,7 @@ type metadataErrorInformation struct {
 
 // String returns the string representation
 func (s ErrorInformation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1975,7 +1975,7 @@ type metadataGenericRevisionInfo struct {
 
 // String returns the string representation
 func (s GenericRevisionInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1987,7 +1987,7 @@ func (s GenericRevisionInfo) GoString() string {
 type GetApplicationInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	metadataGetApplicationInput `json:"-" xml:"-"`
 }
@@ -1998,7 +1998,7 @@ type metadataGetApplicationInput struct {
 
 // String returns the string representation
 func (s GetApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2020,7 +2020,7 @@ type metadataGetApplicationOutput struct {
 
 // String returns the string representation
 func (s GetApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2031,7 +2031,7 @@ func (s GetApplicationOutput) GoString() string {
 // Represents the input of a get application revision operation.
 type GetApplicationRevisionInput struct {
 	// The name of the application that corresponds to the revision.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Information about the application revision to get, including the revision's
 	// type and its location.
@@ -2046,7 +2046,7 @@ type metadataGetApplicationRevisionInput struct {
 
 // String returns the string representation
 func (s GetApplicationRevisionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2057,7 +2057,7 @@ func (s GetApplicationRevisionInput) GoString() string {
 // Represents the output of a get application revision operation.
 type GetApplicationRevisionOutput struct {
 	// The name of the application that corresponds to the revision.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// Additional information about the revision, including the revision's type
 	// and its location.
@@ -2075,7 +2075,7 @@ type metadataGetApplicationRevisionOutput struct {
 
 // String returns the string representation
 func (s GetApplicationRevisionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2087,7 +2087,7 @@ func (s GetApplicationRevisionOutput) GoString() string {
 type GetDeploymentConfigInput struct {
 	// The name of an existing deployment configuration associated with the applicable
 	// IAM user or AWS account.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string" required:"true"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string" required:"true"`
 
 	metadataGetDeploymentConfigInput `json:"-" xml:"-"`
 }
@@ -2098,7 +2098,7 @@ type metadataGetDeploymentConfigInput struct {
 
 // String returns the string representation
 func (s GetDeploymentConfigInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2120,7 +2120,7 @@ type metadataGetDeploymentConfigOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentConfigOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2132,10 +2132,10 @@ func (s GetDeploymentConfigOutput) GoString() string {
 type GetDeploymentGroupInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string" required:"true"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string" required:"true"`
 
 	metadataGetDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -2146,7 +2146,7 @@ type metadataGetDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s GetDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2168,7 +2168,7 @@ type metadataGetDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2180,7 +2180,7 @@ func (s GetDeploymentGroupOutput) GoString() string {
 type GetDeploymentInput struct {
 	// An existing deployment ID associated with the applicable IAM user or AWS
 	// account.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataGetDeploymentInput `json:"-" xml:"-"`
 }
@@ -2191,7 +2191,7 @@ type metadataGetDeploymentInput struct {
 
 // String returns the string representation
 func (s GetDeploymentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2202,10 +2202,10 @@ func (s GetDeploymentInput) GoString() string {
 // Represents the input of a get deployment instance operation.
 type GetDeploymentInstanceInput struct {
 	// The unique ID of a deployment.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// The unique ID of an instance in the deployment's deployment group.
-	InstanceID *string `locationName:"instanceId" type:"string" required:"true"`
+	InstanceId *string `locationName:"instanceId" type:"string" required:"true"`
 
 	metadataGetDeploymentInstanceInput `json:"-" xml:"-"`
 }
@@ -2216,7 +2216,7 @@ type metadataGetDeploymentInstanceInput struct {
 
 // String returns the string representation
 func (s GetDeploymentInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2238,7 +2238,7 @@ type metadataGetDeploymentInstanceOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2260,7 +2260,7 @@ type metadataGetDeploymentOutput struct {
 
 // String returns the string representation
 func (s GetDeploymentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2282,7 +2282,7 @@ type metadataGetOnPremisesInstanceInput struct {
 
 // String returns the string representation
 func (s GetOnPremisesInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2304,7 +2304,7 @@ type metadataGetOnPremisesInstanceOutput struct {
 
 // String returns the string representation
 func (s GetOnPremisesInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2317,7 +2317,7 @@ func (s GetOnPremisesInstanceOutput) GoString() string {
 type GitHubLocation struct {
 	// The SHA1 commit ID of the GitHub commit that references the that represents
 	// the bundled artifacts for the application revision.
-	CommitID *string `locationName:"commitId" type:"string"`
+	CommitId *string `locationName:"commitId" type:"string"`
 
 	// The GitHub account and repository pair that stores a reference to the commit
 	// that represents the bundled artifacts for the application revision.
@@ -2334,7 +2334,7 @@ type metadataGitHubLocation struct {
 
 // String returns the string representation
 func (s GitHubLocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2349,10 +2349,10 @@ type InstanceInfo struct {
 	DeregisterTime *time.Time `locationName:"deregisterTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The IAM user ARN associated with the on-premises instance.
-	IAMUserARN *string `locationName:"iamUserArn" type:"string"`
+	IamUserArn *string `locationName:"iamUserArn" type:"string"`
 
 	// The ARN of the on-premises instance.
-	InstanceARN *string `locationName:"instanceArn" type:"string"`
+	InstanceArn *string `locationName:"instanceArn" type:"string"`
 
 	// The name of the on-premises instance.
 	InstanceName *string `locationName:"instanceName" type:"string"`
@@ -2372,7 +2372,7 @@ type metadataInstanceInfo struct {
 
 // String returns the string representation
 func (s InstanceInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2383,10 +2383,10 @@ func (s InstanceInfo) GoString() string {
 // Information about an instance in a deployment.
 type InstanceSummary struct {
 	// The deployment ID.
-	DeploymentID *string `locationName:"deploymentId" type:"string"`
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
 
 	// The instance ID.
-	InstanceID *string `locationName:"instanceId" type:"string"`
+	InstanceId *string `locationName:"instanceId" type:"string"`
 
 	// A timestamp indicating when the instance information was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp" timestampFormat:"unix"`
@@ -2401,7 +2401,7 @@ type InstanceSummary struct {
 	// succeeded for this instance. Failed: The deployment has failed for this instance.
 	// Skipped: The deployment has been skipped for this instance. Unknown: The
 	// deployment status is unknown for this instance.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"InstanceStatus"`
 
 	metadataInstanceSummary `json:"-" xml:"-"`
 }
@@ -2412,7 +2412,7 @@ type metadataInstanceSummary struct {
 
 // String returns the string representation
 func (s InstanceSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2442,7 +2442,7 @@ type LifecycleEvent struct {
 	// has succeeded. Failed: The deployment lifecycle event has failed. Skipped:
 	// The deployment lifecycle event has been skipped. Unknown: The deployment
 	// lifecycle event is unknown.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"LifecycleEventStatus"`
 
 	metadataLifecycleEvent `json:"-" xml:"-"`
 }
@@ -2453,7 +2453,7 @@ type metadataLifecycleEvent struct {
 
 // String returns the string representation
 func (s LifecycleEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2465,7 +2465,7 @@ func (s LifecycleEvent) GoString() string {
 type ListApplicationRevisionsInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// Whether to list revisions based on whether the revision is the target revision
 	// of an deployment group:
@@ -2474,7 +2474,7 @@ type ListApplicationRevisionsInput struct {
 	// exclude: Do not list revisions that are target revisions of a deployment
 	// group. ignore: List all revisions, regardless of whether they are target
 	// revisions of a deployment group.
-	Deployed *string `locationName:"deployed" type:"string"`
+	Deployed *string `locationName:"deployed" type:"string" enum:"ListStateFilterAction"`
 
 	// An identifier that was returned from the previous list application revisions
 	// call, which can be used to return the next set of applications in the list.
@@ -2496,7 +2496,7 @@ type ListApplicationRevisionsInput struct {
 	// were first used by in a deployment. lastUsedTime: Sort the list results by
 	// when the revisions were last used in a deployment.  If not specified or set
 	// to null, the results will be returned in an arbitrary order.
-	SortBy *string `locationName:"sortBy" type:"string"`
+	SortBy *string `locationName:"sortBy" type:"string" enum:"ApplicationRevisionSortBy"`
 
 	// The order to sort the list results by:
 	//
@@ -2505,7 +2505,7 @@ type ListApplicationRevisionsInput struct {
 	// be sorted in ascending order.
 	//
 	// If set to null, the results will be sorted in an arbitrary order.
-	SortOrder *string `locationName:"sortOrder" type:"string"`
+	SortOrder *string `locationName:"sortOrder" type:"string" enum:"SortOrder"`
 
 	metadataListApplicationRevisionsInput `json:"-" xml:"-"`
 }
@@ -2516,7 +2516,7 @@ type metadataListApplicationRevisionsInput struct {
 
 // String returns the string representation
 func (s ListApplicationRevisionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2544,7 +2544,7 @@ type metadataListApplicationRevisionsOutput struct {
 
 // String returns the string representation
 func (s ListApplicationRevisionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2567,7 +2567,7 @@ type metadataListApplicationsInput struct {
 
 // String returns the string representation
 func (s ListApplicationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2594,7 +2594,7 @@ type metadataListApplicationsOutput struct {
 
 // String returns the string representation
 func (s ListApplicationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2618,7 +2618,7 @@ type metadataListDeploymentConfigsInput struct {
 
 // String returns the string representation
 func (s ListDeploymentConfigsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2647,7 +2647,7 @@ type metadataListDeploymentConfigsOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentConfigsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2659,7 +2659,7 @@ func (s ListDeploymentConfigsOutput) GoString() string {
 type ListDeploymentGroupsInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// An identifier that was returned from the previous list deployment groups
 	// call, which can be used to return the next set of deployment groups in the
@@ -2675,7 +2675,7 @@ type metadataListDeploymentGroupsInput struct {
 
 // String returns the string representation
 func (s ListDeploymentGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2686,7 +2686,7 @@ func (s ListDeploymentGroupsInput) GoString() string {
 // Represents the output of a list deployment groups operation.
 type ListDeploymentGroupsOutput struct {
 	// The application name.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A list of corresponding deployment group names.
 	DeploymentGroups []*string `locationName:"deploymentGroups" type:"list"`
@@ -2706,7 +2706,7 @@ type metadataListDeploymentGroupsOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2717,7 +2717,7 @@ func (s ListDeploymentGroupsOutput) GoString() string {
 // Represents the input of a list deployment instances operation.
 type ListDeploymentInstancesInput struct {
 	// The unique ID of a deployment.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	// A subset of instances to list, by status:
 	//
@@ -2744,7 +2744,7 @@ type metadataListDeploymentInstancesInput struct {
 
 // String returns the string representation
 func (s ListDeploymentInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2772,7 +2772,7 @@ type metadataListDeploymentInstancesOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2784,14 +2784,14 @@ func (s ListDeploymentInstancesOutput) GoString() string {
 type ListDeploymentsInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// A deployment creation start- and end-time range for returning a subset of
 	// the list of deployments.
 	CreateTimeRange *TimeRange `locationName:"createTimeRange" type:"structure"`
 
 	// The name of an existing deployment group for the specified application.
-	DeploymentGroupName *string `locationName:"deploymentGroupName" type:"string"`
+	DeploymentGroupName *string `locationName:"deploymentGroupName" min:"1" type:"string"`
 
 	// A subset of deployments to list, by status:
 	//
@@ -2815,7 +2815,7 @@ type metadataListDeploymentsInput struct {
 
 // String returns the string representation
 func (s ListDeploymentsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2842,7 +2842,7 @@ type metadataListDeploymentsOutput struct {
 
 // String returns the string representation
 func (s ListDeploymentsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2863,7 +2863,7 @@ type ListOnPremisesInstancesInput struct {
 	//
 	//  Deregistered: Include in the resulting list deregistered on-premises instances.
 	// Registered: Include in the resulting list registered on-premises instances.
-	RegistrationStatus *string `locationName:"registrationStatus" type:"string"`
+	RegistrationStatus *string `locationName:"registrationStatus" type:"string" enum:"RegistrationStatus"`
 
 	// The on-premises instance tags that will be used to restrict the corresponding
 	// on-premises instance names that are returned.
@@ -2878,7 +2878,7 @@ type metadataListOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s ListOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2906,7 +2906,7 @@ type metadataListOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s ListOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2931,7 +2931,7 @@ type MinimumHealthyHosts struct {
 	// will return a minimum healthy instances type of MOST_CONCURRENCY and a value
 	// of 1. This means a deployment to only one instances at a time. (You cannot
 	// set the type to MOST_CONCURRENCY, only to HOST_COUNT or FLEET_PERCENT.)
-	Type *string `locationName:"type" type:"string"`
+	Type *string `locationName:"type" type:"string" enum:"MinimumHealthyHostsType"`
 
 	// The minimum healthy instances value.
 	Value *int64 `locationName:"value" type:"integer"`
@@ -2945,7 +2945,7 @@ type metadataMinimumHealthyHosts struct {
 
 // String returns the string representation
 func (s MinimumHealthyHosts) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2957,7 +2957,7 @@ func (s MinimumHealthyHosts) GoString() string {
 type RegisterApplicationRevisionInput struct {
 	// The name of an existing AWS CodeDeploy application associated with the applicable
 	// IAM user or AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// A comment about the revision.
 	Description *string `locationName:"description" type:"string"`
@@ -2975,7 +2975,7 @@ type metadataRegisterApplicationRevisionInput struct {
 
 // String returns the string representation
 func (s RegisterApplicationRevisionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2993,7 +2993,7 @@ type metadataRegisterApplicationRevisionOutput struct {
 
 // String returns the string representation
 func (s RegisterApplicationRevisionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3004,7 +3004,7 @@ func (s RegisterApplicationRevisionOutput) GoString() string {
 // Represents the input of register on-premises instance operation.
 type RegisterOnPremisesInstanceInput struct {
 	// The ARN of the IAM user to associate with the on-premises instance.
-	IAMUserARN *string `locationName:"iamUserArn" type:"string" required:"true"`
+	IamUserArn *string `locationName:"iamUserArn" type:"string" required:"true"`
 
 	// The name of the on-premises instance to register.
 	InstanceName *string `locationName:"instanceName" type:"string" required:"true"`
@@ -3018,7 +3018,7 @@ type metadataRegisterOnPremisesInstanceInput struct {
 
 // String returns the string representation
 func (s RegisterOnPremisesInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3036,7 +3036,7 @@ type metadataRegisterOnPremisesInstanceOutput struct {
 
 // String returns the string representation
 func (s RegisterOnPremisesInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3061,7 +3061,7 @@ type metadataRemoveTagsFromOnPremisesInstancesInput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromOnPremisesInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3079,7 +3079,7 @@ type metadataRemoveTagsFromOnPremisesInstancesOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromOnPremisesInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3097,7 +3097,7 @@ type RevisionLocation struct {
 	//
 	//  S3: An application revision stored in Amazon S3. GitHub: An application
 	// revision stored in GitHub.
-	RevisionType *string `locationName:"revisionType" type:"string"`
+	RevisionType *string `locationName:"revisionType" type:"string" enum:"RevisionLocationType"`
 
 	// Information about the location of application artifacts that are stored in
 	// Amazon S3.
@@ -3112,7 +3112,7 @@ type metadataRevisionLocation struct {
 
 // String returns the string representation
 func (s RevisionLocation) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3130,7 +3130,7 @@ type S3Location struct {
 	//
 	//  tar: A tar archive file. tgz: A compressed tar archive file. zip: A zip
 	// archive file.
-	BundleType *string `locationName:"bundleType" type:"string"`
+	BundleType *string `locationName:"bundleType" type:"string" enum:"BundleType"`
 
 	// The ETag of the Amazon S3 object that represents the bundled artifacts for
 	// the application revision.
@@ -3159,7 +3159,7 @@ type metadataS3Location struct {
 
 // String returns the string representation
 func (s S3Location) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3170,7 +3170,7 @@ func (s S3Location) GoString() string {
 // Represents the input of a stop deployment operation.
 type StopDeploymentInput struct {
 	// The unique ID of a deployment.
-	DeploymentID *string `locationName:"deploymentId" type:"string" required:"true"`
+	DeploymentId *string `locationName:"deploymentId" type:"string" required:"true"`
 
 	metadataStopDeploymentInput `json:"-" xml:"-"`
 }
@@ -3181,7 +3181,7 @@ type metadataStopDeploymentInput struct {
 
 // String returns the string representation
 func (s StopDeploymentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3194,7 +3194,7 @@ type StopDeploymentOutput struct {
 	// The status of the stop deployment operation:
 	//
 	//  Pending: The stop operation is pending. Succeeded: The stop operation succeeded.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"StopStatus"`
 
 	// An accompanying status message.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
@@ -3208,7 +3208,7 @@ type metadataStopDeploymentOutput struct {
 
 // String returns the string representation
 func (s StopDeploymentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3233,7 +3233,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3249,7 +3249,7 @@ type TagFilter struct {
 	// The on-premises instance tag filter type:
 	//
 	//  KEY_ONLY: Key only. VALUE_ONLY: Value only. KEY_AND_VALUE: Key and value.
-	Type *string `type:"string"`
+	Type *string `type:"string" enum:"TagFilterType"`
 
 	// The on-premises instance tag filter value.
 	Value *string `type:"string"`
@@ -3263,7 +3263,7 @@ type metadataTagFilter struct {
 
 // String returns the string representation
 func (s TagFilter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3292,7 +3292,7 @@ type metadataTimeRange struct {
 
 // String returns the string representation
 func (s TimeRange) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3303,10 +3303,10 @@ func (s TimeRange) GoString() string {
 // Represents the input of an update application operation.
 type UpdateApplicationInput struct {
 	// The current name of the application that you want to change.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string"`
 
 	// The new name that you want to change the application to.
-	NewApplicationName *string `locationName:"newApplicationName" type:"string"`
+	NewApplicationName *string `locationName:"newApplicationName" min:"1" type:"string"`
 
 	metadataUpdateApplicationInput `json:"-" xml:"-"`
 }
@@ -3317,7 +3317,7 @@ type metadataUpdateApplicationInput struct {
 
 // String returns the string representation
 func (s UpdateApplicationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3335,7 +3335,7 @@ type metadataUpdateApplicationOutput struct {
 
 // String returns the string representation
 func (s UpdateApplicationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3346,32 +3346,32 @@ func (s UpdateApplicationOutput) GoString() string {
 // Represents the input of an update deployment group operation.
 type UpdateDeploymentGroupInput struct {
 	// The application name corresponding to the deployment group to update.
-	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
+	ApplicationName *string `locationName:"applicationName" min:"1" type:"string" required:"true"`
 
 	// The replacement list of Auto Scaling groups to be included in the deployment
 	// group, if you want to change them.
 	AutoScalingGroups []*string `locationName:"autoScalingGroups" type:"list"`
 
 	// The current name of the existing deployment group.
-	CurrentDeploymentGroupName *string `locationName:"currentDeploymentGroupName" type:"string" required:"true"`
+	CurrentDeploymentGroupName *string `locationName:"currentDeploymentGroupName" min:"1" type:"string" required:"true"`
 
 	// The replacement deployment configuration name to use, if you want to change
 	// it.
-	DeploymentConfigName *string `locationName:"deploymentConfigName" type:"string"`
+	DeploymentConfigName *string `locationName:"deploymentConfigName" min:"1" type:"string"`
 
 	// The replacement set of Amazon EC2 tags to filter on, if you want to change
 	// them.
-	EC2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
+	Ec2TagFilters []*EC2TagFilter `locationName:"ec2TagFilters" type:"list"`
 
 	// The new name of the deployment group, if you want to change it.
-	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" type:"string"`
+	NewDeploymentGroupName *string `locationName:"newDeploymentGroupName" min:"1" type:"string"`
 
 	// The replacement set of on-premises instance tags for filter on, if you want
 	// to change them.
 	OnPremisesInstanceTagFilters []*TagFilter `locationName:"onPremisesInstanceTagFilters" type:"list"`
 
 	// A replacement service role's ARN, if you want to change it.
-	ServiceRoleARN *string `locationName:"serviceRoleArn" type:"string"`
+	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
 	metadataUpdateDeploymentGroupInput `json:"-" xml:"-"`
 }
@@ -3382,7 +3382,7 @@ type metadataUpdateDeploymentGroupInput struct {
 
 // String returns the string representation
 func (s UpdateDeploymentGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3408,10 +3408,186 @@ type metadataUpdateDeploymentGroupOutput struct {
 
 // String returns the string representation
 func (s UpdateDeploymentGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s UpdateDeploymentGroupOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ApplicationRevisionSortBy
+	ApplicationRevisionSortByRegisterTime = "registerTime"
+	// @enum ApplicationRevisionSortBy
+	ApplicationRevisionSortByFirstUsedTime = "firstUsedTime"
+	// @enum ApplicationRevisionSortBy
+	ApplicationRevisionSortByLastUsedTime = "lastUsedTime"
+)
+
+const (
+	// @enum BundleType
+	BundleTypeTar = "tar"
+	// @enum BundleType
+	BundleTypeTgz = "tgz"
+	// @enum BundleType
+	BundleTypeZip = "zip"
+)
+
+const (
+	// @enum DeploymentCreator
+	DeploymentCreatorUser = "user"
+	// @enum DeploymentCreator
+	DeploymentCreatorAutoscaling = "autoscaling"
+)
+
+const (
+	// @enum DeploymentStatus
+	DeploymentStatusCreated = "Created"
+	// @enum DeploymentStatus
+	DeploymentStatusQueued = "Queued"
+	// @enum DeploymentStatus
+	DeploymentStatusInProgress = "InProgress"
+	// @enum DeploymentStatus
+	DeploymentStatusSucceeded = "Succeeded"
+	// @enum DeploymentStatus
+	DeploymentStatusFailed = "Failed"
+	// @enum DeploymentStatus
+	DeploymentStatusStopped = "Stopped"
+)
+
+const (
+	// @enum EC2TagFilterType
+	EC2TagFilterTypeKeyOnly = "KEY_ONLY"
+	// @enum EC2TagFilterType
+	EC2TagFilterTypeValueOnly = "VALUE_ONLY"
+	// @enum EC2TagFilterType
+	EC2TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
+)
+
+const (
+	// @enum ErrorCode
+	ErrorCodeDeploymentGroupMissing = "DEPLOYMENT_GROUP_MISSING"
+	// @enum ErrorCode
+	ErrorCodeApplicationMissing = "APPLICATION_MISSING"
+	// @enum ErrorCode
+	ErrorCodeRevisionMissing = "REVISION_MISSING"
+	// @enum ErrorCode
+	ErrorCodeIamRoleMissing = "IAM_ROLE_MISSING"
+	// @enum ErrorCode
+	ErrorCodeIamRolePermissions = "IAM_ROLE_PERMISSIONS"
+	// @enum ErrorCode
+	ErrorCodeNoEc2Subscription = "NO_EC2_SUBSCRIPTION"
+	// @enum ErrorCode
+	ErrorCodeOverMaxInstances = "OVER_MAX_INSTANCES"
+	// @enum ErrorCode
+	ErrorCodeNoInstances = "NO_INSTANCES"
+	// @enum ErrorCode
+	ErrorCodeTimeout = "TIMEOUT"
+	// @enum ErrorCode
+	ErrorCodeHealthConstraintsInvalid = "HEALTH_CONSTRAINTS_INVALID"
+	// @enum ErrorCode
+	ErrorCodeHealthConstraints = "HEALTH_CONSTRAINTS"
+	// @enum ErrorCode
+	ErrorCodeInternalError = "INTERNAL_ERROR"
+	// @enum ErrorCode
+	ErrorCodeThrottled = "THROTTLED"
+)
+
+const (
+	// @enum InstanceStatus
+	InstanceStatusPending = "Pending"
+	// @enum InstanceStatus
+	InstanceStatusInProgress = "InProgress"
+	// @enum InstanceStatus
+	InstanceStatusSucceeded = "Succeeded"
+	// @enum InstanceStatus
+	InstanceStatusFailed = "Failed"
+	// @enum InstanceStatus
+	InstanceStatusSkipped = "Skipped"
+	// @enum InstanceStatus
+	InstanceStatusUnknown = "Unknown"
+)
+
+const (
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeSuccess = "Success"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptMissing = "ScriptMissing"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptNotExecutable = "ScriptNotExecutable"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptTimedOut = "ScriptTimedOut"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeScriptFailed = "ScriptFailed"
+	// @enum LifecycleErrorCode
+	LifecycleErrorCodeUnknownError = "UnknownError"
+)
+
+const (
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusPending = "Pending"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusInProgress = "InProgress"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusSucceeded = "Succeeded"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusFailed = "Failed"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusSkipped = "Skipped"
+	// @enum LifecycleEventStatus
+	LifecycleEventStatusUnknown = "Unknown"
+)
+
+const (
+	// @enum ListStateFilterAction
+	ListStateFilterActionInclude = "include"
+	// @enum ListStateFilterAction
+	ListStateFilterActionExclude = "exclude"
+	// @enum ListStateFilterAction
+	ListStateFilterActionIgnore = "ignore"
+)
+
+const (
+	// @enum MinimumHealthyHostsType
+	MinimumHealthyHostsTypeHostCount = "HOST_COUNT"
+	// @enum MinimumHealthyHostsType
+	MinimumHealthyHostsTypeFleetPercent = "FLEET_PERCENT"
+)
+
+const (
+	// @enum RegistrationStatus
+	RegistrationStatusRegistered = "Registered"
+	// @enum RegistrationStatus
+	RegistrationStatusDeregistered = "Deregistered"
+)
+
+const (
+	// @enum RevisionLocationType
+	RevisionLocationTypeS3 = "S3"
+	// @enum RevisionLocationType
+	RevisionLocationTypeGitHub = "GitHub"
+)
+
+const (
+	// @enum SortOrder
+	SortOrderAscending = "ascending"
+	// @enum SortOrder
+	SortOrderDescending = "descending"
+)
+
+const (
+	// @enum StopStatus
+	StopStatusPending = "Pending"
+	// @enum StopStatus
+	StopStatusSucceeded = "Succeeded"
+)
+
+const (
+	// @enum TagFilterType
+	TagFilterTypeKeyOnly = "KEY_ONLY"
+	// @enum TagFilterType
+	TagFilterTypeValueOnly = "VALUE_ONLY"
+	// @enum TagFilterType
+	TagFilterTypeKeyAndValue = "KEY_AND_VALUE"
+)

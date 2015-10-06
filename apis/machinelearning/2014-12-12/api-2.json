@@ -1733,11 +1733,7 @@
       }
     },
     "VariableName":{"type":"string"},
-    "VariableValue":{
-      "type":"string",
-      "max":1024,
-      "pattern":"[a-zA-Z0-9_]*"
-    },
+    "VariableValue":{"type":"string"},
     "Verbose":{"type":"boolean"},
     "VipURL":{
       "type":"string",

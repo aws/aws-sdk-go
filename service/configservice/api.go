@@ -6,15 +6,15 @@ package configservice
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 
 // DeleteDeliveryChannelRequest generates a request for the DeleteDeliveryChannel operation.
-func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *aws.Request, output *DeleteDeliveryChannelOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) DeleteDeliveryChannelRequest(input *DeleteDeliveryChannelInput) (req *request.Request, output *DeleteDeliveryChannelOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDeliveryChannel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -45,8 +45,8 @@ func (c *ConfigService) DeleteDeliveryChannel(input *DeleteDeliveryChannelInput)
 const opDeliverConfigSnapshot = "DeliverConfigSnapshot"
 
 // DeliverConfigSnapshotRequest generates a request for the DeliverConfigSnapshot operation.
-func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapshotInput) (req *aws.Request, output *DeliverConfigSnapshotOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) DeliverConfigSnapshotRequest(input *DeliverConfigSnapshotInput) (req *request.Request, output *DeliverConfigSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opDeliverConfigSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -78,8 +78,8 @@ func (c *ConfigService) DeliverConfigSnapshot(input *DeliverConfigSnapshotInput)
 const opDescribeConfigurationRecorderStatus = "DescribeConfigurationRecorderStatus"
 
 // DescribeConfigurationRecorderStatusRequest generates a request for the DescribeConfigurationRecorderStatus operation.
-func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *DescribeConfigurationRecorderStatusInput) (req *aws.Request, output *DescribeConfigurationRecorderStatusOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) DescribeConfigurationRecorderStatusRequest(input *DescribeConfigurationRecorderStatusInput) (req *request.Request, output *DescribeConfigurationRecorderStatusOutput) {
+	op := &request.Operation{
 		Name:       opDescribeConfigurationRecorderStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -109,8 +109,8 @@ func (c *ConfigService) DescribeConfigurationRecorderStatus(input *DescribeConfi
 const opDescribeConfigurationRecorders = "DescribeConfigurationRecorders"
 
 // DescribeConfigurationRecordersRequest generates a request for the DescribeConfigurationRecorders operation.
-func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeConfigurationRecordersInput) (req *aws.Request, output *DescribeConfigurationRecordersOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) DescribeConfigurationRecordersRequest(input *DescribeConfigurationRecordersInput) (req *request.Request, output *DescribeConfigurationRecordersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeConfigurationRecorders,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -140,8 +140,8 @@ func (c *ConfigService) DescribeConfigurationRecorders(input *DescribeConfigurat
 const opDescribeDeliveryChannelStatus = "DescribeDeliveryChannelStatus"
 
 // DescribeDeliveryChannelStatusRequest generates a request for the DescribeDeliveryChannelStatus operation.
-func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeliveryChannelStatusInput) (req *aws.Request, output *DescribeDeliveryChannelStatusOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) DescribeDeliveryChannelStatusRequest(input *DescribeDeliveryChannelStatusInput) (req *request.Request, output *DescribeDeliveryChannelStatusOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDeliveryChannelStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -171,8 +171,8 @@ func (c *ConfigService) DescribeDeliveryChannelStatus(input *DescribeDeliveryCha
 const opDescribeDeliveryChannels = "DescribeDeliveryChannels"
 
 // DescribeDeliveryChannelsRequest generates a request for the DescribeDeliveryChannels operation.
-func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryChannelsInput) (req *aws.Request, output *DescribeDeliveryChannelsOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) DescribeDeliveryChannelsRequest(input *DescribeDeliveryChannelsInput) (req *request.Request, output *DescribeDeliveryChannelsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDeliveryChannels,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -202,12 +202,12 @@ func (c *ConfigService) DescribeDeliveryChannels(input *DescribeDeliveryChannels
 const opGetResourceConfigHistory = "GetResourceConfigHistory"
 
 // GetResourceConfigHistoryRequest generates a request for the GetResourceConfigHistory operation.
-func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfigHistoryInput) (req *aws.Request, output *GetResourceConfigHistoryOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfigHistoryInput) (req *request.Request, output *GetResourceConfigHistoryOutput) {
+	op := &request.Operation{
 		Name:       opGetResourceConfigHistory,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "limit",
@@ -227,13 +227,17 @@ func (c *ConfigService) GetResourceConfigHistoryRequest(input *GetResourceConfig
 
 // Returns a list of configuration items for the specified resource. The list
 // contains details about each state of the resource during the specified time
-// interval. You can specify a limit on the number of results returned on the
-// page. If a limit is specified, a nextToken is returned as part of the result
-// that you can use to continue this request.
+// interval.
+//
+// The response is paginated, and by default, AWS Config returns a limit of
+// 10 configuration items per page. You can customize this number with the limit
+// parameter. The response includes a nextToken string, and to get the next
+// page of results, run the request again and enter this string for the nextToken
+// parameter.
 //
 //  Each call to the API is limited to span a duration of seven days. It is
 // likely that the number of records returned is smaller than the specified
-// limit. In such cases, you can make another call, using the nextToken .
+// limit. In such cases, you can make another call, using the nextToken.
 func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistoryInput) (*GetResourceConfigHistoryOutput, error) {
 	req, out := c.GetResourceConfigHistoryRequest(input)
 	err := req.Send()
@@ -247,11 +251,50 @@ func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHi
 	})
 }
 
+const opListDiscoveredResources = "ListDiscoveredResources"
+
+// ListDiscoveredResourcesRequest generates a request for the ListDiscoveredResources operation.
+func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredResourcesInput) (req *request.Request, output *ListDiscoveredResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListDiscoveredResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListDiscoveredResourcesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListDiscoveredResourcesOutput{}
+	req.Data = output
+	return
+}
+
+// Accepts a resource type and returns a list of resource identifiers for the
+// resources of that type. A resource identifier includes the resource type,
+// ID, and (if available) the custom resource name. The results consist of resources
+// that AWS Config has discovered, including those that AWS Config is not currently
+// recording. You can narrow the results to include only resources that have
+// specific resource IDs or a resource name.
+//
+// You can specify either resource IDs or a resource name but not both in the
+// same request. The response is paginated, and by default AWS Config lists
+// 100 resource identifiers on each page. You can customize this number with
+// the limit parameter. The response includes a nextToken string, and to get
+// the next page of results, run the request again and enter this string for
+// the nextToken parameter.
+func (c *ConfigService) ListDiscoveredResources(input *ListDiscoveredResourcesInput) (*ListDiscoveredResourcesOutput, error) {
+	req, out := c.ListDiscoveredResourcesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opPutConfigurationRecorder = "PutConfigurationRecorder"
 
 // PutConfigurationRecorderRequest generates a request for the PutConfigurationRecorder operation.
-func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *aws.Request, output *PutConfigurationRecorderOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) PutConfigurationRecorderRequest(input *PutConfigurationRecorderInput) (req *request.Request, output *PutConfigurationRecorderOutput) {
+	op := &request.Operation{
 		Name:       opPutConfigurationRecorder,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -286,8 +329,8 @@ func (c *ConfigService) PutConfigurationRecorder(input *PutConfigurationRecorder
 const opPutDeliveryChannel = "PutDeliveryChannel"
 
 // PutDeliveryChannelRequest generates a request for the PutDeliveryChannel operation.
-func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *aws.Request, output *PutDeliveryChannelOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) PutDeliveryChannelRequest(input *PutDeliveryChannelInput) (req *request.Request, output *PutDeliveryChannelOutput) {
+	op := &request.Operation{
 		Name:       opPutDeliveryChannel,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -323,8 +366,8 @@ func (c *ConfigService) PutDeliveryChannel(input *PutDeliveryChannelInput) (*Put
 const opStartConfigurationRecorder = "StartConfigurationRecorder"
 
 // StartConfigurationRecorderRequest generates a request for the StartConfigurationRecorder operation.
-func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *aws.Request, output *StartConfigurationRecorderOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) StartConfigurationRecorderRequest(input *StartConfigurationRecorderInput) (req *request.Request, output *StartConfigurationRecorderOutput) {
+	op := &request.Operation{
 		Name:       opStartConfigurationRecorder,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -354,8 +397,8 @@ func (c *ConfigService) StartConfigurationRecorder(input *StartConfigurationReco
 const opStopConfigurationRecorder = "StopConfigurationRecorder"
 
 // StopConfigurationRecorderRequest generates a request for the StopConfigurationRecorder operation.
-func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *aws.Request, output *StopConfigurationRecorderOutput) {
-	op := &aws.Operation{
+func (c *ConfigService) StopConfigurationRecorderRequest(input *StopConfigurationRecorderInput) (req *request.Request, output *StopConfigurationRecorderOutput) {
+	op := &request.Operation{
 		Name:       opStopConfigurationRecorder,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -392,7 +435,7 @@ type ConfigExportDeliveryInfo struct {
 	LastErrorMessage *string `locationName:"lastErrorMessage" type:"string"`
 
 	// Status of the last attempted delivery.
-	LastStatus *string `locationName:"lastStatus" type:"string"`
+	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
 
 	// The time of the last successful delivery.
 	LastSuccessfulTime *time.Time `locationName:"lastSuccessfulTime" type:"timestamp" timestampFormat:"unix"`
@@ -406,7 +449,7 @@ type metadataConfigExportDeliveryInfo struct {
 
 // String returns the string representation
 func (s ConfigExportDeliveryInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -428,7 +471,7 @@ type ConfigStreamDeliveryInfo struct {
 	// Note Providing an SNS topic on a DeliveryChannel (http://docs.aws.amazon.com/config/latest/APIReference/API_DeliveryChannel.html)
 	// for AWS Config is optional. If the SNS delivery is turned off, the last status
 	// will be Not_Applicable.
-	LastStatus *string `locationName:"lastStatus" type:"string"`
+	LastStatus *string `locationName:"lastStatus" type:"string" enum:"DeliveryStatus"`
 
 	// The time from the last status change.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
@@ -442,7 +485,7 @@ type metadataConfigStreamDeliveryInfo struct {
 
 // String returns the string representation
 func (s ConfigStreamDeliveryInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -455,14 +498,17 @@ func (s ConfigStreamDeliveryInfo) GoString() string {
 //  Currently, the list does not contain information about non-AWS components
 // (for example, applications on your Amazon EC2 instances).
 type ConfigurationItem struct {
-	// The Amazon Resource Name (ARN) of the resource.
-	ARN *string `locationName:"arn" type:"string"`
-
 	// The 12 digit AWS account ID associated with the resource.
-	AccountID *string `locationName:"accountId" type:"string"`
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	Arn *string `locationName:"arn" type:"string"`
 
 	// The Availability Zone associated with the resource.
 	AvailabilityZone *string `locationName:"availabilityZone" type:"string"`
+
+	// The region where the resource resides.
+	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
 	// The description of the resource configuration.
 	Configuration *string `locationName:"configuration" type:"string"`
@@ -477,11 +523,11 @@ type ConfigurationItem struct {
 	ConfigurationItemMD5Hash *string `locationName:"configurationItemMD5Hash" type:"string"`
 
 	// The configuration item status.
-	ConfigurationItemStatus *string `locationName:"configurationItemStatus" type:"string"`
+	ConfigurationItemStatus *string `locationName:"configurationItemStatus" type:"string" enum:"ConfigurationItemStatus"`
 
 	// An identifier that indicates the ordering of the configuration items of a
 	// resource.
-	ConfigurationStateID *string `locationName:"configurationStateId" type:"string"`
+	ConfigurationStateId *string `locationName:"configurationStateId" type:"string"`
 
 	// A list of CloudTrail event IDs.
 	//
@@ -500,10 +546,13 @@ type ConfigurationItem struct {
 	ResourceCreationTime *time.Time `locationName:"resourceCreationTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
-	ResourceID *string `locationName:"resourceId" type:"string"`
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The custom name of the resource, if available.
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The type of AWS resource.
-	ResourceType *string `locationName:"resourceType" type:"string"`
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	// A mapping of key value tags associated with the resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -520,7 +569,7 @@ type metadataConfigurationItem struct {
 
 // String returns the string representation
 func (s ConfigurationItem) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -534,7 +583,7 @@ type ConfigurationRecorder struct {
 	// The name of the recorder. By default, AWS Config automatically assigns the
 	// name "default" when creating the configuration recorder. You cannot change
 	// the assigned name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The recording group specifies either to record configurations for all supported
 	// resources or to provide a list of resource types to record. The list of resource
@@ -554,7 +603,7 @@ type metadataConfigurationRecorder struct {
 
 // String returns the string representation
 func (s ConfigurationRecorder) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -574,7 +623,7 @@ type ConfigurationRecorderStatus struct {
 	LastStartTime *time.Time `locationName:"lastStartTime" type:"timestamp" timestampFormat:"unix"`
 
 	// The last (previous) status of the recorder.
-	LastStatus *string `locationName:"lastStatus" type:"string"`
+	LastStatus *string `locationName:"lastStatus" type:"string" enum:"RecorderStatus"`
 
 	// The time when the status was last changed.
 	LastStatusChangeTime *time.Time `locationName:"lastStatusChangeTime" type:"timestamp" timestampFormat:"unix"`
@@ -597,7 +646,7 @@ type metadataConfigurationRecorderStatus struct {
 
 // String returns the string representation
 func (s ConfigurationRecorderStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -609,7 +658,7 @@ func (s ConfigurationRecorderStatus) GoString() string {
 // data in JSON format.
 type DeleteDeliveryChannelInput struct {
 	// The name of the delivery channel to delete.
-	DeliveryChannelName *string `type:"string" required:"true"`
+	DeliveryChannelName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteDeliveryChannelInput `json:"-" xml:"-"`
 }
@@ -620,7 +669,7 @@ type metadataDeleteDeliveryChannelInput struct {
 
 // String returns the string representation
 func (s DeleteDeliveryChannelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -638,7 +687,7 @@ type metadataDeleteDeliveryChannelOutput struct {
 
 // String returns the string representation
 func (s DeleteDeliveryChannelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -649,7 +698,7 @@ func (s DeleteDeliveryChannelOutput) GoString() string {
 // The input for the DeliverConfigSnapshot action.
 type DeliverConfigSnapshotInput struct {
 	// The name of the delivery channel through which the snapshot is delivered.
-	DeliveryChannelName *string `locationName:"deliveryChannelName" type:"string" required:"true"`
+	DeliveryChannelName *string `locationName:"deliveryChannelName" min:"1" type:"string" required:"true"`
 
 	metadataDeliverConfigSnapshotInput `json:"-" xml:"-"`
 }
@@ -660,7 +709,7 @@ type metadataDeliverConfigSnapshotInput struct {
 
 // String returns the string representation
 func (s DeliverConfigSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -671,7 +720,7 @@ func (s DeliverConfigSnapshotInput) GoString() string {
 // The output for the DeliverConfigSnapshot action in JSON format.
 type DeliverConfigSnapshotOutput struct {
 	// The ID of the snapshot that is being created.
-	ConfigSnapshotID *string `locationName:"configSnapshotId" type:"string"`
+	ConfigSnapshotId *string `locationName:"configSnapshotId" type:"string"`
 
 	metadataDeliverConfigSnapshotOutput `json:"-" xml:"-"`
 }
@@ -682,7 +731,7 @@ type metadataDeliverConfigSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeliverConfigSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -696,7 +745,7 @@ type DeliveryChannel struct {
 	// The name of the delivery channel. By default, AWS Config automatically assigns
 	// the name "default" when creating the delivery channel. You cannot change
 	// the assigned name.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The name of the Amazon S3 bucket used to store configuration history for
 	// the delivery channel.
@@ -705,9 +754,9 @@ type DeliveryChannel struct {
 	// The prefix for the specified Amazon S3 bucket.
 	S3KeyPrefix *string `locationName:"s3KeyPrefix" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM role used for accessing the Amazon
-	// S3 bucket and the Amazon SNS topic.
-	SNSTopicARN *string `locationName:"snsTopicARN" type:"string"`
+	// The Amazon Resource Name (ARN) of the SNS topic that AWS Config delivers
+	// notifications to.
+	SnsTopicARN *string `locationName:"snsTopicARN" type:"string"`
 
 	metadataDeliveryChannel `json:"-" xml:"-"`
 }
@@ -718,7 +767,7 @@ type metadataDeliveryChannel struct {
 
 // String returns the string representation
 func (s DeliveryChannel) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -754,7 +803,7 @@ type metadataDeliveryChannelStatus struct {
 
 // String returns the string representation
 func (s DeliveryChannelStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -778,7 +827,7 @@ type metadataDescribeConfigurationRecorderStatusInput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecorderStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -800,7 +849,7 @@ type metadataDescribeConfigurationRecorderStatusOutput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecorderStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -822,7 +871,7 @@ type metadataDescribeConfigurationRecordersInput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecordersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -844,7 +893,7 @@ type metadataDescribeConfigurationRecordersOutput struct {
 
 // String returns the string representation
 func (s DescribeConfigurationRecordersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -866,7 +915,7 @@ type metadataDescribeDeliveryChannelStatusInput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -888,7 +937,7 @@ type metadataDescribeDeliveryChannelStatusOutput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -910,7 +959,7 @@ type metadataDescribeDeliveryChannelsInput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -932,7 +981,7 @@ type metadataDescribeDeliveryChannelsOutput struct {
 
 // String returns the string representation
 func (s DescribeDeliveryChannelsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -944,7 +993,7 @@ func (s DescribeDeliveryChannelsOutput) GoString() string {
 type GetResourceConfigHistoryInput struct {
 	// The chronological order for configuration items listed. By default the results
 	// are listed in reverse chronological order.
-	ChronologicalOrder *string `locationName:"chronologicalOrder" type:"string"`
+	ChronologicalOrder *string `locationName:"chronologicalOrder" type:"string" enum:"ChronologicalOrder"`
 
 	// The time stamp that indicates an earlier time. If not specified, the action
 	// returns paginated results that contain configuration items that start from
@@ -955,18 +1004,20 @@ type GetResourceConfigHistoryInput struct {
 	// is taken.
 	LaterTime *time.Time `locationName:"laterTime" type:"timestamp" timestampFormat:"unix"`
 
-	// The maximum number of configuration items returned in each page. The default
-	// is 10. You cannot specify a limit greater than 100.
+	// The maximum number of configuration items returned on each page. The default
+	// is 10. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
 	Limit *int64 `locationName:"limit" type:"integer"`
 
-	// An optional parameter used for pagination of the results.
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ID of the resource (for example., sg-xxxxxx).
-	ResourceID *string `locationName:"resourceId" type:"string" required:"true"`
+	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
 
 	// The resource type.
-	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
 
 	metadataGetResourceConfigHistoryInput `json:"-" xml:"-"`
 }
@@ -977,7 +1028,7 @@ type metadataGetResourceConfigHistoryInput struct {
 
 // String returns the string representation
 func (s GetResourceConfigHistoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -990,7 +1041,8 @@ type GetResourceConfigHistoryOutput struct {
 	// A list that contains the configuration history of one or more resources.
 	ConfigurationItems []*ConfigurationItem `locationName:"configurationItems" type:"list"`
 
-	// A token used for pagination of results.
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	metadataGetResourceConfigHistoryOutput `json:"-" xml:"-"`
@@ -1002,11 +1054,81 @@ type metadataGetResourceConfigHistoryOutput struct {
 
 // String returns the string representation
 func (s GetResourceConfigHistoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s GetResourceConfigHistoryOutput) GoString() string {
+	return s.String()
+}
+
+type ListDiscoveredResourcesInput struct {
+	// Specifies whether AWS Config includes deleted resources in the results. By
+	// default, deleted resources are not included.
+	IncludeDeletedResources *bool `locationName:"includeDeletedResources" type:"boolean"`
+
+	// The maximum number of resource identifiers returned on each page. The default
+	// is 100. You cannot specify a limit greater than 100. If you specify 0, AWS
+	// Config uses the default.
+	Limit *int64 `locationName:"limit" type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The IDs of only those resources that you want AWS Config to list in the response.
+	// If you do not specify this parameter, AWS Config lists all resources of the
+	// specified type that it has discovered.
+	ResourceIds []*string `locationName:"resourceIds" type:"list"`
+
+	// The custom name of only those resources that you want AWS Config to list
+	// in the response. If you do not specify this parameter, AWS Config lists all
+	// resources of the specified type that it has discovered.
+	ResourceName *string `locationName:"resourceName" type:"string"`
+
+	// The type of resources that you want AWS Config to list in the response.
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	metadataListDiscoveredResourcesInput `json:"-" xml:"-"`
+}
+
+type metadataListDiscoveredResourcesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDiscoveredResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDiscoveredResourcesInput) GoString() string {
+	return s.String()
+}
+
+type ListDiscoveredResourcesOutput struct {
+	// The string that you use in a subsequent request to get the next page of results
+	// in a paginated response.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The details that identify a resource that is discovered by AWS Config, including
+	// the resource type, ID, and (if available) the custom resource name.
+	ResourceIdentifiers []*ResourceIdentifier `locationName:"resourceIdentifiers" type:"list"`
+
+	metadataListDiscoveredResourcesOutput `json:"-" xml:"-"`
+}
+
+type metadataListDiscoveredResourcesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDiscoveredResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDiscoveredResourcesOutput) GoString() string {
 	return s.String()
 }
 
@@ -1025,7 +1147,7 @@ type metadataPutConfigurationRecorderInput struct {
 
 // String returns the string representation
 func (s PutConfigurationRecorderInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1043,7 +1165,7 @@ type metadataPutConfigurationRecorderOutput struct {
 
 // String returns the string representation
 func (s PutConfigurationRecorderOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1066,7 +1188,7 @@ type metadataPutDeliveryChannelInput struct {
 
 // String returns the string representation
 func (s PutDeliveryChannelInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1084,7 +1206,7 @@ type metadataPutDeliveryChannelOutput struct {
 
 // String returns the string representation
 func (s PutDeliveryChannelOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1103,11 +1225,11 @@ type RecordingGroup struct {
 	// If you specify allSupported, you cannot enumerate a list of resourceTypes.
 	AllSupported *bool `locationName:"allSupported" type:"boolean"`
 
-	// A comma-separated list of strings representing valid AWS resource types (e.g.,
-	// AWS::EC2::Instance or AWS::CloudTrail::Trail). resourceTypes is only valid
-	// if you have chosen not to select allSupported. For a list of valid resourceTypes
-	// values, see the resourceType Value column in the following topic: Supported
-	// AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
+	// A comma-separated list of strings representing valid AWS resource types (for
+	// example, AWS::EC2::Instance or AWS::CloudTrail::Trail). resourceTypes is
+	// only valid if you have chosen not to select allSupported. For a list of valid
+	// resourceTypes values, see the resourceType Value column in the following
+	// topic: Supported AWS Resource Types (http://docs.aws.amazon.com/config/latest/developerguide/resource-config-reference.html#supported-resources).
 	ResourceTypes []*string `locationName:"resourceTypes" type:"list"`
 
 	metadataRecordingGroup `json:"-" xml:"-"`
@@ -1119,7 +1241,7 @@ type metadataRecordingGroup struct {
 
 // String returns the string representation
 func (s RecordingGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1129,14 +1251,17 @@ func (s RecordingGroup) GoString() string {
 
 // The relationship of the related resource to the main resource.
 type Relationship struct {
-	// The name of the related resource.
+	// The type of relationship with the related resource.
 	RelationshipName *string `locationName:"relationshipName" type:"string"`
 
-	// The resource ID of the related resource (for example, sg-xxxxxx).
-	ResourceID *string `locationName:"resourceId" type:"string"`
+	// The ID of the related resource (for example, sg-xxxxxx).
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The custom name of the related resource, if available.
+	ResourceName *string `locationName:"resourceName" type:"string"`
 
 	// The resource type of the related resource.
-	ResourceType *string `locationName:"resourceType" type:"string"`
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
 
 	metadataRelationship `json:"-" xml:"-"`
 }
@@ -1147,7 +1272,7 @@ type metadataRelationship struct {
 
 // String returns the string representation
 func (s Relationship) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1155,11 +1280,43 @@ func (s Relationship) GoString() string {
 	return s.String()
 }
 
+// The details that identify a resource that is discovered by AWS Config, including
+// the resource type, ID, and (if available) the custom resource name.
+type ResourceIdentifier struct {
+	// The time that the resource was deleted.
+	ResourceDeletionTime *time.Time `locationName:"resourceDeletionTime" type:"timestamp" timestampFormat:"unix"`
+
+	// The ID of the resource (for example., sg-xxxxxx).
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// The custom name of the resource (if available).
+	ResourceName *string `locationName:"resourceName" type:"string"`
+
+	// The type of resource.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	metadataResourceIdentifier `json:"-" xml:"-"`
+}
+
+type metadataResourceIdentifier struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceIdentifier) GoString() string {
+	return s.String()
+}
+
 // The input for the StartConfigurationRecorder action.
 type StartConfigurationRecorderInput struct {
 	// The name of the recorder object that records each configuration change made
 	// to the resources.
-	ConfigurationRecorderName *string `type:"string" required:"true"`
+	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 
 	metadataStartConfigurationRecorderInput `json:"-" xml:"-"`
 }
@@ -1170,7 +1327,7 @@ type metadataStartConfigurationRecorderInput struct {
 
 // String returns the string representation
 func (s StartConfigurationRecorderInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1188,7 +1345,7 @@ type metadataStartConfigurationRecorderOutput struct {
 
 // String returns the string representation
 func (s StartConfigurationRecorderOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1200,7 +1357,7 @@ func (s StartConfigurationRecorderOutput) GoString() string {
 type StopConfigurationRecorderInput struct {
 	// The name of the recorder object that records each configuration change made
 	// to the resources.
-	ConfigurationRecorderName *string `type:"string" required:"true"`
+	ConfigurationRecorderName *string `min:"1" type:"string" required:"true"`
 
 	metadataStopConfigurationRecorderInput `json:"-" xml:"-"`
 }
@@ -1211,7 +1368,7 @@ type metadataStopConfigurationRecorderInput struct {
 
 // String returns the string representation
 func (s StopConfigurationRecorderInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1229,10 +1386,77 @@ type metadataStopConfigurationRecorderOutput struct {
 
 // String returns the string representation
 func (s StopConfigurationRecorderOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s StopConfigurationRecorderOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ChronologicalOrder
+	ChronologicalOrderReverse = "Reverse"
+	// @enum ChronologicalOrder
+	ChronologicalOrderForward = "Forward"
+)
+
+const (
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusOk = "Ok"
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusFailed = "Failed"
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusDiscovered = "Discovered"
+	// @enum ConfigurationItemStatus
+	ConfigurationItemStatusDeleted = "Deleted"
+)
+
+const (
+	// @enum DeliveryStatus
+	DeliveryStatusSuccess = "Success"
+	// @enum DeliveryStatus
+	DeliveryStatusFailure = "Failure"
+	// @enum DeliveryStatus
+	DeliveryStatusNotApplicable = "Not_Applicable"
+)
+
+const (
+	// @enum RecorderStatus
+	RecorderStatusPending = "Pending"
+	// @enum RecorderStatus
+	RecorderStatusSuccess = "Success"
+	// @enum RecorderStatus
+	RecorderStatusFailure = "Failure"
+)
+
+const (
+	// @enum ResourceType
+	ResourceTypeAwsEc2CustomerGateway = "AWS::EC2::CustomerGateway"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Eip = "AWS::EC2::EIP"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Instance = "AWS::EC2::Instance"
+	// @enum ResourceType
+	ResourceTypeAwsEc2InternetGateway = "AWS::EC2::InternetGateway"
+	// @enum ResourceType
+	ResourceTypeAwsEc2NetworkAcl = "AWS::EC2::NetworkAcl"
+	// @enum ResourceType
+	ResourceTypeAwsEc2NetworkInterface = "AWS::EC2::NetworkInterface"
+	// @enum ResourceType
+	ResourceTypeAwsEc2RouteTable = "AWS::EC2::RouteTable"
+	// @enum ResourceType
+	ResourceTypeAwsEc2SecurityGroup = "AWS::EC2::SecurityGroup"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Subnet = "AWS::EC2::Subnet"
+	// @enum ResourceType
+	ResourceTypeAwsCloudTrailTrail = "AWS::CloudTrail::Trail"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Volume = "AWS::EC2::Volume"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Vpc = "AWS::EC2::VPC"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Vpnconnection = "AWS::EC2::VPNConnection"
+	// @enum ResourceType
+	ResourceTypeAwsEc2Vpngateway = "AWS::EC2::VPNGateway"
+)

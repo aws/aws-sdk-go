@@ -40,6 +40,37 @@
         }
       ]
     },
+    "AbortVaultLock":{
+      "name":"AbortVaultLock",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/{accountId}/vaults/{vaultName}/lock-policy",
+        "responseCode":204
+      },
+      "input":{"shape":"AbortVaultLockInput"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
     "AddTagsToVault":{
       "name":"AddTagsToVault",
       "http":{
@@ -85,6 +116,37 @@
       },
       "input":{"shape":"CompleteMultipartUploadInput"},
       "output":{"shape":"ArchiveCreationOutput"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
+    "CompleteVaultLock":{
+      "name":"CompleteVaultLock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/{accountId}/vaults/{vaultName}/lock-policy/{lockId}",
+        "responseCode":204
+      },
+      "input":{"shape":"CompleteVaultLockInput"},
       "errors":[
         {
           "shape":"ResourceNotFoundException",
@@ -414,6 +476,37 @@
         }
       ]
     },
+    "GetVaultLock":{
+      "name":"GetVaultLock",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{accountId}/vaults/{vaultName}/lock-policy"
+      },
+      "input":{"shape":"GetVaultLockInput"},
+      "output":{"shape":"GetVaultLockOutput"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
     "GetVaultNotifications":{
       "name":"GetVaultNotifications",
       "http":{
@@ -491,6 +584,38 @@
       },
       "input":{"shape":"InitiateMultipartUploadInput"},
       "output":{"shape":"InitiateMultipartUploadOutput"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{"httpStatusCode":404},
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"MissingParameterValueException",
+          "error":{"httpStatusCode":400},
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "error":{"httpStatusCode":500},
+          "exception":true
+        }
+      ]
+    },
+    "InitiateVaultLock":{
+      "name":"InitiateVaultLock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/{accountId}/vaults/{vaultName}/lock-policy",
+        "responseCode":201
+      },
+      "input":{"shape":"InitiateVaultLockInput"},
+      "output":{"shape":"InitiateVaultLockOutput"},
       "errors":[
         {
           "shape":"ResourceNotFoundException",
@@ -889,6 +1014,25 @@
         "uploadId"
       ]
     },
+    "AbortVaultLockInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName"
+        }
+      },
+      "required":[
+        "accountId",
+        "vaultName"
+      ]
+    },
     "ActionCode":{
       "type":"string",
       "enum":[
@@ -969,6 +1113,31 @@
         "accountId",
         "vaultName",
         "uploadId"
+      ]
+    },
+    "CompleteVaultLockInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName"
+        },
+        "lockId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"lockId"
+        }
+      },
+      "required":[
+        "accountId",
+        "vaultName",
+        "lockId"
       ]
     },
     "CreateVaultInput":{
@@ -1264,6 +1433,34 @@
       },
       "payload":"policy"
     },
+    "GetVaultLockInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName"
+        }
+      },
+      "required":[
+        "accountId",
+        "vaultName"
+      ]
+    },
+    "GetVaultLockOutput":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"string"},
+        "State":{"shape":"string"},
+        "ExpirationDate":{"shape":"string"},
+        "CreationDate":{"shape":"string"}
+      }
+    },
     "GetVaultNotificationsInput":{
       "type":"structure",
       "members":{
@@ -1389,6 +1586,37 @@
           "shape":"string",
           "location":"header",
           "locationName":"x-amz-multipart-upload-id"
+        }
+      }
+    },
+    "InitiateVaultLockInput":{
+      "type":"structure",
+      "members":{
+        "accountId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"accountId"
+        },
+        "vaultName":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"vaultName"
+        },
+        "policy":{"shape":"VaultLockPolicy"}
+      },
+      "required":[
+        "accountId",
+        "vaultName"
+      ],
+      "payload":"policy"
+    },
+    "InitiateVaultLockOutput":{
+      "type":"structure",
+      "members":{
+        "lockId":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"x-amz-lock-id"
         }
       }
     },
@@ -1894,6 +2122,12 @@
     "VaultList":{
       "type":"list",
       "member":{"shape":"DescribeVaultOutput"}
+    },
+    "VaultLockPolicy":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"string"}
+      }
     },
     "VaultNotificationConfig":{
       "type":"structure",

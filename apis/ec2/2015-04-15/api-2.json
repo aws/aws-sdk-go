@@ -1786,6 +1786,13 @@
         "locationName":"AllocationId"
       }
     },
+    "AllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "lowestPrice",
+        "diversified"
+      ]
+    },
     "ArchitectureValues":{
       "type":"string",
       "enum":[
@@ -3154,10 +3161,6 @@
         "VpcPeeringConnectionId":{
           "shape":"String",
           "locationName":"vpcPeeringConnectionId"
-        },
-        "ClientToken":{
-          "shape":"String",
-          "locationName":"clientToken"
         }
       }
     },
@@ -3167,10 +3170,6 @@
         "Return":{
           "shape":"Boolean",
           "locationName":"return"
-        },
-        "ClientToken":{
-          "shape":"String",
-          "locationName":"clientToken"
         }
       }
     },
@@ -7933,7 +7932,7 @@
     "LaunchSpecsList":{
       "type":"list",
       "member":{
-        "shape":"LaunchSpecification",
+        "shape":"SpotFleetLaunchSpecification",
         "locationName":"item"
       },
       "min":1
@@ -7967,7 +7966,7 @@
         },
         "ImageId":{"shape":"String"},
         "Attribute":{"shape":"String"},
-        "OperationType":{"shape":"String"},
+        "OperationType":{"shape":"OperationType"},
         "UserIds":{
           "shape":"UserIdStringList",
           "locationName":"UserId"
@@ -8108,10 +8107,6 @@
         }
       }
     },
-    "ModifySnapshotAttributeName":{
-      "type":"string",
-      "enum":["createVolumePermission"]
-    },
     "ModifySnapshotAttributeRequest":{
       "type":"structure",
       "required":["SnapshotId"],
@@ -8121,8 +8116,8 @@
           "locationName":"dryRun"
         },
         "SnapshotId":{"shape":"String"},
-        "Attribute":{"shape":"ModifySnapshotAttributeName"},
-        "OperationType":{"shape":"String"},
+        "Attribute":{"shape":"SnapshotAttributeName"},
+        "OperationType":{"shape":"OperationType"},
         "UserIds":{
           "shape":"UserIdStringList",
           "locationName":"UserId"
@@ -8608,6 +8603,13 @@
         "No Upfront",
         "Partial Upfront",
         "All Upfront"
+      ]
+    },
+    "OperationType":{
+      "type":"string",
+      "enum":[
+        "add",
+        "remove"
       ]
     },
     "OwnerStringList":{
@@ -9823,7 +9825,7 @@
           "locationName":"dryRun"
         },
         "SnapshotId":{"shape":"String"},
-        "Attribute":{"shape":"ModifySnapshotAttributeName"}
+        "Attribute":{"shape":"SnapshotAttributeName"}
       }
     },
     "ResourceIdList":{
@@ -10258,6 +10260,10 @@
           "shape":"SnapshotState",
           "locationName":"status"
         },
+        "StateMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        },
         "StartTime":{
           "shape":"DateTime",
           "locationName":"startTime"
@@ -10293,6 +10299,10 @@
         "KmsKeyId":{
           "shape":"String",
           "locationName":"kmsKeyId"
+        },
+        "DataEncryptionKeyId":{
+          "shape":"String",
+          "locationName":"dataEncryptionKeyId"
         }
       }
     },
@@ -10452,6 +10462,88 @@
         }
       }
     },
+    "SpotFleetLaunchSpecification":{
+      "type":"structure",
+      "members":{
+        "ImageId":{
+          "shape":"String",
+          "locationName":"imageId"
+        },
+        "KeyName":{
+          "shape":"String",
+          "locationName":"keyName"
+        },
+        "SecurityGroups":{
+          "shape":"GroupIdentifierList",
+          "locationName":"groupSet"
+        },
+        "UserData":{
+          "shape":"String",
+          "locationName":"userData"
+        },
+        "AddressingType":{
+          "shape":"String",
+          "locationName":"addressingType"
+        },
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "Placement":{
+          "shape":"SpotPlacement",
+          "locationName":"placement"
+        },
+        "KernelId":{
+          "shape":"String",
+          "locationName":"kernelId"
+        },
+        "RamdiskId":{
+          "shape":"String",
+          "locationName":"ramdiskId"
+        },
+        "BlockDeviceMappings":{
+          "shape":"BlockDeviceMappingList",
+          "locationName":"blockDeviceMapping"
+        },
+        "Monitoring":{
+          "shape":"SpotFleetMonitoring",
+          "locationName":"monitoring"
+        },
+        "SubnetId":{
+          "shape":"String",
+          "locationName":"subnetId"
+        },
+        "NetworkInterfaces":{
+          "shape":"InstanceNetworkInterfaceSpecificationList",
+          "locationName":"networkInterfaceSet"
+        },
+        "IamInstanceProfile":{
+          "shape":"IamInstanceProfileSpecification",
+          "locationName":"iamInstanceProfile"
+        },
+        "EbsOptimized":{
+          "shape":"Boolean",
+          "locationName":"ebsOptimized"
+        },
+        "WeightedCapacity":{
+          "shape":"Double",
+          "locationName":"weightedCapacity"
+        },
+        "SpotPrice":{
+          "shape":"String",
+          "locationName":"spotPrice"
+        }
+      }
+    },
+    "SpotFleetMonitoring":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "locationName":"enabled"
+        }
+      }
+    },
     "SpotFleetRequestConfig":{
       "type":"structure",
       "required":[
@@ -10514,6 +10606,10 @@
         "LaunchSpecifications":{
           "shape":"LaunchSpecsList",
           "locationName":"launchSpecifications"
+        },
+        "AllocationStrategy":{
+          "shape":"AllocationStrategy",
+          "locationName":"allocationStrategy"
         }
       }
     },

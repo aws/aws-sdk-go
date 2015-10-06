@@ -34,7 +34,7 @@ YARD::Parser::SourceParser.after_parse_list do
   end
 
   YARD::Registry.all(:method).each do |obj|
-    if obj.file =~ /\/api\.go$/ && obj.scope == :instance
+    if obj.file =~ /service\/.+?\/api\.go$/ && obj.scope == :instance
       if obj.name.to_s =~ /Pages$/
         obj.group = "Pagination Methods"
         opname = obj.name.to_s.sub(/Pages$/, '')
@@ -46,7 +46,7 @@ the function callback.
 @note This operation can generate multiple requests to a service.
 @example Iterating over at most 3 pages of a #{opname} operation
   pageNum := 0
-  err := client.#{obj.name}(params, func(page *#{obj.parent.parent.name}.#{obj.parameters.first[0].split("*").last}, lastPage bool) bool {
+  err := client.#{obj.name}(params, func(page *#{obj.parent.parent.name}.#{obj.parameters[1][0].split("*").last}, lastPage bool) bool {
     pageNum++
     fmt.Println(page)
     return pageNum <= 3
@@ -60,9 +60,9 @@ eof
         obj.parameters = []
         opname = obj.name.to_s.sub(/Request$/, '')
         obj.docstring = <<-eof
-#{obj.name} generates a {aws.Request} object representing the client request for
+#{obj.name} generates a {aws/request.Request} object representing the client request for
 the {#{opname} #{opname}()} operation. The `output` return value can be used to capture
-response data after {aws.Request.Send Request.Send()} is called.
+response data after {aws/request.Request.Send Request.Send()} is called.
 
 Creating a request object using this method should be used when you want to inject
 custom logic into the request lifecycle using a custom handler, or if you want to
@@ -70,7 +70,7 @@ access properties on the request object before or after sending the request. If
 you just want the service response, call the {#{opname} service operation method}
 directly instead.
 
-@note You must call the {aws.Request.Send Send()} method on the returned
+@note You must call the {aws/request.Request.Send Send()} method on the returned
   request object in order to execute the request.
 @example Sending a request using the #{obj.name}() method
   req, resp := client.#{obj.name}(params)
@@ -95,7 +95,10 @@ eof
 end
 
 def apply_docs
-  pkgs = YARD::Registry.at('service').children.select {|t| t.type == :package }
+  svc_pkg = YARD::Registry.at('service')
+  return if svc_pkg.nil?
+
+  pkgs = svc_pkg.children.select {|t| t.type == :package }
   pkgs.each do |pkg|
     svc = pkg.children.find {|t| t.has_tag?(:service) }
     ctor = P(svc, ".New")
@@ -105,6 +108,7 @@ def apply_docs
     file = Dir.glob("apis/#{svc_name}/#{api_ver}/docs-2.json").sort.last
     next if file.nil?
 
+    next if svc.nil?
     exmeth = svc.children.find {|s| s.has_tag?(:service_operation) }
     pkg.docstring += <<-eof
 

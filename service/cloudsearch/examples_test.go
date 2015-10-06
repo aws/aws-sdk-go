@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudsearch"
 )
 
@@ -25,22 +23,14 @@ func ExampleCloudSearch_BuildSuggesters() {
 	resp, err := svc.BuildSuggesters(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_CreateDomain() {
@@ -52,22 +42,14 @@ func ExampleCloudSearch_CreateDomain() {
 	resp, err := svc.CreateDomain(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DefineAnalysisScheme() {
@@ -90,22 +72,14 @@ func ExampleCloudSearch_DefineAnalysisScheme() {
 	resp, err := svc.DefineAnalysisScheme(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DefineExpression() {
@@ -121,22 +95,14 @@ func ExampleCloudSearch_DefineExpression() {
 	resp, err := svc.DefineExpression(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DefineIndexField() {
@@ -149,85 +115,85 @@ func ExampleCloudSearch_DefineIndexField() {
 			IndexFieldType: aws.String("IndexFieldType"),   // Required
 			DateArrayOptions: &cloudsearch.DateArrayOptions{
 				DefaultValue:  aws.String("FieldValue"),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
 				SourceFields:  aws.String("FieldNameCommaList"),
 			},
 			DateOptions: &cloudsearch.DateOptions{
 				DefaultValue:  aws.String("FieldValue"),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
-				SortEnabled:   aws.Boolean(true),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
+				SortEnabled:   aws.Bool(true),
 				SourceField:   aws.String("FieldName"),
 			},
 			DoubleArrayOptions: &cloudsearch.DoubleArrayOptions{
-				DefaultValue:  aws.Double(1.0),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
+				DefaultValue:  aws.Float64(1.0),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
 				SourceFields:  aws.String("FieldNameCommaList"),
 			},
 			DoubleOptions: &cloudsearch.DoubleOptions{
-				DefaultValue:  aws.Double(1.0),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
-				SortEnabled:   aws.Boolean(true),
+				DefaultValue:  aws.Float64(1.0),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
+				SortEnabled:   aws.Bool(true),
 				SourceField:   aws.String("FieldName"),
 			},
 			IntArrayOptions: &cloudsearch.IntArrayOptions{
-				DefaultValue:  aws.Long(1),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
+				DefaultValue:  aws.Int64(1),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
 				SourceFields:  aws.String("FieldNameCommaList"),
 			},
 			IntOptions: &cloudsearch.IntOptions{
-				DefaultValue:  aws.Long(1),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
-				SortEnabled:   aws.Boolean(true),
+				DefaultValue:  aws.Int64(1),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
+				SortEnabled:   aws.Bool(true),
 				SourceField:   aws.String("FieldName"),
 			},
 			LatLonOptions: &cloudsearch.LatLonOptions{
 				DefaultValue:  aws.String("FieldValue"),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
-				SortEnabled:   aws.Boolean(true),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
+				SortEnabled:   aws.Bool(true),
 				SourceField:   aws.String("FieldName"),
 			},
 			LiteralArrayOptions: &cloudsearch.LiteralArrayOptions{
 				DefaultValue:  aws.String("FieldValue"),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
 				SourceFields:  aws.String("FieldNameCommaList"),
 			},
 			LiteralOptions: &cloudsearch.LiteralOptions{
 				DefaultValue:  aws.String("FieldValue"),
-				FacetEnabled:  aws.Boolean(true),
-				ReturnEnabled: aws.Boolean(true),
-				SearchEnabled: aws.Boolean(true),
-				SortEnabled:   aws.Boolean(true),
+				FacetEnabled:  aws.Bool(true),
+				ReturnEnabled: aws.Bool(true),
+				SearchEnabled: aws.Bool(true),
+				SortEnabled:   aws.Bool(true),
 				SourceField:   aws.String("FieldName"),
 			},
 			TextArrayOptions: &cloudsearch.TextArrayOptions{
 				AnalysisScheme:   aws.String("Word"),
 				DefaultValue:     aws.String("FieldValue"),
-				HighlightEnabled: aws.Boolean(true),
-				ReturnEnabled:    aws.Boolean(true),
+				HighlightEnabled: aws.Bool(true),
+				ReturnEnabled:    aws.Bool(true),
 				SourceFields:     aws.String("FieldNameCommaList"),
 			},
 			TextOptions: &cloudsearch.TextOptions{
 				AnalysisScheme:   aws.String("Word"),
 				DefaultValue:     aws.String("FieldValue"),
-				HighlightEnabled: aws.Boolean(true),
-				ReturnEnabled:    aws.Boolean(true),
-				SortEnabled:      aws.Boolean(true),
+				HighlightEnabled: aws.Bool(true),
+				ReturnEnabled:    aws.Bool(true),
+				SortEnabled:      aws.Bool(true),
 				SourceField:      aws.String("FieldName"),
 			},
 		},
@@ -235,22 +201,14 @@ func ExampleCloudSearch_DefineIndexField() {
 	resp, err := svc.DefineIndexField(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DefineSuggester() {
@@ -270,22 +228,14 @@ func ExampleCloudSearch_DefineSuggester() {
 	resp, err := svc.DefineSuggester(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DeleteAnalysisScheme() {
@@ -298,22 +248,14 @@ func ExampleCloudSearch_DeleteAnalysisScheme() {
 	resp, err := svc.DeleteAnalysisScheme(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DeleteDomain() {
@@ -325,22 +267,14 @@ func ExampleCloudSearch_DeleteDomain() {
 	resp, err := svc.DeleteDomain(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DeleteExpression() {
@@ -353,22 +287,14 @@ func ExampleCloudSearch_DeleteExpression() {
 	resp, err := svc.DeleteExpression(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DeleteIndexField() {
@@ -381,22 +307,14 @@ func ExampleCloudSearch_DeleteIndexField() {
 	resp, err := svc.DeleteIndexField(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DeleteSuggester() {
@@ -409,22 +327,14 @@ func ExampleCloudSearch_DeleteSuggester() {
 	resp, err := svc.DeleteSuggester(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeAnalysisSchemes() {
@@ -436,27 +346,19 @@ func ExampleCloudSearch_DescribeAnalysisSchemes() {
 			aws.String("StandardName"), // Required
 			// More values...
 		},
-		Deployed: aws.Boolean(true),
+		Deployed: aws.Bool(true),
 	}
 	resp, err := svc.DescribeAnalysisSchemes(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeAvailabilityOptions() {
@@ -464,27 +366,19 @@ func ExampleCloudSearch_DescribeAvailabilityOptions() {
 
 	params := &cloudsearch.DescribeAvailabilityOptionsInput{
 		DomainName: aws.String("DomainName"), // Required
-		Deployed:   aws.Boolean(true),
+		Deployed:   aws.Bool(true),
 	}
 	resp, err := svc.DescribeAvailabilityOptions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeDomains() {
@@ -499,22 +393,14 @@ func ExampleCloudSearch_DescribeDomains() {
 	resp, err := svc.DescribeDomains(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeExpressions() {
@@ -522,7 +408,7 @@ func ExampleCloudSearch_DescribeExpressions() {
 
 	params := &cloudsearch.DescribeExpressionsInput{
 		DomainName: aws.String("DomainName"), // Required
-		Deployed:   aws.Boolean(true),
+		Deployed:   aws.Bool(true),
 		ExpressionNames: []*string{
 			aws.String("StandardName"), // Required
 			// More values...
@@ -531,22 +417,14 @@ func ExampleCloudSearch_DescribeExpressions() {
 	resp, err := svc.DescribeExpressions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeIndexFields() {
@@ -554,7 +432,7 @@ func ExampleCloudSearch_DescribeIndexFields() {
 
 	params := &cloudsearch.DescribeIndexFieldsInput{
 		DomainName: aws.String("DomainName"), // Required
-		Deployed:   aws.Boolean(true),
+		Deployed:   aws.Bool(true),
 		FieldNames: []*string{
 			aws.String("DynamicFieldName"), // Required
 			// More values...
@@ -563,22 +441,14 @@ func ExampleCloudSearch_DescribeIndexFields() {
 	resp, err := svc.DescribeIndexFields(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeScalingParameters() {
@@ -590,22 +460,14 @@ func ExampleCloudSearch_DescribeScalingParameters() {
 	resp, err := svc.DescribeScalingParameters(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeServiceAccessPolicies() {
@@ -613,27 +475,19 @@ func ExampleCloudSearch_DescribeServiceAccessPolicies() {
 
 	params := &cloudsearch.DescribeServiceAccessPoliciesInput{
 		DomainName: aws.String("DomainName"), // Required
-		Deployed:   aws.Boolean(true),
+		Deployed:   aws.Bool(true),
 	}
 	resp, err := svc.DescribeServiceAccessPolicies(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_DescribeSuggesters() {
@@ -641,7 +495,7 @@ func ExampleCloudSearch_DescribeSuggesters() {
 
 	params := &cloudsearch.DescribeSuggestersInput{
 		DomainName: aws.String("DomainName"), // Required
-		Deployed:   aws.Boolean(true),
+		Deployed:   aws.Bool(true),
 		SuggesterNames: []*string{
 			aws.String("StandardName"), // Required
 			// More values...
@@ -650,22 +504,14 @@ func ExampleCloudSearch_DescribeSuggesters() {
 	resp, err := svc.DescribeSuggesters(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_IndexDocuments() {
@@ -677,22 +523,14 @@ func ExampleCloudSearch_IndexDocuments() {
 	resp, err := svc.IndexDocuments(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_ListDomainNames() {
@@ -702,22 +540,14 @@ func ExampleCloudSearch_ListDomainNames() {
 	resp, err := svc.ListDomainNames(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_UpdateAvailabilityOptions() {
@@ -725,27 +555,19 @@ func ExampleCloudSearch_UpdateAvailabilityOptions() {
 
 	params := &cloudsearch.UpdateAvailabilityOptionsInput{
 		DomainName: aws.String("DomainName"), // Required
-		MultiAZ:    aws.Boolean(true),        // Required
+		MultiAZ:    aws.Bool(true),           // Required
 	}
 	resp, err := svc.UpdateAvailabilityOptions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_UpdateScalingParameters() {
@@ -755,29 +577,21 @@ func ExampleCloudSearch_UpdateScalingParameters() {
 		DomainName: aws.String("DomainName"), // Required
 		ScalingParameters: &cloudsearch.ScalingParameters{ // Required
 			DesiredInstanceType:     aws.String("PartitionInstanceType"),
-			DesiredPartitionCount:   aws.Long(1),
-			DesiredReplicationCount: aws.Long(1),
+			DesiredPartitionCount:   aws.Int64(1),
+			DesiredReplicationCount: aws.Int64(1),
 		},
 	}
 	resp, err := svc.UpdateScalingParameters(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudSearch_UpdateServiceAccessPolicies() {
@@ -790,20 +604,12 @@ func ExampleCloudSearch_UpdateServiceAccessPolicies() {
 	resp, err := svc.UpdateServiceAccessPolicies(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/workspaces"
 )
 
@@ -22,9 +20,12 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 	params := &workspaces.CreateWorkspacesInput{
 		Workspaces: []*workspaces.WorkspaceRequest{ // Required
 			{ // Required
-				BundleID:    aws.String("BundleId"),    // Required
-				DirectoryID: aws.String("DirectoryId"), // Required
-				UserName:    aws.String("UserName"),    // Required
+				BundleId:                    aws.String("BundleId"),    // Required
+				DirectoryId:                 aws.String("DirectoryId"), // Required
+				UserName:                    aws.String("UserName"),    // Required
+				RootVolumeEncryptionEnabled: aws.Bool(true),
+				UserVolumeEncryptionEnabled: aws.Bool(true),
+				VolumeEncryptionKey:         aws.String("VolumeEncryptionKey"),
 			},
 			// More values...
 		},
@@ -32,29 +33,21 @@ func ExampleWorkSpaces_CreateWorkspaces() {
 	resp, err := svc.CreateWorkspaces(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleWorkSpaces_DescribeWorkspaceBundles() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspaceBundlesInput{
-		BundleIDs: []*string{
+		BundleIds: []*string{
 			aws.String("BundleId"), // Required
 			// More values...
 		},
@@ -64,29 +57,21 @@ func ExampleWorkSpaces_DescribeWorkspaceBundles() {
 	resp, err := svc.DescribeWorkspaceBundles(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleWorkSpaces_DescribeWorkspaceDirectories() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspaceDirectoriesInput{
-		DirectoryIDs: []*string{
+		DirectoryIds: []*string{
 			aws.String("DirectoryId"), // Required
 			// More values...
 		},
@@ -95,34 +80,26 @@ func ExampleWorkSpaces_DescribeWorkspaceDirectories() {
 	resp, err := svc.DescribeWorkspaceDirectories(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleWorkSpaces_DescribeWorkspaces() {
 	svc := workspaces.New(nil)
 
 	params := &workspaces.DescribeWorkspacesInput{
-		BundleID:    aws.String("BundleId"),
-		DirectoryID: aws.String("DirectoryId"),
-		Limit:       aws.Long(1),
+		BundleId:    aws.String("BundleId"),
+		DirectoryId: aws.String("DirectoryId"),
+		Limit:       aws.Int64(1),
 		NextToken:   aws.String("PaginationToken"),
 		UserName:    aws.String("UserName"),
-		WorkspaceIDs: []*string{
+		WorkspaceIds: []*string{
 			aws.String("WorkspaceId"), // Required
 			// More values...
 		},
@@ -130,22 +107,14 @@ func ExampleWorkSpaces_DescribeWorkspaces() {
 	resp, err := svc.DescribeWorkspaces(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleWorkSpaces_RebootWorkspaces() {
@@ -154,7 +123,7 @@ func ExampleWorkSpaces_RebootWorkspaces() {
 	params := &workspaces.RebootWorkspacesInput{
 		RebootWorkspaceRequests: []*workspaces.RebootRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceId: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -162,22 +131,14 @@ func ExampleWorkSpaces_RebootWorkspaces() {
 	resp, err := svc.RebootWorkspaces(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleWorkSpaces_RebuildWorkspaces() {
@@ -186,7 +147,7 @@ func ExampleWorkSpaces_RebuildWorkspaces() {
 	params := &workspaces.RebuildWorkspacesInput{
 		RebuildWorkspaceRequests: []*workspaces.RebuildRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceId: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -194,22 +155,14 @@ func ExampleWorkSpaces_RebuildWorkspaces() {
 	resp, err := svc.RebuildWorkspaces(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleWorkSpaces_TerminateWorkspaces() {
@@ -218,7 +171,7 @@ func ExampleWorkSpaces_TerminateWorkspaces() {
 	params := &workspaces.TerminateWorkspacesInput{
 		TerminateWorkspaceRequests: []*workspaces.TerminateRequest{ // Required
 			{ // Required
-				WorkspaceID: aws.String("WorkspaceId"), // Required
+				WorkspaceId: aws.String("WorkspaceId"), // Required
 			},
 			// More values...
 		},
@@ -226,20 +179,12 @@ func ExampleWorkSpaces_TerminateWorkspaces() {
 	resp, err := svc.TerminateWorkspaces(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

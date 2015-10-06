@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/efs"
 )
 
@@ -25,31 +23,23 @@ func ExampleEFS_CreateFileSystem() {
 	resp, err := svc.CreateFileSystem(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_CreateMountTarget() {
 	svc := efs.New(nil)
 
 	params := &efs.CreateMountTargetInput{
-		FileSystemID: aws.String("FileSystemId"), // Required
-		SubnetID:     aws.String("SubnetId"),     // Required
-		IPAddress:    aws.String("IpAddress"),
+		FileSystemId: aws.String("FileSystemId"), // Required
+		SubnetId:     aws.String("SubnetId"),     // Required
+		IpAddress:    aws.String("IpAddress"),
 		SecurityGroups: []*string{
 			aws.String("SecurityGroup"), // Required
 			// More values...
@@ -58,29 +48,21 @@ func ExampleEFS_CreateMountTarget() {
 	resp, err := svc.CreateMountTarget(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_CreateTags() {
 	svc := efs.New(nil)
 
 	params := &efs.CreateTagsInput{
-		FileSystemID: aws.String("FileSystemId"), // Required
+		FileSystemId: aws.String("FileSystemId"), // Required
 		Tags: []*efs.Tag{ // Required
 			{ // Required
 				Key:   aws.String("TagKey"),   // Required
@@ -92,83 +74,59 @@ func ExampleEFS_CreateTags() {
 	resp, err := svc.CreateTags(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DeleteFileSystem() {
 	svc := efs.New(nil)
 
 	params := &efs.DeleteFileSystemInput{
-		FileSystemID: aws.String("FileSystemId"), // Required
+		FileSystemId: aws.String("FileSystemId"), // Required
 	}
 	resp, err := svc.DeleteFileSystem(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DeleteMountTarget() {
 	svc := efs.New(nil)
 
 	params := &efs.DeleteMountTargetInput{
-		MountTargetID: aws.String("MountTargetId"), // Required
+		MountTargetId: aws.String("MountTargetId"), // Required
 	}
 	resp, err := svc.DeleteMountTarget(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DeleteTags() {
 	svc := efs.New(nil)
 
 	params := &efs.DeleteTagsInput{
-		FileSystemID: aws.String("FileSystemId"), // Required
+		FileSystemId: aws.String("FileSystemId"), // Required
 		TagKeys: []*string{ // Required
 			aws.String("TagKey"), // Required
 			// More values...
@@ -177,22 +135,14 @@ func ExampleEFS_DeleteTags() {
 	resp, err := svc.DeleteTags(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DescribeFileSystems() {
@@ -200,121 +150,90 @@ func ExampleEFS_DescribeFileSystems() {
 
 	params := &efs.DescribeFileSystemsInput{
 		CreationToken: aws.String("CreationToken"),
-		FileSystemID:  aws.String("FileSystemId"),
+		FileSystemId:  aws.String("FileSystemId"),
 		Marker:        aws.String("Marker"),
-		MaxItems:      aws.Long(1),
+		MaxItems:      aws.Int64(1),
 	}
 	resp, err := svc.DescribeFileSystems(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DescribeMountTargetSecurityGroups() {
 	svc := efs.New(nil)
 
 	params := &efs.DescribeMountTargetSecurityGroupsInput{
-		MountTargetID: aws.String("MountTargetId"), // Required
+		MountTargetId: aws.String("MountTargetId"), // Required
 	}
 	resp, err := svc.DescribeMountTargetSecurityGroups(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DescribeMountTargets() {
 	svc := efs.New(nil)
 
 	params := &efs.DescribeMountTargetsInput{
-		FileSystemID: aws.String("FileSystemId"), // Required
-		Marker:       aws.String("Marker"),
-		MaxItems:     aws.Long(1),
+		FileSystemId:  aws.String("FileSystemId"),
+		Marker:        aws.String("Marker"),
+		MaxItems:      aws.Int64(1),
+		MountTargetId: aws.String("MountTargetId"),
 	}
 	resp, err := svc.DescribeMountTargets(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_DescribeTags() {
 	svc := efs.New(nil)
 
 	params := &efs.DescribeTagsInput{
-		FileSystemID: aws.String("FileSystemId"), // Required
+		FileSystemId: aws.String("FileSystemId"), // Required
 		Marker:       aws.String("Marker"),
-		MaxItems:     aws.Long(1),
+		MaxItems:     aws.Int64(1),
 	}
 	resp, err := svc.DescribeTags(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleEFS_ModifyMountTargetSecurityGroups() {
 	svc := efs.New(nil)
 
 	params := &efs.ModifyMountTargetSecurityGroupsInput{
-		MountTargetID: aws.String("MountTargetId"), // Required
+		MountTargetId: aws.String("MountTargetId"), // Required
 		SecurityGroups: []*string{
 			aws.String("SecurityGroup"), // Required
 			// More values...
@@ -323,20 +242,12 @@ func ExampleEFS_ModifyMountTargetSecurityGroups() {
 	resp, err := svc.ModifyMountTargetSecurityGroups(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

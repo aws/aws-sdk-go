@@ -6,15 +6,15 @@ package emr
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddInstanceGroups = "AddInstanceGroups"
 
 // AddInstanceGroupsRequest generates a request for the AddInstanceGroups operation.
-func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *aws.Request, output *AddInstanceGroupsOutput) {
-	op := &aws.Operation{
+func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *request.Request, output *AddInstanceGroupsOutput) {
+	op := &request.Operation{
 		Name:       opAddInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -40,8 +40,8 @@ func (c *EMR) AddInstanceGroups(input *AddInstanceGroupsInput) (*AddInstanceGrou
 const opAddJobFlowSteps = "AddJobFlowSteps"
 
 // AddJobFlowStepsRequest generates a request for the AddJobFlowSteps operation.
-func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *aws.Request, output *AddJobFlowStepsOutput) {
-	op := &aws.Operation{
+func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.Request, output *AddJobFlowStepsOutput) {
+	op := &request.Operation{
 		Name:       opAddJobFlowSteps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -90,8 +90,8 @@ func (c *EMR) AddJobFlowSteps(input *AddJobFlowStepsInput) (*AddJobFlowStepsOutp
 const opAddTags = "AddTags"
 
 // AddTagsRequest generates a request for the AddTags operation.
-func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
-	op := &aws.Operation{
+func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
+	op := &request.Operation{
 		Name:       opAddTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -120,8 +120,8 @@ func (c *EMR) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 const opDescribeCluster = "DescribeCluster"
 
 // DescribeClusterRequest generates a request for the DescribeCluster operation.
-func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *aws.Request, output *DescribeClusterOutput) {
-	op := &aws.Operation{
+func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.Request, output *DescribeClusterOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -148,8 +148,8 @@ func (c *EMR) DescribeCluster(input *DescribeClusterInput) (*DescribeClusterOutp
 const opDescribeJobFlows = "DescribeJobFlows"
 
 // DescribeJobFlowsRequest generates a request for the DescribeJobFlows operation.
-func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *aws.Request, output *DescribeJobFlowsOutput) {
-	op := &aws.Operation{
+func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *request.Request, output *DescribeJobFlowsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeJobFlows,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -192,8 +192,8 @@ func (c *EMR) DescribeJobFlows(input *DescribeJobFlowsInput) (*DescribeJobFlowsO
 const opDescribeStep = "DescribeStep"
 
 // DescribeStepRequest generates a request for the DescribeStep operation.
-func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *aws.Request, output *DescribeStepOutput) {
-	op := &aws.Operation{
+func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Request, output *DescribeStepOutput) {
+	op := &request.Operation{
 		Name:       opDescribeStep,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -219,12 +219,12 @@ func (c *EMR) DescribeStep(input *DescribeStepInput) (*DescribeStepOutput, error
 const opListBootstrapActions = "ListBootstrapActions"
 
 // ListBootstrapActionsRequest generates a request for the ListBootstrapActions operation.
-func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *aws.Request, output *ListBootstrapActionsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req *request.Request, output *ListBootstrapActionsOutput) {
+	op := &request.Operation{
 		Name:       opListBootstrapActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -259,12 +259,12 @@ func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn fun
 const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a request for the ListClusters operation.
-func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Request, output *ListClustersOutput) {
+	op := &request.Operation{
 		Name:       opListClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -303,12 +303,12 @@ func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 const opListInstanceGroups = "ListInstanceGroups"
 
 // ListInstanceGroupsRequest generates a request for the ListInstanceGroups operation.
-func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *aws.Request, output *ListInstanceGroupsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *request.Request, output *ListInstanceGroupsOutput) {
+	op := &request.Operation{
 		Name:       opListInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -343,12 +343,12 @@ func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p 
 const opListInstances = "ListInstances"
 
 // ListInstancesRequest generates a request for the ListInstances operation.
-func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *aws.Request, output *ListInstancesOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Request, output *ListInstancesOutput) {
+	op := &request.Operation{
 		Name:       opListInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -387,12 +387,12 @@ func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInsta
 const opListSteps = "ListSteps"
 
 // ListStepsRequest generates a request for the ListSteps operation.
-func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *aws.Request, output *ListStepsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, output *ListStepsOutput) {
+	op := &request.Operation{
 		Name:       opListSteps,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "",
@@ -427,8 +427,8 @@ func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, 
 const opModifyInstanceGroups = "ModifyInstanceGroups"
 
 // ModifyInstanceGroupsRequest generates a request for the ModifyInstanceGroups operation.
-func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *aws.Request, output *ModifyInstanceGroupsOutput) {
-	op := &aws.Operation{
+func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req *request.Request, output *ModifyInstanceGroupsOutput) {
+	op := &request.Operation{
 		Name:       opModifyInstanceGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -457,8 +457,8 @@ func (c *EMR) ModifyInstanceGroups(input *ModifyInstanceGroupsInput) (*ModifyIns
 const opRemoveTags = "RemoveTags"
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
-func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
-	op := &aws.Operation{
+func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -489,8 +489,8 @@ func (c *EMR) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
 const opRunJobFlow = "RunJobFlow"
 
 // RunJobFlowRequest generates a request for the RunJobFlow operation.
-func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *aws.Request, output *RunJobFlowOutput) {
-	op := &aws.Operation{
+func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, output *RunJobFlowOutput) {
+	op := &request.Operation{
 		Name:       opRunJobFlow,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -538,8 +538,8 @@ func (c *EMR) RunJobFlow(input *RunJobFlowInput) (*RunJobFlowOutput, error) {
 const opSetTerminationProtection = "SetTerminationProtection"
 
 // SetTerminationProtectionRequest generates a request for the SetTerminationProtection operation.
-func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *aws.Request, output *SetTerminationProtectionOutput) {
-	op := &aws.Operation{
+func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInput) (req *request.Request, output *SetTerminationProtectionOutput) {
+	op := &request.Operation{
 		Name:       opSetTerminationProtection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -581,8 +581,8 @@ func (c *EMR) SetTerminationProtection(input *SetTerminationProtectionInput) (*S
 const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 
 // SetVisibleToAllUsersRequest generates a request for the SetVisibleToAllUsers operation.
-func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *aws.Request, output *SetVisibleToAllUsersOutput) {
-	op := &aws.Operation{
+func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req *request.Request, output *SetVisibleToAllUsersOutput) {
+	op := &request.Operation{
 		Name:       opSetVisibleToAllUsers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -613,8 +613,8 @@ func (c *EMR) SetVisibleToAllUsers(input *SetVisibleToAllUsersInput) (*SetVisibl
 const opTerminateJobFlows = "TerminateJobFlows"
 
 // TerminateJobFlowsRequest generates a request for the TerminateJobFlows operation.
-func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *aws.Request, output *TerminateJobFlowsOutput) {
-	op := &aws.Operation{
+func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *request.Request, output *TerminateJobFlowsOutput) {
+	op := &request.Operation{
 		Name:       opTerminateJobFlows,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -651,7 +651,7 @@ type AddInstanceGroupsInput struct {
 	InstanceGroups []*InstanceGroupConfig `type:"list" required:"true"`
 
 	// Job flow in which to add the instance groups.
-	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowId *string `type:"string" required:"true"`
 
 	metadataAddInstanceGroupsInput `json:"-" xml:"-"`
 }
@@ -662,7 +662,7 @@ type metadataAddInstanceGroupsInput struct {
 
 // String returns the string representation
 func (s AddInstanceGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -673,10 +673,10 @@ func (s AddInstanceGroupsInput) GoString() string {
 // Output from an AddInstanceGroups call.
 type AddInstanceGroupsOutput struct {
 	// Instance group IDs of the newly created instance groups.
-	InstanceGroupIDs []*string `locationName:"InstanceGroupIds" type:"list"`
+	InstanceGroupIds []*string `type:"list"`
 
 	// The job flow ID in which the instance groups are added.
-	JobFlowID *string `locationName:"JobFlowId" type:"string"`
+	JobFlowId *string `type:"string"`
 
 	metadataAddInstanceGroupsOutput `json:"-" xml:"-"`
 }
@@ -687,7 +687,7 @@ type metadataAddInstanceGroupsOutput struct {
 
 // String returns the string representation
 func (s AddInstanceGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -699,7 +699,7 @@ func (s AddInstanceGroupsOutput) GoString() string {
 type AddJobFlowStepsInput struct {
 	// A string that uniquely identifies the job flow. This identifier is returned
 	// by RunJobFlow and can also be obtained from ListClusters.
-	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowId *string `type:"string" required:"true"`
 
 	// A list of StepConfig to be executed by the job flow.
 	Steps []*StepConfig `type:"list" required:"true"`
@@ -713,7 +713,7 @@ type metadataAddJobFlowStepsInput struct {
 
 // String returns the string representation
 func (s AddJobFlowStepsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -724,7 +724,7 @@ func (s AddJobFlowStepsInput) GoString() string {
 // The output for the AddJobFlowSteps operation.
 type AddJobFlowStepsOutput struct {
 	// The identifiers of the list of steps added to the job flow.
-	StepIDs []*string `locationName:"StepIds" type:"list"`
+	StepIds []*string `type:"list"`
 
 	metadataAddJobFlowStepsOutput `json:"-" xml:"-"`
 }
@@ -735,7 +735,7 @@ type metadataAddJobFlowStepsOutput struct {
 
 // String returns the string representation
 func (s AddJobFlowStepsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -747,7 +747,7 @@ func (s AddJobFlowStepsOutput) GoString() string {
 type AddTagsInput struct {
 	// The Amazon EMR resource identifier to which tags will be added. This value
 	// must be a cluster identifier.
-	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
+	ResourceId *string `type:"string" required:"true"`
 
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
 	// Tags are user-defined key/value pairs that consist of a required key string
@@ -764,7 +764,7 @@ type metadataAddTagsInput struct {
 
 // String returns the string representation
 func (s AddTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -783,7 +783,7 @@ type metadataAddTagsOutput struct {
 
 // String returns the string representation
 func (s AddTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -802,7 +802,9 @@ func (s AddTagsOutput) GoString() string {
 //  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
 // the job flow using MapR M5 Edition. "mapr" with the user arguments specifying
 // "--edition,m3" or "--edition,m5" - launch the job flow using MapR M3 or M5
-// Edition, respectively.
+// Edition, respectively.  In Amazon EMR releases 4.0 and greater, the only
+// accepted parameter is the application name. To pass arguments to applications,
+// you supply a configuration for each application.
 type Application struct {
 	// This option is for advanced users only. This is meta information about third-party
 	// applications that third-party vendors use for testing purposes.
@@ -826,7 +828,7 @@ type metadataApplication struct {
 
 // String returns the string representation
 func (s Application) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -851,7 +853,7 @@ type metadataBootstrapActionConfig struct {
 
 // String returns the string representation
 func (s BootstrapActionConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -873,7 +875,7 @@ type metadataBootstrapActionDetail struct {
 
 // String returns the string representation
 func (s BootstrapActionDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -889,18 +891,23 @@ type Cluster struct {
 	// Specifies whether the cluster should terminate after completing all steps.
 	AutoTerminate *bool `type:"boolean"`
 
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of Configurations supplied to the EMR cluster.
+	Configurations []*Configuration `type:"list"`
+
 	// Provides information about the EC2 instances in a cluster grouped by category.
 	// For example, key name, subnet ID, IAM instance profile, and so on.
-	EC2InstanceAttributes *EC2InstanceAttributes `locationName:"Ec2InstanceAttributes" type:"structure"`
+	Ec2InstanceAttributes *Ec2InstanceAttributes `type:"structure"`
 
 	// The unique identifier for the cluster.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The path to the Amazon S3 location where logs for this cluster are stored.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
-	// The public DNS name of the master Ec2 instance.
-	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
+	// The public DNS name of the master EC2 instance.
+	MasterPublicDnsName *string `type:"string"`
 
 	// The name of the cluster.
 	Name *string `type:"string"`
@@ -913,12 +920,15 @@ type Cluster struct {
 	// the actual billing rate.
 	NormalizedInstanceHours *int64 `type:"integer"`
 
-	// The AMI version requested for this cluster.
-	RequestedAMIVersion *string `locationName:"RequestedAmiVersion" type:"string"`
+	// The release label for the Amazon EMR release. For Amazon EMR 3.x and 2.x
+	// AMIs, use amiVersion instead instead of ReleaseLabel.
+	ReleaseLabel *string `type:"string"`
 
-	// The AMI version running on this cluster. This differs from the requested
-	// version only if the requested version is a meta version, such as "latest".
-	RunningAMIVersion *string `locationName:"RunningAmiVersion" type:"string"`
+	// The AMI version requested for this cluster.
+	RequestedAmiVersion *string `type:"string"`
+
+	// The AMI version running on this cluster.
+	RunningAmiVersion *string `type:"string"`
 
 	// The IAM role that will be assumed by the Amazon EMR service to access AWS
 	// resources on your behalf.
@@ -952,7 +962,7 @@ type metadataCluster struct {
 
 // String returns the string representation
 func (s Cluster) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -963,7 +973,7 @@ func (s Cluster) GoString() string {
 // The reason that the cluster changed to its current state.
 type ClusterStateChangeReason struct {
 	// The programmatic code for the state change reason.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"ClusterStateChangeReasonCode"`
 
 	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
@@ -977,7 +987,7 @@ type metadataClusterStateChangeReason struct {
 
 // String returns the string representation
 func (s ClusterStateChangeReason) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -988,7 +998,7 @@ func (s ClusterStateChangeReason) GoString() string {
 // The detailed status of the cluster.
 type ClusterStatus struct {
 	// The current state of the cluster.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"ClusterState"`
 
 	// The reason for the cluster status change.
 	StateChangeReason *ClusterStateChangeReason `type:"structure"`
@@ -1006,7 +1016,7 @@ type metadataClusterStatus struct {
 
 // String returns the string representation
 func (s ClusterStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1017,7 +1027,7 @@ func (s ClusterStatus) GoString() string {
 // The summary description of the cluster.
 type ClusterSummary struct {
 	// The unique identifier for the cluster.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the cluster.
 	Name *string `type:"string"`
@@ -1042,7 +1052,7 @@ type metadataClusterSummary struct {
 
 // String returns the string representation
 func (s ClusterSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1070,7 +1080,7 @@ type metadataClusterTimeline struct {
 
 // String returns the string representation
 func (s ClusterTimeline) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1098,7 +1108,7 @@ type metadataCommand struct {
 
 // String returns the string representation
 func (s Command) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1106,10 +1116,45 @@ func (s Command) GoString() string {
 	return s.String()
 }
 
+// Amazon EMR releases 4.x or later.
+//
+// Specifies a hardware and software configuration of the EMR cluster. This
+// includes configurations for applications and software bundled with Amazon
+// EMR. The Configuration object is a JSON object which is defined by a classification
+// and a set of properties. Configurations can be nested, so a configuration
+// may have its own Configuration objects listed.
+type Configuration struct {
+	// The classification of a configuration. For more information see, Amazon EMR
+	// Configurations (http://docs.aws.amazon.com/ElasticMapReduce/latest/API/EmrConfigurations.html).
+	Classification *string `type:"string"`
+
+	// A list of configurations you apply to this configuration object.
+	Configurations []*Configuration `type:"list"`
+
+	// A set of properties supplied to the Configuration object.
+	Properties map[string]*string `type:"map"`
+
+	metadataConfiguration `json:"-" xml:"-"`
+}
+
+type metadataConfiguration struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Configuration) GoString() string {
+	return s.String()
+}
+
 // This input determines which cluster to describe.
 type DescribeClusterInput struct {
 	// The identifier of the cluster to describe.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	metadataDescribeClusterInput `json:"-" xml:"-"`
 }
@@ -1120,7 +1165,7 @@ type metadataDescribeClusterInput struct {
 
 // String returns the string representation
 func (s DescribeClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1142,7 +1187,7 @@ type metadataDescribeClusterOutput struct {
 
 // String returns the string representation
 func (s DescribeClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1159,7 +1204,7 @@ type DescribeJobFlowsInput struct {
 	CreatedBefore *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Return only job flows whose job flow ID is contained in this list.
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list"`
+	JobFlowIds []*string `type:"list"`
 
 	// Return only job flows whose state is contained in this list.
 	JobFlowStates []*string `type:"list"`
@@ -1173,7 +1218,7 @@ type metadataDescribeJobFlowsInput struct {
 
 // String returns the string representation
 func (s DescribeJobFlowsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1195,7 +1240,7 @@ type metadataDescribeJobFlowsOutput struct {
 
 // String returns the string representation
 func (s DescribeJobFlowsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1206,10 +1251,10 @@ func (s DescribeJobFlowsOutput) GoString() string {
 // This input determines which step to describe.
 type DescribeStepInput struct {
 	// The identifier of the cluster with steps to describe.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The identifier of the step to describe.
-	StepID *string `locationName:"StepId" type:"string" required:"true"`
+	StepId *string `type:"string" required:"true"`
 
 	metadataDescribeStepInput `json:"-" xml:"-"`
 }
@@ -1220,7 +1265,7 @@ type metadataDescribeStepInput struct {
 
 // String returns the string representation
 func (s DescribeStepInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1242,7 +1287,7 @@ type metadataDescribeStepOutput struct {
 
 // String returns the string representation
 func (s DescribeStepOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1252,7 +1297,7 @@ func (s DescribeStepOutput) GoString() string {
 
 // Provides information about the EC2 instances in a cluster grouped by category.
 // For example, key name, subnet ID, IAM instance profile, and so on.
-type EC2InstanceAttributes struct {
+type Ec2InstanceAttributes struct {
 	// A list of additional Amazon EC2 security group IDs for the master node.
 	AdditionalMasterSecurityGroups []*string `type:"list"`
 
@@ -1260,11 +1305,11 @@ type EC2InstanceAttributes struct {
 	AdditionalSlaveSecurityGroups []*string `type:"list"`
 
 	// The Availability Zone in which the cluster will run.
-	EC2AvailabilityZone *string `locationName:"Ec2AvailabilityZone" type:"string"`
+	Ec2AvailabilityZone *string `type:"string"`
 
 	// The name of the Amazon EC2 key pair to use when connecting with SSH into
 	// the master node as a user named "hadoop".
-	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+	Ec2KeyName *string `type:"string"`
 
 	// To launch the job flow in Amazon VPC, set this parameter to the identifier
 	// of the Amazon VPC subnet where you want the job flow to launch. If you do
@@ -1274,47 +1319,47 @@ type EC2InstanceAttributes struct {
 	//  Amazon VPC currently does not support cluster compute quadruple extra large
 	// (cc1.4xlarge) instances. Thus, you cannot specify the cc1.4xlarge instance
 	// type for nodes of a job flow launched in a VPC.
-	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+	Ec2SubnetId *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
 	// MapReduce) for the master node.
-	EMRManagedMasterSecurityGroup *string `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+	EmrManagedMasterSecurityGroup *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon Elastic
 	// MapReduce) for the slave nodes.
-	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
 	// The IAM role that was specified when the job flow was launched. The EC2 instances
 	// of the job flow assume this role.
-	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
+	IamInstanceProfile *string `type:"string"`
 
-	metadataEC2InstanceAttributes `json:"-" xml:"-"`
+	metadataEc2InstanceAttributes `json:"-" xml:"-"`
 }
 
-type metadataEC2InstanceAttributes struct {
+type metadataEc2InstanceAttributes struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s EC2InstanceAttributes) String() string {
-	return awsutil.StringValue(s)
+func (s Ec2InstanceAttributes) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s EC2InstanceAttributes) GoString() string {
+func (s Ec2InstanceAttributes) GoString() string {
 	return s.String()
 }
 
 // A job flow step consisting of a JAR file whose main function will be executed.
 // The main function submits a job for Hadoop to execute and waits for the job
 // to finish or fail.
-type HadoopJARStepConfig struct {
+type HadoopJarStepConfig struct {
 	// A list of command line arguments passed to the JAR file's main function when
 	// executed.
 	Args []*string `type:"list"`
 
 	// A path to a JAR file run during the step.
-	JAR *string `locationName:"Jar" type:"string" required:"true"`
+	Jar *string `type:"string" required:"true"`
 
 	// The name of the main class in the specified Java file. If not specified,
 	// the JAR file should specify a Main-Class in its manifest file.
@@ -1324,20 +1369,20 @@ type HadoopJARStepConfig struct {
 	// properties to pass key value pairs to your main function.
 	Properties []*KeyValue `type:"list"`
 
-	metadataHadoopJARStepConfig `json:"-" xml:"-"`
+	metadataHadoopJarStepConfig `json:"-" xml:"-"`
 }
 
-type metadataHadoopJARStepConfig struct {
+type metadataHadoopJarStepConfig struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s HadoopJARStepConfig) String() string {
-	return awsutil.StringValue(s)
+func (s HadoopJarStepConfig) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HadoopJARStepConfig) GoString() string {
+func (s HadoopJarStepConfig) GoString() string {
 	return s.String()
 }
 
@@ -1350,7 +1395,7 @@ type HadoopStepConfig struct {
 	Args []*string `type:"list"`
 
 	// The path to the JAR file that runs during the step.
-	JAR *string `locationName:"Jar" type:"string"`
+	Jar *string `type:"string"`
 
 	// The name of the main class in the specified Java file. If not specified,
 	// the JAR file should specify a main class in its manifest file.
@@ -1369,7 +1414,7 @@ type metadataHadoopStepConfig struct {
 
 // String returns the string representation
 func (s HadoopStepConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1380,22 +1425,22 @@ func (s HadoopStepConfig) GoString() string {
 // Represents an EC2 instance provisioned as part of cluster.
 type Instance struct {
 	// The unique identifier of the instance in Amazon EC2.
-	EC2InstanceID *string `locationName:"Ec2InstanceId" type:"string"`
+	Ec2InstanceId *string `type:"string"`
 
 	// The unique identifier for the instance in Amazon EMR.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The private DNS name of the instance.
-	PrivateDNSName *string `locationName:"PrivateDnsName" type:"string"`
+	PrivateDnsName *string `type:"string"`
 
 	// The private IP address of the instance.
-	PrivateIPAddress *string `locationName:"PrivateIpAddress" type:"string"`
+	PrivateIpAddress *string `type:"string"`
 
 	// The public DNS name of the instance.
-	PublicDNSName *string `locationName:"PublicDnsName" type:"string"`
+	PublicDnsName *string `type:"string"`
 
 	// The public IP address of the instance.
-	PublicIPAddress *string `locationName:"PublicIpAddress" type:"string"`
+	PublicIpAddress *string `type:"string"`
 
 	// The current status of the instance.
 	Status *InstanceStatus `type:"structure"`
@@ -1409,7 +1454,7 @@ type metadataInstance struct {
 
 // String returns the string representation
 func (s Instance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1424,18 +1469,25 @@ type InstanceGroup struct {
 	// nodes as Spot Instances, expressed in USD.
 	BidPrice *string `type:"string"`
 
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of configurations supplied for an EMR cluster instance group. You
+	// can specify a separate configuration for each instance group (master, core,
+	// and task).
+	Configurations []*Configuration `type:"list"`
+
 	// The identifier of the instance group.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The type of the instance group. Valid values are MASTER, CORE or TASK.
-	InstanceGroupType *string `type:"string"`
+	InstanceGroupType *string `type:"string" enum:"InstanceGroupType"`
 
 	// The EC2 instance type for all instances in the instance group.
-	InstanceType *string `type:"string"`
+	InstanceType *string `min:"1" type:"string"`
 
 	// The marketplace to provision instances for this group. Valid values are ON_DEMAND
 	// or SPOT.
-	Market *string `type:"string"`
+	Market *string `type:"string" enum:"MarketType"`
 
 	// The name of the instance group.
 	Name *string `type:"string"`
@@ -1458,7 +1510,7 @@ type metadataInstanceGroup struct {
 
 // String returns the string representation
 func (s InstanceGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1472,17 +1524,24 @@ type InstanceGroupConfig struct {
 	// nodes as Spot Instances, expressed in USD.
 	BidPrice *string `type:"string"`
 
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of configurations supplied for an EMR cluster instance group. You
+	// can specify a separate configuration for each instance group (master, core,
+	// and task).
+	Configurations []*Configuration `type:"list"`
+
 	// Target number of instances for the instance group.
 	InstanceCount *int64 `type:"integer" required:"true"`
 
 	// The role of the instance group in the cluster.
-	InstanceRole *string `type:"string" required:"true"`
+	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// The Amazon EC2 instance type for all instances in the instance group.
-	InstanceType *string `type:"string" required:"true"`
+	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
-	Market *string `type:"string"`
+	Market *string `type:"string" enum:"MarketType"`
 
 	// Friendly name given to the instance group.
 	Name *string `type:"string"`
@@ -1496,7 +1555,7 @@ type metadataInstanceGroupConfig struct {
 
 // String returns the string representation
 func (s InstanceGroupConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1517,25 +1576,25 @@ type InstanceGroupDetail struct {
 	EndDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// Unique identifier for the instance group.
-	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string"`
+	InstanceGroupId *string `type:"string"`
 
 	// Target number of instances to run in the instance group.
 	InstanceRequestCount *int64 `type:"integer" required:"true"`
 
 	// Instance group role in the cluster
-	InstanceRole *string `type:"string" required:"true"`
+	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
 	// Actual count of running instances.
 	InstanceRunningCount *int64 `type:"integer" required:"true"`
 
 	// Amazon EC2 Instance type.
-	InstanceType *string `type:"string" required:"true"`
+	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Details regarding the state of the instance group.
 	LastStateChangeReason *string `type:"string"`
 
 	// Market type of the Amazon EC2 instances used to create a cluster node.
-	Market *string `type:"string" required:"true"`
+	Market *string `type:"string" required:"true" enum:"MarketType"`
 
 	// Friendly name for the instance group.
 	Name *string `type:"string"`
@@ -1548,7 +1607,7 @@ type InstanceGroupDetail struct {
 
 	// State of instance group. The following values are deprecated: STARTING, TERMINATED,
 	// and FAILED.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"InstanceGroupState"`
 
 	metadataInstanceGroupDetail `json:"-" xml:"-"`
 }
@@ -1559,7 +1618,7 @@ type metadataInstanceGroupDetail struct {
 
 // String returns the string representation
 func (s InstanceGroupDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1572,13 +1631,13 @@ type InstanceGroupModifyConfig struct {
 	// The EC2 InstanceIds to terminate. For advanced users only. Once you terminate
 	// the instances, the instance group will not return to its original requested
 	// size.
-	EC2InstanceIDsToTerminate []*string `locationName:"EC2InstanceIdsToTerminate" type:"list"`
+	EC2InstanceIdsToTerminate []*string `type:"list"`
 
 	// Target size for the instance group.
 	InstanceCount *int64 `type:"integer"`
 
 	// Unique ID of the instance group to expand or shrink.
-	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string" required:"true"`
+	InstanceGroupId *string `type:"string" required:"true"`
 
 	metadataInstanceGroupModifyConfig `json:"-" xml:"-"`
 }
@@ -1589,7 +1648,7 @@ type metadataInstanceGroupModifyConfig struct {
 
 // String returns the string representation
 func (s InstanceGroupModifyConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1600,7 +1659,7 @@ func (s InstanceGroupModifyConfig) GoString() string {
 // The status change reason details for the instance group.
 type InstanceGroupStateChangeReason struct {
 	// The programmable code for the state change reason.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"InstanceGroupStateChangeReasonCode"`
 
 	// The status change reason description.
 	Message *string `type:"string"`
@@ -1614,7 +1673,7 @@ type metadataInstanceGroupStateChangeReason struct {
 
 // String returns the string representation
 func (s InstanceGroupStateChangeReason) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1625,7 +1684,7 @@ func (s InstanceGroupStateChangeReason) GoString() string {
 // The details of the instance group status.
 type InstanceGroupStatus struct {
 	// The current state of the instance group.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"InstanceGroupState"`
 
 	// The status change reason details for the instance group.
 	StateChangeReason *InstanceGroupStateChangeReason `type:"structure"`
@@ -1642,7 +1701,7 @@ type metadataInstanceGroupStatus struct {
 
 // String returns the string representation
 func (s InstanceGroupStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1670,7 +1729,7 @@ type metadataInstanceGroupTimeline struct {
 
 // String returns the string representation
 func (s InstanceGroupTimeline) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1681,7 +1740,7 @@ func (s InstanceGroupTimeline) GoString() string {
 // The details of the status change reason for the instance.
 type InstanceStateChangeReason struct {
 	// The programmable code for the state change reason.
-	Code *string `type:"string"`
+	Code *string `type:"string" enum:"InstanceStateChangeReasonCode"`
 
 	// The status change reason description.
 	Message *string `type:"string"`
@@ -1695,7 +1754,7 @@ type metadataInstanceStateChangeReason struct {
 
 // String returns the string representation
 func (s InstanceStateChangeReason) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1706,7 +1765,7 @@ func (s InstanceStateChangeReason) GoString() string {
 // The instance status details.
 type InstanceStatus struct {
 	// The current state of the instance.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"InstanceState"`
 
 	// The details of the status change reason for the instance.
 	StateChangeReason *InstanceStateChangeReason `type:"structure"`
@@ -1723,7 +1782,7 @@ type metadataInstanceStatus struct {
 
 // String returns the string representation
 func (s InstanceStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1751,7 +1810,7 @@ type metadataInstanceTimeline struct {
 
 // String returns the string representation
 func (s InstanceTimeline) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1764,8 +1823,8 @@ type JobFlowDetail struct {
 	// The version of the AMI used to initialize Amazon EC2 instances in the job
 	// flow. For a list of AMI versions currently supported by Amazon ElasticMapReduce,
 	// go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
-	// in the Amazon Elastic MapReduce Developer's Guide.
-	AMIVersion *string `locationName:"AmiVersion" type:"string"`
+	// in the Amazon Elastic MapReduce Developer Guide.
+	AmiVersion *string `type:"string"`
 
 	// A list of the bootstrap actions run by the job flow.
 	BootstrapActions []*BootstrapActionDetail `type:"list"`
@@ -1777,14 +1836,14 @@ type JobFlowDetail struct {
 	Instances *JobFlowInstancesDetail `type:"structure" required:"true"`
 
 	// The job flow identifier.
-	JobFlowID *string `locationName:"JobFlowId" type:"string" required:"true"`
+	JobFlowId *string `type:"string" required:"true"`
 
 	// The IAM role that was specified when the job flow was launched. The EC2 instances
 	// of the job flow assume this role.
 	JobFlowRole *string `type:"string"`
 
 	// The location in Amazon S3 where log files for the job are stored.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The name of the job flow.
 	Name *string `type:"string" required:"true"`
@@ -1818,7 +1877,7 @@ type metadataJobFlowDetail struct {
 
 // String returns the string representation
 func (s JobFlowDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1845,7 +1904,7 @@ type JobFlowExecutionStatusDetail struct {
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the job flow.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"JobFlowExecutionState"`
 
 	metadataJobFlowExecutionStatusDetail `json:"-" xml:"-"`
 }
@@ -1856,7 +1915,7 @@ type metadataJobFlowExecutionStatusDetail struct {
 
 // String returns the string representation
 func (s JobFlowExecutionStatusDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1877,7 +1936,7 @@ type JobFlowInstancesConfig struct {
 
 	// The name of the Amazon EC2 key pair that can be used to ssh to the master
 	// node as the user called "hadoop."
-	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+	Ec2KeyName *string `type:"string"`
 
 	// To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set
 	// this parameter to the identifier of the Amazon VPC subnet where you want
@@ -1887,20 +1946,21 @@ type JobFlowInstancesConfig struct {
 	//  Amazon VPC currently does not support cluster compute quadruple extra large
 	// (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance
 	// type for nodes of a job flow launched in a Amazon VPC.
-	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+	Ec2SubnetId *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
 	// for the master node.
-	EMRManagedMasterSecurityGroup *string `locationName:"EmrManagedMasterSecurityGroup" type:"string"`
+	EmrManagedMasterSecurityGroup *string `type:"string"`
 
 	// The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce)
 	// for the slave nodes.
-	EMRManagedSlaveSecurityGroup *string `locationName:"EmrManagedSlaveSecurityGroup" type:"string"`
+	EmrManagedSlaveSecurityGroup *string `type:"string"`
 
-	// The Hadoop version for the job flow. Valid inputs are "0.18", "0.20", "0.20.205",
-	// "1.0.3", "2.2.0", or "2.4.0". If you do not set this value, the default of
-	// 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call,
-	// in which case the default version of Hadoop for that AMI version is used.
+	// The Hadoop version for the job flow. Valid inputs are "0.18" (deprecated),
+	// "0.20" (deprecated), "0.20.205" (deprecated), "1.0.3", "2.2.0", or "2.4.0".
+	// If you do not set this value, the default of 0.18 is used, unless the AmiVersion
+	// parameter is set in the RunJobFlow call, in which case the default version
+	// of Hadoop for that AMI version is used.
 	HadoopVersion *string `type:"string"`
 
 	// The number of Amazon EC2 instances used to execute the job flow.
@@ -1909,17 +1969,18 @@ type JobFlowInstancesConfig struct {
 	// Configuration for the job flow's instance groups.
 	InstanceGroups []*InstanceGroupConfig `type:"list"`
 
-	// Specifies whether the job flow should terminate after completing all steps.
+	// Specifies whether the job flow should be kept alive after completing all
+	// steps.
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 
 	// The EC2 instance type of the master node.
-	MasterInstanceType *string `type:"string"`
+	MasterInstanceType *string `min:"1" type:"string"`
 
 	// The Availability Zone the job flow will run in.
 	Placement *PlacementType `type:"structure"`
 
 	// The EC2 instance type of the slave nodes.
-	SlaveInstanceType *string `type:"string"`
+	SlaveInstanceType *string `min:"1" type:"string"`
 
 	// Specifies whether to lock the job flow to prevent the Amazon EC2 instances
 	// from being terminated by API call, user intervention, or in the event of
@@ -1935,7 +1996,7 @@ type metadataJobFlowInstancesConfig struct {
 
 // String returns the string representation
 func (s JobFlowInstancesConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1947,11 +2008,11 @@ func (s JobFlowInstancesConfig) GoString() string {
 type JobFlowInstancesDetail struct {
 	// The name of an Amazon EC2 key pair that can be used to ssh to the master
 	// node of job flow.
-	EC2KeyName *string `locationName:"Ec2KeyName" type:"string"`
+	Ec2KeyName *string `type:"string"`
 
 	// For job flows launched within Amazon Virtual Private Cloud, this value specifies
 	// the identifier of the subnet where the job flow was launched.
-	EC2SubnetID *string `locationName:"Ec2SubnetId" type:"string"`
+	Ec2SubnetId *string `type:"string"`
 
 	// The Hadoop version for the job flow.
 	HadoopVersion *string `type:"string"`
@@ -1968,13 +2029,13 @@ type JobFlowInstancesDetail struct {
 	KeepJobFlowAliveWhenNoSteps *bool `type:"boolean"`
 
 	// The Amazon EC2 instance identifier of the master node.
-	MasterInstanceID *string `locationName:"MasterInstanceId" type:"string"`
+	MasterInstanceId *string `type:"string"`
 
 	// The Amazon EC2 master node instance type.
-	MasterInstanceType *string `type:"string" required:"true"`
+	MasterInstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The DNS name of the master node.
-	MasterPublicDNSName *string `locationName:"MasterPublicDnsName" type:"string"`
+	MasterPublicDnsName *string `type:"string"`
 
 	// An approximation of the cost of the job flow, represented in m1.small/hours.
 	// This value is incremented once for every hour an m1.small runs. Larger instances
@@ -1988,7 +2049,7 @@ type JobFlowInstancesDetail struct {
 	Placement *PlacementType `type:"structure"`
 
 	// The Amazon EC2 slave node instance type.
-	SlaveInstanceType *string `type:"string" required:"true"`
+	SlaveInstanceType *string `min:"1" type:"string" required:"true"`
 
 	// Specifies whether the Amazon EC2 instances in the cluster are protected from
 	// termination by API calls, user intervention, or in the event of a job flow
@@ -2004,7 +2065,7 @@ type metadataJobFlowInstancesDetail struct {
 
 // String returns the string representation
 func (s JobFlowInstancesDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2029,7 +2090,7 @@ type metadataKeyValue struct {
 
 // String returns the string representation
 func (s KeyValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2040,7 +2101,7 @@ func (s KeyValue) GoString() string {
 // This input determines which bootstrap actions to retrieve.
 type ListBootstrapActionsInput struct {
 	// The cluster identifier for the bootstrap actions to list .
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve .
 	Marker *string `type:"string"`
@@ -2054,7 +2115,7 @@ type metadataListBootstrapActionsInput struct {
 
 // String returns the string representation
 func (s ListBootstrapActionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2079,7 +2140,7 @@ type metadataListBootstrapActionsOutput struct {
 
 // String returns the string representation
 func (s ListBootstrapActionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2111,7 +2172,7 @@ type metadataListClustersInput struct {
 
 // String returns the string representation
 func (s ListClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2137,7 +2198,7 @@ type metadataListClustersOutput struct {
 
 // String returns the string representation
 func (s ListClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2148,7 +2209,7 @@ func (s ListClustersOutput) GoString() string {
 // This input determines which instance groups to retrieve.
 type ListInstanceGroupsInput struct {
 	// The identifier of the cluster for which to list the instance groups.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
@@ -2162,7 +2223,7 @@ type metadataListInstanceGroupsInput struct {
 
 // String returns the string representation
 func (s ListInstanceGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2187,7 +2248,7 @@ type metadataListInstanceGroupsOutput struct {
 
 // String returns the string representation
 func (s ListInstanceGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2198,10 +2259,10 @@ func (s ListInstanceGroupsOutput) GoString() string {
 // This input determines which instances to list.
 type ListInstancesInput struct {
 	// The identifier of the cluster for which to list the instances.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The identifier of the instance group for which to list the instances.
-	InstanceGroupID *string `locationName:"InstanceGroupId" type:"string"`
+	InstanceGroupId *string `type:"string"`
 
 	// The type of instance group for which to list the instances.
 	InstanceGroupTypes []*string `type:"list"`
@@ -2218,7 +2279,7 @@ type metadataListInstancesInput struct {
 
 // String returns the string representation
 func (s ListInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2243,7 +2304,7 @@ type metadataListInstancesOutput struct {
 
 // String returns the string representation
 func (s ListInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2254,13 +2315,13 @@ func (s ListInstancesOutput) GoString() string {
 // This input determines which steps to list.
 type ListStepsInput struct {
 	// The identifier of the cluster for which to list the steps.
-	ClusterID *string `locationName:"ClusterId" type:"string" required:"true"`
+	ClusterId *string `type:"string" required:"true"`
 
 	// The pagination token that indicates the next set of results to retrieve.
 	Marker *string `type:"string"`
 
 	// The filter to limit the step list based on the identifier of the steps.
-	StepIDs []*string `locationName:"StepIds" type:"list"`
+	StepIds []*string `type:"list"`
 
 	// The filter to limit the step list based on certain states.
 	StepStates []*string `type:"list"`
@@ -2274,7 +2335,7 @@ type metadataListStepsInput struct {
 
 // String returns the string representation
 func (s ListStepsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2299,7 +2360,7 @@ type metadataListStepsOutput struct {
 
 // String returns the string representation
 func (s ListStepsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2321,7 +2382,7 @@ type metadataModifyInstanceGroupsInput struct {
 
 // String returns the string representation
 func (s ModifyInstanceGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2339,7 +2400,7 @@ type metadataModifyInstanceGroupsOutput struct {
 
 // String returns the string representation
 func (s ModifyInstanceGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2361,7 +2422,7 @@ type metadataPlacementType struct {
 
 // String returns the string representation
 func (s PlacementType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2373,7 +2434,7 @@ func (s PlacementType) GoString() string {
 type RemoveTagsInput struct {
 	// The Amazon EMR resource identifier from which tags will be removed. This
 	// value must be a cluster identifier.
-	ResourceID *string `locationName:"ResourceId" type:"string" required:"true"`
+	ResourceId *string `type:"string" required:"true"`
 
 	// A list of tag keys to remove from a resource.
 	TagKeys []*string `type:"list" required:"true"`
@@ -2387,7 +2448,7 @@ type metadataRemoveTagsInput struct {
 
 // String returns the string representation
 func (s RemoveTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2406,7 +2467,7 @@ type metadataRemoveTagsOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2416,26 +2477,39 @@ func (s RemoveTagsOutput) GoString() string {
 
 // Input to the RunJobFlow operation.
 type RunJobFlowInput struct {
+	// A JSON string for selecting additional features.
+	AdditionalInfo *string `type:"string"`
+
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
+	// use ReleaseLabel.
+	//
 	// The version of the Amazon Machine Image (AMI) to use when launching Amazon
 	// EC2 instances in the job flow. The following values are valid:
 	//
-	//  "latest" (uses the latest AMI) The version number of the AMI to use, for
-	// example, "2.0"  If the AMI supports multiple versions of Hadoop (for example,
-	// AMI 1.0 supports both Hadoop 0.18 and 0.20) you can use the JobFlowInstancesConfig
-	// HadoopVersion parameter to modify the version of Hadoop from the defaults
-	// shown above.
+	//  The version number of the AMI to use, for example, "2.0."  If the AMI supports
+	// multiple versions of Hadoop (for example, AMI 1.0 supports both Hadoop 0.18
+	// and 0.20) you can use the JobFlowInstancesConfig HadoopVersion parameter
+	// to modify the version of Hadoop from the defaults shown above.
 	//
 	// For details about the AMI versions currently supported by Amazon Elastic
 	// MapReduce, go to AMI Versions Supported in Elastic MapReduce (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported)
 	// in the Amazon Elastic MapReduce Developer's Guide.
-	AMIVersion *string `locationName:"AmiVersion" type:"string"`
+	AmiVersion *string `type:"string"`
 
-	// A JSON string for selecting additional features.
-	AdditionalInfo *string `type:"string"`
+	// Amazon EMR releases 4.x or later.
+	//
+	// A list of applications for the cluster. Valid values are: "Hadoop", "Hive",
+	// "Mahout", "Pig", and "Spark." They are case insensitive.
+	Applications []*Application `type:"list"`
 
 	// A list of bootstrap actions that will be run before Hadoop is started on
 	// the cluster nodes.
 	BootstrapActions []*BootstrapActionConfig `type:"list"`
+
+	// Amazon EMR releases 4.x or later.
+	//
+	// The list of configurations supplied for the EMR cluster you are creating.
+	Configurations []*Configuration `type:"list"`
 
 	// A specification of the number and type of Amazon EC2 instances on which to
 	// run the job flow.
@@ -2448,11 +2522,14 @@ type RunJobFlowInput struct {
 
 	// The location in Amazon S3 to write the log files of the job flow. If a value
 	// is not provided, logs are not created.
-	LogURI *string `locationName:"LogUri" type:"string"`
+	LogUri *string `type:"string"`
 
 	// The name of the job flow.
 	Name *string `type:"string" required:"true"`
 
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
+	// use Applications.
+	//
 	// A list of strings that indicates third-party software to use with the job
 	// flow that accepts a user argument list. EMR accepts and forwards the argument
 	// list to the corresponding installation script as bootstrap action arguments.
@@ -2460,11 +2537,21 @@ type RunJobFlowInput struct {
 	// Hadoop (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html).
 	// Currently supported values are:
 	//
-	//  "mapr-m3" - launch the job flow using MapR M3 Edition. "mapr-m5" - launch
-	// the job flow using MapR M5 Edition. "mapr" with the user arguments specifying
+	//  "mapr-m3" - launch the cluster using MapR M3 Edition. "mapr-m5" - launch
+	// the cluster using MapR M5 Edition. "mapr" with the user arguments specifying
 	// "--edition,m3" or "--edition,m5" - launch the job flow using MapR M3 or M5
-	// Edition respectively.
+	// Edition respectively. "mapr-m7" - launch the cluster using MapR M7 Edition.
+	// "hunk" - launch the cluster with the Hunk Big Data Analtics Platform. "hue"-
+	// launch the cluster with Hue installed. "spark" - launch the cluster with
+	// Apache Spark installed. "ganglia" - launch the cluster with the Ganglia Monitoring
+	// System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
+
+	// Amazon EMR releases 4.x or later.
+	//
+	// The release label for the Amazon EMR release. For Amazon EMR 3.x and 2.x
+	// AMIs, use amiVersion instead instead of ReleaseLabel.
+	ReleaseLabel *string `type:"string"`
 
 	// The IAM role that will be assumed by the Amazon EMR service to access AWS
 	// resources on your behalf.
@@ -2473,6 +2560,9 @@ type RunJobFlowInput struct {
 	// A list of steps to be executed by the job flow.
 	Steps []*StepConfig `type:"list"`
 
+	// For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater,
+	// use Applications.
+	//
 	// A list of strings that indicates third-party software to use with the job
 	// flow. For more information, go to Use Third Party Applications with Amazon
 	// EMR (http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-supported-products.html).
@@ -2501,7 +2591,7 @@ type metadataRunJobFlowInput struct {
 
 // String returns the string representation
 func (s RunJobFlowInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2512,7 +2602,7 @@ func (s RunJobFlowInput) GoString() string {
 // The result of the RunJobFlow operation.
 type RunJobFlowOutput struct {
 	// An unique identifier for the job flow.
-	JobFlowID *string `locationName:"JobFlowId" type:"string"`
+	JobFlowId *string `type:"string"`
 
 	metadataRunJobFlowOutput `json:"-" xml:"-"`
 }
@@ -2523,7 +2613,7 @@ type metadataRunJobFlowOutput struct {
 
 // String returns the string representation
 func (s RunJobFlowOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2549,7 +2639,7 @@ type metadataScriptBootstrapActionConfig struct {
 
 // String returns the string representation
 func (s ScriptBootstrapActionConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2562,7 +2652,7 @@ type SetTerminationProtectionInput struct {
 	// A list of strings that uniquely identify the job flows to protect. This identifier
 	// is returned by RunJobFlow and can also be obtained from DescribeJobFlows
 	// .
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	JobFlowIds []*string `type:"list" required:"true"`
 
 	// A Boolean that indicates whether to protect the job flow and prevent the
 	// Amazon EC2 instances in the cluster from shutting down due to API calls,
@@ -2578,7 +2668,7 @@ type metadataSetTerminationProtectionInput struct {
 
 // String returns the string representation
 func (s SetTerminationProtectionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2596,7 +2686,7 @@ type metadataSetTerminationProtectionOutput struct {
 
 // String returns the string representation
 func (s SetTerminationProtectionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2607,7 +2697,7 @@ func (s SetTerminationProtectionOutput) GoString() string {
 // The input to the SetVisibleToAllUsers action.
 type SetVisibleToAllUsersInput struct {
 	// Identifiers of the job flows to receive the new visibility setting.
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	JobFlowIds []*string `type:"list" required:"true"`
 
 	// Whether the specified job flows are visible to all IAM users of the AWS account
 	// associated with the job flow. If this value is set to True, all IAM users
@@ -2625,7 +2715,7 @@ type metadataSetVisibleToAllUsersInput struct {
 
 // String returns the string representation
 func (s SetVisibleToAllUsersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2643,7 +2733,7 @@ type metadataSetVisibleToAllUsersOutput struct {
 
 // String returns the string representation
 func (s SetVisibleToAllUsersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2655,13 +2745,13 @@ func (s SetVisibleToAllUsersOutput) GoString() string {
 type Step struct {
 	// This specifies what action to take when the cluster step fails. Possible
 	// values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE.
-	ActionOnFailure *string `type:"string"`
+	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The Hadoop job configuration of the cluster step.
 	Config *HadoopStepConfig `type:"structure"`
 
 	// The identifier of the cluster step.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the cluster step.
 	Name *string `type:"string"`
@@ -2678,7 +2768,7 @@ type metadataStep struct {
 
 // String returns the string representation
 func (s Step) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2689,10 +2779,10 @@ func (s Step) GoString() string {
 // Specification of a job flow step.
 type StepConfig struct {
 	// The action to take if the job flow step fails.
-	ActionOnFailure *string `type:"string"`
+	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The JAR file used for the job flow step.
-	HadoopJARStep *HadoopJARStepConfig `locationName:"HadoopJarStep" type:"structure" required:"true"`
+	HadoopJarStep *HadoopJarStepConfig `type:"structure" required:"true"`
 
 	// The name of the job flow step.
 	Name *string `type:"string" required:"true"`
@@ -2706,7 +2796,7 @@ type metadataStepConfig struct {
 
 // String returns the string representation
 func (s StepConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2731,7 +2821,7 @@ type metadataStepDetail struct {
 
 // String returns the string representation
 func (s StepDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2754,7 +2844,7 @@ type StepExecutionStatusDetail struct {
 	StartDateTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The state of the job flow step.
-	State *string `type:"string" required:"true"`
+	State *string `type:"string" required:"true" enum:"StepExecutionState"`
 
 	metadataStepExecutionStatusDetail `json:"-" xml:"-"`
 }
@@ -2765,7 +2855,7 @@ type metadataStepExecutionStatusDetail struct {
 
 // String returns the string representation
 func (s StepExecutionStatusDetail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2775,8 +2865,9 @@ func (s StepExecutionStatusDetail) GoString() string {
 
 // The details of the step state change reason.
 type StepStateChangeReason struct {
-	// The programmable code for the state change reason.
-	Code *string `type:"string"`
+	// The programmable code for the state change reason. Note: Currently, the service
+	// provides no code for the state change.
+	Code *string `type:"string" enum:"StepStateChangeReasonCode"`
 
 	// The descriptive message for the state change reason.
 	Message *string `type:"string"`
@@ -2790,7 +2881,7 @@ type metadataStepStateChangeReason struct {
 
 // String returns the string representation
 func (s StepStateChangeReason) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2801,7 +2892,7 @@ func (s StepStateChangeReason) GoString() string {
 // The execution status details of the cluster step.
 type StepStatus struct {
 	// The execution state of the cluster step.
-	State *string `type:"string"`
+	State *string `type:"string" enum:"StepState"`
 
 	// The reason for the step execution status change.
 	StateChangeReason *StepStateChangeReason `type:"structure"`
@@ -2818,7 +2909,7 @@ type metadataStepStatus struct {
 
 // String returns the string representation
 func (s StepStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2830,13 +2921,13 @@ func (s StepStatus) GoString() string {
 type StepSummary struct {
 	// This specifies what action to take when the cluster step fails. Possible
 	// values are TERMINATE_CLUSTER, CANCEL_AND_WAIT, and CONTINUE.
-	ActionOnFailure *string `type:"string"`
+	ActionOnFailure *string `type:"string" enum:"ActionOnFailure"`
 
 	// The Hadoop job configuration of the cluster step.
 	Config *HadoopStepConfig `type:"structure"`
 
 	// The identifier of the cluster step.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the cluster step.
 	Name *string `type:"string"`
@@ -2853,7 +2944,7 @@ type metadataStepSummary struct {
 
 // String returns the string representation
 func (s StepSummary) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2881,7 +2972,7 @@ type metadataStepTimeline struct {
 
 // String returns the string representation
 func (s StepTimeline) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2908,7 +2999,7 @@ type metadataSupportedProductConfig struct {
 
 // String returns the string representation
 func (s SupportedProductConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2939,7 +3030,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2950,7 +3041,7 @@ func (s Tag) GoString() string {
 // Input to the TerminateJobFlows operation.
 type TerminateJobFlowsInput struct {
 	// A list of job flows to be shutdown.
-	JobFlowIDs []*string `locationName:"JobFlowIds" type:"list" required:"true"`
+	JobFlowIds []*string `type:"list" required:"true"`
 
 	metadataTerminateJobFlowsInput `json:"-" xml:"-"`
 }
@@ -2961,7 +3052,7 @@ type metadataTerminateJobFlowsInput struct {
 
 // String returns the string representation
 func (s TerminateJobFlowsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2979,10 +3070,201 @@ type metadataTerminateJobFlowsOutput struct {
 
 // String returns the string representation
 func (s TerminateJobFlowsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s TerminateJobFlowsOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ActionOnFailure
+	ActionOnFailureTerminateJobFlow = "TERMINATE_JOB_FLOW"
+	// @enum ActionOnFailure
+	ActionOnFailureTerminateCluster = "TERMINATE_CLUSTER"
+	// @enum ActionOnFailure
+	ActionOnFailureCancelAndWait = "CANCEL_AND_WAIT"
+	// @enum ActionOnFailure
+	ActionOnFailureContinue = "CONTINUE"
+)
+
+const (
+	// @enum ClusterState
+	ClusterStateStarting = "STARTING"
+	// @enum ClusterState
+	ClusterStateBootstrapping = "BOOTSTRAPPING"
+	// @enum ClusterState
+	ClusterStateRunning = "RUNNING"
+	// @enum ClusterState
+	ClusterStateWaiting = "WAITING"
+	// @enum ClusterState
+	ClusterStateTerminating = "TERMINATING"
+	// @enum ClusterState
+	ClusterStateTerminated = "TERMINATED"
+	// @enum ClusterState
+	ClusterStateTerminatedWithErrors = "TERMINATED_WITH_ERRORS"
+)
+
+const (
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeBootstrapFailure = "BOOTSTRAP_FAILURE"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeUserRequest = "USER_REQUEST"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeStepFailure = "STEP_FAILURE"
+	// @enum ClusterStateChangeReasonCode
+	ClusterStateChangeReasonCodeAllStepsCompleted = "ALL_STEPS_COMPLETED"
+)
+
+const (
+	// @enum InstanceGroupState
+	InstanceGroupStateProvisioning = "PROVISIONING"
+	// @enum InstanceGroupState
+	InstanceGroupStateBootstrapping = "BOOTSTRAPPING"
+	// @enum InstanceGroupState
+	InstanceGroupStateRunning = "RUNNING"
+	// @enum InstanceGroupState
+	InstanceGroupStateResizing = "RESIZING"
+	// @enum InstanceGroupState
+	InstanceGroupStateSuspended = "SUSPENDED"
+	// @enum InstanceGroupState
+	InstanceGroupStateTerminating = "TERMINATING"
+	// @enum InstanceGroupState
+	InstanceGroupStateTerminated = "TERMINATED"
+	// @enum InstanceGroupState
+	InstanceGroupStateArrested = "ARRESTED"
+	// @enum InstanceGroupState
+	InstanceGroupStateShuttingDown = "SHUTTING_DOWN"
+	// @enum InstanceGroupState
+	InstanceGroupStateEnded = "ENDED"
+)
+
+const (
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
+	// @enum InstanceGroupStateChangeReasonCode
+	InstanceGroupStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+)
+
+const (
+	// @enum InstanceGroupType
+	InstanceGroupTypeMaster = "MASTER"
+	// @enum InstanceGroupType
+	InstanceGroupTypeCore = "CORE"
+	// @enum InstanceGroupType
+	InstanceGroupTypeTask = "TASK"
+)
+
+const (
+	// @enum InstanceRoleType
+	InstanceRoleTypeMaster = "MASTER"
+	// @enum InstanceRoleType
+	InstanceRoleTypeCore = "CORE"
+	// @enum InstanceRoleType
+	InstanceRoleTypeTask = "TASK"
+)
+
+const (
+	// @enum InstanceState
+	InstanceStateAwaitingFulfillment = "AWAITING_FULFILLMENT"
+	// @enum InstanceState
+	InstanceStateProvisioning = "PROVISIONING"
+	// @enum InstanceState
+	InstanceStateBootstrapping = "BOOTSTRAPPING"
+	// @enum InstanceState
+	InstanceStateRunning = "RUNNING"
+	// @enum InstanceState
+	InstanceStateTerminated = "TERMINATED"
+)
+
+const (
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeInternalError = "INTERNAL_ERROR"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeValidationError = "VALIDATION_ERROR"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeInstanceFailure = "INSTANCE_FAILURE"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeBootstrapFailure = "BOOTSTRAP_FAILURE"
+	// @enum InstanceStateChangeReasonCode
+	InstanceStateChangeReasonCodeClusterTerminated = "CLUSTER_TERMINATED"
+)
+
+// The type of instance.
+//
+//   A small instance
+//
+//   A large instance
+const (
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateStarting = "STARTING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateBootstrapping = "BOOTSTRAPPING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateRunning = "RUNNING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateWaiting = "WAITING"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateShuttingDown = "SHUTTING_DOWN"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateTerminated = "TERMINATED"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateCompleted = "COMPLETED"
+	// @enum JobFlowExecutionState
+	JobFlowExecutionStateFailed = "FAILED"
+)
+
+const (
+	// @enum MarketType
+	MarketTypeOnDemand = "ON_DEMAND"
+	// @enum MarketType
+	MarketTypeSpot = "SPOT"
+)
+
+const (
+	// @enum StepExecutionState
+	StepExecutionStatePending = "PENDING"
+	// @enum StepExecutionState
+	StepExecutionStateRunning = "RUNNING"
+	// @enum StepExecutionState
+	StepExecutionStateContinue = "CONTINUE"
+	// @enum StepExecutionState
+	StepExecutionStateCompleted = "COMPLETED"
+	// @enum StepExecutionState
+	StepExecutionStateCancelled = "CANCELLED"
+	// @enum StepExecutionState
+	StepExecutionStateFailed = "FAILED"
+	// @enum StepExecutionState
+	StepExecutionStateInterrupted = "INTERRUPTED"
+)
+
+const (
+	// @enum StepState
+	StepStatePending = "PENDING"
+	// @enum StepState
+	StepStateRunning = "RUNNING"
+	// @enum StepState
+	StepStateCompleted = "COMPLETED"
+	// @enum StepState
+	StepStateCancelled = "CANCELLED"
+	// @enum StepState
+	StepStateFailed = "FAILED"
+	// @enum StepState
+	StepStateInterrupted = "INTERRUPTED"
+)
+
+const (
+	// @enum StepStateChangeReasonCode
+	StepStateChangeReasonCodeNone = "NONE"
+)

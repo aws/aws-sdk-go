@@ -6,15 +6,15 @@ package ecs
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCreateCluster = "CreateCluster"
 
 // CreateClusterRequest generates a request for the CreateCluster operation.
-func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *aws.Request, output *CreateClusterOutput) {
-	op := &aws.Operation{
+func (c *ECS) CreateClusterRequest(input *CreateClusterInput) (req *request.Request, output *CreateClusterOutput) {
+	op := &request.Operation{
 		Name:       opCreateCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -42,8 +42,8 @@ func (c *ECS) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, er
 const opCreateService = "CreateService"
 
 // CreateServiceRequest generates a request for the CreateService operation.
-func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *aws.Request, output *CreateServiceOutput) {
-	op := &aws.Operation{
+func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Request, output *CreateServiceOutput) {
+	op := &request.Operation{
 		Name:       opCreateService,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -71,8 +71,8 @@ func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, er
 const opDeleteCluster = "DeleteCluster"
 
 // DeleteClusterRequest generates a request for the DeleteCluster operation.
-func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *aws.Request, output *DeleteClusterOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeleteClusterRequest(input *DeleteClusterInput) (req *request.Request, output *DeleteClusterOutput) {
+	op := &request.Operation{
 		Name:       opDeleteCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -100,8 +100,8 @@ func (c *ECS) DeleteCluster(input *DeleteClusterInput) (*DeleteClusterOutput, er
 const opDeleteService = "DeleteService"
 
 // DeleteServiceRequest generates a request for the DeleteService operation.
-func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *aws.Request, output *DeleteServiceOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Request, output *DeleteServiceOutput) {
+	op := &request.Operation{
 		Name:       opDeleteService,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -127,8 +127,8 @@ func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, er
 const opDeregisterContainerInstance = "DeregisterContainerInstance"
 
 // DeregisterContainerInstanceRequest generates a request for the DeregisterContainerInstance operation.
-func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *aws.Request, output *DeregisterContainerInstanceOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeregisterContainerInstanceRequest(input *DeregisterContainerInstanceInput) (req *request.Request, output *DeregisterContainerInstanceOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterContainerInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -167,8 +167,8 @@ func (c *ECS) DeregisterContainerInstance(input *DeregisterContainerInstanceInpu
 const opDeregisterTaskDefinition = "DeregisterTaskDefinition"
 
 // DeregisterTaskDefinitionRequest generates a request for the DeregisterTaskDefinition operation.
-func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *aws.Request, output *DeregisterTaskDefinitionOutput) {
-	op := &aws.Operation{
+func (c *ECS) DeregisterTaskDefinitionRequest(input *DeregisterTaskDefinitionInput) (req *request.Request, output *DeregisterTaskDefinitionOutput) {
+	op := &request.Operation{
 		Name:       opDeregisterTaskDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -203,8 +203,8 @@ func (c *ECS) DeregisterTaskDefinition(input *DeregisterTaskDefinitionInput) (*D
 const opDescribeClusters = "DescribeClusters"
 
 // DescribeClustersRequest generates a request for the DescribeClusters operation.
-func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *aws.Request, output *DescribeClustersOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeClustersRequest(input *DescribeClustersInput) (req *request.Request, output *DescribeClustersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -230,8 +230,8 @@ func (c *ECS) DescribeClusters(input *DescribeClustersInput) (*DescribeClustersO
 const opDescribeContainerInstances = "DescribeContainerInstances"
 
 // DescribeContainerInstancesRequest generates a request for the DescribeContainerInstances operation.
-func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *aws.Request, output *DescribeContainerInstancesOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstancesInput) (req *request.Request, output *DescribeContainerInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeContainerInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -258,8 +258,8 @@ func (c *ECS) DescribeContainerInstances(input *DescribeContainerInstancesInput)
 const opDescribeServices = "DescribeServices"
 
 // DescribeServicesRequest generates a request for the DescribeServices operation.
-func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *aws.Request, output *DescribeServicesOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeServicesRequest(input *DescribeServicesInput) (req *request.Request, output *DescribeServicesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeServices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -285,8 +285,8 @@ func (c *ECS) DescribeServices(input *DescribeServicesInput) (*DescribeServicesO
 const opDescribeTaskDefinition = "DescribeTaskDefinition"
 
 // DescribeTaskDefinitionRequest generates a request for the DescribeTaskDefinition operation.
-func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *aws.Request, output *DescribeTaskDefinitionOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeTaskDefinitionRequest(input *DescribeTaskDefinitionInput) (req *request.Request, output *DescribeTaskDefinitionOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTaskDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -317,8 +317,8 @@ func (c *ECS) DescribeTaskDefinition(input *DescribeTaskDefinitionInput) (*Descr
 const opDescribeTasks = "DescribeTasks"
 
 // DescribeTasksRequest generates a request for the DescribeTasks operation.
-func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *aws.Request, output *DescribeTasksOutput) {
-	op := &aws.Operation{
+func (c *ECS) DescribeTasksRequest(input *DescribeTasksInput) (req *request.Request, output *DescribeTasksOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -344,8 +344,8 @@ func (c *ECS) DescribeTasks(input *DescribeTasksInput) (*DescribeTasksOutput, er
 const opDiscoverPollEndpoint = "DiscoverPollEndpoint"
 
 // DiscoverPollEndpointRequest generates a request for the DiscoverPollEndpoint operation.
-func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *aws.Request, output *DiscoverPollEndpointOutput) {
-	op := &aws.Operation{
+func (c *ECS) DiscoverPollEndpointRequest(input *DiscoverPollEndpointInput) (req *request.Request, output *DiscoverPollEndpointOutput) {
+	op := &request.Operation{
 		Name:       opDiscoverPollEndpoint,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -375,12 +375,12 @@ func (c *ECS) DiscoverPollEndpoint(input *DiscoverPollEndpointInput) (*DiscoverP
 const opListClusters = "ListClusters"
 
 // ListClustersRequest generates a request for the ListClusters operation.
-func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *aws.Request, output *ListClustersOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListClustersRequest(input *ListClustersInput) (req *request.Request, output *ListClustersOutput) {
+	op := &request.Operation{
 		Name:       opListClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -415,12 +415,12 @@ func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListCluster
 const opListContainerInstances = "ListContainerInstances"
 
 // ListContainerInstancesRequest generates a request for the ListContainerInstances operation.
-func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *aws.Request, output *ListContainerInstancesOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListContainerInstancesRequest(input *ListContainerInstancesInput) (req *request.Request, output *ListContainerInstancesOutput) {
+	op := &request.Operation{
 		Name:       opListContainerInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -455,12 +455,12 @@ func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn
 const opListServices = "ListServices"
 
 // ListServicesRequest generates a request for the ListServices operation.
-func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *aws.Request, output *ListServicesOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *request.Request, output *ListServicesOutput) {
+	op := &request.Operation{
 		Name:       opListServices,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -495,12 +495,12 @@ func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListService
 const opListTaskDefinitionFamilies = "ListTaskDefinitionFamilies"
 
 // ListTaskDefinitionFamiliesRequest generates a request for the ListTaskDefinitionFamilies operation.
-func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *aws.Request, output *ListTaskDefinitionFamiliesOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListTaskDefinitionFamiliesRequest(input *ListTaskDefinitionFamiliesInput) (req *request.Request, output *ListTaskDefinitionFamiliesOutput) {
+	op := &request.Operation{
 		Name:       opListTaskDefinitionFamilies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -537,12 +537,12 @@ func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesI
 const opListTaskDefinitions = "ListTaskDefinitions"
 
 // ListTaskDefinitionsRequest generates a request for the ListTaskDefinitions operation.
-func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *aws.Request, output *ListTaskDefinitionsOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListTaskDefinitionsRequest(input *ListTaskDefinitionsInput) (req *request.Request, output *ListTaskDefinitionsOutput) {
+	op := &request.Operation{
 		Name:       opListTaskDefinitions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -579,12 +579,12 @@ func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(
 const opListTasks = "ListTasks"
 
 // ListTasksRequest generates a request for the ListTasks operation.
-func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *aws.Request, output *ListTasksOutput) {
-	op := &aws.Operation{
+func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, output *ListTasksOutput) {
+	op := &request.Operation{
 		Name:       opListTasks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"nextToken"},
 			OutputTokens:    []string{"nextToken"},
 			LimitToken:      "maxResults",
@@ -621,8 +621,8 @@ func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, 
 const opRegisterContainerInstance = "RegisterContainerInstance"
 
 // RegisterContainerInstanceRequest generates a request for the RegisterContainerInstance operation.
-func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *aws.Request, output *RegisterContainerInstanceOutput) {
-	op := &aws.Operation{
+func (c *ECS) RegisterContainerInstanceRequest(input *RegisterContainerInstanceInput) (req *request.Request, output *RegisterContainerInstanceOutput) {
+	op := &request.Operation{
 		Name:       opRegisterContainerInstance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -652,8 +652,8 @@ func (c *ECS) RegisterContainerInstance(input *RegisterContainerInstanceInput) (
 const opRegisterTaskDefinition = "RegisterTaskDefinition"
 
 // RegisterTaskDefinitionRequest generates a request for the RegisterTaskDefinition operation.
-func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *aws.Request, output *RegisterTaskDefinitionOutput) {
-	op := &aws.Operation{
+func (c *ECS) RegisterTaskDefinitionRequest(input *RegisterTaskDefinitionInput) (req *request.Request, output *RegisterTaskDefinitionOutput) {
+	op := &request.Operation{
 		Name:       opRegisterTaskDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -683,8 +683,8 @@ func (c *ECS) RegisterTaskDefinition(input *RegisterTaskDefinitionInput) (*Regis
 const opRunTask = "RunTask"
 
 // RunTaskRequest generates a request for the RunTask operation.
-func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *aws.Request, output *RunTaskOutput) {
-	op := &aws.Operation{
+func (c *ECS) RunTaskRequest(input *RunTaskInput) (req *request.Request, output *RunTaskOutput) {
+	op := &request.Operation{
 		Name:       opRunTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -714,8 +714,8 @@ func (c *ECS) RunTask(input *RunTaskInput) (*RunTaskOutput, error) {
 const opStartTask = "StartTask"
 
 // StartTaskRequest generates a request for the StartTask operation.
-func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *aws.Request, output *StartTaskOutput) {
-	op := &aws.Operation{
+func (c *ECS) StartTaskRequest(input *StartTaskInput) (req *request.Request, output *StartTaskOutput) {
+	op := &request.Operation{
 		Name:       opStartTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -745,8 +745,8 @@ func (c *ECS) StartTask(input *StartTaskInput) (*StartTaskOutput, error) {
 const opStopTask = "StopTask"
 
 // StopTaskRequest generates a request for the StopTask operation.
-func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *aws.Request, output *StopTaskOutput) {
-	op := &aws.Operation{
+func (c *ECS) StopTaskRequest(input *StopTaskInput) (req *request.Request, output *StopTaskOutput) {
+	op := &request.Operation{
 		Name:       opStopTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -772,8 +772,8 @@ func (c *ECS) StopTask(input *StopTaskInput) (*StopTaskOutput, error) {
 const opSubmitContainerStateChange = "SubmitContainerStateChange"
 
 // SubmitContainerStateChangeRequest generates a request for the SubmitContainerStateChange operation.
-func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *aws.Request, output *SubmitContainerStateChangeOutput) {
-	op := &aws.Operation{
+func (c *ECS) SubmitContainerStateChangeRequest(input *SubmitContainerStateChangeInput) (req *request.Request, output *SubmitContainerStateChangeOutput) {
+	op := &request.Operation{
 		Name:       opSubmitContainerStateChange,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -802,8 +802,8 @@ func (c *ECS) SubmitContainerStateChange(input *SubmitContainerStateChangeInput)
 const opSubmitTaskStateChange = "SubmitTaskStateChange"
 
 // SubmitTaskStateChangeRequest generates a request for the SubmitTaskStateChange operation.
-func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *aws.Request, output *SubmitTaskStateChangeOutput) {
-	op := &aws.Operation{
+func (c *ECS) SubmitTaskStateChangeRequest(input *SubmitTaskStateChangeInput) (req *request.Request, output *SubmitTaskStateChangeOutput) {
+	op := &request.Operation{
 		Name:       opSubmitTaskStateChange,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -832,8 +832,8 @@ func (c *ECS) SubmitTaskStateChange(input *SubmitTaskStateChangeInput) (*SubmitT
 const opUpdateContainerAgent = "UpdateContainerAgent"
 
 // UpdateContainerAgentRequest generates a request for the UpdateContainerAgent operation.
-func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *aws.Request, output *UpdateContainerAgentOutput) {
-	op := &aws.Operation{
+func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req *request.Request, output *UpdateContainerAgentOutput) {
+	op := &request.Operation{
 		Name:       opUpdateContainerAgent,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -869,8 +869,8 @@ func (c *ECS) UpdateContainerAgent(input *UpdateContainerAgentInput) (*UpdateCon
 const opUpdateService = "UpdateService"
 
 // UpdateServiceRequest generates a request for the UpdateService operation.
-func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *aws.Request, output *UpdateServiceOutput) {
-	op := &aws.Operation{
+func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Request, output *UpdateServiceOutput) {
+	op := &request.Operation{
 		Name:       opUpdateService,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -920,7 +920,7 @@ type Cluster struct {
 	// the arn:aws:ecs namespace, followed by the region of the cluster, the AWS
 	// account ID of the cluster owner, the cluster namespace, and then the cluster
 	// name. For example, arn:aws:ecs:region:012345678910:cluster/test.
-	ClusterARN *string `locationName:"clusterArn" type:"string"`
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// A user-generated string that you can use to identify your cluster.
 	ClusterName *string `locationName:"clusterName" type:"string"`
@@ -948,7 +948,7 @@ type metadataCluster struct {
 
 // String returns the string representation
 func (s Cluster) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -959,7 +959,7 @@ func (s Cluster) GoString() string {
 // A docker container that is part of a task.
 type Container struct {
 	// The Amazon Resource Name (ARN) of the container.
-	ContainerARN *string `locationName:"containerArn" type:"string"`
+	ContainerArn *string `locationName:"containerArn" type:"string"`
 
 	// The exit code returned from the container.
 	ExitCode *int64 `locationName:"exitCode" type:"integer"`
@@ -978,7 +978,7 @@ type Container struct {
 	Reason *string `locationName:"reason" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
-	TaskARN *string `locationName:"taskArn" type:"string"`
+	TaskArn *string `locationName:"taskArn" type:"string"`
 
 	metadataContainer `json:"-" xml:"-"`
 }
@@ -989,7 +989,7 @@ type metadataContainer struct {
 
 // String returns the string representation
 func (s Container) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1000,6 +1000,10 @@ func (s Container) GoString() string {
 // Container definitions are used in task definitions to describe the different
 // containers that are launched as part of a task.
 type ContainerDefinition struct {
+	// The CMD that is passed to the container. For more information on the Docker
+	// CMD parameter, see https://docs.docker.com/reference/builder/#cmd (https://docs.docker.com/reference/builder/#cmd).
+	Command []*string `locationName:"command" type:"list"`
+
 	// The number of cpu units reserved for the container. A container instance
 	// has 1,024 cpu units for every CPU core. This parameter specifies the minimum
 	// amount of CPU to reserve for a container, and containers share unallocated
@@ -1029,11 +1033,7 @@ type ContainerDefinition struct {
 	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
 	// 2 CPU shares.  Agent versions greater than or equal to 1.2.0: Null, zero,
 	// and CPU values of 1 are passed to Docker as 2.
-	CPU *int64 `locationName:"cpu" type:"integer"`
-
-	// The CMD that is passed to the container. For more information on the Docker
-	// CMD parameter, see https://docs.docker.com/reference/builder/#cmd (https://docs.docker.com/reference/builder/#cmd).
-	Command []*string `locationName:"command" type:"list"`
+	Cpu *int64 `locationName:"cpu" type:"integer"`
 
 	// Early versions of the Amazon ECS container agent do not properly handle entryPoint
 	// parameters. If you have problems using entryPoint, update your container
@@ -1099,7 +1099,7 @@ type metadataContainerDefinition struct {
 
 // String returns the string representation
 func (s ContainerDefinition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1118,16 +1118,16 @@ type ContainerInstance struct {
 
 	// The status of the most recent agent update. If an update has never been requested,
 	// this value is NULL.
-	AgentUpdateStatus *string `locationName:"agentUpdateStatus" type:"string"`
+	AgentUpdateStatus *string `locationName:"agentUpdateStatus" type:"string" enum:"AgentUpdateStatus"`
 
 	// The Amazon Resource Name (ARN) of the container instance. The ARN contains
 	// the arn:aws:ecs namespace, followed by the region of the container instance,
 	// the AWS account ID of the container instance owner, the container-instance
 	// namespace, and then the container instance UUID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_UUID.
-	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The Amazon EC2 instance ID of the container instance.
-	EC2InstanceID *string `locationName:"ec2InstanceId" type:"string"`
+	Ec2InstanceId *string `locationName:"ec2InstanceId" type:"string"`
 
 	// The number of tasks on the container instance that are in the PENDING status.
 	PendingTasksCount *int64 `locationName:"pendingTasksCount" type:"integer"`
@@ -1160,7 +1160,7 @@ type metadataContainerInstance struct {
 
 // String returns the string representation
 func (s ContainerInstance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1191,7 +1191,7 @@ type metadataContainerOverride struct {
 
 // String returns the string representation
 func (s ContainerOverride) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1214,7 +1214,7 @@ type metadataCreateClusterInput struct {
 
 // String returns the string representation
 func (s CreateClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1235,7 +1235,7 @@ type metadataCreateClusterOutput struct {
 
 // String returns the string representation
 func (s CreateClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1288,7 +1288,7 @@ type metadataCreateServiceInput struct {
 
 // String returns the string representation
 func (s CreateServiceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1309,7 +1309,7 @@ type metadataCreateServiceOutput struct {
 
 // String returns the string representation
 func (s CreateServiceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1331,7 +1331,7 @@ type metadataDeleteClusterInput struct {
 
 // String returns the string representation
 func (s DeleteClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1352,7 +1352,7 @@ type metadataDeleteClusterOutput struct {
 
 // String returns the string representation
 func (s DeleteClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1376,7 +1376,7 @@ type metadataDeleteServiceInput struct {
 
 // String returns the string representation
 func (s DeleteServiceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1397,7 +1397,7 @@ type metadataDeleteServiceOutput struct {
 
 // String returns the string representation
 func (s DeleteServiceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1415,7 +1415,7 @@ type Deployment struct {
 	DesiredCount *int64 `locationName:"desiredCount" type:"integer"`
 
 	// The ID of the deployment.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The number of tasks in the deployment that are in the PENDING status.
 	PendingCount *int64 `locationName:"pendingCount" type:"integer"`
@@ -1444,7 +1444,7 @@ type metadataDeployment struct {
 
 // String returns the string representation
 func (s Deployment) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1484,7 +1484,7 @@ type metadataDeregisterContainerInstanceInput struct {
 
 // String returns the string representation
 func (s DeregisterContainerInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1506,7 +1506,7 @@ type metadataDeregisterContainerInstanceOutput struct {
 
 // String returns the string representation
 func (s DeregisterContainerInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1528,7 +1528,7 @@ type metadataDeregisterTaskDefinitionInput struct {
 
 // String returns the string representation
 func (s DeregisterTaskDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1549,7 +1549,7 @@ type metadataDeregisterTaskDefinitionOutput struct {
 
 // String returns the string representation
 func (s DeregisterTaskDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1571,7 +1571,7 @@ type metadataDescribeClustersInput struct {
 
 // String returns the string representation
 func (s DescribeClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1594,7 +1594,7 @@ type metadataDescribeClustersOutput struct {
 
 // String returns the string representation
 func (s DescribeClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1621,7 +1621,7 @@ type metadataDescribeContainerInstancesInput struct {
 
 // String returns the string representation
 func (s DescribeContainerInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1644,7 +1644,7 @@ type metadataDescribeContainerInstancesOutput struct {
 
 // String returns the string representation
 func (s DescribeContainerInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1668,7 +1668,7 @@ type metadataDescribeServicesInput struct {
 
 // String returns the string representation
 func (s DescribeServicesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1692,7 +1692,7 @@ type metadataDescribeServicesOutput struct {
 
 // String returns the string representation
 func (s DescribeServicesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1715,7 +1715,7 @@ type metadataDescribeTaskDefinitionInput struct {
 
 // String returns the string representation
 func (s DescribeTaskDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1736,7 +1736,7 @@ type metadataDescribeTaskDefinitionOutput struct {
 
 // String returns the string representation
 func (s DescribeTaskDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1762,7 +1762,7 @@ type metadataDescribeTasksInput struct {
 
 // String returns the string representation
 func (s DescribeTasksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1785,7 +1785,7 @@ type metadataDescribeTasksOutput struct {
 
 // String returns the string representation
 func (s DescribeTasksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1813,7 +1813,7 @@ type metadataDiscoverPollEndpointInput struct {
 
 // String returns the string representation
 func (s DiscoverPollEndpointInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1837,7 +1837,7 @@ type metadataDiscoverPollEndpointOutput struct {
 
 // String returns the string representation
 func (s DiscoverPollEndpointOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1848,7 +1848,7 @@ func (s DiscoverPollEndpointOutput) GoString() string {
 // A failed resource.
 type Failure struct {
 	// The Amazon Resource Name (ARN) of the failed resource.
-	ARN *string `locationName:"arn" type:"string"`
+	Arn *string `locationName:"arn" type:"string"`
 
 	// The reason for the failure.
 	Reason *string `locationName:"reason" type:"string"`
@@ -1862,7 +1862,7 @@ type metadataFailure struct {
 
 // String returns the string representation
 func (s Failure) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1886,7 +1886,7 @@ type metadataHostVolumeProperties struct {
 
 // String returns the string representation
 func (s HostVolumeProperties) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1913,7 +1913,7 @@ type metadataKeyValuePair struct {
 
 // String returns the string representation
 func (s KeyValuePair) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1946,7 +1946,7 @@ type metadataListClustersInput struct {
 
 // String returns the string representation
 func (s ListClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1957,7 +1957,7 @@ func (s ListClustersInput) GoString() string {
 type ListClustersOutput struct {
 	// The list of full Amazon Resource Name (ARN) entries for each cluster associated
 	// with your account.
-	ClusterARNs []*string `locationName:"clusterArns" type:"list"`
+	ClusterArns []*string `locationName:"clusterArns" type:"list"`
 
 	// The nextToken value to include in a future ListClusters request. When the
 	// results of a ListClusters request exceed maxResults, this value can be used
@@ -1974,7 +1974,7 @@ type metadataListClustersOutput struct {
 
 // String returns the string representation
 func (s ListClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2014,7 +2014,7 @@ type metadataListContainerInstancesInput struct {
 
 // String returns the string representation
 func (s ListContainerInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2025,7 +2025,7 @@ func (s ListContainerInstancesInput) GoString() string {
 type ListContainerInstancesOutput struct {
 	// The list of container instance full Amazon Resource Name (ARN) entries for
 	// each container instance associated with the specified cluster.
-	ContainerInstanceARNs []*string `locationName:"containerInstanceArns" type:"list"`
+	ContainerInstanceArns []*string `locationName:"containerInstanceArns" type:"list"`
 
 	// The nextToken value to include in a future ListContainerInstances request.
 	// When the results of a ListContainerInstances request exceed maxResults, this
@@ -2042,7 +2042,7 @@ type metadataListContainerInstancesOutput struct {
 
 // String returns the string representation
 func (s ListContainerInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2080,7 +2080,7 @@ type metadataListServicesInput struct {
 
 // String returns the string representation
 func (s ListServicesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2097,7 +2097,7 @@ type ListServicesOutput struct {
 
 	// The list of full Amazon Resource Name (ARN) entries for each service associated
 	// with the specified cluster.
-	ServiceARNs []*string `locationName:"serviceArns" type:"list"`
+	ServiceArns []*string `locationName:"serviceArns" type:"list"`
 
 	metadataListServicesOutput `json:"-" xml:"-"`
 }
@@ -2108,7 +2108,7 @@ type metadataListServicesOutput struct {
 
 // String returns the string representation
 func (s ListServicesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2148,7 +2148,7 @@ type metadataListTaskDefinitionFamiliesInput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionFamiliesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2176,7 +2176,7 @@ type metadataListTaskDefinitionFamiliesOutput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionFamiliesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2212,7 +2212,7 @@ type ListTaskDefinitionsInput struct {
 	// in a family are listed last. Setting this parameter to DESC reverses the
 	// sort order on family name and revision so that the newest task definitions
 	// in a family are listed first.
-	Sort *string `locationName:"sort" type:"string"`
+	Sort *string `locationName:"sort" type:"string" enum:"SortOrder"`
 
 	// The task definition status that you want to filter the ListTaskDefinitions
 	// results with. By default, only ACTIVE task definitions are listed. By setting
@@ -2220,7 +2220,7 @@ type ListTaskDefinitionsInput struct {
 	// as long as an active task or service still references them. If you paginate
 	// the resulting output, be sure to keep the status value constant in each subsequent
 	// request.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
 	metadataListTaskDefinitionsInput `json:"-" xml:"-"`
 }
@@ -2231,7 +2231,7 @@ type metadataListTaskDefinitionsInput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2248,7 +2248,7 @@ type ListTaskDefinitionsOutput struct {
 
 	// The list of task definition Amazon Resource Name (ARN) entries for the ListTaskDefintions
 	// request.
-	TaskDefinitionARNs []*string `locationName:"taskDefinitionArns" type:"list"`
+	TaskDefinitionArns []*string `locationName:"taskDefinitionArns" type:"list"`
 
 	metadataListTaskDefinitionsOutput `json:"-" xml:"-"`
 }
@@ -2259,7 +2259,7 @@ type metadataListTaskDefinitionsOutput struct {
 
 // String returns the string representation
 func (s ListTaskDefinitionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2283,7 +2283,7 @@ type ListTasksInput struct {
 	// a desiredStatus of STOPPED will limit the results to tasks that are in the
 	// STOPPED status, which can be useful for debugging tasks that are not starting
 	// properly or have died or finished. The default status filter is RUNNING.
-	DesiredStatus *string `locationName:"desiredStatus" type:"string"`
+	DesiredStatus *string `locationName:"desiredStatus" type:"string" enum:"DesiredStatus"`
 
 	// The name of the family that you want to filter the ListTasks results with.
 	// Specifying a family will limit the results to tasks that belong to that family.
@@ -2323,7 +2323,7 @@ type metadataListTasksInput struct {
 
 // String returns the string representation
 func (s ListTasksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2339,7 +2339,7 @@ type ListTasksOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The list of task Amazon Resource Name (ARN) entries for the ListTasks request.
-	TaskARNs []*string `locationName:"taskArns" type:"list"`
+	TaskArns []*string `locationName:"taskArns" type:"list"`
 
 	metadataListTasksOutput `json:"-" xml:"-"`
 }
@@ -2350,7 +2350,7 @@ type metadataListTasksOutput struct {
 
 // String returns the string representation
 func (s ListTasksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2381,7 +2381,7 @@ type metadataLoadBalancer struct {
 
 // String returns the string representation
 func (s LoadBalancer) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2411,7 +2411,7 @@ type metadataMountPoint struct {
 
 // String returns the string representation
 func (s MountPoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2432,7 +2432,7 @@ type NetworkBinding struct {
 	HostPort *int64 `locationName:"hostPort" type:"integer"`
 
 	// The protocol used for the network binding.
-	Protocol *string `locationName:"protocol" type:"string"`
+	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 
 	metadataNetworkBinding `json:"-" xml:"-"`
 }
@@ -2443,7 +2443,7 @@ type metadataNetworkBinding struct {
 
 // String returns the string representation
 func (s NetworkBinding) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2486,7 +2486,7 @@ type PortMapping struct {
 
 	// The protocol used for the port mapping. Valid values are tcp and udp. The
 	// default is tcp.
-	Protocol *string `locationName:"protocol" type:"string"`
+	Protocol *string `locationName:"protocol" type:"string" enum:"TransportProtocol"`
 
 	metadataPortMapping `json:"-" xml:"-"`
 }
@@ -2497,7 +2497,7 @@ type metadataPortMapping struct {
 
 // String returns the string representation
 func (s PortMapping) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2513,7 +2513,7 @@ type RegisterContainerInstanceInput struct {
 
 	// The Amazon Resource Name (ARN) of the container instance (if it was previously
 	// registered).
-	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The instance identity document for the Amazon EC2 instance to register. This
 	// document can be found by running the following command from the instance:
@@ -2541,7 +2541,7 @@ type metadataRegisterContainerInstanceInput struct {
 
 // String returns the string representation
 func (s RegisterContainerInstanceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2563,7 +2563,7 @@ type metadataRegisterContainerInstanceOutput struct {
 
 // String returns the string representation
 func (s RegisterContainerInstanceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2595,7 +2595,7 @@ type metadataRegisterTaskDefinitionInput struct {
 
 // String returns the string representation
 func (s RegisterTaskDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2616,7 +2616,7 @@ type metadataRegisterTaskDefinitionOutput struct {
 
 // String returns the string representation
 func (s RegisterTaskDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2656,7 +2656,7 @@ type metadataResource struct {
 
 // String returns the string representation
 func (s Resource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2712,7 +2712,7 @@ type metadataRunTaskInput struct {
 
 // String returns the string representation
 func (s RunTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2737,7 +2737,7 @@ type metadataRunTaskOutput struct {
 
 // String returns the string representation
 func (s RunTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2748,7 +2748,7 @@ func (s RunTaskOutput) GoString() string {
 // Details on a service within a cluster
 type Service struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the service.
-	ClusterARN *string `locationName:"clusterArn" type:"string"`
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// The current state of deployments for the service.
 	Deployments []*Deployment `locationName:"deployments" type:"list"`
@@ -2773,7 +2773,7 @@ type Service struct {
 	// The Amazon Resource Name (ARN) of the IAM role associated with the service
 	// that allows the Amazon ECS container agent to register container instances
 	// with a load balancer.
-	RoleARN *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The number of tasks in the cluster that are in the RUNNING state.
 	RunningCount *int64 `locationName:"runningCount" type:"integer"`
@@ -2782,7 +2782,7 @@ type Service struct {
 	// the arn:aws:ecs namespace, followed by the region of the service, the AWS
 	// account ID of the service owner, the service namespace, and then the service
 	// name. For example, arn:aws:ecs:region:012345678910:service/my-service.
-	ServiceARN *string `locationName:"serviceArn" type:"string"`
+	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
 	// A user-generated string that you can use to identify your service.
 	ServiceName *string `locationName:"serviceName" type:"string"`
@@ -2804,7 +2804,7 @@ type metadataService struct {
 
 // String returns the string representation
 func (s Service) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2818,7 +2818,7 @@ type ServiceEvent struct {
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
 
 	// The ID string of the event.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" type:"string"`
 
 	// The event message.
 	Message *string `locationName:"message" type:"string"`
@@ -2832,7 +2832,7 @@ type metadataServiceEvent struct {
 
 // String returns the string representation
 func (s ServiceEvent) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2888,7 +2888,7 @@ type metadataStartTaskInput struct {
 
 // String returns the string representation
 func (s StartTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2913,7 +2913,7 @@ type metadataStartTaskOutput struct {
 
 // String returns the string representation
 func (s StartTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2940,7 +2940,7 @@ type metadataStopTaskInput struct {
 
 // String returns the string representation
 func (s StopTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2961,7 +2961,7 @@ type metadataStopTaskOutput struct {
 
 // String returns the string representation
 func (s StopTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3002,7 +3002,7 @@ type metadataSubmitContainerStateChangeInput struct {
 
 // String returns the string representation
 func (s SubmitContainerStateChangeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3023,7 +3023,7 @@ type metadataSubmitContainerStateChangeOutput struct {
 
 // String returns the string representation
 func (s SubmitContainerStateChangeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3055,7 +3055,7 @@ type metadataSubmitTaskStateChangeInput struct {
 
 // String returns the string representation
 func (s SubmitTaskStateChangeInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3076,7 +3076,7 @@ type metadataSubmitTaskStateChangeOutput struct {
 
 // String returns the string representation
 func (s SubmitTaskStateChangeOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3087,10 +3087,10 @@ func (s SubmitTaskStateChangeOutput) GoString() string {
 // Details on a task in a cluster.
 type Task struct {
 	// The Amazon Resource Name (ARN) of the of the cluster that hosts the task.
-	ClusterARN *string `locationName:"clusterArn" type:"string"`
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the container instances that host the task.
-	ContainerInstanceARN *string `locationName:"containerInstanceArn" type:"string"`
+	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The containers associated with the task.
 	Containers []*Container `locationName:"containers" type:"list"`
@@ -3110,11 +3110,11 @@ type Task struct {
 	StartedBy *string `locationName:"startedBy" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
-	TaskARN *string `locationName:"taskArn" type:"string"`
+	TaskArn *string `locationName:"taskArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the of the task definition that creates
 	// the task.
-	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
+	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 
 	metadataTask `json:"-" xml:"-"`
 }
@@ -3125,7 +3125,7 @@ type metadataTask struct {
 
 // String returns the string representation
 func (s Task) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3154,10 +3154,10 @@ type TaskDefinition struct {
 	Revision *int64 `locationName:"revision" type:"integer"`
 
 	// The status of the task definition.
-	Status *string `locationName:"status" type:"string"`
+	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
 	// The full Amazon Resource Name (ARN) of the of the task definition.
-	TaskDefinitionARN *string `locationName:"taskDefinitionArn" type:"string"`
+	TaskDefinitionArn *string `locationName:"taskDefinitionArn" type:"string"`
 
 	// The list of volumes in a task. For more information on volume definition
 	// parameters and defaults, see Amazon ECS Task Definitions (http://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
@@ -3173,7 +3173,7 @@ type metadataTaskDefinition struct {
 
 // String returns the string representation
 func (s TaskDefinition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3195,7 +3195,7 @@ type metadataTaskOverride struct {
 
 // String returns the string representation
 func (s TaskOverride) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3223,7 +3223,7 @@ type metadataUpdateContainerAgentInput struct {
 
 // String returns the string representation
 func (s UpdateContainerAgentInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3245,7 +3245,7 @@ type metadataUpdateContainerAgentOutput struct {
 
 // String returns the string representation
 func (s UpdateContainerAgentOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3283,7 +3283,7 @@ type metadataUpdateServiceInput struct {
 
 // String returns the string representation
 func (s UpdateServiceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3304,7 +3304,7 @@ type metadataUpdateServiceOutput struct {
 
 // String returns the string representation
 func (s UpdateServiceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3334,7 +3334,7 @@ type metadataVersionInfo struct {
 
 // String returns the string representation
 func (s VersionInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3362,7 +3362,7 @@ type metadataVolume struct {
 
 // String returns the string representation
 func (s Volume) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3389,10 +3389,55 @@ type metadataVolumeFrom struct {
 
 // String returns the string representation
 func (s VolumeFrom) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s VolumeFrom) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusPending = "PENDING"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusStaging = "STAGING"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusStaged = "STAGED"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusUpdating = "UPDATING"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusUpdated = "UPDATED"
+	// @enum AgentUpdateStatus
+	AgentUpdateStatusFailed = "FAILED"
+)
+
+const (
+	// @enum DesiredStatus
+	DesiredStatusRunning = "RUNNING"
+	// @enum DesiredStatus
+	DesiredStatusPending = "PENDING"
+	// @enum DesiredStatus
+	DesiredStatusStopped = "STOPPED"
+)
+
+const (
+	// @enum SortOrder
+	SortOrderAsc = "ASC"
+	// @enum SortOrder
+	SortOrderDesc = "DESC"
+)
+
+const (
+	// @enum TaskDefinitionStatus
+	TaskDefinitionStatusActive = "ACTIVE"
+	// @enum TaskDefinitionStatus
+	TaskDefinitionStatusInactive = "INACTIVE"
+)
+
+const (
+	// @enum TransportProtocol
+	TransportProtocolTcp = "tcp"
+	// @enum TransportProtocol
+	TransportProtocolUdp = "udp"
+)

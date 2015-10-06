@@ -297,6 +297,24 @@
         }
       ]
     },
+    "DeregisterEcsCluster":{
+      "name":"DeregisterEcsCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterEcsClusterRequest"},
+      "errors":[
+        {
+          "shape":"ValidationException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        }
+      ]
+    },
     "DeregisterElasticIp":{
       "name":"DeregisterElasticIp",
       "http":{
@@ -434,6 +452,25 @@
       },
       "input":{"shape":"DescribeDeploymentsRequest"},
       "output":{"shape":"DescribeDeploymentsResult"},
+      "errors":[
+        {
+          "shape":"ValidationException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        }
+      ]
+    },
+    "DescribeEcsClusters":{
+      "name":"DescribeEcsClusters",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEcsClustersRequest"},
+      "output":{"shape":"DescribeEcsClustersResult"},
       "errors":[
         {
           "shape":"ValidationException",
@@ -815,6 +852,25 @@
         "requestUri":"/"
       },
       "input":{"shape":"RebootInstanceRequest"},
+      "errors":[
+        {
+          "shape":"ValidationException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        }
+      ]
+    },
+    "RegisterEcsCluster":{
+      "name":"RegisterEcsCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterEcsClusterRequest"},
+      "output":{"shape":"RegisterEcsClusterResult"},
       "errors":[
         {
           "shape":"ValidationException",
@@ -1263,12 +1319,14 @@
       "enum":[
         "DocumentRoot",
         "RailsEnv",
-        "AutoBundleOnDeploy"
+        "AutoBundleOnDeploy",
+        "AwsFlowRubySettings"
       ]
     },
     "AppType":{
       "type":"string",
       "enum":[
+        "aws-flow-ruby",
         "java",
         "rails",
         "php",
@@ -1522,6 +1580,7 @@
         "Shortname":{"shape":"String"},
         "Attributes":{"shape":"LayerAttributes"},
         "CustomInstanceProfileArn":{"shape":"String"},
+        "CustomJson":{"shape":"String"},
         "CustomSecurityGroupIds":{"shape":"Strings"},
         "Packages":{"shape":"Strings"},
         "VolumeConfigurations":{"shape":"VolumeConfigurations"},
@@ -1698,6 +1757,13 @@
       "type":"list",
       "member":{"shape":"Deployment"}
     },
+    "DeregisterEcsClusterRequest":{
+      "type":"structure",
+      "required":["EcsClusterArn"],
+      "members":{
+        "EcsClusterArn":{"shape":"String"}
+      }
+    },
     "DeregisterElasticIpRequest":{
       "type":"structure",
       "required":["ElasticIp"],
@@ -1778,6 +1844,22 @@
       "type":"structure",
       "members":{
         "Deployments":{"shape":"Deployments"}
+      }
+    },
+    "DescribeEcsClustersRequest":{
+      "type":"structure",
+      "members":{
+        "EcsClusterArns":{"shape":"Strings"},
+        "StackId":{"shape":"String"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeEcsClustersResult":{
+      "type":"structure",
+      "members":{
+        "EcsClusters":{"shape":"EcsClusters"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeElasticIpsRequest":{
@@ -2019,6 +2101,19 @@
         "DeleteOnTermination":{"shape":"Boolean"}
       }
     },
+    "EcsCluster":{
+      "type":"structure",
+      "members":{
+        "EcsClusterArn":{"shape":"String"},
+        "EcsClusterName":{"shape":"String"},
+        "StackId":{"shape":"String"},
+        "RegisteredAt":{"shape":"DateTime"}
+      }
+    },
+    "EcsClusters":{
+      "type":"list",
+      "member":{"shape":"EcsCluster"}
+    },
     "ElasticIp":{
       "type":"structure",
       "members":{
@@ -2108,6 +2203,8 @@
         "CreatedAt":{"shape":"DateTime"},
         "EbsOptimized":{"shape":"Boolean"},
         "Ec2InstanceId":{"shape":"String"},
+        "EcsClusterArn":{"shape":"String"},
+        "EcsContainerInstanceArn":{"shape":"String"},
         "ElasticIp":{"shape":"String"},
         "Hostname":{"shape":"String"},
         "InfrastructureClass":{"shape":"String"},
@@ -2187,6 +2284,7 @@
         "Shortname":{"shape":"String"},
         "Attributes":{"shape":"LayerAttributes"},
         "CustomInstanceProfileArn":{"shape":"String"},
+        "CustomJson":{"shape":"String"},
         "CustomSecurityGroupIds":{"shape":"Strings"},
         "DefaultSecurityGroupNames":{"shape":"Strings"},
         "Packages":{"shape":"Strings"},
@@ -2210,6 +2308,7 @@
     "LayerAttributesKeys":{
       "type":"string",
       "enum":[
+        "EcsClusterArn",
         "EnableHaproxyStats",
         "HaproxyStatsUrl",
         "HaproxyStatsUser",
@@ -2239,6 +2338,8 @@
     "LayerType":{
       "type":"string",
       "enum":[
+        "aws-flow-ruby",
+        "ecs-cluster",
         "java-app",
         "lb",
         "web",
@@ -2354,6 +2455,23 @@
         "Deploy":{"shape":"Strings"},
         "Undeploy":{"shape":"Strings"},
         "Shutdown":{"shape":"Strings"}
+      }
+    },
+    "RegisterEcsClusterRequest":{
+      "type":"structure",
+      "required":[
+        "EcsClusterArn",
+        "StackId"
+      ],
+      "members":{
+        "EcsClusterArn":{"shape":"String"},
+        "StackId":{"shape":"String"}
+      }
+    },
+    "RegisterEcsClusterResult":{
+      "type":"structure",
+      "members":{
+        "EcsClusterArn":{"shape":"String"}
       }
     },
     "RegisterElasticIpRequest":{
@@ -2716,6 +2834,7 @@
         "Shortname":{"shape":"String"},
         "Attributes":{"shape":"LayerAttributes"},
         "CustomInstanceProfileArn":{"shape":"String"},
+        "CustomJson":{"shape":"String"},
         "CustomSecurityGroupIds":{"shape":"Strings"},
         "Packages":{"shape":"Strings"},
         "VolumeConfigurations":{"shape":"VolumeConfigurations"},

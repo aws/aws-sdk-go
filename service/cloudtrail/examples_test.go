@@ -8,13 +8,37 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cloudtrail"
 )
 
 var _ time.Duration
 var _ bytes.Buffer
+
+func ExampleCloudTrail_AddTags() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.AddTagsInput{
+		ResourceId: aws.String("String"), // Required
+		TagsList: []*cloudtrail.Tag{
+			{ // Required
+				Key:   aws.String("String"), // Required
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.AddTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
 
 func ExampleCloudTrail_CreateTrail() {
 	svc := cloudtrail.New(nil)
@@ -22,31 +46,25 @@ func ExampleCloudTrail_CreateTrail() {
 	params := &cloudtrail.CreateTrailInput{
 		Name:                       aws.String("String"), // Required
 		S3BucketName:               aws.String("String"), // Required
-		CloudWatchLogsLogGroupARN:  aws.String("String"),
-		CloudWatchLogsRoleARN:      aws.String("String"),
-		IncludeGlobalServiceEvents: aws.Boolean(true),
+		CloudWatchLogsLogGroupArn:  aws.String("String"),
+		CloudWatchLogsRoleArn:      aws.String("String"),
+		EnableLogFileValidation:    aws.Bool(true),
+		IncludeGlobalServiceEvents: aws.Bool(true),
+		KmsKeyId:                   aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
-		SNSTopicName:               aws.String("String"),
+		SnsTopicName:               aws.String("String"),
 	}
 	resp, err := svc.CreateTrail(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_DeleteTrail() {
@@ -58,22 +76,14 @@ func ExampleCloudTrail_DeleteTrail() {
 	resp, err := svc.DeleteTrail(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_DescribeTrails() {
@@ -88,22 +98,14 @@ func ExampleCloudTrail_DescribeTrails() {
 	resp, err := svc.DescribeTrails(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_GetTrailStatus() {
@@ -115,22 +117,58 @@ func ExampleCloudTrail_GetTrailStatus() {
 	resp, err := svc.GetTrailStatus(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleCloudTrail_ListPublicKeys() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.ListPublicKeysInput{
+		EndTime:   aws.Time(time.Now()),
+		NextToken: aws.String("String"),
+		StartTime: aws.Time(time.Now()),
+	}
+	resp, err := svc.ListPublicKeys(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleCloudTrail_ListTags() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.ListTagsInput{
+		ResourceIdList: []*string{ // Required
+			aws.String("String"), // Required
+			// More values...
+		},
+		NextToken: aws.String("String"),
+	}
+	resp, err := svc.ListTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_LookupEvents() {
@@ -145,29 +183,47 @@ func ExampleCloudTrail_LookupEvents() {
 			},
 			// More values...
 		},
-		MaxResults: aws.Long(1),
+		MaxResults: aws.Int64(1),
 		NextToken:  aws.String("NextToken"),
 		StartTime:  aws.Time(time.Now()),
 	}
 	resp, err := svc.LookupEvents(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
+}
+
+func ExampleCloudTrail_RemoveTags() {
+	svc := cloudtrail.New(nil)
+
+	params := &cloudtrail.RemoveTagsInput{
+		ResourceId: aws.String("String"), // Required
+		TagsList: []*cloudtrail.Tag{
+			{ // Required
+				Key:   aws.String("String"), // Required
+				Value: aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.RemoveTags(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_StartLogging() {
@@ -179,22 +235,14 @@ func ExampleCloudTrail_StartLogging() {
 	resp, err := svc.StartLogging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_StopLogging() {
@@ -206,22 +254,14 @@ func ExampleCloudTrail_StopLogging() {
 	resp, err := svc.StopLogging(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCloudTrail_UpdateTrail() {
@@ -229,30 +269,24 @@ func ExampleCloudTrail_UpdateTrail() {
 
 	params := &cloudtrail.UpdateTrailInput{
 		Name: aws.String("String"), // Required
-		CloudWatchLogsLogGroupARN:  aws.String("String"),
-		CloudWatchLogsRoleARN:      aws.String("String"),
-		IncludeGlobalServiceEvents: aws.Boolean(true),
+		CloudWatchLogsLogGroupArn:  aws.String("String"),
+		CloudWatchLogsRoleArn:      aws.String("String"),
+		EnableLogFileValidation:    aws.Bool(true),
+		IncludeGlobalServiceEvents: aws.Bool(true),
+		KmsKeyId:                   aws.String("String"),
 		S3BucketName:               aws.String("String"),
 		S3KeyPrefix:                aws.String("String"),
-		SNSTopicName:               aws.String("String"),
+		SnsTopicName:               aws.String("String"),
 	}
 	resp, err := svc.UpdateTrail(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

@@ -6,15 +6,15 @@ package datapipeline
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opActivatePipeline = "ActivatePipeline"
 
 // ActivatePipelineRequest generates a request for the ActivatePipeline operation.
-func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (req *aws.Request, output *ActivatePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ActivatePipelineRequest(input *ActivatePipelineInput) (req *request.Request, output *ActivatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opActivatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -47,8 +47,8 @@ func (c *DataPipeline) ActivatePipeline(input *ActivatePipelineInput) (*Activate
 const opAddTags = "AddTags"
 
 // AddTagsRequest generates a request for the AddTags operation.
-func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *aws.Request, output *AddTagsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
+	op := &request.Operation{
 		Name:       opAddTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -74,8 +74,8 @@ func (c *DataPipeline) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 const opCreatePipeline = "CreatePipeline"
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
-func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opCreatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -102,8 +102,8 @@ func (c *DataPipeline) CreatePipeline(input *CreatePipelineInput) (*CreatePipeli
 const opDeactivatePipeline = "DeactivatePipeline"
 
 // DeactivatePipelineRequest generates a request for the DeactivatePipeline operation.
-func (c *DataPipeline) DeactivatePipelineRequest(input *DeactivatePipelineInput) (req *aws.Request, output *DeactivatePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DeactivatePipelineRequest(input *DeactivatePipelineInput) (req *request.Request, output *DeactivatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opDeactivatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -134,8 +134,8 @@ func (c *DataPipeline) DeactivatePipeline(input *DeactivatePipelineInput) (*Deac
 const opDeletePipeline = "DeletePipeline"
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
-func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
+	op := &request.Operation{
 		Name:       opDeletePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -168,12 +168,12 @@ func (c *DataPipeline) DeletePipeline(input *DeletePipelineInput) (*DeletePipeli
 const opDescribeObjects = "DescribeObjects"
 
 // DescribeObjectsRequest generates a request for the DescribeObjects operation.
-func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req *aws.Request, output *DescribeObjectsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DescribeObjectsRequest(input *DescribeObjectsInput) (req *request.Request, output *DescribeObjectsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeObjects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"marker"},
 			LimitToken:      "",
@@ -210,8 +210,8 @@ func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func
 const opDescribePipelines = "DescribePipelines"
 
 // DescribePipelinesRequest generates a request for the DescribePipelines operation.
-func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (req *aws.Request, output *DescribePipelinesOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) DescribePipelinesRequest(input *DescribePipelinesInput) (req *request.Request, output *DescribePipelinesOutput) {
+	op := &request.Operation{
 		Name:       opDescribePipelines,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -245,8 +245,8 @@ func (c *DataPipeline) DescribePipelines(input *DescribePipelinesInput) (*Descri
 const opEvaluateExpression = "EvaluateExpression"
 
 // EvaluateExpressionRequest generates a request for the EvaluateExpression operation.
-func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput) (req *aws.Request, output *EvaluateExpressionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) EvaluateExpressionRequest(input *EvaluateExpressionInput) (req *request.Request, output *EvaluateExpressionOutput) {
+	op := &request.Operation{
 		Name:       opEvaluateExpression,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -274,8 +274,8 @@ func (c *DataPipeline) EvaluateExpression(input *EvaluateExpressionInput) (*Eval
 const opGetPipelineDefinition = "GetPipelineDefinition"
 
 // GetPipelineDefinitionRequest generates a request for the GetPipelineDefinition operation.
-func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinitionInput) (req *aws.Request, output *GetPipelineDefinitionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) GetPipelineDefinitionRequest(input *GetPipelineDefinitionInput) (req *request.Request, output *GetPipelineDefinitionOutput) {
+	op := &request.Operation{
 		Name:       opGetPipelineDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -302,12 +302,12 @@ func (c *DataPipeline) GetPipelineDefinition(input *GetPipelineDefinitionInput) 
 const opListPipelines = "ListPipelines"
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
-func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
+	op := &request.Operation{
 		Name:       opListPipelines,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"marker"},
 			LimitToken:      "",
@@ -343,8 +343,8 @@ func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(p *
 const opPollForTask = "PollForTask"
 
 // PollForTaskRequest generates a request for the PollForTask operation.
-func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *aws.Request, output *PollForTaskOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) PollForTaskRequest(input *PollForTaskInput) (req *request.Request, output *PollForTaskOutput) {
+	op := &request.Operation{
 		Name:       opPollForTask,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -383,8 +383,8 @@ func (c *DataPipeline) PollForTask(input *PollForTaskInput) (*PollForTaskOutput,
 const opPutPipelineDefinition = "PutPipelineDefinition"
 
 // PutPipelineDefinitionRequest generates a request for the PutPipelineDefinition operation.
-func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinitionInput) (req *aws.Request, output *PutPipelineDefinitionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) PutPipelineDefinitionRequest(input *PutPipelineDefinitionInput) (req *request.Request, output *PutPipelineDefinitionOutput) {
+	op := &request.Operation{
 		Name:       opPutPipelineDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -421,12 +421,12 @@ func (c *DataPipeline) PutPipelineDefinition(input *PutPipelineDefinitionInput) 
 const opQueryObjects = "QueryObjects"
 
 // QueryObjectsRequest generates a request for the QueryObjects operation.
-func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *aws.Request, output *QueryObjectsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) QueryObjectsRequest(input *QueryObjectsInput) (req *request.Request, output *QueryObjectsOutput) {
+	op := &request.Operation{
 		Name:       opQueryObjects,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"marker"},
 			OutputTokens:    []string{"marker"},
 			LimitToken:      "limit",
@@ -462,8 +462,8 @@ func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(p *Qu
 const opRemoveTags = "RemoveTags"
 
 // RemoveTagsRequest generates a request for the RemoveTags operation.
-func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *aws.Request, output *RemoveTagsOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
+	op := &request.Operation{
 		Name:       opRemoveTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -489,8 +489,8 @@ func (c *DataPipeline) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, er
 const opReportTaskProgress = "ReportTaskProgress"
 
 // ReportTaskProgressRequest generates a request for the ReportTaskProgress operation.
-func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput) (req *aws.Request, output *ReportTaskProgressOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ReportTaskProgressRequest(input *ReportTaskProgressInput) (req *request.Request, output *ReportTaskProgressOutput) {
+	op := &request.Operation{
 		Name:       opReportTaskProgress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -527,8 +527,8 @@ func (c *DataPipeline) ReportTaskProgress(input *ReportTaskProgressInput) (*Repo
 const opReportTaskRunnerHeartbeat = "ReportTaskRunnerHeartbeat"
 
 // ReportTaskRunnerHeartbeatRequest generates a request for the ReportTaskRunnerHeartbeat operation.
-func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerHeartbeatInput) (req *aws.Request, output *ReportTaskRunnerHeartbeatOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ReportTaskRunnerHeartbeatRequest(input *ReportTaskRunnerHeartbeatInput) (req *request.Request, output *ReportTaskRunnerHeartbeatOutput) {
+	op := &request.Operation{
 		Name:       opReportTaskRunnerHeartbeat,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -558,8 +558,8 @@ func (c *DataPipeline) ReportTaskRunnerHeartbeat(input *ReportTaskRunnerHeartbea
 const opSetStatus = "SetStatus"
 
 // SetStatusRequest generates a request for the SetStatus operation.
-func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *aws.Request, output *SetStatusOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) SetStatusRequest(input *SetStatusInput) (req *request.Request, output *SetStatusOutput) {
+	op := &request.Operation{
 		Name:       opSetStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -589,8 +589,8 @@ func (c *DataPipeline) SetStatus(input *SetStatusInput) (*SetStatusOutput, error
 const opSetTaskStatus = "SetTaskStatus"
 
 // SetTaskStatusRequest generates a request for the SetTaskStatus operation.
-func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *aws.Request, output *SetTaskStatusOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) SetTaskStatusRequest(input *SetTaskStatusInput) (req *request.Request, output *SetTaskStatusOutput) {
+	op := &request.Operation{
 		Name:       opSetTaskStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -620,8 +620,8 @@ func (c *DataPipeline) SetTaskStatus(input *SetTaskStatusInput) (*SetTaskStatusO
 const opValidatePipelineDefinition = "ValidatePipelineDefinition"
 
 // ValidatePipelineDefinitionRequest generates a request for the ValidatePipelineDefinition operation.
-func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipelineDefinitionInput) (req *aws.Request, output *ValidatePipelineDefinitionOutput) {
-	op := &aws.Operation{
+func (c *DataPipeline) ValidatePipelineDefinitionRequest(input *ValidatePipelineDefinitionInput) (req *request.Request, output *ValidatePipelineDefinitionOutput) {
+	op := &request.Operation{
 		Name:       opValidatePipelineDefinition,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -651,7 +651,7 @@ type ActivatePipelineInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The date and time to resume the pipeline. By default, the pipeline resumes
 	// from the last completed execution.
@@ -666,7 +666,7 @@ type metadataActivatePipelineInput struct {
 
 // String returns the string representation
 func (s ActivatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -685,7 +685,7 @@ type metadataActivatePipelineOutput struct {
 
 // String returns the string representation
 func (s ActivatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -696,7 +696,7 @@ func (s ActivatePipelineOutput) GoString() string {
 // Contains the parameters for AddTags.
 type AddTagsInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The tags to add, as key/value pairs.
 	Tags []*Tag `locationName:"tags" type:"list" required:"true"`
@@ -710,7 +710,7 @@ type metadataAddTagsInput struct {
 
 // String returns the string representation
 func (s AddTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -729,7 +729,7 @@ type metadataAddTagsOutput struct {
 
 // String returns the string representation
 func (s AddTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -745,7 +745,7 @@ type CreatePipelineInput struct {
 	// The name for the pipeline. You can use the same name for multiple pipelines
 	// associated with your AWS account, because AWS Data Pipeline assigns each
 	// pipeline a unique pipeline identifier.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// A list of tags to associate with the pipeline at creation. Tags let you control
 	// access to pipelines. For more information, see Controlling User Access to
@@ -764,7 +764,7 @@ type CreatePipelineInput struct {
 	// Instead, you'll receive the pipeline identifier from the previous attempt.
 	// The uniqueness of the name and unique identifier combination is scoped to
 	// the AWS account or IAM user credentials.
-	UniqueID *string `locationName:"uniqueId" type:"string" required:"true"`
+	UniqueId *string `locationName:"uniqueId" min:"1" type:"string" required:"true"`
 
 	metadataCreatePipelineInput `json:"-" xml:"-"`
 }
@@ -775,7 +775,7 @@ type metadataCreatePipelineInput struct {
 
 // String returns the string representation
 func (s CreatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -787,7 +787,7 @@ func (s CreatePipelineInput) GoString() string {
 type CreatePipelineOutput struct {
 	// The ID that AWS Data Pipeline assigns the newly created pipeline. For example,
 	// df-06372391ZG65EXAMPLE.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	metadataCreatePipelineOutput `json:"-" xml:"-"`
 }
@@ -798,7 +798,7 @@ type metadataCreatePipelineOutput struct {
 
 // String returns the string representation
 func (s CreatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -814,7 +814,7 @@ type DeactivatePipelineInput struct {
 	CancelActive *bool `locationName:"cancelActive" type:"boolean"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	metadataDeactivatePipelineInput `json:"-" xml:"-"`
 }
@@ -825,7 +825,7 @@ type metadataDeactivatePipelineInput struct {
 
 // String returns the string representation
 func (s DeactivatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -844,7 +844,7 @@ type metadataDeactivatePipelineOutput struct {
 
 // String returns the string representation
 func (s DeactivatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -855,7 +855,7 @@ func (s DeactivatePipelineOutput) GoString() string {
 // Contains the parameters for DeletePipeline.
 type DeletePipelineInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
@@ -866,7 +866,7 @@ type metadataDeletePipelineInput struct {
 
 // String returns the string representation
 func (s DeletePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -884,7 +884,7 @@ type metadataDeletePipelineOutput struct {
 
 // String returns the string representation
 func (s DeletePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -906,10 +906,10 @@ type DescribeObjectsInput struct {
 
 	// The IDs of the pipeline objects that contain the definitions to be described.
 	// You can pass as many as 25 identifiers in a single call to DescribeObjects.
-	ObjectIDs []*string `locationName:"objectIds" type:"list" required:"true"`
+	ObjectIds []*string `locationName:"objectIds" type:"list" required:"true"`
 
 	// The ID of the pipeline that contains the object definitions.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeObjectsInput `json:"-" xml:"-"`
 }
@@ -920,7 +920,7 @@ type metadataDescribeObjectsInput struct {
 
 // String returns the string representation
 func (s DescribeObjectsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -950,7 +950,7 @@ type metadataDescribeObjectsOutput struct {
 
 // String returns the string representation
 func (s DescribeObjectsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -962,7 +962,7 @@ func (s DescribeObjectsOutput) GoString() string {
 type DescribePipelinesInput struct {
 	// The IDs of the pipelines to describe. You can pass as many as 25 identifiers
 	// in a single call. To obtain pipeline IDs, call ListPipelines.
-	PipelineIDs []*string `locationName:"pipelineIds" type:"list" required:"true"`
+	PipelineIds []*string `locationName:"pipelineIds" type:"list" required:"true"`
 
 	metadataDescribePipelinesInput `json:"-" xml:"-"`
 }
@@ -973,7 +973,7 @@ type metadataDescribePipelinesInput struct {
 
 // String returns the string representation
 func (s DescribePipelinesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -995,7 +995,7 @@ type metadataDescribePipelinesOutput struct {
 
 // String returns the string representation
 func (s DescribePipelinesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1009,10 +1009,10 @@ type EvaluateExpressionInput struct {
 	Expression *string `locationName:"expression" type:"string" required:"true"`
 
 	// The ID of the object.
-	ObjectID *string `locationName:"objectId" type:"string" required:"true"`
+	ObjectId *string `locationName:"objectId" min:"1" type:"string" required:"true"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	metadataEvaluateExpressionInput `json:"-" xml:"-"`
 }
@@ -1023,7 +1023,7 @@ type metadataEvaluateExpressionInput struct {
 
 // String returns the string representation
 func (s EvaluateExpressionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1045,7 +1045,7 @@ type metadataEvaluateExpressionOutput struct {
 
 // String returns the string representation
 func (s EvaluateExpressionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1058,10 +1058,10 @@ func (s EvaluateExpressionOutput) GoString() string {
 // object (RefValue) but not as both.
 type Field struct {
 	// The field identifier.
-	Key *string `locationName:"key" type:"string" required:"true"`
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The field value, expressed as the identifier of another object.
-	RefValue *string `locationName:"refValue" type:"string"`
+	RefValue *string `locationName:"refValue" min:"1" type:"string"`
 
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string"`
@@ -1075,7 +1075,7 @@ type metadataField struct {
 
 // String returns the string representation
 func (s Field) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1086,7 +1086,7 @@ func (s Field) GoString() string {
 // Contains the parameters for GetPipelineDefinition.
 type GetPipelineDefinitionInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The version of the pipeline definition to retrieve. Set this parameter to
 	// latest (default) to use the last definition saved to the pipeline or active
@@ -1102,7 +1102,7 @@ type metadataGetPipelineDefinitionInput struct {
 
 // String returns the string representation
 func (s GetPipelineDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1130,7 +1130,7 @@ type metadataGetPipelineDefinitionOutput struct {
 
 // String returns the string representation
 func (s GetPipelineDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1163,7 +1163,7 @@ type metadataInstanceIdentity struct {
 
 // String returns the string representation
 func (s InstanceIdentity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1188,7 +1188,7 @@ type metadataListPipelinesInput struct {
 
 // String returns the string representation
 func (s ListPipelinesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1209,7 +1209,7 @@ type ListPipelinesOutput struct {
 
 	// The pipeline identifiers. If you require additional information about the
 	// pipelines, you can use these identifiers to call DescribePipelines and GetPipelineDefinition.
-	PipelineIDList []*PipelineIDName `locationName:"pipelineIdList" type:"list" required:"true"`
+	PipelineIdList []*PipelineIdName `locationName:"pipelineIdList" type:"list" required:"true"`
 
 	metadataListPipelinesOutput `json:"-" xml:"-"`
 }
@@ -1220,7 +1220,7 @@ type metadataListPipelinesOutput struct {
 
 // String returns the string representation
 func (s ListPipelinesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1249,7 +1249,7 @@ type Operator struct {
 	// only alpha-numeric values, as symbols may be reserved by AWS Data Pipeline.
 	// User-defined fields that you add to a pipeline should prefix their name with
 	// the string "my".
-	Type *string `locationName:"type" type:"string"`
+	Type *string `locationName:"type" type:"string" enum:"OperatorType"`
 
 	// The value that the actual field value will be compared with.
 	Values []*string `locationName:"values" type:"list"`
@@ -1263,7 +1263,7 @@ type metadataOperator struct {
 
 // String returns the string representation
 func (s Operator) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1274,7 +1274,7 @@ func (s Operator) GoString() string {
 // The attributes allowed or specified with a parameter object.
 type ParameterAttribute struct {
 	// The field identifier.
-	Key *string `locationName:"key" type:"string" required:"true"`
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
@@ -1288,7 +1288,7 @@ type metadataParameterAttribute struct {
 
 // String returns the string representation
 func (s ParameterAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1302,7 +1302,7 @@ type ParameterObject struct {
 	Attributes []*ParameterAttribute `locationName:"attributes" type:"list" required:"true"`
 
 	// The ID of the parameter object.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	metadataParameterObject `json:"-" xml:"-"`
 }
@@ -1313,7 +1313,7 @@ type metadataParameterObject struct {
 
 // String returns the string representation
 func (s ParameterObject) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1324,7 +1324,7 @@ func (s ParameterObject) GoString() string {
 // A value or list of parameter values.
 type ParameterValue struct {
 	// The ID of the parameter value.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The field value, expressed as a String.
 	StringValue *string `locationName:"stringValue" type:"string" required:"true"`
@@ -1338,7 +1338,7 @@ type metadataParameterValue struct {
 
 // String returns the string representation
 func (s ParameterValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1356,11 +1356,11 @@ type PipelineDescription struct {
 	Fields []*Field `locationName:"fields" type:"list" required:"true"`
 
 	// The name of the pipeline.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The pipeline identifier that was assigned by AWS Data Pipeline. This is a
 	// string of the form df-297EG78HU43EEXAMPLE.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// A list of tags to associated with a pipeline. Tags let you control access
 	// to pipelines. For more information, see Controlling User Access to Pipelines
@@ -1377,7 +1377,7 @@ type metadataPipelineDescription struct {
 
 // String returns the string representation
 func (s PipelineDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1386,28 +1386,28 @@ func (s PipelineDescription) GoString() string {
 }
 
 // Contains the name and identifier of a pipeline.
-type PipelineIDName struct {
+type PipelineIdName struct {
 	// The ID of the pipeline that was assigned by AWS Data Pipeline. This is a
 	// string of the form df-297EG78HU43EEXAMPLE.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The name of the pipeline.
-	Name *string `locationName:"name" type:"string"`
+	Name *string `locationName:"name" min:"1" type:"string"`
 
-	metadataPipelineIDName `json:"-" xml:"-"`
+	metadataPipelineIdName `json:"-" xml:"-"`
 }
 
-type metadataPipelineIDName struct {
+type metadataPipelineIdName struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s PipelineIDName) String() string {
-	return awsutil.StringValue(s)
+func (s PipelineIdName) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s PipelineIDName) GoString() string {
+func (s PipelineIdName) GoString() string {
 	return s.String()
 }
 
@@ -1419,10 +1419,10 @@ type PipelineObject struct {
 	Fields []*Field `locationName:"fields" type:"list" required:"true"`
 
 	// The ID of the object.
-	ID *string `locationName:"id" type:"string" required:"true"`
+	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
 
 	// The name of the object.
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	metadataPipelineObject `json:"-" xml:"-"`
 }
@@ -1433,7 +1433,7 @@ type metadataPipelineObject struct {
 
 // String returns the string representation
 func (s PipelineObject) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1444,7 +1444,7 @@ func (s PipelineObject) GoString() string {
 // Contains the parameters for PollForTask.
 type PollForTaskInput struct {
 	// The public DNS name of the calling task runner.
-	Hostname *string `locationName:"hostname" type:"string"`
+	Hostname *string `locationName:"hostname" min:"1" type:"string"`
 
 	// Identity information for the EC2 instance that is hosting the task runner.
 	// You can get this value from the instance using http://169.254.169.254/latest/meta-data/instance-id.
@@ -1470,7 +1470,7 @@ type metadataPollForTaskInput struct {
 
 // String returns the string representation
 func (s PollForTaskInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1495,7 +1495,7 @@ type metadataPollForTaskOutput struct {
 
 // String returns the string representation
 func (s PollForTaskOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1512,7 +1512,7 @@ type PutPipelineDefinitionInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The objects that define the pipeline. These objects overwrite the existing
 	// pipeline definition.
@@ -1527,7 +1527,7 @@ type metadataPutPipelineDefinitionInput struct {
 
 // String returns the string representation
 func (s PutPipelineDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1557,7 +1557,7 @@ type metadataPutPipelineDefinitionOutput struct {
 
 // String returns the string representation
 func (s PutPipelineDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1580,7 +1580,7 @@ type metadataQuery struct {
 
 // String returns the string representation
 func (s Query) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1601,7 +1601,7 @@ type QueryObjectsInput struct {
 	Marker *string `locationName:"marker" type:"string"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The query that defines the objects to be returned. The Query object can contain
 	// a maximum of ten selectors. The conditions in the query are limited to top-level
@@ -1622,7 +1622,7 @@ type metadataQueryObjectsInput struct {
 
 // String returns the string representation
 func (s QueryObjectsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1637,7 +1637,7 @@ type QueryObjectsOutput struct {
 	HasMoreResults *bool `locationName:"hasMoreResults" type:"boolean"`
 
 	// The identifiers that match the query selectors.
-	IDs []*string `locationName:"ids" type:"list"`
+	Ids []*string `locationName:"ids" type:"list"`
 
 	// The starting point for the next page of results. To view the next page of
 	// results, call QueryObjects again with this marker value. If the value is
@@ -1653,7 +1653,7 @@ type metadataQueryObjectsOutput struct {
 
 // String returns the string representation
 func (s QueryObjectsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1664,7 +1664,7 @@ func (s QueryObjectsOutput) GoString() string {
 // Contains the parameters for RemoveTags.
 type RemoveTagsInput struct {
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The keys of the tags to remove.
 	TagKeys []*string `locationName:"tagKeys" type:"list" required:"true"`
@@ -1678,7 +1678,7 @@ type metadataRemoveTagsInput struct {
 
 // String returns the string representation
 func (s RemoveTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1697,7 +1697,7 @@ type metadataRemoveTagsOutput struct {
 
 // String returns the string representation
 func (s RemoveTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1713,7 +1713,7 @@ type ReportTaskProgressInput struct {
 
 	// The ID of the task assigned to the task runner. This value is provided in
 	// the response for PollForTask.
-	TaskID *string `locationName:"taskId" type:"string" required:"true"`
+	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
 
 	metadataReportTaskProgressInput `json:"-" xml:"-"`
 }
@@ -1724,7 +1724,7 @@ type metadataReportTaskProgressInput struct {
 
 // String returns the string representation
 func (s ReportTaskProgressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1747,7 +1747,7 @@ type metadataReportTaskProgressOutput struct {
 
 // String returns the string representation
 func (s ReportTaskProgressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1758,14 +1758,14 @@ func (s ReportTaskProgressOutput) GoString() string {
 // Contains the parameters for ReportTaskRunnerHeartbeat.
 type ReportTaskRunnerHeartbeatInput struct {
 	// The public DNS name of the task runner.
-	Hostname *string `locationName:"hostname" type:"string"`
+	Hostname *string `locationName:"hostname" min:"1" type:"string"`
 
 	// The ID of the task runner. This value should be unique across your AWS account.
 	// In the case of AWS Data Pipeline Task Runner launched on a resource managed
 	// by AWS Data Pipeline, the web service provides a unique identifier when it
 	// launches the application. If you have written a custom task runner, you should
 	// assign a unique identifier for the task runner.
-	TaskRunnerID *string `locationName:"taskrunnerId" type:"string" required:"true"`
+	TaskrunnerId *string `locationName:"taskrunnerId" min:"1" type:"string" required:"true"`
 
 	// The type of task the task runner is configured to accept and process. The
 	// worker group is set as a field on objects in the pipeline when they are created.
@@ -1783,7 +1783,7 @@ type metadataReportTaskRunnerHeartbeatInput struct {
 
 // String returns the string representation
 func (s ReportTaskRunnerHeartbeatInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1805,7 +1805,7 @@ type metadataReportTaskRunnerHeartbeatOutput struct {
 
 // String returns the string representation
 func (s ReportTaskRunnerHeartbeatOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1835,7 +1835,7 @@ type metadataSelector struct {
 
 // String returns the string representation
 func (s Selector) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1847,10 +1847,10 @@ func (s Selector) GoString() string {
 type SetStatusInput struct {
 	// The IDs of the objects. The corresponding objects can be either physical
 	// or components, but not a mix of both types.
-	ObjectIDs []*string `locationName:"objectIds" type:"list" required:"true"`
+	ObjectIds []*string `locationName:"objectIds" type:"list" required:"true"`
 
 	// The ID of the pipeline that contains the objects.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The status to be set on all the objects specified in objectIds. For components,
 	// use PAUSE or RESUME. For instances, use TRY_CANCEL, RERUN, or MARK_FINISHED.
@@ -1865,7 +1865,7 @@ type metadataSetStatusInput struct {
 
 // String returns the string representation
 func (s SetStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1883,7 +1883,7 @@ type metadataSetStatusOutput struct {
 
 // String returns the string representation
 func (s SetStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1897,7 +1897,7 @@ type SetTaskStatusInput struct {
 	// This value is set on the physical attempt object. It is used to display error
 	// information to the user. It should not start with string "Service_" which
 	// is reserved by the system.
-	ErrorID *string `locationName:"errorId" type:"string"`
+	ErrorId *string `locationName:"errorId" type:"string"`
 
 	// If an error occurred during the task, this value specifies a text description
 	// of the error. This value is set on the physical attempt object. It is used
@@ -1913,11 +1913,11 @@ type SetTaskStatusInput struct {
 
 	// The ID of the task assigned to the task runner. This value is provided in
 	// the response for PollForTask.
-	TaskID *string `locationName:"taskId" type:"string" required:"true"`
+	TaskId *string `locationName:"taskId" min:"1" type:"string" required:"true"`
 
 	// If FINISHED, the task successfully completed. If FAILED, the task ended unsuccessfully.
 	// Preconditions use false.
-	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true"`
+	TaskStatus *string `locationName:"taskStatus" type:"string" required:"true" enum:"TaskStatus"`
 
 	metadataSetTaskStatusInput `json:"-" xml:"-"`
 }
@@ -1928,7 +1928,7 @@ type metadataSetTaskStatusInput struct {
 
 // String returns the string representation
 func (s SetTaskStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1947,7 +1947,7 @@ type metadataSetTaskStatusOutput struct {
 
 // String returns the string representation
 func (s SetTaskStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1964,7 +1964,7 @@ type Tag struct {
 	// The key name of a tag defined by a user. For more information, see Controlling
 	// User Access to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
 	// in the AWS Data Pipeline Developer Guide.
-	Key *string `locationName:"key" type:"string" required:"true"`
+	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
 	// The optional value portion of a tag defined by a user. For more information,
 	// see Controlling User Access to Pipelines (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-control-access.html)
@@ -1980,7 +1980,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1992,18 +1992,18 @@ func (s Tag) GoString() string {
 type TaskObject struct {
 	// The ID of the pipeline task attempt object. AWS Data Pipeline uses this value
 	// to track how many times a task is attempted.
-	AttemptID *string `locationName:"attemptId" type:"string"`
+	AttemptId *string `locationName:"attemptId" min:"1" type:"string"`
 
 	// Connection information for the location where the task runner will publish
 	// the output of the task.
 	Objects map[string]*PipelineObject `locationName:"objects" type:"map"`
 
 	// The ID of the pipeline that provided the task.
-	PipelineID *string `locationName:"pipelineId" type:"string"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string"`
 
 	// An internal identifier for the task. This ID is passed to the SetTaskStatus
 	// and ReportTaskProgress actions.
-	TaskID *string `locationName:"taskId" type:"string"`
+	TaskId *string `locationName:"taskId" min:"1" type:"string"`
 
 	metadataTaskObject `json:"-" xml:"-"`
 }
@@ -2014,7 +2014,7 @@ type metadataTaskObject struct {
 
 // String returns the string representation
 func (s TaskObject) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2031,7 +2031,7 @@ type ValidatePipelineDefinitionInput struct {
 	ParameterValues []*ParameterValue `locationName:"parameterValues" type:"list"`
 
 	// The ID of the pipeline.
-	PipelineID *string `locationName:"pipelineId" type:"string" required:"true"`
+	PipelineId *string `locationName:"pipelineId" min:"1" type:"string" required:"true"`
 
 	// The objects that define the pipeline changes to validate against the pipeline.
 	PipelineObjects []*PipelineObject `locationName:"pipelineObjects" type:"list" required:"true"`
@@ -2045,7 +2045,7 @@ type metadataValidatePipelineDefinitionInput struct {
 
 // String returns the string representation
 func (s ValidatePipelineDefinitionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2073,7 +2073,7 @@ type metadataValidatePipelineDefinitionOutput struct {
 
 // String returns the string representation
 func (s ValidatePipelineDefinitionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2089,7 +2089,7 @@ type ValidationError struct {
 	Errors []*string `locationName:"errors" type:"list"`
 
 	// The identifier of the object that contains the validation error.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	metadataValidationError `json:"-" xml:"-"`
 }
@@ -2100,7 +2100,7 @@ type metadataValidationError struct {
 
 // String returns the string representation
 func (s ValidationError) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2113,7 +2113,7 @@ func (s ValidationError) GoString() string {
 // by AWS Data Pipeline.
 type ValidationWarning struct {
 	// The identifier of the object that contains the validation warning.
-	ID *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// A description of the validation warning.
 	Warnings []*string `locationName:"warnings" type:"list"`
@@ -2127,10 +2127,32 @@ type metadataValidationWarning struct {
 
 // String returns the string representation
 func (s ValidationWarning) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s ValidationWarning) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum OperatorType
+	OperatorTypeEq = "EQ"
+	// @enum OperatorType
+	OperatorTypeRefEq = "REF_EQ"
+	// @enum OperatorType
+	OperatorTypeLe = "LE"
+	// @enum OperatorType
+	OperatorTypeGe = "GE"
+	// @enum OperatorType
+	OperatorTypeBetween = "BETWEEN"
+)
+
+const (
+	// @enum TaskStatus
+	TaskStatusFinished = "FINISHED"
+	// @enum TaskStatus
+	TaskStatusFailed = "FAILED"
+	// @enum TaskStatus
+	TaskStatusFalse = "FALSE"
+)

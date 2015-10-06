@@ -6,15 +6,15 @@ package cognitosync
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opBulkPublish = "BulkPublish"
 
 // BulkPublishRequest generates a request for the BulkPublish operation.
-func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *aws.Request, output *BulkPublishOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) BulkPublishRequest(input *BulkPublishInput) (req *request.Request, output *BulkPublishOutput) {
+	op := &request.Operation{
 		Name:       opBulkPublish,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/bulkpublish",
@@ -46,8 +46,8 @@ func (c *CognitoSync) BulkPublish(input *BulkPublishInput) (*BulkPublishOutput, 
 const opDeleteDataset = "DeleteDataset"
 
 // DeleteDatasetRequest generates a request for the DeleteDataset operation.
-func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *aws.Request, output *DeleteDatasetOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDataset,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
@@ -79,8 +79,8 @@ func (c *CognitoSync) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOu
 const opDescribeDataset = "DescribeDataset"
 
 // DescribeDatasetRequest generates a request for the DescribeDataset operation.
-func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *aws.Request, output *DescribeDatasetOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
+	op := &request.Operation{
 		Name:       opDescribeDataset,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
@@ -112,8 +112,8 @@ func (c *CognitoSync) DescribeDataset(input *DescribeDatasetInput) (*DescribeDat
 const opDescribeIdentityPoolUsage = "DescribeIdentityPoolUsage"
 
 // DescribeIdentityPoolUsageRequest generates a request for the DescribeIdentityPoolUsage operation.
-func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *aws.Request, output *DescribeIdentityPoolUsageOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) DescribeIdentityPoolUsageRequest(input *DescribeIdentityPoolUsageInput) (req *request.Request, output *DescribeIdentityPoolUsageOutput) {
+	op := &request.Operation{
 		Name:       opDescribeIdentityPoolUsage,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}",
@@ -143,8 +143,8 @@ func (c *CognitoSync) DescribeIdentityPoolUsage(input *DescribeIdentityPoolUsage
 const opDescribeIdentityUsage = "DescribeIdentityUsage"
 
 // DescribeIdentityUsageRequest generates a request for the DescribeIdentityUsage operation.
-func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *aws.Request, output *DescribeIdentityUsageOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) DescribeIdentityUsageRequest(input *DescribeIdentityUsageInput) (req *request.Request, output *DescribeIdentityUsageOutput) {
+	op := &request.Operation{
 		Name:       opDescribeIdentityUsage,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}",
@@ -174,8 +174,8 @@ func (c *CognitoSync) DescribeIdentityUsage(input *DescribeIdentityUsageInput) (
 const opGetBulkPublishDetails = "GetBulkPublishDetails"
 
 // GetBulkPublishDetailsRequest generates a request for the GetBulkPublishDetails operation.
-func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *aws.Request, output *GetBulkPublishDetailsOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) GetBulkPublishDetailsRequest(input *GetBulkPublishDetailsInput) (req *request.Request, output *GetBulkPublishDetailsOutput) {
+	op := &request.Operation{
 		Name:       opGetBulkPublishDetails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/getBulkPublishDetails",
@@ -204,8 +204,8 @@ func (c *CognitoSync) GetBulkPublishDetails(input *GetBulkPublishDetailsInput) (
 const opGetCognitoEvents = "GetCognitoEvents"
 
 // GetCognitoEventsRequest generates a request for the GetCognitoEvents operation.
-func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *aws.Request, output *GetCognitoEventsOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) GetCognitoEventsRequest(input *GetCognitoEventsInput) (req *request.Request, output *GetCognitoEventsOutput) {
+	op := &request.Operation{
 		Name:       opGetCognitoEvents,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/events",
@@ -235,8 +235,8 @@ func (c *CognitoSync) GetCognitoEvents(input *GetCognitoEventsInput) (*GetCognit
 const opGetIdentityPoolConfiguration = "GetIdentityPoolConfiguration"
 
 // GetIdentityPoolConfigurationRequest generates a request for the GetIdentityPoolConfiguration operation.
-func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *aws.Request, output *GetIdentityPoolConfigurationOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) GetIdentityPoolConfigurationRequest(input *GetIdentityPoolConfigurationInput) (req *request.Request, output *GetIdentityPoolConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opGetIdentityPoolConfiguration,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
@@ -265,8 +265,8 @@ func (c *CognitoSync) GetIdentityPoolConfiguration(input *GetIdentityPoolConfigu
 const opListDatasets = "ListDatasets"
 
 // ListDatasetsRequest generates a request for the ListDatasets operation.
-func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *aws.Request, output *ListDatasetsOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
+	op := &request.Operation{
 		Name:       opListDatasets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets",
@@ -298,8 +298,8 @@ func (c *CognitoSync) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutpu
 const opListIdentityPoolUsage = "ListIdentityPoolUsage"
 
 // ListIdentityPoolUsageRequest generates a request for the ListIdentityPoolUsage operation.
-func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *aws.Request, output *ListIdentityPoolUsageOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) ListIdentityPoolUsageRequest(input *ListIdentityPoolUsageInput) (req *request.Request, output *ListIdentityPoolUsageOutput) {
+	op := &request.Operation{
 		Name:       opListIdentityPoolUsage,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools",
@@ -329,8 +329,8 @@ func (c *CognitoSync) ListIdentityPoolUsage(input *ListIdentityPoolUsageInput) (
 const opListRecords = "ListRecords"
 
 // ListRecordsRequest generates a request for the ListRecords operation.
-func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *aws.Request, output *ListRecordsOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) ListRecordsRequest(input *ListRecordsInput) (req *request.Request, output *ListRecordsOutput) {
+	op := &request.Operation{
 		Name:       opListRecords,
 		HTTPMethod: "GET",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/records",
@@ -363,8 +363,8 @@ func (c *CognitoSync) ListRecords(input *ListRecordsInput) (*ListRecordsOutput, 
 const opRegisterDevice = "RegisterDevice"
 
 // RegisterDeviceRequest generates a request for the RegisterDevice operation.
-func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *aws.Request, output *RegisterDeviceOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) RegisterDeviceRequest(input *RegisterDeviceInput) (req *request.Request, output *RegisterDeviceOutput) {
+	op := &request.Operation{
 		Name:       opRegisterDevice,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identity/{IdentityId}/device",
@@ -393,8 +393,8 @@ func (c *CognitoSync) RegisterDevice(input *RegisterDeviceInput) (*RegisterDevic
 const opSetCognitoEvents = "SetCognitoEvents"
 
 // SetCognitoEventsRequest generates a request for the SetCognitoEvents operation.
-func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *aws.Request, output *SetCognitoEventsOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) SetCognitoEventsRequest(input *SetCognitoEventsInput) (req *request.Request, output *SetCognitoEventsOutput) {
+	op := &request.Operation{
 		Name:       opSetCognitoEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/events",
@@ -426,8 +426,8 @@ func (c *CognitoSync) SetCognitoEvents(input *SetCognitoEventsInput) (*SetCognit
 const opSetIdentityPoolConfiguration = "SetIdentityPoolConfiguration"
 
 // SetIdentityPoolConfigurationRequest generates a request for the SetIdentityPoolConfiguration operation.
-func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *aws.Request, output *SetIdentityPoolConfigurationOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) SetIdentityPoolConfigurationRequest(input *SetIdentityPoolConfigurationInput) (req *request.Request, output *SetIdentityPoolConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opSetIdentityPoolConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/configuration",
@@ -456,8 +456,8 @@ func (c *CognitoSync) SetIdentityPoolConfiguration(input *SetIdentityPoolConfigu
 const opSubscribeToDataset = "SubscribeToDataset"
 
 // SubscribeToDatasetRequest generates a request for the SubscribeToDataset operation.
-func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *aws.Request, output *SubscribeToDatasetOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) SubscribeToDatasetRequest(input *SubscribeToDatasetInput) (req *request.Request, output *SubscribeToDatasetOutput) {
+	op := &request.Operation{
 		Name:       opSubscribeToDataset,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
@@ -487,8 +487,8 @@ func (c *CognitoSync) SubscribeToDataset(input *SubscribeToDatasetInput) (*Subsc
 const opUnsubscribeFromDataset = "UnsubscribeFromDataset"
 
 // UnsubscribeFromDatasetRequest generates a request for the UnsubscribeFromDataset operation.
-func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *aws.Request, output *UnsubscribeFromDatasetOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) UnsubscribeFromDatasetRequest(input *UnsubscribeFromDatasetInput) (req *request.Request, output *UnsubscribeFromDatasetOutput) {
+	op := &request.Operation{
 		Name:       opUnsubscribeFromDataset,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}/subscriptions/{DeviceId}",
@@ -518,8 +518,8 @@ func (c *CognitoSync) UnsubscribeFromDataset(input *UnsubscribeFromDatasetInput)
 const opUpdateRecords = "UpdateRecords"
 
 // UpdateRecordsRequest generates a request for the UpdateRecords operation.
-func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *aws.Request, output *UpdateRecordsOutput) {
-	op := &aws.Operation{
+func (c *CognitoSync) UpdateRecordsRequest(input *UpdateRecordsInput) (req *request.Request, output *UpdateRecordsOutput) {
+	op := &request.Operation{
 		Name:       opUpdateRecords,
 		HTTPMethod: "POST",
 		HTTPPath:   "/identitypools/{IdentityPoolId}/identities/{IdentityId}/datasets/{DatasetName}",
@@ -561,7 +561,7 @@ func (c *CognitoSync) UpdateRecords(input *UpdateRecordsInput) (*UpdateRecordsOu
 type BulkPublishInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataBulkPublishInput `json:"-" xml:"-"`
 }
@@ -572,7 +572,7 @@ type metadataBulkPublishInput struct {
 
 // String returns the string representation
 func (s BulkPublishInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -584,7 +584,7 @@ func (s BulkPublishInput) GoString() string {
 type BulkPublishOutput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	metadataBulkPublishOutput `json:"-" xml:"-"`
 }
@@ -595,7 +595,7 @@ type metadataBulkPublishOutput struct {
 
 // String returns the string representation
 func (s BulkPublishOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -608,18 +608,18 @@ type CognitoStreams struct {
 	// The ARN of the role Amazon Cognito can assume in order to publish to the
 	// stream. This role must grant access to Amazon Cognito (cognito-sync) to invoke
 	// PutRecord on your Cognito stream.
-	RoleARN *string `locationName:"RoleArn" type:"string"`
+	RoleArn *string `min:"20" type:"string"`
 
 	// The name of the Cognito stream to receive updates. This stream must be in
 	// the developers account and in the same region as the identity pool.
-	StreamName *string `type:"string"`
+	StreamName *string `min:"1" type:"string"`
 
 	// Status of the Cognito streams. Valid values are: ENABLED - Streaming of updates
 	// to identity pool is enabled.
 	//
 	// DISABLED - Streaming of updates to identity pool is disabled. Bulk publish
 	// will also fail if StreamingStatus is DISABLED.
-	StreamingStatus *string `type:"string"`
+	StreamingStatus *string `type:"string" enum:"StreamingStatus"`
 
 	metadataCognitoStreams `json:"-" xml:"-"`
 }
@@ -630,7 +630,7 @@ type metadataCognitoStreams struct {
 
 // String returns the string representation
 func (s CognitoStreams) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -652,11 +652,11 @@ type Dataset struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `type:"string"`
+	DatasetName *string `min:"1" type:"string"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `min:"1" type:"string"`
 
 	// The device that made the last change to this dataset.
 	LastModifiedBy *string `type:"string"`
@@ -676,7 +676,7 @@ type metadataDataset struct {
 
 // String returns the string representation
 func (s Dataset) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -688,15 +688,15 @@ func (s Dataset) GoString() string {
 type DeleteDatasetInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDeleteDatasetInput `json:"-" xml:"-"`
 }
@@ -707,7 +707,7 @@ type metadataDeleteDatasetInput struct {
 
 // String returns the string representation
 func (s DeleteDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -733,7 +733,7 @@ type metadataDeleteDatasetOutput struct {
 
 // String returns the string representation
 func (s DeleteDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -746,15 +746,15 @@ func (s DeleteDatasetOutput) GoString() string {
 type DescribeDatasetInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeDatasetInput `json:"-" xml:"-"`
 }
@@ -765,7 +765,7 @@ type metadataDescribeDatasetInput struct {
 
 // String returns the string representation
 func (s DescribeDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -791,7 +791,7 @@ type metadataDescribeDatasetOutput struct {
 
 // String returns the string representation
 func (s DescribeDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -803,7 +803,7 @@ func (s DescribeDatasetOutput) GoString() string {
 type DescribeIdentityPoolUsageInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeIdentityPoolUsageInput `json:"-" xml:"-"`
 }
@@ -814,7 +814,7 @@ type metadataDescribeIdentityPoolUsageInput struct {
 
 // String returns the string representation
 func (s DescribeIdentityPoolUsageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -836,7 +836,7 @@ type metadataDescribeIdentityPoolUsageOutput struct {
 
 // String returns the string representation
 func (s DescribeIdentityPoolUsageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -848,11 +848,11 @@ func (s DescribeIdentityPoolUsageOutput) GoString() string {
 type DescribeIdentityUsageInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataDescribeIdentityUsageInput `json:"-" xml:"-"`
 }
@@ -863,7 +863,7 @@ type metadataDescribeIdentityUsageInput struct {
 
 // String returns the string representation
 func (s DescribeIdentityUsageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -885,7 +885,7 @@ type metadataDescribeIdentityUsageOutput struct {
 
 // String returns the string representation
 func (s DescribeIdentityUsageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -897,7 +897,7 @@ func (s DescribeIdentityUsageOutput) GoString() string {
 type GetBulkPublishDetailsInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataGetBulkPublishDetailsInput `json:"-" xml:"-"`
 }
@@ -908,7 +908,7 @@ type metadataGetBulkPublishDetailsInput struct {
 
 // String returns the string representation
 func (s GetBulkPublishDetailsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -935,7 +935,7 @@ type GetBulkPublishDetailsOutput struct {
 	//
 	// FAILED - Some portion of the data has failed to publish, check FailureMessage
 	// for the cause.
-	BulkPublishStatus *string `type:"string"`
+	BulkPublishStatus *string `type:"string" enum:"BulkPublishStatus"`
 
 	// If BulkPublishStatus is FAILED this field will contain the error message
 	// that caused the bulk publish to fail.
@@ -943,7 +943,7 @@ type GetBulkPublishDetailsOutput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	metadataGetBulkPublishDetailsOutput `json:"-" xml:"-"`
 }
@@ -954,7 +954,7 @@ type metadataGetBulkPublishDetailsOutput struct {
 
 // String returns the string representation
 func (s GetBulkPublishDetailsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -965,7 +965,7 @@ func (s GetBulkPublishDetailsOutput) GoString() string {
 // A request for a list of the configured Cognito Events
 type GetCognitoEventsInput struct {
 	// The Cognito Identity Pool ID for the request
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataGetCognitoEventsInput `json:"-" xml:"-"`
 }
@@ -976,7 +976,7 @@ type metadataGetCognitoEventsInput struct {
 
 // String returns the string representation
 func (s GetCognitoEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -998,7 +998,7 @@ type metadataGetCognitoEventsOutput struct {
 
 // String returns the string representation
 func (s GetCognitoEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1011,7 +1011,7 @@ type GetIdentityPoolConfigurationInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool for which to return
 	// a configuration.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataGetIdentityPoolConfigurationInput `json:"-" xml:"-"`
 }
@@ -1022,7 +1022,7 @@ type metadataGetIdentityPoolConfigurationInput struct {
 
 // String returns the string representation
 func (s GetIdentityPoolConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1037,7 +1037,7 @@ type GetIdentityPoolConfigurationOutput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
@@ -1051,7 +1051,7 @@ type metadataGetIdentityPoolConfigurationOutput struct {
 
 // String returns the string representation
 func (s GetIdentityPoolConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1066,7 +1066,7 @@ type IdentityPoolUsage struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Date on which the identity pool was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1083,7 +1083,7 @@ type metadataIdentityPoolUsage struct {
 
 // String returns the string representation
 func (s IdentityPoolUsage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1101,11 +1101,11 @@ type IdentityUsage struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `locationName:"IdentityId" type:"string"`
+	IdentityId *string `min:"1" type:"string"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Date on which the identity was last modified.
 	LastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
@@ -1119,7 +1119,7 @@ type metadataIdentityUsage struct {
 
 // String returns the string representation
 func (s IdentityUsage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1131,11 +1131,11 @@ func (s IdentityUsage) GoString() string {
 type ListDatasetsInput struct {
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The maximum number of results to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -1152,7 +1152,7 @@ type metadataListDatasetsInput struct {
 
 // String returns the string representation
 func (s ListDatasetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1180,7 +1180,7 @@ type metadataListDatasetsOutput struct {
 
 // String returns the string representation
 func (s ListDatasetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1205,7 +1205,7 @@ type metadataListIdentityPoolUsageInput struct {
 
 // String returns the string representation
 func (s ListIdentityPoolUsageInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1236,7 +1236,7 @@ type metadataListIdentityPoolUsageOutput struct {
 
 // String returns the string representation
 func (s ListIdentityPoolUsageOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1248,15 +1248,15 @@ func (s ListIdentityPoolUsageOutput) GoString() string {
 type ListRecordsInput struct {
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The last server sync count for this record.
 	LastSyncCount *int64 `location:"querystring" locationName:"lastSyncCount" type:"long"`
@@ -1279,7 +1279,7 @@ type metadataListRecordsInput struct {
 
 // String returns the string representation
 func (s ListRecordsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1325,7 +1325,7 @@ type metadataListRecordsOutput struct {
 
 // String returns the string representation
 func (s ListRecordsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1336,10 +1336,10 @@ func (s ListRecordsOutput) GoString() string {
 // Configuration options to be applied to the identity pool.
 type PushSync struct {
 	// List of SNS platform application ARNs that could be used by clients.
-	ApplicationARNs []*string `locationName:"ApplicationArns" type:"list"`
+	ApplicationArns []*string `type:"list"`
 
 	// A role configured to allow Cognito to call SNS on behalf of the developer.
-	RoleARN *string `locationName:"RoleArn" type:"string"`
+	RoleArn *string `min:"20" type:"string"`
 
 	metadataPushSync `json:"-" xml:"-"`
 }
@@ -1350,7 +1350,7 @@ type metadataPushSync struct {
 
 // String returns the string representation
 func (s PushSync) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1364,7 +1364,7 @@ type Record struct {
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The key for the record.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The user/device that made the last change to this record.
 	LastModifiedBy *string `type:"string"`
@@ -1387,7 +1387,7 @@ type metadataRecord struct {
 
 // String returns the string representation
 func (s Record) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1401,10 +1401,10 @@ type RecordPatch struct {
 	DeviceLastModifiedDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
 	// The key associated with the record patch.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// An operation, either replace or remove.
-	Op *string `type:"string" required:"true"`
+	Op *string `type:"string" required:"true" enum:"Operation"`
 
 	// Last known server sync count for this record. Set to 0 if unknown.
 	SyncCount *int64 `type:"long" required:"true"`
@@ -1421,7 +1421,7 @@ type metadataRecordPatch struct {
 
 // String returns the string representation
 func (s RecordPatch) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1432,15 +1432,15 @@ func (s RecordPatch) GoString() string {
 // A request to RegisterDevice.
 type RegisterDeviceInput struct {
 	// The unique ID for this identity.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. Here, the ID of the pool that the identity belongs
 	// to.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// The SNS platform type (e.g. GCM, SDM, APNS, APNS_SANDBOX).
-	Platform *string `type:"string" required:"true"`
+	Platform *string `type:"string" required:"true" enum:"Platform"`
 
 	// The push token.
 	Token *string `type:"string" required:"true"`
@@ -1454,7 +1454,7 @@ type metadataRegisterDeviceInput struct {
 
 // String returns the string representation
 func (s RegisterDeviceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1465,7 +1465,7 @@ func (s RegisterDeviceInput) GoString() string {
 // Response to a RegisterDevice request.
 type RegisterDeviceOutput struct {
 	// The unique ID generated for this device by Cognito.
-	DeviceID *string `locationName:"DeviceId" type:"string"`
+	DeviceId *string `min:"1" type:"string"`
 
 	metadataRegisterDeviceOutput `json:"-" xml:"-"`
 }
@@ -1476,7 +1476,7 @@ type metadataRegisterDeviceOutput struct {
 
 // String returns the string representation
 func (s RegisterDeviceOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1492,7 +1492,7 @@ type SetCognitoEventsInput struct {
 	Events map[string]*string `type:"map" required:"true"`
 
 	// The Cognito Identity Pool to use when configuring Cognito Events
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataSetCognitoEventsInput `json:"-" xml:"-"`
 }
@@ -1503,7 +1503,7 @@ type metadataSetCognitoEventsInput struct {
 
 // String returns the string representation
 func (s SetCognitoEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1521,7 +1521,7 @@ type metadataSetCognitoEventsOutput struct {
 
 // String returns the string representation
 func (s SetCognitoEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1536,7 +1536,7 @@ type SetIdentityPoolConfigurationInput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool to modify.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
@@ -1550,7 +1550,7 @@ type metadataSetIdentityPoolConfigurationInput struct {
 
 // String returns the string representation
 func (s SetIdentityPoolConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1565,7 +1565,7 @@ type SetIdentityPoolConfigurationOutput struct {
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito.
-	IdentityPoolID *string `locationName:"IdentityPoolId" type:"string"`
+	IdentityPoolId *string `min:"1" type:"string"`
 
 	// Options to apply to this identity pool for push synchronization.
 	PushSync *PushSync `type:"structure"`
@@ -1579,7 +1579,7 @@ type metadataSetIdentityPoolConfigurationOutput struct {
 
 // String returns the string representation
 func (s SetIdentityPoolConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1590,17 +1590,17 @@ func (s SetIdentityPoolConfigurationOutput) GoString() string {
 // A request to SubscribeToDatasetRequest.
 type SubscribeToDatasetInput struct {
 	// The name of the dataset to subcribe to.
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
-	DeviceID *string `location:"uri" locationName:"DeviceId" type:"string" required:"true"`
+	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Unique ID for this identity.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which the identity belongs.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataSubscribeToDatasetInput `json:"-" xml:"-"`
 }
@@ -1611,7 +1611,7 @@ type metadataSubscribeToDatasetInput struct {
 
 // String returns the string representation
 func (s SubscribeToDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1630,7 +1630,7 @@ type metadataSubscribeToDatasetOutput struct {
 
 // String returns the string representation
 func (s SubscribeToDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1641,17 +1641,17 @@ func (s SubscribeToDatasetOutput) GoString() string {
 // A request to UnsubscribeFromDataset.
 type UnsubscribeFromDatasetInput struct {
 	// The name of the dataset from which to unsubcribe.
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
-	DeviceID *string `location:"uri" locationName:"DeviceId" type:"string" required:"true"`
+	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Unique ID for this identity.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. The ID of the pool to which this identity belongs.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	metadataUnsubscribeFromDatasetInput `json:"-" xml:"-"`
 }
@@ -1662,7 +1662,7 @@ type metadataUnsubscribeFromDatasetInput struct {
 
 // String returns the string representation
 func (s UnsubscribeFromDatasetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1681,7 +1681,7 @@ type metadataUnsubscribeFromDatasetOutput struct {
 
 // String returns the string representation
 func (s UnsubscribeFromDatasetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1698,18 +1698,18 @@ type UpdateRecordsInput struct {
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
-	DatasetName *string `location:"uri" locationName:"DatasetName" type:"string" required:"true"`
+	DatasetName *string `location:"uri" locationName:"DatasetName" min:"1" type:"string" required:"true"`
 
 	// The unique ID generated for this device by Cognito.
-	DeviceID *string `locationName:"DeviceId" type:"string"`
+	DeviceId *string `min:"1" type:"string"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityID *string `location:"uri" locationName:"IdentityId" type:"string" required:"true"`
+	IdentityId *string `location:"uri" locationName:"IdentityId" min:"1" type:"string" required:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
-	IdentityPoolID *string `location:"uri" locationName:"IdentityPoolId" type:"string" required:"true"`
+	IdentityPoolId *string `location:"uri" locationName:"IdentityPoolId" min:"1" type:"string" required:"true"`
 
 	// A list of patch operations.
 	RecordPatches []*RecordPatch `type:"list"`
@@ -1727,7 +1727,7 @@ type metadataUpdateRecordsInput struct {
 
 // String returns the string representation
 func (s UpdateRecordsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1749,10 +1749,46 @@ type metadataUpdateRecordsOutput struct {
 
 // String returns the string representation
 func (s UpdateRecordsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s UpdateRecordsOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum BulkPublishStatus
+	BulkPublishStatusNotStarted = "NOT_STARTED"
+	// @enum BulkPublishStatus
+	BulkPublishStatusInProgress = "IN_PROGRESS"
+	// @enum BulkPublishStatus
+	BulkPublishStatusFailed = "FAILED"
+	// @enum BulkPublishStatus
+	BulkPublishStatusSucceeded = "SUCCEEDED"
+)
+
+const (
+	// @enum Operation
+	OperationReplace = "replace"
+	// @enum Operation
+	OperationRemove = "remove"
+)
+
+const (
+	// @enum Platform
+	PlatformApns = "APNS"
+	// @enum Platform
+	PlatformApnsSandbox = "APNS_SANDBOX"
+	// @enum Platform
+	PlatformGcm = "GCM"
+	// @enum Platform
+	PlatformAdm = "ADM"
+)
+
+const (
+	// @enum StreamingStatus
+	StreamingStatusEnabled = "ENABLED"
+	// @enum StreamingStatus
+	StreamingStatusDisabled = "DISABLED"
+)

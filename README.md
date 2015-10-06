@@ -7,7 +7,9 @@
 
 aws-sdk-go is the official AWS SDK for the Go programming language.
 
-[**Check out the official Developer Preview announcement (New - June 3rd 2015)**](https://aws.amazon.com/blogs/aws/developer-preview-of-aws-sdk-for-go-is-now-available/)
+Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for information about the latest bug fixes, updates, and features added to the SDK.
+
+**Release [v0.9.0rc1](http://aws.amazon.com/releasenotes/2948141298714307) introduced a breaking change to the SDK. See the release notes for details of the change and instructions to migrate to the latest SDK version.**
 
 ## Caution
 
@@ -79,7 +81,7 @@ func main() {
 	// Create an EC2 service object in the "us-west-2" region
 	// Note that you can also configure your region globally by
 	// exporting the AWS_REGION environment variable
-	svc := ec2.New(&aws.Config{Region: "us-west-2"})
+	svc := ec2.New(&aws.Config{Region: aws.String("us-west-2")})
 
 	// Call the DescribeInstances Operation
 	resp, err := svc.DescribeInstances(nil)
@@ -92,14 +94,14 @@ func main() {
 	for idx, res := range resp.Reservations {
 		fmt.Println("  > Number of instances: ", len(res.Instances))
 		for _, inst := range resp.Reservations[idx].Instances {
-			fmt.Println("    - Instance ID: ", *inst.InstanceID)
+			fmt.Println("    - Instance ID: ", *inst.InstanceId)
 		}
 	}
 }
 ```
 
 You can find more information and operations in our
-[API documentation](http://godoc.org/github.com/aws/aws-sdk-go).
+[API documentation](http://docs.aws.amazon.com/sdk-for-go/api/).
 
 ## License
 

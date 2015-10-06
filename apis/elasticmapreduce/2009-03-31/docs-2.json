@@ -1,4 +1,5 @@
 {
+  "version": "2.0",
   "operations": {
     "AddInstanceGroups": "<p>AddInstanceGroups adds an instance group to a running cluster.</p>",
     "AddJobFlowSteps": "<p> AddJobFlowSteps adds new steps to a running job flow. A maximum of 256 steps are allowed in each job flow. </p> <p>If your job flow is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Job Flow</a> in the <i>Amazon Elastic MapReduce Developer's Guide</i>.</p> <p> A step specifies the location of a JAR file stored either on the master node of the job flow or in Amazon S3. Each step is performed by the main function of the main class of the JAR file. The main class can be specified either in the manifest of the JAR or by using the MainFunction parameter of the step. </p> <p> Elastic MapReduce executes each step in the order listed. For a step to be considered complete, the main function must exit with a zero exit code and all Hadoop jobs started while the step was running must have completed and run successfully. </p> <p> You can only add steps to a job flow that is in one of the following states: STARTING, BOOTSTRAPPING, RUNNING, or WAITING.</p>",
@@ -59,7 +60,7 @@
       }
     },
     "Application": {
-      "base": "<p>An application is any Amazon or third-party software that you can add to the cluster. This structure contains a list of strings that indicates the software to use with the cluster and accepts a user argument list. Amazon EMR accepts and forwards the argument list to the corresponding installation script as bootstrap action argument. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html\">Launch a Job Flow on the MapR Distribution for Hadoop</a>. Currently supported values are:</p> <ul> <li>\"mapr-m3\" - launch the job flow using MapR M3 Edition.</li> <li>\"mapr-m5\" - launch the job flow using MapR M5 Edition.</li> <li>\"mapr\" with the user arguments specifying \"--edition,m3\" or \"--edition,m5\" - launch the job flow using MapR M3 or M5 Edition, respectively.</li> </ul>",
+      "base": "<p>An application is any Amazon or third-party software that you can add to the cluster. This structure contains a list of strings that indicates the software to use with the cluster and accepts a user argument list. Amazon EMR accepts and forwards the argument list to the corresponding installation script as bootstrap action argument. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html\">Launch a Job Flow on the MapR Distribution for Hadoop</a>. Currently supported values are:</p> <ul> <li>\"mapr-m3\" - launch the job flow using MapR M3 Edition.</li> <li>\"mapr-m5\" - launch the job flow using MapR M5 Edition.</li> <li>\"mapr\" with the user arguments specifying \"--edition,m3\" or \"--edition,m5\" - launch the job flow using MapR M3 or M5 Edition, respectively.</li> </ul> <note><p>In Amazon EMR releases 4.0 and greater, the only accepted parameter is the application name. To pass arguments to applications, you supply a configuration for each application.</p></note>",
       "refs": {
         "ApplicationList$member": null
       }
@@ -67,7 +68,8 @@
     "ApplicationList": {
       "base": null,
       "refs": {
-        "Cluster$Applications": "<p>The applications installed on this cluster.</p>"
+        "Cluster$Applications": "<p>The applications installed on this cluster.</p>",
+        "RunJobFlowInput$Applications": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>A list of applications for the cluster. Valid values are: \"Hadoop\", \"Hive\", \"Mahout\", \"Pig\", and \"Spark.\" They are case insensitive.</p>"
       }
     },
     "Boolean": {
@@ -77,7 +79,7 @@
         "Cluster$TerminationProtected": "<p>Indicates whether Amazon EMR will lock the cluster to prevent the EC2 instances from being terminated by an API call or user intervention, or in the event of a cluster error.</p>",
         "Cluster$VisibleToAllUsers": "<p>Indicates whether the job flow is visible to all IAM users of the AWS account associated with the job flow. If this value is set to <code>true</code>, all IAM users of that AWS account can view and manage the job flow if they have the proper policy permissions set. If this value is <code>false</code>, only the IAM user that created the cluster can view and manage it. This value can be changed using the <a>SetVisibleToAllUsers</a> action.</p>",
         "JobFlowDetail$VisibleToAllUsers": "<p>Specifies whether the job flow is visible to all IAM users of the AWS account associated with the job flow. If this value is set to <code>true</code>, all IAM users of that AWS account can view and (if they have the proper policy permissions set) manage the job flow. If it is set to <code>false</code>, only the IAM user that created the job flow can view and manage it. This value can be changed using the <a>SetVisibleToAllUsers</a> action.</p>",
-        "JobFlowInstancesConfig$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the job flow should terminate after completing all steps.</p>",
+        "JobFlowInstancesConfig$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the job flow should be kept alive after completing all steps.</p>",
         "JobFlowInstancesConfig$TerminationProtected": "<p>Specifies whether to lock the job flow to prevent the Amazon EC2 instances from being terminated by API call, user intervention, or in the event of a job flow error.</p>",
         "JobFlowInstancesDetail$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the job flow should terminate after completing all steps.</p>",
         "JobFlowInstancesDetail$TerminationProtected": "<p>Specifies whether the Amazon EC2 instances in the cluster are protected from termination by API calls, user intervention, or in the event of a job flow error. </p>",
@@ -190,6 +192,22 @@
       "base": null,
       "refs": {
         "ListBootstrapActionsOutput$BootstrapActions": "<p>The bootstrap actions associated with the cluster .</p>"
+      }
+    },
+    "Configuration": {
+      "base": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>Specifies a hardware and software configuration of the EMR cluster. This includes configurations for applications and software bundled with Amazon EMR. The Configuration object is a JSON object which is defined by a classification and a set of properties. Configurations can be nested, so a configuration may have its own Configuration objects listed.</p>",
+      "refs": {
+        "ConfigurationList$member": null
+      }
+    },
+    "ConfigurationList": {
+      "base": null,
+      "refs": {
+        "Cluster$Configurations": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>The list of Configurations supplied to the EMR cluster.</p>",
+        "Configuration$Configurations": "<p>A list of configurations you apply to this configuration object. </p>",
+        "InstanceGroup$Configurations": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>The list of configurations supplied for an EMR cluster instance group. You can specify a separate configuration for each instance group (master, core, and task).</p>",
+        "InstanceGroupConfig$Configurations": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>The list of configurations supplied for an EMR cluster instance group. You can specify a separate configuration for each instance group (master, core, and task).</p>",
+        "RunJobFlowInput$Configurations": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>The list of configurations supplied for the EMR cluster you are creating.</p>"
       }
     },
     "Date": {
@@ -634,7 +652,7 @@
     "NewSupportedProductsList": {
       "base": null,
       "refs": {
-        "RunJobFlowInput$NewSupportedProducts": "<p>A list of strings that indicates third-party software to use with the job flow that accepts a user argument list. EMR accepts and forwards the argument list to the corresponding installation script as bootstrap action arguments. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html\">Launch a Job Flow on the MapR Distribution for Hadoop</a>. Currently supported values are:</p> <ul> <li>\"mapr-m3\" - launch the job flow using MapR M3 Edition.</li> <li>\"mapr-m5\" - launch the job flow using MapR M5 Edition.</li> <li>\"mapr\" with the user arguments specifying \"--edition,m3\" or \"--edition,m5\" - launch the job flow using MapR M3 or M5 Edition respectively.</li> </ul>"
+        "RunJobFlowInput$NewSupportedProducts": "<note><p>For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater, use Applications.</p></note> <p>A list of strings that indicates third-party software to use with the job flow that accepts a user argument list. EMR accepts and forwards the argument list to the corresponding installation script as bootstrap action arguments. For more information, see <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-mapr.html\">Launch a Job Flow on the MapR Distribution for Hadoop</a>. Currently supported values are:</p> <ul> <li>\"mapr-m3\" - launch the cluster using MapR M3 Edition.</li> <li>\"mapr-m5\" - launch the cluster using MapR M5 Edition.</li> <li>\"mapr\" with the user arguments specifying \"--edition,m3\" or \"--edition,m5\" - launch the job flow using MapR M3 or M5 Edition respectively.</li> <li>\"mapr-m7\" - launch the cluster using MapR M7 Edition.</li> <li>\"hunk\" - launch the cluster with the Hunk Big Data Analtics Platform.</li> <li>\"hue\"- launch the cluster with Hue installed.</li> <li>\"spark\" - launch the cluster with Apache Spark installed.</li> <li>\"ganglia\" - launch the cluster with the Ganglia Monitoring System installed.</li> </ul>"
       }
     },
     "PlacementType": {
@@ -768,7 +786,7 @@
     "StepStateChangeReasonCode": {
       "base": null,
       "refs": {
-        "StepStateChangeReason$Code": "<p>The programmable code for the state change reason. </p>"
+        "StepStateChangeReason$Code": "<p>The programmable code for the state change reason. Note: Currently, the service provides no code for the state change. </p>"
       }
     },
     "StepStateList": {
@@ -810,13 +828,15 @@
         "Cluster$Name": "<p>The name of the cluster.</p>",
         "Cluster$LogUri": "<p>The path to the Amazon S3 location where logs for this cluster are stored.</p>",
         "Cluster$RequestedAmiVersion": "<p>The AMI version requested for this cluster.</p>",
-        "Cluster$RunningAmiVersion": "<p>The AMI version running on this cluster. This differs from the requested version only if the requested version is a meta version, such as \"latest\". </p>",
+        "Cluster$RunningAmiVersion": "<p>The AMI version running on this cluster. </p>",
+        "Cluster$ReleaseLabel": "<p>The release label for the Amazon EMR release. For Amazon EMR 3.x and 2.x AMIs, use amiVersion instead instead of ReleaseLabel.</p>",
         "Cluster$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access AWS resources on your behalf.</p>",
-        "Cluster$MasterPublicDnsName": "<p>The public DNS name of the master Ec2 instance.</p>",
+        "Cluster$MasterPublicDnsName": "<p>The public DNS name of the master EC2 instance.</p>",
         "ClusterStateChangeReason$Message": "<p>The descriptive message for the state change reason.</p>",
         "ClusterSummary$Name": "<p>The name of the cluster.</p>",
         "Command$Name": "<p>The name of the command.</p>",
         "Command$ScriptPath": "<p>The Amazon S3 location of the command script.</p>",
+        "Configuration$Classification": "<p>The classification of a configuration. For more information see, <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/API/EmrConfigurations.html\">Amazon EMR Configurations</a>. </p>",
         "Ec2InstanceAttributes$Ec2KeyName": "<p>The name of the Amazon EC2 key pair to use when connecting with SSH into the master node as a user named \"hadoop\".</p>",
         "Ec2InstanceAttributes$Ec2SubnetId": "<p> To launch the job flow in Amazon VPC, set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal AWS cloud, outside of a VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus, you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a VPC. </p>",
         "Ec2InstanceAttributes$Ec2AvailabilityZone": "<p>The Availability Zone in which the cluster will run.</p>",
@@ -858,6 +878,7 @@
       "base": null,
       "refs": {
         "Application$AdditionalInfo": "<p>This option is for advanced users only. This is meta information about third-party applications that third-party vendors use for testing purposes.</p>",
+        "Configuration$Properties": "<p>A set of properties supplied to the Configuration object.</p>",
         "HadoopStepConfig$Properties": "<p>The list of Java properties that are set when the step runs. You can use these properties to pass key value pairs to your main function.</p>"
       }
     },
@@ -871,7 +892,7 @@
       "base": null,
       "refs": {
         "JobFlowDetail$SupportedProducts": "<p>A list of strings set by third party software when the job flow is launched. If you are not using third party software to manage the job flow this value is empty.</p>",
-        "RunJobFlowInput$SupportedProducts": "<p>A list of strings that indicates third-party software to use with the job flow. For more information, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-supported-products.html\">Use Third Party Applications with Amazon EMR</a>. Currently supported values are:</p> <ul> <li>\"mapr-m3\" - launch the job flow using MapR M3 Edition.</li> <li>\"mapr-m5\" - launch the job flow using MapR M5 Edition.</li> </ul>"
+        "RunJobFlowInput$SupportedProducts": "<note><p>For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater, use Applications.</p></note> <p>A list of strings that indicates third-party software to use with the job flow. For more information, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/emr-supported-products.html\">Use Third Party Applications with Amazon EMR</a>. Currently supported values are:</p> <ul> <li>\"mapr-m3\" - launch the job flow using MapR M3 Edition.</li> <li>\"mapr-m5\" - launch the job flow using MapR M5 Edition.</li> </ul>"
       }
     },
     "Tag": {
@@ -946,9 +967,9 @@
         "InstanceGroupModifyConfig$InstanceGroupId": "<p>Unique ID of the instance group to expand or shrink.</p>",
         "JobFlowDetail$JobFlowId": "<p>The job flow identifier.</p>",
         "JobFlowDetail$Name": "<p>The name of the job flow.</p>",
-        "JobFlowDetail$AmiVersion": "<p>The version of the AMI used to initialize Amazon EC2 instances in the job flow. For a list of AMI versions currently supported by Amazon ElasticMapReduce, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported\">AMI Versions Supported in Elastic MapReduce</a> in the <i>Amazon Elastic MapReduce Developer's Guide.</i></p>",
+        "JobFlowDetail$AmiVersion": "<p>The version of the AMI used to initialize Amazon EC2 instances in the job flow. For a list of AMI versions currently supported by Amazon ElasticMapReduce, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported\">AMI Versions Supported in Elastic MapReduce</a> in the <i>Amazon Elastic MapReduce Developer Guide.</i></p>",
         "JobFlowInstancesConfig$Ec2KeyName": "<p>The name of the Amazon EC2 key pair that can be used to ssh to the master node as the user called \"hadoop.\"</p>",
-        "JobFlowInstancesConfig$HadoopVersion": "<p>The Hadoop version for the job flow. Valid inputs are \"0.18\", \"0.20\", \"0.20.205\", \"1.0.3\", \"2.2.0\", or \"2.4.0\". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.</p>",
+        "JobFlowInstancesConfig$HadoopVersion": "<p>The Hadoop version for the job flow. Valid inputs are \"0.18\" (deprecated), \"0.20\" (deprecated), \"0.20.205\" (deprecated), \"1.0.3\", \"2.2.0\", or \"2.4.0\". If you do not set this value, the default of 0.18 is used, unless the AmiVersion parameter is set in the RunJobFlow call, in which case the default version of Hadoop for that AMI version is used.</p>",
         "JobFlowInstancesConfig$Ec2SubnetId": "<p> To launch the job flow in Amazon Virtual Private Cloud (Amazon VPC), set this parameter to the identifier of the Amazon VPC subnet where you want the job flow to launch. If you do not specify this value, the job flow is launched in the normal Amazon Web Services cloud, outside of an Amazon VPC. </p> <p> Amazon VPC currently does not support cluster compute quadruple extra large (cc1.4xlarge) instances. Thus you cannot specify the cc1.4xlarge instance type for nodes of a job flow launched in a Amazon VPC. </p>",
         "JobFlowInstancesConfig$EmrManagedMasterSecurityGroup": "<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the master node.</p>",
         "JobFlowInstancesConfig$EmrManagedSlaveSecurityGroup": "<p>The identifier of the Amazon EC2 security group (managed by Amazon ElasticMapReduce) for the slave nodes.</p>",
@@ -956,7 +977,8 @@
         "JobFlowInstancesDetail$Ec2SubnetId": "<p>For job flows launched within Amazon Virtual Private Cloud, this value specifies the identifier of the subnet where the job flow was launched.</p>",
         "JobFlowInstancesDetail$HadoopVersion": "<p>The Hadoop version for the job flow.</p>",
         "RunJobFlowInput$Name": "<p>The name of the job flow.</p>",
-        "RunJobFlowInput$AmiVersion": "<p>The version of the Amazon Machine Image (AMI) to use when launching Amazon EC2 instances in the job flow. The following values are valid: </p> <ul> <li>\"latest\" (uses the latest AMI)</li> <li>The version number of the AMI to use, for example, \"2.0\"</li> </ul> <p>If the AMI supports multiple versions of Hadoop (for example, AMI 1.0 supports both Hadoop 0.18 and 0.20) you can use the <a>JobFlowInstancesConfig</a> <code>HadoopVersion</code> parameter to modify the version of Hadoop from the defaults shown above.</p> <p>For details about the AMI versions currently supported by Amazon Elastic MapReduce, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported\">AMI Versions Supported in Elastic MapReduce</a> in the <i>Amazon Elastic MapReduce Developer's Guide.</i> </p>",
+        "RunJobFlowInput$AmiVersion": "<note><p>For Amazon EMR releases 3.x and 2.x. For Amazon EMR releases 4.x and greater, use ReleaseLabel.</p></note> <p>The version of the Amazon Machine Image (AMI) to use when launching Amazon EC2 instances in the job flow. The following values are valid: </p> <ul> <li>The version number of the AMI to use, for example, \"2.0.\"</li> </ul> <p>If the AMI supports multiple versions of Hadoop (for example, AMI 1.0 supports both Hadoop 0.18 and 0.20) you can use the <a>JobFlowInstancesConfig</a> <code>HadoopVersion</code> parameter to modify the version of Hadoop from the defaults shown above.</p> <p>For details about the AMI versions currently supported by Amazon Elastic MapReduce, go to <a href=\"http://docs.aws.amazon.com/ElasticMapReduce/latest/DeveloperGuide/EnvironmentConfig_AMIVersion.html#ami-versions-supported\">AMI Versions Supported in Elastic MapReduce</a> in the <i>Amazon Elastic MapReduce Developer's Guide.</i> </p>",
+        "RunJobFlowInput$ReleaseLabel": "<note><p>Amazon EMR releases 4.x or later.</p></note> <p>The release label for the Amazon EMR release. For Amazon EMR 3.x and 2.x AMIs, use amiVersion instead instead of ReleaseLabel.</p>",
         "RunJobFlowOutput$JobFlowId": "<p>An unique identifier for the job flow.</p>",
         "SecurityGroupsList$member": null,
         "StepConfig$Name": "<p>The name of the job flow step.</p>",

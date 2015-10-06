@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
 )
 
@@ -20,27 +18,19 @@ func ExampleElasticTranscoder_CancelJob() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.CancelJobInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 	}
 	resp, err := svc.CancelJob(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_CreateJob() {
@@ -51,16 +41,16 @@ func ExampleElasticTranscoder_CreateJob() {
 			AspectRatio: aws.String("AspectRatio"),
 			Container:   aws.String("JobContainer"),
 			DetectedProperties: &elastictranscoder.DetectedProperties{
-				DurationMillis: aws.Long(1),
-				FileSize:       aws.Long(1),
+				DurationMillis: aws.Int64(1),
+				FileSize:       aws.Int64(1),
 				FrameRate:      aws.String("FloatString"),
-				Height:         aws.Long(1),
-				Width:          aws.Long(1),
+				Height:         aws.Int64(1),
+				Width:          aws.Int64(1),
 			},
 			Encryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
-				KeyMD5:               aws.String("Base64EncodedString"),
+				KeyMd5:               aws.String("Base64EncodedString"),
 				Mode:                 aws.String("EncryptionMode"),
 			},
 			FrameRate:  aws.String("FrameRate"),
@@ -68,7 +58,7 @@ func ExampleElasticTranscoder_CreateJob() {
 			Key:        aws.String("Key"),
 			Resolution: aws.String("Resolution"),
 		},
-		PipelineID: aws.String("Id"), // Required
+		PipelineId: aws.String("Id"), // Required
 		Output: &elastictranscoder.CreateJobOutput{
 			AlbumArt: &elastictranscoder.JobAlbumArt{
 				Artwork: []*elastictranscoder.Artwork{
@@ -77,7 +67,7 @@ func ExampleElasticTranscoder_CreateJob() {
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
-							KeyMD5:               aws.String("Base64EncodedString"),
+							KeyMd5:               aws.String("Base64EncodedString"),
 							Mode:                 aws.String("EncryptionMode"),
 						},
 						InputKey:      aws.String("WatermarkKey"),
@@ -96,7 +86,7 @@ func ExampleElasticTranscoder_CreateJob() {
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
-							KeyMD5:               aws.String("Base64EncodedString"),
+							KeyMd5:               aws.String("Base64EncodedString"),
 							Mode:                 aws.String("EncryptionMode"),
 						},
 						Format:  aws.String("CaptionFormatFormat"),
@@ -109,7 +99,7 @@ func ExampleElasticTranscoder_CreateJob() {
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
-							KeyMD5:               aws.String("Base64EncodedString"),
+							KeyMd5:               aws.String("Base64EncodedString"),
 							Mode:                 aws.String("EncryptionMode"),
 						},
 						Key:        aws.String("Key"),
@@ -133,17 +123,17 @@ func ExampleElasticTranscoder_CreateJob() {
 			Encryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
-				KeyMD5:               aws.String("Base64EncodedString"),
+				KeyMd5:               aws.String("Base64EncodedString"),
 				Mode:                 aws.String("EncryptionMode"),
 			},
 			Key:             aws.String("Key"),
-			PresetID:        aws.String("Id"),
+			PresetId:        aws.String("Id"),
 			Rotate:          aws.String("Rotate"),
 			SegmentDuration: aws.String("FloatString"),
 			ThumbnailEncryption: &elastictranscoder.Encryption{
 				InitializationVector: aws.String("ZeroTo255String"),
 				Key:                  aws.String("Base64EncodedString"),
-				KeyMD5:               aws.String("Base64EncodedString"),
+				KeyMd5:               aws.String("Base64EncodedString"),
 				Mode:                 aws.String("EncryptionMode"),
 			},
 			ThumbnailPattern: aws.String("ThumbnailPattern"),
@@ -152,11 +142,11 @@ func ExampleElasticTranscoder_CreateJob() {
 					Encryption: &elastictranscoder.Encryption{
 						InitializationVector: aws.String("ZeroTo255String"),
 						Key:                  aws.String("Base64EncodedString"),
-						KeyMD5:               aws.String("Base64EncodedString"),
+						KeyMd5:               aws.String("Base64EncodedString"),
 						Mode:                 aws.String("EncryptionMode"),
 					},
 					InputKey:          aws.String("WatermarkKey"),
-					PresetWatermarkID: aws.String("PresetWatermarkId"),
+					PresetWatermarkId: aws.String("PresetWatermarkId"),
 				},
 				// More values...
 			},
@@ -171,7 +161,7 @@ func ExampleElasticTranscoder_CreateJob() {
 							Encryption: &elastictranscoder.Encryption{
 								InitializationVector: aws.String("ZeroTo255String"),
 								Key:                  aws.String("Base64EncodedString"),
-								KeyMD5:               aws.String("Base64EncodedString"),
+								KeyMd5:               aws.String("Base64EncodedString"),
 								Mode:                 aws.String("EncryptionMode"),
 							},
 							InputKey:      aws.String("WatermarkKey"),
@@ -190,7 +180,7 @@ func ExampleElasticTranscoder_CreateJob() {
 							Encryption: &elastictranscoder.Encryption{
 								InitializationVector: aws.String("ZeroTo255String"),
 								Key:                  aws.String("Base64EncodedString"),
-								KeyMD5:               aws.String("Base64EncodedString"),
+								KeyMd5:               aws.String("Base64EncodedString"),
 								Mode:                 aws.String("EncryptionMode"),
 							},
 							Format:  aws.String("CaptionFormatFormat"),
@@ -203,7 +193,7 @@ func ExampleElasticTranscoder_CreateJob() {
 							Encryption: &elastictranscoder.Encryption{
 								InitializationVector: aws.String("ZeroTo255String"),
 								Key:                  aws.String("Base64EncodedString"),
-								KeyMD5:               aws.String("Base64EncodedString"),
+								KeyMd5:               aws.String("Base64EncodedString"),
 								Mode:                 aws.String("EncryptionMode"),
 							},
 							Key:        aws.String("Key"),
@@ -227,17 +217,17 @@ func ExampleElasticTranscoder_CreateJob() {
 				Encryption: &elastictranscoder.Encryption{
 					InitializationVector: aws.String("ZeroTo255String"),
 					Key:                  aws.String("Base64EncodedString"),
-					KeyMD5:               aws.String("Base64EncodedString"),
+					KeyMd5:               aws.String("Base64EncodedString"),
 					Mode:                 aws.String("EncryptionMode"),
 				},
 				Key:             aws.String("Key"),
-				PresetID:        aws.String("Id"),
+				PresetId:        aws.String("Id"),
 				Rotate:          aws.String("Rotate"),
 				SegmentDuration: aws.String("FloatString"),
 				ThumbnailEncryption: &elastictranscoder.Encryption{
 					InitializationVector: aws.String("ZeroTo255String"),
 					Key:                  aws.String("Base64EncodedString"),
-					KeyMD5:               aws.String("Base64EncodedString"),
+					KeyMd5:               aws.String("Base64EncodedString"),
 					Mode:                 aws.String("EncryptionMode"),
 				},
 				ThumbnailPattern: aws.String("ThumbnailPattern"),
@@ -246,11 +236,11 @@ func ExampleElasticTranscoder_CreateJob() {
 						Encryption: &elastictranscoder.Encryption{
 							InitializationVector: aws.String("ZeroTo255String"),
 							Key:                  aws.String("Base64EncodedString"),
-							KeyMD5:               aws.String("Base64EncodedString"),
+							KeyMd5:               aws.String("Base64EncodedString"),
 							Mode:                 aws.String("EncryptionMode"),
 						},
 						InputKey:          aws.String("WatermarkKey"),
-						PresetWatermarkID: aws.String("PresetWatermarkId"),
+						PresetWatermarkId: aws.String("PresetWatermarkId"),
 					},
 					// More values...
 				},
@@ -260,12 +250,12 @@ func ExampleElasticTranscoder_CreateJob() {
 		Playlists: []*elastictranscoder.CreateJobPlaylist{
 			{ // Required
 				Format: aws.String("PlaylistFormat"),
-				HLSContentProtection: &elastictranscoder.HLSContentProtection{
+				HlsContentProtection: &elastictranscoder.HlsContentProtection{
 					InitializationVector:  aws.String("ZeroTo255String"),
 					Key:                   aws.String("Base64EncodedString"),
-					KeyMD5:                aws.String("Base64EncodedString"),
+					KeyMd5:                aws.String("Base64EncodedString"),
 					KeyStoragePolicy:      aws.String("KeyStoragePolicy"),
-					LicenseAcquisitionURL: aws.String("ZeroTo512String"),
+					LicenseAcquisitionUrl: aws.String("ZeroTo512String"),
 					Method:                aws.String("HlsContentProtectionMethod"),
 				},
 				Name: aws.String("Filename"),
@@ -273,13 +263,13 @@ func ExampleElasticTranscoder_CreateJob() {
 					aws.String("Key"), // Required
 					// More values...
 				},
-				PlayReadyDRM: &elastictranscoder.PlayReadyDRM{
+				PlayReadyDrm: &elastictranscoder.PlayReadyDrm{
 					Format:                aws.String("PlayReadyDrmFormatString"),
 					InitializationVector:  aws.String("ZeroTo255String"),
 					Key:                   aws.String("NonEmptyBase64EncodedString"),
-					KeyID:                 aws.String("KeyIdGuid"),
-					KeyMD5:                aws.String("NonEmptyBase64EncodedString"),
-					LicenseAcquisitionURL: aws.String("OneTo512String"),
+					KeyId:                 aws.String("KeyIdGuid"),
+					KeyMd5:                aws.String("NonEmptyBase64EncodedString"),
+					LicenseAcquisitionUrl: aws.String("OneTo512String"),
 				},
 			},
 			// More values...
@@ -292,22 +282,14 @@ func ExampleElasticTranscoder_CreateJob() {
 	resp, err := svc.CreateJob(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_CreatePipeline() {
@@ -317,7 +299,7 @@ func ExampleElasticTranscoder_CreatePipeline() {
 		InputBucket:  aws.String("BucketName"), // Required
 		Name:         aws.String("Name"),       // Required
 		Role:         aws.String("Role"),       // Required
-		AWSKMSKeyARN: aws.String("KeyArn"),
+		AwsKmsKeyArn: aws.String("KeyArn"),
 		ContentConfig: &elastictranscoder.PipelineOutputConfig{
 			Bucket: aws.String("BucketName"),
 			Permissions: []*elastictranscoder.Permission{
@@ -359,22 +341,14 @@ func ExampleElasticTranscoder_CreatePipeline() {
 	resp, err := svc.CreatePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_CreatePreset() {
@@ -429,7 +403,7 @@ func ExampleElasticTranscoder_CreatePreset() {
 				{ // Required
 					HorizontalAlign:  aws.String("HorizontalAlign"),
 					HorizontalOffset: aws.String("PixelsOrPercent"),
-					ID:               aws.String("PresetWatermarkId"),
+					Id:               aws.String("PresetWatermarkId"),
 					MaxHeight:        aws.String("PixelsOrPercent"),
 					MaxWidth:         aws.String("PixelsOrPercent"),
 					Opacity:          aws.String("Opacity"),
@@ -445,105 +419,73 @@ func ExampleElasticTranscoder_CreatePreset() {
 	resp, err := svc.CreatePreset(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_DeletePipeline() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.DeletePipelineInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 	}
 	resp, err := svc.DeletePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_DeletePreset() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.DeletePresetInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 	}
 	resp, err := svc.DeletePreset(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ListJobsByPipeline() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.ListJobsByPipelineInput{
-		PipelineID: aws.String("Id"), // Required
+		PipelineId: aws.String("Id"), // Required
 		Ascending:  aws.String("Ascending"),
 		PageToken:  aws.String("Id"),
 	}
 	resp, err := svc.ListJobsByPipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ListJobsByStatus() {
@@ -557,22 +499,14 @@ func ExampleElasticTranscoder_ListJobsByStatus() {
 	resp, err := svc.ListJobsByStatus(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ListPipelines() {
@@ -585,22 +519,14 @@ func ExampleElasticTranscoder_ListPipelines() {
 	resp, err := svc.ListPipelines(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ListPresets() {
@@ -613,103 +539,71 @@ func ExampleElasticTranscoder_ListPresets() {
 	resp, err := svc.ListPresets(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ReadJob() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.ReadJobInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 	}
 	resp, err := svc.ReadJob(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ReadPipeline() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.ReadPipelineInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 	}
 	resp, err := svc.ReadPipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_ReadPreset() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.ReadPresetInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 	}
 	resp, err := svc.ReadPreset(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_TestRole() {
@@ -727,30 +621,22 @@ func ExampleElasticTranscoder_TestRole() {
 	resp, err := svc.TestRole(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_UpdatePipeline() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.UpdatePipelineInput{
-		ID:           aws.String("Id"), // Required
-		AWSKMSKeyARN: aws.String("KeyArn"),
+		Id:           aws.String("Id"), // Required
+		AwsKmsKeyArn: aws.String("KeyArn"),
 		ContentConfig: &elastictranscoder.PipelineOutputConfig{
 			Bucket: aws.String("BucketName"),
 			Permissions: []*elastictranscoder.Permission{
@@ -794,29 +680,21 @@ func ExampleElasticTranscoder_UpdatePipeline() {
 	resp, err := svc.UpdatePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_UpdatePipelineNotifications() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.UpdatePipelineNotificationsInput{
-		ID: aws.String("Id"), // Required
+		Id: aws.String("Id"), // Required
 		Notifications: &elastictranscoder.Notifications{ // Required
 			Completed:   aws.String("SnsTopic"),
 			Error:       aws.String("SnsTopic"),
@@ -827,48 +705,32 @@ func ExampleElasticTranscoder_UpdatePipelineNotifications() {
 	resp, err := svc.UpdatePipelineNotifications(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleElasticTranscoder_UpdatePipelineStatus() {
 	svc := elastictranscoder.New(nil)
 
 	params := &elastictranscoder.UpdatePipelineStatusInput{
-		ID:     aws.String("Id"),             // Required
+		Id:     aws.String("Id"),             // Required
 		Status: aws.String("PipelineStatus"), // Required
 	}
 	resp, err := svc.UpdatePipelineStatus(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

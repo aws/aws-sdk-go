@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/cognitoidentity"
 )
 
@@ -20,10 +18,10 @@ func ExampleCognitoIdentity_CreateIdentityPool() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.CreateIdentityPoolInput{
-		AllowUnauthenticatedIdentities: aws.Boolean(true),              // Required
+		AllowUnauthenticatedIdentities: aws.Bool(true),                 // Required
 		IdentityPoolName:               aws.String("IdentityPoolName"), // Required
 		DeveloperProviderName:          aws.String("DeveloperProviderName"),
-		OpenIDConnectProviderARNs: []*string{
+		OpenIdConnectProviderARNs: []*string{
 			aws.String("ARNString"), // Required
 			// More values...
 		},
@@ -35,29 +33,21 @@ func ExampleCognitoIdentity_CreateIdentityPool() {
 	resp, err := svc.CreateIdentityPool(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_DeleteIdentities() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DeleteIdentitiesInput{
-		IdentityIDsToDelete: []*string{ // Required
+		IdentityIdsToDelete: []*string{ // Required
 			aws.String("IdentityId"), // Required
 			// More values...
 		},
@@ -65,110 +55,78 @@ func ExampleCognitoIdentity_DeleteIdentities() {
 	resp, err := svc.DeleteIdentities(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_DeleteIdentityPool() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DeleteIdentityPoolInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DeleteIdentityPool(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_DescribeIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DescribeIdentityInput{
-		IdentityID: aws.String("IdentityId"), // Required
+		IdentityId: aws.String("IdentityId"), // Required
 	}
 	resp, err := svc.DescribeIdentity(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_DescribeIdentityPool() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.DescribeIdentityPoolInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.DescribeIdentityPool(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_GetCredentialsForIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.GetCredentialsForIdentityInput{
-		IdentityID: aws.String("IdentityId"), // Required
+		IdentityId: aws.String("IdentityId"), // Required
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
@@ -177,234 +135,170 @@ func ExampleCognitoIdentity_GetCredentialsForIdentity() {
 	resp, err := svc.GetCredentialsForIdentity(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleCognitoIdentity_GetID() {
+func ExampleCognitoIdentity_GetId() {
 	svc := cognitoidentity.New(nil)
 
-	params := &cognitoidentity.GetIDInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		AccountID:      aws.String("AccountId"),
+	params := &cognitoidentity.GetIdInput{
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
+		AccountId:      aws.String("AccountId"),
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
 	}
-	resp, err := svc.GetID(params)
+	resp, err := svc.GetId(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_GetIdentityPoolRoles() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.GetIdentityPoolRolesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 	}
 	resp, err := svc.GetIdentityPoolRoles(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleCognitoIdentity_GetOpenIDToken() {
+func ExampleCognitoIdentity_GetOpenIdToken() {
 	svc := cognitoidentity.New(nil)
 
-	params := &cognitoidentity.GetOpenIDTokenInput{
-		IdentityID: aws.String("IdentityId"), // Required
+	params := &cognitoidentity.GetOpenIdTokenInput{
+		IdentityId: aws.String("IdentityId"), // Required
 		Logins: map[string]*string{
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
 	}
-	resp, err := svc.GetOpenIDToken(params)
+	resp, err := svc.GetOpenIdToken(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
-func ExampleCognitoIdentity_GetOpenIDTokenForDeveloperIdentity() {
+func ExampleCognitoIdentity_GetOpenIdTokenForDeveloperIdentity() {
 	svc := cognitoidentity.New(nil)
 
-	params := &cognitoidentity.GetOpenIDTokenForDeveloperIdentityInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+	params := &cognitoidentity.GetOpenIdTokenForDeveloperIdentityInput{
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 		Logins: map[string]*string{ // Required
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
 		},
-		IdentityID:    aws.String("IdentityId"),
-		TokenDuration: aws.Long(1),
+		IdentityId:    aws.String("IdentityId"),
+		TokenDuration: aws.Int64(1),
 	}
-	resp, err := svc.GetOpenIDTokenForDeveloperIdentity(params)
+	resp, err := svc.GetOpenIdTokenForDeveloperIdentity(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_ListIdentities() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.ListIdentitiesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
-		MaxResults:     aws.Long(1),                  // Required
-		HideDisabled:   aws.Boolean(true),
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
+		MaxResults:     aws.Int64(1),                 // Required
+		HideDisabled:   aws.Bool(true),
 		NextToken:      aws.String("PaginationKey"),
 	}
 	resp, err := svc.ListIdentities(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_ListIdentityPools() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.ListIdentityPoolsInput{
-		MaxResults: aws.Long(1), // Required
+		MaxResults: aws.Int64(1), // Required
 		NextToken:  aws.String("PaginationKey"),
 	}
 	resp, err := svc.ListIdentityPools(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_LookupDeveloperIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.LookupDeveloperIdentityInput{
-		IdentityPoolID:          aws.String("IdentityPoolId"), // Required
+		IdentityPoolId:          aws.String("IdentityPoolId"), // Required
 		DeveloperUserIdentifier: aws.String("DeveloperUserIdentifier"),
-		IdentityID:              aws.String("IdentityId"),
-		MaxResults:              aws.Long(1),
+		IdentityId:              aws.String("IdentityId"),
+		MaxResults:              aws.Int64(1),
 		NextToken:               aws.String("PaginationKey"),
 	}
 	resp, err := svc.LookupDeveloperIdentity(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_MergeDeveloperIdentities() {
@@ -413,35 +307,27 @@ func ExampleCognitoIdentity_MergeDeveloperIdentities() {
 	params := &cognitoidentity.MergeDeveloperIdentitiesInput{
 		DestinationUserIdentifier: aws.String("DeveloperUserIdentifier"), // Required
 		DeveloperProviderName:     aws.String("DeveloperProviderName"),   // Required
-		IdentityPoolID:            aws.String("IdentityPoolId"),          // Required
+		IdentityPoolId:            aws.String("IdentityPoolId"),          // Required
 		SourceUserIdentifier:      aws.String("DeveloperUserIdentifier"), // Required
 	}
 	resp, err := svc.MergeDeveloperIdentities(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_SetIdentityPoolRoles() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.SetIdentityPoolRolesInput{
-		IdentityPoolID: aws.String("IdentityPoolId"), // Required
+		IdentityPoolId: aws.String("IdentityPoolId"), // Required
 		Roles: map[string]*string{ // Required
 			"Key": aws.String("ARNString"), // Required
 			// More values...
@@ -450,22 +336,14 @@ func ExampleCognitoIdentity_SetIdentityPoolRoles() {
 	resp, err := svc.SetIdentityPoolRoles(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_UnlinkDeveloperIdentity() {
@@ -474,35 +352,27 @@ func ExampleCognitoIdentity_UnlinkDeveloperIdentity() {
 	params := &cognitoidentity.UnlinkDeveloperIdentityInput{
 		DeveloperProviderName:   aws.String("DeveloperProviderName"),   // Required
 		DeveloperUserIdentifier: aws.String("DeveloperUserIdentifier"), // Required
-		IdentityID:              aws.String("IdentityId"),              // Required
-		IdentityPoolID:          aws.String("IdentityPoolId"),          // Required
+		IdentityId:              aws.String("IdentityId"),              // Required
+		IdentityPoolId:          aws.String("IdentityPoolId"),          // Required
 	}
 	resp, err := svc.UnlinkDeveloperIdentity(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_UnlinkIdentity() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.UnlinkIdentityInput{
-		IdentityID: aws.String("IdentityId"), // Required
+		IdentityId: aws.String("IdentityId"), // Required
 		Logins: map[string]*string{ // Required
 			"Key": aws.String("IdentityProviderToken"), // Required
 			// More values...
@@ -515,33 +385,25 @@ func ExampleCognitoIdentity_UnlinkIdentity() {
 	resp, err := svc.UnlinkIdentity(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleCognitoIdentity_UpdateIdentityPool() {
 	svc := cognitoidentity.New(nil)
 
 	params := &cognitoidentity.IdentityPool{
-		AllowUnauthenticatedIdentities: aws.Boolean(true),              // Required
-		IdentityPoolID:                 aws.String("IdentityPoolId"),   // Required
+		AllowUnauthenticatedIdentities: aws.Bool(true),                 // Required
+		IdentityPoolId:                 aws.String("IdentityPoolId"),   // Required
 		IdentityPoolName:               aws.String("IdentityPoolName"), // Required
 		DeveloperProviderName:          aws.String("DeveloperProviderName"),
-		OpenIDConnectProviderARNs: []*string{
+		OpenIdConnectProviderARNs: []*string{
 			aws.String("ARNString"), // Required
 			// More values...
 		},
@@ -553,20 +415,12 @@ func ExampleCognitoIdentity_UpdateIdentityPool() {
 	resp, err := svc.UpdateIdentityPool(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS Error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

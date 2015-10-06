@@ -481,8 +481,8 @@ func compareObjects(t *testing.T, expected interface{}, actual interface{}) {
 	if !reflect.DeepEqual(expected, actual) {
 		t.Errorf("\nExpected %s:\n%s\nActual %s:\n%s\n",
 			reflect.ValueOf(expected).Kind(),
-			awsutil.StringValue(expected),
+			awsutil.Prettify(expected),
 			reflect.ValueOf(actual).Kind(),
-			awsutil.StringValue(actual))
+			awsutil.Prettify(actual))
 	}
 }

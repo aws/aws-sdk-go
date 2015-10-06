@@ -6,15 +6,15 @@ package autoscaling
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAttachInstances = "AttachInstances"
 
 // AttachInstancesRequest generates a request for the AttachInstances operation.
-func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *aws.Request, output *AttachInstancesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) AttachInstancesRequest(input *AttachInstancesInput) (req *request.Request, output *AttachInstancesOutput) {
+	op := &request.Operation{
 		Name:       opAttachInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -44,8 +44,8 @@ func (c *AutoScaling) AttachInstances(input *AttachInstancesInput) (*AttachInsta
 const opAttachLoadBalancers = "AttachLoadBalancers"
 
 // AttachLoadBalancersRequest generates a request for the AttachLoadBalancers operation.
-func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput) (req *aws.Request, output *AttachLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput) (req *request.Request, output *AttachLoadBalancersOutput) {
+	op := &request.Operation{
 		Name:       opAttachLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -78,8 +78,8 @@ func (c *AutoScaling) AttachLoadBalancers(input *AttachLoadBalancersInput) (*Att
 const opCompleteLifecycleAction = "CompleteLifecycleAction"
 
 // CompleteLifecycleActionRequest generates a request for the CompleteLifecycleAction operation.
-func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *aws.Request, output *CompleteLifecycleActionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleActionInput) (req *request.Request, output *CompleteLifecycleActionOutput) {
+	op := &request.Operation{
 		Name:       opCompleteLifecycleAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -119,8 +119,8 @@ func (c *AutoScaling) CompleteLifecycleAction(input *CompleteLifecycleActionInpu
 const opCreateAutoScalingGroup = "CreateAutoScalingGroup"
 
 // CreateAutoScalingGroupRequest generates a request for the CreateAutoScalingGroup operation.
-func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *aws.Request, output *CreateAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CreateAutoScalingGroupRequest(input *CreateAutoScalingGroupInput) (req *request.Request, output *CreateAutoScalingGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -153,8 +153,8 @@ func (c *AutoScaling) CreateAutoScalingGroup(input *CreateAutoScalingGroupInput)
 const opCreateLaunchConfiguration = "CreateLaunchConfiguration"
 
 // CreateLaunchConfigurationRequest generates a request for the CreateLaunchConfiguration operation.
-func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *aws.Request, output *CreateLaunchConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CreateLaunchConfigurationRequest(input *CreateLaunchConfigurationInput) (req *request.Request, output *CreateLaunchConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opCreateLaunchConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -187,8 +187,8 @@ func (c *AutoScaling) CreateLaunchConfiguration(input *CreateLaunchConfiguration
 const opCreateOrUpdateTags = "CreateOrUpdateTags"
 
 // CreateOrUpdateTagsRequest generates a request for the CreateOrUpdateTags operation.
-func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *aws.Request, output *CreateOrUpdateTagsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) CreateOrUpdateTagsRequest(input *CreateOrUpdateTagsInput) (req *request.Request, output *CreateOrUpdateTagsOutput) {
+	op := &request.Operation{
 		Name:       opCreateOrUpdateTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -227,8 +227,8 @@ func (c *AutoScaling) CreateOrUpdateTags(input *CreateOrUpdateTagsInput) (*Creat
 const opDeleteAutoScalingGroup = "DeleteAutoScalingGroup"
 
 // DeleteAutoScalingGroupRequest generates a request for the DeleteAutoScalingGroup operation.
-func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *aws.Request, output *DeleteAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteAutoScalingGroupRequest(input *DeleteAutoScalingGroupInput) (req *request.Request, output *DeleteAutoScalingGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -259,8 +259,8 @@ func (c *AutoScaling) DeleteAutoScalingGroup(input *DeleteAutoScalingGroupInput)
 const opDeleteLaunchConfiguration = "DeleteLaunchConfiguration"
 
 // DeleteLaunchConfigurationRequest generates a request for the DeleteLaunchConfiguration operation.
-func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *aws.Request, output *DeleteLaunchConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteLaunchConfigurationRequest(input *DeleteLaunchConfigurationInput) (req *request.Request, output *DeleteLaunchConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLaunchConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -290,8 +290,8 @@ func (c *AutoScaling) DeleteLaunchConfiguration(input *DeleteLaunchConfiguration
 const opDeleteLifecycleHook = "DeleteLifecycleHook"
 
 // DeleteLifecycleHookRequest generates a request for the DeleteLifecycleHook operation.
-func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *aws.Request, output *DeleteLifecycleHookOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteLifecycleHookRequest(input *DeleteLifecycleHookInput) (req *request.Request, output *DeleteLifecycleHookOutput) {
+	op := &request.Operation{
 		Name:       opDeleteLifecycleHook,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -320,8 +320,8 @@ func (c *AutoScaling) DeleteLifecycleHook(input *DeleteLifecycleHookInput) (*Del
 const opDeleteNotificationConfiguration = "DeleteNotificationConfiguration"
 
 // DeleteNotificationConfigurationRequest generates a request for the DeleteNotificationConfiguration operation.
-func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *aws.Request, output *DeleteNotificationConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteNotificationConfigurationRequest(input *DeleteNotificationConfigurationInput) (req *request.Request, output *DeleteNotificationConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opDeleteNotificationConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -347,8 +347,8 @@ func (c *AutoScaling) DeleteNotificationConfiguration(input *DeleteNotificationC
 const opDeletePolicy = "DeletePolicy"
 
 // DeletePolicyRequest generates a request for the DeletePolicy operation.
-func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *aws.Request, output *DeletePolicyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Request, output *DeletePolicyOutput) {
+	op := &request.Operation{
 		Name:       opDeletePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -374,8 +374,8 @@ func (c *AutoScaling) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutpu
 const opDeleteScheduledAction = "DeleteScheduledAction"
 
 // DeleteScheduledActionRequest generates a request for the DeleteScheduledAction operation.
-func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *aws.Request, output *DeleteScheduledActionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteScheduledActionRequest(input *DeleteScheduledActionInput) (req *request.Request, output *DeleteScheduledActionOutput) {
+	op := &request.Operation{
 		Name:       opDeleteScheduledAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -401,8 +401,8 @@ func (c *AutoScaling) DeleteScheduledAction(input *DeleteScheduledActionInput) (
 const opDeleteTags = "DeleteTags"
 
 // DeleteTagsRequest generates a request for the DeleteTags operation.
-func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *aws.Request, output *DeleteTagsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
+	op := &request.Operation{
 		Name:       opDeleteTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -428,8 +428,8 @@ func (c *AutoScaling) DeleteTags(input *DeleteTagsInput) (*DeleteTagsOutput, err
 const opDescribeAccountLimits = "DescribeAccountLimits"
 
 // DescribeAccountLimitsRequest generates a request for the DescribeAccountLimits operation.
-func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *aws.Request, output *DescribeAccountLimitsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsInput) (req *request.Request, output *DescribeAccountLimitsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAccountLimits,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -459,8 +459,8 @@ func (c *AutoScaling) DescribeAccountLimits(input *DescribeAccountLimitsInput) (
 const opDescribeAdjustmentTypes = "DescribeAdjustmentTypes"
 
 // DescribeAdjustmentTypesRequest generates a request for the DescribeAdjustmentTypes operation.
-func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *aws.Request, output *DescribeAdjustmentTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAdjustmentTypesRequest(input *DescribeAdjustmentTypesInput) (req *request.Request, output *DescribeAdjustmentTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAdjustmentTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -486,12 +486,12 @@ func (c *AutoScaling) DescribeAdjustmentTypes(input *DescribeAdjustmentTypesInpu
 const opDescribeAutoScalingGroups = "DescribeAutoScalingGroups"
 
 // DescribeAutoScalingGroupsRequest generates a request for the DescribeAutoScalingGroups operation.
-func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *aws.Request, output *DescribeAutoScalingGroupsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalingGroupsInput) (req *request.Request, output *DescribeAutoScalingGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAutoScalingGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -527,12 +527,12 @@ func (c *AutoScaling) DescribeAutoScalingGroupsPages(input *DescribeAutoScalingG
 const opDescribeAutoScalingInstances = "DescribeAutoScalingInstances"
 
 // DescribeAutoScalingInstancesRequest generates a request for the DescribeAutoScalingInstances operation.
-func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *aws.Request, output *DescribeAutoScalingInstancesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAutoScalingInstancesRequest(input *DescribeAutoScalingInstancesInput) (req *request.Request, output *DescribeAutoScalingInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAutoScalingInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -568,8 +568,8 @@ func (c *AutoScaling) DescribeAutoScalingInstancesPages(input *DescribeAutoScali
 const opDescribeAutoScalingNotificationTypes = "DescribeAutoScalingNotificationTypes"
 
 // DescribeAutoScalingNotificationTypesRequest generates a request for the DescribeAutoScalingNotificationTypes operation.
-func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *aws.Request, output *DescribeAutoScalingNotificationTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeAutoScalingNotificationTypesRequest(input *DescribeAutoScalingNotificationTypesInput) (req *request.Request, output *DescribeAutoScalingNotificationTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeAutoScalingNotificationTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -595,12 +595,12 @@ func (c *AutoScaling) DescribeAutoScalingNotificationTypes(input *DescribeAutoSc
 const opDescribeLaunchConfigurations = "DescribeLaunchConfigurations"
 
 // DescribeLaunchConfigurationsRequest generates a request for the DescribeLaunchConfigurations operation.
-func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *aws.Request, output *DescribeLaunchConfigurationsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLaunchConfigurationsRequest(input *DescribeLaunchConfigurationsInput) (req *request.Request, output *DescribeLaunchConfigurationsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLaunchConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -636,8 +636,8 @@ func (c *AutoScaling) DescribeLaunchConfigurationsPages(input *DescribeLaunchCon
 const opDescribeLifecycleHookTypes = "DescribeLifecycleHookTypes"
 
 // DescribeLifecycleHookTypesRequest generates a request for the DescribeLifecycleHookTypes operation.
-func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *aws.Request, output *DescribeLifecycleHookTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLifecycleHookTypesRequest(input *DescribeLifecycleHookTypesInput) (req *request.Request, output *DescribeLifecycleHookTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLifecycleHookTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -663,8 +663,8 @@ func (c *AutoScaling) DescribeLifecycleHookTypes(input *DescribeLifecycleHookTyp
 const opDescribeLifecycleHooks = "DescribeLifecycleHooks"
 
 // DescribeLifecycleHooksRequest generates a request for the DescribeLifecycleHooks operation.
-func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *aws.Request, output *DescribeLifecycleHooksOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLifecycleHooksRequest(input *DescribeLifecycleHooksInput) (req *request.Request, output *DescribeLifecycleHooksOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLifecycleHooks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -690,8 +690,8 @@ func (c *AutoScaling) DescribeLifecycleHooks(input *DescribeLifecycleHooksInput)
 const opDescribeLoadBalancers = "DescribeLoadBalancers"
 
 // DescribeLoadBalancersRequest generates a request for the DescribeLoadBalancers operation.
-func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *aws.Request, output *DescribeLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersInput) (req *request.Request, output *DescribeLoadBalancersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -717,8 +717,8 @@ func (c *AutoScaling) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (
 const opDescribeMetricCollectionTypes = "DescribeMetricCollectionTypes"
 
 // DescribeMetricCollectionTypesRequest generates a request for the DescribeMetricCollectionTypes operation.
-func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *aws.Request, output *DescribeMetricCollectionTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeMetricCollectionTypesRequest(input *DescribeMetricCollectionTypesInput) (req *request.Request, output *DescribeMetricCollectionTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeMetricCollectionTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -747,12 +747,12 @@ func (c *AutoScaling) DescribeMetricCollectionTypes(input *DescribeMetricCollect
 const opDescribeNotificationConfigurations = "DescribeNotificationConfigurations"
 
 // DescribeNotificationConfigurationsRequest generates a request for the DescribeNotificationConfigurations operation.
-func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *aws.Request, output *DescribeNotificationConfigurationsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeNotificationConfigurationsRequest(input *DescribeNotificationConfigurationsInput) (req *request.Request, output *DescribeNotificationConfigurationsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeNotificationConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -788,12 +788,12 @@ func (c *AutoScaling) DescribeNotificationConfigurationsPages(input *DescribeNot
 const opDescribePolicies = "DescribePolicies"
 
 // DescribePoliciesRequest generates a request for the DescribePolicies operation.
-func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *aws.Request, output *DescribePoliciesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribePoliciesRequest(input *DescribePoliciesInput) (req *request.Request, output *DescribePoliciesOutput) {
+	op := &request.Operation{
 		Name:       opDescribePolicies,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -828,12 +828,12 @@ func (c *AutoScaling) DescribePoliciesPages(input *DescribePoliciesInput, fn fun
 const opDescribeScalingActivities = "DescribeScalingActivities"
 
 // DescribeScalingActivitiesRequest generates a request for the DescribeScalingActivities operation.
-func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *aws.Request, output *DescribeScalingActivitiesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeScalingActivitiesRequest(input *DescribeScalingActivitiesInput) (req *request.Request, output *DescribeScalingActivitiesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeScalingActivities,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -871,8 +871,8 @@ func (c *AutoScaling) DescribeScalingActivitiesPages(input *DescribeScalingActiv
 const opDescribeScalingProcessTypes = "DescribeScalingProcessTypes"
 
 // DescribeScalingProcessTypesRequest generates a request for the DescribeScalingProcessTypes operation.
-func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *aws.Request, output *DescribeScalingProcessTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeScalingProcessTypesRequest(input *DescribeScalingProcessTypesInput) (req *request.Request, output *DescribeScalingProcessTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeScalingProcessTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -898,12 +898,12 @@ func (c *AutoScaling) DescribeScalingProcessTypes(input *DescribeScalingProcessT
 const opDescribeScheduledActions = "DescribeScheduledActions"
 
 // DescribeScheduledActionsRequest generates a request for the DescribeScheduledActions operation.
-func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *aws.Request, output *DescribeScheduledActionsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeScheduledActionsRequest(input *DescribeScheduledActionsInput) (req *request.Request, output *DescribeScheduledActionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeScheduledActions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -939,12 +939,12 @@ func (c *AutoScaling) DescribeScheduledActionsPages(input *DescribeScheduledActi
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a request for the DescribeTags operation.
-func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *aws.Request, output *DescribeTagsOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxRecords",
@@ -988,8 +988,8 @@ func (c *AutoScaling) DescribeTagsPages(input *DescribeTagsInput, fn func(p *Des
 const opDescribeTerminationPolicyTypes = "DescribeTerminationPolicyTypes"
 
 // DescribeTerminationPolicyTypesRequest generates a request for the DescribeTerminationPolicyTypes operation.
-func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *aws.Request, output *DescribeTerminationPolicyTypesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DescribeTerminationPolicyTypesRequest(input *DescribeTerminationPolicyTypesInput) (req *request.Request, output *DescribeTerminationPolicyTypesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTerminationPolicyTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1015,8 +1015,8 @@ func (c *AutoScaling) DescribeTerminationPolicyTypes(input *DescribeTerminationP
 const opDetachInstances = "DetachInstances"
 
 // DetachInstancesRequest generates a request for the DetachInstances operation.
-func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *aws.Request, output *DetachInstancesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DetachInstancesRequest(input *DetachInstancesInput) (req *request.Request, output *DetachInstancesOutput) {
+	op := &request.Operation{
 		Name:       opDetachInstances,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1048,8 +1048,8 @@ func (c *AutoScaling) DetachInstances(input *DetachInstancesInput) (*DetachInsta
 const opDetachLoadBalancers = "DetachLoadBalancers"
 
 // DetachLoadBalancersRequest generates a request for the DetachLoadBalancers operation.
-func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput) (req *aws.Request, output *DetachLoadBalancersOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DetachLoadBalancersRequest(input *DetachLoadBalancersInput) (req *request.Request, output *DetachLoadBalancersOutput) {
+	op := &request.Operation{
 		Name:       opDetachLoadBalancers,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1080,8 +1080,8 @@ func (c *AutoScaling) DetachLoadBalancers(input *DetachLoadBalancersInput) (*Det
 const opDisableMetricsCollection = "DisableMetricsCollection"
 
 // DisableMetricsCollectionRequest generates a request for the DisableMetricsCollection operation.
-func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *aws.Request, output *DisableMetricsCollectionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) DisableMetricsCollectionRequest(input *DisableMetricsCollectionInput) (req *request.Request, output *DisableMetricsCollectionOutput) {
+	op := &request.Operation{
 		Name:       opDisableMetricsCollection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1108,8 +1108,8 @@ func (c *AutoScaling) DisableMetricsCollection(input *DisableMetricsCollectionIn
 const opEnableMetricsCollection = "EnableMetricsCollection"
 
 // EnableMetricsCollectionRequest generates a request for the EnableMetricsCollection operation.
-func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *aws.Request, output *EnableMetricsCollectionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) EnableMetricsCollectionRequest(input *EnableMetricsCollectionInput) (req *request.Request, output *EnableMetricsCollectionOutput) {
+	op := &request.Operation{
 		Name:       opEnableMetricsCollection,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1139,8 +1139,8 @@ func (c *AutoScaling) EnableMetricsCollection(input *EnableMetricsCollectionInpu
 const opEnterStandby = "EnterStandby"
 
 // EnterStandbyRequest generates a request for the EnterStandby operation.
-func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *aws.Request, output *EnterStandbyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) EnterStandbyRequest(input *EnterStandbyInput) (req *request.Request, output *EnterStandbyOutput) {
+	op := &request.Operation{
 		Name:       opEnterStandby,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1169,8 +1169,8 @@ func (c *AutoScaling) EnterStandby(input *EnterStandbyInput) (*EnterStandbyOutpu
 const opExecutePolicy = "ExecutePolicy"
 
 // ExecutePolicyRequest generates a request for the ExecutePolicy operation.
-func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *aws.Request, output *ExecutePolicyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) ExecutePolicyRequest(input *ExecutePolicyInput) (req *request.Request, output *ExecutePolicyOutput) {
+	op := &request.Operation{
 		Name:       opExecutePolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1196,8 +1196,8 @@ func (c *AutoScaling) ExecutePolicy(input *ExecutePolicyInput) (*ExecutePolicyOu
 const opExitStandby = "ExitStandby"
 
 // ExitStandbyRequest generates a request for the ExitStandby operation.
-func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *aws.Request, output *ExitStandbyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) ExitStandbyRequest(input *ExitStandbyInput) (req *request.Request, output *ExitStandbyOutput) {
+	op := &request.Operation{
 		Name:       opExitStandby,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1226,8 +1226,8 @@ func (c *AutoScaling) ExitStandby(input *ExitStandbyInput) (*ExitStandbyOutput, 
 const opPutLifecycleHook = "PutLifecycleHook"
 
 // PutLifecycleHookRequest generates a request for the PutLifecycleHook operation.
-func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *aws.Request, output *PutLifecycleHookOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req *request.Request, output *PutLifecycleHookOutput) {
+	op := &request.Operation{
 		Name:       opPutLifecycleHook,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1275,8 +1275,8 @@ func (c *AutoScaling) PutLifecycleHook(input *PutLifecycleHookInput) (*PutLifecy
 const opPutNotificationConfiguration = "PutNotificationConfiguration"
 
 // PutNotificationConfigurationRequest generates a request for the PutNotificationConfiguration operation.
-func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *aws.Request, output *PutNotificationConfigurationOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutNotificationConfigurationRequest(input *PutNotificationConfigurationInput) (req *request.Request, output *PutNotificationConfigurationOutput) {
+	op := &request.Operation{
 		Name:       opPutNotificationConfiguration,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1310,8 +1310,8 @@ func (c *AutoScaling) PutNotificationConfiguration(input *PutNotificationConfigu
 const opPutScalingPolicy = "PutScalingPolicy"
 
 // PutScalingPolicyRequest generates a request for the PutScalingPolicy operation.
-func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *aws.Request, output *PutScalingPolicyOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutScalingPolicyRequest(input *PutScalingPolicyInput) (req *request.Request, output *PutScalingPolicyOutput) {
+	op := &request.Operation{
 		Name:       opPutScalingPolicy,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1345,8 +1345,8 @@ func (c *AutoScaling) PutScalingPolicy(input *PutScalingPolicyInput) (*PutScalin
 const opPutScheduledUpdateGroupAction = "PutScheduledUpdateGroupAction"
 
 // PutScheduledUpdateGroupActionRequest generates a request for the PutScheduledUpdateGroupAction operation.
-func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *aws.Request, output *PutScheduledUpdateGroupActionOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) PutScheduledUpdateGroupActionRequest(input *PutScheduledUpdateGroupActionInput) (req *request.Request, output *PutScheduledUpdateGroupActionOutput) {
+	op := &request.Operation{
 		Name:       opPutScheduledUpdateGroupAction,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1377,8 +1377,8 @@ func (c *AutoScaling) PutScheduledUpdateGroupAction(input *PutScheduledUpdateGro
 const opRecordLifecycleActionHeartbeat = "RecordLifecycleActionHeartbeat"
 
 // RecordLifecycleActionHeartbeatRequest generates a request for the RecordLifecycleActionHeartbeat operation.
-func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *aws.Request, output *RecordLifecycleActionHeartbeatOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecycleActionHeartbeatInput) (req *request.Request, output *RecordLifecycleActionHeartbeatOutput) {
+	op := &request.Operation{
 		Name:       opRecordLifecycleActionHeartbeat,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1419,8 +1419,8 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeat(input *RecordLifecycleActio
 const opResumeProcesses = "ResumeProcesses"
 
 // ResumeProcessesRequest generates a request for the ResumeProcesses operation.
-func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *ResumeProcessesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) ResumeProcessesRequest(input *ScalingProcessQuery) (req *request.Request, output *ResumeProcessesOutput) {
+	op := &request.Operation{
 		Name:       opResumeProcesses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1450,8 +1450,8 @@ func (c *AutoScaling) ResumeProcesses(input *ScalingProcessQuery) (*ResumeProces
 const opSetDesiredCapacity = "SetDesiredCapacity"
 
 // SetDesiredCapacityRequest generates a request for the SetDesiredCapacity operation.
-func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *aws.Request, output *SetDesiredCapacityOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) SetDesiredCapacityRequest(input *SetDesiredCapacityInput) (req *request.Request, output *SetDesiredCapacityOutput) {
+	op := &request.Operation{
 		Name:       opSetDesiredCapacity,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1480,8 +1480,8 @@ func (c *AutoScaling) SetDesiredCapacity(input *SetDesiredCapacityInput) (*SetDe
 const opSetInstanceHealth = "SetInstanceHealth"
 
 // SetInstanceHealthRequest generates a request for the SetInstanceHealth operation.
-func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *aws.Request, output *SetInstanceHealthOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) SetInstanceHealthRequest(input *SetInstanceHealthInput) (req *request.Request, output *SetInstanceHealthOutput) {
+	op := &request.Operation{
 		Name:       opSetInstanceHealth,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1510,8 +1510,8 @@ func (c *AutoScaling) SetInstanceHealth(input *SetInstanceHealthInput) (*SetInst
 const opSuspendProcesses = "SuspendProcesses"
 
 // SuspendProcessesRequest generates a request for the SuspendProcesses operation.
-func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *aws.Request, output *SuspendProcessesOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) SuspendProcessesRequest(input *ScalingProcessQuery) (req *request.Request, output *SuspendProcessesOutput) {
+	op := &request.Operation{
 		Name:       opSuspendProcesses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1547,8 +1547,8 @@ func (c *AutoScaling) SuspendProcesses(input *ScalingProcessQuery) (*SuspendProc
 const opTerminateInstanceInAutoScalingGroup = "TerminateInstanceInAutoScalingGroup"
 
 // TerminateInstanceInAutoScalingGroupRequest generates a request for the TerminateInstanceInAutoScalingGroup operation.
-func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *aws.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) TerminateInstanceInAutoScalingGroupRequest(input *TerminateInstanceInAutoScalingGroupInput) (req *request.Request, output *TerminateInstanceInAutoScalingGroupOutput) {
+	op := &request.Operation{
 		Name:       opTerminateInstanceInAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1578,8 +1578,8 @@ func (c *AutoScaling) TerminateInstanceInAutoScalingGroup(input *TerminateInstan
 const opUpdateAutoScalingGroup = "UpdateAutoScalingGroup"
 
 // UpdateAutoScalingGroupRequest generates a request for the UpdateAutoScalingGroup operation.
-func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *aws.Request, output *UpdateAutoScalingGroupOutput) {
-	op := &aws.Operation{
+func (c *AutoScaling) UpdateAutoScalingGroupRequest(input *UpdateAutoScalingGroupInput) (req *request.Request, output *UpdateAutoScalingGroupOutput) {
+	op := &request.Operation{
 		Name:       opUpdateAutoScalingGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1630,13 +1630,13 @@ func (c *AutoScaling) UpdateAutoScalingGroup(input *UpdateAutoScalingGroupInput)
 // an instance.
 type Activity struct {
 	// The ID of the activity.
-	ActivityID *string `locationName:"ActivityId" type:"string" required:"true"`
+	ActivityId *string `type:"string" required:"true"`
 
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The reason the activity began.
-	Cause *string `type:"string" required:"true"`
+	Cause *string `min:"1" type:"string" required:"true"`
 
 	// A friendly, more verbose description of the activity.
 	Description *string `type:"string"`
@@ -1654,10 +1654,10 @@ type Activity struct {
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The current status of the activity.
-	StatusCode *string `type:"string" required:"true"`
+	StatusCode *string `type:"string" required:"true" enum:"ScalingActivityStatusCode"`
 
 	// A friendly, more verbose description of the activity status.
-	StatusMessage *string `type:"string"`
+	StatusMessage *string `min:"1" type:"string"`
 
 	metadataActivity `json:"-" xml:"-"`
 }
@@ -1668,7 +1668,7 @@ type metadataActivity struct {
 
 // String returns the string representation
 func (s Activity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1683,7 +1683,7 @@ func (s Activity) GoString() string {
 type AdjustmentType struct {
 	// The policy adjustment type. The valid values are ChangeInCapacity, ExactCapacity,
 	// and PercentChangeInCapacity.
-	AdjustmentType *string `type:"string"`
+	AdjustmentType *string `min:"1" type:"string"`
 
 	metadataAdjustmentType `json:"-" xml:"-"`
 }
@@ -1694,7 +1694,7 @@ type metadataAdjustmentType struct {
 
 // String returns the string representation
 func (s AdjustmentType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1705,10 +1705,10 @@ func (s AdjustmentType) GoString() string {
 // Describes an alarm.
 type Alarm struct {
 	// The Amazon Resource Name (ARN) of the alarm.
-	AlarmARN *string `type:"string"`
+	AlarmARN *string `min:"1" type:"string"`
 
 	// The name of the alarm.
-	AlarmName *string `type:"string"`
+	AlarmName *string `min:"1" type:"string"`
 
 	metadataAlarm `json:"-" xml:"-"`
 }
@@ -1719,7 +1719,7 @@ type metadataAlarm struct {
 
 // String returns the string representation
 func (s Alarm) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1729,10 +1729,10 @@ func (s Alarm) GoString() string {
 
 type AttachInstancesInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more EC2 instance IDs.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	metadataAttachInstancesInput `json:"-" xml:"-"`
 }
@@ -1743,7 +1743,7 @@ type metadataAttachInstancesInput struct {
 
 // String returns the string representation
 func (s AttachInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1761,7 +1761,7 @@ type metadataAttachInstancesOutput struct {
 
 // String returns the string representation
 func (s AttachInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1771,7 +1771,7 @@ func (s AttachInstancesOutput) GoString() string {
 
 type AttachLoadBalancersInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// One or more load balancer names.
 	LoadBalancerNames []*string `type:"list"`
@@ -1785,7 +1785,7 @@ type metadataAttachLoadBalancersInput struct {
 
 // String returns the string representation
 func (s AttachLoadBalancersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1803,7 +1803,7 @@ type metadataAttachLoadBalancersOutput struct {
 
 // String returns the string representation
 func (s AttachLoadBalancersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1814,10 +1814,10 @@ func (s AttachLoadBalancersOutput) GoString() string {
 // Describes a block device mapping.
 type BlockDeviceMapping struct {
 	// The device name exposed to the EC2 instance (for example, /dev/sdh or xvdh).
-	DeviceName *string `type:"string" required:"true"`
+	DeviceName *string `min:"1" type:"string" required:"true"`
 
 	// The information about the Amazon EBS volume.
-	EBS *EBS `locationName:"Ebs" type:"structure"`
+	Ebs *Ebs `type:"structure"`
 
 	// Suppresses a device mapping.
 	//
@@ -1827,7 +1827,7 @@ type BlockDeviceMapping struct {
 	NoDevice *bool `type:"boolean"`
 
 	// The name of the virtual device, ephemeral0 to ephemeral3.
-	VirtualName *string `type:"string"`
+	VirtualName *string `min:"1" type:"string"`
 
 	metadataBlockDeviceMapping `json:"-" xml:"-"`
 }
@@ -1838,7 +1838,7 @@ type metadataBlockDeviceMapping struct {
 
 // String returns the string representation
 func (s BlockDeviceMapping) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1848,7 +1848,7 @@ func (s BlockDeviceMapping) GoString() string {
 
 type CompleteLifecycleActionInput struct {
 	// The name of the group for the lifecycle hook.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The action for the group to take. This parameter can be either CONTINUE or
 	// ABANDON.
@@ -1857,10 +1857,10 @@ type CompleteLifecycleActionInput struct {
 	// A universally unique identifier (UUID) that identifies a specific lifecycle
 	// action associated with an instance. Auto Scaling sends this token to the
 	// notification target you specified when you created the lifecycle hook.
-	LifecycleActionToken *string `type:"string" required:"true"`
+	LifecycleActionToken *string `min:"36" type:"string" required:"true"`
 
 	// The name of the lifecycle hook.
-	LifecycleHookName *string `type:"string" required:"true"`
+	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
 	metadataCompleteLifecycleActionInput `json:"-" xml:"-"`
 }
@@ -1871,7 +1871,7 @@ type metadataCompleteLifecycleActionInput struct {
 
 // String returns the string representation
 func (s CompleteLifecycleActionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1889,7 +1889,7 @@ type metadataCompleteLifecycleActionOutput struct {
 
 // String returns the string representation
 func (s CompleteLifecycleActionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1900,11 +1900,11 @@ func (s CompleteLifecycleActionOutput) GoString() string {
 type CreateAutoScalingGroupInput struct {
 	// The name of the group. This name must be unique within the scope of your
 	// AWS account.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group. This parameter is optional
 	// if you specify subnets using the VPCZoneIdentifier parameter.
-	AvailabilityZones []*string `type:"list"`
+	AvailabilityZones []*string `min:"1" type:"list"`
 
 	// The amount of time, in seconds, after a scaling activity completes before
 	// another scaling activity can start.
@@ -1937,7 +1937,7 @@ type CreateAutoScalingGroupInput struct {
 	//
 	// By default, health checks use Amazon EC2 instance status checks to determine
 	// the health of an instance. For more information, see Health Checks (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html).
-	HealthCheckType *string `type:"string"`
+	HealthCheckType *string `min:"1" type:"string"`
 
 	// The ID of the EC2 instance used to create a launch configuration for the
 	// group. Alternatively, use the LaunchConfigurationName parameter to specify
@@ -1951,11 +1951,11 @@ type CreateAutoScalingGroupInput struct {
 	// For more information, see Create an Auto Scaling Group from an EC2 Instance
 	// (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-asg-from-instance.html)
 	// in the Auto Scaling Developer Guide.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `min:"1" type:"string"`
 
 	// The name of the launch configuration. Alternatively, use the InstanceId parameter
 	// to specify an EC2 instance instead of a launch configuration.
-	LaunchConfigurationName *string `type:"string"`
+	LaunchConfigurationName *string `min:"1" type:"string"`
 
 	// One or more load balancers.
 	//
@@ -1972,7 +1972,7 @@ type CreateAutoScalingGroupInput struct {
 	// The name of the placement group into which you'll launch your instances,
 	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	PlacementGroup *string `type:"string"`
+	PlacementGroup *string `min:"1" type:"string"`
 
 	// The tag to be created or updated. Each tag should be defined by its resource
 	// type, resource ID, key, value, and a propagate flag. Valid values: key=value,
@@ -1999,7 +1999,7 @@ type CreateAutoScalingGroupInput struct {
 	// For more information, see Auto Scaling and Amazon Virtual Private Cloud
 	// (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html)
 	// in the Auto Scaling Developer Guide.
-	VPCZoneIdentifier *string `type:"string"`
+	VPCZoneIdentifier *string `min:"1" type:"string"`
 
 	metadataCreateAutoScalingGroupInput `json:"-" xml:"-"`
 }
@@ -2010,7 +2010,7 @@ type metadataCreateAutoScalingGroupInput struct {
 
 // String returns the string representation
 func (s CreateAutoScalingGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2028,7 +2028,7 @@ type metadataCreateAutoScalingGroupOutput struct {
 
 // String returns the string representation
 func (s CreateAutoScalingGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2049,7 +2049,7 @@ type CreateLaunchConfigurationInput struct {
 	// is true. If the instance is launched into a nondefault subnet, the default
 	// is false. For more information, see Supported Platforms (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	AssociatePublicIPAddress *bool `locationName:"AssociatePublicIpAddress" type:"boolean"`
+	AssociatePublicIpAddress *bool `type:"boolean"`
 
 	// One or more mappings that specify how block devices are exposed to the instance.
 	// For more information, see Block Device Mapping (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html)
@@ -2060,7 +2060,7 @@ type CreateLaunchConfigurationInput struct {
 	// This parameter is supported only if you are launching EC2-Classic instances.
 	// For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	ClassicLinkVPCID *string `locationName:"ClassicLinkVPCId" type:"string"`
+	ClassicLinkVPCId *string `min:"1" type:"string"`
 
 	// The IDs of one or more security groups for the VPC specified in ClassicLinkVPCId.
 	// This parameter is required if ClassicLinkVPCId is specified, and is not supported
@@ -2075,7 +2075,7 @@ type CreateLaunchConfigurationInput struct {
 	// types. Additional usage charges apply. For more information, see Amazon EBS-Optimized
 	// Instances (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+	EbsOptimized *bool `type:"boolean"`
 
 	// The name or the Amazon Resource Name (ARN) of the instance profile associated
 	// with the IAM role for the instance.
@@ -2086,12 +2086,12 @@ type CreateLaunchConfigurationInput struct {
 	// AWS resources. For more information, see Launch Auto Scaling Instances with
 	// an IAM Role (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/us-iam-role.html)
 	// in the Auto Scaling Developer Guide.
-	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
+	IamInstanceProfile *string `min:"1" type:"string"`
 
 	// The ID of the Amazon Machine Image (AMI) to use to launch your EC2 instances.
 	// For more information, see Finding an AMI (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	ImageID *string `locationName:"ImageId" type:"string"`
+	ImageId *string `min:"1" type:"string"`
 
 	// The ID of the EC2 instance to use to create the launch configuration.
 	//
@@ -2104,7 +2104,7 @@ type CreateLaunchConfigurationInput struct {
 	// For more information, see Create a Launch Configuration Using an EC2 Instance
 	// (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/create-lc-with-instanceID.html)
 	// in the Auto Scaling Developer Guide.
-	InstanceID *string `locationName:"InstanceId" type:"string"`
+	InstanceId *string `min:"1" type:"string"`
 
 	// Enables detailed monitoring if it is disabled. Detailed monitoring is enabled
 	// by default.
@@ -2119,19 +2119,19 @@ type CreateLaunchConfigurationInput struct {
 	// The instance type of the EC2 instance. For information about available instance
 	// types, see  Available Instance Types (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes)
 	// in the Amazon Elastic Cloud Compute User Guide.
-	InstanceType *string `type:"string"`
+	InstanceType *string `min:"1" type:"string"`
 
 	// The ID of the kernel associated with the AMI.
-	KernelID *string `locationName:"KernelId" type:"string"`
+	KernelId *string `min:"1" type:"string"`
 
 	// The name of the key pair. For more information, see Amazon EC2 Key Pairs
 	// (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in
 	// the Amazon Elastic Compute Cloud User Guide.
-	KeyName *string `type:"string"`
+	KeyName *string `min:"1" type:"string"`
 
 	// The name of the launch configuration. This name must be unique within the
 	// scope of your AWS account.
-	LaunchConfigurationName *string `type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// The tenancy of the instance. An instance with a tenancy of dedicated runs
 	// on single-tenant hardware and can only be launched into a VPC.
@@ -2148,10 +2148,10 @@ type CreateLaunchConfigurationInput struct {
 	// in the Auto Scaling Developer Guide.
 	//
 	// Valid values: default | dedicated
-	PlacementTenancy *string `type:"string"`
+	PlacementTenancy *string `min:"1" type:"string"`
 
 	// The ID of the RAM disk associated with the AMI.
-	RAMDiskID *string `locationName:"RamdiskId" type:"string"`
+	RamdiskId *string `min:"1" type:"string"`
 
 	// One or more security groups with which to associate the instances.
 	//
@@ -2170,7 +2170,7 @@ type CreateLaunchConfigurationInput struct {
 	// the current Spot market price. For more information, see Launch Spot Instances
 	// in Your Auto Scaling Group (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US-SpotInstances.html)
 	// in the Auto Scaling Developer Guide.
-	SpotPrice *string `type:"string"`
+	SpotPrice *string `min:"1" type:"string"`
 
 	// The user data to make available to the launched EC2 instances. For more information,
 	// see Instance Metadata and User Data (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html)
@@ -2189,7 +2189,7 @@ type metadataCreateLaunchConfigurationInput struct {
 
 // String returns the string representation
 func (s CreateLaunchConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2207,7 +2207,7 @@ type metadataCreateLaunchConfigurationOutput struct {
 
 // String returns the string representation
 func (s CreateLaunchConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2228,7 +2228,7 @@ type metadataCreateOrUpdateTagsInput struct {
 
 // String returns the string representation
 func (s CreateOrUpdateTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2246,7 +2246,7 @@ type metadataCreateOrUpdateTagsOutput struct {
 
 // String returns the string representation
 func (s CreateOrUpdateTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2256,7 +2256,7 @@ func (s CreateOrUpdateTagsOutput) GoString() string {
 
 type DeleteAutoScalingGroupInput struct {
 	// The name of the group to delete.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// Specifies that the group will be deleted along with all instances associated
 	// with the group, without waiting for all instances to be terminated. This
@@ -2272,7 +2272,7 @@ type metadataDeleteAutoScalingGroupInput struct {
 
 // String returns the string representation
 func (s DeleteAutoScalingGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2290,7 +2290,7 @@ type metadataDeleteAutoScalingGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteAutoScalingGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2300,7 +2300,7 @@ func (s DeleteAutoScalingGroupOutput) GoString() string {
 
 type DeleteLaunchConfigurationInput struct {
 	// The name of the launch configuration.
-	LaunchConfigurationName *string `type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteLaunchConfigurationInput `json:"-" xml:"-"`
 }
@@ -2311,7 +2311,7 @@ type metadataDeleteLaunchConfigurationInput struct {
 
 // String returns the string representation
 func (s DeleteLaunchConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2329,7 +2329,7 @@ type metadataDeleteLaunchConfigurationOutput struct {
 
 // String returns the string representation
 func (s DeleteLaunchConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2339,10 +2339,10 @@ func (s DeleteLaunchConfigurationOutput) GoString() string {
 
 type DeleteLifecycleHookInput struct {
 	// The name of the Auto Scaling group for the lifecycle hook.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the lifecycle hook.
-	LifecycleHookName *string `type:"string" required:"true"`
+	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteLifecycleHookInput `json:"-" xml:"-"`
 }
@@ -2353,7 +2353,7 @@ type metadataDeleteLifecycleHookInput struct {
 
 // String returns the string representation
 func (s DeleteLifecycleHookInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2371,7 +2371,7 @@ type metadataDeleteLifecycleHookOutput struct {
 
 // String returns the string representation
 func (s DeleteLifecycleHookOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2381,11 +2381,11 @@ func (s DeleteLifecycleHookOutput) GoString() string {
 
 type DeleteNotificationConfigurationInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic.
-	TopicARN *string `type:"string" required:"true"`
+	TopicARN *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteNotificationConfigurationInput `json:"-" xml:"-"`
 }
@@ -2396,7 +2396,7 @@ type metadataDeleteNotificationConfigurationInput struct {
 
 // String returns the string representation
 func (s DeleteNotificationConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2414,7 +2414,7 @@ type metadataDeleteNotificationConfigurationOutput struct {
 
 // String returns the string representation
 func (s DeleteNotificationConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2424,10 +2424,10 @@ func (s DeleteNotificationConfigurationOutput) GoString() string {
 
 type DeletePolicyInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The name or Amazon Resource Name (ARN) of the policy.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeletePolicyInput `json:"-" xml:"-"`
 }
@@ -2438,7 +2438,7 @@ type metadataDeletePolicyInput struct {
 
 // String returns the string representation
 func (s DeletePolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2456,7 +2456,7 @@ type metadataDeletePolicyOutput struct {
 
 // String returns the string representation
 func (s DeletePolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2466,10 +2466,10 @@ func (s DeletePolicyOutput) GoString() string {
 
 type DeleteScheduledActionInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The name of the action to delete.
-	ScheduledActionName *string `type:"string" required:"true"`
+	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
 	metadataDeleteScheduledActionInput `json:"-" xml:"-"`
 }
@@ -2480,7 +2480,7 @@ type metadataDeleteScheduledActionInput struct {
 
 // String returns the string representation
 func (s DeleteScheduledActionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2498,7 +2498,7 @@ type metadataDeleteScheduledActionOutput struct {
 
 // String returns the string representation
 func (s DeleteScheduledActionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2522,7 +2522,7 @@ type metadataDeleteTagsInput struct {
 
 // String returns the string representation
 func (s DeleteTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2540,7 +2540,7 @@ type metadataDeleteTagsOutput struct {
 
 // String returns the string representation
 func (s DeleteTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2558,7 +2558,7 @@ type metadataDescribeAccountLimitsInput struct {
 
 // String returns the string representation
 func (s DescribeAccountLimitsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2584,7 +2584,7 @@ type metadataDescribeAccountLimitsOutput struct {
 
 // String returns the string representation
 func (s DescribeAccountLimitsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2602,7 +2602,7 @@ type metadataDescribeAdjustmentTypesInput struct {
 
 // String returns the string representation
 func (s DescribeAdjustmentTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2623,7 +2623,7 @@ type metadataDescribeAdjustmentTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeAdjustmentTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2651,7 +2651,7 @@ type metadataDescribeAutoScalingGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeAutoScalingGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2676,7 +2676,7 @@ type metadataDescribeAutoScalingGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeAutoScalingGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2688,7 +2688,7 @@ type DescribeAutoScalingInstancesInput struct {
 	// One or more Auto Scaling instances to describe, up to 50 instances. If you
 	// omit this parameter, all Auto Scaling instances are described. If you specify
 	// an ID that does not exist, it is ignored with no error.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	// The maximum number of items to return with this call.
 	MaxRecords *int64 `type:"integer"`
@@ -2706,7 +2706,7 @@ type metadataDescribeAutoScalingInstancesInput struct {
 
 // String returns the string representation
 func (s DescribeAutoScalingInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2731,7 +2731,7 @@ type metadataDescribeAutoScalingInstancesOutput struct {
 
 // String returns the string representation
 func (s DescribeAutoScalingInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2749,7 +2749,7 @@ type metadataDescribeAutoScalingNotificationTypesInput struct {
 
 // String returns the string representation
 func (s DescribeAutoScalingNotificationTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2780,7 +2780,7 @@ type metadataDescribeAutoScalingNotificationTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeAutoScalingNotificationTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2808,7 +2808,7 @@ type metadataDescribeLaunchConfigurationsInput struct {
 
 // String returns the string representation
 func (s DescribeLaunchConfigurationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2833,7 +2833,7 @@ type metadataDescribeLaunchConfigurationsOutput struct {
 
 // String returns the string representation
 func (s DescribeLaunchConfigurationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2851,7 +2851,7 @@ type metadataDescribeLifecycleHookTypesInput struct {
 
 // String returns the string representation
 func (s DescribeLifecycleHookTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2876,7 +2876,7 @@ type metadataDescribeLifecycleHookTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeLifecycleHookTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2886,7 +2886,7 @@ func (s DescribeLifecycleHookTypesOutput) GoString() string {
 
 type DescribeLifecycleHooksInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The names of one or more lifecycle hooks.
 	LifecycleHookNames []*string `type:"list"`
@@ -2900,7 +2900,7 @@ type metadataDescribeLifecycleHooksInput struct {
 
 // String returns the string representation
 func (s DescribeLifecycleHooksInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2921,7 +2921,7 @@ type metadataDescribeLifecycleHooksOutput struct {
 
 // String returns the string representation
 func (s DescribeLifecycleHooksOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2931,7 +2931,7 @@ func (s DescribeLifecycleHooksOutput) GoString() string {
 
 type DescribeLoadBalancersInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The maximum number of items to return with this call.
 	MaxRecords *int64 `type:"integer"`
@@ -2949,7 +2949,7 @@ type metadataDescribeLoadBalancersInput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2974,7 +2974,7 @@ type metadataDescribeLoadBalancersOutput struct {
 
 // String returns the string representation
 func (s DescribeLoadBalancersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2992,7 +2992,7 @@ type metadataDescribeMetricCollectionTypesInput struct {
 
 // String returns the string representation
 func (s DescribeMetricCollectionTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3016,7 +3016,7 @@ type metadataDescribeMetricCollectionTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeMetricCollectionTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3044,7 +3044,7 @@ type metadataDescribeNotificationConfigurationsInput struct {
 
 // String returns the string representation
 func (s DescribeNotificationConfigurationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3069,7 +3069,7 @@ type metadataDescribeNotificationConfigurationsOutput struct {
 
 // String returns the string representation
 func (s DescribeNotificationConfigurationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3079,7 +3079,7 @@ func (s DescribeNotificationConfigurationsOutput) GoString() string {
 
 type DescribePoliciesInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The maximum number of items to be returned with each call.
 	MaxRecords *int64 `type:"integer"`
@@ -3106,7 +3106,7 @@ type metadataDescribePoliciesInput struct {
 
 // String returns the string representation
 func (s DescribePoliciesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3131,7 +3131,7 @@ type metadataDescribePoliciesOutput struct {
 
 // String returns the string representation
 func (s DescribePoliciesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3145,10 +3145,10 @@ type DescribeScalingActivitiesInput struct {
 	// the results are limited to that group. The list of requested activities cannot
 	// contain more than 50 items. If unknown activities are requested, they are
 	// ignored with no error.
-	ActivityIDs []*string `locationName:"ActivityIds" type:"list"`
+	ActivityIds []*string `type:"list"`
 
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The maximum number of items to return with this call.
 	MaxRecords *int64 `type:"integer"`
@@ -3166,7 +3166,7 @@ type metadataDescribeScalingActivitiesInput struct {
 
 // String returns the string representation
 func (s DescribeScalingActivitiesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3191,7 +3191,7 @@ type metadataDescribeScalingActivitiesOutput struct {
 
 // String returns the string representation
 func (s DescribeScalingActivitiesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3209,7 +3209,7 @@ type metadataDescribeScalingProcessTypesInput struct {
 
 // String returns the string representation
 func (s DescribeScalingProcessTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3230,7 +3230,7 @@ type metadataDescribeScalingProcessTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeScalingProcessTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3240,7 +3240,7 @@ func (s DescribeScalingProcessTypesOutput) GoString() string {
 
 type DescribeScheduledActionsInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The latest scheduled start time to return. If scheduled action names are
 	// provided, this parameter is ignored.
@@ -3275,7 +3275,7 @@ type metadataDescribeScheduledActionsInput struct {
 
 // String returns the string representation
 func (s DescribeScheduledActionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3300,7 +3300,7 @@ type metadataDescribeScheduledActionsOutput struct {
 
 // String returns the string representation
 func (s DescribeScheduledActionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3328,7 +3328,7 @@ type metadataDescribeTagsInput struct {
 
 // String returns the string representation
 func (s DescribeTagsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3353,7 +3353,7 @@ type metadataDescribeTagsOutput struct {
 
 // String returns the string representation
 func (s DescribeTagsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3371,7 +3371,7 @@ type metadataDescribeTerminationPolicyTypesInput struct {
 
 // String returns the string representation
 func (s DescribeTerminationPolicyTypesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3393,7 +3393,7 @@ type metadataDescribeTerminationPolicyTypesOutput struct {
 
 // String returns the string representation
 func (s DescribeTerminationPolicyTypesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3403,10 +3403,10 @@ func (s DescribeTerminationPolicyTypesOutput) GoString() string {
 
 type DetachInstancesInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instance IDs.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	// If True, the Auto Scaling group decrements the desired capacity value by
 	// the number of instances detached.
@@ -3421,7 +3421,7 @@ type metadataDetachInstancesInput struct {
 
 // String returns the string representation
 func (s DetachInstancesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3442,7 +3442,7 @@ type metadataDetachInstancesOutput struct {
 
 // String returns the string representation
 func (s DetachInstancesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3452,7 +3452,7 @@ func (s DetachInstancesOutput) GoString() string {
 
 type DetachLoadBalancersInput struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// One or more load balancer names.
 	LoadBalancerNames []*string `type:"list"`
@@ -3466,7 +3466,7 @@ type metadataDetachLoadBalancersInput struct {
 
 // String returns the string representation
 func (s DetachLoadBalancersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3484,7 +3484,7 @@ type metadataDetachLoadBalancersOutput struct {
 
 // String returns the string representation
 func (s DetachLoadBalancersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3494,7 +3494,7 @@ func (s DetachLoadBalancersOutput) GoString() string {
 
 type DisableMetricsCollectionInput struct {
 	// The name or Amazon Resource Name (ARN) of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more metrics. If you omit this parameter, all metrics are disabled.
 	//
@@ -3524,7 +3524,7 @@ type metadataDisableMetricsCollectionInput struct {
 
 // String returns the string representation
 func (s DisableMetricsCollectionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3542,7 +3542,7 @@ type metadataDisableMetricsCollectionOutput struct {
 
 // String returns the string representation
 func (s DisableMetricsCollectionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3551,7 +3551,7 @@ func (s DisableMetricsCollectionOutput) GoString() string {
 }
 
 // Describes an Amazon EBS volume.
-type EBS struct {
+type Ebs struct {
 	// Indicates whether to delete the volume on instance termination.
 	//
 	// Default: true
@@ -3563,10 +3563,10 @@ type EBS struct {
 	// Valid values: Range is 100 to 4000.
 	//
 	// Default: None
-	IOPS *int64 `locationName:"Iops" type:"integer"`
+	Iops *int64 `min:"100" type:"integer"`
 
 	// The ID of the snapshot.
-	SnapshotID *string `locationName:"SnapshotId" type:"string"`
+	SnapshotId *string `min:"1" type:"string"`
 
 	// The volume size, in gigabytes.
 	//
@@ -3578,39 +3578,39 @@ type EBS struct {
 	// volume size, the default is the size of the snapshot.
 	//
 	// Required: Required when the volume type is io1.
-	VolumeSize *int64 `type:"integer"`
+	VolumeSize *int64 `min:"1" type:"integer"`
 
 	// The volume type.
 	//
 	// Valid values: standard | io1 | gp2
 	//
 	// Default: standard
-	VolumeType *string `type:"string"`
+	VolumeType *string `min:"1" type:"string"`
 
-	metadataEBS `json:"-" xml:"-"`
+	metadataEbs `json:"-" xml:"-"`
 }
 
-type metadataEBS struct {
+type metadataEbs struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s EBS) String() string {
-	return awsutil.StringValue(s)
+func (s Ebs) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s EBS) GoString() string {
+func (s Ebs) GoString() string {
 	return s.String()
 }
 
 type EnableMetricsCollectionInput struct {
 	// The name or ARN of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The granularity to associate with the metrics to collect. The only valid
 	// value is 1Minute.
-	Granularity *string `type:"string" required:"true"`
+	Granularity *string `min:"1" type:"string" required:"true"`
 
 	// One or more metrics. If you omit this parameter, all metrics are enabled.
 	//
@@ -3643,7 +3643,7 @@ type metadataEnableMetricsCollectionInput struct {
 
 // String returns the string representation
 func (s EnableMetricsCollectionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3661,7 +3661,7 @@ type metadataEnableMetricsCollectionOutput struct {
 
 // String returns the string representation
 func (s EnableMetricsCollectionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3672,7 +3672,7 @@ func (s EnableMetricsCollectionOutput) GoString() string {
 // Describes an enabled metric.
 type EnabledMetric struct {
 	// The granularity of the metric. The only valid value is 1Minute.
-	Granularity *string `type:"string"`
+	Granularity *string `min:"1" type:"string"`
 
 	// The name of the metric.
 	//
@@ -3691,7 +3691,7 @@ type EnabledMetric struct {
 	// GroupTerminatingInstances
 	//
 	// GroupTotalInstances
-	Metric *string `type:"string"`
+	Metric *string `min:"1" type:"string"`
 
 	metadataEnabledMetric `json:"-" xml:"-"`
 }
@@ -3702,7 +3702,7 @@ type metadataEnabledMetric struct {
 
 // String returns the string representation
 func (s EnabledMetric) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3712,11 +3712,11 @@ func (s EnabledMetric) GoString() string {
 
 type EnterStandbyInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instances to move into Standby mode. You must specify at least
 	// one instance ID.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	// Specifies whether the instances moved to Standby mode count as part of the
 	// Auto Scaling group's desired capacity. If set, the desired capacity for the
@@ -3733,7 +3733,7 @@ type metadataEnterStandbyInput struct {
 
 // String returns the string representation
 func (s EnterStandbyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3754,7 +3754,7 @@ type metadataEnterStandbyOutput struct {
 
 // String returns the string representation
 func (s EnterStandbyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3764,7 +3764,7 @@ func (s EnterStandbyOutput) GoString() string {
 
 type ExecutePolicyInput struct {
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The breach threshold for the alarm.
 	//
@@ -3796,7 +3796,7 @@ type ExecutePolicyInput struct {
 	MetricValue *float64 `type:"double"`
 
 	// The name or ARN of the policy.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	metadataExecutePolicyInput `json:"-" xml:"-"`
 }
@@ -3807,7 +3807,7 @@ type metadataExecutePolicyInput struct {
 
 // String returns the string representation
 func (s ExecutePolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3825,7 +3825,7 @@ type metadataExecutePolicyOutput struct {
 
 // String returns the string representation
 func (s ExecutePolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3835,10 +3835,10 @@ func (s ExecutePolicyOutput) GoString() string {
 
 type ExitStandbyInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more instance IDs. You must specify at least one instance ID.
-	InstanceIDs []*string `locationName:"InstanceIds" type:"list"`
+	InstanceIds []*string `type:"list"`
 
 	metadataExitStandbyInput `json:"-" xml:"-"`
 }
@@ -3849,7 +3849,7 @@ type metadataExitStandbyInput struct {
 
 // String returns the string representation
 func (s ExitStandbyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3870,7 +3870,7 @@ type metadataExitStandbyOutput struct {
 
 // String returns the string representation
 func (s ExitStandbyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3896,7 +3896,7 @@ type metadataFilter struct {
 
 // String returns the string representation
 func (s Filter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3907,13 +3907,13 @@ func (s Filter) GoString() string {
 // Describes an Auto Scaling group.
 type Group struct {
 	// The Amazon Resource Name (ARN) of the group.
-	AutoScalingGroupARN *string `type:"string"`
+	AutoScalingGroupARN *string `min:"1" type:"string"`
 
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group.
-	AvailabilityZones []*string `type:"list" required:"true"`
+	AvailabilityZones []*string `min:"1" type:"list" required:"true"`
 
 	// The date and time the group was created.
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -3934,13 +3934,13 @@ type Group struct {
 
 	// The service of interest for the health status check, which can be either
 	// EC2 for Amazon EC2 or ELB for Elastic Load Balancing.
-	HealthCheckType *string `type:"string" required:"true"`
+	HealthCheckType *string `min:"1" type:"string" required:"true"`
 
 	// The EC2 instances associated with the group.
 	Instances []*Instance `type:"list"`
 
 	// The name of the associated launch configuration.
-	LaunchConfigurationName *string `type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// One or more load balancers associated with the group.
 	LoadBalancerNames []*string `type:"list"`
@@ -3953,10 +3953,10 @@ type Group struct {
 
 	// The name of the placement group into which you'll launch your instances,
 	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
-	PlacementGroup *string `type:"string"`
+	PlacementGroup *string `min:"1" type:"string"`
 
 	// The current state of the group when DeleteAutoScalingGroup is in progress.
-	Status *string `type:"string"`
+	Status *string `min:"1" type:"string"`
 
 	// The suspended processes associated with the group.
 	SuspendedProcesses []*SuspendedProcess `type:"list"`
@@ -3971,7 +3971,7 @@ type Group struct {
 	//
 	// If you specify VPCZoneIdentifier and AvailabilityZones, ensure that the
 	// Availability Zones of the subnets match the values for AvailabilityZones.
-	VPCZoneIdentifier *string `type:"string"`
+	VPCZoneIdentifier *string `min:"1" type:"string"`
 
 	metadataGroup `json:"-" xml:"-"`
 }
@@ -3982,7 +3982,7 @@ type metadataGroup struct {
 
 // String returns the string representation
 func (s Group) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3993,20 +3993,20 @@ func (s Group) GoString() string {
 // Describes an EC2 instance.
 type Instance struct {
 	// The Availability Zone in which the instance is running.
-	AvailabilityZone *string `type:"string" required:"true"`
+	AvailabilityZone *string `min:"1" type:"string" required:"true"`
 
 	// The health status of the instance.
-	HealthStatus *string `type:"string" required:"true"`
+	HealthStatus *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// The launch configuration associated with the instance.
-	LaunchConfigurationName *string `type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// A description of the current lifecycle state. Note that the Quarantined state
 	// is not used.
-	LifecycleState *string `type:"string" required:"true"`
+	LifecycleState *string `type:"string" required:"true" enum:"LifecycleState"`
 
 	metadataInstance `json:"-" xml:"-"`
 }
@@ -4017,7 +4017,7 @@ type metadataInstance struct {
 
 // String returns the string representation
 func (s Instance) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4028,26 +4028,26 @@ func (s Instance) GoString() string {
 // Describes an EC2 instance associated with an Auto Scaling group.
 type InstanceDetails struct {
 	// The name of the Auto Scaling group associated with the instance.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The Availability Zone for the instance.
-	AvailabilityZone *string `type:"string" required:"true"`
+	AvailabilityZone *string `min:"1" type:"string" required:"true"`
 
 	// The health status of this instance. "Healthy" means that the instance is
 	// healthy and should remain in service. "Unhealthy" means that the instance
 	// is unhealthy and Auto Scaling should terminate and replace it.
-	HealthStatus *string `type:"string" required:"true"`
+	HealthStatus *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// The launch configuration associated with the instance.
-	LaunchConfigurationName *string `type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// The lifecycle state for the instance. For more information, see Auto Scaling
 	// Instance States (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates)
 	// in the Auto Scaling Developer Guide.
-	LifecycleState *string `type:"string" required:"true"`
+	LifecycleState *string `min:"1" type:"string" required:"true"`
 
 	metadataInstanceDetails `json:"-" xml:"-"`
 }
@@ -4058,7 +4058,7 @@ type metadataInstanceDetails struct {
 
 // String returns the string representation
 func (s InstanceDetails) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4080,7 +4080,7 @@ type metadataInstanceMonitoring struct {
 
 // String returns the string representation
 func (s InstanceMonitoring) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4092,7 +4092,7 @@ func (s InstanceMonitoring) GoString() string {
 type LaunchConfiguration struct {
 	// Specifies whether the instances are associated with a public IP address (true)
 	// or not (false).
-	AssociatePublicIPAddress *bool `locationName:"AssociatePublicIpAddress" type:"boolean"`
+	AssociatePublicIpAddress *bool `type:"boolean"`
 
 	// A block device mapping, which specifies the block devices for the instance.
 	BlockDeviceMappings []*BlockDeviceMapping `type:"list"`
@@ -4101,7 +4101,7 @@ type LaunchConfiguration struct {
 	// This parameter can only be used if you are launching EC2-Classic instances.
 	// For more information, see ClassicLink (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
-	ClassicLinkVPCID *string `locationName:"ClassicLinkVPCId" type:"string"`
+	ClassicLinkVPCId *string `min:"1" type:"string"`
 
 	// The IDs of one or more security groups for the VPC specified in ClassicLinkVPCId.
 	// This parameter is required if ClassicLinkVPCId is specified, and cannot be
@@ -4113,46 +4113,46 @@ type LaunchConfiguration struct {
 	CreatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Controls whether the instance is optimized for EBS I/O (true) or not (false).
-	EBSOptimized *bool `locationName:"EbsOptimized" type:"boolean"`
+	EbsOptimized *bool `type:"boolean"`
 
 	// The name or Amazon Resource Name (ARN) of the instance profile associated
 	// with the IAM role for the instance.
-	IAMInstanceProfile *string `locationName:"IamInstanceProfile" type:"string"`
+	IamInstanceProfile *string `min:"1" type:"string"`
 
 	// The ID of the Amazon Machine Image (AMI).
-	ImageID *string `locationName:"ImageId" type:"string" required:"true"`
+	ImageId *string `min:"1" type:"string" required:"true"`
 
 	// Controls whether instances in this group are launched with detailed monitoring.
 	InstanceMonitoring *InstanceMonitoring `type:"structure"`
 
 	// The instance type for the instances.
-	InstanceType *string `type:"string" required:"true"`
+	InstanceType *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the kernel associated with the AMI.
-	KernelID *string `locationName:"KernelId" type:"string"`
+	KernelId *string `min:"1" type:"string"`
 
 	// The name of the key pair.
-	KeyName *string `type:"string"`
+	KeyName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the launch configuration.
-	LaunchConfigurationARN *string `type:"string"`
+	LaunchConfigurationARN *string `min:"1" type:"string"`
 
 	// The name of the launch configuration.
-	LaunchConfigurationName *string `type:"string" required:"true"`
+	LaunchConfigurationName *string `min:"1" type:"string" required:"true"`
 
 	// The tenancy of the instance, either default or dedicated. An instance with
 	// dedicated tenancy runs in an isolated, single-tenant hardware and can only
 	// be launched into a VPC.
-	PlacementTenancy *string `type:"string"`
+	PlacementTenancy *string `min:"1" type:"string"`
 
 	// The ID of the RAM disk associated with the AMI.
-	RAMDiskID *string `locationName:"RamdiskId" type:"string"`
+	RamdiskId *string `min:"1" type:"string"`
 
 	// The security groups to associate with the instances.
 	SecurityGroups []*string `type:"list"`
 
 	// The price to bid when launching Spot Instances.
-	SpotPrice *string `type:"string"`
+	SpotPrice *string `min:"1" type:"string"`
 
 	// The user data available to the instances.
 	UserData *string `type:"string"`
@@ -4166,7 +4166,7 @@ type metadataLaunchConfiguration struct {
 
 // String returns the string representation
 func (s LaunchConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4185,7 +4185,7 @@ func (s LaunchConfiguration) GoString() string {
 // in the Auto Scaling Developer Guide.
 type LifecycleHook struct {
 	// The name of the Auto Scaling group for the lifecycle hook.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// Defines the action the Auto Scaling group should take when the lifecycle
 	// hook timeout elapses or if an unexpected failure occurs. The valid values
@@ -4203,7 +4203,7 @@ type LifecycleHook struct {
 	HeartbeatTimeout *int64 `type:"integer"`
 
 	// The name of the lifecycle hook.
-	LifecycleHookName *string `type:"string"`
+	LifecycleHookName *string `min:"1" type:"string"`
 
 	// The state of the EC2 instance to which you want to attach the lifecycle hook.
 	// For a list of lifecycle hook types, see DescribeLifecycleHookTypes.
@@ -4211,7 +4211,7 @@ type LifecycleHook struct {
 
 	// Additional information that you want to include any time Auto Scaling sends
 	// a message to the notification target.
-	NotificationMetadata *string `type:"string"`
+	NotificationMetadata *string `min:"1" type:"string"`
 
 	// The ARN of the notification target that Auto Scaling uses to notify you when
 	// an instance is in the transition state for the lifecycle hook. This ARN target
@@ -4220,11 +4220,11 @@ type LifecycleHook struct {
 	//
 	//  Lifecycle action token User account ID Name of the Auto Scaling group Lifecycle
 	// hook name EC2 instance ID Lifecycle transition Notification metadata
-	NotificationTargetARN *string `type:"string"`
+	NotificationTargetARN *string `min:"1" type:"string"`
 
 	// The ARN of the IAM role that allows the Auto Scaling group to publish to
 	// the specified notification target.
-	RoleARN *string `type:"string"`
+	RoleARN *string `min:"1" type:"string"`
 
 	metadataLifecycleHook `json:"-" xml:"-"`
 }
@@ -4235,7 +4235,7 @@ type metadataLifecycleHook struct {
 
 // String returns the string representation
 func (s LifecycleHook) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4246,7 +4246,7 @@ func (s LifecycleHook) GoString() string {
 // Describes the state of a load balancer.
 type LoadBalancerState struct {
 	// The name of the load balancer.
-	LoadBalancerName *string `type:"string"`
+	LoadBalancerName *string `min:"1" type:"string"`
 
 	// The state of the load balancer.
 	//
@@ -4260,7 +4260,7 @@ type LoadBalancerState struct {
 	// Removing - The instances are being deregistered from the load balancer.
 	// If connection draining is enabled, Elastic Load Balancing waits for in-flight
 	// requests to complete before deregistering the instances.
-	State *string `type:"string"`
+	State *string `min:"1" type:"string"`
 
 	metadataLoadBalancerState `json:"-" xml:"-"`
 }
@@ -4271,7 +4271,7 @@ type metadataLoadBalancerState struct {
 
 // String returns the string representation
 func (s LoadBalancerState) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4298,7 +4298,7 @@ type MetricCollectionType struct {
 	// GroupTerminatingInstances
 	//
 	// GroupTotalInstances
-	Metric *string `type:"string"`
+	Metric *string `min:"1" type:"string"`
 
 	metadataMetricCollectionType `json:"-" xml:"-"`
 }
@@ -4309,7 +4309,7 @@ type metadataMetricCollectionType struct {
 
 // String returns the string representation
 func (s MetricCollectionType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4320,7 +4320,7 @@ func (s MetricCollectionType) GoString() string {
 // Describes a granularity of a metric.
 type MetricGranularityType struct {
 	// The granularity. The only valid value is 1Minute.
-	Granularity *string `type:"string"`
+	Granularity *string `min:"1" type:"string"`
 
 	metadataMetricGranularityType `json:"-" xml:"-"`
 }
@@ -4331,7 +4331,7 @@ type metadataMetricGranularityType struct {
 
 // String returns the string representation
 func (s MetricGranularityType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4342,7 +4342,7 @@ func (s MetricGranularityType) GoString() string {
 // Describes a notification.
 type NotificationConfiguration struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The types of events for an action to start.
 	//
@@ -4355,11 +4355,11 @@ type NotificationConfiguration struct {
 	// autoscaling:EC2_INSTANCE_TERMINATE_ERROR
 	//
 	// autoscaling:TEST_NOTIFICATION
-	NotificationType *string `type:"string"`
+	NotificationType *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic.
-	TopicARN *string `type:"string"`
+	TopicARN *string `min:"1" type:"string"`
 
 	metadataNotificationConfiguration `json:"-" xml:"-"`
 }
@@ -4370,7 +4370,7 @@ type metadataNotificationConfiguration struct {
 
 // String returns the string representation
 func (s NotificationConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4400,7 +4400,7 @@ type ProcessType struct {
 	// ReplaceUnhealthy
 	//
 	// ScheduledActions
-	ProcessName *string `type:"string" required:"true"`
+	ProcessName *string `min:"1" type:"string" required:"true"`
 
 	metadataProcessType `json:"-" xml:"-"`
 }
@@ -4411,7 +4411,7 @@ type metadataProcessType struct {
 
 // String returns the string representation
 func (s ProcessType) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4422,7 +4422,7 @@ func (s ProcessType) GoString() string {
 type PutLifecycleHookInput struct {
 	// The name of the Auto Scaling group to which you want to assign the lifecycle
 	// hook.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// Defines the action the Auto Scaling group should take when the lifecycle
 	// hook timeout elapses or if an unexpected failure occurs. The value for this
@@ -4438,7 +4438,7 @@ type PutLifecycleHookInput struct {
 	HeartbeatTimeout *int64 `type:"integer"`
 
 	// The name of the lifecycle hook.
-	LifecycleHookName *string `type:"string" required:"true"`
+	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
 	// The instance state to which you want to attach the lifecycle hook. For a
 	// list of lifecycle hook types, see DescribeLifecycleHookTypes.
@@ -4449,7 +4449,7 @@ type PutLifecycleHookInput struct {
 
 	// Contains additional information that you want to include any time Auto Scaling
 	// sends a message to the notification target.
-	NotificationMetadata *string `type:"string"`
+	NotificationMetadata *string `min:"1" type:"string"`
 
 	// The ARN of the notification target that Auto Scaling will use to notify you
 	// when an instance is in the transition state for the lifecycle hook. This
@@ -4470,14 +4470,14 @@ type PutLifecycleHookInput struct {
 	//
 	// When you call this operation, a test message is sent to the notification
 	// target. This test message contains an additional key/value pair: Event:autoscaling:TEST_NOTIFICATION.
-	NotificationTargetARN *string `type:"string"`
+	NotificationTargetARN *string `min:"1" type:"string"`
 
 	// The ARN of the IAM role that allows the Auto Scaling group to publish to
 	// the specified notification target.
 	//
 	// This parameter is required for new lifecycle hooks, but optional when updating
 	// existing hooks.
-	RoleARN *string `type:"string"`
+	RoleARN *string `min:"1" type:"string"`
 
 	metadataPutLifecycleHookInput `json:"-" xml:"-"`
 }
@@ -4488,7 +4488,7 @@ type metadataPutLifecycleHookInput struct {
 
 // String returns the string representation
 func (s PutLifecycleHookInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4506,7 +4506,7 @@ type metadataPutLifecycleHookOutput struct {
 
 // String returns the string representation
 func (s PutLifecycleHookOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4516,7 +4516,7 @@ func (s PutLifecycleHookOutput) GoString() string {
 
 type PutNotificationConfigurationInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The type of event that will cause the notification to be sent. For details
 	// about notification types supported by Auto Scaling, see DescribeAutoScalingNotificationTypes.
@@ -4524,7 +4524,7 @@ type PutNotificationConfigurationInput struct {
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic.
-	TopicARN *string `type:"string" required:"true"`
+	TopicARN *string `min:"1" type:"string" required:"true"`
 
 	metadataPutNotificationConfigurationInput `json:"-" xml:"-"`
 }
@@ -4535,7 +4535,7 @@ type metadataPutNotificationConfigurationInput struct {
 
 // String returns the string representation
 func (s PutNotificationConfigurationInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4553,7 +4553,7 @@ type metadataPutNotificationConfigurationOutput struct {
 
 // String returns the string representation
 func (s PutNotificationConfigurationOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4567,10 +4567,10 @@ type PutScalingPolicyInput struct {
 	//
 	// For more information, see Dynamic Scaling (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html)
 	// in the Auto Scaling Developer Guide.
-	AdjustmentType *string `type:"string" required:"true"`
+	AdjustmentType *string `min:"1" type:"string" required:"true"`
 
 	// The name or ARN of the group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The amount of time, in seconds, after a scaling activity completes and before
 	// the next scaling activity can start. If this parameter is not specified,
@@ -4594,7 +4594,7 @@ type PutScalingPolicyInput struct {
 	// as Average.
 	//
 	// This parameter is not supported if the policy type is SimpleScaling.
-	MetricAggregationType *string `type:"string"`
+	MetricAggregationType *string `min:"1" type:"string"`
 
 	// The minimum number of instances to scale. If the value of AdjustmentType
 	// is PercentChangeInCapacity, the scaling policy changes the DesiredCapacity
@@ -4606,11 +4606,11 @@ type PutScalingPolicyInput struct {
 	MinAdjustmentStep *int64 `type:"integer"`
 
 	// The name of the policy.
-	PolicyName *string `type:"string" required:"true"`
+	PolicyName *string `min:"1" type:"string" required:"true"`
 
 	// The policy type. Valid values are SimpleScaling and StepScaling. If the policy
 	// type is null, the value is treated as SimpleScaling.
-	PolicyType *string `type:"string"`
+	PolicyType *string `min:"1" type:"string"`
 
 	// The amount by which to scale, based on the specified adjustment type. A positive
 	// value adds to the current capacity while a negative number removes from the
@@ -4636,7 +4636,7 @@ type metadataPutScalingPolicyInput struct {
 
 // String returns the string representation
 func (s PutScalingPolicyInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4646,7 +4646,7 @@ func (s PutScalingPolicyInput) GoString() string {
 
 type PutScalingPolicyOutput struct {
 	// The Amazon Resource Name (ARN) of the policy.
-	PolicyARN *string `type:"string"`
+	PolicyARN *string `min:"1" type:"string"`
 
 	metadataPutScalingPolicyOutput `json:"-" xml:"-"`
 }
@@ -4657,7 +4657,7 @@ type metadataPutScalingPolicyOutput struct {
 
 // String returns the string representation
 func (s PutScalingPolicyOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4667,7 +4667,7 @@ func (s PutScalingPolicyOutput) GoString() string {
 
 type PutScheduledUpdateGroupActionInput struct {
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The number of EC2 instances that should be running in the group.
 	DesiredCapacity *int64 `type:"integer"`
@@ -4687,10 +4687,10 @@ type PutScheduledUpdateGroupActionInput struct {
 	//
 	// When StartTime and EndTime are specified with Recurrence, they form the
 	// boundaries of when the recurring action will start and stop.
-	Recurrence *string `type:"string"`
+	Recurrence *string `min:"1" type:"string"`
 
 	// The name of this scaling action.
-	ScheduledActionName *string `type:"string" required:"true"`
+	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
 	// The time for this action to start, in "YYYY-MM-DDThh:mm:ssZ" format in UTC/GMT
 	// only (for example, 2014-06-01T00:00:00Z).
@@ -4717,7 +4717,7 @@ type metadataPutScheduledUpdateGroupActionInput struct {
 
 // String returns the string representation
 func (s PutScheduledUpdateGroupActionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4735,7 +4735,7 @@ type metadataPutScheduledUpdateGroupActionOutput struct {
 
 // String returns the string representation
 func (s PutScheduledUpdateGroupActionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4745,15 +4745,15 @@ func (s PutScheduledUpdateGroupActionOutput) GoString() string {
 
 type RecordLifecycleActionHeartbeatInput struct {
 	// The name of the Auto Scaling group for the hook.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// A token that uniquely identifies a specific lifecycle action associated with
 	// an instance. Auto Scaling sends this token to the notification target you
 	// specified when you created the lifecycle hook.
-	LifecycleActionToken *string `type:"string" required:"true"`
+	LifecycleActionToken *string `min:"36" type:"string" required:"true"`
 
 	// The name of the lifecycle hook.
-	LifecycleHookName *string `type:"string" required:"true"`
+	LifecycleHookName *string `min:"1" type:"string" required:"true"`
 
 	metadataRecordLifecycleActionHeartbeatInput `json:"-" xml:"-"`
 }
@@ -4764,7 +4764,7 @@ type metadataRecordLifecycleActionHeartbeatInput struct {
 
 // String returns the string representation
 func (s RecordLifecycleActionHeartbeatInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4782,7 +4782,7 @@ type metadataRecordLifecycleActionHeartbeatOutput struct {
 
 // String returns the string representation
 func (s RecordLifecycleActionHeartbeatOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4800,7 +4800,7 @@ type metadataResumeProcessesOutput struct {
 
 // String returns the string representation
 func (s ResumeProcessesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4812,13 +4812,13 @@ func (s ResumeProcessesOutput) GoString() string {
 type ScalingPolicy struct {
 	// The adjustment type, which specifies how ScalingAdjustment is interpreted.
 	// Valid values are ChangeInCapacity, ExactCapacity, and PercentChangeInCapacity.
-	AdjustmentType *string `type:"string"`
+	AdjustmentType *string `min:"1" type:"string"`
 
 	// The CloudWatch alarms related to the policy.
 	Alarms []*Alarm `type:"list"`
 
 	// The name of the Auto Scaling group associated with this scaling policy.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The amount of time, in seconds, after a scaling activity completes before
 	// any further trigger-related scaling activities can start.
@@ -4830,7 +4830,7 @@ type ScalingPolicy struct {
 
 	// The aggregation type for the CloudWatch metrics. Valid values are Minimum,
 	// Maximum, and Average.
-	MetricAggregationType *string `type:"string"`
+	MetricAggregationType *string `min:"1" type:"string"`
 
 	// The minimum number of instances to scale. If the value of AdjustmentType
 	// is PercentChangeInCapacity, the scaling policy changes the DesiredCapacity
@@ -4842,13 +4842,13 @@ type ScalingPolicy struct {
 	MinAdjustmentStep *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the policy.
-	PolicyARN *string `type:"string"`
+	PolicyARN *string `min:"1" type:"string"`
 
 	// The name of the scaling policy.
-	PolicyName *string `type:"string"`
+	PolicyName *string `min:"1" type:"string"`
 
 	// The policy type. Valid values are SimpleScaling and StepScaling.
-	PolicyType *string `type:"string"`
+	PolicyType *string `min:"1" type:"string"`
 
 	// The amount by which to scale, based on the specified adjustment type. A positive
 	// value adds to the current capacity while a negative number removes from the
@@ -4868,7 +4868,7 @@ type metadataScalingPolicy struct {
 
 // String returns the string representation
 func (s ScalingPolicy) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4878,7 +4878,7 @@ func (s ScalingPolicy) GoString() string {
 
 type ScalingProcessQuery struct {
 	// The name or Amazon Resource Name (ARN) of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more of the following processes:
 	//
@@ -4908,7 +4908,7 @@ type metadataScalingProcessQuery struct {
 
 // String returns the string representation
 func (s ScalingProcessQuery) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4919,7 +4919,7 @@ func (s ScalingProcessQuery) GoString() string {
 // Describes a scheduled update to an Auto Scaling group.
 type ScheduledUpdateGroupAction struct {
 	// The name of the group.
-	AutoScalingGroupName *string `type:"string"`
+	AutoScalingGroupName *string `min:"1" type:"string"`
 
 	// The number of instances you prefer to maintain in the group.
 	DesiredCapacity *int64 `type:"integer"`
@@ -4935,13 +4935,13 @@ type ScheduledUpdateGroupAction struct {
 	MinSize *int64 `type:"integer"`
 
 	// The recurring schedule for the action.
-	Recurrence *string `type:"string"`
+	Recurrence *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the scheduled action.
-	ScheduledActionARN *string `type:"string"`
+	ScheduledActionARN *string `min:"1" type:"string"`
 
 	// The name of the scheduled action.
-	ScheduledActionName *string `type:"string"`
+	ScheduledActionName *string `min:"1" type:"string"`
 
 	// The date and time that the action is scheduled to begin. This date and time
 	// can be up to one month in the future.
@@ -4962,7 +4962,7 @@ type metadataScheduledUpdateGroupAction struct {
 
 // String returns the string representation
 func (s ScheduledUpdateGroupAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4972,7 +4972,7 @@ func (s ScheduledUpdateGroupAction) GoString() string {
 
 type SetDesiredCapacityInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// The number of EC2 instances that should be running in the Auto Scaling group.
 	DesiredCapacity *int64 `type:"integer" required:"true"`
@@ -4992,7 +4992,7 @@ type metadataSetDesiredCapacityInput struct {
 
 // String returns the string representation
 func (s SetDesiredCapacityInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5010,7 +5010,7 @@ type metadataSetDesiredCapacityOutput struct {
 
 // String returns the string representation
 func (s SetDesiredCapacityOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5022,10 +5022,10 @@ type SetInstanceHealthInput struct {
 	// The health status of the instance. Set to Healthy if you want the instance
 	// to remain in service. Set to Unhealthy if you want the instance to be out
 	// of service. Auto Scaling will terminate and replace the unhealthy instance.
-	HealthStatus *string `type:"string" required:"true"`
+	HealthStatus *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the EC2 instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// If the Auto Scaling group of the specified instance has a HealthCheckGracePeriod
 	// specified for the group, by default, this call will respect the grace period.
@@ -5045,7 +5045,7 @@ type metadataSetInstanceHealthInput struct {
 
 // String returns the string representation
 func (s SetInstanceHealthInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5063,7 +5063,7 @@ type metadataSetInstanceHealthOutput struct {
 
 // String returns the string representation
 func (s SetInstanceHealthOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5131,7 +5131,7 @@ type metadataStepAdjustment struct {
 
 // String returns the string representation
 func (s StepAdjustment) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5149,7 +5149,7 @@ type metadataSuspendProcessesOutput struct {
 
 // String returns the string representation
 func (s SuspendProcessesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5161,10 +5161,10 @@ func (s SuspendProcessesOutput) GoString() string {
 // see ProcessType.
 type SuspendedProcess struct {
 	// The name of the suspended process.
-	ProcessName *string `type:"string"`
+	ProcessName *string `min:"1" type:"string"`
 
 	// The reason that the process was suspended.
-	SuspensionReason *string `type:"string"`
+	SuspensionReason *string `min:"1" type:"string"`
 
 	metadataSuspendedProcess `json:"-" xml:"-"`
 }
@@ -5175,7 +5175,7 @@ type metadataSuspendedProcess struct {
 
 // String returns the string representation
 func (s SuspendedProcess) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5186,14 +5186,14 @@ func (s SuspendedProcess) GoString() string {
 // Describes a tag for an Auto Scaling group.
 type Tag struct {
 	// The tag key.
-	Key *string `type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true"`
 
 	// Determines whether the tag is added to new instances as they are launched
 	// in the group.
 	PropagateAtLaunch *bool `type:"boolean"`
 
 	// The name of the group.
-	ResourceID *string `locationName:"ResourceId" type:"string"`
+	ResourceId *string `type:"string"`
 
 	// The type of resource. The only supported value is auto-scaling-group.
 	ResourceType *string `type:"string"`
@@ -5210,7 +5210,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5221,14 +5221,14 @@ func (s Tag) GoString() string {
 // Describes a tag for an Auto Scaling group.
 type TagDescription struct {
 	// The tag key.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// Determines whether the tag is added to new instances as they are launched
 	// in the group.
 	PropagateAtLaunch *bool `type:"boolean"`
 
 	// The name of the group.
-	ResourceID *string `locationName:"ResourceId" type:"string"`
+	ResourceId *string `type:"string"`
 
 	// The type of resource. The only supported value is auto-scaling-group.
 	ResourceType *string `type:"string"`
@@ -5245,7 +5245,7 @@ type metadataTagDescription struct {
 
 // String returns the string representation
 func (s TagDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5255,7 +5255,7 @@ func (s TagDescription) GoString() string {
 
 type TerminateInstanceInAutoScalingGroupInput struct {
 	// The ID of the EC2 instance.
-	InstanceID *string `locationName:"InstanceId" type:"string" required:"true"`
+	InstanceId *string `min:"1" type:"string" required:"true"`
 
 	// If true, terminating this instance also decrements the size of the Auto Scaling
 	// group.
@@ -5270,7 +5270,7 @@ type metadataTerminateInstanceInAutoScalingGroupInput struct {
 
 // String returns the string representation
 func (s TerminateInstanceInAutoScalingGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5291,7 +5291,7 @@ type metadataTerminateInstanceInAutoScalingGroupOutput struct {
 
 // String returns the string representation
 func (s TerminateInstanceInAutoScalingGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5301,10 +5301,10 @@ func (s TerminateInstanceInAutoScalingGroupOutput) GoString() string {
 
 type UpdateAutoScalingGroupInput struct {
 	// The name of the Auto Scaling group.
-	AutoScalingGroupName *string `type:"string" required:"true"`
+	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
 	// One or more Availability Zones for the group.
-	AvailabilityZones []*string `type:"list"`
+	AvailabilityZones []*string `min:"1" type:"list"`
 
 	// The amount of time, in seconds, after a scaling activity completes before
 	// another scaling activity can start. For more information, see Understanding
@@ -5325,10 +5325,10 @@ type UpdateAutoScalingGroupInput struct {
 	// The type of health check for the instances in the Auto Scaling group. The
 	// health check type can either be EC2 for Amazon EC2 or ELB for Elastic Load
 	// Balancing.
-	HealthCheckType *string `type:"string"`
+	HealthCheckType *string `min:"1" type:"string"`
 
 	// The name of the launch configuration.
-	LaunchConfigurationName *string `type:"string"`
+	LaunchConfigurationName *string `min:"1" type:"string"`
 
 	// The maximum size of the Auto Scaling group.
 	MaxSize *int64 `type:"integer"`
@@ -5338,7 +5338,7 @@ type UpdateAutoScalingGroupInput struct {
 
 	// The name of the placement group into which you'll launch your instances,
 	// if any. For more information, see Placement Groups (http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html).
-	PlacementGroup *string `type:"string"`
+	PlacementGroup *string `min:"1" type:"string"`
 
 	// A standalone termination policy or a list of termination policies used to
 	// select the instance to terminate. The policies are executed in the order
@@ -5358,7 +5358,7 @@ type UpdateAutoScalingGroupInput struct {
 	// For more information, see Auto Scaling and Amazon Virtual Private Cloud
 	// (http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html)
 	// in the Auto Scaling Developer Guide.
-	VPCZoneIdentifier *string `type:"string"`
+	VPCZoneIdentifier *string `min:"1" type:"string"`
 
 	metadataUpdateAutoScalingGroupInput `json:"-" xml:"-"`
 }
@@ -5369,7 +5369,7 @@ type metadataUpdateAutoScalingGroupInput struct {
 
 // String returns the string representation
 func (s UpdateAutoScalingGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5387,10 +5387,64 @@ type metadataUpdateAutoScalingGroupOutput struct {
 
 // String returns the string representation
 func (s UpdateAutoScalingGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s UpdateAutoScalingGroupOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum LifecycleState
+	LifecycleStatePending = "Pending"
+	// @enum LifecycleState
+	LifecycleStatePendingWait = "Pending:Wait"
+	// @enum LifecycleState
+	LifecycleStatePendingProceed = "Pending:Proceed"
+	// @enum LifecycleState
+	LifecycleStateQuarantined = "Quarantined"
+	// @enum LifecycleState
+	LifecycleStateInService = "InService"
+	// @enum LifecycleState
+	LifecycleStateTerminating = "Terminating"
+	// @enum LifecycleState
+	LifecycleStateTerminatingWait = "Terminating:Wait"
+	// @enum LifecycleState
+	LifecycleStateTerminatingProceed = "Terminating:Proceed"
+	// @enum LifecycleState
+	LifecycleStateTerminated = "Terminated"
+	// @enum LifecycleState
+	LifecycleStateDetaching = "Detaching"
+	// @enum LifecycleState
+	LifecycleStateDetached = "Detached"
+	// @enum LifecycleState
+	LifecycleStateEnteringStandby = "EnteringStandby"
+	// @enum LifecycleState
+	LifecycleStateStandby = "Standby"
+)
+
+const (
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForSpotInstanceRequestId = "WaitingForSpotInstanceRequestId"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForSpotInstanceId = "WaitingForSpotInstanceId"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForInstanceId = "WaitingForInstanceId"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodePreInService = "PreInService"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeInProgress = "InProgress"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForElbconnectionDraining = "WaitingForELBConnectionDraining"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeMidLifecycleAction = "MidLifecycleAction"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeWaitingForInstanceWarmup = "WaitingForInstanceWarmup"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeSuccessful = "Successful"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeFailed = "Failed"
+	// @enum ScalingActivityStatusCode
+	ScalingActivityStatusCodeCancelled = "Cancelled"
+)

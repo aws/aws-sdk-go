@@ -147,6 +147,33 @@
         }
       ]
     },
+    "ListDiscoveredResources":{
+      "name":"ListDiscoveredResources",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDiscoveredResourcesRequest"},
+      "output":{"shape":"ListDiscoveredResourcesResponse"},
+      "errors":[
+        {
+          "shape":"ValidationException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidLimitException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidNextTokenException",
+          "exception":true
+        },
+        {
+          "shape":"NoAvailableConfigurationRecorderException",
+          "exception":true
+        }
+      ]
+    },
     "PutConfigurationRecorder":{
       "name":"PutConfigurationRecorder",
       "http":{
@@ -249,6 +276,7 @@
     "AccountId":{"type":"string"},
     "AllSupported":{"type":"boolean"},
     "AvailabilityZone":{"type":"string"},
+    "AwsRegion":{"type":"string"},
     "Boolean":{"type":"boolean"},
     "ChannelName":{
       "type":"string",
@@ -294,6 +322,8 @@
         "arn":{"shape":"ARN"},
         "resourceType":{"shape":"ResourceType"},
         "resourceId":{"shape":"ResourceId"},
+        "resourceName":{"shape":"ResourceName"},
+        "awsRegion":{"shape":"AwsRegion"},
         "availabilityZone":{"shape":"AvailabilityZone"},
         "resourceCreationTime":{"shape":"ResourceCreationTime"},
         "tags":{"shape":"Tags"},
@@ -554,6 +584,25 @@
       "min":0,
       "max":100
     },
+    "ListDiscoveredResourcesRequest":{
+      "type":"structure",
+      "required":["resourceType"],
+      "members":{
+        "resourceType":{"shape":"ResourceType"},
+        "resourceIds":{"shape":"ResourceIdList"},
+        "resourceName":{"shape":"ResourceName"},
+        "limit":{"shape":"Limit"},
+        "includeDeletedResources":{"shape":"Boolean"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDiscoveredResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "resourceIdentifiers":{"shape":"ResourceIdentifierList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "MaxNumberOfConfigurationRecordersExceededException":{
       "type":"structure",
       "members":{
@@ -648,6 +697,7 @@
       "members":{
         "resourceType":{"shape":"ResourceType"},
         "resourceId":{"shape":"ResourceId"},
+        "resourceName":{"shape":"ResourceName"},
         "relationshipName":{"shape":"RelationshipName"}
       }
     },
@@ -657,7 +707,26 @@
     },
     "RelationshipName":{"type":"string"},
     "ResourceCreationTime":{"type":"timestamp"},
+    "ResourceDeletionTime":{"type":"timestamp"},
     "ResourceId":{"type":"string"},
+    "ResourceIdList":{
+      "type":"list",
+      "member":{"shape":"ResourceId"}
+    },
+    "ResourceIdentifier":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"ResourceType"},
+        "resourceId":{"shape":"ResourceId"},
+        "resourceName":{"shape":"ResourceName"},
+        "resourceDeletionTime":{"shape":"ResourceDeletionTime"}
+      }
+    },
+    "ResourceIdentifierList":{
+      "type":"list",
+      "member":{"shape":"ResourceIdentifier"}
+    },
+    "ResourceName":{"type":"string"},
     "ResourceNotDiscoveredException":{
       "type":"structure",
       "members":{

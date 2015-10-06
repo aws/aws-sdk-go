@@ -10,6 +10,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/s3"
+	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
 
 // The default range of bytes to get at a time when using Download().
@@ -37,7 +38,7 @@ type DownloadOptions struct {
 
 	// An S3 client to use when performing downloads. Leave this as nil to use
 	// a default client.
-	S3 *s3.S3
+	S3 s3iface.S3API
 }
 
 // NewDownloader creates a new Downloader structure that downloads an object
@@ -61,6 +62,9 @@ type Downloader struct {
 //
 // It is safe to call this method for multiple objects and across concurrent
 // goroutines.
+//
+// The w io.WriterAt can be satisfied by an os.File to do multipart concurrent
+// downloads, or in memory []byte wrapper using aws.WriteAtBuffer.
 func (d *Downloader) Download(w io.WriterAt, input *s3.GetObjectInput) (n int64, err error) {
 	impl := downloader{w: w, in: input, opts: *d.opts}
 	return impl.download()

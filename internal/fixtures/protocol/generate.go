@@ -103,7 +103,7 @@ func (t *testSuite) TestSuite() string {
 		c.TestSuite = t
 		buf.WriteString(c.TestCase(idx) + "\n")
 	}
-	return util.GoFmt(buf.String())
+	return buf.String()
 }
 
 var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
@@ -217,7 +217,7 @@ func (i *testCase) TestCase(idx int) string {
 		}
 	}
 
-	return util.GoFmt(buf.String())
+	return buf.String()
 }
 
 // generateTestSuite generates a protocol test suite for a given configuration
@@ -254,8 +254,7 @@ func generateTestSuite(filename string) string {
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 
-		suite.API.NoInflections = true // don't require inflections
-		suite.API.NoInitMethods = true // don't generate init methods
+		suite.API.NoInitMethods = true     // don't generate init methods
 		suite.API.NoStringerMethods = true // don't generate stringer methods
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
@@ -290,7 +289,7 @@ func generateTestSuite(filename string) string {
 		innerBuf.WriteString(suite.TestSuite() + "\n")
 	}
 
-	return util.GoFmt(buf.String() + innerBuf.String())
+	return buf.String() + innerBuf.String()
 }
 
 func main() {

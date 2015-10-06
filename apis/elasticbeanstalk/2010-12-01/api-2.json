@@ -353,6 +353,33 @@
         "resultWrapper":"DescribeConfigurationSettingsResult"
       }
     },
+    "DescribeEnvironmentHealth":{
+      "name":"DescribeEnvironmentHealth",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEnvironmentHealthRequest"},
+      "output":{
+        "shape":"DescribeEnvironmentHealthResult",
+        "resultWrapper":"DescribeEnvironmentHealthResult"
+      },
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{
+            "code":"InvalidRequestException",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"ElasticBeanstalkServiceException",
+          "exception":true
+        }
+      ]
+    },
     "DescribeEnvironmentResources":{
       "name":"DescribeEnvironmentResources",
       "http":{
@@ -399,6 +426,33 @@
         "shape":"EventDescriptionsMessage",
         "resultWrapper":"DescribeEventsResult"
       }
+    },
+    "DescribeInstancesHealth":{
+      "name":"DescribeInstancesHealth",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstancesHealthRequest"},
+      "output":{
+        "shape":"DescribeInstancesHealthResult",
+        "resultWrapper":"DescribeInstancesHealthResult"
+      },
+      "errors":[
+        {
+          "shape":"InvalidRequestException",
+          "error":{
+            "code":"InvalidRequestException",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"ElasticBeanstalkServiceException",
+          "exception":true
+        }
+      ]
     },
     "ListAvailableSolutionStacks":{
       "name":"ListAvailableSolutionStacks",
@@ -619,6 +673,15 @@
         "Applications":{"shape":"ApplicationDescriptionList"}
       }
     },
+    "ApplicationMetrics":{
+      "type":"structure",
+      "members":{
+        "Duration":{"shape":"NullableInteger"},
+        "RequestCount":{"shape":"RequestCount"},
+        "StatusCodes":{"shape":"StatusCodes"},
+        "Latency":{"shape":"Latency"}
+      }
+    },
     "ApplicationName":{
       "type":"string",
       "min":1,
@@ -673,6 +736,27 @@
     "AvailableSolutionStackNamesList":{
       "type":"list",
       "member":{"shape":"SolutionStackName"}
+    },
+    "CPUUtilization":{
+      "type":"structure",
+      "members":{
+        "User":{"shape":"NullableDouble"},
+        "Nice":{"shape":"NullableDouble"},
+        "System":{"shape":"NullableDouble"},
+        "Idle":{"shape":"NullableDouble"},
+        "IOWait":{"shape":"NullableDouble"},
+        "IRQ":{"shape":"NullableDouble"},
+        "SoftIRQ":{"shape":"NullableDouble"}
+      }
+    },
+    "Cause":{
+      "type":"string",
+      "min":1,
+      "max":255
+    },
+    "Causes":{
+      "type":"list",
+      "member":{"shape":"Cause"}
     },
     "CheckDNSAvailabilityMessage":{
       "type":"structure",
@@ -942,6 +1026,27 @@
         "EnvironmentName":{"shape":"EnvironmentName"}
       }
     },
+    "DescribeEnvironmentHealthRequest":{
+      "type":"structure",
+      "members":{
+        "EnvironmentName":{"shape":"EnvironmentName"},
+        "EnvironmentId":{"shape":"EnvironmentId"},
+        "AttributeNames":{"shape":"EnvironmentHealthAttributes"}
+      }
+    },
+    "DescribeEnvironmentHealthResult":{
+      "type":"structure",
+      "members":{
+        "EnvironmentName":{"shape":"EnvironmentName"},
+        "HealthStatus":{"shape":"String"},
+        "Status":{"shape":"EnvironmentHealth"},
+        "Color":{"shape":"String"},
+        "Causes":{"shape":"Causes"},
+        "ApplicationMetrics":{"shape":"ApplicationMetrics"},
+        "InstancesHealth":{"shape":"InstanceHealthSummary"},
+        "RefreshedAt":{"shape":"RefreshedAt"}
+      }
+    },
     "DescribeEnvironmentResourcesMessage":{
       "type":"structure",
       "members":{
@@ -976,11 +1081,35 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "DescribeInstancesHealthRequest":{
+      "type":"structure",
+      "members":{
+        "EnvironmentName":{"shape":"EnvironmentName"},
+        "EnvironmentId":{"shape":"EnvironmentId"},
+        "AttributeNames":{"shape":"InstancesHealthAttributes"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInstancesHealthResult":{
+      "type":"structure",
+      "members":{
+        "InstanceHealthList":{"shape":"InstanceHealthList"},
+        "RefreshedAt":{"shape":"RefreshedAt"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "Description":{
       "type":"string",
       "max":200
     },
     "Ec2InstanceId":{"type":"string"},
+    "ElasticBeanstalkServiceException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ExceptionMessage"}
+      },
+      "exception":true
+    },
     "EndpointURL":{"type":"string"},
     "EnvironmentDescription":{
       "type":"structure",
@@ -999,6 +1128,7 @@
         "Status":{"shape":"EnvironmentStatus"},
         "AbortableOperationInProgress":{"shape":"AbortableOperationInProgress"},
         "Health":{"shape":"EnvironmentHealth"},
+        "HealthStatus":{"shape":"EnvironmentHealthStatus"},
         "Resources":{"shape":"EnvironmentResourcesDescription"},
         "Tier":{"shape":"EnvironmentTier"}
       }
@@ -1020,6 +1150,36 @@
         "Yellow",
         "Red",
         "Grey"
+      ]
+    },
+    "EnvironmentHealthAttribute":{
+      "type":"string",
+      "enum":[
+        "Status",
+        "Color",
+        "Causes",
+        "ApplicationMetrics",
+        "InstancesHealth",
+        "All",
+        "HealthStatus",
+        "RefreshedAt"
+      ]
+    },
+    "EnvironmentHealthAttributes":{
+      "type":"list",
+      "member":{"shape":"EnvironmentHealthAttribute"}
+    },
+    "EnvironmentHealthStatus":{
+      "type":"string",
+      "enum":[
+        "NoData",
+        "Unknown",
+        "Pending",
+        "Ok",
+        "Info",
+        "Warning",
+        "Degraded",
+        "Severe"
       ]
     },
     "EnvironmentId":{"type":"string"},
@@ -1135,6 +1295,7 @@
         "FATAL"
       ]
     },
+    "ExceptionMessage":{"type":"string"},
     "FileTypeExtension":{
       "type":"string",
       "min":1,
@@ -1148,9 +1309,48 @@
         "Id":{"shape":"ResourceId"}
       }
     },
+    "InstanceHealthList":{
+      "type":"list",
+      "member":{"shape":"SingleInstanceHealth"}
+    },
+    "InstanceHealthSummary":{
+      "type":"structure",
+      "members":{
+        "NoData":{"shape":"NullableInteger"},
+        "Unknown":{"shape":"NullableInteger"},
+        "Pending":{"shape":"NullableInteger"},
+        "Ok":{"shape":"NullableInteger"},
+        "Info":{"shape":"NullableInteger"},
+        "Warning":{"shape":"NullableInteger"},
+        "Degraded":{"shape":"NullableInteger"},
+        "Severe":{"shape":"NullableInteger"}
+      }
+    },
+    "InstanceId":{
+      "type":"string",
+      "min":1,
+      "max":255
+    },
     "InstanceList":{
       "type":"list",
       "member":{"shape":"Instance"}
+    },
+    "InstancesHealthAttribute":{
+      "type":"string",
+      "enum":[
+        "HealthStatus",
+        "Color",
+        "Causes",
+        "ApplicationMetrics",
+        "RefreshedAt",
+        "LaunchedAt",
+        "System",
+        "All"
+      ]
+    },
+    "InstancesHealthAttributes":{
+      "type":"list",
+      "member":{"shape":"InstancesHealthAttribute"}
     },
     "InsufficientPrivilegesException":{
       "type":"structure",
@@ -1164,6 +1364,30 @@
       "exception":true
     },
     "Integer":{"type":"integer"},
+    "InvalidRequestException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidRequestException",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "Latency":{
+      "type":"structure",
+      "members":{
+        "P999":{"shape":"NullableDouble"},
+        "P99":{"shape":"NullableDouble"},
+        "P95":{"shape":"NullableDouble"},
+        "P90":{"shape":"NullableDouble"},
+        "P85":{"shape":"NullableDouble"},
+        "P75":{"shape":"NullableDouble"},
+        "P50":{"shape":"NullableDouble"},
+        "P10":{"shape":"NullableDouble"}
+      }
+    },
     "LaunchConfiguration":{
       "type":"structure",
       "members":{
@@ -1174,6 +1398,7 @@
       "type":"list",
       "member":{"shape":"LaunchConfiguration"}
     },
+    "LaunchedAt":{"type":"timestamp"},
     "ListAvailableSolutionStacksResultMessage":{
       "type":"structure",
       "members":{
@@ -1188,6 +1413,11 @@
         "Port":{"shape":"Integer"}
       }
     },
+    "LoadAverage":{
+      "type":"list",
+      "member":{"shape":"LoadAverageValue"}
+    },
+    "LoadAverageValue":{"type":"double"},
     "LoadBalancer":{
       "type":"structure",
       "members":{
@@ -1216,6 +1446,13 @@
       "max":1000
     },
     "Message":{"type":"string"},
+    "NextToken":{
+      "type":"string",
+      "min":1,
+      "max":100
+    },
+    "NullableDouble":{"type":"double"},
+    "NullableInteger":{"type":"integer"},
     "OperationInProgressException":{
       "type":"structure",
       "members":{
@@ -1268,8 +1505,10 @@
         "EnvironmentName":{"shape":"EnvironmentName"}
       }
     },
+    "RefreshedAt":{"type":"timestamp"},
     "RegexLabel":{"type":"string"},
     "RegexPattern":{"type":"string"},
+    "RequestCount":{"type":"integer"},
     "RequestEnvironmentInfoMessage":{
       "type":"structure",
       "required":["InfoType"],
@@ -1346,6 +1585,18 @@
       "exception":true
     },
     "SampleTimestamp":{"type":"timestamp"},
+    "SingleInstanceHealth":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "HealthStatus":{"shape":"String"},
+        "Color":{"shape":"String"},
+        "Causes":{"shape":"Causes"},
+        "LaunchedAt":{"shape":"LaunchedAt"},
+        "ApplicationMetrics":{"shape":"ApplicationMetrics"},
+        "System":{"shape":"SystemStatus"}
+      }
+    },
     "SolutionStackDescription":{
       "type":"structure",
       "members":{
@@ -1379,6 +1630,15 @@
         "TemplateName":{"shape":"ConfigurationTemplateName"}
       }
     },
+    "StatusCodes":{
+      "type":"structure",
+      "members":{
+        "Status2xx":{"shape":"NullableInteger"},
+        "Status3xx":{"shape":"NullableInteger"},
+        "Status4xx":{"shape":"NullableInteger"},
+        "Status5xx":{"shape":"NullableInteger"}
+      }
+    },
     "String":{"type":"string"},
     "SwapEnvironmentCNAMEsMessage":{
       "type":"structure",
@@ -1387,6 +1647,13 @@
         "SourceEnvironmentName":{"shape":"EnvironmentName"},
         "DestinationEnvironmentId":{"shape":"EnvironmentId"},
         "DestinationEnvironmentName":{"shape":"EnvironmentName"}
+      }
+    },
+    "SystemStatus":{
+      "type":"structure",
+      "members":{
+        "CPUUtilization":{"shape":"CPUUtilization"},
+        "LoadAverage":{"shape":"LoadAverage"}
       }
     },
     "Tag":{

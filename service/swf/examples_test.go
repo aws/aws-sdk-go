@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/swf"
 )
 
@@ -29,7 +27,7 @@ func ExampleSWF_CountClosedWorkflowExecutions() {
 			LatestDate: aws.Time(time.Now()),
 		},
 		ExecutionFilter: &swf.WorkflowExecutionFilter{
-			WorkflowID: aws.String("WorkflowId"), // Required
+			WorkflowId: aws.String("WorkflowId"), // Required
 		},
 		StartTimeFilter: &swf.ExecutionTimeFilter{
 			OldestDate: aws.Time(time.Now()), // Required
@@ -46,22 +44,14 @@ func ExampleSWF_CountClosedWorkflowExecutions() {
 	resp, err := svc.CountClosedWorkflowExecutions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_CountOpenWorkflowExecutions() {
@@ -74,7 +64,7 @@ func ExampleSWF_CountOpenWorkflowExecutions() {
 			LatestDate: aws.Time(time.Now()),
 		},
 		ExecutionFilter: &swf.WorkflowExecutionFilter{
-			WorkflowID: aws.String("WorkflowId"), // Required
+			WorkflowId: aws.String("WorkflowId"), // Required
 		},
 		TagFilter: &swf.TagFilter{
 			Tag: aws.String("Tag"), // Required
@@ -87,22 +77,14 @@ func ExampleSWF_CountOpenWorkflowExecutions() {
 	resp, err := svc.CountOpenWorkflowExecutions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_CountPendingActivityTasks() {
@@ -117,22 +99,14 @@ func ExampleSWF_CountPendingActivityTasks() {
 	resp, err := svc.CountPendingActivityTasks(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_CountPendingDecisionTasks() {
@@ -147,22 +121,14 @@ func ExampleSWF_CountPendingDecisionTasks() {
 	resp, err := svc.CountPendingDecisionTasks(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DeprecateActivityType() {
@@ -178,22 +144,14 @@ func ExampleSWF_DeprecateActivityType() {
 	resp, err := svc.DeprecateActivityType(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DeprecateDomain() {
@@ -205,22 +163,14 @@ func ExampleSWF_DeprecateDomain() {
 	resp, err := svc.DeprecateDomain(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DeprecateWorkflowType() {
@@ -236,22 +186,14 @@ func ExampleSWF_DeprecateWorkflowType() {
 	resp, err := svc.DeprecateWorkflowType(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DescribeActivityType() {
@@ -267,22 +209,14 @@ func ExampleSWF_DescribeActivityType() {
 	resp, err := svc.DescribeActivityType(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DescribeDomain() {
@@ -294,22 +228,14 @@ func ExampleSWF_DescribeDomain() {
 	resp, err := svc.DescribeDomain(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DescribeWorkflowExecution() {
@@ -318,29 +244,21 @@ func ExampleSWF_DescribeWorkflowExecution() {
 	params := &swf.DescribeWorkflowExecutionInput{
 		Domain: aws.String("DomainName"), // Required
 		Execution: &swf.WorkflowExecution{ // Required
-			RunID:      aws.String("RunId"),      // Required
-			WorkflowID: aws.String("WorkflowId"), // Required
+			RunId:      aws.String("RunId"),      // Required
+			WorkflowId: aws.String("WorkflowId"), // Required
 		},
 	}
 	resp, err := svc.DescribeWorkflowExecution(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_DescribeWorkflowType() {
@@ -356,22 +274,14 @@ func ExampleSWF_DescribeWorkflowType() {
 	resp, err := svc.DescribeWorkflowType(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_GetWorkflowExecutionHistory() {
@@ -380,32 +290,24 @@ func ExampleSWF_GetWorkflowExecutionHistory() {
 	params := &swf.GetWorkflowExecutionHistoryInput{
 		Domain: aws.String("DomainName"), // Required
 		Execution: &swf.WorkflowExecution{ // Required
-			RunID:      aws.String("RunId"),      // Required
-			WorkflowID: aws.String("WorkflowId"), // Required
+			RunId:      aws.String("RunId"),      // Required
+			WorkflowId: aws.String("WorkflowId"), // Required
 		},
-		MaximumPageSize: aws.Long(1),
+		MaximumPageSize: aws.Int64(1),
 		NextPageToken:   aws.String("PageToken"),
-		ReverseOrder:    aws.Boolean(true),
+		ReverseOrder:    aws.Bool(true),
 	}
 	resp, err := svc.GetWorkflowExecutionHistory(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_ListActivityTypes() {
@@ -414,30 +316,22 @@ func ExampleSWF_ListActivityTypes() {
 	params := &swf.ListActivityTypesInput{
 		Domain:             aws.String("DomainName"),         // Required
 		RegistrationStatus: aws.String("RegistrationStatus"), // Required
-		MaximumPageSize:    aws.Long(1),
+		MaximumPageSize:    aws.Int64(1),
 		Name:               aws.String("Name"),
 		NextPageToken:      aws.String("PageToken"),
-		ReverseOrder:       aws.Boolean(true),
+		ReverseOrder:       aws.Bool(true),
 	}
 	resp, err := svc.ListActivityTypes(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_ListClosedWorkflowExecutions() {
@@ -453,11 +347,11 @@ func ExampleSWF_ListClosedWorkflowExecutions() {
 			LatestDate: aws.Time(time.Now()),
 		},
 		ExecutionFilter: &swf.WorkflowExecutionFilter{
-			WorkflowID: aws.String("WorkflowId"), // Required
+			WorkflowId: aws.String("WorkflowId"), // Required
 		},
-		MaximumPageSize: aws.Long(1),
+		MaximumPageSize: aws.Int64(1),
 		NextPageToken:   aws.String("PageToken"),
-		ReverseOrder:    aws.Boolean(true),
+		ReverseOrder:    aws.Bool(true),
 		StartTimeFilter: &swf.ExecutionTimeFilter{
 			OldestDate: aws.Time(time.Now()), // Required
 			LatestDate: aws.Time(time.Now()),
@@ -473,22 +367,14 @@ func ExampleSWF_ListClosedWorkflowExecutions() {
 	resp, err := svc.ListClosedWorkflowExecutions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_ListDomains() {
@@ -496,29 +382,21 @@ func ExampleSWF_ListDomains() {
 
 	params := &swf.ListDomainsInput{
 		RegistrationStatus: aws.String("RegistrationStatus"), // Required
-		MaximumPageSize:    aws.Long(1),
+		MaximumPageSize:    aws.Int64(1),
 		NextPageToken:      aws.String("PageToken"),
-		ReverseOrder:       aws.Boolean(true),
+		ReverseOrder:       aws.Bool(true),
 	}
 	resp, err := svc.ListDomains(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_ListOpenWorkflowExecutions() {
@@ -531,11 +409,11 @@ func ExampleSWF_ListOpenWorkflowExecutions() {
 			LatestDate: aws.Time(time.Now()),
 		},
 		ExecutionFilter: &swf.WorkflowExecutionFilter{
-			WorkflowID: aws.String("WorkflowId"), // Required
+			WorkflowId: aws.String("WorkflowId"), // Required
 		},
-		MaximumPageSize: aws.Long(1),
+		MaximumPageSize: aws.Int64(1),
 		NextPageToken:   aws.String("PageToken"),
-		ReverseOrder:    aws.Boolean(true),
+		ReverseOrder:    aws.Bool(true),
 		TagFilter: &swf.TagFilter{
 			Tag: aws.String("Tag"), // Required
 		},
@@ -547,22 +425,14 @@ func ExampleSWF_ListOpenWorkflowExecutions() {
 	resp, err := svc.ListOpenWorkflowExecutions(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_ListWorkflowTypes() {
@@ -571,30 +441,22 @@ func ExampleSWF_ListWorkflowTypes() {
 	params := &swf.ListWorkflowTypesInput{
 		Domain:             aws.String("DomainName"),         // Required
 		RegistrationStatus: aws.String("RegistrationStatus"), // Required
-		MaximumPageSize:    aws.Long(1),
+		MaximumPageSize:    aws.Int64(1),
 		Name:               aws.String("Name"),
 		NextPageToken:      aws.String("PageToken"),
-		ReverseOrder:       aws.Boolean(true),
+		ReverseOrder:       aws.Bool(true),
 	}
 	resp, err := svc.ListWorkflowTypes(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_PollForActivityTask() {
@@ -610,22 +472,14 @@ func ExampleSWF_PollForActivityTask() {
 	resp, err := svc.PollForActivityTask(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_PollForDecisionTask() {
@@ -637,29 +491,21 @@ func ExampleSWF_PollForDecisionTask() {
 			Name: aws.String("Name"), // Required
 		},
 		Identity:        aws.String("Identity"),
-		MaximumPageSize: aws.Long(1),
+		MaximumPageSize: aws.Int64(1),
 		NextPageToken:   aws.String("PageToken"),
-		ReverseOrder:    aws.Boolean(true),
+		ReverseOrder:    aws.Bool(true),
 	}
 	resp, err := svc.PollForDecisionTask(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RecordActivityTaskHeartbeat() {
@@ -672,22 +518,14 @@ func ExampleSWF_RecordActivityTaskHeartbeat() {
 	resp, err := svc.RecordActivityTaskHeartbeat(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RegisterActivityType() {
@@ -710,22 +548,14 @@ func ExampleSWF_RegisterActivityType() {
 	resp, err := svc.RegisterActivityType(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RegisterDomain() {
@@ -739,22 +569,14 @@ func ExampleSWF_RegisterDomain() {
 	resp, err := svc.RegisterDomain(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RegisterWorkflowType() {
@@ -766,6 +588,7 @@ func ExampleSWF_RegisterWorkflowType() {
 		Version:                             aws.String("Version"),    // Required
 		DefaultChildPolicy:                  aws.String("ChildPolicy"),
 		DefaultExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
+		DefaultLambdaRole:                   aws.String("Arn"),
 		DefaultTaskList: &swf.TaskList{
 			Name: aws.String("Name"), // Required
 		},
@@ -776,22 +599,14 @@ func ExampleSWF_RegisterWorkflowType() {
 	resp, err := svc.RegisterWorkflowType(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RequestCancelWorkflowExecution() {
@@ -799,28 +614,20 @@ func ExampleSWF_RequestCancelWorkflowExecution() {
 
 	params := &swf.RequestCancelWorkflowExecutionInput{
 		Domain:     aws.String("DomainName"), // Required
-		WorkflowID: aws.String("WorkflowId"), // Required
-		RunID:      aws.String("RunIdOptional"),
+		WorkflowId: aws.String("WorkflowId"), // Required
+		RunId:      aws.String("RunIdOptional"),
 	}
 	resp, err := svc.RequestCancelWorkflowExecution(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RespondActivityTaskCanceled() {
@@ -833,22 +640,14 @@ func ExampleSWF_RespondActivityTaskCanceled() {
 	resp, err := svc.RespondActivityTaskCanceled(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RespondActivityTaskCompleted() {
@@ -861,22 +660,14 @@ func ExampleSWF_RespondActivityTaskCompleted() {
 	resp, err := svc.RespondActivityTaskCompleted(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RespondActivityTaskFailed() {
@@ -890,22 +681,14 @@ func ExampleSWF_RespondActivityTaskFailed() {
 	resp, err := svc.RespondActivityTaskFailed(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_RespondDecisionTaskCompleted() {
@@ -917,7 +700,7 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 			{ // Required
 				DecisionType: aws.String("DecisionType"), // Required
 				CancelTimerDecisionAttributes: &swf.CancelTimerDecisionAttributes{
-					TimerID: aws.String("TimerId"), // Required
+					TimerId: aws.String("TimerId"), // Required
 				},
 				CancelWorkflowExecutionDecisionAttributes: &swf.CancelWorkflowExecutionDecisionAttributes{
 					Details: aws.String("Data"),
@@ -928,7 +711,8 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 				ContinueAsNewWorkflowExecutionDecisionAttributes: &swf.ContinueAsNewWorkflowExecutionDecisionAttributes{
 					ChildPolicy:                  aws.String("ChildPolicy"),
 					ExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
-					Input: aws.String("Data"),
+					Input:      aws.String("Data"),
+					LambdaRole: aws.String("Arn"),
 					TagList: []*string{
 						aws.String("Tag"), // Required
 						// More values...
@@ -949,15 +733,15 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 					Details:    aws.String("Data"),
 				},
 				RequestCancelActivityTaskDecisionAttributes: &swf.RequestCancelActivityTaskDecisionAttributes{
-					ActivityID: aws.String("ActivityId"), // Required
+					ActivityId: aws.String("ActivityId"), // Required
 				},
 				RequestCancelExternalWorkflowExecutionDecisionAttributes: &swf.RequestCancelExternalWorkflowExecutionDecisionAttributes{
-					WorkflowID: aws.String("WorkflowId"), // Required
+					WorkflowId: aws.String("WorkflowId"), // Required
 					Control:    aws.String("Data"),
-					RunID:      aws.String("RunIdOptional"),
+					RunId:      aws.String("RunIdOptional"),
 				},
 				ScheduleActivityTaskDecisionAttributes: &swf.ScheduleActivityTaskDecisionAttributes{
-					ActivityID: aws.String("ActivityId"), // Required
+					ActivityId: aws.String("ActivityId"), // Required
 					ActivityType: &swf.ActivityType{ // Required
 						Name:    aws.String("Name"),    // Required
 						Version: aws.String("Version"), // Required
@@ -973,15 +757,21 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 					},
 					TaskPriority: aws.String("TaskPriority"),
 				},
+				ScheduleLambdaFunctionDecisionAttributes: &swf.ScheduleLambdaFunctionDecisionAttributes{
+					Id:                  aws.String("FunctionId"),   // Required
+					Name:                aws.String("FunctionName"), // Required
+					Input:               aws.String("FunctionInput"),
+					StartToCloseTimeout: aws.String("DurationInSecondsOptional"),
+				},
 				SignalExternalWorkflowExecutionDecisionAttributes: &swf.SignalExternalWorkflowExecutionDecisionAttributes{
 					SignalName: aws.String("SignalName"), // Required
-					WorkflowID: aws.String("WorkflowId"), // Required
+					WorkflowId: aws.String("WorkflowId"), // Required
 					Control:    aws.String("Data"),
 					Input:      aws.String("Data"),
-					RunID:      aws.String("RunIdOptional"),
+					RunId:      aws.String("RunIdOptional"),
 				},
 				StartChildWorkflowExecutionDecisionAttributes: &swf.StartChildWorkflowExecutionDecisionAttributes{
-					WorkflowID: aws.String("WorkflowId"), // Required
+					WorkflowId: aws.String("WorkflowId"), // Required
 					WorkflowType: &swf.WorkflowType{ // Required
 						Name:    aws.String("Name"),    // Required
 						Version: aws.String("Version"), // Required
@@ -989,7 +779,8 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 					ChildPolicy: aws.String("ChildPolicy"),
 					Control:     aws.String("Data"),
 					ExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
-					Input: aws.String("Data"),
+					Input:      aws.String("Data"),
+					LambdaRole: aws.String("Arn"),
 					TagList: []*string{
 						aws.String("Tag"), // Required
 						// More values...
@@ -1002,7 +793,7 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 				},
 				StartTimerDecisionAttributes: &swf.StartTimerDecisionAttributes{
 					StartToFireTimeout: aws.String("DurationInSeconds"), // Required
-					TimerID:            aws.String("TimerId"),           // Required
+					TimerId:            aws.String("TimerId"),           // Required
 					Control:            aws.String("Data"),
 				},
 			},
@@ -1013,22 +804,14 @@ func ExampleSWF_RespondDecisionTaskCompleted() {
 	resp, err := svc.RespondDecisionTaskCompleted(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_SignalWorkflowExecution() {
@@ -1037,29 +820,21 @@ func ExampleSWF_SignalWorkflowExecution() {
 	params := &swf.SignalWorkflowExecutionInput{
 		Domain:     aws.String("DomainName"), // Required
 		SignalName: aws.String("SignalName"), // Required
-		WorkflowID: aws.String("WorkflowId"), // Required
+		WorkflowId: aws.String("WorkflowId"), // Required
 		Input:      aws.String("Data"),
-		RunID:      aws.String("RunIdOptional"),
+		RunId:      aws.String("RunIdOptional"),
 	}
 	resp, err := svc.SignalWorkflowExecution(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_StartWorkflowExecution() {
@@ -1067,14 +842,15 @@ func ExampleSWF_StartWorkflowExecution() {
 
 	params := &swf.StartWorkflowExecutionInput{
 		Domain:     aws.String("DomainName"), // Required
-		WorkflowID: aws.String("WorkflowId"), // Required
+		WorkflowId: aws.String("WorkflowId"), // Required
 		WorkflowType: &swf.WorkflowType{ // Required
 			Name:    aws.String("Name"),    // Required
 			Version: aws.String("Version"), // Required
 		},
 		ChildPolicy:                  aws.String("ChildPolicy"),
 		ExecutionStartToCloseTimeout: aws.String("DurationInSecondsOptional"),
-		Input: aws.String("Data"),
+		Input:      aws.String("Data"),
+		LambdaRole: aws.String("Arn"),
 		TagList: []*string{
 			aws.String("Tag"), // Required
 			// More values...
@@ -1088,22 +864,14 @@ func ExampleSWF_StartWorkflowExecution() {
 	resp, err := svc.StartWorkflowExecution(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleSWF_TerminateWorkflowExecution() {
@@ -1111,29 +879,21 @@ func ExampleSWF_TerminateWorkflowExecution() {
 
 	params := &swf.TerminateWorkflowExecutionInput{
 		Domain:      aws.String("DomainName"), // Required
-		WorkflowID:  aws.String("WorkflowId"), // Required
+		WorkflowId:  aws.String("WorkflowId"), // Required
 		ChildPolicy: aws.String("ChildPolicy"),
 		Details:     aws.String("Data"),
 		Reason:      aws.String("TerminateReason"),
-		RunID:       aws.String("RunIdOptional"),
+		RunId:       aws.String("RunIdOptional"),
 	}
 	resp, err := svc.TerminateWorkflowExecution(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }

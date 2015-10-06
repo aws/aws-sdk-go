@@ -20,16 +20,29 @@ func (a *API) customizationPasses() {
 
 // s3Customizations customizes the API generation to replace values specific to S3.
 func s3Customizations(a *API) {
-	// Remove ContentMD5 members
-	for _, s := range a.Shapes {
+	var strExpires *Shape
+
+	for name, s := range a.Shapes {
+		// Remove ContentMD5 members
 		if _, ok := s.MemberRefs["ContentMD5"]; ok {
 			delete(s.MemberRefs, "ContentMD5")
 		}
-	}
 
-	// Rename "Rule" to "LifecycleRule"
-	if s, ok := a.Shapes["Rule"]; ok {
-		s.Rename("LifecycleRule")
+		// Expires should be a string not time.Time since the format is not
+		// enforced by S3, and any value can be set to this field outside of the SDK.
+		if strings.HasSuffix(name, "Output") {
+			if ref, ok := s.MemberRefs["Expires"]; ok {
+				if strExpires == nil {
+					newShape := *ref.Shape
+					strExpires = &newShape
+					strExpires.Type = "string"
+					strExpires.refs = []*ShapeRef{}
+				}
+				ref.Shape.removeRef(ref)
+				ref.Shape = strExpires
+				ref.Shape.refs = append(ref.Shape.refs, &s.MemberRef)
+			}
+		}
 	}
 }
 

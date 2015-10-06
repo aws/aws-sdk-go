@@ -4,6 +4,10 @@ package workspaces
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
@@ -12,23 +16,25 @@ import (
 // information about Amazon WorkSpaces operations, data types, parameters, and
 // errors.
 type WorkSpaces struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new WorkSpaces client.
 func New(config *aws.Config) *WorkSpaces {
-	service := &aws.Service{
-		Config:       aws.DefaultConfig.Merge(config),
-		ServiceName:  "workspaces",
-		APIVersion:   "2015-04-08",
-		JSONVersion:  "1.1",
-		TargetPrefix: "WorkspacesService",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:       defaults.DefaultConfig.Merge(config),
+			ServiceName:  "workspaces",
+			APIVersion:   "2015-04-08",
+			JSONVersion:  "1.1",
+			TargetPrefix: "WorkspacesService",
+		},
 	}
 	service.Initialize()
 
@@ -49,8 +55,8 @@ func New(config *aws.Config) *WorkSpaces {
 
 // newRequest creates a new request for a WorkSpaces operation and runs any
 // custom request initialization.
-func (c *WorkSpaces) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *WorkSpaces) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

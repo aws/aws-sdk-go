@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"path"
+	"regexp"
 	"sort"
 	"strings"
 	"text/template"
@@ -47,11 +48,14 @@ type Shape struct {
 	Type          string
 	Exception     bool
 	Enum          []string
+	EnumConsts    []string
 	Flattened     bool
 	Streaming     bool
 	Location      string
 	LocationName  string
 	XMLNamespace  XMLInfo
+	Min           int // optional Minimum length (string, list) or value (number)
+	Max           int // optional Minimum length (string, list) or value (number)
 
 	refs       []*ShapeRef // References to this shape
 	resolvePkg string      // use this package in the goType() if present
@@ -193,6 +197,9 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	if ref.Shape.ValueRef.LocationName != "" {
 		code += `locationNameValue:"` + ref.Shape.ValueRef.LocationName + `" `
 	}
+	if ref.Shape.Min > 0 {
+		code += fmt.Sprintf(`min:"%d" `, ref.Shape.Min)
+	}
 	code += `type:"` + ref.Shape.Type + `" `
 
 	// embed the timestamp type for easier lookups
@@ -220,7 +227,11 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 
 	if isRequired {
-		code += `required:"true"`
+		code += `required:"true" `
+	}
+
+	if ref.Shape.IsEnum() {
+		code += `enum:"` + ref.ShapeName + `" `
 	}
 
 	if toplevel {
@@ -259,7 +270,7 @@ func (s *Shape) Docstring() string {
 const goCodeStringerTmpl = `
 // String returns the string representation
 func (s {{ .ShapeName }}) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 // GoString returns the string representation
 func (s {{ .ShapeName }}) GoString() string {
@@ -277,11 +288,39 @@ func (s *Shape) goCodeStringers() string {
 	return w.String()
 }
 
+var enumStrip = regexp.MustCompile(`[^a-zA-Z0-9_:\./-]`)
+var enumDelims = regexp.MustCompile(`[-_:\./]+`)
+var enumCamelCase = regexp.MustCompile(`([a-z])([A-Z])`)
+
+// EnumName returns the Nth enum in the shapes Enum list
+func (s *Shape) EnumName(n int) string {
+	enum := s.Enum[n]
+	enum = enumStrip.ReplaceAllLiteralString(enum, "")
+	enum = enumCamelCase.ReplaceAllString(enum, "$1-$2")
+	parts := enumDelims.Split(enum, -1)
+	for i, v := range parts {
+		v = strings.ToLower(v)
+		parts[i] = ""
+		if len(v) > 0 {
+			parts[i] = strings.ToUpper(v[0:1])
+		}
+		if len(v) > 1 {
+			parts[i] += v[1:]
+		}
+	}
+	enum = strings.Join(parts, "")
+	enum = strings.ToUpper(enum[0:1]) + enum[1:]
+	return enum
+}
+
 // GoCode returns the rendered Go code for the Shape.
 func (s *Shape) GoCode() string {
-	code := s.Docstring() + "type " + s.ShapeName + " "
-	switch s.Type {
-	case "structure":
+	code := s.Docstring()
+	if !s.IsEnum() {
+		code += "type " + s.ShapeName + " "
+	}
+	switch {
+	case s.Type == "structure":
 		code += "struct {\n"
 		for _, n := range s.MemberNames() {
 			m := s.MemberRefs[n]
@@ -311,11 +350,23 @@ func (s *Shape) GoCode() string {
 		if !s.API.NoStringerMethods {
 			code += s.goCodeStringers()
 		}
+	case s.IsEnum():
+		code += "const (\n"
+		for n, e := range s.Enum {
+			code += fmt.Sprintf("\t// @enum %s\n\t%s = %q\n",
+				s.ShapeName, s.EnumConsts[n], e)
+		}
+		code += ")"
 	default:
 		panic("Cannot generate toplevel shape for " + s.Type)
 	}
 
 	return util.GoFmt(code)
+}
+
+// IsEnum returns whether this shape is an enum list
+func (s *Shape) IsEnum() bool {
+	return s.Type == "string" && len(s.Enum) > 0
 }
 
 // IsRequired returns if member is a required field.
@@ -331,4 +382,21 @@ func (s *Shape) IsRequired(member string) bool {
 // IsInternal returns whether the shape was defined in this package
 func (s *Shape) IsInternal() bool {
 	return s.resolvePkg == ""
+}
+
+// removeRef removes a shape reference from the list of references this
+// shape is used in.
+func (s *Shape) removeRef(ref *ShapeRef) {
+	r := s.refs
+	for i := 0; i < len(r); i++ {
+		if r[i] == ref {
+			j := i + 1
+			copy(r[i:], r[j:])
+			for k, n := len(r)-j+i, len(r); k < n; k++ {
+				r[k] = nil // free up the end of the list
+			} // for k
+			s.refs = r[:len(r)-j+i]
+			break
+		}
+	}
 }

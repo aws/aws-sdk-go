@@ -4,15 +4,15 @@
 package elastictranscoder
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opCancelJob = "CancelJob"
 
 // CancelJobRequest generates a request for the CancelJob operation.
-func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *aws.Request, output *CancelJobOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) CancelJobRequest(input *CancelJobInput) (req *request.Request, output *CancelJobOutput) {
+	op := &request.Operation{
 		Name:       opCancelJob,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2012-09-25/jobs/{Id}",
@@ -42,8 +42,8 @@ func (c *ElasticTranscoder) CancelJob(input *CancelJobInput) (*CancelJobOutput, 
 const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a request for the CreateJob operation.
-func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *aws.Request, output *CreateJobResponse) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) CreateJobRequest(input *CreateJobInput) (req *request.Request, output *CreateJobResponse) {
+	op := &request.Operation{
 		Name:       opCreateJob,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/jobs",
@@ -75,8 +75,8 @@ func (c *ElasticTranscoder) CreateJob(input *CreateJobInput) (*CreateJobResponse
 const opCreatePipeline = "CreatePipeline"
 
 // CreatePipelineRequest generates a request for the CreatePipeline operation.
-func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *aws.Request, output *CreatePipelineOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) CreatePipelineRequest(input *CreatePipelineInput) (req *request.Request, output *CreatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opCreatePipeline,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/pipelines",
@@ -102,8 +102,8 @@ func (c *ElasticTranscoder) CreatePipeline(input *CreatePipelineInput) (*CreateP
 const opCreatePreset = "CreatePreset"
 
 // CreatePresetRequest generates a request for the CreatePreset operation.
-func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *aws.Request, output *CreatePresetOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) CreatePresetRequest(input *CreatePresetInput) (req *request.Request, output *CreatePresetOutput) {
+	op := &request.Operation{
 		Name:       opCreatePreset,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/presets",
@@ -143,8 +143,8 @@ func (c *ElasticTranscoder) CreatePreset(input *CreatePresetInput) (*CreatePrese
 const opDeletePipeline = "DeletePipeline"
 
 // DeletePipelineRequest generates a request for the DeletePipeline operation.
-func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *aws.Request, output *DeletePipelineOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) DeletePipelineRequest(input *DeletePipelineInput) (req *request.Request, output *DeletePipelineOutput) {
+	op := &request.Operation{
 		Name:       opDeletePipeline,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}",
@@ -174,8 +174,8 @@ func (c *ElasticTranscoder) DeletePipeline(input *DeletePipelineInput) (*DeleteP
 const opDeletePreset = "DeletePreset"
 
 // DeletePresetRequest generates a request for the DeletePreset operation.
-func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *aws.Request, output *DeletePresetOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) DeletePresetRequest(input *DeletePresetInput) (req *request.Request, output *DeletePresetOutput) {
+	op := &request.Operation{
 		Name:       opDeletePreset,
 		HTTPMethod: "DELETE",
 		HTTPPath:   "/2012-09-25/presets/{Id}",
@@ -203,12 +203,12 @@ func (c *ElasticTranscoder) DeletePreset(input *DeletePresetInput) (*DeletePrese
 const opListJobsByPipeline = "ListJobsByPipeline"
 
 // ListJobsByPipelineRequest generates a request for the ListJobsByPipeline operation.
-func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *aws.Request, output *ListJobsByPipelineOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ListJobsByPipelineRequest(input *ListJobsByPipelineInput) (req *request.Request, output *ListJobsByPipelineOutput) {
+	op := &request.Operation{
 		Name:       opListJobsByPipeline,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/jobsByPipeline/{PipelineId}",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -247,12 +247,12 @@ func (c *ElasticTranscoder) ListJobsByPipelinePages(input *ListJobsByPipelineInp
 const opListJobsByStatus = "ListJobsByStatus"
 
 // ListJobsByStatusRequest generates a request for the ListJobsByStatus operation.
-func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *aws.Request, output *ListJobsByStatusOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ListJobsByStatusRequest(input *ListJobsByStatusInput) (req *request.Request, output *ListJobsByStatusOutput) {
+	op := &request.Operation{
 		Name:       opListJobsByStatus,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/jobsByStatus/{Status}",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -289,12 +289,12 @@ func (c *ElasticTranscoder) ListJobsByStatusPages(input *ListJobsByStatusInput, 
 const opListPipelines = "ListPipelines"
 
 // ListPipelinesRequest generates a request for the ListPipelines operation.
-func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *aws.Request, output *ListPipelinesOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ListPipelinesRequest(input *ListPipelinesInput) (req *request.Request, output *ListPipelinesOutput) {
+	op := &request.Operation{
 		Name:       opListPipelines,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/pipelines",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -330,12 +330,12 @@ func (c *ElasticTranscoder) ListPipelinesPages(input *ListPipelinesInput, fn fun
 const opListPresets = "ListPresets"
 
 // ListPresetsRequest generates a request for the ListPresets operation.
-func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *aws.Request, output *ListPresetsOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ListPresetsRequest(input *ListPresetsInput) (req *request.Request, output *ListPresetsOutput) {
+	op := &request.Operation{
 		Name:       opListPresets,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/presets",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"PageToken"},
 			OutputTokens:    []string{"NextPageToken"},
 			LimitToken:      "",
@@ -371,8 +371,8 @@ func (c *ElasticTranscoder) ListPresetsPages(input *ListPresetsInput, fn func(p 
 const opReadJob = "ReadJob"
 
 // ReadJobRequest generates a request for the ReadJob operation.
-func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *aws.Request, output *ReadJobOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ReadJobRequest(input *ReadJobInput) (req *request.Request, output *ReadJobOutput) {
+	op := &request.Operation{
 		Name:       opReadJob,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/jobs/{Id}",
@@ -398,8 +398,8 @@ func (c *ElasticTranscoder) ReadJob(input *ReadJobInput) (*ReadJobOutput, error)
 const opReadPipeline = "ReadPipeline"
 
 // ReadPipelineRequest generates a request for the ReadPipeline operation.
-func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *aws.Request, output *ReadPipelineOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ReadPipelineRequest(input *ReadPipelineInput) (req *request.Request, output *ReadPipelineOutput) {
+	op := &request.Operation{
 		Name:       opReadPipeline,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}",
@@ -425,8 +425,8 @@ func (c *ElasticTranscoder) ReadPipeline(input *ReadPipelineInput) (*ReadPipelin
 const opReadPreset = "ReadPreset"
 
 // ReadPresetRequest generates a request for the ReadPreset operation.
-func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *aws.Request, output *ReadPresetOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) ReadPresetRequest(input *ReadPresetInput) (req *request.Request, output *ReadPresetOutput) {
+	op := &request.Operation{
 		Name:       opReadPreset,
 		HTTPMethod: "GET",
 		HTTPPath:   "/2012-09-25/presets/{Id}",
@@ -452,8 +452,8 @@ func (c *ElasticTranscoder) ReadPreset(input *ReadPresetInput) (*ReadPresetOutpu
 const opTestRole = "TestRole"
 
 // TestRoleRequest generates a request for the TestRole operation.
-func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *aws.Request, output *TestRoleOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) TestRoleRequest(input *TestRoleInput) (req *request.Request, output *TestRoleOutput) {
+	op := &request.Operation{
 		Name:       opTestRole,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/roleTests",
@@ -485,8 +485,8 @@ func (c *ElasticTranscoder) TestRole(input *TestRoleInput) (*TestRoleOutput, err
 const opUpdatePipeline = "UpdatePipeline"
 
 // UpdatePipelineRequest generates a request for the UpdatePipeline operation.
-func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *aws.Request, output *UpdatePipelineOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) UpdatePipelineRequest(input *UpdatePipelineInput) (req *request.Request, output *UpdatePipelineOutput) {
+	op := &request.Operation{
 		Name:       opUpdatePipeline,
 		HTTPMethod: "PUT",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}",
@@ -516,8 +516,8 @@ func (c *ElasticTranscoder) UpdatePipeline(input *UpdatePipelineInput) (*UpdateP
 const opUpdatePipelineNotifications = "UpdatePipelineNotifications"
 
 // UpdatePipelineNotificationsRequest generates a request for the UpdatePipelineNotifications operation.
-func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *aws.Request, output *UpdatePipelineNotificationsOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) UpdatePipelineNotificationsRequest(input *UpdatePipelineNotificationsInput) (req *request.Request, output *UpdatePipelineNotificationsOutput) {
+	op := &request.Operation{
 		Name:       opUpdatePipelineNotifications,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}/notifications",
@@ -547,8 +547,8 @@ func (c *ElasticTranscoder) UpdatePipelineNotifications(input *UpdatePipelineNot
 const opUpdatePipelineStatus = "UpdatePipelineStatus"
 
 // UpdatePipelineStatusRequest generates a request for the UpdatePipelineStatus operation.
-func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *aws.Request, output *UpdatePipelineStatusOutput) {
-	op := &aws.Operation{
+func (c *ElasticTranscoder) UpdatePipelineStatusRequest(input *UpdatePipelineStatusInput) (req *request.Request, output *UpdatePipelineStatusOutput) {
+	op := &request.Operation{
 		Name:       opUpdatePipelineStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/2012-09-25/pipelines/{Id}/status",
@@ -602,7 +602,7 @@ type Artwork struct {
 	// If the file name includes a prefix, for example, cooking/pie.jpg, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
-	InputKey *string `type:"string"`
+	InputKey *string `min:"1" type:"string"`
 
 	// The maximum height of the output album art in pixels. If you specify auto,
 	// Elastic Transcoder uses 600 as the default value. If you specify a numeric
@@ -653,7 +653,7 @@ type metadataArtwork struct {
 
 // String returns the string representation
 func (s Artwork) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -720,7 +720,7 @@ type metadataAudioCodecOptions struct {
 
 // String returns the string representation
 func (s AudioCodecOptions) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -851,7 +851,7 @@ type metadataAudioParameters struct {
 
 // String returns the string representation
 func (s AudioParameters) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -865,7 +865,7 @@ type CancelJobInput struct {
 	//
 	// To get a list of the jobs (including their jobId) that have a status of
 	// Submitted, use the ListJobsByStatus API action.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataCancelJobInput `json:"-" xml:"-"`
 }
@@ -876,7 +876,7 @@ type metadataCancelJobInput struct {
 
 // String returns the string representation
 func (s CancelJobInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -896,7 +896,7 @@ type metadataCancelJobOutput struct {
 
 // String returns the string representation
 func (s CancelJobOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -962,7 +962,7 @@ type metadataCaptionFormat struct {
 
 // String returns the string representation
 func (s CaptionFormat) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -979,12 +979,12 @@ type CaptionSource struct {
 
 	// The name of the sidecar caption file that you want Elastic Transcoder to
 	// include in the output file.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The label of the caption shown in the player when choosing a language. We
 	// recommend that you put the caption language name here, in the language of
 	// the captions.
-	Label *string `type:"string"`
+	Label *string `min:"1" type:"string"`
 
 	// A string that specifies the language of the caption. Specify this as one
 	// of:
@@ -995,7 +995,7 @@ type CaptionSource struct {
 	//
 	//  For more information on ISO language codes and language names, see the
 	// List of ISO 639-1 codes.
-	Language *string `type:"string"`
+	Language *string `min:"1" type:"string"`
 
 	// For clip generation or captions that do not start at the same time as the
 	// associated video file, the TimeOffset tells Elastic Transcoder how much of
@@ -1013,7 +1013,7 @@ type metadataCaptionSource struct {
 
 // String returns the string representation
 func (s CaptionSource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1060,7 +1060,7 @@ type metadataCaptions struct {
 
 // String returns the string representation
 func (s Captions) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1083,7 +1083,7 @@ type metadataClip struct {
 
 // String returns the string representation
 func (s Clip) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1103,7 +1103,7 @@ type CreateJobInput struct {
 	// The value, if any, that you want Elastic Transcoder to prepend to the names
 	// of all files that this job creates, including output files, thumbnails, and
 	// playlists.
-	OutputKeyPrefix *string `type:"string"`
+	OutputKeyPrefix *string `min:"1" type:"string"`
 
 	// A section of the request body that provides information about the transcoded
 	// (target) files. We recommend that you use the Outputs syntax instead of the
@@ -1114,7 +1114,7 @@ type CreateJobInput struct {
 	// The pipeline determines several settings, including the Amazon S3 bucket
 	// from which Elastic Transcoder gets the files to transcode and the bucket
 	// into which Elastic Transcoder puts the transcoded files.
-	PipelineID *string `locationName:"PipelineId" type:"string" required:"true"`
+	PipelineId *string `type:"string" required:"true"`
 
 	// If you specify a preset in PresetId for which the value of Container is fmp4
 	// (Fragmented MP4) or ts (MPEG-TS), Playlists contains information about the
@@ -1138,7 +1138,7 @@ type metadataCreateJobInput struct {
 
 // String returns the string representation
 func (s CreateJobInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1215,11 +1215,11 @@ type CreateJobOutput struct {
 	// in the Amazon S3 bucket specified by the OutputBucket object in the pipeline
 	// that is specified by the pipeline ID. If a file with the specified name already
 	// exists in the output bucket, the job fails.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The Id of the preset to use for this job. The preset determines the audio,
 	// video, and thumbnail settings that Elastic Transcoder uses for transcoding.
-	PresetID *string `locationName:"PresetId" type:"string"`
+	PresetId *string `type:"string"`
 
 	// The number of degrees clockwise by which you want Elastic Transcoder to rotate
 	// the output relative to the input. Enter one of the following values: auto,
@@ -1295,7 +1295,7 @@ type metadataCreateJobOutput struct {
 
 // String returns the string representation
 func (s CreateJobOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1311,7 +1311,7 @@ type CreateJobPlaylist struct {
 
 	// The HLS content protection settings, if any, that you want Elastic Transcoder
 	// to apply to the output files associated with this playlist.
-	HLSContentProtection *HLSContentProtection `locationName:"HlsContentProtection" type:"structure"`
+	HlsContentProtection *HlsContentProtection `type:"structure"`
 
 	// The name that you want Elastic Transcoder to assign to the master playlist,
 	// for example, nyc-vacation.m3u8. If the name includes a / character, the section
@@ -1323,7 +1323,7 @@ type CreateJobPlaylist struct {
 	// to the file name (.m3u8 for HLSv3 and HLSv4 playlists, and .ism and .ismc
 	// for Smooth playlists). If you include a file extension in Name, the file
 	// name will have two extensions.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// For each output in this job that you want to include in a master playlist,
 	// the value of the Outputs:Key object.
@@ -1366,7 +1366,7 @@ type CreateJobPlaylist struct {
 
 	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
 	// output files associated with this playlist.
-	PlayReadyDRM *PlayReadyDRM `locationName:"PlayReadyDrm" type:"structure"`
+	PlayReadyDrm *PlayReadyDrm `type:"structure"`
 
 	metadataCreateJobPlaylist `json:"-" xml:"-"`
 }
@@ -1377,7 +1377,7 @@ type metadataCreateJobPlaylist struct {
 
 // String returns the string representation
 func (s CreateJobPlaylist) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1400,7 +1400,7 @@ type metadataCreateJobResponse struct {
 
 // String returns the string representation
 func (s CreateJobResponse) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1418,7 +1418,7 @@ type CreatePipelineInput struct {
 	// key, is created for you automatically. You need to provide an AWS-KMS key
 	// only if you want to use a non-default AWS-KMS key, or if you are using an
 	// Encryption:Mode of AES-PKCS7, AES-CTR, or AES-GCM.
-	AWSKMSKeyARN *string `locationName:"AwsKmsKeyArn" type:"string"`
+	AwsKmsKeyArn *string `type:"string"`
 
 	// The optional ContentConfig object specifies information about the Amazon
 	// S3 bucket in which you want Elastic Transcoder to save transcoded files and
@@ -1475,7 +1475,7 @@ type CreatePipelineInput struct {
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic that you want to
 	// notify to report job status.
@@ -1570,7 +1570,7 @@ type metadataCreatePipelineInput struct {
 
 // String returns the string representation
 func (s CreatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1602,7 +1602,7 @@ type metadataCreatePipelineOutput struct {
 
 // String returns the string representation
 func (s CreatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1624,7 +1624,7 @@ type CreatePresetInput struct {
 
 	// The name of the preset. We recommend that the name be unique within the AWS
 	// account, but uniqueness is not enforced.
-	Name *string `type:"string" required:"true"`
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// A section of the request body that specifies the thumbnail parameters, if
 	// any.
@@ -1642,7 +1642,7 @@ type metadataCreatePresetInput struct {
 
 // String returns the string representation
 func (s CreatePresetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1671,7 +1671,7 @@ type metadataCreatePresetOutput struct {
 
 // String returns the string representation
 func (s CreatePresetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1682,7 +1682,7 @@ func (s CreatePresetOutput) GoString() string {
 // The DeletePipelineRequest structure.
 type DeletePipelineInput struct {
 	// The identifier of the pipeline that you want to delete.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeletePipelineInput `json:"-" xml:"-"`
 }
@@ -1693,7 +1693,7 @@ type metadataDeletePipelineInput struct {
 
 // String returns the string representation
 func (s DeletePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1712,7 +1712,7 @@ type metadataDeletePipelineOutput struct {
 
 // String returns the string representation
 func (s DeletePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1723,7 +1723,7 @@ func (s DeletePipelineOutput) GoString() string {
 // The DeletePresetRequest structure.
 type DeletePresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataDeletePresetInput `json:"-" xml:"-"`
 }
@@ -1734,7 +1734,7 @@ type metadataDeletePresetInput struct {
 
 // String returns the string representation
 func (s DeletePresetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1753,7 +1753,7 @@ type metadataDeletePresetOutput struct {
 
 // String returns the string representation
 func (s DeletePresetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1788,7 +1788,7 @@ type metadataDetectedProperties struct {
 
 // String returns the string representation
 func (s DetectedProperties) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1824,7 +1824,7 @@ type Encryption struct {
 	// uses the key digest as a checksum to make sure your key was not corrupted
 	// in transit. The key MD5 must be base64-encoded, and it must be exactly 16
 	// bytes long before being base64-encoded.
-	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+	KeyMd5 *string `type:"string"`
 
 	// The specific server-side encryption mode that you want Elastic Transcoder
 	// to use when decrypting your input files or encrypting your output files.
@@ -1870,7 +1870,7 @@ type metadataEncryption struct {
 
 // String returns the string representation
 func (s Encryption) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1880,7 +1880,7 @@ func (s Encryption) GoString() string {
 
 // The HLS content protection settings, if any, that you want Elastic Transcoder
 // to apply to your output files.
-type HLSContentProtection struct {
+type HlsContentProtection struct {
 	// If Elastic Transcoder is generating your key for you, you must leave this
 	// field blank.
 	//
@@ -1907,7 +1907,7 @@ type HLSContentProtection struct {
 	// your output file, and that you want Elastic Transcoder to use as a checksum
 	// to make sure your key was not corrupted in transit. The key MD5 must be base64-encoded,
 	// and it must be exactly 16 bytes before being base64- encoded.
-	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+	KeyMd5 *string `type:"string"`
 
 	// Specify whether you want Elastic Transcoder to write your HLS license key
 	// to an Amazon S3 bucket. If you choose WithVariantPlaylists, LicenseAcquisitionUrl
@@ -1918,7 +1918,7 @@ type HLSContentProtection struct {
 	// The location of the license key required to decrypt your HLS playlist. The
 	// URL must be an absolute path, and is referenced in the URI attribute of the
 	// EXT-X-KEY metadata tag in the playlist file.
-	LicenseAcquisitionURL *string `locationName:"LicenseAcquisitionUrl" type:"string"`
+	LicenseAcquisitionUrl *string `type:"string"`
 
 	// The content protection method for your output. The only valid value is: aes-128.
 	//
@@ -1926,20 +1926,20 @@ type HLSContentProtection struct {
 	// tag in the output playlist.
 	Method *string `type:"string"`
 
-	metadataHLSContentProtection `json:"-" xml:"-"`
+	metadataHlsContentProtection `json:"-" xml:"-"`
 }
 
-type metadataHLSContentProtection struct {
+type metadataHlsContentProtection struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s HLSContentProtection) String() string {
-	return awsutil.StringValue(s)
+func (s HlsContentProtection) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s HLSContentProtection) GoString() string {
+func (s HlsContentProtection) GoString() string {
 	return s.String()
 }
 
@@ -1947,11 +1947,11 @@ func (s HLSContentProtection) GoString() string {
 // is created.
 type Job struct {
 	// The Amazon Resource Name (ARN) for the job.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The identifier that Elastic Transcoder assigned to the job. You use this
 	// value to get settings for the job or to delete the job.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// A section of the request or response body that provides information about
 	// the file that is being transcoded.
@@ -1970,7 +1970,7 @@ type Job struct {
 	// of all files that this job creates, including output files, thumbnails, and
 	// playlists. We recommend that you add a / or some other delimiter to the end
 	// of the OutputKeyPrefix.
-	OutputKeyPrefix *string `type:"string"`
+	OutputKeyPrefix *string `min:"1" type:"string"`
 
 	// Information about the output files. We recommend that you use the Outputs
 	// syntax for all jobs, even when you want Elastic Transcoder to transcode a
@@ -1985,7 +1985,7 @@ type Job struct {
 	// The pipeline determines several settings, including the Amazon S3 bucket
 	// from which Elastic Transcoder gets the files to transcode and the bucket
 	// into which Elastic Transcoder puts the transcoded files.
-	PipelineID *string `locationName:"PipelineId" type:"string"`
+	PipelineId *string `type:"string"`
 
 	// Outputs in Fragmented MP4 or MPEG-TS format only.If you specify a preset
 	// in PresetId for which the value of Container is fmp4 (Fragmented MP4) or
@@ -2026,7 +2026,7 @@ type metadataJob struct {
 
 // String returns the string representation
 func (s Job) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2061,7 +2061,7 @@ type metadataJobAlbumArt struct {
 
 // String returns the string representation
 func (s JobAlbumArt) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2127,7 +2127,7 @@ type JobInput struct {
 	// If the file name includes a prefix, such as cooking/lasagna.mpg, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// This value must be auto, which causes Elastic Transcoder to automatically
 	// detect the resolution of the input file.
@@ -2142,7 +2142,7 @@ type metadataJobInput struct {
 
 // String returns the string representation
 func (s JobInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2239,12 +2239,12 @@ type JobOutput struct {
 	// A sequential counter, starting with 1, that identifies an output among the
 	// outputs from the current job. In the Output syntax, this value is always
 	// 1.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name to assign to the transcoded file. Elastic Transcoder saves the file
 	// in the Amazon S3 bucket specified by the OutputBucket object in the pipeline
 	// that is specified by the pipeline ID.
-	Key *string `type:"string"`
+	Key *string `min:"1" type:"string"`
 
 	// The value of the Id object for the preset that you want to use for this job.
 	// The preset determines the audio, video, and thumbnail settings that Elastic
@@ -2252,7 +2252,7 @@ type JobOutput struct {
 	// the preset ID that Elastic Transcoder returned in the response when you created
 	// the preset. You can also use the Elastic Transcoder system presets, which
 	// you can get with ListPresets.
-	PresetID *string `locationName:"PresetId" type:"string"`
+	PresetId *string `type:"string"`
 
 	// The number of degrees clockwise by which you want Elastic Transcoder to rotate
 	// the output relative to the input. Enter one of the following values:
@@ -2361,7 +2361,7 @@ type metadataJobOutput struct {
 
 // String returns the string representation
 func (s JobOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2384,13 +2384,13 @@ type JobWatermark struct {
 	//  If the file name includes a prefix, for example, logos/128x64.png, include
 	// the prefix in the key. If the file isn't in the specified bucket, Elastic
 	// Transcoder returns an error.
-	InputKey *string `type:"string"`
+	InputKey *string `min:"1" type:"string"`
 
 	// The ID of the watermark settings that Elastic Transcoder uses to add watermarks
 	// to the video during transcoding. The settings are in the preset specified
 	// by Preset for the current output. In that preset, the value of Watermarks
 	// Id tells Elastic Transcoder which settings to use.
-	PresetWatermarkID *string `locationName:"PresetWatermarkId" type:"string"`
+	PresetWatermarkId *string `min:"1" type:"string"`
 
 	metadataJobWatermark `json:"-" xml:"-"`
 }
@@ -2401,7 +2401,7 @@ type metadataJobWatermark struct {
 
 // String returns the string representation
 func (s JobWatermark) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2420,7 +2420,7 @@ type ListJobsByPipelineInput struct {
 	PageToken *string `location:"querystring" locationName:"PageToken" type:"string"`
 
 	// The ID of the pipeline for which you want to get job information.
-	PipelineID *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
+	PipelineId *string `location:"uri" locationName:"PipelineId" type:"string" required:"true"`
 
 	metadataListJobsByPipelineInput `json:"-" xml:"-"`
 }
@@ -2431,7 +2431,7 @@ type metadataListJobsByPipelineInput struct {
 
 // String returns the string representation
 func (s ListJobsByPipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2458,7 +2458,7 @@ type metadataListJobsByPipelineOutput struct {
 
 // String returns the string representation
 func (s ListJobsByPipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2490,7 +2490,7 @@ type metadataListJobsByStatusInput struct {
 
 // String returns the string representation
 func (s ListJobsByStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2517,7 +2517,7 @@ type metadataListJobsByStatusOutput struct {
 
 // String returns the string representation
 func (s ListJobsByStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2545,7 +2545,7 @@ type metadataListPipelinesInput struct {
 
 // String returns the string representation
 func (s ListPipelinesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2572,7 +2572,7 @@ type metadataListPipelinesOutput struct {
 
 // String returns the string representation
 func (s ListPipelinesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2600,7 +2600,7 @@ type metadataListPresetsInput struct {
 
 // String returns the string representation
 func (s ListPresetsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2627,7 +2627,7 @@ type metadataListPresetsOutput struct {
 
 // String returns the string representation
 func (s ListPresetsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2666,7 +2666,7 @@ type metadataNotifications struct {
 
 // String returns the string representation
 func (s Notifications) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2691,7 +2691,7 @@ type Permission struct {
 	// ID for an AWS account, an origin access identity for a CloudFront distribution,
 	// the registered email address of an AWS account, or a predefined Amazon S3
 	// group.
-	Grantee *string `type:"string"`
+	Grantee *string `min:"1" type:"string"`
 
 	// The type of value that appears in the Grantee object:   Canonical: Either
 	// the canonical user ID for an AWS account or an origin access identity for
@@ -2710,7 +2710,7 @@ type metadataPermission struct {
 
 // String returns the string representation
 func (s Permission) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2721,7 +2721,7 @@ func (s Permission) GoString() string {
 // The pipeline (queue) that is used to manage jobs.
 type Pipeline struct {
 	// The Amazon Resource Name (ARN) for the pipeline.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// The AWS Key Management Service (AWS KMS) key that you want to use with this
 	// pipeline.
@@ -2731,7 +2731,7 @@ type Pipeline struct {
 	// key, is created for you automatically. You need to provide an AWS-KMS key
 	// only if you want to use a non-default AWS-KMS key, or if you are using an
 	// Encryption:Mode of AES-PKCS7, AES-CTR, or AES-GCM.
-	AWSKMSKeyARN *string `locationName:"AwsKmsKeyArn" type:"string"`
+	AwsKmsKeyArn *string `type:"string"`
 
 	// Information about the Amazon S3 bucket in which you want Elastic Transcoder
 	// to save transcoded files and playlists. Either you specify both ContentConfig
@@ -2763,7 +2763,7 @@ type Pipeline struct {
 	// The identifier for the pipeline. You use this value to identify the pipeline
 	// in which you want to perform a variety of operations, such as creating a
 	// job or a preset.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The Amazon S3 bucket from which Elastic Transcoder gets media files for transcoding
 	// and the graphics files, if any, that you want to use for watermarks.
@@ -2773,7 +2773,7 @@ type Pipeline struct {
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic that you want to
 	// notify to report job status.
@@ -2840,7 +2840,7 @@ type metadataPipeline struct {
 
 // String returns the string representation
 func (s Pipeline) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2893,7 +2893,7 @@ type metadataPipelineOutputConfig struct {
 
 // String returns the string representation
 func (s PipelineOutputConfig) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2907,7 +2907,7 @@ func (s PipelineOutputConfig) GoString() string {
 // PlayReady DRM encrypts your media files using AES-CTR encryption.
 //
 // If you use DRM for an HLSv3 playlist, your outputs must have a master playlist.
-type PlayReadyDRM struct {
+type PlayReadyDrm struct {
 	// The type of DRM, if any, that you want Elastic Transcoder to apply to the
 	// output files associated with this playlist.
 	Format *string `type:"string"`
@@ -2935,35 +2935,35 @@ type PlayReadyDRM struct {
 	// it to little endian before inserting it into the PlayReady DRM headers. If
 	// you are unsure whether your license server provides your key ID in big or
 	// little endian, check with your DRM provider.
-	KeyID *string `locationName:"KeyId" type:"string"`
+	KeyId *string `type:"string"`
 
 	// The MD5 digest of the key used for DRM on your file, and that you want Elastic
 	// Transcoder to use as a checksum to make sure your key was not corrupted in
 	// transit. The key MD5 must be base64-encoded, and it must be exactly 16 bytes
 	// before being base64-encoded.
-	KeyMD5 *string `locationName:"KeyMd5" type:"string"`
+	KeyMd5 *string `type:"string"`
 
 	// The location of the license key required to play DRM content. The URL must
 	// be an absolute path, and is referenced by the PlayReady header. The PlayReady
 	// header is referenced in the protection header of the client manifest for
 	// Smooth Streaming outputs, and in the EXT-X-DXDRM and EXT-XDXDRMINFO metadata
 	// tags for HLS playlist outputs. An example URL looks like this: https://www.example.com/exampleKey/
-	LicenseAcquisitionURL *string `locationName:"LicenseAcquisitionUrl" type:"string"`
+	LicenseAcquisitionUrl *string `min:"1" type:"string"`
 
-	metadataPlayReadyDRM `json:"-" xml:"-"`
+	metadataPlayReadyDrm `json:"-" xml:"-"`
 }
 
-type metadataPlayReadyDRM struct {
+type metadataPlayReadyDrm struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s PlayReadyDRM) String() string {
-	return awsutil.StringValue(s)
+func (s PlayReadyDrm) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s PlayReadyDRM) GoString() string {
+func (s PlayReadyDrm) GoString() string {
 	return s.String()
 }
 
@@ -2979,7 +2979,7 @@ type Playlist struct {
 
 	// The HLS content protection settings, if any, that you want Elastic Transcoder
 	// to apply to the output files associated with this playlist.
-	HLSContentProtection *HLSContentProtection `locationName:"HlsContentProtection" type:"structure"`
+	HlsContentProtection *HlsContentProtection `type:"structure"`
 
 	// The name that you want Elastic Transcoder to assign to the master playlist,
 	// for example, nyc-vacation.m3u8. If the name includes a / character, the section
@@ -2991,7 +2991,7 @@ type Playlist struct {
 	// to the file name (.m3u8 for HLSv3 and HLSv4 playlists, and .ism and .ismc
 	// for Smooth playlists). If you include a file extension in Name, the file
 	// name will have two extensions.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// For each output in this job that you want to include in a master playlist,
 	// the value of the Outputs:Key object.
@@ -3034,7 +3034,7 @@ type Playlist struct {
 
 	// The DRM settings, if any, that you want Elastic Transcoder to apply to the
 	// output files associated with this playlist.
-	PlayReadyDRM *PlayReadyDRM `locationName:"PlayReadyDrm" type:"structure"`
+	PlayReadyDrm *PlayReadyDrm `type:"structure"`
 
 	// The status of the job with which the playlist is associated.
 	Status *string `type:"string"`
@@ -3051,7 +3051,7 @@ type metadataPlaylist struct {
 
 // String returns the string representation
 func (s Playlist) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3067,7 +3067,7 @@ func (s Playlist) GoString() string {
 // a job.
 type Preset struct {
 	// The Amazon Resource Name (ARN) for the preset.
-	ARN *string `locationName:"Arn" type:"string"`
+	Arn *string `type:"string"`
 
 	// A section of the response body that provides information about the audio
 	// preset values.
@@ -3082,10 +3082,10 @@ type Preset struct {
 
 	// Identifier for the new preset. You use this value to get settings for the
 	// preset or to delete it.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `type:"string"`
 
 	// The name of the preset.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// A section of the response body that provides information about the thumbnail
 	// preset values, if any.
@@ -3108,7 +3108,7 @@ type metadataPreset struct {
 
 // String returns the string representation
 func (s Preset) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3159,7 +3159,7 @@ type PresetWatermark struct {
 
 	// A unique identifier for the settings for one watermark. The value of Id can
 	// be up to 40 characters long.
-	ID *string `locationName:"Id" type:"string"`
+	Id *string `min:"1" type:"string"`
 
 	// The maximum height of the watermark in one of the following formats:  number
 	// of pixels (px): The minimum value is 16 pixels, and the maximum value is
@@ -3251,7 +3251,7 @@ type metadataPresetWatermark struct {
 
 // String returns the string representation
 func (s PresetWatermark) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3262,7 +3262,7 @@ func (s PresetWatermark) GoString() string {
 // The ReadJobRequest structure.
 type ReadJobInput struct {
 	// The identifier of the job for which you want to get detailed information.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataReadJobInput `json:"-" xml:"-"`
 }
@@ -3273,7 +3273,7 @@ type metadataReadJobInput struct {
 
 // String returns the string representation
 func (s ReadJobInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3295,7 +3295,7 @@ type metadataReadJobOutput struct {
 
 // String returns the string representation
 func (s ReadJobOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3306,7 +3306,7 @@ func (s ReadJobOutput) GoString() string {
 // The ReadPipelineRequest structure.
 type ReadPipelineInput struct {
 	// The identifier of the pipeline to read.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataReadPipelineInput `json:"-" xml:"-"`
 }
@@ -3317,7 +3317,7 @@ type metadataReadPipelineInput struct {
 
 // String returns the string representation
 func (s ReadPipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3347,7 +3347,7 @@ type metadataReadPipelineOutput struct {
 
 // String returns the string representation
 func (s ReadPipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3358,7 +3358,7 @@ func (s ReadPipelineOutput) GoString() string {
 // The ReadPresetRequest structure.
 type ReadPresetInput struct {
 	// The identifier of the preset for which you want to get detailed information.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	metadataReadPresetInput `json:"-" xml:"-"`
 }
@@ -3369,7 +3369,7 @@ type metadataReadPresetInput struct {
 
 // String returns the string representation
 func (s ReadPresetInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3391,7 +3391,7 @@ type metadataReadPresetOutput struct {
 
 // String returns the string representation
 func (s ReadPresetOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3426,7 +3426,7 @@ type metadataTestRoleInput struct {
 
 // String returns the string representation
 func (s TestRoleInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3453,7 +3453,7 @@ type metadataTestRoleOutput struct {
 
 // String returns the string representation
 func (s TestRoleOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3545,7 +3545,7 @@ type metadataThumbnails struct {
 
 // String returns the string representation
 func (s Thumbnails) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3579,7 +3579,7 @@ type metadataTimeSpan struct {
 
 // String returns the string representation
 func (s TimeSpan) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3607,7 +3607,7 @@ type metadataTiming struct {
 
 // String returns the string representation
 func (s Timing) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3625,7 +3625,7 @@ type UpdatePipelineInput struct {
 	// key, is created for you automatically. You need to provide an AWS-KMS key
 	// only if you want to use a non-default AWS-KMS key, or if you are using an
 	// Encryption:Mode of AES-PKCS7, AES-CTR, or AES-GCM.
-	AWSKMSKeyARN *string `locationName:"AwsKmsKeyArn" type:"string"`
+	AwsKmsKeyArn *string `type:"string"`
 
 	// The optional ContentConfig object specifies information about the Amazon
 	// S3 bucket in which you want Elastic Transcoder to save transcoded files and
@@ -3675,7 +3675,7 @@ type UpdatePipelineInput struct {
 	ContentConfig *PipelineOutputConfig `type:"structure"`
 
 	// The ID of the pipeline that you want to update.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The Amazon S3 bucket in which you saved the media files that you want to
 	// transcode and the graphics that you want to use as watermarks.
@@ -3685,7 +3685,7 @@ type UpdatePipelineInput struct {
 	// AWS account, but uniqueness is not enforced.
 	//
 	// Constraints: Maximum 40 characters
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) topic or topics to notify
 	// in order to report job status.
@@ -3748,7 +3748,7 @@ type metadataUpdatePipelineInput struct {
 
 // String returns the string representation
 func (s UpdatePipelineInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3760,7 +3760,7 @@ func (s UpdatePipelineInput) GoString() string {
 type UpdatePipelineNotificationsInput struct {
 	// The identifier of the pipeline for which you want to change notification
 	// settings.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The topic ARN for the Amazon Simple Notification Service (Amazon SNS) topic
 	// that you want to notify to report job status.
@@ -3789,7 +3789,7 @@ type metadataUpdatePipelineNotificationsInput struct {
 
 // String returns the string representation
 func (s UpdatePipelineNotificationsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3811,7 +3811,7 @@ type metadataUpdatePipelineNotificationsOutput struct {
 
 // String returns the string representation
 func (s UpdatePipelineNotificationsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3842,7 +3842,7 @@ type metadataUpdatePipelineOutput struct {
 
 // String returns the string representation
 func (s UpdatePipelineOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3853,7 +3853,7 @@ func (s UpdatePipelineOutput) GoString() string {
 // The UpdatePipelineStatusRequest structure.
 type UpdatePipelineStatusInput struct {
 	// The identifier of the pipeline to update.
-	ID *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
 	// The desired status of the pipeline:
 	//
@@ -3870,7 +3870,7 @@ type metadataUpdatePipelineStatusInput struct {
 
 // String returns the string representation
 func (s UpdatePipelineStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3893,7 +3893,7 @@ type metadataUpdatePipelineStatusOutput struct {
 
 // String returns the string representation
 func (s UpdatePipelineStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4207,7 +4207,7 @@ type metadataVideoParameters struct {
 
 // String returns the string representation
 func (s VideoParameters) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4240,7 +4240,7 @@ type metadataWarning struct {
 
 // String returns the string representation
 func (s Warning) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

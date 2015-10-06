@@ -6,15 +6,15 @@ package codecommit
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opBatchGetRepositories = "BatchGetRepositories"
 
 // BatchGetRepositoriesRequest generates a request for the BatchGetRepositories operation.
-func (c *CodeCommit) BatchGetRepositoriesRequest(input *BatchGetRepositoriesInput) (req *aws.Request, output *BatchGetRepositoriesOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) BatchGetRepositoriesRequest(input *BatchGetRepositoriesInput) (req *request.Request, output *BatchGetRepositoriesOutput) {
+	op := &request.Operation{
 		Name:       opBatchGetRepositories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -46,8 +46,8 @@ func (c *CodeCommit) BatchGetRepositories(input *BatchGetRepositoriesInput) (*Ba
 const opCreateBranch = "CreateBranch"
 
 // CreateBranchRequest generates a request for the CreateBranch operation.
-func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *aws.Request, output *CreateBranchOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) CreateBranchRequest(input *CreateBranchInput) (req *request.Request, output *CreateBranchOutput) {
+	op := &request.Operation{
 		Name:       opCreateBranch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -76,8 +76,8 @@ func (c *CodeCommit) CreateBranch(input *CreateBranchInput) (*CreateBranchOutput
 const opCreateRepository = "CreateRepository"
 
 // CreateRepositoryRequest generates a request for the CreateRepository operation.
-func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req *aws.Request, output *CreateRepositoryOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) CreateRepositoryRequest(input *CreateRepositoryInput) (req *request.Request, output *CreateRepositoryOutput) {
+	op := &request.Operation{
 		Name:       opCreateRepository,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -103,8 +103,8 @@ func (c *CodeCommit) CreateRepository(input *CreateRepositoryInput) (*CreateRepo
 const opDeleteRepository = "DeleteRepository"
 
 // DeleteRepositoryRequest generates a request for the DeleteRepository operation.
-func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *aws.Request, output *DeleteRepositoryOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *request.Request, output *DeleteRepositoryOutput) {
+	op := &request.Operation{
 		Name:       opDeleteRepository,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -135,8 +135,8 @@ func (c *CodeCommit) DeleteRepository(input *DeleteRepositoryInput) (*DeleteRepo
 const opGetBranch = "GetBranch"
 
 // GetBranchRequest generates a request for the GetBranch operation.
-func (c *CodeCommit) GetBranchRequest(input *GetBranchInput) (req *aws.Request, output *GetBranchOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) GetBranchRequest(input *GetBranchInput) (req *request.Request, output *GetBranchOutput) {
+	op := &request.Operation{
 		Name:       opGetBranch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -163,8 +163,8 @@ func (c *CodeCommit) GetBranch(input *GetBranchInput) (*GetBranchOutput, error) 
 const opGetRepository = "GetRepository"
 
 // GetRepositoryRequest generates a request for the GetRepository operation.
-func (c *CodeCommit) GetRepositoryRequest(input *GetRepositoryInput) (req *aws.Request, output *GetRepositoryOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) GetRepositoryRequest(input *GetRepositoryInput) (req *request.Request, output *GetRepositoryOutput) {
+	op := &request.Operation{
 		Name:       opGetRepository,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -196,8 +196,8 @@ func (c *CodeCommit) GetRepository(input *GetRepositoryInput) (*GetRepositoryOut
 const opListBranches = "ListBranches"
 
 // ListBranchesRequest generates a request for the ListBranches operation.
-func (c *CodeCommit) ListBranchesRequest(input *ListBranchesInput) (req *aws.Request, output *ListBranchesOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) ListBranchesRequest(input *ListBranchesInput) (req *request.Request, output *ListBranchesOutput) {
+	op := &request.Operation{
 		Name:       opListBranches,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -223,8 +223,8 @@ func (c *CodeCommit) ListBranches(input *ListBranchesInput) (*ListBranchesOutput
 const opListRepositories = "ListRepositories"
 
 // ListRepositoriesRequest generates a request for the ListRepositories operation.
-func (c *CodeCommit) ListRepositoriesRequest(input *ListRepositoriesInput) (req *aws.Request, output *ListRepositoriesOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) ListRepositoriesRequest(input *ListRepositoriesInput) (req *request.Request, output *ListRepositoriesOutput) {
+	op := &request.Operation{
 		Name:       opListRepositories,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -250,8 +250,8 @@ func (c *CodeCommit) ListRepositories(input *ListRepositoriesInput) (*ListReposi
 const opUpdateDefaultBranch = "UpdateDefaultBranch"
 
 // UpdateDefaultBranchRequest generates a request for the UpdateDefaultBranch operation.
-func (c *CodeCommit) UpdateDefaultBranchRequest(input *UpdateDefaultBranchInput) (req *aws.Request, output *UpdateDefaultBranchOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) UpdateDefaultBranchRequest(input *UpdateDefaultBranchInput) (req *request.Request, output *UpdateDefaultBranchOutput) {
+	op := &request.Operation{
 		Name:       opUpdateDefaultBranch,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -281,8 +281,8 @@ func (c *CodeCommit) UpdateDefaultBranch(input *UpdateDefaultBranchInput) (*Upda
 const opUpdateRepositoryDescription = "UpdateRepositoryDescription"
 
 // UpdateRepositoryDescriptionRequest generates a request for the UpdateRepositoryDescription operation.
-func (c *CodeCommit) UpdateRepositoryDescriptionRequest(input *UpdateRepositoryDescriptionInput) (req *aws.Request, output *UpdateRepositoryDescriptionOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) UpdateRepositoryDescriptionRequest(input *UpdateRepositoryDescriptionInput) (req *request.Request, output *UpdateRepositoryDescriptionOutput) {
+	op := &request.Operation{
 		Name:       opUpdateRepositoryDescription,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -314,8 +314,8 @@ func (c *CodeCommit) UpdateRepositoryDescription(input *UpdateRepositoryDescript
 const opUpdateRepositoryName = "UpdateRepositoryName"
 
 // UpdateRepositoryNameRequest generates a request for the UpdateRepositoryName operation.
-func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInput) (req *aws.Request, output *UpdateRepositoryNameOutput) {
-	op := &aws.Operation{
+func (c *CodeCommit) UpdateRepositoryNameRequest(input *UpdateRepositoryNameInput) (req *request.Request, output *UpdateRepositoryNameOutput) {
+	op := &request.Operation{
 		Name:       opUpdateRepositoryName,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -352,7 +352,7 @@ type metadataBatchGetRepositoriesInput struct {
 
 // String returns the string representation
 func (s BatchGetRepositoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -377,7 +377,7 @@ type metadataBatchGetRepositoriesOutput struct {
 
 // String returns the string representation
 func (s BatchGetRepositoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -388,10 +388,10 @@ func (s BatchGetRepositoriesOutput) GoString() string {
 // Returns information about a branch.
 type BranchInfo struct {
 	// The name of the branch.
-	BranchName *string `locationName:"branchName" type:"string"`
+	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
 	// The ID of the last commit made to the branch.
-	CommitID *string `locationName:"commitId" type:"string"`
+	CommitId *string `locationName:"commitId" type:"string"`
 
 	metadataBranchInfo `json:"-" xml:"-"`
 }
@@ -402,7 +402,7 @@ type metadataBranchInfo struct {
 
 // String returns the string representation
 func (s BranchInfo) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -413,16 +413,16 @@ func (s BranchInfo) GoString() string {
 // Represents the input of a create branch operation.
 type CreateBranchInput struct {
 	// The name of the new branch to create.
-	BranchName *string `locationName:"branchName" type:"string" required:"true"`
+	BranchName *string `locationName:"branchName" min:"1" type:"string" required:"true"`
 
 	// The ID of the commit to point the new branch to.
 	//
 	// If this commit ID is not specified, the new branch will point to the commit
 	// that is pointed to by the repository's default branch.
-	CommitID *string `locationName:"commitId" type:"string" required:"true"`
+	CommitId *string `locationName:"commitId" type:"string" required:"true"`
 
 	// The name of the repository in which you want to create the new branch.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataCreateBranchInput `json:"-" xml:"-"`
 }
@@ -433,7 +433,7 @@ type metadataCreateBranchInput struct {
 
 // String returns the string representation
 func (s CreateBranchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -451,7 +451,7 @@ type metadataCreateBranchOutput struct {
 
 // String returns the string representation
 func (s CreateBranchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -469,7 +469,7 @@ type CreateRepositoryInput struct {
 	// The repository name must be unique across the calling AWS account. In addition,
 	// repository names are restricted to alphanumeric characters. The suffix ".git"
 	// is prohibited.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataCreateRepositoryInput `json:"-" xml:"-"`
 }
@@ -480,7 +480,7 @@ type metadataCreateRepositoryInput struct {
 
 // String returns the string representation
 func (s CreateRepositoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -502,7 +502,7 @@ type metadataCreateRepositoryOutput struct {
 
 // String returns the string representation
 func (s CreateRepositoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -513,7 +513,7 @@ func (s CreateRepositoryOutput) GoString() string {
 // Represents the input of a delete repository operation.
 type DeleteRepositoryInput struct {
 	// The name of the repository to delete.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataDeleteRepositoryInput `json:"-" xml:"-"`
 }
@@ -524,7 +524,7 @@ type metadataDeleteRepositoryInput struct {
 
 // String returns the string representation
 func (s DeleteRepositoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -535,7 +535,7 @@ func (s DeleteRepositoryInput) GoString() string {
 // Represents the output of a delete repository operation.
 type DeleteRepositoryOutput struct {
 	// The ID of the repository that was deleted.
-	RepositoryID *string `locationName:"repositoryId" type:"string"`
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	metadataDeleteRepositoryOutput `json:"-" xml:"-"`
 }
@@ -546,7 +546,7 @@ type metadataDeleteRepositoryOutput struct {
 
 // String returns the string representation
 func (s DeleteRepositoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -557,12 +557,12 @@ func (s DeleteRepositoryOutput) GoString() string {
 // Represents the input of a get branch operation.
 type GetBranchInput struct {
 	// The name of the branch for which you want to retrieve information.
-	BranchName *string `locationName:"branchName" type:"string"`
+	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	RepositoryName *string `locationName:"repositoryName" type:"string"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
 	metadataGetBranchInput `json:"-" xml:"-"`
 }
@@ -573,7 +573,7 @@ type metadataGetBranchInput struct {
 
 // String returns the string representation
 func (s GetBranchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -595,7 +595,7 @@ type metadataGetBranchOutput struct {
 
 // String returns the string representation
 func (s GetBranchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -606,7 +606,7 @@ func (s GetBranchOutput) GoString() string {
 // Represents the input of a get repository operation.
 type GetRepositoryInput struct {
 	// The name of the repository to get information about.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataGetRepositoryInput `json:"-" xml:"-"`
 }
@@ -617,7 +617,7 @@ type metadataGetRepositoryInput struct {
 
 // String returns the string representation
 func (s GetRepositoryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -639,7 +639,7 @@ type metadataGetRepositoryOutput struct {
 
 // String returns the string representation
 func (s GetRepositoryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -653,7 +653,7 @@ type ListBranchesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The name of the repository that contains the branches.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataListBranchesInput `json:"-" xml:"-"`
 }
@@ -664,7 +664,7 @@ type metadataListBranchesInput struct {
 
 // String returns the string representation
 func (s ListBranchesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -689,7 +689,7 @@ type metadataListBranchesOutput struct {
 
 // String returns the string representation
 func (s ListBranchesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -706,10 +706,10 @@ type ListRepositoriesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The order in which to sort the results of a list repositories operation.
-	Order *string `locationName:"order" type:"string"`
+	Order *string `locationName:"order" type:"string" enum:"OrderEnum"`
 
 	// The criteria used to sort the results of a list repositories operation.
-	SortBy *string `locationName:"sortBy" type:"string"`
+	SortBy *string `locationName:"sortBy" type:"string" enum:"SortByEnum"`
 
 	metadataListRepositoriesInput `json:"-" xml:"-"`
 }
@@ -720,7 +720,7 @@ type metadataListRepositoriesInput struct {
 
 // String returns the string representation
 func (s ListRepositoriesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -737,7 +737,7 @@ type ListRepositoriesOutput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Lists the repositories called by the list repositories operation.
-	Repositories []*RepositoryNameIDPair `locationName:"repositories" type:"list"`
+	Repositories []*RepositoryNameIdPair `locationName:"repositories" type:"list"`
 
 	metadataListRepositoriesOutput `json:"-" xml:"-"`
 }
@@ -748,7 +748,7 @@ type metadataListRepositoriesOutput struct {
 
 // String returns the string representation
 func (s ListRepositoriesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -758,23 +758,23 @@ func (s ListRepositoriesOutput) GoString() string {
 
 // Information about a repository.
 type RepositoryMetadata struct {
-	// The Amazon Resource Name (ARN) of the repository.
-	ARN *string `locationName:"Arn" type:"string"`
-
 	// The ID of the AWS account associated with the repository.
-	AccountID *string `locationName:"accountId" type:"string"`
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the repository.
+	Arn *string `type:"string"`
 
 	// The URL to use for cloning the repository over HTTPS.
-	CloneURLHTTP *string `locationName:"cloneUrlHttp" type:"string"`
+	CloneUrlHttp *string `locationName:"cloneUrlHttp" type:"string"`
 
 	// The URL to use for cloning the repository over SSH.
-	CloneURLSSH *string `locationName:"cloneUrlSsh" type:"string"`
+	CloneUrlSsh *string `locationName:"cloneUrlSsh" type:"string"`
 
 	// The date and time the repository was created, in timestamp format.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp" timestampFormat:"unix"`
 
 	// The repository's default branch name.
-	DefaultBranch *string `locationName:"defaultBranch" type:"string"`
+	DefaultBranch *string `locationName:"defaultBranch" min:"1" type:"string"`
 
 	// The date and time the repository was last modified, in timestamp format.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp" timestampFormat:"unix"`
@@ -783,10 +783,10 @@ type RepositoryMetadata struct {
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
 	// The ID of the repository.
-	RepositoryID *string `locationName:"repositoryId" type:"string"`
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	// The repository's name.
-	RepositoryName *string `locationName:"repositoryName" type:"string"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
 	metadataRepositoryMetadata `json:"-" xml:"-"`
 }
@@ -797,7 +797,7 @@ type metadataRepositoryMetadata struct {
 
 // String returns the string representation
 func (s RepositoryMetadata) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -806,39 +806,39 @@ func (s RepositoryMetadata) GoString() string {
 }
 
 // Information about a repository name and ID.
-type RepositoryNameIDPair struct {
+type RepositoryNameIdPair struct {
 	// The ID associated with the repository name.
-	RepositoryID *string `locationName:"repositoryId" type:"string"`
+	RepositoryId *string `locationName:"repositoryId" type:"string"`
 
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	RepositoryName *string `locationName:"repositoryName" type:"string"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string"`
 
-	metadataRepositoryNameIDPair `json:"-" xml:"-"`
+	metadataRepositoryNameIdPair `json:"-" xml:"-"`
 }
 
-type metadataRepositoryNameIDPair struct {
+type metadataRepositoryNameIdPair struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s RepositoryNameIDPair) String() string {
-	return awsutil.StringValue(s)
+func (s RepositoryNameIdPair) String() string {
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s RepositoryNameIDPair) GoString() string {
+func (s RepositoryNameIdPair) GoString() string {
 	return s.String()
 }
 
 // Represents the input of an update default branch operation.
 type UpdateDefaultBranchInput struct {
 	// The name of the branch to set as the default.
-	DefaultBranchName *string `locationName:"defaultBranchName" type:"string" required:"true"`
+	DefaultBranchName *string `locationName:"defaultBranchName" min:"1" type:"string" required:"true"`
 
 	// The name of the repository to set or change the default branch for.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataUpdateDefaultBranchInput `json:"-" xml:"-"`
 }
@@ -849,7 +849,7 @@ type metadataUpdateDefaultBranchInput struct {
 
 // String returns the string representation
 func (s UpdateDefaultBranchInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -867,7 +867,7 @@ type metadataUpdateDefaultBranchOutput struct {
 
 // String returns the string representation
 func (s UpdateDefaultBranchOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -881,7 +881,7 @@ type UpdateRepositoryDescriptionInput struct {
 	RepositoryDescription *string `locationName:"repositoryDescription" type:"string"`
 
 	// The name of the repository to set or change the comment or description for.
-	RepositoryName *string `locationName:"repositoryName" type:"string" required:"true"`
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
 
 	metadataUpdateRepositoryDescriptionInput `json:"-" xml:"-"`
 }
@@ -892,7 +892,7 @@ type metadataUpdateRepositoryDescriptionInput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryDescriptionInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -910,7 +910,7 @@ type metadataUpdateRepositoryDescriptionOutput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryDescriptionOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -923,12 +923,12 @@ type UpdateRepositoryNameInput struct {
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	NewName *string `locationName:"newName" type:"string" required:"true"`
+	NewName *string `locationName:"newName" min:"1" type:"string" required:"true"`
 
 	// Repository name is restricted to alphanumeric characters (a-z, A-Z, 0-9),
 	// ".", "_", and "-". Additionally, the suffix ".git" is prohibited in a repository
 	// name.
-	OldName *string `locationName:"oldName" type:"string" required:"true"`
+	OldName *string `locationName:"oldName" min:"1" type:"string" required:"true"`
 
 	metadataUpdateRepositoryNameInput `json:"-" xml:"-"`
 }
@@ -939,7 +939,7 @@ type metadataUpdateRepositoryNameInput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryNameInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -957,10 +957,24 @@ type metadataUpdateRepositoryNameOutput struct {
 
 // String returns the string representation
 func (s UpdateRepositoryNameOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s UpdateRepositoryNameOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum OrderEnum
+	OrderEnumAscending = "ascending"
+	// @enum OrderEnum
+	OrderEnumDescending = "descending"
+)
+
+const (
+	// @enum SortByEnum
+	SortByEnumRepositoryName = "repositoryName"
+	// @enum SortByEnum
+	SortByEnumLastModifiedDate = "lastModifiedDate"
+)

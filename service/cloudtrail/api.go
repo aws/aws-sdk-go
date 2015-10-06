@@ -6,15 +6,45 @@ package cloudtrail
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
+
+const opAddTags = "AddTags"
+
+// AddTagsRequest generates a request for the AddTags operation.
+func (c *CloudTrail) AddTagsRequest(input *AddTagsInput) (req *request.Request, output *AddTagsOutput) {
+	op := &request.Operation{
+		Name:       opAddTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddTagsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &AddTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Adds one or more tags to a trail, up to a limit of 10. Tags must be unique
+// per trail. Overwrites an existing tag's value when a new value is specified
+// for an existing tag key. If you specify a key without a value, the tag will
+// be created with the specified key and a value of null.
+func (c *CloudTrail) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
+	req, out := c.AddTagsRequest(input)
+	err := req.Send()
+	return out, err
+}
 
 const opCreateTrail = "CreateTrail"
 
 // CreateTrailRequest generates a request for the CreateTrail operation.
-func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Request, output *CreateTrailOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *request.Request, output *CreateTrailOutput) {
+	op := &request.Operation{
 		Name:       opCreateTrail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -30,10 +60,8 @@ func (c *CloudTrail) CreateTrailRequest(input *CreateTrailInput) (req *aws.Reque
 	return
 }
 
-// From the command line, use create-subscription.
-//
-// Creates a trail that specifies the settings for delivery of log data to
-// an Amazon S3 bucket.
+// Creates a trail that specifies the settings for delivery of log data to an
+// Amazon S3 bucket.
 func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, error) {
 	req, out := c.CreateTrailRequest(input)
 	err := req.Send()
@@ -43,8 +71,8 @@ func (c *CloudTrail) CreateTrail(input *CreateTrailInput) (*CreateTrailOutput, e
 const opDeleteTrail = "DeleteTrail"
 
 // DeleteTrailRequest generates a request for the DeleteTrail operation.
-func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Request, output *DeleteTrailOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *request.Request, output *DeleteTrailOutput) {
+	op := &request.Operation{
 		Name:       opDeleteTrail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -60,7 +88,8 @@ func (c *CloudTrail) DeleteTrailRequest(input *DeleteTrailInput) (req *aws.Reque
 	return
 }
 
-// Deletes a trail.
+// Deletes a trail. This operation must be called from the region in which the
+// trail was created.
 func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, error) {
 	req, out := c.DeleteTrailRequest(input)
 	err := req.Send()
@@ -70,8 +99,8 @@ func (c *CloudTrail) DeleteTrail(input *DeleteTrailInput) (*DeleteTrailOutput, e
 const opDescribeTrails = "DescribeTrails"
 
 // DescribeTrailsRequest generates a request for the DescribeTrails operation.
-func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *aws.Request, output *DescribeTrailsOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) DescribeTrailsRequest(input *DescribeTrailsInput) (req *request.Request, output *DescribeTrailsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTrails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -98,8 +127,8 @@ func (c *CloudTrail) DescribeTrails(input *DescribeTrailsInput) (*DescribeTrails
 const opGetTrailStatus = "GetTrailStatus"
 
 // GetTrailStatusRequest generates a request for the GetTrailStatus operation.
-func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws.Request, output *GetTrailStatusOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *request.Request, output *GetTrailStatusOutput) {
+	op := &request.Operation{
 		Name:       opGetTrailStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -117,9 +146,72 @@ func (c *CloudTrail) GetTrailStatusRequest(input *GetTrailStatusInput) (req *aws
 
 // Returns a JSON-formatted list of information about the specified trail. Fields
 // include information on delivery errors, Amazon SNS and Amazon S3 errors,
-// and start and stop logging times for each trail.
+// and start and stop logging times for each trail. This operation returns trail
+// status from a single region. To return trail status from all regions, you
+// must call the operation on each region.
 func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatusOutput, error) {
 	req, out := c.GetTrailStatusRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListPublicKeys = "ListPublicKeys"
+
+// ListPublicKeysRequest generates a request for the ListPublicKeys operation.
+func (c *CloudTrail) ListPublicKeysRequest(input *ListPublicKeysInput) (req *request.Request, output *ListPublicKeysOutput) {
+	op := &request.Operation{
+		Name:       opListPublicKeys,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListPublicKeysInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListPublicKeysOutput{}
+	req.Data = output
+	return
+}
+
+// Returns all public keys whose private keys were used to sign the digest files
+// within the specified time range. The public key is needed to validate digest
+// files that were signed with its corresponding private key.
+//
+// CloudTrail uses different private/public key pairs per region. Each digest
+// file is signed with a private key unique to its region. Therefore, when you
+// validate a digest file from a particular region, you must look in the same
+// region for its corresponding public key.
+func (c *CloudTrail) ListPublicKeys(input *ListPublicKeysInput) (*ListPublicKeysOutput, error) {
+	req, out := c.ListPublicKeysRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opListTags = "ListTags"
+
+// ListTagsRequest generates a request for the ListTags operation.
+func (c *CloudTrail) ListTagsRequest(input *ListTagsInput) (req *request.Request, output *ListTagsOutput) {
+	op := &request.Operation{
+		Name:       opListTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Lists the tags for the trail in the current region.
+func (c *CloudTrail) ListTags(input *ListTagsInput) (*ListTagsOutput, error) {
+	req, out := c.ListTagsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -127,8 +219,8 @@ func (c *CloudTrail) GetTrailStatus(input *GetTrailStatusInput) (*GetTrailStatus
 const opLookupEvents = "LookupEvents"
 
 // LookupEventsRequest generates a request for the LookupEvents operation.
-func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Request, output *LookupEventsOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *request.Request, output *LookupEventsOutput) {
+	op := &request.Operation{
 		Name:       opLookupEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -153,13 +245,41 @@ func (c *CloudTrail) LookupEventsRequest(input *LookupEventsInput) (req *aws.Req
 // that can be specified in any one lookup request are time range and one other
 // attribute. The default number of results returned is 10, with a maximum of
 // 50 possible. The response includes a token that you can use to get the next
-// page of results. The rate of lookup requests is limited to one per second
-// per account.
+// page of results.
 //
-// Events that occurred during the selected time range will not be available
-// for lookup if CloudTrail logging was not enabled when the events occurred.
+// The rate of lookup requests is limited to one per second per account. If
+// this limit is exceeded, a throttling error occurs.  Events that occurred
+// during the selected time range will not be available for lookup if CloudTrail
+// logging was not enabled when the events occurred.
 func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput, error) {
 	req, out := c.LookupEventsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opRemoveTags = "RemoveTags"
+
+// RemoveTagsRequest generates a request for the RemoveTags operation.
+func (c *CloudTrail) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, output *RemoveTagsOutput) {
+	op := &request.Operation{
+		Name:       opRemoveTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveTagsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &RemoveTagsOutput{}
+	req.Data = output
+	return
+}
+
+// Removes the specified tags from a trail.
+func (c *CloudTrail) RemoveTags(input *RemoveTagsInput) (*RemoveTagsOutput, error) {
+	req, out := c.RemoveTagsRequest(input)
 	err := req.Send()
 	return out, err
 }
@@ -167,8 +287,8 @@ func (c *CloudTrail) LookupEvents(input *LookupEventsInput) (*LookupEventsOutput
 const opStartLogging = "StartLogging"
 
 // StartLoggingRequest generates a request for the StartLogging operation.
-func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *aws.Request, output *StartLoggingOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) StartLoggingRequest(input *StartLoggingInput) (req *request.Request, output *StartLoggingOutput) {
+	op := &request.Operation{
 		Name:       opStartLogging,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -194,8 +314,8 @@ func (c *CloudTrail) StartLogging(input *StartLoggingInput) (*StartLoggingOutput
 const opStopLogging = "StopLogging"
 
 // StopLoggingRequest generates a request for the StopLogging operation.
-func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *aws.Request, output *StopLoggingOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) StopLoggingRequest(input *StopLoggingInput) (req *request.Request, output *StopLoggingOutput) {
+	op := &request.Operation{
 		Name:       opStopLogging,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -224,8 +344,8 @@ func (c *CloudTrail) StopLogging(input *StopLoggingInput) (*StopLoggingOutput, e
 const opUpdateTrail = "UpdateTrail"
 
 // UpdateTrailRequest generates a request for the UpdateTrail operation.
-func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Request, output *UpdateTrailOutput) {
-	op := &aws.Operation{
+func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *request.Request, output *UpdateTrailOutput) {
+	op := &request.Operation{
 		Name:       opUpdateTrail,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -241,8 +361,6 @@ func (c *CloudTrail) UpdateTrailRequest(input *UpdateTrailInput) (req *aws.Reque
 	return
 }
 
-// From the command line, use update-subscription.
-//
 // Updates the settings that specify delivery of log files. Changes to a trail
 // do not require stopping the CloudTrail service. Use this action to designate
 // an existing bucket for log delivery. If the existing bucket has previously
@@ -253,35 +371,113 @@ func (c *CloudTrail) UpdateTrail(input *UpdateTrailInput) (*UpdateTrailOutput, e
 	return out, err
 }
 
+// Specifies the tags to add to a trail.
+type AddTagsInput struct {
+	// Specifies the ARN of the trail to which one or more tags will be added. The
+	// format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
+	ResourceId *string `type:"string" required:"true"`
+
+	// Contains a list of CloudTrail tags, up to a limit of 10.
+	TagsList []*Tag `type:"list"`
+
+	metadataAddTagsInput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsInput) GoString() string {
+	return s.String()
+}
+
+// Returns the objects or data listed below if successful. Otherwise, returns
+// an error.
+type AddTagsOutput struct {
+	metadataAddTagsOutput `json:"-" xml:"-"`
+}
+
+type metadataAddTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddTagsOutput) GoString() string {
+	return s.String()
+}
+
 // Specifies the settings for each trail.
 type CreateTrailInput struct {
 	// Specifies a log group name using an Amazon Resource Name (ARN), a unique
 	// identifier that represents the log group to which CloudTrail logs will be
 	// delivered. Not required unless you specify CloudWatchLogsRoleArn.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
-	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	// a user's log group.
+	CloudWatchLogsRoleArn *string `type:"string"`
+
+	// Specifies whether log file integrity validation is enabled. The default is
+	// false.
+	//
+	// When you disable log file integrity validation, the chain of digest files
+	// is broken after one hour. CloudTrail will not create digest files for log
+	// files that were delivered during a period in which log file integrity validation
+	// was disabled. For example, if you enable log file integrity validation at
+	// noon on January 1, disable it at noon on January 2, and re-enable it at noon
+	// on January 10, digest files will not be created for the log files delivered
+	// from noon on January 2 to noon on January 10. The same applies whenever you
+	// stop CloudTrail logging or delete a trail.
+	EnableLogFileValidation *bool `type:"boolean"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
 
-	// Specifies the name of the trail.
+	// Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.
+	// The value can be a an alias name prefixed by "alias/", a fully specified
+	// ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
+	//
+	// Examples:
+	//
+	//  alias/MyAliasName arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// 12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `type:"string"`
+
+	// Specifies the name of the trail. The name must meet the following requirements:
+	//
+	//  Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	// (_), or dashes (-) Start with a letter or number, and end with a letter or
+	// number Be between 3 and 128 characters Have no adjacent periods, underscores
+	// or dashes. Names like my-_namespace and my--namespace are invalid. Not be
+	// in IP address format (for example, 192.168.5.4)
 	Name *string `type:"string" required:"true"`
 
 	// Specifies the name of the Amazon S3 bucket designated for publishing log
-	// files.
+	// files. See Amazon S3 Bucket Naming Requirements (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).
 	S3BucketName *string `type:"string" required:"true"`
 
-	// Specifies the Amazon S3 key prefix that precedes the name of the bucket you
-	// have designated for log file delivery.
+	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
+	// you have designated for log file delivery. For more information, see Finding
+	// Your CloudTrail Log Files (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).
+	// The maximum length is 200 characters.
 	S3KeyPrefix *string `type:"string"`
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
-	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	// file delivery. The maximum length is 256 characters.
+	SnsTopicName *string `type:"string"`
 
 	metadataCreateTrailInput `json:"-" xml:"-"`
 }
@@ -292,7 +488,7 @@ type metadataCreateTrailInput struct {
 
 // String returns the string representation
 func (s CreateTrailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -305,15 +501,24 @@ func (s CreateTrailInput) GoString() string {
 type CreateTrailOutput struct {
 	// Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail
 	// logs will be delivered.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
-	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	// a user's log group.
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
+
+	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the format:
+	//
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `type:"string"`
+
+	// Specifies whether log file integrity validation is enabled.
+	LogFileValidationEnabled *bool `type:"boolean"`
 
 	// Specifies the name of the trail.
 	Name *string `type:"string"`
@@ -322,13 +527,17 @@ type CreateTrailOutput struct {
 	// files.
 	S3BucketName *string `type:"string"`
 
-	// Specifies the Amazon S3 key prefix that precedes the name of the bucket you
-	// have designated for log file delivery.
+	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
+	// you have designated for log file delivery. For more information, see Finding
+	// Your CloudTrail Log Files (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).
 	S3KeyPrefix *string `type:"string"`
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
 	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
+
+	// Specifies the ARN of the trail that was created.
+	TrailARN *string `type:"string"`
 
 	metadataCreateTrailOutput `json:"-" xml:"-"`
 }
@@ -339,7 +548,7 @@ type metadataCreateTrailOutput struct {
 
 // String returns the string representation
 func (s CreateTrailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -349,7 +558,8 @@ func (s CreateTrailOutput) GoString() string {
 
 // The request that specifies the name of a trail to delete.
 type DeleteTrailInput struct {
-	// The name of a trail to be deleted.
+	// Specifies the name or the CloudTrail ARN of the trail to be deleted. The
+	// format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
 	metadataDeleteTrailInput `json:"-" xml:"-"`
@@ -361,7 +571,7 @@ type metadataDeleteTrailInput struct {
 
 // String returns the string representation
 func (s DeleteTrailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -381,7 +591,7 @@ type metadataDeleteTrailOutput struct {
 
 // String returns the string representation
 func (s DeleteTrailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -391,7 +601,10 @@ func (s DeleteTrailOutput) GoString() string {
 
 // Returns information about the trail.
 type DescribeTrailsInput struct {
-	// The trail returned.
+	// Specifies a list of trail names, trail ARNs, or both, of the trails to describe.
+	// The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
+	// If an empty list is specified, information for the trail in the current region
+	// is returned.
 	TrailNameList []*string `locationName:"trailNameList" type:"list"`
 
 	metadataDescribeTrailsInput `json:"-" xml:"-"`
@@ -403,7 +616,7 @@ type metadataDescribeTrailsInput struct {
 
 // String returns the string representation
 func (s DescribeTrailsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -414,7 +627,7 @@ func (s DescribeTrailsInput) GoString() string {
 // Returns the objects or data listed below if successful. Otherwise, returns
 // an error.
 type DescribeTrailsOutput struct {
-	// The list of trails.
+	// The list of trail objects.
 	TrailList []*Trail `locationName:"trailList" type:"list"`
 
 	metadataDescribeTrailsOutput `json:"-" xml:"-"`
@@ -426,7 +639,7 @@ type metadataDescribeTrailsOutput struct {
 
 // String returns the string representation
 func (s DescribeTrailsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -441,7 +654,7 @@ type Event struct {
 	CloudTrailEvent *string `type:"string"`
 
 	// The CloudTrail ID of the event returned.
-	EventID *string `locationName:"EventId" type:"string"`
+	EventId *string `type:"string"`
 
 	// The name of the event returned.
 	EventName *string `type:"string"`
@@ -465,7 +678,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -475,7 +688,8 @@ func (s Event) GoString() string {
 
 // The name of a trail about which you want the current status.
 type GetTrailStatusInput struct {
-	// The name of the trail for which you are requesting the current status.
+	// Specifies the name or the CloudTrail ARN of the trail for which you are requesting
+	// status. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
 	metadataGetTrailStatusInput `json:"-" xml:"-"`
@@ -487,7 +701,7 @@ type metadataGetTrailStatusInput struct {
 
 // String returns the string representation
 func (s GetTrailStatusInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -509,15 +723,47 @@ type GetTrailStatusOutput struct {
 	// CloudWatch Logs.
 	LatestCloudWatchLogsDeliveryTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// This field is deprecated.
+	LatestDeliveryAttemptSucceeded *string `type:"string"`
+
+	// This field is deprecated.
+	LatestDeliveryAttemptTime *string `type:"string"`
+
 	// Displays any Amazon S3 error that CloudTrail encountered when attempting
 	// to deliver log files to the designated bucket. For more information see the
 	// topic Error Responses (http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html)
 	// in the Amazon S3 API Reference.
+	//
+	// This error occurs only when there is a problem with the destination S3 bucket
+	// and will not occur for timeouts. To resolve the issue, create a new bucket
+	// and call UpdateTrail to specify the new bucket, or fix the existing objects
+	// so that CloudTrail can again write to the bucket.
 	LatestDeliveryError *string `type:"string"`
 
 	// Specifies the date and time that CloudTrail last delivered log files to an
 	// account's Amazon S3 bucket.
 	LatestDeliveryTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Displays any Amazon S3 error that CloudTrail encountered when attempting
+	// to deliver a digest file to the designated bucket. For more information see
+	// the topic Error Responses (http://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html)
+	// in the Amazon S3 API Reference.
+	//
+	// This error occurs only when there is a problem with the destination S3 bucket
+	// and will not occur for timeouts. To resolve the issue, create a new bucket
+	// and call UpdateTrail to specify the new bucket, or fix the existing objects
+	// so that CloudTrail can again write to the bucket.
+	LatestDigestDeliveryError *string `type:"string"`
+
+	// Specifies the date and time that CloudTrail last delivered a digest file
+	// to an account's Amazon S3 bucket.
+	LatestDigestDeliveryTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// This field is deprecated.
+	LatestNotificationAttemptSucceeded *string `type:"string"`
+
+	// This field is deprecated.
+	LatestNotificationAttemptTime *string `type:"string"`
 
 	// Displays any Amazon SNS error that CloudTrail encountered when attempting
 	// to send a notification. For more information about Amazon SNS errors, see
@@ -536,6 +782,12 @@ type GetTrailStatusOutput struct {
 	// API calls for an AWS account.
 	StopLoggingTime *time.Time `type:"timestamp" timestampFormat:"unix"`
 
+	// This field is deprecated.
+	TimeLoggingStarted *string `type:"string"`
+
+	// This field is deprecated.
+	TimeLoggingStopped *string `type:"string"`
+
 	metadataGetTrailStatusOutput `json:"-" xml:"-"`
 }
 
@@ -545,7 +797,7 @@ type metadataGetTrailStatusOutput struct {
 
 // String returns the string representation
 func (s GetTrailStatusOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -553,10 +805,121 @@ func (s GetTrailStatusOutput) GoString() string {
 	return s.String()
 }
 
+// Requests the public keys for a specified time range.
+type ListPublicKeysInput struct {
+	// Optionally specifies, in UTC, the end of the time range to look up public
+	// keys for CloudTrail digest files. If not specified, the current time is used.
+	EndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// Reserved for future use.
+	NextToken *string `type:"string"`
+
+	// Optionally specifies, in UTC, the start of the time range to look up public
+	// keys for CloudTrail digest files. If not specified, the current time is used,
+	// and the current public key is returned.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	metadataListPublicKeysInput `json:"-" xml:"-"`
+}
+
+type metadataListPublicKeysInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPublicKeysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPublicKeysInput) GoString() string {
+	return s.String()
+}
+
+// Returns the objects or data listed below if successful. Otherwise, returns
+// an error.
+type ListPublicKeysOutput struct {
+	// Reserved for future use.
+	NextToken *string `type:"string"`
+
+	// Contains an array of PublicKey objects.
+	//
+	// The returned public keys may have validity time ranges that overlap.
+	PublicKeyList []*PublicKey `type:"list"`
+
+	metadataListPublicKeysOutput `json:"-" xml:"-"`
+}
+
+type metadataListPublicKeysOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListPublicKeysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPublicKeysOutput) GoString() string {
+	return s.String()
+}
+
+// Specifies a list of trail tags to return.
+type ListTagsInput struct {
+	// Reserved for future use.
+	NextToken *string `type:"string"`
+
+	// Specifies a list of trail ARNs whose tags will be listed. The list has a
+	// limit of 20 ARNs. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
+	ResourceIdList []*string `type:"list" required:"true"`
+
+	metadataListTagsInput `json:"-" xml:"-"`
+}
+
+type metadataListTagsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsInput) GoString() string {
+	return s.String()
+}
+
+// Returns the objects or data listed below if successful. Otherwise, returns
+// an error.
+type ListTagsOutput struct {
+	// Reserved for future use.
+	NextToken *string `type:"string"`
+
+	// A list of resource tags.
+	ResourceTagList []*ResourceTag `type:"list"`
+
+	metadataListTagsOutput `json:"-" xml:"-"`
+}
+
+type metadataListTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsOutput) GoString() string {
+	return s.String()
+}
+
 // Specifies an attribute and value that filter the events returned.
 type LookupAttribute struct {
 	// Specifies an attribute on which to filter the events returned.
-	AttributeKey *string `type:"string" required:"true"`
+	AttributeKey *string `type:"string" required:"true" enum:"LookupAttributeKey"`
 
 	// Specifies a value for the specified AttributeKey.
 	AttributeValue *string `type:"string" required:"true"`
@@ -570,7 +933,7 @@ type metadataLookupAttribute struct {
 
 // String returns the string representation
 func (s LookupAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -591,7 +954,7 @@ type LookupEventsInput struct {
 
 	// The number of events to return. Possible values are 1 through 50. The default
 	// is 10.
-	MaxResults *int64 `type:"integer"`
+	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The token to use to get the next page of results after a previous API call.
 	// This token must be passed in with the same parameters that were specified
@@ -614,7 +977,7 @@ type metadataLookupEventsInput struct {
 
 // String returns the string representation
 func (s LookupEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -645,11 +1008,88 @@ type metadataLookupEventsOutput struct {
 
 // String returns the string representation
 func (s LookupEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s LookupEventsOutput) GoString() string {
+	return s.String()
+}
+
+// Contains information about a returned public key.
+type PublicKey struct {
+	// The fingerprint of the public key.
+	Fingerprint *string `type:"string"`
+
+	// The ending time of validity of the public key.
+	ValidityEndTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The starting time of validity of the public key.
+	ValidityStartTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The DER encoded public key value in PKCS#1 format.
+	Value []byte `type:"blob"`
+
+	metadataPublicKey `json:"-" xml:"-"`
+}
+
+type metadataPublicKey struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s PublicKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublicKey) GoString() string {
+	return s.String()
+}
+
+// Specifies the tags to remove from a trail.
+type RemoveTagsInput struct {
+	// Specifies the ARN of the trail from which tags should be removed. The format
+	// of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
+	ResourceId *string `type:"string" required:"true"`
+
+	// Specifies a list of tags to be removed.
+	TagsList []*Tag `type:"list"`
+
+	metadataRemoveTagsInput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsInput) GoString() string {
+	return s.String()
+}
+
+// Returns the objects or data listed below if successful. Otherwise, returns
+// an error.
+type RemoveTagsOutput struct {
+	metadataRemoveTagsOutput `json:"-" xml:"-"`
+}
+
+type metadataRemoveTagsOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveTagsOutput) GoString() string {
 	return s.String()
 }
 
@@ -677,7 +1117,7 @@ type metadataResource struct {
 
 // String returns the string representation
 func (s Resource) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -685,9 +1125,35 @@ func (s Resource) GoString() string {
 	return s.String()
 }
 
+// A resource tag.
+type ResourceTag struct {
+	// Specifies the ARN of the resource.
+	ResourceId *string `type:"string"`
+
+	// A list of tags.
+	TagsList []*Tag `type:"list"`
+
+	metadataResourceTag `json:"-" xml:"-"`
+}
+
+type metadataResourceTag struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceTag) GoString() string {
+	return s.String()
+}
+
 // The request to CloudTrail to start logging AWS API calls for an account.
 type StartLoggingInput struct {
-	// The name of the trail for which CloudTrail logs AWS API calls.
+	// Specifies the name or the CloudTrail ARN of the trail for which CloudTrail
+	// logs AWS API calls. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
 	metadataStartLoggingInput `json:"-" xml:"-"`
@@ -699,7 +1165,7 @@ type metadataStartLoggingInput struct {
 
 // String returns the string representation
 func (s StartLoggingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -719,7 +1185,7 @@ type metadataStartLoggingOutput struct {
 
 // String returns the string representation
 func (s StartLoggingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -730,8 +1196,8 @@ func (s StartLoggingOutput) GoString() string {
 // Passes the request to CloudTrail to stop logging AWS API calls for the specified
 // account.
 type StopLoggingInput struct {
-	// Communicates to CloudTrail the name of the trail for which to stop logging
-	// AWS API calls.
+	// Specifies the name or the CloudTrail ARN of the trail for which CloudTrail
+	// will stop logging AWS API calls. The format of a trail ARN is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
 	metadataStopLoggingInput `json:"-" xml:"-"`
@@ -743,7 +1209,7 @@ type metadataStopLoggingInput struct {
 
 // String returns the string representation
 func (s StopLoggingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -763,7 +1229,7 @@ type metadataStopLoggingOutput struct {
 
 // String returns the string representation
 func (s StopLoggingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -771,32 +1237,76 @@ func (s StopLoggingOutput) GoString() string {
 	return s.String()
 }
 
+// A custom key-value pair associated with a resource such as a CloudTrail trail.
+type Tag struct {
+	// The key in a key-value pair. The key must be must be no longer than 128 Unicode
+	// characters. The key must be unique for the resource to which it applies.
+	Key *string `type:"string" required:"true"`
+
+	// The value in a key-value pair of a tag. The value must be no longer than
+	// 256 Unicode characters.
+	Value *string `type:"string"`
+
+	metadataTag `json:"-" xml:"-"`
+}
+
+type metadataTag struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
 // The settings for a trail.
 type Trail struct {
 	// Specifies an Amazon Resource Name (ARN), a unique identifier that represents
 	// the log group to which CloudTrail logs will be delivered.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
-	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	// a user's log group.
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Set to True to include AWS API calls from AWS global services such as IAM.
 	// Otherwise, False.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
 
-	// Name of the trail set by calling CreateTrail.
+	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the format:
+	//
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `type:"string"`
+
+	// Specifies whether log file validation is enabled.
+	LogFileValidationEnabled *bool `type:"boolean"`
+
+	// Name of the trail set by calling CreateTrail. The maximum length is 128 characters.
 	Name *string `type:"string"`
 
 	// Name of the Amazon S3 bucket into which CloudTrail delivers your trail files.
+	// See Amazon S3 Bucket Naming Requirements (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).
 	S3BucketName *string `type:"string"`
 
-	// Value of the Amazon S3 prefix.
+	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
+	// you have designated for log file delivery. For more information, see Finding
+	// Your CloudTrail Log Files (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).The
+	// maximum length is 200 characters.
 	S3KeyPrefix *string `type:"string"`
 
 	// Name of the existing Amazon SNS topic that CloudTrail uses to notify the
-	// account owner when new CloudTrail log files have been delivered.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	// account owner when new CloudTrail log files have been delivered. The maximum
+	// length is 256 characters.
+	SnsTopicName *string `type:"string"`
+
+	// The Amazon Resource Name of the trail. The TrailARN format is arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
+	TrailARN *string `type:"string"`
 
 	metadataTrail `json:"-" xml:"-"`
 }
@@ -807,7 +1317,7 @@ type metadataTrail struct {
 
 // String returns the string representation
 func (s Trail) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -820,30 +1330,63 @@ type UpdateTrailInput struct {
 	// Specifies a log group name using an Amazon Resource Name (ARN), a unique
 	// identifier that represents the log group to which CloudTrail logs will be
 	// delivered. Not required unless you specify CloudWatchLogsRoleArn.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
-	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	// a user's log group.
+	CloudWatchLogsRoleArn *string `type:"string"`
+
+	// Specifies whether log file validation is enabled. The default is false.
+	//
+	// When you disable log file integrity validation, the chain of digest files
+	// is broken after one hour. CloudTrail will not create digest files for log
+	// files that were delivered during a period in which log file integrity validation
+	// was disabled. For example, if you enable log file integrity validation at
+	// noon on January 1, disable it at noon on January 2, and re-enable it at noon
+	// on January 10, digest files will not be created for the log files delivered
+	// from noon on January 2 to noon on January 10. The same applies whenever you
+	// stop CloudTrail logging or delete a trail.
+	EnableLogFileValidation *bool `type:"boolean"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
 
-	// Specifies the name of the trail.
+	// Specifies the KMS key ID to use to encrypt the logs delivered by CloudTrail.
+	// The value can be a an alias name prefixed by "alias/", a fully specified
+	// ARN to an alias, a fully specified ARN to a key, or a globally unique identifier.
+	//
+	// Examples:
+	//
+	//  alias/MyAliasName arn:aws:kms:us-east-1:123456789012:alias/MyAliasName
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// 12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `type:"string"`
+
+	// Specifies the name of the trail or trail ARN. If Name is a trail name, the
+	// string must meet the following requirements:
+	//
+	//  Contain only ASCII letters (a-z, A-Z), numbers (0-9), periods (.), underscores
+	// (_), or dashes (-) Start with a letter or number, and end with a letter or
+	// number Be between 3 and 128 characters Have no adjacent periods, underscores
+	// or dashes. Names like my-_namespace and my--namespace are invalid. Not be
+	// in IP address format (for example, 192.168.5.4)  If Name is a trail ARN,
+	// it must be in the format arn:aws:cloudtrail:us-east-1:123456789012:trail/MyTrail.
 	Name *string `type:"string" required:"true"`
 
 	// Specifies the name of the Amazon S3 bucket designated for publishing log
-	// files.
+	// files. See Amazon S3 Bucket Naming Requirements (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/create_trail_naming_policy.html).
 	S3BucketName *string `type:"string"`
 
-	// Specifies the Amazon S3 key prefix that precedes the name of the bucket you
-	// have designated for log file delivery.
+	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
+	// you have designated for log file delivery. For more information, see Finding
+	// Your CloudTrail Log Files (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).
+	// The maximum length is 200 characters.
 	S3KeyPrefix *string `type:"string"`
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
-	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	// file delivery. The maximum length is 256 characters.
+	SnsTopicName *string `type:"string"`
 
 	metadataUpdateTrailInput `json:"-" xml:"-"`
 }
@@ -854,7 +1397,7 @@ type metadataUpdateTrailInput struct {
 
 // String returns the string representation
 func (s UpdateTrailInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -867,15 +1410,24 @@ func (s UpdateTrailInput) GoString() string {
 type UpdateTrailOutput struct {
 	// Specifies the Amazon Resource Name (ARN) of the log group to which CloudTrail
 	// logs will be delivered.
-	CloudWatchLogsLogGroupARN *string `locationName:"CloudWatchLogsLogGroupArn" type:"string"`
+	CloudWatchLogsLogGroupArn *string `type:"string"`
 
 	// Specifies the role for the CloudWatch Logs endpoint to assume to write to
-	// a user’s log group.
-	CloudWatchLogsRoleARN *string `locationName:"CloudWatchLogsRoleArn" type:"string"`
+	// a user's log group.
+	CloudWatchLogsRoleArn *string `type:"string"`
 
 	// Specifies whether the trail is publishing events from global services such
 	// as IAM to the log files.
 	IncludeGlobalServiceEvents *bool `type:"boolean"`
+
+	// Specifies the KMS key ID that encrypts the logs delivered by CloudTrail.
+	// The value is a fully specified ARN to a KMS key in the format:
+	//
+	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	KmsKeyId *string `type:"string"`
+
+	// Specifies whether log file integrity validation is enabled.
+	LogFileValidationEnabled *bool `type:"boolean"`
 
 	// Specifies the name of the trail.
 	Name *string `type:"string"`
@@ -884,13 +1436,17 @@ type UpdateTrailOutput struct {
 	// files.
 	S3BucketName *string `type:"string"`
 
-	// Specifies the Amazon S3 key prefix that precedes the name of the bucket you
-	// have designated for log file delivery.
+	// Specifies the Amazon S3 key prefix that comes after the name of the bucket
+	// you have designated for log file delivery. For more information, see Finding
+	// Your CloudTrail Log Files (http://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-find-log-files.html).
 	S3KeyPrefix *string `type:"string"`
 
 	// Specifies the name of the Amazon SNS topic defined for notification of log
 	// file delivery.
-	SNSTopicName *string `locationName:"SnsTopicName" type:"string"`
+	SnsTopicName *string `type:"string"`
+
+	// Specifies the ARN of the trail that was updated.
+	TrailARN *string `type:"string"`
 
 	metadataUpdateTrailOutput `json:"-" xml:"-"`
 }
@@ -901,10 +1457,23 @@ type metadataUpdateTrailOutput struct {
 
 // String returns the string representation
 func (s UpdateTrailOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s UpdateTrailOutput) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum LookupAttributeKey
+	LookupAttributeKeyEventId = "EventId"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyEventName = "EventName"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyUsername = "Username"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyResourceType = "ResourceType"
+	// @enum LookupAttributeKey
+	LookupAttributeKeyResourceName = "ResourceName"
+)

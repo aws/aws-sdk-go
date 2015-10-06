@@ -8,6 +8,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 var (
@@ -15,8 +16,8 @@ var (
 	errChecksumMissingMD5  = fmt.Errorf("cannot verify checksum. missing response MD5")
 )
 
-func setupChecksumValidation(r *aws.Request) {
-	if r.Config.DisableComputeChecksums {
+func setupChecksumValidation(r *request.Request) {
+	if aws.BoolValue(r.Service.Config.DisableComputeChecksums) {
 		return
 	}
 
@@ -30,7 +31,7 @@ func setupChecksumValidation(r *aws.Request) {
 	}
 }
 
-func verifySendMessage(r *aws.Request) {
+func verifySendMessage(r *request.Request) {
 	if r.DataFilled() && r.ParamsFilled() {
 		in := r.Params.(*SendMessageInput)
 		out := r.Data.(*SendMessageOutput)
@@ -41,22 +42,22 @@ func verifySendMessage(r *aws.Request) {
 	}
 }
 
-func verifySendMessageBatch(r *aws.Request) {
+func verifySendMessageBatch(r *request.Request) {
 	if r.DataFilled() && r.ParamsFilled() {
 		entries := map[string]*SendMessageBatchResultEntry{}
 		ids := []string{}
 
 		out := r.Data.(*SendMessageBatchOutput)
 		for _, entry := range out.Successful {
-			entries[*entry.ID] = entry
+			entries[*entry.Id] = entry
 		}
 
 		in := r.Params.(*SendMessageBatchInput)
 		for _, entry := range in.Entries {
-			if e := entries[*entry.ID]; e != nil {
+			if e := entries[*entry.Id]; e != nil {
 				err := checksumsMatch(entry.MessageBody, e.MD5OfMessageBody)
 				if err != nil {
-					ids = append(ids, *e.MessageID)
+					ids = append(ids, *e.MessageId)
 				}
 			}
 		}
@@ -66,14 +67,14 @@ func verifySendMessageBatch(r *aws.Request) {
 	}
 }
 
-func verifyReceiveMessage(r *aws.Request) {
+func verifyReceiveMessage(r *request.Request) {
 	if r.DataFilled() && r.ParamsFilled() {
 		ids := []string{}
 		out := r.Data.(*ReceiveMessageOutput)
 		for _, msg := range out.Messages {
 			err := checksumsMatch(msg.Body, msg.MD5OfBody)
 			if err != nil {
-				ids = append(ids, *msg.MessageID)
+				ids = append(ids, *msg.MessageId)
 			}
 		}
 		if len(ids) > 0 {
@@ -98,7 +99,7 @@ func checksumsMatch(body, expectedMD5 *string) error {
 	return nil
 }
 
-func setChecksumError(r *aws.Request, format string, args ...interface{}) {
-	r.Retryable.Set(true)
+func setChecksumError(r *request.Request, format string, args ...interface{}) {
+	r.Retryable = aws.Bool(true)
 	r.Error = awserr.New("InvalidChecksum", fmt.Sprintf(format, args...), nil)
 }

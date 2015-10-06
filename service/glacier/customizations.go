@@ -4,8 +4,8 @@ import (
 	"encoding/hex"
 	"reflect"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 var (
@@ -13,7 +13,7 @@ var (
 )
 
 func init() {
-	initRequest = func(r *aws.Request) {
+	initRequest = func(r *request.Request) {
 		r.Handlers.Validate.PushFront(addAccountID)
 		r.Handlers.Validate.PushFront(copyParams) // this happens first
 		r.Handlers.Build.PushBack(addChecksum)
@@ -21,22 +21,22 @@ func init() {
 	}
 }
 
-func copyParams(r *aws.Request) {
+func copyParams(r *request.Request) {
 	r.Params = awsutil.CopyOf(r.Params)
 }
 
-func addAccountID(r *aws.Request) {
+func addAccountID(r *request.Request) {
 	if !r.ParamsFilled() {
 		return
 	}
 
 	v := reflect.Indirect(reflect.ValueOf(r.Params))
-	if f := v.FieldByName("AccountID"); f.IsNil() {
+	if f := v.FieldByName("AccountId"); f.IsNil() {
 		f.Set(reflect.ValueOf(&defaultAccountID))
 	}
 }
 
-func addChecksum(r *aws.Request) {
+func addChecksum(r *request.Request) {
 	if r.Body == nil {
 		return
 	}
@@ -53,6 +53,6 @@ func addChecksum(r *aws.Request) {
 	}
 }
 
-func addAPIVersion(r *aws.Request) {
+func addAPIVersion(r *request.Request) {
 	r.HTTPRequest.Header.Set("X-Amz-Glacier-Version", r.Service.APIVersion)
 }

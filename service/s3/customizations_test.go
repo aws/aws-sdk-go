@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/stretchr/testify/assert"
@@ -14,7 +15,7 @@ import (
 
 var _ = unit.Imported
 
-func assertMD5(t *testing.T, req *aws.Request) {
+func assertMD5(t *testing.T, req *request.Request) {
 	err := req.Build()
 	assert.NoError(t, err)
 
@@ -24,13 +25,16 @@ func assertMD5(t *testing.T, req *aws.Request) {
 	assert.Equal(t, base64.StdEncoding.EncodeToString(out[:]), req.HTTPRequest.Header.Get("Content-MD5"))
 }
 
-func TestMD5InPutBucketCORS(t *testing.T) {
+func TestMD5InPutBucketCors(t *testing.T) {
 	svc := s3.New(nil)
-	req, _ := svc.PutBucketCORSRequest(&s3.PutBucketCORSInput{
+	req, _ := svc.PutBucketCorsRequest(&s3.PutBucketCorsInput{
 		Bucket: aws.String("bucketname"),
 		CORSConfiguration: &s3.CORSConfiguration{
 			CORSRules: []*s3.CORSRule{
-				{AllowedMethods: []*string{aws.String("GET")}},
+				{
+					AllowedMethods: []*string{aws.String("GET")},
+					AllowedOrigins: []*string{aws.String("*")},
+				},
 			},
 		},
 	})
@@ -42,7 +46,7 @@ func TestMD5InPutBucketLifecycle(t *testing.T) {
 	req, _ := svc.PutBucketLifecycleRequest(&s3.PutBucketLifecycleInput{
 		Bucket: aws.String("bucketname"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
-			Rules: []*s3.LifecycleRule{
+			Rules: []*s3.Rule{
 				{
 					ID:     aws.String("ID"),
 					Prefix: aws.String("Prefix"),

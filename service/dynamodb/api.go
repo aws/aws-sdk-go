@@ -6,19 +6,19 @@ package dynamodb
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opBatchGetItem = "BatchGetItem"
 
 // BatchGetItemRequest generates a request for the BatchGetItem operation.
-func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *aws.Request, output *BatchGetItemOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) BatchGetItemRequest(input *BatchGetItemInput) (req *request.Request, output *BatchGetItemOutput) {
+	op := &request.Operation{
 		Name:       opBatchGetItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"RequestItems"},
 			OutputTokens:    []string{"UnprocessedKeys"},
 			LimitToken:      "",
@@ -101,8 +101,8 @@ func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(p *BatchG
 const opBatchWriteItem = "BatchWriteItem"
 
 // BatchWriteItemRequest generates a request for the BatchWriteItem operation.
-func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *aws.Request, output *BatchWriteItemOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) BatchWriteItemRequest(input *BatchWriteItemInput) (req *request.Request, output *BatchWriteItemOutput) {
+	op := &request.Operation{
 		Name:       opBatchWriteItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -196,8 +196,8 @@ func (c *DynamoDB) BatchWriteItem(input *BatchWriteItemInput) (*BatchWriteItemOu
 const opCreateTable = "CreateTable"
 
 // CreateTableRequest generates a request for the CreateTable operation.
-func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *aws.Request, output *CreateTableOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) CreateTableRequest(input *CreateTableInput) (req *request.Request, output *CreateTableOutput) {
+	op := &request.Operation{
 		Name:       opCreateTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -237,8 +237,8 @@ func (c *DynamoDB) CreateTable(input *CreateTableInput) (*CreateTableOutput, err
 const opDeleteItem = "DeleteItem"
 
 // DeleteItemRequest generates a request for the DeleteItem operation.
-func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *aws.Request, output *DeleteItemOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) DeleteItemRequest(input *DeleteItemInput) (req *request.Request, output *DeleteItemOutput) {
+	op := &request.Operation{
 		Name:       opDeleteItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -277,8 +277,8 @@ func (c *DynamoDB) DeleteItem(input *DeleteItemInput) (*DeleteItemOutput, error)
 const opDeleteTable = "DeleteTable"
 
 // DeleteTableRequest generates a request for the DeleteTable operation.
-func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *aws.Request, output *DeleteTableOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) DeleteTableRequest(input *DeleteTableInput) (req *request.Request, output *DeleteTableOutput) {
+	op := &request.Operation{
 		Name:       opDeleteTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -321,8 +321,8 @@ func (c *DynamoDB) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, err
 const opDescribeTable = "DescribeTable"
 
 // DescribeTableRequest generates a request for the DescribeTable operation.
-func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *aws.Request, output *DescribeTableOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) DescribeTableRequest(input *DescribeTableInput) (req *request.Request, output *DescribeTableOutput) {
+	op := &request.Operation{
 		Name:       opDescribeTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -356,8 +356,8 @@ func (c *DynamoDB) DescribeTable(input *DescribeTableInput) (*DescribeTableOutpu
 const opGetItem = "GetItem"
 
 // GetItemRequest generates a request for the GetItem operation.
-func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *aws.Request, output *GetItemOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) GetItemRequest(input *GetItemInput) (req *request.Request, output *GetItemOutput) {
+	op := &request.Operation{
 		Name:       opGetItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -389,12 +389,12 @@ func (c *DynamoDB) GetItem(input *GetItemInput) (*GetItemOutput, error) {
 const opListTables = "ListTables"
 
 // ListTablesRequest generates a request for the ListTables operation.
-func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *aws.Request, output *ListTablesOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) ListTablesRequest(input *ListTablesInput) (req *request.Request, output *ListTablesOutput) {
+	op := &request.Operation{
 		Name:       opListTables,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartTableName"},
 			OutputTokens:    []string{"LastEvaluatedTableName"},
 			LimitToken:      "Limit",
@@ -431,8 +431,8 @@ func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTables
 const opPutItem = "PutItem"
 
 // PutItemRequest generates a request for the PutItem operation.
-func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *aws.Request, output *PutItemOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) PutItemRequest(input *PutItemInput) (req *request.Request, output *PutItemOutput) {
+	op := &request.Operation{
 		Name:       opPutItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -482,12 +482,12 @@ func (c *DynamoDB) PutItem(input *PutItemInput) (*PutItemOutput, error) {
 const opQuery = "Query"
 
 // QueryRequest generates a request for the Query operation.
-func (c *DynamoDB) QueryRequest(input *QueryInput) (req *aws.Request, output *QueryOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) QueryRequest(input *QueryInput) (req *request.Request, output *QueryOutput) {
+	op := &request.Operation{
 		Name:       opQuery,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartKey"},
 			OutputTokens:    []string{"LastEvaluatedKey"},
 			LimitToken:      "Limit",
@@ -546,12 +546,12 @@ func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPag
 const opScan = "Scan"
 
 // ScanRequest generates a request for the Scan operation.
-func (c *DynamoDB) ScanRequest(input *ScanInput) (req *aws.Request, output *ScanOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) ScanRequest(input *ScanInput) (req *request.Request, output *ScanOutput) {
+	op := &request.Operation{
 		Name:       opScan,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"ExclusiveStartKey"},
 			OutputTokens:    []string{"LastEvaluatedKey"},
 			LimitToken:      "Limit",
@@ -604,8 +604,8 @@ func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage b
 const opUpdateItem = "UpdateItem"
 
 // UpdateItemRequest generates a request for the UpdateItem operation.
-func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *aws.Request, output *UpdateItemOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) UpdateItemRequest(input *UpdateItemInput) (req *request.Request, output *UpdateItemOutput) {
+	op := &request.Operation{
 		Name:       opUpdateItem,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -640,8 +640,8 @@ func (c *DynamoDB) UpdateItem(input *UpdateItemInput) (*UpdateItemOutput, error)
 const opUpdateTable = "UpdateTable"
 
 // UpdateTableRequest generates a request for the UpdateTable operation.
-func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *aws.Request, output *UpdateTableOutput) {
-	op := &aws.Operation{
+func (c *DynamoDB) UpdateTableRequest(input *UpdateTableInput) (req *request.Request, output *UpdateTableOutput) {
+	op := &request.Operation{
 		Name:       opUpdateTable,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -684,10 +684,10 @@ func (c *DynamoDB) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, err
 // Represents an attribute for describing the key schema for the table and indexes.
 type AttributeDefinition struct {
 	// A name for the attribute.
-	AttributeName *string `type:"string" required:"true"`
+	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The data type for the attribute.
-	AttributeType *string `type:"string" required:"true"`
+	AttributeType *string `type:"string" required:"true" enum:"ScalarAttributeType"`
 
 	metadataAttributeDefinition `json:"-" xml:"-"`
 }
@@ -698,7 +698,7 @@ type metadataAttributeDefinition struct {
 
 // String returns the string representation
 func (s AttributeDefinition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -753,7 +753,7 @@ type metadataAttributeValue struct {
 
 // String returns the string representation
 func (s AttributeValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -834,7 +834,7 @@ type AttributeValueUpdate struct {
 	//   ADD - DynamoDB creates an item with the supplied primary key and number
 	// (or set of numbers) for the attribute value. The only data types allowed
 	// are number and number set; no other data types can be specified.
-	Action *string `type:"string"`
+	Action *string `type:"string" enum:"AttributeAction"`
 
 	// Represents the data for an attribute. You can set one, and only one, of the
 	// elements.
@@ -854,7 +854,7 @@ type metadataAttributeValueUpdate struct {
 
 // String returns the string representation
 func (s AttributeValueUpdate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -944,7 +944,7 @@ type BatchGetItemInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	RequestItems map[string]*KeysAndAttributes `type:"map" required:"true"`
+	RequestItems map[string]*KeysAndAttributes `min:"1" type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
 	// is returned in the response:
@@ -961,7 +961,7 @@ type BatchGetItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	metadataBatchGetItemInput `json:"-" xml:"-"`
 }
@@ -972,7 +972,7 @@ type metadataBatchGetItemInput struct {
 
 // String returns the string representation
 func (s BatchGetItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1016,7 +1016,7 @@ type BatchGetItemOutput struct {
 	//
 	//   If there are no unprocessed keys remaining, the response contains an empty
 	// UnprocessedKeys map.
-	UnprocessedKeys map[string]*KeysAndAttributes `type:"map"`
+	UnprocessedKeys map[string]*KeysAndAttributes `min:"1" type:"map"`
 
 	metadataBatchGetItemOutput `json:"-" xml:"-"`
 }
@@ -1027,7 +1027,7 @@ type metadataBatchGetItemOutput struct {
 
 // String returns the string representation
 func (s BatchGetItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1063,7 +1063,7 @@ type BatchWriteItemInput struct {
 	// If you specify any attributes that are part of an index key, then the data
 	// types for those attributes must match those of the schema in the table's
 	// attribute definition.
-	RequestItems map[string][]*WriteRequest `type:"map" required:"true"`
+	RequestItems map[string][]*WriteRequest `min:"1" type:"map" required:"true"`
 
 	// Determines the level of detail about provisioned throughput consumption that
 	// is returned in the response:
@@ -1080,13 +1080,13 @@ type BatchWriteItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	metadataBatchWriteItemInput `json:"-" xml:"-"`
 }
@@ -1097,7 +1097,7 @@ type metadataBatchWriteItemInput struct {
 
 // String returns the string representation
 func (s BatchWriteItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1166,7 +1166,7 @@ type BatchWriteItemOutput struct {
 	//
 	//     If there are no unprocessed items remaining, the response contains an
 	// empty UnprocessedItems map.
-	UnprocessedItems map[string][]*WriteRequest `type:"map"`
+	UnprocessedItems map[string][]*WriteRequest `min:"1" type:"map"`
 
 	metadataBatchWriteItemOutput `json:"-" xml:"-"`
 }
@@ -1177,7 +1177,7 @@ type metadataBatchWriteItemOutput struct {
 
 // String returns the string representation
 func (s BatchWriteItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1200,7 +1200,7 @@ type metadataCapacity struct {
 
 // String returns the string representation
 func (s Capacity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1367,7 +1367,7 @@ type Condition struct {
 	//   For usage examples of AttributeValueList and ComparisonOperator, see Legacy
 	// Conditional Parameters (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LegacyConditionalParameters.html)
 	// in the Amazon DynamoDB Developer Guide.
-	ComparisonOperator *string `type:"string" required:"true"`
+	ComparisonOperator *string `type:"string" required:"true" enum:"ComparisonOperator"`
 
 	metadataCondition `json:"-" xml:"-"`
 }
@@ -1378,7 +1378,7 @@ type metadataCondition struct {
 
 // String returns the string representation
 func (s Condition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1406,7 +1406,7 @@ type ConsumedCapacity struct {
 	Table *Capacity `type:"structure"`
 
 	// The name of the table that was affected by the operation.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	metadataConsumedCapacity `json:"-" xml:"-"`
 }
@@ -1417,7 +1417,7 @@ type metadataConsumedCapacity struct {
 
 // String returns the string representation
 func (s ConsumedCapacity) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1428,10 +1428,10 @@ func (s ConsumedCapacity) GoString() string {
 // Represents a new global secondary index to be added to an existing table.
 type CreateGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be created.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The key schema for the global secondary index.
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -1455,7 +1455,7 @@ type metadataCreateGlobalSecondaryIndexAction struct {
 
 // String returns the string representation
 func (s CreateGlobalSecondaryIndexAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1520,7 +1520,7 @@ type CreateTableInput struct {
 	//
 	// For more information, see Specifying the Primary Key (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#WorkingWithTables.primary.key)
 	// in the Amazon DynamoDB Developer Guide.
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// One or more local secondary indexes (the maximum is five) to be created on
 	// the table. Each index is scoped to a given hash key value. There is a 10
@@ -1587,7 +1587,7 @@ type CreateTableInput struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to create.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataCreateTableInput `json:"-" xml:"-"`
 }
@@ -1598,7 +1598,7 @@ type metadataCreateTableInput struct {
 
 // String returns the string representation
 func (s CreateTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1620,7 +1620,7 @@ type metadataCreateTableOutput struct {
 
 // String returns the string representation
 func (s CreateTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1631,7 +1631,7 @@ func (s CreateTableOutput) GoString() string {
 // Represents a global secondary index to be deleted from an existing table.
 type DeleteGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be deleted.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteGlobalSecondaryIndexAction `json:"-" xml:"-"`
 }
@@ -1642,7 +1642,7 @@ type metadataDeleteGlobalSecondaryIndexAction struct {
 
 // String returns the string representation
 func (s DeleteGlobalSecondaryIndexAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1692,7 +1692,7 @@ type DeleteItemInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ConditionExpression instead. Do not combine legacy parameters
@@ -1971,13 +1971,13 @@ type DeleteItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
 	// before they were deleted. For DeleteItem, the valid values are:
@@ -1986,10 +1986,10 @@ type DeleteItemInput struct {
 	// nothing is returned. (This setting is the default for ReturnValues.)
 	//
 	//   ALL_OLD - The content of the old item is returned.
-	ReturnValues *string `type:"string"`
+	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table from which to delete the item.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteItemInput `json:"-" xml:"-"`
 }
@@ -2000,7 +2000,7 @@ type metadataDeleteItemInput struct {
 
 // String returns the string representation
 func (s DeleteItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2053,7 +2053,7 @@ type metadataDeleteItemOutput struct {
 
 // String returns the string representation
 func (s DeleteItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2077,7 +2077,7 @@ type metadataDeleteRequest struct {
 
 // String returns the string representation
 func (s DeleteRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2088,7 +2088,7 @@ func (s DeleteRequest) GoString() string {
 // Represents the input of a DeleteTable operation.
 type DeleteTableInput struct {
 	// The name of the table to delete.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataDeleteTableInput `json:"-" xml:"-"`
 }
@@ -2099,7 +2099,7 @@ type metadataDeleteTableInput struct {
 
 // String returns the string representation
 func (s DeleteTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2121,7 +2121,7 @@ type metadataDeleteTableOutput struct {
 
 // String returns the string representation
 func (s DeleteTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2132,7 +2132,7 @@ func (s DeleteTableOutput) GoString() string {
 // Represents the input of a DescribeTable operation.
 type DescribeTableInput struct {
 	// The name of the table to describe.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataDescribeTableInput `json:"-" xml:"-"`
 }
@@ -2143,7 +2143,7 @@ type metadataDescribeTableInput struct {
 
 // String returns the string representation
 func (s DescribeTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2165,7 +2165,7 @@ type metadataDescribeTableOutput struct {
 
 // String returns the string representation
 func (s DescribeTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2338,7 +2338,7 @@ type ExpectedAttributeValue struct {
 	// element of a different type than the one provided in the request, the value
 	// does not match. For example, {"S":"6"} does not compare to {"N":"6"}. Also,
 	// {"N":"6"} does not compare to {"NS":["6", "2", "1"]}
-	ComparisonOperator *string `type:"string"`
+	ComparisonOperator *string `type:"string" enum:"ComparisonOperator"`
 
 	// Causes DynamoDB to evaluate the value before attempting a conditional operation:
 	//
@@ -2382,7 +2382,7 @@ type metadataExpectedAttributeValue struct {
 
 // String returns the string representation
 func (s ExpectedAttributeValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2407,7 +2407,7 @@ type GetItemInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// Determines the read consistency model: If set to true, then the operation
 	// uses strongly consistent reads; otherwise, the operation uses eventually
@@ -2488,10 +2488,10 @@ type GetItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// The name of the table containing the requested item.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataGetItemInput `json:"-" xml:"-"`
 }
@@ -2502,7 +2502,7 @@ type metadataGetItemInput struct {
 
 // String returns the string representation
 func (s GetItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2532,7 +2532,7 @@ type metadataGetItemOutput struct {
 
 // String returns the string representation
 func (s GetItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2544,11 +2544,11 @@ func (s GetItemOutput) GoString() string {
 type GlobalSecondaryIndex struct {
 	// The name of the global secondary index. The name must be unique among all
 	// other indexes on this table.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The complete key schema for a global secondary index, which consists of one
 	// or more pairs of attribute names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2572,7 +2572,7 @@ type metadataGlobalSecondaryIndex struct {
 
 // String returns the string representation
 func (s GlobalSecondaryIndex) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2594,10 +2594,10 @@ type GlobalSecondaryIndexDescription struct {
 	Backfilling *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the index.
-	IndexARN *string `locationName:"IndexArn" type:"string"`
+	IndexArn *string `type:"string"`
 
 	// The name of the global secondary index.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The total size of the specified index, in bytes. DynamoDB updates this value
 	// approximately every six hours. Recent changes might not be reflected in this
@@ -2613,7 +2613,7 @@ type GlobalSecondaryIndexDescription struct {
 	//   DELETING - The index is being deleted.
 	//
 	//   ACTIVE - The index is ready for use.
-	IndexStatus *string `type:"string"`
+	IndexStatus *string `type:"string" enum:"IndexStatus"`
 
 	// The number of items in the specified index. DynamoDB updates this value approximately
 	// every six hours. Recent changes might not be reflected in this value.
@@ -2621,7 +2621,7 @@ type GlobalSecondaryIndexDescription struct {
 
 	// The complete key schema for the global secondary index, consisting of one
 	// or more pairs of attribute names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2641,7 +2641,7 @@ type metadataGlobalSecondaryIndexDescription struct {
 
 // String returns the string representation
 func (s GlobalSecondaryIndexDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2687,7 +2687,7 @@ type metadataGlobalSecondaryIndexUpdate struct {
 
 // String returns the string representation
 func (s GlobalSecondaryIndexUpdate) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2724,7 +2724,7 @@ type metadataItemCollectionMetrics struct {
 
 // String returns the string representation
 func (s ItemCollectionMetrics) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2741,10 +2741,10 @@ func (s ItemCollectionMetrics) GoString() string {
 // the hash attribute, and another KeySchemaElement for the range attribute.
 type KeySchemaElement struct {
 	// The name of a key attribute.
-	AttributeName *string `type:"string" required:"true"`
+	AttributeName *string `min:"1" type:"string" required:"true"`
 
 	// The attribute data, consisting of the data type and the attribute value itself.
-	KeyType *string `type:"string" required:"true"`
+	KeyType *string `type:"string" required:"true" enum:"KeyType"`
 
 	metadataKeySchemaElement `json:"-" xml:"-"`
 }
@@ -2755,7 +2755,7 @@ type metadataKeySchemaElement struct {
 
 // String returns the string representation
 func (s KeySchemaElement) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2774,7 +2774,7 @@ type KeysAndAttributes struct {
 	// One or more attributes to retrieve from the table or index. If no attribute
 	// names are specified then all attributes will be returned. If any of the specified
 	// attributes are not found, they will not appear in the result.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// The consistency of a read operation. If set to true, then a strongly consistent
 	// read is used; otherwise, an eventually consistent read is used.
@@ -2818,7 +2818,7 @@ type KeysAndAttributes struct {
 
 	// The primary key attribute values that define the items and the attributes
 	// associated with the items.
-	Keys []map[string]*AttributeValue `type:"list" required:"true"`
+	Keys []map[string]*AttributeValue `min:"1" type:"list" required:"true"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
 	// These attributes can include scalars, sets, or elements of a JSON document.
@@ -2843,7 +2843,7 @@ type metadataKeysAndAttributes struct {
 
 // String returns the string representation
 func (s KeysAndAttributes) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2856,11 +2856,11 @@ type ListTablesInput struct {
 	// The first table name that this operation will evaluate. Use the value that
 	// was returned for LastEvaluatedTableName in a previous operation, so that
 	// you can obtain the next page of results.
-	ExclusiveStartTableName *string `type:"string"`
+	ExclusiveStartTableName *string `min:"3" type:"string"`
 
 	// A maximum number of table names to return. If this parameter is not specified,
 	// the limit is 100.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	metadataListTablesInput `json:"-" xml:"-"`
 }
@@ -2871,7 +2871,7 @@ type metadataListTablesInput struct {
 
 // String returns the string representation
 func (s ListTablesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2887,7 +2887,7 @@ type ListTablesOutput struct {
 	//
 	// If you do not receive a LastEvaluatedTableName value in the response, this
 	// means that there are no more table names to be retrieved.
-	LastEvaluatedTableName *string `type:"string"`
+	LastEvaluatedTableName *string `min:"3" type:"string"`
 
 	// The names of the tables associated with the current account at the current
 	// endpoint. The maximum size of this array is 100.
@@ -2906,7 +2906,7 @@ type metadataListTablesOutput struct {
 
 // String returns the string representation
 func (s ListTablesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2918,11 +2918,11 @@ func (s ListTablesOutput) GoString() string {
 type LocalSecondaryIndex struct {
 	// The name of the local secondary index. The name must be unique among all
 	// other indexes on this table.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// The complete key schema for the local secondary index, consisting of one
 	// or more pairs of attribute names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list" required:"true"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list" required:"true"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2938,7 +2938,7 @@ type metadataLocalSecondaryIndex struct {
 
 // String returns the string representation
 func (s LocalSecondaryIndex) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2949,10 +2949,10 @@ func (s LocalSecondaryIndex) GoString() string {
 // Represents the properties of a local secondary index.
 type LocalSecondaryIndexDescription struct {
 	// The Amazon Resource Name (ARN) that uniquely identifies the index.
-	IndexARN *string `locationName:"IndexArn" type:"string"`
+	IndexArn *string `type:"string"`
 
 	// Represents the name of the local secondary index.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The total size of the specified index, in bytes. DynamoDB updates this value
 	// approximately every six hours. Recent changes might not be reflected in this
@@ -2965,7 +2965,7 @@ type LocalSecondaryIndexDescription struct {
 
 	// The complete index key schema, which consists of one or more pairs of attribute
 	// names and key types (HASH or RANGE).
-	KeySchema []*KeySchemaElement `type:"list"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
 	// Represents attributes that are copied (projected) from the table into an
 	// index. These are in addition to the primary key attributes and index key
@@ -2981,7 +2981,7 @@ type metadataLocalSecondaryIndexDescription struct {
 
 // String returns the string representation
 func (s LocalSecondaryIndexDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2999,7 +2999,7 @@ type Projection struct {
 	// across all of the local secondary indexes, must not exceed 20. If you project
 	// the same attribute into two different indexes, this counts as two distinct
 	// attributes when determining the total.
-	NonKeyAttributes []*string `type:"list"`
+	NonKeyAttributes []*string `min:"1" type:"list"`
 
 	// The set of attributes that are projected into the index:
 	//
@@ -3009,7 +3009,7 @@ type Projection struct {
 	// The list of projected attributes are in NonKeyAttributes.
 	//
 	//   ALL - All of the table attributes are projected into the index.
-	ProjectionType *string `type:"string"`
+	ProjectionType *string `type:"string" enum:"ProjectionType"`
 
 	metadataProjection `json:"-" xml:"-"`
 }
@@ -3020,7 +3020,7 @@ type metadataProjection struct {
 
 // String returns the string representation
 func (s Projection) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3039,13 +3039,13 @@ type ProvisionedThroughput struct {
 	// DynamoDB returns a ThrottlingException. For more information, see Specifying
 	// Read and Write Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
-	ReadCapacityUnits *int64 `type:"long" required:"true"`
+	ReadCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 
 	// The maximum number of writes consumed per second before DynamoDB returns
 	// a ThrottlingException. For more information, see Specifying Read and Write
 	// Requirements (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
-	WriteCapacityUnits *int64 `type:"long" required:"true"`
+	WriteCapacityUnits *int64 `min:"1" type:"long" required:"true"`
 
 	metadataProvisionedThroughput `json:"-" xml:"-"`
 }
@@ -3056,7 +3056,7 @@ type metadataProvisionedThroughput struct {
 
 // String returns the string representation
 func (s ProvisionedThroughput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3077,17 +3077,17 @@ type ProvisionedThroughputDescription struct {
 	// UTC calendar day. For current maximums on provisioned throughput decreases,
 	// see Limits (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html)
 	// in the Amazon DynamoDB Developer Guide.
-	NumberOfDecreasesToday *int64 `type:"long"`
+	NumberOfDecreasesToday *int64 `min:"1" type:"long"`
 
 	// The maximum number of strongly consistent reads consumed per second before
 	// DynamoDB returns a ThrottlingException. Eventually consistent reads require
 	// less effort than strongly consistent reads, so a setting of 50 ReadCapacityUnits
 	// per second provides 100 eventually consistent ReadCapacityUnits per second.
-	ReadCapacityUnits *int64 `type:"long"`
+	ReadCapacityUnits *int64 `min:"1" type:"long"`
 
 	// The maximum number of writes consumed per second before DynamoDB returns
 	// a ThrottlingException.
-	WriteCapacityUnits *int64 `type:"long"`
+	WriteCapacityUnits *int64 `min:"1" type:"long"`
 
 	metadataProvisionedThroughputDescription `json:"-" xml:"-"`
 }
@@ -3098,7 +3098,7 @@ type metadataProvisionedThroughputDescription struct {
 
 // String returns the string representation
 func (s ProvisionedThroughputDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3148,7 +3148,7 @@ type PutItemInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use ConditionExpression instead. Do not combine legacy parameters
@@ -3437,13 +3437,13 @@ type PutItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
 	// before they were updated with the PutItem request. For PutItem, the valid
@@ -3456,10 +3456,10 @@ type PutItemInput struct {
 	// content of the old item is returned.
 	//
 	//   Other "Valid Values" are not relevant to PutItem.
-	ReturnValues *string `type:"string"`
+	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table to contain the item.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataPutItemInput `json:"-" xml:"-"`
 }
@@ -3470,7 +3470,7 @@ type metadataPutItemInput struct {
 
 // String returns the string representation
 func (s PutItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3523,7 +3523,7 @@ type metadataPutItemOutput struct {
 
 // String returns the string representation
 func (s PutItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3549,7 +3549,7 @@ type metadataPutRequest struct {
 
 // String returns the string representation
 func (s PutRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3589,7 +3589,7 @@ type QueryInput struct {
 	// If you query a global secondary index, you can only request attributes that
 	// are projected into the index. Global secondary index queries cannot fetch
 	// attributes from the parent table.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use FilterExpression instead. Do not combine legacy parameters and
@@ -3609,7 +3609,7 @@ type QueryInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// Determines the read consistency model: If set to true, then the operation
 	// uses strongly consistent reads; otherwise, the operation uses eventually
@@ -3702,7 +3702,7 @@ type QueryInput struct {
 	// The name of an index to query. This index can be any local secondary index
 	// or global secondary index on the table. Note that if you use the IndexName
 	// parameter, you must also provide TableName.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The condition that specifies the key value(s) for items to be retrieved by
 	// the Query action.
@@ -3884,7 +3884,7 @@ type QueryInput struct {
 	// and returns the matching values up to the limit, and a key in LastEvaluatedKey
 	// to apply in a subsequent operation to continue the operation. For more information,
 	// see Query and Scan in the Amazon DynamoDB Developer Guide.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A string that identifies one or more attributes to retrieve from the table.
 	// These attributes can include scalars, sets, or elements of a JSON document.
@@ -3970,7 +3970,7 @@ type QueryInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Specifies the order in which to return the query results - either ascending
 	// (true) or descending (false).
@@ -4031,10 +4031,10 @@ type QueryInput struct {
 	// If you use the ProjectionExpression parameter, then the value for Select
 	// can only be SPECIFIC_ATTRIBUTES. Any other value for Select will return an
 	// error.
-	Select *string `type:"string"`
+	Select *string `type:"string" enum:"Select"`
 
 	// The name of the table containing the requested items.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataQueryInput `json:"-" xml:"-"`
 }
@@ -4045,7 +4045,7 @@ type metadataQueryInput struct {
 
 // String returns the string representation
 func (s QueryInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4107,7 +4107,7 @@ type metadataQueryOutput struct {
 
 // String returns the string representation
 func (s QueryOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4132,7 +4132,7 @@ type ScanInput struct {
 	// Note that AttributesToGet has no effect on provisioned throughput consumption.
 	// DynamoDB determines capacity units consumed based on item size, not on the
 	// amount of data that is returned to an application.
-	AttributesToGet []*string `type:"list"`
+	AttributesToGet []*string `min:"1" type:"list"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use FilterExpression instead. Do not combine legacy parameters and
@@ -4152,7 +4152,7 @@ type ScanInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// A Boolean value that determines the read consistency model during the scan:
 	//
@@ -4259,7 +4259,7 @@ type ScanInput struct {
 	// The name of a secondary index to scan. This index can be any local secondary
 	// index or global secondary index. Note that if you use the IndexName parameter,
 	// you must also provide TableName.
-	IndexName *string `type:"string"`
+	IndexName *string `min:"3" type:"string"`
 
 	// The maximum number of items to evaluate (not necessarily the number of matching
 	// items). If DynamoDB processes the number of items up to the limit while processing
@@ -4270,7 +4270,7 @@ type ScanInput struct {
 	// and returns the matching values up to the limit, and a key in LastEvaluatedKey
 	// to apply in a subsequent operation to continue the operation. For more information,
 	// see Query and Scan in the Amazon DynamoDB Developer Guide.
-	Limit *int64 `type:"integer"`
+	Limit *int64 `min:"1" type:"integer"`
 
 	// A string that identifies one or more attributes to retrieve from the specified
 	// table or index. These attributes can include scalars, sets, or elements of
@@ -4301,7 +4301,7 @@ type ScanInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use FilterExpression instead. Do not combine legacy parameters and
@@ -4385,11 +4385,11 @@ type ScanInput struct {
 	// in a single request, unless the value for Select is SPECIFIC_ATTRIBUTES.
 	// (This usage is equivalent to specifying AttributesToGet without any value
 	// for Select.)
-	Select *string `type:"string"`
+	Select *string `type:"string" enum:"Select"`
 
 	// The name of the table containing the requested items; or, if you provide
 	// IndexName, the name of the table to which that index belongs.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	// For a parallel Scan request, TotalSegments represents the total number of
 	// segments into which the Scan operation will be divided. The value of TotalSegments
@@ -4402,7 +4402,7 @@ type ScanInput struct {
 	// Scan operation will be sequential rather than parallel.
 	//
 	// If you specify TotalSegments, you must also specify Segment.
-	TotalSegments *int64 `type:"integer"`
+	TotalSegments *int64 `min:"1" type:"integer"`
 
 	metadataScanInput `json:"-" xml:"-"`
 }
@@ -4413,7 +4413,7 @@ type metadataScanInput struct {
 
 // String returns the string representation
 func (s ScanInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4474,7 +4474,7 @@ type metadataScanOutput struct {
 
 // String returns the string representation
 func (s ScanOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4508,7 +4508,7 @@ type StreamSpecification struct {
 	//
 	// NEW_AND_OLD_IMAGES - Both the new and the old item images of the item are
 	// written to the stream.
-	StreamViewType *string `type:"string"`
+	StreamViewType *string `type:"string" enum:"StreamViewType"`
 
 	metadataStreamSpecification `json:"-" xml:"-"`
 }
@@ -4519,7 +4519,7 @@ type metadataStreamSpecification struct {
 
 // String returns the string representation
 func (s StreamSpecification) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4616,11 +4616,11 @@ type TableDescription struct {
 	//
 	//   For more information about primary keys, see Primary Key (http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DataModel.html#DataModelPrimaryKey)
 	// in the Amazon DynamoDB Developer Guide.
-	KeySchema []*KeySchemaElement `type:"list"`
+	KeySchema []*KeySchemaElement `min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the latest stream
 	// for this table.
-	LatestStreamARN *string `locationName:"LatestStreamArn" type:"string"`
+	LatestStreamArn *string `min:"37" type:"string"`
 
 	// A timestamp, in ISO 8601 format, for this stream.
 	//
@@ -4688,10 +4688,10 @@ type TableDescription struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the table.
-	TableARN *string `locationName:"TableArn" type:"string"`
+	TableArn *string `type:"string"`
 
 	// The name of the table.
-	TableName *string `type:"string"`
+	TableName *string `min:"3" type:"string"`
 
 	// The total size of the specified table, in bytes. DynamoDB updates this value
 	// approximately every six hours. Recent changes might not be reflected in this
@@ -4707,7 +4707,7 @@ type TableDescription struct {
 	//   DELETING - The table is being deleted.
 	//
 	//   ACTIVE - The table is ready for use.
-	TableStatus *string `type:"string"`
+	TableStatus *string `type:"string" enum:"TableStatus"`
 
 	metadataTableDescription `json:"-" xml:"-"`
 }
@@ -4718,7 +4718,7 @@ type metadataTableDescription struct {
 
 // String returns the string representation
 func (s TableDescription) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4730,7 +4730,7 @@ func (s TableDescription) GoString() string {
 // secondary index.
 type UpdateGlobalSecondaryIndexAction struct {
 	// The name of the global secondary index to be updated.
-	IndexName *string `type:"string" required:"true"`
+	IndexName *string `min:"3" type:"string" required:"true"`
 
 	// Represents the provisioned throughput settings for a specified table or index.
 	// The settings can be modified using the UpdateTable operation.
@@ -4749,7 +4749,7 @@ type metadataUpdateGlobalSecondaryIndexAction struct {
 
 // String returns the string representation
 func (s UpdateGlobalSecondaryIndexAction) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4888,7 +4888,7 @@ type UpdateItemInput struct {
 	// The operation will succeed only if the entire map evaluates to true.
 	//
 	// This parameter does not support attributes of type List or Map.
-	ConditionalOperator *string `type:"string"`
+	ConditionalOperator *string `type:"string" enum:"ConditionalOperator"`
 
 	// This is a legacy parameter, for backward compatibility. New applications
 	// should use  ConditionExpression  instead. Do not combine legacy parameters
@@ -5167,13 +5167,13 @@ type UpdateItemInput struct {
 	// operation.
 	//
 	// NONE - No ConsumedCapacity details are included in the response.
-	ReturnConsumedCapacity *string `type:"string"`
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// Determines whether item collection metrics are returned. If set to SIZE,
 	// the response includes statistics about item collections, if any, that were
 	// modified during the operation are returned in the response. If set to NONE
 	// (the default), no statistics are returned.
-	ReturnItemCollectionMetrics *string `type:"string"`
+	ReturnItemCollectionMetrics *string `type:"string" enum:"ReturnItemCollectionMetrics"`
 
 	// Use ReturnValues if you want to get the item attributes as they appeared
 	// either before or after they were updated. For UpdateItem, the valid values
@@ -5190,10 +5190,10 @@ type UpdateItemInput struct {
 	//   ALL_NEW - All of the attributes of the new version of the item are returned.
 	//
 	//   UPDATED_NEW - The new versions of only the updated attributes are returned.
-	ReturnValues *string `type:"string"`
+	ReturnValues *string `type:"string" enum:"ReturnValue"`
 
 	// The name of the table containing the item to update.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	// An expression that defines one or more attributes to be updated, the action
 	// to be performed on them, and new value(s) for them.
@@ -5280,7 +5280,7 @@ type metadataUpdateItemInput struct {
 
 // String returns the string representation
 func (s UpdateItemInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5318,7 +5318,7 @@ type metadataUpdateItemOutput struct {
 
 // String returns the string representation
 func (s UpdateItemOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5363,7 +5363,7 @@ type UpdateTableInput struct {
 	StreamSpecification *StreamSpecification `type:"structure"`
 
 	// The name of the table to be updated.
-	TableName *string `type:"string" required:"true"`
+	TableName *string `min:"3" type:"string" required:"true"`
 
 	metadataUpdateTableInput `json:"-" xml:"-"`
 }
@@ -5374,7 +5374,7 @@ type metadataUpdateTableInput struct {
 
 // String returns the string representation
 func (s UpdateTableInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5396,7 +5396,7 @@ type metadataUpdateTableOutput struct {
 
 // String returns the string representation
 func (s UpdateTableOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5424,10 +5424,168 @@ type metadataWriteRequest struct {
 
 // String returns the string representation
 func (s WriteRequest) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s WriteRequest) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AttributeAction
+	AttributeActionAdd = "ADD"
+	// @enum AttributeAction
+	AttributeActionPut = "PUT"
+	// @enum AttributeAction
+	AttributeActionDelete = "DELETE"
+)
+
+const (
+	// @enum ComparisonOperator
+	ComparisonOperatorEq = "EQ"
+	// @enum ComparisonOperator
+	ComparisonOperatorNe = "NE"
+	// @enum ComparisonOperator
+	ComparisonOperatorIn = "IN"
+	// @enum ComparisonOperator
+	ComparisonOperatorLe = "LE"
+	// @enum ComparisonOperator
+	ComparisonOperatorLt = "LT"
+	// @enum ComparisonOperator
+	ComparisonOperatorGe = "GE"
+	// @enum ComparisonOperator
+	ComparisonOperatorGt = "GT"
+	// @enum ComparisonOperator
+	ComparisonOperatorBetween = "BETWEEN"
+	// @enum ComparisonOperator
+	ComparisonOperatorNotNull = "NOT_NULL"
+	// @enum ComparisonOperator
+	ComparisonOperatorNull = "NULL"
+	// @enum ComparisonOperator
+	ComparisonOperatorContains = "CONTAINS"
+	// @enum ComparisonOperator
+	ComparisonOperatorNotContains = "NOT_CONTAINS"
+	// @enum ComparisonOperator
+	ComparisonOperatorBeginsWith = "BEGINS_WITH"
+)
+
+const (
+	// @enum ConditionalOperator
+	ConditionalOperatorAnd = "AND"
+	// @enum ConditionalOperator
+	ConditionalOperatorOr = "OR"
+)
+
+const (
+	// @enum IndexStatus
+	IndexStatusCreating = "CREATING"
+	// @enum IndexStatus
+	IndexStatusUpdating = "UPDATING"
+	// @enum IndexStatus
+	IndexStatusDeleting = "DELETING"
+	// @enum IndexStatus
+	IndexStatusActive = "ACTIVE"
+)
+
+const (
+	// @enum KeyType
+	KeyTypeHash = "HASH"
+	// @enum KeyType
+	KeyTypeRange = "RANGE"
+)
+
+const (
+	// @enum ProjectionType
+	ProjectionTypeAll = "ALL"
+	// @enum ProjectionType
+	ProjectionTypeKeysOnly = "KEYS_ONLY"
+	// @enum ProjectionType
+	ProjectionTypeInclude = "INCLUDE"
+)
+
+// Determines the level of detail about provisioned throughput consumption that
+// is returned in the response:
+//
+//   INDEXES - The response includes the aggregate ConsumedCapacity for the
+// operation, together with ConsumedCapacity for each table and secondary index
+// that was accessed.
+//
+// Note that some operations, such as GetItem and BatchGetItem, do not access
+// any indexes at all. In these cases, specifying INDEXES will only return ConsumedCapacity
+// information for table(s).
+//
+//  TOTAL - The response includes only the aggregate ConsumedCapacity for the
+// operation.
+//
+// NONE - No ConsumedCapacity details are included in the response.
+const (
+	// @enum ReturnConsumedCapacity
+	ReturnConsumedCapacityIndexes = "INDEXES"
+	// @enum ReturnConsumedCapacity
+	ReturnConsumedCapacityTotal = "TOTAL"
+	// @enum ReturnConsumedCapacity
+	ReturnConsumedCapacityNone = "NONE"
+)
+
+const (
+	// @enum ReturnItemCollectionMetrics
+	ReturnItemCollectionMetricsSize = "SIZE"
+	// @enum ReturnItemCollectionMetrics
+	ReturnItemCollectionMetricsNone = "NONE"
+)
+
+const (
+	// @enum ReturnValue
+	ReturnValueNone = "NONE"
+	// @enum ReturnValue
+	ReturnValueAllOld = "ALL_OLD"
+	// @enum ReturnValue
+	ReturnValueUpdatedOld = "UPDATED_OLD"
+	// @enum ReturnValue
+	ReturnValueAllNew = "ALL_NEW"
+	// @enum ReturnValue
+	ReturnValueUpdatedNew = "UPDATED_NEW"
+)
+
+const (
+	// @enum ScalarAttributeType
+	ScalarAttributeTypeS = "S"
+	// @enum ScalarAttributeType
+	ScalarAttributeTypeN = "N"
+	// @enum ScalarAttributeType
+	ScalarAttributeTypeB = "B"
+)
+
+const (
+	// @enum Select
+	SelectAllAttributes = "ALL_ATTRIBUTES"
+	// @enum Select
+	SelectAllProjectedAttributes = "ALL_PROJECTED_ATTRIBUTES"
+	// @enum Select
+	SelectSpecificAttributes = "SPECIFIC_ATTRIBUTES"
+	// @enum Select
+	SelectCount = "COUNT"
+)
+
+const (
+	// @enum StreamViewType
+	StreamViewTypeNewImage = "NEW_IMAGE"
+	// @enum StreamViewType
+	StreamViewTypeOldImage = "OLD_IMAGE"
+	// @enum StreamViewType
+	StreamViewTypeNewAndOldImages = "NEW_AND_OLD_IMAGES"
+	// @enum StreamViewType
+	StreamViewTypeKeysOnly = "KEYS_ONLY"
+)
+
+const (
+	// @enum TableStatus
+	TableStatusCreating = "CREATING"
+	// @enum TableStatus
+	TableStatusUpdating = "UPDATING"
+	// @enum TableStatus
+	TableStatusDeleting = "DELETING"
+	// @enum TableStatus
+	TableStatusActive = "ACTIVE"
+)

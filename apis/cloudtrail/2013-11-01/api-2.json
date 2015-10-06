@@ -11,6 +11,89 @@
     "protocol":"json"
   },
   "operations":{
+    "AddTags":{
+      "name":"AddTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddTagsRequest"},
+      "output":{"shape":"AddTagsResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{
+            "code":"ResourceNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"CloudTrailARNInvalidException",
+          "error":{
+            "code":"CloudTrailARNInvalid",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"ResourceTypeNotSupportedException",
+          "error":{
+            "code":"ResourceTypeNotSupported",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"TagsLimitExceededException",
+          "error":{
+            "code":"TagsLimitExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTrailNameException",
+          "error":{
+            "code":"InvalidTrailName",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTagParameterException",
+          "error":{
+            "code":"InvalidTagParameter",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "CreateTrail":{
       "name":"CreateTrail",
       "http":{
@@ -66,6 +149,15 @@
           "exception":true
         },
         {
+          "shape":"InsufficientEncryptionPolicyException",
+          "error":{
+            "code":"InsufficientEncryptionPolicy",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"InvalidS3BucketNameException",
           "error":{
             "code":"InvalidS3BucketName",
@@ -93,9 +185,45 @@
           "exception":true
         },
         {
+          "shape":"InvalidKmsKeyIdException",
+          "error":{
+            "code":"InvalidKmsKeyId",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"InvalidTrailNameException",
           "error":{
             "code":"InvalidTrailName",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"TrailNotProvidedException",
+          "error":{
+            "code":"TrailNotProvided",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KmsKeyNotFoundException",
+          "error":{
+            "code":"KmsKeyNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KmsKeyDisabledException",
+          "error":{
+            "code":"KmsKeyDisabled",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -123,6 +251,24 @@
           "shape":"CloudWatchLogsDeliveryUnavailableException",
           "error":{
             "code":"CloudWatchLogsDeliveryUnavailable",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -166,7 +312,27 @@
         "requestUri":"/"
       },
       "input":{"shape":"DescribeTrailsRequest"},
-      "output":{"shape":"DescribeTrailsResponse"}
+      "output":{"shape":"DescribeTrailsResponse"},
+      "errors":[
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
     },
     "GetTrailStatus":{
       "name":"GetTrailStatus",
@@ -190,6 +356,127 @@
           "shape":"InvalidTrailNameException",
           "error":{
             "code":"InvalidTrailName",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "ListPublicKeys":{
+      "name":"ListPublicKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPublicKeysRequest"},
+      "output":{"shape":"ListPublicKeysResponse"},
+      "errors":[
+        {
+          "shape":"InvalidTimeRangeException",
+          "error":{
+            "code":"InvalidTimeRange",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTokenException",
+          "error":{
+            "code":"InvalidToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "ListTags":{
+      "name":"ListTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsRequest"},
+      "output":{"shape":"ListTagsResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{
+            "code":"ResourceNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"CloudTrailARNInvalidException",
+          "error":{
+            "code":"CloudTrailARNInvalid",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"ResourceTypeNotSupportedException",
+          "error":{
+            "code":"ResourceTypeNotSupported",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTrailNameException",
+          "error":{
+            "code":"InvalidTrailName",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTokenException",
+          "error":{
+            "code":"InvalidToken",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -237,6 +524,80 @@
           "shape":"InvalidNextTokenException",
           "error":{
             "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "RemoveTags":{
+      "name":"RemoveTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveTagsRequest"},
+      "output":{"shape":"RemoveTagsResponse"},
+      "errors":[
+        {
+          "shape":"ResourceNotFoundException",
+          "error":{
+            "code":"ResourceNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"CloudTrailARNInvalidException",
+          "error":{
+            "code":"CloudTrailARNInvalid",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"ResourceTypeNotSupportedException",
+          "error":{
+            "code":"ResourceTypeNotSupported",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTrailNameException",
+          "error":{
+            "code":"InvalidTrailName",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidTagParameterException",
+          "error":{
+            "code":"InvalidTagParameter",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -339,6 +700,15 @@
           "exception":true
         },
         {
+          "shape":"InsufficientEncryptionPolicyException",
+          "error":{
+            "code":"InsufficientEncryptionPolicy",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"TrailNotFoundException",
           "error":{
             "code":"TrailNotFound",
@@ -375,9 +745,45 @@
           "exception":true
         },
         {
+          "shape":"InvalidKmsKeyIdException",
+          "error":{
+            "code":"InvalidKmsKeyId",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"InvalidTrailNameException",
           "error":{
             "code":"InvalidTrailName",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"TrailNotProvidedException",
+          "error":{
+            "code":"TrailNotProvided",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KmsKeyNotFoundException",
+          "error":{
+            "code":"KmsKeyNotFound",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KmsKeyDisabledException",
+          "error":{
+            "code":"KmsKeyDisabled",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -409,12 +815,55 @@
             "senderFault":true
           },
           "exception":true
+        },
+        {
+          "shape":"UnsupportedOperationException",
+          "error":{
+            "code":"UnsupportedOperation",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"OperationNotPermittedException",
+          "error":{
+            "code":"OperationNotPermitted",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     }
   },
   "shapes":{
+    "AddTagsRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"String"},
+        "TagsList":{"shape":"TagsList"}
+      }
+    },
+    "AddTagsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Boolean":{"type":"boolean"},
+    "ByteBuffer":{"type":"blob"},
+    "CloudTrailARNInvalidException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"CloudTrailARNInvalid",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "CloudWatchLogsDeliveryUnavailableException":{
       "type":"structure",
       "members":{
@@ -438,8 +887,10 @@
         "S3KeyPrefix":{"shape":"String"},
         "SnsTopicName":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
+        "EnableLogFileValidation":{"shape":"Boolean"},
         "CloudWatchLogsLogGroupArn":{"shape":"String"},
-        "CloudWatchLogsRoleArn":{"shape":"String"}
+        "CloudWatchLogsRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "CreateTrailResponse":{
@@ -450,8 +901,11 @@
         "S3KeyPrefix":{"shape":"String"},
         "SnsTopicName":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
+        "TrailARN":{"shape":"String"},
+        "LogFileValidationEnabled":{"shape":"Boolean"},
         "CloudWatchLogsLogGroupArn":{"shape":"String"},
-        "CloudWatchLogsRoleArn":{"shape":"String"}
+        "CloudWatchLogsRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -512,8 +966,27 @@
         "StartLoggingTime":{"shape":"Date"},
         "StopLoggingTime":{"shape":"Date"},
         "LatestCloudWatchLogsDeliveryError":{"shape":"String"},
-        "LatestCloudWatchLogsDeliveryTime":{"shape":"Date"}
+        "LatestCloudWatchLogsDeliveryTime":{"shape":"Date"},
+        "LatestDigestDeliveryTime":{"shape":"Date"},
+        "LatestDigestDeliveryError":{"shape":"String"},
+        "LatestDeliveryAttemptTime":{"shape":"String"},
+        "LatestNotificationAttemptTime":{"shape":"String"},
+        "LatestNotificationAttemptSucceeded":{"shape":"String"},
+        "LatestDeliveryAttemptSucceeded":{"shape":"String"},
+        "TimeLoggingStarted":{"shape":"String"},
+        "TimeLoggingStopped":{"shape":"String"}
       }
+    },
+    "InsufficientEncryptionPolicyException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InsufficientEncryptionPolicy",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "InsufficientS3BucketPolicyException":{
       "type":"structure",
@@ -554,6 +1027,17 @@
       },
       "error":{
         "code":"InvalidCloudWatchLogsRoleArn",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidKmsKeyIdException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidKmsKeyId",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -625,12 +1109,34 @@
       },
       "exception":true
     },
+    "InvalidTagParameterException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidTagParameter",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidTimeRangeException":{
       "type":"structure",
       "members":{
       },
       "error":{
         "code":"InvalidTimeRange",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidTokenException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidToken",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -646,6 +1152,58 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "KmsKeyDisabledException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"KmsKeyDisabled",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KmsKeyNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"KmsKeyNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ListPublicKeysRequest":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"Date"},
+        "EndTime":{"shape":"Date"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListPublicKeysResponse":{
+      "type":"structure",
+      "members":{
+        "PublicKeyList":{"shape":"PublicKeyList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListTagsRequest":{
+      "type":"structure",
+      "required":["ResourceIdList"],
+      "members":{
+        "ResourceIdList":{"shape":"ResourceIdList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListTagsResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceTagList":{"shape":"ResourceTagList"},
+        "NextToken":{"shape":"String"}
+      }
     },
     "LookupAttribute":{
       "type":"structure",
@@ -706,6 +1264,43 @@
       "exception":true
     },
     "NextToken":{"type":"string"},
+    "OperationNotPermittedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"OperationNotPermitted",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "PublicKey":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"ByteBuffer"},
+        "ValidityStartTime":{"shape":"Date"},
+        "ValidityEndTime":{"shape":"Date"},
+        "Fingerprint":{"shape":"String"}
+      }
+    },
+    "PublicKeyList":{
+      "type":"list",
+      "member":{"shape":"PublicKey"}
+    },
+    "RemoveTagsRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"String"},
+        "TagsList":{"shape":"TagsList"}
+      }
+    },
+    "RemoveTagsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Resource":{
       "type":"structure",
       "members":{
@@ -713,9 +1308,46 @@
         "ResourceName":{"shape":"String"}
       }
     },
+    "ResourceIdList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "ResourceList":{
       "type":"list",
       "member":{"shape":"Resource"}
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ResourceTag":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"String"},
+        "TagsList":{"shape":"TagsList"}
+      }
+    },
+    "ResourceTagList":{
+      "type":"list",
+      "member":{"shape":"ResourceTag"}
+    },
+    "ResourceTypeNotSupportedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ResourceTypeNotSupported",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "S3BucketDoesNotExistException":{
       "type":"structure",
@@ -753,6 +1385,29 @@
       }
     },
     "String":{"type":"string"},
+    "Tag":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "TagsLimitExceededException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TagsLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TagsList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
     "Trail":{
       "type":"structure",
       "members":{
@@ -761,8 +1416,11 @@
         "S3KeyPrefix":{"shape":"String"},
         "SnsTopicName":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
+        "TrailARN":{"shape":"String"},
+        "LogFileValidationEnabled":{"shape":"Boolean"},
         "CloudWatchLogsLogGroupArn":{"shape":"String"},
-        "CloudWatchLogsRoleArn":{"shape":"String"}
+        "CloudWatchLogsRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "TrailAlreadyExistsException":{
@@ -795,6 +1453,28 @@
       },
       "exception":true
     },
+    "TrailNotProvidedException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TrailNotProvided",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "UnsupportedOperationException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"UnsupportedOperation",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "UpdateTrailRequest":{
       "type":"structure",
       "required":["Name"],
@@ -804,8 +1484,10 @@
         "S3KeyPrefix":{"shape":"String"},
         "SnsTopicName":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
+        "EnableLogFileValidation":{"shape":"Boolean"},
         "CloudWatchLogsLogGroupArn":{"shape":"String"},
-        "CloudWatchLogsRoleArn":{"shape":"String"}
+        "CloudWatchLogsRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "UpdateTrailResponse":{
@@ -816,8 +1498,11 @@
         "S3KeyPrefix":{"shape":"String"},
         "SnsTopicName":{"shape":"String"},
         "IncludeGlobalServiceEvents":{"shape":"Boolean"},
+        "TrailARN":{"shape":"String"},
+        "LogFileValidationEnabled":{"shape":"Boolean"},
         "CloudWatchLogsLogGroupArn":{"shape":"String"},
-        "CloudWatchLogsRoleArn":{"shape":"String"}
+        "CloudWatchLogsRoleArn":{"shape":"String"},
+        "KmsKeyId":{"shape":"String"}
       }
     }
   }

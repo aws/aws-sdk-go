@@ -4,27 +4,41 @@ package cloudsearch
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// CloudSearch is a client for Amazon CloudSearch.
+// You use the Amazon CloudSearch configuration service to create, configure,
+// and manage search domains. Configuration service requests are submitted using
+// the AWS Query protocol. AWS Query requests are HTTP or HTTPS requests submitted
+// via HTTP GET or POST with a query parameter named Action.
+//
+// The endpoint for configuration service requests is region-specific: cloudsearch.region.amazonaws.com.
+// For example, cloudsearch.us-east-1.amazonaws.com. For a current list of supported
+// regions and endpoints, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#cloudsearch_region"
+// target="_blank).
 type CloudSearch struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new CloudSearch client.
 func New(config *aws.Config) *CloudSearch {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
-		ServiceName: "cloudsearch",
-		APIVersion:  "2013-01-01",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "cloudsearch",
+			APIVersion:  "2013-01-01",
+		},
 	}
 	service.Initialize()
 
@@ -45,8 +59,8 @@ func New(config *aws.Config) *CloudSearch {
 
 // newRequest creates a new request for a CloudSearch operation and runs any
 // custom request initialization.
-func (c *CloudSearch) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *CloudSearch) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

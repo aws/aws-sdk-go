@@ -6,15 +6,15 @@ package elasticache
 import (
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opAddTagsToResource = "AddTagsToResource"
 
 // AddTagsToResourceRequest generates a request for the AddTagsToResource operation.
-func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *aws.Request, output *TagListMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *request.Request, output *TagListMessage) {
+	op := &request.Operation{
 		Name:       opAddTagsToResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -50,8 +50,8 @@ func (c *ElastiCache) AddTagsToResource(input *AddTagsToResourceInput) (*TagList
 const opAuthorizeCacheSecurityGroupIngress = "AuthorizeCacheSecurityGroupIngress"
 
 // AuthorizeCacheSecurityGroupIngressRequest generates a request for the AuthorizeCacheSecurityGroupIngress operation.
-func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *aws.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) AuthorizeCacheSecurityGroupIngressRequest(input *AuthorizeCacheSecurityGroupIngressInput) (req *request.Request, output *AuthorizeCacheSecurityGroupIngressOutput) {
+	op := &request.Operation{
 		Name:       opAuthorizeCacheSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -82,8 +82,8 @@ func (c *ElastiCache) AuthorizeCacheSecurityGroupIngress(input *AuthorizeCacheSe
 const opCopySnapshot = "CopySnapshot"
 
 // CopySnapshotRequest generates a request for the CopySnapshot operation.
-func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *aws.Request, output *CopySnapshotOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *request.Request, output *CopySnapshotOutput) {
+	op := &request.Operation{
 		Name:       opCopySnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -109,8 +109,8 @@ func (c *ElastiCache) CopySnapshot(input *CopySnapshotInput) (*CopySnapshotOutpu
 const opCreateCacheCluster = "CreateCacheCluster"
 
 // CreateCacheClusterRequest generates a request for the CreateCacheCluster operation.
-func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *aws.Request, output *CreateCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheClusterRequest(input *CreateCacheClusterInput) (req *request.Request, output *CreateCacheClusterOutput) {
+	op := &request.Operation{
 		Name:       opCreateCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -138,8 +138,8 @@ func (c *ElastiCache) CreateCacheCluster(input *CreateCacheClusterInput) (*Creat
 const opCreateCacheParameterGroup = "CreateCacheParameterGroup"
 
 // CreateCacheParameterGroupRequest generates a request for the CreateCacheParameterGroup operation.
-func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *aws.Request, output *CreateCacheParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParameterGroupInput) (req *request.Request, output *CreateCacheParameterGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -167,8 +167,8 @@ func (c *ElastiCache) CreateCacheParameterGroup(input *CreateCacheParameterGroup
 const opCreateCacheSecurityGroup = "CreateCacheSecurityGroup"
 
 // CreateCacheSecurityGroupRequest generates a request for the CreateCacheSecurityGroup operation.
-func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *aws.Request, output *CreateCacheSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurityGroupInput) (req *request.Request, output *CreateCacheSecurityGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateCacheSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -200,8 +200,8 @@ func (c *ElastiCache) CreateCacheSecurityGroup(input *CreateCacheSecurityGroupIn
 const opCreateCacheSubnetGroup = "CreateCacheSubnetGroup"
 
 // CreateCacheSubnetGroupRequest generates a request for the CreateCacheSubnetGroup operation.
-func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *aws.Request, output *CreateCacheSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGroupInput) (req *request.Request, output *CreateCacheSubnetGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateCacheSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -230,8 +230,8 @@ func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput)
 const opCreateReplicationGroup = "CreateReplicationGroup"
 
 // CreateReplicationGroupRequest generates a request for the CreateReplicationGroup operation.
-func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *aws.Request, output *CreateReplicationGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGroupInput) (req *request.Request, output *CreateReplicationGroupOutput) {
+	op := &request.Operation{
 		Name:       opCreateReplicationGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -267,8 +267,8 @@ func (c *ElastiCache) CreateReplicationGroup(input *CreateReplicationGroupInput)
 const opCreateSnapshot = "CreateSnapshot"
 
 // CreateSnapshotRequest generates a request for the CreateSnapshot operation.
-func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *aws.Request, output *CreateSnapshotOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *request.Request, output *CreateSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opCreateSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -295,8 +295,8 @@ func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapsho
 const opDeleteCacheCluster = "DeleteCacheCluster"
 
 // DeleteCacheClusterRequest generates a request for the DeleteCacheCluster operation.
-func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *aws.Request, output *DeleteCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheClusterRequest(input *DeleteCacheClusterInput) (req *request.Request, output *DeleteCacheClusterOutput) {
+	op := &request.Operation{
 		Name:       opDeleteCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -329,8 +329,8 @@ func (c *ElastiCache) DeleteCacheCluster(input *DeleteCacheClusterInput) (*Delet
 const opDeleteCacheParameterGroup = "DeleteCacheParameterGroup"
 
 // DeleteCacheParameterGroupRequest generates a request for the DeleteCacheParameterGroup operation.
-func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *aws.Request, output *DeleteCacheParameterGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheParameterGroupRequest(input *DeleteCacheParameterGroupInput) (req *request.Request, output *DeleteCacheParameterGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -358,8 +358,8 @@ func (c *ElastiCache) DeleteCacheParameterGroup(input *DeleteCacheParameterGroup
 const opDeleteCacheSecurityGroup = "DeleteCacheSecurityGroup"
 
 // DeleteCacheSecurityGroupRequest generates a request for the DeleteCacheSecurityGroup operation.
-func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *aws.Request, output *DeleteCacheSecurityGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheSecurityGroupRequest(input *DeleteCacheSecurityGroupInput) (req *request.Request, output *DeleteCacheSecurityGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteCacheSecurityGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -388,8 +388,8 @@ func (c *ElastiCache) DeleteCacheSecurityGroup(input *DeleteCacheSecurityGroupIn
 const opDeleteCacheSubnetGroup = "DeleteCacheSubnetGroup"
 
 // DeleteCacheSubnetGroupRequest generates a request for the DeleteCacheSubnetGroup operation.
-func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *aws.Request, output *DeleteCacheSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteCacheSubnetGroupRequest(input *DeleteCacheSubnetGroupInput) (req *request.Request, output *DeleteCacheSubnetGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteCacheSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -418,8 +418,8 @@ func (c *ElastiCache) DeleteCacheSubnetGroup(input *DeleteCacheSubnetGroupInput)
 const opDeleteReplicationGroup = "DeleteReplicationGroup"
 
 // DeleteReplicationGroupRequest generates a request for the DeleteReplicationGroup operation.
-func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *aws.Request, output *DeleteReplicationGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteReplicationGroupRequest(input *DeleteReplicationGroupInput) (req *request.Request, output *DeleteReplicationGroupOutput) {
+	op := &request.Operation{
 		Name:       opDeleteReplicationGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -452,8 +452,8 @@ func (c *ElastiCache) DeleteReplicationGroup(input *DeleteReplicationGroupInput)
 const opDeleteSnapshot = "DeleteSnapshot"
 
 // DeleteSnapshotRequest generates a request for the DeleteSnapshot operation.
-func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *aws.Request, output *DeleteSnapshotOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DeleteSnapshotRequest(input *DeleteSnapshotInput) (req *request.Request, output *DeleteSnapshotOutput) {
+	op := &request.Operation{
 		Name:       opDeleteSnapshot,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -481,12 +481,12 @@ func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapsho
 const opDescribeCacheClusters = "DescribeCacheClusters"
 
 // DescribeCacheClustersRequest generates a request for the DescribeCacheClusters operation.
-func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *aws.Request, output *DescribeCacheClustersOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheClustersRequest(input *DescribeCacheClustersInput) (req *request.Request, output *DescribeCacheClustersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCacheClusters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -542,12 +542,12 @@ func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInp
 const opDescribeCacheEngineVersions = "DescribeCacheEngineVersions"
 
 // DescribeCacheEngineVersionsRequest generates a request for the DescribeCacheEngineVersions operation.
-func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *aws.Request, output *DescribeCacheEngineVersionsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheEngineVersionsRequest(input *DescribeCacheEngineVersionsInput) (req *request.Request, output *DescribeCacheEngineVersionsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCacheEngineVersions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -583,12 +583,12 @@ func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngin
 const opDescribeCacheParameterGroups = "DescribeCacheParameterGroups"
 
 // DescribeCacheParameterGroupsRequest generates a request for the DescribeCacheParameterGroups operation.
-func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *aws.Request, output *DescribeCacheParameterGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheParameterGroupsRequest(input *DescribeCacheParameterGroupsInput) (req *request.Request, output *DescribeCacheParameterGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCacheParameterGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -625,12 +625,12 @@ func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCachePara
 const opDescribeCacheParameters = "DescribeCacheParameters"
 
 // DescribeCacheParametersRequest generates a request for the DescribeCacheParameters operation.
-func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *aws.Request, output *DescribeCacheParametersOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheParametersRequest(input *DescribeCacheParametersInput) (req *request.Request, output *DescribeCacheParametersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCacheParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -666,12 +666,12 @@ func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParameter
 const opDescribeCacheSecurityGroups = "DescribeCacheSecurityGroups"
 
 // DescribeCacheSecurityGroupsRequest generates a request for the DescribeCacheSecurityGroups operation.
-func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *aws.Request, output *DescribeCacheSecurityGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheSecurityGroupsRequest(input *DescribeCacheSecurityGroupsInput) (req *request.Request, output *DescribeCacheSecurityGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCacheSecurityGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -708,12 +708,12 @@ func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecur
 const opDescribeCacheSubnetGroups = "DescribeCacheSubnetGroups"
 
 // DescribeCacheSubnetGroupsRequest generates a request for the DescribeCacheSubnetGroups operation.
-func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *aws.Request, output *DescribeCacheSubnetGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeCacheSubnetGroupsRequest(input *DescribeCacheSubnetGroupsInput) (req *request.Request, output *DescribeCacheSubnetGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeCacheSubnetGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -750,12 +750,12 @@ func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetG
 const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
 // DescribeEngineDefaultParametersRequest generates a request for the DescribeEngineDefaultParameters operation.
-func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *aws.Request, output *DescribeEngineDefaultParametersOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeEngineDefaultParametersRequest(input *DescribeEngineDefaultParametersInput) (req *request.Request, output *DescribeEngineDefaultParametersOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEngineDefaultParameters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"EngineDefaults.Marker"},
 			LimitToken:      "MaxRecords",
@@ -791,12 +791,12 @@ func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngine
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a request for the DescribeEvents operation.
-func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *aws.Request, output *DescribeEventsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeEventsRequest(input *DescribeEventsInput) (req *request.Request, output *DescribeEventsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeEvents,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -837,12 +837,12 @@ func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(p 
 const opDescribeReplicationGroups = "DescribeReplicationGroups"
 
 // DescribeReplicationGroupsRequest generates a request for the DescribeReplicationGroups operation.
-func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *aws.Request, output *DescribeReplicationGroupsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeReplicationGroupsRequest(input *DescribeReplicationGroupsInput) (req *request.Request, output *DescribeReplicationGroupsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeReplicationGroups,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -879,12 +879,12 @@ func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationG
 const opDescribeReservedCacheNodes = "DescribeReservedCacheNodes"
 
 // DescribeReservedCacheNodesRequest generates a request for the DescribeReservedCacheNodes operation.
-func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *aws.Request, output *DescribeReservedCacheNodesOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeReservedCacheNodesRequest(input *DescribeReservedCacheNodesInput) (req *request.Request, output *DescribeReservedCacheNodesOutput) {
+	op := &request.Operation{
 		Name:       opDescribeReservedCacheNodes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -920,12 +920,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCac
 const opDescribeReservedCacheNodesOfferings = "DescribeReservedCacheNodesOfferings"
 
 // DescribeReservedCacheNodesOfferingsRequest generates a request for the DescribeReservedCacheNodesOfferings operation.
-func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *aws.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeReservedCacheNodesOfferingsRequest(input *DescribeReservedCacheNodesOfferingsInput) (req *request.Request, output *DescribeReservedCacheNodesOfferingsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeReservedCacheNodesOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -961,12 +961,12 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeRe
 const opDescribeSnapshots = "DescribeSnapshots"
 
 // DescribeSnapshotsRequest generates a request for the DescribeSnapshots operation.
-func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *aws.Request, output *DescribeSnapshotsOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) DescribeSnapshotsRequest(input *DescribeSnapshotsInput) (req *request.Request, output *DescribeSnapshotsOutput) {
+	op := &request.Operation{
 		Name:       opDescribeSnapshots,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"Marker"},
 			OutputTokens:    []string{"Marker"},
 			LimitToken:      "MaxRecords",
@@ -1004,8 +1004,8 @@ func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn f
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a request for the ListTagsForResource operation.
-func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *aws.Request, output *TagListMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *TagListMessage) {
+	op := &request.Operation{
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1038,8 +1038,8 @@ func (c *ElastiCache) ListTagsForResource(input *ListTagsForResourceInput) (*Tag
 const opModifyCacheCluster = "ModifyCacheCluster"
 
 // ModifyCacheClusterRequest generates a request for the ModifyCacheCluster operation.
-func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *aws.Request, output *ModifyCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyCacheClusterRequest(input *ModifyCacheClusterInput) (req *request.Request, output *ModifyCacheClusterOutput) {
+	op := &request.Operation{
 		Name:       opModifyCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1067,8 +1067,8 @@ func (c *ElastiCache) ModifyCacheCluster(input *ModifyCacheClusterInput) (*Modif
 const opModifyCacheParameterGroup = "ModifyCacheParameterGroup"
 
 // ModifyCacheParameterGroupRequest generates a request for the ModifyCacheParameterGroup operation.
-func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParameterGroupInput) (req *request.Request, output *CacheParameterGroupNameMessage) {
+	op := &request.Operation{
 		Name:       opModifyCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1096,8 +1096,8 @@ func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroup
 const opModifyCacheSubnetGroup = "ModifyCacheSubnetGroup"
 
 // ModifyCacheSubnetGroupRequest generates a request for the ModifyCacheSubnetGroup operation.
-func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *aws.Request, output *ModifyCacheSubnetGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGroupInput) (req *request.Request, output *ModifyCacheSubnetGroupOutput) {
+	op := &request.Operation{
 		Name:       opModifyCacheSubnetGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1123,8 +1123,8 @@ func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput)
 const opModifyReplicationGroup = "ModifyReplicationGroup"
 
 // ModifyReplicationGroupRequest generates a request for the ModifyReplicationGroup operation.
-func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *aws.Request, output *ModifyReplicationGroupOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGroupInput) (req *request.Request, output *ModifyReplicationGroupOutput) {
+	op := &request.Operation{
 		Name:       opModifyReplicationGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1151,8 +1151,8 @@ func (c *ElastiCache) ModifyReplicationGroup(input *ModifyReplicationGroupInput)
 const opPurchaseReservedCacheNodesOffering = "PurchaseReservedCacheNodesOffering"
 
 // PurchaseReservedCacheNodesOfferingRequest generates a request for the PurchaseReservedCacheNodesOffering operation.
-func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *aws.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseReservedCacheNodesOfferingInput) (req *request.Request, output *PurchaseReservedCacheNodesOfferingOutput) {
+	op := &request.Operation{
 		Name:       opPurchaseReservedCacheNodesOffering,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1179,8 +1179,8 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOffering(input *PurchaseReserved
 const opRebootCacheCluster = "RebootCacheCluster"
 
 // RebootCacheClusterRequest generates a request for the RebootCacheCluster operation.
-func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *aws.Request, output *RebootCacheClusterOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) RebootCacheClusterRequest(input *RebootCacheClusterInput) (req *request.Request, output *RebootCacheClusterOutput) {
+	op := &request.Operation{
 		Name:       opRebootCacheCluster,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1215,8 +1215,8 @@ func (c *ElastiCache) RebootCacheCluster(input *RebootCacheClusterInput) (*Reboo
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
 // RemoveTagsFromResourceRequest generates a request for the RemoveTagsFromResource operation.
-func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *aws.Request, output *TagListMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) (req *request.Request, output *TagListMessage) {
+	op := &request.Operation{
 		Name:       opRemoveTagsFromResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1243,8 +1243,8 @@ func (c *ElastiCache) RemoveTagsFromResource(input *RemoveTagsFromResourceInput)
 const opResetCacheParameterGroup = "ResetCacheParameterGroup"
 
 // ResetCacheParameterGroupRequest generates a request for the ResetCacheParameterGroup operation.
-func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *aws.Request, output *CacheParameterGroupNameMessage) {
-	op := &aws.Operation{
+func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameterGroupInput) (req *request.Request, output *CacheParameterGroupNameMessage) {
+	op := &request.Operation{
 		Name:       opResetCacheParameterGroup,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1273,8 +1273,8 @@ func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupIn
 const opRevokeCacheSecurityGroupIngress = "RevokeCacheSecurityGroupIngress"
 
 // RevokeCacheSecurityGroupIngressRequest generates a request for the RevokeCacheSecurityGroupIngress operation.
-func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *aws.Request, output *RevokeCacheSecurityGroupIngressOutput) {
-	op := &aws.Operation{
+func (c *ElastiCache) RevokeCacheSecurityGroupIngressRequest(input *RevokeCacheSecurityGroupIngressInput) (req *request.Request, output *RevokeCacheSecurityGroupIngressOutput) {
+	op := &request.Operation{
 		Name:       opRevokeCacheSecurityGroupIngress,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -1317,7 +1317,7 @@ type metadataAddTagsToResourceInput struct {
 
 // String returns the string representation
 func (s AddTagsToResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1337,7 +1337,7 @@ type AuthorizeCacheSecurityGroupIngressInput struct {
 	// The AWS account number of the Amazon EC2 security group owner. Note that
 	// this is not the same thing as an AWS access key ID - you must provide a valid
 	// AWS account number for this parameter.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
+	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 
 	metadataAuthorizeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -1348,7 +1348,7 @@ type metadataAuthorizeCacheSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s AuthorizeCacheSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1371,7 +1371,7 @@ type metadataAuthorizeCacheSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s AuthorizeCacheSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1393,7 +1393,7 @@ type metadataAvailabilityZone struct {
 
 // String returns the string representation
 func (s AvailabilityZone) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1411,7 +1411,7 @@ type CacheCluster struct {
 
 	// The user-supplied identifier of the cache cluster. This identifier is a unique
 	// key that identifies a cache cluster.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// The current state of this cache cluster, one of the following values: available,
 	// creating, deleted, deleting, incompatible-network, modifying, rebooting cache
@@ -1495,7 +1495,7 @@ type CacheCluster struct {
 
 	// The replication group to which this cache cluster belongs. If this field
 	// is empty, the cache cluster is not associated with any replication group.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	// A list of VPC Security Groups associated with the cache cluster.
 	SecurityGroups []*SecurityGroupMembership `type:"list"`
@@ -1524,7 +1524,7 @@ type metadataCacheCluster struct {
 
 // String returns the string representation
 func (s CacheCluster) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1558,7 +1558,7 @@ type metadataCacheEngineVersion struct {
 
 // String returns the string representation
 func (s CacheEngineVersion) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1594,7 +1594,7 @@ type CacheNode struct {
 	// The cache node identifier. A node ID is a numeric identifier (0001, 0002,
 	// etc.). The combination of cluster ID and node ID uniquely identifies every
 	// cache node used in a customer's AWS account.
-	CacheNodeID *string `locationName:"CacheNodeId" type:"string"`
+	CacheNodeId *string `type:"string"`
 
 	// The current state of this cache node.
 	CacheNodeStatus *string `type:"string"`
@@ -1611,7 +1611,7 @@ type CacheNode struct {
 	// The ID of the primary node to which this read replica node is synchronized.
 	// If this field is empty, then this node is not associated with a primary cache
 	// cluster.
-	SourceCacheNodeID *string `locationName:"SourceCacheNodeId" type:"string"`
+	SourceCacheNodeId *string `type:"string"`
 
 	metadataCacheNode `json:"-" xml:"-"`
 }
@@ -1622,7 +1622,7 @@ type metadataCacheNode struct {
 
 // String returns the string representation
 func (s CacheNode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1669,7 +1669,7 @@ type metadataCacheNodeTypeSpecificParameter struct {
 
 // String returns the string representation
 func (s CacheNodeTypeSpecificParameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1694,7 +1694,7 @@ type metadataCacheNodeTypeSpecificValue struct {
 
 // String returns the string representation
 func (s CacheNodeTypeSpecificValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1723,7 +1723,7 @@ type metadataCacheParameterGroup struct {
 
 // String returns the string representation
 func (s CacheParameterGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1747,7 +1747,7 @@ type metadataCacheParameterGroupNameMessage struct {
 
 // String returns the string representation
 func (s CacheParameterGroupNameMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1759,7 +1759,7 @@ func (s CacheParameterGroupNameMessage) GoString() string {
 type CacheParameterGroupStatus struct {
 	// A list of the cache node IDs which need to be rebooted for parameter changes
 	// to be applied. A node ID is a numeric identifier (0001, 0002, etc.).
-	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list"`
+	CacheNodeIdsToReboot []*string `locationNameList:"CacheNodeId" type:"list"`
 
 	// The name of the cache parameter group.
 	CacheParameterGroupName *string `type:"string"`
@@ -1776,7 +1776,7 @@ type metadataCacheParameterGroupStatus struct {
 
 // String returns the string representation
 func (s CacheParameterGroupStatus) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1799,7 +1799,7 @@ type CacheSecurityGroup struct {
 	EC2SecurityGroups []*EC2SecurityGroup `locationNameList:"EC2SecurityGroup" type:"list"`
 
 	// The AWS account ID of the cache security group owner.
-	OwnerID *string `locationName:"OwnerId" type:"string"`
+	OwnerId *string `type:"string"`
 
 	metadataCacheSecurityGroup `json:"-" xml:"-"`
 }
@@ -1810,7 +1810,7 @@ type metadataCacheSecurityGroup struct {
 
 // String returns the string representation
 func (s CacheSecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1837,7 +1837,7 @@ type metadataCacheSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s CacheSecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1860,7 +1860,7 @@ type CacheSubnetGroup struct {
 
 	// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
 	// group.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataCacheSubnetGroup `json:"-" xml:"-"`
 }
@@ -1871,7 +1871,7 @@ type metadataCacheSubnetGroup struct {
 
 // String returns the string representation
 func (s CacheSubnetGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1896,7 +1896,7 @@ type metadataCopySnapshotInput struct {
 
 // String returns the string representation
 func (s CopySnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1918,7 +1918,7 @@ type metadataCopySnapshotOutput struct {
 
 // String returns the string representation
 func (s CopySnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1936,7 +1936,7 @@ type CreateCacheClusterInput struct {
 	//
 	// If the AZMode and PreferredAvailabilityZones are not specified, ElastiCache
 	// assumes single-az mode.
-	AZMode *string `type:"string"`
+	AZMode *string `type:"string" enum:"AZMode"`
 
 	// This parameter is currently disabled.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
@@ -1948,7 +1948,7 @@ type CreateCacheClusterInput struct {
 	//  A name must contain from 1 to 20 alphanumeric characters or hyphens. The
 	// first character must be a letter. A name cannot end with a hyphen or contain
 	// two consecutive hyphens.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// The compute and memory capacity of the nodes in the node group.
 	//
@@ -2004,7 +2004,7 @@ type CreateCacheClusterInput struct {
 	// (SNS) topic to which notifications will be sent.
 	//
 	// The Amazon SNS topic owner must be the same as the cache cluster owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The initial number of cache nodes that the cache cluster will have.
 	//
@@ -2068,13 +2068,13 @@ type CreateCacheClusterInput struct {
 	// zones that provide the best spread of read replicas across availability zones.
 	//
 	// Note: This parameter is only valid if the Engine parameter is redis.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	// One or more VPC security groups associated with the cache cluster.
 	//
 	// Use this parameter only when you are creating a cache cluster in an Amazon
 	// Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// A single-element string list containing an Amazon Resource Name (ARN) that
 	// uniquely identifies a Redis RDB snapshot file stored in Amazon S3. The snapshot
@@ -2084,7 +2084,7 @@ type CreateCacheClusterInput struct {
 	// Note: This parameter is only valid if the Engine parameter is redis.
 	//
 	// Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
-	SnapshotARNs []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
+	SnapshotArns []*string `locationNameList:"SnapshotArn" type:"list"`
 
 	// The name of a snapshot from which to restore data into the new node group.
 	// The snapshot status changes to restoring while the new node group is being
@@ -2127,7 +2127,7 @@ type metadataCreateCacheClusterInput struct {
 
 // String returns the string representation
 func (s CreateCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2148,7 +2148,7 @@ type metadataCreateCacheClusterOutput struct {
 
 // String returns the string representation
 func (s CreateCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2179,7 +2179,7 @@ type metadataCreateCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s CreateCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2200,7 +2200,7 @@ type metadataCreateCacheParameterGroupOutput struct {
 
 // String returns the string representation
 func (s CreateCacheParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2231,7 +2231,7 @@ type metadataCreateCacheSecurityGroupInput struct {
 
 // String returns the string representation
 func (s CreateCacheSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2254,7 +2254,7 @@ type metadataCreateCacheSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s CreateCacheSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2275,7 +2275,7 @@ type CreateCacheSubnetGroupInput struct {
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	// A list of VPC subnet IDs for the cache subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
 
 	metadataCreateCacheSubnetGroupInput `json:"-" xml:"-"`
 }
@@ -2286,7 +2286,7 @@ type metadataCreateCacheSubnetGroupInput struct {
 
 // String returns the string representation
 func (s CreateCacheSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2309,7 +2309,7 @@ type metadataCreateCacheSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s CreateCacheSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2382,7 +2382,7 @@ type CreateReplicationGroupInput struct {
 	// (SNS) topic to which notifications will be sent.
 	//
 	// The Amazon SNS topic owner must be the same as the cache cluster owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The number of cache clusters this replication group will initially have.
 	//
@@ -2425,7 +2425,7 @@ type CreateReplicationGroupInput struct {
 	// of available.
 	//
 	// This parameter is not required if NumCacheClusters is specified.
-	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
+	PrimaryClusterId *string `type:"string"`
 
 	// A user-created description for the replication group.
 	ReplicationGroupDescription *string `type:"string" required:"true"`
@@ -2438,13 +2438,13 @@ type CreateReplicationGroupInput struct {
 	//  A name must contain from 1 to 20 alphanumeric characters or hyphens. The
 	// first character must be a letter. A name cannot end with a hyphen or contain
 	// two consecutive hyphens.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
+	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// One or more Amazon VPC security groups associated with this replication group.
 	//
 	// Use this parameter only when you are creating a replication group in an
 	// Amazon Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// A single-element string list containing an Amazon Resource Name (ARN) that
 	// uniquely identifies a Redis RDB snapshot file stored in Amazon S3. The snapshot
@@ -2454,7 +2454,7 @@ type CreateReplicationGroupInput struct {
 	// Note: This parameter is only valid if the Engine parameter is redis.
 	//
 	// Example of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb
-	SnapshotARNs []*string `locationName:"SnapshotArns" locationNameList:"SnapshotArn" type:"list"`
+	SnapshotArns []*string `locationNameList:"SnapshotArn" type:"list"`
 
 	// The name of a snapshot from which to restore data into the new node group.
 	// The snapshot status changes to restoring while the new node group is being
@@ -2497,7 +2497,7 @@ type metadataCreateReplicationGroupInput struct {
 
 // String returns the string representation
 func (s CreateReplicationGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2518,7 +2518,7 @@ type metadataCreateReplicationGroupOutput struct {
 
 // String returns the string representation
 func (s CreateReplicationGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2530,7 +2530,7 @@ func (s CreateReplicationGroupOutput) GoString() string {
 type CreateSnapshotInput struct {
 	// The identifier of an existing cache cluster. The snapshot will be created
 	// from this cache cluster.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// A name for the snapshot being created.
 	SnapshotName *string `type:"string" required:"true"`
@@ -2544,7 +2544,7 @@ type metadataCreateSnapshotInput struct {
 
 // String returns the string representation
 func (s CreateSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2566,7 +2566,7 @@ type metadataCreateSnapshotOutput struct {
 
 // String returns the string representation
 func (s CreateSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2578,7 +2578,7 @@ func (s CreateSnapshotOutput) GoString() string {
 type DeleteCacheClusterInput struct {
 	// The cache cluster identifier for the cluster to be deleted. This parameter
 	// is not case sensitive.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// The user-supplied name of a final cache cluster snapshot. This is the unique
 	// name that identifies the snapshot. ElastiCache creates the snapshot, and
@@ -2594,7 +2594,7 @@ type metadataDeleteCacheClusterInput struct {
 
 // String returns the string representation
 func (s DeleteCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2615,7 +2615,7 @@ type metadataDeleteCacheClusterOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2640,7 +2640,7 @@ type metadataDeleteCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s DeleteCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2658,7 +2658,7 @@ type metadataDeleteCacheParameterGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheParameterGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2682,7 +2682,7 @@ type metadataDeleteCacheSecurityGroupInput struct {
 
 // String returns the string representation
 func (s DeleteCacheSecurityGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2700,7 +2700,7 @@ type metadataDeleteCacheSecurityGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheSecurityGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2724,7 +2724,7 @@ type metadataDeleteCacheSubnetGroupInput struct {
 
 // String returns the string representation
 func (s DeleteCacheSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2742,7 +2742,7 @@ type metadataDeleteCacheSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteCacheSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2760,7 +2760,7 @@ type DeleteReplicationGroupInput struct {
 
 	// The identifier for the cluster to be deleted. This parameter is not case
 	// sensitive.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
+	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// If set to true, all of the read replicas will be deleted, but the primary
 	// node will be retained.
@@ -2775,7 +2775,7 @@ type metadataDeleteReplicationGroupInput struct {
 
 // String returns the string representation
 func (s DeleteReplicationGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2796,7 +2796,7 @@ type metadataDeleteReplicationGroupOutput struct {
 
 // String returns the string representation
 func (s DeleteReplicationGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2818,7 +2818,7 @@ type metadataDeleteSnapshotInput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2840,7 +2840,7 @@ type metadataDeleteSnapshotOutput struct {
 
 // String returns the string representation
 func (s DeleteSnapshotOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2853,7 +2853,7 @@ type DescribeCacheClustersInput struct {
 	// The user-supplied cluster identifier. If this parameter is specified, only
 	// information about that specific cache cluster is returned. This parameter
 	// isn't case sensitive.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
 	// of results from this action. If this parameter is specified, the response
@@ -2882,7 +2882,7 @@ type metadataDescribeCacheClustersInput struct {
 
 // String returns the string representation
 func (s DescribeCacheClustersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2908,7 +2908,7 @@ type metadataDescribeCacheClustersOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheClustersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2961,7 +2961,7 @@ type metadataDescribeCacheEngineVersionsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheEngineVersionsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -2987,7 +2987,7 @@ type metadataDescribeCacheEngineVersionsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheEngineVersionsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3023,7 +3023,7 @@ type metadataDescribeCacheParameterGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheParameterGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3049,7 +3049,7 @@ type metadataDescribeCacheParameterGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheParameterGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3090,7 +3090,7 @@ type metadataDescribeCacheParametersInput struct {
 
 // String returns the string representation
 func (s DescribeCacheParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3119,7 +3119,7 @@ type metadataDescribeCacheParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3155,7 +3155,7 @@ type metadataDescribeCacheSecurityGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheSecurityGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3181,7 +3181,7 @@ type metadataDescribeCacheSecurityGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheSecurityGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3217,7 +3217,7 @@ type metadataDescribeCacheSubnetGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeCacheSubnetGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3243,7 +3243,7 @@ type metadataDescribeCacheSubnetGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeCacheSubnetGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3280,7 +3280,7 @@ type metadataDescribeEngineDefaultParametersInput struct {
 
 // String returns the string representation
 func (s DescribeEngineDefaultParametersInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3301,7 +3301,7 @@ type metadataDescribeEngineDefaultParametersOutput struct {
 
 // String returns the string representation
 func (s DescribeEngineDefaultParametersOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3341,7 +3341,7 @@ type DescribeEventsInput struct {
 	//
 	// Valid values are: cache-cluster | cache-parameter-group | cache-security-group
 	// | cache-subnet-group
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	// The beginning of the time interval to retrieve events for, specified in ISO
 	// 8601 format.
@@ -3356,7 +3356,7 @@ type metadataDescribeEventsInput struct {
 
 // String returns the string representation
 func (s DescribeEventsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3382,7 +3382,7 @@ type metadataDescribeEventsOutput struct {
 
 // String returns the string representation
 func (s DescribeEventsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3411,7 +3411,7 @@ type DescribeReplicationGroupsInput struct {
 	//
 	// If you do not specify this parameter, information about all replication
 	// groups is returned.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	metadataDescribeReplicationGroupsInput `json:"-" xml:"-"`
 }
@@ -3422,7 +3422,7 @@ type metadataDescribeReplicationGroupsInput struct {
 
 // String returns the string representation
 func (s DescribeReplicationGroupsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3448,7 +3448,7 @@ type metadataDescribeReplicationGroupsOutput struct {
 
 // String returns the string representation
 func (s DescribeReplicationGroupsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3512,11 +3512,11 @@ type DescribeReservedCacheNodesInput struct {
 
 	// The reserved cache node identifier filter value. Use this parameter to show
 	// only the reservation that matches the specified reservation ID.
-	ReservedCacheNodeID *string `locationName:"ReservedCacheNodeId" type:"string"`
+	ReservedCacheNodeId *string `type:"string"`
 
 	// The offering identifier filter value. Use this parameter to show only purchased
 	// reservations matching the specified offering identifier.
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedCacheNodesInput `json:"-" xml:"-"`
 }
@@ -3527,7 +3527,7 @@ type metadataDescribeReservedCacheNodesInput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3593,7 +3593,7 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	// available offering that matches the specified reservation identifier.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	metadataDescribeReservedCacheNodesOfferingsInput `json:"-" xml:"-"`
 }
@@ -3604,7 +3604,7 @@ type metadataDescribeReservedCacheNodesOfferingsInput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesOfferingsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3630,7 +3630,7 @@ type metadataDescribeReservedCacheNodesOfferingsOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesOfferingsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3656,7 +3656,7 @@ type metadataDescribeReservedCacheNodesOutput struct {
 
 // String returns the string representation
 func (s DescribeReservedCacheNodesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3668,7 +3668,7 @@ func (s DescribeReservedCacheNodesOutput) GoString() string {
 type DescribeSnapshotsInput struct {
 	// A user-supplied cluster identifier. If this parameter is specified, only
 	// snapshots associated with that specific cache cluster will be described.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
 	// of results from this action. If this parameter is specified, the response
@@ -3703,7 +3703,7 @@ type metadataDescribeSnapshotsInput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3731,7 +3731,7 @@ type metadataDescribeSnapshotsOutput struct {
 
 // String returns the string representation
 func (s DescribeSnapshotsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3745,7 +3745,7 @@ type EC2SecurityGroup struct {
 	EC2SecurityGroupName *string `type:"string"`
 
 	// The AWS account ID of the Amazon EC2 security group owner.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string"`
+	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	// The status of the Amazon EC2 security group.
 	Status *string `type:"string"`
@@ -3759,7 +3759,7 @@ type metadataEC2SecurityGroup struct {
 
 // String returns the string representation
 func (s EC2SecurityGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3785,7 +3785,7 @@ type metadataEndpoint struct {
 
 // String returns the string representation
 func (s Endpoint) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3818,7 +3818,7 @@ type metadataEngineDefaults struct {
 
 // String returns the string representation
 func (s EngineDefaults) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3843,7 +3843,7 @@ type Event struct {
 
 	// Specifies the origin of this event - a cache cluster, a parameter group,
 	// a security group, etc.
-	SourceType *string `type:"string"`
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	metadataEvent `json:"-" xml:"-"`
 }
@@ -3854,7 +3854,7 @@ type metadataEvent struct {
 
 // String returns the string representation
 func (s Event) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3877,7 +3877,7 @@ type metadataListTagsForResourceInput struct {
 
 // String returns the string representation
 func (s ListTagsForResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -3902,7 +3902,7 @@ type ModifyCacheClusterInput struct {
 	// For instructions on how to move existing Memcached nodes to different Availability
 	// Zones, see the Availability Zone Considerations section of Cache Node Considerations
 	// for Memcached (http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNode.Memcached.html).
-	AZMode *string `type:"string"`
+	AZMode *string `type:"string" enum:"AZMode"`
 
 	// If true, this parameter causes the modifications in this request and any
 	// pending modifications to be applied, asynchronously and as soon as possible,
@@ -3922,7 +3922,7 @@ type ModifyCacheClusterInput struct {
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The cache cluster identifier. This value is stored as a lowercase string.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// A list of cache node IDs to be removed. A node ID is a numeric identifier
 	// (0001, 0002, etc.). This parameter is only valid when NumCacheNodes is less
@@ -3934,7 +3934,7 @@ type ModifyCacheClusterInput struct {
 	// For example: If you have 3 active cache nodes, 7 pending cache nodes, and
 	// the number of cache nodes in this ModifyCacheCluser call is 5, you must list
 	// 2 (7 - 5) cache node IDs to remove.
-	CacheNodeIDsToRemove []*string `locationName:"CacheNodeIdsToRemove" locationNameList:"CacheNodeId" type:"list"`
+	CacheNodeIdsToRemove []*string `locationNameList:"CacheNodeId" type:"list"`
 
 	// The name of the cache parameter group to apply to this cache cluster. This
 	// change is asynchronously applied as soon as possible for parameters when
@@ -3998,7 +3998,7 @@ type ModifyCacheClusterInput struct {
 	// will be sent.
 	//
 	// The Amazon SNS topic owner must be same as the cache cluster owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The status of the Amazon SNS notification topic. Notifications are sent only
 	// if the status is active.
@@ -4050,7 +4050,7 @@ type ModifyCacheClusterInput struct {
 	//
 	// This parameter can be used only with clusters that are created in an Amazon
 	// Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// The number of days for which ElastiCache will retain automatic cache cluster
 	// snapshots before deleting them. For example, if you set SnapshotRetentionLimit
@@ -4074,7 +4074,7 @@ type metadataModifyCacheClusterInput struct {
 
 // String returns the string representation
 func (s ModifyCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4095,7 +4095,7 @@ type metadataModifyCacheClusterOutput struct {
 
 // String returns the string representation
 func (s ModifyCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4122,7 +4122,7 @@ type metadataModifyCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s ModifyCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4144,7 +4144,7 @@ type ModifyCacheSubnetGroupInput struct {
 	CacheSubnetGroupName *string `type:"string" required:"true"`
 
 	// The EC2 subnet IDs for the cache subnet group.
-	SubnetIDs []*string `locationName:"SubnetIds" locationNameList:"SubnetIdentifier" type:"list"`
+	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list"`
 
 	metadataModifyCacheSubnetGroupInput `json:"-" xml:"-"`
 }
@@ -4155,7 +4155,7 @@ type metadataModifyCacheSubnetGroupInput struct {
 
 // String returns the string representation
 func (s ModifyCacheSubnetGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4178,7 +4178,7 @@ type metadataModifyCacheSubnetGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyCacheSubnetGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4239,7 +4239,7 @@ type ModifyReplicationGroupInput struct {
 	// will be sent.
 	//
 	// The Amazon SNS topic owner must be same as the replication group owner.
-	NotificationTopicARN *string `locationName:"NotificationTopicArn" type:"string"`
+	NotificationTopicArn *string `type:"string"`
 
 	// The status of the Amazon SNS notification topic for the replication group.
 	// Notifications are sent only if the status is active.
@@ -4258,20 +4258,20 @@ type ModifyReplicationGroupInput struct {
 	// If this parameter is specified, ElastiCache will promote each of the cache
 	// clusters in the specified replication group to the primary role. The nodes
 	// of all other cache clusters in the replication group will be read replicas.
-	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
+	PrimaryClusterId *string `type:"string"`
 
 	// A description for the replication group. Maximum length is 255 characters.
 	ReplicationGroupDescription *string `type:"string"`
 
 	// The identifier of the replication group to modify.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string" required:"true"`
+	ReplicationGroupId *string `type:"string" required:"true"`
 
 	// Specifies the VPC Security Groups associated with the cache clusters in the
 	// replication group.
 	//
 	// This parameter can be used only with replication group containing cache
 	// clusters running in an Amazon Virtual Private Cloud (VPC).
-	SecurityGroupIDs []*string `locationName:"SecurityGroupIds" locationNameList:"SecurityGroupId" type:"list"`
+	SecurityGroupIds []*string `locationNameList:"SecurityGroupId" type:"list"`
 
 	// The number of days for which ElastiCache will retain automatic node group
 	// snapshots before deleting them. For example, if you set SnapshotRetentionLimit
@@ -4293,7 +4293,7 @@ type ModifyReplicationGroupInput struct {
 
 	// The cache cluster ID that will be used as the daily snapshot source for the
 	// replication group.
-	SnapshottingClusterID *string `locationName:"SnapshottingClusterId" type:"string"`
+	SnapshottingClusterId *string `type:"string"`
 
 	metadataModifyReplicationGroupInput `json:"-" xml:"-"`
 }
@@ -4304,7 +4304,7 @@ type metadataModifyReplicationGroupInput struct {
 
 // String returns the string representation
 func (s ModifyReplicationGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4325,7 +4325,7 @@ type metadataModifyReplicationGroupOutput struct {
 
 // String returns the string representation
 func (s ModifyReplicationGroupOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4337,7 +4337,7 @@ func (s ModifyReplicationGroupOutput) GoString() string {
 type NodeGroup struct {
 	// The identifier for the node group. A replication group contains only one
 	// node group; therefore, the node group ID is 0001.
-	NodeGroupID *string `locationName:"NodeGroupId" type:"string"`
+	NodeGroupId *string `type:"string"`
 
 	// A list containing information about individual nodes within the node group.
 	NodeGroupMembers []*NodeGroupMember `locationNameList:"NodeGroupMember" type:"list"`
@@ -4358,7 +4358,7 @@ type metadataNodeGroup struct {
 
 // String returns the string representation
 func (s NodeGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4369,11 +4369,11 @@ func (s NodeGroup) GoString() string {
 // Represents a single node within a node group.
 type NodeGroupMember struct {
 	// The ID of the cache cluster to which the node belongs.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// The ID of the node within its cache cluster. A node ID is a numeric identifier
 	// (0001, 0002, etc.).
-	CacheNodeID *string `locationName:"CacheNodeId" type:"string"`
+	CacheNodeId *string `type:"string"`
 
 	// The role that is currently assigned to the node - primary or replica.
 	CurrentRole *string `type:"string"`
@@ -4394,7 +4394,7 @@ type metadataNodeGroupMember struct {
 
 // String returns the string representation
 func (s NodeGroupMember) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4408,7 +4408,7 @@ type NodeSnapshot struct {
 	CacheNodeCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The cache node identifier for the node in the source cache cluster.
-	CacheNodeID *string `locationName:"CacheNodeId" type:"string"`
+	CacheNodeId *string `type:"string"`
 
 	// The size of the cache on the source cache node.
 	CacheSize *string `type:"string"`
@@ -4426,7 +4426,7 @@ type metadataNodeSnapshot struct {
 
 // String returns the string representation
 func (s NodeSnapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4439,7 +4439,7 @@ func (s NodeSnapshot) GoString() string {
 // Service (SNS).
 type NotificationConfiguration struct {
 	// The Amazon Resource Name (ARN) that identifies the topic.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	// The current state of the topic.
 	TopicStatus *string `type:"string"`
@@ -4453,7 +4453,7 @@ type metadataNotificationConfiguration struct {
 
 // String returns the string representation
 func (s NotificationConfiguration) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4499,7 +4499,7 @@ type metadataParameter struct {
 
 // String returns the string representation
 func (s Parameter) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4524,7 +4524,7 @@ type metadataParameterNameValue struct {
 
 // String returns the string representation
 func (s ParameterNameValue) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4537,7 +4537,7 @@ func (s ParameterNameValue) GoString() string {
 type PendingModifiedValues struct {
 	// A list of cache node IDs that are being removed (or will be removed) from
 	// the cache cluster. A node ID is a numeric identifier (0001, 0002, etc.).
-	CacheNodeIDsToRemove []*string `locationName:"CacheNodeIdsToRemove" locationNameList:"CacheNodeId" type:"list"`
+	CacheNodeIdsToRemove []*string `locationNameList:"CacheNodeId" type:"list"`
 
 	// The new cache engine version that the cache cluster will run.
 	EngineVersion *string `type:"string"`
@@ -4557,7 +4557,7 @@ type metadataPendingModifiedValues struct {
 
 // String returns the string representation
 func (s PendingModifiedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4575,12 +4575,12 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 	// A customer-specified identifier to track this reservation.
 	//
 	// Example: myreservationID
-	ReservedCacheNodeID *string `locationName:"ReservedCacheNodeId" type:"string"`
+	ReservedCacheNodeId *string `type:"string"`
 
 	// The ID of the reserved cache node offering to purchase.
 	//
 	// Example: 438012d3-4052-4cc7-b2e3-8d3372e0e706
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string" required:"true"`
+	ReservedCacheNodesOfferingId *string `type:"string" required:"true"`
 
 	metadataPurchaseReservedCacheNodesOfferingInput `json:"-" xml:"-"`
 }
@@ -4591,7 +4591,7 @@ type metadataPurchaseReservedCacheNodesOfferingInput struct {
 
 // String returns the string representation
 func (s PurchaseReservedCacheNodesOfferingInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4612,7 +4612,7 @@ type metadataPurchaseReservedCacheNodesOfferingOutput struct {
 
 // String returns the string representation
 func (s PurchaseReservedCacheNodesOfferingOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4623,12 +4623,12 @@ func (s PurchaseReservedCacheNodesOfferingOutput) GoString() string {
 // Represents the input of a RebootCacheCluster action.
 type RebootCacheClusterInput struct {
 	// The cache cluster identifier. This parameter is stored as a lowercase string.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string" required:"true"`
+	CacheClusterId *string `type:"string" required:"true"`
 
 	// A list of cache node IDs to reboot. A node ID is a numeric identifier (0001,
 	// 0002, etc.). To reboot an entire cache cluster, specify all of the cache
 	// node IDs.
-	CacheNodeIDsToReboot []*string `locationName:"CacheNodeIdsToReboot" locationNameList:"CacheNodeId" type:"list" required:"true"`
+	CacheNodeIdsToReboot []*string `locationNameList:"CacheNodeId" type:"list" required:"true"`
 
 	metadataRebootCacheClusterInput `json:"-" xml:"-"`
 }
@@ -4639,7 +4639,7 @@ type metadataRebootCacheClusterInput struct {
 
 // String returns the string representation
 func (s RebootCacheClusterInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4660,7 +4660,7 @@ type metadataRebootCacheClusterOutput struct {
 
 // String returns the string representation
 func (s RebootCacheClusterOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4686,7 +4686,7 @@ type metadataRecurringCharge struct {
 
 // String returns the string representation
 func (s RecurringCharge) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4714,7 +4714,7 @@ type metadataRemoveTagsFromResourceInput struct {
 
 // String returns the string representation
 func (s RemoveTagsFromResourceInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4729,7 +4729,7 @@ type ReplicationGroup struct {
 	// ElastiCache Multi-AZ replication groups are not supported on:
 	//
 	//  Redis versions earlier than 2.8.6. T1 and T2 cache node types.
-	AutomaticFailover *string `type:"string"`
+	AutomaticFailover *string `type:"string" enum:"AutomaticFailoverStatus"`
 
 	// The description of the replication group.
 	Description *string `type:"string"`
@@ -4746,11 +4746,11 @@ type ReplicationGroup struct {
 	PendingModifiedValues *ReplicationGroupPendingModifiedValues `type:"structure"`
 
 	// The identifier for the replication group.
-	ReplicationGroupID *string `locationName:"ReplicationGroupId" type:"string"`
+	ReplicationGroupId *string `type:"string"`
 
 	// The cache cluster ID that is used as the daily snapshot source for the replication
 	// group.
-	SnapshottingClusterID *string `locationName:"SnapshottingClusterId" type:"string"`
+	SnapshottingClusterId *string `type:"string"`
 
 	// The current state of this replication group - creating, available, etc.
 	Status *string `type:"string"`
@@ -4764,7 +4764,7 @@ type metadataReplicationGroup struct {
 
 // String returns the string representation
 func (s ReplicationGroup) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4780,11 +4780,11 @@ type ReplicationGroupPendingModifiedValues struct {
 	// ElastiCache Multi-AZ replication groups are not supported on:
 	//
 	//  Redis versions earlier than 2.8.6. T1 and T2 cache node types.
-	AutomaticFailoverStatus *string `type:"string"`
+	AutomaticFailoverStatus *string `type:"string" enum:"PendingAutomaticFailoverStatus"`
 
 	// The primary cluster ID which will be applied immediately (if --apply-immediately
 	// was specified), or during the next maintenance window.
-	PrimaryClusterID *string `locationName:"PrimaryClusterId" type:"string"`
+	PrimaryClusterId *string `type:"string"`
 
 	metadataReplicationGroupPendingModifiedValues `json:"-" xml:"-"`
 }
@@ -4795,7 +4795,7 @@ type metadataReplicationGroupPendingModifiedValues struct {
 
 // String returns the string representation
 func (s ReplicationGroupPendingModifiedValues) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4845,10 +4845,10 @@ type ReservedCacheNode struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// The unique identifier for the reservation.
-	ReservedCacheNodeID *string `locationName:"ReservedCacheNodeId" type:"string"`
+	ReservedCacheNodeId *string `type:"string"`
 
 	// The offering identifier.
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	// The time the reservation started.
 	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4868,7 +4868,7 @@ type metadataReservedCacheNode struct {
 
 // String returns the string representation
 func (s ReservedCacheNode) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4915,7 +4915,7 @@ type ReservedCacheNodesOffering struct {
 	RecurringCharges []*RecurringCharge `locationNameList:"RecurringCharge" type:"list"`
 
 	// A unique identifier for the reserved cache node offering.
-	ReservedCacheNodesOfferingID *string `locationName:"ReservedCacheNodesOfferingId" type:"string"`
+	ReservedCacheNodesOfferingId *string `type:"string"`
 
 	// The hourly price charged for this offering.
 	UsagePrice *float64 `type:"double"`
@@ -4929,7 +4929,7 @@ type metadataReservedCacheNodesOffering struct {
 
 // String returns the string representation
 func (s ReservedCacheNodesOffering) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4961,7 +4961,7 @@ type metadataResetCacheParameterGroupInput struct {
 
 // String returns the string representation
 func (s ResetCacheParameterGroupInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -4980,7 +4980,7 @@ type RevokeCacheSecurityGroupIngressInput struct {
 	// The AWS account number of the Amazon EC2 security group owner. Note that
 	// this is not the same thing as an AWS access key ID - you must provide a valid
 	// AWS account number for this parameter.
-	EC2SecurityGroupOwnerID *string `locationName:"EC2SecurityGroupOwnerId" type:"string" required:"true"`
+	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
 
 	metadataRevokeCacheSecurityGroupIngressInput `json:"-" xml:"-"`
 }
@@ -4991,7 +4991,7 @@ type metadataRevokeCacheSecurityGroupIngressInput struct {
 
 // String returns the string representation
 func (s RevokeCacheSecurityGroupIngressInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5014,7 +5014,7 @@ type metadataRevokeCacheSecurityGroupIngressOutput struct {
 
 // String returns the string representation
 func (s RevokeCacheSecurityGroupIngressOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5025,7 +5025,7 @@ func (s RevokeCacheSecurityGroupIngressOutput) GoString() string {
 // Represents a single cache security group and its status.
 type SecurityGroupMembership struct {
 	// The identifier of the cache security group.
-	SecurityGroupID *string `locationName:"SecurityGroupId" type:"string"`
+	SecurityGroupId *string `type:"string"`
 
 	// The status of the cache security group membership. The status changes whenever
 	// a cache security group is modified, or when the cache security groups assigned
@@ -5041,7 +5041,7 @@ type metadataSecurityGroupMembership struct {
 
 // String returns the string representation
 func (s SecurityGroupMembership) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5059,7 +5059,7 @@ type Snapshot struct {
 	CacheClusterCreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The user-supplied identifier of the source cache cluster.
-	CacheClusterID *string `locationName:"CacheClusterId" type:"string"`
+	CacheClusterId *string `type:"string"`
 
 	// The name of the compute and memory capacity node type for the source cache
 	// cluster.
@@ -5150,11 +5150,11 @@ type Snapshot struct {
 
 	// The Amazon Resource Name (ARN) for the topic used by the source cache cluster
 	// for publishing notifications.
-	TopicARN *string `locationName:"TopicArn" type:"string"`
+	TopicArn *string `type:"string"`
 
 	// The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet
 	// group for the source cache cluster.
-	VPCID *string `locationName:"VpcId" type:"string"`
+	VpcId *string `type:"string"`
 
 	metadataSnapshot `json:"-" xml:"-"`
 }
@@ -5165,7 +5165,7 @@ type metadataSnapshot struct {
 
 // String returns the string representation
 func (s Snapshot) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5192,7 +5192,7 @@ type metadataSubnet struct {
 
 // String returns the string representation
 func (s Subnet) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5219,7 +5219,7 @@ type metadataTag struct {
 
 // String returns the string representation
 func (s Tag) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -5242,10 +5242,46 @@ type metadataTagListMessage struct {
 
 // String returns the string representation
 func (s TagListMessage) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
 func (s TagListMessage) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum AZMode
+	AZModeSingleAz = "single-az"
+	// @enum AZMode
+	AZModeCrossAz = "cross-az"
+)
+
+const (
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusEnabled = "enabled"
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusDisabled = "disabled"
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusEnabling = "enabling"
+	// @enum AutomaticFailoverStatus
+	AutomaticFailoverStatusDisabling = "disabling"
+)
+
+const (
+	// @enum PendingAutomaticFailoverStatus
+	PendingAutomaticFailoverStatusEnabled = "enabled"
+	// @enum PendingAutomaticFailoverStatus
+	PendingAutomaticFailoverStatusDisabled = "disabled"
+)
+
+const (
+	// @enum SourceType
+	SourceTypeCacheCluster = "cache-cluster"
+	// @enum SourceType
+	SourceTypeCacheParameterGroup = "cache-parameter-group"
+	// @enum SourceType
+	SourceTypeCacheSecurityGroup = "cache-security-group"
+	// @enum SourceType
+	SourceTypeCacheSubnetGroup = "cache-subnet-group"
+)

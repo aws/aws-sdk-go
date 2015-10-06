@@ -10,6 +10,69 @@
     "protocol":"json"
   },
   "operations":{
+    "CancelExportTask":{
+      "name":"CancelExportTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelExportTaskRequest"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"InvalidOperationException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "CreateExportTask":{
+      "name":"CreateExportTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateExportTaskRequest"},
+      "output":{"shape":"CreateExportTaskResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceAlreadyExistsException",
+          "exception":true
+        }
+      ]
+    },
     "CreateLogGroup":{
       "name":"CreateLogGroup",
       "http":{
@@ -59,6 +122,33 @@
         },
         {
           "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DeleteDestination":{
+      "name":"DeleteDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDestinationRequest"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
           "exception":true
         },
         {
@@ -203,6 +293,46 @@
         }
       ]
     },
+    "DescribeDestinations":{
+      "name":"DescribeDestinations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDestinationsRequest"},
+      "output":{"shape":"DescribeDestinationsResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "DescribeExportTasks":{
+      "name":"DescribeExportTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExportTasksRequest"},
+      "output":{"shape":"DescribeExportTasksResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
     "DescribeLogGroups":{
       "name":"DescribeLogGroups",
       "http":{
@@ -334,6 +464,53 @@
         },
         {
           "shape":"ResourceNotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "PutDestination":{
+      "name":"PutDestination",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDestinationRequest"},
+      "output":{"shape":"PutDestinationResponse"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceUnavailableException",
+          "exception":true,
+          "fault":true
+        }
+      ]
+    },
+    "PutDestinationPolicy":{
+      "name":"PutDestinationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutDestinationPolicyRequest"},
+      "errors":[
+        {
+          "shape":"InvalidParameterException",
+          "exception":true
+        },
+        {
+          "shape":"OperationAbortedException",
           "exception":true
         },
         {
@@ -490,7 +667,42 @@
     }
   },
   "shapes":{
+    "AccessPolicy":{
+      "type":"string",
+      "min":1
+    },
     "Arn":{"type":"string"},
+    "CancelExportTaskRequest":{
+      "type":"structure",
+      "required":["taskId"],
+      "members":{
+        "taskId":{"shape":"ExportTaskId"}
+      }
+    },
+    "CreateExportTaskRequest":{
+      "type":"structure",
+      "required":[
+        "logGroupName",
+        "from",
+        "to",
+        "destination"
+      ],
+      "members":{
+        "taskName":{"shape":"ExportTaskName"},
+        "logGroupName":{"shape":"LogGroupName"},
+        "logStreamNamePrefix":{"shape":"LogStreamName"},
+        "from":{"shape":"Timestamp"},
+        "to":{"shape":"Timestamp"},
+        "destination":{"shape":"ExportDestinationBucket"},
+        "destinationPrefix":{"shape":"ExportDestinationPrefix"}
+      }
+    },
+    "CreateExportTaskResponse":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"ExportTaskId"}
+      }
+    },
     "CreateLogGroupRequest":{
       "type":"structure",
       "required":["logGroupName"],
@@ -517,6 +729,13 @@
       "exception":true
     },
     "Days":{"type":"integer"},
+    "DeleteDestinationRequest":{
+      "type":"structure",
+      "required":["destinationName"],
+      "members":{
+        "destinationName":{"shape":"DestinationName"}
+      }
+    },
     "DeleteLogGroupRequest":{
       "type":"structure",
       "required":["logGroupName"],
@@ -565,6 +784,37 @@
       }
     },
     "Descending":{"type":"boolean"},
+    "DescribeDestinationsRequest":{
+      "type":"structure",
+      "members":{
+        "DestinationNamePrefix":{"shape":"DestinationName"},
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeDestinationsResponse":{
+      "type":"structure",
+      "members":{
+        "destinations":{"shape":"Destinations"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeExportTasksRequest":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"ExportTaskId"},
+        "statusCode":{"shape":"ExportTaskStatusCode"},
+        "nextToken":{"shape":"NextToken"},
+        "limit":{"shape":"DescribeLimit"}
+      }
+    },
+    "DescribeExportTasksResponse":{
+      "type":"structure",
+      "members":{
+        "exportTasks":{"shape":"ExportTasks"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeLimit":{
       "type":"integer",
       "min":1,
@@ -638,9 +888,30 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "Destination":{
+      "type":"structure",
+      "members":{
+        "destinationName":{"shape":"DestinationName"},
+        "targetArn":{"shape":"TargetArn"},
+        "roleArn":{"shape":"RoleArn"},
+        "accessPolicy":{"shape":"AccessPolicy"},
+        "arn":{"shape":"Arn"},
+        "creationTime":{"shape":"Timestamp"}
+      }
+    },
     "DestinationArn":{
       "type":"string",
       "min":1
+    },
+    "DestinationName":{
+      "type":"string",
+      "min":1,
+      "max":512,
+      "pattern":"[^:*]*"
+    },
+    "Destinations":{
+      "type":"list",
+      "member":{"shape":"Destination"}
     },
     "EventId":{"type":"string"},
     "EventMessage":{
@@ -652,6 +923,66 @@
       "type":"integer",
       "min":1,
       "max":10000
+    },
+    "ExportDestinationBucket":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
+    "ExportDestinationPrefix":{"type":"string"},
+    "ExportTask":{
+      "type":"structure",
+      "members":{
+        "taskId":{"shape":"ExportTaskId"},
+        "taskName":{"shape":"ExportTaskName"},
+        "logGroupName":{"shape":"LogGroupName"},
+        "from":{"shape":"Timestamp"},
+        "to":{"shape":"Timestamp"},
+        "destination":{"shape":"ExportDestinationBucket"},
+        "destinationPrefix":{"shape":"ExportDestinationPrefix"},
+        "status":{"shape":"ExportTaskStatus"},
+        "executionInfo":{"shape":"ExportTaskExecutionInfo"}
+      }
+    },
+    "ExportTaskExecutionInfo":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "completionTime":{"shape":"Timestamp"}
+      }
+    },
+    "ExportTaskId":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
+    "ExportTaskName":{
+      "type":"string",
+      "min":1,
+      "max":512
+    },
+    "ExportTaskStatus":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"ExportTaskStatusCode"},
+        "message":{"shape":"ExportTaskStatusMessage"}
+      }
+    },
+    "ExportTaskStatusCode":{
+      "type":"string",
+      "enum":[
+        "CANCELLED",
+        "COMPLETED",
+        "FAILED",
+        "PENDING",
+        "PENDING_CANCEL",
+        "RUNNING"
+      ]
+    },
+    "ExportTaskStatusMessage":{"type":"string"},
+    "ExportTasks":{
+      "type":"list",
+      "member":{"shape":"ExportTask"}
     },
     "ExtractedValues":{
       "type":"map",
@@ -754,6 +1085,12 @@
       "max":100
     },
     "Interleaved":{"type":"boolean"},
+    "InvalidOperationException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -906,6 +1243,36 @@
       "type":"list",
       "member":{"shape":"OutputLogEvent"}
     },
+    "PutDestinationPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "destinationName",
+        "accessPolicy"
+      ],
+      "members":{
+        "destinationName":{"shape":"DestinationName"},
+        "accessPolicy":{"shape":"AccessPolicy"}
+      }
+    },
+    "PutDestinationRequest":{
+      "type":"structure",
+      "required":[
+        "destinationName",
+        "targetArn",
+        "roleArn"
+      ],
+      "members":{
+        "destinationName":{"shape":"DestinationName"},
+        "targetArn":{"shape":"TargetArn"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "PutDestinationResponse":{
+      "type":"structure",
+      "members":{
+        "destination":{"shape":"Destination"}
+      }
+    },
     "PutLogEventsRequest":{
       "type":"structure",
       "required":[
@@ -959,8 +1326,7 @@
         "logGroupName",
         "filterName",
         "filterPattern",
-        "destinationArn",
-        "roleArn"
+        "destinationArn"
       ],
       "members":{
         "logGroupName":{"shape":"LogGroupName"},
@@ -1035,6 +1401,10 @@
     "SubscriptionFilters":{
       "type":"list",
       "member":{"shape":"SubscriptionFilter"}
+    },
+    "TargetArn":{
+      "type":"string",
+      "min":1
     },
     "TestEventMessages":{
       "type":"list",

@@ -4,27 +4,34 @@ package mobileanalytics
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/restjson"
 	"github.com/aws/aws-sdk-go/internal/signer/v4"
 )
 
-// MobileAnalytics is a client for Amazon Mobile Analytics.
+// Amazon Mobile Analytics is a service for collecting, visualizing, and understanding
+// app usage data at scale.
 type MobileAnalytics struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new MobileAnalytics client.
 func New(config *aws.Config) *MobileAnalytics {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
-		ServiceName: "mobileanalytics",
-		APIVersion:  "2014-06-05",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "mobileanalytics",
+			APIVersion:  "2014-06-05",
+		},
 	}
 	service.Initialize()
 
@@ -45,8 +52,8 @@ func New(config *aws.Config) *MobileAnalytics {
 
 // newRequest creates a new request for a MobileAnalytics operation and runs any
 // custom request initialization.
-func (c *MobileAnalytics) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *MobileAnalytics) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

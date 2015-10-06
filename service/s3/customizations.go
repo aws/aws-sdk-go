@@ -1,9 +1,12 @@
 package s3
 
-import "github.com/aws/aws-sdk-go/aws"
+import (
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+)
 
 func init() {
-	initService = func(s *aws.Service) {
+	initService = func(s *service.Service) {
 		// Support building custom host-style bucket endpoints
 		s.Handlers.Build.PushFront(updateHostWithBucket)
 
@@ -16,9 +19,9 @@ func init() {
 		s.Handlers.UnmarshalError.PushBack(unmarshalError)
 	}
 
-	initRequest = func(r *aws.Request) {
+	initRequest = func(r *request.Request) {
 		switch r.Operation.Name {
-		case opPutBucketCORS, opPutBucketLifecycle, opPutBucketPolicy, opPutBucketTagging, opDeleteObjects:
+		case opPutBucketCors, opPutBucketLifecycle, opPutBucketPolicy, opPutBucketTagging, opDeleteObjects:
 			// These S3 operations require Content-MD5 to be set
 			r.Handlers.Build.PushBack(contentMD5)
 		case opGetBucketLocation:
@@ -27,6 +30,8 @@ func init() {
 		case opCreateBucket:
 			// Auto-populate LocationConstraint with current region
 			r.Handlers.Validate.PushFront(populateLocationConstraint)
+		case opCopyObject, opUploadPartCopy, opCompleteMultipartUpload:
+			r.Handlers.Unmarshal.PushFront(copyMultipartStatusOKUnmarhsalError)
 		}
 	}
 }

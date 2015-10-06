@@ -8,6 +8,8 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -116,9 +118,9 @@ func TestSignPrecomputedBodyChecksum(t *testing.T) {
 }
 
 func TestAnonymousCredentials(t *testing.T) {
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{Credentials: credentials.AnonymousCredentials}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{Credentials: credentials.AnonymousCredentials})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -140,12 +142,12 @@ func TestAnonymousCredentials(t *testing.T) {
 }
 
 func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{
-			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-			Region:      "us-west-2",
-		}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+		Region:      aws.String("us-west-2"),
+	})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -162,12 +164,12 @@ func TestIgnoreResignRequestWithValidCreds(t *testing.T) {
 }
 
 func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{
-			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
-			Region:      "us-west-2",
-		}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
+		Region:      aws.String("us-west-2"),
+	})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -186,9 +188,9 @@ func TestIgnorePreResignRequestWithValidCreds(t *testing.T) {
 
 func TestResignRequestExpiredCreds(t *testing.T) {
 	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{Credentials: creds}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{Credentials: creds})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",
@@ -208,9 +210,9 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 func TestPreResignRequestExpiredCreds(t *testing.T) {
 	provider := &credentials.StaticProvider{credentials.Value{"AKID", "SECRET", "SESSION"}}
 	creds := credentials.NewCredentials(provider)
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{Credentials: creds}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{Credentials: creds})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "BatchGetItem",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",

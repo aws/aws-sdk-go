@@ -8,8 +8,6 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/awserr"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/service/datapipeline"
 )
 
@@ -20,10 +18,10 @@ func ExampleDataPipeline_ActivatePipeline() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.ActivatePipelineInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 		ParameterValues: []*datapipeline.ParameterValue{
 			{ // Required
-				ID:          aws.String("fieldNameString"),  // Required
+				Id:          aws.String("fieldNameString"),  // Required
 				StringValue: aws.String("fieldStringValue"), // Required
 			},
 			// More values...
@@ -33,29 +31,21 @@ func ExampleDataPipeline_ActivatePipeline() {
 	resp, err := svc.ActivatePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_AddTags() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.AddTagsInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 		Tags: []*datapipeline.Tag{ // Required
 			{ // Required
 				Key:   aws.String("tagKey"),   // Required
@@ -67,22 +57,14 @@ func ExampleDataPipeline_AddTags() {
 	resp, err := svc.AddTags(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_CreatePipeline() {
@@ -90,7 +72,7 @@ func ExampleDataPipeline_CreatePipeline() {
 
 	params := &datapipeline.CreatePipelineInput{
 		Name:        aws.String("id"), // Required
-		UniqueID:    aws.String("id"), // Required
+		UniqueId:    aws.String("id"), // Required
 		Description: aws.String("string"),
 		Tags: []*datapipeline.Tag{
 			{ // Required
@@ -103,117 +85,85 @@ func ExampleDataPipeline_CreatePipeline() {
 	resp, err := svc.CreatePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_DeactivatePipeline() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.DeactivatePipelineInput{
-		PipelineID:   aws.String("id"), // Required
-		CancelActive: aws.Boolean(true),
+		PipelineId:   aws.String("id"), // Required
+		CancelActive: aws.Bool(true),
 	}
 	resp, err := svc.DeactivatePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_DeletePipeline() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.DeletePipelineInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 	}
 	resp, err := svc.DeletePipeline(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_DescribeObjects() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.DescribeObjectsInput{
-		ObjectIDs: []*string{ // Required
+		ObjectIds: []*string{ // Required
 			aws.String("id"), // Required
 			// More values...
 		},
-		PipelineID:          aws.String("id"), // Required
-		EvaluateExpressions: aws.Boolean(true),
+		PipelineId:          aws.String("id"), // Required
+		EvaluateExpressions: aws.Bool(true),
 		Marker:              aws.String("string"),
 	}
 	resp, err := svc.DescribeObjects(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_DescribePipelines() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.DescribePipelinesInput{
-		PipelineIDs: []*string{ // Required
+		PipelineIds: []*string{ // Required
 			aws.String("id"), // Required
 			// More values...
 		},
@@ -221,22 +171,14 @@ func ExampleDataPipeline_DescribePipelines() {
 	resp, err := svc.DescribePipelines(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_EvaluateExpression() {
@@ -244,56 +186,40 @@ func ExampleDataPipeline_EvaluateExpression() {
 
 	params := &datapipeline.EvaluateExpressionInput{
 		Expression: aws.String("longString"), // Required
-		ObjectID:   aws.String("id"),         // Required
-		PipelineID: aws.String("id"),         // Required
+		ObjectId:   aws.String("id"),         // Required
+		PipelineId: aws.String("id"),         // Required
 	}
 	resp, err := svc.EvaluateExpression(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_GetPipelineDefinition() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.GetPipelineDefinitionInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 		Version:    aws.String("string"),
 	}
 	resp, err := svc.GetPipelineDefinition(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_ListPipelines() {
@@ -305,22 +231,14 @@ func ExampleDataPipeline_ListPipelines() {
 	resp, err := svc.ListPipelines(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_PollForTask() {
@@ -337,29 +255,21 @@ func ExampleDataPipeline_PollForTask() {
 	resp, err := svc.PollForTask(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_PutPipelineDefinition() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.PutPipelineDefinitionInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 		PipelineObjects: []*datapipeline.PipelineObject{ // Required
 			{ // Required
 				Fields: []*datapipeline.Field{ // Required
@@ -370,7 +280,7 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 					},
 					// More values...
 				},
-				ID:   aws.String("id"), // Required
+				Id:   aws.String("id"), // Required
 				Name: aws.String("id"), // Required
 			},
 			// More values...
@@ -384,13 +294,13 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 					},
 					// More values...
 				},
-				ID: aws.String("fieldNameString"), // Required
+				Id: aws.String("fieldNameString"), // Required
 			},
 			// More values...
 		},
 		ParameterValues: []*datapipeline.ParameterValue{
 			{ // Required
-				ID:          aws.String("fieldNameString"),  // Required
+				Id:          aws.String("fieldNameString"),  // Required
 				StringValue: aws.String("fieldStringValue"), // Required
 			},
 			// More values...
@@ -399,31 +309,23 @@ func ExampleDataPipeline_PutPipelineDefinition() {
 	resp, err := svc.PutPipelineDefinition(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_QueryObjects() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.QueryObjectsInput{
-		PipelineID: aws.String("id"),     // Required
+		PipelineId: aws.String("id"),     // Required
 		Sphere:     aws.String("string"), // Required
-		Limit:      aws.Long(1),
+		Limit:      aws.Int64(1),
 		Marker:     aws.String("string"),
 		Query: &datapipeline.Query{
 			Selectors: []*datapipeline.Selector{
@@ -444,29 +346,21 @@ func ExampleDataPipeline_QueryObjects() {
 	resp, err := svc.QueryObjects(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_RemoveTags() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.RemoveTagsInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 		TagKeys: []*string{ // Required
 			aws.String("string"), // Required
 			// More values...
@@ -475,29 +369,21 @@ func ExampleDataPipeline_RemoveTags() {
 	resp, err := svc.RemoveTags(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_ReportTaskProgress() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.ReportTaskProgressInput{
-		TaskID: aws.String("taskId"), // Required
+		TaskId: aws.String("taskId"), // Required
 		Fields: []*datapipeline.Field{
 			{ // Required
 				Key:         aws.String("fieldNameString"), // Required
@@ -510,121 +396,89 @@ func ExampleDataPipeline_ReportTaskProgress() {
 	resp, err := svc.ReportTaskProgress(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_ReportTaskRunnerHeartbeat() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.ReportTaskRunnerHeartbeatInput{
-		TaskRunnerID: aws.String("id"), // Required
+		TaskrunnerId: aws.String("id"), // Required
 		Hostname:     aws.String("id"),
 		WorkerGroup:  aws.String("string"),
 	}
 	resp, err := svc.ReportTaskRunnerHeartbeat(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_SetStatus() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.SetStatusInput{
-		ObjectIDs: []*string{ // Required
+		ObjectIds: []*string{ // Required
 			aws.String("id"), // Required
 			// More values...
 		},
-		PipelineID: aws.String("id"),     // Required
+		PipelineId: aws.String("id"),     // Required
 		Status:     aws.String("string"), // Required
 	}
 	resp, err := svc.SetStatus(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_SetTaskStatus() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.SetTaskStatusInput{
-		TaskID:          aws.String("taskId"),     // Required
+		TaskId:          aws.String("taskId"),     // Required
 		TaskStatus:      aws.String("TaskStatus"), // Required
-		ErrorID:         aws.String("string"),
+		ErrorId:         aws.String("string"),
 		ErrorMessage:    aws.String("errorMessage"),
 		ErrorStackTrace: aws.String("string"),
 	}
 	resp, err := svc.SetTaskStatus(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
 
 func ExampleDataPipeline_ValidatePipelineDefinition() {
 	svc := datapipeline.New(nil)
 
 	params := &datapipeline.ValidatePipelineDefinitionInput{
-		PipelineID: aws.String("id"), // Required
+		PipelineId: aws.String("id"), // Required
 		PipelineObjects: []*datapipeline.PipelineObject{ // Required
 			{ // Required
 				Fields: []*datapipeline.Field{ // Required
@@ -635,7 +489,7 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 					},
 					// More values...
 				},
-				ID:   aws.String("id"), // Required
+				Id:   aws.String("id"), // Required
 				Name: aws.String("id"), // Required
 			},
 			// More values...
@@ -649,13 +503,13 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 					},
 					// More values...
 				},
-				ID: aws.String("fieldNameString"), // Required
+				Id: aws.String("fieldNameString"), // Required
 			},
 			// More values...
 		},
 		ParameterValues: []*datapipeline.ParameterValue{
 			{ // Required
-				ID:          aws.String("fieldNameString"),  // Required
+				Id:          aws.String("fieldNameString"),  // Required
 				StringValue: aws.String("fieldStringValue"), // Required
 			},
 			// More values...
@@ -664,20 +518,12 @@ func ExampleDataPipeline_ValidatePipelineDefinition() {
 	resp, err := svc.ValidatePipelineDefinition(params)
 
 	if err != nil {
-		if awsErr, ok := err.(awserr.Error); ok {
-			// Generic AWS error with Code, Message, and original error (if any)
-			fmt.Println(awsErr.Code(), awsErr.Message(), awsErr.OrigErr())
-			if reqErr, ok := err.(awserr.RequestFailure); ok {
-				// A service error occurred
-				fmt.Println(reqErr.Code(), reqErr.Message(), reqErr.StatusCode(), reqErr.RequestID())
-			}
-		} else {
-			// This case should never be hit, the SDK should always return an
-			// error which satisfies the awserr.Error interface.
-			fmt.Println(err.Error())
-		}
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
 	}
 
 	// Pretty-print the response data.
-	fmt.Println(awsutil.StringValue(resp))
+	fmt.Println(resp)
 }
