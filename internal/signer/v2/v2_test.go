@@ -2,14 +2,17 @@ package v2
 
 import (
 	"bytes"
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/url"
 	"os"
 	"testing"
 	"time"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/stretchr/testify/assert"
 )
 
 func buildSigner(serviceName string, region string, signTime time.Time, query url.Values) signer {
@@ -30,8 +33,8 @@ func buildSigner(serviceName string, region string, signTime time.Time, query ur
 	}
 
 	if os.Getenv("DEBUG") != "" {
-		signer.Debug = 1
-		signer.Logger = os.Stdout
+		signer.Debug = aws.LogDebug
+		signer.Logger = aws.NewDefaultLogger()
 	}
 
 	return signer
@@ -82,12 +85,12 @@ func TestMoreComplexSignRequest(t *testing.T) {
 }
 
 func TestRequiresPost(t *testing.T) {
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{
-			Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "TOKEN"),
-			Region:      "ap-southeast-2",
-		}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "TOKEN"),
+		Region:      aws.String("ap-southeast-2"),
+	})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "OpName",
 			HTTPMethod: "GET",
 			HTTPPath:   "/",
@@ -95,6 +98,7 @@ func TestRequiresPost(t *testing.T) {
 		nil,
 		nil,
 	)
+
 	r.Build()
 	assert.Equal(t, "GET", r.HTTPRequest.Method)
 
@@ -103,12 +107,12 @@ func TestRequiresPost(t *testing.T) {
 }
 
 func TestAnonymousCredentials(t *testing.T) {
-	r := aws.NewRequest(
-		aws.NewService(&aws.Config{
-			Credentials: credentials.AnonymousCredentials,
-			Region:      "ap-southeast-2",
-		}),
-		&aws.Operation{
+	svc := service.New(&aws.Config{
+		Credentials: credentials.AnonymousCredentials,
+		Region:      aws.String("ap-southeast-2"),
+	})
+	r := svc.NewRequest(
+		&request.Operation{
 			Name:       "PutAttributes",
 			HTTPMethod: "POST",
 			HTTPPath:   "/",

@@ -5,8 +5,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 type xmlErrorDetail struct {
@@ -20,7 +20,7 @@ type xmlErrorResponse struct {
 	RequestID string           `xml:"RequestID"`
 }
 
-func unmarshalError(r *aws.Request) {
+func unmarshalError(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 
 	if r.HTTPResponse.ContentLength == int64(0) {

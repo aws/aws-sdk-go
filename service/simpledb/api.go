@@ -4,15 +4,15 @@
 package simpledb
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 const opBatchDeleteAttributes = "BatchDeleteAttributes"
 
 // BatchDeleteAttributesRequest generates a request for the BatchDeleteAttributes operation.
-func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInput) (req *aws.Request, output *BatchDeleteAttributesOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) BatchDeleteAttributesRequest(input *BatchDeleteAttributesInput) (req *request.Request, output *BatchDeleteAttributesOutput) {
+	op := &request.Operation{
 		Name:       opBatchDeleteAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -43,8 +43,8 @@ func (c *SimpleDB) BatchDeleteAttributes(input *BatchDeleteAttributesInput) (*Ba
 const opBatchPutAttributes = "BatchPutAttributes"
 
 // BatchPutAttributesRequest generates a request for the BatchPutAttributes operation.
-func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (req *aws.Request, output *BatchPutAttributesOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) BatchPutAttributesRequest(input *BatchPutAttributesInput) (req *request.Request, output *BatchPutAttributesOutput) {
+	op := &request.Operation{
 		Name:       opBatchPutAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -108,8 +108,8 @@ func (c *SimpleDB) BatchPutAttributes(input *BatchPutAttributesInput) (*BatchPut
 const opCreateDomain = "CreateDomain"
 
 // CreateDomainRequest generates a request for the CreateDomain operation.
-func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *aws.Request, output *CreateDomainOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) CreateDomainRequest(input *CreateDomainInput) (req *request.Request, output *CreateDomainOutput) {
+	op := &request.Operation{
 		Name:       opCreateDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -142,8 +142,8 @@ func (c *SimpleDB) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, 
 const opDeleteAttributes = "DeleteAttributes"
 
 // DeleteAttributesRequest generates a request for the DeleteAttributes operation.
-func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *aws.Request, output *DeleteAttributesOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) DeleteAttributesRequest(input *DeleteAttributesInput) (req *request.Request, output *DeleteAttributesOutput) {
+	op := &request.Operation{
 		Name:       opDeleteAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -178,8 +178,8 @@ func (c *SimpleDB) DeleteAttributes(input *DeleteAttributesInput) (*DeleteAttrib
 const opDeleteDomain = "DeleteDomain"
 
 // DeleteDomainRequest generates a request for the DeleteDomain operation.
-func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *aws.Request, output *DeleteDomainOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) DeleteDomainRequest(input *DeleteDomainInput) (req *request.Request, output *DeleteDomainOutput) {
+	op := &request.Operation{
 		Name:       opDeleteDomain,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -207,8 +207,8 @@ func (c *SimpleDB) DeleteDomain(input *DeleteDomainInput) (*DeleteDomainOutput, 
 const opDomainMetadata = "DomainMetadata"
 
 // DomainMetadataRequest generates a request for the DomainMetadata operation.
-func (c *SimpleDB) DomainMetadataRequest(input *DomainMetadataInput) (req *aws.Request, output *DomainMetadataOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) DomainMetadataRequest(input *DomainMetadataInput) (req *request.Request, output *DomainMetadataOutput) {
+	op := &request.Operation{
 		Name:       opDomainMetadata,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -236,8 +236,8 @@ func (c *SimpleDB) DomainMetadata(input *DomainMetadataInput) (*DomainMetadataOu
 const opGetAttributes = "GetAttributes"
 
 // GetAttributesRequest generates a request for the GetAttributes operation.
-func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *aws.Request, output *GetAttributesOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) GetAttributesRequest(input *GetAttributesInput) (req *request.Request, output *GetAttributesOutput) {
+	op := &request.Operation{
 		Name:       opGetAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -269,12 +269,12 @@ func (c *SimpleDB) GetAttributes(input *GetAttributesInput) (*GetAttributesOutpu
 const opListDomains = "ListDomains"
 
 // ListDomainsRequest generates a request for the ListDomains operation.
-func (c *SimpleDB) ListDomainsRequest(input *ListDomainsInput) (req *aws.Request, output *ListDomainsOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) ListDomainsRequest(input *ListDomainsInput) (req *request.Request, output *ListDomainsOutput) {
+	op := &request.Operation{
 		Name:       opListDomains,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "MaxNumberOfDomains",
@@ -314,8 +314,8 @@ func (c *SimpleDB) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDoma
 const opPutAttributes = "PutAttributes"
 
 // PutAttributesRequest generates a request for the PutAttributes operation.
-func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *aws.Request, output *PutAttributesOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) PutAttributesRequest(input *PutAttributesInput) (req *request.Request, output *PutAttributesOutput) {
+	op := &request.Operation{
 		Name:       opPutAttributes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
@@ -369,12 +369,12 @@ func (c *SimpleDB) PutAttributes(input *PutAttributesInput) (*PutAttributesOutpu
 const opSelect = "Select"
 
 // SelectRequest generates a request for the Select operation.
-func (c *SimpleDB) SelectRequest(input *SelectInput) (req *aws.Request, output *SelectOutput) {
-	op := &aws.Operation{
+func (c *SimpleDB) SelectRequest(input *SelectInput) (req *request.Request, output *SelectOutput) {
+	op := &request.Operation{
 		Name:       opSelect,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
-		Paginator: &aws.Paginator{
+		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
 			LimitToken:      "",
@@ -436,7 +436,7 @@ type metadataAttribute struct {
 
 // String returns the string representation
 func (s Attribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -460,7 +460,7 @@ type metadataBatchDeleteAttributesInput struct {
 
 // String returns the string representation
 func (s BatchDeleteAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -478,7 +478,7 @@ type metadataBatchDeleteAttributesOutput struct {
 
 // String returns the string representation
 func (s BatchDeleteAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -502,7 +502,7 @@ type metadataBatchPutAttributesInput struct {
 
 // String returns the string representation
 func (s BatchPutAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -520,7 +520,7 @@ type metadataBatchPutAttributesOutput struct {
 
 // String returns the string representation
 func (s BatchPutAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -542,7 +542,7 @@ type metadataCreateDomainInput struct {
 
 // String returns the string representation
 func (s CreateDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -560,7 +560,7 @@ type metadataCreateDomainOutput struct {
 
 // String returns the string representation
 func (s CreateDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -582,7 +582,7 @@ type metadataDeletableItem struct {
 
 // String returns the string representation
 func (s DeletableItem) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -616,7 +616,7 @@ type metadataDeleteAttributesInput struct {
 
 // String returns the string representation
 func (s DeleteAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -634,7 +634,7 @@ type metadataDeleteAttributesOutput struct {
 
 // String returns the string representation
 func (s DeleteAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -655,7 +655,7 @@ type metadataDeleteDomainInput struct {
 
 // String returns the string representation
 func (s DeleteDomainInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -673,7 +673,7 @@ type metadataDeleteDomainOutput struct {
 
 // String returns the string representation
 func (s DeleteDomainOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -694,7 +694,7 @@ type metadataDomainMetadataInput struct {
 
 // String returns the string representation
 func (s DomainMetadataInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -733,7 +733,7 @@ type metadataDomainMetadataOutput struct {
 
 // String returns the string representation
 func (s DomainMetadataOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -766,7 +766,7 @@ type metadataGetAttributesInput struct {
 
 // String returns the string representation
 func (s GetAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -787,7 +787,7 @@ type metadataGetAttributesOutput struct {
 
 // String returns the string representation
 func (s GetAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -813,7 +813,7 @@ type metadataItem struct {
 
 // String returns the string representation
 func (s Item) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -839,7 +839,7 @@ type metadataListDomainsInput struct {
 
 // String returns the string representation
 func (s ListDomainsInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -864,7 +864,7 @@ type metadataListDomainsOutput struct {
 
 // String returns the string representation
 func (s ListDomainsOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -896,7 +896,7 @@ type metadataPutAttributesInput struct {
 
 // String returns the string representation
 func (s PutAttributesInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -914,7 +914,7 @@ type metadataPutAttributesOutput struct {
 
 // String returns the string representation
 func (s PutAttributesOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -942,7 +942,7 @@ type metadataReplaceableAttribute struct {
 
 // String returns the string representation
 func (s ReplaceableAttribute) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -966,7 +966,7 @@ type metadataReplaceableItem struct {
 
 // String returns the string representation
 func (s ReplaceableItem) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -996,7 +996,7 @@ type metadataSelectInput struct {
 
 // String returns the string representation
 func (s SelectInput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1021,7 +1021,7 @@ type metadataSelectOutput struct {
 
 // String returns the string representation
 func (s SelectOutput) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
@@ -1057,7 +1057,7 @@ type metadataUpdateCondition struct {
 
 // String returns the string representation
 func (s UpdateCondition) String() string {
-	return awsutil.StringValue(s)
+	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation

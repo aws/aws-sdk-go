@@ -4,6 +4,11 @@ package simpledb
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/corehandlers"
+	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/service"
+	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/internal/protocol/query"
 	"github.com/aws/aws-sdk-go/internal/signer/v2"
 )
@@ -24,27 +29,29 @@ import (
 //  Visit http://aws.amazon.com/simpledb/ (http://aws.amazon.com/simpledb/)
 // for more information.
 type SimpleDB struct {
-	*aws.Service
+	*service.Service
 }
 
 // Used for custom service initialization logic
-var initService func(*aws.Service)
+var initService func(*service.Service)
 
 // Used for custom request initialization logic
-var initRequest func(*aws.Request)
+var initRequest func(*request.Request)
 
 // New returns a new SimpleDB client.
 func New(config *aws.Config) *SimpleDB {
-	service := &aws.Service{
-		Config:      aws.DefaultConfig.Merge(config),
-		ServiceName: "sdb",
-		APIVersion:  "2009-04-15",
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "sdb",
+			APIVersion:  "2009-04-15",
+		},
 	}
 	service.Initialize()
 
 	// Handlers
 	service.Handlers.Sign.PushBack(v2.Sign)
-	service.Handlers.Sign.PushBack(aws.BuildContentLength)
+	service.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
 	service.Handlers.Build.PushBack(query.Build)
 	service.Handlers.Unmarshal.PushBack(query.Unmarshal)
 	service.Handlers.UnmarshalMeta.PushBack(query.UnmarshalMeta)
@@ -60,8 +67,8 @@ func New(config *aws.Config) *SimpleDB {
 
 // newRequest creates a new request for a SimpleDB operation and runs any
 // custom request initialization.
-func (c *SimpleDB) newRequest(op *aws.Operation, params, data interface{}) *aws.Request {
-	req := aws.NewRequest(c.Service, op, params, data)
+func (c *SimpleDB) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
 
 	// Run custom request initialization if present
 	if initRequest != nil {

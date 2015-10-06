@@ -8,6 +8,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/test/unit"
 	"github.com/aws/aws-sdk-go/service/simpledb"
 	"github.com/stretchr/testify/assert"
@@ -32,7 +33,7 @@ func TestStatusCodeError(t *testing.T) {
 	for _, test := range statusCodeErrorTests {
 		s := simpledb.New(nil)
 		s.Handlers.Send.Clear()
-		s.Handlers.Send.PushBack(func(r *aws.Request) {
+		s.Handlers.Send.PushBack(func(r *request.Request) {
 			body := ioutil.NopCloser(bytes.NewReader([]byte{}))
 			r.HTTPResponse = &http.Response{
 				ContentLength: 0,
@@ -97,7 +98,7 @@ func TestResponseError(t *testing.T) {
 	for _, test := range responseErrorTests {
 		s := simpledb.New(nil)
 		s.Handlers.Send.Clear()
-		s.Handlers.Send.PushBack(func(r *aws.Request) {
+		s.Handlers.Send.PushBack(func(r *request.Request) {
 			xml := createXMLResponse(test.requestID, test.errors)
 			body := ioutil.NopCloser(bytes.NewReader([]byte(xml)))
 			r.HTTPResponse = &http.Response{

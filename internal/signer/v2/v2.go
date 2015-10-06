@@ -6,7 +6,6 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"io"
 	"net/http"
 	"net/url"
 	"sort"
@@ -15,6 +14,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/request"
 )
 
 var (
@@ -32,8 +32,8 @@ type signer struct {
 	Request     *http.Request
 	Time        time.Time
 	Credentials *credentials.Credentials
-	Debug       uint
-	Logger      io.Writer
+	Debug       aws.LogLevelType
+	Logger      aws.Logger
 
 	Query        url.Values
 	stringToSign string
@@ -45,7 +45,7 @@ type signer struct {
 // Will sign the requests with the service config's Credentials object
 // Signing is skipped if the credentials is the credentials.AnonymousCredentials
 // object.
-func Sign(req *aws.Request) {
+func Sign(req *request.Request) {
 	// If the request does not need to be signed ignore the signing of the
 	// request if the AnonymousCredentials object is used.
 	if req.Service.Config.Credentials == credentials.AnonymousCredentials {
@@ -63,7 +63,7 @@ func Sign(req *aws.Request) {
 		Request:     req.HTTPRequest,
 		Time:        req.Time,
 		Credentials: req.Service.Config.Credentials,
-		Debug:       req.Service.Config.LogLevel,
+		Debug:       req.Service.Config.LogLevel.Value(),
 		Logger:      req.Service.Config.Logger,
 	}
 
@@ -151,11 +151,14 @@ func (v2 *signer) Sign() error {
 	return nil
 }
 
+const logSignInfoMsg = `DEBUG: Request Signature:
+---[ STRING TO SIGN ]--------------------------------
+%s
+---[ SIGNATURE ]-------------------------------------
+%s
+-----------------------------------------------------`
+
 func (v2 *signer) logSigningInfo() {
-	out := v2.Logger
-	fmt.Fprintf(out, "---[ STRING TO SIGN ]--------------------------------\n")
-	fmt.Fprintln(out, v2.stringToSign)
-	fmt.Fprintf(out, "---[ SIGNATURE ]-------------------------------------\n")
-	fmt.Fprintln(out, v2.Query.Get("Signature"))
-	fmt.Fprintf(out, "-----------------------------------------------------\n")
+	msg := fmt.Sprintf(logSignInfoMsg, v2.stringToSign, v2.Query.Get("Signature"))
+	v2.Logger.Log(msg)
 }
