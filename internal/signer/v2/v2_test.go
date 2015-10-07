@@ -27,9 +27,9 @@ func buildSigner(serviceName string, region string, signTime time.Time, query ur
 		Request: req,
 		Time:    signTime,
 		Credentials: credentials.NewStaticCredentials(
-			"AKIAJG6V72ZBDMWPMSWQ",
-			"P9MvpCRxpwo2UexwMYbduHEoVcBPJQZO2GVsKNCD",
-			""),
+			"AKID",
+			"SECRET",
+			"SESSION"),
 	}
 
 	if os.Getenv("DEBUG") != "" {
@@ -51,13 +51,13 @@ func TestSimpleSignRequest(t *testing.T) {
 
 	err := signer.Sign()
 	assert.Nil(t, err)
-	assert.Equal(t, "u0v86smFkZhRcPjBFfhvoC5EGHTXrZiYBev5xlyW6Lw=", signer.signature)
-	assert.Equal(t, 8, len(signer.Query))
-	assert.Equal(t, "AKIAJG6V72ZBDMWPMSWQ", signer.Query.Get("AWSAccessKeyId"))
+	assert.Equal(t, "Ch6qv3rzXB1SLqY2vFhsgA1WQ9rnQIE2WJCigOvAJwI=", signer.signature)
+	assert.Equal(t, 9, len(signer.Query))
+	assert.Equal(t, "AKID", signer.Query.Get("AWSAccessKeyId"))
 	assert.Equal(t, "2015-07-16T07:56:16Z", signer.Query.Get("Timestamp"))
 	assert.Equal(t, "HmacSHA256", signer.Query.Get("SignatureMethod"))
 	assert.Equal(t, "2", signer.Query.Get("SignatureVersion"))
-	assert.Equal(t, "u0v86smFkZhRcPjBFfhvoC5EGHTXrZiYBev5xlyW6Lw=", signer.Query.Get("Signature"))
+	assert.Equal(t, "Ch6qv3rzXB1SLqY2vFhsgA1WQ9rnQIE2WJCigOvAJwI=", signer.Query.Get("Signature"))
 	assert.Equal(t, "CreateDomain", signer.Query.Get("Action"))
 	assert.Equal(t, "TestDomain-1437033376", signer.Query.Get("DomainName"))
 	assert.Equal(t, "2009-04-15", signer.Query.Get("Version"))
@@ -81,7 +81,7 @@ func TestMoreComplexSignRequest(t *testing.T) {
 
 	err := signer.Sign()
 	assert.Nil(t, err)
-	assert.Equal(t, "bXw9mWPcz59G5GFuLM5vnoH/E0cJ9ALb4mhaD0zQUgk=", signer.signature)
+	assert.Equal(t, "WNdE62UJKLKoA6XncVY/9RDbrKmcVMdQPQOTAs8SgwQ=", signer.signature)
 }
 
 func TestGet(t *testing.T) {
