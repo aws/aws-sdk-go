@@ -84,7 +84,8 @@ func TestMoreComplexSignRequest(t *testing.T) {
 	assert.Equal(t, "bXw9mWPcz59G5GFuLM5vnoH/E0cJ9ALb4mhaD0zQUgk=", signer.signature)
 }
 
-func TestRequiresPost(t *testing.T) {
+func TestGet(t *testing.T) {
+	assert := assert.New(t)
 	svc := service.New(&aws.Config{
 		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "TOKEN"),
 		Region:      aws.String("ap-southeast-2"),
@@ -100,10 +101,13 @@ func TestRequiresPost(t *testing.T) {
 	)
 
 	r.Build()
-	assert.Equal(t, "GET", r.HTTPRequest.Method)
+	assert.Equal("GET", r.HTTPRequest.Method)
+	assert.Equal("", r.HTTPRequest.URL.Query().Get("Signature"))
 
 	Sign(r)
-	assert.Equal(t, r.Error, errInvalidMethod)
+	assert.NoError(r.Error)
+	t.Logf("Signature: %s", r.HTTPRequest.URL.Query().Get("Signature"))
+	assert.NotEqual("", r.HTTPRequest.URL.Query().Get("Signature"))
 }
 
 func TestAnonymousCredentials(t *testing.T) {

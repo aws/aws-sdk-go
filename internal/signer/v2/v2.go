@@ -52,9 +52,8 @@ func Sign(req *request.Request) {
 		return
 	}
 
-	if req.HTTPRequest.Method != "POST" {
-		// The V2 signer is legacy and only used for SimpleDB.
-		// Given that SimpleDB only uses POST, this signer is the same.
+	if req.HTTPRequest.Method != "POST" && req.HTTPRequest.Method != "GET" {
+		// The V2 signer only supports GET and POST
 		req.Error = errInvalidMethod
 		return
 	}
@@ -73,13 +72,17 @@ func Sign(req *request.Request) {
 		return
 	}
 
-	// Set the body of the request based on the modified query parameters
-	req.SetStringBody(v2.Query.Encode())
+	if req.HTTPRequest.Method == "POST" {
+		// Set the body of the request based on the modified query parameters
+		req.SetStringBody(v2.Query.Encode())
 
-	// Now that the body has changed, remove any Content-Length header,
-	// because it will be incorrect
-	req.HTTPRequest.ContentLength = 0
-	req.HTTPRequest.Header.Del("Content-Length")
+		// Now that the body has changed, remove any Content-Length header,
+		// because it will be incorrect
+		req.HTTPRequest.ContentLength = 0
+		req.HTTPRequest.Header.Del("Content-Length")
+	} else {
+		req.HTTPRequest.URL.RawQuery = v2.Query.Encode()
+	}
 }
 
 func (v2 *signer) Sign() error {
@@ -88,14 +91,18 @@ func (v2 *signer) Sign() error {
 		return err
 	}
 
-	// Parse the HTTP request to obtain the query parameters that will
-	// be used to build the string to sign. Note that because the HTTP
-	// request will need to be modified, the PostForm and Form properties
-	// are reset to nil after parsing.
-	v2.Request.ParseForm()
-	v2.Query = v2.Request.PostForm
-	v2.Request.PostForm = nil
-	v2.Request.Form = nil
+	if v2.Request.Method == "POST" {
+		// Parse the HTTP request to obtain the query parameters that will
+		// be used to build the string to sign. Note that because the HTTP
+		// request will need to be modified, the PostForm and Form properties
+		// are reset to nil after parsing.
+		v2.Request.ParseForm()
+		v2.Query = v2.Request.PostForm
+		v2.Request.PostForm = nil
+		v2.Request.Form = nil
+	} else {
+		v2.Query = v2.Request.URL.Query()
+	}
 
 	// Set new query parameters
 	v2.Query.Set("AWSAccessKeyId", credValue.AccessKeyID)
