@@ -117,6 +117,12 @@ func init() {
 		assert.True(T, ok, "no error returned")
 		assert.Error(T, err)
 	})
+
+	Then(`^the request should be successful$`, func() {
+		err, ok := World["error"].(awserr.Error)
+		assert.False(T, ok, "error returned")
+		assert.NoError(T, err)
+	})
 }
 
 // findMethod finds the op operation on the v structure using a case-insensitive
