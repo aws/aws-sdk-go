@@ -102,6 +102,9 @@ func (v2 *signer) Sign() error {
 	v2.Query.Set("SignatureVersion", signatureVersion)
 	v2.Query.Set("SignatureMethod", signatureMethod)
 	v2.Query.Set("Timestamp", v2.Time.UTC().Format(timeFormat))
+	if credValue.SessionToken != "" {
+		v2.Query.Set("SecurityToken", credValue.SessionToken)
+	}
 
 	// in case this is a retry, ensure no signature present
 	v2.Query.Del("Signature")
