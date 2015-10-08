@@ -22,12 +22,10 @@ func ExampleSimpleDB_BatchDeleteAttributes() {
 		Items: []*simpledb.DeletableItem{ // Required
 			{ // Required
 				Name: aws.String("String"), // Required
-				Attributes: []*simpledb.Attribute{
+				Attributes: []*simpledb.DeletableAttribute{
 					{ // Required
 						Name:  aws.String("String"), // Required
-						Value: aws.String("String"), // Required
-						AlternateNameEncoding:  aws.String("String"),
-						AlternateValueEncoding: aws.String("String"),
+						Value: aws.String("String"),
 					},
 					// More values...
 				},
@@ -106,12 +104,10 @@ func ExampleSimpleDB_DeleteAttributes() {
 	params := &simpledb.DeleteAttributesInput{
 		DomainName: aws.String("String"), // Required
 		ItemName:   aws.String("String"), // Required
-		Attributes: []*simpledb.Attribute{
+		Attributes: []*simpledb.DeletableAttribute{
 			{ // Required
 				Name:  aws.String("String"), // Required
-				Value: aws.String("String"), // Required
-				AlternateNameEncoding:  aws.String("String"),
-				AlternateValueEncoding: aws.String("String"),
+				Value: aws.String("String"),
 			},
 			// More values...
 		},
