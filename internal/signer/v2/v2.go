@@ -154,7 +154,7 @@ func (v2 *signer) Sign() error {
 	v2.signature = base64.StdEncoding.EncodeToString(hash.Sum(nil))
 	v2.Query.Set("Signature", v2.signature)
 
-	if v2.Debug > 0 {
+	if v2.Debug.Matches(aws.LogDebugWithSigning) {
 		v2.logSigningInfo()
 	}
 
