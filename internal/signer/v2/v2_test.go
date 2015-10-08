@@ -15,21 +15,36 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func buildSigner(serviceName string, region string, signTime time.Time, query url.Values) signer {
-	endpoint := "https://" + serviceName + "." + region + ".amazonaws.com"
-	body := []byte(query.Encode())
-	reader := bytes.NewReader(body)
-	req, _ := http.NewRequest("POST", endpoint, reader)
-	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Add("Content-Length", string(len(body)))
+type signerBuilder struct {
+	ServiceName  string
+	Region       string
+	SignTime     time.Time
+	Query        url.Values
+	Method       string
+	SessionToken string
+}
+
+func (sb signerBuilder) BuildSigner() signer {
+	endpoint := "https://" + sb.ServiceName + "." + sb.Region + ".amazonaws.com"
+	var req *http.Request
+	if sb.Method == "POST" {
+		body := []byte(sb.Query.Encode())
+		reader := bytes.NewReader(body)
+		req, _ = http.NewRequest(sb.Method, endpoint, reader)
+		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+		req.Header.Add("Content-Length", string(len(body)))
+	} else {
+		req, _ = http.NewRequest(sb.Method, endpoint, nil)
+		req.URL.RawQuery = sb.Query.Encode()
+	}
 
 	signer := signer{
 		Request: req,
-		Time:    signTime,
+		Time:    sb.SignTime,
 		Credentials: credentials.NewStaticCredentials(
 			"AKID",
 			"SECRET",
-			"SESSION"),
+			sb.SessionToken),
 	}
 
 	if os.Getenv("DEBUG") != "" {
@@ -40,30 +55,65 @@ func buildSigner(serviceName string, region string, signTime time.Time, query ur
 	return signer
 }
 
-func TestSimpleSignRequest(t *testing.T) {
-	query := make(url.Values)
-	query.Add("Action", "CreateDomain")
-	query.Add("DomainName", "TestDomain-1437033376")
-	query.Add("Version", "2009-04-15")
+func TestSignRequestWithAndWithoutSession(t *testing.T) {
+	assert := assert.New(t)
 
+	// have to create more than once, so use a function
+	newQuery := func() url.Values {
+		query := make(url.Values)
+		query.Add("Action", "CreateDomain")
+		query.Add("DomainName", "TestDomain-1437033376")
+		query.Add("Version", "2009-04-15")
+		return query
+	}
+
+	// create request without a SecurityToken (session) in the credentials
+
+	query := newQuery()
 	timestamp := time.Date(2015, 7, 16, 7, 56, 16, 0, time.UTC)
-	signer := buildSigner("sdb", "ap-southeast-2", timestamp, query)
+	builder := signerBuilder{
+		Method:      "POST",
+		ServiceName: "sdb",
+		Region:      "ap-southeast-2",
+		SignTime:    timestamp,
+		Query:       query,
+	}
+
+	signer := builder.BuildSigner()
 
 	err := signer.Sign()
-	assert.Nil(t, err)
-	assert.Equal(t, "Ch6qv3rzXB1SLqY2vFhsgA1WQ9rnQIE2WJCigOvAJwI=", signer.signature)
-	assert.Equal(t, 9, len(signer.Query))
-	assert.Equal(t, "AKID", signer.Query.Get("AWSAccessKeyId"))
-	assert.Equal(t, "2015-07-16T07:56:16Z", signer.Query.Get("Timestamp"))
-	assert.Equal(t, "HmacSHA256", signer.Query.Get("SignatureMethod"))
-	assert.Equal(t, "2", signer.Query.Get("SignatureVersion"))
-	assert.Equal(t, "Ch6qv3rzXB1SLqY2vFhsgA1WQ9rnQIE2WJCigOvAJwI=", signer.Query.Get("Signature"))
-	assert.Equal(t, "CreateDomain", signer.Query.Get("Action"))
-	assert.Equal(t, "TestDomain-1437033376", signer.Query.Get("DomainName"))
-	assert.Equal(t, "2009-04-15", signer.Query.Get("Version"))
+	assert.NoError(err)
+	assert.Equal("tm4dX8Ks7pzFSVHz7qHdoJVXKRLuC4gWz9eti60d8ks=", signer.signature)
+	assert.Equal(8, len(signer.Query))
+	assert.Equal("AKID", signer.Query.Get("AWSAccessKeyId"))
+	assert.Equal("2015-07-16T07:56:16Z", signer.Query.Get("Timestamp"))
+	assert.Equal("HmacSHA256", signer.Query.Get("SignatureMethod"))
+	assert.Equal("2", signer.Query.Get("SignatureVersion"))
+	assert.Equal("tm4dX8Ks7pzFSVHz7qHdoJVXKRLuC4gWz9eti60d8ks=", signer.Query.Get("Signature"))
+	assert.Equal("CreateDomain", signer.Query.Get("Action"))
+	assert.Equal("TestDomain-1437033376", signer.Query.Get("DomainName"))
+	assert.Equal("2009-04-15", signer.Query.Get("Version"))
+
+	// should not have a SecurityToken parameter
+	_, ok := signer.Query["SecurityToken"]
+	assert.False(ok)
+
+	// now sign again, this time with a security token (session)
+
+	query = newQuery()
+	builder.SessionToken = "SESSION"
+	signer = builder.BuildSigner()
+
+	err = signer.Sign()
+	assert.NoError(err)
+	assert.Equal("Ch6qv3rzXB1SLqY2vFhsgA1WQ9rnQIE2WJCigOvAJwI=", signer.signature)
+	assert.Equal(9, len(signer.Query)) // expect one more parameter
+	assert.Equal("Ch6qv3rzXB1SLqY2vFhsgA1WQ9rnQIE2WJCigOvAJwI=", signer.Query.Get("Signature"))
+	assert.Equal("SESSION", signer.Query.Get("SecurityToken"))
 }
 
 func TestMoreComplexSignRequest(t *testing.T) {
+	assert := assert.New(t)
 	query := make(url.Values)
 	query.Add("Action", "PutAttributes")
 	query.Add("DomainName", "TestDomain-1437041569")
@@ -77,17 +127,26 @@ func TestMoreComplexSignRequest(t *testing.T) {
 	query.Add("ItemName", "Item 1")
 
 	timestamp := time.Date(2015, 7, 16, 10, 12, 51, 0, time.UTC)
-	signer := buildSigner("sdb", "ap-southeast-2", timestamp, query)
+	builder := signerBuilder{
+		Method:       "POST",
+		ServiceName:  "sdb",
+		Region:       "ap-southeast-2",
+		SignTime:     timestamp,
+		Query:        query,
+		SessionToken: "SESSION",
+	}
+
+	signer := builder.BuildSigner()
 
 	err := signer.Sign()
-	assert.Nil(t, err)
-	assert.Equal(t, "WNdE62UJKLKoA6XncVY/9RDbrKmcVMdQPQOTAs8SgwQ=", signer.signature)
+	assert.NoError(err)
+	assert.Equal("WNdE62UJKLKoA6XncVY/9RDbrKmcVMdQPQOTAs8SgwQ=", signer.signature)
 }
 
 func TestGet(t *testing.T) {
 	assert := assert.New(t)
 	svc := service.New(&aws.Config{
-		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "TOKEN"),
+		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
 		Region:      aws.String("ap-southeast-2"),
 	})
 	r := svc.NewRequest(
@@ -111,6 +170,7 @@ func TestGet(t *testing.T) {
 }
 
 func TestAnonymousCredentials(t *testing.T) {
+	assert := assert.New(t)
 	svc := service.New(&aws.Config{
 		Credentials: credentials.AnonymousCredentials,
 		Region:      aws.String("ap-southeast-2"),
@@ -131,5 +191,5 @@ func TestAnonymousCredentials(t *testing.T) {
 	req := r.HTTPRequest
 	req.ParseForm()
 
-	assert.Empty(t, req.PostForm.Get("Signature"))
+	assert.Empty(req.PostForm.Get("Signature"))
 }
