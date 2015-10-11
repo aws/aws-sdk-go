@@ -54,6 +54,15 @@ func TestFnBase64WithObjects(t *testing.T) {
 	assertEquivalentJSON(t, `{ "Fn::Base64" : { "Ref": "some-logical-name" } }`, string(actual))
 }
 
+func TestFnFindInMap(t *testing.T) {
+	mapped := FnFindInMap("RegionMap", Ref("AWS::Region"), "32")
+
+	actual, err := json.Marshal(mapped)
+	assert.Nil(t, err)
+
+	assertEquivalentJSON(t, `{ "Fn::FindInMap" : [ "RegionMap", { "Ref" : "AWS::Region" }, "32"]}`, string(actual))
+}
+
 func TestFnJoin(t *testing.T) {
 	joined := FnJoin("\n", "some", "list", Ref("AWS::StackId"))
 

@@ -59,6 +59,12 @@ func FnBase64(valueToEncode interface{}) interface{} {
 	}{valueToEncode}
 }
 
+func FnFindInMap(mapName string, topLevelKey interface{}, secondLevelKey interface{}) interface{} {
+	return struct {
+		Keys []interface{} `json:"Fn::FindInMap"`
+	}{[]interface{}{mapName, topLevelKey, secondLevelKey}}
+}
+
 func FnJoin(delimeter interface{}, listOfValues ...interface{}) interface{} {
 	return struct {
 		Join []interface{} `json:"Fn::Join"`
