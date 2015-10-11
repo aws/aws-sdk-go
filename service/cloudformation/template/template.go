@@ -1,4 +1,4 @@
-package cloudformation
+package template
 
 import "encoding/json"
 
@@ -33,14 +33,13 @@ type Condition map[string]interface{}
 type Resource struct {
 	Type       string
 	Properties map[string]interface{}
+	Metadata   map[string]interface{} `json:",omitempty"`
 }
 
 type Output struct {
 	Description string `json:",omitempty"`
-	Value       string
+	Value       interface{}
 }
-
-type Ref struct{ Ref string }
 
 func (t *Template) String() string {
 	bytes, err := json.Marshal(t)
@@ -48,4 +47,20 @@ func (t *Template) String() string {
 		panic(err)
 	}
 	return string(bytes)
+}
+
+func Ref(logicalName string) interface{} {
+	return struct{ Ref string }{logicalName}
+}
+
+func FnBase64(valueToEncode interface{}) interface{} {
+	return struct {
+		Encode interface{} `json:"Fn::Base64"`
+	}{valueToEncode}
+}
+
+func FnJoin(delimeter interface{}, listOfValues ...interface{}) interface{} {
+	return struct {
+		Join []interface{} `json:"Fn::Join"`
+	}{[]interface{}{delimeter, listOfValues}}
 }
