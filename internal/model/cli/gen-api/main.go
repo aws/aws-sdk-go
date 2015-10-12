@@ -49,6 +49,11 @@ func newGenerateInfo(modelFile, svcPath string) *generateInfo {
 		g.API.AttachDocs(docsFile)
 	}
 
+	waitersFile := strings.Replace(modelFile, "api-2.json", "waiters-2.json", -1)
+	if _, err := os.Stat(waitersFile); err == nil {
+		g.API.AttachWaiters(waitersFile)
+	}
+
 	g.API.Setup()
 
 	if svc := os.Getenv("SERVICES"); svc != "" {
@@ -204,6 +209,20 @@ func (g *generateInfo) writeInterfaceFile() {
 		"",
 		g.API.InterfacePackageName()+"_test",
 		g.API.InterfaceTestGoCode(),
+	)
+}
+
+func (g *generateInfo) writeWaitersFile() {
+	if len(g.API.Waiters) == 0 {
+		return
+	}
+
+	writeGoFile(filepath.Join(g.PackageDir, g.API.InterfacePackageName(), "waiters.go"),
+		codeLayout,
+		fmt.Sprintf("\n// Package %s provides an interface for the %s.",
+			g.API.PackageName(), g.API.Metadata.ServiceFullName),
+		g.API.PackageName(),
+		g.API.WaitersGoCode(),
 	)
 }
 

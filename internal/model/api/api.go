@@ -15,6 +15,7 @@ type API struct {
 	Metadata      Metadata
 	Operations    map[string]*Operation
 	Shapes        map[string]*Shape
+	Waiters       []Waiter
 	Documentation string
 
 	// Set to true to avoid removing unused shapes
