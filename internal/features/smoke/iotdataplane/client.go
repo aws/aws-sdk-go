@@ -4,9 +4,9 @@ package iotdataplane
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/internal/features/shared"
+	"github.com/aws/aws-sdk-go/service/iot"
 	"github.com/aws/aws-sdk-go/service/iotdataplane"
 	. "github.com/lsegal/gucumber"
-	"github.com/aws/aws-sdk-go/service/iot"
 )
 
 var _ = shared.Imported
