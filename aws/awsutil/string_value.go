@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// StringValue returns the string representation of a value.
 func StringValue(i interface{}) string {
 	var buf bytes.Buffer
 	stringValue(reflect.ValueOf(i), 0, &buf)

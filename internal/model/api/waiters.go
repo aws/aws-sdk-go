@@ -9,6 +9,7 @@ import (
 	"text/template"
 )
 
+// A Waiter is an individual waiter definition.
 type Waiter struct {
 	Name          string
 	Delay         int
@@ -18,6 +19,7 @@ type Waiter struct {
 	Acceptors     []WaitAcceptor
 }
 
+// A WaitAcceptor is an individual wait acceptor definition.
 type WaitAcceptor struct {
 	Expected interface{}
 	Matcher  string
@@ -25,6 +27,8 @@ type WaitAcceptor struct {
 	Argument string
 }
 
+// WaitersGoCode generates and returns Go code for each of the waiters of
+// this API.
 func (a *API) WaitersGoCode() string {
 	var buf bytes.Buffer
 	fmt.Fprintf(&buf, "import (\n\t%q\n)",
@@ -42,6 +46,8 @@ type waiterDefinitions struct {
 	Waiters map[string]Waiter
 }
 
+// AttachWaiters reads a file of waiter definitions, and adds those to the API.
+// Will panic if an error occurs.
 func (a *API) AttachWaiters(filename string) {
 	p := waiterDefinitions{API: a}
 
@@ -80,6 +86,7 @@ func (p *waiterDefinitions) setup() {
 	}
 }
 
+// ExpectedString returns the string that was expected by the WaitAcceptor
 func (a *WaitAcceptor) ExpectedString() string {
 	switch a.Expected.(type) {
 	case string:
@@ -87,15 +94,6 @@ func (a *WaitAcceptor) ExpectedString() string {
 	default:
 		return fmt.Sprintf("%v", a.Expected)
 	}
-}
-
-func (w *Waiter) GoCode() string {
-	var buf bytes.Buffer
-	if err := tplWaiter.Execute(&buf, w); err != nil {
-		panic(err)
-	}
-
-	return buf.String()
 }
 
 var tplWaiter = template.Must(template.New("waiter").Parse(`
@@ -127,3 +125,13 @@ func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}(input {{ .Operati
 	return w.Wait()
 }
 `))
+
+// GoCode returns the generated Go code for an individual waiter.
+func (w *Waiter) GoCode() string {
+	var buf bytes.Buffer
+	if err := tplWaiter.Execute(&buf, w); err != nil {
+		panic(err)
+	}
+
+	return buf.String()
+}

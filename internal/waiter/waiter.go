@@ -10,6 +10,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+// A Config provides a collection of configuration values to setup a generated
+// waiter code with.
 type Config struct {
 	Name        string
 	Delay       int
@@ -18,6 +20,8 @@ type Config struct {
 	Acceptors   []WaitAcceptor
 }
 
+// A WaitAcceptor provides the information needed to wait for an API operation
+// to complete.
 type WaitAcceptor struct {
 	Expected interface{}
 	Matcher  string
@@ -25,12 +29,15 @@ type WaitAcceptor struct {
 	Argument string
 }
 
+// A Waiter provides waiting for an operation to complete.
 type Waiter struct {
 	*Config
 	Client interface{}
 	Input  interface{}
 }
 
+// Wait waits for an operation to complete, expire max attempts, or fail. Error
+// is returned if the operation fails.
 func (w *Waiter) Wait() error {
 	client := reflect.ValueOf(w.Client)
 	in := reflect.ValueOf(w.Input)
@@ -39,7 +46,10 @@ func (w *Waiter) Wait() error {
 	for i := 0; i < w.MaxAttempts; i++ {
 		res := method.Call([]reflect.Value{in})
 		req := res[0].Interface().(*request.Request)
-		_ = req.Send()
+		if err := req.Send(); err != nil {
+			return err
+		}
+
 
 		for _, a := range w.Acceptors {
 			result := false
