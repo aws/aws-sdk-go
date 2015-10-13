@@ -5,8 +5,9 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/awslabs/aws-sdk-go/aws"
-	"github.com/awslabs/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 type Config struct {
@@ -37,7 +38,7 @@ func (w *Waiter) Wait() error {
 
 	for i := 0; i < w.MaxAttempts; i++ {
 		res := method.Call([]reflect.Value{in})
-		req := res[0].Interface().(*aws.Request)
+		req := res[0].Interface().(*request.Request)
 		_ = req.Send()
 
 		for _, a := range w.Acceptors {
@@ -85,8 +86,6 @@ func (w *Waiter) Wait() error {
 		time.Sleep(time.Second * time.Duration(w.Delay))
 	}
 
-	return aws.APIError{
-		Code:    "ResourceNotReady",
-		Message: fmt.Sprintf("exceeded %d wait attempts", w.MaxAttempts),
-	}
+	return awserr.New("ResourceNotReady",
+		fmt.Sprintf("exceeded %d wait attempts", w.MaxAttempts), nil)
 }

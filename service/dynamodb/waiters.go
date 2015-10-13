@@ -3,7 +3,7 @@
 package dynamodb
 
 import (
-	"github.com/awslabs/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/internal/waiter"
 )
 
 var waiterTableExists *waiter.Config

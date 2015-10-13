@@ -1,6 +1,6 @@
 LINTIGNOREDOT='awstesting/integration.+should not use dot imports'
-LINTIGNOREDOC='service/[^/]+/(api|service)\.go:.+(comment on exported|should have comment or be unexported)'
-LINTIGNORECONST='service/[^/]+/(api|service)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
+LINTIGNOREDOC='service/[^/]+/(api|service|waiters)\.go:.+(comment on exported|should have comment or be unexported)'
+LINTIGNORECONST='service/[^/]+/(api|service|waiters)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
 LINTIGNORESTUTTER='service/[^/]+/(api|service)\.go:.+(and that stutters)'
 LINTIGNOREINFLECT='service/[^/]+/(api|service)\.go:.+method .+ should be '
 LINTIGNOREDEPS='vendor/.+\.go'
