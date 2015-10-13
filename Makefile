@@ -1,7 +1,7 @@
 LINTIGNOREDOT='internal/features.+should not use dot imports'
-LINTIGNOREDOC='service/[^/]+/(api|service)\.go:.+(comment on exported|should have comment or be unexported)'
-LINTIGNORECONST='service/[^/]+/(api|service)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
-LINTIGNORESTUTTER='service/[^/]+/(api|service)\.go:.+(and that stutters)'
+LINTIGNOREDOC='service/[^/]+/(api|service|waiters)\.go:.+(comment on exported|should have comment or be unexported)'
+LINTIGNORECONST='service/[^/]+/(api|service|waiters)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
+LINTIGNORESTUTTER='service/[^/]+/(api|service|waiters)\.go:.+(and that stutters)'
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
