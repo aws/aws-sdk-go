@@ -61,7 +61,7 @@ func (a *API) AttachWaiters(filename string) {
 func (p *waiterDefinitions) setup() {
 	p.API.Waiters = []Waiter{}
 	i, keys := 0, make([]string, len(p.Waiters))
-	for k, _ := range p.Waiters {
+	for k := range p.Waiters {
 		keys[i] = k
 		i++
 	}
