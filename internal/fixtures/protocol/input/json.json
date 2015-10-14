@@ -417,7 +417,7 @@
             "X-Amz-Target": "com.amazonaws.foo.OperationName",
             "Content-Type": "application/x-amz-json-1.1"
           },
-          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"bar\": {\"NoRecurse\": \"bar\"}, \"foo\": {\"NoRecurse\": \"foo\"}}}}"
+          "body": "{\"RecursiveStruct\": {\"RecursiveMap\": {\"foo\": {\"NoRecurse\": \"foo\"}, \"bar\": {\"NoRecurse\": \"bar\"}}}}"
         }
       }
     ]
