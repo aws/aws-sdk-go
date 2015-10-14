@@ -735,7 +735,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	utilassert.AssertJSON(t, `{"Name":"myname"}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -763,7 +763,7 @@ func TestInputService2ProtocolTestTimestampValuesCase1(t *testing.T) {
 	utilassert.AssertJSON(t, `{"TimeArg":1422172800}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -791,7 +791,7 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	utilassert.AssertJSON(t, `{"BlobArg":"Zm9v"}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -822,7 +822,7 @@ func TestInputService3ProtocolTestBase64EncodedBlobsCase2(t *testing.T) {
 	utilassert.AssertJSON(t, `{"BlobMap":{"key1":"Zm9v","key2":"YmFy"}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -853,7 +853,7 @@ func TestInputService4ProtocolTestNestedBlobsCase1(t *testing.T) {
 	utilassert.AssertJSON(t, `{"ListParam":["Zm9v","YmFy"]}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -883,7 +883,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	utilassert.AssertJSON(t, `{"RecursiveStruct":{"NoRecurse":"foo"}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -915,7 +915,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	utilassert.AssertJSON(t, `{"RecursiveStruct":{"RecursiveStruct":{"NoRecurse":"foo"}}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -951,7 +951,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	utilassert.AssertJSON(t, `{"RecursiveStruct":{"RecursiveStruct":{"RecursiveStruct":{"RecursiveStruct":{"NoRecurse":"foo"}}}}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -988,7 +988,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	utilassert.AssertJSON(t, `{"RecursiveStruct":{"RecursiveList":[{"NoRecurse":"foo"},{"NoRecurse":"bar"}]}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -1027,7 +1027,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	utilassert.AssertJSON(t, `{"RecursiveStruct":{"RecursiveList":[{"NoRecurse":"foo"},{"RecursiveStruct":{"NoRecurse":"bar"}}]}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -1064,7 +1064,7 @@ func TestInputService5ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	utilassert.AssertJSON(t, `{"RecursiveStruct":{"RecursiveMap":{"foo":{"NoRecurse":"foo"},"bar":{"NoRecurse":"bar"}}}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))
@@ -1092,7 +1092,7 @@ func TestInputService6ProtocolTestEmptyMapsCase1(t *testing.T) {
 	utilassert.AssertJSON(t, `{"Map":{}}`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	assert.Equal(t, "application/x-amz-json-1.1", r.Header.Get("Content-Type"))

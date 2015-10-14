@@ -343,7 +343,7 @@ func (c *OutputService4ProtocolTest) newRequest(op *request.Operation, params, d
 const opOutputService4TestCaseOperation1 = "OperationName"
 
 // OutputService4TestCaseOperation1Request generates a request for the OutputService4TestCaseOperation1 operation.
-func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *request.Request, output *OutputService4TestShapeOutputService4TestCaseOperation1Output) {
+func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (req *request.Request, output *OutputService4TestShapeOutputShape) {
 	op := &request.Operation{
 		Name: opOutputService4TestCaseOperation1,
 	}
@@ -353,13 +353,37 @@ func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1Request(inp
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &OutputService4TestShapeOutputService4TestCaseOperation1Output{}
+	output = &OutputService4TestShapeOutputShape{}
 	req.Data = output
 	return
 }
 
-func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (*OutputService4TestShapeOutputService4TestCaseOperation1Output, error) {
+func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1(input *OutputService4TestShapeOutputService4TestCaseOperation1Input) (*OutputService4TestShapeOutputShape, error) {
 	req, out := c.OutputService4TestCaseOperation1Request(input)
+	err := req.Send()
+	return out, err
+}
+
+const opOutputService4TestCaseOperation2 = "OperationName"
+
+// OutputService4TestCaseOperation2Request generates a request for the OutputService4TestCaseOperation2 operation.
+func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation2Request(input *OutputService4TestShapeOutputService4TestCaseOperation2Input) (req *request.Request, output *OutputService4TestShapeOutputShape) {
+	op := &request.Operation{
+		Name: opOutputService4TestCaseOperation2,
+	}
+
+	if input == nil {
+		input = &OutputService4TestShapeOutputService4TestCaseOperation2Input{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &OutputService4TestShapeOutputShape{}
+	req.Data = output
+	return
+}
+
+func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation2(input *OutputService4TestShapeOutputService4TestCaseOperation2Input) (*OutputService4TestShapeOutputShape, error) {
+	req, out := c.OutputService4TestCaseOperation2Request(input)
 	err := req.Send()
 	return out, err
 }
@@ -372,13 +396,33 @@ type metadataOutputService4TestShapeOutputService4TestCaseOperation1Input struct
 	SDKShapeTraits bool `type:"structure"`
 }
 
-type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
-	ListMember []*string `type:"list"`
-
-	metadataOutputService4TestShapeOutputService4TestCaseOperation1Output `json:"-" xml:"-"`
+type OutputService4TestShapeOutputService4TestCaseOperation2Input struct {
+	metadataOutputService4TestShapeOutputService4TestCaseOperation2Input `json:"-" xml:"-"`
 }
 
-type metadataOutputService4TestShapeOutputService4TestCaseOperation1Output struct {
+type metadataOutputService4TestShapeOutputService4TestCaseOperation2Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService4TestShapeOutputShape struct {
+	ListMember []*string `type:"list"`
+
+	ListMemberMap []map[string]*string `type:"list"`
+
+	ListMemberStruct []*OutputService4TestShapeStructType `type:"list"`
+
+	metadataOutputService4TestShapeOutputShape `json:"-" xml:"-"`
+}
+
+type metadataOutputService4TestShapeOutputShape struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService4TestShapeStructType struct {
+	metadataOutputService4TestShapeStructType `json:"-" xml:"-"`
+}
+
+type metadataOutputService4TestShapeStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
@@ -627,6 +671,31 @@ func TestOutputService4ProtocolTestListsCase1(t *testing.T) {
 	assert.NotNil(t, out) // ensure out variable is used
 	assert.Equal(t, "a", *out.ListMember[0])
 	assert.Equal(t, "b", *out.ListMember[1])
+
+}
+
+func TestOutputService4ProtocolTestListsCase2(t *testing.T) {
+	svc := NewOutputService4ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("{\"ListMember\": [\"a\", null], \"ListMemberMap\": [{}, null, null, {}], \"ListMemberStruct\": [{}, null, null, {}]}"))
+	req, out := svc.OutputService4TestCaseOperation2Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	jsonrpc.UnmarshalMeta(req)
+	jsonrpc.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "a", *out.ListMember[0])
+	assert.Nil(t, out.ListMember[1])
+	assert.Nil(t, out.ListMemberMap[1])
+	assert.Nil(t, out.ListMemberMap[2])
+	assert.Nil(t, out.ListMemberStruct[1])
+	assert.Nil(t, out.ListMemberStruct[2])
 
 }
 

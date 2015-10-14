@@ -73,7 +73,7 @@ func GenerateAssertions(out interface{}, shape *api.Shape, prefix string) string
 			return fmt.Sprintf("assert.Equal(t, int64(%#v), *%s)\n", out, prefix)
 		default:
 			if !reflect.ValueOf(out).IsValid() {
-				return fmt.Sprintf("assert.Nil(t, *%s)\n", prefix)
+				return fmt.Sprintf("assert.Nil(t, %s)\n", prefix)
 			}
 			return fmt.Sprintf("assert.Equal(t, %#v, *%s)\n", out, prefix)
 		}
@@ -86,6 +86,26 @@ func Match(t *testing.T, regex, expected string) {
 	if !regexp.MustCompile(regex).Match([]byte(expected)) {
 		t.Errorf("%q\n\tdoes not match /%s/", expected, regex)
 	}
+}
+
+// AssertURL verifies the expected URL is matches the actual.
+func AssertURL(t *testing.T, expect, actual string, msgAndArgs ...interface{}) bool {
+	expectURL, err := url.Parse(expect)
+	if err != nil {
+		t.Errorf(errMsg("unable to parse expected URL", err, msgAndArgs))
+		return false
+	}
+	actualURL, err := url.Parse(actual)
+	if err != nil {
+		t.Errorf(errMsg("unable to parse actual URL", err, msgAndArgs))
+		return false
+	}
+
+	assert.Equal(t, expectURL.Host, actualURL.Host, msgAndArgs...)
+	assert.Equal(t, expectURL.Scheme, actualURL.Scheme, msgAndArgs...)
+	assert.Equal(t, expectURL.Path, actualURL.Path, msgAndArgs...)
+
+	return AssertQuery(t, expectURL.Query().Encode(), actualURL.Query().Encode(), msgAndArgs...)
 }
 
 // AssertQuery verifies the expect HTTP query string matches the actual.

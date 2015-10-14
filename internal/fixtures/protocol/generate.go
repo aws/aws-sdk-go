@@ -126,7 +126,7 @@ func Test{{ .OpName }}(t *testing.T) {
 	{{ .BodyAssertions }}{{ end }}
 
 	{{ if ne .TestCase.InputTest.URI "" }}// assert URL
-	assert.Equal(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String()){{ end }}
+	utilassert.AssertURL(t, "https://test{{ .TestCase.InputTest.URI }}", r.URL.String()){{ end }}
 
 	// assert headers
 {{ range $k, $v := .TestCase.InputTest.Headers }}assert.Equal(t, "{{ $v }}", r.Header.Get("{{ $k }}"))

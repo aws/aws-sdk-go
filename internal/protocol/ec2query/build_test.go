@@ -677,7 +677,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -705,7 +705,7 @@ func TestInputService2ProtocolTestStructureWithLocationNameAndQueryNameAppliedTo
 	utilassert.AssertQuery(t, `Action=OperationName&BarLocationName=val2&Foo=val1&Version=2014-01-01&yuckQueryName=val3`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -733,7 +733,7 @@ func TestInputService3ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&Struct.Scalar=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -763,7 +763,7 @@ func TestInputService4ProtocolTestListTypesCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&ListArg.1=foo&ListArg.2=bar&ListArg.3=baz&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -793,7 +793,7 @@ func TestInputService5ProtocolTestListWithLocationNameAppliedToMemberCase1(t *te
 	utilassert.AssertQuery(t, `Action=OperationName&ListMemberName.1=a&ListMemberName.2=b&ListMemberName.3=c&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -823,7 +823,7 @@ func TestInputService6ProtocolTestListWithLocationNameAndQueryNameCase1(t *testi
 	utilassert.AssertQuery(t, `Action=OperationName&ListQueryName.1=a&ListQueryName.2=b&ListQueryName.3=c&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -849,7 +849,7 @@ func TestInputService7ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&BlobArg=Zm9v&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -875,7 +875,7 @@ func TestInputService8ProtocolTestTimestampValuesCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 

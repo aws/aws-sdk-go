@@ -1003,7 +1003,7 @@ func TestInputService1ProtocolTestScalarMembersCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&Bar=val2&Foo=val1&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1031,7 +1031,7 @@ func TestInputService2ProtocolTestNestedStructureMembersCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&StructArg.ScalarArg=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1061,7 +1061,7 @@ func TestInputService3ProtocolTestListTypesCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1092,7 +1092,7 @@ func TestInputService4ProtocolTestFlattenedListCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&ListArg.1=a&ListArg.2=b&ListArg.3=c&ScalarArg=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1123,7 +1123,7 @@ func TestInputService5ProtocolTestFlattenedListWithLocationNameCase1(t *testing.
 	utilassert.AssertQuery(t, `Action=OperationName&ListArgLocation.1=a&ListArgLocation.2=b&ListArgLocation.3=c&ScalarArg=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1152,7 +1152,7 @@ func TestInputService6ProtocolTestSerializeMapTypeCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&MapArg.entry.1.key=key1&MapArg.entry.1.value=val1&MapArg.entry.2.key=key2&MapArg.entry.2.value=val2&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1181,7 +1181,7 @@ func TestInputService7ProtocolTestSerializeMapTypeWithLocationNameCase1(t *testi
 	utilassert.AssertQuery(t, `Action=OperationName&MapArg.entry.1.TheKey=key1&MapArg.entry.1.TheValue=val1&MapArg.entry.2.TheKey=key2&MapArg.entry.2.TheValue=val2&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1207,7 +1207,7 @@ func TestInputService8ProtocolTestBase64EncodedBlobsCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&BlobArg=Zm9v&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1233,7 +1233,7 @@ func TestInputService9ProtocolTestTimestampValuesCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&TimeArg=2015-01-25T08%3A00%3A00Z&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1261,7 +1261,7 @@ func TestInputService10ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&RecursiveStruct.NoRecurse=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1291,7 +1291,7 @@ func TestInputService10ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&RecursiveStruct.RecursiveStruct.NoRecurse=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1325,7 +1325,7 @@ func TestInputService10ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&RecursiveStruct.RecursiveStruct.RecursiveStruct.RecursiveStruct.NoRecurse=foo&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1360,7 +1360,7 @@ func TestInputService10ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&RecursiveStruct.RecursiveList.member.1.NoRecurse=foo&RecursiveStruct.RecursiveList.member.2.NoRecurse=bar&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1397,7 +1397,7 @@ func TestInputService10ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&RecursiveStruct.RecursiveList.member.1.NoRecurse=foo&RecursiveStruct.RecursiveList.member.2.RecursiveStruct.NoRecurse=bar&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 
@@ -1432,7 +1432,7 @@ func TestInputService10ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	utilassert.AssertQuery(t, `Action=OperationName&RecursiveStruct.RecursiveMap.entry.1.key=foo&RecursiveStruct.RecursiveMap.entry.1.value.NoRecurse=foo&RecursiveStruct.RecursiveMap.entry.2.key=bar&RecursiveStruct.RecursiveMap.entry.2.value.NoRecurse=bar&Version=2014-01-01`, util.Trim(string(body)))
 
 	// assert URL
-	assert.Equal(t, "https://test/", r.URL.String())
+	utilassert.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 

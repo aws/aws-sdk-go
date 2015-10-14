@@ -87,6 +87,132 @@
     ]
   },
   {
+    "description": "String to string maps in querystring",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "PipelineId": {
+            "shape": "StringType",
+            "location": "uri"
+          },
+          "QueryDoc": {
+            "shape": "MapStringStringType",
+            "location": "querystring"
+          }
+        }
+      },
+      "MapStringStringType": {
+        "type": "map",
+        "key": {
+          "shape": "StringType"
+        },
+        "value": {
+          "shape": "StringType"
+        }
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/2014-01-01/jobsByPipeline/{PipelineId}"
+          },
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "PipelineId": "foo",
+          "QueryDoc": {
+            "bar": "baz",
+            "fizz": "buzz"
+          }
+        },
+        "serialized": {
+          "body": "",
+          "uri": "/2014-01-01/jobsByPipeline/foo?bar=baz&fizz=buzz",
+          "headers": {}
+        }
+      }
+    ]
+  },
+  {
+    "description": "String to string list maps in querystring",
+    "metadata": {
+      "protocol": "rest-json",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "PipelineId": {
+            "shape": "StringType",
+            "location": "uri"
+          },
+          "QueryDoc": {
+            "shape": "MapStringStringListType",
+            "location": "querystring"
+          }
+        }
+      },
+      "MapStringStringListType": {
+        "type": "map",
+        "key": {
+          "shape": "StringType"
+        },
+        "value": {
+          "shape": "StringListType"
+        }
+      },
+      "StringListType": {
+        "type": "list",
+        "member": {
+          "shape": "StringType"
+        }
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/2014-01-01/jobsByPipeline/{PipelineId}"
+          },
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "PipelineId": "id",
+          "QueryDoc": {
+            "foo": ["bar", "baz"],
+            "fizz": ["buzz", "pop"]
+          }
+        },
+        "serialized": {
+          "body": "",
+          "uri": "/2014-01-01/jobsByPipeline/id?foo=bar&foo=baz&fizz=buzz&fizz=pop",
+          "headers": {}
+        }
+      }
+    ]
+  },
+  {
     "description": "URI parameter and querystring params",
     "metadata": {
       "protocol": "rest-json",
