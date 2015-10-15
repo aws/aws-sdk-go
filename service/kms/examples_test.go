@@ -14,6 +14,25 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleKMS_CancelKeyDeletion() {
+	svc := kms.New(nil)
+
+	params := &kms.CancelKeyDeletionInput{
+		KeyId: aws.String("KeyIdType"), // Required
+	}
+	resp, err := svc.CancelKeyDeletion(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleKMS_CreateAlias() {
 	svc := kms.New(nil)
 
@@ -54,6 +73,7 @@ func ExampleKMS_CreateGrant() {
 			aws.String("GrantTokenType"), // Required
 			// More values...
 		},
+		Name: aws.String("GrantNameType"),
 		Operations: []*string{
 			aws.String("GrantOperation"), // Required
 			// More values...
@@ -145,6 +165,10 @@ func ExampleKMS_DescribeKey() {
 
 	params := &kms.DescribeKeyInput{
 		KeyId: aws.String("KeyIdType"), // Required
+		GrantTokens: []*string{
+			aws.String("GrantTokenType"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.DescribeKey(params)
 
@@ -461,6 +485,27 @@ func ExampleKMS_ListKeys() {
 	fmt.Println(resp)
 }
 
+func ExampleKMS_ListRetirableGrants() {
+	svc := kms.New(nil)
+
+	params := &kms.ListRetirableGrantsInput{
+		RetiringPrincipal: aws.String("PrincipalIdType"), // Required
+		Limit:             aws.Int64(1),
+		Marker:            aws.String("MarkerType"),
+	}
+	resp, err := svc.ListRetirableGrants(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleKMS_PutKeyPolicy() {
 	svc := kms.New(nil)
 
@@ -543,6 +588,26 @@ func ExampleKMS_RevokeGrant() {
 		KeyId:   aws.String("KeyIdType"),   // Required
 	}
 	resp, err := svc.RevokeGrant(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleKMS_ScheduleKeyDeletion() {
+	svc := kms.New(nil)
+
+	params := &kms.ScheduleKeyDeletionInput{
+		KeyId:               aws.String("KeyIdType"), // Required
+		PendingWindowInDays: aws.Int64(1),
+	}
+	resp, err := svc.ScheduleKeyDeletion(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

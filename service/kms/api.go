@@ -10,6 +10,39 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 )
 
+const opCancelKeyDeletion = "CancelKeyDeletion"
+
+// CancelKeyDeletionRequest generates a request for the CancelKeyDeletion operation.
+func (c *KMS) CancelKeyDeletionRequest(input *CancelKeyDeletionInput) (req *request.Request, output *CancelKeyDeletionOutput) {
+	op := &request.Operation{
+		Name:       opCancelKeyDeletion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelKeyDeletionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &CancelKeyDeletionOutput{}
+	req.Data = output
+	return
+}
+
+// Cancels the deletion of a customer master key (CMK). When this operation
+// is successful, the CMK is set to the Disabled state. To enable a CMK, use
+// EnableKey.
+//
+// For more information about scheduling and canceling deletion of a CMK, go
+// to Deleting Customer Master Keys (http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html)
+// in the AWS Key Management Service Developer Guide.
+func (c *KMS) CancelKeyDeletion(input *CancelKeyDeletionInput) (*CancelKeyDeletionOutput, error) {
+	req, out := c.CancelKeyDeletionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateAlias = "CreateAlias"
 
 // CreateAliasRequest generates a request for the CreateAlias operation.
@@ -38,10 +71,10 @@ func (c *KMS) CreateAliasRequest(input *CreateAliasInput) (req *request.Request,
 // alias that begins with "aws" after the forward slash (alias/aws...) is reserved
 // by Amazon Web Services (AWS).
 //
-// To associate an alias with a different key, call UpdateAlias.
+// The alias and the key it is mapped to must be in the same AWS account and
+// the same region.
 //
-// Note that you cannot create or update an alias that represents a key in
-// another account.
+// To map an alias to a different key, call UpdateAlias.
 func (c *KMS) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
 	req, out := c.CreateAliasRequest(input)
 	err := req.Send()
@@ -68,11 +101,11 @@ func (c *KMS) CreateGrantRequest(input *CreateGrantInput) (req *request.Request,
 	return
 }
 
-// Adds a grant to a key to specify who can access the key and under what conditions.
-// Grants are alternate permission mechanisms to key policies. For more information
-// about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
-// in the developer guide. If a grant is absent, access to the key is evaluated
-// based on IAM policies attached to the user.  ListGrants RetireGrant RevokeGrant
+// Adds a grant to a key to specify who can use the key and under what conditions.
+// Grants are alternate permission mechanisms to key policies.
+//
+// For more information about grants, see Grants (http://docs.aws.amazon.com/kms/latest/developerguide/grants.html)
+// in the AWS Key Management Service Developer Guide.
 func (c *KMS) CreateGrant(input *CreateGrantInput) (*CreateGrantOutput, error) {
 	req, out := c.CreateGrantRequest(input)
 	err := req.Send()
@@ -167,8 +200,7 @@ func (c *KMS) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Request,
 	return
 }
 
-// Deletes the specified alias. To associate an alias with a different key,
-// call UpdateAlias.
+// Deletes the specified alias. To map an alias to a different key, call UpdateAlias.
 func (c *KMS) DeleteAlias(input *DeleteAliasInput) (*DeleteAliasOutput, error) {
 	req, out := c.DeleteAliasRequest(input)
 	err := req.Send()
@@ -222,7 +254,11 @@ func (c *KMS) DisableKeyRequest(input *DisableKeyInput) (req *request.Request, o
 	return
 }
 
-// Marks a key as disabled, thereby preventing its use.
+// Sets the state of a master key to disabled, thereby preventing its use for
+// cryptographic operations. For more information about how key state affects
+// the use of a master key, go to How Key State Affects the Use of a Customer
+// Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
+// in the AWS Key Management Service Developer Guide.
 func (c *KMS) DisableKey(input *DisableKeyInput) (*DisableKeyOutput, error) {
 	req, out := c.DisableKeyRequest(input)
 	err := req.Send()
@@ -276,8 +312,7 @@ func (c *KMS) EnableKeyRequest(input *EnableKeyInput) (req *request.Request, out
 	return
 }
 
-// Marks a key as enabled, thereby permitting its use. You can have up to 25
-// enabled keys at one time.
+// Marks a key as enabled, thereby permitting its use.
 func (c *KMS) EnableKey(input *EnableKeyInput) (*EnableKeyOutput, error) {
 	req, out := c.EnableKeyRequest(input)
 	err := req.Send()
@@ -566,7 +601,7 @@ func (c *KMS) ListAliasesPages(input *ListAliasesInput, fn func(p *ListAliasesOu
 const opListGrants = "ListGrants"
 
 // ListGrantsRequest generates a request for the ListGrants operation.
-func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, output *ListGrantsOutput) {
+func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, output *ListGrantsResponse) {
 	op := &request.Operation{
 		Name:       opListGrants,
 		HTTPMethod: "POST",
@@ -584,22 +619,22 @@ func (c *KMS) ListGrantsRequest(input *ListGrantsInput) (req *request.Request, o
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &ListGrantsOutput{}
+	output = &ListGrantsResponse{}
 	req.Data = output
 	return
 }
 
 // List the grants for a specified key.
-func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsOutput, error) {
+func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsResponse, error) {
 	req, out := c.ListGrantsRequest(input)
 	err := req.Send()
 	return out, err
 }
 
-func (c *KMS) ListGrantsPages(input *ListGrantsInput, fn func(p *ListGrantsOutput, lastPage bool) (shouldContinue bool)) error {
+func (c *KMS) ListGrantsPages(input *ListGrantsInput, fn func(p *ListGrantsResponse, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGrantsRequest(input)
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
-		return fn(p.(*ListGrantsOutput), lastPage)
+		return fn(p.(*ListGrantsResponse), lastPage)
 	})
 }
 
@@ -681,6 +716,37 @@ func (c *KMS) ListKeysPages(input *ListKeysInput, fn func(p *ListKeysOutput, las
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListKeysOutput), lastPage)
 	})
+}
+
+const opListRetirableGrants = "ListRetirableGrants"
+
+// ListRetirableGrantsRequest generates a request for the ListRetirableGrants operation.
+func (c *KMS) ListRetirableGrantsRequest(input *ListRetirableGrantsInput) (req *request.Request, output *ListGrantsResponse) {
+	op := &request.Operation{
+		Name:       opListRetirableGrants,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListRetirableGrantsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ListGrantsResponse{}
+	req.Data = output
+	return
+}
+
+// Returns a list of all grants for which the grant's RetiringPrincipal matches
+// the one specified.
+//
+// A typical use is to list all grants that you are able to retire. To retire
+// a grant, use RetireGrant.
+func (c *KMS) ListRetirableGrants(input *ListRetirableGrantsInput) (*ListGrantsResponse, error) {
+	req, out := c.ListRetirableGrantsRequest(input)
+	err := req.Send()
+	return out, err
 }
 
 const opPutKeyPolicy = "PutKeyPolicy"
@@ -811,6 +877,48 @@ func (c *KMS) RevokeGrant(input *RevokeGrantInput) (*RevokeGrantOutput, error) {
 	return out, err
 }
 
+const opScheduleKeyDeletion = "ScheduleKeyDeletion"
+
+// ScheduleKeyDeletionRequest generates a request for the ScheduleKeyDeletion operation.
+func (c *KMS) ScheduleKeyDeletionRequest(input *ScheduleKeyDeletionInput) (req *request.Request, output *ScheduleKeyDeletionOutput) {
+	op := &request.Operation{
+		Name:       opScheduleKeyDeletion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ScheduleKeyDeletionInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ScheduleKeyDeletionOutput{}
+	req.Data = output
+	return
+}
+
+// Schedules the deletion of a customer master key (CMK). You may provide a
+// waiting period, specified in days, before deletion occurs. If you do not
+// provide a waiting period, the default period of 30 days is used. When this
+// operation is successful, the state of the CMK changes to PendingDeletion.
+// Before the waiting period ends, you can use CancelKeyDeletion to cancel the
+// deletion of the CMK. After the waiting period ends, AWS KMS deletes the CMK
+// and all AWS KMS data associated with it, including all aliases that point
+// to it.
+//
+//  Deleting a CMK is a destructive and potentially dangerous operation. When
+// a CMK is deleted, all data that was encrypted under the CMK is rendered unrecoverable.
+// To restrict the use of a CMK without deleting it, use DisableKey.
+//
+//  For more information about scheduling a CMK for deletion, go to Deleting
+// Customer Master Keys (http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html)
+// in the AWS Key Management Service Developer Guide.
+func (c *KMS) ScheduleKeyDeletion(input *ScheduleKeyDeletionInput) (*ScheduleKeyDeletionOutput, error) {
+	req, out := c.ScheduleKeyDeletionRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opUpdateAlias = "UpdateAlias"
 
 // UpdateAliasRequest generates a request for the UpdateAlias operation.
@@ -831,19 +939,19 @@ func (c *KMS) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Request,
 	return
 }
 
-// Updates an alias to associate it with a different key.
+// Updates an alias to map it to a different key.
+//
+// An alias is not a property of a key. Therefore, an alias can be mapped to
+// and unmapped from an existing key without changing the properties of the
+// key.
 //
 // An alias name can contain only alphanumeric characters, forward slashes
 // (/), underscores (_), and dashes (-). An alias must start with the word "alias"
 // followed by a forward slash (alias/). An alias that begins with "aws" after
 // the forward slash (alias/aws...) is reserved by Amazon Web Services (AWS).
 //
-// An alias is not a property of a key. Therefore, an alias can be associated
-// with and disassociated from an existing key without changing the properties
-// of the key.
-//
-// Note that you cannot create or update an alias that represents a key in
-// another account.
+// The alias and the key it is mapped to must be in the same AWS account and
+// the same region.
 func (c *KMS) UpdateAlias(input *UpdateAliasInput) (*UpdateAliasOutput, error) {
 	req, out := c.UpdateAliasRequest(input)
 	err := req.Send()
@@ -905,6 +1013,57 @@ func (s AliasListEntry) GoString() string {
 	return s.String()
 }
 
+type CancelKeyDeletionInput struct {
+	// The unique identifier for the customer master key (CMK) for which to cancel
+	// deletion.
+	//
+	// To specify this value, use the unique key ID or the Amazon Resource Name
+	// (ARN) of the CMK. Examples:  Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	// Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//
+	// To obtain the unique key ID and key ARN for a given CMK, use ListKeys or
+	// DescribeKey.
+	KeyId *string `min:"1" type:"string" required:"true"`
+
+	metadataCancelKeyDeletionInput `json:"-" xml:"-"`
+}
+
+type metadataCancelKeyDeletionInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelKeyDeletionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelKeyDeletionInput) GoString() string {
+	return s.String()
+}
+
+type CancelKeyDeletionOutput struct {
+	// The unique identifier of the master key for which deletion is canceled.
+	KeyId *string `min:"1" type:"string"`
+
+	metadataCancelKeyDeletionOutput `json:"-" xml:"-"`
+}
+
+type metadataCancelKeyDeletionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelKeyDeletionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelKeyDeletionOutput) GoString() string {
+	return s.String()
+}
+
 type CreateAliasInput struct {
 	// String that contains the display name. The name must start with the word
 	// "alias" followed by a forward slash (alias/). Aliases that begin with "alias/AWS"
@@ -953,30 +1112,67 @@ func (s CreateAliasOutput) GoString() string {
 }
 
 type CreateGrantInput struct {
-	// Specifies the conditions under which the actions specified by the Operations
-	// parameter are allowed.
+	// The conditions under which the operations permitted by the grant are allowed.
+	//
+	// You can use this value to allow the operations permitted by the grant only
+	// when a specified encryption context is present. For more information, see
+	// Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html)
+	// in the AWS Key Management Service Developer Guide.
 	Constraints *GrantConstraints `type:"structure"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
-	// Principal given permission by the grant to use the key identified by the
-	// keyId parameter.
+	// The principal that is given permission to perform the operations that the
+	// grant permits.
+	//
+	// To specify the principal, use the Amazon Resource Name (ARN) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of an AWS principal. Valid AWS principals include AWS accounts (root), IAM
+	// users, federated users, and assumed role users. For examples of the ARN syntax
+	// to use for specifying a principal, see AWS Identity and Access Management
+	// (IAM) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
+	// in the Example ARNs section of the AWS General Reference.
 	GranteePrincipal *string `min:"1" type:"string" required:"true"`
 
-	// A unique identifier for the customer master key. This value can be a globally
-	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
-	// arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
-	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	// The unique identifier for the customer master key (CMK) that the grant applies
+	// to.
+	//
+	// To specify this value, use the globally unique key ID or the Amazon Resource
+	// Name (ARN) of the key. Examples:  Globally unique key ID: 12345678-1234-1234-1234-123456789012
+	// Key ARN: arn:aws:kms:us-west-2:123456789012:key/12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	// List of operations permitted by the grant. This can be any combination of
-	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
-	// ReEncryptFrom ReEncryptTo CreateGrant RetireGrant
+	// A friendly name for identifying the grant. Use this value to prevent unintended
+	// creation of duplicate grants when retrying this request.
+	//
+	// When this value is absent, all CreateGrant requests result in a new grant
+	// with a unique GrantId even if all the supplied parameters are identical.
+	// This can result in unintended duplicates when you retry the CreateGrant request.
+	//
+	// When this value is present, you can retry a CreateGrant request with identical
+	// parameters; if the grant already exists, the original GrantId is returned
+	// without creating a new grant. Note that the returned grant token is unique
+	// with every CreateGrant request, even when a duplicate GrantId is returned.
+	// All grant tokens obtained in this way can be used interchangeably.
+	Name *string `min:"1" type:"string"`
+
+	// A list of operations that the grant permits. The list can contain any combination
+	// of one or more of the following values:  Decrypt Encrypt GenerateDataKey
+	// GenerateDataKeyWithoutPlaintext ReEncryptFrom ReEncryptTo CreateGrant RetireGrant
 	Operations []*string `type:"list"`
 
-	// Principal given permission to retire the grant. For more information, see
-	// RetireGrant.
+	// The principal that is given permission to retire the grant by using RetireGrant
+	// operation.
+	//
+	// To specify the principal, use the Amazon Resource Name (ARN) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of an AWS principal. Valid AWS principals include AWS accounts (root), IAM
+	// users, federated users, and assumed role users. For examples of the ARN syntax
+	// to use for specifying a principal, see AWS Identity and Access Management
+	// (IAM) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
+	// in the Example ARNs section of the AWS General Reference.
 	RetiringPrincipal *string `min:"1" type:"string"`
 
 	metadataCreateGrantInput `json:"-" xml:"-"`
@@ -997,10 +1193,15 @@ func (s CreateGrantInput) GoString() string {
 }
 
 type CreateGrantOutput struct {
-	// Unique grant identifier. You can use the GrantId value to revoke a grant.
+	// The unique identifier for the grant.
+	//
+	// You can use the GrantId in a subsequent RetireGrant or RevokeGrant operation.
 	GrantId *string `min:"1" type:"string"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// The grant token.
+	//
+	// For more information about using grant tokens, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantToken *string `min:"1" type:"string"`
 
 	metadataCreateGrantOutput `json:"-" xml:"-"`
@@ -1029,8 +1230,8 @@ type CreateKeyInput struct {
 	// and only symmetric encryption and decryption are supported.
 	KeyUsage *string `type:"string" enum:"KeyUsageType"`
 
-	// Policy to be attached to the key. This is required and delegates back to
-	// the account. The key is the root of trust.
+	// Policy to attach to the key. This is required and delegates back to the account.
+	// The key is the root of trust. The policy size limit is 32 KiB (32768 bytes).
 	Policy *string `min:"1" type:"string"`
 
 	metadataCreateKeyInput `json:"-" xml:"-"`
@@ -1080,7 +1281,10 @@ type DecryptInput struct {
 	// see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
 	EncryptionContext map[string]*string `type:"map"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
 	metadataDecryptInput `json:"-" xml:"-"`
@@ -1167,6 +1371,12 @@ func (s DeleteAliasOutput) GoString() string {
 }
 
 type DescribeKeyInput struct {
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
+	GrantTokens []*string `type:"list"`
+
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier, a fully specified ARN to either an alias or a key, or
 	// an alias name prefixed by "alias/".  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
@@ -1388,7 +1598,10 @@ type EncryptInput struct {
 	// (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html).
 	EncryptionContext map[string]*string `type:"map"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
 	// A unique identifier for the customer master key. This value can be a globally
@@ -1450,7 +1663,10 @@ type GenerateDataKeyInput struct {
 	// by AWS CloudTrail to provide context around the data encrypted by the key.
 	EncryptionContext map[string]*string `type:"map"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
 	// A unique identifier for the customer master key. This value can be a globally
@@ -1528,7 +1744,10 @@ type GenerateDataKeyWithoutPlaintextInput struct {
 	// the encryption and decryption processes.
 	EncryptionContext map[string]*string `type:"map"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
 	// A unique identifier for the customer master key. This value can be a globally
@@ -1731,13 +1950,26 @@ func (s GetKeyRotationStatusOutput) GoString() string {
 	return s.String()
 }
 
-// Contains constraints on the grant.
+// A structure for specifying the conditions under which the operations permitted
+// by the grant are allowed.
+//
+// You can use this structure to allow the operations permitted by the grant
+// only when a specified encryption context is present. For more information
+// about encryption context, see Encryption Context (http://docs.aws.amazon.com/kms/latest/developerguide/encrypt-context.html)
+// in the AWS Key Management Service Developer Guide.
 type GrantConstraints struct {
-	// The constraint contains additional key/value pairs that serve to further
-	// limit the grant.
+	// Contains a list of key-value pairs that must be present in the encryption
+	// context of a subsequent operation permitted by the grant. When a subsequent
+	// operation permitted by the grant includes an encryption context that matches
+	// this list, the grant allows the operation. Otherwise, the operation is not
+	// allowed.
 	EncryptionContextEquals map[string]*string `type:"map"`
 
-	// The constraint equals the full encryption context.
+	// Contains a list of key-value pairs, a subset of which must be present in
+	// the encryption context of a subsequent operation permitted by the grant.
+	// When a subsequent operation permitted by the grant includes an encryption
+	// context that matches this list or is a subset of this list, the grant allows
+	// the operation. Otherwise, the operation is not allowed.
 	EncryptionContextSubset map[string]*string `type:"map"`
 
 	metadataGrantConstraints `json:"-" xml:"-"`
@@ -1757,27 +1989,35 @@ func (s GrantConstraints) GoString() string {
 	return s.String()
 }
 
-// Contains information about each entry in the grant list.
+// Contains information about an entry in a list of grants.
 type GrantListEntry struct {
-	// Specifies the conditions under which the actions specified by the Operations
-	// parameter are allowed.
+	// The conditions under which the grant's operations are allowed.
 	Constraints *GrantConstraints `type:"structure"`
 
-	// Unique grant identifier.
+	// The date and time when the grant was created.
+	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The unique identifier for the grant.
 	GrantId *string `min:"1" type:"string"`
 
-	// The principal that receives the grant permission.
+	// The principal that receives the grant's permissions.
 	GranteePrincipal *string `min:"1" type:"string"`
 
-	// The account under which the grant was issued.
+	// The AWS account under which the grant was issued.
 	IssuingAccount *string `min:"1" type:"string"`
 
-	// List of operations permitted by the grant. This can be any combination of
-	// one or more of the following values:  Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext
-	// ReEncryptFrom ReEncryptTo CreateGrant
+	// The unique identifier for the customer master key (CMK) to which the grant
+	// applies.
+	KeyId *string `min:"1" type:"string"`
+
+	// The friendly name that identifies the grant. If a name was provided in the
+	// CreateGrant request, that name is returned. Otherwise this value is null.
+	Name *string `min:"1" type:"string"`
+
+	// The list of operations permitted by the grant.
 	Operations []*string `type:"list"`
 
-	// The principal that can retire the account.
+	// The principal that can retire the grant.
 	RetiringPrincipal *string `min:"1" type:"string"`
 
 	metadataGrantListEntry `json:"-" xml:"-"`
@@ -1822,27 +2062,47 @@ func (s KeyListEntry) GoString() string {
 	return s.String()
 }
 
-// Contains metadata associated with a specific key.
+// Contains metadata about a customer master key (CMK).
+//
+// This data type is used as a response element for the CreateKey and DescribeKey
+// operations.
 type KeyMetadata struct {
-	// Account ID number.
+	// The twelve-digit account ID of the AWS account that owns the key.
 	AWSAccountId *string `type:"string"`
 
-	// Key ARN (Amazon Resource Name).
+	// The Amazon Resource Name (ARN) of the key. For examples, see AWS Key Management
+	// Service (AWS KMS) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms)
+	// in the Example ARNs section of the AWS General Reference.
 	Arn *string `min:"20" type:"string"`
 
-	// Date the key was created.
+	// The date and time when the key was created.
 	CreationDate *time.Time `type:"timestamp" timestampFormat:"unix"`
 
-	// The description of the key.
+	// The date and time after which AWS KMS deletes the customer master key (CMK).
+	// This value is present only when KeyState is PendingDeletion, otherwise this
+	// value is null.
+	DeletionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The friendly description of the key.
 	Description *string `type:"string"`
 
-	// Value that specifies whether the key is enabled.
+	// Specifies whether the key is enabled. When KeyState is Enabled this value
+	// is true, otherwise it is false.
 	Enabled *bool `type:"boolean"`
 
-	// Unique identifier for the key.
+	// The globally unique identifier for the key.
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	// A value that specifies what operation(s) the key can perform.
+	// The state of the customer master key (CMK).
+	//
+	// For more information about how key state affects the use of a CMK, go to
+	// How Key State Affects the Use of a Customer Master Key (http://docs.aws.amazon.com/kms/latest/developerguide/key-state.html)
+	// in the AWS Key Management Service Developer Guide.
+	KeyState *string `type:"string" enum:"KeyState"`
+
+	// The cryptographic operations for which you can use the key. Currently the
+	// only allowed value is ENCRYPT_DECRYPT, which means you can use the key for
+	// the Encrypt and Decrypt operations.
 	KeyUsage *string `type:"string" enum:"KeyUsageType"`
 
 	metadataKeyMetadata `json:"-" xml:"-"`
@@ -1863,14 +2123,17 @@ func (s KeyMetadata) GoString() string {
 }
 
 type ListAliasesInput struct {
-	// Specify this parameter when paginating results to indicate the maximum number
-	// of aliases you want in each response. If there are additional aliases beyond
-	// the maximum you specify, the Truncated response element will be set to true.
+	// When paginating results, specify the maximum number of items to return in
+	// the response. If additional items exist beyond the number you specify, the
+	// Truncated element in the response is set to true.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 100, inclusive. If you do not include a value, it defaults to 50.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// Use this parameter when paginating results, and only in a subsequent request
-	// after you've received a response where the results are truncated. Set it
-	// to the value of the NextMarker element in the response you just received.
+	// Use this parameter only when paginating results and only in a subsequent
+	// request after you've received a response with truncated results. Set it to
+	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
 	metadataListAliasesInput `json:"-" xml:"-"`
@@ -1894,13 +2157,13 @@ type ListAliasesOutput struct {
 	// A list of key aliases in the user's account.
 	Aliases []*AliasListEntry `type:"list"`
 
-	// If Truncated is true, this value is present and contains the value to use
-	// for the Marker request parameter in a subsequent pagination request.
+	// When Truncated is true, this value is present and contains the value to use
+	// for the Marker parameter in a subsequent pagination request.
 	NextMarker *string `min:"1" type:"string"`
 
 	// A flag that indicates whether there are more items in the list. If your results
-	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more aliases in the list.
+	// were truncated, you can use the Marker parameter to make a subsequent pagination
+	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
 	metadataListAliasesOutput `json:"-" xml:"-"`
@@ -1927,15 +2190,17 @@ type ListGrantsInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	// Specify this parameter only when paginating results to indicate the maximum
-	// number of grants you want listed in the response. If there are additional
-	// grants beyond the maximum you specify, the Truncated response element will
-	// be set to true.
+	// When paginating results, specify the maximum number of items to return in
+	// the response. If additional items exist beyond the number you specify, the
+	// Truncated element in the response is set to true.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 100, inclusive. If you do not include a value, it defaults to 50.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the NextMarker in the response you just received.
+	// Use this parameter only when paginating results and only in a subsequent
+	// request after you've received a response with truncated results. Set it to
+	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
 	metadataListGrantsInput `json:"-" xml:"-"`
@@ -1955,33 +2220,33 @@ func (s ListGrantsInput) GoString() string {
 	return s.String()
 }
 
-type ListGrantsOutput struct {
+type ListGrantsResponse struct {
 	// A list of grants.
 	Grants []*GrantListEntry `type:"list"`
 
-	// If Truncated is true, this value is present and contains the value to use
-	// for the Marker request parameter in a subsequent pagination request.
+	// When Truncated is true, this value is present and contains the value to use
+	// for the Marker parameter in a subsequent pagination request.
 	NextMarker *string `min:"1" type:"string"`
 
 	// A flag that indicates whether there are more items in the list. If your results
-	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more grants in the list.
+	// were truncated, you can use the Marker parameter to make a subsequent pagination
+	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
-	metadataListGrantsOutput `json:"-" xml:"-"`
+	metadataListGrantsResponse `json:"-" xml:"-"`
 }
 
-type metadataListGrantsOutput struct {
+type metadataListGrantsResponse struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
 // String returns the string representation
-func (s ListGrantsOutput) String() string {
+func (s ListGrantsResponse) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s ListGrantsOutput) GoString() string {
+func (s ListGrantsResponse) GoString() string {
 	return s.String()
 }
 
@@ -1994,15 +2259,19 @@ type ListKeyPoliciesInput struct {
 	// Name Example - alias/MyAliasName
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	// Specify this parameter only when paginating results to indicate the maximum
-	// number of policies you want listed in the response. If there are additional
-	// policies beyond the maximum you specify, the Truncated response element will
-	// be set to true.
+	// When paginating results, specify the maximum number of items to return in
+	// the response. If additional items exist beyond the number you specify, the
+	// Truncated element in the response is set to true.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 1000, inclusive. If you do not include a value, it defaults to 100.
+	//
+	// Currently only 1 policy can be attached to a key.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the NextMarker in the response you just received.
+	// Use this parameter only when paginating results and only in a subsequent
+	// request after you've received a response with truncated results. Set it to
+	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
 	metadataListKeyPoliciesInput `json:"-" xml:"-"`
@@ -2023,8 +2292,8 @@ func (s ListKeyPoliciesInput) GoString() string {
 }
 
 type ListKeyPoliciesOutput struct {
-	// If Truncated is true, this value is present and contains the value to use
-	// for the Marker request parameter in a subsequent pagination request.
+	// When Truncated is true, this value is present and contains the value to use
+	// for the Marker parameter in a subsequent pagination request.
 	NextMarker *string `min:"1" type:"string"`
 
 	// A list of policy names. Currently, there is only one policy and it is named
@@ -2032,8 +2301,8 @@ type ListKeyPoliciesOutput struct {
 	PolicyNames []*string `type:"list"`
 
 	// A flag that indicates whether there are more items in the list. If your results
-	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more policies in the list.
+	// were truncated, you can use the Marker parameter to make a subsequent pagination
+	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
 	metadataListKeyPoliciesOutput `json:"-" xml:"-"`
@@ -2054,15 +2323,17 @@ func (s ListKeyPoliciesOutput) GoString() string {
 }
 
 type ListKeysInput struct {
-	// Specify this parameter only when paginating results to indicate the maximum
-	// number of keys you want listed in the response. If there are additional keys
-	// beyond the maximum you specify, the Truncated response element will be set
-	// to true.
+	// When paginating results, specify the maximum number of items to return in
+	// the response. If additional items exist beyond the number you specify, the
+	// Truncated element in the response is set to true.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 1000, inclusive. If you do not include a value, it defaults to 100.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// Use this parameter only when paginating results, and only in a subsequent
-	// request after you've received a response where the results are truncated.
-	// Set it to the value of the NextMarker in the response you just received.
+	// Use this parameter only when paginating results and only in a subsequent
+	// request after you've received a response with truncated results. Set it to
+	// the value of NextMarker from the response you just received.
 	Marker *string `min:"1" type:"string"`
 
 	metadataListKeysInput `json:"-" xml:"-"`
@@ -2086,13 +2357,13 @@ type ListKeysOutput struct {
 	// A list of keys.
 	Keys []*KeyListEntry `type:"list"`
 
-	// If Truncated is true, this value is present and contains the value to use
-	// for the Marker request parameter in a subsequent pagination request.
+	// When Truncated is true, this value is present and contains the value to use
+	// for the Marker parameter in a subsequent pagination request.
 	NextMarker *string `min:"1" type:"string"`
 
 	// A flag that indicates whether there are more items in the list. If your results
-	// were truncated, you can make a subsequent pagination request using the Marker
-	// request parameter to retrieve more keys in the list.
+	// were truncated, you can use the Marker parameter to make a subsequent pagination
+	// request to retrieve more items in the list.
 	Truncated *bool `type:"boolean"`
 
 	metadataListKeysOutput `json:"-" xml:"-"`
@@ -2112,6 +2383,47 @@ func (s ListKeysOutput) GoString() string {
 	return s.String()
 }
 
+type ListRetirableGrantsInput struct {
+	// When paginating results, specify the maximum number of items to return in
+	// the response. If additional items exist beyond the number you specify, the
+	// Truncated element in the response is set to true.
+	//
+	// This value is optional. If you include a value, it must be between 1 and
+	// 100, inclusive. If you do not include a value, it defaults to 50.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// Use this parameter only when paginating results and only in a subsequent
+	// request after you've received a response with truncated results. Set it to
+	// the value of NextMarker from the response you just received.
+	Marker *string `min:"1" type:"string"`
+
+	// The retiring principal for which to list grants.
+	//
+	// To specify the retiring principal, use the Amazon Resource Name (ARN) (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of an AWS principal. Valid AWS principals include AWS accounts (root), IAM
+	// users, federated users, and assumed role users. For examples of the ARN syntax
+	// for specifying a principal, go to AWS Identity and Access Management (IAM)
+	// (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam)
+	// in the Example ARNs section of the Amazon Web Services General Reference.
+	RetiringPrincipal *string `min:"1" type:"string" required:"true"`
+
+	metadataListRetirableGrantsInput `json:"-" xml:"-"`
+}
+
+type metadataListRetirableGrantsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListRetirableGrantsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRetirableGrantsInput) GoString() string {
+	return s.String()
+}
+
 type PutKeyPolicyInput struct {
 	// A unique identifier for the customer master key. This value can be a globally
 	// unique identifier or the fully specified ARN to a key.  Key ARN Example -
@@ -2119,7 +2431,9 @@ type PutKeyPolicyInput struct {
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
 	KeyId *string `min:"1" type:"string" required:"true"`
 
-	// The policy, in JSON format, to be attached to the key.
+	// The policy to attach to the key. This is required and delegates back to the
+	// account. The key is the root of trust. The policy size limit is 32 KiB (32768
+	// bytes).
 	Policy *string `min:"1" type:"string" required:"true"`
 
 	// Name of the policy to be attached. Currently, the only supported name is
@@ -2177,7 +2491,10 @@ type ReEncryptInput struct {
 	// Name Example - alias/MyAliasName
 	DestinationKeyId *string `min:"1" type:"string" required:"true"`
 
-	// For more information, see Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token).
+	// A list of grant tokens.
+	//
+	// For more information, go to Grant Tokens (http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token)
+	// in the AWS Key Management Service Developer Guide.
 	GrantTokens []*string `type:"list"`
 
 	// Encryption context used to encrypt and decrypt the data specified in the
@@ -2323,16 +2640,80 @@ func (s RevokeGrantOutput) GoString() string {
 	return s.String()
 }
 
+type ScheduleKeyDeletionInput struct {
+	// The unique identifier for the customer master key (CMK) to delete.
+	//
+	// To specify this value, use the unique key ID or the Amazon Resource Name
+	// (ARN) of the CMK. Examples:  Unique key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	// Key ARN: arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//
+	// To obtain the unique key ID and key ARN for a given CMK, use ListKeys or
+	// DescribeKey.
+	KeyId *string `min:"1" type:"string" required:"true"`
+
+	// The waiting period, specified in number of days. After the waiting period
+	// ends, AWS KMS deletes the customer master key (CMK).
+	//
+	// This value is optional. If you include a value, it must be between 7 and
+	// 30, inclusive. If you do not include a value, it defaults to 30.
+	PendingWindowInDays *int64 `min:"1" type:"integer"`
+
+	metadataScheduleKeyDeletionInput `json:"-" xml:"-"`
+}
+
+type metadataScheduleKeyDeletionInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScheduleKeyDeletionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleKeyDeletionInput) GoString() string {
+	return s.String()
+}
+
+type ScheduleKeyDeletionOutput struct {
+	// The date and time after which AWS KMS deletes the customer master key (CMK).
+	DeletionDate *time.Time `type:"timestamp" timestampFormat:"unix"`
+
+	// The unique identifier of the customer master key (CMK) for which deletion
+	// is scheduled.
+	KeyId *string `min:"1" type:"string"`
+
+	metadataScheduleKeyDeletionOutput `json:"-" xml:"-"`
+}
+
+type metadataScheduleKeyDeletionOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ScheduleKeyDeletionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleKeyDeletionOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateAliasInput struct {
-	// String that contains the name of the alias to be modifed. The name must start
-	// with the word "alias" followed by a forward slash (alias/). Aliases that
-	// begin with "alias/AWS" are reserved.
+	// String that contains the name of the alias to be modified. The name must
+	// start with the word "alias" followed by a forward slash (alias/). Aliases
+	// that begin with "alias/aws" are reserved.
 	AliasName *string `min:"1" type:"string" required:"true"`
 
-	// Unique identifier of the customer master key to be associated with the alias.
-	// This value can be a globally unique identifier or the fully specified ARN
-	// of a key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
+	// Unique identifier of the customer master key to be mapped to the alias. This
+	// value can be a globally unique identifier or the fully specified ARN of a
+	// key.  Key ARN Example - arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012
 	// Globally Unique Key ID Example - 12345678-1234-1234-1234-123456789012
+	//
+	// You can call ListAliases to verify that the alias is mapped to the correct
+	// TargetKeyId.
 	TargetKeyId *string `min:"1" type:"string" required:"true"`
 
 	metadataUpdateAliasInput `json:"-" xml:"-"`
@@ -2439,6 +2820,17 @@ const (
 	GrantOperationCreateGrant = "CreateGrant"
 	// @enum GrantOperation
 	GrantOperationRetireGrant = "RetireGrant"
+	// @enum GrantOperation
+	GrantOperationDescribeKey = "DescribeKey"
+)
+
+const (
+	// @enum KeyState
+	KeyStateEnabled = "Enabled"
+	// @enum KeyState
+	KeyStateDisabled = "Disabled"
+	// @enum KeyState
+	KeyStatePendingDeletion = "PendingDeletion"
 )
 
 const (

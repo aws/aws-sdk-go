@@ -11,6 +11,61 @@
     "protocol":"json"
   },
   "operations":{
+    "CancelKeyDeletion":{
+      "name":"CancelKeyDeletion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelKeyDeletionRequest"},
+      "output":{"shape":"CancelKeyDeletionResponse"},
+      "errors":[
+        {
+          "shape":"NotFoundException",
+          "error":{
+            "code":"NotFound",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidArnException",
+          "error":{
+            "code":"InvalidArn",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"DependencyTimeoutException",
+          "error":{
+            "code":"DependencyTimeout",
+            "httpStatusCode":503
+          },
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"KMSInternalException",
+          "error":{
+            "code":"KMSInternal",
+            "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "CreateAlias":{
       "name":"CreateAlias",
       "http":{
@@ -68,6 +123,15 @@
           "error":{
             "code":"LimitExceeded",
             "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
             "senderFault":true
           },
           "exception":true
@@ -141,6 +205,15 @@
           "error":{
             "code":"LimitExceeded",
             "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
             "senderFault":true
           },
           "exception":true
@@ -281,6 +354,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -315,6 +397,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -408,6 +499,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -460,6 +560,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -516,6 +625,15 @@
             "senderFault":true
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -568,6 +686,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -643,6 +770,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -716,6 +852,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -787,6 +932,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -863,6 +1017,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -907,6 +1070,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -959,6 +1131,15 @@
       "output":{"shape":"ListGrantsResponse"},
       "errors":[
         {
+          "shape":"NotFoundException",
+          "error":{
+            "code":"NotFound",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"DependencyTimeoutException",
           "error":{
             "code":"DependencyTimeout",
@@ -990,6 +1171,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -1038,6 +1228,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -1058,6 +1257,61 @@
           },
           "exception":true,
           "fault":true
+        },
+        {
+          "shape":"KMSInternalException",
+          "error":{
+            "code":"KMSInternal",
+            "httpStatusCode":500
+          },
+          "exception":true
+        }
+      ]
+    },
+    "ListRetirableGrants":{
+      "name":"ListRetirableGrants",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListRetirableGrantsRequest"},
+      "output":{"shape":"ListGrantsResponse"},
+      "errors":[
+        {
+          "shape":"DependencyTimeoutException",
+          "error":{
+            "code":"DependencyTimeout",
+            "httpStatusCode":503
+          },
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"InvalidMarkerException",
+          "error":{
+            "code":"InvalidMarker",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidArnException",
+          "error":{
+            "code":"InvalidArn",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "error":{
+            "code":"NotFound",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
         },
         {
           "shape":"KMSInternalException",
@@ -1147,6 +1401,15 @@
             "senderFault":true
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -1229,6 +1492,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -1244,6 +1516,15 @@
           "shape":"InvalidGrantTokenException",
           "error":{
             "code":"InvalidGrantToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidGrantIdException",
+          "error":{
+            "code":"InvalidGrantId",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -1272,6 +1553,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -1313,10 +1603,83 @@
           "exception":true
         },
         {
+          "shape":"InvalidGrantIdException",
+          "error":{
+            "code":"InvalidGrantId",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"KMSInternalException",
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "ScheduleKeyDeletion":{
+      "name":"ScheduleKeyDeletion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ScheduleKeyDeletionRequest"},
+      "output":{"shape":"ScheduleKeyDeletionResponse"},
+      "errors":[
+        {
+          "shape":"NotFoundException",
+          "error":{
+            "code":"NotFound",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidArnException",
+          "error":{
+            "code":"InvalidArn",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"DependencyTimeoutException",
+          "error":{
+            "code":"DependencyTimeout",
+            "httpStatusCode":503
+          },
+          "exception":true,
+          "fault":true
+        },
+        {
+          "shape":"KMSInternalException",
+          "error":{
+            "code":"KMSInternal",
+            "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -1353,6 +1716,15 @@
           "error":{
             "code":"KMSInternal",
             "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
           },
           "exception":true
         }
@@ -1400,6 +1772,15 @@
             "httpStatusCode":500
           },
           "exception":true
+        },
+        {
+          "shape":"KMSInvalidStateException",
+          "error":{
+            "code":"KMSInvalidStateException",
+            "httpStatusCode":409,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     }
@@ -1442,6 +1823,19 @@
       "max":2048
     },
     "BooleanType":{"type":"boolean"},
+    "CancelKeyDeletionRequest":{
+      "type":"structure",
+      "required":["KeyId"],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"}
+      }
+    },
+    "CancelKeyDeletionResponse":{
+      "type":"structure",
+      "members":{
+        "KeyId":{"shape":"KeyIdType"}
+      }
+    },
     "CiphertextType":{
       "type":"blob",
       "min":1,
@@ -1470,7 +1864,8 @@
         "RetiringPrincipal":{"shape":"PrincipalIdType"},
         "Operations":{"shape":"GrantOperationList"},
         "Constraints":{"shape":"GrantConstraints"},
-        "GrantTokens":{"shape":"GrantTokenList"}
+        "GrantTokens":{"shape":"GrantTokenList"},
+        "Name":{"shape":"GrantNameType"}
       }
     },
     "CreateGrantResponse":{
@@ -1541,7 +1936,8 @@
       "type":"structure",
       "required":["KeyId"],
       "members":{
-        "KeyId":{"shape":"KeyIdType"}
+        "KeyId":{"shape":"KeyIdType"},
+        "GrantTokens":{"shape":"GrantTokenList"}
       }
     },
     "DescribeKeyResponse":{
@@ -1721,13 +2117,22 @@
     "GrantListEntry":{
       "type":"structure",
       "members":{
+        "KeyId":{"shape":"KeyIdType"},
         "GrantId":{"shape":"GrantIdType"},
+        "Name":{"shape":"GrantNameType"},
+        "CreationDate":{"shape":"DateType"},
         "GranteePrincipal":{"shape":"PrincipalIdType"},
         "RetiringPrincipal":{"shape":"PrincipalIdType"},
         "IssuingAccount":{"shape":"PrincipalIdType"},
         "Operations":{"shape":"GrantOperationList"},
         "Constraints":{"shape":"GrantConstraints"}
       }
+    },
+    "GrantNameType":{
+      "type":"string",
+      "min":1,
+      "max":256,
+      "pattern":"^[a-zA-Z0-9:/_-]+$"
     },
     "GrantOperation":{
       "type":"string",
@@ -1739,7 +2144,8 @@
         "ReEncryptFrom",
         "ReEncryptTo",
         "CreateGrant",
-        "RetireGrant"
+        "RetireGrant",
+        "DescribeKey"
       ]
     },
     "GrantOperationList":{
@@ -1793,6 +2199,18 @@
       },
       "exception":true
     },
+    "InvalidGrantIdException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "error":{
+        "code":"InvalidGrantId",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidGrantTokenException":{
       "type":"structure",
       "members":{
@@ -1840,6 +2258,18 @@
       },
       "exception":true
     },
+    "KMSInvalidStateException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessageType"}
+      },
+      "error":{
+        "code":"KMSInvalidStateException",
+        "httpStatusCode":409,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "KeyIdType":{
       "type":"string",
       "min":1,
@@ -1866,8 +2296,18 @@
         "CreationDate":{"shape":"DateType"},
         "Enabled":{"shape":"BooleanType"},
         "Description":{"shape":"DescriptionType"},
-        "KeyUsage":{"shape":"KeyUsageType"}
+        "KeyUsage":{"shape":"KeyUsageType"},
+        "KeyState":{"shape":"KeyState"},
+        "DeletionDate":{"shape":"DateType"}
       }
+    },
+    "KeyState":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled",
+        "PendingDeletion"
+      ]
     },
     "KeyUnavailableException":{
       "type":"structure",
@@ -1921,9 +2361,9 @@
       "type":"structure",
       "required":["KeyId"],
       "members":{
-        "KeyId":{"shape":"KeyIdType"},
         "Limit":{"shape":"LimitType"},
-        "Marker":{"shape":"MarkerType"}
+        "Marker":{"shape":"MarkerType"},
+        "KeyId":{"shape":"KeyIdType"}
       }
     },
     "ListGrantsResponse":{
@@ -1966,6 +2406,15 @@
         "Truncated":{"shape":"BooleanType"}
       }
     },
+    "ListRetirableGrantsRequest":{
+      "type":"structure",
+      "required":["RetiringPrincipal"],
+      "members":{
+        "Limit":{"shape":"LimitType"},
+        "Marker":{"shape":"MarkerType"},
+        "RetiringPrincipal":{"shape":"PrincipalIdType"}
+      }
+    },
     "MalformedPolicyDocumentException":{
       "type":"structure",
       "members":{
@@ -2000,6 +2449,11 @@
       "type":"integer",
       "min":1,
       "max":1024
+    },
+    "PendingWindowInDaysType":{
+      "type":"integer",
+      "min":1,
+      "max":365
     },
     "PlaintextType":{
       "type":"blob",
@@ -2080,6 +2534,21 @@
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "GrantId":{"shape":"GrantIdType"}
+      }
+    },
+    "ScheduleKeyDeletionRequest":{
+      "type":"structure",
+      "required":["KeyId"],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "PendingWindowInDays":{"shape":"PendingWindowInDaysType"}
+      }
+    },
+    "ScheduleKeyDeletionResponse":{
+      "type":"structure",
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "DeletionDate":{"shape":"DateType"}
       }
     },
     "UnsupportedOperationException":{
