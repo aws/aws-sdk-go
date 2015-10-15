@@ -1,4 +1,4 @@
-//Package iotdataplane provides gucumber integration tests suppport.
+//Package iotdataplane provides gucumber integration tests support.
 package iotdataplane
 
 import (

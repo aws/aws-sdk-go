@@ -1,4 +1,4 @@
-//Package dynamodbstreams provides gucumber integration tests suppport.
+//Package dynamodbstreams provides gucumber integration tests support.
 package dynamodbstreams
 
 import (

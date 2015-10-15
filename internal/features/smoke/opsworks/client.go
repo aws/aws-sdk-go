@@ -1,4 +1,4 @@
-//Package opsworks provides gucumber integration tests suppport.
+//Package opsworks provides gucumber integration tests support.
 package opsworks
 
 import (

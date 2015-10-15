@@ -1,4 +1,4 @@
-//Package efs provides gucumber integration tests suppport.
+//Package efs provides gucumber integration tests support.
 package efs
 
 import (

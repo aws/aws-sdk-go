@@ -1,4 +1,4 @@
-//Package sts provides gucumber integration tests suppport.
+//Package sts provides gucumber integration tests support.
 package sts
 
 import (

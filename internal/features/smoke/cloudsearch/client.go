@@ -1,4 +1,4 @@
-//Package cloudsearch provides gucumber integration tests suppport.
+//Package cloudsearch provides gucumber integration tests support.
 package cloudsearch
 
 import (

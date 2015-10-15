@@ -1,4 +1,4 @@
-//Package elasticbeanstalk provides gucumber integration tests suppport.
+//Package elasticbeanstalk provides gucumber integration tests support.
 package elasticbeanstalk
 
 import (

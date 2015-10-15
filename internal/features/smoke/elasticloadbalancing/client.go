@@ -1,4 +1,4 @@
-//Package elasticloadbalancing provides gucumber integration tests suppport.
+//Package elasticloadbalancing provides gucumber integration tests support.
 package elasticloadbalancing
 
 import (

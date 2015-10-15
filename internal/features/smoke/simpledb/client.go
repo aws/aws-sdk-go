@@ -1,4 +1,4 @@
-//Package simpledb provides gucumber integration tests suppport.
+//Package simpledb provides gucumber integration tests support.
 package simpledb
 
 import (

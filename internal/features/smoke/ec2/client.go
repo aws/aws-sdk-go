@@ -1,4 +1,4 @@
-//Package ec2 provides gucumber integration tests suppport.
+//Package ec2 provides gucumber integration tests support.
 package ec2
 
 import (

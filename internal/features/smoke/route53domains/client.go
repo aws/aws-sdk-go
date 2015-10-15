@@ -1,4 +1,4 @@
-//Package route53domains provides gucumber integration tests suppport.
+//Package route53domains provides gucumber integration tests support.
 package route53domains
 
 import (

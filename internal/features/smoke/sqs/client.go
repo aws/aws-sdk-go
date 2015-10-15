@@ -1,4 +1,4 @@
-//Package sqs provides gucumber integration tests suppport.
+//Package sqs provides gucumber integration tests support.
 package sqs
 
 import (

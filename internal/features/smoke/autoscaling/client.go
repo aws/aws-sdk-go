@@ -1,4 +1,4 @@
-//Package autoscaling provides gucumber integration tests suppport.
+//Package autoscaling provides gucumber integration tests support.
 package autoscaling
 
 import (

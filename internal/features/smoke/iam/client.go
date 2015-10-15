@@ -1,4 +1,4 @@
-//Package iam provides gucumber integration tests suppport.
+//Package iam provides gucumber integration tests support.
 package iam
 
 import (

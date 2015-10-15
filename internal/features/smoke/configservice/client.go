@@ -1,4 +1,4 @@
-//Package configservice provides gucumber integration tests suppport.
+//Package configservice provides gucumber integration tests support.
 package configservice
 
 import (

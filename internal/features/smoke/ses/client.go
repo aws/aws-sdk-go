@@ -1,4 +1,4 @@
-//Package ses provides gucumber integration tests suppport.
+//Package ses provides gucumber integration tests support.
 package ses
 
 import (

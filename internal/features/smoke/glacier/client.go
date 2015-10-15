@@ -1,4 +1,4 @@
-//Package glacier provides gucumber integration tests suppport.
+//Package glacier provides gucumber integration tests support.
 package glacier
 
 import (

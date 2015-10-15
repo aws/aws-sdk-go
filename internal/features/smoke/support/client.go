@@ -1,4 +1,4 @@
-//Package support provides gucumber integration tests suppport.
+//Package support provides gucumber integration tests support.
 package support
 
 import (

@@ -1,4 +1,4 @@
-//Package codecommit provides gucumber integration tests suppport.
+//Package codecommit provides gucumber integration tests support.
 package codecommit
 
 import (

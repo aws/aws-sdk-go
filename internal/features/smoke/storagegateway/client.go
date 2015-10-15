@@ -1,4 +1,4 @@
-//Package storagegateway provides gucumber integration tests suppport.
+//Package storagegateway provides gucumber integration tests support.
 package storagegateway
 
 import (

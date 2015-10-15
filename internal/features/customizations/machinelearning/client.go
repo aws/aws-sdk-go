@@ -1,4 +1,4 @@
-//Package machinelearning provides gucumber integration tests suppport.
+//Package machinelearning provides gucumber integration tests support.
 package machinelearning
 
 import (

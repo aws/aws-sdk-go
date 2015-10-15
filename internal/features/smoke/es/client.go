@@ -1,4 +1,4 @@
-//Package es provides gucumber integration tests suppport.
+//Package es provides gucumber integration tests support.
 package es
 
 import (

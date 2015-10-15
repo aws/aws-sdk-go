@@ -1,4 +1,4 @@
-//Package cloudtrail provides gucumber integration tests suppport.
+//Package cloudtrail provides gucumber integration tests support.
 package cloudtrail
 
 import (

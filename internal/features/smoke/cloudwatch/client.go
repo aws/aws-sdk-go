@@ -1,4 +1,4 @@
-//Package cloudwatch provides gucumber integration tests suppport.
+//Package cloudwatch provides gucumber integration tests support.
 package cloudwatch
 
 import (

@@ -1,4 +1,4 @@
-//Package codepipeline provides gucumber integration tests suppport.
+//Package codepipeline provides gucumber integration tests support.
 package codepipeline
 
 import (

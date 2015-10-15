@@ -1,4 +1,4 @@
-//Package elastictranscoder provides gucumber integration tests suppport.
+//Package elastictranscoder provides gucumber integration tests support.
 package elastictranscoder
 
 import (

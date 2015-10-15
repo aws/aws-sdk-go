@@ -1,4 +1,4 @@
-//Package directconnect provides gucumber integration tests suppport.
+//Package directconnect provides gucumber integration tests support.
 package directconnect
 
 import (

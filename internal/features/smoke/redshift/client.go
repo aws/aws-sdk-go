@@ -1,4 +1,4 @@
-//Package redshift provides gucumber integration tests suppport.
+//Package redshift provides gucumber integration tests support.
 package redshift
 
 import (

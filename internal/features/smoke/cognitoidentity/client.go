@@ -1,4 +1,4 @@
-//Package cognitoidentity provides gucumber integration tests suppport.
+//Package cognitoidentity provides gucumber integration tests support.
 package cognitoidentity
 
 import (

@@ -1,4 +1,4 @@
-//Package datapipeline provides gucumber integration tests suppport.
+//Package datapipeline provides gucumber integration tests support.
 package datapipeline
 
 import (

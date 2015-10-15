@@ -1,4 +1,4 @@
-//Package emr provides gucumber integration tests suppport.
+//Package emr provides gucumber integration tests support.
 package emr
 
 import (

@@ -1,4 +1,4 @@
-//Package ecs provides gucumber integration tests suppport.
+//Package ecs provides gucumber integration tests support.
 package ecs
 
 import (

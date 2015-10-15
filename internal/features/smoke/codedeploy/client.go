@@ -1,4 +1,4 @@
-//Package codedeploy provides gucumber integration tests suppport.
+//Package codedeploy provides gucumber integration tests support.
 package codedeploy
 
 import (

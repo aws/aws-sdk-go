@@ -1,4 +1,4 @@
-//Package rds provides gucumber integration tests suppport.
+//Package rds provides gucumber integration tests support.
 package rds
 
 import (

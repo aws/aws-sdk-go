@@ -1,4 +1,4 @@
-//Package devicefarm provides gucumber integration tests suppport.
+//Package devicefarm provides gucumber integration tests support.
 package devicefarm
 
 import (
