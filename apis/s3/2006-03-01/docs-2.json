@@ -1605,6 +1605,7 @@
       "base": null,
       "refs": {
         "CompleteMultipartUploadOutput$VersionId": "Version of the object.",
+        "CopyObjectOutput$VersionId": "Version ID of the newly created copy.",
         "DeleteMarkerEntry$VersionId": "Version ID of an object.",
         "DeleteObjectOutput$VersionId": "Returns the version ID of the delete marker created as a result of the DELETE operation.",
         "DeleteObjectRequest$VersionId": "VersionId used to reference a specific version of the object.",
@@ -2276,6 +2277,12 @@
     "UploadPartRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "UploadPartRequestServerSideEncryption": {
+      "base": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256).",
+      "refs": {
+        "UploadPartRequest$ServerSideEncryption": null
       }
     },
     "Value": {

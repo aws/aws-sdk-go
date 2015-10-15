@@ -1548,6 +1548,7 @@ func ExampleS3_UploadPart() {
 		SSECustomerAlgorithm: aws.String("SSECustomerAlgorithm"),
 		SSECustomerKey:       aws.String("SSECustomerKey"),
 		SSECustomerKeyMD5:    aws.String("SSECustomerKeyMD5"),
+		ServerSideEncryption: aws.String("UploadPartRequestServerSideEncryption"),
 	}
 	resp, err := svc.UploadPart(params)
 
