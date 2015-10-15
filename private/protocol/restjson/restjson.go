@@ -65,9 +65,9 @@ func UnmarshalError(r *request.Request) {
 		code = jsonErr.Code
 	}
 
-	codes := strings.SplitN(code, ":", 2)
+	code = strings.SplitN(code, ":", 2)[0]
 	r.Error = awserr.NewRequestFailure(
-		awserr.New(codes[0], jsonErr.Message, nil),
+		awserr.New(code, jsonErr.Message, nil),
 		r.HTTPResponse.StatusCode,
 		r.RequestID,
 	)
