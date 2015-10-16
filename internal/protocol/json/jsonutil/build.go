@@ -8,7 +8,6 @@ import (
 	"reflect"
 	"sort"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -77,27 +76,31 @@ func buildStruct(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 		}
 	}
 
-	buf.WriteString("{")
+	buf.WriteByte('{')
 
-	t, fields := value.Type(), []*reflect.StructField{}
+	t := value.Type()
+	first := true
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
 		member := value.FieldByName(field.Name)
 		if (member.Kind() == reflect.Ptr || member.Kind() == reflect.Slice || member.Kind() == reflect.Map) && member.IsNil() {
 			continue // ignore unset fields
 		}
-		if c := field.Name[0:1]; strings.ToLower(c) == c {
+		if field.PkgPath != "" {
 			continue // ignore unexported fields
+		}
+		if field.Tag.Get("json") == "-" {
+			continue
 		}
 		if field.Tag.Get("location") != "" {
 			continue // ignore non-body elements
 		}
 
-		fields = append(fields, &field)
-	}
-
-	for i, field := range fields {
-		member := value.FieldByName(field.Name)
+		if first {
+			first = false
+		} else {
+			buf.WriteByte(',')
+		}
 
 		// figure out what this field is called
 		name := field.Name
@@ -112,9 +115,6 @@ func buildStruct(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 			return err
 		}
 
-		if i < len(fields)-1 {
-			buf.WriteString(",")
-		}
 	}
 
 	buf.WriteString("}")
@@ -138,22 +138,25 @@ func buildList(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) er
 	return nil
 }
 
+type sortedValues []reflect.Value
+
+func (sv sortedValues) Len() int           { return len(sv) }
+func (sv sortedValues) Swap(i, j int)      { sv[i], sv[j] = sv[j], sv[i] }
+func (sv sortedValues) Less(i, j int) bool { return sv[i].String() < sv[j].String() }
+
 func buildMap(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
 	buf.WriteString("{")
 
-	keys := make([]string, value.Len())
-	for i, n := range value.MapKeys() {
-		keys[i] = n.String()
-	}
-	sort.Strings(keys)
+	var sv sortedValues = value.MapKeys()
+	sort.Sort(sv)
 
-	for i, k := range keys {
-		buf.WriteString(fmt.Sprintf("%q:", k))
-		buildAny(value.MapIndex(reflect.ValueOf(k)), buf, "")
-
-		if i < len(keys)-1 {
-			buf.WriteString(",")
+	for i, k := range sv {
+		if i > 0 {
+			buf.WriteByte(',')
 		}
+
+		buf.WriteString(fmt.Sprintf("%q:", k))
+		buildAny(value.MapIndex(k), buf, "")
 	}
 
 	buf.WriteString("}")
@@ -167,7 +170,20 @@ func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 		writeString(converted, buf)
 	case []byte:
 		if !value.IsNil() {
-			buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
+			buf.WriteByte('"')
+			if len(converted) < 1024 {
+				// for small buffers, using Encode directly is much faster.
+				dst := make([]byte, base64.StdEncoding.EncodedLen(len(converted)))
+				base64.StdEncoding.Encode(dst, converted)
+				buf.Write(dst)
+			} else {
+				// for large buffers, avoid unnecessary extra temporary
+				// buffer space.
+				enc := base64.NewEncoder(base64.StdEncoding, buf)
+				enc.Write(converted)
+				enc.Close()
+			}
+			buf.WriteByte('"')
 		}
 	case bool:
 		buf.WriteString(strconv.FormatBool(converted))
