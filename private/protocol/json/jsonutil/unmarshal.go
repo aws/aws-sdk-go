@@ -108,7 +108,7 @@ func unmarshalStruct(value reflect.Value, data interface{}, tag reflect.StructTa
 			name = locName
 		}
 
-		member := value.FieldByName(field.Name)
+		member := value.FieldByIndex(field.Index)
 		err := unmarshalAny(member, mapData[name], field.Tag)
 		if err != nil {
 			return err
