@@ -47,7 +47,7 @@
     "SetDesiredCapacity": "<p>Sets the size of the specified Auto Scaling group.</p> <p>For more information about desired capacity, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/WhatIsAutoScaling.html\">What Is Auto Scaling?</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
     "SetInstanceHealth": "<p>Sets the health status of the specified instance.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html\">Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
     "SuspendProcesses": "<p>Suspends the specified Auto Scaling processes for the specified Auto Scaling group. To suspend specific processes, use the <code>ScalingProcesses</code> parameter. To suspend all processes, omit the <code>ScalingProcesses</code> parameter.</p> <p>Note that if you suspend either the <code>Launch</code> or <code>Terminate</code> process types, it can prevent other process types from functioning properly.</p> <p>To resume processes that have been suspended, use <a>ResumeProcesses</a>.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/US_SuspendResume.html\">Suspend and Resume Auto Scaling Processes</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
-    "TerminateInstanceInAutoScalingGroup": "<p>Terminates the specified instance and optionally adjusts the desired group size.</p> <p>This call simply makes a termination request. The instances is not terminated immediately.</p>",
+    "TerminateInstanceInAutoScalingGroup": "<p>Terminates the specified instance and optionally adjusts the desired group size.</p> <p>This call simply makes a termination request. The instance is not terminated immediately.</p>",
     "UpdateAutoScalingGroup": "<p>Updates the configuration for the specified Auto Scaling group.</p> <p>To update an Auto Scaling group with a launch configuration with <code>InstanceMonitoring</code> set to <code>False</code>, you must first disable the collection of group metrics. Otherwise, you will get an error. If you have previously enabled the collection of group metrics, you can disable it using <a>DisableMetricsCollection</a>.</p> <p>The new settings are registered upon the completion of this call. Any launch configuration settings take effect on any triggers after this call returns. Scaling activities that are currently in progress aren't affected.</p> <p>Note the following:</p> <ul> <li> <p>If you specify a new value for <code>MinSize</code> without specifying a value for <code>DesiredCapacity</code>, and the new <code>MinSize</code> is larger than the current size of the group, we implicitly call <a>SetDesiredCapacity</a> to set the size of the group to the new value of <code>MinSize</code>.</p> </li> <li> <p>If you specify a new value for <code>MaxSize</code> without specifying a value for <code>DesiredCapacity</code>, and the new <code>MaxSize</code> is smaller than the current size of the group, we implicitly call <a>SetDesiredCapacity</a> to set the size of the group to the new value of <code>MaxSize</code>.</p> </li> <li> <p>All other optional parameters are left unchanged if not specified.</p> </li> </ul>"
   },
   "service": "<fullname>Auto Scaling</fullname> <p>Auto Scaling is designed to automatically launch or terminate EC2 instances based on user-defined policies, schedules, and health checks. Use this service in conjunction with the Amazon CloudWatch and Elastic Load Balancing services.</p>",
@@ -128,7 +128,7 @@
       "base": null,
       "refs": {
         "CreateLaunchConfigurationType$AssociatePublicIpAddress": "<p>Used for groups that launch instances into a virtual private cloud (VPC). Specifies whether to assign a public IP address to each instance. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html\">Auto Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling Developer Guide</i>.</p> <p>If you specify a value for this parameter, be sure to specify at least one subnet using the <i>VPCZoneIdentifier</i> parameter when you create your group. </p> <p>Default: If the instance is launched into a default subnet, the default is <code>true</code>. If the instance is launched into a nondefault subnet, the default is <code>false</code>. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html\">Supported Platforms</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-        "LaunchConfiguration$AssociatePublicIpAddress": "<p>Specifies whether the instances are associated with a public IP address (<code>true</code>) or not (<code>false</code>).</p>"
+        "LaunchConfiguration$AssociatePublicIpAddress": "<p>[EC2-VPC] Indicates whether to assign a public IP address to each instance.</p>"
       }
     },
     "AttachInstancesQuery": {
@@ -245,10 +245,16 @@
         "Ebs$DeleteOnTermination": "<p>Indicates whether to delete the volume on instance termination.</p> <p>Default: <code>true</code></p>"
       }
     },
+    "BlockDeviceEbsEncrypted": {
+      "base": null,
+      "refs": {
+        "Ebs$Encrypted": "<p>Indicates whether the volume should be encrypted. Encrypted EBS volumes must be attached to instances that support Amazon EBS encryption. Volumes that are created from encrypted snapshots are automatically encrypted. There is no way to create an encrypted volume from an unencrypted snapshot or an unencrypted volume from an encrypted snapshot. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+      }
+    },
     "BlockDeviceEbsIops": {
       "base": null,
       "refs": {
-        "Ebs$Iops": "<p>For Provisioned IOPS (SSD) volumes only. The number of I/O operations per second (IOPS) to provision for the volume.</p> <p>Valid values: Range is 100 to 4000.</p> <p>Default: None</p>"
+        "Ebs$Iops": "<p>For Provisioned IOPS (SSD) volumes only. The number of I/O operations per second (IOPS) to provision for the volume.</p> <p>Default: None</p>"
       }
     },
     "BlockDeviceEbsVolumeSize": {
@@ -297,10 +303,10 @@
       "base": null,
       "refs": {
         "AutoScalingGroup$DefaultCooldown": "<p>The number of seconds after a scaling activity completes before any further scaling activities can start.</p>",
-        "CreateAutoScalingGroupType$DefaultCooldown": "<p>The amount of time, in seconds, after a scaling activity completes before another scaling activity can start.</p> <p>If this parameter is not specified, the default value is 300. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html\">Understanding Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
+        "CreateAutoScalingGroupType$DefaultCooldown": "<p>The amount of time, in seconds, after a scaling activity completes before another scaling activity can start.</p> <p>The default is 300. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html\">Understanding Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
         "PutScalingPolicyType$Cooldown": "<p>The amount of time, in seconds, after a scaling activity completes and before the next scaling activity can start. If this parameter is not specified, the default cooldown period for the group applies.</p> <p>This parameter is not supported unless the policy type is <code>SimpleScaling</code>.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html\">Understanding Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
         "ScalingPolicy$Cooldown": "<p>The amount of time, in seconds, after a scaling activity completes before any further trigger-related scaling activities can start.</p>",
-        "UpdateAutoScalingGroupType$DefaultCooldown": "<p>The amount of time, in seconds, after a scaling activity completes before another scaling activity can start. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html\">Understanding Auto Scaling Cooldowns</a>.</p>"
+        "UpdateAutoScalingGroupType$DefaultCooldown": "<p>The amount of time, in seconds, after a scaling activity completes before another scaling activity can start. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/Cooldown.html\">Understanding Auto Scaling Cooldowns</a> in the <i>Auto Scaling Developer Guide</i>.</p>"
       }
     },
     "CreateAutoScalingGroupType": {
@@ -546,7 +552,7 @@
     "GlobalTimeout": {
       "base": null,
       "refs": {
-        "LifecycleHook$GlobalTimeout": "<p>The maximum length of time an instance can remain in a <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. Currently, the maximum is set to 48 hours.</p>"
+        "LifecycleHook$GlobalTimeout": "<p>The maximum time, in seconds, that an instance can remain in a <code>Pending:Wait</code> or <code>Terminating:Wait</code> state. The default is 172800 seconds (48 hours).</p>"
       }
     },
     "HealthCheckGracePeriod": {
@@ -554,14 +560,14 @@
       "refs": {
         "AutoScalingGroup$HealthCheckGracePeriod": "<p>The amount of time that Auto Scaling waits before checking an instance's health status. The grace period begins when an instance comes into service.</p>",
         "CreateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, after an EC2 instance comes into service that Auto Scaling starts checking its health. During this time, any health check failures for the instance are ignored.</p> <p>This parameter is required if you are adding an <code>ELB</code> health check. Frequently, new instances need to warm up, briefly, before they can pass a health check. To provide ample warm-up time, set the health check grace period of the group to match the expected startup period of your application.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-add-elb-healthcheck.html\">Add an Elastic Load Balancing Health Check to Your Auto Scaling Group</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
-        "UpdateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Auto Scaling waits before checking the health status of an instance. The grace period begins when the instance passes the system status and instance status checks from Amazon EC2. For more information, see <a href=\"\"></a>. </p>"
+        "UpdateAutoScalingGroupType$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Auto Scaling waits before checking the health status of an instance. The grace period begins when the instance passes the system status and instance status checks from Amazon EC2. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html\">Health Checks</a> in the <i>Auto Scaling Developer Guide</i>. </p>"
       }
     },
     "HeartbeatTimeout": {
       "base": null,
       "refs": {
-        "LifecycleHook$HeartbeatTimeout": "<p>The amount of time that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the <code>DefaultResult</code> parameter. You can prevent the lifecycle hook from timing out by calling <a>RecordLifecycleActionHeartbeat</a>.</p>",
-        "PutLifecycleHookType$HeartbeatTimeout": "<p>Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the <code>DefaultResult</code> parameter. You can prevent the lifecycle hook from timing out by calling <a>RecordLifecycleActionHeartbeat</a>. The default value for this parameter is 3600 seconds (1 hour).</p>"
+        "LifecycleHook$HeartbeatTimeout": "<p>The maximum time, in seconds, that can elapse before the lifecycle hook times out. The default is 3600 seconds (1 hour). When the lifecycle hook times out, Auto Scaling performs the action defined in the <code>DefaultResult</code> parameter. You can prevent the lifecycle hook from timing out by calling <a>RecordLifecycleActionHeartbeat</a>.</p>",
+        "PutLifecycleHookType$HeartbeatTimeout": "<p>The amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the <code>DefaultResult</code> parameter. You can prevent the lifecycle hook from timing out by calling <a>RecordLifecycleActionHeartbeat</a>. The default is 3600 seconds (1 hour).</p>"
       }
     },
     "HonorCooldown": {
@@ -772,8 +778,8 @@
     "Metrics": {
       "base": null,
       "refs": {
-        "DisableMetricsCollectionQuery$Metrics": "<p>One or more metrics. If you omit this parameter, all metrics are disabled.</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul>",
-        "EnableMetricsCollectionQuery$Metrics": "<p>One or more metrics. If you omit this parameter, all metrics are enabled.</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul> <p>Note that the <code>GroupStandbyInstances</code> metric is not enabled by default. You must explicitly request this metric.</p>"
+        "DisableMetricsCollectionQuery$Metrics": "<p>One or more of the following metrics. If you omit this parameter, all metrics are disabled.</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul>",
+        "EnableMetricsCollectionQuery$Metrics": "<p>One or more of the following metrics. If you omit this parameter, all metrics are enabled.</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul> <p>Note that the <code>GroupStandbyInstances</code> metric is not enabled by default. You must explicitly request this metric.</p>"
       }
     },
     "MinAdjustmentMagnitude": {
@@ -1056,7 +1062,7 @@
       "refs": {
         "DetachInstancesQuery$ShouldDecrementDesiredCapacity": "<p>If <code>True</code>, the Auto Scaling group decrements the desired capacity value by the number of instances detached.</p>",
         "EnterStandbyQuery$ShouldDecrementDesiredCapacity": "<p>Specifies whether the instances moved to <code>Standby</code> mode count as part of the Auto Scaling group's desired capacity. If set, the desired capacity for the Auto Scaling group decrements by the number of instances moved to <code>Standby</code> mode.</p>",
-        "TerminateInstanceInAutoScalingGroupType$ShouldDecrementDesiredCapacity": "<p>If <code>true</code>, terminating this instance also decrements the size of the Auto Scaling group.</p>"
+        "TerminateInstanceInAutoScalingGroupType$ShouldDecrementDesiredCapacity": "<p>If <code>true</code>, terminating the instance also decrements the size of the Auto Scaling group.</p>"
       }
     },
     "ShouldRespectGracePeriod": {
@@ -1257,7 +1263,7 @@
         "AlreadyExistsFault$message": null,
         "AutoScalingGroup$AutoScalingGroupName": "<p>The name of the group.</p>",
         "AutoScalingGroup$LaunchConfigurationName": "<p>The name of the associated launch configuration.</p>",
-        "AutoScalingGroup$PlacementGroup": "<p>The name of the placement group into which you'll launch your instances, if any. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a>.</p>",
+        "AutoScalingGroup$PlacementGroup": "<p>The name of the placement group into which you'll launch your instances, if any. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "AutoScalingGroup$VPCZoneIdentifier": "<p>One or more subnet IDs, if applicable, separated by commas.</p> <p>If you specify <code>VPCZoneIdentifier</code> and <code>AvailabilityZones</code>, ensure that the Availability Zones of the subnets match the values for <code>AvailabilityZones</code>.</p>",
         "AutoScalingGroup$Status": "<p>The current state of the group when <a>DeleteAutoScalingGroup</a> is in progress.</p>",
         "AutoScalingInstanceDetails$AutoScalingGroupName": "<p>The name of the Auto Scaling group associated with the instance.</p>",
@@ -1265,7 +1271,7 @@
         "AutoScalingInstanceDetails$LaunchConfigurationName": "<p>The launch configuration associated with the instance.</p>",
         "AutoScalingNotificationTypes$member": null,
         "AvailabilityZones$member": null,
-        "BlockDeviceMapping$VirtualName": "<p>The name of the virtual device, <code>ephemeral0</code> to <code>ephemeral3</code>.</p>",
+        "BlockDeviceMapping$VirtualName": "<p>The name of the virtual device (for example, <code>ephemeral0</code>).</p>",
         "BlockDeviceMapping$DeviceName": "<p>The device name exposed to the EC2 instance (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
         "ClassicLinkVPCSecurityGroups$member": null,
         "CreateAutoScalingGroupType$AutoScalingGroupName": "<p>The name of the group. This name must be unique within the scope of your AWS account.</p>",
@@ -1275,12 +1281,12 @@
         "CreateLaunchConfigurationType$ImageId": "<p>The ID of the Amazon Machine Image (AMI) to use to launch your EC2 instances. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html\">Finding an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CreateLaunchConfigurationType$KeyName": "<p>The name of the key pair. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 Key Pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CreateLaunchConfigurationType$ClassicLinkVPCId": "<p>The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. This parameter is supported only if you are launching EC2-Classic instances. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
-        "CreateLaunchConfigurationType$InstanceType": "<p> The instance type of the EC2 instance. For information about available instance types, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes\"> Available Instance Types</a> in the <i>Amazon Elastic Cloud Compute User Guide.</i> </p>",
+        "CreateLaunchConfigurationType$InstanceType": "<p> The instance type of the EC2 instance. For information about available instance types, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes\"> Available Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide.</i> </p>",
         "CreateLaunchConfigurationType$KernelId": "<p> The ID of the kernel associated with the AMI. </p>",
         "CreateLaunchConfigurationType$RamdiskId": "<p> The ID of the RAM disk associated with the AMI. </p>",
         "Ebs$SnapshotId": "<p>The ID of the snapshot.</p>",
         "EnableMetricsCollectionQuery$Granularity": "<p>The granularity to associate with the metrics to collect. The only valid value is <code>1Minute</code>.</p>",
-        "EnabledMetric$Metric": "<p>The name of the metric.</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul>",
+        "EnabledMetric$Metric": "<p>One of the following metrics:</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul>",
         "EnabledMetric$Granularity": "<p>The granularity of the metric. The only valid value is <code>1Minute</code>.</p>",
         "Instance$AvailabilityZone": "<p>The Availability Zone in which the instance is running.</p>",
         "Instance$LaunchConfigurationName": "<p>The launch configuration associated with the instance.</p>",
@@ -1295,13 +1301,13 @@
         "LimitExceededFault$message": null,
         "LoadBalancerNames$member": null,
         "LoadBalancerState$LoadBalancerName": "<p>The name of the load balancer.</p>",
-        "LoadBalancerState$State": "<p>The state of the load balancer.</p> <ul> <li><p><code>Adding</code> - The instances in the group are being registered with the load balancer.</p></li> <li><p><code>Added</code> - All instances in the group are registered with the load balancer.</p></li> <li><p><code>InService</code> - At least one instance in the group passed an ELB health check.</p></li> <li><p><code>Removing</code> - The instances are being deregistered from the load balancer. If connection draining is enabled, Elastic Load Balancing waits for in-flight requests to complete before deregistering the instances.</p></li> </ul>",
-        "MetricCollectionType$Metric": "<p>The metric.</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul>",
+        "LoadBalancerState$State": "<p>One of the following load balancer states:</p> <ul> <li><p><code>Adding</code> - The instances in the group are being registered with the load balancer.</p></li> <li><p><code>Added</code> - All instances in the group are registered with the load balancer.</p></li> <li><p><code>InService</code> - At least one instance in the group passed an ELB health check.</p></li> <li><p><code>Removing</code> - The instances are being deregistered from the load balancer. If connection draining is enabled, Elastic Load Balancing waits for in-flight requests to complete before deregistering the instances.</p></li> </ul>",
+        "MetricCollectionType$Metric": "<p>One of the following metrics:</p> <ul> <li><p><code>GroupMinSize</code></p></li> <li><p><code>GroupMaxSize</code></p></li> <li><p><code>GroupDesiredCapacity</code></p></li> <li><p><code>GroupInServiceInstances</code></p></li> <li><p><code>GroupPendingInstances</code></p></li> <li><p><code>GroupStandbyInstances</code></p></li> <li><p><code>GroupTerminatingInstances</code></p></li> <li><p><code>GroupTotalInstances</code></p></li> </ul>",
         "MetricGranularityType$Granularity": "<p>The granularity. The only valid value is <code>1Minute</code>.</p>",
         "Metrics$member": null,
-        "NotificationConfiguration$NotificationType": "<p>The types of events for an action to start.</p> <ul> <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></p></li> <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></p></li> <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></p></li> <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code></p></li> <li><p><code>autoscaling:TEST_NOTIFICATION</code></p></li> </ul>",
+        "NotificationConfiguration$NotificationType": "<p>One of the following event notification types:</p> <ul> <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH</code></p></li> <li><p><code>autoscaling:EC2_INSTANCE_LAUNCH_ERROR</code></p></li> <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE</code></p></li> <li><p><code>autoscaling:EC2_INSTANCE_TERMINATE_ERROR</code></p></li> <li><p><code>autoscaling:TEST_NOTIFICATION</code></p></li> </ul>",
         "ProcessNames$member": null,
-        "ProcessType$ProcessName": "<p>The name of the process.</p> <ul> <li><p><code>Launch</code></p></li> <li><p><code>Terminate</code></p></li> <li><p><code>AddToLoadBalancer</code></p></li> <li><p><code>AlarmNotification</code></p></li> <li><p><code>AZRebalance</code></p></li> <li><p><code>HealthCheck</code></p></li> <li><p><code>ReplaceUnhealthy</code></p></li> <li><p><code>ScheduledActions</code></p></li> </ul>",
+        "ProcessType$ProcessName": "<p>One of the following processes:</p> <ul> <li><p><code>Launch</code></p></li> <li><p><code>Terminate</code></p></li> <li><p><code>AddToLoadBalancer</code></p></li> <li><p><code>AlarmNotification</code></p></li> <li><p><code>AZRebalance</code></p></li> <li><p><code>HealthCheck</code></p></li> <li><p><code>ReplaceUnhealthy</code></p></li> <li><p><code>ScheduledActions</code></p></li> </ul>",
         "PutScalingPolicyType$PolicyName": "<p>The name of the policy.</p>",
         "PutScalingPolicyType$AdjustmentType": "<p>The adjustment type. Valid values are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.</p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/as-scale-based-on-demand.html\">Dynamic Scaling</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
         "PutScheduledUpdateGroupActionType$ScheduledActionName": "<p>The name of this scaling action.</p>",
@@ -1317,7 +1323,7 @@
         "ScheduledUpdateGroupAction$Recurrence": "<p>The recurring schedule for the action.</p>",
         "SuspendedProcess$ProcessName": "<p>The name of the suspended process.</p>",
         "SuspendedProcess$SuspensionReason": "<p>The reason that the process was suspended.</p>",
-        "UpdateAutoScalingGroupType$PlacementGroup": "<p>The name of the placement group into which you'll launch your instances, if any. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a>.</p>",
+        "UpdateAutoScalingGroupType$PlacementGroup": "<p>The name of the placement group into which you'll launch your instances, if any. For more information, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement Groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "UpdateAutoScalingGroupType$VPCZoneIdentifier": "<p>The ID of the subnet, if you are launching into a VPC. You can specify several subnets in a comma-separated list.</p> <p>When you specify <code>VPCZoneIdentifier</code> with <code>AvailabilityZones</code>, ensure that the subnets' Availability Zones match the values you specify for <code>AvailabilityZones</code>. </p> <p>For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/autoscalingsubnets.html\">Auto Scaling and Amazon Virtual Private Cloud</a> in the <i>Auto Scaling Developer Guide</i>. </p>"
       }
     },
@@ -1327,7 +1333,7 @@
         "AutoScalingGroup$HealthCheckType": "<p>The service of interest for the health status check, which can be either <code>EC2</code> for Amazon EC2 or <code>ELB</code> for Elastic Load Balancing.</p>",
         "AutoScalingInstanceDetails$LifecycleState": "<p>The lifecycle state for the instance. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroupLifecycle.html#AutoScalingStates\">Auto Scaling Instance States</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
         "AutoScalingInstanceDetails$HealthStatus": "<p>The health status of this instance. \"Healthy\" means that the instance is healthy and should remain in service. \"Unhealthy\" means that the instance is unhealthy and Auto Scaling should terminate and replace it.</p>",
-        "CreateAutoScalingGroupType$HealthCheckType": "<p>The service to use for the health checks. The valid values are <code>EC2</code> and <code>ELB</code>.</p> <p>By default, health checks use Amazon EC2 instance status checks to determine the health of an instance. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html\">Health Checks</a>.</p>",
+        "CreateAutoScalingGroupType$HealthCheckType": "<p>The service to use for the health checks. The valid values are <code>EC2</code> and <code>ELB</code>.</p> <p>By default, health checks use Amazon EC2 instance status checks to determine the health of an instance. For more information, see <a href=\"http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/healthcheck.html\">Health Checks</a> in the <i>Auto Scaling Developer Guide</i>.</p>",
         "Instance$HealthStatus": "<p>The health status of the instance.</p>",
         "PutScalingPolicyType$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. Valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>. If the aggregation type is null, the value is treated as <code>Average</code>.</p> <p>This parameter is not supported if the policy type is <code>SimpleScaling</code>.</p>",
         "ScalingPolicy$MetricAggregationType": "<p>The aggregation type for the CloudWatch metrics. Valid values are <code>Minimum</code>, <code>Maximum</code>, and <code>Average</code>.</p>",

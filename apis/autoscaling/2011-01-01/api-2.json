@@ -1487,6 +1487,7 @@
       "min":1
     },
     "BlockDeviceEbsDeleteOnTermination":{"type":"boolean"},
+    "BlockDeviceEbsEncrypted":{"type":"boolean"},
     "BlockDeviceEbsIops":{
       "type":"integer",
       "min":100,
@@ -1830,7 +1831,8 @@
         "VolumeSize":{"shape":"BlockDeviceEbsVolumeSize"},
         "VolumeType":{"shape":"BlockDeviceEbsVolumeType"},
         "DeleteOnTermination":{"shape":"BlockDeviceEbsDeleteOnTermination"},
-        "Iops":{"shape":"BlockDeviceEbsIops"}
+        "Iops":{"shape":"BlockDeviceEbsIops"},
+        "Encrypted":{"shape":"BlockDeviceEbsEncrypted"}
       }
     },
     "EbsOptimized":{"type":"boolean"},
