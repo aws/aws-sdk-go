@@ -5052,6 +5052,16 @@
         "AWSManagedPolicy"
       ]
     },
+    "EvalDecisionDetailsType":{
+      "type":"map",
+      "key":{"shape":"EvalDecisionSourceType"},
+      "value":{"shape":"PolicyEvaluationDecisionType"}
+    },
+    "EvalDecisionSourceType":{
+      "type":"string",
+      "min":3,
+      "max":256
+    },
     "EvaluationResult":{
       "type":"structure",
       "required":[
@@ -5064,7 +5074,8 @@
         "EvalResourceName":{"shape":"ResourceNameType"},
         "EvalDecision":{"shape":"PolicyEvaluationDecisionType"},
         "MatchedStatements":{"shape":"StatementListType"},
-        "MissingContextValues":{"shape":"ContextKeyNamesResultListType"}
+        "MissingContextValues":{"shape":"ContextKeyNamesResultListType"},
+        "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"}
       }
     },
     "EvaluationResultsListType":{
@@ -6129,6 +6140,7 @@
         "role",
         "aws-managed",
         "user-managed",
+        "resource",
         "none"
       ]
     },
@@ -6437,6 +6449,9 @@
         "PolicyInputList":{"shape":"SimulationPolicyListType"},
         "ActionNames":{"shape":"ActionNameListType"},
         "ResourceArns":{"shape":"ResourceNameListType"},
+        "ResourcePolicy":{"shape":"policyDocumentType"},
+        "ResourceOwner":{"shape":"ResourceNameType"},
+        "CallerArn":{"shape":"ResourceNameType"},
         "ContextEntries":{"shape":"ContextEntryListType"},
         "MaxItems":{"shape":"maxItemsType"},
         "Marker":{"shape":"markerType"}
@@ -6461,6 +6476,9 @@
         "PolicyInputList":{"shape":"SimulationPolicyListType"},
         "ActionNames":{"shape":"ActionNameListType"},
         "ResourceArns":{"shape":"ResourceNameListType"},
+        "ResourcePolicy":{"shape":"policyDocumentType"},
+        "ResourceOwner":{"shape":"ResourceNameType"},
+        "CallerArn":{"shape":"ResourceNameType"},
         "ContextEntries":{"shape":"ContextEntryListType"},
         "MaxItems":{"shape":"maxItemsType"},
         "Marker":{"shape":"markerType"}

@@ -1981,6 +1981,7 @@ func ExampleIAM_SimulateCustomPolicy() {
 			aws.String("policyDocumentType"), // Required
 			// More values...
 		},
+		CallerArn: aws.String("ResourceNameType"),
 		ContextEntries: []*iam.ContextEntry{
 			{ // Required
 				ContextKeyName: aws.String("ContextKeyNameType"),
@@ -1998,6 +1999,8 @@ func ExampleIAM_SimulateCustomPolicy() {
 			aws.String("ResourceNameType"), // Required
 			// More values...
 		},
+		ResourceOwner:  aws.String("ResourceNameType"),
+		ResourcePolicy: aws.String("policyDocumentType"),
 	}
 	resp, err := svc.SimulateCustomPolicy(params)
 
@@ -2021,6 +2024,7 @@ func ExampleIAM_SimulatePrincipalPolicy() {
 			// More values...
 		},
 		PolicySourceArn: aws.String("arnType"), // Required
+		CallerArn:       aws.String("ResourceNameType"),
 		ContextEntries: []*iam.ContextEntry{
 			{ // Required
 				ContextKeyName: aws.String("ContextKeyNameType"),
@@ -2042,6 +2046,8 @@ func ExampleIAM_SimulatePrincipalPolicy() {
 			aws.String("ResourceNameType"), // Required
 			// More values...
 		},
+		ResourceOwner:  aws.String("ResourceNameType"),
+		ResourcePolicy: aws.String("policyDocumentType"),
 	}
 	resp, err := svc.SimulatePrincipalPolicy(params)
 
