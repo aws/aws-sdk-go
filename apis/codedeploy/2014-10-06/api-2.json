@@ -4,6 +4,7 @@
     "apiVersion":"2014-10-06",
     "endpointPrefix":"codedeploy",
     "jsonVersion":"1.1",
+    "serviceAbbreviation":"CodeDeploy",
     "serviceFullName":"AWS CodeDeploy",
     "signatureVersion":"v4",
     "targetPrefix":"CodeDeploy_20141006",
