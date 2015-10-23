@@ -110,3 +110,5 @@ type LambdaAPI interface {
 
 	UpdateFunctionConfiguration(*lambda.UpdateFunctionConfigurationInput) (*lambda.FunctionConfiguration, error)
 }
+
+var _ LambdaAPI = (*lambda.Lambda)(nil)

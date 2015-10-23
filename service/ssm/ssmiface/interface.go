@@ -74,3 +74,5 @@ type SSMAPI interface {
 
 	UpdateAssociationStatus(*ssm.UpdateAssociationStatusInput) (*ssm.UpdateAssociationStatusOutput, error)
 }
+
+var _ SSMAPI = (*ssm.SSM)(nil)

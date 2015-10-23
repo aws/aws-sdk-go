@@ -10,22 +10,21 @@ import (
 	"sync"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
-	"github.com/stretchr/testify/assert"
 )
-
-var _ = unit.Imported
 
 func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 	var m sync.Mutex
 	names := []string{}
 	ranges := []string{}
 
-	svc := s3.New(nil)
+	svc := s3.New(unit.Session)
 	svc.Handlers.Send.Clear()
 	svc.Handlers.Send.PushBack(func(r *request.Request) {
 		m.Lock()
@@ -59,8 +58,9 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 func TestDownloadOrder(t *testing.T) {
 	s, names, ranges := dlLoggingSvc(buf12MB)
 
-	opts := &s3manager.DownloadOptions{S3: s, Concurrency: 1}
-	d := s3manager.NewDownloader(opts)
+	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
+		d.Concurrency = 1
+	})
 	w := &aws.WriteAtBuffer{}
 	n, err := d.Download(w, &s3.GetObjectInput{
 		Bucket: aws.String("bucket"),
@@ -82,8 +82,7 @@ func TestDownloadOrder(t *testing.T) {
 func TestDownloadZero(t *testing.T) {
 	s, names, ranges := dlLoggingSvc([]byte{})
 
-	opts := &s3manager.DownloadOptions{S3: s}
-	d := s3manager.NewDownloader(opts)
+	d := s3manager.NewDownloaderWithClient(s)
 	w := &aws.WriteAtBuffer{}
 	n, err := d.Download(w, &s3.GetObjectInput{
 		Bucket: aws.String("bucket"),
@@ -99,8 +98,10 @@ func TestDownloadZero(t *testing.T) {
 func TestDownloadSetPartSize(t *testing.T) {
 	s, names, ranges := dlLoggingSvc([]byte{1, 2, 3})
 
-	opts := &s3manager.DownloadOptions{S3: s, PartSize: 1, Concurrency: 1}
-	d := s3manager.NewDownloader(opts)
+	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
+		d.Concurrency = 1
+		d.PartSize = 1
+	})
 	w := &aws.WriteAtBuffer{}
 	n, err := d.Download(w, &s3.GetObjectInput{
 		Bucket: aws.String("bucket"),
@@ -116,7 +117,6 @@ func TestDownloadSetPartSize(t *testing.T) {
 
 func TestDownloadError(t *testing.T) {
 	s, names, _ := dlLoggingSvc([]byte{1, 2, 3})
-	opts := &s3manager.DownloadOptions{S3: s, PartSize: 1, Concurrency: 1}
 
 	num := 0
 	s.Handlers.Send.PushBack(func(r *request.Request) {
@@ -127,7 +127,10 @@ func TestDownloadError(t *testing.T) {
 		}
 	})
 
-	d := s3manager.NewDownloader(opts)
+	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
+		d.Concurrency = 1
+		d.PartSize = 1
+	})
 	w := &aws.WriteAtBuffer{}
 	n, err := d.Download(w, &s3.GetObjectInput{
 		Bucket: aws.String("bucket"),

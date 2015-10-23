@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@sns", func() {
-		World["client"] = sns.New(nil)
+		World["client"] = sns.New(smoke.Session)
 	})
 }

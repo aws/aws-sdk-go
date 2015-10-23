@@ -166,3 +166,5 @@ type IoTAPI interface {
 
 	UpdateThing(*iot.UpdateThingInput) (*iot.UpdateThingOutput, error)
 }
+
+var _ IoTAPI = (*iot.IoT)(nil)

@@ -294,3 +294,5 @@ type APIGatewayAPI interface {
 
 	UpdateStage(*apigateway.UpdateStageInput) (*apigateway.Stage, error)
 }
+
+var _ APIGatewayAPI = (*apigateway.APIGateway)(nil)

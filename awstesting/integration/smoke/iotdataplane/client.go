@@ -9,18 +9,16 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@iotdataplane", func() {
-		svc := iot.New(nil)
+		svc := iot.New(smoke.Session)
 		result, err := svc.DescribeEndpoint(&iot.DescribeEndpointInput{})
 		if err != nil {
 			World["error"] = err
 			return
 		}
 
-		World["client"] = iotdataplane.New(aws.NewConfig().
+		World["client"] = iotdataplane.New(smoke.Session, aws.NewConfig().
 			WithEndpoint(*result.EndpointAddress))
 	})
 }

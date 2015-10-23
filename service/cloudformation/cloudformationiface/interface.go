@@ -90,3 +90,5 @@ type CloudFormationAPI interface {
 
 	ValidateTemplate(*cloudformation.ValidateTemplateInput) (*cloudformation.ValidateTemplateOutput, error)
 }
+
+var _ CloudFormationAPI = (*cloudformation.CloudFormation)(nil)

@@ -106,3 +106,5 @@ type CloudFrontAPI interface {
 
 	UpdateStreamingDistribution(*cloudfront.UpdateStreamingDistributionInput) (*cloudfront.UpdateStreamingDistributionOutput, error)
 }
+
+var _ CloudFrontAPI = (*cloudfront.CloudFront)(nil)

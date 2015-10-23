@@ -70,3 +70,5 @@ type DynamoDBAPI interface {
 
 	UpdateTable(*dynamodb.UpdateTableInput) (*dynamodb.UpdateTableOutput, error)
 }
+
+var _ DynamoDBAPI = (*dynamodb.DynamoDB)(nil)

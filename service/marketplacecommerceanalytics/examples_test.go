@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/marketplacecommerceanalytics"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleMarketplaceCommerceAnalytics_GenerateDataSet() {
-	svc := marketplacecommerceanalytics.New(nil)
+	svc := marketplacecommerceanalytics.New(session.New())
 
 	params := &marketplacecommerceanalytics.GenerateDataSetInput{
 		DataSetPublicationDate:  aws.Time(time.Now()),                  // Required

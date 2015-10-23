@@ -267,7 +267,7 @@ func (s *Shape) Docstring() string {
 	return s.Documentation
 }
 
-const goCodeStringerTmpl = `
+var goCodeStringerTmpl = template.Must(template.New("goCodeStringerTmpl").Parse(`
 // String returns the string representation
 func (s {{ .ShapeName }}) String() string {
 	return awsutil.Prettify(s)
@@ -276,12 +276,11 @@ func (s {{ .ShapeName }}) String() string {
 func (s {{ .ShapeName }}) GoString() string {
 	return s.String()
 }
-`
+`))
 
 func (s *Shape) goCodeStringers() string {
-	tmpl := template.Must(template.New("goCodeStringerTmpl").Parse(goCodeStringerTmpl))
 	w := bytes.Buffer{}
-	if err := tmpl.Execute(&w, s); err != nil {
+	if err := goCodeStringerTmpl.Execute(&w, s); err != nil {
 		panic(fmt.Sprintln("Unexpected error executing goCodeStringers template", err))
 	}
 

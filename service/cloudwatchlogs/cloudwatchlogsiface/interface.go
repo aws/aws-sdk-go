@@ -124,3 +124,5 @@ type CloudWatchLogsAPI interface {
 
 	TestMetricFilter(*cloudwatchlogs.TestMetricFilterInput) (*cloudwatchlogs.TestMetricFilterOutput, error)
 }
+
+var _ CloudWatchLogsAPI = (*cloudwatchlogs.CloudWatchLogs)(nil)

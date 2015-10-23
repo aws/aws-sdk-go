@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleSSM_CancelCommand() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.CancelCommandInput{
 		CommandId: aws.String("CommandId"), // Required
@@ -38,7 +39,7 @@ func ExampleSSM_CancelCommand() {
 }
 
 func ExampleSSM_CreateAssociation() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.CreateAssociationInput{
 		InstanceId: aws.String("InstanceId"),   // Required
@@ -65,7 +66,7 @@ func ExampleSSM_CreateAssociation() {
 }
 
 func ExampleSSM_CreateAssociationBatch() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.CreateAssociationBatchInput{
 		Entries: []*ssm.CreateAssociationBatchRequestEntry{ // Required
@@ -97,7 +98,7 @@ func ExampleSSM_CreateAssociationBatch() {
 }
 
 func ExampleSSM_CreateDocument() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.CreateDocumentInput{
 		Content: aws.String("DocumentContent"), // Required
@@ -117,7 +118,7 @@ func ExampleSSM_CreateDocument() {
 }
 
 func ExampleSSM_DeleteAssociation() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.DeleteAssociationInput{
 		InstanceId: aws.String("InstanceId"),   // Required
@@ -137,7 +138,7 @@ func ExampleSSM_DeleteAssociation() {
 }
 
 func ExampleSSM_DeleteDocument() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.DeleteDocumentInput{
 		Name: aws.String("DocumentName"), // Required
@@ -156,7 +157,7 @@ func ExampleSSM_DeleteDocument() {
 }
 
 func ExampleSSM_DescribeAssociation() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.DescribeAssociationInput{
 		InstanceId: aws.String("InstanceId"),   // Required
@@ -176,7 +177,7 @@ func ExampleSSM_DescribeAssociation() {
 }
 
 func ExampleSSM_DescribeDocument() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.DescribeDocumentInput{
 		Name: aws.String("DocumentName"), // Required
@@ -195,7 +196,7 @@ func ExampleSSM_DescribeDocument() {
 }
 
 func ExampleSSM_DescribeInstanceInformation() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.DescribeInstanceInformationInput{
 		InstanceInformationFilterList: []*ssm.InstanceInformationFilter{
@@ -225,7 +226,7 @@ func ExampleSSM_DescribeInstanceInformation() {
 }
 
 func ExampleSSM_GetDocument() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.GetDocumentInput{
 		Name: aws.String("DocumentName"), // Required
@@ -244,7 +245,7 @@ func ExampleSSM_GetDocument() {
 }
 
 func ExampleSSM_ListAssociations() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.ListAssociationsInput{
 		AssociationFilterList: []*ssm.AssociationFilter{ // Required
@@ -271,7 +272,7 @@ func ExampleSSM_ListAssociations() {
 }
 
 func ExampleSSM_ListCommandInvocations() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.ListCommandInvocationsInput{
 		CommandId: aws.String("CommandId"),
@@ -301,7 +302,7 @@ func ExampleSSM_ListCommandInvocations() {
 }
 
 func ExampleSSM_ListCommands() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.ListCommandsInput{
 		CommandId: aws.String("CommandId"),
@@ -330,7 +331,7 @@ func ExampleSSM_ListCommands() {
 }
 
 func ExampleSSM_ListDocuments() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.ListDocumentsInput{
 		DocumentFilterList: []*ssm.DocumentFilter{
@@ -357,7 +358,7 @@ func ExampleSSM_ListDocuments() {
 }
 
 func ExampleSSM_SendCommand() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.SendCommandInput{
 		DocumentName: aws.String("DocumentName"), // Required
@@ -391,7 +392,7 @@ func ExampleSSM_SendCommand() {
 }
 
 func ExampleSSM_UpdateAssociationStatus() {
-	svc := ssm.New(nil)
+	svc := ssm.New(session.New())
 
 	params := &ssm.UpdateAssociationStatusInput{
 		AssociationStatus: &ssm.AssociationStatus{ // Required

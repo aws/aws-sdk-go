@@ -32,7 +32,7 @@ services:
 	go generate ./service
 
 integration: deps
-	go test ./awstesting/integration/... -tags=integration
+	go test ./awstesting/integration/customizations/... -tags=integration
 	gucumber ./awstesting/integration/smoke
 
 lint: deps

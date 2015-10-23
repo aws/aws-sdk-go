@@ -32,16 +32,16 @@ func Build(req *request.Request) {
 		buf = emptyJSON
 	}
 
-	if req.Service.TargetPrefix != "" || string(buf) != "{}" {
+	if req.ClientInfo.TargetPrefix != "" || string(buf) != "{}" {
 		req.SetBufferBody(buf)
 	}
 
-	if req.Service.TargetPrefix != "" {
-		target := req.Service.TargetPrefix + "." + req.Operation.Name
+	if req.ClientInfo.TargetPrefix != "" {
+		target := req.ClientInfo.TargetPrefix + "." + req.Operation.Name
 		req.HTTPRequest.Header.Add("X-Amz-Target", target)
 	}
-	if req.Service.JSONVersion != "" {
-		jsonVersion := req.Service.JSONVersion
+	if req.ClientInfo.JSONVersion != "" {
+		jsonVersion := req.ClientInfo.JSONVersion
 		req.HTTPRequest.Header.Add("Content-Type", "application/x-amz-json-"+jsonVersion)
 	}
 }

@@ -53,6 +53,7 @@ var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
+var _ = aws.String
 `
 
 var reStripSpace = regexp.MustCompile(`\s(\w)`)
@@ -75,6 +76,7 @@ var extraImports = []string{
 	"net/url",
 	"",
 	"github.com/aws/aws-sdk-go/awstesting",
+	"github.com/aws/aws-sdk-go/aws/session",
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil",
 	"github.com/aws/aws-sdk-go/private/util",
 	"github.com/stretchr/testify/assert",
@@ -109,8 +111,8 @@ func (t *testSuite) TestSuite() string {
 
 var tplInputTestCase = template.Must(template.New("inputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
-	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := New{{ .TestCase.TestSuite.API.StructName }}(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := {{ .ParamsString }}
 	req, _ := svc.{{ .TestCase.Given.ExportedName }}Request(input)
@@ -182,7 +184,8 @@ func (t tplInputTestCaseData) BodyAssertions() string {
 
 var tplOutputTestCase = template.Must(template.New("outputcase").Parse(`
 func Test{{ .OpName }}(t *testing.T) {
-	svc := New{{ .TestCase.TestSuite.API.StructName }}(nil)
+	sess := session.New()
+	svc := New{{ .TestCase.TestSuite.API.StructName }}(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	buf := bytes.NewReader([]byte({{ .Body }}))
 	req, out := svc.{{ .TestCase.Given.ExportedName }}Request(nil)
@@ -284,8 +287,9 @@ func generateTestSuite(filename string) string {
 			suite.API.Operations[c.Given.ExportedName] = c.Given
 		}
 
-		suite.API.NoInitMethods = true     // don't generate init methods
-		suite.API.NoStringerMethods = true // don't generate stringer methods
+		suite.API.NoInitMethods = true       // don't generate init methods
+		suite.API.NoStringerMethods = true   // don't generate stringer methods
+		suite.API.NoConstServiceNames = true // don't generate service names
 		suite.API.Setup()
 		suite.API.Metadata.EndpointPrefix = suite.API.PackageName()
 
@@ -308,6 +312,8 @@ func generateTestSuite(filename string) string {
 		}
 		svcCode = removeImports(svcCode)
 		svcCode = strings.Replace(svcCode, "func New(", "func New"+suite.API.StructName()+"(", -1)
+		svcCode = strings.Replace(svcCode, "func newClient(", "func new"+suite.API.StructName()+"Client(", -1)
+		svcCode = strings.Replace(svcCode, "return newClient(", "return new"+suite.API.StructName()+"Client(", -1)
 		buf.WriteString(svcCode + "\n\n")
 
 		apiCode := removeImports(suite.API.APIGoCode())

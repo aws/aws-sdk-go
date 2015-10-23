@@ -74,3 +74,5 @@ type KinesisAPI interface {
 
 	SplitShard(*kinesis.SplitShardInput) (*kinesis.SplitShardOutput, error)
 }
+
+var _ KinesisAPI = (*kinesis.Kinesis)(nil)

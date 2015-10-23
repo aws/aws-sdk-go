@@ -78,3 +78,5 @@ type DirectoryServiceAPI interface {
 
 	UpdateRadius(*directoryservice.UpdateRadiusInput) (*directoryservice.UpdateRadiusOutput, error)
 }
+
+var _ DirectoryServiceAPI = (*directoryservice.DirectoryService)(nil)

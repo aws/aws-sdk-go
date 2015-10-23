@@ -4,10 +4,9 @@ package ssm
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
-	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
@@ -78,42 +77,66 @@ import (
 // to "AWS-*" documents, especially the AWS-RunPowerShellScript document, to
 // trusted administrators only. You can create low-level SSM documents for low
 // security tasks and delegate access to non-administrators.
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type SSM struct {
-	*service.Service
+	*client.Client
 }
 
-// Used for custom service initialization logic
-var initService func(*service.Service)
+// Used for custom client initialization logic
+var initClient func(*client.Client)
 
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// New returns a new SSM client.
-func New(config *aws.Config) *SSM {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:       defaults.DefaultConfig.Merge(config),
-			ServiceName:  "ssm",
-			APIVersion:   "2014-11-06",
-			JSONVersion:  "1.1",
-			TargetPrefix: "AmazonSSM",
-		},
+// A ServiceName is the name of the service the client will make API calls to.
+const ServiceName = "ssm"
+
+// New creates a new instance of the SSM client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a SSM client from just a session.
+//     svc := ssm.New(mySession)
+//
+//     // Create a SSM client with additional configuration
+//     svc := ssm.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func New(p client.ConfigProvider, cfgs ...*aws.Config) *SSM {
+	c := p.ClientConfig(ServiceName, cfgs...)
+	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *SSM {
+	svc := &SSM{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   ServiceName,
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-11-06",
+				JSONVersion:   "1.1",
+				TargetPrefix:  "AmazonSSM",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(jsonrpc.Build)
-	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(jsonrpc.Build)
+	svc.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
-	// Run custom service initialization if present
-	if initService != nil {
-		initService(service)
+	// Run custom client initialization if present
+	if initClient != nil {
+		initClient(svc.Client)
 	}
 
-	return &SSM{service}
+	return svc
 }
 
 // newRequest creates a new request for a SSM operation and runs any

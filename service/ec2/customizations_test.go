@@ -11,10 +11,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var _ = unit.Imported
-
 func TestCopySnapshotPresignedURL(t *testing.T) {
-	svc := ec2.New(&aws.Config{Region: aws.String("us-west-2")})
+	svc := ec2.New(unit.Session, &aws.Config{Region: aws.String("us-west-2")})
 
 	assert.NotPanics(t, func() {
 		// Doesn't panic on nil input
@@ -32,5 +30,6 @@ func TestCopySnapshotPresignedURL(t *testing.T) {
 	q, _ := url.ParseQuery(string(b))
 	url, _ := url.QueryUnescape(q.Get("PresignedUrl"))
 	assert.Equal(t, "us-west-2", q.Get("DestinationRegion"))
-	assert.Regexp(t, `^https://ec2\.us-west-1\.amazon.+&DestinationRegion=us-west-2`, url)
+	assert.Equal(t, "us-west-1", q.Get("SourceRegion"))
+	assert.Regexp(t, `^https://ec2\.us-west-1\.amazonaws\.com/.+&DestinationRegion=us-west-2`, url)
 }

@@ -102,3 +102,5 @@ type CodePipelineAPI interface {
 
 	UpdatePipeline(*codepipeline.UpdatePipelineInput) (*codepipeline.UpdatePipelineOutput, error)
 }
+
+var _ CodePipelineAPI = (*codepipeline.CodePipeline)(nil)

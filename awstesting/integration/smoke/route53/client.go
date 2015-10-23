@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@route53", func() {
-		World["client"] = route53.New(nil)
+		World["client"] = route53.New(smoke.Session)
 	})
 }

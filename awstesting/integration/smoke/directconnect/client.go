@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@directconnect", func() {
-		World["client"] = directconnect.New(nil)
+		World["client"] = directconnect.New(smoke.Session)
 	})
 }

@@ -134,3 +134,5 @@ type KMSAPI interface {
 
 	UpdateKeyDescription(*kms.UpdateKeyDescriptionInput) (*kms.UpdateKeyDescriptionOutput, error)
 }
+
+var _ KMSAPI = (*kms.KMS)(nil)

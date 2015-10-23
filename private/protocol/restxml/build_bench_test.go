@@ -8,8 +8,8 @@ import (
 	"bytes"
 	"encoding/xml"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awstesting"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 	"github.com/aws/aws-sdk-go/service/cloudfront"
 )
@@ -55,7 +55,7 @@ func BenchmarkEncodingXMLMarshal_Simple_cloudfrontDeleteStreamingDistribution(b 
 }
 
 func benchRESTXMLBuild(b *testing.B, op *request.Operation, params interface{}) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 	svc.ServiceName = "cloudfront"
 	svc.APIVersion = "2015-04-17"
 

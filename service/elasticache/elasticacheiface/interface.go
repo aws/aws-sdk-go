@@ -182,3 +182,5 @@ type ElastiCacheAPI interface {
 
 	RevokeCacheSecurityGroupIngress(*elasticache.RevokeCacheSecurityGroupIngressInput) (*elasticache.RevokeCacheSecurityGroupIngressOutput, error)
 }
+
+var _ ElastiCacheAPI = (*elasticache.ElastiCache)(nil)

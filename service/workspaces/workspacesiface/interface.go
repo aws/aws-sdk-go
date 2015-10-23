@@ -44,3 +44,5 @@ type WorkSpacesAPI interface {
 
 	TerminateWorkspaces(*workspaces.TerminateWorkspacesInput) (*workspaces.TerminateWorkspacesOutput, error)
 }
+
+var _ WorkSpacesAPI = (*workspaces.WorkSpaces)(nil)

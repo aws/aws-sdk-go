@@ -3,13 +3,13 @@ package route53
 import (
 	"regexp"
 
+	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
 )
 
 func init() {
-	initService = func(s *service.Service) {
-		s.Handlers.Build.PushBack(sanitizeURL)
+	initClient = func(c *client.Client) {
+		c.Handlers.Build.PushBack(sanitizeURL)
 	}
 }
 

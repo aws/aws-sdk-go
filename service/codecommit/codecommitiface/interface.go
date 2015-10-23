@@ -54,3 +54,5 @@ type CodeCommitAPI interface {
 
 	UpdateRepositoryName(*codecommit.UpdateRepositoryNameInput) (*codecommit.UpdateRepositoryNameOutput, error)
 }
+
+var _ CodeCommitAPI = (*codecommit.CodeCommit)(nil)

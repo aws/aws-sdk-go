@@ -13,8 +13,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var _ = unit.Imported
-
 func assertMD5(t *testing.T, req *request.Request) {
 	err := req.Build()
 	assert.NoError(t, err)
@@ -26,7 +24,7 @@ func assertMD5(t *testing.T, req *request.Request) {
 }
 
 func TestMD5InPutBucketCors(t *testing.T) {
-	svc := s3.New(nil)
+	svc := s3.New(unit.Session)
 	req, _ := svc.PutBucketCorsRequest(&s3.PutBucketCorsInput{
 		Bucket: aws.String("bucketname"),
 		CORSConfiguration: &s3.CORSConfiguration{
@@ -42,7 +40,7 @@ func TestMD5InPutBucketCors(t *testing.T) {
 }
 
 func TestMD5InPutBucketLifecycle(t *testing.T) {
-	svc := s3.New(nil)
+	svc := s3.New(unit.Session)
 	req, _ := svc.PutBucketLifecycleRequest(&s3.PutBucketLifecycleInput{
 		Bucket: aws.String("bucketname"),
 		LifecycleConfiguration: &s3.LifecycleConfiguration{
@@ -59,7 +57,7 @@ func TestMD5InPutBucketLifecycle(t *testing.T) {
 }
 
 func TestMD5InPutBucketPolicy(t *testing.T) {
-	svc := s3.New(nil)
+	svc := s3.New(unit.Session)
 	req, _ := svc.PutBucketPolicyRequest(&s3.PutBucketPolicyInput{
 		Bucket: aws.String("bucketname"),
 		Policy: aws.String("{}"),
@@ -68,7 +66,7 @@ func TestMD5InPutBucketPolicy(t *testing.T) {
 }
 
 func TestMD5InPutBucketTagging(t *testing.T) {
-	svc := s3.New(nil)
+	svc := s3.New(unit.Session)
 	req, _ := svc.PutBucketTaggingRequest(&s3.PutBucketTaggingInput{
 		Bucket: aws.String("bucketname"),
 		Tagging: &s3.Tagging{
@@ -81,7 +79,7 @@ func TestMD5InPutBucketTagging(t *testing.T) {
 }
 
 func TestMD5InDeleteObjects(t *testing.T) {
-	svc := s3.New(nil)
+	svc := s3.New(unit.Session)
 	req, _ := svc.DeleteObjectsRequest(&s3.DeleteObjectsInput{
 		Bucket: aws.String("bucketname"),
 		Delete: &s3.Delete{

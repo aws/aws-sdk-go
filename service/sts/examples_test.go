@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleSTS_AssumeRole() {
-	svc := sts.New(nil)
+	svc := sts.New(session.New())
 
 	params := &sts.AssumeRoleInput{
 		RoleArn:         aws.String("arnType"),      // Required
@@ -40,7 +41,7 @@ func ExampleSTS_AssumeRole() {
 }
 
 func ExampleSTS_AssumeRoleWithSAML() {
-	svc := sts.New(nil)
+	svc := sts.New(session.New())
 
 	params := &sts.AssumeRoleWithSAMLInput{
 		PrincipalArn:    aws.String("arnType"),           // Required
@@ -63,7 +64,7 @@ func ExampleSTS_AssumeRoleWithSAML() {
 }
 
 func ExampleSTS_AssumeRoleWithWebIdentity() {
-	svc := sts.New(nil)
+	svc := sts.New(session.New())
 
 	params := &sts.AssumeRoleWithWebIdentityInput{
 		RoleArn:          aws.String("arnType"),         // Required
@@ -87,7 +88,7 @@ func ExampleSTS_AssumeRoleWithWebIdentity() {
 }
 
 func ExampleSTS_DecodeAuthorizationMessage() {
-	svc := sts.New(nil)
+	svc := sts.New(session.New())
 
 	params := &sts.DecodeAuthorizationMessageInput{
 		EncodedMessage: aws.String("encodedMessageType"), // Required
@@ -106,7 +107,7 @@ func ExampleSTS_DecodeAuthorizationMessage() {
 }
 
 func ExampleSTS_GetFederationToken() {
-	svc := sts.New(nil)
+	svc := sts.New(session.New())
 
 	params := &sts.GetFederationTokenInput{
 		Name:            aws.String("userNameType"), // Required
@@ -127,7 +128,7 @@ func ExampleSTS_GetFederationToken() {
 }
 
 func ExampleSTS_GetSessionToken() {
-	svc := sts.New(nil)
+	svc := sts.New(session.New())
 
 	params := &sts.GetSessionTokenInput{
 		DurationSeconds: aws.Int64(1),

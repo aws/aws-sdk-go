@@ -1,15 +1,17 @@
 package iotdataplane_test
 
 import (
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/iotdataplane"
 )
 
 func TestRequireEndpointIfRegionProvided(t *testing.T) {
-	svc := iotdataplane.New(&aws.Config{
+	svc := iotdataplane.New(unit.Session, &aws.Config{
 		Region:                 aws.String("mock-region"),
 		DisableParamValidation: aws.Bool(true),
 	})
@@ -22,10 +24,12 @@ func TestRequireEndpointIfRegionProvided(t *testing.T) {
 }
 
 func TestRequireEndpointIfNoRegionProvided(t *testing.T) {
-	svc := iotdataplane.New(&aws.Config{
+	svc := iotdataplane.New(unit.Session, &aws.Config{
 		Region:                 aws.String(""),
 		DisableParamValidation: aws.Bool(true),
 	})
+	fmt.Println(svc.ClientInfo.SigningRegion)
+
 	req, _ := svc.GetThingShadowRequest(nil)
 	err := req.Build()
 
@@ -35,7 +39,7 @@ func TestRequireEndpointIfNoRegionProvided(t *testing.T) {
 }
 
 func TestRequireEndpointUsed(t *testing.T) {
-	svc := iotdataplane.New(&aws.Config{
+	svc := iotdataplane.New(unit.Session, &aws.Config{
 		Region:                 aws.String("mock-region"),
 		DisableParamValidation: aws.Bool(true),
 		Endpoint:               aws.String("https://endpoint"),

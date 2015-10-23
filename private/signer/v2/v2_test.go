@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awstesting"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -145,7 +145,7 @@ func TestMoreComplexSignRequest(t *testing.T) {
 
 func TestGet(t *testing.T) {
 	assert := assert.New(t)
-	svc := service.New(&aws.Config{
+	svc := awstesting.NewClient(&aws.Config{
 		Credentials: credentials.NewStaticCredentials("AKID", "SECRET", "SESSION"),
 		Region:      aws.String("ap-southeast-2"),
 	})
@@ -171,7 +171,7 @@ func TestGet(t *testing.T) {
 
 func TestAnonymousCredentials(t *testing.T) {
 	assert := assert.New(t)
-	svc := service.New(&aws.Config{
+	svc := awstesting.NewClient(&aws.Config{
 		Credentials: credentials.AnonymousCredentials,
 		Region:      aws.String("ap-southeast-2"),
 	})

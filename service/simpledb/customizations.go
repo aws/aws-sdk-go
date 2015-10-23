@@ -1,11 +1,11 @@
 package simpledb
 
-import "github.com/aws/aws-sdk-go/aws/service"
+import "github.com/aws/aws-sdk-go/aws/client"
 
 func init() {
-	initService = func(s *service.Service) {
+	initClient = func(c *client.Client) {
 		// SimpleDB uses custom error unmarshaling logic
-		s.Handlers.UnmarshalError.Clear()
-		s.Handlers.UnmarshalError.PushBack(unmarshalError)
+		c.Handlers.UnmarshalError.Clear()
+		c.Handlers.UnmarshalError.PushBack(unmarshalError)
 	}
 }

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/firehose"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleFirehose_CreateDeliveryStream() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.CreateDeliveryStreamInput{
 		DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
@@ -77,7 +78,7 @@ func ExampleFirehose_CreateDeliveryStream() {
 }
 
 func ExampleFirehose_DeleteDeliveryStream() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.DeleteDeliveryStreamInput{
 		DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
@@ -96,7 +97,7 @@ func ExampleFirehose_DeleteDeliveryStream() {
 }
 
 func ExampleFirehose_DescribeDeliveryStream() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.DescribeDeliveryStreamInput{
 		DeliveryStreamName:          aws.String("DeliveryStreamName"), // Required
@@ -117,7 +118,7 @@ func ExampleFirehose_DescribeDeliveryStream() {
 }
 
 func ExampleFirehose_ListDeliveryStreams() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.ListDeliveryStreamsInput{
 		ExclusiveStartDeliveryStreamName: aws.String("DeliveryStreamName"),
@@ -137,7 +138,7 @@ func ExampleFirehose_ListDeliveryStreams() {
 }
 
 func ExampleFirehose_PutRecord() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.PutRecordInput{
 		DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
@@ -159,7 +160,7 @@ func ExampleFirehose_PutRecord() {
 }
 
 func ExampleFirehose_PutRecordBatch() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.PutRecordBatchInput{
 		DeliveryStreamName: aws.String("DeliveryStreamName"), // Required
@@ -184,7 +185,7 @@ func ExampleFirehose_PutRecordBatch() {
 }
 
 func ExampleFirehose_UpdateDestination() {
-	svc := firehose.New(nil)
+	svc := firehose.New(session.New())
 
 	params := &firehose.UpdateDestinationInput{
 		CurrentDeliveryStreamVersionId: aws.String("DeliveryStreamVersionId"), // Required

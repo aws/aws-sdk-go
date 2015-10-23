@@ -4,10 +4,9 @@ package iot
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
-	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
@@ -22,41 +21,65 @@ import (
 // logging, and create and manage policies and credentials to authenticate things.
 //
 // For more information about how AWS IoT works, see the Developer Guide (http://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html).
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type IoT struct {
-	*service.Service
+	*client.Client
 }
 
-// Used for custom service initialization logic
-var initService func(*service.Service)
+// Used for custom client initialization logic
+var initClient func(*client.Client)
 
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// New returns a new IoT client.
-func New(config *aws.Config) *IoT {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "iot",
-			SigningName: "execute-api",
-			APIVersion:  "2015-05-28",
-		},
+// A ServiceName is the name of the service the client will make API calls to.
+const ServiceName = "iot"
+
+// New creates a new instance of the IoT client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a IoT client from just a session.
+//     svc := iot.New(mySession)
+//
+//     // Create a IoT client with additional configuration
+//     svc := iot.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func New(p client.ConfigProvider, cfgs ...*aws.Config) *IoT {
+	c := p.ClientConfig(ServiceName, cfgs...)
+	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *IoT {
+	svc := &IoT{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   ServiceName,
+				SigningName:   "execute-api",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2015-05-28",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restjson.Build)
-	service.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restjson.Build)
+	svc.Handlers.Unmarshal.PushBack(restjson.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restjson.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restjson.UnmarshalError)
 
-	// Run custom service initialization if present
-	if initService != nil {
-		initService(service)
+	// Run custom client initialization if present
+	if initClient != nil {
+		initClient(svc.Client)
 	}
 
-	return &IoT{service}
+	return svc
 }
 
 // newRequest creates a new request for a IoT operation and runs any
