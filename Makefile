@@ -1,4 +1,4 @@
-LINTIGNOREDOT='internal/features.+should not use dot imports'
+LINTIGNOREDOT='awstesting/integration.+should not use dot imports'
 LINTIGNOREDOC='service/[^/]+/(api|service)\.go:.+(comment on exported|should have comment or be unexported)'
 LINTIGNORECONST='service/[^/]+/(api|service)\.go:.+(type|struct field|const|func) ([^ ]+) should be ([^ ]+)'
 LINTIGNORESTUTTER='service/[^/]+/(api|service)\.go:.+(and that stutters)'
@@ -20,20 +20,20 @@ help:
 default: generate
 
 generate-protocol-test:
-	go generate ./internal/protocol/...
+	go generate ./private/protocol/...
 
 generate-test: generate-protocol-test
 
 generate:
-	go generate ./internal/endpoints
+	go generate ./private/endpoints
 	@make services
 
 services:
 	go generate ./service
 
 integration: deps
-	go test ./internal/test/integration/... -tags=integration
-	gucumber ./internal/features/smoke
+	go test ./awstesting/integration/... -tags=integration
+	gucumber ./awstesting/integration/smoke
 
 lint: deps
 	@echo "golint ./..."
@@ -57,7 +57,10 @@ deps:
 	@go get github.com/golang/lint/golint
 
 api_info:
-	@go run internal/model/cli/api-info/api-info.go
+	@go run private/model/cli/api-info/api-info.go
 
-perf:
-	@go test -bench . -benchmem -tags 'perf' ./internal/test/perf/...
+bench:
+	@go test -bench . -benchmem -tags 'bench' ./...
+
+bench-protocol:
+	@go test -bench . -benchmem -tags 'bench' ./private/protocol/...

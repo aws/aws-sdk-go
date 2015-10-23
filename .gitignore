@@ -2,5 +2,5 @@ vendor
 doc
 .yardoc
 Gemfile.lock
-internal/features/smoke/**/importmarker__.go
-internal/features/smoke/_test/
+private/features/smoke/**/importmarker__.go
+private/features/smoke/_test/
