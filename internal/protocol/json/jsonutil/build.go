@@ -8,9 +8,11 @@ import (
 	"reflect"
 	"sort"
 	"strconv"
-	"strings"
 	"time"
 )
+
+var timeType = reflect.ValueOf(time.Time{}).Type()
+var byteSliceType = reflect.ValueOf([]byte{}).Type()
 
 // BuildJSON builds a JSON string for a given object v.
 func BuildJSON(v interface{}) ([]byte, error) {
@@ -33,7 +35,7 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 		switch vtype.Kind() {
 		case reflect.Struct:
 			// also it can't be a time object
-			if _, ok := value.Interface().(time.Time); !ok {
+			if value.Type() != timeType {
 				t = "structure"
 			}
 		case reflect.Slice:
@@ -77,27 +79,31 @@ func buildStruct(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 		}
 	}
 
-	buf.WriteString("{")
+	buf.WriteByte('{')
 
-	t, fields := value.Type(), []*reflect.StructField{}
+	t := value.Type()
+	first := true
 	for i := 0; i < t.NumField(); i++ {
 		field := t.Field(i)
-		member := value.FieldByName(field.Name)
+		member := value.FieldByIndex(field.Index)
 		if (member.Kind() == reflect.Ptr || member.Kind() == reflect.Slice || member.Kind() == reflect.Map) && member.IsNil() {
 			continue // ignore unset fields
 		}
-		if c := field.Name[0:1]; strings.ToLower(c) == c {
+		if field.PkgPath != "" {
 			continue // ignore unexported fields
+		}
+		if field.Tag.Get("json") == "-" {
+			continue
 		}
 		if field.Tag.Get("location") != "" {
 			continue // ignore non-body elements
 		}
 
-		fields = append(fields, &field)
-	}
-
-	for i, field := range fields {
-		member := value.FieldByName(field.Name)
+		if first {
+			first = false
+		} else {
+			buf.WriteByte(',')
+		}
 
 		// figure out what this field is called
 		name := field.Name
@@ -105,16 +111,13 @@ func buildStruct(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) 
 			name = locName
 		}
 
-		buf.WriteString(fmt.Sprintf("%q:", name))
+		fmt.Fprintf(buf, "%q:", name)
 
 		err := buildAny(member, buf, field.Tag)
 		if err != nil {
 			return err
 		}
 
-		if i < len(fields)-1 {
-			buf.WriteString(",")
-		}
 	}
 
 	buf.WriteString("}")
@@ -138,22 +141,25 @@ func buildList(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) er
 	return nil
 }
 
+type sortedValues []reflect.Value
+
+func (sv sortedValues) Len() int           { return len(sv) }
+func (sv sortedValues) Swap(i, j int)      { sv[i], sv[j] = sv[j], sv[i] }
+func (sv sortedValues) Less(i, j int) bool { return sv[i].String() < sv[j].String() }
+
 func buildMap(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
 	buf.WriteString("{")
 
-	keys := make([]string, value.Len())
-	for i, n := range value.MapKeys() {
-		keys[i] = n.String()
-	}
-	sort.Strings(keys)
+	var sv sortedValues = value.MapKeys()
+	sort.Sort(sv)
 
-	for i, k := range keys {
-		buf.WriteString(fmt.Sprintf("%q:", k))
-		buildAny(value.MapIndex(reflect.ValueOf(k)), buf, "")
-
-		if i < len(keys)-1 {
-			buf.WriteString(",")
+	for i, k := range sv {
+		if i > 0 {
+			buf.WriteByte(',')
 		}
+
+		fmt.Fprintf(buf, "%q:", k)
+		buildAny(value.MapIndex(k), buf, "")
 	}
 
 	buf.WriteString("}")
@@ -162,23 +168,41 @@ func buildMap(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 }
 
 func buildScalar(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
-	switch converted := value.Interface().(type) {
-	case string:
-		writeString(converted, buf)
-	case []byte:
-		if !value.IsNil() {
-			buf.WriteString(fmt.Sprintf("%q", base64.StdEncoding.EncodeToString(converted)))
-		}
-	case bool:
-		buf.WriteString(strconv.FormatBool(converted))
-	case int64:
-		buf.WriteString(strconv.FormatInt(converted, 10))
-	case float64:
-		buf.WriteString(strconv.FormatFloat(converted, 'f', -1, 64))
-	case time.Time:
-		buf.WriteString(strconv.FormatInt(converted.UTC().Unix(), 10))
+	switch value.Kind() {
+	case reflect.String:
+		writeString(value.String(), buf)
+	case reflect.Bool:
+		buf.WriteString(strconv.FormatBool(value.Bool()))
+	case reflect.Int64:
+		buf.WriteString(strconv.FormatInt(value.Int(), 10))
+	case reflect.Float64:
+		buf.WriteString(strconv.FormatFloat(value.Float(), 'f', -1, 64))
 	default:
-		return fmt.Errorf("unsupported JSON value %v (%s)", value.Interface(), value.Type())
+		switch value.Type() {
+		case timeType:
+			converted := value.Interface().(time.Time)
+			buf.WriteString(strconv.FormatInt(converted.UTC().Unix(), 10))
+		case byteSliceType:
+			if !value.IsNil() {
+				converted := value.Interface().([]byte)
+				buf.WriteByte('"')
+				if len(converted) < 1024 {
+					// for small buffers, using Encode directly is much faster.
+					dst := make([]byte, base64.StdEncoding.EncodedLen(len(converted)))
+					base64.StdEncoding.Encode(dst, converted)
+					buf.Write(dst)
+				} else {
+					// for large buffers, avoid unnecessary extra temporary
+					// buffer space.
+					enc := base64.NewEncoder(base64.StdEncoding, buf)
+					enc.Write(converted)
+					enc.Close()
+				}
+				buf.WriteByte('"')
+			}
+		default:
+			return fmt.Errorf("unsupported JSON value %v (%s)", value.Interface(), value.Type())
+		}
 	}
 	return nil
 }
