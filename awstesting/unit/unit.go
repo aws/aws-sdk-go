@@ -2,21 +2,12 @@
 package unit
 
 import (
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/session"
 )
 
-// Imported is a marker to ensure that this package's init() function gets
-// executed.
-//
-// To use this package, import it and add:
-//
-// 	 var _ = unit.Imported
-const Imported = true
-
-func init() {
-	// mock region and credentials
-	defaults.DefaultConfig.Credentials =
-		credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
-	defaults.DefaultConfig.WithRegion("mock-region")
-}
+// Session is a shared session for unit tests to use.
+var Session = session.New(aws.NewConfig().
+	WithCredentials(credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")).
+	WithRegion("mock-region"))

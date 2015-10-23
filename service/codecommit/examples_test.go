@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/codecommit"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleCodeCommit_BatchGetRepositories() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.BatchGetRepositoriesInput{
 		RepositoryNames: []*string{ // Required
@@ -37,7 +38,7 @@ func ExampleCodeCommit_BatchGetRepositories() {
 }
 
 func ExampleCodeCommit_CreateBranch() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.CreateBranchInput{
 		BranchName:     aws.String("BranchName"),     // Required
@@ -58,7 +59,7 @@ func ExampleCodeCommit_CreateBranch() {
 }
 
 func ExampleCodeCommit_CreateRepository() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.CreateRepositoryInput{
 		RepositoryName:        aws.String("RepositoryName"), // Required
@@ -78,7 +79,7 @@ func ExampleCodeCommit_CreateRepository() {
 }
 
 func ExampleCodeCommit_DeleteRepository() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.DeleteRepositoryInput{
 		RepositoryName: aws.String("RepositoryName"), // Required
@@ -97,7 +98,7 @@ func ExampleCodeCommit_DeleteRepository() {
 }
 
 func ExampleCodeCommit_GetBranch() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.GetBranchInput{
 		BranchName:     aws.String("BranchName"),
@@ -117,7 +118,7 @@ func ExampleCodeCommit_GetBranch() {
 }
 
 func ExampleCodeCommit_GetRepository() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.GetRepositoryInput{
 		RepositoryName: aws.String("RepositoryName"), // Required
@@ -136,7 +137,7 @@ func ExampleCodeCommit_GetRepository() {
 }
 
 func ExampleCodeCommit_ListBranches() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.ListBranchesInput{
 		RepositoryName: aws.String("RepositoryName"), // Required
@@ -156,7 +157,7 @@ func ExampleCodeCommit_ListBranches() {
 }
 
 func ExampleCodeCommit_ListRepositories() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.ListRepositoriesInput{
 		NextToken: aws.String("NextToken"),
@@ -177,7 +178,7 @@ func ExampleCodeCommit_ListRepositories() {
 }
 
 func ExampleCodeCommit_UpdateDefaultBranch() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.UpdateDefaultBranchInput{
 		DefaultBranchName: aws.String("BranchName"),     // Required
@@ -197,7 +198,7 @@ func ExampleCodeCommit_UpdateDefaultBranch() {
 }
 
 func ExampleCodeCommit_UpdateRepositoryDescription() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.UpdateRepositoryDescriptionInput{
 		RepositoryName:        aws.String("RepositoryName"), // Required
@@ -217,7 +218,7 @@ func ExampleCodeCommit_UpdateRepositoryDescription() {
 }
 
 func ExampleCodeCommit_UpdateRepositoryName() {
-	svc := codecommit.New(nil)
+	svc := codecommit.New(session.New())
 
 	params := &codecommit.UpdateRepositoryNameInput{
 		NewName: aws.String("RepositoryName"), // Required

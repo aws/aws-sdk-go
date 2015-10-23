@@ -34,3 +34,5 @@ type STSAPI interface {
 
 	GetSessionToken(*sts.GetSessionTokenInput) (*sts.GetSessionTokenOutput, error)
 }
+
+var _ STSAPI = (*sts.STS)(nil)

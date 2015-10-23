@@ -132,3 +132,5 @@ type DeviceFarmAPI interface {
 
 	ScheduleRun(*devicefarm.ScheduleRunInput) (*devicefarm.ScheduleRunOutput, error)
 }
+
+var _ DeviceFarmAPI = (*devicefarm.DeviceFarm)(nil)

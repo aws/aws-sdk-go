@@ -14,3 +14,5 @@ type MarketplaceCommerceAnalyticsAPI interface {
 
 	GenerateDataSet(*marketplacecommerceanalytics.GenerateDataSetInput) (*marketplacecommerceanalytics.GenerateDataSetOutput, error)
 }
+
+var _ MarketplaceCommerceAnalyticsAPI = (*marketplacecommerceanalytics.MarketplaceCommerceAnalytics)(nil)

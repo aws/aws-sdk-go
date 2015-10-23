@@ -12,10 +12,10 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
-	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/awstesting"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 	"github.com/aws/aws-sdk-go/private/protocol/xml/xmlutil"
@@ -35,30 +35,52 @@ var _ = ioutil.Discard
 var _ = util.Trim("")
 var _ = url.Values{}
 var _ = io.EOF
+var _ = aws.String
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService1ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService1ProtocolTest client.
-func NewInputService1ProtocolTest(config *aws.Config) *InputService1ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice1protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService1ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService1ProtocolTest client from just a session.
+//     svc := inputservice1protocoltest.New(mySession)
+//
+//     // Create a InputService1ProtocolTest client with additional configuration
+//     svc := inputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService1ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService1ProtocolTest {
+	c := p.ClientConfig("inputservice1protocoltest", cfgs...)
+	return newInputService1ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService1ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService1ProtocolTest {
+	svc := &InputService1ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice1protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService1ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService1ProtocolTest operation and runs any
@@ -191,29 +213,50 @@ type metadataInputService1TestShapeInputShape struct {
 	SDKShapeTraits bool `locationName:"OperationRequest" type:"structure" xmlURI:"https://foo/"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService2ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService2ProtocolTest client.
-func NewInputService2ProtocolTest(config *aws.Config) *InputService2ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice2protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService2ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService2ProtocolTest client from just a session.
+//     svc := inputservice2protocoltest.New(mySession)
+//
+//     // Create a InputService2ProtocolTest client with additional configuration
+//     svc := inputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService2ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService2ProtocolTest {
+	c := p.ClientConfig("inputservice2protocoltest", cfgs...)
+	return newInputService2ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService2ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService2ProtocolTest {
+	svc := &InputService2ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice2protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService2ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService2ProtocolTest operation and runs any
@@ -274,29 +317,50 @@ type metadataInputService2TestShapeInputService2TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService3ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService3ProtocolTest client.
-func NewInputService3ProtocolTest(config *aws.Config) *InputService3ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice3protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService3ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService3ProtocolTest client from just a session.
+//     svc := inputservice3protocoltest.New(mySession)
+//
+//     // Create a InputService3ProtocolTest client with additional configuration
+//     svc := inputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService3ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService3ProtocolTest {
+	c := p.ClientConfig("inputservice3protocoltest", cfgs...)
+	return newInputService3ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService3ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService3ProtocolTest {
+	svc := &InputService3ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice3protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService3ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService3ProtocolTest operation and runs any
@@ -399,29 +463,50 @@ type metadataInputService3TestShapeSubStructure struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService4ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService4ProtocolTest client.
-func NewInputService4ProtocolTest(config *aws.Config) *InputService4ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice4protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService4ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService4ProtocolTest client from just a session.
+//     svc := inputservice4protocoltest.New(mySession)
+//
+//     // Create a InputService4ProtocolTest client with additional configuration
+//     svc := inputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService4ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService4ProtocolTest {
+	c := p.ClientConfig("inputservice4protocoltest", cfgs...)
+	return newInputService4ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService4ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService4ProtocolTest {
+	svc := &InputService4ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice4protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService4ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService4ProtocolTest operation and runs any
@@ -490,29 +575,50 @@ type metadataInputService4TestShapeSubStructure struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService5ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService5ProtocolTest client.
-func NewInputService5ProtocolTest(config *aws.Config) *InputService5ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice5protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService5ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService5ProtocolTest client from just a session.
+//     svc := inputservice5protocoltest.New(mySession)
+//
+//     // Create a InputService5ProtocolTest client with additional configuration
+//     svc := inputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService5ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService5ProtocolTest {
+	c := p.ClientConfig("inputservice5protocoltest", cfgs...)
+	return newInputService5ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService5ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService5ProtocolTest {
+	svc := &InputService5ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice5protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService5ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService5ProtocolTest operation and runs any
@@ -567,29 +673,50 @@ type metadataInputService5TestShapeInputService5TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService6ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService6ProtocolTest client.
-func NewInputService6ProtocolTest(config *aws.Config) *InputService6ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice6protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService6ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService6ProtocolTest client from just a session.
+//     svc := inputservice6protocoltest.New(mySession)
+//
+//     // Create a InputService6ProtocolTest client with additional configuration
+//     svc := inputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService6ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService6ProtocolTest {
+	c := p.ClientConfig("inputservice6protocoltest", cfgs...)
+	return newInputService6ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService6ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService6ProtocolTest {
+	svc := &InputService6ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice6protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService6ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService6ProtocolTest operation and runs any
@@ -644,29 +771,50 @@ type metadataInputService6TestShapeInputService6TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService7ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService7ProtocolTest client.
-func NewInputService7ProtocolTest(config *aws.Config) *InputService7ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice7protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService7ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService7ProtocolTest client from just a session.
+//     svc := inputservice7protocoltest.New(mySession)
+//
+//     // Create a InputService7ProtocolTest client with additional configuration
+//     svc := inputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService7ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService7ProtocolTest {
+	c := p.ClientConfig("inputservice7protocoltest", cfgs...)
+	return newInputService7ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService7ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService7ProtocolTest {
+	svc := &InputService7ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice7protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService7ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService7ProtocolTest operation and runs any
@@ -721,29 +869,50 @@ type metadataInputService7TestShapeInputService7TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService8ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService8ProtocolTest client.
-func NewInputService8ProtocolTest(config *aws.Config) *InputService8ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice8protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService8ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService8ProtocolTest client from just a session.
+//     svc := inputservice8protocoltest.New(mySession)
+//
+//     // Create a InputService8ProtocolTest client with additional configuration
+//     svc := inputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService8ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService8ProtocolTest {
+	c := p.ClientConfig("inputservice8protocoltest", cfgs...)
+	return newInputService8ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService8ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService8ProtocolTest {
+	svc := &InputService8ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice8protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService8ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService8ProtocolTest operation and runs any
@@ -798,29 +967,50 @@ type metadataInputService8TestShapeInputService8TestCaseOperation1Output struct 
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService9ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService9ProtocolTest client.
-func NewInputService9ProtocolTest(config *aws.Config) *InputService9ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice9protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService9ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService9ProtocolTest client from just a session.
+//     svc := inputservice9protocoltest.New(mySession)
+//
+//     // Create a InputService9ProtocolTest client with additional configuration
+//     svc := inputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService9ProtocolTest {
+	c := p.ClientConfig("inputservice9protocoltest", cfgs...)
+	return newInputService9ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService9ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService9ProtocolTest {
+	svc := &InputService9ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice9protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService9ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService9ProtocolTest operation and runs any
@@ -885,29 +1075,50 @@ type metadataInputService9TestShapeSingleFieldStruct struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService10ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService10ProtocolTest client.
-func NewInputService10ProtocolTest(config *aws.Config) *InputService10ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice10protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService10ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService10ProtocolTest client from just a session.
+//     svc := inputservice10protocoltest.New(mySession)
+//
+//     // Create a InputService10ProtocolTest client with additional configuration
+//     svc := inputservice10protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService10ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService10ProtocolTest {
+	c := p.ClientConfig("inputservice10protocoltest", cfgs...)
+	return newInputService10ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService10ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService10ProtocolTest {
+	svc := &InputService10ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice10protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService10ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService10ProtocolTest operation and runs any
@@ -974,29 +1185,50 @@ type metadataInputService10TestShapeStructureShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService11ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService11ProtocolTest client.
-func NewInputService11ProtocolTest(config *aws.Config) *InputService11ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice11protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService11ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService11ProtocolTest client from just a session.
+//     svc := inputservice11protocoltest.New(mySession)
+//
+//     // Create a InputService11ProtocolTest client with additional configuration
+//     svc := inputservice11protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService11ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService11ProtocolTest {
+	c := p.ClientConfig("inputservice11protocoltest", cfgs...)
+	return newInputService11ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService11ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService11ProtocolTest {
+	svc := &InputService11ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice11protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService11ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService11ProtocolTest operation and runs any
@@ -1051,29 +1283,50 @@ type metadataInputService11TestShapeInputService11TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService12ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService12ProtocolTest client.
-func NewInputService12ProtocolTest(config *aws.Config) *InputService12ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice12protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService12ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService12ProtocolTest client from just a session.
+//     svc := inputservice12protocoltest.New(mySession)
+//
+//     // Create a InputService12ProtocolTest client with additional configuration
+//     svc := inputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService12ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService12ProtocolTest {
+	c := p.ClientConfig("inputservice12protocoltest", cfgs...)
+	return newInputService12ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService12ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService12ProtocolTest {
+	svc := &InputService12ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice12protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService12ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService12ProtocolTest operation and runs any
@@ -1130,29 +1383,50 @@ type metadataInputService12TestShapeInputService12TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService13ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService13ProtocolTest client.
-func NewInputService13ProtocolTest(config *aws.Config) *InputService13ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice13protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService13ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService13ProtocolTest client from just a session.
+//     svc := inputservice13protocoltest.New(mySession)
+//
+//     // Create a InputService13ProtocolTest client with additional configuration
+//     svc := inputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService13ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService13ProtocolTest {
+	c := p.ClientConfig("inputservice13protocoltest", cfgs...)
+	return newInputService13ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService13ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService13ProtocolTest {
+	svc := &InputService13ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice13protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService13ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService13ProtocolTest operation and runs any
@@ -1209,29 +1483,50 @@ type metadataInputService13TestShapeInputService13TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService14ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService14ProtocolTest client.
-func NewInputService14ProtocolTest(config *aws.Config) *InputService14ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice14protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService14ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService14ProtocolTest client from just a session.
+//     svc := inputservice14protocoltest.New(mySession)
+//
+//     // Create a InputService14ProtocolTest client with additional configuration
+//     svc := inputservice14protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService14ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService14ProtocolTest {
+	c := p.ClientConfig("inputservice14protocoltest", cfgs...)
+	return newInputService14ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService14ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService14ProtocolTest {
+	svc := &InputService14ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice14protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService14ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService14ProtocolTest operation and runs any
@@ -1286,29 +1581,50 @@ type metadataInputService14TestShapeInputService14TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService15ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService15ProtocolTest client.
-func NewInputService15ProtocolTest(config *aws.Config) *InputService15ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice15protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService15ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService15ProtocolTest client from just a session.
+//     svc := inputservice15protocoltest.New(mySession)
+//
+//     // Create a InputService15ProtocolTest client with additional configuration
+//     svc := inputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService15ProtocolTest {
+	c := p.ClientConfig("inputservice15protocoltest", cfgs...)
+	return newInputService15ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService15ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService15ProtocolTest {
+	svc := &InputService15ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice15protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService15ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService15ProtocolTest operation and runs any
@@ -1397,29 +1713,50 @@ type metadataInputService15TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure" payload:"Foo"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService16ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService16ProtocolTest client.
-func NewInputService16ProtocolTest(config *aws.Config) *InputService16ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice16protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService16ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService16ProtocolTest client from just a session.
+//     svc := inputservice16protocoltest.New(mySession)
+//
+//     // Create a InputService16ProtocolTest client with additional configuration
+//     svc := inputservice16protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService16ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService16ProtocolTest {
+	c := p.ClientConfig("inputservice16protocoltest", cfgs...)
+	return newInputService16ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService16ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService16ProtocolTest {
+	svc := &InputService16ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice16protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService16ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService16ProtocolTest operation and runs any
@@ -1586,29 +1923,50 @@ type metadataInputService16TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure" payload:"Foo"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService17ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService17ProtocolTest client.
-func NewInputService17ProtocolTest(config *aws.Config) *InputService17ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice17protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService17ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService17ProtocolTest client from just a session.
+//     svc := inputservice17protocoltest.New(mySession)
+//
+//     // Create a InputService17ProtocolTest client with additional configuration
+//     svc := inputservice17protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService17ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService17ProtocolTest {
+	c := p.ClientConfig("inputservice17protocoltest", cfgs...)
+	return newInputService17ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService17ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService17ProtocolTest {
+	svc := &InputService17ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice17protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService17ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService17ProtocolTest operation and runs any
@@ -1685,29 +2043,50 @@ type metadataInputService17TestShapeInputService17TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService18ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService18ProtocolTest client.
-func NewInputService18ProtocolTest(config *aws.Config) *InputService18ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice18protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService18ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService18ProtocolTest client from just a session.
+//     svc := inputservice18protocoltest.New(mySession)
+//
+//     // Create a InputService18ProtocolTest client with additional configuration
+//     svc := inputservice18protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService18ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService18ProtocolTest {
+	c := p.ClientConfig("inputservice18protocoltest", cfgs...)
+	return newInputService18ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService18ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService18ProtocolTest {
+	svc := &InputService18ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice18protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService18ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService18ProtocolTest operation and runs any
@@ -1764,29 +2143,50 @@ type metadataInputService18TestShapeInputService18TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService19ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService19ProtocolTest client.
-func NewInputService19ProtocolTest(config *aws.Config) *InputService19ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice19protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService19ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService19ProtocolTest client from just a session.
+//     svc := inputservice19protocoltest.New(mySession)
+//
+//     // Create a InputService19ProtocolTest client with additional configuration
+//     svc := inputservice19protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService19ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService19ProtocolTest {
+	c := p.ClientConfig("inputservice19protocoltest", cfgs...)
+	return newInputService19ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService19ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService19ProtocolTest {
+	svc := &InputService19ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice19protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService19ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService19ProtocolTest operation and runs any
@@ -1875,29 +2275,50 @@ type metadataInputService19TestShapeInputShape struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService20ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService20ProtocolTest client.
-func NewInputService20ProtocolTest(config *aws.Config) *InputService20ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice20protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService20ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService20ProtocolTest client from just a session.
+//     svc := inputservice20protocoltest.New(mySession)
+//
+//     // Create a InputService20ProtocolTest client with additional configuration
+//     svc := inputservice20protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService20ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService20ProtocolTest {
+	c := p.ClientConfig("inputservice20protocoltest", cfgs...)
+	return newInputService20ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService20ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService20ProtocolTest {
+	svc := &InputService20ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice20protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService20ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService20ProtocolTest operation and runs any
@@ -2138,29 +2559,50 @@ type metadataInputService20TestShapeRecursiveStructType struct {
 	SDKShapeTraits bool `type:"structure"`
 }
 
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type InputService21ProtocolTest struct {
-	*service.Service
+	*client.Client
 }
 
-// New returns a new InputService21ProtocolTest client.
-func NewInputService21ProtocolTest(config *aws.Config) *InputService21ProtocolTest {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:      defaults.DefaultConfig.Merge(config),
-			ServiceName: "inputservice21protocoltest",
-			APIVersion:  "2014-01-01",
-		},
+// New creates a new instance of the InputService21ProtocolTest client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a InputService21ProtocolTest client from just a session.
+//     svc := inputservice21protocoltest.New(mySession)
+//
+//     // Create a InputService21ProtocolTest client with additional configuration
+//     svc := inputservice21protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func NewInputService21ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService21ProtocolTest {
+	c := p.ClientConfig("inputservice21protocoltest", cfgs...)
+	return newInputService21ProtocolTestClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newInputService21ProtocolTestClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *InputService21ProtocolTest {
+	svc := &InputService21ProtocolTest{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   "inputservice21protocoltest",
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2014-01-01",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(restxml.Build)
-	service.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(restxml.Build)
+	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
 
-	return &InputService21ProtocolTest{service}
+	return svc
 }
 
 // newRequest creates a new request for a InputService21ProtocolTest operation and runs any
@@ -2220,8 +2662,8 @@ type metadataInputService21TestShapeInputService21TestCaseOperation1Output struc
 //
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase1(t *testing.T) {
-	svc := NewInputService1ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService1TestShapeInputShape{
 		Description: aws.String("bar"),
@@ -2247,8 +2689,8 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase1(t *testing.T) {
 }
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
-	svc := NewInputService1ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService1TestShapeInputShape{
 		Description: aws.String("bar"),
@@ -2274,8 +2716,8 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
 }
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase3(t *testing.T) {
-	svc := NewInputService1ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService1ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService1TestShapeInputService1TestCaseOperation3Input{}
 	req, _ := svc.InputService1TestCaseOperation3Request(input)
@@ -2293,8 +2735,8 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase3(t *testing.T) {
 }
 
 func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
-	svc := NewInputService2ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService2ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService2TestShapeInputService2TestCaseOperation1Input{
 		First:  aws.Bool(true),
@@ -2322,8 +2764,8 @@ func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
 }
 
 func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
-	svc := NewInputService3ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService3ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService3TestShapeInputShape{
 		Description: aws.String("baz"),
@@ -2352,8 +2794,8 @@ func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
 }
 
 func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
-	svc := NewInputService3ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService3ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService3TestShapeInputShape{
 		Description: aws.String("baz"),
@@ -2381,8 +2823,8 @@ func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
 }
 
 func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
-	svc := NewInputService4ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService4ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService4TestShapeInputService4TestCaseOperation1Input{
 		Description:  aws.String("baz"),
@@ -2408,8 +2850,8 @@ func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
 }
 
 func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
-	svc := NewInputService5ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService5ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService5TestShapeInputService5TestCaseOperation1Input{
 		ListParam: []*string{
@@ -2438,8 +2880,8 @@ func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
 }
 
 func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *testing.T) {
-	svc := NewInputService6ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService6ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService6TestShapeInputService6TestCaseOperation1Input{
 		ListParam: []*string{
@@ -2468,8 +2910,8 @@ func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *test
 }
 
 func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
-	svc := NewInputService7ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService7ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService7TestShapeInputService7TestCaseOperation1Input{
 		ListParam: []*string{
@@ -2498,8 +2940,8 @@ func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
 }
 
 func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing.T) {
-	svc := NewInputService8ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService8ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService8TestShapeInputService8TestCaseOperation1Input{
 		ListParam: []*string{
@@ -2528,8 +2970,8 @@ func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing
 }
 
 func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
-	svc := NewInputService9ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService9ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService9TestShapeInputService9TestCaseOperation1Input{
 		ListParam: []*InputService9TestShapeSingleFieldStruct{
@@ -2564,8 +3006,8 @@ func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
 }
 
 func TestInputService10ProtocolTestBlobAndTimestampShapesCase1(t *testing.T) {
-	svc := NewInputService10ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService10ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService10TestShapeInputService10TestCaseOperation1Input{
 		StructureParam: &InputService10TestShapeStructureShape{
@@ -2593,8 +3035,8 @@ func TestInputService10ProtocolTestBlobAndTimestampShapesCase1(t *testing.T) {
 }
 
 func TestInputService11ProtocolTestHeaderMapsCase1(t *testing.T) {
-	svc := NewInputService11ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService11ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService11TestShapeInputService11TestCaseOperation1Input{
 		Foo: map[string]*string{
@@ -2619,8 +3061,8 @@ func TestInputService11ProtocolTestHeaderMapsCase1(t *testing.T) {
 }
 
 func TestInputService12ProtocolTestStringToStringMapsInQuerystringCase1(t *testing.T) {
-	svc := NewInputService12ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService12ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService12TestShapeInputService12TestCaseOperation1Input{
 		PipelineId: aws.String("foo"),
@@ -2644,8 +3086,8 @@ func TestInputService12ProtocolTestStringToStringMapsInQuerystringCase1(t *testi
 }
 
 func TestInputService13ProtocolTestStringToStringListMapsInQuerystringCase1(t *testing.T) {
-	svc := NewInputService13ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService13ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService13TestShapeInputService13TestCaseOperation1Input{
 		PipelineId: aws.String("id"),
@@ -2675,8 +3117,8 @@ func TestInputService13ProtocolTestStringToStringListMapsInQuerystringCase1(t *t
 }
 
 func TestInputService14ProtocolTestStringPayloadCase1(t *testing.T) {
-	svc := NewInputService14ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService14ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService14TestShapeInputService14TestCaseOperation1Input{
 		Foo: aws.String("bar"),
@@ -2701,8 +3143,8 @@ func TestInputService14ProtocolTestStringPayloadCase1(t *testing.T) {
 }
 
 func TestInputService15ProtocolTestBlobPayloadCase1(t *testing.T) {
-	svc := NewInputService15ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService15ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService15TestShapeInputShape{
 		Foo: []byte("bar"),
@@ -2727,8 +3169,8 @@ func TestInputService15ProtocolTestBlobPayloadCase1(t *testing.T) {
 }
 
 func TestInputService15ProtocolTestBlobPayloadCase2(t *testing.T) {
-	svc := NewInputService15ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService15ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService15TestShapeInputShape{}
 	req, _ := svc.InputService15TestCaseOperation2Request(input)
@@ -2746,8 +3188,8 @@ func TestInputService15ProtocolTestBlobPayloadCase2(t *testing.T) {
 }
 
 func TestInputService16ProtocolTestStructurePayloadCase1(t *testing.T) {
-	svc := NewInputService16ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService16ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService16TestShapeInputShape{
 		Foo: &InputService16TestShapeFooShape{
@@ -2774,8 +3216,8 @@ func TestInputService16ProtocolTestStructurePayloadCase1(t *testing.T) {
 }
 
 func TestInputService16ProtocolTestStructurePayloadCase2(t *testing.T) {
-	svc := NewInputService16ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService16ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService16TestShapeInputShape{}
 	req, _ := svc.InputService16TestCaseOperation2Request(input)
@@ -2793,8 +3235,8 @@ func TestInputService16ProtocolTestStructurePayloadCase2(t *testing.T) {
 }
 
 func TestInputService16ProtocolTestStructurePayloadCase3(t *testing.T) {
-	svc := NewInputService16ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService16ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService16TestShapeInputShape{
 		Foo: &InputService16TestShapeFooShape{},
@@ -2819,8 +3261,8 @@ func TestInputService16ProtocolTestStructurePayloadCase3(t *testing.T) {
 }
 
 func TestInputService16ProtocolTestStructurePayloadCase4(t *testing.T) {
-	svc := NewInputService16ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService16ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService16TestShapeInputShape{}
 	req, _ := svc.InputService16TestCaseOperation4Request(input)
@@ -2838,8 +3280,8 @@ func TestInputService16ProtocolTestStructurePayloadCase4(t *testing.T) {
 }
 
 func TestInputService17ProtocolTestXMLAttributeCase1(t *testing.T) {
-	svc := NewInputService17ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService17ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService17TestShapeInputService17TestCaseOperation1Input{
 		Grant: &InputService17TestShapeGrant{
@@ -2869,8 +3311,8 @@ func TestInputService17ProtocolTestXMLAttributeCase1(t *testing.T) {
 }
 
 func TestInputService18ProtocolTestGreedyKeysCase1(t *testing.T) {
-	svc := NewInputService18ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService18ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService18TestShapeInputService18TestCaseOperation1Input{
 		Bucket: aws.String("my/bucket"),
@@ -2891,8 +3333,8 @@ func TestInputService18ProtocolTestGreedyKeysCase1(t *testing.T) {
 }
 
 func TestInputService19ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase1(t *testing.T) {
-	svc := NewInputService19ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService19ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService19TestShapeInputShape{}
 	req, _ := svc.InputService19TestCaseOperation1Request(input)
@@ -2910,8 +3352,8 @@ func TestInputService19ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 }
 
 func TestInputService19ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase2(t *testing.T) {
-	svc := NewInputService19ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService19ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService19TestShapeInputShape{
 		Foo: aws.String(""),
@@ -2931,8 +3373,8 @@ func TestInputService19ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 }
 
 func TestInputService20ProtocolTestRecursiveShapesCase1(t *testing.T) {
-	svc := NewInputService20ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService20TestShapeInputShape{
 		RecursiveStruct: &InputService20TestShapeRecursiveStructType{
@@ -2959,8 +3401,8 @@ func TestInputService20ProtocolTestRecursiveShapesCase1(t *testing.T) {
 }
 
 func TestInputService20ProtocolTestRecursiveShapesCase2(t *testing.T) {
-	svc := NewInputService20ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService20TestShapeInputShape{
 		RecursiveStruct: &InputService20TestShapeRecursiveStructType{
@@ -2989,8 +3431,8 @@ func TestInputService20ProtocolTestRecursiveShapesCase2(t *testing.T) {
 }
 
 func TestInputService20ProtocolTestRecursiveShapesCase3(t *testing.T) {
-	svc := NewInputService20ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService20TestShapeInputShape{
 		RecursiveStruct: &InputService20TestShapeRecursiveStructType{
@@ -3023,8 +3465,8 @@ func TestInputService20ProtocolTestRecursiveShapesCase3(t *testing.T) {
 }
 
 func TestInputService20ProtocolTestRecursiveShapesCase4(t *testing.T) {
-	svc := NewInputService20ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService20TestShapeInputShape{
 		RecursiveStruct: &InputService20TestShapeRecursiveStructType{
@@ -3058,8 +3500,8 @@ func TestInputService20ProtocolTestRecursiveShapesCase4(t *testing.T) {
 }
 
 func TestInputService20ProtocolTestRecursiveShapesCase5(t *testing.T) {
-	svc := NewInputService20ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService20TestShapeInputShape{
 		RecursiveStruct: &InputService20TestShapeRecursiveStructType{
@@ -3095,8 +3537,8 @@ func TestInputService20ProtocolTestRecursiveShapesCase5(t *testing.T) {
 }
 
 func TestInputService20ProtocolTestRecursiveShapesCase6(t *testing.T) {
-	svc := NewInputService20ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService20ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService20TestShapeInputShape{
 		RecursiveStruct: &InputService20TestShapeRecursiveStructType{
@@ -3130,8 +3572,8 @@ func TestInputService20ProtocolTestRecursiveShapesCase6(t *testing.T) {
 }
 
 func TestInputService21ProtocolTestTimestampInHeaderCase1(t *testing.T) {
-	svc := NewInputService21ProtocolTest(nil)
-	svc.Endpoint = "https://test"
+	sess := session.New()
+	svc := NewInputService21ProtocolTest(sess, &aws.Config{Endpoint: aws.String("https://test")})
 
 	input := &InputService21TestShapeInputService21TestCaseOperation1Input{
 		TimeArgInHeader: aws.Time(time.Unix(1422172800, 0)),

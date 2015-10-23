@@ -1,18 +1,19 @@
 package s3_test
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"time"
 )
 
 const errMsg = `<Error><Code>ErrorCode</Code><Message>message body</Message><RequestId>requestID</RequestId><HostId>hostID=</HostId></Error>`
@@ -121,7 +122,7 @@ func newCopyTestSvc(errMsg string) *s3.S3 {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, errMsg, http.StatusOK)
 	}))
-	return s3.New(aws.NewConfig().
+	return s3.New(unit.Session, aws.NewConfig().
 		WithEndpoint(server.URL).
 		WithDisableSSL(true).
 		WithMaxRetries(0).

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/iotdataplane"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleIoTDataPlane_DeleteThingShadow() {
-	svc := iotdataplane.New(nil)
+	svc := iotdataplane.New(session.New())
 
 	params := &iotdataplane.DeleteThingShadowInput{
 		ThingName: aws.String("ThingName"), // Required
@@ -34,7 +35,7 @@ func ExampleIoTDataPlane_DeleteThingShadow() {
 }
 
 func ExampleIoTDataPlane_GetThingShadow() {
-	svc := iotdataplane.New(nil)
+	svc := iotdataplane.New(session.New())
 
 	params := &iotdataplane.GetThingShadowInput{
 		ThingName: aws.String("ThingName"), // Required
@@ -53,7 +54,7 @@ func ExampleIoTDataPlane_GetThingShadow() {
 }
 
 func ExampleIoTDataPlane_Publish() {
-	svc := iotdataplane.New(nil)
+	svc := iotdataplane.New(session.New())
 
 	params := &iotdataplane.PublishInput{
 		Topic:   aws.String("Topic"), // Required
@@ -74,7 +75,7 @@ func ExampleIoTDataPlane_Publish() {
 }
 
 func ExampleIoTDataPlane_UpdateThingShadow() {
-	svc := iotdataplane.New(nil)
+	svc := iotdataplane.New(session.New())
 
 	params := &iotdataplane.UpdateThingShadowInput{
 		Payload:   []byte("PAYLOAD"),       // Required

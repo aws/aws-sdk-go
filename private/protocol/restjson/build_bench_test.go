@@ -8,15 +8,15 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awstesting"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 	"github.com/aws/aws-sdk-go/service/elastictranscoder"
 )
 
 func BenchmarkRESTJSONBuild_Complex_elastictranscoderCreateJobInput(b *testing.B) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
@@ -30,7 +30,7 @@ func BenchmarkRESTJSONBuild_Complex_elastictranscoderCreateJobInput(b *testing.B
 }
 
 func BenchmarkRESTBuild_Complex_elastictranscoderCreateJobInput(b *testing.B) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
@@ -56,7 +56,7 @@ func BenchmarkEncodingJSONMarshal_Complex_elastictranscoderCreateJobInput(b *tes
 }
 
 func BenchmarkRESTJSONBuild_Simple_elastictranscoderListJobsByPipeline(b *testing.B) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 
@@ -76,7 +76,7 @@ func BenchmarkRESTJSONBuild_Simple_elastictranscoderListJobsByPipeline(b *testin
 }
 
 func BenchmarkRESTBuild_Simple_elastictranscoderListJobsByPipeline(b *testing.B) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 	svc.ServiceName = "elastictranscoder"
 	svc.APIVersion = "2012-09-25"
 

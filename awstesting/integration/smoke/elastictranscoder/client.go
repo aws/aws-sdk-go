@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@elastictranscoder", func() {
-		World["client"] = elastictranscoder.New(nil)
+		World["client"] = elastictranscoder.New(smoke.Session)
 	})
 }

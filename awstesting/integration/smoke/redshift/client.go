@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@redshift", func() {
-		World["client"] = redshift.New(nil)
+		World["client"] = redshift.New(smoke.Session)
 	})
 }

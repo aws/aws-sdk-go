@@ -104,3 +104,5 @@ type ConfigServiceAPI interface {
 
 	StopConfigurationRecorder(*configservice.StopConfigurationRecorderInput) (*configservice.StopConfigurationRecorderOutput, error)
 }
+
+var _ ConfigServiceAPI = (*configservice.ConfigService)(nil)

@@ -154,3 +154,5 @@ type InspectorAPI interface {
 
 	UpdateAssessment(*inspector.UpdateAssessmentInput) (*inspector.UpdateAssessmentOutput, error)
 }
+
+var _ InspectorAPI = (*inspector.Inspector)(nil)

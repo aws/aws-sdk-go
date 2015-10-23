@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/inspector"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleInspector_AddAttributesToFindings() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.AddAttributesToFindingsInput{
 		Attributes: []*inspector.Attribute{
@@ -44,7 +45,7 @@ func ExampleInspector_AddAttributesToFindings() {
 }
 
 func ExampleInspector_AttachAssessmentAndRulesPackage() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.AttachAssessmentAndRulesPackageInput{
 		AssessmentArn:   aws.String("Arn"),
@@ -64,7 +65,7 @@ func ExampleInspector_AttachAssessmentAndRulesPackage() {
 }
 
 func ExampleInspector_CreateApplication() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.CreateApplicationInput{
 		ApplicationName:  aws.String("Name"),
@@ -84,7 +85,7 @@ func ExampleInspector_CreateApplication() {
 }
 
 func ExampleInspector_CreateAssessment() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.CreateAssessmentInput{
 		ApplicationArn:    aws.String("Arn"),
@@ -112,7 +113,7 @@ func ExampleInspector_CreateAssessment() {
 }
 
 func ExampleInspector_CreateResourceGroup() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.CreateResourceGroupInput{
 		ResourceGroupTags: aws.String("ResourceGroupTags"),
@@ -131,7 +132,7 @@ func ExampleInspector_CreateResourceGroup() {
 }
 
 func ExampleInspector_DeleteApplication() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DeleteApplicationInput{
 		ApplicationArn: aws.String("Arn"),
@@ -150,7 +151,7 @@ func ExampleInspector_DeleteApplication() {
 }
 
 func ExampleInspector_DeleteAssessment() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DeleteAssessmentInput{
 		AssessmentArn: aws.String("Arn"),
@@ -169,7 +170,7 @@ func ExampleInspector_DeleteAssessment() {
 }
 
 func ExampleInspector_DeleteRun() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DeleteRunInput{
 		RunArn: aws.String("Arn"),
@@ -188,7 +189,7 @@ func ExampleInspector_DeleteRun() {
 }
 
 func ExampleInspector_DescribeApplication() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DescribeApplicationInput{
 		ApplicationArn: aws.String("Arn"),
@@ -207,7 +208,7 @@ func ExampleInspector_DescribeApplication() {
 }
 
 func ExampleInspector_DescribeAssessment() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DescribeAssessmentInput{
 		AssessmentArn: aws.String("Arn"),
@@ -226,7 +227,7 @@ func ExampleInspector_DescribeAssessment() {
 }
 
 func ExampleInspector_DescribeCrossAccountAccessRole() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	var params *inspector.DescribeCrossAccountAccessRoleInput
 	resp, err := svc.DescribeCrossAccountAccessRole(params)
@@ -243,7 +244,7 @@ func ExampleInspector_DescribeCrossAccountAccessRole() {
 }
 
 func ExampleInspector_DescribeFinding() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DescribeFindingInput{
 		FindingArn: aws.String("Arn"),
@@ -262,7 +263,7 @@ func ExampleInspector_DescribeFinding() {
 }
 
 func ExampleInspector_DescribeResourceGroup() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DescribeResourceGroupInput{
 		ResourceGroupArn: aws.String("Arn"),
@@ -281,7 +282,7 @@ func ExampleInspector_DescribeResourceGroup() {
 }
 
 func ExampleInspector_DescribeRulesPackage() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DescribeRulesPackageInput{
 		RulesPackageArn: aws.String("Arn"),
@@ -300,7 +301,7 @@ func ExampleInspector_DescribeRulesPackage() {
 }
 
 func ExampleInspector_DescribeRun() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DescribeRunInput{
 		RunArn: aws.String("Arn"),
@@ -319,7 +320,7 @@ func ExampleInspector_DescribeRun() {
 }
 
 func ExampleInspector_DetachAssessmentAndRulesPackage() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.DetachAssessmentAndRulesPackageInput{
 		AssessmentArn:   aws.String("Arn"),
@@ -339,7 +340,7 @@ func ExampleInspector_DetachAssessmentAndRulesPackage() {
 }
 
 func ExampleInspector_GetAssessmentTelemetry() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.GetAssessmentTelemetryInput{
 		AssessmentArn: aws.String("Arn"),
@@ -358,7 +359,7 @@ func ExampleInspector_GetAssessmentTelemetry() {
 }
 
 func ExampleInspector_ListApplications() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListApplicationsInput{
 		Filter: &inspector.ApplicationsFilter{
@@ -384,7 +385,7 @@ func ExampleInspector_ListApplications() {
 }
 
 func ExampleInspector_ListAssessmentAgents() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListAssessmentAgentsInput{
 		AssessmentArn: aws.String("Arn"),
@@ -411,7 +412,7 @@ func ExampleInspector_ListAssessmentAgents() {
 }
 
 func ExampleInspector_ListAssessments() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListAssessmentsInput{
 		ApplicationArns: []*string{
@@ -458,7 +459,7 @@ func ExampleInspector_ListAssessments() {
 }
 
 func ExampleInspector_ListAttachedAssessments() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListAttachedAssessmentsInput{
 		Filter: &inspector.AssessmentsFilter{
@@ -502,7 +503,7 @@ func ExampleInspector_ListAttachedAssessments() {
 }
 
 func ExampleInspector_ListAttachedRulesPackages() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListAttachedRulesPackagesInput{
 		AssessmentArn: aws.String("Arn"),
@@ -523,7 +524,7 @@ func ExampleInspector_ListAttachedRulesPackages() {
 }
 
 func ExampleInspector_ListFindings() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListFindingsInput{
 		Filter: &inspector.FindingsFilter{
@@ -575,7 +576,7 @@ func ExampleInspector_ListFindings() {
 }
 
 func ExampleInspector_ListRulesPackages() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListRulesPackagesInput{
 		MaxResults: aws.Int64(1),
@@ -595,7 +596,7 @@ func ExampleInspector_ListRulesPackages() {
 }
 
 func ExampleInspector_ListRuns() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListRunsInput{
 		AssessmentArns: []*string{
@@ -641,7 +642,7 @@ func ExampleInspector_ListRuns() {
 }
 
 func ExampleInspector_ListTagsForResource() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.ListTagsForResourceInput{
 		ResourceArn: aws.String("Arn"),
@@ -660,7 +661,7 @@ func ExampleInspector_ListTagsForResource() {
 }
 
 func ExampleInspector_LocalizeText() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.LocalizeTextInput{
 		Locale: aws.String("Locale"),
@@ -695,7 +696,7 @@ func ExampleInspector_LocalizeText() {
 }
 
 func ExampleInspector_PreviewAgentsForResourceGroup() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.PreviewAgentsForResourceGroupInput{
 		MaxResults:       aws.Int64(1),
@@ -716,7 +717,7 @@ func ExampleInspector_PreviewAgentsForResourceGroup() {
 }
 
 func ExampleInspector_RegisterCrossAccountAccessRole() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.RegisterCrossAccountAccessRoleInput{
 		RoleArn: aws.String("Arn"),
@@ -735,7 +736,7 @@ func ExampleInspector_RegisterCrossAccountAccessRole() {
 }
 
 func ExampleInspector_RemoveAttributesFromFindings() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.RemoveAttributesFromFindingsInput{
 		AttributeKeys: []*string{
@@ -761,7 +762,7 @@ func ExampleInspector_RemoveAttributesFromFindings() {
 }
 
 func ExampleInspector_RunAssessment() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.RunAssessmentInput{
 		AssessmentArn: aws.String("Arn"),
@@ -781,7 +782,7 @@ func ExampleInspector_RunAssessment() {
 }
 
 func ExampleInspector_SetTagsForResource() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.SetTagsForResourceInput{
 		ResourceArn: aws.String("Arn"),
@@ -807,7 +808,7 @@ func ExampleInspector_SetTagsForResource() {
 }
 
 func ExampleInspector_StartDataCollection() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.StartDataCollectionInput{
 		AssessmentArn: aws.String("Arn"),
@@ -826,7 +827,7 @@ func ExampleInspector_StartDataCollection() {
 }
 
 func ExampleInspector_StopDataCollection() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.StopDataCollectionInput{
 		AssessmentArn: aws.String("Arn"),
@@ -845,7 +846,7 @@ func ExampleInspector_StopDataCollection() {
 }
 
 func ExampleInspector_UpdateApplication() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.UpdateApplicationInput{
 		ApplicationArn:   aws.String("Arn"),
@@ -866,7 +867,7 @@ func ExampleInspector_UpdateApplication() {
 }
 
 func ExampleInspector_UpdateAssessment() {
-	svc := inspector.New(nil)
+	svc := inspector.New(session.New())
 
 	params := &inspector.UpdateAssessmentInput{
 		AssessmentArn:     aws.String("Arn"),

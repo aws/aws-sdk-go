@@ -121,7 +121,7 @@ func (o *Operation) InterfaceSignature() string {
 // tplExample defines the template for rendering an Operation example
 var tplExample = template.Must(template.New("operationExample").Parse(`
 func Example{{ .API.StructName }}_{{ .ExportedName }}() {
-	svc := {{ .API.NewAPIGoCodeWithPkgName "nil" }}
+	svc := {{ .API.PackageName }}.New(session.New())
 
 	{{ .ExampleInput }}
 	resp, err := svc.{{ .ExportedName }}(params)

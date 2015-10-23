@@ -136,3 +136,5 @@ type Route53API interface {
 
 	UpdateHostedZoneComment(*route53.UpdateHostedZoneCommentInput) (*route53.UpdateHostedZoneCommentOutput, error)
 }
+
+var _ Route53API = (*route53.Route53)(nil)

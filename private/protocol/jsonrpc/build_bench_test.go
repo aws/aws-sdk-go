@@ -8,8 +8,8 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awstesting"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
 	"github.com/aws/aws-sdk-go/private/protocol/json/jsonutil"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
@@ -17,7 +17,7 @@ import (
 )
 
 func BenchmarkJSONRPCBuild_Simple_dynamodbPutItem(b *testing.B) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 
 	params := getDynamodbPutItemParams(b)
 
@@ -31,7 +31,7 @@ func BenchmarkJSONRPCBuild_Simple_dynamodbPutItem(b *testing.B) {
 }
 
 func BenchmarkJSONUtilBuild_Simple_dynamodbPutItem(b *testing.B) {
-	svc := service.New(nil)
+	svc := awstesting.NewClient()
 
 	params := getDynamodbPutItemParams(b)
 

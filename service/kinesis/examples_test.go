@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/kinesis"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleKinesis_AddTagsToStream() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.AddTagsToStreamInput{
 		StreamName: aws.String("StreamName"), // Required
@@ -38,7 +39,7 @@ func ExampleKinesis_AddTagsToStream() {
 }
 
 func ExampleKinesis_CreateStream() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.CreateStreamInput{
 		ShardCount: aws.Int64(1),             // Required
@@ -58,7 +59,7 @@ func ExampleKinesis_CreateStream() {
 }
 
 func ExampleKinesis_DecreaseStreamRetentionPeriod() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.DecreaseStreamRetentionPeriodInput{
 		RetentionPeriodHours: aws.Int64(1),             // Required
@@ -78,7 +79,7 @@ func ExampleKinesis_DecreaseStreamRetentionPeriod() {
 }
 
 func ExampleKinesis_DeleteStream() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.DeleteStreamInput{
 		StreamName: aws.String("StreamName"), // Required
@@ -97,7 +98,7 @@ func ExampleKinesis_DeleteStream() {
 }
 
 func ExampleKinesis_DescribeStream() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.DescribeStreamInput{
 		StreamName:            aws.String("StreamName"), // Required
@@ -118,7 +119,7 @@ func ExampleKinesis_DescribeStream() {
 }
 
 func ExampleKinesis_GetRecords() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.GetRecordsInput{
 		ShardIterator: aws.String("ShardIterator"), // Required
@@ -138,7 +139,7 @@ func ExampleKinesis_GetRecords() {
 }
 
 func ExampleKinesis_GetShardIterator() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.GetShardIteratorInput{
 		ShardId:                aws.String("ShardId"),           // Required
@@ -160,7 +161,7 @@ func ExampleKinesis_GetShardIterator() {
 }
 
 func ExampleKinesis_IncreaseStreamRetentionPeriod() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.IncreaseStreamRetentionPeriodInput{
 		RetentionPeriodHours: aws.Int64(1),             // Required
@@ -180,7 +181,7 @@ func ExampleKinesis_IncreaseStreamRetentionPeriod() {
 }
 
 func ExampleKinesis_ListStreams() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.ListStreamsInput{
 		ExclusiveStartStreamName: aws.String("StreamName"),
@@ -200,7 +201,7 @@ func ExampleKinesis_ListStreams() {
 }
 
 func ExampleKinesis_ListTagsForStream() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.ListTagsForStreamInput{
 		StreamName:           aws.String("StreamName"), // Required
@@ -221,7 +222,7 @@ func ExampleKinesis_ListTagsForStream() {
 }
 
 func ExampleKinesis_MergeShards() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.MergeShardsInput{
 		AdjacentShardToMerge: aws.String("ShardId"),    // Required
@@ -242,7 +243,7 @@ func ExampleKinesis_MergeShards() {
 }
 
 func ExampleKinesis_PutRecord() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.PutRecordInput{
 		Data:                      []byte("PAYLOAD"),          // Required
@@ -265,7 +266,7 @@ func ExampleKinesis_PutRecord() {
 }
 
 func ExampleKinesis_PutRecords() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.PutRecordsInput{
 		Records: []*kinesis.PutRecordsRequestEntry{ // Required
@@ -292,7 +293,7 @@ func ExampleKinesis_PutRecords() {
 }
 
 func ExampleKinesis_RemoveTagsFromStream() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.RemoveTagsFromStreamInput{
 		StreamName: aws.String("StreamName"), // Required
@@ -315,7 +316,7 @@ func ExampleKinesis_RemoveTagsFromStream() {
 }
 
 func ExampleKinesis_SplitShard() {
-	svc := kinesis.New(nil)
+	svc := kinesis.New(session.New())
 
 	params := &kinesis.SplitShardInput{
 		NewStartingHashKey: aws.String("HashKey"),    // Required

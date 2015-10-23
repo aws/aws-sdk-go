@@ -6,15 +6,14 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/awstesting/unit"
 	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/stretchr/testify/assert"
 )
-
-var _ = unit.Imported
 
 var s3StatusCodeErrorTests = []struct {
 	scode   int
@@ -32,7 +31,7 @@ var s3StatusCodeErrorTests = []struct {
 
 func TestStatusCodeError(t *testing.T) {
 	for _, test := range s3StatusCodeErrorTests {
-		s := s3.New(nil)
+		s := s3.New(unit.Session)
 		s.Handlers.Send.Clear()
 		s.Handlers.Send.PushBack(func(r *request.Request) {
 			body := ioutil.NopCloser(bytes.NewReader([]byte(test.body)))

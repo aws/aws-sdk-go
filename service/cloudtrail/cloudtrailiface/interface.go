@@ -58,3 +58,5 @@ type CloudTrailAPI interface {
 
 	UpdateTrail(*cloudtrail.UpdateTrailInput) (*cloudtrail.UpdateTrailOutput, error)
 }
+
+var _ CloudTrailAPI = (*cloudtrail.CloudTrail)(nil)

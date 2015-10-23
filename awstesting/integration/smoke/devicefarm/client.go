@@ -8,11 +8,10 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@devicefarm", func() {
 		// FIXME remove custom region
-		World["client"] = devicefarm.New(aws.NewConfig().WithRegion("us-west-2"))
+		World["client"] = devicefarm.New(smoke.Session,
+			aws.NewConfig().WithRegion("us-west-2"))
 	})
 }
