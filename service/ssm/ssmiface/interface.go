@@ -10,6 +10,10 @@ import (
 
 // SSMAPI is the interface type for ssm.SSM.
 type SSMAPI interface {
+	CancelCommandRequest(*ssm.CancelCommandInput) (*request.Request, *ssm.CancelCommandOutput)
+
+	CancelCommand(*ssm.CancelCommandInput) (*ssm.CancelCommandOutput, error)
+
 	CreateAssociationRequest(*ssm.CreateAssociationInput) (*request.Request, *ssm.CreateAssociationOutput)
 
 	CreateAssociation(*ssm.CreateAssociationInput) (*ssm.CreateAssociationOutput, error)
@@ -38,6 +42,10 @@ type SSMAPI interface {
 
 	DescribeDocument(*ssm.DescribeDocumentInput) (*ssm.DescribeDocumentOutput, error)
 
+	DescribeInstanceInformationRequest(*ssm.DescribeInstanceInformationInput) (*request.Request, *ssm.DescribeInstanceInformationOutput)
+
+	DescribeInstanceInformation(*ssm.DescribeInstanceInformationInput) (*ssm.DescribeInstanceInformationOutput, error)
+
 	GetDocumentRequest(*ssm.GetDocumentInput) (*request.Request, *ssm.GetDocumentOutput)
 
 	GetDocument(*ssm.GetDocumentInput) (*ssm.GetDocumentOutput, error)
@@ -46,9 +54,21 @@ type SSMAPI interface {
 
 	ListAssociations(*ssm.ListAssociationsInput) (*ssm.ListAssociationsOutput, error)
 
+	ListCommandInvocationsRequest(*ssm.ListCommandInvocationsInput) (*request.Request, *ssm.ListCommandInvocationsOutput)
+
+	ListCommandInvocations(*ssm.ListCommandInvocationsInput) (*ssm.ListCommandInvocationsOutput, error)
+
+	ListCommandsRequest(*ssm.ListCommandsInput) (*request.Request, *ssm.ListCommandsOutput)
+
+	ListCommands(*ssm.ListCommandsInput) (*ssm.ListCommandsOutput, error)
+
 	ListDocumentsRequest(*ssm.ListDocumentsInput) (*request.Request, *ssm.ListDocumentsOutput)
 
 	ListDocuments(*ssm.ListDocumentsInput) (*ssm.ListDocumentsOutput, error)
+
+	SendCommandRequest(*ssm.SendCommandInput) (*request.Request, *ssm.SendCommandOutput)
+
+	SendCommand(*ssm.SendCommandInput) (*ssm.SendCommandOutput, error)
 
 	UpdateAssociationStatusRequest(*ssm.UpdateAssociationStatusInput) (*request.Request, *ssm.UpdateAssociationStatusOutput)
 

@@ -11,6 +11,44 @@
     "protocol":"json"
   },
   "operations":{
+    "CancelCommand":{
+      "name":"CancelCommand",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelCommandRequest"},
+      "output":{"shape":"CancelCommandResult"},
+      "errors":[
+        {
+          "shape":"InvalidCommandId",
+          "error":{
+            "code":"InvalidCommandId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"DuplicateInstanceId",
+          "error":{
+            "code":"DuplicateInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "CreateAssociation":{
       "name":"CreateAssociation",
       "http":{
@@ -63,6 +101,24 @@
             "senderFault":true
           },
           "exception":true
+        },
+        {
+          "shape":"UnsupportedPlatformType",
+          "error":{
+            "code":"UnsupportedPlatformType",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameters",
+          "error":{
+            "code":"InvalidParameters",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -102,6 +158,15 @@
           "exception":true
         },
         {
+          "shape":"InvalidParameters",
+          "error":{
+            "code":"InvalidParameters",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
           "shape":"DuplicateInstanceId",
           "error":{
             "code":"DuplicateInstanceId",
@@ -114,6 +179,15 @@
           "shape":"AssociationLimitExceeded",
           "error":{
             "code":"AssociationLimitExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedPlatformType",
+          "error":{
+            "code":"UnsupportedPlatformType",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -342,6 +416,61 @@
         }
       ]
     },
+    "DescribeInstanceInformation":{
+      "name":"DescribeInstanceInformation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceInformationRequest"},
+      "output":{"shape":"DescribeInstanceInformationResult"},
+      "errors":[
+        {
+          "shape":"InternalServerError",
+          "error":{
+            "code":"InternalServerError",
+            "httpStatusCode":500
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidNextToken",
+          "error":{
+            "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInstanceInformationFilterValue",
+          "error":{
+            "code":"InvalidInstanceInformationFilterValue",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidFilterKey",
+          "error":{
+            "code":"InvalidFilterKey",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "GetDocument":{
       "name":"GetDocument",
       "http":{
@@ -398,6 +527,100 @@
         }
       ]
     },
+    "ListCommandInvocations":{
+      "name":"ListCommandInvocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCommandInvocationsRequest"},
+      "output":{"shape":"ListCommandInvocationsResult"},
+      "errors":[
+        {
+          "shape":"InvalidCommandId",
+          "error":{
+            "code":"InvalidCommandId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidFilterKey",
+          "error":{
+            "code":"InvalidFilterKey",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidNextToken",
+          "error":{
+            "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "ListCommands":{
+      "name":"ListCommands",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListCommandsRequest"},
+      "output":{"shape":"ListCommandsResult"},
+      "errors":[
+        {
+          "shape":"InvalidCommandId",
+          "error":{
+            "code":"InvalidCommandId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidFilterKey",
+          "error":{
+            "code":"InvalidFilterKey",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidNextToken",
+          "error":{
+            "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "ListDocuments":{
       "name":"ListDocuments",
       "http":{
@@ -419,6 +642,80 @@
           "shape":"InvalidNextToken",
           "error":{
             "code":"InvalidNextToken",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidFilterKey",
+          "error":{
+            "code":"InvalidFilterKey",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
+    "SendCommand":{
+      "name":"SendCommand",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendCommandRequest"},
+      "output":{"shape":"SendCommandResult"},
+      "errors":[
+        {
+          "shape":"DuplicateInstanceId",
+          "error":{
+            "code":"DuplicateInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidInstanceId",
+          "error":{
+            "code":"InvalidInstanceId",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidDocument",
+          "error":{
+            "code":"InvalidDocument",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidOutputFolder",
+          "error":{
+            "code":"InvalidOutputFolder",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidParameters",
+          "error":{
+            "code":"InvalidParameters",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"UnsupportedPlatformType",
+          "error":{
+            "code":"UnsupportedPlatformType",
             "httpStatusCode":400,
             "senderFault":true
           },
@@ -527,7 +824,8 @@
         "Name":{"shape":"DocumentName"},
         "InstanceId":{"shape":"InstanceId"},
         "Date":{"shape":"DateTime"},
-        "Status":{"shape":"AssociationStatus"}
+        "Status":{"shape":"AssociationStatus"},
+        "Parameters":{"shape":"Parameters"}
       }
     },
     "AssociationDescriptionList":{
@@ -619,6 +917,159 @@
       ]
     },
     "BatchErrorMessage":{"type":"string"},
+    "Boolean":{"type":"boolean"},
+    "CancelCommandRequest":{
+      "type":"structure",
+      "required":["CommandId"],
+      "members":{
+        "CommandId":{"shape":"CommandId"},
+        "InstanceIds":{"shape":"InstanceIdList"}
+      }
+    },
+    "CancelCommandResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "Command":{
+      "type":"structure",
+      "members":{
+        "CommandId":{"shape":"CommandId"},
+        "DocumentName":{"shape":"DocumentName"},
+        "Comment":{"shape":"Comment"},
+        "ExpiresAfter":{"shape":"DateTime"},
+        "Parameters":{"shape":"Parameters"},
+        "InstanceIds":{"shape":"InstanceIdList"},
+        "RequestedDateTime":{"shape":"DateTime"},
+        "Status":{"shape":"CommandStatus"},
+        "OutputS3BucketName":{"shape":"S3BucketName"},
+        "OutputS3KeyPrefix":{"shape":"S3KeyPrefix"}
+      }
+    },
+    "CommandFilter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"CommandFilterKey"},
+        "value":{"shape":"CommandFilterValue"}
+      }
+    },
+    "CommandFilterKey":{
+      "type":"string",
+      "enum":[
+        "InvokedAfter",
+        "InvokedBefore",
+        "Status"
+      ]
+    },
+    "CommandFilterList":{
+      "type":"list",
+      "member":{"shape":"CommandFilter"},
+      "min":1,
+      "max":3
+    },
+    "CommandFilterValue":{
+      "type":"string",
+      "min":1
+    },
+    "CommandId":{
+      "type":"string",
+      "min":36,
+      "max":36
+    },
+    "CommandInvocation":{
+      "type":"structure",
+      "members":{
+        "CommandId":{"shape":"CommandId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "Comment":{"shape":"Comment"},
+        "DocumentName":{"shape":"DocumentName"},
+        "RequestedDateTime":{"shape":"DateTime"},
+        "Status":{"shape":"CommandInvocationStatus"},
+        "TraceOutput":{"shape":"InvocationTraceOutput"},
+        "CommandPlugins":{"shape":"CommandPluginList"}
+      }
+    },
+    "CommandInvocationList":{
+      "type":"list",
+      "member":{"shape":"CommandInvocation"}
+    },
+    "CommandInvocationStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "InProgress",
+        "Cancelling",
+        "Success",
+        "TimedOut",
+        "Cancelled",
+        "Failed"
+      ]
+    },
+    "CommandList":{
+      "type":"list",
+      "member":{"shape":"Command"}
+    },
+    "CommandMaxResults":{
+      "type":"integer",
+      "min":1,
+      "max":50
+    },
+    "CommandPlugin":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"CommandPluginName"},
+        "Status":{"shape":"CommandPluginStatus"},
+        "ResponseCode":{"shape":"ResponseCode"},
+        "ResponseStartDateTime":{"shape":"DateTime"},
+        "ResponseFinishDateTime":{"shape":"DateTime"},
+        "Output":{"shape":"CommandPluginOutput"},
+        "OutputS3BucketName":{"shape":"S3BucketName"},
+        "OutputS3KeyPrefix":{"shape":"S3KeyPrefix"}
+      }
+    },
+    "CommandPluginList":{
+      "type":"list",
+      "member":{"shape":"CommandPlugin"}
+    },
+    "CommandPluginName":{
+      "type":"string",
+      "min":4
+    },
+    "CommandPluginOutput":{
+      "type":"string",
+      "max":2500
+    },
+    "CommandPluginStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "InProgress",
+        "Success",
+        "TimedOut",
+        "Cancelled",
+        "Failed"
+      ]
+    },
+    "CommandStatus":{
+      "type":"string",
+      "enum":[
+        "Pending",
+        "InProgress",
+        "Cancelling",
+        "Success",
+        "TimedOut",
+        "Cancelled",
+        "Failed"
+      ]
+    },
+    "Comment":{
+      "type":"string",
+      "max":100
+    },
     "CreateAssociationBatchRequest":{
       "type":"structure",
       "required":["Entries"],
@@ -637,7 +1088,8 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"DocumentName"},
-        "InstanceId":{"shape":"InstanceId"}
+        "InstanceId":{"shape":"InstanceId"},
+        "Parameters":{"shape":"Parameters"}
       }
     },
     "CreateAssociationBatchResult":{
@@ -655,7 +1107,8 @@
       ],
       "members":{
         "Name":{"shape":"DocumentName"},
-        "InstanceId":{"shape":"InstanceId"}
+        "InstanceId":{"shape":"InstanceId"},
+        "Parameters":{"shape":"Parameters"}
       }
     },
     "CreateAssociationResult":{
@@ -740,6 +1193,25 @@
         "Document":{"shape":"DocumentDescription"}
       }
     },
+    "DescribeInstanceInformationRequest":{
+      "type":"structure",
+      "members":{
+        "InstanceInformationFilterList":{"shape":"InstanceInformationFilterList"},
+        "MaxResults":{
+          "shape":"MaxResultsEC2Compatible",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInstanceInformationResult":{
+      "type":"structure",
+      "members":{
+        "InstanceInformationList":{"shape":"InstanceInformationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescriptionInDocument":{"type":"string"},
     "DocumentAlreadyExists":{
       "type":"structure",
       "members":{
@@ -761,7 +1233,10 @@
         "Sha1":{"shape":"DocumentSha1"},
         "Name":{"shape":"DocumentName"},
         "CreatedDate":{"shape":"DateTime"},
-        "Status":{"shape":"DocumentStatus"}
+        "Status":{"shape":"DocumentStatus"},
+        "Description":{"shape":"DescriptionInDocument"},
+        "Parameters":{"shape":"DocumentParameterList"},
+        "PlatformTypes":{"shape":"PlatformTypeList"}
       }
     },
     "DocumentFilter":{
@@ -777,7 +1252,11 @@
     },
     "DocumentFilterKey":{
       "type":"string",
-      "enum":["Name"]
+      "enum":[
+        "Name",
+        "Owner",
+        "PlatformTypes"
+      ]
     },
     "DocumentFilterList":{
       "type":"list",
@@ -794,7 +1273,8 @@
     "DocumentIdentifier":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"DocumentName"}
+        "Name":{"shape":"DocumentName"},
+        "PlatformTypes":{"shape":"PlatformTypeList"}
       }
     },
     "DocumentIdentifierList":{
@@ -817,9 +1297,33 @@
     },
     "DocumentName":{
       "type":"string",
-      "min":3,
-      "max":64,
-      "pattern":"^[a-zA-Z0-9_\\-.]{3,64}$"
+      "pattern":"^[a-zA-Z0-9_\\-.]{3,128}$"
+    },
+    "DocumentParameter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"DocumentParameterName"},
+        "Type":{"shape":"DocumentParameterType"},
+        "Description":{"shape":"DocumentParameterDescrption"},
+        "DefaultValue":{"shape":"DocumentParameterDefaultValue"}
+      }
+    },
+    "DocumentParameterDefaultValue":{"type":"string"},
+    "DocumentParameterDescrption":{"type":"string"},
+    "DocumentParameterList":{
+      "type":"list",
+      "member":{
+        "shape":"DocumentParameter",
+        "locationName":"DocumentParameter"
+      }
+    },
+    "DocumentParameterName":{"type":"string"},
+    "DocumentParameterType":{
+      "type":"string",
+      "enum":[
+        "String",
+        "StringList"
+      ]
     },
     "DocumentSha1":{"type":"string"},
     "DocumentStatus":{
@@ -884,9 +1388,83 @@
       "max":10,
       "pattern":"^(?=.{10}$)(i-(\\w){8})"
     },
+    "InstanceIdList":{
+      "type":"list",
+      "member":{"shape":"InstanceId"},
+      "min":1,
+      "max":50
+    },
+    "InstanceInformation":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "PingStatus":{"shape":"PingStatus"},
+        "LastPingDateTime":{
+          "shape":"DateTime",
+          "box":true
+        },
+        "AgentVersion":{"shape":"Version"},
+        "IsLatestVersion":{
+          "shape":"Boolean",
+          "box":true
+        },
+        "PlatformType":{"shape":"PlatformType"},
+        "PlatformName":{"shape":"String"},
+        "PlatformVersion":{"shape":"String"}
+      }
+    },
+    "InstanceInformationFilter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "valueSet"
+      ],
+      "members":{
+        "key":{"shape":"InstanceInformationFilterKey"},
+        "valueSet":{"shape":"InstanceInformationFilterValueSet"}
+      }
+    },
+    "InstanceInformationFilterKey":{
+      "type":"string",
+      "enum":[
+        "InstanceIds",
+        "AgentVersion",
+        "PingStatus",
+        "PlatformTypes"
+      ]
+    },
+    "InstanceInformationFilterList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceInformationFilter",
+        "locationName":"InstanceInformationFilter"
+      },
+      "min":1
+    },
+    "InstanceInformationFilterValue":{
+      "type":"string",
+      "min":1
+    },
+    "InstanceInformationFilterValueSet":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceInformationFilterValue",
+        "locationName":"InstanceInformationFilterValue"
+      },
+      "min":1,
+      "max":100
+    },
+    "InstanceInformationList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceInformation",
+        "locationName":"InstanceInformation"
+      }
+    },
     "InternalServerError":{
       "type":"structure",
       "members":{
+        "message":{"shape":"String"}
       },
       "error":{
         "code":"InternalServerError",
@@ -894,9 +1472,21 @@
       },
       "exception":true
     },
+    "InvalidCommandId":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidCommandId",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidDocument":{
       "type":"structure",
       "members":{
+        "message":{"shape":"String"}
       },
       "error":{
         "code":"InvalidDocument",
@@ -917,6 +1507,17 @@
       },
       "exception":true
     },
+    "InvalidFilterKey":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidFilterKey",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidInstanceId":{
       "type":"structure",
       "members":{
@@ -924,6 +1525,18 @@
       "error":{
         "code":"InvalidInstanceId",
         "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidInstanceInformationFilterValue":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "code":"InvalidInstanceInformationFilterValue",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -938,6 +1551,33 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "InvalidOutputFolder":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidOutputFolder",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidParameters":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "code":"InvalidParameters",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvocationTraceOutput":{
+      "type":"string",
+      "max":2500
     },
     "ListAssociationsRequest":{
       "type":"structure",
@@ -955,6 +1595,47 @@
       "type":"structure",
       "members":{
         "Associations":{"shape":"AssociationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCommandInvocationsRequest":{
+      "type":"structure",
+      "members":{
+        "CommandId":{"shape":"CommandId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "MaxResults":{
+          "shape":"CommandMaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"CommandFilterList"},
+        "Details":{"shape":"Boolean"}
+      }
+    },
+    "ListCommandInvocationsResult":{
+      "type":"structure",
+      "members":{
+        "CommandInvocations":{"shape":"CommandInvocationList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListCommandsRequest":{
+      "type":"structure",
+      "members":{
+        "CommandId":{"shape":"CommandId"},
+        "InstanceId":{"shape":"InstanceId"},
+        "MaxResults":{
+          "shape":"CommandMaxResults",
+          "box":true
+        },
+        "NextToken":{"shape":"NextToken"},
+        "Filters":{"shape":"CommandFilterList"}
+      }
+    },
+    "ListCommandsResult":{
+      "type":"structure",
+      "members":{
+        "Commands":{"shape":"CommandList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -992,7 +1673,80 @@
       "min":1,
       "max":25
     },
+    "MaxResultsEC2Compatible":{
+      "type":"integer",
+      "min":5,
+      "max":50
+    },
     "NextToken":{"type":"string"},
+    "ParameterName":{"type":"string"},
+    "ParameterValue":{"type":"string"},
+    "ParameterValueList":{
+      "type":"list",
+      "member":{"shape":"ParameterValue"}
+    },
+    "Parameters":{
+      "type":"map",
+      "key":{"shape":"ParameterName"},
+      "value":{"shape":"ParameterValueList"}
+    },
+    "PingStatus":{
+      "type":"string",
+      "enum":[
+        "Online",
+        "ConnectionLost",
+        "Inactive"
+      ]
+    },
+    "PlatformType":{
+      "type":"string",
+      "enum":[
+        "Windows",
+        "Linux"
+      ]
+    },
+    "PlatformTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"PlatformType",
+        "locationName":"PlatformType"
+      }
+    },
+    "ResponseCode":{"type":"integer"},
+    "S3BucketName":{
+      "type":"string",
+      "min":3,
+      "max":63
+    },
+    "S3KeyPrefix":{
+      "type":"string",
+      "max":500
+    },
+    "SendCommandRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceIds",
+        "DocumentName"
+      ],
+      "members":{
+        "InstanceIds":{"shape":"InstanceIdList"},
+        "DocumentName":{"shape":"DocumentName"},
+        "TimeoutSeconds":{
+          "shape":"TimeoutSeconds",
+          "box":true
+        },
+        "Comment":{"shape":"Comment"},
+        "Parameters":{"shape":"Parameters"},
+        "OutputS3BucketName":{"shape":"S3BucketName"},
+        "OutputS3KeyPrefix":{"shape":"S3KeyPrefix"}
+      }
+    },
+    "SendCommandResult":{
+      "type":"structure",
+      "members":{
+        "Command":{"shape":"Command"}
+      }
+    },
     "StatusAdditionalInfo":{
       "type":"string",
       "max":1024
@@ -1013,6 +1767,11 @@
       "exception":true
     },
     "String":{"type":"string"},
+    "TimeoutSeconds":{
+      "type":"integer",
+      "min":30,
+      "max":2592000
+    },
     "TooManyUpdates":{
       "type":"structure",
       "members":{
@@ -1020,6 +1779,18 @@
       "error":{
         "code":"TooManyUpdates",
         "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "UnsupportedPlatformType":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{
+        "code":"UnsupportedPlatformType",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -1042,6 +1813,10 @@
       "members":{
         "AssociationDescription":{"shape":"AssociationDescription"}
       }
+    },
+    "Version":{
+      "type":"string",
+      "pattern":"^[0-9]{1,6}(\\.[0-9]{1,6}){2,3}$"
     }
   }
 }

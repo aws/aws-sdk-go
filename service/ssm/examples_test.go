@@ -14,12 +14,42 @@ import (
 var _ time.Duration
 var _ bytes.Buffer
 
+func ExampleSSM_CancelCommand() {
+	svc := ssm.New(nil)
+
+	params := &ssm.CancelCommandInput{
+		CommandId: aws.String("CommandId"), // Required
+		InstanceIds: []*string{
+			aws.String("InstanceId"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.CancelCommand(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSSM_CreateAssociation() {
 	svc := ssm.New(nil)
 
 	params := &ssm.CreateAssociationInput{
 		InstanceId: aws.String("InstanceId"),   // Required
 		Name:       aws.String("DocumentName"), // Required
+		Parameters: map[string][]*string{
+			"Key": { // Required
+				aws.String("ParameterValue"), // Required
+				// More values...
+			},
+			// More values...
+		},
 	}
 	resp, err := svc.CreateAssociation(params)
 
@@ -42,6 +72,13 @@ func ExampleSSM_CreateAssociationBatch() {
 			{ // Required
 				InstanceId: aws.String("InstanceId"),
 				Name:       aws.String("DocumentName"),
+				Parameters: map[string][]*string{
+					"Key": { // Required
+						aws.String("ParameterValue"), // Required
+						// More values...
+					},
+					// More values...
+				},
 			},
 			// More values...
 		},
@@ -157,6 +194,36 @@ func ExampleSSM_DescribeDocument() {
 	fmt.Println(resp)
 }
 
+func ExampleSSM_DescribeInstanceInformation() {
+	svc := ssm.New(nil)
+
+	params := &ssm.DescribeInstanceInformationInput{
+		InstanceInformationFilterList: []*ssm.InstanceInformationFilter{
+			{ // Required
+				Key: aws.String("InstanceInformationFilterKey"), // Required
+				ValueSet: []*string{ // Required
+					aws.String("InstanceInformationFilterValue"), // Required
+					// More values...
+				},
+			},
+			// More values...
+		},
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.DescribeInstanceInformation(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSSM_GetDocument() {
 	svc := ssm.New(nil)
 
@@ -203,6 +270,65 @@ func ExampleSSM_ListAssociations() {
 	fmt.Println(resp)
 }
 
+func ExampleSSM_ListCommandInvocations() {
+	svc := ssm.New(nil)
+
+	params := &ssm.ListCommandInvocationsInput{
+		CommandId: aws.String("CommandId"),
+		Details:   aws.Bool(true),
+		Filters: []*ssm.CommandFilter{
+			{ // Required
+				Key:   aws.String("CommandFilterKey"),   // Required
+				Value: aws.String("CommandFilterValue"), // Required
+			},
+			// More values...
+		},
+		InstanceId: aws.String("InstanceId"),
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.ListCommandInvocations(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSSM_ListCommands() {
+	svc := ssm.New(nil)
+
+	params := &ssm.ListCommandsInput{
+		CommandId: aws.String("CommandId"),
+		Filters: []*ssm.CommandFilter{
+			{ // Required
+				Key:   aws.String("CommandFilterKey"),   // Required
+				Value: aws.String("CommandFilterValue"), // Required
+			},
+			// More values...
+		},
+		InstanceId: aws.String("InstanceId"),
+		MaxResults: aws.Int64(1),
+		NextToken:  aws.String("NextToken"),
+	}
+	resp, err := svc.ListCommands(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleSSM_ListDocuments() {
 	svc := ssm.New(nil)
 
@@ -218,6 +344,40 @@ func ExampleSSM_ListDocuments() {
 		NextToken:  aws.String("NextToken"),
 	}
 	resp, err := svc.ListDocuments(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleSSM_SendCommand() {
+	svc := ssm.New(nil)
+
+	params := &ssm.SendCommandInput{
+		DocumentName: aws.String("DocumentName"), // Required
+		InstanceIds: []*string{ // Required
+			aws.String("InstanceId"), // Required
+			// More values...
+		},
+		Comment:            aws.String("Comment"),
+		OutputS3BucketName: aws.String("S3BucketName"),
+		OutputS3KeyPrefix:  aws.String("S3KeyPrefix"),
+		Parameters: map[string][]*string{
+			"Key": { // Required
+				aws.String("ParameterValue"), // Required
+				// More values...
+			},
+			// More values...
+		},
+		TimeoutSeconds: aws.Int64(1),
+	}
+	resp, err := svc.SendCommand(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and
