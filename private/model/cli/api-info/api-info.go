@@ -10,10 +10,10 @@ import (
 )
 
 func main() {
-	dir, _ := os.Open("apis")
+	dir, _ := os.Open(filepath.Join("models", "apis"))
 	names, _ := dir.Readdirnames(0)
 	for _, name := range names {
-		m, _ := filepath.Glob(filepath.Join("apis", name, "*", "api-2.json"))
+		m, _ := filepath.Glob(filepath.Join("models", "apis", name, "*", "api-2.json"))
 		if len(m) == 0 {
 			continue
 		}
