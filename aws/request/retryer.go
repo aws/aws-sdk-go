@@ -19,6 +19,7 @@ type Retryer interface {
 // without any further action.
 var retryableCodes = map[string]struct{}{
 	"RequestError":                           {},
+	"RequestTimeout":                         {},
 	"ProvisionedThroughputExceededException": {},
 	"Throttling":                             {},
 	"ThrottlingException":                    {},
