@@ -320,9 +320,12 @@ func (u *uploader) initSize() {
 		}
 		u.totalSize = n
 
-		// try to adjust partSize if it is too small
-		if u.totalSize/u.opts.PartSize >= int64(MaxUploadParts) {
-			u.opts.PartSize = u.totalSize / int64(MaxUploadParts)
+		// Try to adjust partSize if it is too small and account for
+		// integer division truncation.
+		if float64(u.totalSize)/float64(u.opts.PartSize) >= float64(MaxUploadParts) {
+			// Add one to the part size to account for remainders
+			// during the size calculation. e.g odd number of bytes.
+			u.opts.PartSize = (u.totalSize / int64(MaxUploadParts)) + 1
 		}
 	}
 }

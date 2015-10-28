@@ -165,8 +165,8 @@ func TestUploadIncreasePartSize(t *testing.T) {
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
 
 	// Part lengths
-	assert.Equal(t, 1024*1024*6, buflen(val((*args)[1], "Body")))
-	assert.Equal(t, 1024*1024*6, buflen(val((*args)[2], "Body")))
+	assert.Equal(t, (1024*1024*6) + 1, buflen(val((*args)[1], "Body")))
+	assert.Equal(t, (1024*1024*6) - 1, buflen(val((*args)[2], "Body")))
 }
 
 func TestUploadFailIfPartSizeTooSmall(t *testing.T) {
