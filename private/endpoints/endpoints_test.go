@@ -8,7 +8,7 @@ import (
 
 func TestGlobalEndpoints(t *testing.T) {
 	region := "mock-region-1"
-	svcs := []string{"cloudfront", "iam", "importexport", "route53", "sts"}
+	svcs := []string{"cloudfront", "iam", "importexport", "route53", "sts", "waf"}
 
 	for _, name := range svcs {
 		ep, sr := EndpointForRegion(name, region)
@@ -19,7 +19,7 @@ func TestGlobalEndpoints(t *testing.T) {
 
 func TestServicesInCN(t *testing.T) {
 	region := "cn-north-1"
-	svcs := []string{"cloudfront", "iam", "importexport", "route53", "sts", "s3"}
+	svcs := []string{"cloudfront", "iam", "importexport", "route53", "sts", "s3", "waf"}
 
 	for _, name := range svcs {
 		ep, _ := EndpointForRegion(name, region)

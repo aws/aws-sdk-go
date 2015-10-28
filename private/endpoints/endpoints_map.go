@@ -46,6 +46,10 @@ var endpointsMap = endpointStruct{
 			Endpoint:      "sts.amazonaws.com",
 			SigningRegion: "us-east-1",
 		},
+		"*/waf": {
+			Endpoint:      "waf.amazonaws.com",
+			SigningRegion: "us-east-1",
+		},
 		"ap-northeast-1/s3": {
 			Endpoint: "s3-{region}.amazonaws.com",
 		},

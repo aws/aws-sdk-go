@@ -14,11 +14,17 @@
           },
           "Bar": {
             "shape": "StringType"
+          },
+          "Baz": {
+            "shape": "BooleanType"
           }
         }
       },
       "StringType": {
         "type": "string"
+      },
+      "BooleanType": {
+        "type": "boolean"
       }
     },
     "cases": [
@@ -36,6 +42,36 @@
         "serialized": {
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&Foo=val1&Bar=val2"
+        }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "Baz": true
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&Baz=true"
+        }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "Baz": false
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&Baz=false"
         }
       }
     ]
@@ -131,6 +167,21 @@
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&ListArg.member.1=foo&ListArg.member.2=bar&ListArg.member.3=baz"
         }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "ListArg": []
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&ListArg="
+        }
       }
     ]
   },
@@ -149,6 +200,9 @@
           },
           "ListArg": {
             "shape": "ListType"
+          },
+          "NamedListArg": {
+            "shape": "NamedListType"
           }
         }
       },
@@ -156,6 +210,14 @@
         "type": "list",
         "member": {
           "shape": "StringType"
+        },
+        "flattened": true
+      },
+      "NamedListType": {
+        "type": "list",
+        "member": {
+          "shape": "StringType",
+          "locationName": "Foo"
         },
         "flattened": true
       },
@@ -182,6 +244,121 @@
         "serialized": {
           "uri": "/",
           "body": "Action=OperationName&Version=2014-01-01&ScalarArg=foo&ListArg.1=a&ListArg.2=b&ListArg.3=c"
+        }
+      },
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "NamedListArg": [
+            "a"
+          ]
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&Foo.1=a"
+        }
+      }
+    ]
+  },
+  {
+    "description": "Serialize flattened map type",
+    "metadata": {
+      "protocol": "query",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "MapArg": {
+            "shape": "StringMap"
+          }
+        }
+      },
+      "StringMap": {
+        "type": "map",
+        "key": {
+          "shape": "StringType"
+        },
+        "value": {
+          "shape": "StringType"
+        },
+        "flattened": true
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "MapArg": {
+            "key1": "val1",
+            "key2": "val2"
+          }
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&MapArg.1.key=key1&MapArg.1.value=val1&MapArg.2.key=key2&MapArg.2.value=val2"
+        }
+      }
+    ]
+  },
+  {
+    "description": "Non flattened list with LocationName",
+    "metadata": {
+      "protocol": "query",
+      "apiVersion": "2014-01-01"
+    },
+    "shapes": {
+      "InputShape": {
+        "type": "structure",
+        "members": {
+          "ListArg": {
+            "shape": "ListType"
+          }
+        }
+      },
+      "ListType": {
+        "type": "list",
+        "member": {
+          "shape": "StringType",
+          "locationName": "item"
+        }
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "input": {
+            "shape": "InputShape"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "ListArg": [
+            "a",
+            "b",
+            "c"
+          ]
+        },
+        "serialized": {
+          "uri": "/",
+          "body": "Action=OperationName&Version=2014-01-01&ListArg.item.1=a&ListArg.item.2=b&ListArg.item.3=c"
         }
       }
     ]

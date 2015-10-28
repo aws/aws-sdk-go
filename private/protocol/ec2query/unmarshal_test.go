@@ -660,6 +660,81 @@ type metadataOutputService8TestShapeOutputService8TestCaseOperation1Output struc
 	SDKShapeTraits bool `type:"structure"`
 }
 
+type OutputService9ProtocolTest struct {
+	*service.Service
+}
+
+// New returns a new OutputService9ProtocolTest client.
+func NewOutputService9ProtocolTest(config *aws.Config) *OutputService9ProtocolTest {
+	service := &service.Service{
+		ServiceInfo: serviceinfo.ServiceInfo{
+			Config:      defaults.DefaultConfig.Merge(config),
+			ServiceName: "outputservice9protocoltest",
+			APIVersion:  "",
+		},
+	}
+	service.Initialize()
+
+	// Handlers
+	service.Handlers.Sign.PushBack(v4.Sign)
+	service.Handlers.Build.PushBack(ec2query.Build)
+	service.Handlers.Unmarshal.PushBack(ec2query.Unmarshal)
+	service.Handlers.UnmarshalMeta.PushBack(ec2query.UnmarshalMeta)
+	service.Handlers.UnmarshalError.PushBack(ec2query.UnmarshalError)
+
+	return &OutputService9ProtocolTest{service}
+}
+
+// newRequest creates a new request for a OutputService9ProtocolTest operation and runs any
+// custom request initialization.
+func (c *OutputService9ProtocolTest) newRequest(op *request.Operation, params, data interface{}) *request.Request {
+	req := c.NewRequest(op, params, data)
+
+	return req
+}
+
+const opOutputService9TestCaseOperation1 = "OperationName"
+
+// OutputService9TestCaseOperation1Request generates a request for the OutputService9TestCaseOperation1 operation.
+func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1Request(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (req *request.Request, output *OutputService9TestShapeOutputService9TestCaseOperation1Output) {
+	op := &request.Operation{
+		Name: opOutputService9TestCaseOperation1,
+	}
+
+	if input == nil {
+		input = &OutputService9TestShapeOutputService9TestCaseOperation1Input{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &OutputService9TestShapeOutputService9TestCaseOperation1Output{}
+	req.Data = output
+	return
+}
+
+func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1(input *OutputService9TestShapeOutputService9TestCaseOperation1Input) (*OutputService9TestShapeOutputService9TestCaseOperation1Output, error) {
+	req, out := c.OutputService9TestCaseOperation1Request(input)
+	err := req.Send()
+	return out, err
+}
+
+type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
+	metadataOutputService9TestShapeOutputService9TestCaseOperation1Input `json:"-" xml:"-"`
+}
+
+type metadataOutputService9TestShapeOutputService9TestCaseOperation1Input struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
+	Foo *string `type:"string"`
+
+	metadataOutputService9TestShapeOutputService9TestCaseOperation1Output `json:"-" xml:"-"`
+}
+
+type metadataOutputService9TestShapeOutputService9TestCaseOperation1Output struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
 //
 // Tests begin here
 //
@@ -834,5 +909,25 @@ func TestOutputService8ProtocolTestNamedMapCase1(t *testing.T) {
 	assert.NotNil(t, out) // ensure out variable is used
 	assert.Equal(t, "bam", *out.Map["baz"])
 	assert.Equal(t, "bar", *out.Map["qux"])
+
+}
+
+func TestOutputService9ProtocolTestEmptyStringCase1(t *testing.T) {
+	svc := NewOutputService9ProtocolTest(nil)
+
+	buf := bytes.NewReader([]byte("<OperationNameResponse><Foo/><RequestId>requestid</RequestId></OperationNameResponse>"))
+	req, out := svc.OutputService9TestCaseOperation1Request(nil)
+	req.HTTPResponse = &http.Response{StatusCode: 200, Body: ioutil.NopCloser(buf), Header: http.Header{}}
+
+	// set headers
+
+	// unmarshal response
+	ec2query.UnmarshalMeta(req)
+	ec2query.Unmarshal(req)
+	assert.NoError(t, req.Error)
+
+	// assert response
+	assert.NotNil(t, out) // ensure out variable is used
+	assert.Equal(t, "", *out.Foo)
 
 }

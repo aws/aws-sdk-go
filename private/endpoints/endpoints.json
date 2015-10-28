@@ -45,6 +45,10 @@
       "endpoint": "sts.amazonaws.com",
       "signingRegion": "us-east-1"
     },
+    "*/waf": {
+      "endpoint": "waf.amazonaws.com",
+      "signingRegion": "us-east-1"
+    },
     "us-east-1/sdb": {
       "endpoint": "sdb.amazonaws.com",
       "signingRegion": "us-east-1"

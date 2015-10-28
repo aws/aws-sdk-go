@@ -69,6 +69,22 @@
           "uri": "/2014-01-01/hostedzone",
           "headers": {}
         }
+      },
+      {
+        "given": {
+          "http": {
+            "method": "GET",
+            "requestUri": "/2014-01-01/hostedzone"
+          },
+          "name": "OperationName"
+        },
+        "params": {},
+        "serialized": {
+          "method": "GET",
+          "body": "",
+          "uri": "/2014-01-01/hostedzone",
+          "headers": {}
+        }
       }
     ]
   },
@@ -192,6 +208,33 @@
         "serialized": {
           "method": "POST",
           "body": "<OperationRequest xmlns=\"https://foo/\"><SubStructure><Foo>a</Foo><Bar>b</Bar></SubStructure><Description>baz</Description></OperationRequest>",
+          "uri": "/2014-01-01/hostedzone",
+          "headers": {}
+        }
+      },
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/2014-01-01/hostedzone"
+          },
+          "input": {
+            "shape": "InputShape",
+            "locationName": "OperationRequest",
+            "xmlNamespace": {"uri": "https://foo/"}
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "SubStructure": {
+            "Foo": "a",
+            "Bar": null
+          },
+          "Description": "baz"
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "<OperationRequest xmlns=\"https://foo/\"><SubStructure><Foo>a</Foo></SubStructure><Description>baz</Description></OperationRequest>",
           "uri": "/2014-01-01/hostedzone",
           "headers": {}
         }
@@ -805,6 +848,7 @@
       }
     ]
   },
+
   {
     "description": "String payload",
     "metadata": {
@@ -976,6 +1020,48 @@
           "name": "OperationName"
         },
         "params": {},
+        "serialized": {
+          "method": "POST",
+          "body": "",
+          "uri": "/"
+        }
+      },
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "foo": {}
+        },
+        "serialized": {
+          "method": "POST",
+          "body": "<foo />",
+          "uri": "/"
+        }
+      },
+      {
+        "given": {
+          "http": {
+            "method": "POST",
+            "requestUri": "/"
+          },
+          "input": {
+            "shape": "InputShape",
+            "payload": "foo"
+          },
+          "name": "OperationName"
+        },
+        "params": {
+          "foo": null
+        },
         "serialized": {
           "method": "POST",
           "body": "",

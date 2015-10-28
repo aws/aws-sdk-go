@@ -679,5 +679,42 @@
         }
       }
     ]
+  },
+  {
+    "description": "Empty string",
+    "metadata": {
+      "protocol": "rest-xml"
+    },
+    "shapes": {
+      "OutputShape": {
+        "type": "structure",
+        "members": {
+          "Foo": {
+            "shape": "StringType"
+          }
+        }
+      },
+      "StringType": {
+        "type": "string"
+      }
+    },
+    "cases": [
+      {
+        "given": {
+          "output": {
+            "shape": "OutputShape"
+          },
+          "name": "OperationName"
+        },
+        "result": {
+          "Foo": ""
+        },
+        "response": {
+          "status_code": 200,
+          "headers": {},
+          "body": "<OperationNameResponse><Foo/><RequestId>requestid</RequestId></OperationNameResponse>"
+        }
+      }
+    ]
   }
 ]
