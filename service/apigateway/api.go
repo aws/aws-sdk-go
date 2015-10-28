@@ -4302,8 +4302,11 @@ type PutIntegrationInput struct {
 	// Specifies whether credentials are required for a put integration.
 	Credentials *string `locationName:"credentials" type:"string"`
 
+	// Specifies a put integration request's HTTP method.
+	HttpMethod *string `location:"uri" locationName:"http_method" type:"string" required:"true"`
+
 	// Specifies a put integration HTTP method.
-	HttpMethod *string `locationName:"httpMethod" type:"string" required:"true"`
+	IntegrationHttpMethod *string `locationName:"httpMethod" type:"string"`
 
 	// Represents request parameters that are sent with the backend request. Request
 	// parameters are represented as a key/value map, with a destination as the

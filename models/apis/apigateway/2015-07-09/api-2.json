@@ -3307,8 +3307,16 @@
           "location":"uri",
           "locationName":"resource_id"
         },
-        "httpMethod":{"shape":"String"},
+        "httpMethod":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"http_method"
+        },
         "type":{"shape":"IntegrationType"},
+        "integrationHttpMethod":{
+          "shape":"String",
+          "locationName":"httpMethod"
+        },
         "uri":{"shape":"String"},
         "credentials":{"shape":"String"},
         "requestParameters":{"shape":"MapOfStringToString"},
