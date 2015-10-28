@@ -322,7 +322,7 @@ func (u *uploader) initSize() {
 
 		// try to adjust partSize if it is too small
 		if u.totalSize/u.opts.PartSize >= int64(MaxUploadParts) {
-			u.opts.PartSize = u.totalSize / int64(MaxUploadParts)
+			u.opts.PartSize = (u.totalSize / int64(MaxUploadParts)) + 1
 		}
 	}
 }
