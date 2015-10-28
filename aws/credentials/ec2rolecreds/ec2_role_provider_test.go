@@ -137,7 +137,7 @@ func TestEC2RoleProviderExpiryWindowIsExpired(t *testing.T) {
 	assert.True(t, p.IsExpired(), "Expect creds to be expired.")
 }
 
-func BenchmarkEC2RoleProvider(b *testing.B) {
+func BenchmarkEC3RoleProvider(b *testing.B) {
 	server := initTestServer("2014-12-16T01:51:37Z", false)
 	defer server.Close()
 
@@ -150,12 +150,9 @@ func BenchmarkEC2RoleProvider(b *testing.B) {
 	}
 
 	b.ResetTimer()
-	b.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			_, err := p.Retrieve()
-			if err != nil {
-				b.Fatal(err)
-			}
+	for i := 0; i < b.N; i++ {
+		if _, err := p.Retrieve(); err != nil {
+			b.Fatal(err)
 		}
-	})
+	}
 }
