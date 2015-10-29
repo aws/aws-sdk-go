@@ -12,11 +12,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
-var _ = unit.Imported
-
 // Use DynamoDB methods for simplicity
 func TestPagination(t *testing.T) {
-	db := dynamodb.New(nil)
+	db := dynamodb.New(unit.Session)
 	tokens, pages, numPages, gotToEnd := []string{}, []string{}, 0, false
 
 	reqNum := 0
@@ -68,7 +66,7 @@ func TestPagination(t *testing.T) {
 
 // Use DynamoDB methods for simplicity
 func TestPaginationEachPage(t *testing.T) {
-	db := dynamodb.New(nil)
+	db := dynamodb.New(unit.Session)
 	tokens, pages, numPages, gotToEnd := []string{}, []string{}, 0, false
 
 	reqNum := 0
@@ -121,7 +119,7 @@ func TestPaginationEachPage(t *testing.T) {
 
 // Use DynamoDB methods for simplicity
 func TestPaginationEarlyExit(t *testing.T) {
-	db := dynamodb.New(nil)
+	db := dynamodb.New(unit.Session)
 	numPages, gotToEnd := 0, false
 
 	reqNum := 0
@@ -161,7 +159,7 @@ func TestPaginationEarlyExit(t *testing.T) {
 }
 
 func TestSkipPagination(t *testing.T) {
-	client := s3.New(nil)
+	client := s3.New(unit.Session)
 	client.Handlers.Send.Clear() // mock sending
 	client.Handlers.Unmarshal.Clear()
 	client.Handlers.UnmarshalMeta.Clear()
@@ -187,7 +185,7 @@ func TestSkipPagination(t *testing.T) {
 // Use S3 for simplicity
 func TestPaginationTruncation(t *testing.T) {
 	count := 0
-	client := s3.New(nil)
+	client := s3.New(unit.Session)
 
 	reqNum := &count
 	resps := []*s3.ListObjectsOutput{
@@ -251,7 +249,7 @@ var benchResps = []*dynamodb.ListTablesOutput{
 }
 
 var benchDb = func() *dynamodb.DynamoDB {
-	db := dynamodb.New(nil)
+	db := dynamodb.New(unit.Session)
 	db.Handlers.Send.Clear() // mock sending
 	db.Handlers.Unmarshal.Clear()
 	db.Handlers.UnmarshalMeta.Clear()

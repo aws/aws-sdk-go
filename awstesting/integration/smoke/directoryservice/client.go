@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@directoryservice", func() {
-		World["client"] = directoryservice.New(nil)
+		World["client"] = directoryservice.New(smoke.Session)
 	})
 }

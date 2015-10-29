@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/configservice"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleConfigService_DeleteConfigRule() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DeleteConfigRuleInput{
 		ConfigRuleName: aws.String("StringWithCharLimit64"), // Required
@@ -34,7 +35,7 @@ func ExampleConfigService_DeleteConfigRule() {
 }
 
 func ExampleConfigService_DeleteDeliveryChannel() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DeleteDeliveryChannelInput{
 		DeliveryChannelName: aws.String("ChannelName"), // Required
@@ -53,7 +54,7 @@ func ExampleConfigService_DeleteDeliveryChannel() {
 }
 
 func ExampleConfigService_DeliverConfigSnapshot() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DeliverConfigSnapshotInput{
 		DeliveryChannelName: aws.String("ChannelName"), // Required
@@ -72,7 +73,7 @@ func ExampleConfigService_DeliverConfigSnapshot() {
 }
 
 func ExampleConfigService_DescribeComplianceByConfigRule() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeComplianceByConfigRuleInput{
 		ComplianceTypes: []*string{
@@ -99,7 +100,7 @@ func ExampleConfigService_DescribeComplianceByConfigRule() {
 }
 
 func ExampleConfigService_DescribeComplianceByResource() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeComplianceByResourceInput{
 		ComplianceTypes: []*string{
@@ -125,7 +126,7 @@ func ExampleConfigService_DescribeComplianceByResource() {
 }
 
 func ExampleConfigService_DescribeConfigRuleEvaluationStatus() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeConfigRuleEvaluationStatusInput{
 		ConfigRuleNames: []*string{
@@ -147,7 +148,7 @@ func ExampleConfigService_DescribeConfigRuleEvaluationStatus() {
 }
 
 func ExampleConfigService_DescribeConfigRules() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeConfigRulesInput{
 		ConfigRuleNames: []*string{
@@ -170,7 +171,7 @@ func ExampleConfigService_DescribeConfigRules() {
 }
 
 func ExampleConfigService_DescribeConfigurationRecorderStatus() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeConfigurationRecorderStatusInput{
 		ConfigurationRecorderNames: []*string{
@@ -192,7 +193,7 @@ func ExampleConfigService_DescribeConfigurationRecorderStatus() {
 }
 
 func ExampleConfigService_DescribeConfigurationRecorders() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeConfigurationRecordersInput{
 		ConfigurationRecorderNames: []*string{
@@ -214,7 +215,7 @@ func ExampleConfigService_DescribeConfigurationRecorders() {
 }
 
 func ExampleConfigService_DescribeDeliveryChannelStatus() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeDeliveryChannelStatusInput{
 		DeliveryChannelNames: []*string{
@@ -236,7 +237,7 @@ func ExampleConfigService_DescribeDeliveryChannelStatus() {
 }
 
 func ExampleConfigService_DescribeDeliveryChannels() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.DescribeDeliveryChannelsInput{
 		DeliveryChannelNames: []*string{
@@ -258,7 +259,7 @@ func ExampleConfigService_DescribeDeliveryChannels() {
 }
 
 func ExampleConfigService_GetComplianceDetailsByConfigRule() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.GetComplianceDetailsByConfigRuleInput{
 		ConfigRuleName: aws.String("StringWithCharLimit64"), // Required
@@ -283,7 +284,7 @@ func ExampleConfigService_GetComplianceDetailsByConfigRule() {
 }
 
 func ExampleConfigService_GetComplianceDetailsByResource() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.GetComplianceDetailsByResourceInput{
 		ResourceId:   aws.String("StringWithCharLimit256"), // Required
@@ -308,7 +309,7 @@ func ExampleConfigService_GetComplianceDetailsByResource() {
 }
 
 func ExampleConfigService_GetComplianceSummaryByConfigRule() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	var params *configservice.GetComplianceSummaryByConfigRuleInput
 	resp, err := svc.GetComplianceSummaryByConfigRule(params)
@@ -325,7 +326,7 @@ func ExampleConfigService_GetComplianceSummaryByConfigRule() {
 }
 
 func ExampleConfigService_GetComplianceSummaryByResourceType() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.GetComplianceSummaryByResourceTypeInput{
 		ResourceTypes: []*string{
@@ -347,7 +348,7 @@ func ExampleConfigService_GetComplianceSummaryByResourceType() {
 }
 
 func ExampleConfigService_GetResourceConfigHistory() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.GetResourceConfigHistoryInput{
 		ResourceId:         aws.String("ResourceId"),   // Required
@@ -372,7 +373,7 @@ func ExampleConfigService_GetResourceConfigHistory() {
 }
 
 func ExampleConfigService_ListDiscoveredResources() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.ListDiscoveredResourcesInput{
 		ResourceType:            aws.String("ResourceType"), // Required
@@ -399,7 +400,7 @@ func ExampleConfigService_ListDiscoveredResources() {
 }
 
 func ExampleConfigService_PutConfigRule() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.PutConfigRuleInput{
 		ConfigRule: &configservice.ConfigRule{ // Required
@@ -446,7 +447,7 @@ func ExampleConfigService_PutConfigRule() {
 }
 
 func ExampleConfigService_PutConfigurationRecorder() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.PutConfigurationRecorderInput{
 		ConfigurationRecorder: &configservice.ConfigurationRecorder{ // Required
@@ -475,7 +476,7 @@ func ExampleConfigService_PutConfigurationRecorder() {
 }
 
 func ExampleConfigService_PutDeliveryChannel() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.PutDeliveryChannelInput{
 		DeliveryChannel: &configservice.DeliveryChannel{ // Required
@@ -502,7 +503,7 @@ func ExampleConfigService_PutDeliveryChannel() {
 }
 
 func ExampleConfigService_PutEvaluations() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.PutEvaluationsInput{
 		ResultToken: aws.String("String"), // Required
@@ -531,7 +532,7 @@ func ExampleConfigService_PutEvaluations() {
 }
 
 func ExampleConfigService_StartConfigurationRecorder() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.StartConfigurationRecorderInput{
 		ConfigurationRecorderName: aws.String("RecorderName"), // Required
@@ -550,7 +551,7 @@ func ExampleConfigService_StartConfigurationRecorder() {
 }
 
 func ExampleConfigService_StopConfigurationRecorder() {
-	svc := configservice.New(nil)
+	svc := configservice.New(session.New())
 
 	params := &configservice.StopConfigurationRecorderInput{
 		ConfigurationRecorderName: aws.String("RecorderName"), // Required

@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@elasticache", func() {
-		World["client"] = elasticache.New(nil)
+		World["client"] = elasticache.New(smoke.Session)
 	})
 }

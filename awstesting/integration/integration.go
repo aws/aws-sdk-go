@@ -9,29 +9,26 @@ import (
 	"os"
 
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/session"
 )
 
-// Imported is a marker to ensure that this package's init() function gets
-// executed.
-//
-// To use this package, import it and add:
-//
-// 	 var _ = integration.Imported
-const Imported = true
+// Session is a shared session for all integration tests to use.
+var Session = session.New()
 
 func init() {
+	logLevel := Session.Config.LogLevel
 	if os.Getenv("DEBUG") != "" {
-		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebug)
+		logLevel = aws.LogLevel(aws.LogDebug)
 	}
 	if os.Getenv("DEBUG_SIGNING") != "" {
-		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning)
+		logLevel = aws.LogLevel(aws.LogDebugWithSigning)
 	}
 	if os.Getenv("DEBUG_BODY") != "" {
-		defaults.DefaultConfig.LogLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
+		logLevel = aws.LogLevel(aws.LogDebugWithSigning | aws.LogDebugWithHTTPBody)
 	}
+	Session.Config.LogLevel = logLevel
 
-	if aws.StringValue(defaults.DefaultConfig.Region) == "" {
+	if aws.StringValue(Session.Config.Region) == "" {
 		panic("AWS_REGION must be configured to run integration tests")
 	}
 }

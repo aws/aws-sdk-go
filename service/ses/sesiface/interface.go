@@ -168,3 +168,5 @@ type SESAPI interface {
 
 	VerifyEmailIdentity(*ses.VerifyEmailIdentityInput) (*ses.VerifyEmailIdentityOutput, error)
 }
+
+var _ SESAPI = (*ses.SES)(nil)

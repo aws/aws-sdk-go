@@ -150,3 +150,5 @@ type CodeDeployAPI interface {
 
 	UpdateDeploymentGroup(*codedeploy.UpdateDeploymentGroupInput) (*codedeploy.UpdateDeploymentGroupOutput, error)
 }
+
+var _ CodeDeployAPI = (*codedeploy.CodeDeploy)(nil)

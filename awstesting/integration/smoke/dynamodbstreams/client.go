@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@dynamodbstreams", func() {
-		World["client"] = dynamodbstreams.New(nil)
+		World["client"] = dynamodbstreams.New(smoke.Session)
 	})
 }

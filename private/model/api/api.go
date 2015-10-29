@@ -29,6 +29,9 @@ type API struct {
 	// Set to true to ignore String() and GoString methods (for generated tests)
 	NoStringerMethods bool
 
+	// Set to true to not generate API service name constants
+	NoConstServiceNames bool
+
 	initialized bool
 	imports     map[string]bool
 	name        string
@@ -220,47 +223,73 @@ func (a *API) APIGoCode() string {
 
 // A tplService defines the template for the service generated code.
 var tplService = template.Must(template.New("service").Parse(`
-{{ .Documentation }}type {{ .StructName }} struct {
-	*service.Service
+{{ .Documentation }}//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
+type {{ .StructName }} struct {
+	*client.Client
 }
 
-{{ if .UseInitMethods }}// Used for custom service initialization logic
-var initService func(*service.Service)
+{{ if .UseInitMethods }}// Used for custom client initialization logic
+var initClient func(*client.Client)
 
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 {{ end }}
 
-// New returns a new {{ .StructName }} client.
-func New(config *aws.Config) *{{ .StructName }} {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:       defaults.DefaultConfig.Merge(config),
-			ServiceName:  "{{ .Metadata.EndpointPrefix }}",{{ if ne .Metadata.SigningName "" }}
-			SigningName:  "{{ .Metadata.SigningName }}",{{ end }}
+{{ if not .NoConstServiceNames }}
+// A ServiceName is the name of the service the client will make API calls to.
+const ServiceName = "{{ .Metadata.EndpointPrefix }}"
+{{ end }}
+
+// New creates a new instance of the {{ .StructName }} client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a {{ .StructName }} client from just a session.
+//     svc := {{ .PackageName }}.New(mySession)
+//
+//     // Create a {{ .StructName }} client with additional configuration
+//     svc := {{ .PackageName }}.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
+	c := p.ClientConfig({{ if .NoConstServiceNames }}"{{ .Metadata.EndpointPrefix }}"{{ else }}ServiceName{{ end }}, cfgs...)
+	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *{{ .StructName }} {
+    svc := &{{ .StructName }}{
+    	Client: client.New(
+    		cfg,
+    		metadata.ClientInfo{
+			ServiceName:  {{ if .NoConstServiceNames }}"{{ .Metadata.EndpointPrefix }}"{{ else }}ServiceName{{ end }}, {{ if ne .Metadata.SigningName "" }}
+			SigningName: "{{ .Metadata.SigningName }}",{{ end }}
+			SigningRegion: signingRegion,
+			Endpoint:     endpoint,
 			APIVersion:   "{{ .Metadata.APIVersion }}",
 {{ if eq .Metadata.Protocol "json" }}JSONVersion:  "{{ .Metadata.JSONVersion }}",
 			TargetPrefix: "{{ .Metadata.TargetPrefix }}",
 {{ end }}
-		},
-  }
-	service.Initialize()
+    		},
+    		handlers,
+    	),
+    }
 
 	// Handlers
-	service.Handlers.Sign.PushBack({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.Sign)
-	{{if eq .Metadata.SignatureVersion "v2"}}service.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
-	{{end}}service.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
-	service.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
+	svc.Handlers.Sign.PushBack({{if eq .Metadata.SignatureVersion "v2"}}v2{{else}}v4{{end}}.Sign)
+	{{if eq .Metadata.SignatureVersion "v2"}}svc.Handlers.Sign.PushBackNamed(corehandlers.BuildContentLengthHandler)
+	{{end}}svc.Handlers.Build.PushBack({{ .ProtocolPackage }}.Build)
+	svc.Handlers.Unmarshal.PushBack({{ .ProtocolPackage }}.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack({{ .ProtocolPackage }}.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack({{ .ProtocolPackage }}.UnmarshalError)
 
-	{{ if .UseInitMethods }}// Run custom service initialization if present
-	if initService != nil {
-		initService(service)
+	{{ if .UseInitMethods }}// Run custom client initialization if present
+	if initClient != nil {
+		initClient(svc.Client)
 	}
 	{{ end  }}
 
-	return &{{ .StructName }}{service}
+	return svc
 }
 
 // newRequest creates a new request for a {{ .StructName }} operation and runs any
@@ -281,11 +310,9 @@ func (c *{{ .StructName }}) newRequest(op *request.Operation, params, data inter
 // ServiceGoCode renders service go code. Returning it as a string.
 func (a *API) ServiceGoCode() string {
 	a.resetImports()
-	a.imports["github.com/aws/aws-sdk-go/aws"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/defaults"] = true
+	a.imports["github.com/aws/aws-sdk-go/aws/client"] = true
+	a.imports["github.com/aws/aws-sdk-go/aws/client/metadata"] = true
 	a.imports["github.com/aws/aws-sdk-go/aws/request"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/service"] = true
-	a.imports["github.com/aws/aws-sdk-go/aws/service/serviceinfo"] = true
 	if a.Metadata.SignatureVersion == "v2" {
 		a.imports["github.com/aws/aws-sdk-go/private/signer/v2"] = true
 		a.imports["github.com/aws/aws-sdk-go/aws/corehandlers"] = true
@@ -311,12 +338,13 @@ func (a *API) ExampleGoCode() string {
 		exs = append(exs, o.Example())
 	}
 
-	code := fmt.Sprintf("import (\n%q\n%q\n%q\n\n%q\n%q\n)\n\n"+
+	code := fmt.Sprintf("import (\n%q\n%q\n%q\n\n%q\n%q\n%q\n)\n\n"+
 		"var _ time.Duration\nvar _ bytes.Buffer\n\n%s",
 		"bytes",
 		"fmt",
 		"time",
 		"github.com/aws/aws-sdk-go/aws",
+		"github.com/aws/aws-sdk-go/aws/session",
 		"github.com/aws/aws-sdk-go/service/"+a.PackageName(),
 		strings.Join(exs, "\n\n"),
 	)
@@ -331,6 +359,8 @@ type {{ .StructName }}API interface {
         {{ $o.InterfaceSignature }}
     {{ end }}
 }
+
+var _ {{ .StructName }}API = (*{{ .PackageName }}.{{ .StructName }})(nil)
 `))
 
 // InterfaceGoCode returns the go code for the service's API operations as an
@@ -345,33 +375,6 @@ func (a *API) InterfaceGoCode() string {
 
 	var buf bytes.Buffer
 	err := tplInterface.Execute(&buf, a)
-
-	if err != nil {
-		panic(err)
-	}
-
-	code := a.importsGoCode() + strings.TrimSpace(buf.String())
-	return code
-}
-
-var tplInterfaceTest = template.Must(template.New("interfacetest").Parse(`
-func TestInterface(t *testing.T) {
-	assert.Implements(t, (*{{ .InterfacePackageName }}.{{ .StructName }}API)(nil), {{ .PackageName }}.New(nil))
-}
-`))
-
-// InterfaceTestGoCode returns the go code for the testing of a service interface.
-func (a *API) InterfaceTestGoCode() string {
-	a.resetImports()
-	a.imports = map[string]bool{
-		"testing": true,
-		"github.com/aws/aws-sdk-go/service/" + a.PackageName():                                  true,
-		"github.com/aws/aws-sdk-go/service/" + a.PackageName() + "/" + a.InterfacePackageName(): true,
-		"github.com/stretchr/testify/assert":                                                    true,
-	}
-
-	var buf bytes.Buffer
-	err := tplInterfaceTest.Execute(&buf, a)
 
 	if err != nil {
 		panic(err)

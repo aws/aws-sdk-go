@@ -4,10 +4,9 @@ package inspector
 
 import (
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/defaults"
+	"github.com/aws/aws-sdk-go/aws/client"
+	"github.com/aws/aws-sdk-go/aws/client/metadata"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/service"
-	"github.com/aws/aws-sdk-go/aws/service/serviceinfo"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 	"github.com/aws/aws-sdk-go/private/signer/v4"
 )
@@ -15,42 +14,66 @@ import (
 // Amazon Inspector enables you to analyze the behavior of the applications
 // you run in AWS and to identify potential security issues. For more information,
 // see  Amazon Inspector User Guide (https://docs.aws.amazon.com/inspector/latest/userguide/inspector_introduction.html).
+//The service client's operations are safe to be used concurrently.
+// It is not safe to mutate any of the client's properties though.
 type Inspector struct {
-	*service.Service
+	*client.Client
 }
 
-// Used for custom service initialization logic
-var initService func(*service.Service)
+// Used for custom client initialization logic
+var initClient func(*client.Client)
 
 // Used for custom request initialization logic
 var initRequest func(*request.Request)
 
-// New returns a new Inspector client.
-func New(config *aws.Config) *Inspector {
-	service := &service.Service{
-		ServiceInfo: serviceinfo.ServiceInfo{
-			Config:       defaults.DefaultConfig.Merge(config),
-			ServiceName:  "inspector",
-			APIVersion:   "2015-08-18",
-			JSONVersion:  "1.1",
-			TargetPrefix: "InspectorService",
-		},
+// A ServiceName is the name of the service the client will make API calls to.
+const ServiceName = "inspector"
+
+// New creates a new instance of the Inspector client with a session.
+// If additional configuration is needed for the client instance use the optional
+// aws.Config parameter to add your extra config.
+//
+// Example:
+//     // Create a Inspector client from just a session.
+//     svc := inspector.New(mySession)
+//
+//     // Create a Inspector client with additional configuration
+//     svc := inspector.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
+func New(p client.ConfigProvider, cfgs ...*aws.Config) *Inspector {
+	c := p.ClientConfig(ServiceName, cfgs...)
+	return newClient(*c.Config, c.Handlers, c.Endpoint, c.SigningRegion)
+}
+
+// newClient creates, initializes and returns a new service client instance.
+func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegion string) *Inspector {
+	svc := &Inspector{
+		Client: client.New(
+			cfg,
+			metadata.ClientInfo{
+				ServiceName:   ServiceName,
+				SigningRegion: signingRegion,
+				Endpoint:      endpoint,
+				APIVersion:    "2015-08-18",
+				JSONVersion:   "1.1",
+				TargetPrefix:  "InspectorService",
+			},
+			handlers,
+		),
 	}
-	service.Initialize()
 
 	// Handlers
-	service.Handlers.Sign.PushBack(v4.Sign)
-	service.Handlers.Build.PushBack(jsonrpc.Build)
-	service.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
-	service.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
-	service.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
+	svc.Handlers.Sign.PushBack(v4.Sign)
+	svc.Handlers.Build.PushBack(jsonrpc.Build)
+	svc.Handlers.Unmarshal.PushBack(jsonrpc.Unmarshal)
+	svc.Handlers.UnmarshalMeta.PushBack(jsonrpc.UnmarshalMeta)
+	svc.Handlers.UnmarshalError.PushBack(jsonrpc.UnmarshalError)
 
-	// Run custom service initialization if present
-	if initService != nil {
-		initService(service)
+	// Run custom client initialization if present
+	if initClient != nil {
+		initClient(svc.Client)
 	}
 
-	return &Inspector{service}
+	return svc
 }
 
 // newRequest creates a new request for a Inspector operation and runs any

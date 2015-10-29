@@ -3,12 +3,14 @@ package sts_test
 import (
 	"testing"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/service/sts"
 	"github.com/stretchr/testify/assert"
+
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/awstesting/unit"
+	"github.com/aws/aws-sdk-go/service/sts"
 )
 
-var svc = sts.New(&aws.Config{
+var svc = sts.New(unit.Session, &aws.Config{
 	Region: aws.String("mock-region"),
 })
 

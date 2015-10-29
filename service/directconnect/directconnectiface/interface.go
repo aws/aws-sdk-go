@@ -86,3 +86,5 @@ type DirectConnectAPI interface {
 
 	DescribeVirtualInterfaces(*directconnect.DescribeVirtualInterfacesInput) (*directconnect.DescribeVirtualInterfacesOutput, error)
 }
+
+var _ DirectConnectAPI = (*directconnect.DirectConnect)(nil)

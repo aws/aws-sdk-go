@@ -38,3 +38,5 @@ type FirehoseAPI interface {
 
 	UpdateDestination(*firehose.UpdateDestinationInput) (*firehose.UpdateDestinationOutput, error)
 }
+
+var _ FirehoseAPI = (*firehose.Firehose)(nil)

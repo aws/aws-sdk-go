@@ -86,3 +86,5 @@ type Route53DomainsAPI interface {
 
 	UpdateTagsForDomain(*route53domains.UpdateTagsForDomainInput) (*route53domains.UpdateTagsForDomainOutput, error)
 }
+
+var _ Route53DomainsAPI = (*route53domains.Route53Domains)(nil)

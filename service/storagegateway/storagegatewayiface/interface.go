@@ -234,3 +234,5 @@ type StorageGatewayAPI interface {
 
 	UpdateVTLDeviceType(*storagegateway.UpdateVTLDeviceTypeInput) (*storagegateway.UpdateVTLDeviceTypeOutput, error)
 }
+
+var _ StorageGatewayAPI = (*storagegateway.StorageGateway)(nil)

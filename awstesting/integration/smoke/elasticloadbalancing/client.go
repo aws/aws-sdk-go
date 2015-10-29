@@ -7,10 +7,8 @@ import (
 	. "github.com/lsegal/gucumber"
 )
 
-var _ = smoke.Imported
-
 func init() {
 	Before("@elasticloadbalancing", func() {
-		World["client"] = elb.New(nil)
+		World["client"] = elb.New(smoke.Session)
 	})
 }

@@ -348,3 +348,5 @@ type RDSAPI interface {
 
 	RevokeDBSecurityGroupIngress(*rds.RevokeDBSecurityGroupIngressInput) (*rds.RevokeDBSecurityGroupIngressOutput, error)
 }
+
+var _ RDSAPI = (*rds.RDS)(nil)

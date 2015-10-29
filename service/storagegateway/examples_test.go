@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/storagegateway"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleStorageGateway_ActivateGateway() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ActivateGatewayInput{
 		ActivationKey:     aws.String("ActivationKey"),   // Required
@@ -40,7 +41,7 @@ func ExampleStorageGateway_ActivateGateway() {
 }
 
 func ExampleStorageGateway_AddCache() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.AddCacheInput{
 		DiskIds: []*string{ // Required
@@ -63,7 +64,7 @@ func ExampleStorageGateway_AddCache() {
 }
 
 func ExampleStorageGateway_AddTagsToResource() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.AddTagsToResourceInput{
 		ResourceARN: aws.String("ResourceARN"), // Required
@@ -89,7 +90,7 @@ func ExampleStorageGateway_AddTagsToResource() {
 }
 
 func ExampleStorageGateway_AddUploadBuffer() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.AddUploadBufferInput{
 		DiskIds: []*string{ // Required
@@ -112,7 +113,7 @@ func ExampleStorageGateway_AddUploadBuffer() {
 }
 
 func ExampleStorageGateway_AddWorkingStorage() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.AddWorkingStorageInput{
 		DiskIds: []*string{ // Required
@@ -135,7 +136,7 @@ func ExampleStorageGateway_AddWorkingStorage() {
 }
 
 func ExampleStorageGateway_CancelArchival() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CancelArchivalInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -155,7 +156,7 @@ func ExampleStorageGateway_CancelArchival() {
 }
 
 func ExampleStorageGateway_CancelRetrieval() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CancelRetrievalInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -175,7 +176,7 @@ func ExampleStorageGateway_CancelRetrieval() {
 }
 
 func ExampleStorageGateway_CreateCachediSCSIVolume() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CreateCachediSCSIVolumeInput{
 		ClientToken:        aws.String("ClientToken"),        // Required
@@ -199,7 +200,7 @@ func ExampleStorageGateway_CreateCachediSCSIVolume() {
 }
 
 func ExampleStorageGateway_CreateSnapshot() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CreateSnapshotInput{
 		SnapshotDescription: aws.String("SnapshotDescription"), // Required
@@ -219,7 +220,7 @@ func ExampleStorageGateway_CreateSnapshot() {
 }
 
 func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CreateSnapshotFromVolumeRecoveryPointInput{
 		SnapshotDescription: aws.String("SnapshotDescription"), // Required
@@ -239,7 +240,7 @@ func ExampleStorageGateway_CreateSnapshotFromVolumeRecoveryPoint() {
 }
 
 func ExampleStorageGateway_CreateStorediSCSIVolume() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CreateStorediSCSIVolumeInput{
 		DiskId:               aws.String("DiskId"),             // Required
@@ -263,7 +264,7 @@ func ExampleStorageGateway_CreateStorediSCSIVolume() {
 }
 
 func ExampleStorageGateway_CreateTapes() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.CreateTapesInput{
 		ClientToken:       aws.String("ClientToken"),       // Required
@@ -286,7 +287,7 @@ func ExampleStorageGateway_CreateTapes() {
 }
 
 func ExampleStorageGateway_DeleteBandwidthRateLimit() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteBandwidthRateLimitInput{
 		BandwidthType: aws.String("BandwidthType"), // Required
@@ -306,7 +307,7 @@ func ExampleStorageGateway_DeleteBandwidthRateLimit() {
 }
 
 func ExampleStorageGateway_DeleteChapCredentials() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteChapCredentialsInput{
 		InitiatorName: aws.String("IqnName"),   // Required
@@ -326,7 +327,7 @@ func ExampleStorageGateway_DeleteChapCredentials() {
 }
 
 func ExampleStorageGateway_DeleteGateway() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteGatewayInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -345,7 +346,7 @@ func ExampleStorageGateway_DeleteGateway() {
 }
 
 func ExampleStorageGateway_DeleteSnapshotSchedule() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteSnapshotScheduleInput{
 		VolumeARN: aws.String("VolumeARN"), // Required
@@ -364,7 +365,7 @@ func ExampleStorageGateway_DeleteSnapshotSchedule() {
 }
 
 func ExampleStorageGateway_DeleteTape() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteTapeInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -384,7 +385,7 @@ func ExampleStorageGateway_DeleteTape() {
 }
 
 func ExampleStorageGateway_DeleteTapeArchive() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteTapeArchiveInput{
 		TapeARN: aws.String("TapeARN"), // Required
@@ -403,7 +404,7 @@ func ExampleStorageGateway_DeleteTapeArchive() {
 }
 
 func ExampleStorageGateway_DeleteVolume() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DeleteVolumeInput{
 		VolumeARN: aws.String("VolumeARN"), // Required
@@ -422,7 +423,7 @@ func ExampleStorageGateway_DeleteVolume() {
 }
 
 func ExampleStorageGateway_DescribeBandwidthRateLimit() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeBandwidthRateLimitInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -441,7 +442,7 @@ func ExampleStorageGateway_DescribeBandwidthRateLimit() {
 }
 
 func ExampleStorageGateway_DescribeCache() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeCacheInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -460,7 +461,7 @@ func ExampleStorageGateway_DescribeCache() {
 }
 
 func ExampleStorageGateway_DescribeCachediSCSIVolumes() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeCachediSCSIVolumesInput{
 		VolumeARNs: []*string{ // Required
@@ -482,7 +483,7 @@ func ExampleStorageGateway_DescribeCachediSCSIVolumes() {
 }
 
 func ExampleStorageGateway_DescribeChapCredentials() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeChapCredentialsInput{
 		TargetARN: aws.String("TargetARN"), // Required
@@ -501,7 +502,7 @@ func ExampleStorageGateway_DescribeChapCredentials() {
 }
 
 func ExampleStorageGateway_DescribeGatewayInformation() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeGatewayInformationInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -520,7 +521,7 @@ func ExampleStorageGateway_DescribeGatewayInformation() {
 }
 
 func ExampleStorageGateway_DescribeMaintenanceStartTime() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeMaintenanceStartTimeInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -539,7 +540,7 @@ func ExampleStorageGateway_DescribeMaintenanceStartTime() {
 }
 
 func ExampleStorageGateway_DescribeSnapshotSchedule() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeSnapshotScheduleInput{
 		VolumeARN: aws.String("VolumeARN"), // Required
@@ -558,7 +559,7 @@ func ExampleStorageGateway_DescribeSnapshotSchedule() {
 }
 
 func ExampleStorageGateway_DescribeStorediSCSIVolumes() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeStorediSCSIVolumesInput{
 		VolumeARNs: []*string{ // Required
@@ -580,7 +581,7 @@ func ExampleStorageGateway_DescribeStorediSCSIVolumes() {
 }
 
 func ExampleStorageGateway_DescribeTapeArchives() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeTapeArchivesInput{
 		Limit:  aws.Int64(1),
@@ -604,7 +605,7 @@ func ExampleStorageGateway_DescribeTapeArchives() {
 }
 
 func ExampleStorageGateway_DescribeTapeRecoveryPoints() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeTapeRecoveryPointsInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -625,7 +626,7 @@ func ExampleStorageGateway_DescribeTapeRecoveryPoints() {
 }
 
 func ExampleStorageGateway_DescribeTapes() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeTapesInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -650,7 +651,7 @@ func ExampleStorageGateway_DescribeTapes() {
 }
 
 func ExampleStorageGateway_DescribeUploadBuffer() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeUploadBufferInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -669,7 +670,7 @@ func ExampleStorageGateway_DescribeUploadBuffer() {
 }
 
 func ExampleStorageGateway_DescribeVTLDevices() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeVTLDevicesInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -694,7 +695,7 @@ func ExampleStorageGateway_DescribeVTLDevices() {
 }
 
 func ExampleStorageGateway_DescribeWorkingStorage() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DescribeWorkingStorageInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -713,7 +714,7 @@ func ExampleStorageGateway_DescribeWorkingStorage() {
 }
 
 func ExampleStorageGateway_DisableGateway() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.DisableGatewayInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -732,7 +733,7 @@ func ExampleStorageGateway_DisableGateway() {
 }
 
 func ExampleStorageGateway_ListGateways() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListGatewaysInput{
 		Limit:  aws.Int64(1),
@@ -752,7 +753,7 @@ func ExampleStorageGateway_ListGateways() {
 }
 
 func ExampleStorageGateway_ListLocalDisks() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListLocalDisksInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -771,7 +772,7 @@ func ExampleStorageGateway_ListLocalDisks() {
 }
 
 func ExampleStorageGateway_ListTagsForResource() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListTagsForResourceInput{
 		Limit:       aws.Int64(1),
@@ -792,7 +793,7 @@ func ExampleStorageGateway_ListTagsForResource() {
 }
 
 func ExampleStorageGateway_ListVolumeInitiators() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListVolumeInitiatorsInput{
 		VolumeARN: aws.String("VolumeARN"), // Required
@@ -811,7 +812,7 @@ func ExampleStorageGateway_ListVolumeInitiators() {
 }
 
 func ExampleStorageGateway_ListVolumeRecoveryPoints() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListVolumeRecoveryPointsInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -830,7 +831,7 @@ func ExampleStorageGateway_ListVolumeRecoveryPoints() {
 }
 
 func ExampleStorageGateway_ListVolumes() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ListVolumesInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -851,7 +852,7 @@ func ExampleStorageGateway_ListVolumes() {
 }
 
 func ExampleStorageGateway_RemoveTagsFromResource() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.RemoveTagsFromResourceInput{
 		ResourceARN: aws.String("ResourceARN"),
@@ -874,7 +875,7 @@ func ExampleStorageGateway_RemoveTagsFromResource() {
 }
 
 func ExampleStorageGateway_ResetCache() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ResetCacheInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -893,7 +894,7 @@ func ExampleStorageGateway_ResetCache() {
 }
 
 func ExampleStorageGateway_RetrieveTapeArchive() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.RetrieveTapeArchiveInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -913,7 +914,7 @@ func ExampleStorageGateway_RetrieveTapeArchive() {
 }
 
 func ExampleStorageGateway_RetrieveTapeRecoveryPoint() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.RetrieveTapeRecoveryPointInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -933,7 +934,7 @@ func ExampleStorageGateway_RetrieveTapeRecoveryPoint() {
 }
 
 func ExampleStorageGateway_ShutdownGateway() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.ShutdownGatewayInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -952,7 +953,7 @@ func ExampleStorageGateway_ShutdownGateway() {
 }
 
 func ExampleStorageGateway_StartGateway() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.StartGatewayInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -971,7 +972,7 @@ func ExampleStorageGateway_StartGateway() {
 }
 
 func ExampleStorageGateway_UpdateBandwidthRateLimit() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateBandwidthRateLimitInput{
 		GatewayARN:                           aws.String("GatewayARN"), // Required
@@ -992,7 +993,7 @@ func ExampleStorageGateway_UpdateBandwidthRateLimit() {
 }
 
 func ExampleStorageGateway_UpdateChapCredentials() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateChapCredentialsInput{
 		InitiatorName:                 aws.String("IqnName"),    // Required
@@ -1014,7 +1015,7 @@ func ExampleStorageGateway_UpdateChapCredentials() {
 }
 
 func ExampleStorageGateway_UpdateGatewayInformation() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateGatewayInformationInput{
 		GatewayARN:      aws.String("GatewayARN"), // Required
@@ -1035,7 +1036,7 @@ func ExampleStorageGateway_UpdateGatewayInformation() {
 }
 
 func ExampleStorageGateway_UpdateGatewaySoftwareNow() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateGatewaySoftwareNowInput{
 		GatewayARN: aws.String("GatewayARN"), // Required
@@ -1054,7 +1055,7 @@ func ExampleStorageGateway_UpdateGatewaySoftwareNow() {
 }
 
 func ExampleStorageGateway_UpdateMaintenanceStartTime() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateMaintenanceStartTimeInput{
 		DayOfWeek:    aws.Int64(1),             // Required
@@ -1076,7 +1077,7 @@ func ExampleStorageGateway_UpdateMaintenanceStartTime() {
 }
 
 func ExampleStorageGateway_UpdateSnapshotSchedule() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateSnapshotScheduleInput{
 		RecurrenceInHours: aws.Int64(1),            // Required
@@ -1098,7 +1099,7 @@ func ExampleStorageGateway_UpdateSnapshotSchedule() {
 }
 
 func ExampleStorageGateway_UpdateVTLDeviceType() {
-	svc := storagegateway.New(nil)
+	svc := storagegateway.New(session.New())
 
 	params := &storagegateway.UpdateVTLDeviceTypeInput{
 		DeviceType:   aws.String("DeviceType"),   // Required

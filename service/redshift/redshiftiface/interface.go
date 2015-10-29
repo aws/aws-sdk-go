@@ -276,3 +276,5 @@ type RedshiftAPI interface {
 
 	RotateEncryptionKey(*redshift.RotateEncryptionKeyInput) (*redshift.RotateEncryptionKeyOutput, error)
 }
+
+var _ RedshiftAPI = (*redshift.Redshift)(nil)

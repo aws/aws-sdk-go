@@ -50,3 +50,5 @@ type ElasticsearchServiceAPI interface {
 
 	UpdateElasticsearchDomainConfig(*elasticsearchservice.UpdateElasticsearchDomainConfigInput) (*elasticsearchservice.UpdateElasticsearchDomainConfigOutput, error)
 }
+
+var _ ElasticsearchServiceAPI = (*elasticsearchservice.ElasticsearchService)(nil)

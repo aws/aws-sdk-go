@@ -54,3 +54,5 @@ type SimpleDBAPI interface {
 
 	SelectPages(*simpledb.SelectInput, func(*simpledb.SelectOutput, bool) bool) error
 }
+
+var _ SimpleDBAPI = (*simpledb.SimpleDB)(nil)

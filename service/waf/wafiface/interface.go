@@ -122,3 +122,5 @@ type WAFAPI interface {
 
 	UpdateWebACL(*waf.UpdateWebACLInput) (*waf.UpdateWebACLOutput, error)
 }
+
+var _ WAFAPI = (*waf.WAF)(nil)

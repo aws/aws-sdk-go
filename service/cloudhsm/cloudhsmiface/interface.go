@@ -78,3 +78,5 @@ type CloudHSMAPI interface {
 
 	ModifyLunaClient(*cloudhsm.ModifyLunaClientInput) (*cloudhsm.ModifyLunaClientOutput, error)
 }
+
+var _ CloudHSMAPI = (*cloudhsm.CloudHSM)(nil)

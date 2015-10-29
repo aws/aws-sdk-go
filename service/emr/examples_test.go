@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/emr"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleEMR_AddInstanceGroups() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.AddInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupConfig{ // Required
@@ -58,7 +59,7 @@ func ExampleEMR_AddInstanceGroups() {
 }
 
 func ExampleEMR_AddJobFlowSteps() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.AddJobFlowStepsInput{
 		JobFlowId: aws.String("XmlStringMaxLen256"), // Required
@@ -99,7 +100,7 @@ func ExampleEMR_AddJobFlowSteps() {
 }
 
 func ExampleEMR_AddTags() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.AddTagsInput{
 		ResourceId: aws.String("ResourceId"), // Required
@@ -125,7 +126,7 @@ func ExampleEMR_AddTags() {
 }
 
 func ExampleEMR_DescribeCluster() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.DescribeClusterInput{
 		ClusterId: aws.String("ClusterId"), // Required
@@ -144,7 +145,7 @@ func ExampleEMR_DescribeCluster() {
 }
 
 func ExampleEMR_DescribeJobFlows() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.DescribeJobFlowsInput{
 		CreatedAfter:  aws.Time(time.Now()),
@@ -172,7 +173,7 @@ func ExampleEMR_DescribeJobFlows() {
 }
 
 func ExampleEMR_DescribeStep() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.DescribeStepInput{
 		ClusterId: aws.String("ClusterId"), // Required
@@ -192,7 +193,7 @@ func ExampleEMR_DescribeStep() {
 }
 
 func ExampleEMR_ListBootstrapActions() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.ListBootstrapActionsInput{
 		ClusterId: aws.String("ClusterId"), // Required
@@ -212,7 +213,7 @@ func ExampleEMR_ListBootstrapActions() {
 }
 
 func ExampleEMR_ListClusters() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.ListClustersInput{
 		ClusterStates: []*string{
@@ -237,7 +238,7 @@ func ExampleEMR_ListClusters() {
 }
 
 func ExampleEMR_ListInstanceGroups() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.ListInstanceGroupsInput{
 		ClusterId: aws.String("ClusterId"), // Required
@@ -257,7 +258,7 @@ func ExampleEMR_ListInstanceGroups() {
 }
 
 func ExampleEMR_ListInstances() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.ListInstancesInput{
 		ClusterId:       aws.String("ClusterId"), // Required
@@ -282,7 +283,7 @@ func ExampleEMR_ListInstances() {
 }
 
 func ExampleEMR_ListSteps() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.ListStepsInput{
 		ClusterId: aws.String("ClusterId"), // Required
@@ -310,7 +311,7 @@ func ExampleEMR_ListSteps() {
 }
 
 func ExampleEMR_ModifyInstanceGroups() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.ModifyInstanceGroupsInput{
 		InstanceGroups: []*emr.InstanceGroupModifyConfig{
@@ -339,7 +340,7 @@ func ExampleEMR_ModifyInstanceGroups() {
 }
 
 func ExampleEMR_RemoveTags() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.RemoveTagsInput{
 		ResourceId: aws.String("ResourceId"), // Required
@@ -362,7 +363,7 @@ func ExampleEMR_RemoveTags() {
 }
 
 func ExampleEMR_RunJobFlow() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.RunJobFlowInput{
 		Instances: &emr.JobFlowInstancesConfig{ // Required
@@ -519,7 +520,7 @@ func ExampleEMR_RunJobFlow() {
 }
 
 func ExampleEMR_SetTerminationProtection() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.SetTerminationProtectionInput{
 		JobFlowIds: []*string{ // Required
@@ -542,7 +543,7 @@ func ExampleEMR_SetTerminationProtection() {
 }
 
 func ExampleEMR_SetVisibleToAllUsers() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.SetVisibleToAllUsersInput{
 		JobFlowIds: []*string{ // Required
@@ -565,7 +566,7 @@ func ExampleEMR_SetVisibleToAllUsers() {
 }
 
 func ExampleEMR_TerminateJobFlows() {
-	svc := emr.New(nil)
+	svc := emr.New(session.New())
 
 	params := &emr.TerminateJobFlowsInput{
 		JobFlowIds: []*string{ // Required

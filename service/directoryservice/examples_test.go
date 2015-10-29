@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/directoryservice"
 )
 
@@ -15,7 +16,7 @@ var _ time.Duration
 var _ bytes.Buffer
 
 func ExampleDirectoryService_ConnectDirectory() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.ConnectDirectoryInput{
 		ConnectSettings: &directoryservice.DirectoryConnectSettings{ // Required
@@ -50,7 +51,7 @@ func ExampleDirectoryService_ConnectDirectory() {
 }
 
 func ExampleDirectoryService_CreateAlias() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.CreateAliasInput{
 		Alias:       aws.String("AliasName"),   // Required
@@ -70,7 +71,7 @@ func ExampleDirectoryService_CreateAlias() {
 }
 
 func ExampleDirectoryService_CreateComputer() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.CreateComputerInput{
 		ComputerName: aws.String("ComputerName"),     // Required
@@ -99,7 +100,7 @@ func ExampleDirectoryService_CreateComputer() {
 }
 
 func ExampleDirectoryService_CreateDirectory() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.CreateDirectoryInput{
 		Name:        aws.String("DirectoryName"), // Required
@@ -129,7 +130,7 @@ func ExampleDirectoryService_CreateDirectory() {
 }
 
 func ExampleDirectoryService_CreateSnapshot() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.CreateSnapshotInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -149,7 +150,7 @@ func ExampleDirectoryService_CreateSnapshot() {
 }
 
 func ExampleDirectoryService_DeleteDirectory() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.DeleteDirectoryInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -168,7 +169,7 @@ func ExampleDirectoryService_DeleteDirectory() {
 }
 
 func ExampleDirectoryService_DeleteSnapshot() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.DeleteSnapshotInput{
 		SnapshotId: aws.String("SnapshotId"), // Required
@@ -187,7 +188,7 @@ func ExampleDirectoryService_DeleteSnapshot() {
 }
 
 func ExampleDirectoryService_DescribeDirectories() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.DescribeDirectoriesInput{
 		DirectoryIds: []*string{
@@ -211,7 +212,7 @@ func ExampleDirectoryService_DescribeDirectories() {
 }
 
 func ExampleDirectoryService_DescribeSnapshots() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.DescribeSnapshotsInput{
 		DirectoryId: aws.String("DirectoryId"),
@@ -236,7 +237,7 @@ func ExampleDirectoryService_DescribeSnapshots() {
 }
 
 func ExampleDirectoryService_DisableRadius() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.DisableRadiusInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -255,7 +256,7 @@ func ExampleDirectoryService_DisableRadius() {
 }
 
 func ExampleDirectoryService_DisableSso() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.DisableSsoInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -276,7 +277,7 @@ func ExampleDirectoryService_DisableSso() {
 }
 
 func ExampleDirectoryService_EnableRadius() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.EnableRadiusInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -308,7 +309,7 @@ func ExampleDirectoryService_EnableRadius() {
 }
 
 func ExampleDirectoryService_EnableSso() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.EnableSsoInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -329,7 +330,7 @@ func ExampleDirectoryService_EnableSso() {
 }
 
 func ExampleDirectoryService_GetDirectoryLimits() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	var params *directoryservice.GetDirectoryLimitsInput
 	resp, err := svc.GetDirectoryLimits(params)
@@ -346,7 +347,7 @@ func ExampleDirectoryService_GetDirectoryLimits() {
 }
 
 func ExampleDirectoryService_GetSnapshotLimits() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.GetSnapshotLimitsInput{
 		DirectoryId: aws.String("DirectoryId"), // Required
@@ -365,7 +366,7 @@ func ExampleDirectoryService_GetSnapshotLimits() {
 }
 
 func ExampleDirectoryService_RestoreFromSnapshot() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.RestoreFromSnapshotInput{
 		SnapshotId: aws.String("SnapshotId"), // Required
@@ -384,7 +385,7 @@ func ExampleDirectoryService_RestoreFromSnapshot() {
 }
 
 func ExampleDirectoryService_UpdateRadius() {
-	svc := directoryservice.New(nil)
+	svc := directoryservice.New(session.New())
 
 	params := &directoryservice.UpdateRadiusInput{
 		DirectoryId: aws.String("DirectoryId"), // Required

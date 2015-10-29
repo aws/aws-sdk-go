@@ -26,3 +26,5 @@ type IoTDataPlaneAPI interface {
 
 	UpdateThingShadow(*iotdataplane.UpdateThingShadowInput) (*iotdataplane.UpdateThingShadowOutput, error)
 }
+
+var _ IoTDataPlaneAPI = (*iotdataplane.IoTDataPlane)(nil)
