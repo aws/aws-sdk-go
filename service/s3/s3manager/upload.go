@@ -508,7 +508,7 @@ func (u *multiuploader) upload(firstBuf io.ReadSeeker) (*UploadOutput, error) {
 		// This upload exceeded maximum number of supported parts, error now.
 		if num > int64(u.ctx.MaxUploadParts) || num > int64(MaxUploadParts) {
 			var msg string
-			if num > int64(u.ctx.MaxUploadParts)  {
+			if num > int64(u.ctx.MaxUploadParts) {
 				msg = fmt.Sprintf("exceeded total allowed configured MaxUploadParts (%d). Adjust PartSize to fit in this limit",
 					u.ctx.MaxUploadParts)
 			} else {

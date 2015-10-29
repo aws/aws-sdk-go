@@ -156,7 +156,7 @@ func TestUploadIncreasePartSize(t *testing.T) {
 	})
 
 	assert.NoError(t, err)
-	assert.Equal(t, s3manager.DefaultDownloadPartSize, mgr.PartSize)
+	assert.Equal(t, int64(s3manager.DefaultDownloadPartSize), mgr.PartSize)
 	assert.Equal(t, []string{"CreateMultipartUpload", "UploadPart", "UploadPart", "CompleteMultipartUpload"}, *ops)
 
 	// Part lengths

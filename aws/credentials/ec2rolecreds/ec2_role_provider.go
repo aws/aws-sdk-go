@@ -53,7 +53,7 @@ type EC2RoleProvider struct {
 // The ConfigProvider is satisfied by the session.Session type.
 func NewCredentials(c client.ConfigProvider, options ...func(*EC2RoleProvider)) *credentials.Credentials {
 	p := &EC2RoleProvider{
-		Client:       ec2metadata.New(c),
+		Client: ec2metadata.New(c),
 	}
 
 	for _, option := range options {
@@ -68,7 +68,7 @@ func NewCredentials(c client.ConfigProvider, options ...func(*EC2RoleProvider)) 
 // metadata service.
 func NewCredentialsWithClient(client *ec2metadata.EC2Metadata, options ...func(*EC2RoleProvider)) *credentials.Credentials {
 	p := &EC2RoleProvider{
-		Client:       client,
+		Client: client,
 	}
 
 	for _, option := range options {
