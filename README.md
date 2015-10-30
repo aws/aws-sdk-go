@@ -28,7 +28,7 @@ global default value. Like `session.New(myCfg)` or:
 
 ```go
 sess := session.New()
-sess.Config.LogLevel = aws.LogLevel(aws.Debug)
+sess.Config.LogLevel = aws.LogLevel(aws.LogDebug)
 ```
 
 Examples:
