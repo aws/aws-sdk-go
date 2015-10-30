@@ -11,14 +11,25 @@ Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for inf
 
 **Release [v0.10.0](http://aws.amazon.com/releasenotes/xxx) introduced a breaking change to the SDK.**
 
-This change refactors the way the SDK provides configuration to service clients.  
-To migrate to this change you'll need to add a session value to each
-place a service cleint is created. Naively this can be just
-`s3.New(session.New())` in place of `s3.New(nil)`. If aws.Config value
-was passed in your code would become, `s3.New(session.New(), cfg)`. If
-you used `default.DefaultConfig` you can create a new session, set the
-config you used on the default config like `session.New(myCfg)` or
-`sess.New(); sess.Config.LogLevel = aws.LogLevel(aws.Debug)`.
+Updates SDK to use `session.Session` when initializing service clients.
+Service clients now require a session, which contains the SDK defaults
+and any additional configurations you've provided. This also allows you
+to create a default set of request handlers for all service clients
+created with a session. Enabling you to share configurations explicitly.
+
+Migrating to this change you'll need to add a `session.Session` to your
+application. The session will be used in each place a service client is
+created. Naively this can be `s3.New(session.New())` instead of the
+previous `s3.New(nil)`. If the `aws.Config` value was being passed in to
+the service client the code would become, `s3.New(session.New(), cfg)`.
+If you used `default.DefaultConfig` you can replace this logic with a
+new session and set merge in the config which was beign set to the
+global default value. Like `session.New(myCfg)` or:
+
+```go
+sess := session.New()
+sess.Config.LogLevel = aws.LogLevel(aws.Debug)
+```
 
 Examples:
 ```go
