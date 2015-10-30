@@ -11,49 +11,9 @@ Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for inf
 
 **Release [v0.10.0](http://aws.amazon.com/releasenotes/xxx) introduced a breaking change to the SDK.**
 
-Updates SDK to use `session.Session` when initializing service clients.
-Service clients now require a session, which contains the SDK defaults
-and any additional configurations you've provided. This also allows you
-to create a default set of request handlers for all service clients
-created with a session. Enabling you to share configurations explicitly.
+Updates SDK by adding `session.Session` replacing the global `defaults.DefaultConfig`. A session is used to store configuration and request handler settings for service clients. Each service client's `New` function now takes a session as the first parameter, and an optional `aws.Config`, which will be used for the specific client instance being created.
 
-Migrating to this change you'll need to add a `session.Session` to your
-application. The session will be used in each place a service client is
-created. Naively this can be `s3.New(session.New())` instead of the
-previous `s3.New(nil)`. If the `aws.Config` value was being passed in to
-the service client the code would become, `s3.New(session.New(), cfg)`.
-If you used `default.DefaultConfig` you can replace this logic with a
-new session and set merge in the config which was beign set to the
-global default value. Like `session.New(myCfg)` or:
-
-```go
-sess := session.New()
-sess.Config.LogLevel = aws.LogLevel(aws.LogDebug)
-```
-
-Examples:
-```go
-    // Create a session with the default config and request handlers.
-    sess := session.New()
-
-    // Create a session with a custom region
-    sess := session.New(&aws.Config{Region: aws.String("us-east-1")})
-
-    // Create a session, and add additional handlers for all service
-    // clients created with the session to inherit.
-    sess := session.New()
-    sess.Handlers.Build.pushBack(func(r *request.Handlers) {
-        // Log every request made and its payload
-        logger.Println("Request: %s/%s, Payload: %s", r.ClientInfo.ServiceName, r.Operation, r.Params)
-    })
-
-    // Create a S3 client instance from a session
-    sess := session.New()
-    svc := s3.New(sess)
-
-    // Create a S3 client with additional configuration
-    svc := s3.New(sess, aws.NewConfig().WithRegion("us-west-2"))
-```
+See the [Getting Started Configuration](https://github.com/aws/aws-sdk-go/wiki/Getting-Started-Configuration) wiki for more information on how to use sessions within your application.
 
 ## Caution
 
