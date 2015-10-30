@@ -82,7 +82,7 @@ func main() {
 	// Create an EC2 service object in the "us-west-2" region
 	// Note that you can also configure your region globally by
 	// exporting the AWS_REGION environment variable
-	svc := ec2.New(session.New(), aws.Config{Region: aws.String("us-west-2")})
+	svc := ec2.New(session.New(), &aws.Config{Region: aws.String("us-west-2")})
 
 	// Call the DescribeInstances Operation
 	resp, err := svc.DescribeInstances(nil)
