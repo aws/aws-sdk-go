@@ -2000,8 +2000,9 @@ func ExampleIAM_SimulateCustomPolicy() {
 			aws.String("ResourceNameType"), // Required
 			// More values...
 		},
-		ResourceOwner:  aws.String("ResourceNameType"),
-		ResourcePolicy: aws.String("policyDocumentType"),
+		ResourceHandlingOption: aws.String("ResourceHandlingOptionType"),
+		ResourceOwner:          aws.String("ResourceNameType"),
+		ResourcePolicy:         aws.String("policyDocumentType"),
 	}
 	resp, err := svc.SimulateCustomPolicy(params)
 
@@ -2047,8 +2048,9 @@ func ExampleIAM_SimulatePrincipalPolicy() {
 			aws.String("ResourceNameType"), // Required
 			// More values...
 		},
-		ResourceOwner:  aws.String("ResourceNameType"),
-		ResourcePolicy: aws.String("policyDocumentType"),
+		ResourceHandlingOption: aws.String("ResourceHandlingOptionType"),
+		ResourceOwner:          aws.String("ResourceNameType"),
+		ResourcePolicy:         aws.String("policyDocumentType"),
 	}
 	resp, err := svc.SimulatePrincipalPolicy(params)
 

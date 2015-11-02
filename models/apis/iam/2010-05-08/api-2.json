@@ -5066,7 +5066,6 @@
       "type":"structure",
       "required":[
         "EvalActionName",
-        "EvalResourceName",
         "EvalDecision"
       ],
       "members":{
@@ -5075,7 +5074,8 @@
         "EvalDecision":{"shape":"PolicyEvaluationDecisionType"},
         "MatchedStatements":{"shape":"StatementListType"},
         "MissingContextValues":{"shape":"ContextKeyNamesResultListType"},
-        "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"}
+        "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"},
+        "ResourceSpecificResults":{"shape":"ResourceSpecificResultListType"}
       }
     },
     "EvaluationResultsListType":{
@@ -6256,6 +6256,11 @@
         "COMPLETE"
       ]
     },
+    "ResourceHandlingOptionType":{
+      "type":"string",
+      "min":1,
+      "max":64
+    },
     "ResourceNameListType":{
       "type":"list",
       "member":{"shape":"ResourceNameType"}
@@ -6264,6 +6269,24 @@
       "type":"string",
       "min":1,
       "max":2048
+    },
+    "ResourceSpecificResult":{
+      "type":"structure",
+      "required":[
+        "EvalResourceName",
+        "EvalResourceDecision"
+      ],
+      "members":{
+        "EvalResourceName":{"shape":"ResourceNameType"},
+        "EvalResourceDecision":{"shape":"PolicyEvaluationDecisionType"},
+        "MatchedStatements":{"shape":"StatementListType"},
+        "MissingContextValues":{"shape":"ContextKeyNamesResultListType"},
+        "EvalDecisionDetails":{"shape":"EvalDecisionDetailsType"}
+      }
+    },
+    "ResourceSpecificResultListType":{
+      "type":"list",
+      "member":{"shape":"ResourceSpecificResult"}
     },
     "ResyncMFADeviceRequest":{
       "type":"structure",
@@ -6453,6 +6476,7 @@
         "ResourceOwner":{"shape":"ResourceNameType"},
         "CallerArn":{"shape":"ResourceNameType"},
         "ContextEntries":{"shape":"ContextEntryListType"},
+        "ResourceHandlingOption":{"shape":"ResourceHandlingOptionType"},
         "MaxItems":{"shape":"maxItemsType"},
         "Marker":{"shape":"markerType"}
       }
@@ -6480,6 +6504,7 @@
         "ResourceOwner":{"shape":"ResourceNameType"},
         "CallerArn":{"shape":"ResourceNameType"},
         "ContextEntries":{"shape":"ContextEntryListType"},
+        "ResourceHandlingOption":{"shape":"ResourceHandlingOptionType"},
         "MaxItems":{"shape":"maxItemsType"},
         "Marker":{"shape":"markerType"}
       }

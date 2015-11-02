@@ -67,7 +67,7 @@
     "GetUser": "<p>Retrieves information about the specified user, including the user's creation date, path, unique ID, and ARN. </p> <p>If you do not specify a user name, IAM determines the user name implicitly based on the AWS access key ID used to sign the request. </p>",
     "GetUserPolicy": "<p>Retrieves the specified inline policy document that is embedded in the specified user. </p> <p>A user can also have managed policies attached to it. To retrieve a managed policy document that is attached to a user, use <a>GetPolicy</a> to determine the policy's default version, then use <a>GetPolicyVersion</a> to retrieve the policy document. </p> <p>For more information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>IAM User Guide</i>. </p>",
     "ListAccessKeys": "<p>Returns information about the access key IDs associated with the specified user. If there are none, the action returns an empty list. </p> <p>Although each user is limited to a small number of keys, you can still paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p> <p>If the <code>UserName</code> field is not specified, the UserName is determined implicitly based on the AWS access key ID used to sign the request. Because this action works for access keys under the AWS account, you can use this action to manage root credentials even if the AWS account has no associated users. </p> <note>To ensure the security of your AWS account, the secret access key is accessible only during key and user creation. </note>",
-    "ListAccountAliases": "<p> Lists the account aliases associated with the account. For information about using an AWS account alias, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AccountAlias.html\">Using an Alias for Your AWS Account ID</a> in the <i>IAM User Guide</i>. </p> <p> You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. </p>",
+    "ListAccountAliases": "<p> Lists the account alias associated with the account (Note: you can have only one). For information about using an AWS account alias, see <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/AccountAlias.html\">Using an Alias for Your AWS Account ID</a> in the <i>IAM User Guide</i>. </p>",
     "ListAttachedGroupPolicies": "<p>Lists all managed policies that are attached to the specified group.</p> <p>A group can also have inline policies embedded with it. To list the inline policies for a group, use the <a>ListGroupPolicies</a> API. For information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>IAM User Guide</i>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. You can use the <code>PathPrefix</code> parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the action returns an empty list. </p>",
     "ListAttachedRolePolicies": "<p>Lists all managed policies that are attached to the specified role. </p> <p>A role can also have inline policies embedded with it. To list the inline policies for a role, use the <a>ListRolePolicies</a> API. For information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>IAM User Guide</i>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. You can use the <code>PathPrefix</code> parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified role (or none that match the specified path prefix), the action returns an empty list. </p>",
     "ListAttachedUserPolicies": "<p>Lists all managed policies that are attached to the specified user. </p> <p>A user can also have inline policies embedded with it. To list the inline policies for a user, use the <a>ListUserPolicies</a> API. For information about policies, refer to <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/policies-managed-vs-inline.html\">Managed Policies and Inline Policies</a> in the <i>IAM User Guide</i>. </p> <p>You can paginate the results using the <code>MaxItems</code> and <code>Marker</code> parameters. You can use the <code>PathPrefix</code> parameter to limit the list of policies to only those matching the specified path prefix. If there are no policies attached to the specified group (or none that match the specified path prefix), the action returns an empty list. </p>",
@@ -227,7 +227,8 @@
       "base": null,
       "refs": {
         "EvaluationResult$MissingContextValues": "<p>A list of context keys that are required by the included input policies but that were not provided by one of the input parameters. To discover the context keys used by a set of policies, you can call <a>GetContextKeysForCustomPolicy</a> or <a>GetContextKeysForPrincipalPolicy</a>.</p> <caution> <p>If the response includes any keys in this list, then the reported results might be untrustworthy because the simulation could not completely evaluate all of the conditions specified in the policies that would occur in a real world request.</p> </caution>",
-        "GetContextKeysForPolicyResponse$ContextKeyNames": "<p>The list of context keys that are used in the <code>Condition</code> elements of the input policies.</p>"
+        "GetContextKeysForPolicyResponse$ContextKeyNames": "<p>The list of context keys that are used in the <code>Condition</code> elements of the input policies.</p>",
+        "ResourceSpecificResult$MissingContextValues": "<p>A list of context keys that are required by the included input policies but that were not provided by one of the input parameters. To discover the context keys used by a set of policies, you can call <a>GetContextKeysForCustomPolicy</a> or <a>GetContextKeysForPrincipalPolicy</a>.</p>"
       }
     },
     "ContextKeyTypeEnum": {
@@ -528,7 +529,8 @@
     "EvalDecisionDetailsType": {
       "base": null,
       "refs": {
-        "EvaluationResult$EvalDecisionDetails": "<p>Additional details about the results of the evaluation decision. When there are both IAM policies and resource policies, this parameter explains how each set of policies contributes to the final evaluation decision. When simulating cross-account access to a resource, both the resource-based policy and the caller's IAM policy must grant access. See <ulink href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_compare-resource-policies.html\">How IAM Roles Differ from Resource-based Policies</ulink></p>"
+        "EvaluationResult$EvalDecisionDetails": "<p>Additional details about the results of the evaluation decision. When there are both IAM policies and resource policies, this parameter explains how each set of policies contributes to the final evaluation decision. When simulating cross-account access to a resource, both the resource-based policy and the caller's IAM policy must grant access. See <a href=\"http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_compare-resource-policies.html\">How IAM Roles Differ from Resource-based Policies</a></p>",
+        "ResourceSpecificResult$EvalDecisionDetails": "<p>Additional details about the results of the evaluation decision. When there are both IAM policies and resource policies, this parameter explains how each set of policies contributes to the final evaluation decision. When simulating cross-account access to a resource, both the resource-based policy and the caller's IAM policy must grant access.</p>"
       }
     },
     "EvalDecisionSourceType": {
@@ -1135,7 +1137,8 @@
       "base": null,
       "refs": {
         "EvalDecisionDetailsType$value": null,
-        "EvaluationResult$EvalDecision": "<p>The result of the simulation.</p>"
+        "EvaluationResult$EvalDecision": "<p>The result of the simulation.</p>",
+        "ResourceSpecificResult$EvalResourceDecision": "<p>The result of the simulation of the simulated API action on the resource specified in <code>EvalResourceName</code>.</p>"
       }
     },
     "PolicyEvaluationException": {
@@ -1260,6 +1263,13 @@
         "GenerateCredentialReportResponse$State": "<p>Information about the state of the credential report.</p>"
       }
     },
+    "ResourceHandlingOptionType": {
+      "base": null,
+      "refs": {
+        "SimulateCustomPolicyRequest$ResourceHandlingOption": "<p>Specifies the type of simulation to run. Different APIs that support resource-based policies require different combinations of resources. By specifying the type of simulation to run, you enable the policy simulator to enforce the presence of the required resources to ensure reliable simulation results. If your simulation does not match one of the following scenarios, then you can omit this parameter. The following list shows each of the supported scenario values and the resources that you must define to run the simulation.</p> <p>Each of the EC2 scenarios requires that you specify instance, image, and security-group resources. If your scenario includes an EBS volume, then you must specify that volume as a resource. If the EC2 scenario includes VPC, then you must supply the network-interface resource. If it includes an IP subnet, then you must specify the subnet resource. For more information on the EC2 scenario options, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html\">Supported Platforms</a> in the <i>AWS EC2 User Guide</i>.</p> <ul> <li><p><b>EC2-Classic-InstanceStore</b></p> <p>instance, image, security-group</p> </li> <li><p><b>EC2-Classic-EBS</b></p> <p>instance, image, security-group, volume</p> </li> <li><p><b>EC2-VPC-InstanceStore</b></p> <p>instance, image, security-group, network-interface</p> </li> <li><p><b>EC2-VPC-InstanceStore-Subnet</b></p> <p>instance, image, security-group, network-interface, subnet</p> </li> <li><p><b>EC2-VPC-EBS</b></p> <p>instance, image, security-group, network-interface, volume</p> </li> <li><p><b>EC2-VPC-EBS-Subnet</b></p> <p>instance, image, security-group, network-interface, subnet, volume</p> </li> </ul>",
+        "SimulatePrincipalPolicyRequest$ResourceHandlingOption": "<p>Specifies the type of simulation to run. Different APIs that support resource-based policies require different combinations of resources. By specifying the type of simulation to run, you enable the policy simulator to enforce the presence of the required resources to ensure reliable simulation results. If your simulation does not match one of the following scenarios, then you can omit this parameter. The following list shows each of the supported scenario values and the resources that you must define to run the simulation.</p> <p>Each of the EC2 scenarios requires that you specify instance, image, and security-group resources. If your scenario includes an EBS volume, then you must specify that volume as a resource. If the EC2 scenario includes VPC, then you must supply the network-interface resource. If it includes an IP subnet, then you must specify the subnet resource. For more information on the EC2 scenario options, see <a href=\"http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-supported-platforms.html\">Supported Platforms</a> in the <i>AWS EC2 User Guide</i>.</p> <ul> <li><p><b>EC2-Classic-InstanceStore</b></p> <p>instance, image, security-group</p> </li> <li><p><b>EC2-Classic-EBS</b></p> <p>instance, image, security-group, volume</p> </li> <li><p><b>EC2-VPC-InstanceStore</b></p> <p>instance, image, security-group, network-interface</p> </li> <li><p><b>EC2-VPC-InstanceStore-Subnet</b></p> <p>instance, image, security-group, network-interface, subnet</p> </li> <li><p><b>EC2-VPC-EBS</b></p> <p>instance, image, security-group, network-interface, volume</p> </li> <li><p><b>EC2-VPC-EBS-Subnet</b></p> <p>instance, image, security-group, network-interface, subnet, volume</p> </li> </ul>"
+      }
+    },
     "ResourceNameListType": {
       "base": null,
       "refs": {
@@ -1272,10 +1282,23 @@
       "refs": {
         "EvaluationResult$EvalResourceName": "<p>The ARN of the resource that the indicated API action was tested on.</p>",
         "ResourceNameListType$member": null,
+        "ResourceSpecificResult$EvalResourceName": "<p>The name of the simulated resource, in Amazon Resource Name (ARN) format.</p>",
         "SimulateCustomPolicyRequest$ResourceOwner": "<p>An AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN, such as an S3 bucket or object. If <code>ResourceOwner</code> is specified, it is also used as the account owner of any <code>ResourcePolicy</code> included in the simulation. If the <code>ResourceOwner</code> parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in <code>CallerArn</code>. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user <code>CallerArn</code>.</p>",
         "SimulateCustomPolicyRequest$CallerArn": "<p>The ARN of the user that you want to use as the simulated caller of the APIs. <code>CallerArn</code> is required if you include a <code>ResourcePolicy</code> so that the policy's <code>Principal</code> element has a value to use in evaluating the policy.</p> <p>You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.</p>",
         "SimulatePrincipalPolicyRequest$ResourceOwner": "<p>An AWS account ID that specifies the owner of any simulated resource that does not identify its owner in the resource ARN, such as an S3 bucket or object. If <code>ResourceOwner</code> is specified, it is also used as the account owner of any <code>ResourcePolicy</code> included in the simulation. If the <code>ResourceOwner</code> parameter is not specified, then the owner of the resources and the resource policy defaults to the account of the identity provided in <code>CallerArn</code>. This parameter is required only if you specify a resource-based policy and account that owns the resource is different from the account that owns the simulated calling user <code>CallerArn</code>.</p>",
         "SimulatePrincipalPolicyRequest$CallerArn": "<p>The ARN of the user that you want to specify as the simulated caller of the APIs. If you do not specify a <code>CallerArn</code>, it defaults to the ARN of the user that you specify in <code>PolicySourceArn</code>, if you specified a user. If you include both a <code>PolicySourceArn</code> (for example, <code>arn:aws:iam::123456789012:user/David</code>) and a <code>CallerArn</code> (for example, <code>arn:aws:iam::123456789012:user/Bob</code>), the result is that you simulate calling the APIs as Bob, as if Bob had David's policies.</p> <p>You can specify only the ARN of an IAM user. You cannot specify the ARN of an assumed role, federated user, or a service principal.</p> <p><code>CallerArn</code> is required if you include a <code>ResourcePolicy</code> and the <code>PolicySourceArn</code> is not the ARN for an IAM user. This is required so that the resource-based policy's <code>Principal</code> element has a value to use in evaluating the policy.</p>"
+      }
+    },
+    "ResourceSpecificResult": {
+      "base": "<p>Contains the result of the simulation of a single API action call on a single resource.</p> <p>This data type is used by a member of the <a>EvaluationResult</a> data type.</p>",
+      "refs": {
+        "ResourceSpecificResultListType$member": null
+      }
+    },
+    "ResourceSpecificResultListType": {
+      "base": null,
+      "refs": {
+        "EvaluationResult$ResourceSpecificResults": "<p>The individual results of the simulation of the API action specified in EvalActionName on each resource.</p>"
       }
     },
     "ResyncMFADeviceRequest": {
@@ -1391,7 +1414,7 @@
     "SimulationPolicyListType": {
       "base": null,
       "refs": {
-        "GetContextKeysForCustomPolicyRequest$PolicyInputList": "<p>A list of policies for which you want list of context keys used in <code>Condition</code> elements.</p>",
+        "GetContextKeysForCustomPolicyRequest$PolicyInputList": "<p>A list of policies for which you want list of context keys used in <code>Condition</code> elements. Each document is specified as a string containing the complete, valid JSON text of an IAM policy.</p>",
         "GetContextKeysForPrincipalPolicyRequest$PolicyInputList": "<p>A optional list of additional policies for which you want list of context keys used in <code>Condition</code> elements.</p>",
         "SimulateCustomPolicyRequest$PolicyInputList": "<p>A list of policy documents to include in the simulation. Each document is specified as a string containing the complete, valid JSON text of an IAM policy. Do not include any resource-based policies in this parameter. Any resource-based policy must be submitted with the <code>ResourcePolicy</code> parameter. The policies cannot be \"scope-down\" policies, such as you could include in a call to <a href=\"http://docs.aws.amazon.com/IAM/latest/APIReference/API_GetFederationToken.html\">GetFederationToken</a> or one of the <a href=\"http://docs.aws.amazon.com/IAM/latest/APIReference/API_AssumeRole.html\">AssumeRole</a> APIs to restrict what a user can do while using the temporary credentials.</p>",
         "SimulatePrincipalPolicyRequest$PolicyInputList": "<p>An optional list of additional policy documents to include in the simulation. Each document is specified as a string containing the complete, valid JSON text of an IAM policy.</p>"
@@ -1406,7 +1429,8 @@
     "StatementListType": {
       "base": null,
       "refs": {
-        "EvaluationResult$MatchedStatements": "<p>A list of the statements in the input policies that determine the result for this scenario. Remember that even if multiple statements allow the action on the resource, if only one statement denies that action, then the explicit deny overrides any allow, and the deny statement is the only entry included in the result.</p>"
+        "EvaluationResult$MatchedStatements": "<p>A list of the statements in the input policies that determine the result for this scenario. Remember that even if multiple statements allow the action on the resource, if only one statement denies that action, then the explicit deny overrides any allow, and the deny statement is the only entry included in the result.</p>",
+        "ResourceSpecificResult$MatchedStatements": "<p>A list of the statements in the input policies that determine the result for this part of the simulation. Remember that even if multiple statements allow the action on the resource, if <i>any</i> statement denies that action, then the explicit deny overrides any allow, and the deny statement is the only entry included in the result.</p>"
       }
     },
     "UnrecognizedPublicKeyEncodingException": {
@@ -1551,7 +1575,7 @@
     "accountAliasListType": {
       "base": null,
       "refs": {
-        "ListAccountAliasesResponse$AccountAliases": "<p>A list of aliases associated with the account.</p>"
+        "ListAccountAliasesResponse$AccountAliases": "<p>A list of aliases associated with the account. AWS supports only one alias per account.</p>"
       }
     },
     "accountAliasType": {
@@ -1685,7 +1709,7 @@
         "PasswordPolicy$RequireUppercaseCharacters": "<p>Specifies whether to require uppercase characters for IAM user passwords.</p>",
         "PasswordPolicy$RequireLowercaseCharacters": "<p>Specifies whether to require lowercase characters for IAM user passwords.</p>",
         "PasswordPolicy$AllowUsersToChangePassword": "<p>Specifies whether IAM users are allowed to change their own password.</p>",
-        "PasswordPolicy$ExpirePasswords": "<p>Specifies whether IAM users are required to change their password after a specified number of days.</p>",
+        "PasswordPolicy$ExpirePasswords": "<p>Indicates whether passwords in the account expire. Returns true if MaxPasswordAge is contains a value greater than 0. Returns false if MaxPasswordAge is 0 or not present.</p>",
         "Policy$IsAttachable": "<p>Specifies whether the policy can be attached to an IAM user, group, or role. </p>",
         "PolicyVersion$IsDefaultVersion": "<p>Specifies whether the policy version is set as the policy's default version.</p>",
         "SimulatePolicyResponse$IsTruncated": "<p>A flag that indicates whether there are more items to return. If your results were truncated, you can make a subsequent pagination request using the <code>Marker</code> request parameter to retrieve more items. Note that IAM might return fewer than the <code>MaxItems</code> number of results even when there are more results available. We recommend that you check <code>IsTruncated</code> after every call to ensure that you receive all of your results.</p>",
