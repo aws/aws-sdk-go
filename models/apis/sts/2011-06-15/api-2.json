@@ -247,7 +247,7 @@
       ],
       "members":{
         "RoleArn":{"shape":"arnType"},
-        "RoleSessionName":{"shape":"userNameType"},
+        "RoleSessionName":{"shape":"roleSessionNameType"},
         "Policy":{"shape":"sessionPolicyDocumentType"},
         "DurationSeconds":{"shape":"roleDurationSecondsType"},
         "ExternalId":{"shape":"externalIdType"},
@@ -300,7 +300,7 @@
       ],
       "members":{
         "RoleArn":{"shape":"arnType"},
-        "RoleSessionName":{"shape":"userNameType"},
+        "RoleSessionName":{"shape":"roleSessionNameType"},
         "WebIdentityToken":{"shape":"clientTokenType"},
         "ProviderId":{"shape":"urlType"},
         "Policy":{"shape":"sessionPolicyDocumentType"},
@@ -555,6 +555,12 @@
       "type":"integer",
       "min":900,
       "max":3600
+    },
+    "roleSessionNameType":{
+      "type":"string",
+      "min":2,
+      "max":64,
+      "pattern":"[\\w+=,.@-]*"
     },
     "serialNumberType":{
       "type":"string",

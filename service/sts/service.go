@@ -15,8 +15,7 @@ import (
 // request temporary, limited-privilege credentials for AWS Identity and Access
 // Management (IAM) users or for users that you authenticate (federated users).
 // This guide provides descriptions of the STS API. For more detailed information
-// about using this service, go to Using Temporary Security Credentials (http://docs.aws.amazon.com/STS/latest/UsingSTS/Welcome.html"
-// target="_blank).
+// about using this service, go to Temporary Security Credentials (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html).
 //
 //  As an alternative to using the API, you can use one of the AWS SDKs, which
 // consist of libraries and sample code for various programming languages and
@@ -30,9 +29,8 @@ import (
 // target="_blank) in the AWS General Reference. For general information about
 // the Query API, go to Making Query Requests (http://docs.aws.amazon.com/IAM/latest/UserGuide/IAM_UsingQueryAPI.html"
 // target="_blank) in Using IAM. For information about using security tokens
-// with other AWS products, go to Using Temporary Security Credentials to Access
-// AWS (http://docs.aws.amazon.com/STS/latest/UsingSTS/UsingTokens.html) in
-// Using Temporary Security Credentials.
+// with other AWS products, go to AWS Services That Work with IAM (http://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html)
+// in the Using IAM.
 //
 // If you're new to AWS and need additional technical information about a specific
 // AWS product, you can find the product's technical documentation at http://aws.amazon.com/documentation/
@@ -44,8 +42,8 @@ import (
 // that maps to the US East (N. Virginia) region. Additional regions are available,
 // but must first be activated in the AWS Management Console before you can
 // use a different region's endpoint. For more information about activating
-// a region for STS see Activating STS in a New Region (http://docs.aws.amazon.com/STS/latest/UsingSTS/sts-enableregions.html)
-// in the Using Temporary Security Credentials guide.
+// a region for STS see Activating STS in a New Region (http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
+// in the Using IAM.
 //
 // For information about STS endpoints, see Regions and Endpoints (http://docs.aws.amazon.com/general/latest/gr/rande.html#sts_region)
 // in the AWS General Reference.
