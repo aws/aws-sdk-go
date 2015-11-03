@@ -201,7 +201,6 @@ func (d *downloader) downloadPart(ch chan dlchunk) {
 
 	for {
 		chunk, ok := <-ch
-
 		if !ok {
 			break
 		}

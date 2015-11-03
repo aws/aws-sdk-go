@@ -43,16 +43,41 @@ func dlLoggingSvc(data []byte) (*s3.S3, *[]string, *[]string) {
 			fin = int64(len(data))
 		}
 
+		bodyBytes := data[start:fin]
 		r.HTTPResponse = &http.Response{
 			StatusCode: 200,
-			Body:       ioutil.NopCloser(bytes.NewReader(data[start:fin])),
+			Body:       ioutil.NopCloser(bytes.NewReader(bodyBytes)),
 			Header:     http.Header{},
 		}
 		r.HTTPResponse.Header.Set("Content-Range", fmt.Sprintf("bytes %d-%d/%d",
 			start, fin, len(data)))
+		r.HTTPResponse.Header.Set("Content-Length", fmt.Sprintf("%d", len(bodyBytes)))
 	})
 
 	return svc, &names, &ranges
+}
+
+func dlLoggingSvcNoChunk(data []byte) (*s3.S3, *[]string) {
+	var m sync.Mutex
+	names := []string{}
+
+	svc := s3.New(unit.Session)
+	svc.Handlers.Send.Clear()
+	svc.Handlers.Send.PushBack(func(r *request.Request) {
+		m.Lock()
+		defer m.Unlock()
+
+		names = append(names, r.Operation.Name)
+
+		r.HTTPResponse = &http.Response{
+			StatusCode: 200,
+			Body:       ioutil.NopCloser(bytes.NewReader(data[:])),
+			Header:     http.Header{},
+		}
+		r.HTTPResponse.Header.Set("Content-Length", fmt.Sprintf("%d", len(data)))
+	})
+
+	return svc, &names
 }
 
 func TestDownloadOrder(t *testing.T) {
@@ -141,4 +166,27 @@ func TestDownloadError(t *testing.T) {
 	assert.Equal(t, int64(1), n)
 	assert.Equal(t, []string{"GetObject", "GetObject"}, *names)
 	assert.Equal(t, []byte{1}, w.Bytes())
+}
+
+func TestDownloadNonChunk(t *testing.T) {
+	s, names := dlLoggingSvcNoChunk(buf2MB)
+
+	d := s3manager.NewDownloaderWithClient(s, func(d *s3manager.Downloader) {
+		d.Concurrency = 1
+	})
+	w := &aws.WriteAtBuffer{}
+	n, err := d.Download(w, &s3.GetObjectInput{
+		Bucket: aws.String("bucket"),
+		Key:    aws.String("key"),
+	})
+
+	assert.Nil(t, err)
+	assert.Equal(t, int64(len(buf2MB)), n)
+	assert.Equal(t, []string{"GetObject"}, *names)
+
+	count := 0
+	for _, b := range w.Bytes() {
+		count += int(b)
+	}
+	assert.Equal(t, 0, count)
 }
