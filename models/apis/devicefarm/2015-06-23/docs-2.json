@@ -4,6 +4,10 @@
     "CreateDevicePool": "<p>Creates a device pool.</p>",
     "CreateProject": "<p>Creates a new project.</p>",
     "CreateUpload": "<p>Uploads an app or test scripts.</p>",
+    "DeleteDevicePool": "<p>Deletes a device pool given the pool ARN. Does not allow deletion of curated pools owned by the system.</p>",
+    "DeleteProject": "<p>Deletes an AWS Device Farm project, given the project ARN.</p> <p><b>Note</b> Deleting this resource does not stop an in-progress run.</p>",
+    "DeleteRun": "<p>Deletes the run, given the run ARN.</p> <p><b>Note</b> Deleting this resource does not stop an in-progress run.</p>",
+    "DeleteUpload": "<p>Deletes an upload given the upload ARN.</p>",
     "GetAccountSettings": "<p>Returns the number of unmetered iOS and/or unmetered Android devices that have been purchased by the account.</p>",
     "GetDevice": "<p>Gets information about a unique device type.</p>",
     "GetDevicePool": "<p>Gets information about a device pool.</p>",
@@ -25,7 +29,9 @@
     "ListTests": "<p>Gets information about tests.</p>",
     "ListUniqueProblems": "<p>Gets information about unique problems.</p>",
     "ListUploads": "<p>Gets information about uploads.</p>",
-    "ScheduleRun": "<p>Schedules a run.</p>"
+    "ScheduleRun": "<p>Schedules a run.</p>",
+    "UpdateDevicePool": "<p>Modifies the name, description, and rules in a device pool given the attributes and the pool ARN. Rule updates are all-or-nothing, meaning they can only be updated as a whole (or not at all).</p>",
+    "UpdateProject": "<p>Modifies the specified project name, given the project ARN and a new name.</p>"
   },
   "service": "<p>AWS Device Farm is a service that enables mobile app developers to test Android, iOS, and Fire OS apps on physical phones, tablets, and other devices in the cloud.</p>",
   "shapes": {
@@ -48,6 +54,10 @@
         "Artifact$arn": "<p>The artifact's ARN.</p>",
         "CreateDevicePoolRequest$projectArn": "<p>The ARN of the project for the device pool.</p>",
         "CreateUploadRequest$projectArn": "<p>The ARN of the project for the upload.</p>",
+        "DeleteDevicePoolRequest$arn": "<p>Represents the Amazon Resource Name (ARN) of the Device Farm device pool you wish to delete.</p>",
+        "DeleteProjectRequest$arn": "<p>Represents the Amazon Resource Name (ARN) of the Device Farm project you wish to delete.</p>",
+        "DeleteRunRequest$arn": "<p>The Amazon Resource Name (ARN) for the run you wish to delete.</p>",
+        "DeleteUploadRequest$arn": "<p>Represents the Amazon Resource Name (ARN) of the Device Farm upload you wish to delete.</p>",
         "Device$arn": "<p>The device's ARN.</p>",
         "DevicePool$arn": "<p>The device pool's ARN.</p>",
         "GetDevicePoolCompatibilityRequest$devicePoolArn": "<p>The device pool's ARN.</p>",
@@ -84,6 +94,8 @@
         "ScheduleRunTest$testPackageArn": "<p>The ARN of the uploaded test that will be run.</p>",
         "Suite$arn": "<p>The suite's ARN.</p>",
         "Test$arn": "<p>The test's ARN.</p>",
+        "UpdateDevicePoolRequest$arn": "<p>The Amazon Resourc Name (ARN) of the Device Farm device pool you wish to update.</p>",
+        "UpdateProjectRequest$arn": "<p>The Amazon Resource Name (ARN) of the project whose name you wish to update.</p>",
         "Upload$arn": "<p>The upload's ARN.</p>"
       }
     },
@@ -210,6 +222,46 @@
         "Upload$created": "<p>When the upload was created.</p>"
       }
     },
+    "DeleteDevicePoolRequest": {
+      "base": "<p>Represents a request to the delete device pool operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteDevicePoolResult": {
+      "base": "<p>Represents the result of a delete device pool request.</p>",
+      "refs": {
+      }
+    },
+    "DeleteProjectRequest": {
+      "base": "<p>Represents a request to the delete project operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteProjectResult": {
+      "base": "<p>Represents the result of a delete project request.</p>",
+      "refs": {
+      }
+    },
+    "DeleteRunRequest": {
+      "base": "<p>Represents a request to the delete run operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteRunResult": {
+      "base": "<p>Represents the result of a delete run request.</p>",
+      "refs": {
+      }
+    },
+    "DeleteUploadRequest": {
+      "base": "<p>Represents a request to the delete upload operation.</p>",
+      "refs": {
+      }
+    },
+    "DeleteUploadResult": {
+      "base": "<p>Represents the result of a delete upload request.</p>",
+      "refs": {
+      }
+    },
     "Device": {
       "base": "<p>Represents a device type that an app is tested against.</p>",
       "refs": {
@@ -233,6 +285,15 @@
         "Device$formFactor": "<p>The device's form factor.</p> <p>Allowed values include:</p> <ul> <li><p>PHONE: The phone form factor.</p></li> <li><p>TABLET: The tablet form factor.</p></li> </ul>"
       }
     },
+    "DeviceMinutes": {
+      "base": "<p>Represents the total (metered or unmetered) minutes used by the resource to run tests. Contains the sum of minutes consumed by all children.</p>",
+      "refs": {
+        "Job$deviceMinutes": "<p>Represents the total (metered or unmetered) minutes used by the job.</p>",
+        "Run$deviceMinutes": "<p>Represents the total (metered or unmetered) minutes used by the test run.</p>",
+        "Suite$deviceMinutes": "<p>Represents the total (metered or unmetered) minutes used by the test suite.</p>",
+        "Test$deviceMinutes": "<p>Represents the total (metered or unmetered) minutes used by the test.</p>"
+      }
+    },
     "DevicePlatform": {
       "base": null,
       "refs": {
@@ -246,7 +307,8 @@
       "refs": {
         "CreateDevicePoolResult$devicePool": "<p>The newly created device pool.</p>",
         "DevicePools$member": null,
-        "GetDevicePoolResult$devicePool": null
+        "GetDevicePoolResult$devicePool": null,
+        "UpdateDevicePoolResult$devicePool": null
       }
     },
     "DevicePoolCompatibilityResult": {
@@ -285,6 +347,9 @@
       "base": null,
       "refs": {
         "CPU$clock": "<p>The clock speed of the device's CPU, expressed in hertz (Hz). For example, a 1.2 GHz CPU is expressed as 1200000000.</p>",
+        "DeviceMinutes$total": "<p>When specified, represents the total minutes used by the resource to run tests.</p>",
+        "DeviceMinutes$metered": "<p>When specified, represents only the sum of metered minutes used by the resource to run tests.</p>",
+        "DeviceMinutes$unmetered": "<p>When specified, represents only the sum of unmetered minutes used by the resource to run tests.</p>",
         "Location$latitude": "<p>The latitude.</p>",
         "Location$longitude": "<p>The longitude.</p>"
       }
@@ -607,6 +672,7 @@
         "Suite$message": "<p>A message about the suite's result.</p>",
         "Test$message": "<p>A message about the test's result.</p>",
         "UniqueProblem$message": "<p>A message about the unique problems' result.</p>",
+        "UpdateDevicePoolRequest$description": "<p>A description of the device pool you wish to update.</p>",
         "Upload$message": "<p>A message about the upload's result.</p>"
       }
     },
@@ -632,6 +698,8 @@
         "ScheduleRunRequest$name": "<p>The name for the run to be scheduled.</p>",
         "Suite$name": "<p>The suite's name.</p>",
         "Test$name": "<p>The test's name.</p>",
+        "UpdateDevicePoolRequest$name": "<p>A string representing the name of the device pool you wish to update.</p>",
+        "UpdateProjectRequest$name": "<p>A string representing the new name of the project that you are updating.</p>",
         "Upload$name": "<p>The upload's file name.</p>"
       }
     },
@@ -693,7 +761,8 @@
       "refs": {
         "CreateProjectResult$project": "<p>The newly created project.</p>",
         "GetProjectResult$project": null,
-        "Projects$member": null
+        "Projects$member": null,
+        "UpdateProjectResult$project": null
       }
     },
     "Projects": {
@@ -736,7 +805,8 @@
       "base": null,
       "refs": {
         "CreateDevicePoolRequest$rules": "<p>The device pool's rules.</p>",
-        "DevicePool$rules": "<p>Information about the device pool's rules.</p>"
+        "DevicePool$rules": "<p>Information about the device pool's rules.</p>",
+        "UpdateDevicePoolRequest$rules": "<p>Represents the rules you wish to modify for the device pool. Updating rules is optional; however, if you choose to update rules for your request, the update will replace the existing rules.</p>"
       }
     },
     "Run": {
@@ -883,6 +953,26 @@
       "base": null,
       "refs": {
         "ListUniqueProblemsResult$uniqueProblems": "<p>Information about the unique problems.</p> <p>Allowed values include:</p> <ul> <li><p>ERRORED: An error condition.</p></li> <li><p>FAILED: A failed condition.</p></li> <li><p>SKIPPED: A skipped condition.</p></li> <li><p>STOPPED: A stopped condition.</p></li> <li><p>PASSED: A passing condition.</p></li> <li><p>PENDING: A pending condition.</p></li> <li><p>WARNED: A warning condition.</p></li> </ul>"
+      }
+    },
+    "UpdateDevicePoolRequest": {
+      "base": "<p>Represents a request to the update device pool operation.</p>",
+      "refs": {
+      }
+    },
+    "UpdateDevicePoolResult": {
+      "base": "<p>Represents the result of an update device pool request.</p>",
+      "refs": {
+      }
+    },
+    "UpdateProjectRequest": {
+      "base": "<p>Represents a request to the update project operation.</p>",
+      "refs": {
+      }
+    },
+    "UpdateProjectResult": {
+      "base": "<p>Represents the result of an update project request.</p>",
+      "refs": {
       }
     },
     "Upload": {

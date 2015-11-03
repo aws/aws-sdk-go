@@ -22,6 +22,22 @@ type DeviceFarmAPI interface {
 
 	CreateUpload(*devicefarm.CreateUploadInput) (*devicefarm.CreateUploadOutput, error)
 
+	DeleteDevicePoolRequest(*devicefarm.DeleteDevicePoolInput) (*request.Request, *devicefarm.DeleteDevicePoolOutput)
+
+	DeleteDevicePool(*devicefarm.DeleteDevicePoolInput) (*devicefarm.DeleteDevicePoolOutput, error)
+
+	DeleteProjectRequest(*devicefarm.DeleteProjectInput) (*request.Request, *devicefarm.DeleteProjectOutput)
+
+	DeleteProject(*devicefarm.DeleteProjectInput) (*devicefarm.DeleteProjectOutput, error)
+
+	DeleteRunRequest(*devicefarm.DeleteRunInput) (*request.Request, *devicefarm.DeleteRunOutput)
+
+	DeleteRun(*devicefarm.DeleteRunInput) (*devicefarm.DeleteRunOutput, error)
+
+	DeleteUploadRequest(*devicefarm.DeleteUploadInput) (*request.Request, *devicefarm.DeleteUploadOutput)
+
+	DeleteUpload(*devicefarm.DeleteUploadInput) (*devicefarm.DeleteUploadOutput, error)
+
 	GetAccountSettingsRequest(*devicefarm.GetAccountSettingsInput) (*request.Request, *devicefarm.GetAccountSettingsOutput)
 
 	GetAccountSettings(*devicefarm.GetAccountSettingsInput) (*devicefarm.GetAccountSettingsOutput, error)
@@ -131,6 +147,14 @@ type DeviceFarmAPI interface {
 	ScheduleRunRequest(*devicefarm.ScheduleRunInput) (*request.Request, *devicefarm.ScheduleRunOutput)
 
 	ScheduleRun(*devicefarm.ScheduleRunInput) (*devicefarm.ScheduleRunOutput, error)
+
+	UpdateDevicePoolRequest(*devicefarm.UpdateDevicePoolInput) (*request.Request, *devicefarm.UpdateDevicePoolOutput)
+
+	UpdateDevicePool(*devicefarm.UpdateDevicePoolInput) (*devicefarm.UpdateDevicePoolOutput, error)
+
+	UpdateProjectRequest(*devicefarm.UpdateProjectInput) (*request.Request, *devicefarm.UpdateProjectOutput)
+
+	UpdateProject(*devicefarm.UpdateProjectInput) (*devicefarm.UpdateProjectOutput, error)
 }
 
 var _ DeviceFarmAPI = (*devicefarm.DeviceFarm)(nil)

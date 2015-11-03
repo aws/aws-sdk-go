@@ -85,6 +85,82 @@ func ExampleDeviceFarm_CreateUpload() {
 	fmt.Println(resp)
 }
 
+func ExampleDeviceFarm_DeleteDevicePool() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.DeleteDevicePoolInput{
+		Arn: aws.String("AmazonResourceName"), // Required
+	}
+	resp, err := svc.DeleteDevicePool(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_DeleteProject() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.DeleteProjectInput{
+		Arn: aws.String("AmazonResourceName"), // Required
+	}
+	resp, err := svc.DeleteProject(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_DeleteRun() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.DeleteRunInput{
+		Arn: aws.String("AmazonResourceName"), // Required
+	}
+	resp, err := svc.DeleteRun(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_DeleteUpload() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.DeleteUploadInput{
+		Arn: aws.String("AmazonResourceName"), // Required
+	}
+	resp, err := svc.DeleteUpload(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleDeviceFarm_GetAccountSettings() {
 	svc := devicefarm.New(session.New())
 
@@ -536,6 +612,55 @@ func ExampleDeviceFarm_ScheduleRun() {
 		Name: aws.String("Name"),
 	}
 	resp, err := svc.ScheduleRun(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_UpdateDevicePool() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.UpdateDevicePoolInput{
+		Arn:         aws.String("AmazonResourceName"), // Required
+		Description: aws.String("Message"),
+		Name:        aws.String("Name"),
+		Rules: []*devicefarm.Rule{
+			{ // Required
+				Attribute: aws.String("DeviceAttribute"),
+				Operator:  aws.String("RuleOperator"),
+				Value:     aws.String("String"),
+			},
+			// More values...
+		},
+	}
+	resp, err := svc.UpdateDevicePool(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleDeviceFarm_UpdateProject() {
+	svc := devicefarm.New(session.New())
+
+	params := &devicefarm.UpdateProjectInput{
+		Arn:  aws.String("AmazonResourceName"), // Required
+		Name: aws.String("Name"),
+	}
+	resp, err := svc.UpdateProject(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

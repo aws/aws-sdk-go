@@ -91,6 +91,119 @@ func (c *DeviceFarm) CreateUpload(input *CreateUploadInput) (*CreateUploadOutput
 	return out, err
 }
 
+const opDeleteDevicePool = "DeleteDevicePool"
+
+// DeleteDevicePoolRequest generates a request for the DeleteDevicePool operation.
+func (c *DeviceFarm) DeleteDevicePoolRequest(input *DeleteDevicePoolInput) (req *request.Request, output *DeleteDevicePoolOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDevicePool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDevicePoolInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteDevicePoolOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes a device pool given the pool ARN. Does not allow deletion of curated
+// pools owned by the system.
+func (c *DeviceFarm) DeleteDevicePool(input *DeleteDevicePoolInput) (*DeleteDevicePoolOutput, error) {
+	req, out := c.DeleteDevicePoolRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteProject = "DeleteProject"
+
+// DeleteProjectRequest generates a request for the DeleteProject operation.
+func (c *DeviceFarm) DeleteProjectRequest(input *DeleteProjectInput) (req *request.Request, output *DeleteProjectOutput) {
+	op := &request.Operation{
+		Name:       opDeleteProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteProjectInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteProjectOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes an AWS Device Farm project, given the project ARN.
+//
+// Note Deleting this resource does not stop an in-progress run.
+func (c *DeviceFarm) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
+	req, out := c.DeleteProjectRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteRun = "DeleteRun"
+
+// DeleteRunRequest generates a request for the DeleteRun operation.
+func (c *DeviceFarm) DeleteRunRequest(input *DeleteRunInput) (req *request.Request, output *DeleteRunOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRunInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteRunOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes the run, given the run ARN.
+//
+// Note Deleting this resource does not stop an in-progress run.
+func (c *DeviceFarm) DeleteRun(input *DeleteRunInput) (*DeleteRunOutput, error) {
+	req, out := c.DeleteRunRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opDeleteUpload = "DeleteUpload"
+
+// DeleteUploadRequest generates a request for the DeleteUpload operation.
+func (c *DeviceFarm) DeleteUploadRequest(input *DeleteUploadInput) (req *request.Request, output *DeleteUploadOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUpload,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteUploadInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DeleteUploadOutput{}
+	req.Data = output
+	return
+}
+
+// Deletes an upload given the upload ARN.
+func (c *DeviceFarm) DeleteUpload(input *DeleteUploadInput) (*DeleteUploadOutput, error) {
+	req, out := c.DeleteUploadRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opGetAccountSettings = "GetAccountSettings"
 
 // GetAccountSettingsRequest generates a request for the GetAccountSettings operation.
@@ -829,6 +942,62 @@ func (c *DeviceFarm) ScheduleRun(input *ScheduleRunInput) (*ScheduleRunOutput, e
 	return out, err
 }
 
+const opUpdateDevicePool = "UpdateDevicePool"
+
+// UpdateDevicePoolRequest generates a request for the UpdateDevicePool operation.
+func (c *DeviceFarm) UpdateDevicePoolRequest(input *UpdateDevicePoolInput) (req *request.Request, output *UpdateDevicePoolOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDevicePool,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDevicePoolInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateDevicePoolOutput{}
+	req.Data = output
+	return
+}
+
+// Modifies the name, description, and rules in a device pool given the attributes
+// and the pool ARN. Rule updates are all-or-nothing, meaning they can only
+// be updated as a whole (or not at all).
+func (c *DeviceFarm) UpdateDevicePool(input *UpdateDevicePoolInput) (*UpdateDevicePoolOutput, error) {
+	req, out := c.UpdateDevicePoolRequest(input)
+	err := req.Send()
+	return out, err
+}
+
+const opUpdateProject = "UpdateProject"
+
+// UpdateProjectRequest generates a request for the UpdateProject operation.
+func (c *DeviceFarm) UpdateProjectRequest(input *UpdateProjectInput) (req *request.Request, output *UpdateProjectOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProjectInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &UpdateProjectOutput{}
+	req.Data = output
+	return
+}
+
+// Modifies the specified project name, given the project ARN and a new name.
+func (c *DeviceFarm) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
+	req, out := c.UpdateProjectRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 // A container for account-level settings within AWS Device Farm.
 type AccountSettings struct {
 	// The AWS account number specified in the AccountSettings container.
@@ -1165,6 +1334,173 @@ func (s CreateUploadOutput) GoString() string {
 	return s.String()
 }
 
+// Represents a request to the delete device pool operation.
+type DeleteDevicePoolInput struct {
+	// Represents the Amazon Resource Name (ARN) of the Device Farm device pool
+	// you wish to delete.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+
+	metadataDeleteDevicePoolInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDevicePoolInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDevicePoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDevicePoolInput) GoString() string {
+	return s.String()
+}
+
+// Represents the result of a delete device pool request.
+type DeleteDevicePoolOutput struct {
+	metadataDeleteDevicePoolOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteDevicePoolOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteDevicePoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDevicePoolOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to the delete project operation.
+type DeleteProjectInput struct {
+	// Represents the Amazon Resource Name (ARN) of the Device Farm project you
+	// wish to delete.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+
+	metadataDeleteProjectInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteProjectInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProjectInput) GoString() string {
+	return s.String()
+}
+
+// Represents the result of a delete project request.
+type DeleteProjectOutput struct {
+	metadataDeleteProjectOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteProjectOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteProjectOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to the delete run operation.
+type DeleteRunInput struct {
+	// The Amazon Resource Name (ARN) for the run you wish to delete.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+
+	metadataDeleteRunInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteRunInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRunInput) GoString() string {
+	return s.String()
+}
+
+// Represents the result of a delete run request.
+type DeleteRunOutput struct {
+	metadataDeleteRunOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteRunOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRunOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to the delete upload operation.
+type DeleteUploadInput struct {
+	// Represents the Amazon Resource Name (ARN) of the Device Farm upload you wish
+	// to delete.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+
+	metadataDeleteUploadInput `json:"-" xml:"-"`
+}
+
+type metadataDeleteUploadInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUploadInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUploadInput) GoString() string {
+	return s.String()
+}
+
+// Represents the result of a delete upload request.
+type DeleteUploadOutput struct {
+	metadataDeleteUploadOutput `json:"-" xml:"-"`
+}
+
+type metadataDeleteUploadOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUploadOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUploadOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a device type that an app is tested against.
 type Device struct {
 	// The device's ARN.
@@ -1236,6 +1572,38 @@ func (s Device) String() string {
 
 // GoString returns the string representation
 func (s Device) GoString() string {
+	return s.String()
+}
+
+// Represents the total (metered or unmetered) minutes used by the resource
+// to run tests. Contains the sum of minutes consumed by all children.
+type DeviceMinutes struct {
+	// When specified, represents only the sum of metered minutes used by the resource
+	// to run tests.
+	Metered *float64 `locationName:"metered" type:"double"`
+
+	// When specified, represents the total minutes used by the resource to run
+	// tests.
+	Total *float64 `locationName:"total" type:"double"`
+
+	// When specified, represents only the sum of unmetered minutes used by the
+	// resource to run tests.
+	Unmetered *float64 `locationName:"unmetered" type:"double"`
+
+	metadataDeviceMinutes `json:"-" xml:"-"`
+}
+
+type metadataDeviceMinutes struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeviceMinutes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceMinutes) GoString() string {
 	return s.String()
 }
 
@@ -1821,6 +2189,9 @@ type Job struct {
 
 	// Represents a device type that an app is tested against.
 	Device *Device `locationName:"device" type:"structure"`
+
+	// Represents the total (metered or unmetered) minutes used by the job.
+	DeviceMinutes *DeviceMinutes `locationName:"deviceMinutes" type:"structure"`
 
 	// A message about the job's result.
 	Message *string `locationName:"message" type:"string"`
@@ -2787,6 +3158,9 @@ type Run struct {
 	// When the run was created.
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
 
+	// Represents the total (metered or unmetered) minutes used by the test run.
+	DeviceMinutes *DeviceMinutes `locationName:"deviceMinutes" type:"structure"`
+
 	// A message about the run's result.
 	Message *string `locationName:"message" type:"string"`
 
@@ -3122,6 +3496,9 @@ type Suite struct {
 	// When the suite was created.
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
 
+	// Represents the total (metered or unmetered) minutes used by the test suite.
+	DeviceMinutes *DeviceMinutes `locationName:"deviceMinutes" type:"structure"`
+
 	// A message about the suite's result.
 	Message *string `locationName:"message" type:"string"`
 
@@ -3219,6 +3596,9 @@ type Test struct {
 
 	// When the test was created.
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"unix"`
+
+	// Represents the total (metered or unmetered) minutes used by the test.
+	DeviceMinutes *DeviceMinutes `locationName:"deviceMinutes" type:"structure"`
 
 	// A message about the test's result.
 	Message *string `locationName:"message" type:"string"`
@@ -3329,6 +3709,110 @@ func (s UniqueProblem) String() string {
 
 // GoString returns the string representation
 func (s UniqueProblem) GoString() string {
+	return s.String()
+}
+
+// Represents a request to the update device pool operation.
+type UpdateDevicePoolInput struct {
+	// The Amazon Resourc Name (ARN) of the Device Farm device pool you wish to
+	// update.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+
+	// A description of the device pool you wish to update.
+	Description *string `locationName:"description" type:"string"`
+
+	// A string representing the name of the device pool you wish to update.
+	Name *string `locationName:"name" type:"string"`
+
+	// Represents the rules you wish to modify for the device pool. Updating rules
+	// is optional; however, if you choose to update rules for your request, the
+	// update will replace the existing rules.
+	Rules []*Rule `locationName:"rules" type:"list"`
+
+	metadataUpdateDevicePoolInput `json:"-" xml:"-"`
+}
+
+type metadataUpdateDevicePoolInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDevicePoolInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDevicePoolInput) GoString() string {
+	return s.String()
+}
+
+// Represents the result of an update device pool request.
+type UpdateDevicePoolOutput struct {
+	// Represents a collection of device types.
+	DevicePool *DevicePool `locationName:"devicePool" type:"structure"`
+
+	metadataUpdateDevicePoolOutput `json:"-" xml:"-"`
+}
+
+type metadataUpdateDevicePoolOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateDevicePoolOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateDevicePoolOutput) GoString() string {
+	return s.String()
+}
+
+// Represents a request to the update project operation.
+type UpdateProjectInput struct {
+	// The Amazon Resource Name (ARN) of the project whose name you wish to update.
+	Arn *string `locationName:"arn" min:"32" type:"string" required:"true"`
+
+	// A string representing the new name of the project that you are updating.
+	Name *string `locationName:"name" type:"string"`
+
+	metadataUpdateProjectInput `json:"-" xml:"-"`
+}
+
+type metadataUpdateProjectInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateProjectInput) GoString() string {
+	return s.String()
+}
+
+// Represents the result of an update project request.
+type UpdateProjectOutput struct {
+	// Represents an operating-system neutral workspace for running and managing
+	// tests.
+	Project *Project `locationName:"project" type:"structure"`
+
+	metadataUpdateProjectOutput `json:"-" xml:"-"`
+}
+
+type metadataUpdateProjectOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateProjectOutput) GoString() string {
 	return s.String()
 }
 
@@ -3453,6 +3937,12 @@ const (
 	ArtifactTypeAppiumJavaOutput = "APPIUM_JAVA_OUTPUT"
 	// @enum ArtifactType
 	ArtifactTypeAppiumJavaXmlOutput = "APPIUM_JAVA_XML_OUTPUT"
+	// @enum ArtifactType
+	ArtifactTypeExplorerEventLog = "EXPLORER_EVENT_LOG"
+	// @enum ArtifactType
+	ArtifactTypeExplorerSummaryLog = "EXPLORER_SUMMARY_LOG"
+	// @enum ArtifactType
+	ArtifactTypeApplicationCrashReport = "APPLICATION_CRASH_REPORT"
 )
 
 const (

@@ -91,6 +91,114 @@
         }
       ]
     },
+    "DeleteDevicePool":{
+      "name":"DeleteDevicePool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDevicePoolRequest"},
+      "output":{"shape":"DeleteDevicePoolResult"},
+      "errors":[
+        {
+          "shape":"ArgumentException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceAccountException",
+          "exception":true
+        }
+      ]
+    },
+    "DeleteProject":{
+      "name":"DeleteProject",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteProjectRequest"},
+      "output":{"shape":"DeleteProjectResult"},
+      "errors":[
+        {
+          "shape":"ArgumentException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceAccountException",
+          "exception":true
+        }
+      ]
+    },
+    "DeleteRun":{
+      "name":"DeleteRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRunRequest"},
+      "output":{"shape":"DeleteRunResult"},
+      "errors":[
+        {
+          "shape":"ArgumentException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceAccountException",
+          "exception":true
+        }
+      ]
+    },
+    "DeleteUpload":{
+      "name":"DeleteUpload",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteUploadRequest"},
+      "output":{"shape":"DeleteUploadResult"},
+      "errors":[
+        {
+          "shape":"ArgumentException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceAccountException",
+          "exception":true
+        }
+      ]
+    },
     "GetAccountSettings":{
       "name":"GetAccountSettings",
       "http":{
@@ -688,6 +796,60 @@
           "exception":true
         }
       ]
+    },
+    "UpdateDevicePool":{
+      "name":"UpdateDevicePool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDevicePoolRequest"},
+      "output":{"shape":"UpdateDevicePoolResult"},
+      "errors":[
+        {
+          "shape":"ArgumentException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceAccountException",
+          "exception":true
+        }
+      ]
+    },
+    "UpdateProject":{
+      "name":"UpdateProject",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateProjectRequest"},
+      "output":{"shape":"UpdateProjectResult"},
+      "errors":[
+        {
+          "shape":"ArgumentException",
+          "exception":true
+        },
+        {
+          "shape":"NotFoundException",
+          "exception":true
+        },
+        {
+          "shape":"LimitExceededException",
+          "exception":true
+        },
+        {
+          "shape":"ServiceAccountException",
+          "exception":true
+        }
+      ]
     }
   },
   "shapes":{
@@ -754,7 +916,10 @@
         "AUTOMATION_OUTPUT",
         "APPIUM_SERVER_OUTPUT",
         "APPIUM_JAVA_OUTPUT",
-        "APPIUM_JAVA_XML_OUTPUT"
+        "APPIUM_JAVA_XML_OUTPUT",
+        "EXPLORER_EVENT_LOG",
+        "EXPLORER_SUMMARY_LOG",
+        "APPLICATION_CRASH_REPORT"
       ]
     },
     "Artifacts":{
@@ -848,6 +1013,54 @@
       }
     },
     "DateTime":{"type":"timestamp"},
+    "DeleteDevicePoolRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "DeleteDevicePoolResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteProjectRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "DeleteProjectResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteRunRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "DeleteRunResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteUploadRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "DeleteUploadResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Device":{
       "type":"structure",
       "members":{
@@ -882,6 +1095,14 @@
         "PHONE",
         "TABLET"
       ]
+    },
+    "DeviceMinutes":{
+      "type":"structure",
+      "members":{
+        "total":{"shape":"Double"},
+        "metered":{"shape":"Double"},
+        "unmetered":{"shape":"Double"}
+      }
     },
     "DevicePlatform":{
       "type":"string",
@@ -1121,7 +1342,8 @@
         "stopped":{"shape":"DateTime"},
         "counters":{"shape":"Counters"},
         "message":{"shape":"Message"},
-        "device":{"shape":"Device"}
+        "device":{"shape":"Device"},
+        "deviceMinutes":{"shape":"DeviceMinutes"}
       }
     },
     "Jobs":{
@@ -1436,7 +1658,8 @@
         "message":{"shape":"Message"},
         "totalJobs":{"shape":"Integer"},
         "completedJobs":{"shape":"Integer"},
-        "billingMethod":{"shape":"BillingMethod"}
+        "billingMethod":{"shape":"BillingMethod"},
+        "deviceMinutes":{"shape":"DeviceMinutes"}
       }
     },
     "Runs":{
@@ -1542,7 +1765,8 @@
         "started":{"shape":"DateTime"},
         "stopped":{"shape":"DateTime"},
         "counters":{"shape":"Counters"},
-        "message":{"shape":"Message"}
+        "message":{"shape":"Message"},
+        "deviceMinutes":{"shape":"DeviceMinutes"}
       }
     },
     "Suites":{
@@ -1561,7 +1785,8 @@
         "started":{"shape":"DateTime"},
         "stopped":{"shape":"DateTime"},
         "counters":{"shape":"Counters"},
-        "message":{"shape":"Message"}
+        "message":{"shape":"Message"},
+        "deviceMinutes":{"shape":"DeviceMinutes"}
       }
     },
     "TestParameters":{
@@ -1607,6 +1832,36 @@
       "type":"map",
       "key":{"shape":"ExecutionResult"},
       "value":{"shape":"UniqueProblems"}
+    },
+    "UpdateDevicePoolRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"},
+        "name":{"shape":"Name"},
+        "description":{"shape":"Message"},
+        "rules":{"shape":"Rules"}
+      }
+    },
+    "UpdateDevicePoolResult":{
+      "type":"structure",
+      "members":{
+        "devicePool":{"shape":"DevicePool"}
+      }
+    },
+    "UpdateProjectRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"AmazonResourceName"},
+        "name":{"shape":"Name"}
+      }
+    },
+    "UpdateProjectResult":{
+      "type":"structure",
+      "members":{
+        "project":{"shape":"Project"}
+      }
     },
     "Upload":{
       "type":"structure",
