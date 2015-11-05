@@ -1,3 +1,4 @@
+// Package template provides types and functions that enable programmatic generation of CloudFormation templates
 package template
 
 import "encoding/json"
