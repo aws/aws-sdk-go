@@ -2,12 +2,12 @@ package template_test
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 
+	"github.com/aws/aws-sdk-go/awstesting"
 	. "github.com/aws/aws-sdk-go/service/cloudformation/template"
 )
 
@@ -91,28 +91,12 @@ func TestTemplateCreation(t *testing.T) {
 	assertMarshalsTo(t, template, expected)
 
 	asString := template.String()
-	assertEquivalentJSON(t, expected, asString)
+	awstesting.AssertJSON(t, expected, asString)
 }
 
 func assertMarshalsTo(t *testing.T, value interface{}, expectedJSON string) {
 	actual, err := json.Marshal(value)
 	assert.Nil(t, err)
 
-	assertEquivalentJSON(t, expectedJSON, string(actual))
-}
-
-func assertEquivalentJSON(t *testing.T, expected, actual string) {
-	var rawExpected, rawActual interface{}
-
-	err := json.Unmarshal([]byte(expected), &rawExpected)
-	if err != nil {
-		t.Errorf("Unable to unmarshal expected data (%s) as JSON: %s", expected, err)
-	}
-
-	err = json.Unmarshal([]byte(actual), &rawActual)
-	if err != nil {
-		t.Errorf("Unable to unmarshal actual data (%s) as JSON: %s", actual, err)
-	}
-
-	assert.EqualValues(t, rawExpected, rawActual, fmt.Sprintf("JSON mismatch: Expected\n\n%s\n\n\t\tbut instead got\n\n%s", expected, actual))
+	awstesting.AssertJSON(t, expectedJSON, string(actual))
 }
