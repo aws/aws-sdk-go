@@ -209,7 +209,11 @@ func TestResignRequestExpiredCreds(t *testing.T) {
 }
 
 func TestPreResignRequestExpiredCreds(t *testing.T) {
-	provider := &credentials.StaticProvider{credentials.Value{"AKID", "SECRET", "SESSION"}}
+	provider := &credentials.StaticProvider{Value: credentials.Value{
+		AccessKeyID:     "AKID",
+		SecretAccessKey: "SECRET",
+		SessionToken:    "SESSION",
+	}}
 	creds := credentials.NewCredentials(provider)
 	svc := awstesting.NewClient(&aws.Config{Credentials: creds})
 	r := svc.NewRequest(

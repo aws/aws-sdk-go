@@ -48,7 +48,7 @@ integration: get-deps-integ
 	go test ./awstesting/integration/customizations/... -tags=integration
 	gucumber ./awstesting/integration/smoke
 
-verify: get-deps-verify lint
+verify: get-deps-verify lint vet
 
 lint:
 	@echo "golint ./..."
