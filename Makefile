@@ -5,63 +5,82 @@ LINTIGNORESTUTTER='service/[^/]+/(api|service)\.go:.+(and that stutters)'
 LINTIGNOREINFLECT='service/[^/]+/(api|service)\.go:.+method .+ should be '
 LINTIGNOREDEPS='vendor/.+\.go'
 
+default: generate unit
+
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  api_info                to print a list of services and versions"
-	@echo "  build                   to go build the SDK"
-	@echo "  deps                    to go get the SDK dependencies"
 	@echo "  docs                    to build SDK documentation"
-	@echo "  generate                to go generate and make services"
-	@echo "  generate-protocol-test  to generate protocol tests"
-	@echo "  integration             to run integration tests"
-	@echo "  lint                    to lint the SDK"
-	@echo "  services                to generate services"
+	@echo "  build                   to go build the SDK"
 	@echo "  unit                    to run unit tests"
+	@echo "  integration             to run integration tests"
+	@echo "  verify                  to verify tests"
+	@echo "  lint                    to lint the SDK"
+	@echo "  vet                     to vet the SDK"
+	@echo "  generate                to go generate and make services"
+	@echo "  gen-test                to generate protocol tests"
+	@echo "  gen-services            to generate services"
+	@echo "  get-deps                to go get the SDK dependencies"
+	@echo "  get-deps-unit           to get the SDK's unit test dependencies"
+	@echo "  get-deps-integ          to get the SDK's integration test dependencies"
+	@echo "  get-deps-verify         to get the SDK's verification dependencies"
 
-default: generate
+generate: gen-test gen-endpoints gen-services
 
-generate-protocol-test:
-	go generate ./private/protocol/...
+gen-test: generate-protocol-test
 
-generate-test: generate-protocol-test
-
-generate:
-	go generate ./private/endpoints
-	@make services
-
-services:
+gen-services:
 	go generate ./service
 
-integration: deps
+gen-protocol-test:
+	go generate ./private/protocol/...
+
+gen-endpoints:
+	go generate ./private/endpoints
+
+build:
+	go build ./...
+
+unit: get-deps-unit build verify
+	go test ./...
+
+integration: get-deps-integ
 	go test ./awstesting/integration/customizations/... -tags=integration
 	gucumber ./awstesting/integration/smoke
 
-lint: deps
+verify: get-deps-verify lint
+
+lint:
 	@echo "golint ./..."
 	@lint=`golint ./...`; \
 	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS}`; \
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
-unit: deps build lint
-	go test ./...
+vet:
+	@echo "go vet ./..."
+	@go tool vet -all -shadow .
 
-build:
-	go build ./...
+get-deps: get-deps-unit get-deps-integ get-deps-verify
+	@go get -v ./...
 
-docs:
-	rm -rf doc && bundle install && bundle exec yard
+get-deps-unit:
+	@go get github.com/stretchr/testify
 
-deps:
-	@go get ./...
+get-deps-integ: get-deps-unit
 	@go get github.com/lsegal/gucumber/cmd/gucumber
-	@go get github.com/golang/lint/golint
 
-api_info:
-	@go run private/model/cli/api-info/api-info.go
+get-deps-verify:
+	@go get github.com/golang/lint/golint
 
 bench:
 	@go test -bench . -benchmem -tags 'bench' ./...
 
 bench-protocol:
 	@go test -bench . -benchmem -tags 'bench' ./private/protocol/...
+
+docs:
+	rm -rf doc && bundle install && bundle exec yard
+
+api_info:
+	@go run private/model/cli/api-info/api-info.go

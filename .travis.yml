@@ -6,9 +6,16 @@ go:
   - 1.4
   - 1.5
   - tip
+    
+# Use Go 1.5's vendoring experiment for 1.5 tests. 1.4 tests will use the tip of the dependancies repo.
+env:
+  - GO15VENDOREXPERIMENT=1
 
-install: "go get -v -t ./... && make deps"
-script: make unit
+install:
+  - make get-deps
+
+script:
+  - make unit
 
 matrix:
   allow_failures:
