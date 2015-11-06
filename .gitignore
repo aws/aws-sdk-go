@@ -1,4 +1,4 @@
-vendor
+dist
 doc
 .yardoc
 Gemfile.lock

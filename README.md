@@ -28,12 +28,11 @@ If you've encountered any issues usign the SDK please open a [GitHub issue](http
 
 ## Installing
 
-Install your specific service package with the following `go get` command.
-For example, EC2 support might be installed with:
+If you are using Go 1.5 with the `GO15VENDOREXPERIMENT=1` vendoring flag you can use the following to get the SDK as the SDK's runtime dependancies are vendored in the `vendor` folder.
 
-    $ go get github.com/aws/aws-sdk-go/service/ec2
+    $ go get -u github.com/aws/aws-sdk-go
 
-You can also install the entire SDK by installing the root package, including all of the SDK's dependencies:
+Otherwise you'll need to tell Go to get the SDK and all of its dependancies.
 
     $ go get -u github.com/aws/aws-sdk-go/...
 
