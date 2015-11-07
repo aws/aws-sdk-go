@@ -27,7 +27,7 @@ help:
 
 generate: gen-test gen-endpoints gen-services
 
-gen-test: generate-protocol-test
+gen-test: gen-protocol-test
 
 gen-services:
 	go generate ./service
