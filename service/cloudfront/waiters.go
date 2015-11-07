@@ -3,7 +3,7 @@
 package cloudfront
 
 import (
-	"github.com/aws/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 var waiterDistributionDeployed *waiter.Config
@@ -18,7 +18,7 @@ func (c *CloudFront) WaitUntilDistributionDeployed(input *GetDistributionInput) 
 				{
 					State:    "success",
 					Matcher:  "path",
-					Argument: "Distribution.Status",
+					Argument: "Status",
 					Expected: "Deployed",
 				},
 			},
@@ -40,12 +40,12 @@ func (c *CloudFront) WaitUntilInvalidationCompleted(input *GetInvalidationInput)
 		waiterInvalidationCompleted = &waiter.Config{
 			Operation:   "GetInvalidation",
 			Delay:       20,
-			MaxAttempts: 60,
+			MaxAttempts: 30,
 			Acceptors: []waiter.WaitAcceptor{
 				{
 					State:    "success",
 					Matcher:  "path",
-					Argument: "Invalidation.Status",
+					Argument: "Status",
 					Expected: "Completed",
 				},
 			},
@@ -72,7 +72,7 @@ func (c *CloudFront) WaitUntilStreamingDistributionDeployed(input *GetStreamingD
 				{
 					State:    "success",
 					Matcher:  "path",
-					Argument: "StreamingDistribution.Status",
+					Argument: "Status",
 					Expected: "Deployed",
 				},
 			},

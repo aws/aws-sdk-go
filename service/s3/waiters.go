@@ -3,7 +3,7 @@
 package s3
 
 import (
-	"github.com/aws/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 var waiterBucketExists *waiter.Config
@@ -20,6 +20,12 @@ func (c *S3) WaitUntilBucketExists(input *HeadBucketInput) error {
 					Matcher:  "status",
 					Argument: "",
 					Expected: 200,
+				},
+				{
+					State:    "success",
+					Matcher:  "status",
+					Argument: "",
+					Expected: 403,
 				},
 				{
 					State:    "retry",

@@ -3,7 +3,7 @@
 package elasticache
 
 import (
-	"github.com/aws/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 var waiterCacheClusterAvailable *waiter.Config
@@ -12,8 +12,8 @@ func (c *ElastiCache) WaitUntilCacheClusterAvailable(input *DescribeCacheCluster
 	if waiterCacheClusterAvailable == nil {
 		waiterCacheClusterAvailable = &waiter.Config{
 			Operation:   "DescribeCacheClusters",
-			Delay:       30,
-			MaxAttempts: 60,
+			Delay:       15,
+			MaxAttempts: 40,
 			Acceptors: []waiter.WaitAcceptor{
 				{
 					State:    "success",
@@ -63,14 +63,26 @@ func (c *ElastiCache) WaitUntilCacheClusterDeleted(input *DescribeCacheClustersI
 	if waiterCacheClusterDeleted == nil {
 		waiterCacheClusterDeleted = &waiter.Config{
 			Operation:   "DescribeCacheClusters",
-			Delay:       30,
-			MaxAttempts: 60,
+			Delay:       15,
+			MaxAttempts: 40,
 			Acceptors: []waiter.WaitAcceptor{
+				{
+					State:    "success",
+					Matcher:  "pathAll",
+					Argument: "CacheClusters[].CacheClusterStatus",
+					Expected: "deleted",
+				},
 				{
 					State:    "success",
 					Matcher:  "error",
 					Argument: "",
 					Expected: "CacheClusterNotFound",
+				},
+				{
+					State:    "failure",
+					Matcher:  "pathAny",
+					Argument: "CacheClusters[].CacheClusterStatus",
+					Expected: "available",
 				},
 				{
 					State:    "failure",
@@ -82,13 +94,25 @@ func (c *ElastiCache) WaitUntilCacheClusterDeleted(input *DescribeCacheClustersI
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
+					Expected: "incompatible-network",
+				},
+				{
+					State:    "failure",
+					Matcher:  "pathAny",
+					Argument: "CacheClusters[].CacheClusterStatus",
 					Expected: "modifying",
 				},
 				{
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "CacheClusters[].CacheClusterStatus",
-					Expected: "rebooting",
+					Expected: "restore-failed",
+				},
+				{
+					State:    "failure",
+					Matcher:  "pathAny",
+					Argument: "CacheClusters[].CacheClusterStatus",
+					Expected: "snapshotting",
 				},
 			},
 		}
@@ -108,8 +132,8 @@ func (c *ElastiCache) WaitUntilReplicationGroupAvailable(input *DescribeReplicat
 	if waiterReplicationGroupAvailable == nil {
 		waiterReplicationGroupAvailable = &waiter.Config{
 			Operation:   "DescribeReplicationGroups",
-			Delay:       30,
-			MaxAttempts: 60,
+			Delay:       15,
+			MaxAttempts: 40,
 			Acceptors: []waiter.WaitAcceptor{
 				{
 					State:    "success",
@@ -122,24 +146,6 @@ func (c *ElastiCache) WaitUntilReplicationGroupAvailable(input *DescribeReplicat
 					Matcher:  "pathAny",
 					Argument: "ReplicationGroups[].Status",
 					Expected: "deleted",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ReplicationGroups[].Status",
-					Expected: "deleting",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ReplicationGroups[].Status",
-					Expected: "incompatible-network",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ReplicationGroups[].Status",
-					Expected: "restore-failed",
 				},
 			},
 		}
@@ -159,32 +165,26 @@ func (c *ElastiCache) WaitUntilReplicationGroupDeleted(input *DescribeReplicatio
 	if waiterReplicationGroupDeleted == nil {
 		waiterReplicationGroupDeleted = &waiter.Config{
 			Operation:   "DescribeReplicationGroups",
-			Delay:       30,
-			MaxAttempts: 60,
+			Delay:       15,
+			MaxAttempts: 40,
 			Acceptors: []waiter.WaitAcceptor{
+				{
+					State:    "success",
+					Matcher:  "pathAll",
+					Argument: "ReplicationGroups[].Status",
+					Expected: "deleted",
+				},
+				{
+					State:    "failure",
+					Matcher:  "pathAny",
+					Argument: "ReplicationGroups[].Status",
+					Expected: "available",
+				},
 				{
 					State:    "success",
 					Matcher:  "error",
 					Argument: "",
 					Expected: "ReplicationGroupNotFoundFault",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ReplicationGroups[].Status",
-					Expected: "creating",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ReplicationGroups[].Status",
-					Expected: "modifying",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ReplicationGroups[].Status",
-					Expected: "rebooting",
 				},
 			},
 		}

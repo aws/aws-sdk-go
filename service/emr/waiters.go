@@ -3,7 +3,7 @@
 package emr
 
 import (
-	"github.com/aws/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 var waiterClusterRunning *waiter.Config
@@ -53,6 +53,45 @@ func (c *EMR) WaitUntilClusterRunning(input *DescribeClusterInput) error {
 		Client: c,
 		Input:  input,
 		Config: waiterClusterRunning,
+	}
+	return w.Wait()
+}
+
+var waiterStepComplete *waiter.Config
+
+func (c *EMR) WaitUntilStepComplete(input *DescribeStepInput) error {
+	if waiterStepComplete == nil {
+		waiterStepComplete = &waiter.Config{
+			Operation:   "DescribeStep",
+			Delay:       30,
+			MaxAttempts: 60,
+			Acceptors: []waiter.WaitAcceptor{
+				{
+					State:    "success",
+					Matcher:  "path",
+					Argument: "Step.Status.State",
+					Expected: "COMPLETED",
+				},
+				{
+					State:    "failure",
+					Matcher:  "path",
+					Argument: "Step.Status.State",
+					Expected: "FAILED",
+				},
+				{
+					State:    "failure",
+					Matcher:  "path",
+					Argument: "Step.Status.State",
+					Expected: "CANCELLED",
+				},
+			},
+		}
+	}
+
+	w := waiter.Waiter{
+		Client: c,
+		Input:  input,
+		Config: waiterStepComplete,
 	}
 	return w.Wait()
 }

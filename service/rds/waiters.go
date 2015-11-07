@@ -3,7 +3,7 @@
 package rds
 
 import (
-	"github.com/aws/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 var waiterDBInstanceAvailable *waiter.Config
@@ -55,12 +55,6 @@ func (c *RDS) WaitUntilDBInstanceAvailable(input *DescribeDBInstancesInput) erro
 					State:    "failure",
 					Matcher:  "pathAny",
 					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "incompatible-parameters",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
 					Expected: "incompatible-restore",
 				},
 			},
@@ -89,6 +83,12 @@ func (c *RDS) WaitUntilDBInstanceDeleted(input *DescribeDBInstancesInput) error 
 					Matcher:  "pathAll",
 					Argument: "DBInstances[].DBInstanceStatus",
 					Expected: "deleted",
+				},
+				{
+					State:    "success",
+					Matcher:  "error",
+					Argument: "",
+					Expected: "DBInstanceNotFound",
 				},
 				{
 					State:    "failure",

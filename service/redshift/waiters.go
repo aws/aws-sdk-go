@@ -3,7 +3,7 @@
 package redshift
 
 import (
-	"github.com/aws/aws-sdk-go/internal/waiter"
+	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
 var waiterClusterAvailable *waiter.Config
@@ -68,9 +68,9 @@ func (c *Redshift) WaitUntilClusterDeleted(input *DescribeClustersInput) error {
 				},
 				{
 					State:    "failure",
-					Matcher:  "pathAny",
+					Matcher:  "pathList",
 					Argument: "Clusters[].ClusterStatus",
-					Expected: "rebooting",
+					Expected: "pathAny",
 				},
 			},
 		}
@@ -80,6 +80,39 @@ func (c *Redshift) WaitUntilClusterDeleted(input *DescribeClustersInput) error {
 		Client: c,
 		Input:  input,
 		Config: waiterClusterDeleted,
+	}
+	return w.Wait()
+}
+
+var waiterClusterRestored *waiter.Config
+
+func (c *Redshift) WaitUntilClusterRestored(input *DescribeClustersInput) error {
+	if waiterClusterRestored == nil {
+		waiterClusterRestored = &waiter.Config{
+			Operation:   "DescribeClusters",
+			Delay:       60,
+			MaxAttempts: 30,
+			Acceptors: []waiter.WaitAcceptor{
+				{
+					State:    "success",
+					Matcher:  "pathAll",
+					Argument: "Clusters[].RestoreStatus.Status",
+					Expected: "completed",
+				},
+				{
+					State:    "failure",
+					Matcher:  "pathAny",
+					Argument: "Clusters[].ClusterStatus",
+					Expected: "deleting",
+				},
+			},
+		}
+	}
+
+	w := waiter.Waiter{
+		Client: c,
+		Input:  input,
+		Config: waiterClusterRestored,
 	}
 	return w.Wait()
 }
