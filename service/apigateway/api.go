@@ -2134,6 +2134,11 @@ type CreateDeploymentInput struct {
 	// The name of the Stage resource for the Deployment resource to create.
 	StageName *string `locationName:"stageName" type:"string" required:"true"`
 
+	// A map that defines the stage variables for the Stage resource that is associated
+	// with the new deployment. Variable names can have alphabetic characters, and
+	// the values must match [A-Za-z0-9-._~:/?#&=,]+
+	Variables map[string]*string `locationName:"variables" type:"map"`
+
 	metadataCreateDeploymentInput `json:"-" xml:"-"`
 }
 
@@ -2300,6 +2305,10 @@ type CreateStageInput struct {
 
 	// The name for the Stage resource.
 	StageName *string `locationName:"stageName" type:"string" required:"true"`
+
+	// A map that defines the stage variables for the new Stage resource. Variable
+	// names can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+
+	Variables map[string]*string `locationName:"variables" type:"map"`
 
 	metadataCreateStageInput `json:"-" xml:"-"`
 }
@@ -4596,6 +4605,10 @@ type Stage struct {
 	// (URI) of a call to Amazon API Gateway.
 	StageName *string `locationName:"stageName" type:"string"`
 
+	// A map that defines the stage variables for a Stage resource. Variable names
+	// can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&=,]+
+	Variables map[string]*string `locationName:"variables" type:"map"`
+
 	metadataStage `json:"-" xml:"-"`
 }
 
@@ -4652,6 +4665,8 @@ type TestInvokeMethodInput struct {
 	ResourceId *string `location:"uri" locationName:"resource_id" type:"string" required:"true"`
 
 	RestApiId *string `location:"uri" locationName:"restapi_id" type:"string" required:"true"`
+
+	StageVariables map[string]*string `locationName:"stageVariables" type:"map"`
 
 	metadataTestInvokeMethodInput `json:"-" xml:"-"`
 }

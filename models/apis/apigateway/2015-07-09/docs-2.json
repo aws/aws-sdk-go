@@ -599,6 +599,8 @@
     "MapOfStringToString": {
       "base": null,
       "refs": {
+        "CreateDeploymentRequest$variables": "<p>A map that defines the stage variables for the <a>Stage</a> resource that is associated with the new deployment. Variable names can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+</p>",
+        "CreateStageRequest$variables": "<p>A map that defines the stage variables for the new <a>Stage</a> resource. Variable names can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+</p>",
         "GetSdkRequest$parameters": null,
         "Integration$requestParameters": "<p>Represents requests parameters that are sent with the backend request. Request parameters are represented as a key/value map, with a destination as the key and a source as the value. A source must match an existing method request parameter, or a static value. Static values must be enclosed with single quotes, and be pre-encoded based on their destination in the request. The destination must match the pattern <code>integration.request.{location}.{name}</code>, where <code>location</code> is either querystring, path, or header. <code>name</code> must be a valid, unique parameter name.</p>",
         "Integration$requestTemplates": "<p>Specifies the integration's request templates.</p>",
@@ -611,7 +613,9 @@
         "PutIntegrationResponseRequest$responseParameters": "<p>Represents response parameters that can be read from the backend response. Response parameters are represented as a key/value map, with a destination as the key and a source as the value. A destination must match an existing response parameter in the <a>Method</a>. The source can be a header from the backend response, or a static value. Static values are specified using enclosing single quotes, and backend response headers can be read using the pattern <code>integration.response.header.{name}</code>.</p>",
         "PutIntegrationResponseRequest$responseTemplates": "<p>Specifies a put integration response's templates.</p>",
         "PutMethodRequest$requestModels": "<p>Specifies the <a>Model</a> resources used for the request's content type. Request models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
-        "PutMethodResponseRequest$responseModels": "<p>Specifies the <a>Model</a> resources used for the response's content type. Response models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>"
+        "PutMethodResponseRequest$responseModels": "<p>Specifies the <a>Model</a> resources used for the response's content type. Response models are represented as a key/value map, with a content type as the key and a <a>Model</a> name as the value.</p>",
+        "Stage$variables": "<p>A map that defines the stage variables for a <a>Stage</a> resource. Variable names can have alphabetic characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+</p>",
+        "TestInvokeMethodRequest$stageVariables": null
       }
     },
     "Method": {

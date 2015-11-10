@@ -75,6 +75,10 @@ func ExampleAPIGateway_CreateDeployment() {
 		CacheClusterSize:    aws.String("CacheClusterSize"),
 		Description:         aws.String("String"),
 		StageDescription:    aws.String("String"),
+		Variables: map[string]*string{
+			"Key": aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.CreateDeployment(params)
 
@@ -187,6 +191,10 @@ func ExampleAPIGateway_CreateStage() {
 		CacheClusterEnabled: aws.Bool(true),
 		CacheClusterSize:    aws.String("CacheClusterSize"),
 		Description:         aws.String("String"),
+		Variables: map[string]*string{
+			"Key": aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.CreateStage(params)
 
@@ -1155,6 +1163,10 @@ func ExampleAPIGateway_TestInvokeMethod() {
 			// More values...
 		},
 		PathWithQueryString: aws.String("String"),
+		StageVariables: map[string]*string{
+			"Key": aws.String("String"), // Required
+			// More values...
+		},
 	}
 	resp, err := svc.TestInvokeMethod(params)
 

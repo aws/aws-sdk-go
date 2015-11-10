@@ -2197,7 +2197,8 @@
         "stageDescription":{"shape":"String"},
         "description":{"shape":"String"},
         "cacheClusterEnabled":{"shape":"NullableBoolean"},
-        "cacheClusterSize":{"shape":"CacheClusterSize"}
+        "cacheClusterSize":{"shape":"CacheClusterSize"},
+        "variables":{"shape":"MapOfStringToString"}
       }
     },
     "CreateDomainNameRequest":{
@@ -2283,7 +2284,8 @@
         "deploymentId":{"shape":"String"},
         "description":{"shape":"String"},
         "cacheClusterEnabled":{"shape":"Boolean"},
-        "cacheClusterSize":{"shape":"CacheClusterSize"}
+        "cacheClusterSize":{"shape":"CacheClusterSize"},
+        "variables":{"shape":"MapOfStringToString"}
       }
     },
     "DeleteApiKeyRequest":{
@@ -3503,6 +3505,7 @@
         "cacheClusterSize":{"shape":"CacheClusterSize"},
         "cacheClusterStatus":{"shape":"CacheClusterStatus"},
         "methodSettings":{"shape":"MapOfMethodSettings"},
+        "variables":{"shape":"MapOfStringToString"},
         "createdDate":{"shape":"Timestamp"},
         "lastUpdatedDate":{"shape":"Timestamp"}
       }
@@ -3557,7 +3560,8 @@
         "pathWithQueryString":{"shape":"String"},
         "body":{"shape":"String"},
         "headers":{"shape":"MapOfHeaderValues"},
-        "clientCertificateId":{"shape":"String"}
+        "clientCertificateId":{"shape":"String"},
+        "stageVariables":{"shape":"MapOfStringToString"}
       }
     },
     "TestInvokeMethodResponse":{
