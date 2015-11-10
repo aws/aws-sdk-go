@@ -2279,12 +2279,6 @@
       "refs": {
       }
     },
-    "UploadPartRequestServerSideEncryption": {
-      "base": "The Server-side encryption algorithm used when storing this object in S3 (e.g., AES256).",
-      "refs": {
-        "UploadPartRequest$ServerSideEncryption": null
-      }
-    },
     "Value": {
       "base": null,
       "refs": {

@@ -4304,11 +4304,6 @@
           "location":"querystring",
           "locationName":"uploadId"
         },
-        "ServerSideEncryption":{
-          "shape":"UploadPartRequestServerSideEncryption",
-          "location":"header",
-          "locationName":"x-amz-server-side-encryption"
-        },
         "SSECustomerAlgorithm":{
           "shape":"SSECustomerAlgorithm",
           "location":"header",
@@ -4331,10 +4326,6 @@
         }
       },
       "payload":"Body"
-    },
-    "UploadPartRequestServerSideEncryption":{
-      "type":"string",
-      "enum":["AES256"]
     },
     "Value":{"type":"string"},
     "VersionIdMarker":{"type":"string"},
