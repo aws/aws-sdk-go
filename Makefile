@@ -5,7 +5,10 @@ LINTIGNORESTUTTER='service/[^/]+/(api|service)\.go:.+(and that stutters)'
 LINTIGNOREINFLECT='service/[^/]+/(api|service)\.go:.+method .+ should be '
 LINTIGNOREDEPS='vendor/.+\.go'
 
-default: generate unit
+SDK_WITH_VENDOR_PKGS=$(shell go list ./... | grep -v "/vendor/src")
+SDK_ONLY_PKGS=$(shell go list ./... | grep -v "/vendor/")
+
+all: generate unit
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -39,10 +42,12 @@ gen-endpoints:
 	go generate ./private/endpoints
 
 build:
-	go build ./...
+	@echo "go build SDK and vendor packages"
+	@go build $(SDK_WITH_VENDOR_PKGS)
 
 unit: get-deps-unit build verify
-	go test ./...
+	@echo "go test SDK and vendor packages"
+	@go test $(SDK_WITH_VENDOR_PKGS)
 
 integration: get-deps-integ
 	go test ./awstesting/integration/customizations/... -tags=integration
@@ -51,35 +56,42 @@ integration: get-deps-integ
 verify: get-deps-verify lint vet
 
 lint:
-	@echo "golint ./..."
+	@echo "go lint SDK and vendor packages"
 	@lint=`golint ./...`; \
 	lint=`echo "$$lint" | grep -E -v -e ${LINTIGNOREDOT} -e ${LINTIGNOREDOC} -e ${LINTIGNORECONST} -e ${LINTIGNORESTUTTER} -e ${LINTIGNOREINFLECT} -e ${LINTIGNOREDEPS}`; \
 	echo "$$lint"; \
 	if [ "$$lint" != "" ]; then exit 1; fi
 
 vet:
-	@echo "go vet ./..."
+	@echo "go vet SDK and vendor packages"
 	@go tool vet -all -shadow .
 
 get-deps: get-deps-unit get-deps-integ get-deps-verify
-	@go get -v ./...
+	@echo "go get SDK dependencies"
+	@go get -v $(SDK_ONLY_PKGS)
 
 get-deps-unit:
-	@go get github.com/stretchr/testify
+	@echo "go get SDK unit testing dependancies"
+	go get github.com/stretchr/testify
 
 get-deps-integ: get-deps-unit
-	@go get github.com/lsegal/gucumber/cmd/gucumber
+	@echo "go get SDK integration testing dependencies"
+	go get github.com/lsegal/gucumber/cmd/gucumber
 
 get-deps-verify:
-	@go get github.com/golang/lint/golint
+	@echo "go get SDK verification utilities"
+	go get github.com/golang/lint/golint
 
 bench:
-	@go test -bench . -benchmem -tags 'bench' ./...
+	@echo "go bench SDK packages"
+	@go test -bench . -benchmem -tags 'bench' $(SDK_ONLY_PKGS)
 
 bench-protocol:
+	@echo "go bench SDK protocol marshallers"
 	@go test -bench . -benchmem -tags 'bench' ./private/protocol/...
 
 docs:
+	@echo "generate SDK docs"
 	rm -rf doc && bundle install && bundle exec yard
 
 api_info:
