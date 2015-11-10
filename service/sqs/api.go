@@ -80,11 +80,12 @@ func (c *SQS) ChangeMessageVisibilityRequest(input *ChangeMessageVisibilityInput
 // in the Amazon SQS Developer Guide.)
 //
 // For example, let's say you have a message and its default message visibility
-// timeout is 30 minutes. You could call ChangeMessageVisiblity with a value
-// of two hours and the effective timeout would be two hours and 30 minutes.
-// When that time comes near you could again extend the time out by calling
-// ChangeMessageVisiblity, but this time the maximum allowed timeout would be
-// 9 hours and 30 minutes.
+// timeout is 5 minutes. After 3 minutes, you call ChangeMessageVisiblity with
+// a timeout of 10 minutes. At that time, the timeout for the message would
+// be extended by 10 minutes beyond the time of the ChangeMessageVisibility
+// call. This results in a total visibility timeout of 13 minutes. You can continue
+// to call ChangeMessageVisibility to extend the visibility timeout to a maximum
+// of 12 hours. If you try to extend beyond 12 hours, the request will be rejected.
 //
 // There is a 120,000 limit for the number of inflight messages per queue.
 // Messages are inflight after they have been received from the queue by a consuming

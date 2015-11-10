@@ -1,4 +1,5 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2012-11-05",
     "endpointPrefix":"sqs",
@@ -496,7 +497,8 @@
         "shape":"String",
         "locationName":"Value"
       },
-      "flattened":true
+      "flattened":true,
+      "locationName":"Attribute"
     },
     "AttributeNameList":{
       "type":"list",
@@ -556,8 +558,7 @@
       "member":{
         "shape":"Binary",
         "locationName":"BinaryListValue"
-      },
-      "flattened":true
+      }
     },
     "Boolean":{"type":"boolean"},
     "ChangeMessageVisibilityBatchRequest":{
@@ -866,10 +867,12 @@
         "BinaryValue":{"shape":"Binary"},
         "StringListValues":{
           "shape":"StringList",
+          "flattened":true,
           "locationName":"StringListValue"
         },
         "BinaryListValues":{
           "shape":"BinaryList",
+          "flattened":true,
           "locationName":"BinaryListValue"
         },
         "DataType":{"shape":"String"}
@@ -1129,8 +1132,7 @@
       "member":{
         "shape":"String",
         "locationName":"StringListValue"
-      },
-      "flattened":true
+      }
     },
     "TooManyEntriesInBatchRequest":{
       "type":"structure",
