@@ -49,7 +49,8 @@ func TestPopulateLocationConstraint(t *testing.T) {
 	req, _ := s.CreateBucketRequest(in)
 	err := req.Build()
 	assert.NoError(t, err)
-	assert.Equal(t, "mock-region", awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")[0])
+	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
+	assert.Equal(t, "mock-region", *(v[0].(*string)))
 	assert.Nil(t, in.CreateBucketConfiguration) // don't modify original params
 }
 
@@ -61,7 +62,8 @@ func TestNoPopulateLocationConstraintIfProvided(t *testing.T) {
 	})
 	err := req.Build()
 	assert.NoError(t, err)
-	assert.Equal(t, 0, len(awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")))
+	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
+	assert.Equal(t, 0, len(v))
 }
 
 func TestNoPopulateLocationConstraintIfClassic(t *testing.T) {
@@ -71,5 +73,6 @@ func TestNoPopulateLocationConstraintIfClassic(t *testing.T) {
 	})
 	err := req.Build()
 	assert.NoError(t, err)
-	assert.Equal(t, 0, len(awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")))
+	v, _ := awsutil.ValuesAtPath(req.Params, "CreateBucketConfiguration.LocationConstraint")
+	assert.Equal(t, 0, len(v))
 }

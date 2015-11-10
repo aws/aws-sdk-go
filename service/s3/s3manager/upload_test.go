@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"sort"
 	"strings"
 	"sync"
@@ -25,7 +26,19 @@ import (
 var emptyList = []string{}
 
 func val(i interface{}, s string) interface{} {
-	return awsutil.ValuesAtPath(i, s)[0]
+	v, err := awsutil.ValuesAtPath(i, s)
+	if err != nil || len(v) == 0 {
+		return nil
+	}
+	if _, ok := v[0].(io.Reader); ok {
+		return v[0]
+	}
+
+	if rv := reflect.ValueOf(v[0]); rv.Kind() == reflect.Ptr {
+		return rv.Elem().Interface()
+	}
+
+	return v[0]
 }
 
 func contains(src []string, s string) bool {

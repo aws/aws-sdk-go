@@ -44,12 +44,12 @@ func init() {
 	})
 
 	Then(`^the value at "(.+?)" should be a list$`, func(member string) {
-		vals := awsutil.ValuesAtAnyPath(World["response"], member)
+		vals, _ := awsutil.ValuesAtPath(World["response"], member)
 		assert.NotNil(T, vals)
 	})
 
 	Then(`^the response should contain a "(.+?)"$`, func(member string) {
-		vals := awsutil.ValuesAtAnyPath(World["response"], member)
+		vals, _ := awsutil.ValuesAtPath(World["response"], member)
 		assert.NotEmpty(T, vals)
 	})
 
@@ -190,7 +190,7 @@ func fillArgs(in reflect.Value, args [][]string) {
 				val = num
 			}
 		}
-		awsutil.SetValueAtAnyPath(in.Interface(), path, val)
+		awsutil.SetValueAtPath(in.Interface(), path, val)
 	}
 }
 

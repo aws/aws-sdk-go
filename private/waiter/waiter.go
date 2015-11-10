@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"time"
 
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
-	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
 // A Config provides a collection of configuration values to setup a generated
@@ -50,12 +50,11 @@ func (w *Waiter) Wait() error {
 			return err
 		}
 
-
 		for _, a := range w.Acceptors {
 			result := false
 			switch a.Matcher {
 			case "pathAll":
-				if vals := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
+				if vals, _ := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
 					result = true
 					fmt.Println(awsutil.StringValue(req.Data))
 					fmt.Println(a.Argument, vals)
@@ -67,7 +66,7 @@ func (w *Waiter) Wait() error {
 					}
 				}
 			case "pathAny":
-				if vals := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
+				if vals, _ := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
 					for _, val := range vals {
 						if reflect.DeepEqual(val, a.Expected) {
 							result = true

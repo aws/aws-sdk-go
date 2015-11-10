@@ -184,10 +184,9 @@ func TestSkipPagination(t *testing.T) {
 
 // Use S3 for simplicity
 func TestPaginationTruncation(t *testing.T) {
-	count := 0
 	client := s3.New(unit.Session)
 
-	reqNum := &count
+	reqNum := 0
 	resps := []*s3.ListObjectsOutput{
 		{IsTruncated: aws.Bool(true), Contents: []*s3.Object{{Key: aws.String("Key1")}}},
 		{IsTruncated: aws.Bool(true), Contents: []*s3.Object{{Key: aws.String("Key2")}}},
@@ -200,8 +199,8 @@ func TestPaginationTruncation(t *testing.T) {
 	client.Handlers.UnmarshalMeta.Clear()
 	client.Handlers.ValidateResponse.Clear()
 	client.Handlers.Unmarshal.PushBack(func(r *request.Request) {
-		r.Data = resps[*reqNum]
-		*reqNum++
+		r.Data = resps[reqNum]
+		reqNum++
 	})
 
 	params := &s3.ListObjectsInput{Bucket: aws.String("bucket")}
@@ -216,7 +215,7 @@ func TestPaginationTruncation(t *testing.T) {
 	assert.Nil(t, err)
 
 	// Try again without truncation token at all
-	count = 0
+	reqNum = 0
 	resps[1].IsTruncated = nil
 	resps[2].IsTruncated = aws.Bool(true)
 	results = []string{}

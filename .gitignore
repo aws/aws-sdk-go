@@ -2,8 +2,8 @@ dist
 doc
 .yardoc
 Gemfile.lock
-private/features/smoke/**/importmarker__.go
-private/features/smoke/_test/
+awstesting/integration/smoke/**/importmarker__.go
+awstesting/integration/smoke/_test/
 /vendor/bin/
 /vendor/pkg/
 /vendor/src/

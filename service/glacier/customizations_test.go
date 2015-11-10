@@ -38,8 +38,8 @@ func TestCustomizations(t *testing.T) {
 	assert.Equal(t, req.ClientInfo.APIVersion, req.HTTPRequest.Header.Get("x-amz-glacier-version"))
 
 	// Sets Account ID
-	v := awsutil.ValuesAtPath(req.Params, "AccountId")
-	assert.Equal(t, "-", v[0])
+	v, _ := awsutil.ValuesAtPath(req.Params, "AccountId")
+	assert.Equal(t, "-", *(v[0].(*string)))
 
 	// Computes checksums
 	linear := "68aff0c5a91aa0491752bfb96e3fef33eb74953804f6a2f7b708d5bcefa8ff6b"
@@ -68,8 +68,8 @@ func TestFillAccountIDWithNilStruct(t *testing.T) {
 	empty := "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 
 	// Sets Account ID
-	v := awsutil.ValuesAtPath(req.Params, "AccountId")
-	assert.Equal(t, "-", v[0])
+	v, _ := awsutil.ValuesAtPath(req.Params, "AccountId")
+	assert.Equal(t, "-", *(v[0].(*string)))
 
 	// Does not set tree hash
 	assert.Equal(t, empty, req.HTTPRequest.Header.Get("x-amz-content-sha256"))
