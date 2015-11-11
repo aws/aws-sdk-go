@@ -73,6 +73,7 @@ get-deps: get-deps-unit get-deps-integ get-deps-verify
 get-deps-unit:
 	@echo "go get SDK unit testing dependancies"
 	go get github.com/stretchr/testify
+	go get github.com/smartystreets/goconvey
 
 get-deps-integ: get-deps-unit
 	@echo "go get SDK integration testing dependencies"
