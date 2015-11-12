@@ -47,7 +47,7 @@ type Condition map[string]interface{}
 // http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 type Resource struct {
 	Type       string
-	Properties map[string]interface{}
+	Properties map[string]interface{} `json:",omitempty"`
 	Metadata   map[string]interface{} `json:",omitempty"`
 }
 
