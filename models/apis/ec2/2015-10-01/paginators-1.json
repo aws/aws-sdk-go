@@ -83,6 +83,7 @@
     "DescribeSnapshots": {
       "input_token": "NextToken",
       "output_token": "NextToken",
+      "limit_key": "MaxResults",
       "result_key": "Snapshots"
     },
     "DescribeSpotInstanceRequests": {
@@ -98,6 +99,9 @@
       "result_key": "Subnets"
     },
     "DescribeTags": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
       "result_key": "Tags"
     },
     "DescribeVolumeStatus": {
