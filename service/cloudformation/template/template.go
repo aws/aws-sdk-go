@@ -49,6 +49,11 @@ type Resource struct {
 	Type       string
 	Properties map[string]interface{} `json:",omitempty"`
 	Metadata   map[string]interface{} `json:",omitempty"`
+
+	DependsOn      interface{} `json:",omitempty"`
+	CreationPolicy interface{} `json:",omitempty"`
+	UpdatePolicy   interface{} `json:",omitempty"`
+	DeletionPolicy interface{} `json:",omitempty"`
 }
 
 // Output defines a CloudFormation template output

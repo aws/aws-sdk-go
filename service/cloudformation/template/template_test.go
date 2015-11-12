@@ -21,6 +21,119 @@ func TestParameterStringify(t *testing.T) {
 	assertMarshalsTo(t, param, `{ "Type": "some-parameter", "NoEcho": "true", "MinLength": "2", "MaxLength": "22" }`)
 }
 
+func TestResourceAttributeDependsOn(t *testing.T) {
+	resource := Resource{
+		Type: "AWS::EC2::Route",
+		Properties: map[string]interface{}{
+			"DestinationCidrBlock": "0.0.0.0/0",
+			"InstanceId":           Ref("NATInstance"),
+			"RouteTableId":         Ref("PrivateRouteTable"),
+		},
+		DependsOn: "NATInstance",
+	}
+	expected := `{
+                "Type": "AWS::EC2::Route",
+                "Properties": {
+                    "InstanceId": { "Ref": "NATInstance" },
+                    "DestinationCidrBlock": "0.0.0.0/0",
+                    "RouteTableId": { "Ref": "PrivateRouteTable" }
+                },
+                "DependsOn": "NATInstance"
+            }`
+
+	assertMarshalsTo(t, resource, expected)
+
+	resource.DependsOn = []string{"one", "two"}
+	expected = `{
+                "Type": "AWS::EC2::Route",
+                "Properties": {
+                    "InstanceId": { "Ref": "NATInstance" },
+                    "DestinationCidrBlock": "0.0.0.0/0",
+                    "RouteTableId": { "Ref": "PrivateRouteTable" }
+                },
+                "DependsOn": [ "one", "two" ]
+            }`
+
+	assertMarshalsTo(t, resource, expected)
+}
+
+func TestResourceAttributeCreationAndUpdatePolicy(t *testing.T) {
+	resource := Resource{
+		Type: "AWS::AutoScaling::AutoScalingGroup",
+		Properties: map[string]interface{}{
+			"AvailabilityZones":       FnGetAZs(""),
+			"LaunchConfigurationName": Ref("LaunchConfig"),
+			"DesiredCapacity":         "3",
+			"MinSize":                 "1",
+			"MaxSize":                 "4",
+		},
+		CreationPolicy: map[string]interface{}{
+			"ResourceSignal": map[string]string{
+				"Count":   "3",
+				"Timeout": "PT15M",
+			},
+		},
+		UpdatePolicy: map[string]interface{}{
+			"AutoScalingScheduledAction": map[string]string{
+				"IgnoreUnmodifiedGroupSizeProperties": "true",
+			},
+			"AutoScalingRollingUpdate": map[string]string{
+				"MinInstancesInService": "1",
+				"MaxBatchSize":          "2",
+				"PauseTime":             "PT1M",
+				"WaitOnResourceSignals": "true",
+			},
+		},
+	}
+	expected := `
+{
+  "Type": "AWS::AutoScaling::AutoScalingGroup",
+  "Properties": {
+    "AvailabilityZones": { "Fn::GetAZs": "" },
+    "LaunchConfigurationName": { "Ref": "LaunchConfig" },
+    "DesiredCapacity": "3",
+    "MinSize": "1",
+    "MaxSize": "4"
+  },
+  "CreationPolicy": {
+    "ResourceSignal": {
+      "Count": "3",
+      "Timeout": "PT15M"
+    }
+  },
+  "UpdatePolicy" : {
+    "AutoScalingScheduledAction" : {
+      "IgnoreUnmodifiedGroupSizeProperties" : "true"
+    },
+    "AutoScalingRollingUpdate" : {
+      "MinInstancesInService" : "1",
+      "MaxBatchSize" : "2",
+      "PauseTime" : "PT1M",
+      "WaitOnResourceSignals" : "true"
+    }
+  }
+}`
+
+	assertMarshalsTo(t, resource, expected)
+}
+
+func TestResourceAttributeDeletionPolicy(t *testing.T) {
+	resource := Resource{
+		Type:           "AWS::S3::Bucket",
+		DeletionPolicy: "Retain",
+		Properties: map[string]interface{}{
+			"BucketName": "some-bucket",
+		},
+	}
+	expected := ` {
+  "Type" : "AWS::S3::Bucket",
+  "DeletionPolicy" : "Retain",
+  "Properties": { "BucketName": "some-bucket" }
+}`
+
+	assertMarshalsTo(t, resource, expected)
+}
+
 func TestTemplateCreation(t *testing.T) {
 	template := Template{
 
