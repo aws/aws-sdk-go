@@ -1159,6 +1159,25 @@ func ExampleRDS_DescribeDBSecurityGroups() {
 	fmt.Println(resp)
 }
 
+func ExampleRDS_DescribeDBSnapshotAttributes() {
+	svc := rds.New(session.New())
+
+	params := &rds.DescribeDBSnapshotAttributesInput{
+		DBSnapshotIdentifier: aws.String("String"),
+	}
+	resp, err := svc.DescribeDBSnapshotAttributes(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleRDS_DescribeDBSnapshots() {
 	svc := rds.New(session.New())
 
@@ -1175,9 +1194,11 @@ func ExampleRDS_DescribeDBSnapshots() {
 			},
 			// More values...
 		},
-		Marker:       aws.String("String"),
-		MaxRecords:   aws.Int64(1),
-		SnapshotType: aws.String("String"),
+		IncludePublic: aws.Bool(true),
+		IncludeShared: aws.Bool(true),
+		Marker:        aws.String("String"),
+		MaxRecords:    aws.Int64(1),
+		SnapshotType:  aws.String("String"),
 	}
 	resp, err := svc.DescribeDBSnapshots(params)
 
@@ -1750,6 +1771,7 @@ func ExampleRDS_ModifyDBInstance() {
 		OptionGroupName:            aws.String("String"),
 		PreferredBackupWindow:      aws.String("String"),
 		PreferredMaintenanceWindow: aws.String("String"),
+		PubliclyAccessible:         aws.Bool(true),
 		StorageType:                aws.String("String"),
 		TdeCredentialArn:           aws.String("String"),
 		TdeCredentialPassword:      aws.String("String"),
@@ -1793,6 +1815,34 @@ func ExampleRDS_ModifyDBParameterGroup() {
 		},
 	}
 	resp, err := svc.ModifyDBParameterGroup(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
+func ExampleRDS_ModifyDBSnapshotAttribute() {
+	svc := rds.New(session.New())
+
+	params := &rds.ModifyDBSnapshotAttributeInput{
+		DBSnapshotIdentifier: aws.String("String"), // Required
+		AttributeName:        aws.String("String"),
+		ValuesToAdd: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+		ValuesToRemove: []*string{
+			aws.String("String"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ModifyDBSnapshotAttribute(params)
 
 	if err != nil {
 		// Print the error, cast err to awserr.Error to get the Code and

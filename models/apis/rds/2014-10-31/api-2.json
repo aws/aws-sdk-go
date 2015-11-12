@@ -425,6 +425,15 @@
             "senderFault":true
           },
           "exception":true
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -1740,6 +1749,30 @@
         }
       ]
     },
+    "DescribeDBSnapshotAttributes":{
+      "name":"DescribeDBSnapshotAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBSnapshotAttributesMessage"},
+      "output":{
+        "shape":"DescribeDBSnapshotAttributesResult",
+        "wrapper":true,
+        "resultWrapper":"DescribeDBSnapshotAttributesResult"
+      },
+      "errors":[
+        {
+          "shape":"DBSnapshotNotFoundFault",
+          "error":{
+            "code":"DBSnapshotNotFound",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "DescribeDBSnapshots":{
       "name":"DescribeDBSnapshots",
       "http":{
@@ -2400,6 +2433,48 @@
         }
       ]
     },
+    "ModifyDBSnapshotAttribute":{
+      "name":"ModifyDBSnapshotAttribute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBSnapshotAttributeMessage"},
+      "output":{
+        "shape":"ModifyDBSnapshotAttributeResult",
+        "wrapper":true,
+        "resultWrapper":"ModifyDBSnapshotAttributeResult"
+      },
+      "errors":[
+        {
+          "shape":"DBSnapshotNotFoundFault",
+          "error":{
+            "code":"DBSnapshotNotFound",
+            "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"InvalidDBSnapshotStateFault",
+          "error":{
+            "code":"InvalidDBSnapshotState",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"SharedSnapshotQuotaExceededFault",
+          "error":{
+            "code":"SharedSnapshotQuotaExceeded",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
+        }
+      ]
+    },
     "ModifyDBSubnetGroup":{
       "name":"ModifyDBSubnetGroup",
       "http":{
@@ -2951,6 +3026,15 @@
             "senderFault":true
           },
           "exception":true
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
+            "senderFault":true
+          },
+          "exception":true
         }
       ]
     },
@@ -3098,6 +3182,15 @@
           "error":{
             "code":"OptionGroupNotFoundFault",
             "httpStatusCode":404,
+            "senderFault":true
+          },
+          "exception":true
+        },
+        {
+          "shape":"KMSKeyNotAccessibleFault",
+          "error":{
+            "code":"KMSKeyNotAccessibleFault",
+            "httpStatusCode":400,
             "senderFault":true
           },
           "exception":true
@@ -3557,6 +3650,13 @@
         "OptInType":{"shape":"String"}
       }
     },
+    "AttributeValueList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"AttributeValue"
+      }
+    },
     "AuthorizationAlreadyExistsFault":{
       "type":"structure",
       "members":{
@@ -3946,7 +4046,8 @@
         "PreferredBackupWindow":{"shape":"String"},
         "PreferredMaintenanceWindow":{"shape":"String"},
         "DBClusterMembers":{"shape":"DBClusterMemberList"},
-        "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"}
+        "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"},
+        "HostedZoneId":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4481,6 +4582,29 @@
       },
       "exception":true
     },
+    "DBSnapshotAttribute":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{"shape":"String"},
+        "AttributeValues":{"shape":"AttributeValueList"}
+      },
+      "wrapper":true
+    },
+    "DBSnapshotAttributeList":{
+      "type":"list",
+      "member":{
+        "shape":"DBSnapshotAttribute",
+        "locationName":"DBSnapshotAttribute"
+      }
+    },
+    "DBSnapshotAttributesResult":{
+      "type":"structure",
+      "members":{
+        "DBSnapshotIdentifier":{"shape":"String"},
+        "DBSnapshotAttributes":{"shape":"DBSnapshotAttributeList"}
+      },
+      "wrapper":true
+    },
     "DBSnapshotList":{
       "type":"list",
       "member":{
@@ -4822,6 +4946,12 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeDBSnapshotAttributesMessage":{
+      "type":"structure",
+      "members":{
+        "DBSnapshotIdentifier":{"shape":"String"}
+      }
+    },
     "DescribeDBSnapshotsMessage":{
       "type":"structure",
       "members":{
@@ -4830,7 +4960,9 @@
         "SnapshotType":{"shape":"String"},
         "Filters":{"shape":"FilterList"},
         "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
+        "Marker":{"shape":"String"},
+        "IncludeShared":{"shape":"Boolean"},
+        "IncludePublic":{"shape":"Boolean"}
       }
     },
     "DescribeDBSubnetGroupsMessage":{
@@ -5008,7 +5140,8 @@
       "type":"structure",
       "members":{
         "Address":{"shape":"String"},
-        "Port":{"shape":"Integer"}
+        "Port":{"shape":"Integer"},
+        "HostedZoneId":{"shape":"String"}
       }
     },
     "EngineDefaults":{
@@ -5435,7 +5568,8 @@
         "TdeCredentialArn":{"shape":"String"},
         "TdeCredentialPassword":{"shape":"String"},
         "CACertificateIdentifier":{"shape":"String"},
-        "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
+        "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"}
       }
     },
     "ModifyDBParameterGroupMessage":{
@@ -5447,6 +5581,16 @@
       "members":{
         "DBParameterGroupName":{"shape":"String"},
         "Parameters":{"shape":"ParametersList"}
+      }
+    },
+    "ModifyDBSnapshotAttributeMessage":{
+      "type":"structure",
+      "required":["DBSnapshotIdentifier"],
+      "members":{
+        "DBSnapshotIdentifier":{"shape":"String"},
+        "AttributeName":{"shape":"String"},
+        "ValuesToAdd":{"shape":"AttributeValueList"},
+        "ValuesToRemove":{"shape":"AttributeValueList"}
       }
     },
     "ModifyDBSubnetGroupMessage":{
@@ -6161,6 +6305,17 @@
       },
       "exception":true
     },
+    "SharedSnapshotQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SharedSnapshotQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SnapshotQuotaExceededFault":{
       "type":"structure",
       "members":{
@@ -6196,6 +6351,7 @@
         "db-instance",
         "db-parameter-group",
         "db-security-group",
+        "db-snapshot",
         "db-cluster",
         "db-cluster-snapshot"
       ]
@@ -6493,6 +6649,12 @@
         "EventSubscription":{"shape":"EventSubscription"}
       }
     },
+    "DescribeDBSnapshotAttributesResult":{
+      "type":"structure",
+      "members":{
+        "DBSnapshotAttributesResult":{"shape":"DBSnapshotAttributesResult"}
+      }
+    },
     "DescribeEngineDefaultClusterParametersResult":{
       "type":"structure",
       "members":{
@@ -6521,6 +6683,12 @@
       "type":"structure",
       "members":{
         "DBInstance":{"shape":"DBInstance"}
+      }
+    },
+    "ModifyDBSnapshotAttributeResult":{
+      "type":"structure",
+      "members":{
+        "DBSnapshotAttributesResult":{"shape":"DBSnapshotAttributesResult"}
       }
     },
     "ModifyDBSubnetGroupResult":{

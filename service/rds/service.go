@@ -17,7 +17,7 @@ import (
 // relational database and manages common database administration tasks, freeing
 // up developers to focus on what makes their applications and businesses unique.
 //
-//  Amazon RDS gives you access to the capabilities of a MySQL, PostgreSQL,
+//  Amazon RDS gives you access to the capabilities of a MySQL, MariaDB, PostgreSQL,
 // Microsoft SQL Server, Oracle, or Aurora database server. This means the code,
 // applications, and tools you already use today with your existing databases
 // work with Amazon RDS without modification. Amazon RDS automatically backs

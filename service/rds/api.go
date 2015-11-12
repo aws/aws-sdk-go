@@ -211,8 +211,11 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 	return
 }
 
-// Copies the specified DBSnapshot. The source DBSnapshot must be in the "available"
+// Copies the specified DBSnapshot. The source DB snapshot must be in the "available"
 // state.
+//
+// If you are copying from a shared manual DB snapshot, the SourceDBSnapshotIdentifier
+// must be the ARN of the shared DB snapshot.
 func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput, error) {
 	req, out := c.CopyDBSnapshotRequest(input)
 	err := req.Send()
@@ -405,8 +408,8 @@ func (c *RDS) CreateDBInstanceReadReplicaRequest(input *CreateDBInstanceReadRepl
 	return
 }
 
-// Creates a DB instance for a DB instance running MySQL or PostgreSQL that
-// acts as a Read Replica of a source DB instance.
+// Creates a DB instance for a DB instance running MySQL, MariaDB, or PostgreSQL
+// that acts as a Read Replica of a source DB instance.
 //
 //  All Read Replica DB instances are created as Single-AZ deployments with
 // backups disabled. All other DB instance attributes (including DB security
@@ -1356,6 +1359,44 @@ func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput
 	})
 }
 
+const opDescribeDBSnapshotAttributes = "DescribeDBSnapshotAttributes"
+
+// DescribeDBSnapshotAttributesRequest generates a request for the DescribeDBSnapshotAttributes operation.
+func (c *RDS) DescribeDBSnapshotAttributesRequest(input *DescribeDBSnapshotAttributesInput) (req *request.Request, output *DescribeDBSnapshotAttributesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBSnapshotAttributes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDBSnapshotAttributesInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &DescribeDBSnapshotAttributesOutput{}
+	req.Data = output
+	return
+}
+
+// Returns a list of DB snapshot attribute names and values for a manual DB
+// snapshot.
+//
+// When sharing snapshots with other AWS accounts, DescribeDBSnapshotAttributes
+// returns the restore attribute and a list of the AWS account ids that are
+// authorized to copy or restore the manual DB snapshot. If all is included
+// in the list of values for the restore attribute, then the manual DB snapshot
+// is public and can be copied or restored by all AWS accounts.
+//
+// To add or remove access for an AWS account to copy or restore a manual DB
+// snapshot, or to make the manual DB snapshot public or private, use the ModifyDBSnapshotAttribute
+// API.
+func (c *RDS) DescribeDBSnapshotAttributes(input *DescribeDBSnapshotAttributesInput) (*DescribeDBSnapshotAttributesOutput, error) {
+	req, out := c.DescribeDBSnapshotAttributesRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opDescribeDBSnapshots = "DescribeDBSnapshots"
 
 // DescribeDBSnapshotsRequest generates a request for the DescribeDBSnapshots operation.
@@ -2120,6 +2161,48 @@ func (c *RDS) ModifyDBParameterGroup(input *ModifyDBParameterGroupInput) (*DBPar
 	return out, err
 }
 
+const opModifyDBSnapshotAttribute = "ModifyDBSnapshotAttribute"
+
+// ModifyDBSnapshotAttributeRequest generates a request for the ModifyDBSnapshotAttribute operation.
+func (c *RDS) ModifyDBSnapshotAttributeRequest(input *ModifyDBSnapshotAttributeInput) (req *request.Request, output *ModifyDBSnapshotAttributeOutput) {
+	op := &request.Operation{
+		Name:       opModifyDBSnapshotAttribute,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBSnapshotAttributeInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &ModifyDBSnapshotAttributeOutput{}
+	req.Data = output
+	return
+}
+
+// Adds an attribute and values to, or removes an attibute and values from a
+// manual DB snapshot.
+//
+// To share a manual DB snapshot with other AWS accounts, specify restore as
+// the AttributeName and use the ValuesToAdd parameter to add a list of the
+// AWS account ids that are authorized to retore the manual DB snapshot. Uses
+// the value all to make the manual DB snapshot public and can by copied or
+// restored by all AWS accounts. Do not add the all value for any manual DB
+// snapshots that contain private information that you do not want to be available
+// to all AWS accounts.
+//
+// To view which AWS accounts have access to copy or restore a manual DB snapshot,
+// or whether a manual DB snapshot public or private, use the DescribeDBSnapshotAttributes
+// API.
+//
+// If the manual DB snapshot is encrypted, it cannot be shared.
+func (c *RDS) ModifyDBSnapshotAttribute(input *ModifyDBSnapshotAttributeInput) (*ModifyDBSnapshotAttributeOutput, error) {
+	req, out := c.ModifyDBSnapshotAttributeRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opModifyDBSubnetGroup = "ModifyDBSubnetGroup"
 
 // ModifyDBSubnetGroupRequest generates a request for the ModifyDBSubnetGroup operation.
@@ -2545,6 +2628,9 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotRequest(input *RestoreDBInstanceFro
 // in the call to the RestoreDBInstanceFromDBSnapshot action. The result is
 // that you will replace the original DB instance with the DB instance created
 // from the snapshot.
+//
+// If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
+// must be the ARN of the shared DB snapshot.
 func (c *RDS) RestoreDBInstanceFromDBSnapshot(input *RestoreDBInstanceFromDBSnapshotInput) (*RestoreDBInstanceFromDBSnapshotOutput, error) {
 	req, out := c.RestoreDBInstanceFromDBSnapshotRequest(input)
 	err := req.Send()
@@ -3095,6 +3181,9 @@ type CopyDBSnapshotInput struct {
 
 	// The identifier for the source DB snapshot.
 	//
+	// If you are copying from a shared manual DB snapshot, this must be the ARN
+	// of the shared DB snapshot.
+	//
 	// Constraints:
 	//
 	//  Must specify a valid system snapshot in the "available" state. If the source
@@ -3230,15 +3319,14 @@ type CreateDBClusterInput struct {
 	// and Availability Zones (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html).
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
-	// The number of days for which automated backups are retained. Setting this
-	// parameter to a positive number enables backups. Setting this parameter to
-	// 0 disables automated backups.
+	// The number of days for which automated backups are retained. You must specify
+	// a minimum value of 1.
 	//
 	// Default: 1
 	//
 	// Constraints:
 	//
-	//  Must be a value from 0 to 35
+	//  Must be a value from 1 to 35
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// A value that indicates that the DB cluster should be associated with the
@@ -3528,6 +3616,10 @@ type CreateDBInstanceInput struct {
 	//
 	//  Constraints: Must be an integer from 5 to 6144.
 	//
+	//  MariaDB
+	//
+	//  Constraints: Must be an integer from 5 to 6144.
+	//
 	//  PostgreSQL
 	//
 	//  Constraints: Must be an integer from 5 to 6144.
@@ -3592,7 +3684,8 @@ type CreateDBInstanceInput struct {
 	//
 	//  Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large |
 	// db.m1.xlarge | db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium
-	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge
+	// | db.m3.large | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge
+	// | db.m4.2xlarge | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge
 	// | db.r3.2xlarge | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small
 	// | db.t2.medium | db.t2.large
 	DBInstanceClass *string `type:"string" required:"true"`
@@ -3612,6 +3705,14 @@ type CreateDBInstanceInput struct {
 	// Type: String
 	//
 	//  MySQL
+	//
+	// The name of the database to create when the DB instance is created. If this
+	// parameter is not specified, no database is created in the DB instance.
+	//
+	// Constraints:
+	//
+	//  Must contain 1 to 64 alphanumeric characters Cannot be a word reserved
+	// by the specified database engine   MariaDB
 	//
 	// The name of the database to create when the DB instance is created. If this
 	// parameter is not specified, no database is created in the DB instance.
@@ -3675,7 +3776,7 @@ type CreateDBInstanceInput struct {
 
 	// The name of the database engine to be used for this instance.
 	//
-	//  Valid Values: MySQL | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
 	//
 	//  Not every database engine is available for every AWS region.
@@ -3695,8 +3796,10 @@ type CreateDBInstanceInput struct {
 	// ap-northeast-1, ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1,
 	// us-west-2):  5.5.40 | 5.5.40a   Version 5.5 (Available in all regions):
 	// 5.5.40b | 5.5.41 | 5.5.42   Version 5.6 (Available in all regions):  5.6.19a
-	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   Oracle Database Enterprise
-	// Edition (oracle-ee)
+	// | 5.6.19b | 5.6.21 | 5.6.21b | 5.6.22 | 5.6.23   MariaDB
+	//
+	//   Version 10.0 (Available in all regions except AWS GovCloud (US) Region
+	// (us-gov-west-1)):  10.0.17    Oracle Database Enterprise Edition (oracle-ee)
 	//
 	//   Version 11.2 (Only available in the following regions: ap-northeast-1,
 	// ap-southeast-1, ap-southeast-2, eu-west-1, sa-east-1, us-west-1, us-west-2):
@@ -3726,21 +3829,27 @@ type CreateDBInstanceInput struct {
 	// 9.3.6   Version 9.4 (Available in all regions):  9.4.1   Microsoft SQL Server
 	// Enterprise Edition (sqlserver-ee)
 	//
-	//   Version 10.50 (Only available in the following regions: eu-central-1,
-	// us-west-1):  10.50.2789.0.v1   Version 11.00 (Only available in the following
-	// regions: eu-central-1, us-west-1):  11.00.2100.60.v1   Microsoft SQL Server
-	// Express Edition (sqlserver-ex)
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
+	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1   Microsoft SQL Server Express Edition (sqlserver-ex)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Standard
-	// Edition (sqlserver-se)
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
+	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1   Version 12.00 (Available in all regions):  12.00.4422.0.v1
+	//   Microsoft SQL Server Standard Edition (sqlserver-se)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1   Microsoft SQL Server Web
-	// Edition (sqlserver-web)
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
+	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1   Version 12.00 (Available in all regions):  12.00.4422.0.v1
+	//   Microsoft SQL Server Web Edition (sqlserver-web)
 	//
-	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 11.00
-	// (Available in all regions):  11.00.2100.60.v1
+	//   Version 10.50 (Available in all regions):  10.50.2789.0.v1   Version 10.50
+	// (Available in all regions):  10.50.6000.34.v1   Version 11.00 (Available
+	// in all regions):  11.00.2100.60.v1   Version 11.00 (Available in all regions):
+	//  11.00.5058.0.v1   Version 12.00 (Available in all regions):  12.00.4422.0.v1
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -3751,7 +3860,7 @@ type CreateDBInstanceInput struct {
 
 	// The KMS key identifier for an encrypted DB instance.
 	//
-	// The KMS key identifier is the Amazon Resoure Name (ARN) for the KMS encryption
+	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
 	// key. If you are creating a DB instance with the same AWS account that owns
 	// the KMS encryption key used to encrypt the new DB instance, then you can
 	// use the KMS key alias instead of the ARN for the KM encryption key.
@@ -3773,6 +3882,10 @@ type CreateDBInstanceInput struct {
 	// Type: String
 	//
 	//  MySQL
+	//
+	//  Constraints: Must contain from 8 to 41 characters.
+	//
+	//  MariaDB
 	//
 	//  Constraints: Must contain from 8 to 41 characters.
 	//
@@ -3800,7 +3913,12 @@ type CreateDBInstanceInput struct {
 	// Constraints:
 	//
 	//  Must be 1 to 16 alphanumeric characters. First character must be a letter.
-	// Cannot be a reserved word for the chosen database engine.  Type: String
+	// Cannot be a reserved word for the chosen database engine.   MariaDB
+	//
+	// Constraints:
+	//
+	//  Must be 1 to 16 alphanumeric characters. Cannot be a reserved word for
+	// the chosen database engine.  Type: String
 	//
 	//  Oracle
 	//
@@ -3837,6 +3955,14 @@ type CreateDBInstanceInput struct {
 	// The port number on which the database accepts connections.
 	//
 	//  MySQL
+	//
+	//  Default: 3306
+	//
+	//  Valid Values: 1150-65535
+	//
+	// Type: Integer
+	//
+	//  MariaDB
 	//
 	//  Default: 3306
 	//
@@ -4013,7 +4139,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	//  Valid Values: db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge |
 	// db.m2.xlarge |db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
-	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
+	// | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge
+	// | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
 	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
 	// | db.t2.large
 	//
@@ -4075,15 +4202,16 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// Constraints:
 	//
-	//  Must be the identifier of an existing DB instance. Can specify a DB instance
-	// that is a MySQL Read Replica only if the source is running MySQL 5.6. Can
-	// specify a DB instance that is a PostgreSQL Read Replica only if the source
-	// is running PostgreSQL 9.3.5. The specified DB instance must have automatic
-	// backups enabled, its backup retention period must be greater than 0. If the
-	// source DB instance is in the same region as the Read Replica, specify a valid
-	// DB instance identifier. If the source DB instance is in a different region
-	// than the Read Replica, specify a valid DB instance ARN. For more information,
-	// go to  Constructing a Amazon RDS Amazon Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
+	//  Must be the identifier of an existing MySQL, MariaDB, or PostgreSQL DB
+	// instance. Can specify a DB instance that is a MySQL Read Replica only if
+	// the source is running MySQL 5.6. Can specify a DB instance that is a PostgreSQL
+	// Read Replica only if the source is running PostgreSQL 9.3.5. The specified
+	// DB instance must have automatic backups enabled, its backup retention period
+	// must be greater than 0. If the source DB instance is in the same region as
+	// the Read Replica, specify a valid DB instance identifier. If the source DB
+	// instance is in a different region than the Read Replica, specify a valid
+	// DB instance ARN. For more information, go to  Constructing a Amazon RDS Amazon
+	// Resource Name (ARN) (http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html#USER_Tagging.ARN).
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// Specifies the storage type to be associated with the Read Replica.
@@ -4586,6 +4714,9 @@ type DBCluster struct {
 	// Indicates the database engine version.
 	EngineVersion *string `type:"string"`
 
+	// Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
+	HostedZoneId *string `type:"string"`
+
 	// Specifies the latest time to which a database can be restored with point-in-time
 	// restore.
 	LatestRestorableTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -4908,11 +5039,11 @@ type DBInstance struct {
 	DBInstanceStatus *string `type:"string"`
 
 	// The meaning of this parameter differs according to the database engine you
-	// use. For example, this value returns either MySQL or PostgreSQL information
+	// use. For example, this value returns MySQL, MariaDB, or PostgreSQL information
 	// when returning values from CreateDBInstanceReadReplica since Read Replicas
-	// are only supported for MySQL and PostgreSQL.
+	// are only supported for these engines.
 	//
-	//  MySQL, SQL Server, PostgreSQL, Amazon Aurora
+	//  MySQL, MariaDB, SQL Server, PostgreSQL, Amazon Aurora
 	//
 	//  Contains the name of the initial database of this instance that was provided
 	// at create time, if one was specified when the DB instance was created. This
@@ -5339,6 +5470,73 @@ func (s DBSnapshot) String() string {
 
 // GoString returns the string representation
 func (s DBSnapshot) GoString() string {
+	return s.String()
+}
+
+// Contains the name and values of a manual DB snapshot attribute
+//
+// Manual DB snapshot attributes are used to authorize other AWS accounts to
+// restore a manual DB snapshot. For more information, see the ModifyDBSnapshotAttribute
+// API.
+type DBSnapshotAttribute struct {
+	// The name of the manual DB snapshot attribute.
+	//
+	// An attribute name of restore applies to the list of AWS accounts that have
+	// permission to copy or restore the manual DB snapshot.
+	AttributeName *string `type:"string"`
+
+	// The value(s) for the manual DB snapshot attribute.
+	//
+	// If the AttributeName field is restore, then this field returns a list of
+	// AWS account ids that are authorized to copy or restore the manual DB snapshot.
+	// If a value of all is in the list, then the manual DB snapshot is public and
+	// available for any AWS account to copy or restore.
+	AttributeValues []*string `locationNameList:"AttributeValue" type:"list"`
+
+	metadataDBSnapshotAttribute `json:"-" xml:"-"`
+}
+
+type metadataDBSnapshotAttribute struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBSnapshotAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBSnapshotAttribute) GoString() string {
+	return s.String()
+}
+
+// Contains the results of a successful call to the DescribeDBSnapshotAttributes
+// API.
+//
+// Manual DB snapshot attributes are used to authorize other AWS accounts to
+// copy or restore a manual DB snapshot. For more information, see the ModifyDBSnapshotAttribute
+// API.
+type DBSnapshotAttributesResult struct {
+	// The list of attributes and values for the manual DB snapshot.
+	DBSnapshotAttributes []*DBSnapshotAttribute `locationNameList:"DBSnapshotAttribute" type:"list"`
+
+	// The identifier of the manual DB snapshot that the attributes apply to.
+	DBSnapshotIdentifier *string `type:"string"`
+
+	metadataDBSnapshotAttributesResult `json:"-" xml:"-"`
+}
+
+type metadataDBSnapshotAttributesResult struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DBSnapshotAttributesResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBSnapshotAttributesResult) GoString() string {
 	return s.String()
 }
 
@@ -6782,6 +6980,53 @@ func (s DescribeDBSecurityGroupsOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeDBSnapshotAttributesInput struct {
+	// The identifier for the DB snapshot to modify the attributes for.
+	DBSnapshotIdentifier *string `type:"string"`
+
+	metadataDescribeDBSnapshotAttributesInput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBSnapshotAttributesInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBSnapshotAttributesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSnapshotAttributesInput) GoString() string {
+	return s.String()
+}
+
+type DescribeDBSnapshotAttributesOutput struct {
+	// Contains the results of a successful call to the DescribeDBSnapshotAttributes
+	// API.
+	//
+	// Manual DB snapshot attributes are used to authorize other AWS accounts to
+	// copy or restore a manual DB snapshot. For more information, see the ModifyDBSnapshotAttribute
+	// API.
+	DBSnapshotAttributesResult *DBSnapshotAttributesResult `type:"structure"`
+
+	metadataDescribeDBSnapshotAttributesOutput `json:"-" xml:"-"`
+}
+
+type metadataDescribeDBSnapshotAttributesOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDBSnapshotAttributesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBSnapshotAttributesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeDBSnapshotsInput struct {
 	// A DB instance identifier to retrieve the list of DB snapshots for. This parameter
 	// cannot be used in conjunction with DBSnapshotIdentifier. This parameter is
@@ -6808,6 +7053,21 @@ type DescribeDBSnapshotsInput struct {
 	// This parameter is not currently supported.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
+	// True to include manual DB snapshots that are public and can be copied or
+	// restored by any AWS account; otherwise false. The default is false.
+	//
+	// An manual DB snapshot is shared as public by the ModifyDBSnapshotAttribute
+	// API.
+	IncludePublic *bool `type:"boolean"`
+
+	// True to include shared manual DB snapshots from other AWS accounts that this
+	// AWS account has been given permission to copy or restore; otherwise false.
+	// The default is false.
+	//
+	// An AWS account is given permission to restore a manual DB snapshot from
+	// another AWS account by the ModifyDBSnapshotAttribute API.
+	IncludeShared *bool `type:"boolean"`
+
 	// An optional pagination token provided by a previous DescribeDBSnapshots request.
 	// If this parameter is specified, the response includes only records beyond
 	// the marker, up to the value specified by MaxRecords.
@@ -6822,9 +7082,23 @@ type DescribeDBSnapshotsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// The type of snapshots that will be returned. Values can be "automated" or
-	// "manual." If not specified, the returned results will include all snapshots
-	// types.
+	// The type of snapshots that will be returned. You can specify one of the following
+	// values:
+	//
+	//   automated - Return all DB snapshots that have been automatically taken
+	// by Amazon RDS for my AWS account.  manual - Return all DB snapshots that
+	// have been taken by my AWS account.  shared - Return all manual DB snapshots
+	// that have been shared to my AWS account.  public - Return all DB snapshots
+	// that have been marked as public.  If you do not specify a SnapshotType, then
+	// both automated and manual snapshots are returned. You can include shared
+	// snapshots with these results by setting the IncludeShared parameter to true.
+	// You can include public snapshots with these results by setting the IncludePublic
+	// parameter to true.
+	//
+	// The IncludeShared and IncludePublic parameters do not apply for SnapshotType
+	// values of manual or automated. The IncludePublic paramter does not apply
+	// when SnapshotType is set to shared. the IncludeShared parameter does not
+	// apply when SnapshotType is set to public.
 	SnapshotType *string `type:"string"`
 
 	metadataDescribeDBSnapshotsInput `json:"-" xml:"-"`
@@ -7888,6 +8162,9 @@ type Endpoint struct {
 	// Specifies the DNS address of the DB instance.
 	Address *string `type:"string"`
 
+	// Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
+	HostedZoneId *string `type:"string"`
+
 	// Specifies the port that the database engine is listening on.
 	Port *int64 `type:"integer"`
 
@@ -8217,15 +8494,14 @@ type ModifyDBClusterInput struct {
 	// Default: false
 	ApplyImmediately *bool `type:"boolean"`
 
-	// The number of days for which automated backups are retained. Setting this
-	// parameter to a positive number enables backups. Setting this parameter to
-	// 0 disables automated backups.
+	// The number of days for which automated backups are retained. You must specify
+	// a minimum value of 1.
 	//
 	// Default: 1
 	//
 	// Constraints:
 	//
-	//  Must be a value from 0 to 35
+	//  Must be a value from 1 to 35
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// The DB cluster identifier for the cluster being modified. This parameter
@@ -8392,6 +8668,18 @@ type ModifyDBInstanceInput struct {
 	//
 	// Type: Integer
 	//
+	//  MariaDB
+	//
+	// Default: Uses existing setting
+	//
+	// Valid Values: 5-6144
+	//
+	// Constraints: Value supplied must be at least 10% greater than the current
+	// value. Values that are not at least 10% greater than the existing value are
+	// rounded up so that they are 10% greater than the current value.
+	//
+	// Type: Integer
+	//
 	//  PostgreSQL
 	//
 	// Default: Uses existing setting
@@ -8505,7 +8793,8 @@ type ModifyDBInstanceInput struct {
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.xlarge | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large
-	// | db.m3.xlarge | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
+	// | db.m3.xlarge | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge
+	// | db.m4.4xlarge | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge
 	// | db.r3.4xlarge | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium
 	// | db.t2.large
 	DBInstanceClass *string `type:"string"`
@@ -8599,9 +8888,9 @@ type ModifyDBInstanceInput struct {
 	//
 	// Default: Uses existing setting
 	//
-	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL and Amazon Aurora),
-	// 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric characters
-	// (SQL Server).
+	// Constraints: Must be 8 to 41 alphanumeric characters (MySQL, MariaDB, and
+	// Amazon Aurora), 8 to 30 alphanumeric characters (Oracle), or 8 to 128 alphanumeric
+	// characters (SQL Server).
 	//
 	//  Amazon RDS API actions never return the password, so this action provides
 	// a way to regain access to a primary instance user if the password is lost.
@@ -8672,6 +8961,20 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints: Must be at least 30 minutes
 	PreferredMaintenanceWindow *string `type:"string"`
+
+	// True to make the DB instance Internet-facing with a publicly resolvable DNS
+	// name, which resolves to a public IP address. False to make the DB instance
+	// internal with a DNS name that resolves to a private IP address.
+	//
+	// PubliclyAccessible only applies to DB instances in a VPC. The DB instance
+	// must be part of a public subnet and PubliclyAccessible must be true in order
+	// for it to be publicly accessible.
+	//
+	// Changes to the PubliclyAccessible parameter are applied immediately regardless
+	// of the value of the ApplyImmediately parameter.
+	//
+	//  Default: false
+	PubliclyAccessible *bool `type:"boolean"`
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
@@ -8775,6 +9078,78 @@ func (s ModifyDBParameterGroupInput) String() string {
 
 // GoString returns the string representation
 func (s ModifyDBParameterGroupInput) GoString() string {
+	return s.String()
+}
+
+type ModifyDBSnapshotAttributeInput struct {
+	// The name of the DB snapshot attribute to modify.
+	//
+	// To manage authorization for other AWS accounts to copy or restore a manual
+	// DB snapshot, this value is restore.
+	AttributeName *string `type:"string"`
+
+	// The identifier for the DB snapshot to modify the attributes for.
+	DBSnapshotIdentifier *string `type:"string" required:"true"`
+
+	// A list of DB snapshot attributes to add to the attribute specified by AttributeName.
+	//
+	// To authorize other AWS Accounts to copy or restore a manual snapshot, this
+	// is one or more AWS account identifiers, or all to make the manual DB snapshot
+	// restorable by any AWS account. Do not add the all value for any manual DB
+	// snapshots that contain private information that you do not want to be available
+	// to all AWS accounts.
+	ValuesToAdd []*string `locationNameList:"AttributeValue" type:"list"`
+
+	// A list of DB snapshot attributes to remove from the attribute specified by
+	// AttributeName.
+	//
+	// To remove authorization for other AWS Accounts to copy or restore a manual
+	// snapshot, this is one or more AWS account identifiers, or all to remove authorization
+	// for any AWS account to copy or restore the DB snapshot. If you specify all,
+	// AWS accounts that have their account identifier explicitly added to the restore
+	// attribute can still copy or restore the manual DB snapshot.
+	ValuesToRemove []*string `locationNameList:"AttributeValue" type:"list"`
+
+	metadataModifyDBSnapshotAttributeInput `json:"-" xml:"-"`
+}
+
+type metadataModifyDBSnapshotAttributeInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBSnapshotAttributeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBSnapshotAttributeInput) GoString() string {
+	return s.String()
+}
+
+type ModifyDBSnapshotAttributeOutput struct {
+	// Contains the results of a successful call to the DescribeDBSnapshotAttributes
+	// API.
+	//
+	// Manual DB snapshot attributes are used to authorize other AWS accounts to
+	// copy or restore a manual DB snapshot. For more information, see the ModifyDBSnapshotAttribute
+	// API.
+	DBSnapshotAttributesResult *DBSnapshotAttributesResult `type:"structure"`
+
+	metadataModifyDBSnapshotAttributeOutput `json:"-" xml:"-"`
+}
+
+type metadataModifyDBSnapshotAttributeOutput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyDBSnapshotAttributeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBSnapshotAttributeOutput) GoString() string {
 	return s.String()
 }
 
@@ -9944,6 +10319,14 @@ type ResetDBParameterGroupInput struct {
 	// the pending-reboot value for both dynamic and static parameters, and changes
 	// are applied when DB instance reboots.
 	//
+	//  MariaDB
+	//
+	// Valid Values (for Apply method): immediate | pending-reboot
+	//
+	// You can use the immediate value with dynamic parameters only. You can use
+	// the pending-reboot value for both dynamic and static parameters, and changes
+	// are applied when DB instance reboots.
+	//
 	//  Oracle
 	//
 	// Valid Values (for Apply method): pending-reboot
@@ -10215,7 +10598,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
-	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
+	// | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge | db.m4.4xlarge
+	// | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
 	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	DBInstanceClass *string `type:"string"`
 
@@ -10231,7 +10615,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// The database name for the restored DB instance.
 	//
-	//  This parameter doesn't apply to the MySQL engine.
+	//  This parameter doesn't apply to the MySQL or MariaDB engines.
 	DBName *string `type:"string"`
 
 	// The identifier for the DB snapshot to restore from.
@@ -10240,6 +10624,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	//  Must contain from 1 to 255 alphanumeric characters or hyphens First character
 	// must be a letter Cannot end with a hyphen or contain two consecutive hyphens
+	//  If you are restoring from a shared manual DB snapshot, the DBSnapshotIdentifier
+	// must be the ARN of the shared DB snapshot.
 	DBSnapshotIdentifier *string `type:"string" required:"true"`
 
 	// The DB subnet group name to use for the new instance.
@@ -10251,7 +10637,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
-	//  Valid Values: MySQL | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
 	Engine *string `type:"string"`
 
@@ -10394,7 +10780,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Valid Values: db.t1.micro | db.m1.small | db.m1.medium | db.m1.large | db.m1.xlarge
 	// | db.m2.2xlarge | db.m2.4xlarge | db.m3.medium | db.m3.large | db.m3.xlarge
-	// | db.m3.2xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
+	// | db.m3.2xlarge | db.m4.large | db.m4.xlarge | db.m4.2xlarge | db.m4.4xlarge
+	// | db.m4.10xlarge | db.r3.large | db.r3.xlarge | db.r3.2xlarge | db.r3.4xlarge
 	// | db.r3.8xlarge | db.t2.micro | db.t2.small | db.t2.medium | db.t2.large
 	//
 	// Default: The same DBInstanceClass as the original DB instance.
@@ -10402,7 +10789,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The database name for the restored DB instance.
 	//
-	//  This parameter is not used for the MySQL engine.
+	//  This parameter is not used for the MySQL or MariaDB engines.
 	DBName *string `type:"string"`
 
 	// The DB subnet group name to use for the new instance.
@@ -10414,7 +10801,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
-	//  Valid Values: MySQL | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
+	//  Valid Values: MySQL | mariadb | oracle-se1 | oracle-se | oracle-ee | sqlserver-ee
 	// | sqlserver-se | sqlserver-ex | sqlserver-web | postgres
 	Engine *string `type:"string"`
 
@@ -10771,6 +11158,8 @@ const (
 	SourceTypeDbParameterGroup = "db-parameter-group"
 	// @enum SourceType
 	SourceTypeDbSecurityGroup = "db-security-group"
+	// @enum SourceType
+	SourceTypeDbSnapshot = "db-snapshot"
 	// @enum SourceType
 	SourceTypeDbCluster = "db-cluster"
 	// @enum SourceType
