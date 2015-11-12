@@ -94,6 +94,13 @@ func TestTemplateCreation(t *testing.T) {
 	awstesting.AssertJSON(t, expected, asString)
 }
 
+func TestResourcePropertiesNotRequired(t *testing.T) {
+	resource := Resource{Type: "AWS::EC2::InternetGateway"}
+	expected := `{ "Type": "AWS::EC2::InternetGateway" }`
+
+	assertMarshalsTo(t, resource, expected)
+}
+
 func assertMarshalsTo(t *testing.T, value interface{}, expectedJSON string) {
 	actual, err := json.Marshal(value)
 	assert.Nil(t, err)
