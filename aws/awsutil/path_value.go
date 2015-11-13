@@ -159,6 +159,13 @@ func ValuesAtPath(i interface{}, path string) ([]interface{}, error) {
 	if s, ok := result.([]interface{}); ok {
 		return s, err
 	}
+	if v.Kind() == reflect.Slice {
+		out := make([]interface{}, v.Len())
+		for i := 0; i < v.Len(); i++ {
+			out[i] = v.Index(i).Interface()
+		}
+		return out, nil
+	}
 
 	return []interface{}{result}, nil
 }

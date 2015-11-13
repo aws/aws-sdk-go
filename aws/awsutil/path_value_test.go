@@ -21,6 +21,10 @@ var data = Struct{
 	B: &Struct{B: &Struct{C: "terminal"}, D: &Struct{C: "terminal2"}},
 	C: "initial",
 }
+var data2 = Struct{A: []Struct{
+	{A: []Struct{{C: "1"}, {C: "1"}, {C: "1"}, {C: "1"}, {C: "1"}}},
+	{A: []Struct{{C: "2"}, {C: "2"}, {C: "2"}, {C: "2"}, {C: "2"}}},
+}}
 
 func TestValueAtPathSuccess(t *testing.T) {
 	var testCases = []struct {
@@ -38,6 +42,10 @@ func TestValueAtPathSuccess(t *testing.T) {
 		{[]interface{}{"terminal"}, data, "B . B . C"},
 		{[]interface{}{"initial"}, data, "A.D.X || C"},
 		{[]interface{}{"initial"}, data, "A[0].B || C"},
+		{[]interface{}{
+			Struct{A: []Struct{{C: "1"}, {C: "1"}, {C: "1"}, {C: "1"}, {C: "1"}}},
+			Struct{A: []Struct{{C: "2"}, {C: "2"}, {C: "2"}, {C: "2"}, {C: "2"}}},
+		}, data2, "A"},
 	}
 	for i, c := range testCases {
 		v, err := awsutil.ValuesAtPath(c.data, c.path)
@@ -61,7 +69,7 @@ func TestValueAtPathFailure(t *testing.T) {
 		{nil, "", data, "B.B.C.Z"},
 		{nil, "", data, "z[-1].C"},
 		{nil, "", nil, "A.B.C"},
-		{[]interface{}{[]Struct(nil)}, "", Struct{}, "A"},
+		{[]interface{}{}, "", Struct{}, "A"},
 		{nil, "", data, "A[0].B.C"},
 	}
 
