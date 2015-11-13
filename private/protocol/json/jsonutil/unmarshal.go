@@ -56,10 +56,7 @@ func unmarshalAny(value reflect.Value, data interface{}, tag reflect.StructTag) 
 
 	switch t {
 	case "structure":
-		if field, ok := vtype.FieldByName("SDKShapeTraits"); ok {
-			tag = field.Tag
-		}
-		return unmarshalStruct(value, data, tag)
+		return unmarshalStruct(value, data, cachedPayloadTag(vtype))
 	case "list":
 		return unmarshalList(value, data, tag)
 	case "map":
@@ -69,7 +66,7 @@ func unmarshalAny(value reflect.Value, data interface{}, tag reflect.StructTag) 
 	}
 }
 
-func unmarshalStruct(value reflect.Value, data interface{}, tag reflect.StructTag) error {
+func unmarshalStruct(value reflect.Value, data interface{}, payload string) error {
 	if data == nil {
 		return nil
 	}
@@ -91,7 +88,7 @@ func unmarshalStruct(value reflect.Value, data interface{}, tag reflect.StructTa
 	}
 
 	// unwrap any payloads
-	if payload := tag.Get("payload"); payload != "" {
+	if payload != "" {
 		field, _ := t.FieldByName(payload)
 		return unmarshalAny(value.FieldByName(payload), data, field.Tag)
 	}

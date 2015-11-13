@@ -31,6 +31,12 @@ type J struct {
 	D  *int64
 	F  *float64
 	T  *time.Time
+
+	metadataAttributeValue `json:"-" xml:"-"`
+}
+
+type metadataAttributeValue struct {
+	SDKShapeTraits bool `type:"structure"`
 }
 
 var jsonTests = []struct {
