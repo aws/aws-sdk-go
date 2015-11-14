@@ -13,6 +13,7 @@ type Struct struct {
 	B *Struct
 	D *Struct
 	C string
+	E map[string]string
 }
 
 var data = Struct{
@@ -71,6 +72,7 @@ func TestValueAtPathFailure(t *testing.T) {
 		{nil, "", nil, "A.B.C"},
 		{[]interface{}{}, "", Struct{}, "A"},
 		{nil, "", data, "A[0].B.C"},
+		{nil, "", data, "D"},
 	}
 
 	for i, c := range testCases {
