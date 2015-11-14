@@ -50,10 +50,7 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 
 	switch t {
 	case "structure":
-		if field, ok := vtype.FieldByName("SDKShapeTraits"); ok {
-			tag = field.Tag
-		}
-		return buildStruct(value, buf, tag)
+		return buildStruct(value, buf, cachedPayloadTag(vtype))
 	case "list":
 		return buildList(value, buf, tag)
 	case "map":
@@ -63,15 +60,13 @@ func buildAny(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) err
 	}
 }
 
-func buildStruct(value reflect.Value, buf *bytes.Buffer, tag reflect.StructTag) error {
+func buildStruct(value reflect.Value, buf *bytes.Buffer, payload string) error {
 	if !value.IsValid() {
 		return nil
 	}
 
 	// unwrap payloads
-	if payload := tag.Get("payload"); payload != "" {
-		field, _ := value.Type().FieldByName(payload)
-		tag = field.Tag
+	if payload != "" {
 		value = elemOf(value.FieldByName(payload))
 
 		if !value.IsValid() {
