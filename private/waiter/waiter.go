@@ -56,8 +56,6 @@ func (w *Waiter) Wait() error {
 			case "pathAll":
 				if vals, _ := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
 					result = true
-					fmt.Println(awsutil.StringValue(req.Data))
-					fmt.Println(a.Argument, vals)
 					for _, val := range vals {
 						if !reflect.DeepEqual(val, a.Expected) {
 							result = false
