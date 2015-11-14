@@ -54,7 +54,6 @@ integration: get-deps-integ
 	gucumber ./awstesting/integration/smoke
 
 verify: get-deps-verify lint vet
-
 lint:
 	@echo "go lint SDK and vendor packages"
 	@lint=`golint ./...`; \
@@ -85,11 +84,11 @@ get-deps-verify:
 
 bench:
 	@echo "go bench SDK packages"
-	@go test -bench . -benchmem -tags 'bench' $(SDK_ONLY_PKGS)
+	@go test -run NONE -bench . -benchmem -tags 'bench' $(SDK_ONLY_PKGS)
 
 bench-protocol:
 	@echo "go bench SDK protocol marshallers"
-	@go test -bench . -benchmem -tags 'bench' ./private/protocol/...
+	@go test -run NONE -bench . -benchmem -tags 'bench' ./private/protocol/...
 
 docs:
 	@echo "generate SDK docs"
