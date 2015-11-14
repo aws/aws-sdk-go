@@ -50,10 +50,11 @@ unit: get-deps-unit build verify
 	@go test $(SDK_WITH_VENDOR_PKGS)
 
 integration: get-deps-integ
-	go test ./awstesting/integration/customizations/... -tags=integration
+	go test -tags=integration ./awstesting/integration/customizations/...
 	gucumber ./awstesting/integration/smoke
 
 verify: get-deps-verify lint vet
+
 lint:
 	@echo "go lint SDK and vendor packages"
 	@lint=`golint ./...`; \
@@ -62,8 +63,7 @@ lint:
 	if [ "$$lint" != "" ]; then exit 1; fi
 
 vet:
-	@echo "go vet SDK and vendor packages"
-	@go tool vet -all -shadow .
+	go tool vet -all -shadow $(shell ls -d */ | grep -v vendor)
 
 get-deps: get-deps-unit get-deps-integ get-deps-verify
 	@echo "go get SDK dependencies"

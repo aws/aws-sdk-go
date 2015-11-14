@@ -15,7 +15,7 @@ func GenerateEndpoints(endpoints interface{}, w io.Writer) error {
 	}
 
 	out := bytes.NewBuffer(nil)
-	if err := tmpl.Execute(out, endpoints); err != nil {
+	if err = tmpl.Execute(out, endpoints); err != nil {
 		return err
 	}
 

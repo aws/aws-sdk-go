@@ -28,8 +28,8 @@ func TestCopySnapshotPresignedURL(t *testing.T) {
 
 	b, _ := ioutil.ReadAll(req.HTTPRequest.Body)
 	q, _ := url.ParseQuery(string(b))
-	url, _ := url.QueryUnescape(q.Get("PresignedUrl"))
+	u, _ := url.QueryUnescape(q.Get("PresignedUrl"))
 	assert.Equal(t, "us-west-2", q.Get("DestinationRegion"))
 	assert.Equal(t, "us-west-1", q.Get("SourceRegion"))
-	assert.Regexp(t, `^https://ec2\.us-west-1\.amazonaws\.com/.+&DestinationRegion=us-west-2`, url)
+	assert.Regexp(t, `^https://ec2\.us-west-1\.amazonaws\.com/.+&DestinationRegion=us-west-2`, u)
 }

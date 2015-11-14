@@ -38,7 +38,7 @@ func (sb signerBuilder) BuildSigner() signer {
 		req.URL.RawQuery = sb.Query.Encode()
 	}
 
-	signer := signer{
+	sig := signer{
 		Request: req,
 		Time:    sb.SignTime,
 		Credentials: credentials.NewStaticCredentials(
@@ -48,11 +48,11 @@ func (sb signerBuilder) BuildSigner() signer {
 	}
 
 	if os.Getenv("DEBUG") != "" {
-		signer.Debug = aws.LogDebug
-		signer.Logger = aws.NewDefaultLogger()
+		sig.Debug = aws.LogDebug
+		sig.Logger = aws.NewDefaultLogger()
 	}
 
-	return signer
+	return sig
 }
 
 func TestSignRequestWithAndWithoutSession(t *testing.T) {

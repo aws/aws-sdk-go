@@ -31,7 +31,7 @@ func main() {
 			SigningRegion string
 		}
 	}
-	if err := json.NewDecoder(in).Decode(&endpoints); err != nil {
+	if err = json.NewDecoder(in).Decode(&endpoints); err != nil {
 		panic(err)
 	}
 
