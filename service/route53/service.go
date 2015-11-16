@@ -62,7 +62,9 @@ func newClient(cfg aws.Config, handlers request.Handlers, endpoint, signingRegio
 	svc.Handlers.Build.PushBack(restxml.Build)
 	svc.Handlers.Unmarshal.PushBack(restxml.Unmarshal)
 	svc.Handlers.UnmarshalMeta.PushBack(restxml.UnmarshalMeta)
-	svc.Handlers.UnmarshalError.PushBack(restxml.UnmarshalError)
+
+	// Route53 uses a custom error parser
+	svc.Handlers.UnmarshalError.PushBack(unmarshalError)
 
 	// Run custom client initialization if present
 	if initClient != nil {
