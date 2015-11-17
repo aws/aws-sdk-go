@@ -66,7 +66,7 @@ func slice(slice []interface{}, parts []sliceParam) ([]interface{}, error) {
 		return nil, err
 	}
 	start, stop, step := computed[0], computed[1], computed[2]
-	result := make([]interface{}, 0, 0)
+	result := []interface{}{}
 	if step > 0 {
 		for i := start; i < stop; i += step {
 			result = append(result, slice[i])
