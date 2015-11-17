@@ -9,7 +9,7 @@ aws-sdk-go is the official AWS SDK for the Go programming language.
 
 Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for information about the latest bug fixes, updates, and features added to the SDK.
 
-**Release [v0.10.0](http://aws.amazon.com/releasenotes/xxx) introduced a breaking change to the SDK.**
+**Release [v0.10.0](http://aws.amazon.com/releasenotes/5476699172355228) introduced a breaking change to the SDK.**
 
 Updates SDK by adding `session.Session` replacing the global `defaults.DefaultConfig`. A session is used to store configuration and request handler settings for service clients. Each service client's `New` function now takes a session as the first parameter, and an optional `aws.Config`, which will be used for the specific client instance being created.
 
