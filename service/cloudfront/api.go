@@ -423,6 +423,7 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentities(input *ListCloudFrontO
 
 func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPages(input *ListCloudFrontOriginAccessIdentitiesInput, fn func(p *ListCloudFrontOriginAccessIdentitiesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListCloudFrontOriginAccessIdentitiesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListCloudFrontOriginAccessIdentitiesOutput), lastPage)
 	})
@@ -463,6 +464,7 @@ func (c *CloudFront) ListDistributions(input *ListDistributionsInput) (*ListDist
 
 func (c *CloudFront) ListDistributionsPages(input *ListDistributionsInput, fn func(p *ListDistributionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDistributionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDistributionsOutput), lastPage)
 	})
@@ -530,6 +532,7 @@ func (c *CloudFront) ListInvalidations(input *ListInvalidationsInput) (*ListInva
 
 func (c *CloudFront) ListInvalidationsPages(input *ListInvalidationsInput, fn func(p *ListInvalidationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInvalidationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListInvalidationsOutput), lastPage)
 	})
@@ -570,6 +573,7 @@ func (c *CloudFront) ListStreamingDistributions(input *ListStreamingDistribution
 
 func (c *CloudFront) ListStreamingDistributionsPages(input *ListStreamingDistributionsInput, fn func(p *ListStreamingDistributionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStreamingDistributionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListStreamingDistributionsOutput), lastPage)
 	})

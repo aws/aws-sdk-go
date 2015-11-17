@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"runtime"
 	"testing"
 	"time"
 
@@ -226,4 +227,35 @@ func TestRequestRecoverExpiredCreds(t *testing.T) {
 
 	assert.Equal(t, 1, int(r.RetryCount))
 	assert.Equal(t, "valid", out.Data)
+}
+
+func TestMakeAddtoUserAgentHandler(t *testing.T) {
+	fn := request.MakeAddToUserAgentHandler("name", "version", "extra1", "extra2")
+	r := &request.Request{HTTPRequest: &http.Request{Header: http.Header{}}}
+	r.HTTPRequest.Header.Set("User-Agent", "foo/bar")
+	fn(r)
+
+	assert.Equal(t, "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"))
+}
+
+func TestMakeAddtoUserAgentFreeFormHandler(t *testing.T) {
+	fn := request.MakeAddToUserAgentFreeFormHandler("name/version (extra1; extra2)")
+	r := &request.Request{HTTPRequest: &http.Request{Header: http.Header{}}}
+	r.HTTPRequest.Header.Set("User-Agent", "foo/bar")
+	fn(r)
+
+	assert.Equal(t, "foo/bar name/version (extra1; extra2)", r.HTTPRequest.Header.Get("User-Agent"))
+}
+
+func TestRequestUserAgent(t *testing.T) {
+	s := awstesting.NewClient(&aws.Config{Region: aws.String("us-east-1")})
+	//	s.Handlers.Validate.Clear()
+
+	req := s.NewRequest(&request.Operation{Name: "Operation"}, nil, &testData{})
+	req.HTTPRequest.Header.Set("User-Agent", "foo/bar")
+	assert.NoError(t, req.Build())
+
+	expectUA := fmt.Sprintf("foo/bar %s/%s (%s; %s; %s)",
+		aws.SDKName, aws.SDKVersion, runtime.Version(), runtime.GOOS, runtime.GOARCH)
+	assert.Equal(t, expectUA, req.HTTPRequest.Header.Get("User-Agent"))
 }

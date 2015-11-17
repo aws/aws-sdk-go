@@ -294,6 +294,7 @@ func (c *Route53Domains) ListDomains(input *ListDomainsInput) (*ListDomainsOutpu
 
 func (c *Route53Domains) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDomainsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDomainsOutput), lastPage)
 	})
@@ -334,6 +335,7 @@ func (c *Route53Domains) ListOperations(input *ListOperationsInput) (*ListOperat
 
 func (c *Route53Domains) ListOperationsPages(input *ListOperationsInput, fn func(p *ListOperationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListOperationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListOperationsOutput), lastPage)
 	})

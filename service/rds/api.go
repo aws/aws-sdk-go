@@ -1150,6 +1150,7 @@ func (c *RDS) DescribeDBEngineVersions(input *DescribeDBEngineVersionsInput) (*D
 
 func (c *RDS) DescribeDBEngineVersionsPages(input *DescribeDBEngineVersionsInput, fn func(p *DescribeDBEngineVersionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBEngineVersionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBEngineVersionsOutput), lastPage)
 	})
@@ -1190,6 +1191,7 @@ func (c *RDS) DescribeDBInstances(input *DescribeDBInstancesInput) (*DescribeDBI
 
 func (c *RDS) DescribeDBInstancesPages(input *DescribeDBInstancesInput, fn func(p *DescribeDBInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBInstancesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBInstancesOutput), lastPage)
 	})
@@ -1230,6 +1232,7 @@ func (c *RDS) DescribeDBLogFiles(input *DescribeDBLogFilesInput) (*DescribeDBLog
 
 func (c *RDS) DescribeDBLogFilesPages(input *DescribeDBLogFilesInput, fn func(p *DescribeDBLogFilesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBLogFilesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBLogFilesOutput), lastPage)
 	})
@@ -1272,6 +1275,7 @@ func (c *RDS) DescribeDBParameterGroups(input *DescribeDBParameterGroupsInput) (
 
 func (c *RDS) DescribeDBParameterGroupsPages(input *DescribeDBParameterGroupsInput, fn func(p *DescribeDBParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBParameterGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBParameterGroupsOutput), lastPage)
 	})
@@ -1312,6 +1316,7 @@ func (c *RDS) DescribeDBParameters(input *DescribeDBParametersInput) (*DescribeD
 
 func (c *RDS) DescribeDBParametersPages(input *DescribeDBParametersInput, fn func(p *DescribeDBParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBParametersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBParametersOutput), lastPage)
 	})
@@ -1354,6 +1359,7 @@ func (c *RDS) DescribeDBSecurityGroups(input *DescribeDBSecurityGroupsInput) (*D
 
 func (c *RDS) DescribeDBSecurityGroupsPages(input *DescribeDBSecurityGroupsInput, fn func(p *DescribeDBSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBSecurityGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBSecurityGroupsOutput), lastPage)
 	})
@@ -1432,6 +1438,7 @@ func (c *RDS) DescribeDBSnapshots(input *DescribeDBSnapshotsInput) (*DescribeDBS
 
 func (c *RDS) DescribeDBSnapshotsPages(input *DescribeDBSnapshotsInput, fn func(p *DescribeDBSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBSnapshotsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBSnapshotsOutput), lastPage)
 	})
@@ -1475,6 +1482,7 @@ func (c *RDS) DescribeDBSubnetGroups(input *DescribeDBSubnetGroupsInput) (*Descr
 
 func (c *RDS) DescribeDBSubnetGroupsPages(input *DescribeDBSubnetGroupsInput, fn func(p *DescribeDBSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDBSubnetGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDBSubnetGroupsOutput), lastPage)
 	})
@@ -1547,6 +1555,7 @@ func (c *RDS) DescribeEngineDefaultParameters(input *DescribeEngineDefaultParame
 
 func (c *RDS) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(p *DescribeEngineDefaultParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEngineDefaultParametersOutput), lastPage)
 	})
@@ -1621,6 +1630,7 @@ func (c *RDS) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput)
 
 func (c *RDS) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(p *DescribeEventSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEventSubscriptionsOutput), lastPage)
 	})
@@ -1665,6 +1675,7 @@ func (c *RDS) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOutput,
 
 func (c *RDS) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEventsOutput), lastPage)
 	})
@@ -1705,6 +1716,7 @@ func (c *RDS) DescribeOptionGroupOptions(input *DescribeOptionGroupOptionsInput)
 
 func (c *RDS) DescribeOptionGroupOptionsPages(input *DescribeOptionGroupOptionsInput, fn func(p *DescribeOptionGroupOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOptionGroupOptionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeOptionGroupOptionsOutput), lastPage)
 	})
@@ -1745,6 +1757,7 @@ func (c *RDS) DescribeOptionGroups(input *DescribeOptionGroupsInput) (*DescribeO
 
 func (c *RDS) DescribeOptionGroupsPages(input *DescribeOptionGroupsInput, fn func(p *DescribeOptionGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOptionGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeOptionGroupsOutput), lastPage)
 	})
@@ -1785,6 +1798,7 @@ func (c *RDS) DescribeOrderableDBInstanceOptions(input *DescribeOrderableDBInsta
 
 func (c *RDS) DescribeOrderableDBInstanceOptionsPages(input *DescribeOrderableDBInstanceOptionsInput, fn func(p *DescribeOrderableDBInstanceOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOrderableDBInstanceOptionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeOrderableDBInstanceOptionsOutput), lastPage)
 	})
@@ -1854,6 +1868,7 @@ func (c *RDS) DescribeReservedDBInstances(input *DescribeReservedDBInstancesInpu
 
 func (c *RDS) DescribeReservedDBInstancesPages(input *DescribeReservedDBInstancesInput, fn func(p *DescribeReservedDBInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedDBInstancesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReservedDBInstancesOutput), lastPage)
 	})
@@ -1894,6 +1909,7 @@ func (c *RDS) DescribeReservedDBInstancesOfferings(input *DescribeReservedDBInst
 
 func (c *RDS) DescribeReservedDBInstancesOfferingsPages(input *DescribeReservedDBInstancesOfferingsInput, fn func(p *DescribeReservedDBInstancesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedDBInstancesOfferingsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReservedDBInstancesOfferingsOutput), lastPage)
 	})
@@ -1934,6 +1950,7 @@ func (c *RDS) DownloadDBLogFilePortion(input *DownloadDBLogFilePortionInput) (*D
 
 func (c *RDS) DownloadDBLogFilePortionPages(input *DownloadDBLogFilePortionInput, fn func(p *DownloadDBLogFilePortionOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DownloadDBLogFilePortionRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DownloadDBLogFilePortionOutput), lastPage)
 	})

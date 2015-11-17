@@ -93,6 +93,7 @@ func (c *DynamoDB) BatchGetItem(input *BatchGetItemInput) (*BatchGetItemOutput, 
 
 func (c *DynamoDB) BatchGetItemPages(input *BatchGetItemInput, fn func(p *BatchGetItemOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.BatchGetItemRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*BatchGetItemOutput), lastPage)
 	})
@@ -423,6 +424,7 @@ func (c *DynamoDB) ListTables(input *ListTablesInput) (*ListTablesOutput, error)
 
 func (c *DynamoDB) ListTablesPages(input *ListTablesInput, fn func(p *ListTablesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTablesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListTablesOutput), lastPage)
 	})
@@ -538,6 +540,7 @@ func (c *DynamoDB) Query(input *QueryInput) (*QueryOutput, error) {
 
 func (c *DynamoDB) QueryPages(input *QueryInput, fn func(p *QueryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.QueryRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*QueryOutput), lastPage)
 	})
@@ -596,6 +599,7 @@ func (c *DynamoDB) Scan(input *ScanInput) (*ScanOutput, error) {
 
 func (c *DynamoDB) ScanPages(input *ScanInput, fn func(p *ScanOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ScanRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ScanOutput), lastPage)
 	})

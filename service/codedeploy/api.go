@@ -561,6 +561,7 @@ func (c *CodeDeploy) ListApplicationRevisions(input *ListApplicationRevisionsInp
 
 func (c *CodeDeploy) ListApplicationRevisionsPages(input *ListApplicationRevisionsInput, fn func(p *ListApplicationRevisionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListApplicationRevisionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListApplicationRevisionsOutput), lastPage)
 	})
@@ -601,6 +602,7 @@ func (c *CodeDeploy) ListApplications(input *ListApplicationsInput) (*ListApplic
 
 func (c *CodeDeploy) ListApplicationsPages(input *ListApplicationsInput, fn func(p *ListApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListApplicationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListApplicationsOutput), lastPage)
 	})
@@ -641,6 +643,7 @@ func (c *CodeDeploy) ListDeploymentConfigs(input *ListDeploymentConfigsInput) (*
 
 func (c *CodeDeploy) ListDeploymentConfigsPages(input *ListDeploymentConfigsInput, fn func(p *ListDeploymentConfigsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDeploymentConfigsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDeploymentConfigsOutput), lastPage)
 	})
@@ -682,6 +685,7 @@ func (c *CodeDeploy) ListDeploymentGroups(input *ListDeploymentGroupsInput) (*Li
 
 func (c *CodeDeploy) ListDeploymentGroupsPages(input *ListDeploymentGroupsInput, fn func(p *ListDeploymentGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDeploymentGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDeploymentGroupsOutput), lastPage)
 	})
@@ -723,6 +727,7 @@ func (c *CodeDeploy) ListDeploymentInstances(input *ListDeploymentInstancesInput
 
 func (c *CodeDeploy) ListDeploymentInstancesPages(input *ListDeploymentInstancesInput, fn func(p *ListDeploymentInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDeploymentInstancesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDeploymentInstancesOutput), lastPage)
 	})
@@ -764,6 +769,7 @@ func (c *CodeDeploy) ListDeployments(input *ListDeploymentsInput) (*ListDeployme
 
 func (c *CodeDeploy) ListDeploymentsPages(input *ListDeploymentsInput, fn func(p *ListDeploymentsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDeploymentsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDeploymentsOutput), lastPage)
 	})

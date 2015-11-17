@@ -251,6 +251,7 @@ func (c *EMR) ListBootstrapActions(input *ListBootstrapActionsInput) (*ListBoots
 
 func (c *EMR) ListBootstrapActionsPages(input *ListBootstrapActionsInput, fn func(p *ListBootstrapActionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListBootstrapActionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListBootstrapActionsOutput), lastPage)
 	})
@@ -295,6 +296,7 @@ func (c *EMR) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 
 func (c *EMR) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListClustersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListClustersOutput), lastPage)
 	})
@@ -335,6 +337,7 @@ func (c *EMR) ListInstanceGroups(input *ListInstanceGroupsInput) (*ListInstanceG
 
 func (c *EMR) ListInstanceGroupsPages(input *ListInstanceGroupsInput, fn func(p *ListInstanceGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstanceGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListInstanceGroupsOutput), lastPage)
 	})
@@ -379,6 +382,7 @@ func (c *EMR) ListInstances(input *ListInstancesInput) (*ListInstancesOutput, er
 
 func (c *EMR) ListInstancesPages(input *ListInstancesInput, fn func(p *ListInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListInstancesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListInstancesOutput), lastPage)
 	})
@@ -419,6 +423,7 @@ func (c *EMR) ListSteps(input *ListStepsInput) (*ListStepsOutput, error) {
 
 func (c *EMR) ListStepsPages(input *ListStepsInput, fn func(p *ListStepsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListStepsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListStepsOutput), lastPage)
 	})

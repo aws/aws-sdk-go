@@ -957,6 +957,7 @@ func (c *StorageGateway) DescribeTapeArchives(input *DescribeTapeArchivesInput) 
 
 func (c *StorageGateway) DescribeTapeArchivesPages(input *DescribeTapeArchivesInput, fn func(p *DescribeTapeArchivesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapeArchivesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeTapeArchivesOutput), lastPage)
 	})
@@ -1002,6 +1003,7 @@ func (c *StorageGateway) DescribeTapeRecoveryPoints(input *DescribeTapeRecoveryP
 
 func (c *StorageGateway) DescribeTapeRecoveryPointsPages(input *DescribeTapeRecoveryPointsInput, fn func(p *DescribeTapeRecoveryPointsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapeRecoveryPointsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeTapeRecoveryPointsOutput), lastPage)
 	})
@@ -1044,6 +1046,7 @@ func (c *StorageGateway) DescribeTapes(input *DescribeTapesInput) (*DescribeTape
 
 func (c *StorageGateway) DescribeTapesPages(input *DescribeTapesInput, fn func(p *DescribeTapesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeTapesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeTapesOutput), lastPage)
 	})
@@ -1119,6 +1122,7 @@ func (c *StorageGateway) DescribeVTLDevices(input *DescribeVTLDevicesInput) (*De
 
 func (c *StorageGateway) DescribeVTLDevicesPages(input *DescribeVTLDevicesInput, fn func(p *DescribeVTLDevicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeVTLDevicesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeVTLDevicesOutput), lastPage)
 	})
@@ -1238,6 +1242,7 @@ func (c *StorageGateway) ListGateways(input *ListGatewaysInput) (*ListGatewaysOu
 
 func (c *StorageGateway) ListGatewaysPages(input *ListGatewaysInput, fn func(p *ListGatewaysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGatewaysRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListGatewaysOutput), lastPage)
 	})
@@ -1411,6 +1416,7 @@ func (c *StorageGateway) ListVolumes(input *ListVolumesInput) (*ListVolumesOutpu
 
 func (c *StorageGateway) ListVolumesPages(input *ListVolumesInput, fn func(p *ListVolumesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListVolumesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListVolumesOutput), lastPage)
 	})

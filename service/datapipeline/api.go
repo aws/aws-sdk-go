@@ -202,6 +202,7 @@ func (c *DataPipeline) DescribeObjects(input *DescribeObjectsInput) (*DescribeOb
 
 func (c *DataPipeline) DescribeObjectsPages(input *DescribeObjectsInput, fn func(p *DescribeObjectsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeObjectsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeObjectsOutput), lastPage)
 	})
@@ -335,6 +336,7 @@ func (c *DataPipeline) ListPipelines(input *ListPipelinesInput) (*ListPipelinesO
 
 func (c *DataPipeline) ListPipelinesPages(input *ListPipelinesInput, fn func(p *ListPipelinesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPipelinesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListPipelinesOutput), lastPage)
 	})
@@ -454,6 +456,7 @@ func (c *DataPipeline) QueryObjects(input *QueryObjectsInput) (*QueryObjectsOutp
 
 func (c *DataPipeline) QueryObjectsPages(input *QueryObjectsInput, fn func(p *QueryObjectsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.QueryObjectsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*QueryObjectsOutput), lastPage)
 	})

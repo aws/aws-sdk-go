@@ -1109,6 +1109,7 @@ func (c *Glacier) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 
 func (c *Glacier) ListJobsPages(input *ListJobsInput, fn func(p *ListJobsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListJobsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListJobsOutput), lastPage)
 	})
@@ -1178,6 +1179,7 @@ func (c *Glacier) ListMultipartUploads(input *ListMultipartUploadsInput) (*ListM
 
 func (c *Glacier) ListMultipartUploadsPages(input *ListMultipartUploadsInput, fn func(p *ListMultipartUploadsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListMultipartUploadsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListMultipartUploadsOutput), lastPage)
 	})
@@ -1241,6 +1243,7 @@ func (c *Glacier) ListParts(input *ListPartsInput) (*ListPartsOutput, error) {
 
 func (c *Glacier) ListPartsPages(input *ListPartsInput, fn func(p *ListPartsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPartsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListPartsOutput), lastPage)
 	})
@@ -1331,6 +1334,7 @@ func (c *Glacier) ListVaults(input *ListVaultsInput) (*ListVaultsOutput, error) 
 
 func (c *Glacier) ListVaultsPages(input *ListVaultsInput, fn func(p *ListVaultsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListVaultsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListVaultsOutput), lastPage)
 	})

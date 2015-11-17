@@ -419,6 +419,7 @@ func (c *SNS) ListEndpointsByPlatformApplication(input *ListEndpointsByPlatformA
 
 func (c *SNS) ListEndpointsByPlatformApplicationPages(input *ListEndpointsByPlatformApplicationInput, fn func(p *ListEndpointsByPlatformApplicationOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListEndpointsByPlatformApplicationRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListEndpointsByPlatformApplicationOutput), lastPage)
 	})
@@ -466,6 +467,7 @@ func (c *SNS) ListPlatformApplications(input *ListPlatformApplicationsInput) (*L
 
 func (c *SNS) ListPlatformApplicationsPages(input *ListPlatformApplicationsInput, fn func(p *ListPlatformApplicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListPlatformApplicationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListPlatformApplicationsOutput), lastPage)
 	})
@@ -509,6 +511,7 @@ func (c *SNS) ListSubscriptions(input *ListSubscriptionsInput) (*ListSubscriptio
 
 func (c *SNS) ListSubscriptionsPages(input *ListSubscriptionsInput, fn func(p *ListSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListSubscriptionsOutput), lastPage)
 	})
@@ -552,6 +555,7 @@ func (c *SNS) ListSubscriptionsByTopic(input *ListSubscriptionsByTopicInput) (*L
 
 func (c *SNS) ListSubscriptionsByTopicPages(input *ListSubscriptionsByTopicInput, fn func(p *ListSubscriptionsByTopicOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSubscriptionsByTopicRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListSubscriptionsByTopicOutput), lastPage)
 	})
@@ -594,6 +598,7 @@ func (c *SNS) ListTopics(input *ListTopicsInput) (*ListTopicsOutput, error) {
 
 func (c *SNS) ListTopicsPages(input *ListTopicsInput, fn func(p *ListTopicsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTopicsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListTopicsOutput), lastPage)
 	})

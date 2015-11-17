@@ -826,6 +826,7 @@ func (c *Redshift) DescribeClusterParameterGroups(input *DescribeClusterParamete
 
 func (c *Redshift) DescribeClusterParameterGroupsPages(input *DescribeClusterParameterGroupsInput, fn func(p *DescribeClusterParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterParameterGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClusterParameterGroupsOutput), lastPage)
 	})
@@ -877,6 +878,7 @@ func (c *Redshift) DescribeClusterParameters(input *DescribeClusterParametersInp
 
 func (c *Redshift) DescribeClusterParametersPages(input *DescribeClusterParametersInput, fn func(p *DescribeClusterParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterParametersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClusterParametersOutput), lastPage)
 	})
@@ -933,6 +935,7 @@ func (c *Redshift) DescribeClusterSecurityGroups(input *DescribeClusterSecurityG
 
 func (c *Redshift) DescribeClusterSecurityGroupsPages(input *DescribeClusterSecurityGroupsInput, fn func(p *DescribeClusterSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterSecurityGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClusterSecurityGroupsOutput), lastPage)
 	})
@@ -988,6 +991,7 @@ func (c *Redshift) DescribeClusterSnapshots(input *DescribeClusterSnapshotsInput
 
 func (c *Redshift) DescribeClusterSnapshotsPages(input *DescribeClusterSnapshotsInput, fn func(p *DescribeClusterSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterSnapshotsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClusterSnapshotsOutput), lastPage)
 	})
@@ -1040,6 +1044,7 @@ func (c *Redshift) DescribeClusterSubnetGroups(input *DescribeClusterSubnetGroup
 
 func (c *Redshift) DescribeClusterSubnetGroupsPages(input *DescribeClusterSubnetGroupsInput, fn func(p *DescribeClusterSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterSubnetGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClusterSubnetGroupsOutput), lastPage)
 	})
@@ -1084,6 +1089,7 @@ func (c *Redshift) DescribeClusterVersions(input *DescribeClusterVersionsInput) 
 
 func (c *Redshift) DescribeClusterVersionsPages(input *DescribeClusterVersionsInput, fn func(p *DescribeClusterVersionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClusterVersionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClusterVersionsOutput), lastPage)
 	})
@@ -1137,6 +1143,7 @@ func (c *Redshift) DescribeClusters(input *DescribeClustersInput) (*DescribeClus
 
 func (c *Redshift) DescribeClustersPages(input *DescribeClustersInput, fn func(p *DescribeClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeClustersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeClustersOutput), lastPage)
 	})
@@ -1181,6 +1188,7 @@ func (c *Redshift) DescribeDefaultClusterParameters(input *DescribeDefaultCluste
 
 func (c *Redshift) DescribeDefaultClusterParametersPages(input *DescribeDefaultClusterParametersInput, fn func(p *DescribeDefaultClusterParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDefaultClusterParametersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDefaultClusterParametersOutput), lastPage)
 	})
@@ -1252,6 +1260,7 @@ func (c *Redshift) DescribeEventSubscriptions(input *DescribeEventSubscriptionsI
 
 func (c *Redshift) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(p *DescribeEventSubscriptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventSubscriptionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEventSubscriptionsOutput), lastPage)
 	})
@@ -1295,6 +1304,7 @@ func (c *Redshift) DescribeEvents(input *DescribeEventsInput) (*DescribeEventsOu
 
 func (c *Redshift) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEventsOutput), lastPage)
 	})
@@ -1347,6 +1357,7 @@ func (c *Redshift) DescribeHsmClientCertificates(input *DescribeHsmClientCertifi
 
 func (c *Redshift) DescribeHsmClientCertificatesPages(input *DescribeHsmClientCertificatesInput, fn func(p *DescribeHsmClientCertificatesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeHsmClientCertificatesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeHsmClientCertificatesOutput), lastPage)
 	})
@@ -1399,6 +1410,7 @@ func (c *Redshift) DescribeHsmConfigurations(input *DescribeHsmConfigurationsInp
 
 func (c *Redshift) DescribeHsmConfigurationsPages(input *DescribeHsmConfigurationsInput, fn func(p *DescribeHsmConfigurationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeHsmConfigurationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeHsmConfigurationsOutput), lastPage)
 	})
@@ -1475,6 +1487,7 @@ func (c *Redshift) DescribeOrderableClusterOptions(input *DescribeOrderableClust
 
 func (c *Redshift) DescribeOrderableClusterOptionsPages(input *DescribeOrderableClusterOptionsInput, fn func(p *DescribeOrderableClusterOptionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeOrderableClusterOptionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeOrderableClusterOptionsOutput), lastPage)
 	})
@@ -1524,6 +1537,7 @@ func (c *Redshift) DescribeReservedNodeOfferings(input *DescribeReservedNodeOffe
 
 func (c *Redshift) DescribeReservedNodeOfferingsPages(input *DescribeReservedNodeOfferingsInput, fn func(p *DescribeReservedNodeOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedNodeOfferingsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReservedNodeOfferingsOutput), lastPage)
 	})
@@ -1564,6 +1578,7 @@ func (c *Redshift) DescribeReservedNodes(input *DescribeReservedNodesInput) (*De
 
 func (c *Redshift) DescribeReservedNodesPages(input *DescribeReservedNodesInput, fn func(p *DescribeReservedNodesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedNodesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReservedNodesOutput), lastPage)
 	})

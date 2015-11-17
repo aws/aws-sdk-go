@@ -510,6 +510,7 @@ func (c *DeviceFarm) ListArtifacts(input *ListArtifactsInput) (*ListArtifactsOut
 
 func (c *DeviceFarm) ListArtifactsPages(input *ListArtifactsInput, fn func(p *ListArtifactsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListArtifactsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListArtifactsOutput), lastPage)
 	})
@@ -550,6 +551,7 @@ func (c *DeviceFarm) ListDevicePools(input *ListDevicePoolsInput) (*ListDevicePo
 
 func (c *DeviceFarm) ListDevicePoolsPages(input *ListDevicePoolsInput, fn func(p *ListDevicePoolsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDevicePoolsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDevicePoolsOutput), lastPage)
 	})
@@ -590,6 +592,7 @@ func (c *DeviceFarm) ListDevices(input *ListDevicesInput) (*ListDevicesOutput, e
 
 func (c *DeviceFarm) ListDevicesPages(input *ListDevicesInput, fn func(p *ListDevicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDevicesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDevicesOutput), lastPage)
 	})
@@ -630,6 +633,7 @@ func (c *DeviceFarm) ListJobs(input *ListJobsInput) (*ListJobsOutput, error) {
 
 func (c *DeviceFarm) ListJobsPages(input *ListJobsInput, fn func(p *ListJobsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListJobsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListJobsOutput), lastPage)
 	})
@@ -670,6 +674,7 @@ func (c *DeviceFarm) ListProjects(input *ListProjectsInput) (*ListProjectsOutput
 
 func (c *DeviceFarm) ListProjectsPages(input *ListProjectsInput, fn func(p *ListProjectsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListProjectsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListProjectsOutput), lastPage)
 	})
@@ -710,6 +715,7 @@ func (c *DeviceFarm) ListRuns(input *ListRunsInput) (*ListRunsOutput, error) {
 
 func (c *DeviceFarm) ListRunsPages(input *ListRunsInput, fn func(p *ListRunsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListRunsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListRunsOutput), lastPage)
 	})
@@ -750,6 +756,7 @@ func (c *DeviceFarm) ListSamples(input *ListSamplesInput) (*ListSamplesOutput, e
 
 func (c *DeviceFarm) ListSamplesPages(input *ListSamplesInput, fn func(p *ListSamplesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSamplesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListSamplesOutput), lastPage)
 	})
@@ -790,6 +797,7 @@ func (c *DeviceFarm) ListSuites(input *ListSuitesInput) (*ListSuitesOutput, erro
 
 func (c *DeviceFarm) ListSuitesPages(input *ListSuitesInput, fn func(p *ListSuitesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListSuitesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListSuitesOutput), lastPage)
 	})
@@ -830,6 +838,7 @@ func (c *DeviceFarm) ListTests(input *ListTestsInput) (*ListTestsOutput, error) 
 
 func (c *DeviceFarm) ListTestsPages(input *ListTestsInput, fn func(p *ListTestsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTestsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListTestsOutput), lastPage)
 	})
@@ -870,6 +879,7 @@ func (c *DeviceFarm) ListUniqueProblems(input *ListUniqueProblemsInput) (*ListUn
 
 func (c *DeviceFarm) ListUniqueProblemsPages(input *ListUniqueProblemsInput, fn func(p *ListUniqueProblemsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListUniqueProblemsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListUniqueProblemsOutput), lastPage)
 	})
@@ -910,6 +920,7 @@ func (c *DeviceFarm) ListUploads(input *ListUploadsInput) (*ListUploadsOutput, e
 
 func (c *DeviceFarm) ListUploadsPages(input *ListUploadsInput, fn func(p *ListUploadsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListUploadsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListUploadsOutput), lastPage)
 	})

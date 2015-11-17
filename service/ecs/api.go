@@ -407,6 +407,7 @@ func (c *ECS) ListClusters(input *ListClustersInput) (*ListClustersOutput, error
 
 func (c *ECS) ListClustersPages(input *ListClustersInput, fn func(p *ListClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListClustersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListClustersOutput), lastPage)
 	})
@@ -447,6 +448,7 @@ func (c *ECS) ListContainerInstances(input *ListContainerInstancesInput) (*ListC
 
 func (c *ECS) ListContainerInstancesPages(input *ListContainerInstancesInput, fn func(p *ListContainerInstancesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListContainerInstancesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListContainerInstancesOutput), lastPage)
 	})
@@ -487,6 +489,7 @@ func (c *ECS) ListServices(input *ListServicesInput) (*ListServicesOutput, error
 
 func (c *ECS) ListServicesPages(input *ListServicesInput, fn func(p *ListServicesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListServicesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListServicesOutput), lastPage)
 	})
@@ -529,6 +532,7 @@ func (c *ECS) ListTaskDefinitionFamilies(input *ListTaskDefinitionFamiliesInput)
 
 func (c *ECS) ListTaskDefinitionFamiliesPages(input *ListTaskDefinitionFamiliesInput, fn func(p *ListTaskDefinitionFamiliesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTaskDefinitionFamiliesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListTaskDefinitionFamiliesOutput), lastPage)
 	})
@@ -571,6 +575,7 @@ func (c *ECS) ListTaskDefinitions(input *ListTaskDefinitionsInput) (*ListTaskDef
 
 func (c *ECS) ListTaskDefinitionsPages(input *ListTaskDefinitionsInput, fn func(p *ListTaskDefinitionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTaskDefinitionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListTaskDefinitionsOutput), lastPage)
 	})
@@ -613,6 +618,7 @@ func (c *ECS) ListTasks(input *ListTasksInput) (*ListTasksOutput, error) {
 
 func (c *ECS) ListTasksPages(input *ListTasksInput, fn func(p *ListTasksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListTasksRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListTasksOutput), lastPage)
 	})

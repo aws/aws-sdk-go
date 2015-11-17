@@ -335,6 +335,7 @@ func (c *SimpleDB) ListDomains(input *ListDomainsInput) (*ListDomainsOutput, err
 
 func (c *SimpleDB) ListDomainsPages(input *ListDomainsInput, fn func(p *ListDomainsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListDomainsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListDomainsOutput), lastPage)
 	})
@@ -442,6 +443,7 @@ func (c *SimpleDB) Select(input *SelectInput) (*SelectOutput, error) {
 
 func (c *SimpleDB) SelectPages(input *SelectInput, fn func(p *SelectOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.SelectRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*SelectOutput), lastPage)
 	})

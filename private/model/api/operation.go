@@ -79,6 +79,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Pages(` +
 	`input {{ .InputRef.GoType }}, fn func(p {{ .OutputRef.GoType }}, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.{{ .ExportedName }}Request(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.({{ .OutputRef.GoType }}), lastPage)
 	})

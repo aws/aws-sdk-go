@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"regexp"
+	"runtime"
 	"strconv"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -49,10 +50,12 @@ var BuildContentLengthHandler = request.NamedHandler{Name: "core.BuildContentLen
 	r.HTTPRequest.Header.Set("Content-Length", fmt.Sprintf("%d", length))
 }}
 
-// UserAgentHandler is a request handler for injecting User agent into requests.
-var UserAgentHandler = request.NamedHandler{Name: "core.UserAgentHandler", Fn: func(r *request.Request) {
-	r.HTTPRequest.Header.Set("User-Agent", aws.SDKName+"/"+aws.SDKVersion)
-}}
+// SDKVersionUserAgentHandler is a request handler for adding the SDK Version to the user agent.
+var SDKVersionUserAgentHandler = request.NamedHandler{
+	Name: "core.SDKVersionUserAgentHandler",
+	Fn: request.MakeAddToUserAgentHandler(aws.SDKName, aws.SDKVersion,
+		runtime.Version(), runtime.GOOS, runtime.GOARCH),
+}
 
 var reStatusCode = regexp.MustCompile(`^(\d{3})`)
 

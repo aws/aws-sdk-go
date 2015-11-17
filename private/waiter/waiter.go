@@ -46,6 +46,7 @@ func (w *Waiter) Wait() error {
 	for i := 0; i < w.MaxAttempts; i++ {
 		res := method.Call([]reflect.Value{in})
 		req := res[0].Interface().(*request.Request)
+		req.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Waiter"))
 		if err := req.Send(); err != nil {
 			return err
 		}

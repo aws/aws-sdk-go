@@ -507,6 +507,7 @@ func (c *MachineLearning) DescribeBatchPredictions(input *DescribeBatchPredictio
 
 func (c *MachineLearning) DescribeBatchPredictionsPages(input *DescribeBatchPredictionsInput, fn func(p *DescribeBatchPredictionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeBatchPredictionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeBatchPredictionsOutput), lastPage)
 	})
@@ -547,6 +548,7 @@ func (c *MachineLearning) DescribeDataSources(input *DescribeDataSourcesInput) (
 
 func (c *MachineLearning) DescribeDataSourcesPages(input *DescribeDataSourcesInput, fn func(p *DescribeDataSourcesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDataSourcesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDataSourcesOutput), lastPage)
 	})
@@ -588,6 +590,7 @@ func (c *MachineLearning) DescribeEvaluations(input *DescribeEvaluationsInput) (
 
 func (c *MachineLearning) DescribeEvaluationsPages(input *DescribeEvaluationsInput, fn func(p *DescribeEvaluationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEvaluationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEvaluationsOutput), lastPage)
 	})
@@ -628,6 +631,7 @@ func (c *MachineLearning) DescribeMLModels(input *DescribeMLModelsInput) (*Descr
 
 func (c *MachineLearning) DescribeMLModelsPages(input *DescribeMLModelsInput, fn func(p *DescribeMLModelsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeMLModelsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeMLModelsOutput), lastPage)
 	})

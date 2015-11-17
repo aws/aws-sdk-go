@@ -888,6 +888,7 @@ func (c *OpsWorks) DescribeEcsClusters(input *DescribeEcsClustersInput) (*Descri
 
 func (c *OpsWorks) DescribeEcsClustersPages(input *DescribeEcsClustersInput, fn func(p *DescribeEcsClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEcsClustersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEcsClustersOutput), lastPage)
 	})

@@ -541,6 +541,7 @@ func (c *ConfigService) GetResourceConfigHistory(input *GetResourceConfigHistory
 
 func (c *ConfigService) GetResourceConfigHistoryPages(input *GetResourceConfigHistoryInput, fn func(p *GetResourceConfigHistoryOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetResourceConfigHistoryRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*GetResourceConfigHistoryOutput), lastPage)
 	})

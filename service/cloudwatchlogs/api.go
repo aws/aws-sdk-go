@@ -342,6 +342,7 @@ func (c *CloudWatchLogs) DescribeDestinations(input *DescribeDestinationsInput) 
 
 func (c *CloudWatchLogs) DescribeDestinationsPages(input *DescribeDestinationsInput, fn func(p *DescribeDestinationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeDestinationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeDestinationsOutput), lastPage)
 	})
@@ -423,6 +424,7 @@ func (c *CloudWatchLogs) DescribeLogGroups(input *DescribeLogGroupsInput) (*Desc
 
 func (c *CloudWatchLogs) DescribeLogGroupsPages(input *DescribeLogGroupsInput, fn func(p *DescribeLogGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeLogGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeLogGroupsOutput), lastPage)
 	})
@@ -471,6 +473,7 @@ func (c *CloudWatchLogs) DescribeLogStreams(input *DescribeLogStreamsInput) (*De
 
 func (c *CloudWatchLogs) DescribeLogStreamsPages(input *DescribeLogStreamsInput, fn func(p *DescribeLogStreamsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeLogStreamsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeLogStreamsOutput), lastPage)
 	})
@@ -517,6 +520,7 @@ func (c *CloudWatchLogs) DescribeMetricFilters(input *DescribeMetricFiltersInput
 
 func (c *CloudWatchLogs) DescribeMetricFiltersPages(input *DescribeMetricFiltersInput, fn func(p *DescribeMetricFiltersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeMetricFiltersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeMetricFiltersOutput), lastPage)
 	})
@@ -564,6 +568,7 @@ func (c *CloudWatchLogs) DescribeSubscriptionFilters(input *DescribeSubscription
 
 func (c *CloudWatchLogs) DescribeSubscriptionFiltersPages(input *DescribeSubscriptionFiltersInput, fn func(p *DescribeSubscriptionFiltersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSubscriptionFiltersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeSubscriptionFiltersOutput), lastPage)
 	})
@@ -617,6 +622,7 @@ func (c *CloudWatchLogs) FilterLogEvents(input *FilterLogEventsInput) (*FilterLo
 
 func (c *CloudWatchLogs) FilterLogEventsPages(input *FilterLogEventsInput, fn func(p *FilterLogEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.FilterLogEventsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*FilterLogEventsOutput), lastPage)
 	})
@@ -666,6 +672,7 @@ func (c *CloudWatchLogs) GetLogEvents(input *GetLogEventsInput) (*GetLogEventsOu
 
 func (c *CloudWatchLogs) GetLogEventsPages(input *GetLogEventsInput, fn func(p *GetLogEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.GetLogEventsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*GetLogEventsOutput), lastPage)
 	})

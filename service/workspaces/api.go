@@ -81,6 +81,7 @@ func (c *WorkSpaces) DescribeWorkspaceBundles(input *DescribeWorkspaceBundlesInp
 
 func (c *WorkSpaces) DescribeWorkspaceBundlesPages(input *DescribeWorkspaceBundlesInput, fn func(p *DescribeWorkspaceBundlesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeWorkspaceBundlesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeWorkspaceBundlesOutput), lastPage)
 	})
@@ -128,6 +129,7 @@ func (c *WorkSpaces) DescribeWorkspaceDirectories(input *DescribeWorkspaceDirect
 
 func (c *WorkSpaces) DescribeWorkspaceDirectoriesPages(input *DescribeWorkspaceDirectoriesInput, fn func(p *DescribeWorkspaceDirectoriesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeWorkspaceDirectoriesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeWorkspaceDirectoriesOutput), lastPage)
 	})
@@ -176,6 +178,7 @@ func (c *WorkSpaces) DescribeWorkspaces(input *DescribeWorkspacesInput) (*Descri
 
 func (c *WorkSpaces) DescribeWorkspacesPages(input *DescribeWorkspacesInput, fn func(p *DescribeWorkspacesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeWorkspacesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeWorkspacesOutput), lastPage)
 	})

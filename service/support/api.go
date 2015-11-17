@@ -212,6 +212,7 @@ func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput
 
 func (c *Support) DescribeCasesPages(input *DescribeCasesInput, fn func(p *DescribeCasesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCasesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCasesOutput), lastPage)
 	})
@@ -261,6 +262,7 @@ func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*D
 
 func (c *Support) DescribeCommunicationsPages(input *DescribeCommunicationsInput, fn func(p *DescribeCommunicationsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCommunicationsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCommunicationsOutput), lastPage)
 	})

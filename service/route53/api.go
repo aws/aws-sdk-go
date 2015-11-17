@@ -760,6 +760,7 @@ func (c *Route53) ListHealthChecks(input *ListHealthChecksInput) (*ListHealthChe
 
 func (c *Route53) ListHealthChecksPages(input *ListHealthChecksInput, fn func(p *ListHealthChecksOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListHealthChecksRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListHealthChecksOutput), lastPage)
 	})
@@ -808,6 +809,7 @@ func (c *Route53) ListHostedZones(input *ListHostedZonesInput) (*ListHostedZones
 
 func (c *Route53) ListHostedZonesPages(input *ListHostedZonesInput, fn func(p *ListHostedZonesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListHostedZonesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListHostedZonesOutput), lastPage)
 	})
@@ -922,6 +924,7 @@ func (c *Route53) ListResourceRecordSets(input *ListResourceRecordSetsInput) (*L
 
 func (c *Route53) ListResourceRecordSetsPages(input *ListResourceRecordSetsInput, fn func(p *ListResourceRecordSetsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListResourceRecordSetsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListResourceRecordSetsOutput), lastPage)
 	})

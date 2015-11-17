@@ -534,6 +534,7 @@ func (c *ElastiCache) DescribeCacheClusters(input *DescribeCacheClustersInput) (
 
 func (c *ElastiCache) DescribeCacheClustersPages(input *DescribeCacheClustersInput, fn func(p *DescribeCacheClustersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheClustersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCacheClustersOutput), lastPage)
 	})
@@ -575,6 +576,7 @@ func (c *ElastiCache) DescribeCacheEngineVersions(input *DescribeCacheEngineVers
 
 func (c *ElastiCache) DescribeCacheEngineVersionsPages(input *DescribeCacheEngineVersionsInput, fn func(p *DescribeCacheEngineVersionsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheEngineVersionsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCacheEngineVersionsOutput), lastPage)
 	})
@@ -617,6 +619,7 @@ func (c *ElastiCache) DescribeCacheParameterGroups(input *DescribeCacheParameter
 
 func (c *ElastiCache) DescribeCacheParameterGroupsPages(input *DescribeCacheParameterGroupsInput, fn func(p *DescribeCacheParameterGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheParameterGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCacheParameterGroupsOutput), lastPage)
 	})
@@ -658,6 +661,7 @@ func (c *ElastiCache) DescribeCacheParameters(input *DescribeCacheParametersInpu
 
 func (c *ElastiCache) DescribeCacheParametersPages(input *DescribeCacheParametersInput, fn func(p *DescribeCacheParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheParametersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCacheParametersOutput), lastPage)
 	})
@@ -700,6 +704,7 @@ func (c *ElastiCache) DescribeCacheSecurityGroups(input *DescribeCacheSecurityGr
 
 func (c *ElastiCache) DescribeCacheSecurityGroupsPages(input *DescribeCacheSecurityGroupsInput, fn func(p *DescribeCacheSecurityGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheSecurityGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCacheSecurityGroupsOutput), lastPage)
 	})
@@ -742,6 +747,7 @@ func (c *ElastiCache) DescribeCacheSubnetGroups(input *DescribeCacheSubnetGroups
 
 func (c *ElastiCache) DescribeCacheSubnetGroupsPages(input *DescribeCacheSubnetGroupsInput, fn func(p *DescribeCacheSubnetGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeCacheSubnetGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeCacheSubnetGroupsOutput), lastPage)
 	})
@@ -783,6 +789,7 @@ func (c *ElastiCache) DescribeEngineDefaultParameters(input *DescribeEngineDefau
 
 func (c *ElastiCache) DescribeEngineDefaultParametersPages(input *DescribeEngineDefaultParametersInput, fn func(p *DescribeEngineDefaultParametersOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEngineDefaultParametersRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEngineDefaultParametersOutput), lastPage)
 	})
@@ -829,6 +836,7 @@ func (c *ElastiCache) DescribeEvents(input *DescribeEventsInput) (*DescribeEvent
 
 func (c *ElastiCache) DescribeEventsPages(input *DescribeEventsInput, fn func(p *DescribeEventsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeEventsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeEventsOutput), lastPage)
 	})
@@ -871,6 +879,7 @@ func (c *ElastiCache) DescribeReplicationGroups(input *DescribeReplicationGroups
 
 func (c *ElastiCache) DescribeReplicationGroupsPages(input *DescribeReplicationGroupsInput, fn func(p *DescribeReplicationGroupsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReplicationGroupsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReplicationGroupsOutput), lastPage)
 	})
@@ -912,6 +921,7 @@ func (c *ElastiCache) DescribeReservedCacheNodes(input *DescribeReservedCacheNod
 
 func (c *ElastiCache) DescribeReservedCacheNodesPages(input *DescribeReservedCacheNodesInput, fn func(p *DescribeReservedCacheNodesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedCacheNodesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReservedCacheNodesOutput), lastPage)
 	})
@@ -953,6 +963,7 @@ func (c *ElastiCache) DescribeReservedCacheNodesOfferings(input *DescribeReserve
 
 func (c *ElastiCache) DescribeReservedCacheNodesOfferingsPages(input *DescribeReservedCacheNodesOfferingsInput, fn func(p *DescribeReservedCacheNodesOfferingsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeReservedCacheNodesOfferingsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeReservedCacheNodesOfferingsOutput), lastPage)
 	})
@@ -996,6 +1007,7 @@ func (c *ElastiCache) DescribeSnapshots(input *DescribeSnapshotsInput) (*Describ
 
 func (c *ElastiCache) DescribeSnapshotsPages(input *DescribeSnapshotsInput, fn func(p *DescribeSnapshotsOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.DescribeSnapshotsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*DescribeSnapshotsOutput), lastPage)
 	})

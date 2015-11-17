@@ -593,6 +593,7 @@ func (c *KMS) ListAliases(input *ListAliasesInput) (*ListAliasesOutput, error) {
 
 func (c *KMS) ListAliasesPages(input *ListAliasesInput, fn func(p *ListAliasesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListAliasesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListAliasesOutput), lastPage)
 	})
@@ -633,6 +634,7 @@ func (c *KMS) ListGrants(input *ListGrantsInput) (*ListGrantsResponse, error) {
 
 func (c *KMS) ListGrantsPages(input *ListGrantsInput, fn func(p *ListGrantsResponse, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListGrantsRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListGrantsResponse), lastPage)
 	})
@@ -673,6 +675,7 @@ func (c *KMS) ListKeyPolicies(input *ListKeyPoliciesInput) (*ListKeyPoliciesOutp
 
 func (c *KMS) ListKeyPoliciesPages(input *ListKeyPoliciesInput, fn func(p *ListKeyPoliciesOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListKeyPoliciesRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListKeyPoliciesOutput), lastPage)
 	})
@@ -713,6 +716,7 @@ func (c *KMS) ListKeys(input *ListKeysInput) (*ListKeysOutput, error) {
 
 func (c *KMS) ListKeysPages(input *ListKeysInput, fn func(p *ListKeysOutput, lastPage bool) (shouldContinue bool)) error {
 	page, _ := c.ListKeysRequest(input)
+	page.Handlers.Build.PushBack(request.MakeAddToUserAgentFreeFormHandler("Paginator"))
 	return page.EachPage(func(p interface{}, lastPage bool) bool {
 		return fn(p.(*ListKeysOutput), lastPage)
 	})
