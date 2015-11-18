@@ -6,122 +6,114 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterDBInstanceAvailable *waiter.Config
-
 func (c *RDS) WaitUntilDBInstanceAvailable(input *DescribeDBInstancesInput) error {
-	if waiterDBInstanceAvailable == nil {
-		waiterDBInstanceAvailable = &waiter.Config{
-			Operation:   "DescribeDBInstances",
-			Delay:       30,
-			MaxAttempts: 60,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "deleted",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "deleting",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "failed",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "incompatible-restore",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "incompatible-parameters",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "incompatible-restore",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeDBInstances",
+		Delay:       30,
+		MaxAttempts: 60,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "deleted",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "deleting",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "failed",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "incompatible-restore",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "incompatible-parameters",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "incompatible-restore",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterDBInstanceAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterDBInstanceDeleted *waiter.Config
-
 func (c *RDS) WaitUntilDBInstanceDeleted(input *DescribeDBInstancesInput) error {
-	if waiterDBInstanceDeleted == nil {
-		waiterDBInstanceDeleted = &waiter.Config{
-			Operation:   "DescribeDBInstances",
-			Delay:       30,
-			MaxAttempts: 60,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "deleted",
-				},
-				{
-					State:    "success",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "DBInstanceNotFound",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "creating",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "modifying",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "rebooting",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "DBInstances[].DBInstanceStatus",
-					Expected: "resetting-master-credentials",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeDBInstances",
+		Delay:       30,
+		MaxAttempts: 60,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "deleted",
 			},
-		}
+			{
+				State:    "success",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "DBInstanceNotFound",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "creating",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "modifying",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "rebooting",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "DBInstances[].DBInstanceStatus",
+				Expected: "resetting-master-credentials",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterDBInstanceDeleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

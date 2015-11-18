@@ -6,29 +6,25 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterStreamExists *waiter.Config
-
 func (c *Kinesis) WaitUntilStreamExists(input *DescribeStreamInput) error {
-	if waiterStreamExists == nil {
-		waiterStreamExists = &waiter.Config{
-			Operation:   "DescribeStream",
-			Delay:       10,
-			MaxAttempts: 18,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "StreamDescription.StreamStatus",
-					Expected: "ACTIVE",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeStream",
+		Delay:       10,
+		MaxAttempts: 18,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "StreamDescription.StreamStatus",
+				Expected: "ACTIVE",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterStreamExists,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

@@ -6,152 +6,136 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterClusterAvailable *waiter.Config
-
 func (c *Redshift) WaitUntilClusterAvailable(input *DescribeClustersInput) error {
-	if waiterClusterAvailable == nil {
-		waiterClusterAvailable = &waiter.Config{
-			Operation:   "DescribeClusters",
-			Delay:       60,
-			MaxAttempts: 30,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Clusters[].ClusterStatus",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Clusters[].ClusterStatus",
-					Expected: "deleting",
-				},
-				{
-					State:    "retry",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "ClusterNotFound",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeClusters",
+		Delay:       60,
+		MaxAttempts: 30,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Clusters[].ClusterStatus",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Clusters[].ClusterStatus",
+				Expected: "deleting",
+			},
+			{
+				State:    "retry",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "ClusterNotFound",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterClusterAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterClusterDeleted *waiter.Config
 
 func (c *Redshift) WaitUntilClusterDeleted(input *DescribeClustersInput) error {
-	if waiterClusterDeleted == nil {
-		waiterClusterDeleted = &waiter.Config{
-			Operation:   "DescribeClusters",
-			Delay:       60,
-			MaxAttempts: 30,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "ClusterNotFound",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Clusters[].ClusterStatus",
-					Expected: "creating",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathList",
-					Argument: "Clusters[].ClusterStatus",
-					Expected: "pathAny",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeClusters",
+		Delay:       60,
+		MaxAttempts: 30,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "ClusterNotFound",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Clusters[].ClusterStatus",
+				Expected: "creating",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathList",
+				Argument: "Clusters[].ClusterStatus",
+				Expected: "pathAny",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterClusterDeleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterClusterRestored *waiter.Config
 
 func (c *Redshift) WaitUntilClusterRestored(input *DescribeClustersInput) error {
-	if waiterClusterRestored == nil {
-		waiterClusterRestored = &waiter.Config{
-			Operation:   "DescribeClusters",
-			Delay:       60,
-			MaxAttempts: 30,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Clusters[].RestoreStatus.Status",
-					Expected: "completed",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Clusters[].ClusterStatus",
-					Expected: "deleting",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeClusters",
+		Delay:       60,
+		MaxAttempts: 30,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Clusters[].RestoreStatus.Status",
+				Expected: "completed",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Clusters[].ClusterStatus",
+				Expected: "deleting",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterClusterRestored,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterSnapshotAvailable *waiter.Config
-
 func (c *Redshift) WaitUntilSnapshotAvailable(input *DescribeClusterSnapshotsInput) error {
-	if waiterSnapshotAvailable == nil {
-		waiterSnapshotAvailable = &waiter.Config{
-			Operation:   "DescribeClusterSnapshots",
-			Delay:       15,
-			MaxAttempts: 20,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Snapshots[].Status",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Snapshots[].Status",
-					Expected: "failed",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Snapshots[].Status",
-					Expected: "deleted",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeClusterSnapshots",
+		Delay:       15,
+		MaxAttempts: 20,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Snapshots[].Status",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Snapshots[].Status",
+				Expected: "failed",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Snapshots[].Status",
+				Expected: "deleted",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterSnapshotAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

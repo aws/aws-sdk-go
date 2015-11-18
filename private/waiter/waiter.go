@@ -31,7 +31,7 @@ type WaitAcceptor struct {
 
 // A Waiter provides waiting for an operation to complete.
 type Waiter struct {
-	*Config
+	Config
 	Client interface{}
 	Input  interface{}
 }

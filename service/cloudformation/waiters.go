@@ -6,107 +6,95 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterStackCreateComplete *waiter.Config
-
 func (c *CloudFormation) WaitUntilStackCreateComplete(input *DescribeStacksInput) error {
-	if waiterStackCreateComplete == nil {
-		waiterStackCreateComplete = &waiter.Config{
-			Operation:   "DescribeStacks",
-			Delay:       30,
-			MaxAttempts: 50,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Stacks[].StackStatus",
-					Expected: "CREATE_COMPLETE",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Stacks[].StackStatus",
-					Expected: "CREATE_FAILED",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeStacks",
+		Delay:       30,
+		MaxAttempts: 50,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Stacks[].StackStatus",
+				Expected: "CREATE_COMPLETE",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Stacks[].StackStatus",
+				Expected: "CREATE_FAILED",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterStackCreateComplete,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterStackDeleteComplete *waiter.Config
 
 func (c *CloudFormation) WaitUntilStackDeleteComplete(input *DescribeStacksInput) error {
-	if waiterStackDeleteComplete == nil {
-		waiterStackDeleteComplete = &waiter.Config{
-			Operation:   "DescribeStacks",
-			Delay:       30,
-			MaxAttempts: 25,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Stacks[].StackStatus",
-					Expected: "DELETE_COMPLETE",
-				},
-				{
-					State:    "success",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "ValidationError",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Stacks[].StackStatus",
-					Expected: "DELETE_FAILED",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeStacks",
+		Delay:       30,
+		MaxAttempts: 25,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Stacks[].StackStatus",
+				Expected: "DELETE_COMPLETE",
 			},
-		}
+			{
+				State:    "success",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "ValidationError",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Stacks[].StackStatus",
+				Expected: "DELETE_FAILED",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterStackDeleteComplete,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterStackUpdateComplete *waiter.Config
-
 func (c *CloudFormation) WaitUntilStackUpdateComplete(input *DescribeStacksInput) error {
-	if waiterStackUpdateComplete == nil {
-		waiterStackUpdateComplete = &waiter.Config{
-			Operation:   "DescribeStacks",
-			Delay:       30,
-			MaxAttempts: 5,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Stacks[].StackStatus",
-					Expected: "UPDATE_COMPLETE",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Stacks[].StackStatus",
-					Expected: "UPDATE_FAILED",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeStacks",
+		Delay:       30,
+		MaxAttempts: 5,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Stacks[].StackStatus",
+				Expected: "UPDATE_COMPLETE",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Stacks[].StackStatus",
+				Expected: "UPDATE_FAILED",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterStackUpdateComplete,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

@@ -6,83 +6,71 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterDistributionDeployed *waiter.Config
-
 func (c *CloudFront) WaitUntilDistributionDeployed(input *GetDistributionInput) error {
-	if waiterDistributionDeployed == nil {
-		waiterDistributionDeployed = &waiter.Config{
-			Operation:   "GetDistribution",
-			Delay:       60,
-			MaxAttempts: 25,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "Status",
-					Expected: "Deployed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "GetDistribution",
+		Delay:       60,
+		MaxAttempts: 25,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "Status",
+				Expected: "Deployed",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterDistributionDeployed,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterInvalidationCompleted *waiter.Config
 
 func (c *CloudFront) WaitUntilInvalidationCompleted(input *GetInvalidationInput) error {
-	if waiterInvalidationCompleted == nil {
-		waiterInvalidationCompleted = &waiter.Config{
-			Operation:   "GetInvalidation",
-			Delay:       20,
-			MaxAttempts: 30,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "Status",
-					Expected: "Completed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "GetInvalidation",
+		Delay:       20,
+		MaxAttempts: 30,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "Status",
+				Expected: "Completed",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInvalidationCompleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterStreamingDistributionDeployed *waiter.Config
-
 func (c *CloudFront) WaitUntilStreamingDistributionDeployed(input *GetStreamingDistributionInput) error {
-	if waiterStreamingDistributionDeployed == nil {
-		waiterStreamingDistributionDeployed = &waiter.Config{
-			Operation:   "GetStreamingDistribution",
-			Delay:       60,
-			MaxAttempts: 25,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "Status",
-					Expected: "Deployed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "GetStreamingDistribution",
+		Delay:       60,
+		MaxAttempts: 25,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "Status",
+				Expected: "Deployed",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterStreamingDistributionDeployed,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

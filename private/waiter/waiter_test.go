@@ -100,7 +100,7 @@ func TestWaiter(t *testing.T) {
 		reqNum++
 	})
 
-	waiterCfg := &waiter.Config{
+	waiterCfg := waiter.Config{
 		Operation:   "Mock",
 		Delay:       0,
 		MaxAttempts: 10,
@@ -162,7 +162,7 @@ func TestWaiterFailure(t *testing.T) {
 		reqNum++
 	})
 
-	waiterCfg := &waiter.Config{
+	waiterCfg := waiter.Config{
 		Operation:   "Mock",
 		Delay:       0,
 		MaxAttempts: 10,

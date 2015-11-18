@@ -6,56 +6,48 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterAnyInstanceInService *waiter.Config
-
 func (c *ELB) WaitUntilAnyInstanceInService(input *DescribeInstanceHealthInput) error {
-	if waiterAnyInstanceInService == nil {
-		waiterAnyInstanceInService = &waiter.Config{
-			Operation:   "DescribeInstanceHealth",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAny",
-					Argument: "InstanceStates[].State",
-					Expected: "InService",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstanceHealth",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAny",
+				Argument: "InstanceStates[].State",
+				Expected: "InService",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterAnyInstanceInService,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterInstanceInService *waiter.Config
-
 func (c *ELB) WaitUntilInstanceInService(input *DescribeInstanceHealthInput) error {
-	if waiterInstanceInService == nil {
-		waiterInstanceInService = &waiter.Config{
-			Operation:   "DescribeInstanceHealth",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "InstanceStates[].State",
-					Expected: "InService",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstanceHealth",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "InstanceStates[].State",
+				Expected: "InService",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceInService,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
