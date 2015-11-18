@@ -97,30 +97,26 @@ func (a *WaitAcceptor) ExpectedString() string {
 }
 
 var tplWaiter = template.Must(template.New("waiter").Parse(`
-var waiter{{ .Name }} *waiter.Config
-
 func (c *{{ .Operation.API.StructName }}) WaitUntil{{ .Name }}(input {{ .Operation.InputRef.GoType }}) error {
-	if waiter{{ .Name }} == nil {
-		waiter{{ .Name }} = &waiter.Config{
-			Operation:   "{{ .OperationName }}",
-			Delay:       {{ .Delay }},
-			MaxAttempts: {{ .MaxAttempts }},
-			Acceptors: []waiter.WaitAcceptor{
-				{{ range $_, $a := .Acceptors }}waiter.WaitAcceptor{
-					State:    "{{ .State }}",
-					Matcher:  "{{ .Matcher }}",
-					Argument: "{{ .Argument }}",
-					Expected: {{ .ExpectedString }},
-				},
-				{{ end }}
+	waiterCfg  := waiter.Config{
+		Operation:   "{{ .OperationName }}",
+		Delay:       {{ .Delay }},
+		MaxAttempts: {{ .MaxAttempts }},
+		Acceptors: []waiter.WaitAcceptor{
+			{{ range $_, $a := .Acceptors }}waiter.WaitAcceptor{
+				State:    "{{ .State }}",
+				Matcher:  "{{ .Matcher }}",
+				Argument: "{{ .Argument }}",
+				Expected: {{ .ExpectedString }},
 			},
-		}
+			{{ end }}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiter{{ .Name }},
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

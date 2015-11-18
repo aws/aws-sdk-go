@@ -6,68 +6,60 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterInstanceProfileExists *waiter.Config
-
 func (c *IAM) WaitUntilInstanceProfileExists(input *GetInstanceProfileInput) error {
-	if waiterInstanceProfileExists == nil {
-		waiterInstanceProfileExists = &waiter.Config{
-			Operation:   "GetInstanceProfile",
-			Delay:       1,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "status",
-					Argument: "",
-					Expected: 200,
-				},
-				{
-					State:    "retry",
-					Matcher:  "status",
-					Argument: "",
-					Expected: 404,
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "GetInstanceProfile",
+		Delay:       1,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "status",
+				Argument: "",
+				Expected: 200,
 			},
-		}
+			{
+				State:    "retry",
+				Matcher:  "status",
+				Argument: "",
+				Expected: 404,
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceProfileExists,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterUserExists *waiter.Config
-
 func (c *IAM) WaitUntilUserExists(input *GetUserInput) error {
-	if waiterUserExists == nil {
-		waiterUserExists = &waiter.Config{
-			Operation:   "GetUser",
-			Delay:       1,
-			MaxAttempts: 20,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "status",
-					Argument: "",
-					Expected: 200,
-				},
-				{
-					State:    "retry",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "NoSuchEntity",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "GetUser",
+		Delay:       1,
+		MaxAttempts: 20,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "status",
+				Argument: "",
+				Expected: 200,
 			},
-		}
+			{
+				State:    "retry",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "NoSuchEntity",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterUserExists,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

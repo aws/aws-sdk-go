@@ -6,92 +6,84 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterClusterRunning *waiter.Config
-
 func (c *EMR) WaitUntilClusterRunning(input *DescribeClusterInput) error {
-	if waiterClusterRunning == nil {
-		waiterClusterRunning = &waiter.Config{
-			Operation:   "DescribeCluster",
-			Delay:       30,
-			MaxAttempts: 60,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "Cluster.Status.State",
-					Expected: "RUNNING",
-				},
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "Cluster.Status.State",
-					Expected: "WAITING",
-				},
-				{
-					State:    "failure",
-					Matcher:  "path",
-					Argument: "Cluster.Status.State",
-					Expected: "TERMINATING",
-				},
-				{
-					State:    "failure",
-					Matcher:  "path",
-					Argument: "Cluster.Status.State",
-					Expected: "TERMINATED",
-				},
-				{
-					State:    "failure",
-					Matcher:  "path",
-					Argument: "Cluster.Status.State",
-					Expected: "TERMINATED_WITH_ERRORS",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeCluster",
+		Delay:       30,
+		MaxAttempts: 60,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "Cluster.Status.State",
+				Expected: "RUNNING",
 			},
-		}
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "Cluster.Status.State",
+				Expected: "WAITING",
+			},
+			{
+				State:    "failure",
+				Matcher:  "path",
+				Argument: "Cluster.Status.State",
+				Expected: "TERMINATING",
+			},
+			{
+				State:    "failure",
+				Matcher:  "path",
+				Argument: "Cluster.Status.State",
+				Expected: "TERMINATED",
+			},
+			{
+				State:    "failure",
+				Matcher:  "path",
+				Argument: "Cluster.Status.State",
+				Expected: "TERMINATED_WITH_ERRORS",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterClusterRunning,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterStepComplete *waiter.Config
-
 func (c *EMR) WaitUntilStepComplete(input *DescribeStepInput) error {
-	if waiterStepComplete == nil {
-		waiterStepComplete = &waiter.Config{
-			Operation:   "DescribeStep",
-			Delay:       30,
-			MaxAttempts: 60,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "Step.Status.State",
-					Expected: "COMPLETED",
-				},
-				{
-					State:    "failure",
-					Matcher:  "path",
-					Argument: "Step.Status.State",
-					Expected: "FAILED",
-				},
-				{
-					State:    "failure",
-					Matcher:  "path",
-					Argument: "Step.Status.State",
-					Expected: "CANCELLED",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeStep",
+		Delay:       30,
+		MaxAttempts: 60,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "Step.Status.State",
+				Expected: "COMPLETED",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "path",
+				Argument: "Step.Status.State",
+				Expected: "FAILED",
+			},
+			{
+				State:    "failure",
+				Matcher:  "path",
+				Argument: "Step.Status.State",
+				Expected: "CANCELLED",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterStepComplete,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

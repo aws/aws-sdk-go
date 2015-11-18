@@ -6,860 +6,756 @@ import (
 	"github.com/aws/aws-sdk-go/private/waiter"
 )
 
-var waiterBundleTaskComplete *waiter.Config
-
 func (c *EC2) WaitUntilBundleTaskComplete(input *DescribeBundleTasksInput) error {
-	if waiterBundleTaskComplete == nil {
-		waiterBundleTaskComplete = &waiter.Config{
-			Operation:   "DescribeBundleTasks",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "BundleTasks[].State",
-					Expected: "complete",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "BundleTasks[].State",
-					Expected: "failed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeBundleTasks",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "BundleTasks[].State",
+				Expected: "complete",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "BundleTasks[].State",
+				Expected: "failed",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterBundleTaskComplete,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterConversionTaskCancelled *waiter.Config
 
 func (c *EC2) WaitUntilConversionTaskCancelled(input *DescribeConversionTasksInput) error {
-	if waiterConversionTaskCancelled == nil {
-		waiterConversionTaskCancelled = &waiter.Config{
-			Operation:   "DescribeConversionTasks",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "ConversionTasks[].State",
-					Expected: "cancelled",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeConversionTasks",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "ConversionTasks[].State",
+				Expected: "cancelled",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterConversionTaskCancelled,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterConversionTaskCompleted *waiter.Config
 
 func (c *EC2) WaitUntilConversionTaskCompleted(input *DescribeConversionTasksInput) error {
-	if waiterConversionTaskCompleted == nil {
-		waiterConversionTaskCompleted = &waiter.Config{
-			Operation:   "DescribeConversionTasks",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "ConversionTasks[].State",
-					Expected: "completed",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ConversionTasks[].State",
-					Expected: "cancelled",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "ConversionTasks[].State",
-					Expected: "cancelling",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeConversionTasks",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "ConversionTasks[].State",
+				Expected: "completed",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "ConversionTasks[].State",
+				Expected: "cancelled",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "ConversionTasks[].State",
+				Expected: "cancelling",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterConversionTaskCompleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterConversionTaskDeleted *waiter.Config
 
 func (c *EC2) WaitUntilConversionTaskDeleted(input *DescribeConversionTasksInput) error {
-	if waiterConversionTaskDeleted == nil {
-		waiterConversionTaskDeleted = &waiter.Config{
-			Operation:   "DescribeConversionTasks",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "ConversionTasks[].State",
-					Expected: "deleted",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeConversionTasks",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "ConversionTasks[].State",
+				Expected: "deleted",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterConversionTaskDeleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterCustomerGatewayAvailable *waiter.Config
 
 func (c *EC2) WaitUntilCustomerGatewayAvailable(input *DescribeCustomerGatewaysInput) error {
-	if waiterCustomerGatewayAvailable == nil {
-		waiterCustomerGatewayAvailable = &waiter.Config{
-			Operation:   "DescribeCustomerGateways",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "CustomerGateways[].State",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "CustomerGateways[].State",
-					Expected: "deleted",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "CustomerGateways[].State",
-					Expected: "deleting",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeCustomerGateways",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "CustomerGateways[].State",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "CustomerGateways[].State",
+				Expected: "deleted",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "CustomerGateways[].State",
+				Expected: "deleting",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterCustomerGatewayAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterExportTaskCancelled *waiter.Config
 
 func (c *EC2) WaitUntilExportTaskCancelled(input *DescribeExportTasksInput) error {
-	if waiterExportTaskCancelled == nil {
-		waiterExportTaskCancelled = &waiter.Config{
-			Operation:   "DescribeExportTasks",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "ExportTasks[].State",
-					Expected: "cancelled",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeExportTasks",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "ExportTasks[].State",
+				Expected: "cancelled",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterExportTaskCancelled,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterExportTaskCompleted *waiter.Config
 
 func (c *EC2) WaitUntilExportTaskCompleted(input *DescribeExportTasksInput) error {
-	if waiterExportTaskCompleted == nil {
-		waiterExportTaskCompleted = &waiter.Config{
-			Operation:   "DescribeExportTasks",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "ExportTasks[].State",
-					Expected: "completed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeExportTasks",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "ExportTasks[].State",
+				Expected: "completed",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterExportTaskCompleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterImageAvailable *waiter.Config
 
 func (c *EC2) WaitUntilImageAvailable(input *DescribeImagesInput) error {
-	if waiterImageAvailable == nil {
-		waiterImageAvailable = &waiter.Config{
-			Operation:   "DescribeImages",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Images[].State",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Images[].State",
-					Expected: "failed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeImages",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Images[].State",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Images[].State",
+				Expected: "failed",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterImageAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterInstanceExists *waiter.Config
 
 func (c *EC2) WaitUntilInstanceExists(input *DescribeInstancesInput) error {
-	if waiterInstanceExists == nil {
-		waiterInstanceExists = &waiter.Config{
-			Operation:   "DescribeInstances",
-			Delay:       5,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "status",
-					Argument: "",
-					Expected: 200,
-				},
-				{
-					State:    "retry",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "InvalidInstanceIDNotFound",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstances",
+		Delay:       5,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "status",
+				Argument: "",
+				Expected: 200,
 			},
-		}
+			{
+				State:    "retry",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "InvalidInstanceIDNotFound",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceExists,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterInstanceRunning *waiter.Config
 
 func (c *EC2) WaitUntilInstanceRunning(input *DescribeInstancesInput) error {
-	if waiterInstanceRunning == nil {
-		waiterInstanceRunning = &waiter.Config{
-			Operation:   "DescribeInstances",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "running",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "shutting-down",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "terminated",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "stopping",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstances",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "running",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "shutting-down",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "terminated",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "stopping",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceRunning,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterInstanceStatusOk *waiter.Config
 
 func (c *EC2) WaitUntilInstanceStatusOk(input *DescribeInstanceStatusInput) error {
-	if waiterInstanceStatusOk == nil {
-		waiterInstanceStatusOk = &waiter.Config{
-			Operation:   "DescribeInstanceStatus",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "InstanceStatuses[].InstanceStatus.Status",
-					Expected: "ok",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstanceStatus",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "InstanceStatuses[].InstanceStatus.Status",
+				Expected: "ok",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceStatusOk,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterInstanceStopped *waiter.Config
 
 func (c *EC2) WaitUntilInstanceStopped(input *DescribeInstancesInput) error {
-	if waiterInstanceStopped == nil {
-		waiterInstanceStopped = &waiter.Config{
-			Operation:   "DescribeInstances",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "stopped",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "pending",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "terminated",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstances",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "stopped",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "pending",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "terminated",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceStopped,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterInstanceTerminated *waiter.Config
 
 func (c *EC2) WaitUntilInstanceTerminated(input *DescribeInstancesInput) error {
-	if waiterInstanceTerminated == nil {
-		waiterInstanceTerminated = &waiter.Config{
-			Operation:   "DescribeInstances",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "terminated",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "pending",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Reservations[].Instances[].State.Name",
-					Expected: "stopping",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstances",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "terminated",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "pending",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Reservations[].Instances[].State.Name",
+				Expected: "stopping",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterInstanceTerminated,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterKeyPairExists *waiter.Config
 
 func (c *EC2) WaitUntilKeyPairExists(input *DescribeKeyPairsInput) error {
-	if waiterKeyPairExists == nil {
-		waiterKeyPairExists = &waiter.Config{
-			Operation:   "DescribeKeyPairs",
-			Delay:       5,
-			MaxAttempts: 6,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "length(KeyPairs[].KeyName) > `0`",
-					Expected: true,
-				},
-				{
-					State:    "retry",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "InvalidKeyPairNotFound",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeKeyPairs",
+		Delay:       5,
+		MaxAttempts: 6,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "length(KeyPairs[].KeyName) > `0`",
+				Expected: true,
 			},
-		}
+			{
+				State:    "retry",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "InvalidKeyPairNotFound",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterKeyPairExists,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterNetworkInterfaceAvailable *waiter.Config
 
 func (c *EC2) WaitUntilNetworkInterfaceAvailable(input *DescribeNetworkInterfacesInput) error {
-	if waiterNetworkInterfaceAvailable == nil {
-		waiterNetworkInterfaceAvailable = &waiter.Config{
-			Operation:   "DescribeNetworkInterfaces",
-			Delay:       20,
-			MaxAttempts: 10,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "NetworkInterfaces[].Status",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "InvalidNetworkInterfaceIDNotFound",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeNetworkInterfaces",
+		Delay:       20,
+		MaxAttempts: 10,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "NetworkInterfaces[].Status",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "InvalidNetworkInterfaceIDNotFound",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterNetworkInterfaceAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterPasswordDataAvailable *waiter.Config
 
 func (c *EC2) WaitUntilPasswordDataAvailable(input *GetPasswordDataInput) error {
-	if waiterPasswordDataAvailable == nil {
-		waiterPasswordDataAvailable = &waiter.Config{
-			Operation:   "GetPasswordData",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "path",
-					Argument: "length(PasswordData) > `0`",
-					Expected: true,
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "GetPasswordData",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "path",
+				Argument: "length(PasswordData) > `0`",
+				Expected: true,
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterPasswordDataAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterSnapshotCompleted *waiter.Config
 
 func (c *EC2) WaitUntilSnapshotCompleted(input *DescribeSnapshotsInput) error {
-	if waiterSnapshotCompleted == nil {
-		waiterSnapshotCompleted = &waiter.Config{
-			Operation:   "DescribeSnapshots",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Snapshots[].State",
-					Expected: "completed",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeSnapshots",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Snapshots[].State",
+				Expected: "completed",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterSnapshotCompleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterSpotInstanceRequestFulfilled *waiter.Config
 
 func (c *EC2) WaitUntilSpotInstanceRequestFulfilled(input *DescribeSpotInstanceRequestsInput) error {
-	if waiterSpotInstanceRequestFulfilled == nil {
-		waiterSpotInstanceRequestFulfilled = &waiter.Config{
-			Operation:   "DescribeSpotInstanceRequests",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "SpotInstanceRequests[].Status.Code",
-					Expected: "fulfilled",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "SpotInstanceRequests[].Status.Code",
-					Expected: "schedule-expired",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "SpotInstanceRequests[].Status.Code",
-					Expected: "canceled-before-fulfillment",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "SpotInstanceRequests[].Status.Code",
-					Expected: "bad-parameters",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "SpotInstanceRequests[].Status.Code",
-					Expected: "system-error",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeSpotInstanceRequests",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "SpotInstanceRequests[].Status.Code",
+				Expected: "fulfilled",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "SpotInstanceRequests[].Status.Code",
+				Expected: "schedule-expired",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "SpotInstanceRequests[].Status.Code",
+				Expected: "canceled-before-fulfillment",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "SpotInstanceRequests[].Status.Code",
+				Expected: "bad-parameters",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "SpotInstanceRequests[].Status.Code",
+				Expected: "system-error",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterSpotInstanceRequestFulfilled,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterSubnetAvailable *waiter.Config
 
 func (c *EC2) WaitUntilSubnetAvailable(input *DescribeSubnetsInput) error {
-	if waiterSubnetAvailable == nil {
-		waiterSubnetAvailable = &waiter.Config{
-			Operation:   "DescribeSubnets",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Subnets[].State",
-					Expected: "available",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeSubnets",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Subnets[].State",
+				Expected: "available",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterSubnetAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterSystemStatusOk *waiter.Config
 
 func (c *EC2) WaitUntilSystemStatusOk(input *DescribeInstanceStatusInput) error {
-	if waiterSystemStatusOk == nil {
-		waiterSystemStatusOk = &waiter.Config{
-			Operation:   "DescribeInstanceStatus",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "InstanceStatuses[].SystemStatus.Status",
-					Expected: "ok",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeInstanceStatus",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "InstanceStatuses[].SystemStatus.Status",
+				Expected: "ok",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterSystemStatusOk,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterVolumeAvailable *waiter.Config
 
 func (c *EC2) WaitUntilVolumeAvailable(input *DescribeVolumesInput) error {
-	if waiterVolumeAvailable == nil {
-		waiterVolumeAvailable = &waiter.Config{
-			Operation:   "DescribeVolumes",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Volumes[].State",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Volumes[].State",
-					Expected: "deleted",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeVolumes",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Volumes[].State",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Volumes[].State",
+				Expected: "deleted",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterVolumeAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterVolumeDeleted *waiter.Config
 
 func (c *EC2) WaitUntilVolumeDeleted(input *DescribeVolumesInput) error {
-	if waiterVolumeDeleted == nil {
-		waiterVolumeDeleted = &waiter.Config{
-			Operation:   "DescribeVolumes",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Volumes[].State",
-					Expected: "deleted",
-				},
-				{
-					State:    "success",
-					Matcher:  "error",
-					Argument: "",
-					Expected: "InvalidVolumeNotFound",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeVolumes",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Volumes[].State",
+				Expected: "deleted",
 			},
-		}
+			{
+				State:    "success",
+				Matcher:  "error",
+				Argument: "",
+				Expected: "InvalidVolumeNotFound",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterVolumeDeleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterVolumeInUse *waiter.Config
 
 func (c *EC2) WaitUntilVolumeInUse(input *DescribeVolumesInput) error {
-	if waiterVolumeInUse == nil {
-		waiterVolumeInUse = &waiter.Config{
-			Operation:   "DescribeVolumes",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Volumes[].State",
-					Expected: "in-use",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "Volumes[].State",
-					Expected: "deleted",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeVolumes",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Volumes[].State",
+				Expected: "in-use",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "Volumes[].State",
+				Expected: "deleted",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterVolumeInUse,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterVpcAvailable *waiter.Config
 
 func (c *EC2) WaitUntilVpcAvailable(input *DescribeVpcsInput) error {
-	if waiterVpcAvailable == nil {
-		waiterVpcAvailable = &waiter.Config{
-			Operation:   "DescribeVpcs",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "Vpcs[].State",
-					Expected: "available",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeVpcs",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "Vpcs[].State",
+				Expected: "available",
 			},
-		}
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterVpcAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
-
-var waiterVpnConnectionAvailable *waiter.Config
 
 func (c *EC2) WaitUntilVpnConnectionAvailable(input *DescribeVpnConnectionsInput) error {
-	if waiterVpnConnectionAvailable == nil {
-		waiterVpnConnectionAvailable = &waiter.Config{
-			Operation:   "DescribeVpnConnections",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "VpnConnections[].State",
-					Expected: "available",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "VpnConnections[].State",
-					Expected: "deleting",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "VpnConnections[].State",
-					Expected: "deleted",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeVpnConnections",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "VpnConnections[].State",
+				Expected: "available",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "VpnConnections[].State",
+				Expected: "deleting",
+			},
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "VpnConnections[].State",
+				Expected: "deleted",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterVpnConnectionAvailable,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }
 
-var waiterVpnConnectionDeleted *waiter.Config
-
 func (c *EC2) WaitUntilVpnConnectionDeleted(input *DescribeVpnConnectionsInput) error {
-	if waiterVpnConnectionDeleted == nil {
-		waiterVpnConnectionDeleted = &waiter.Config{
-			Operation:   "DescribeVpnConnections",
-			Delay:       15,
-			MaxAttempts: 40,
-			Acceptors: []waiter.WaitAcceptor{
-				{
-					State:    "success",
-					Matcher:  "pathAll",
-					Argument: "VpnConnections[].State",
-					Expected: "deleted",
-				},
-				{
-					State:    "failure",
-					Matcher:  "pathAny",
-					Argument: "VpnConnections[].State",
-					Expected: "pending",
-				},
+	waiterCfg := waiter.Config{
+		Operation:   "DescribeVpnConnections",
+		Delay:       15,
+		MaxAttempts: 40,
+		Acceptors: []waiter.WaitAcceptor{
+			{
+				State:    "success",
+				Matcher:  "pathAll",
+				Argument: "VpnConnections[].State",
+				Expected: "deleted",
 			},
-		}
+			{
+				State:    "failure",
+				Matcher:  "pathAny",
+				Argument: "VpnConnections[].State",
+				Expected: "pending",
+			},
+		},
 	}
 
 	w := waiter.Waiter{
 		Client: c,
 		Input:  input,
-		Config: waiterVpnConnectionDeleted,
+		Config: waiterCfg,
 	}
 	return w.Wait()
 }

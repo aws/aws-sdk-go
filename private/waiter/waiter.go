@@ -31,7 +31,7 @@ type WaitAcceptor struct {
 
 // A Waiter provides waiting for an operation to complete.
 type Waiter struct {
-	*Config
+	Config
 	Client interface{}
 	Input  interface{}
 }
@@ -58,7 +58,7 @@ func (w *Waiter) Wait() error {
 				if vals, _ := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
 					result = true
 					for _, val := range vals {
-						if !reflect.DeepEqual(val, a.Expected) {
+						if !awsutil.DeepEqual(val, a.Expected) {
 							result = false
 							break
 						}
@@ -67,7 +67,7 @@ func (w *Waiter) Wait() error {
 			case "pathAny":
 				if vals, _ := awsutil.ValuesAtPath(req.Data, a.Argument); req.Error == nil && vals != nil {
 					for _, val := range vals {
-						if reflect.DeepEqual(val, a.Expected) {
+						if awsutil.DeepEqual(val, a.Expected) {
 							result = true
 							break
 						}
@@ -83,6 +83,10 @@ func (w *Waiter) Wait() error {
 				case "success":
 					return nil // waiter completed
 				case "failure":
+					if req.Error == nil {
+						return awserr.New("ResourceNotReady",
+							fmt.Sprintf("failed waiting for successful resource state"), nil)
+					}
 					return req.Error // waiter failed
 				case "retry":
 					// do nothing, just retry
