@@ -1008,10 +1008,10 @@ func (c *Inspector) UpdateAssessment(input *UpdateAssessmentInput) (*UpdateAsses
 
 type AddAttributesToFindingsInput struct {
 	// The array of attributes that you want to assign to specified findings.
-	Attributes []*Attribute `locationName:"attributes" type:"list"`
+	Attributes []*Attribute `locationName:"attributes" type:"list" required:"true"`
 
 	// The ARNs specifying the findings that you want to assign attributes to.
-	FindingArns []*string `locationName:"findingArns" type:"list"`
+	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
 
 	metadataAddAttributesToFindingsInput `json:"-" xml:"-"`
 }
@@ -1309,10 +1309,10 @@ func (s AssessmentsFilter) GoString() string {
 
 type AttachAssessmentAndRulesPackageInput struct {
 	// The ARN specifying the assessment to which you want to attach a rules package.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// The ARN specifying the rules package that you want to attach to the assessment.
-	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string"`
+	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
 	metadataAttachAssessmentAndRulesPackageInput `json:"-" xml:"-"`
 }
@@ -1381,10 +1381,10 @@ func (s Attribute) GoString() string {
 type CreateApplicationInput struct {
 	// The user-defined name identifying the application that you want to create.
 	// The name must be unique within the AWS account.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// The ARN specifying the resource group that is used to create the application.
-	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
+	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
 	metadataCreateApplicationInput `json:"-" xml:"-"`
 }
@@ -1426,16 +1426,16 @@ func (s CreateApplicationOutput) GoString() string {
 
 type CreateAssessmentInput struct {
 	// The ARN specifying the application for which you want to create an assessment.
-	ApplicationArn *string `locationName:"applicationArn" type:"string"`
+	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
 	// The user-defined name identifying the assessment that you want to create.
 	// You can create several assessments for an application. The names of the assessments
 	// corresponding to a particular application must be unique.
-	AssessmentName *string `locationName:"assessmentName" type:"string"`
+	AssessmentName *string `locationName:"assessmentName" type:"string" required:"true"`
 
 	// The duration of the assessment in seconds. The default value is 3600 seconds
 	// (one hour). The maximum value is 86400 seconds (one day).
-	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer"`
+	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer" required:"true"`
 
 	// The user-defined attributes that are assigned to every finding generated
 	// by running this assessment.
@@ -1483,7 +1483,7 @@ type CreateResourceGroupInput struct {
 	// A collection of keys and an array of possible values in JSON format.
 	//
 	// For example, [{ "key1" : ["Value1","Value2"]},{"Key2": ["Value3"]}]
-	ResourceGroupTags *string `locationName:"resourceGroupTags" type:"string"`
+	ResourceGroupTags *string `locationName:"resourceGroupTags" type:"string" required:"true"`
 
 	metadataCreateResourceGroupInput `json:"-" xml:"-"`
 }
@@ -1525,7 +1525,7 @@ func (s CreateResourceGroupOutput) GoString() string {
 
 type DeleteApplicationInput struct {
 	// The ARN specifying the application that you want to delete.
-	ApplicationArn *string `locationName:"applicationArn" type:"string"`
+	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
 	metadataDeleteApplicationInput `json:"-" xml:"-"`
 }
@@ -1567,7 +1567,7 @@ func (s DeleteApplicationOutput) GoString() string {
 
 type DeleteAssessmentInput struct {
 	// The ARN specifying the assessment that you want to delete.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	metadataDeleteAssessmentInput `json:"-" xml:"-"`
 }
@@ -1609,7 +1609,7 @@ func (s DeleteAssessmentOutput) GoString() string {
 
 type DeleteRunInput struct {
 	// The ARN specifying the assessment run that you want to delete.
-	RunArn *string `locationName:"runArn" type:"string"`
+	RunArn *string `locationName:"runArn" type:"string" required:"true"`
 
 	metadataDeleteRunInput `json:"-" xml:"-"`
 }
@@ -1651,7 +1651,7 @@ func (s DeleteRunOutput) GoString() string {
 
 type DescribeApplicationInput struct {
 	// The ARN specifying the application that you want to describe.
-	ApplicationArn *string `locationName:"applicationArn" type:"string"`
+	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
 	metadataDescribeApplicationInput `json:"-" xml:"-"`
 }
@@ -1693,7 +1693,7 @@ func (s DescribeApplicationOutput) GoString() string {
 
 type DescribeAssessmentInput struct {
 	// The ARN specifying the assessment that you want to describe.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	metadataDescribeAssessmentInput `json:"-" xml:"-"`
 }
@@ -1778,7 +1778,7 @@ func (s DescribeCrossAccountAccessRoleOutput) GoString() string {
 
 type DescribeFindingInput struct {
 	// The ARN specifying the finding that you want to describe.
-	FindingArn *string `locationName:"findingArn" type:"string"`
+	FindingArn *string `locationName:"findingArn" type:"string" required:"true"`
 
 	metadataDescribeFindingInput `json:"-" xml:"-"`
 }
@@ -1820,7 +1820,7 @@ func (s DescribeFindingOutput) GoString() string {
 
 type DescribeResourceGroupInput struct {
 	// The ARN specifying the resource group that you want to describe.
-	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
+	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
 	metadataDescribeResourceGroupInput `json:"-" xml:"-"`
 }
@@ -1862,7 +1862,7 @@ func (s DescribeResourceGroupOutput) GoString() string {
 
 type DescribeRulesPackageInput struct {
 	// The ARN specifying the rules package that you want to describe.
-	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string"`
+	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
 	metadataDescribeRulesPackageInput `json:"-" xml:"-"`
 }
@@ -1904,7 +1904,7 @@ func (s DescribeRulesPackageOutput) GoString() string {
 
 type DescribeRunInput struct {
 	// The ARN specifying the assessment run that you want to describe.
-	RunArn *string `locationName:"runArn" type:"string"`
+	RunArn *string `locationName:"runArn" type:"string" required:"true"`
 
 	metadataDescribeRunInput `json:"-" xml:"-"`
 }
@@ -1946,10 +1946,10 @@ func (s DescribeRunOutput) GoString() string {
 
 type DetachAssessmentAndRulesPackageInput struct {
 	// The ARN specifying the assessment from which you want to detach a rules package.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// The ARN specifying the rules package that you want to detach from the assessment.
-	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string"`
+	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
 	metadataDetachAssessmentAndRulesPackageInput `json:"-" xml:"-"`
 }
@@ -2120,7 +2120,7 @@ func (s FindingsFilter) GoString() string {
 
 type GetAssessmentTelemetryInput struct {
 	// The ARN specifying the assessment the telemetry of which you want to obtain.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	metadataGetAssessmentTelemetryInput `json:"-" xml:"-"`
 }
@@ -2225,7 +2225,7 @@ func (s ListApplicationsOutput) GoString() string {
 
 type ListAssessmentAgentsInput struct {
 	// The ARN specifying the assessment whose agents you want to list.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// You can use this parameter to specify a subset of data to be included in
 	// the action's response.
@@ -2376,7 +2376,7 @@ type ListAttachedAssessmentsInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ARN specifying the rules package whose assessments you want to list.
-	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string"`
+	RulesPackageArn *string `locationName:"rulesPackageArn" type:"string" required:"true"`
 
 	metadataListAttachedAssessmentsInput `json:"-" xml:"-"`
 }
@@ -2424,7 +2424,7 @@ func (s ListAttachedAssessmentsOutput) GoString() string {
 
 type ListAttachedRulesPackagesInput struct {
 	// The ARN specifying the assessment whose rules packages you want to list.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// You can use this parameter to indicate the maximum number of items you want
 	// in the response. The default value is 10. The maximum value is 500.
@@ -2670,7 +2670,7 @@ func (s ListRunsOutput) GoString() string {
 
 type ListTagsForResourceInput struct {
 	// The ARN specifying the resource whose tags you want to list.
-	ResourceArn *string `locationName:"resourceArn" type:"string"`
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
 	metadataListTagsForResourceInput `json:"-" xml:"-"`
 }
@@ -2712,10 +2712,10 @@ func (s ListTagsForResourceOutput) GoString() string {
 
 type LocalizeTextInput struct {
 	// The locale that you want to translate a textual identifier into.
-	Locale *string `locationName:"locale" type:"string"`
+	Locale *string `locationName:"locale" type:"string" required:"true"`
 
 	// A list of textual identifiers.
-	LocalizedTexts []*LocalizedText `locationName:"localizedTexts" type:"list"`
+	LocalizedTexts []*LocalizedText `locationName:"localizedTexts" type:"list" required:"true"`
 
 	metadataLocalizeTextInput `json:"-" xml:"-"`
 }
@@ -2880,7 +2880,7 @@ type PreviewAgentsForResourceGroupInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The ARN of the resource group that is used to create an application.
-	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
+	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
 	metadataPreviewAgentsForResourceGroupInput `json:"-" xml:"-"`
 }
@@ -2929,7 +2929,7 @@ func (s PreviewAgentsForResourceGroupOutput) GoString() string {
 type RegisterCrossAccountAccessRoleInput struct {
 	// The ARN of the IAM role that Inspector uses to list your EC2 instances during
 	// the assessment.
-	RoleArn *string `locationName:"roleArn" type:"string"`
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	metadataRegisterCrossAccountAccessRoleInput `json:"-" xml:"-"`
 }
@@ -2971,10 +2971,10 @@ func (s RegisterCrossAccountAccessRoleOutput) GoString() string {
 
 type RemoveAttributesFromFindingsInput struct {
 	// The array of attribute keys that you want to remove from specified findings.
-	AttributeKeys []*string `locationName:"attributeKeys" type:"list"`
+	AttributeKeys []*string `locationName:"attributeKeys" type:"list" required:"true"`
 
 	// The ARNs specifying the findings that you want to remove attributes from.
-	FindingArns []*string `locationName:"findingArns" type:"list"`
+	FindingArns []*string `locationName:"findingArns" type:"list" required:"true"`
 
 	metadataRemoveAttributesFromFindingsInput `json:"-" xml:"-"`
 }
@@ -3134,10 +3134,10 @@ func (s Run) GoString() string {
 
 type RunAssessmentInput struct {
 	// The ARN of the assessment that you want to run.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// A name specifying the run of the assessment.
-	RunName *string `locationName:"runName" type:"string"`
+	RunName *string `locationName:"runName" type:"string" required:"true"`
 
 	metadataRunAssessmentInput `json:"-" xml:"-"`
 }
@@ -3223,7 +3223,7 @@ func (s RunsFilter) GoString() string {
 
 type SetTagsForResourceInput struct {
 	// The ARN of the assessment that you want to set tags to.
-	ResourceArn *string `locationName:"resourceArn" type:"string"`
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
 
 	// A collection of key and value pairs that you want to set to an assessment.
 	Tags []*Tag `locationName:"tags" type:"list"`
@@ -3269,7 +3269,7 @@ func (s SetTagsForResourceOutput) GoString() string {
 type StartDataCollectionInput struct {
 	// The ARN of the assessment for which you want to start the data collection
 	// process.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	metadataStartDataCollectionInput `json:"-" xml:"-"`
 }
@@ -3312,7 +3312,7 @@ func (s StartDataCollectionOutput) GoString() string {
 type StopDataCollectionInput struct {
 	// The ARN of the assessment for which you want to stop the data collection
 	// process.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	metadataStopDataCollectionInput `json:"-" xml:"-"`
 }
@@ -3437,13 +3437,13 @@ func (s TimestampRange) GoString() string {
 
 type UpdateApplicationInput struct {
 	// Application ARN that you want to update.
-	ApplicationArn *string `locationName:"applicationArn" type:"string"`
+	ApplicationArn *string `locationName:"applicationArn" type:"string" required:"true"`
 
 	// Application name that you want to update.
-	ApplicationName *string `locationName:"applicationName" type:"string"`
+	ApplicationName *string `locationName:"applicationName" type:"string" required:"true"`
 
 	// The resource group ARN that you want to update.
-	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
+	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string" required:"true"`
 
 	metadataUpdateApplicationInput `json:"-" xml:"-"`
 }
@@ -3485,14 +3485,14 @@ func (s UpdateApplicationOutput) GoString() string {
 
 type UpdateAssessmentInput struct {
 	// Asessment ARN that you want to update.
-	AssessmentArn *string `locationName:"assessmentArn" type:"string"`
+	AssessmentArn *string `locationName:"assessmentArn" type:"string" required:"true"`
 
 	// Assessment name that you want to update.
-	AssessmentName *string `locationName:"assessmentName" type:"string"`
+	AssessmentName *string `locationName:"assessmentName" type:"string" required:"true"`
 
 	// Assessment duration in seconds that you want to update. The default value
 	// is 3600 seconds (one hour). The maximum value is 86400 seconds (one day).
-	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer"`
+	DurationInSeconds *int64 `locationName:"durationInSeconds" type:"integer" required:"true"`
 
 	metadataUpdateAssessmentInput `json:"-" xml:"-"`
 }

@@ -4,10 +4,10 @@
     "apiVersion":"2015-08-18",
     "endpointPrefix":"inspector",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"Amazon Inspector",
     "signatureVersion":"v4",
-    "targetPrefix":"InspectorService",
-    "protocol":"json"
+    "targetPrefix":"InspectorService"
   },
   "operations":{
     "AddAttributesToFindings":{
@@ -19,23 +19,10 @@
       "input":{"shape":"AddAttributesToFindingsRequest"},
       "output":{"shape":"AddAttributesToFindingsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "AttachAssessmentAndRulesPackage":{
@@ -47,23 +34,10 @@
       "input":{"shape":"AttachAssessmentAndRulesPackageRequest"},
       "output":{"shape":"AttachAssessmentAndRulesPackageResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "CreateApplication":{
@@ -75,23 +49,10 @@
       "input":{"shape":"CreateApplicationRequest"},
       "output":{"shape":"CreateApplicationResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "CreateAssessment":{
@@ -103,23 +64,10 @@
       "input":{"shape":"CreateAssessmentRequest"},
       "output":{"shape":"CreateAssessmentResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "CreateResourceGroup":{
@@ -131,19 +79,9 @@
       "input":{"shape":"CreateResourceGroupRequest"},
       "output":{"shape":"CreateResourceGroupResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeleteApplication":{
@@ -155,27 +93,11 @@
       "input":{"shape":"DeleteApplicationRequest"},
       "output":{"shape":"DeleteApplicationResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"OperationInProgressException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationInProgressException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DeleteAssessment":{
@@ -187,27 +109,11 @@
       "input":{"shape":"DeleteAssessmentRequest"},
       "output":{"shape":"DeleteAssessmentResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"OperationInProgressException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationInProgressException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DeleteRun":{
@@ -219,23 +125,10 @@
       "input":{"shape":"DeleteRunRequest"},
       "output":{"shape":"DeleteRunResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DescribeApplication":{
@@ -247,23 +140,10 @@
       "input":{"shape":"DescribeApplicationRequest"},
       "output":{"shape":"DescribeApplicationResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DescribeAssessment":{
@@ -275,23 +155,10 @@
       "input":{"shape":"DescribeAssessmentRequest"},
       "output":{"shape":"DescribeAssessmentResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DescribeCrossAccountAccessRole":{
@@ -302,15 +169,8 @@
       },
       "output":{"shape":"DescribeCrossAccountAccessRoleResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeFinding":{
@@ -322,23 +182,10 @@
       "input":{"shape":"DescribeFindingRequest"},
       "output":{"shape":"DescribeFindingResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DescribeResourceGroup":{
@@ -350,23 +197,10 @@
       "input":{"shape":"DescribeResourceGroupRequest"},
       "output":{"shape":"DescribeResourceGroupResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DescribeRulesPackage":{
@@ -378,23 +212,10 @@
       "input":{"shape":"DescribeRulesPackageRequest"},
       "output":{"shape":"DescribeRulesPackageResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DescribeRun":{
@@ -406,23 +227,10 @@
       "input":{"shape":"DescribeRunRequest"},
       "output":{"shape":"DescribeRunResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "DetachAssessmentAndRulesPackage":{
@@ -434,23 +242,10 @@
       "input":{"shape":"DetachAssessmentAndRulesPackageRequest"},
       "output":{"shape":"DetachAssessmentAndRulesPackageResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "GetAssessmentTelemetry":{
@@ -462,23 +257,10 @@
       "input":{"shape":"GetAssessmentTelemetryRequest"},
       "output":{"shape":"GetAssessmentTelemetryResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListApplications":{
@@ -490,19 +272,9 @@
       "input":{"shape":"ListApplicationsRequest"},
       "output":{"shape":"ListApplicationsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListAssessmentAgents":{
@@ -514,23 +286,10 @@
       "input":{"shape":"ListAssessmentAgentsRequest"},
       "output":{"shape":"ListAssessmentAgentsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListAssessments":{
@@ -542,23 +301,10 @@
       "input":{"shape":"ListAssessmentsRequest"},
       "output":{"shape":"ListAssessmentsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListAttachedAssessments":{
@@ -570,23 +316,10 @@
       "input":{"shape":"ListAttachedAssessmentsRequest"},
       "output":{"shape":"ListAttachedAssessmentsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListAttachedRulesPackages":{
@@ -598,23 +331,10 @@
       "input":{"shape":"ListAttachedRulesPackagesRequest"},
       "output":{"shape":"ListAttachedRulesPackagesResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListFindings":{
@@ -626,23 +346,10 @@
       "input":{"shape":"ListFindingsRequest"},
       "output":{"shape":"ListFindingsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListRulesPackages":{
@@ -654,19 +361,9 @@
       "input":{"shape":"ListRulesPackagesRequest"},
       "output":{"shape":"ListRulesPackagesResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListRuns":{
@@ -678,23 +375,10 @@
       "input":{"shape":"ListRunsRequest"},
       "output":{"shape":"ListRunsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "ListTagsForResource":{
@@ -706,23 +390,10 @@
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "LocalizeText":{
@@ -734,23 +405,10 @@
       "input":{"shape":"LocalizeTextRequest"},
       "output":{"shape":"LocalizeTextResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "PreviewAgentsForResourceGroup":{
@@ -762,27 +420,11 @@
       "input":{"shape":"PreviewAgentsForResourceGroupRequest"},
       "output":{"shape":"PreviewAgentsForResourceGroupResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidCrossAccountRoleException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidCrossAccountRoleException"}
       ]
     },
     "RegisterCrossAccountAccessRole":{
@@ -794,23 +436,10 @@
       "input":{"shape":"RegisterCrossAccountAccessRoleRequest"},
       "output":{"shape":"RegisterCrossAccountAccessRoleResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidCrossAccountRoleException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidCrossAccountRoleException"}
       ]
     },
     "RemoveAttributesFromFindings":{
@@ -822,23 +451,10 @@
       "input":{"shape":"RemoveAttributesFromFindingsRequest"},
       "output":{"shape":"RemoveAttributesFromFindingsResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "RunAssessment":{
@@ -850,23 +466,10 @@
       "input":{"shape":"RunAssessmentRequest"},
       "output":{"shape":"RunAssessmentResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "SetTagsForResource":{
@@ -878,23 +481,10 @@
       "input":{"shape":"SetTagsForResourceRequest"},
       "output":{"shape":"SetTagsForResourceResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "StartDataCollection":{
@@ -906,27 +496,11 @@
       "input":{"shape":"StartDataCollectionRequest"},
       "output":{"shape":"StartDataCollectionResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidCrossAccountRoleException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"},
+        {"shape":"InvalidCrossAccountRoleException"}
       ]
     },
     "StopDataCollection":{
@@ -938,23 +512,10 @@
       "input":{"shape":"StopDataCollectionRequest"},
       "output":{"shape":"StopDataCollectionResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "UpdateApplication":{
@@ -966,23 +527,10 @@
       "input":{"shape":"UpdateApplicationRequest"},
       "output":{"shape":"UpdateApplicationResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     },
     "UpdateAssessment":{
@@ -994,23 +542,10 @@
       "input":{"shape":"UpdateAssessmentRequest"},
       "output":{"shape":"UpdateAssessmentResponse"},
       "errors":[
-        {
-          "shape":"InternalException",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidInputException",
-          "exception":true
-        },
-        {
-          "shape":"AccessDeniedException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchEntityException",
-          "exception":true
-        }
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NoSuchEntityException"}
       ]
     }
   },
@@ -1023,6 +558,10 @@
     },
     "AddAttributesToFindingsRequest":{
       "type":"structure",
+      "required":[
+        "findingArns",
+        "attributes"
+      ],
       "members":{
         "findingArns":{"shape":"ArnList"},
         "attributes":{"shape":"AttributeList"}
@@ -1128,6 +667,10 @@
     },
     "AttachAssessmentAndRulesPackageRequest":{
       "type":"structure",
+      "required":[
+        "assessmentArn",
+        "rulesPackageArn"
+      ],
       "members":{
         "assessmentArn":{"shape":"Arn"},
         "rulesPackageArn":{"shape":"Arn"}
@@ -1161,6 +704,10 @@
     "Bool":{"type":"boolean"},
     "CreateApplicationRequest":{
       "type":"structure",
+      "required":[
+        "applicationName",
+        "resourceGroupArn"
+      ],
       "members":{
         "applicationName":{"shape":"Name"},
         "resourceGroupArn":{"shape":"Arn"}
@@ -1174,6 +721,11 @@
     },
     "CreateAssessmentRequest":{
       "type":"structure",
+      "required":[
+        "applicationArn",
+        "assessmentName",
+        "durationInSeconds"
+      ],
       "members":{
         "applicationArn":{"shape":"Arn"},
         "assessmentName":{"shape":"Name"},
@@ -1189,6 +741,7 @@
     },
     "CreateResourceGroupRequest":{
       "type":"structure",
+      "required":["resourceGroupTags"],
       "members":{
         "resourceGroupTags":{"shape":"ResourceGroupTags"}
       }
@@ -1201,6 +754,7 @@
     },
     "DeleteApplicationRequest":{
       "type":"structure",
+      "required":["applicationArn"],
       "members":{
         "applicationArn":{"shape":"Arn"}
       }
@@ -1213,6 +767,7 @@
     },
     "DeleteAssessmentRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"}
       }
@@ -1225,6 +780,7 @@
     },
     "DeleteRunRequest":{
       "type":"structure",
+      "required":["runArn"],
       "members":{
         "runArn":{"shape":"Arn"}
       }
@@ -1237,6 +793,7 @@
     },
     "DescribeApplicationRequest":{
       "type":"structure",
+      "required":["applicationArn"],
       "members":{
         "applicationArn":{"shape":"Arn"}
       }
@@ -1249,6 +806,7 @@
     },
     "DescribeAssessmentRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"}
       }
@@ -1268,6 +826,7 @@
     },
     "DescribeFindingRequest":{
       "type":"structure",
+      "required":["findingArn"],
       "members":{
         "findingArn":{"shape":"Arn"}
       }
@@ -1280,6 +839,7 @@
     },
     "DescribeResourceGroupRequest":{
       "type":"structure",
+      "required":["resourceGroupArn"],
       "members":{
         "resourceGroupArn":{"shape":"Arn"}
       }
@@ -1292,6 +852,7 @@
     },
     "DescribeRulesPackageRequest":{
       "type":"structure",
+      "required":["rulesPackageArn"],
       "members":{
         "rulesPackageArn":{"shape":"Arn"}
       }
@@ -1304,6 +865,7 @@
     },
     "DescribeRunRequest":{
       "type":"structure",
+      "required":["runArn"],
       "members":{
         "runArn":{"shape":"Arn"}
       }
@@ -1316,6 +878,10 @@
     },
     "DetachAssessmentAndRulesPackageRequest":{
       "type":"structure",
+      "required":[
+        "assessmentArn",
+        "rulesPackageArn"
+      ],
       "members":{
         "assessmentArn":{"shape":"Arn"},
         "rulesPackageArn":{"shape":"Arn"}
@@ -1365,6 +931,7 @@
     },
     "GetAssessmentTelemetryRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"}
       }
@@ -1412,6 +979,7 @@
     },
     "ListAssessmentAgentsRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"},
         "filter":{"shape":"AgentsFilter"},
@@ -1444,6 +1012,7 @@
     },
     "ListAttachedAssessmentsRequest":{
       "type":"structure",
+      "required":["rulesPackageArn"],
       "members":{
         "rulesPackageArn":{"shape":"Arn"},
         "filter":{"shape":"AssessmentsFilter"},
@@ -1460,6 +1029,7 @@
     },
     "ListAttachedRulesPackagesRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"},
         "nextToken":{"shape":"PaginationToken"},
@@ -1521,6 +1091,7 @@
     },
     "ListTagsForResourceRequest":{
       "type":"structure",
+      "required":["resourceArn"],
       "members":{
         "resourceArn":{"shape":"Arn"}
       }
@@ -1534,6 +1105,10 @@
     "Locale":{"type":"string"},
     "LocalizeTextRequest":{
       "type":"structure",
+      "required":[
+        "localizedTexts",
+        "locale"
+      ],
       "members":{
         "localizedTexts":{"shape":"LocalizedTextList"},
         "locale":{"shape":"Locale"}
@@ -1619,6 +1194,7 @@
     "ParameterValue":{"type":"string"},
     "PreviewAgentsForResourceGroupRequest":{
       "type":"structure",
+      "required":["resourceGroupArn"],
       "members":{
         "resourceGroupArn":{"shape":"Arn"},
         "nextToken":{"shape":"PaginationToken"},
@@ -1634,6 +1210,7 @@
     },
     "RegisterCrossAccountAccessRoleRequest":{
       "type":"structure",
+      "required":["roleArn"],
       "members":{
         "roleArn":{"shape":"Arn"}
       }
@@ -1646,6 +1223,10 @@
     },
     "RemoveAttributesFromFindingsRequest":{
       "type":"structure",
+      "required":[
+        "findingArns",
+        "attributeKeys"
+      ],
       "members":{
         "findingArns":{"shape":"ArnList"},
         "attributeKeys":{"shape":"AttributeKeyList"}
@@ -1689,6 +1270,10 @@
     },
     "RunAssessmentRequest":{
       "type":"structure",
+      "required":[
+        "assessmentArn",
+        "runName"
+      ],
       "members":{
         "assessmentArn":{"shape":"Arn"},
         "runName":{"shape":"Name"}
@@ -1717,6 +1302,7 @@
     },
     "SetTagsForResourceRequest":{
       "type":"structure",
+      "required":["resourceArn"],
       "members":{
         "resourceArn":{"shape":"Arn"},
         "tags":{"shape":"TagList"}
@@ -1735,6 +1321,7 @@
     },
     "StartDataCollectionRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"}
       }
@@ -1747,6 +1334,7 @@
     },
     "StopDataCollectionRequest":{
       "type":"structure",
+      "required":["assessmentArn"],
       "members":{
         "assessmentArn":{"shape":"Arn"}
       }
@@ -1797,6 +1385,11 @@
     },
     "UpdateApplicationRequest":{
       "type":"structure",
+      "required":[
+        "applicationArn",
+        "applicationName",
+        "resourceGroupArn"
+      ],
       "members":{
         "applicationArn":{"shape":"Arn"},
         "applicationName":{"shape":"Name"},
@@ -1811,6 +1404,11 @@
     },
     "UpdateAssessmentRequest":{
       "type":"structure",
+      "required":[
+        "assessmentArn",
+        "assessmentName",
+        "durationInSeconds"
+      ],
       "members":{
         "assessmentArn":{"shape":"Arn"},
         "assessmentName":{"shape":"Name"},
