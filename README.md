@@ -9,23 +9,6 @@ aws-sdk-go is the official AWS SDK for the Go programming language.
 
 Checkout our [release notes](https://github.com/aws/aws-sdk-go/releases) for information about the latest bug fixes, updates, and features added to the SDK.
 
-**Release [v0.10.0](http://aws.amazon.com/releasenotes/5476699172355228) introduced a breaking change to the SDK.**
-
-Updates SDK by adding `session.Session` replacing the global `defaults.DefaultConfig`. A session is used to store configuration and request handler settings for service clients. Each service client's `New` function now takes a session as the first parameter, and an optional `aws.Config`, which will be used for the specific client instance being created.
-
-See the [Getting Started Configuration](https://github.com/aws/aws-sdk-go/wiki/Getting-Started-Configuration) wiki for more information on how to use sessions within your application.
-
-## Caution
-
-The SDK is currently in the process of being developed, and not everything
-may be working fully yet. Please be patient and report any bugs or problems
-you experience. The APIs may change radically without much warning, so please
-vendor your dependencies with Godep or similar.
-
-Please do not confuse this for a stable, feature-complete library.
-
-If you've encountered any issues usign the SDK please open a [GitHub issue](https://github.com/aws/aws-sdk-go/issues).
-
 ## Installing
 
 If you are using Go 1.5 with the `GO15VENDOREXPERIMENT=1` vendoring flag you can use the following to get the SDK as the SDK's runtime dependancies are vendored in the `vendor` folder.
