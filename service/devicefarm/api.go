@@ -1304,6 +1304,14 @@ type CreateUploadInput struct {
 	// UIAUTOMATOR_TEST_PACKAGE: A uiautomator test package upload.
 	//
 	// XCTEST_TEST_PACKAGE: An XCode test package upload.
+	//
+	// APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.
+	//
+	// APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package
+	// upload.
+	//
+	//  Note If you call CreateUpload with WEB_APP specified, AWS Device Farm throws
+	// an ArgumentException error.
 	Type *string `locationName:"type" type:"string" required:"true" enum:"UploadType"`
 
 	metadataCreateUploadInput `json:"-" xml:"-"`
@@ -1772,7 +1780,7 @@ func (s GetDeviceOutput) GoString() string {
 // Represents a request to the get device pool compatibility operation.
 type GetDevicePoolCompatibilityInput struct {
 	// The ARN of the app that is associated with the specified device pool.
-	AppArn *string `locationName:"appArn" min:"32" type:"string" required:"true"`
+	AppArn *string `locationName:"appArn" min:"32" type:"string"`
 
 	// The device pool's ARN.
 	DevicePoolArn *string `locationName:"devicePoolArn" min:"32" type:"string" required:"true"`
@@ -3388,7 +3396,7 @@ func (s ScheduleRunConfiguration) GoString() string {
 // Represents a request to the schedule run operation.
 type ScheduleRunInput struct {
 	// The ARN of the app to schedule a run.
-	AppArn *string `locationName:"appArn" min:"32" type:"string" required:"true"`
+	AppArn *string `locationName:"appArn" min:"32" type:"string"`
 
 	// Information about the settings for the run to be scheduled.
 	Configuration *ScheduleRunConfiguration `locationName:"configuration" type:"structure"`
@@ -3883,6 +3891,11 @@ type Upload struct {
 	// UIAUTOMATOR_TEST_PACKAGE: A uiautomator test package upload.
 	//
 	// XCTEST_TEST_PACKAGE: An XCode test package upload.
+	//
+	// APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.
+	//
+	// APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package
+	// upload.
 	Type *string `locationName:"type" type:"string" enum:"UploadType"`
 
 	// The pre-signed Amazon S3 URL that was used to store a file through a corresponding
@@ -3928,6 +3941,8 @@ const (
 	ArtifactTypeResultLog = "RESULT_LOG"
 	// @enum ArtifactType
 	ArtifactTypeServiceLog = "SERVICE_LOG"
+	// @enum ArtifactType
+	ArtifactTypeWebkitLog = "WEBKIT_LOG"
 	// @enum ArtifactType
 	ArtifactTypeInstrumentationOutput = "INSTRUMENTATION_OUTPUT"
 	// @enum ArtifactType
@@ -4085,6 +4100,10 @@ const (
 	// @enum TestType
 	TestTypeAppiumJavaTestng = "APPIUM_JAVA_TESTNG"
 	// @enum TestType
+	TestTypeAppiumWebJavaJunit = "APPIUM_WEB_JAVA_JUNIT"
+	// @enum TestType
+	TestTypeAppiumWebJavaTestng = "APPIUM_WEB_JAVA_TESTNG"
+	// @enum TestType
 	TestTypeCalabash = "CALABASH"
 	// @enum TestType
 	TestTypeInstrumentation = "INSTRUMENTATION"
@@ -4113,11 +4132,17 @@ const (
 	// @enum UploadType
 	UploadTypeIosApp = "IOS_APP"
 	// @enum UploadType
+	UploadTypeWebApp = "WEB_APP"
+	// @enum UploadType
 	UploadTypeExternalData = "EXTERNAL_DATA"
 	// @enum UploadType
 	UploadTypeAppiumJavaJunitTestPackage = "APPIUM_JAVA_JUNIT_TEST_PACKAGE"
 	// @enum UploadType
 	UploadTypeAppiumJavaTestngTestPackage = "APPIUM_JAVA_TESTNG_TEST_PACKAGE"
+	// @enum UploadType
+	UploadTypeAppiumWebJavaJunitTestPackage = "APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE"
+	// @enum UploadType
+	UploadTypeAppiumWebJavaTestngTestPackage = "APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE"
 	// @enum UploadType
 	UploadTypeCalabashTestPackage = "CALABASH_TEST_PACKAGE"
 	// @enum UploadType

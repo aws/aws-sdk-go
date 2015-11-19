@@ -220,8 +220,8 @@ func ExampleDeviceFarm_GetDevicePoolCompatibility() {
 	svc := devicefarm.New(session.New())
 
 	params := &devicefarm.GetDevicePoolCompatibilityInput{
-		AppArn:        aws.String("AmazonResourceName"), // Required
 		DevicePoolArn: aws.String("AmazonResourceName"), // Required
+		AppArn:        aws.String("AmazonResourceName"),
 		TestType:      aws.String("TestType"),
 	}
 	resp, err := svc.GetDevicePoolCompatibility(params)
@@ -577,7 +577,6 @@ func ExampleDeviceFarm_ScheduleRun() {
 	svc := devicefarm.New(session.New())
 
 	params := &devicefarm.ScheduleRunInput{
-		AppArn:        aws.String("AmazonResourceName"), // Required
 		DevicePoolArn: aws.String("AmazonResourceName"), // Required
 		ProjectArn:    aws.String("AmazonResourceName"), // Required
 		Test: &devicefarm.ScheduleRunTest{ // Required
@@ -589,6 +588,7 @@ func ExampleDeviceFarm_ScheduleRun() {
 			},
 			TestPackageArn: aws.String("AmazonResourceName"),
 		},
+		AppArn: aws.String("AmazonResourceName"),
 		Configuration: &devicefarm.ScheduleRunConfiguration{
 			AuxiliaryApps: []*string{
 				aws.String("AmazonResourceName"), // Required

@@ -1,5 +1,6 @@
 {
   "version": "2.0",
+  "service": "<p>AWS Device Farm is a service that enables mobile app developers to test Android, iOS, and Fire OS apps on physical phones, tablets, and other devices in the cloud.</p>",
   "operations": {
     "CreateDevicePool": "<p>Creates a device pool.</p>",
     "CreateProject": "<p>Creates a new project.</p>",
@@ -33,7 +34,6 @@
     "UpdateDevicePool": "<p>Modifies the name, description, and rules in a device pool given the attributes and the pool ARN. Rule updates are all-or-nothing, meaning they can only be updated as a whole (or not at all).</p>",
     "UpdateProject": "<p>Modifies the specified project name, given the project ARN and a new name.</p>"
   },
-  "service": "<p>AWS Device Farm is a service that enables mobile app developers to test Android, iOS, and Fire OS apps on physical phones, tablets, and other devices in the cloud.</p>",
   "shapes": {
     "AWSAccountNumber": {
       "base": null,
@@ -992,8 +992,8 @@
     "UploadType": {
       "base": null,
       "refs": {
-        "CreateUploadRequest$type": "<p>The upload's upload type.</p> <p>Must be one of the following values:</p> <ul> <li><p>ANDROID_APP: An Android upload.</p></li> <li><p>IOS_APP: An iOS upload.</p></li> <li><p>EXTERNAL_DATA: An external data upload.</p></li> <li><p>APPIUM_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.</p></li> <li><p>APPIUM_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.</p></li> <li><p>CALABASH_TEST_PACKAGE: A Calabash test package upload.</p></li> <li><p>INSTRUMENTATION_TEST_PACKAGE: An instrumentation upload.</p></li> <li><p>UIAUTOMATOR_TEST_PACKAGE: A uiautomator test package upload.</p></li> <li><p>XCTEST_TEST_PACKAGE: An XCode test package upload.</p></li> </ul>",
-        "Upload$type": "<p>The upload's type.</p> <p>Must be one of the following values:</p> <ul> <li><p>ANDROID_APP: An Android upload.</p></li> <li><p>IOS_APP: An iOS upload.</p></li> <li><p>EXTERNAL_DATA: An external data upload.</p></li> <li><p>APPIUM_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.</p></li> <li><p>APPIUM_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.</p></li> <li><p>CALABASH_TEST_PACKAGE: A Calabash test package upload.</p></li> <li><p>INSTRUMENTATION_TEST_PACKAGE: An instrumentation upload.</p></li> <li><p>UIAUTOMATOR_TEST_PACKAGE: A uiautomator test package upload.</p></li> <li><p>XCTEST_TEST_PACKAGE: An XCode test package upload.</p></li> </ul>"
+        "CreateUploadRequest$type": "<p>The upload's upload type.</p> <p>Must be one of the following values:</p> <ul> <li><p>ANDROID_APP: An Android upload.</p></li> <li><p>IOS_APP: An iOS upload.</p></li> <li><p>EXTERNAL_DATA: An external data upload.</p></li> <li><p>APPIUM_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.</p></li> <li><p>APPIUM_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.</p></li> <li><p>CALABASH_TEST_PACKAGE: A Calabash test package upload.</p></li> <li><p>INSTRUMENTATION_TEST_PACKAGE: An instrumentation upload.</p></li> <li><p>UIAUTOMATOR_TEST_PACKAGE: A uiautomator test package upload.</p></li> <li><p>XCTEST_TEST_PACKAGE: An XCode test package upload.</p></li> <li><p>APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.</p></li> <li><p>APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.</p></li> </ul> <p><b>Note</b> If you call <code>CreateUpload</code> with <code>WEB_APP</code> specified, AWS Device Farm throws an <a>ArgumentException</a> error.</p>",
+        "Upload$type": "<p>The upload's type.</p> <p>Must be one of the following values:</p> <ul> <li><p>ANDROID_APP: An Android upload.</p></li> <li><p>IOS_APP: An iOS upload.</p></li> <li><p>EXTERNAL_DATA: An external data upload.</p></li> <li><p>APPIUM_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.</p></li> <li><p>APPIUM_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.</p></li> <li><p>CALABASH_TEST_PACKAGE: A Calabash test package upload.</p></li> <li><p>INSTRUMENTATION_TEST_PACKAGE: An instrumentation upload.</p></li> <li><p>UIAUTOMATOR_TEST_PACKAGE: A uiautomator test package upload.</p></li> <li><p>XCTEST_TEST_PACKAGE: An XCode test package upload.</p></li> <li><p>APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE: An Appium Java JUnit test package upload.</p></li> <li><p>APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE: An Appium Java TestNG test package upload.</p></li> </ul>"
       }
     },
     "Uploads": {

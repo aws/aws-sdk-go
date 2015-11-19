@@ -4,10 +4,10 @@
     "apiVersion":"2015-06-23",
     "endpointPrefix":"devicefarm",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"AWS Device Farm",
     "signatureVersion":"v4",
-    "targetPrefix":"DeviceFarm_20150623",
-    "protocol":"json"
+    "targetPrefix":"DeviceFarm_20150623"
   },
   "operations":{
     "CreateDevicePool":{
@@ -19,22 +19,10 @@
       "input":{"shape":"CreateDevicePoolRequest"},
       "output":{"shape":"CreateDevicePoolResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "CreateProject":{
@@ -46,22 +34,10 @@
       "input":{"shape":"CreateProjectRequest"},
       "output":{"shape":"CreateProjectResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "CreateUpload":{
@@ -73,22 +49,10 @@
       "input":{"shape":"CreateUploadRequest"},
       "output":{"shape":"CreateUploadResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "DeleteDevicePool":{
@@ -100,22 +64,10 @@
       "input":{"shape":"DeleteDevicePoolRequest"},
       "output":{"shape":"DeleteDevicePoolResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "DeleteProject":{
@@ -127,22 +79,10 @@
       "input":{"shape":"DeleteProjectRequest"},
       "output":{"shape":"DeleteProjectResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "DeleteRun":{
@@ -154,22 +94,10 @@
       "input":{"shape":"DeleteRunRequest"},
       "output":{"shape":"DeleteRunResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "DeleteUpload":{
@@ -181,22 +109,10 @@
       "input":{"shape":"DeleteUploadRequest"},
       "output":{"shape":"DeleteUploadResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetAccountSettings":{
@@ -208,22 +124,10 @@
       "input":{"shape":"GetAccountSettingsRequest"},
       "output":{"shape":"GetAccountSettingsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetDevice":{
@@ -235,22 +139,10 @@
       "input":{"shape":"GetDeviceRequest"},
       "output":{"shape":"GetDeviceResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetDevicePool":{
@@ -262,22 +154,10 @@
       "input":{"shape":"GetDevicePoolRequest"},
       "output":{"shape":"GetDevicePoolResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetDevicePoolCompatibility":{
@@ -289,22 +169,10 @@
       "input":{"shape":"GetDevicePoolCompatibilityRequest"},
       "output":{"shape":"GetDevicePoolCompatibilityResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetJob":{
@@ -316,22 +184,10 @@
       "input":{"shape":"GetJobRequest"},
       "output":{"shape":"GetJobResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetProject":{
@@ -343,22 +199,10 @@
       "input":{"shape":"GetProjectRequest"},
       "output":{"shape":"GetProjectResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetRun":{
@@ -370,22 +214,10 @@
       "input":{"shape":"GetRunRequest"},
       "output":{"shape":"GetRunResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetSuite":{
@@ -397,22 +229,10 @@
       "input":{"shape":"GetSuiteRequest"},
       "output":{"shape":"GetSuiteResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetTest":{
@@ -424,22 +244,10 @@
       "input":{"shape":"GetTestRequest"},
       "output":{"shape":"GetTestResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "GetUpload":{
@@ -451,22 +259,10 @@
       "input":{"shape":"GetUploadRequest"},
       "output":{"shape":"GetUploadResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListArtifacts":{
@@ -478,22 +274,10 @@
       "input":{"shape":"ListArtifactsRequest"},
       "output":{"shape":"ListArtifactsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListDevicePools":{
@@ -505,22 +289,10 @@
       "input":{"shape":"ListDevicePoolsRequest"},
       "output":{"shape":"ListDevicePoolsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListDevices":{
@@ -532,22 +304,10 @@
       "input":{"shape":"ListDevicesRequest"},
       "output":{"shape":"ListDevicesResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListJobs":{
@@ -559,22 +319,10 @@
       "input":{"shape":"ListJobsRequest"},
       "output":{"shape":"ListJobsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListProjects":{
@@ -586,22 +334,10 @@
       "input":{"shape":"ListProjectsRequest"},
       "output":{"shape":"ListProjectsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListRuns":{
@@ -613,22 +349,10 @@
       "input":{"shape":"ListRunsRequest"},
       "output":{"shape":"ListRunsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListSamples":{
@@ -640,22 +364,10 @@
       "input":{"shape":"ListSamplesRequest"},
       "output":{"shape":"ListSamplesResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListSuites":{
@@ -667,22 +379,10 @@
       "input":{"shape":"ListSuitesRequest"},
       "output":{"shape":"ListSuitesResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListTests":{
@@ -694,22 +394,10 @@
       "input":{"shape":"ListTestsRequest"},
       "output":{"shape":"ListTestsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListUniqueProblems":{
@@ -721,22 +409,10 @@
       "input":{"shape":"ListUniqueProblemsRequest"},
       "output":{"shape":"ListUniqueProblemsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ListUploads":{
@@ -748,22 +424,10 @@
       "input":{"shape":"ListUploadsRequest"},
       "output":{"shape":"ListUploadsResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "ScheduleRun":{
@@ -775,26 +439,11 @@
       "input":{"shape":"ScheduleRunRequest"},
       "output":{"shape":"ScheduleRunResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"IdempotencyException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"IdempotencyException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "UpdateDevicePool":{
@@ -806,22 +455,10 @@
       "input":{"shape":"UpdateDevicePoolRequest"},
       "output":{"shape":"UpdateDevicePoolResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     },
     "UpdateProject":{
@@ -833,30 +470,18 @@
       "input":{"shape":"UpdateProjectRequest"},
       "output":{"shape":"UpdateProjectResult"},
       "errors":[
-        {
-          "shape":"ArgumentException",
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ServiceAccountException",
-          "exception":true
-        }
+        {"shape":"ArgumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ServiceAccountException"}
       ]
     }
   },
   "shapes":{
     "AWSAccountNumber":{
       "type":"string",
-      "min":2,
-      "max":16
+      "max":16,
+      "min":2
     },
     "AccountSettings":{
       "type":"structure",
@@ -907,6 +532,7 @@
         "MESSAGE_LOG",
         "RESULT_LOG",
         "SERVICE_LOG",
+        "WEBKIT_LOG",
         "INSTRUMENTATION_OUTPUT",
         "EXERCISER_MONKEY_OUTPUT",
         "CALABASH_JSON_OUTPUT",
@@ -944,8 +570,8 @@
     },
     "ContentType":{
       "type":"string",
-      "min":0,
-      "max":64
+      "max":64,
+      "min":0
     },
     "Counters":{
       "type":"structure",
@@ -1173,8 +799,8 @@
     },
     "Filter":{
       "type":"string",
-      "min":0,
-      "max":1024
+      "max":1024,
+      "min":0
     },
     "GetAccountSettingsRequest":{
       "type":"structure",
@@ -1189,10 +815,7 @@
     },
     "GetDevicePoolCompatibilityRequest":{
       "type":"structure",
-      "required":[
-        "devicePoolArn",
-        "appArn"
-      ],
+      "required":["devicePoolArn"],
       "members":{
         "devicePoolArn":{"shape":"AmazonResourceName"},
         "appArn":{"shape":"AmazonResourceName"},
@@ -1539,18 +1162,18 @@
     "Long":{"type":"long"},
     "Message":{
       "type":"string",
-      "min":0,
-      "max":8192
+      "max":8192,
+      "min":0
     },
     "Metadata":{
       "type":"string",
-      "min":0,
-      "max":1024
+      "max":1024,
+      "min":0
     },
     "Name":{
       "type":"string",
-      "min":0,
-      "max":256
+      "max":256,
+      "min":0
     },
     "NotFoundException":{
       "type":"structure",
@@ -1561,8 +1184,8 @@
     },
     "PaginationToken":{
       "type":"string",
-      "min":4,
-      "max":1024
+      "max":1024,
+      "min":4
     },
     "Problem":{
       "type":"structure",
@@ -1716,7 +1339,6 @@
       "type":"structure",
       "required":[
         "projectArn",
-        "appArn",
         "devicePoolArn",
         "test"
       ],
@@ -1801,6 +1423,8 @@
         "BUILTIN_EXPLORER",
         "APPIUM_JAVA_JUNIT",
         "APPIUM_JAVA_TESTNG",
+        "APPIUM_WEB_JAVA_JUNIT",
+        "APPIUM_WEB_JAVA_TESTNG",
         "CALABASH",
         "INSTRUMENTATION",
         "UIAUTOMATION",
@@ -1814,8 +1438,8 @@
     },
     "URL":{
       "type":"string",
-      "min":0,
-      "max":2048
+      "max":2048,
+      "min":0
     },
     "UniqueProblem":{
       "type":"structure",
@@ -1891,9 +1515,12 @@
       "enum":[
         "ANDROID_APP",
         "IOS_APP",
+        "WEB_APP",
         "EXTERNAL_DATA",
         "APPIUM_JAVA_JUNIT_TEST_PACKAGE",
         "APPIUM_JAVA_TESTNG_TEST_PACKAGE",
+        "APPIUM_WEB_JAVA_JUNIT_TEST_PACKAGE",
+        "APPIUM_WEB_JAVA_TESTNG_TEST_PACKAGE",
         "CALABASH_TEST_PACKAGE",
         "INSTRUMENTATION_TEST_PACKAGE",
         "UIAUTOMATION_TEST_PACKAGE",
