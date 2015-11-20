@@ -405,7 +405,6 @@ func (c *S3) DeleteObjects(input *DeleteObjectsInput) (*DeleteObjectsOutput, err
 // This operation enables you to delete multiple objects from a bucket using
 // prefix matching in a single HTTP request
 func (c *S3) DeleteAllObjects(input *ListObjectsInput) (*DeleteObjectsOutput, error) {
-
 	res, err := c.ListObjects(input)
 
 	if err == nil && res.Contents != nil {
@@ -434,9 +433,9 @@ func (c *S3) DeleteAllObjects(input *ListObjectsInput) (*DeleteObjectsOutput, er
 				Delete: batchDelete,
 			}
 
-			result, err := c.DeleteObjects(batchParams)
-			if err != nil {
-				return result, err
+			result, er := c.DeleteObjects(batchParams)
+			if er != nil {
+				return result, er
 			}
 		}
 	}
