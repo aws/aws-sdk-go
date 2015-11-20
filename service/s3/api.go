@@ -402,6 +402,49 @@ func (c *S3) DeleteObjects(input *DeleteObjectsInput) (*DeleteObjectsOutput, err
 	return out, err
 }
 
+// This operation enables you to delete multiple objects from a bucket using
+// prefix matching in a single HTTP request
+func (c *S3) DeleteAllObjects(input *ListObjectsInput) (*DeleteObjectsOutput, error) {
+
+	res, err := c.ListObjects(input)
+
+	if err == nil && res.Contents != nil {
+		var objectIdentifiers []*ObjectIdentifier
+		var batchDelete *Delete
+		var batchParams *DeleteObjectsInput
+
+		for _, object := range res.Contents {
+			objectIdentifiers = append(objectIdentifiers, &ObjectIdentifier{Key: object.Key})
+		}
+
+		batchSize := 1000
+		for i:=0; i<len(objectIdentifiers); i+=batchSize {
+			if i+batchSize > len(objectIdentifiers) {
+				batchDelete = &Delete{
+					Objects: objectIdentifiers,
+				}
+			} else {
+				batchDelete = &Delete{
+					Objects: objectIdentifiers[i:i+batchSize],
+				}
+			}
+
+			batchParams = &DeleteObjectsInput{
+				Bucket: input.Bucket,
+				Delete: batchDelete,
+			}
+
+			result, err := c.DeleteObjects(batchParams)
+			if err != nil {
+				return result, err
+			}
+		}
+	}
+
+	return nil, err
+
+}
+
 const opGetBucketAcl = "GetBucketAcl"
 
 // GetBucketAclRequest generates a request for the GetBucketAcl operation.
