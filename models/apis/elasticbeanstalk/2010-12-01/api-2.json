@@ -3,11 +3,11 @@
   "metadata":{
     "apiVersion":"2010-12-01",
     "endpointPrefix":"elasticbeanstalk",
+    "protocol":"query",
     "serviceAbbreviation":"Elastic Beanstalk",
     "serviceFullName":"AWS Elastic Beanstalk",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/",
-    "protocol":"query"
+    "xmlNamespace":"http://elasticbeanstalk.amazonaws.com/docs/2010-12-01/"
   },
   "operations":{
     "AbortEnvironmentUpdate":{
@@ -18,15 +18,7 @@
       },
       "input":{"shape":"AbortEnvironmentUpdateMessage"},
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "CheckDNSAvailability":{
@@ -41,6 +33,22 @@
         "resultWrapper":"CheckDNSAvailabilityResult"
       }
     },
+    "ComposeEnvironments":{
+      "name":"ComposeEnvironments",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ComposeEnvironmentsMessage"},
+      "output":{
+        "shape":"EnvironmentDescriptionsMessage",
+        "resultWrapper":"ComposeEnvironmentsResult"
+      },
+      "errors":[
+        {"shape":"TooManyEnvironmentsException"},
+        {"shape":"InsufficientPrivilegesException"}
+      ]
+    },
     "CreateApplication":{
       "name":"CreateApplication",
       "http":{
@@ -53,15 +61,7 @@
         "resultWrapper":"CreateApplicationResult"
       },
       "errors":[
-        {
-          "shape":"TooManyApplicationsException",
-          "error":{
-            "code":"TooManyApplicationsException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"TooManyApplicationsException"}
       ]
     },
     "CreateApplicationVersion":{
@@ -76,37 +76,10 @@
         "resultWrapper":"CreateApplicationVersionResult"
       },
       "errors":[
-        {
-          "shape":"TooManyApplicationsException",
-          "error":{
-            "code":"TooManyApplicationsException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyApplicationVersionsException",
-          "exception":true
-        },
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"S3LocationNotInServiceRegionException",
-          "error":{
-            "code":"S3LocationNotInServiceRegionException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"TooManyApplicationsException"},
+        {"shape":"TooManyApplicationVersionsException"},
+        {"shape":"InsufficientPrivilegesException"},
+        {"shape":"S3LocationNotInServiceRegionException"}
       ]
     },
     "CreateConfigurationTemplate":{
@@ -121,24 +94,8 @@
         "resultWrapper":"CreateConfigurationTemplateResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyConfigurationTemplatesException",
-          "error":{
-            "code":"TooManyConfigurationTemplatesException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"},
+        {"shape":"TooManyConfigurationTemplatesException"}
       ]
     },
     "CreateEnvironment":{
@@ -153,24 +110,8 @@
         "resultWrapper":"CreateEnvironmentResult"
       },
       "errors":[
-        {
-          "shape":"TooManyEnvironmentsException",
-          "error":{
-            "code":"TooManyEnvironmentsException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"TooManyEnvironmentsException"},
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "CreateStorageLocation":{
@@ -184,33 +125,9 @@
         "resultWrapper":"CreateStorageLocationResult"
       },
       "errors":[
-        {
-          "shape":"TooManyBucketsException",
-          "error":{
-            "code":"TooManyBucketsException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"S3SubscriptionRequiredException",
-          "error":{
-            "code":"S3SubscriptionRequiredException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"TooManyBucketsException"},
+        {"shape":"S3SubscriptionRequiredException"},
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "DeleteApplication":{
@@ -221,15 +138,7 @@
       },
       "input":{"shape":"DeleteApplicationMessage"},
       "errors":[
-        {
-          "shape":"OperationInProgressException",
-          "error":{
-            "code":"OperationInProgressFailure",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"OperationInProgressException"}
       ]
     },
     "DeleteApplicationVersion":{
@@ -240,42 +149,10 @@
       },
       "input":{"shape":"DeleteApplicationVersionMessage"},
       "errors":[
-        {
-          "shape":"SourceBundleDeletionException",
-          "error":{
-            "code":"SourceBundleDeletionFailure",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"OperationInProgressException",
-          "error":{
-            "code":"OperationInProgressFailure",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"S3LocationNotInServiceRegionException",
-          "error":{
-            "code":"S3LocationNotInServiceRegionException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SourceBundleDeletionException"},
+        {"shape":"InsufficientPrivilegesException"},
+        {"shape":"OperationInProgressException"},
+        {"shape":"S3LocationNotInServiceRegionException"}
       ]
     },
     "DeleteConfigurationTemplate":{
@@ -286,15 +163,7 @@
       },
       "input":{"shape":"DeleteConfigurationTemplateMessage"},
       "errors":[
-        {
-          "shape":"OperationInProgressException",
-          "error":{
-            "code":"OperationInProgressFailure",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"OperationInProgressException"}
       ]
     },
     "DeleteEnvironmentConfiguration":{
@@ -365,19 +234,8 @@
         "resultWrapper":"DescribeEnvironmentHealthResult"
       },
       "errors":[
-        {
-          "shape":"InvalidRequestException",
-          "error":{
-            "code":"InvalidRequestException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ElasticBeanstalkServiceException",
-          "exception":true
-        }
+        {"shape":"InvalidRequestException"},
+        {"shape":"ElasticBeanstalkServiceException"}
       ]
     },
     "DescribeEnvironmentResources":{
@@ -392,15 +250,7 @@
         "resultWrapper":"DescribeEnvironmentResourcesResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "DescribeEnvironments":{
@@ -439,19 +289,8 @@
         "resultWrapper":"DescribeInstancesHealthResult"
       },
       "errors":[
-        {
-          "shape":"InvalidRequestException",
-          "error":{
-            "code":"InvalidRequestException",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ElasticBeanstalkServiceException",
-          "exception":true
-        }
+        {"shape":"InvalidRequestException"},
+        {"shape":"ElasticBeanstalkServiceException"}
       ]
     },
     "ListAvailableSolutionStacks":{
@@ -473,15 +312,7 @@
       },
       "input":{"shape":"RebuildEnvironmentMessage"},
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "RequestEnvironmentInfo":{
@@ -532,15 +363,7 @@
         "resultWrapper":"TerminateEnvironmentResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "UpdateApplication":{
@@ -579,15 +402,7 @@
         "resultWrapper":"UpdateConfigurationTemplateResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "UpdateEnvironment":{
@@ -602,15 +417,7 @@
         "resultWrapper":"UpdateEnvironmentResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     },
     "ValidateConfigurationSettings":{
@@ -625,15 +432,7 @@
         "resultWrapper":"ValidateConfigurationSettingsResult"
       },
       "errors":[
-        {
-          "shape":"InsufficientPrivilegesException",
-          "error":{
-            "code":"InsufficientPrivilegesException",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InsufficientPrivilegesException"}
       ]
     }
   },
@@ -684,8 +483,8 @@
     },
     "ApplicationName":{
       "type":"string",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
     },
     "ApplicationNamesList":{
       "type":"list",
@@ -699,7 +498,8 @@
         "VersionLabel":{"shape":"VersionLabel"},
         "SourceBundle":{"shape":"S3Location"},
         "DateCreated":{"shape":"CreationDate"},
-        "DateUpdated":{"shape":"UpdateDate"}
+        "DateUpdated":{"shape":"UpdateDate"},
+        "Status":{"shape":"ApplicationVersionStatus"}
       }
     },
     "ApplicationVersionDescriptionList":{
@@ -717,6 +517,16 @@
       "members":{
         "ApplicationVersions":{"shape":"ApplicationVersionDescriptionList"}
       }
+    },
+    "ApplicationVersionProccess":{"type":"boolean"},
+    "ApplicationVersionStatus":{
+      "type":"string",
+      "enum":[
+        "Processed",
+        "Unprocessed",
+        "Failed",
+        "Processing"
+      ]
     },
     "AutoCreateApplication":{"type":"boolean"},
     "AutoScalingGroup":{
@@ -751,8 +561,8 @@
     },
     "Cause":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "Causes":{
       "type":"list",
@@ -773,6 +583,14 @@
       }
     },
     "CnameAvailability":{"type":"boolean"},
+    "ComposeEnvironmentsMessage":{
+      "type":"structure",
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "GroupName":{"shape":"GroupName"},
+        "VersionLabels":{"shape":"VersionLabels"}
+      }
+    },
     "ConfigurationDeploymentStatus":{
       "type":"string",
       "enum":[
@@ -869,8 +687,8 @@
     },
     "ConfigurationTemplateName":{
       "type":"string",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
     },
     "ConfigurationTemplateNamesList":{
       "type":"list",
@@ -895,7 +713,8 @@
         "VersionLabel":{"shape":"VersionLabel"},
         "Description":{"shape":"Description"},
         "SourceBundle":{"shape":"S3Location"},
-        "AutoCreateApplication":{"shape":"AutoCreateApplication"}
+        "AutoCreateApplication":{"shape":"AutoCreateApplication"},
+        "Process":{"shape":"ApplicationVersionProccess"}
       }
     },
     "CreateConfigurationTemplateMessage":{
@@ -916,13 +735,11 @@
     },
     "CreateEnvironmentMessage":{
       "type":"structure",
-      "required":[
-        "ApplicationName",
-        "EnvironmentName"
-      ],
+      "required":["ApplicationName"],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "EnvironmentName":{"shape":"EnvironmentName"},
+        "GroupName":{"shape":"GroupName"},
         "Description":{"shape":"Description"},
         "CNAMEPrefix":{"shape":"DNSCnamePrefix"},
         "Tier":{"shape":"EnvironmentTier"},
@@ -943,13 +760,13 @@
     "CreationDate":{"type":"timestamp"},
     "DNSCname":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "DNSCnamePrefix":{
       "type":"string",
-      "min":4,
-      "max":63
+      "max":63,
+      "min":4
     },
     "DeleteApplicationMessage":{
       "type":"structure",
@@ -1130,7 +947,8 @@
         "Health":{"shape":"EnvironmentHealth"},
         "HealthStatus":{"shape":"EnvironmentHealthStatus"},
         "Resources":{"shape":"EnvironmentResourcesDescription"},
-        "Tier":{"shape":"EnvironmentTier"}
+        "Tier":{"shape":"EnvironmentTier"},
+        "EnvironmentLinks":{"shape":"EnvironmentLinks"}
       }
     },
     "EnvironmentDescriptionsList":{
@@ -1207,10 +1025,21 @@
         "bundle"
       ]
     },
+    "EnvironmentLink":{
+      "type":"structure",
+      "members":{
+        "LinkName":{"shape":"String"},
+        "EnvironmentName":{"shape":"String"}
+      }
+    },
+    "EnvironmentLinks":{
+      "type":"list",
+      "member":{"shape":"EnvironmentLink"}
+    },
     "EnvironmentName":{
       "type":"string",
-      "min":4,
-      "max":23
+      "max":23,
+      "min":4
     },
     "EnvironmentNamesList":{
       "type":"list",
@@ -1298,8 +1127,14 @@
     "ExceptionMessage":{"type":"string"},
     "FileTypeExtension":{
       "type":"string",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
+    },
+    "ForceTerminate":{"type":"boolean"},
+    "GroupName":{
+      "type":"string",
+      "max":19,
+      "min":1
     },
     "IncludeDeleted":{"type":"boolean"},
     "IncludeDeletedBackTo":{"type":"timestamp"},
@@ -1328,8 +1163,8 @@
     },
     "InstanceId":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "InstanceList":{
       "type":"list",
@@ -1442,14 +1277,14 @@
     },
     "MaxRecords":{
       "type":"integer",
-      "min":1,
-      "max":1000
+      "max":1000,
+      "min":1
     },
     "Message":{"type":"string"},
     "NextToken":{
       "type":"string",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
     },
     "NullableDouble":{"type":"double"},
     "NullableInteger":{"type":"integer"},
@@ -1522,8 +1357,8 @@
     "ResourceId":{"type":"string"},
     "ResourceName":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "RestartAppServerMessage":{
       "type":"structure",
@@ -1665,13 +1500,13 @@
     },
     "TagKey":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "TagValue":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "Tags":{
       "type":"list",
@@ -1683,7 +1518,8 @@
       "members":{
         "EnvironmentId":{"shape":"EnvironmentId"},
         "EnvironmentName":{"shape":"EnvironmentName"},
-        "TerminateResources":{"shape":"TerminateEnvironmentResources"}
+        "TerminateResources":{"shape":"TerminateEnvironmentResources"},
+        "ForceTerminate":{"shape":"ForceTerminate"}
       }
     },
     "TerminateEnvironmentResources":{"type":"boolean"},
@@ -1788,8 +1624,10 @@
     "UpdateEnvironmentMessage":{
       "type":"structure",
       "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
         "EnvironmentId":{"shape":"EnvironmentId"},
         "EnvironmentName":{"shape":"EnvironmentName"},
+        "GroupName":{"shape":"GroupName"},
         "Description":{"shape":"Description"},
         "Tier":{"shape":"EnvironmentTier"},
         "VersionLabel":{"shape":"VersionLabel"},
@@ -1836,8 +1674,12 @@
     },
     "VersionLabel":{
       "type":"string",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
+    },
+    "VersionLabels":{
+      "type":"list",
+      "member":{"shape":"VersionLabel"}
     },
     "VersionLabelsList":{
       "type":"list",

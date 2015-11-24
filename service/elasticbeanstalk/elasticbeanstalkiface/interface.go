@@ -18,6 +18,10 @@ type ElasticBeanstalkAPI interface {
 
 	CheckDNSAvailability(*elasticbeanstalk.CheckDNSAvailabilityInput) (*elasticbeanstalk.CheckDNSAvailabilityOutput, error)
 
+	ComposeEnvironmentsRequest(*elasticbeanstalk.ComposeEnvironmentsInput) (*request.Request, *elasticbeanstalk.EnvironmentDescriptionsMessage)
+
+	ComposeEnvironments(*elasticbeanstalk.ComposeEnvironmentsInput) (*elasticbeanstalk.EnvironmentDescriptionsMessage, error)
+
 	CreateApplicationRequest(*elasticbeanstalk.CreateApplicationInput) (*request.Request, *elasticbeanstalk.ApplicationDescriptionMessage)
 
 	CreateApplication(*elasticbeanstalk.CreateApplicationInput) (*elasticbeanstalk.ApplicationDescriptionMessage, error)
@@ -78,9 +82,9 @@ type ElasticBeanstalkAPI interface {
 
 	DescribeEnvironmentResources(*elasticbeanstalk.DescribeEnvironmentResourcesInput) (*elasticbeanstalk.DescribeEnvironmentResourcesOutput, error)
 
-	DescribeEnvironmentsRequest(*elasticbeanstalk.DescribeEnvironmentsInput) (*request.Request, *elasticbeanstalk.DescribeEnvironmentsOutput)
+	DescribeEnvironmentsRequest(*elasticbeanstalk.DescribeEnvironmentsInput) (*request.Request, *elasticbeanstalk.EnvironmentDescriptionsMessage)
 
-	DescribeEnvironments(*elasticbeanstalk.DescribeEnvironmentsInput) (*elasticbeanstalk.DescribeEnvironmentsOutput, error)
+	DescribeEnvironments(*elasticbeanstalk.DescribeEnvironmentsInput) (*elasticbeanstalk.EnvironmentDescriptionsMessage, error)
 
 	DescribeEventsRequest(*elasticbeanstalk.DescribeEventsInput) (*request.Request, *elasticbeanstalk.DescribeEventsOutput)
 

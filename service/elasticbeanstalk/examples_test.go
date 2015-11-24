@@ -54,6 +54,30 @@ func ExampleElasticBeanstalk_CheckDNSAvailability() {
 	fmt.Println(resp)
 }
 
+func ExampleElasticBeanstalk_ComposeEnvironments() {
+	svc := elasticbeanstalk.New(session.New())
+
+	params := &elasticbeanstalk.ComposeEnvironmentsInput{
+		ApplicationName: aws.String("ApplicationName"),
+		GroupName:       aws.String("GroupName"),
+		VersionLabels: []*string{
+			aws.String("VersionLabel"), // Required
+			// More values...
+		},
+	}
+	resp, err := svc.ComposeEnvironments(params)
+
+	if err != nil {
+		// Print the error, cast err to awserr.Error to get the Code and
+		// Message from an error.
+		fmt.Println(err.Error())
+		return
+	}
+
+	// Pretty-print the response data.
+	fmt.Println(resp)
+}
+
 func ExampleElasticBeanstalk_CreateApplication() {
 	svc := elasticbeanstalk.New(session.New())
 
@@ -82,6 +106,7 @@ func ExampleElasticBeanstalk_CreateApplicationVersion() {
 		VersionLabel:          aws.String("VersionLabel"),    // Required
 		AutoCreateApplication: aws.Bool(true),
 		Description:           aws.String("Description"),
+		Process:               aws.Bool(true),
 		SourceBundle: &elasticbeanstalk.S3Location{
 			S3Bucket: aws.String("S3Bucket"),
 			S3Key:    aws.String("S3Key"),
@@ -141,9 +166,10 @@ func ExampleElasticBeanstalk_CreateEnvironment() {
 
 	params := &elasticbeanstalk.CreateEnvironmentInput{
 		ApplicationName: aws.String("ApplicationName"), // Required
-		EnvironmentName: aws.String("EnvironmentName"), // Required
 		CNAMEPrefix:     aws.String("DNSCnamePrefix"),
 		Description:     aws.String("Description"),
+		EnvironmentName: aws.String("EnvironmentName"),
+		GroupName:       aws.String("GroupName"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
 			{ // Required
 				Namespace:    aws.String("OptionNamespace"),
@@ -639,6 +665,7 @@ func ExampleElasticBeanstalk_TerminateEnvironment() {
 	params := &elasticbeanstalk.TerminateEnvironmentInput{
 		EnvironmentId:      aws.String("EnvironmentId"),
 		EnvironmentName:    aws.String("EnvironmentName"),
+		ForceTerminate:     aws.Bool(true),
 		TerminateResources: aws.Bool(true),
 	}
 	resp, err := svc.TerminateEnvironment(params)
@@ -737,9 +764,11 @@ func ExampleElasticBeanstalk_UpdateEnvironment() {
 	svc := elasticbeanstalk.New(session.New())
 
 	params := &elasticbeanstalk.UpdateEnvironmentInput{
+		ApplicationName: aws.String("ApplicationName"),
 		Description:     aws.String("Description"),
 		EnvironmentId:   aws.String("EnvironmentId"),
 		EnvironmentName: aws.String("EnvironmentName"),
+		GroupName:       aws.String("GroupName"),
 		OptionSettings: []*elasticbeanstalk.ConfigurationOptionSetting{
 			{ // Required
 				Namespace:    aws.String("OptionNamespace"),

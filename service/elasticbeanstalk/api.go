@@ -65,6 +65,39 @@ func (c *ElasticBeanstalk) CheckDNSAvailability(input *CheckDNSAvailabilityInput
 	return out, err
 }
 
+const opComposeEnvironments = "ComposeEnvironments"
+
+// ComposeEnvironmentsRequest generates a request for the ComposeEnvironments operation.
+func (c *ElasticBeanstalk) ComposeEnvironmentsRequest(input *ComposeEnvironmentsInput) (req *request.Request, output *EnvironmentDescriptionsMessage) {
+	op := &request.Operation{
+		Name:       opComposeEnvironments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ComposeEnvironmentsInput{}
+	}
+
+	req = c.newRequest(op, input, output)
+	output = &EnvironmentDescriptionsMessage{}
+	req.Data = output
+	return
+}
+
+// Create or update a group of environments that each run a separate component
+// of a single application. Takes a list of version labels that specify application
+// source bundles for each of the environments to create or update. The name
+// of each environment and other required information must be included in the
+// source bundles in an environment manifest named env.yaml. See Compose Environments
+// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html)
+// for details.
+func (c *ElasticBeanstalk) ComposeEnvironments(input *ComposeEnvironmentsInput) (*EnvironmentDescriptionsMessage, error) {
+	req, out := c.ComposeEnvironmentsRequest(input)
+	err := req.Send()
+	return out, err
+}
+
 const opCreateApplication = "CreateApplication"
 
 // CreateApplicationRequest generates a request for the CreateApplication operation.
@@ -361,7 +394,8 @@ func (c *ElasticBeanstalk) DescribeApplicationVersionsRequest(input *DescribeApp
 	return
 }
 
-// Returns descriptions for existing application versions.
+// Retrieve a list of application versions stored in your AWS Elastic Beanstalk
+// storage bucket.
 func (c *ElasticBeanstalk) DescribeApplicationVersions(input *DescribeApplicationVersionsInput) (*DescribeApplicationVersionsOutput, error) {
 	req, out := c.DescribeApplicationVersionsRequest(input)
 	err := req.Send()
@@ -524,7 +558,7 @@ func (c *ElasticBeanstalk) DescribeEnvironmentResources(input *DescribeEnvironme
 const opDescribeEnvironments = "DescribeEnvironments"
 
 // DescribeEnvironmentsRequest generates a request for the DescribeEnvironments operation.
-func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *request.Request, output *DescribeEnvironmentsOutput) {
+func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (req *request.Request, output *EnvironmentDescriptionsMessage) {
 	op := &request.Operation{
 		Name:       opDescribeEnvironments,
 		HTTPMethod: "POST",
@@ -536,13 +570,13 @@ func (c *ElasticBeanstalk) DescribeEnvironmentsRequest(input *DescribeEnvironmen
 	}
 
 	req = c.newRequest(op, input, output)
-	output = &DescribeEnvironmentsOutput{}
+	output = &EnvironmentDescriptionsMessage{}
 	req.Data = output
 	return
 }
 
 // Returns descriptions for existing environments.
-func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (*DescribeEnvironmentsOutput, error) {
+func (c *ElasticBeanstalk) DescribeEnvironments(input *DescribeEnvironmentsInput) (*EnvironmentDescriptionsMessage, error) {
 	req, out := c.DescribeEnvironmentsRequest(input)
 	err := req.Send()
 	return out, err
@@ -1147,6 +1181,9 @@ type ApplicationVersionDescription struct {
 	// The location where the source bundle is located for this version.
 	SourceBundle *S3Location `type:"structure"`
 
+	// The processing status of the application version.
+	Status *string `type:"string" enum:"ApplicationVersionStatus"`
+
 	// A label uniquely identifying the version for the associated application.
 	VersionLabel *string `min:"1" type:"string"`
 
@@ -1286,11 +1323,7 @@ func (s CheckDNSAvailabilityInput) GoString() string {
 type CheckDNSAvailabilityOutput struct {
 	// Indicates if the specified CNAME is available:
 	//
-	//    true : The CNAME is available.
-	//
-	//    true : The CNAME is not available.
-	//
-	//      true : The CNAME is available.   false : The CNAME is not available.
+	//   true : The CNAME is available.   false : The CNAME is not available.
 	Available *bool `type:"boolean"`
 
 	// The fully qualified CNAME to reserve when CreateEnvironment is called with
@@ -1314,23 +1347,47 @@ func (s CheckDNSAvailabilityOutput) GoString() string {
 	return s.String()
 }
 
+type ComposeEnvironmentsInput struct {
+	// The name of the application to which the specified source bundles belong.
+	ApplicationName *string `min:"1" type:"string"`
+
+	// The name of the group to which the target environments belong. Specify a
+	// group name only if the environment name defined in each target environment's
+	// manifest ends with a + (plus) character. See Environment Manifest (env.yaml)
+	// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml)
+	// for details.
+	GroupName *string `min:"1" type:"string"`
+
+	// A list of version labels, specifying one or more application source bundles
+	// that belong to the target application. Each source bundle must include an
+	// environment manifest that specifies the name of the environment and the name
+	// of the solution stack to use, and optionally can specify environment links
+	// to create.
+	VersionLabels []*string `type:"list"`
+
+	metadataComposeEnvironmentsInput `json:"-" xml:"-"`
+}
+
+type metadataComposeEnvironmentsInput struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s ComposeEnvironmentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComposeEnvironmentsInput) GoString() string {
+	return s.String()
+}
+
 // Describes the possible values for a configuration option.
 type ConfigurationOptionDescription struct {
 	// An indication of which action is required if the value for this configuration
 	// option changes:
 	//
-	//    NoInterruption - There is no interruption to the environment or application
-	// availability.
-	//
-	//    RestartEnvironment - The environment is restarted, all AWS resources
-	// are deleted and recreated, and the environment is unavailable during the
-	// process.
-	//
-	//    RestartApplicationServer - The environment is available the entire time.
-	// However, a short application outage occurs when the application servers on
-	// the running Amazon EC2 instances are restarted.
-	//
-	//     NoInterruption : There is no interruption to the environment or application
+	//   NoInterruption : There is no interruption to the environment or application
 	// availability.   RestartEnvironment : The environment is entirely restarted,
 	// all AWS resources are deleted and recreated, and the environment is unavailable
 	// during the process.   RestartApplicationServer : The environment is available
@@ -1366,12 +1423,6 @@ type ConfigurationOptionDescription struct {
 	// An indication of whether the user defined this configuration option:
 	//
 	//    true : This configuration option was defined by the user. It is a valid
-	// choice for specifying this as an Option to Remove when updating configuration
-	// settings.
-	//
-	//    false : This configuration was not defined by the user.
-	//
-	//      true : This configuration option was defined by the user. It is a valid
 	// choice for specifying if this as an Option to Remove when updating configuration
 	// settings.
 	//
@@ -1388,18 +1439,7 @@ type ConfigurationOptionDescription struct {
 	// An indication of which type of values this option has and whether it is allowable
 	// to select one or more than one of the possible values:
 	//
-	//    Scalar : Values for this option are a single selection from the possible
-	// values, or a unformatted string or numeric value governed by the MIN/MAX/Regex
-	// constraints:
-	//
-	//    List : Values for this option are multiple selections of the possible
-	// values.
-	//
-	//    Boolean : Values for this option are either true or false .
-	//
-	//    Json : Values for this option are a JSON representation of a ConfigDocument.
-	//
-	//      Scalar : Values for this option are a single selection from the possible
+	//   Scalar : Values for this option are a single selection from the possible
 	// values, or an unformatted string, or numeric value governed by the MIN/MAX/Regex
 	// constraints.   List : Values for this option are multiple selections from
 	// the possible values.   Boolean : Values for this option are either true or
@@ -1471,17 +1511,7 @@ type ConfigurationSettingsDescription struct {
 	// If this configuration set is associated with an environment, the DeploymentStatus
 	// parameter indicates the deployment status of this configuration set:
 	//
-	//    null: This configuration is not associated with a running environment.
-	//
-	//    pending: This is a draft configuration that is not deployed to the associated
-	// environment but is in the process of deploying.
-	//
-	//    deployed: This is the configuration that is currently deployed to the
-	// associated running environment.
-	//
-	//    failed: This is a draft configuration, that failed to successfully deploy.
-	//
-	//     null: This configuration is not associated with a running environment.
+	//   null: This configuration is not associated with a running environment.
 	//   pending: This is a draft configuration that is not deployed to the associated
 	// environment but is in the process of deploying.   deployed: This is the configuration
 	// that is currently deployed to the associated running environment.   failed:
@@ -1522,7 +1552,6 @@ func (s ConfigurationSettingsDescription) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type CreateApplicationInput struct {
 	// The name of the application.
 	//
@@ -1558,13 +1587,7 @@ type CreateApplicationVersionInput struct {
 	// Determines how the system behaves if the specified application for this version
 	// does not already exist:
 	//
-	//    true: Automatically creates the specified application for this version
-	// if it does not already exist.
-	//
-	//    false: Returns an InvalidParameterValue if the specified application
-	// for this version does not already exist.
-	//
-	//     true : Automatically creates the specified application for this release
+	//   true : Automatically creates the specified application for this release
 	// if it does not already exist.   false : Throws an InvalidParameterValue if
 	// the specified application for this release does not already exist.    Default:
 	// false
@@ -1574,6 +1597,11 @@ type CreateApplicationVersionInput struct {
 
 	// Describes this version.
 	Description *string `type:"string"`
+
+	// Preprocesses and validates the environment manifest and configuration files
+	// in the source bundle. Validating configuration files can identify issues
+	// prior to deploying the application version to an environment.
+	Process *bool `type:"boolean"`
 
 	// The Amazon S3 bucket and key that identify the location of the source bundle
 	// for this version.
@@ -1612,7 +1640,6 @@ func (s CreateApplicationVersionInput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type CreateConfigurationTemplateInput struct {
 	// The name of the application to associate with this configuration template.
 	// If no application is found with this name, AWS Elastic Beanstalk returns
@@ -1710,7 +1737,14 @@ type CreateEnvironmentInput struct {
 	//
 	// Default: If the CNAME parameter is not specified, the environment name becomes
 	// part of the CNAME, and therefore part of the visible URL for your application.
-	EnvironmentName *string `min:"4" type:"string" required:"true"`
+	EnvironmentName *string `min:"4" type:"string"`
+
+	// The name of the group to which the target environment belongs. Specify a
+	// group name only if the environment's name is specified in an environment
+	// manifest and not with the environment name parameter. See Environment Manifest
+	// (env.yaml) (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml)
+	// for details.
+	GroupName *string `min:"1" type:"string"`
 
 	// If specified, AWS Elastic Beanstalk sets the specified configuration options
 	// to the requested value in the configuration set for the new environment.
@@ -1814,7 +1848,6 @@ func (s CreateStorageLocationOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DeleteApplicationInput struct {
 	// The name of the application to delete.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -1858,7 +1891,6 @@ func (s DeleteApplicationOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DeleteApplicationVersionInput struct {
 	// The name of the application to delete releases from.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -1908,7 +1940,6 @@ func (s DeleteApplicationVersionOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DeleteConfigurationTemplateInput struct {
 	// The name of the application to delete the configuration template from.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -1951,7 +1982,6 @@ func (s DeleteConfigurationTemplateOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DeleteEnvironmentConfigurationInput struct {
 	// The name of the application the environment is associated with.
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -2023,7 +2053,7 @@ func (s DescribeApplicationVersionsInput) GoString() string {
 
 // Result message wrapping a list of application version descriptions.
 type DescribeApplicationVersionsOutput struct {
-	// A list of ApplicationVersionDescription .
+	// List of ApplicationVersionDescription objects sorted by order of creation.
 	ApplicationVersions []*ApplicationVersionDescription `type:"list"`
 
 	metadataDescribeApplicationVersionsOutput `json:"-" xml:"-"`
@@ -2043,7 +2073,6 @@ func (s DescribeApplicationVersionsOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DescribeApplicationsInput struct {
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// only include those with the specified names.
@@ -2214,13 +2243,21 @@ func (s DescribeConfigurationSettingsOutput) GoString() string {
 // See the example below to learn how to create a request body.
 type DescribeEnvironmentHealthInput struct {
 	// Specifies the response elements you wish to receive. If no attribute names
-	// are specified, AWS Elastic Beanstalk returns all response elements.
+	// are specified, AWS Elastic Beanstalk only returns the name of the environment.
 	AttributeNames []*string `type:"list"`
 
 	// Specifies the AWS Elastic Beanstalk environment ID.
+	//
+	// Condition: You must specify either this or an EnvironmentName, or both.
+	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentId *string `type:"string"`
 
 	// Specifies the AWS Elastic Beanstalk environment name.
+	//
+	// Condition: You must specify either this or an EnvironmentId, or both. If
+	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
+	// error.
 	EnvironmentName *string `min:"4" type:"string"`
 
 	metadataDescribeEnvironmentHealthInput `json:"-" xml:"-"`
@@ -2286,7 +2323,6 @@ func (s DescribeEnvironmentHealthOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DescribeEnvironmentResourcesInput struct {
 	// The ID of the environment to retrieve AWS resource usage data.
 	//
@@ -2341,7 +2377,6 @@ func (s DescribeEnvironmentResourcesOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type DescribeEnvironmentsInput struct {
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those that are associated with this application.
@@ -2388,29 +2423,6 @@ func (s DescribeEnvironmentsInput) GoString() string {
 	return s.String()
 }
 
-// Result message containing a list of environment descriptions.
-type DescribeEnvironmentsOutput struct {
-	// Returns an EnvironmentDescription list.
-	Environments []*EnvironmentDescription `type:"list"`
-
-	metadataDescribeEnvironmentsOutput `json:"-" xml:"-"`
-}
-
-type metadataDescribeEnvironmentsOutput struct {
-	SDKShapeTraits bool `type:"structure"`
-}
-
-// String returns the string representation
-func (s DescribeEnvironmentsOutput) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation
-func (s DescribeEnvironmentsOutput) GoString() string {
-	return s.String()
-}
-
-// This documentation target is not reported in the API reference.
 type DescribeEventsInput struct {
 	// If specified, AWS Elastic Beanstalk restricts the returned descriptions to
 	// include only those associated with this application.
@@ -2501,7 +2513,7 @@ func (s DescribeEventsOutput) GoString() string {
 // See the example below to learn how to create a request body.
 type DescribeInstancesHealthInput struct {
 	// Specifies the response elements you wish to receive. If no attribute names
-	// are specified, AWS Elastic Beanstalk returns all response elements.
+	// are specified, AWS Elastic Beanstalk only returns a list of instances.
 	AttributeNames []*string `type:"list"`
 
 	// Specifies the AWS Elastic Beanstalk environment ID.
@@ -2590,26 +2602,22 @@ type EnvironmentDescription struct {
 	// The ID of this environment.
 	EnvironmentId *string `type:"string"`
 
+	// A list of links to other environments in the same group.
+	EnvironmentLinks []*EnvironmentLink `type:"list"`
+
 	// The name of this environment.
 	EnvironmentName *string `min:"4" type:"string"`
 
 	// Describes the health status of the environment. AWS Elastic Beanstalk indicates
 	// the failure levels for a running environment:
 	//
-	//    Red : Indicates the environment is not working.
-	//
-	//    Yellow: Indicates that something is wrong, the application might not
-	// be available, but the instances appear running.
-	//
-	//    Green: Indicates the environment is healthy and fully functional.
-	//
-	//     Red: Indicates the environment is not responsive. Occurs when three
-	// or more consecutive failures occur for an environment.   Yellow: Indicates
-	// that something is wrong. Occurs when two consecutive failures occur for an
-	// environment.   Green: Indicates the environment is healthy and fully functional.
-	//   Grey: Default health for a new environment. The environment is not fully
-	// launched and health checks have not started or health checks are suspended
-	// during an UpdateEnvironment or RestartEnvironement request.    Default: Grey
+	//   Red: Indicates the environment is not responsive. Occurs when three or
+	// more consecutive failures occur for an environment.   Yellow: Indicates that
+	// something is wrong. Occurs when two consecutive failures occur for an environment.
+	//   Green: Indicates the environment is healthy and fully functional.   Grey:
+	// Default health for a new environment. The environment is not fully launched
+	// and health checks have not started or health checks are suspended during
+	// an UpdateEnvironment or RestartEnvironement request.    Default: Grey
 	Health *string `type:"string" enum:"EnvironmentHealth"`
 
 	// Returns the health status of the application running in your environment.
@@ -2657,6 +2665,28 @@ func (s EnvironmentDescription) GoString() string {
 	return s.String()
 }
 
+// Result message containing a list of environment descriptions.
+type EnvironmentDescriptionsMessage struct {
+	// Returns an EnvironmentDescription list.
+	Environments []*EnvironmentDescription `type:"list"`
+
+	metadataEnvironmentDescriptionsMessage `json:"-" xml:"-"`
+}
+
+type metadataEnvironmentDescriptionsMessage struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnvironmentDescriptionsMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnvironmentDescriptionsMessage) GoString() string {
+	return s.String()
+}
+
 // The information retrieved from the Amazon EC2 instances.
 type EnvironmentInfoDescription struct {
 	// The Amazon EC2 Instance ID for this information.
@@ -2685,6 +2715,35 @@ func (s EnvironmentInfoDescription) String() string {
 
 // GoString returns the string representation
 func (s EnvironmentInfoDescription) GoString() string {
+	return s.String()
+}
+
+// A link to another environment, defined in the environment's manifest. Links
+// provide connection information in system properties that can be used to connect
+// to another environment in the same group. See Environment Manifest (env.yaml)
+// (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml)
+// for details.
+type EnvironmentLink struct {
+	// The name of the linked environment (the dependency).
+	EnvironmentName *string `type:"string"`
+
+	// The name of the link.
+	LinkName *string `type:"string"`
+
+	metadataEnvironmentLink `json:"-" xml:"-"`
+}
+
+type metadataEnvironmentLink struct {
+	SDKShapeTraits bool `type:"structure"`
+}
+
+// String returns the string representation
+func (s EnvironmentLink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnvironmentLink) GoString() string {
 	return s.String()
 }
 
@@ -3216,7 +3275,6 @@ func (s RebuildEnvironmentOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type RequestEnvironmentInfoInput struct {
 	// The ID of the environment of the requested data.
 	//
@@ -3326,7 +3384,6 @@ func (s RestartAppServerOutput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type RetrieveEnvironmentInfoInput struct {
 	// The ID of the data's environment.
 	//
@@ -3666,7 +3723,6 @@ func (s Tag) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type TerminateEnvironmentInput struct {
 	// The ID of the environment to terminate.
 	//
@@ -3682,16 +3738,14 @@ type TerminateEnvironmentInput struct {
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
 
+	// Terminates the target environment even if another environment in the same
+	// group is dependent on it.
+	ForceTerminate *bool `type:"boolean"`
+
 	// Indicates whether the associated AWS resources should shut down when the
 	// environment is terminated:
 	//
-	//    true: (default) The user AWS resources (for example, the Auto Scaling
-	// group, LoadBalancer, etc.) are terminated along with the environment.
-	//
-	//    false: The environment is removed from the AWS Elastic Beanstalk but
-	// the AWS resources continue to operate.
-	//
-	//     true: The specified environment as well as the associated AWS resources,
+	//   true: The specified environment as well as the associated AWS resources,
 	// such as Auto Scaling group and LoadBalancer, are terminated.   false: AWS
 	// Elastic Beanstalk resource management is removed from the environment, but
 	// the AWS resources continue to operate.    For more information, see the
@@ -3741,7 +3795,6 @@ func (s Trigger) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type UpdateApplicationInput struct {
 	// The name of the application to update. If no such application is found, UpdateApplication
 	// returns an InvalidParameterValue error.
@@ -3846,8 +3899,10 @@ func (s UpdateConfigurationTemplateInput) GoString() string {
 	return s.String()
 }
 
-// This documentation target is not reported in the API reference.
 type UpdateEnvironmentInput struct {
+	// The name of the application with which the environment is associated.
+	ApplicationName *string `min:"1" type:"string"`
+
 	// If this parameter is specified, AWS Elastic Beanstalk updates the description
 	// of this environment.
 	Description *string `type:"string"`
@@ -3857,7 +3912,7 @@ type UpdateEnvironmentInput struct {
 	//  If no environment with this ID exists, AWS Elastic Beanstalk returns an
 	// InvalidParameterValue error.
 	//
-	//  Condition: You must specify either this or an EnvironmentName, or both.
+	// Condition: You must specify either this or an EnvironmentName, or both.
 	// If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentId *string `type:"string"`
@@ -3865,10 +3920,17 @@ type UpdateEnvironmentInput struct {
 	// The name of the environment to update. If no environment with this name exists,
 	// AWS Elastic Beanstalk returns an InvalidParameterValue error.
 	//
-	//  Condition: You must specify either this or an EnvironmentId, or both. If
+	// Condition: You must specify either this or an EnvironmentId, or both. If
 	// you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter
 	// error.
 	EnvironmentName *string `min:"4" type:"string"`
+
+	// The name of the group to which the target environment belongs. Specify a
+	// group name only if the environment's name is specified in an environment
+	// manifest and not with the environment name or environment ID parameters.
+	// See Environment Manifest (env.yaml) (http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environment-mgmt-compose.html#environment-mgmt-compose-envyaml)
+	// for details.
+	GroupName *string `min:"1" type:"string"`
 
 	// If specified, AWS Elastic Beanstalk updates the configuration set associated
 	// with the running environment and sets the specified configuration options
@@ -3890,7 +3952,7 @@ type UpdateEnvironmentInput struct {
 
 	// This specifies the tier to use to update the environment.
 	//
-	//  Condition: At this time, if you change the tier version, name, or type,
+	// Condition: At this time, if you change the tier version, name, or type,
 	// AWS Elastic Beanstalk returns InvalidParameterValue error.
 	Tier *EnvironmentTier `type:"structure"`
 
@@ -3985,12 +4047,7 @@ type ValidationMessage struct {
 
 	// An indication of the severity of this message:
 	//
-	//    error: This message indicates that this is not a valid setting for an
-	// option.
-	//
-	//    warning: This message is providing information you should take into account.
-	//
-	//     error: This message indicates that this is not a valid setting for an
+	//   error: This message indicates that this is not a valid setting for an
 	// option.   warning: This message is providing information you should take
 	// into account.
 	Severity *string `type:"string" enum:"ValidationSeverity"`
@@ -4011,6 +4068,17 @@ func (s ValidationMessage) String() string {
 func (s ValidationMessage) GoString() string {
 	return s.String()
 }
+
+const (
+	// @enum ApplicationVersionStatus
+	ApplicationVersionStatusProcessed = "Processed"
+	// @enum ApplicationVersionStatus
+	ApplicationVersionStatusUnprocessed = "Unprocessed"
+	// @enum ApplicationVersionStatus
+	ApplicationVersionStatusFailed = "Failed"
+	// @enum ApplicationVersionStatus
+	ApplicationVersionStatusProcessing = "Processing"
+)
 
 const (
 	// @enum ConfigurationDeploymentStatus
