@@ -4,11 +4,11 @@
     "apiVersion":"2014-11-12",
     "endpointPrefix":"config",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceAbbreviation":"Config Service",
     "serviceFullName":"AWS Config",
     "signatureVersion":"v4",
-    "targetPrefix":"StarlingDoveService",
-    "protocol":"json"
+    "targetPrefix":"StarlingDoveService"
   },
   "operations":{
     "DeleteConfigRule":{
@@ -19,10 +19,7 @@
       },
       "input":{"shape":"DeleteConfigRuleRequest"},
       "errors":[
-        {
-          "shape":"NoSuchConfigRuleException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigRuleException"}
       ]
     },
     "DeleteDeliveryChannel":{
@@ -33,14 +30,8 @@
       },
       "input":{"shape":"DeleteDeliveryChannelRequest"},
       "errors":[
-        {
-          "shape":"NoSuchDeliveryChannelException",
-          "exception":true
-        },
-        {
-          "shape":"LastDeliveryChannelDeleteFailedException",
-          "exception":true
-        }
+        {"shape":"NoSuchDeliveryChannelException"},
+        {"shape":"LastDeliveryChannelDeleteFailedException"}
       ]
     },
     "DeliverConfigSnapshot":{
@@ -52,18 +43,9 @@
       "input":{"shape":"DeliverConfigSnapshotRequest"},
       "output":{"shape":"DeliverConfigSnapshotResponse"},
       "errors":[
-        {
-          "shape":"NoSuchDeliveryChannelException",
-          "exception":true
-        },
-        {
-          "shape":"NoAvailableConfigurationRecorderException",
-          "exception":true
-        },
-        {
-          "shape":"NoRunningConfigurationRecorderException",
-          "exception":true
-        }
+        {"shape":"NoSuchDeliveryChannelException"},
+        {"shape":"NoAvailableConfigurationRecorderException"},
+        {"shape":"NoRunningConfigurationRecorderException"}
       ]
     },
     "DescribeComplianceByConfigRule":{
@@ -75,14 +57,8 @@
       "input":{"shape":"DescribeComplianceByConfigRuleRequest"},
       "output":{"shape":"DescribeComplianceByConfigRuleResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchConfigRuleException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"NoSuchConfigRuleException"}
       ]
     },
     "DescribeComplianceByResource":{
@@ -94,14 +70,8 @@
       "input":{"shape":"DescribeComplianceByResourceRequest"},
       "output":{"shape":"DescribeComplianceByResourceResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidNextTokenException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidNextTokenException"}
       ]
     },
     "DescribeConfigRuleEvaluationStatus":{
@@ -113,10 +83,7 @@
       "input":{"shape":"DescribeConfigRuleEvaluationStatusRequest"},
       "output":{"shape":"DescribeConfigRuleEvaluationStatusResponse"},
       "errors":[
-        {
-          "shape":"NoSuchConfigRuleException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigRuleException"}
       ]
     },
     "DescribeConfigRules":{
@@ -128,10 +95,7 @@
       "input":{"shape":"DescribeConfigRulesRequest"},
       "output":{"shape":"DescribeConfigRulesResponse"},
       "errors":[
-        {
-          "shape":"NoSuchConfigRuleException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigRuleException"}
       ]
     },
     "DescribeConfigurationRecorderStatus":{
@@ -143,10 +107,7 @@
       "input":{"shape":"DescribeConfigurationRecorderStatusRequest"},
       "output":{"shape":"DescribeConfigurationRecorderStatusResponse"},
       "errors":[
-        {
-          "shape":"NoSuchConfigurationRecorderException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigurationRecorderException"}
       ]
     },
     "DescribeConfigurationRecorders":{
@@ -158,10 +119,7 @@
       "input":{"shape":"DescribeConfigurationRecordersRequest"},
       "output":{"shape":"DescribeConfigurationRecordersResponse"},
       "errors":[
-        {
-          "shape":"NoSuchConfigurationRecorderException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigurationRecorderException"}
       ]
     },
     "DescribeDeliveryChannelStatus":{
@@ -173,10 +131,7 @@
       "input":{"shape":"DescribeDeliveryChannelStatusRequest"},
       "output":{"shape":"DescribeDeliveryChannelStatusResponse"},
       "errors":[
-        {
-          "shape":"NoSuchDeliveryChannelException",
-          "exception":true
-        }
+        {"shape":"NoSuchDeliveryChannelException"}
       ]
     },
     "DescribeDeliveryChannels":{
@@ -188,10 +143,7 @@
       "input":{"shape":"DescribeDeliveryChannelsRequest"},
       "output":{"shape":"DescribeDeliveryChannelsResponse"},
       "errors":[
-        {
-          "shape":"NoSuchDeliveryChannelException",
-          "exception":true
-        }
+        {"shape":"NoSuchDeliveryChannelException"}
       ]
     },
     "GetComplianceDetailsByConfigRule":{
@@ -203,18 +155,9 @@
       "input":{"shape":"GetComplianceDetailsByConfigRuleRequest"},
       "output":{"shape":"GetComplianceDetailsByConfigRuleResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidNextTokenException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchConfigRuleException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"NoSuchConfigRuleException"}
       ]
     },
     "GetComplianceDetailsByResource":{
@@ -226,10 +169,7 @@
       "input":{"shape":"GetComplianceDetailsByResourceRequest"},
       "output":{"shape":"GetComplianceDetailsByResourceResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "GetComplianceSummaryByConfigRule":{
@@ -249,10 +189,7 @@
       "input":{"shape":"GetComplianceSummaryByResourceTypeRequest"},
       "output":{"shape":"GetComplianceSummaryByResourceTypeResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "GetResourceConfigHistory":{
@@ -264,30 +201,12 @@
       "input":{"shape":"GetResourceConfigHistoryRequest"},
       "output":{"shape":"GetResourceConfigHistoryResponse"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidTimeRangeException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidLimitException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidNextTokenException",
-          "exception":true
-        },
-        {
-          "shape":"NoAvailableConfigurationRecorderException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotDiscoveredException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"InvalidTimeRangeException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"NoAvailableConfigurationRecorderException"},
+        {"shape":"ResourceNotDiscoveredException"}
       ]
     },
     "ListDiscoveredResources":{
@@ -299,22 +218,10 @@
       "input":{"shape":"ListDiscoveredResourcesRequest"},
       "output":{"shape":"ListDiscoveredResourcesResponse"},
       "errors":[
-        {
-          "shape":"ValidationException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidLimitException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidNextTokenException",
-          "exception":true
-        },
-        {
-          "shape":"NoAvailableConfigurationRecorderException",
-          "exception":true
-        }
+        {"shape":"ValidationException"},
+        {"shape":"InvalidLimitException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"NoAvailableConfigurationRecorderException"}
       ]
     },
     "PutConfigRule":{
@@ -325,18 +232,9 @@
       },
       "input":{"shape":"PutConfigRuleRequest"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        },
-        {
-          "shape":"MaxNumberOfConfigRulesExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceInUseException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MaxNumberOfConfigRulesExceededException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "PutConfigurationRecorder":{
@@ -347,22 +245,10 @@
       },
       "input":{"shape":"PutConfigurationRecorderRequest"},
       "errors":[
-        {
-          "shape":"MaxNumberOfConfigurationRecordersExceededException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidConfigurationRecorderNameException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRoleException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRecordingGroupException",
-          "exception":true
-        }
+        {"shape":"MaxNumberOfConfigurationRecordersExceededException"},
+        {"shape":"InvalidConfigurationRecorderNameException"},
+        {"shape":"InvalidRoleException"},
+        {"shape":"InvalidRecordingGroupException"}
       ]
     },
     "PutDeliveryChannel":{
@@ -373,34 +259,13 @@
       },
       "input":{"shape":"PutDeliveryChannelRequest"},
       "errors":[
-        {
-          "shape":"MaxNumberOfDeliveryChannelsExceededException",
-          "exception":true
-        },
-        {
-          "shape":"NoAvailableConfigurationRecorderException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidDeliveryChannelNameException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchBucketException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidS3KeyPrefixException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidSNSTopicARNException",
-          "exception":true
-        },
-        {
-          "shape":"InsufficientDeliveryPolicyException",
-          "exception":true
-        }
+        {"shape":"MaxNumberOfDeliveryChannelsExceededException"},
+        {"shape":"NoAvailableConfigurationRecorderException"},
+        {"shape":"InvalidDeliveryChannelNameException"},
+        {"shape":"NoSuchBucketException"},
+        {"shape":"InvalidS3KeyPrefixException"},
+        {"shape":"InvalidSNSTopicARNException"},
+        {"shape":"InsufficientDeliveryPolicyException"}
       ]
     },
     "PutEvaluations":{
@@ -412,18 +277,9 @@
       "input":{"shape":"PutEvaluationsRequest"},
       "output":{"shape":"PutEvaluationsResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterValueException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidResultTokenException",
-          "exception":true
-        },
-        {
-          "shape":"NoSuchConfigRuleException",
-          "exception":true
-        }
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidResultTokenException"},
+        {"shape":"NoSuchConfigRuleException"}
       ]
     },
     "StartConfigurationRecorder":{
@@ -434,14 +290,8 @@
       },
       "input":{"shape":"StartConfigurationRecorderRequest"},
       "errors":[
-        {
-          "shape":"NoSuchConfigurationRecorderException",
-          "exception":true
-        },
-        {
-          "shape":"NoAvailableDeliveryChannelException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigurationRecorderException"},
+        {"shape":"NoAvailableDeliveryChannelException"}
       ]
     },
     "StopConfigurationRecorder":{
@@ -452,10 +302,7 @@
       },
       "input":{"shape":"StopConfigurationRecorderRequest"},
       "errors":[
-        {
-          "shape":"NoSuchConfigurationRecorderException",
-          "exception":true
-        }
+        {"shape":"NoSuchConfigurationRecorderException"}
       ]
     }
   },
@@ -468,8 +315,8 @@
     "Boolean":{"type":"boolean"},
     "ChannelName":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "ChronologicalOrder":{
       "type":"string",
@@ -518,8 +365,8 @@
     "ComplianceResourceTypes":{
       "type":"list",
       "member":{"shape":"StringWithCharLimit256"},
-      "min":0,
-      "max":100
+      "max":100,
+      "min":0
     },
     "ComplianceSummariesByResourceType":{
       "type":"list",
@@ -552,8 +399,8 @@
     "ComplianceTypes":{
       "type":"list",
       "member":{"shape":"ComplianceType"},
-      "min":0,
-      "max":3
+      "max":3,
+      "min":0
     },
     "ConfigExportDeliveryInfo":{
       "type":"structure",
@@ -601,8 +448,8 @@
     "ConfigRuleNames":{
       "type":"list",
       "member":{"shape":"StringWithCharLimit64"},
-      "min":0,
-      "max":25
+      "max":25,
+      "min":0
     },
     "ConfigRuleState":{
       "type":"string",
@@ -878,8 +725,8 @@
     "EarlierTime":{"type":"timestamp"},
     "EmptiableStringWithCharLimit256":{
       "type":"string",
-      "min":0,
-      "max":256
+      "max":256,
+      "min":0
     },
     "Evaluation":{
       "type":"structure",
@@ -930,8 +777,8 @@
     "Evaluations":{
       "type":"list",
       "member":{"shape":"Evaluation"},
-      "min":0,
-      "max":100
+      "max":100,
+      "min":0
     },
     "EventSource":{
       "type":"string",
@@ -1015,6 +862,7 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "IncludeGlobalResourceTypes":{"type":"boolean"},
     "InsufficientDeliveryPolicyException":{
       "type":"structure",
       "members":{
@@ -1097,8 +945,8 @@
     "LaterTime":{"type":"timestamp"},
     "Limit":{
       "type":"integer",
-      "min":0,
-      "max":100
+      "max":100,
+      "min":0
     },
     "ListDiscoveredResourcesRequest":{
       "type":"structure",
@@ -1243,8 +1091,8 @@
     },
     "RecorderName":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "RecorderStatus":{
       "type":"string",
@@ -1258,6 +1106,7 @@
       "type":"structure",
       "members":{
         "allSupported":{"shape":"AllSupported"},
+        "includeGlobalResourceTypes":{"shape":"IncludeGlobalResourceTypes"},
         "resourceTypes":{"shape":"ResourceTypeList"}
       }
     },
@@ -1329,7 +1178,11 @@
         "AWS::EC2::Volume",
         "AWS::EC2::VPC",
         "AWS::EC2::VPNConnection",
-        "AWS::EC2::VPNGateway"
+        "AWS::EC2::VPNGateway",
+        "AWS::IAM::Group",
+        "AWS::IAM::Policy",
+        "AWS::IAM::Role",
+        "AWS::IAM::User"
       ]
     },
     "ResourceTypeList":{
@@ -1339,8 +1192,8 @@
     "ResourceTypes":{
       "type":"list",
       "member":{"shape":"StringWithCharLimit256"},
-      "min":0,
-      "max":100
+      "max":100,
+      "min":0
     },
     "Scope":{
       "type":"structure",
@@ -1369,8 +1222,8 @@
     "SourceDetails":{
       "type":"list",
       "member":{"shape":"SourceDetail"},
-      "min":0,
-      "max":25
+      "max":25,
+      "min":0
     },
     "StartConfigurationRecorderRequest":{
       "type":"structure",
@@ -1389,18 +1242,18 @@
     "String":{"type":"string"},
     "StringWithCharLimit128":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "StringWithCharLimit256":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "StringWithCharLimit64":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "Tags":{
       "type":"map",

@@ -453,7 +453,8 @@ func ExampleConfigService_PutConfigurationRecorder() {
 		ConfigurationRecorder: &configservice.ConfigurationRecorder{ // Required
 			Name: aws.String("RecorderName"),
 			RecordingGroup: &configservice.RecordingGroup{
-				AllSupported: aws.Bool(true),
+				AllSupported:               aws.Bool(true),
+				IncludeGlobalResourceTypes: aws.Bool(true),
 				ResourceTypes: []*string{
 					aws.String("ResourceType"), // Required
 					// More values...
