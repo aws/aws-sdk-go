@@ -3,11 +3,11 @@
   "metadata":{
     "apiVersion":"2015-10-01",
     "endpointPrefix":"ec2",
+    "protocol":"ec2",
     "serviceAbbreviation":"Amazon EC2",
     "serviceFullName":"Amazon Elastic Compute Cloud",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://ec2.amazonaws.com/doc/2015-10-01",
-    "protocol":"ec2"
+    "xmlNamespace":"http://ec2.amazonaws.com/doc/2015-10-01"
   },
   "operations":{
     "AcceptVpcPeeringConnection":{
@@ -27,6 +27,15 @@
       },
       "input":{"shape":"AllocateAddressRequest"},
       "output":{"shape":"AllocateAddressResult"}
+    },
+    "AllocateHosts":{
+      "name":"AllocateHosts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AllocateHostsRequest"},
+      "output":{"shape":"AllocateHostsResult"}
     },
     "AssignPrivateIpAddresses":{
       "name":"AssignPrivateIpAddresses",
@@ -746,6 +755,24 @@
       "input":{"shape":"DescribeFlowLogsRequest"},
       "output":{"shape":"DescribeFlowLogsResult"}
     },
+    "DescribeHosts":{
+      "name":"DescribeHosts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeHostsRequest"},
+      "output":{"shape":"DescribeHostsResult"}
+    },
+    "DescribeIdFormat":{
+      "name":"DescribeIdFormat",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIdFormatRequest"},
+      "output":{"shape":"DescribeIdFormatResult"}
+    },
     "DescribeImageAttribute":{
       "name":"DescribeImageAttribute",
       "http":{
@@ -1302,6 +1329,23 @@
       "input":{"shape":"ImportVolumeRequest"},
       "output":{"shape":"ImportVolumeResult"}
     },
+    "ModifyHosts":{
+      "name":"ModifyHosts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyHostsRequest"},
+      "output":{"shape":"ModifyHostsResult"}
+    },
+    "ModifyIdFormat":{
+      "name":"ModifyIdFormat",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyIdFormatRequest"}
+    },
     "ModifyImageAttribute":{
       "name":"ModifyImageAttribute",
       "http":{
@@ -1317,6 +1361,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"ModifyInstanceAttributeRequest"}
+    },
+    "ModifyInstancePlacement":{
+      "name":"ModifyInstancePlacement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstancePlacementRequest"},
+      "output":{"shape":"ModifyInstancePlacementResult"}
     },
     "ModifyNetworkInterfaceAttribute":{
       "name":"ModifyNetworkInterfaceAttribute",
@@ -1445,6 +1498,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"ReleaseAddressRequest"}
+    },
+    "ReleaseHosts":{
+      "name":"ReleaseHosts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ReleaseHostsRequest"},
+      "output":{"shape":"ReleaseHostsResult"}
     },
     "ReplaceNetworkAclAssociation":{
       "name":"ReplaceNetworkAclAssociation",
@@ -1761,6 +1823,13 @@
         "locationName":"item"
       }
     },
+    "Affinity":{
+      "type":"string",
+      "enum":[
+        "default",
+        "host"
+      ]
+    },
     "AllocateAddressRequest":{
       "type":"structure",
       "members":{
@@ -1788,12 +1857,61 @@
         }
       }
     },
+    "AllocateHostsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceType",
+        "Quantity",
+        "AvailabilityZone"
+      ],
+      "members":{
+        "AutoPlacement":{
+          "shape":"AutoPlacement",
+          "locationName":"autoPlacement"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "Quantity":{
+          "shape":"Integer",
+          "locationName":"quantity"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        }
+      }
+    },
+    "AllocateHostsResult":{
+      "type":"structure",
+      "members":{
+        "HostIds":{
+          "shape":"ResponseHostIdList",
+          "locationName":"hostIdSet"
+        }
+      }
+    },
     "AllocationIdList":{
       "type":"list",
       "member":{
         "shape":"String",
         "locationName":"AllocationId"
       }
+    },
+    "AllocationState":{
+      "type":"string",
+      "enum":[
+        "available",
+        "under-assessment",
+        "permanent-failure",
+        "released",
+        "released-permanent-failure"
+      ]
     },
     "AllocationStrategy":{
       "type":"string",
@@ -2128,6 +2246,13 @@
         "IpPermissions":{"shape":"IpPermissionList"}
       }
     },
+    "AutoPlacement":{
+      "type":"string",
+      "enum":[
+        "on",
+        "off"
+      ]
+    },
     "AvailabilityZone":{
       "type":"structure",
       "members":{
@@ -2181,6 +2306,26 @@
         "unavailable"
       ]
     },
+    "AvailableCapacity":{
+      "type":"structure",
+      "members":{
+        "AvailableInstanceCapacity":{
+          "shape":"AvailableInstanceCapacityList",
+          "locationName":"availableInstanceCapacity"
+        },
+        "AvailableVCpus":{
+          "shape":"Integer",
+          "locationName":"availableVCpus"
+        }
+      }
+    },
+    "AvailableInstanceCapacityList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceCapacity",
+        "locationName":"item"
+      }
+    },
     "BatchState":{
       "type":"string",
       "enum":[
@@ -2192,6 +2337,16 @@
         "cancelled_terminating",
         "modifying"
       ]
+    },
+    "Blob":{"type":"blob"},
+    "BlobAttributeValue":{
+      "type":"structure",
+      "members":{
+        "Value":{
+          "shape":"Blob",
+          "locationName":"value"
+        }
+      }
     },
     "BlockDeviceMapping":{
       "type":"structure",
@@ -4181,6 +4336,55 @@
         }
       }
     },
+    "DescribeHostsRequest":{
+      "type":"structure",
+      "members":{
+        "HostIds":{
+          "shape":"RequestHostIdList",
+          "locationName":"hostId"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"Integer",
+          "locationName":"maxResults"
+        },
+        "Filter":{
+          "shape":"FilterList",
+          "locationName":"filter"
+        }
+      }
+    },
+    "DescribeHostsResult":{
+      "type":"structure",
+      "members":{
+        "Hosts":{
+          "shape":"HostList",
+          "locationName":"hostSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeIdFormatRequest":{
+      "type":"structure",
+      "members":{
+        "Resource":{"shape":"String"}
+      }
+    },
+    "DescribeIdFormatResult":{
+      "type":"structure",
+      "members":{
+        "Statuses":{
+          "shape":"IdFormatList",
+          "locationName":"statusSet"
+        }
+      }
+    },
     "DescribeImageAttributeRequest":{
       "type":"structure",
       "required":[
@@ -5643,6 +5847,13 @@
         "locationName":"item"
       }
     },
+    "DhcpConfigurationValueList":{
+      "type":"list",
+      "member":{
+        "shape":"AttributeValue",
+        "locationName":"item"
+      }
+    },
     "DhcpOptions":{
       "type":"structure",
       "members":{
@@ -6282,6 +6493,102 @@
         "locationName":"item"
       }
     },
+    "Host":{
+      "type":"structure",
+      "members":{
+        "HostId":{
+          "shape":"String",
+          "locationName":"hostId"
+        },
+        "AutoPlacement":{
+          "shape":"AutoPlacement",
+          "locationName":"autoPlacement"
+        },
+        "HostReservationId":{
+          "shape":"String",
+          "locationName":"hostReservationId"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
+        },
+        "HostProperties":{
+          "shape":"HostProperties",
+          "locationName":"hostProperties"
+        },
+        "State":{
+          "shape":"AllocationState",
+          "locationName":"state"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "Instances":{
+          "shape":"HostInstanceList",
+          "locationName":"instances"
+        },
+        "AvailableCapacity":{
+          "shape":"AvailableCapacity",
+          "locationName":"availableCapacity"
+        }
+      }
+    },
+    "HostInstance":{
+      "type":"structure",
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        }
+      }
+    },
+    "HostInstanceList":{
+      "type":"list",
+      "member":{
+        "shape":"HostInstance",
+        "locationName":"item"
+      }
+    },
+    "HostList":{
+      "type":"list",
+      "member":{
+        "shape":"Host",
+        "locationName":"item"
+      }
+    },
+    "HostProperties":{
+      "type":"structure",
+      "members":{
+        "Sockets":{
+          "shape":"Integer",
+          "locationName":"sockets"
+        },
+        "Cores":{
+          "shape":"Integer",
+          "locationName":"cores"
+        },
+        "TotalVCpus":{
+          "shape":"Integer",
+          "locationName":"totalVCpus"
+        },
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        }
+      }
+    },
+    "HostTenancy":{
+      "type":"string",
+      "enum":[
+        "dedicated",
+        "host"
+      ]
+    },
     "HypervisorType":{
       "type":"string",
       "enum":[
@@ -6326,6 +6633,30 @@
           "shape":"Integer",
           "locationName":"code"
         }
+      }
+    },
+    "IdFormat":{
+      "type":"structure",
+      "members":{
+        "Resource":{
+          "shape":"String",
+          "locationName":"resource"
+        },
+        "UseLongIds":{
+          "shape":"Boolean",
+          "locationName":"useLongIds"
+        },
+        "Deadline":{
+          "shape":"DateTime",
+          "locationName":"deadline"
+        }
+      }
+    },
+    "IdFormatList":{
+      "type":"list",
+      "member":{
+        "shape":"IdFormat",
+        "locationName":"item"
       }
     },
     "Image":{
@@ -7245,6 +7576,23 @@
         "locationName":"item"
       }
     },
+    "InstanceCapacity":{
+      "type":"structure",
+      "members":{
+        "InstanceType":{
+          "shape":"String",
+          "locationName":"instanceType"
+        },
+        "AvailableCapacity":{
+          "shape":"Integer",
+          "locationName":"availableCapacity"
+        },
+        "TotalCapacity":{
+          "shape":"Integer",
+          "locationName":"totalCapacity"
+        }
+      }
+    },
     "InstanceCount":{
       "type":"structure",
       "members":{
@@ -7978,6 +8326,47 @@
       ]
     },
     "Long":{"type":"long"},
+    "ModifyHostsRequest":{
+      "type":"structure",
+      "required":[
+        "HostIds",
+        "AutoPlacement"
+      ],
+      "members":{
+        "HostIds":{
+          "shape":"RequestHostIdList",
+          "locationName":"hostId"
+        },
+        "AutoPlacement":{
+          "shape":"AutoPlacement",
+          "locationName":"autoPlacement"
+        }
+      }
+    },
+    "ModifyHostsResult":{
+      "type":"structure",
+      "members":{
+        "Successful":{
+          "shape":"ResponseHostIdList",
+          "locationName":"successful"
+        },
+        "Unsuccessful":{
+          "shape":"UnsuccessfulItemList",
+          "locationName":"unsuccessful"
+        }
+      }
+    },
+    "ModifyIdFormatRequest":{
+      "type":"structure",
+      "required":[
+        "Resource",
+        "UseLongIds"
+      ],
+      "members":{
+        "Resource":{"shape":"String"},
+        "UseLongIds":{"shape":"Boolean"}
+      }
+    },
     "ModifyImageAttributeRequest":{
       "type":"structure",
       "required":["ImageId"],
@@ -8066,6 +8455,37 @@
         "SriovNetSupport":{
           "shape":"AttributeValue",
           "locationName":"sriovNetSupport"
+        }
+      }
+    },
+    "ModifyInstancePlacementRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "Tenancy":{
+          "shape":"HostTenancy",
+          "locationName":"tenancy"
+        },
+        "Affinity":{
+          "shape":"Affinity",
+          "locationName":"affinity"
+        },
+        "HostId":{
+          "shape":"String",
+          "locationName":"hostId"
+        }
+      }
+    },
+    "ModifyInstancePlacementResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -8643,6 +9063,26 @@
         "detaching"
       ]
     },
+    "NewDhcpConfiguration":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"String",
+          "locationName":"key"
+        },
+        "Values":{
+          "shape":"ValueStringList",
+          "locationName":"Value"
+        }
+      }
+    },
+    "NewDhcpConfigurationList":{
+      "type":"list",
+      "member":{
+        "shape":"NewDhcpConfiguration",
+        "locationName":"item"
+      }
+    },
     "OfferingTypeValues":{
       "type":"string",
       "enum":[
@@ -8686,6 +9126,14 @@
         "Tenancy":{
           "shape":"Tenancy",
           "locationName":"tenancy"
+        },
+        "HostId":{
+          "shape":"String",
+          "locationName":"hostId"
+        },
+        "Affinity":{
+          "shape":"String",
+          "locationName":"affinity"
         }
       }
     },
@@ -9147,6 +9595,29 @@
         "AllocationId":{"shape":"String"}
       }
     },
+    "ReleaseHostsRequest":{
+      "type":"structure",
+      "required":["HostIds"],
+      "members":{
+        "HostIds":{
+          "shape":"RequestHostIdList",
+          "locationName":"hostId"
+        }
+      }
+    },
+    "ReleaseHostsResult":{
+      "type":"structure",
+      "members":{
+        "Successful":{
+          "shape":"ResponseHostIdList",
+          "locationName":"successful"
+        },
+        "Unsuccessful":{
+          "shape":"UnsuccessfulItemList",
+          "locationName":"unsuccessful"
+        }
+      }
+    },
     "ReplaceNetworkAclAssociationRequest":{
       "type":"structure",
       "required":[
@@ -9352,6 +9823,13 @@
         "impaired"
       ]
     },
+    "RequestHostIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
     "RequestSpotFleetRequest":{
       "type":"structure",
       "required":["SpotFleetRequestConfig"],
@@ -9429,6 +9907,75 @@
         "SpotInstanceRequests":{
           "shape":"SpotInstanceRequestList",
           "locationName":"spotInstanceRequestSet"
+        }
+      }
+    },
+    "RequestSpotLaunchSpecification":{
+      "type":"structure",
+      "members":{
+        "ImageId":{
+          "shape":"String",
+          "locationName":"imageId"
+        },
+        "KeyName":{
+          "shape":"String",
+          "locationName":"keyName"
+        },
+        "SecurityGroups":{
+          "shape":"ValueStringList",
+          "locationName":"SecurityGroup"
+        },
+        "UserData":{
+          "shape":"String",
+          "locationName":"userData"
+        },
+        "AddressingType":{
+          "shape":"String",
+          "locationName":"addressingType"
+        },
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "Placement":{
+          "shape":"SpotPlacement",
+          "locationName":"placement"
+        },
+        "KernelId":{
+          "shape":"String",
+          "locationName":"kernelId"
+        },
+        "RamdiskId":{
+          "shape":"String",
+          "locationName":"ramdiskId"
+        },
+        "BlockDeviceMappings":{
+          "shape":"BlockDeviceMappingList",
+          "locationName":"blockDeviceMapping"
+        },
+        "SubnetId":{
+          "shape":"String",
+          "locationName":"subnetId"
+        },
+        "NetworkInterfaces":{
+          "shape":"InstanceNetworkInterfaceSpecificationList",
+          "locationName":"NetworkInterface"
+        },
+        "IamInstanceProfile":{
+          "shape":"IamInstanceProfileSpecification",
+          "locationName":"iamInstanceProfile"
+        },
+        "EbsOptimized":{
+          "shape":"Boolean",
+          "locationName":"ebsOptimized"
+        },
+        "Monitoring":{
+          "shape":"RunInstancesMonitoringEnabled",
+          "locationName":"monitoring"
+        },
+        "SecurityGroupIds":{
+          "shape":"ValueStringList",
+          "locationName":"SecurityGroupId"
         }
       }
     },
@@ -9906,6 +10453,13 @@
         "vpn-connection",
         "vpn-gateway"
       ]
+    },
+    "ResponseHostIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
     },
     "RestorableByStringList":{
       "type":"list",
@@ -11100,7 +11654,8 @@
       "type":"string",
       "enum":[
         "default",
-        "dedicated"
+        "dedicated",
+        "host"
       ]
     },
     "TerminateInstancesRequest":{
@@ -11178,13 +11733,13 @@
       "type":"structure",
       "required":["Error"],
       "members":{
-        "ResourceId":{
-          "shape":"String",
-          "locationName":"resourceId"
-        },
         "Error":{
           "shape":"UnsuccessfulItemError",
           "locationName":"error"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
         }
       }
     },
@@ -11203,6 +11758,13 @@
           "shape":"String",
           "locationName":"message"
         }
+      }
+    },
+    "UnsuccessfulItemList":{
+      "type":"list",
+      "member":{
+        "shape":"UnsuccessfulItem",
+        "locationName":"item"
       }
     },
     "UnsuccessfulItemSet":{
@@ -12007,112 +12569,6 @@
       "member":{
         "shape":"String",
         "locationName":"ZoneName"
-      }
-    },
-    "NewDhcpConfigurationList":{
-      "type":"list",
-      "member":{
-        "shape":"NewDhcpConfiguration",
-        "locationName":"item"
-      }
-    },
-    "NewDhcpConfiguration":{
-      "type":"structure",
-      "members":{
-        "Key":{
-          "shape":"String",
-          "locationName":"key"
-        },
-        "Values":{
-          "shape":"ValueStringList",
-          "locationName":"Value"
-        }
-      }
-    },
-    "DhcpConfigurationValueList":{
-      "type":"list",
-      "member":{
-        "shape":"AttributeValue",
-        "locationName":"item"
-      }
-    },
-    "Blob":{"type":"blob"},
-    "BlobAttributeValue":{
-      "type":"structure",
-      "members":{
-        "Value":{
-          "shape":"Blob",
-          "locationName":"value"
-        }
-      }
-    },
-    "RequestSpotLaunchSpecification":{
-      "type":"structure",
-      "members":{
-        "ImageId":{
-          "shape":"String",
-          "locationName":"imageId"
-        },
-        "KeyName":{
-          "shape":"String",
-          "locationName":"keyName"
-        },
-        "SecurityGroups":{
-          "shape":"ValueStringList",
-          "locationName":"SecurityGroup"
-        },
-        "UserData":{
-          "shape":"String",
-          "locationName":"userData"
-        },
-        "AddressingType":{
-          "shape":"String",
-          "locationName":"addressingType"
-        },
-        "InstanceType":{
-          "shape":"InstanceType",
-          "locationName":"instanceType"
-        },
-        "Placement":{
-          "shape":"SpotPlacement",
-          "locationName":"placement"
-        },
-        "KernelId":{
-          "shape":"String",
-          "locationName":"kernelId"
-        },
-        "RamdiskId":{
-          "shape":"String",
-          "locationName":"ramdiskId"
-        },
-        "BlockDeviceMappings":{
-          "shape":"BlockDeviceMappingList",
-          "locationName":"blockDeviceMapping"
-        },
-        "SubnetId":{
-          "shape":"String",
-          "locationName":"subnetId"
-        },
-        "NetworkInterfaces":{
-          "shape":"InstanceNetworkInterfaceSpecificationList",
-          "locationName":"NetworkInterface"
-        },
-        "IamInstanceProfile":{
-          "shape":"IamInstanceProfileSpecification",
-          "locationName":"iamInstanceProfile"
-        },
-        "EbsOptimized":{
-          "shape":"Boolean",
-          "locationName":"ebsOptimized"
-        },
-        "Monitoring":{
-          "shape":"RunInstancesMonitoringEnabled",
-          "locationName":"monitoring"
-        },
-        "SecurityGroupIds":{
-          "shape":"ValueStringList",
-          "locationName":"SecurityGroupId"
-        }
       }
     }
   }
