@@ -670,6 +670,7 @@ func ExampleECS_StopTask() {
 	params := &ecs.StopTaskInput{
 		Task:    aws.String("String"), // Required
 		Cluster: aws.String("String"),
+		Reason:  aws.String("String"),
 	}
 	resp, err := svc.StopTask(params)
 

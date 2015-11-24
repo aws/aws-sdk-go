@@ -61,7 +61,25 @@ func (c *ECS) CreateServiceRequest(input *CreateServiceInput) (req *request.Requ
 
 // Runs and maintains a desired number of tasks from a specified task definition.
 // If the number of tasks running in a service drops below desiredCount, Amazon
-// ECS spawns another instantiation of the task in the specified cluster.
+// ECS spawns another instantiation of the task in the specified cluster. To
+// update an existing service, see UpdateService.
+//
+// When the service scheduler launches new tasks, it attempts to balance them
+// across the Availability Zones in your cluster with the following logic:
+//
+//   Determine which of the container instances in your cluster can support
+// your service's task definition (for example, they have the required CPU,
+// memory, ports, and container instance attributes).
+//
+//   Sort the valid container instances by the fewest number of running tasks
+// for this service in the same Availability Zone as the instance. For example,
+// if zone A has one running service task and zones B and C each have zero,
+// valid container instances in either zone B or C are considered optimal for
+// placement.
+//
+//   Place the new service task on a valid container instance in an optimal
+// Availability Zone (based on the previous steps), favoring container instances
+// with the fewest number of running tasks for this service.
 func (c *ECS) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
 	req, out := c.CreateServiceRequest(input)
 	err := req.Send()
@@ -117,7 +135,20 @@ func (c *ECS) DeleteServiceRequest(input *DeleteServiceInput) (req *request.Requ
 	return
 }
 
-// Deletes a specified service within a cluster.
+// Deletes a specified service within a cluster. You can delete a service if
+// you have no running tasks in it and the desired task count is zero. If the
+// service is actively maintaining tasks, you cannot delete it, and you must
+// update the service to a desired task count of zero. For more information,
+// see UpdateService.
+//
+//  When you delete a service, if there are still running tasks that require
+// cleanup, the service status moves from ACTIVE to DRAINING, and the service
+// is no longer visible in the console or in ListServices API operations. After
+// the tasks have stopped, then the service status moves from DRAINING to INACTIVE.
+// Services in the DRAINING or INACTIVE status can still be viewed with DescribeServices
+// API operations; however, in the future, INACTIVE services may be cleaned
+// up and purged from Amazon ECS record keeping, and DescribeServices API operations
+// on those services will return a ServiceNotFoundException error.
 func (c *ECS) DeleteService(input *DeleteServiceInput) (*DeleteServiceOutput, error) {
 	req, out := c.DeleteServiceRequest(input)
 	err := req.Send()
@@ -919,6 +950,23 @@ func (c *ECS) UpdateServiceRequest(input *UpdateServiceInput) (req *request.Requ
 // and a 30-second timeout, after which SIGKILL is sent and the containers are
 // forcibly stopped. If the container handles the SIGTERM gracefully and exits
 // within 30 seconds from receiving it, no SIGKILL is sent.
+//
+// When the service scheduler launches new tasks, it attempts to balance them
+// across the Availability Zones in your cluster with the following logic:
+//
+//   Determine which of the container instances in your cluster can support
+// your service's task definition (for example, they have the required CPU,
+// memory, ports, and container instance attributes).
+//
+//   Sort the valid container instances by the fewest number of running tasks
+// for this service in the same Availability Zone as the instance. For example,
+// if zone A has one running service task and zones B and C each have zero,
+// valid container instances in either zone B or C are considered optimal for
+// placement.
+//
+//   Place the new service task on a valid container instance in an optimal
+// Availability Zone (based on the previous steps), favoring container instances
+// with the fewest number of running tasks for this service.
 func (c *ECS) UpdateService(input *UpdateServiceInput) (*UpdateServiceOutput, error) {
 	req, out := c.UpdateServiceRequest(input)
 	err := req.Send()
@@ -1083,10 +1131,10 @@ type ContainerDefinition struct {
 	// 2 (including null), the behavior varies based on your Amazon ECS container
 	// agent version:
 	//
-	//   Agent versions less than or equal to 1.1.0: Null and zero CPU values are
+	//  Agent versions less than or equal to 1.1.0: Null and zero CPU values are
 	// passed to Docker as 0, which Docker then converts to 1,024 CPU shares. CPU
 	// values of 1 are passed to Docker as 1, which the Linux kernel converts to
-	// 2 CPU shares.  Agent versions greater than or equal to 1.2.0: Null, zero,
+	// 2 CPU shares. Agent versions greater than or equal to 1.2.0: Null, zero,
 	// and CPU values of 1 are passed to Docker as 2.
 	Cpu *int64 `locationName:"cpu" type:"integer"`
 
@@ -1147,6 +1195,9 @@ type ContainerDefinition struct {
 	// Env in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.19/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
 	// and the --env option to docker run (https://docs.docker.com/reference/commandline/run/).
+	//
+	//  We do not recommend using plain text environment variables for sensitive
+	// information, such as credential data.
 	Environment []*KeyValuePair `locationName:"environment" type:"list"`
 
 	// If the essential parameter of a container is marked as true, the failure
@@ -1214,9 +1265,12 @@ type ContainerDefinition struct {
 	// in the Amazon EC2 Container Service Developer Guide.
 	LogConfiguration *LogConfiguration `locationName:"logConfiguration" type:"structure"`
 
-	// The number of MiB of memory reserved for the container. If your container
-	// attempts to exceed the memory allocated here, the container is killed. This
-	// parameter maps to Memory in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.19/#create-a-container)
+	// The number of MiB of memory to reserve for the container. You must specify
+	// a non-zero integer for this parameter; the Docker daemon reserves a minimum
+	// of 4 MiB of memory for a container, so you should not specify fewer than
+	// 4 MiB of memory for your containers. If your container attempts to exceed
+	// the memory allocated here, the container is killed. This parameter maps to
+	// Memory in the Create a container (https://docs.docker.com/reference/api/docker_remote_api_v1.19/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/reference/api/docker_remote_api_v1.19/)
 	// and the --memory option to docker run (https://docs.docker.com/reference/commandline/run/).
 	Memory *int64 `locationName:"memory" type:"integer"`
@@ -2291,8 +2345,8 @@ type ListServicesInput struct {
 	// maxResults results in a single page along with a nextToken response element.
 	// The remaining results of the initial request can be seen by sending another
 	// ListServices request with the returned nextToken value. This value can be
-	// between 1 and 100. If this parameter is not used, then ListServices returns
-	// up to 100 results and a nextToken value if applicable.
+	// between 1 and 10. If this parameter is not used, then ListServices returns
+	// up to 10 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The nextToken value returned from a previous paginated ListServices request
@@ -3191,6 +3245,12 @@ type StopTaskInput struct {
 	// assumed..
 	Cluster *string `locationName:"cluster" type:"string"`
 
+	// An optional message specified when a task is stopped. For example, if you
+	// are using a custom scheduler, you can use this parameter to specify the reason
+	// for stopping the task here, and the message will appear in subsequent DescribeTasks
+	// API operations on this task. Up to 255 characters are allowed in this message.
+	Reason *string `locationName:"reason" type:"string"`
+
 	// The task ID or full Amazon Resource Name (ARN) entry of the task to stop.
 	Task *string `locationName:"task" type:"string" required:"true"`
 
@@ -3358,6 +3418,10 @@ type Task struct {
 	// The containers associated with the task.
 	Containers []*Container `locationName:"containers" type:"list"`
 
+	// The Unix time in seconds and milliseconds when the task was created (the
+	// task entered the PENDING state).
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"unix"`
+
 	// The desired status of the task.
 	DesiredStatus *string `locationName:"desiredStatus" type:"string"`
 
@@ -3367,10 +3431,21 @@ type Task struct {
 	// One or more container overrides.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
+	// The Unix time in seconds and milliseconds when the task was started (the
+	// task transitioned from the PENDING state to the RUNNING state).
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"unix"`
+
 	// The tag specified when a task is started. If the task is started by an Amazon
 	// ECS service, then the startedBy parameter contains the deployment ID of the
 	// service that starts it.
 	StartedBy *string `locationName:"startedBy" type:"string"`
+
+	// The Unix time in seconds and milliseconds when the task was stopped (the
+	// task transitioned from the RUNNING state to the STOPPED state).
+	StoppedAt *time.Time `locationName:"stoppedAt" type:"timestamp" timestampFormat:"unix"`
+
+	// The reason the task was stopped.
+	StoppedReason *string `locationName:"stoppedReason" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the task.
 	TaskArn *string `locationName:"taskArn" type:"string"`
